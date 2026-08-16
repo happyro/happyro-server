@@ -10,5 +10,8 @@
  **/
 
 
+// roBrowserLegacy uses unobfuscated 2021-11-03 packets in the HappyRO LAN stack.
+#undef PACKET_OBFUSCATION
+#undef PACKET_OBFUSCATION_WARN
 
 #endif /* CONFIG_CUSTOM_DEFINES_POST_HPP */
