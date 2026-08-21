@@ -1,34 +1,22 @@
-# HappyRO rAthena Agent Instructions
+# HappyRO rAthena 服务端代理说明
 
-This repository is the HappyRO fork of rAthena. Preserve compatibility with upstream while keeping the LAN Web stack reproducible.
+本仓库是 HappyRO 的 rAthena 服务端仓库。保持与上游兼容，并确保仅限局域网运行的 Web 栈可复现。
 
-## Git
+## Git 规则
 
-- Every HappyRO-authored commit must use `type(scope): subject`.
-- The scope is mandatory, lowercase, and hyphen-separated when needed.
-- Allowed types are `feat`, `fix`, `config`, `docs`, `refactor`, `test`, `build`, `ci`, `chore`, `perf`, `style`, and `revert`.
-- Write the subject in imperative English, without a trailing period, and keep the complete first line at 72 characters or fewer.
-- Examples: `config(packet): align the 20211103 protocol` and `docs(locale): record message review rules`.
-- Use `type(scope)!: subject` for a breaking change and explain the migration in the commit body.
-- Keep one logical change per commit. Upstream merge commits and upstream-authored commits are exempt from the HappyRO message format.
-- Use `main` for HappyRO development. Push only to `origin`; never push to `upstream`.
-- Do not commit or push unless the user explicitly asks.
+- HappyRO 自有提交必须使用 `type(scope): subject` 格式。
+- `scope` 必须存在，使用小写英文；破坏性变更使用 `type(scope)!: subject` 并说明迁移方式。
+- 允许的类型：`feat`、`fix`、`config`、`docs`、`refactor`、`test`、`build`、`ci`、`chore`、`perf`、`style`、`revert`。
+- subject 使用祈使语气的英文，不以句号结尾，首行不超过 72 个字符。
+- 一个提交只包含一个逻辑变更；上游合并提交和上游作者提交不受此限制。
+- 只推送到本仓库的 `origin`，不推送到 `upstream`；未经用户明确要求不提交、不推送。
 
-## Server Invariants
+## 服务端不变量
 
-- Keep `PACKETVER=20211103`, Renewal mode, packet obfuscation, and the roBrowserLegacy client configuration aligned.
-- Preserve the rAthena `master` ancestry and keep HappyRO changes small enough to review during upstream merges.
-- Prefer `conf/import/`, `db/import/`, `npc/custom/`, and `src/custom/` extension points over modifying upstream-owned defaults.
-- Do not switch to a third-party rAthena fork or import translated NPC scripts as a shortcut.
-- Treat official rAthena IDs, database schemas, message IDs, script behavior, and the verified kRO client structures as authoritative.
-- Keep translations separate from script logic. Review NPC text item by item and preserve labels, variables, control flow, placeholders, color codes, and security-sensitive commands.
-- Keep secrets, generated import configuration, build output, database data, logs, and runtime artifacts out of Git.
-- Database changes require compatible SQL migration/import handling and verification against the pinned MariaDB development stack.
+- 保持 `PACKETVER=20211103`、Renewal、封包混淆，以及与 roBrowserLegacy 客户端一致的配置。
+- 密钥、生成配置、编译产物、数据库数据、日志和运行时文件不得提交。
+- 数据库结构变更必须配套兼容的 SQL 迁移或 import 处理。
 
-## Style And Verification
+## 风格与验收
 
-- Follow the repository `.editorconfig`, `.gitattributes`, existing C++ conventions, YAML spacing, and NPC script tab rules.
-- Avoid unrelated formatting or modernization in upstream files.
-- Run the focused test or parser for the changed subsystem and build all affected server binaries.
-- For HappyRO runtime changes, run the root repository `make build-server`, `make server-verify`, or the closest focused check available.
-- Never declare localization complete from translated line counts. Validate IDs, placeholders, encoding, fallback behavior, and representative in-game flows.
+- 遵守 `.editorconfig`、`.gitattributes`、C++ 风格、YAML 间距和 NPC 脚本缩进。
