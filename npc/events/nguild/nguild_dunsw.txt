@@ -19,24 +19,24 @@ function	script	F_GldDunSw	{
 	set .@GID, GetCastleData(getarg(0),1);
 	if (.@GID == 0) {
 		mes "[ Echoing Voice ]";
-		mes " ' The one who can overcome an ordeal and show true bravery... will find the way... ' ";
+		mes "‘能够克服考验并展现真正勇气的人……会找到道路……’";
 		close;
 	}
 	else {
 		mes "[ Echoing Voice ]";
-		mes " ' Only the one who can show true bravery can take this test. '";
+		mes "‘只有展现真正勇气的人，才能接受这项测试。’";
 		next;
 		mes " ";
-		mes "There's a small lever. Will you pull it?";
+		mes "这里有一个小拉杆。要拉动它吗？";
 		next;
 
-		if (select("Pull.:Do not.") == 1) {
+		if (select("拉动。:不拉。") == 1) {
 			if (getcharid(2) == .@GID) {
 				warp "gld_dun"+getarg(1),getarg(2),getarg(3);
 				end;
 			}
 			mes " ";
-			mes " Nothing happened.";
+		mes "什么也没发生。";
 		}
 		return;
 	}

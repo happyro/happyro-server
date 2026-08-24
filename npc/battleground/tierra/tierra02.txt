@@ -21,7 +21,7 @@ bat_room,114,227,5	script	Lieutenant Rundel	418,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station",11,"start#bat_a02::OnReadyCheck",1,0,80;
+	waitingroom "战斗站",11,"start#bat_a02::OnReadyCheck",1,0,80;
 	end;
 
 OnEnterBG:
@@ -187,7 +187,7 @@ OnMyMobDead:
 		set $@TierraBG2_Victory, 2;
 		enablenpc "Guillaume Vintenar#a02_a";
 		enablenpc "Croix Vintenar#a02_b";
-		mapannounce "bat_a02", "Croix Vintenar Swandery: We destroyed Guillaume's Food Storage. We won that! Wow!",bc_map,"0xFFCE00";
+		mapannounce "bat_a02", "克鲁瓦军维特纳·斯旺德里：我们摧毁了吉约姆军的粮仓。我们赢了！太棒了！",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
 		bg_warp $@TierraBG2_id2,"bat_a02",42,16;
 		if (getbattleflag("feature.bgqueue"))
@@ -212,7 +212,7 @@ OnMyMobDead:
 		set $@TierraBG2_Victory, 1;
 		enablenpc "Guillaume Vintenar#a02_a";
 		enablenpc "Croix Vintenar#a02_b";
-		mapannounce "bat_a02", "Guillaume Vintenar Axl Rose : We destroyed Croix's Food Storage. We won that! Wow!",bc_map,"0xFFCE00";
+		mapannounce "bat_a02", "吉约姆军维特纳·艾克斯尔·罗斯：我们摧毁了克鲁瓦军的粮仓。我们赢了！太棒了！",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
 		bg_warp $@TierraBG2_id2,"bat_a02",42,16;
 		if (getbattleflag("feature.bgqueue"))
@@ -239,7 +239,7 @@ OnMyMobDead:
 		killmonster "bat_a02","barricade#bat_a02_a::OnMyMobDead";
 		delwall "bat_a02_c1";
 		enablenpc "Guillaume Blacksmith#a02";
-		mapannounce "bat_a02", "Guillaume Vintenar Axl Rose : The Barricade in the valley has been destroyed! Where's the Blacksmith? We need to rebuild the Barricade!",bc_map,"0xFFCE00";
+		mapannounce "bat_a02", "吉约姆军维特纳·艾克斯尔·罗斯：山谷中的路障被摧毁了！铁匠在哪里？我们需要重建路障！",bc_map,"0xFFCE00";
 	}
 	end;
 }
@@ -262,7 +262,7 @@ OnMyMobDead:
 		killmonster "bat_a02","barricade#bat_a02_b::OnMyMobDead";
 		delwall "bat_a02_g1";
 		enablenpc "Croix Blacksmith#bat_a02";
-		mapannounce "bat_a02", "Croix Vintenar Swandery : The Barricade in the valley has been destroyed! Where's the Blacksmith? We need to rebuild the Barricade!",bc_map,"0xFFCE00";
+		mapannounce "bat_a02", "克鲁瓦军维特纳·斯旺德里：山谷中的路障被摧毁了！铁匠在哪里？我们需要重建路障！",bc_map,"0xFFCE00";
 	}
 	end;
 }
@@ -281,11 +281,11 @@ OnMyMobDead:
 		bg_team_setxy getcharid(4),56,212;
 		if (getcharid(4) == $@TierraBG2_id1) {
 			donpcevent "NOBJ_mob#bat_a02_a::OnEnable";
-			mapannounce "bat_a02", "Guillaume captured a Neutrality Flag, so they have an advantage.",bc_map,"0xFFCE00";
+			mapannounce "bat_a02", "吉约姆军夺取了中立旗帜，因此占据优势。",bc_map,"0xFFCE00";
 		}
 		else {
 			donpcevent "NOBJ_mob#bat_a02_b::OnEnable";
-			mapannounce "bat_a02", "Croix captured a Neutrality Flag, so they have an advantage.",bc_map,"0xFFCE00";
+			mapannounce "bat_a02", "克鲁瓦军夺取了中立旗帜，因此占据优势。",bc_map,"0xFFCE00";
 		}
 	}
 	end;
@@ -326,15 +326,15 @@ OnMyMobDead:
 bat_a02,185,270,1	script	Guillaume Blacksmith#a02	851,{
 	if (getcharid(4) == $@TierraBG2_id1) {
 		mes "[Guillaume Blacksmith]";
-		mes "We are in urgency! The Barricade has been destroyed!";
-		mes "We can repair the Barricade with ^3131FF50 Stones, 3 Sinew of Bear, 500 Metal Fragments, 30 Rough Elunium and 100 Gold.^000000";
-		mes "We have it all except for the 50 Stones!";
+		mes "情况紧急！路障被摧毁了！";
+		mes "我们可以用 ^3131FF50 块石头、3 个熊筋、500 个金属碎片、30 个粗糙铝和 100 金币^000000 修复路障。";
+		mes "除了 50 块石头，我们什么都有！";
 		next;
-		switch(select("Repair.:Leave it.")) {
+		switch(select("修理。:不管它。")) {
 		case 1:
 			if (countitem(7049) > 49) {
 				mes "[Guillaume Blacksmith]";
-				mes "You brought enough stones! Let's go and repair.";
+				mes "你带来了足够的石头！我们去修理吧。";
 				next;
 				mes "..";
 				next;
@@ -351,19 +351,19 @@ bat_a02,185,270,1	script	Guillaume Blacksmith#a02	851,{
 				mes "..............";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage.";
+				mes "按正确比例混合石头和黄金。";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade.";
+				mes "按正确比例混合石头和黄金，并塑造路障。";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger.";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger. Now decorate with Metal Fragments.";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。现在用金属碎片装饰。";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger. Decorate with Metal Fragments, and plait stones with Sinew of Bear!";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。用金属碎片装饰，并用熊筋编织石头！";
 				next;
 				mes "..............";
 				mes "..............";
@@ -373,8 +373,8 @@ bat_a02,185,270,1	script	Guillaume Blacksmith#a02	851,{
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				mes "[Guillaume Blacksmith]";
-				mes "Wow! It's done.";
-				mes "We are relieved.";
+				mes "哇！完成了。";
+				mes "我们终于放心了。";
 				if (mobcount("bat_a02","barricade#bat_a02_a::OnMyMobDead") < 17) {
 					delitem 7049,50; //Stone
 					donpcevent "barricade#bat_a02_a::OnEnable";
@@ -385,22 +385,22 @@ bat_a02,185,270,1	script	Guillaume Blacksmith#a02	851,{
 			}
 			else {
 				mes "[Guillaume Blacksmith]";
-				mes "You don't have enough Stones!";
+				mes "你的石头不够！";
 				next;
 				mes "[Guillaume Blacksmith]";
-				mes "^3131FFWe need 50 Stones.^000000";
-				mes "We are busy, so please hurry.";
+				mes "^3131FF我们需要 50 块石头。^000000";
+				mes "我们很忙，请快一点。";
 				close;
 			}
 		case 2:
 			mes "[Guillaume Blacksmith]";
-			mes "There are enemies coming! Let's evacuate from here!";
+			mes "敌人来了！我们快撤离这里！";
 			close;
 		}
 	}
 	else {
 		mes "[Guillaume Blacksmith]";
-		mes "There the enemy is coming!";
+		mes "敌人来了！";
 		close;
 	}
 
@@ -412,15 +412,15 @@ OnInit:
 bat_a02,170,121,5	script	Croix Blacksmith#bat_a02	851,{
 	if (getcharid(4) == $@TierraBG2_id2) {
 		mes "[Croix Blacksmith]";
-		mes "We are in urgency! The Barricade has been destroyed!";
-		mes "We can repair the Barricade with ^3131FF50 Stones, 3 Sinew of Bear, 500 Metal Fragments, 30 Rough Elunium and 100 Gold.^000000";
-		mes "We have it all except for the 50 Stones!";
+		mes "情况紧急！路障被摧毁了！";
+		mes "我们可以用 ^3131FF50 块石头、3 个熊筋、500 个金属碎片、30 个粗糙铝和 100 金币^000000 修复路障。";
+		mes "除了 50 块石头，我们什么都有！";
 		next;
-		switch(select("Repair.:Leave it.")) {
+		switch(select("修理。:不管它。")) {
 		case 1:
 			if (countitem(7049) > 49) {
 				mes "[Croix Blacksmith]";
-				mes "You brought enough stones! Let's go and repair.";
+				mes "你带来了足够的石头！我们去修理吧。";
 				next;
 				mes "..";
 				next;
@@ -437,19 +437,19 @@ bat_a02,170,121,5	script	Croix Blacksmith#bat_a02	851,{
 				mes "..............";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage.";
+				mes "按正确比例混合石头和黄金。";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade.";
+				mes "按正确比例混合石头和黄金，并塑造路障。";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger.";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger. Now decorate with Metal Fragments.";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。现在用金属碎片装饰。";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "Combine Stones and Gold in the proper percentage and shape the Barricade, then add Rough Elunium to make it stronger. Decorate with Metal Fragments, and plait stones with Sinew of Bear!";
+				mes "按正确比例混合石头和黄金塑造路障，再加入粗糙铝使其更坚固。用金属碎片装饰，并用熊筋编织石头！";
 				next;
 				mes "..............";
 				mes "..............";
@@ -459,8 +459,8 @@ bat_a02,170,121,5	script	Croix Blacksmith#bat_a02	851,{
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				mes "[Croix Blacksmith]";
-				mes "Wow! It's done.";
-				mes "We are relieved.";
+				mes "哇！完成了。";
+				mes "我们终于放心了。";
 				if (mobcount("bat_a02","barricade#bat_a02_b::OnMyMobDead") < 17) {
 					delitem 7049,50; //Stone
 					donpcevent "barricade#bat_a02_b::OnEnable";
@@ -471,22 +471,22 @@ bat_a02,170,121,5	script	Croix Blacksmith#bat_a02	851,{
 			}
 			else {
 				mes "[Croix Blacksmith]";
-				mes "You don't have enough Stones!";
+				mes "你的石头不够！";
 				next;
 				mes "[Croix Blacksmith]";
-				mes "^3131FFWe need 50 Stone.^000000";
-				mes "We are busy, so please hurry.";
+				mes "^3131FF我们需要 50 块石头。^000000";
+				mes "我们很忙，请快一点。";
 				close;
 			}
 		case 2:
 			mes "[Croix Blacksmith]";
-			mes "There are enemies coming! Let's evacuate from here!";
+			mes "敌人来了！我们快撤离这里！";
 			close;
 		}
 	}
 	else {
 		mes "[Croix Blacksmith]";
-		mes "There, the enemy is coming!";
+		mes "敌人来了！";
 		close;
 	}
 
@@ -497,10 +497,10 @@ OnInit:
 
 bat_a02,53,377,3	script	Battle Therapist#a02_a	95,{
 	specialeffect2 EF_HEAL;
-	mes "[Battle Therapist]";
-	mes "Just close your eyes,";
-	mes "and take a deep breath.";
-	mes "You can be free from pain.";
+	mes "[战场治疗师]";
+	mes "只要闭上眼睛，";
+	mes "深呼吸。";
+	mes "你可以摆脱痛苦。";
 	close;
 	end;
 
@@ -551,10 +551,10 @@ OnTouch:
 
 bat_a02,45,19,3	script	Battle Therapist#a02_b	95,{
 	specialeffect2 EF_HEAL;
-	mes "[Battle Therapist]";
-	mes "Just close your eyes,";
-	mes "and take a deep breath.";
-	mes "You can be free from pain.";
+	mes "[战地治疗师]";
+	mes "只要闭上眼睛，";
+	mes "深呼吸。";
+	mes "你可以摆脱痛苦。";
 	close;
 	end;
 
@@ -605,8 +605,8 @@ OnTouch:
 
 bat_a02,60,216,3	script	Valley Ghost#bat_a02_n	950,{
 	specialeffect2 EF_HEAL;
-	mes "[Valley Ghost]";
-	mes "Boo...Boo...";
+	mes "[山谷幽灵]";
+	mes "呜……呜……";
 	close;
 
 OnInit:
@@ -770,31 +770,31 @@ OnStop:
 	end;
 
 OnTimer7000:
-	mapannounce "bat_a02", "Guillaume Vintenar Axl Rose : Let's attack to burn down Croix's Food Depot!",bc_map,"0xFF9900";
+	mapannounce "bat_a02", "纪尧姆·文泰纳·艾克塞尔·罗斯：发动攻击，烧毁克鲁瓦的食物补给站！",bc_map,"0xFF9900";
 	end;
 
 OnTimer8000:
-	mapannounce "bat_a02", "Croix Vintenar Swandery : Master of Valhalla! Let us be gifted with unfailing faith and courage!",bc_map,"0xFF99CC";
+	mapannounce "bat_a02", "克鲁瓦·文泰纳·斯旺德里：英灵殿之主！请赐予我们永不动摇的信念与勇气！",bc_map,"0xFF99CC";
 	end;
 
 OnTimer1800000:
-	mapannounce "bat_a02", "Marollo VII : Guillaume Marollo, Croix Marollo! Marollo followers!",bc_map,"0x99CC00";
+	mapannounce "bat_a02", "马罗洛七世：纪尧姆·马罗洛、克鲁瓦·马罗洛！以及马罗洛的追随者们！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1803000:
-	mapannounce "bat_a02", "Marollo VII : Both camps are competitive, so no camp would be destroyed easily. That means the Marollo kingdoms will never be defeated!",bc_map,"0x99CC00";
+	mapannounce "bat_a02", "马罗洛七世：双方势均力敌，任何阵营都不会轻易覆灭。这意味着马罗洛王国永远不会被击败！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1808000:
-	mapannounce "bat_a02", "Marollo VII : I think we'd better terminate the battle, and call it a draw.",bc_map,"0x99CC00";
+	mapannounce "bat_a02", "马罗洛七世：我认为最好终止战斗，以平局收场。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1822000:
-	mapannounce "bat_a02", "Marollo VII : Hold your royalty and faith for a moment, and let's settle up the battle of Tierra Gorge.",bc_map,"0x99CC00";
+	mapannounce "bat_a02", "马罗洛七世：暂且坚守你们的忠诚与信念，让我们结束提耶拉峡谷之战。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1825000:
-	mapannounce "bat_a02", "Axl Rose, Swandery : Yes sir.",bc_map,"0x99CC00";
+	mapannounce "bat_a02", "艾克塞尔·罗斯、斯旺德里：是，长官。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1830000:
@@ -805,12 +805,12 @@ OnTimer1830000:
 
 /*
 bat_a02,351,75,3	script	Croix Camp Soldier#bat_a02_guide	934,{
-	mes "Loading...";
+	mes "正在载入……";
 	close;
 }
 
 bat_a02,356,326,3	script	Guillaume Camp Soldier#bat_a02_guide	934,{
-	mes "Loading...";
+	mes "正在载入……";
 	close;
 }
 */
@@ -818,21 +818,21 @@ bat_a02,356,326,3	script	Guillaume Camp Soldier#bat_a02_guide	934,{
 bat_a02,1,1,3	script	Release all#a02	81,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
-		mes "Cancelled.";
+		mes "已取消。";
 		close;
 	} else if (.@i == 0) {
 		end;
 	} else {
-		mes "May I help you?";
+		mes "需要我帮忙吗？";
 		next;
-		switch(select("Release all.:Cancel.")) {
+		switch(select("全部释放。:取消。")) {
 		case 1:
-			mes "Bye.";
+			mes "再见。";
 			close2;
 			mapwarp "bat_a02","bat_room",154,150;
 			end;
 		case 2:
-			mes "Cancelled.";
+			mes "已取消。";
 			close;
 		}
 	}

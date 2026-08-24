@@ -19,32 +19,32 @@
 // Warpers :: acolyte_warp
 //============================================================
 prontera,98,121,4	script	Acolyte#Prtclear	90,{
-	mes "[Keiki]";
-	mes "Hello there, adventurer.";
-	mes "I've been studying magic from all over Rune-Midgarts to upgrade what I believe to be one of the greatest skills available to the acolyte class.";
+	mes "[凯琪]";
+	mes "你好，冒险者。";
+	mes "我一直在研究符文-米德加尔特各地的魔法，提升我认为是服事职业最强大的技能之一。";
 	next;
 
 	if (is_function("VIP_iRO_Acolyte"))
-		callfunc "VIP_iRO_Acolyte","[Keiki]","Juno";
+		callfunc "VIP_iRO_Acolyte","[凯琪]","Juno";
 
-	mes "[Keiki]";
-	mes "I am the one and only Acolyte that has attained the Level 10 Warp Portal skill!";
+	mes "[凯琪]";
+	mes "我是唯一一个掌握 10 级传送之门技能的服事！";
 	emotion ET_THINK, playerattached();
 	next;
-	mes "[Keiki]";
-	mes "That's right! And...";
-	mes "I promise you that I don't forget locations that I have already memorized.";
-	mes "One day I will level up my skills to warp to wherever I please~";
+	mes "[凯琪]";
+	mes "没错！而且……";
+	mes "我保证不会忘记已经记住的地点。";
+	mes "总有一天我会提升技能，传送到想去的任何地方~";
 	next;
-	mes "[Keiki]";
-	mes "I am willing to warp you to the many locations that I have memorized for a small fee.";
-	mes "Would you like to use this service?";
+	mes "[凯琪]";
+	mes "我愿意收取少量费用，把你传送到我记住的许多地点。";
+	mes "要使用这项服务吗？";
 	next;
-	switch(select("Yes:No")) {
+	switch(select("是:否")) {
 	case 1:
-		mes "[Keiki]";
-		mes "Where would you like to go to?";
-		mes "I wish you goodluck on your journey.";
+		mes "[凯琪]";
+		mes "你想去哪里？";
+		mes "祝你旅途顺利。";
 		next;
 
 		setarray .@towns$[0], "Izlude", "Geffen", "Payon", "Morocc", "Alberta", "Al De Baran", "Comodo", "Umbala", "Juno";
@@ -53,14 +53,14 @@ prontera,98,121,4	script	Acolyte#Prtclear	90,{
 		set .@size, getarraysize(.@towns$);
 		for(set .@i,0; .@i<.@size; set .@i,.@i+1)
 			set .@menu$, .@menu$+.@towns$[.@i]+" -> "+.@cost[.@i]+"z:";
-		set .@i, select(.@menu$+"Cancel")-1;
+		set .@i, select(.@menu$+"取消")-1;
 		if (.@i == .@size)
 			close;
 		if (Zeny < .@cost[.@i]) {
-			mes "[Keiki]";
-			mes "I'm sorry, but you don't have";
-			mes "enough zeny for the Teleport";
-			mes "Service. The fee to teleport";
+			mes "[凯琪]";
+			mes "抱歉，你没有";
+			mes "足够的 Zeny 支付传送";
+			mes "服务费。传送到";
 			mes "to "+.@towns$[.@i]+" is "+.@cost[.@i]+" zeny.";
 			close;
 		}
@@ -87,30 +87,30 @@ prontera,98,121,4	script	Acolyte#Prtclear	90,{
 }
 
 yuno,142,184,6	script	Acolyte#Junoclear	90,{
-	mes "[Isalei]";
-	mes "Hello, adventurer.";
-	mes "My companion Keiki and I have discovered a way to increase our warp portal abilities.";
+	mes "[伊莎蕾]";
+	mes "你好，冒险者。";
+	mes "我的伙伴凯琪和我发现了提升传送之门能力的方法。";
 	next;
 
 	if (is_function("VIP_iRO_Acolyte"))
-		callfunc "VIP_iRO_Acolyte","[Isalei]","Prontera";
+		callfunc "VIP_iRO_Acolyte","[伊莎蕾]","Prontera";
 
-	mes "[Isalei]";
-	mes "Though I have not mastered up to the level that she has, I have been able to attain Level 5.";
+	mes "[伊莎蕾]";
+	mes "虽然我还没达到她的等级，但已经掌握了 5 级。";
 	emotion ET_THINK, playerattached();
 	next;
-	mes "[Isalei]";
-	mes "Maybe one day I can level up my skills enough so that I can use Warp portal to more saved locations.";
+	mes "[伊莎蕾]";
+	mes "也许有一天我能提升技能，用传送之门前往更多保存的地点。";
 	next;
-	mes "[Isalei]";
-	mes "I am willing to warp you to the many locations that I have memorized for a small fee.";
-	mes "Would you like to use this service?";
+	mes "[伊莎蕾]";
+	mes "我愿意收取少量费用，把你传送到我记住的许多地点。";
+	mes "要使用这项服务吗？";
 	next;
-	switch(select("Yes:No")) {
+	switch(select("是:否")) {
 	case 1:
-		mes "[Isalei]";
-		mes "Where would you like to go to?";
-		mes "I wish you goodluck on your journey.";
+		mes "[伊莎蕾]";
+		mes "你想去哪里？";
+		mes "祝你旅途顺利。";
 		next;
 
 		setarray .@towns$[0], "Einbroch", "Lighthalzen", "Hugel", "Rachel", "Prontera";
@@ -119,14 +119,14 @@ yuno,142,184,6	script	Acolyte#Junoclear	90,{
 		set .@size, getarraysize(.@towns$);
 		for(set .@i,0; .@i<.@size; set .@i,.@i+1)
 			set .@menu$, .@menu$+.@towns$[.@i]+" -> "+.@cost[.@i]+"z:";
-		set .@i, select(.@menu$+"Cancel")-1;
+		set .@i, select(.@menu$+"取消")-1;
 		if (.@i == .@size)
 			close;
 		if (Zeny < .@cost[.@i]) {
-			mes "[Isalei]";
-			mes "I'm sorry, but you don't have";
-			mes "enough zeny for the Teleport";
-			mes "Service. The fee to teleport";
+			mes "[伊莎蕾]";
+			mes "抱歉，你没有";
+			mes "足够的 Zeny 支付传送";
+			mes "服务费。传送到";
 			mes "to "+.@towns$[.@i]+" is "+.@cost[.@i]+" zeny.";
 			close;
 		}

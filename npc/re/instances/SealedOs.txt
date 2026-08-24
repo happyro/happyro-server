@@ -98,35 +98,35 @@ OnEvent05:
 	.@dien$ =  instance_npcname("Dien#171_os_0");
 	.@cot$ = instance_npcname("Cotnes#171_os_0");
 	cutin "ep162_rds01",2;
-	mes "[Ridsh]";
-	mes "Oh?";
-	mes "What are you doing here?";
-	npctalk "Ridsh : Oh? What are you doing here.";
+	mes "[里德什]";
+	mes "哦？";
+	mes "你怎么会在这里？";
+	npctalk "里德什：哦？你怎么会在这里。";
 	next;
 	cutin "ep162_rds05",2;
-	mes "[Ridsh]";
-	mes "We're in trouble~~";
-	mes "We can't have anyone know we're here~~";
-	npctalk "Ridsh : We're in trouble~~ We can't have anyone know we're here~~";
+	mes "[里德什]";
+	mes "我们遇到麻烦了~~";
+	mes "不能让任何人知道我们在这里~~";
+	npctalk "里德什：我们遇到麻烦了~~不能让任何人知道我们在这里~~";
 	next;
 	hideoffnpc .@dien$;
 	hideoffnpc .@cot$;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "The adventurer is here too!";
-	mes "Why are you scared!";
-	npctalk "Dien : The adventurer is here too!  Why are you scared!",.@dien$;
+	mes "[迪恩]";
+	mes "冒险者也在这里！";
+	mes "你为什么害怕！";
+	npctalk "迪恩：冒险者也在这里！你为什么害怕！",.@dien$;
 	next;
-	mes "[Dien]";
-	mes "Hello " + strcharinfo(0) + ".";
+	mes "[迪恩]";
+	mes "你好，" + strcharinfo(0) + "。";
 	sleep2 2000;
 	cutin "ep162_dn01",2;
-	mes "We've came here to do something... It was too troublesome to tell the youngsters.";
-	npctalk "Dien : We've came here to do something... It was too troublesome to tell the youngsters.",.@dien$;
+	mes "我们来这里办点事……告诉年轻人太麻烦了。";
+	npctalk "迪恩：我们来这里办点事……告诉年轻人太麻烦了。",.@dien$;
 	next;
-	mes "[Dien]";
-	mes "If you keep it a secret that you saw us...";
-	npctalk "Dien : If you keep it a secret that you saw us...",.@dien$;
+	mes "[迪恩]";
+	mes "如果你能保守见过我们的秘密……";
+	npctalk "迪恩：如果你能保守见过我们的秘密……",.@dien$;
 	sleep2 1000;
 	specialeffect EF_BLASTMINEBOMB,AREA,instance_npcname("#171_os_warp_1");
 	sleep2 600;
@@ -135,33 +135,33 @@ OnEvent05:
 	specialeffect EF_BLASTMINEBOMB,AREA,instance_npcname("#171_os_warp_2");
 	next;
 	cutin "ep162_rds04",2;
-	mes "[Ridsh]";
-	mes "Sister~~";
-	mes "What are you talking about, I don't see the adventurer!";
-	npctalk "Ridsh : Sister~~ What are you talking about, I don't see the adventurer!";
+	mes "[里德什]";
+	mes "姐姐~~";
+	mes "你在说什么，我根本没看到冒险者！";
+	npctalk "里德什：姐姐~~你在说什么，我根本没看到冒险者！";
 	next;
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "Oh~";
-	mes "Yeah?";
-	mes "I don't see the adventurer either~";
-	npctalk "Cotnes : Oh~ Yeah? I don't see the adventurer either~",.@cot$;
+	mes "[科特内斯]";
+	mes "哦~";
+	mes "怎么了？";
+	mes "我也没看到冒险者~";
+	npctalk "科特内斯：哦~怎么了？我也没看到冒险者~",.@cot$;
 	next;
-	mes "[Cotnes]";
-	mes "So what now?";
-	mes "We're already inside.";
-	npctalk "Cotnes : So what now? We're already inside.",.@cot$;
+	mes "[科特内斯]";
+	mes "那现在怎么办？";
+	mes "我们已经进来了。";
+	npctalk "科特内斯：那现在怎么办？我们已经进来了。",.@cot$;
 	next;
 	cutin "ep162_rds05",2;
-	mes "[Ridsh]";
-	mes "It can't be helped~~";
-	mes "We have to go with the adventurer.";
-	npctalk "Ridsh : It can't be helped~~ We have to go with the adventurer.";
+	mes "[里德什]";
+	mes "没办法了~~";
+	mes "我们得和冒险者一起走。";
+	npctalk "里德什：没办法了~~我们得和冒险者一起走。";
 	next;
 	cutin "ep162_dn01",2;
-	mes "[Dien]";
-	mes "It's dangerous, so please come with us.";
-	npctalk "Dien :  It's dangerous so please come with us.",.@dien$;
+	mes "[迪恩]";
+	mes "这里很危险，请和我们一起走。";
+	npctalk "迪恩：这里很危险，请和我们一起走。",.@dien$;
 	close2;
 	cutin "",255;
 	if ('seal_os == 0) {
@@ -172,16 +172,16 @@ OnEvent05:
 }
 
 1@os_b,212,41,0	script	Suspicious Device#171_os	4_ENERGY_BLUE,{
-	mes "- There is a pipe going through the floor. -";
+	mes "- 地板上有一根贯穿其中的管道。-";
 	next;
-	if (select("Crush it.:Put it down.") == 2) {
-		mes "- Nothing happened. -";
+	if (select("砸碎它。:放下它。") == 2) {
+		mes "- 什么也没发生。-";
 		close;
 	}
-	mes "- The machine stopped with a strange noise when the pipe was broken. -";
+	mes "- 管道破裂时，机器发出奇怪的声音并停止了。-";
 	specialeffect EF_BLASTMINEBOMB;
 	close2;
-	mapannounce 'map$,"Ridsh : Alright! Let's move up along the railroad tracks!",bc_map,0xFF0000;
+	mapannounce 'map$,"里德什：好了！沿着铁路轨道向上走吧！",bc_map,0xFF0000;
 	if ('seal_os == 1) {
 		'seal_os = 2;
 		donpcevent instance_npcname("#171_sealedos_control") + "::OnEvent02";
@@ -194,13 +194,13 @@ OnEvent05:
 
 OnSummon00:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnMobKill";
-	npctalk "Cotnes : Over here~~.",instance_npcname("Dien#171_os_1");
+	npctalk "科特内斯：这边~~。",instance_npcname("Dien#171_os_1");
 	sleep 1000;
-	npctalk "Dien : Oh my... what a surprise!",instance_npcname("Dien#171_os_1");
+	npctalk "迪恩：天啊……真令人吃惊！",instance_npcname("Dien#171_os_1");
 	sleep 1000;
-	npctalk "Dien : We will take care of this side. Please take care of the disgusting ones there!",instance_npcname("Dien#171_os_1");
-	monster 'map$,205,46,"Dolor",20361,1,.@event$;
-	monster 'map$,200,45,"Twin Caput",20365,1,.@event$;
+	npctalk "迪恩：这边交给我们。那边那些恶心的家伙就拜托你了！",instance_npcname("Dien#171_os_1");
+	monster 'map$,205,46,"多洛尔",20361,1,.@event$;
+	monster 'map$,200,45,"双头颅骨",20365,1,.@event$;
 	end;
 
 OnMobKill:
@@ -208,15 +208,15 @@ OnMobKill:
 	if (!mobcount('map$,.@event$)) {
 		disablenpc();
 		enablenpc instance_npcname("Suspicious Device#171_os");
-		mapannounce 'map$,"Ridsh : Turn off the device at the bottom, while we deal with the enemies.",bc_map,0xFF0000;
+		mapannounce 'map$,"里德什：我们对付敌人时，请关闭底部的装置。",bc_map,0xFF0000;
 	}
 	end;
 }
 
 1@os_b,112,108,5	script	Dien#171_os_2	4_F_DIENE,{
 	cutin "ep162_dn01",2;
-	mes "[Dien]";
-	mes "Oh my! What's that thing in the front?";
+	mes "[迪恩]";
+	mes "天啊！前面那个东西是什么？";
 	close3;
 }
 
@@ -224,18 +224,18 @@ OnMobKill:
 	end;
 
 OnTouch:
-	mes "[Dien]";
-	mes "Oh my! I think it's precise device that's placed here in the abandoned mine.";
+	mes "[迪恩]";
+	mes "天啊！我想那是设置在废弃矿井里的精密装置。";
 	next;
-	mes "[Dien]";
-	mes "If you don't break the machine on the other side, we will not be able pass it!";
+	mes "[迪恩]";
+	mes "如果不破坏另一边的机器，我们就过不去！";
 	next;
-	mes "[Dien]";
-	mes "It's dangerous to go through right now, so let's turn around and go where the device is!";
+	mes "[迪恩]";
+	mes "现在穿过去很危险，我们回头去装置所在的地方吧！";
 	close2;
 	warp 'map$,115,104;
 	sleep2 2000;
-	npctalk "Dien : If you don't break the machine on the other side, we will not be able pass it!",instance_npcname("Dien#171_os_2");
+	npctalk "迪恩：如果不破坏另一边的机器，我们就过不去！",instance_npcname("Dien#171_os_2");
 	end;
 }
 
@@ -248,9 +248,9 @@ OnTouch:
 	disablenpc();
 	disablenpc instance_npcname("Dangerous-Looking Device#s_os_" + .@id);
 	if ('lock < 3)
-		mapannounce 'map$,"Ridsh : The device hasn't turned off yet. Please take a look above for me.",bc_map,0xFF0000;
+		mapannounce 'map$,"里德什：装置还没有关闭。请替我看看上面。",bc_map,0xFF0000;
 	else {
-		mapannounce 'map$,"Ridsh : Great! The road is open. Let's move along the railroad tracks!",bc_map,0xFF0000;
+		mapannounce 'map$,"里德什：太好了！道路打开了。沿着铁路轨道前进吧！",bc_map,0xFF0000;
 		if ('seal_os == 2) {
 			'seal_os = 3;
 			donpcevent instance_npcname("#171_sealedos_control") + "::OnEvent03";
@@ -264,10 +264,10 @@ OnTouch:
 
 1@os_b,122,212,5	script	Dien#171_os_3	4_F_DIENE,{
 	cutin "ep162_dn01",2;
-	mes "[Dien]";
-	mes "Oh!";
-	mes "If you go to the right, I think you can go back on the railroad without having to break the door.";
-	npctalk "Dien : Oh! If you go to the right, I think you can go back on the railroad without having to break the door";
+	mes "[迪恩]";
+	mes "哦！";
+	mes "向右走的话，应该不用破门就能回到铁路上。";
+	npctalk "迪恩：哦！向右走的话，应该不用破门就能回到铁路上。";
 	if (!'unlocked)
 		donpcevent instance_npcname("#171_sealedos_control") + "::OnEvent04";
 	close3;
@@ -275,16 +275,16 @@ OnTouch:
 
 1@os_b,114,217,0	script	Cotnes#171_os_2	4_F_COATNEIS,{
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "Oh, is this gate too hard?";
-	mes "It will take some time to break it~";
-	npctalk "Cotnes : Oh, is this gate too hard? It will take some time to break it.";
+	mes "[科特内斯]";
+	mes "哦，这扇门很难破吗？";
+	mes "需要花点时间才能破坏它~";
+	npctalk "科特内斯：哦，这扇门很难破吗？需要花点时间才能破坏它。";
 	next;
 	cutin "ep162_dn01",2;
-	mes "[Dien]";
-	mes "Oh!";
-	mes "If you go to the right, I think you can go back on the railroad without having to break the door.";
-	npctalk "Dien : Oh! If you go to the right, I think you can go back on the railroad without having to break the door";
+	mes "[迪恩]";
+	mes "哦！";
+	mes "向右走的话，应该不用破门就能回到铁路上。";
+	npctalk "迪恩：哦！向右走的话，应该不用破门就能回到铁路上。";
 	if (!'unlocked)
 		donpcevent instance_npcname("#171_sealedos_control") + "::OnEvent04";
 	close3;
@@ -294,9 +294,9 @@ OnTouch:
 	if ('seal_os != 3)
 		end;
 	cutin "ep162_rds04",2;
-	mes "[Ridsh]";
-	mes "Argh!";
-	npctalk "Ridsh : Argh!";
+	mes "[里德什]";
+	mes "啊！";
+	npctalk "里德什：啊！";
 	next;
 	.@est$ = instance_npcname("Est#171_os_0");
 	hideoffnpc .@est$;
@@ -308,72 +308,72 @@ OnTouch:
 	cutin "ep162_est01",2;
 	mes "[Est]";
 	mes "Oh...";
-	mes "I'm in a hurry, what are you doing here?";
-	npctalk "Est : I'm in a hurry, what are you doing here?",.@est$;
+	mes "我正忙着呢，你们在这里做什么？";
+	npctalk "埃斯特：我正忙着呢，你们在这里做什么？",.@est$;
 	disablenpc instance_npcname("#171_sos_dummy_7");
 	next;
 	cutin "ep162_est02",2;
 	mes "[Est]";
-	mes "Please go back and enjoy your tea gracefully.";
-	npctalk "Est : Please go back and enjoy your tea gracefully.",.@est$;
+	mes "请回去优雅地享用你们的茶吧。";
+	npctalk "埃斯特：请回去优雅地享用你们的茶吧。",.@est$;
 	next;
 	cutin "ep162_rds02",2;
-	mes "[Ridsh]";
-	mes "Huh!";
-	mes "How did you sneak in here anyway?";
-	npctalk "Ridsh : Huh! How did you sneak in here anyway?";
+	mes "[里德什]";
+	mes "什么！";
+	mes "你们到底是怎么偷偷溜进来的？";
+	npctalk "里德什：什么！你们到底是怎么偷偷溜进来的？";
 	next;
 	cutin "ep162_est02",2;
 	mes "[Est]";
-	mes "This is only a surveillance routine.";
-	mes "If you close your eyes for a second, you may run into an accident.";
-	npctalk "Est : This is only a surveillance routine.",.@est$;
+	mes "这只是例行监视。";
+	mes "哪怕闭眼一秒，也可能发生意外。";
+	npctalk "埃斯特：这只是例行监视。",.@est$;
 	sleep2 2000;
-	npctalk "Est : If you close your eyes for a second, you may run into an accident.",.@est$;
+	npctalk "埃斯特：哪怕闭眼一秒，也可能发生意外。",.@est$;
 	next;
 	cutin "ep162_rds02",2;
-	mes "[Ridsh]";
-	mes "What makes you think we need your help?";
-	npctalk "Ridsh : What makes you think we need your help?";
+	mes "[里德什]";
+	mes "你凭什么认为我们需要你的帮助？";
+	npctalk "里德什：你凭什么认为我们需要你的帮助？";
 	next;
 	cutin "ep162_est02",2;
 	mes "[Est]";
-	mes "Didn't you just did now?";
-	mes "I don't think I heard that wrong. Did I?";
+	mes "你们刚才不是已经这么做了吗？";
+	mes "我应该没有听错吧？";
 	next;
 	disablenpc instance_npcname("Cotnes#171_os_2");
 	.@cot$ = instance_npcname("Cotnes#171_os_3");
 	hideoffnpc .@cot$;
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "You two really~";
-	mes "Please stop fighting.";
-	npctalk "Cotnes : You two really~ Please stop fighting.",.@cot$;
+	mes "[科特内斯]";
+	mes "你们两个真是的~";
+	mes "请别再吵了。";
+	npctalk "科特内斯：你们两个真是的~请别再吵了。",.@cot$;
 	next;
 	disablenpc instance_npcname("Dien#171_os_3");
 	.@dien$ = instance_npcname("Dien#171_os_4");
 	hideoffnpc .@dien$;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "How do you always fight like that?";
-	npctalk "Dien : How do you always fight like that?",.@dien$;
+	mes "[迪恩]";
+	mes "你们怎么总是这样争吵？";
+	npctalk "迪恩：你们怎么总是这样争吵？",.@dien$;
 	next;
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "I'm so excited about this~ I'm getting old and I'm tired of fighting.";
-	npctalk "Cotnes : I'm so excited about this~ I'm getting old and I'm tired of fighting.",.@cot$;
+	mes "[科特内斯]";
+	mes "我都快兴奋死了~我老了，也厌倦争吵了。";
+	npctalk "科特内斯：我都快兴奋死了~我老了，也厌倦争吵了。",.@cot$;
 	next;
 	cutin "ep162_dn03",1;
-	mes "[Dien]";
-	mes "Is that so?";
-	npctalk "Dien : Is that so?",.@dien$;
+	mes "[迪恩]";
+	mes "是这样吗？";
+	npctalk "迪恩：是这样吗？",.@dien$;
 	next;
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "Yeah~";
-	mes "I'm tired of fighting, let's go back to work.";
-	mes "The road is open now.";
-	npctalk "Cotnes : Yeah~ I'm tired of fighting, let's go back to work. The road is open now.",.@cot$;
+	mes "[科特内斯]";
+	mes "是啊~";
+	mes "我厌倦争吵了，回去工作吧。";
+	mes "现在道路已经畅通了。";
+	npctalk "科特内斯：是啊~我厌倦争吵了，回去工作吧。现在道路已经畅通了。",.@cot$;
 	close2;
 	cutin "",255;
 	if ('seal_os == 3) {
@@ -387,90 +387,90 @@ OnTouch:
 	if ('seal_os != 4)
 		end;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "Finally..";
-	mes "If you cross this door...";
+	mes "[迪恩]";
+	mes "终于……";
+	mes "只要穿过这扇门……";
 	next;
 	cutin "ep162_est01",2;
-	mes "[Est]";
-	mes "Let's head back now before they gather more troops.";
+	mes "[埃斯特]";
+	mes "趁他们还没集结更多兵力，我们现在回去吧。";
 	next;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "Excuse me.";
+	mes "[迪恩]";
+	mes "打扰一下。";
 	next;
 	cutin "ep162_est01",2;
-	mes "[Est]";
+	mes "[埃斯特]";
 	mes "?";
 	next;
 	cutin "ep162_rds01",2;
-	mes "[Ridsh]";
-	mes "Why?";
+	mes "[里德什]";
+	mes "怎么了？";
 	next;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "Oh my, oh my!";
-	mes "What should we do!";
+	mes "[迪恩]";
+	mes "天啊，天啊！";
+	mes "我们该怎么办！";
 	next;
 	cutin "ep162_rds04",2;
-	mes "[Ridsh]";
-	mes "Why, what's going on?";
+	mes "[里德什]";
+	mes "怎么了，发生什么事？";
 	next;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "I think I've left it.";
+	mes "[迪恩]";
+	mes "我好像把它落下了。";
 	next;
 	cutin "ep162_rds01",2;
-	mes "[Ridsh]";
-	mes "Left what?";
+	mes "[里德什]";
+	mes "落下了什么？";
 	next;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
-	mes "My protection charm!";
-	mes "I get nervous if I don't have it with me.";
+	mes "[迪恩]";
+	mes "我的护身符！";
+	mes "不带在身边我会很不安。";
 	next;
 	cutin "ep162_rds04",2;
-	mes "[Ridsh]";
-	mes "You've been fine so far without it?!";
+	mes "[里德什]";
+	mes "没有它你不是一直都没事吗？！";
 	next;
 	cutin "ep162_dn03",2;
-	mes "[Dien]";
+	mes "[迪恩]";
 	mes "...";
 	next;
 	cutin "ep162_rds01",2;
-	mes "[Ridsh]";
-	mes "Ah... Sorry..";
-	mes "Alright.";
+	mes "[里德什]";
+	mes "啊……抱歉……";
+	mes "好吧。";
 	next;
-	mes "[Ridsh]";
-	mes "While we open the last door, would you mind going back to ^FF0000Clana Nemieri^000000?";
+	mes "[里德什]";
+	mes "我们打开最后一扇门时，能请你回^FF0000克拉纳·内米耶里^000000一趟吗？";
 	next;
-	mes "[Ridsh]";
-	mes "I have to contact a few people anyway, and Dien won't go anywhere until she gets her protection charm.";
+	mes "[里德什]";
+	mes "反正我也要联系几个人，而且迪恩拿回护身符前哪里都不会去。";
 	next;
-	mes "[Ridsh]";
-	mes "Sister, tell me where it is.";
+	mes "[里德什]";
+	mes "姐姐，告诉我它在哪里。";
 	next;
 	cutin "ep162_dn02",2;
-	mes "[Dien]";
-	mes "Oh!";
-	mes "Thank you so much for that";
+	mes "[迪恩]";
+	mes "哦！";
+	mes "真的非常感谢你，";
 	next;
-	mes "[Dien]";
-	mes "It's hard for me to get it back because it's far...";
-	mes "Please do me a favor.";
+	mes "[迪恩]";
+	mes "那里太远了，我很难自己拿回来……";
+	mes "请帮我这个忙。";
 	next;
 	cutin "ep162_dn01",2;
-	mes "[Dien]";
-	mes "^FF0000Go back to my room and look for a chest on the left side of the window, near a vase.";
+	mes "[迪恩]";
+	mes "^FF0000回我的房间，在窗户左侧、花瓶旁边找一个箱子。";
 	next;
-	mes "[Dien]";
-	mes "It should be easy to get since we're here.";
+	mes "[迪恩]";
+	mes "我们就在这里，应该很容易拿到。";
 	next;
 	cutin "ep162_rds05",2;
-	mes "[Ridsh]";
-	mes "Oh!";
-	mes "Shouldn't we tell them where we are?";
+	mes "[里德什]";
+	mes "哦！";
+	mes "我们不该告诉他们我们在哪里吗？";
 	if (isbegin_quest(11600) == 1) {
 		completequest 11600;
 		setquest 11601;
@@ -488,23 +488,23 @@ OnInstanceInit:
 
 1@os_b,260,363,5	script	Cotnes#171_os_4	4_F_COATNEIS,{
 	cutin "ep162_ctn01",2;
-	mes "[Cotnes]";
-	mes "It's good sometimes to take a quick walk like this~";
+	mes "[科特内斯]";
+	mes "偶尔这样快走一趟也不错~";
 	close3;
 }
 
 1@os_b,262,362,4	script	Est#171_os_1	4_F_ESTLOVELOY,{
 	cutin "ep162_est01",2;
-	mes "[Est]";
-	mes "I eager to explore the area beyond here.";
+	mes "[埃斯特]";
+	mes "我很想探索这里之外的区域。";
 	close3;
 }
 
 1@os_b,261,358,3	script	Ridsh#171_os_3	4_F_LEEDSH,{
 	cutin "ep162_rds01",2;
-	mes "[Ridsh]";
-	mes "I'm tired!";
-	mes "I want to go home.";
+	mes "[里德什]";
+	mes "我累了！";
+	mes "我想回家。";
 	close3;
 }
 
@@ -523,8 +523,8 @@ OnTouch:
 	case 4:
 		if (!'unlocked) {
 			cutin "ep162_dn01",2;
-			mes "[Dien]";
-			mes "It would be better to just go around the door.";
+			mes "[迪恩]";
+			mes "绕过门走会更好。";
 			npctalk "Dien : It would be better to just go around the door.",instance_npcname("Dien#171_os_4"),bc_map;
 			close2;
 			cutin "",255;

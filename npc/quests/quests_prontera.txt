@@ -51,70 +51,70 @@
 //============================================================
 prt_in,88,105,2	script	Recruiter	105,{
 	if (MISC_QUEST & 8) {
-		mes "[Recruiter]";
-		mes "Ah...";
-		mes "I know those eyes.";
-		mes "Full of compassion";
-		mes "...and courage.";
+		mes "[招募员]";
+		mes "啊……";
+		mes "我认识那种眼神。";
+		mes "充满同情";
+		mes "……和勇气。";
 		next;
-		mes "[Recruiter]";
-		mes "Of course you're a volunteer for campaign to reclaim the Prontera Culvert. Would you let me warp you there?";
+		mes "[招募员]";
+		mes "你当然是收复普隆德拉下水道行动的志愿者。要我把你传送过去吗？";
 		next;
-		if (select("Warp to Culvert Entrance.:Quit.") == 1) {
+		if (select("传送到下水道入口。:退出。") == 1) {
 			warp "prt_fild05",274,208;
 			end;
 		}
 		close;
 	}
-	mes "[Recruiter]";
-	mes "Ah, let me inform you that the Capital Defense Headquarter of the Rune-Midgarts Kingdom has now decided to recruit a punitive force due to the Prontera Culvert's situation.";
+	mes "[招募员]";
+	mes "啊，请注意，卢恩-米德加尔特王国首都防卫总部决定因下水道情况招募讨伐队。";
 	next;
-	switch(select("Volunteer.:Situation...?:Quit.")) {
+	switch(select("志愿:情况……？:退出")) {
 	case 1:
 		callsub S_Volunteer;
-		mes "[Recruiter]";
-		mes "Are you ready, hero?";
-		mes "I will now warp you";
-		mes "to the Culvert.";
+		mes "[招募员]";
+		mes "准备好了吗，英雄？";
+		mes "现在将把你传送到";
+		mes "下水道。";
 		next;
 		warp "prt_fild05",274,208;
 		end;
 	case 2:
-		mes "[Recruiter]";
-		mes "Haven't you heard...?";
-		mes "The Prontera Culvert is infested with all kinds of filthy vermin!";
+		mes "[招募员]";
+		mes "你没听说吗……？";
+		mes "普隆德拉下水道充满各种肮脏害虫！";
 		next;
-		mes "[Recruiter]";
-		mes "Due to the serious risk of water contamination, and the safety of Rune-Midgartsians, the Culvert has been quarantined by royal decree.";
+		mes "[招募员]";
+		mes "由于水污染风险严重，为保障王国人民安全，王室已下令隔离下水道。";
 		next;
-		mes "[Recruiter]";
-		mes "Needless to say, this has caused shortages in the water supply in our kingdom. Indeed, such a crisis in these dark times...";
+		mes "[招募员]";
+		mes "不用说，这造成王国供水短缺。在这黑暗时期真是危机……";
 		next;
-		mes "[Recruiter]";
-		mes "Our people";
-		mes "thirst for water...";
-		mes "But they thirst";
-		mes "even more...";
-		mes "For a hero!";
+		mes "[招募员]";
+		mes "我们的人民";
+		mes "渴望水……";
+		mes "但他们更渴望";
+		mes "";
+		mes "英雄！";
 		next;
-		mes "[Recruiter]";
-		mes "Will you stand idly as the children of Rune-Midgarts suffer from parched throats and shed tears of dryness?! Would you bury our children?!";
+		mes "[招募员]";
+		mes "难道你要袖手旁观，看着卢恩-米德加尔特的孩子们口渴难耐、流下干涸的泪水吗？！难道你要埋葬我们的孩子吗？！";
 		next;
-		mes "[Recruiter]";
-		mes "Warriors! Rune-Midgarts is calling you! Cleanse this land's pestilence and cast out the vermin in the Culvert! Only you... Can make a difference.";
+		mes "[招募员]";
+		mes "战士们！卢恩-米德加尔特在召唤你们！净化土地的瘟疫，驱逐下水道害虫！只有你们……能带来改变。";
 		next;
-		if (select("Volunteer.:Quit.") == 1) {
+		if (select("志愿。:退出。") == 1) {
 			callsub S_Volunteer;
-			mes "[Recruiter]";
-			mes "Adventurer...";
-			mes "I will now warp you";
-			mes "to the Prontera Culvert.";
+			mes "[招募员]";
+			mes "冒险者……";
+			mes "现在将把你传送到";
+			mes "普隆德拉下水道。";
 			next;
 			warp "prt_fild05",274,208;
 			end;
 		}
-		mes "[Recruiter]";
-		mes "Hmpf. Well. The next time you take a drink of water, just remember that an average of nine and a half children just died... ^990000Of thirst^000000.";
+		mes "[招募员]";
+		mes "哼。下次喝水时，记住平均有九个半孩子刚刚死去……^990000死于口渴^000000。";
 		close;
 
 	case 3:
@@ -123,17 +123,17 @@ prt_in,88,105,2	script	Recruiter	105,{
 
 S_Volunteer:
 	set MISC_QUEST,MISC_QUEST | 8;
-	mes "[Recruiter]";
-	mes "Your registration...";
-	mes "is now complete.";
+	mes "[招募员]";
+	mes "你的登记……";
+	mes "已经完成。";
 	next;
-	mes "[Recruiter]";
-	mes "I would like to thank you for volunteering to do your part for our great kingdom. Here, take these provisions for your battles against the forces of darkness.";
+	mes "[招募员]";
+	mes "感谢你志愿为伟大王国尽力。拿着这些物资，对抗黑暗势力。";
 	next;
-	mes "[Recruiter]";
-	mes "3 Red Potions, 1 Milk,";
-	mes "and 1 Orange Potion";
-	mes "...to give you hope.";
+	mes "[招募员]";
+	mes "3 瓶红色药水、1 杯牛奶，";
+	mes "以及 1 瓶橙色药水";
+	mes "……愿它们给你希望。";
 	getitem 501,3; //Red_Potion
 	getitem 519,1; //Milk
 	getitem 502,1; //Orange_Potion
@@ -143,22 +143,22 @@ S_Volunteer:
 
 prt_fild05,270,212,5	script	Culvert Guardian	105,{
 	if (MISC_QUEST & 8) {
-		mes "[Culvert Guardian]";
-		mes "Ah, you're one of our volunteers. This is the entrance of the Prontera Culvert.";
-		mes "Do you wish to";
-		mes "go inside?";
+		mes "[下水道守卫]";
+		mes "啊，你是志愿者。这是普隆德拉下水道入口。";
+		mes "你想";
+		mes "进去吗？";
 		next;
-		if (select("Sure.:Quit.") == 1) {
+		if (select("好的。:退出。") == 1) {
 			warp "prt_sewb1",131,247;
 			end;
 		}
 		close;
 	}
-	mes "[Culvert Guardian]";
-	mes "I'm sorry, but we can only allow volunteers for the Culvert Campaign to enter.";
+	mes "[下水道守卫]";
+	mes "抱歉，只有下水道行动志愿者才能进入。";
 	next;
-	mes "[Culvert Guardian]";
-	mes "If you'd like to volunteer, please visit the ^000077Culvert Registrar^000000 located in the 11 O'clock direction of Prontera.";
+	mes "[下水道守卫]";
+	mes "想当志愿者，请前往普隆德拉 11 点钟方向的 ^000077下水道登记员^000000。";
 	close;
 }
 
@@ -166,19 +166,19 @@ prt_fild05,270,212,5	script	Culvert Guardian	105,{
 //============================================================
 prt_in,38,108,4	script	Teacher	53,{
 	if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
-		mes "[Teacher]";
-		mes "Oh...";
-		mes "Those Flowers in your hand are...";
+		mes "[老师]";
+		mes "哦……";
+		mes "你手中的花是……";
 		next;
-		switch(select("Show Flowers:Present Flowers:Cancel")) {
+		switch(select("展示花朵:提交花朵:取消")) {
 		case 1:
-			mes "[Teacher]";
-			mes "Ah...";
-			mes "Those are definitely the 4 kinds of Flowers I was looking for! Would you give them to me?";
+			mes "[老师]";
+			mes "啊……";
+			mes "这正是我寻找的 4 种花！你愿意给我吗？";
 			next;
-			mes "[Teacher]";
-			mes "If you would...";
-			mes "I'll give you my precious item.";
+			mes "[老师]";
+			mes "如果愿意……";
+			mes "我会给你珍贵物品。";
 			close;
 		case 2:
 			if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
@@ -187,60 +187,60 @@ prt_in,38,108,4	script	Teacher	53,{
 				delitem 704,1;  //Aloe
 				delitem 708,1;  //Ment
 				getitem 5012,1;	//Ph.D_Hat
-				mes "[Teacher]";
-				mes "I really really appreciate you what you've done for me. I'm truly grateful. I will give my precious item to you as promised.";
+				mes "[老师]";
+				mes "非常感谢你为我所做的一切。我会按约定给你珍贵物品。";
 				next;
-				mes "[Teacher]";
-				mes "This is the Hat I've worn on my Graduation from my University. It reminds me of my happy school days. Please take this...";
+				mes "[老师]";
+				mes "这是我大学毕业时戴的帽子。它让我想起快乐的学生时代。请收下……";
 				close;
 			}
 			else {
-				mes "[Teacher]";
-				mes "... Oh, I'm Sorry.";
-				mes "But that's not what I'm looking for. Maybe you need to study flowers a little bit?";
+				mes "[老师]";
+				mes "……哦，抱歉。";
+				mes "但这不是我想找的东西。也许你需要再了解一下花朵？";
 				close;
 			}
 		}
 	}
 	else {
-		mes "[Teacher]";
-		mes "Don't you think...";
-		mes "Flowers are pretty?";
+		mes "[老师]";
+		mes "你不觉得……";
+		mes "花朵很漂亮吗？";
 		next;
-		switch(select("Talk:Quit")) {
+		switch(select("交谈:退出")) {
 		case 1:
-			mes "[Teacher]";
-			mes "When I was young,";
-			mes "I had no friends and";
-			mes "studied all the time.";
+			mes "[老师]";
+			mes "我年轻的时候，";
+			mes "没有朋友，";
+			mes "一直都在学习。";
 			next;
-			mes "[Teacher]";
-			mes "Sometimes I regret what I did when I was younger, but it's not a big deal now. Through hard study, I finished entire educational courses earlier than all the other students.";
+			mes "[老师]";
+			mes "有时我会后悔年轻时做过的事，但现在已经不算什么了。通过刻苦学习，我比其他学生更早完成了全部课程。";
 			next;
-			mes "[Teacher]";
-			mes "However...";
-			mes "I was sad and sometimes lonely. Whenever the studying got too hard, I needed someone who would listen to me. Finally, one day, I met my best friend.";
+			mes "[老师]";
+			mes "然而……";
+			mes "我曾经悲伤，有时也很孤独。学习太辛苦时，我需要一个愿意倾听我的人。终于有一天，我遇见了最好的朋友。";
 			next;
-			mes "[Teacher]";
-			mes "When I saw a Pretty Flower blooming in the abandoned Garden, I realized It was my friend which shared my fate.";
+			mes "[老师]";
+			mes "当我看到一朵美丽的花在废弃的花园中绽放时，我意识到它就是与我命运相连的朋友。";
 			next;
-			mes "[Teacher]";
-			mes "Although it is a Common and Normal Flower to others, she gave me the reason to study again. I could achieve my goals because of her.";
+			mes "[老师]";
+			mes "对别人来说，它只是普通平凡的花，但它给了我重新学习的理由。正因为它，我才能实现目标。";
 			next;
-			mes "[Teacher]";
-			mes "So recently...";
-			mes "I am trying to pay her back. Now I am studying Flowers, and plan to over the whole world with them.";
+			mes "[老师]";
+			mes "所以最近……";
+			mes "我想报答它。现在我正在研究花朵，计划让它们遍布整个世界。";
 			next;
-			mes "[Teacher]";
-			mes "To accomplish my work...";
-			mes "I need bunches of flowers. But for someone who rarely goes outside, it is really hard to find all the flowers I need.";
+			mes "[老师]";
+			mes "为了完成我的工作……";
+			mes "我需要许多花朵。但对很少出门的人来说，找齐需要的花实在太难了。";
 			next;
-			mes "[Teacher]";
-			mes "I need 1 ^3355FFIllusion Flower^000000 ,1 ^3355FFHinalle^000000,1 ^3355FFAloe^000000 and 1 ^3355FFMent^000000. If you can bring them to me, I'd give you my treasure...";
+			mes "[老师]";
+			mes "我需要 1 个^3355FF幻觉之花^000000、1 个^3355FF希纳蕾^000000、1 个^3355FF芦荟^000000和 1 个^3355FF薄荷^000000。如果你能带给我，我就把宝物给你……";
 			close;
 		case 2:
-			mes "[Teacher]";
-			mes "One of these days I will cover this whole world with Flowers.";
+			mes "[老师]";
+			mes "总有一天，我会让花朵覆盖整个世界。";
 			close;
 		}
 	}
@@ -252,195 +252,195 @@ prontera,248,212,3	script	Busy Boy#prt	706,3,3,{
 	callsub S_CheckWeight; //Check Player's weight
 	if (BaseLevel > 59) {
 		if (prt_curse == 0) {
-			mes "[Busy-Looking Boy]";
-			mes "Aw nuts...";
-			mes "What am I gonna do?";
-			mes "I have to deliver these";
-			mes "books, but... I... Oh man,";
-			mes "I can't get scared now!";
+			mes "[忙碌的男孩]";
+			mes "哎呀，糟糕……";
+			mes "我该怎么办？";
+			mes "我得把这些";
+			mes "书送过去，但是……我……天啊，";
+			mes "我现在不能害怕！";
 			close;
 		}
 		else if (prt_curse == 1) {
-			mes "[Busy-Looking Boy]";
-			mes "Aw nuts...";
-			mes "What am I gonna do?";
-			mes "I have to deliver these";
-			mes "books, but... I... Oh man,";
-			mes "I can't get scared now!";
+			mes "[忙碌的男孩]";
+			mes "哎呀，糟糕……";
+			mes "我该怎么办？";
+			mes "我得把这些";
+			mes "书送过去，但是……我……天啊，";
+			mes "我现在不能害怕！";
 			next;
-			if (select("Speak with him:Ignore him") == 1) {
+			if (select("和他交谈:无视他") == 1) {
 				mes "["+strcharinfo(0)+"]";
-				mes "Say, what seems";
-				mes "to be the problem?";
+				mes "那个，发生什么事了？";
+				mes "有什么问题吗？";
 				next;
-				mes "[Busy-Looking Boy]";
+				mes "[忙碌的男孩]";
 				mes ".........?";
 				next;
-				mes "[Busy-Looking Boy]";
+				mes "[忙碌的男孩]";
 				if (Sex == SEX_MALE) {
-					mes "Ack! You're that clumsy";
-					mes "dude who made me drop";
+					mes "啊！你就是那个笨手笨脚的";
+					mes "害我掉落";
 				}
 				else {
-					mes "Ack! You're that ditzy";
-					mes "chick who made me drop";
+					mes "啊！你就是那个冒失的";
+					mes "害我掉落";
 				}
-				mes "all of those books earlier!";
-				mes "Wait, you ditched me before,";
-				mes "so why act all concerned now?";
+				mes "之前那些书的人！";
+				mes "等等，你之前丢下我不管，";
+				mes "现在为什么又装出一副关心我的样子？";
 				emotion ET_SURPRISE;
 			}
 			else {
-				mes "[Busy-Looking Boy]";
-				mes "Okay, okay...";
-				mes "Don't even think";
-				mes "about floating in";
-				mes "the sky. You're like,";
-				mes "so stable. Don't think...";
-				mes "Just... Just board that ship...";
+				mes "[忙碌的男孩]";
+				mes "好，好……";
+				mes "别想什么";
+				mes "漂浮在";
+				mes "天空中的事。你很";
+				mes "稳重。别想……";
+				mes "就……就登上那艘船吧……";
 				close;
 			}
 			next;
-			select("Well, I, um...");
-			mes "[Busy-Looking Boy]";
+			select("这个嘛，我，呃……");
+			mes "[忙碌的男孩]";
 			if (Sex == SEX_MALE) {
-				mes "Yeah... A real";
-				mes "man wouldn't have";
-				mes "ditched back then";
-				mes "without helping me.";
-				mes "You're a real creepo,";
-				mes "you know that?";
+				mes "是啊……真正的";
+				mes "男人不会那时";
+				mes "丢下我不管，";
+				mes "连帮忙都不肯。";
+				mes "你真是个怪人，";
+				mes "你知道吗？";
 			}
 			else {
-				mes "Yeah... If you were";
-				mes "a graceful and considerate";
-				mes "lady, you woulda helped me";
-				mes "out before. I'm right, huh?";
+				mes "是啊……如果你是";
+				mes "优雅又体贴的";
+				mes "女士，你之前就会帮我了。";
+				mes "我说得对吧？";
 			}
 			next;
-			mes "^3355FFYou instinctively";
-			mes "kick over one of the";
-			mes "piles of books next";
-			mes "to the young boy.";
-			mes "You couldn't help it:";
-			mes "it was a natural reflex!^000000";
+			mes "^3355FF你下意识地";
+			mes "踢倒了年轻男孩";
+			mes "旁边的一摞";
+			mes "书。";
+			mes "你控制不住自己：";
+			mes "这是自然反应！^000000";
 			next;
 			Specialeffect EF_HITDARK;
 			emotion ET_HUK;
-			mes "^3355FF*BAM!*^000000";
+			mes "^3355FF*砰！*^000000";
 			next;
 			emotion ET_HUK;
-			mes "[Busy-Looking Boy]";
-			mes "Ack! Those books...!";
-			mes "It took me so long to";
-			mes "stack all of those!";
+			mes "[忙碌的男孩]";
+			mes "啊！那些书……！";
+			mes "我花了那么久才把";
+			mes "它们全部堆好！";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Oh no, what a mess!";
-			mes "Here, let me help you";
-			mes "arrange these nicely";
-			mes "out of the bottom of";
-			mes "my freakin' heart.";
+			mes "糟糕，真是一团乱！";
+			mes "来，让我帮你把这些";
+			mes "整齐地整理好，";
+			mes "这是发自";
+			mes "我内心深处的真心话。";
 			emotion ET_THROB, playerattached();
 			next;
-			mes "[Busy-Looking Boy]";
+			mes "[忙碌的男孩]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			emotion ET_THINK;
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Huh...?";
-			mes "Oh, thanks for";
-			mes "helping me out here.";
-			mes "I really appreciate it.";
+			mes "[忙碌的男孩]";
+			mes "嗯……？";
+			mes "哦，谢谢你";
+			mes "在这里帮我。";
+			mes "我真的很感激。";
 			next;
-			select("Are these all yours?");
-			mes "[Busy-Looking Boy]";
-			mes "These? Oh, I'm supposed";
-			mes "to deliver these for my job.";
-			mes "I need to take these to Juno";
-			mes "from the Prontera Library";
-			mes "for a client. However, um...";
+			select("这些都是你的吗？");
+			mes "[忙碌的男孩]";
+			mes "这些？哦，我的工作就是";
+			mes "把它们送过去。";
+			mes "我需要把这些书送到朱诺，";
+			mes "从普隆德拉图书馆";
+			mes "送给客户。不过，呃……";
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Well...";
-			mes "I get motion sick really";
-			mes "easily, so it scares me to";
-			mes "death to ride the Airship";
-			mes "all the way to Juno.";
+			mes "[忙碌的男孩]";
+			mes "这个嘛……";
+			mes "我很容易晕车，";
+			mes "所以乘飞艇";
+			mes "一路去朱诺让我害怕得要死。";
+			mes "";
 			emotion ET_THINK;
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Now I'm in trouble!";
-			mes "I'm never late, but this";
-			mes "time I just can't help it.";
-			mes "There's nothing I can do!";
-			mes "Oh, I'm gonna lose this job!";
+			mes "[忙碌的男孩]";
+			mes "这下我有麻烦了！";
+			mes "我从来不会迟到，但这";
+			mes "次实在没办法。";
+			mes "我什么也做不了！";
+			mes "哦，我要丢掉这份工作了！";
 			emotion ET_CRY;
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Wait... You adventurers";
-			mes "do a lot of traveling, right?";
-			mes "If you're traveling to Juno,";
-			mes "would you please deliver this";
-			mes "for me? I'll be in real trouble";
-			mes "if I don't send these books...";
+			mes "[忙碌的男孩]";
+			mes "等等……你们冒险者";
+			mes "经常到处旅行，对吧？";
+			mes "如果你要去朱诺，";
+			mes "能帮我把这些送过去吗？";
+			mes "如果不把这些书送到，我就真的有麻烦了……";
+			mes "";
 			next;
 			callsub S_GetBooks;
-			mes "[Busy-Looking Boy]";
-			mes "I-I understand.";
-			mes "It's none of your ";
-			mes "business, I know, but";
-			mes "I'm just so desperate...";
+			mes "[忙碌的男孩]";
+			mes "我、我明白了。";
+			mes "这本来不关你的";
+			mes "事，我知道，但是";
+			mes "我真的走投无路了……";
 			emotion ET_CRY;
 			set prt_curse,2;
 			close;
 		}
 		else if (prt_curse == 2) {
-			mes "[Busy-Looking Boy]";
-			mes "Oh, hello again.";
-			mes "Sorry, but I'm trying to";
-			mes "concentrate here. Gonna...";
-			mes "Summon all my courage...";
-			mes "and b-board that Airship!";
-			mes "Argh! No, I can't do it!";
+			mes "[忙碌的男孩]";
+			mes "哦，又见面了。";
+			mes "抱歉，我正努力";
+			mes "集中精神。我要……";
+			mes "鼓起全部勇气……";
+			mes "登、登上那艘飞艇！";
+			mes "啊！不行，我做不到！";
 			emotion ET_THINK;
 			next;
 			callsub S_GetBooks;
-			mes "[Busy-Looking Boy]";
-			mes "^333333*Sob...*^000000";
-			mes "What am I gonna do?";
-			mes "That guy's been waiting";
-			mes "for me to deliver his books";
-			mes "for quite a while now...";
+			mes "[忙碌的男孩]";
+			mes "^333333*抽泣……*^000000";
+			mes "我该怎么办？";
+			mes "那个人已经等了";
+			mes "我送他的书";
+			mes "很久了……";
 			emotion ET_CRY;
 			close;
 		}
 		else if (prt_curse == 3) {
-			mes "[Busy-Looking Boy]";
-			mes "Oh, please deliver";
-			mes "those books I gave";
-			mes "you to ^FF0000Mr. Karlomoff^000000, who";
-			mes "should be waiting around";
-			mes "the Juno Library. Thanks";
-			mes "again for your help~";
+			mes "[忙碌的男孩]";
+			mes "哦，请把我交给";
+			mes "你的那些书送给";
+			mes "应该在朱诺图书馆附近等候的";
+			mes "^FF0000卡洛莫夫先生^000000。";
+			mes "谢谢";
+			mes "你再次帮忙～";
 			close;
 		}
-		mes "[Busy-Looking Boy]";
-		mes "Ack! Would you leave";
-		mes "me alone and let me work?";
-		mes "I've got something important";
-		mes "to do! When I finish arranging";
-		mes "these books,  need to... I need to make some preparations!";
+		mes "[忙碌的男孩]";
+		mes "啊！你能让我";
+		mes "独自工作吗？";
+		mes "我有重要的事情";
+		mes "要做！等我整理完";
+		mes "这些书，还需要……我得做些准备！";
 		close;
 	}
-	mes "[Busy-Looking Boy]";
-	mes "Ack! Would you leave";
-	mes "me alone and let me work?";
-	mes "I've got something important";
-	mes "to do! When I finish arranging";
-	mes "these books, I need to... I need to make some preparations!";
+	mes "[忙碌的男孩]";
+	mes "啊！你能让我";
+	mes "独自工作吗？";
+	mes "我有重要的事情";
+	mes "要做！等我整理完";
+	mes "这些书，我还需要……我得做些准备！";
 	close;
 
 OnTouch:
@@ -450,116 +450,116 @@ OnTouch:
 			Specialeffect EF_HITDARK;
 			mes "^3355FF*BAM!*^000000";
 			next;
-			mes "[Busy Looking Boy]";
-			mes "Hey, look out!";
-			mes "Can't you be more";
-			mes "careful?! Geeeeez!";
+			mes "[忙碌的男孩]";
+			mes "嘿，小心！";
+			mes "你能不能";
+			mes "小心一点？！真是的！";
 			emotion ET_ANGER;
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Oops, I'm so sorry.";
-			mes "Are you alright?";
+			mes "哎呀，真的很抱歉。";
+			mes "你没事吧？";
 			next;
-			mes "[Busy Looking Boy]";
-			mes "Yeah, no thanks to you!";
-			mes "Oh... Don't worry, I'm fine.";
+			mes "[忙碌的男孩]";
+			mes "是啊，还不是因为你！";
+			mes "哦……别担心，我没事。";
 			next;
-			mes "^3355FFYou notice that the boy";
-			mes "dropped many hardcover";
-			mes "books that are probably about";
-			mes "ruins and their legends, based";
-			mes "on their titles. The boy dusted";
-			mes "himself off and began to";
-			mes "carefully pile the books.^000000";
+			mes "^3355FF你注意到男孩";
+			mes "掉落了许多精装";
+			mes "书籍，从标题来看，";
+			mes "内容可能是遗迹";
+			mes "及其传说。男孩掸去";
+			mes "身上的灰尘，开始";
+			mes "小心地把书堆好。^000000";
 			next;
-			if (select("Leave:Help him pile the books") == 1) {
-				mes "[Busy-Looking Boy]";
-				mes "Next time, look";
-				mes "where you're going,";
-				mes "alright? I mean, you";
-				mes "might really break";
-				mes "something if you're";
-				mes "always that careless!";
+			if (select("离开:帮他堆好书") == 1) {
+				mes "[忙碌的男孩]";
+				mes "下次注意";
+				mes "你要去的方向，";
+				mes "好吗？我的意思是，";
+				mes "你总是这么粗心，";
+				mes "真的可能会弄坏";
+				mes "什么东西！";
 				set prt_curse,1;
 				close;
 			}
-			mes "[Busy-Looking Boy]";
-			mes "Huh...?";
-			mes "Oh, thanks for";
-			mes "helping me out here.";
-			mes "I really appreciate it.";
+			mes "[忙碌的男孩]";
+			mes "嗯……？";
+			mes "哦，谢谢你";
+			mes "在这里帮我。";
+			mes "我真的很感激。";
 			next;
-			select("Are these all yours?");
-			mes "[Busy-Looking Boy]";
-			mes "These? Oh, I'm supposed";
-			mes "to deliver these for my job.";
-			mes "I need to take these to Juno";
-			mes "from the Prontera Library";
-			mes "for a client. However, um...";
+			select("这些都是你的吗？");
+			mes "[忙碌的男孩]";
+			mes "这些？哦，我的工作就是";
+			mes "把它们送过去。";
+			mes "我需要把这些书送到朱诺，";
+			mes "从普隆德拉图书馆";
+			mes "送给客户。不过，呃……";
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Well...";
-			mes "I get motion sick really";
-			mes "easily, so it scares me to";
-			mes "death to ride the Airship";
-			mes "all the way to Juno.";
+			mes "[忙碌的男孩]";
+			mes "嗯……";
+			mes "我很容易晕船，";
+			mes "坐飞艇时总是很不舒服，";
+			mes "所以一路乘飞艇前往朱诺，";
+			mes "简直让我害怕得要命。";
 			emotion ET_THINK;
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Now I'm in trouble!";
-			mes "I'm never late, but this";
-			mes "time I just can't help it.";
-			mes "There's nothing I can do!";
-			mes "Oh, I'm gonna lose this job!";
+			mes "[忙碌的男孩]";
+			mes "这下我可麻烦了！";
+			mes "我从来不会迟到，";
+			mes "但这次实在没办法。";
+			mes "我什么也做不了！";
+			mes "啊，我要丢掉这份工作了！";
 			emotion ET_CRY;
 			next;
-			mes "[Busy-Looking Boy]";
-			mes "Wait... You adventurers";
-			mes "do a lot of traveling, right?";
-			mes "If you're traveling to Juno,";
-			mes "would you please deliver this";
-			mes "for me? I'll be in real trouble";
-			mes "if I don't send these books...";
+			mes "[忙碌的男孩]";
+			mes "等等……你们冒险者";
+			mes "经常到处旅行，对吧？";
+			mes "如果你要去朱诺，";
+			mes "能帮我把这个送过去吗？";
+			mes "要是这些书送不出去，";
+			mes "我真的会惹上大麻烦……";
 			next;
 			callsub S_GetBooks;
-			mes "[Busy-Looking Boy]";
-			mes "I-I understand.";
-			mes "It's none of your ";
-			mes "business, I know, but";
-			mes "I'm just so desperate...";
+			mes "[忙碌的男孩]";
+			mes "我、我明白了。";
+			mes "我知道这本来不关你的事，";
+			mes "我知道这不该麻烦你，";
+			mes "但我真的已经走投无路了……";
 			emotion ET_CRY;
 			set prt_curse,2;
 			close;
 		}
 		else if (prt_curse == 3) {
-			mes "[Busy-Looking Boy]";
-			mes "Oh, please deliver";
-			mes "those books I gave";
-			mes "you to ^FF0000Mr. Karlomoff^000000, who";
-			mes "should be waiting around";
-			mes "the Juno Library. Thanks";
-			mes "again for your help~";
+			mes "[忙碌的男孩]";
+			mes "啊，拜托你把我交给你的书";
+			mes "送给^FF0000卡洛莫夫先生^000000，";
+			mes "他应该就在朱诺图书馆附近等候。";
+			mes "请把书交到他手上。";
+			mes "拜托你了。";
+			mes "再次感谢你的帮助~";
 			close;
 		}
 	}
 	end;
 
 S_GetBooks:
-	if (select("Help him:Don't help him") == 1) {
-		mes "[Busy-Looking Boy]";
-		mes "Oh, thank you so much!";
-		mes "You don't understand how";
-		mes "much I dread those Airships.";
-		mes "Now, would you please deliver";
-		mes "these books to ^FF0000Mr. Karlomoff^000000";
-		mes "near the Juno Library?";
+	if (select("帮助他:不帮助他") == 1) {
+		mes "[忙碌的男孩]";
+		mes "啊，太感谢你了！";
+		mes "你不知道我有多害怕那些飞艇。";
+		mes "现在，能请你把这些书送给";
+		mes "^FF0000卡洛莫夫先生^000000吗？";
+		mes "他就在朱诺图书馆附近等候。";
+		mes "可以吗？";
 		next;
-		mes "[Busy-Looking Boy]";
-		mes "I know these books are";
-		mes "pretty heavy, but be really";
-		mes "careful with them! Anyway,";
-		mes "thanks for doing this for me.";
-		mes "I was really at my wit's end...";
+		mes "[忙碌的男孩]";
+		mes "我知道这些书挺重的，";
+		mes "但请务必小心保管！总之，";
+		mes "谢谢你愿意帮我。";
+		mes "拜托你一定要小心。";
+		mes "我真的已经走投无路了……";
 		set prt_curse,3;
 		//setquest 18030;// custom addition to make the script consistent
 		getitem 7431,1; //Books
@@ -569,12 +569,12 @@ S_GetBooks:
 
 S_CheckWeight:
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+		mes "^3355FF请等一下！";
+		mes "你现在携带的物品太多了。";
+		mes "请先使用卡普拉服务，";
+		mes "存放一些物品后再回来。^000000";
+		mes "请不要携带过多物品。";
+		mes "这样就能腾出足够的空间了。";
 		close;
 	}
 	return;
@@ -582,487 +582,461 @@ S_CheckWeight:
 
 yuno,311,195,3	script	Historian#prt01	754,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+		mes "^3355FF请等一下！";
+		mes "你现在携带的物品太多了。";
+		mes "请使用卡普拉服务，";
+		mes "存放一些物品后再回来。";
+		mes "这样就能腾出空间了。";
+		mes "请先存放一些物品。^000000";
 		close;
 	}
 	if (prt_curse < 3) {
-		mes "[Historian]";
-		mes "Juno's mysterious past";
-		mes "holds some great secret.";
-		mes "I'm sure of it! It excites me";
-		mes "to know that my research";
-		mes "brings me that much closer";
-		mes "to finally unveiling it!";
+		mes "[历史学家]";
+		mes "朱诺神秘的过去";
+		mes "隐藏着一个重大秘密。";
+		mes "我敢肯定！想到我的研究";
+		mes "正让我越来越接近";
+		mes "揭开这个秘密的那一天，";
+		mes "我就兴奋不已！";
 		next;
-		mes "[Historian]";
-		mes "But I'll admit that even I don't know how much digging I'll";
-		mes "have to do to learn what I want. It's our duty as historians to";
-		mes "find out the truth of the past, but it definitely won't be easy.";
+		mes "[历史学家]";
+		mes "不过我承认，即使是我也不知道还要";
+		mes "深入研究多少，才能得到想要的答案。作为历史学家，";
+		mes "查明过去的真相是我们的职责，但绝不会轻松。";
 		next;
-		mes "[Historian]";
-		mes "To understand, to see the";
-		mes "truth of the past with my";
-		mes "own eyes... I'd even sell";
-		mes "my soul for the opportunity.";
+		mes "[历史学家]";
+		mes "为了理解过去，亲眼看见";
+		mes "过去的真相……";
+		mes "哪怕出卖灵魂，";
+		mes "我也愿意换取这个机会。";
 		close;
 	}
 	else if (prt_curse == 3) {
-		mes "^3355FFAs you approached, this";
-		mes "historian suddenly closed";
-		mes "the book that he was reading,";
-		mes "looked to the heavens and";
-		mes "let out a deep breath in a vain";
-		mes "attempt to relieve his tension.^000000";
+		mes "^3355FF你走近时，这位历史学家";
+		mes "突然合上手中的书，";
+		mes "抬头望向天空，";
+		mes "深深地叹了口气，";
+		mes "他显得十分紧张，";
+		mes "徒劳地试图缓解自己的紧张。^000000";
 		next;
-		mes "[Historian]";
-		mes "GRRRRRRRRR!";
-		mes "Where are my books?!";
+		mes "[历史学家]";
+		mes "呜啊啊啊啊啊！";
+		mes "我的书在哪里？！";
 		emotion ET_ANGER;
 		next;
-		select("Are you alright?");
-		mes "[Historian]";
-		mes "Er? Oh. I'm sorry you";
-		mes "had to see that. I'm just";
-		mes "extremely upset. You see,";
-		mes "I'm expecting a delivery of";
-		mes "research books from Prontera,";
-		mes "but they haven't arrived yet.";
+		select("你还好吗？");
+		mes "[历史学家]";
+		mes "呃？哦，抱歉让你看到那一幕。";
+		mes "我只是实在太生气了。事情是这样的，";
+		mes "我在等普隆德拉送来的研究书籍，";
+		mes "但它们到现在还没送到。";
+		mes "配送员似乎出了什么问题，";
+		mes "我也不知道什么时候才能收到。";
 		next;
-		mes "[Historian]";
-		mes "In fact, the delivery boy is";
-		mes "very late. This will delay my";
-		mes "research considerably since";
-		mes "I cannot proceed without more";
-		mes "new material to study.";
+		mes "[历史学家]";
+		mes "实际上，配送员已经迟到很久了。";
+		mes "这会严重拖慢我的研究，";
+		mes "因为没有新的材料可以研究，";
+		mes "我根本无法继续下去。";
+		mes "真让人头疼。";
 		next;
 		if (countitem(7431) > 0) {
-			select("Excuse me, but what's your name?");
-			mes "[Historian]";
-			mes "Hm? I'm Karlomoff, the";
-			mes "1st scholar of the Rekenber";
-			mes "Historical Research Group.";
-			mes "Did you need something, or";
-			mes "were you looking around here";
-			mes "for somebody in particular?";
+			select("请问，你叫什么名字？");
+		mes "[历史学家]";
+			mes "嗯？我是卡洛莫夫，";
+			mes "莱肯贝尔历史研究组的";
+			mes "首席学者。";
+			mes "你有什么事吗？还是说，";
+			mes "你是在这里寻找";
+			mes "某个特定的人？";
 			next;
 		}
 		else {
-			select("Oh, I'm delivering the books for him.");
+			select("哦，我是替他来送书的。");
 			emotion ET_QUESTION;
-			mes "[Historian]";
-			mes "Ah, really?";
-			mes "Great, you're here!";
-			mes "So, where are the books?";
+		mes "[历史学家]";
+			mes "啊，真的吗？";
+			mes "太好了，你来了！";
+			mes "那么，书在哪里？";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "I...";
-			mes "I don't have";
-			mes "them right now.";
+			mes "我……";
+			mes "我现在";
+			mes "没带着它们。";
 			next;
-			mes "[Historian]";
-			mes "What...?";
-			mes "Don't tell me that";
-			mes "you lost them! Those";
-			mes "books were priceless!";
-			mes "Did you come all this";
-			mes "way just to tell me that?";
+		mes "[历史学家]";
+			mes "什么……？";
+			mes "你不会是说";
+			mes "你把它们弄丢了吧！那些";
+			mes "书可是无价之宝！";
+			mes "你大老远跑来，";
+			mes "就只是为了告诉我这个？";
 			next;
-			mes "[Historian]";
-			mes "Well, I suppose you'll";
-			mes "have to report the loss of";
-			mes "the books and get some new";
-			mes "copies of those books that";
-			mes "you were supposed to deliver.";
-			mes "Now hurry, I need to research!";
+		mes "[历史学家]";
+			mes "好吧，我想你得报告书籍遗失，";
+			mes "然后弄几本新的来，";
+			mes "把本来应该送到的书补上。";
+			mes "现在快去，我还要做研究呢！";
+			mes "别再耽搁了。";
+			mes "我需要继续研究！";
 			close;
 		}
-		select("Right, I brought your books.");
-		mes "[Historian]";
-		mes "What? But you're not the";
-		mes "delivery boy. Well, let me see";
-		mes "the books you've brought. Hm...";
-		mes "Just as I thought: the Rune-";
-		mes "Midgarts Kingdom has a great";
-		mes "wealth of ancient information.";
+		select("没错，我把你的书带来了。");
+		mes "[历史学家]";
+		mes "什么？但你不是配送员。";
+		mes "好吧，让我看看你带来的书。嗯……";
+		mes "果然不出我所料：卢恩-";
+		mes "米德加尔特王国拥有大量";
+		mes "古代资料。";
+		mes "真是丰富。";
 		next;
-		mes "[Historian]";
-		mes "Ah, thank you so much for";
-		mes "bringing these. However, by";
-		mes "your mode of dress, I can tell";
-		mes "that you are an adventurer.";
-		mes "What happened to the delivery boy that was supposed to bring these?";
+		mes "[历史学家]";
+		mes "啊，非常感谢你把它们带来。";
+		mes "不过从你的穿着来看，";
+		mes "我能看出你是一名冒险者。";
+		mes "那个本来应该送书来的配送员，";
+		mes "到底发生了什么事？";
 		next;
-		mes "[Historian]";
-		mes "..........?";
-		mes "Afraid to ride the Airship?";
-		mes "Motion sickness? Well, that's";
-		mes "quite understandable. The poor";
-		mes "boy should have contacted me";
-		mes "about that beforehand.";
+		mes "[历史学家]";
+		mes "..........？";
+		mes "害怕乘飞艇？";
+		mes "晕船？嗯，这倒可以理解。";
+		mes "那个可怜的孩子，";
+		mes "应该提前联系我说明情况的。";
+		mes "这样我也能另作安排。";
 		next;
-		mes "[Historian]";
-		mes "Goodness, it's been ";
-		mes "a while since I've had";
-		mes "a visitor. Would you like";
-		mes "to stay and chat for a bit?";
-		mes "Just give me a minute to get";
-		mes "a cool drink of water first~";
+		mes "[历史学家]";
+		mes "天哪，我已经";
+		mes "有一阵子没接待访客了。";
+		mes "你愿意留下来聊一会儿吗？";
+		mes "先给我一分钟，";
+		mes "让我拿杯凉水来~";
+		mes "很快就回来。";
 		set prt_curse,4;
 		delitem 7431,1; //Books
 		close;
 	}
 	else if (prt_curse == 4) {
-		mes "[Historian]";
-		mes "Ah, that glass of";
-		mes "water was just what";
-		mes "I needed to refresh";
-		mes "myself. Let me tell you";
-		mes "a little bit about my work.";
+		mes "[历史学家]";
+		mes "啊，那杯水正好让我";
+		mes "恢复了精神。让我来";
+		mes "给你讲讲我的工作吧。";
+		mes "先从一点小事说起。";
+		mes "请听我慢慢解释。";
 		next;
-		mes "[Historian]";
-		mes "I might have it mentioned before, but my name is Karlomoff and";
-		mes "I work in the Rekenber Historical Research as its 1st scholar. We";
-		mes "recently finished our project on the Schwarzwald Republic.";
+		mes "[历史学家]";
+		mes "我之前可能提过，我叫卡洛莫夫，";
+		mes "是莱肯贝尔历史研究组的首席学者。我们";
+		mes "最近刚完成了关于施瓦茨瓦尔德共和国的项目。";
 		next;
-		mes "[Historian]";
-		mes "Now, we're trying to learn";
-		mes "more about the Rune-Midgarts";
-		mes "Kingdom's history. We believe";
-		mes "it's linked to our Schwarzwald";
-		mes "Republic because they share the";
-		mes "continent. Makes sense, right?";
+		mes "[历史学家]";
+		mes "现在，我们正试图进一步了解";
+		mes "卢恩-米德加尔特王国的历史。我们认为";
+		mes "它与施瓦茨瓦尔德共和国有关，";
+		mes "因为两国位于同一片大陆。";
+		mes "这样解释合理吧？";
+		mes "至少目前看来是这样。";
 		next;
-		mes "[Historian]";
-		mes "Ultimately, we hope that";
-		mes "new information from our";
-		mes "research of Rune-Midgarts will";
-		mes "shed some new light on our";
-		mes "current understanding of the";
-		mes "Schwarzwald Republic's past.";
+		mes "[历史学家]";
+		mes "最终，我们希望关于卢恩-米德加尔特的";
+		mes "新研究资料能够为我们理解";
+		mes "施瓦茨瓦尔德共和国的过去";
+		mes "带来一些新的启示。";
+		mes "也许会改变我们现在的认识。";
+		mes "这正是研究的意义所在。";
 		next;
-		mes "[Historian]";
-		mes "Including myself, there are";
-		mes "^3131FF3 members of the Rekenber";
-		mes "Historical Research Group^000000";
-		mes "that are studying the Rune-";
-		mes "Midgarts Kingdom's history.";
+		mes "[历史学家]";
+		mes "包括我在内，莱肯贝尔";
+		mes "历史研究组共有^3131FF3 名成员^000000，";
+		mes "正在研究卢恩-";
+		mes "米德加尔特王国的历史。";
+		mes "我们各自负责不同的领域。";
 		next;
-		select("Rekenber Historical Research Group?");
-		mes "[Historian]";
-		mes "You adventurers from Rune-";
-		mes "Midgarts may not know it, but";
-		mes "the Rekenber Corporation has";
-		mes "unofficial control over our";
-		mes "Schwarzwald Republic. Some";
-		mes "hate it, others don't care.";
+		select("莱肯贝尔历史研究组？");
+		mes "[历史学家]";
+		mes "来自卢恩-米德加尔特的冒险者，";
+		mes "可能不知道这一点，但莱肯贝尔公司";
+		mes "实际上控制着我们的";
+		mes "施瓦茨瓦尔德共和国。";
+		mes "有人对此憎恨不已，";
+		mes "也有人根本不在乎。";
 		next;
-		mes "[Historian]";
-		mes "Anyway, Rekenber has its own";
-		mes "Historical Research Group since";
-		mes "rediscovering ancient technologies has been key to its success, well,";
-		mes "so far as I can tell. Personally, I enjoy the pursuit of knowledge.";
+		mes "[历史学家]";
+		mes "总之，莱肯贝尔设立自己的";
+		mes "历史研究组，是因为重新发现古代技术";
+		mes "一直是它取得成功的关键，至少据我所知如此。";
+		mes "至于我个人，我很享受追求知识的过程。";
 		next;
-		mes "[Historian]";
-		mes "Oh, here's an interesting";
-		mes "fact! Did you know that the";
-		mes "title of ruler of Rune-Midgarts";
-		mes "isn't always passed down";
-		mes "through the same family?";
+		mes "[历史学家]";
+		mes "哦，这里有个有趣的事实！";
+		mes "你知道卢恩-米德加尔特的";
+		mes "统治者头衔，";
+		mes "并不总是由同一个家族";
+		mes "世代传承吗？";
 		next;
-		mes "[Historian]";
-		mes "Actually, there are several";
-		mes "royal families that hold a";
-		mes "special competition to decide";
-		mes "which prince becomes the";
-		mes "next king. Fascinating...";
+		mes "[历史学家]";
+		mes "实际上，有几个王族会举办";
+		mes "特殊竞赛，来决定";
+		mes "哪位王子成为";
+		mes "下一任国王。真有意思……";
+		mes "你不觉得吗？";
 		next;
-		select("Several royal families?");
-		mes "[Historian]";
-		mes "Yes, I'll try to explain it";
-		mes "briefly. There are a total";
-		mes "of 7 royal families. Each";
-		mes "family is descended from one";
-		mes "of the 7 warriors that founded";
-		mes "the Rune-Midgarts Kingdom.";
+		select("几个王族？");
+		mes "[历史学家]";
+		mes "是的，我尽量简短地解释一下。";
+		mes "总共有 7 个王族，";
+		mes "每个家族都源自";
+		mes "建立卢恩-米德加尔特王国的";
+		mes "7 位勇士中的一位。";
+		mes "他们的后代延续至今。";
 		next;
-		mes "[Historian]";
-		mes "According to the records,";
-		mes "Jormungand, the snake of the";
-		mes "earth, appeared and brought";
-		mes "chaos to the entire continent.";
-		mes "7 warriors appeared and drove the serpent away, saving the world.";
+		mes "[历史学家]";
+		mes "根据记录，";
+		mes "大地之蛇耶梦加得出现了，";
+		mes "给整片大陆带来混乱。";
+		mes "7 位勇士挺身而出，赶走了巨蛇，拯救了世界。";
+		mes "这就是故事的开端。";
 		next;
-		mes "[Historian]";
-		mes "With the return of peace,";
-		mes "the 7 warriors established";
-		mes "the Rune-Midgarts Kingdom,";
-		mes "choosing Tristram Geoborg III";
-		mes "as the kingdom's first ruler. ";
+		mes "[历史学家]";
+		mes "和平恢复后，";
+		mes "7 位勇士建立了卢恩-米德加尔特王国，";
+		mes "并选择特里斯坦·格奥博格三世";
+		mes "作为王国的第一位统治者。";
+		mes "这就是王国的起源。";
 		next;
-		mes "[Historian]";
-		mes "Knowing that their descendents";
-		mes "may not always be deserving of";
-		mes "ruling the kingdom, the 7 warriors agreed to hold a contest amongst";
-		mes "their families each generation to prevent royal corruption.";
+		mes "[历史学家]";
+		mes "7 位勇士知道他们的后代";
+		mes "未必永远适合统治王国，";
+		mes "于是约定每一代都在各家族之间举行竞赛，";
+		mes "以防止王权腐败。";
 		next;
 		emotion ET_PROFUSELY_SWEAT;
-		mes "[Historian]";
-		mes "Oh... Not too excited";
-		mes "about history, huh? Well,";
-		mes "maybe if I sing the ancient";
-		mes "song of this myth, you'd be";
-		mes "better able to understand...";
+		mes "[历史学家]";
+		mes "哦……你对历史不太感兴趣，";
+		mes "对吧？那么，";
+		mes "也许我唱一遍这个传说的古老歌谣，";
+		mes "你就能更好地理解了……";
+		mes "要不要听听看？";
 		next;
-		mes "[Historian]";
-		mes "^FF0000*The great serpent*^000000";
-		mes "^FF0000*swallowed the sea.*^000000";
-		mes "^FF0000*The eagle of the rainbow*^000000";
-		mes "^FF0000*swallowed the serpent.*^000000";
-		mes "^FF0000*Then the eagle built its nest.*^000000";
-		mes "^FF0000*A nest upon the swallowed sea.*^000000";
+		mes "[历史学家]";
+		mes "^FF0000*巨大的蛇吞下了大海。*^000000";
+		mes "^FF0000*彩虹之鹰吞下了巨蛇。*^000000";
+		mes "^FF0000*然后巨鹰筑起了巢。*^000000";
+		mes "^FF0000*巢穴建在被吞下的海上。*^000000";
+		mes "^FF0000*这就是古老的歌谣。*^000000";
+		mes "^FF0000*传说至今仍在流传。*^000000";
 		next;
-		mes "[Historian]";
-		mes "^333333*Ahem*^000000 As you see, I'm";
-		mes "quite tone deaf. But the";
-		mes "point is that people still";
-		mes "praise the 7 warriors' exploits";
-		mes "through this song. Isn't that";
-		mes "interesting to know about?";
+		mes "[历史学家]";
+		mes "^333333*咳咳*^000000 如你所见，我";
+		mes "完全没有音乐细胞。";
+		mes "不过重点是，人们至今仍通过这首歌";
+		mes "赞颂 7 位勇士的功绩。";
+		mes "知道这些是不是很有意思？";
+		mes "这段历史值得记住。";
 		set prt_curse,5;
 		close;
 	}
 	else if (prt_curse == 5) {
-		mes "[Historian]";
-		mes "I'm sorry that I let my";
-		mes "mouth run while talking at";
-		mes "great length about Rune-";
-		mes "Midgart's history. Still,";
-		mes "I hope you found that tale";
-		mes "at least a little enjoyable.";
+		mes "[历史学家]";
+		mes "抱歉，我刚才讲卢恩-";
+		mes "米德加尔特的历史讲得太久，";
+		mes "一不小心就说个没完。";
+		mes "不过我希望这个故事";
+		mes "至少让你觉得有点有趣。";
+		mes "下次我会讲得更简短些。";
 		next;
-		mes "[Historian]";
-		mes "Oh! Will you be returning to";
-		mes "the Rune-Midgarts Kingdom?";
-		mes "If so, then I have a favor to";
-		mes "ask you. Would you please";
-		mes "deliver this report I've written to my colleague in Morocc?";
+		mes "[历史学家]";
+		mes "哦！你要回卢恩-米德加尔特王国吗？";
+		mes "如果是这样，我想拜托你一件事。";
+		mes "能请你把我写好的这份报告";
+		mes "送给我在梦罗克的同事吗？";
+		mes "她应该就在那座沙漠城市里。";
 		next;
-		mes "[Historian]";
-		mes "It would be a great help";
-		mes "to me if you could get this";
-		mes "report to her right away.";
-		mes "Ah, her name is Rodafrian.";
-		mes "I'm certain you can find her";
-		mes "somewhere in that desert town.";
+		mes "[历史学家]";
+		mes "如果你能尽快把报告交给她，";
+		mes "那就帮了我大忙。";
+		mes "哦，她的名字叫罗达弗里安。";
+		mes "我相信你能在那座沙漠城市的";
+		mes "某个地方找到她。";
+		mes "拜托你了。";
 		set prt_curse,6;
 		getitem 7342,1; //File01
 		//changequest 18030,18031;// custom addition to make the script consistent
 		close;
 	}
 	else if (prt_curse == 6) {
-		mes "[Historian]";
-		mes "Please find my colleague,";
-		mes "Rodafrian, in Morocc and";
-		mes "deliver my report to her.";
-		mes "You should be able to find";
-		mes "her there doing research.";
+		mes "[历史学家]";
+		mes "请在梦罗克找到我的同事";
+		mes "罗达弗里安，把报告交给她。";
+		mes "你应该能在那里找到她进行研究。";
+		mes "她最近一直待在那座城市。";
+		mes "记得把报告交给她。";
 		next;
-		if (select("I will:Can I listen to that song again?") == 1) {
-			mes "[Historian]";
-			mes "Once again, thank";
-			mes "you for your help.";
-			mes "It will really speed the";
-			mes "progress of my research,";
-			mes "especially since those books";
-			mes "were delivered fairly late...";
+		if (select("我会的:我能再听一遍那首歌吗？") == 1) {
+		mes "[历史学家]";
+			mes "再次感谢你的帮助。";
+			mes "这会大大加快我的研究进度，";
+			mes "尤其是那些书送来得相当晚……";
+			mes "我终于可以继续工作了。";
+			mes "这对我来说非常重要。";
+			mes "真的很感谢你。";
 		}
 		else {
-			mes "[Historian]";
-			mes "Song? Oh, you mean the";
-			mes "one praising the 7 who";
-			mes "founded the Rune-Midgarts";
-			mes "Kingdom? Sure, let's see now...";
+		mes "[历史学家]";
+			mes "歌？哦，你是说那首赞颂";
+			mes "建立卢恩-米德加尔特";
+			mes "王国的 7 位勇士的歌吗？";
+			mes "当然，让我想想……";
 			next;
-			mes "[Historian]";
-			mes "^FF0000*The great serpent*^000000";
-			mes "^FF0000*swallowed the sea.*^000000";
-			mes "^FF0000*The eagle of the rainbow*^000000";
-			mes "^FF0000*swallowed the serpent.*^000000";
-			mes "^FF0000*Then the eagle built its nest.*^000000";
-			mes "^FF0000*A nest upon the swallowed sea.*^000000";
+		mes "[历史学家]";
+			mes "^FF0000*巨大的蛇吞下了大海。*^000000";
+			mes "^FF0000*彩虹之鹰吞下了巨蛇。*^000000";
+			mes "^FF0000*然后巨鹰筑起了巢。*^000000";
+			mes "^FF0000*巢穴建在被吞下的海上。*^000000";
+			mes "^FF0000*这就是古老的歌谣。*^000000";
+			mes "^FF0000*传说至今仍在流传。*^000000";
 			next;
-			mes "[Historian]";
-			mes "You must be more interested";
-			mes "in history than I suspected.";
-			mes "If you'd like, I'll write you a";
-			mes "letter or recommendation";
-			mes "for the Rekenber Historical";
-			mes "Research Group. Ha ha ha~";
+		mes "[历史学家]";
+			mes "看来你比我想象中更喜欢历史。";
+			mes "如果你愿意，我可以给你写一封";
+			mes "介绍信或推荐信，";
+			mes "送到莱肯贝尔历史研究组。";
+			mes "哈哈哈~";
+			mes "他们一定会欢迎你的。";
 		}
 		close;
 	}
 	else if (prt_curse > 55) {
-		mes "[Historian]";
-		mes "Ah, it's been a while";
-		mes "since the last time I saw";
-		mes "you. Rodafrian actually came";
-		mes "to visit me a few days ago.";
-		mes "I believe she came here";
-		mes "to gloat or threaten me...";
+		mes "[历史学家]";
+		mes "啊，距离上次见你已经过了";
+		mes "一段时间。罗达弗里安几天前";
+		mes "还特意来拜访过我。";
+		mes "我觉得她是来炫耀";
+		mes "或者威胁我的……";
+		mes "真让人摸不着头脑。";
 		next;
-		mes "[Historian]";
-		mes "It was very surreal.";
-		mes "She kept raving about";
-		mes "some incredible revelation,";
-		mes "and about finally putting me";
-		mes "in my place. I didn't know she";
-		mes "could be so competitive!";
+		mes "[历史学家]";
+		mes "那感觉非常不真实。";
+		mes "她不停地谈论某个惊人的发现，";
+		mes "还说终于要让我认清自己的位置。";
+		mes "我以前真不知道她";
+		mes "竟然这么争强好胜！";
+		mes "她到底想做什么呢？";
 		close;
 	}
 	else {
-		mes "[Historian]";
-		mes "ZzzzZZz....";
-		mes "ZzzzZZz....ZZZzzzz...";
+		mes "[历史学家]";
+		mes "呼呼……";
+		mes "呼呼……ZZZ……";
 		close;
 	}
 }
 
 morocc_in,45,126,3	script	Historian#prt02	702,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+		mes "^3355FF请等一下！";
+		mes "你现在携带的物品太多了。";
+		mes "请使用卡普拉服务，";
+		mes "存放一些物品后再回来。";
+		mes "这样就能腾出空间了。";
+		mes "请先存放一些物品。^000000";
 		close;
 	}
 	if (prt_curse == 6) {
 		if (countitem(7342) < 0) {
-			mes "^3355FFYou seem to have lost";
-			mes "Karlomoff's Report. You";
-			mes "needed to deliver here to";
-			mes "one of his colleagues...";
+			mes "^3355FF你似乎把卡洛莫夫的报告弄丢了。";
+			mes "你本来应该把它送到这里，";
+			mes "交给他的某位同事……";
+			mes "现在可怎么办呢？";
 			close;
 		}
-		mes "[Historian Rodafrian]";
-		mes "Oh, how does this place";
-		mes "have to be so hot? This";
-		mes "can't be good for my skin...";
-		mes "Ooh, I wish I were back home";
-		mes "in the Schwarzwald Republic~";
+		mes "[历史学家罗达弗里安]";
+		mes "哦，这地方怎么会这么热？";
+		mes "这对我的皮肤可不好……";
+		mes "唉，我真希望自己已经回到";
+		mes "施瓦茨瓦尔德共和国的家里了~";
+		mes "那里舒服多了。";
 		emotion ET_CRY;
 		next;
-		mes "[Historian Rodafrian]";
-		mes "Hello there.";
-		mes "E-excuse me, but,";
-		mes "um, may I help you?";
+		mes "[历史学家罗达弗里安]";
+		mes "你好。";
+		mes "请、请问，";
+		mes "嗯，我能帮你吗？";
 		next;
-		select("Mr. Karlomoff has sent me.");
-		mes "[Historian Rodafrian]";
-		mes "Karlomoff...?";
-		mes "Him? Alright...";
-		mes "What did he send";
-		mes "you to me for?";
+		select("卡洛莫夫先生派我来的。");
+		mes "[历史学家罗达弗里安]";
+		mes "卡洛莫夫……？";
+		mes "是他？好吧……";
+		mes "他为什么派你来";
+		mes "找我？";
 		next;
-		mes "^3355FFYou hand Karlomoff's";
-		mes "report to Rodafrian.^000000";
+		mes "^3355FF你把卡洛莫夫的报告";
+		mes "交给了罗达弗里安。^000000";
 		next;
-		mes "[Historian Rodafrian]";
-		mes "A report? What does he";
-		mes "want to show off this time?";
-		mes "^333333*Sigh*^000000 Ah well, thanks for";
-		mes "the trouble. I'll look at it,";
-		mes "though I'm not expecting";
-		mes "much if Karlomoff wrote it.";
+		mes "[历史学家罗达弗里安]";
+		mes "报告？他这次又想炫耀什么？";
+		mes "^333333*叹气*^000000 好吧，谢谢你特意跑一趟。";
+		mes "我会看的，";
+		mes "不过既然是卡洛莫夫写的，";
+		mes "我也没抱太大期待。";
+		mes "他总是把事情说得很夸张。";
 		next;
-		if (select("Ask her about her research:End conversation") == 1) {
-			mes "[Historian Rodafrian]";
-			mes "Oh, you know about the";
-			mes "Rekenber Historical Research";
-			mes "Group? Ah, right. Karlomoff";
-			mes "must have told you already.";
-			mes "Currently we're researching";
-			mes "the Rune-Midgarts Kingdom.";
+			if (select("询问她的研究:结束对话") == 1) {
+		mes "[历史学家罗达弗里安]";
+			mes "哦，你知道莱肯贝尔历史研究组？";
+			mes "啊，对了。卡洛莫夫";
+			mes "一定已经告诉你了。";
+			mes "我们目前正在研究";
+			mes "卢恩-米德加尔特王国。";
+			mes "这是一项很有价值的研究。";
+			next;
+		mes "[历史学家罗达弗里安]";
+			mes "我理解古代书籍和记录的价值，";
+			mes "但我认为卡洛莫夫太依赖它们了。";
+			mes "相比之下，我更喜欢";
+			mes "考古学那种更积极的研究方式。";
+			mes "亲自调查和观察，";
+			mes "才能真正接近事实。";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Now, while I understand the";
-			mes "value of ancient books and";
-			mes "records, I think Karlomoff";
-			mes "relies on them too much.";
-			mes "I prefer more active research";
-			mes "in the vein of archaelogy.";
+		mes "我现在待在摩洛克，参观斯芬克斯和金字塔，看看能否挖掘遗迹。希望能发现新的历史证据。";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Right now, I'm spending";
-			mes "time in Morocc to visit the";
-			mes "Sphinx and Pyramids and see";
-			mes "if I can excavage some relics.";
-			mes "Hopefully I can uncover some new historical evidence that way.";
+		mes "如果你想了解更多摩洛克的历史，请去和我的助手谈谈。他非常热衷研究这座城镇的文化与背景。";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "If you're interested in";
-			mes "learning more about Morocc's";
-			mes "history, please go ahead and";
-			mes "talk to my assistance. He's very passionate about studying this";
-			mes "town's culture and background.";
+		mes "其实摩洛克人也珍视城镇历史，世代传唱古老时代的歌曲。让我想想，那首歌怎么唱来着？";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Actually, the people of";
-			mes "Morocc also appreciate their";
-			mes "town's history, and pass down";
-			mes "songs about ancient times";
-			mes "through the generations. Let's";
-			mes "see, how did that one go?";
+		mes "^FF0000*巨蛇*^000000";
+		mes "^FF0000*吞下了大海。*^000000";
+		mes "^FF0000*彩虹之鹰*^000000";
+		mes "^FF0000*吞下了巨蛇，然后*^000000";
+		mes "然后……然后……呃，糟糕。";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "^FF0000*The great serpent*^000000";
-			mes "^FF0000*swallowed the sea.*^000000";
-			mes "^FF0000*The eagle of the rainbow*^000000";
-			mes "^FF0000*swallowed the serpent, and*^000000";
-			mes "and... and... Um. Oh dear.";
+		mes "我记不起下一句了！对了，你以前听过这首歌吗？";
 			next;
-			mes "[Historian Rodafrian]";
-			mes "I can't remember the next";
-			mes "line! Actually, have you";
-			mes "heard this song before?";
-			next;
-			switch(select("Yes, I have.:Yes, but it is different.:No, sorry.")) {
+		switch(select("是的，听过。:听过，但不一样。:不，抱歉。")) {
 			case 1:
 				mes "[Historian Rodafrian]";
-				mes "Oh, that's great!";
-				mes "Would you provide";
-				mes "me with the line that";
-				mes "follows these lyrics?";
+				mes "哦，太好了！你能告诉我这些歌词后面的句子吗？";
 				next;
-				mes "^FF0000*The great serpent*^000000";
-				mes "^FF0000*swallowed the sea.*^000000";
-				mes "^FF0000*The eagle of the rainbow*^000000";
-				mes "^FF0000*swallowed the serpent.*^000000";
+				mes "^FF0000*巨蛇*^000000";
+				mes "^FF0000*吞下了大海。*^000000";
+				mes "^FF0000*彩虹之鹰*^000000";
+				mes "^FF0000*吞下了巨蛇。*^000000";
 				mes "......................";
 				next;
 				input .@answer$;
 				if (.@answer$ == "Then the eagle built its nest.") {
 					mes "[Historian Rodafrian]";
-					mes "Really? That makes";
-					mes "sense, but those lyrics";
-					mes "sound different than the";
-					mes "ones I had heard. Hmmmm...";
-					mes "If you don't mind, would you";
-					mes "please tell me your name?";
+					mes "真的吗？这说得通，但歌词听起来和我听过的不一样。嗯……如果不介意，请告诉我你的名字？";
 					callsub S_GiveName,1;
 				}
 				else {
 					mes "[Historian Rodafrian]";
-					mes "Huh...?";
-					mes "That doesn't sound";
-					mes "right at all. Are you sure";
-					mes "that's the lyric you heard?";
+				mes "咦……？听起来完全不对。你确定听到的是这句歌词？";
 					delitem 7342,1; //File01
 					set prt_curse,7;
 					close;
@@ -1070,63 +1044,47 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 
 			case 2:
 				mes "[Historian Rodafrian]";
-				mes "What was that?";
-				mes "The song is different?";
-				mes "Hmm. Then, would you";
-				mes "please sing the version";
-				mes "that you know to me?";
+				mes "你说什么？歌曲不一样？嗯，那么请把你知道的版本唱给我听？";
 				next;
-				mes "^3355FFYou clear your throat";
-				mes "and begin to sing the song";
-				mes "that you heard from Karlomoff.^000000";
+				mes "^3355FF你清了清嗓子，开始唱从卡洛莫夫那里听到的歌曲。^000000";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				input .@line$;
 				if (.@line$ == "The great serpent swallowed the sea.") {
 					set .@total,.@total+1;
-					mes "*The great serpent*";
-					mes "*swallowed the sea.*";
+					mes "*巨蛇*吞下了大海。";
 				}
 				else mes "* "+.@line$+"*";
 
 				input .@line$;
 				if (.@line$ == "The eagle of the rainbow swallowed the serpent.") {
 					set .@total,.@total+1;
-					mes "*The eagle of the rainbow*";
-					mes "*swallowed the serpent.*";
+					mes "*彩虹之鹰*吞下了巨蛇。";
 				}
 				else mes "*"+.@line$+"*";
 
 				input .@line$;
 				if (.@line$ == "Then the eagle built its nest.") {
 					set .@total,.@total+1;
-					mes "*Then the eagle built its nest.*";
+					mes "*然后彩虹之鹰筑起巢穴。*";
 				}
 				else mes "*"+.@line$+"*";
 
 				input .@line$;
 				if (.@line$ == "A nest upon the swallowed sea.") {
 					set .@total,.@total+1;
-					mes "*A nest upon the swallowed sea.*";
+					mes "*巢穴建在被吞下的大海之上。*";
 				}
 				else mes "*"+.@line$+"*";
 				next;
 				if (.@total == 4) {
 					mes "[Historian Rodafrian]";
-					mes "Really? That makes";
-					mes "sense, but those lyrics";
-					mes "sound different than the";
-					mes "ones I had heard. Hmmmm...";
-					mes "If you don't mind, would you";
-					mes "please tell me your name?";
+					mes "真的吗？这说得通，但歌词和我听过的不一样。嗯……如果不介意，请告诉我你的名字？";
 					callsub S_GiveName,1;
 				}
 				else {
 					mes "[Historian Rodafrian]";
-					mes "Huh...?";
-					mes "That doesn't sound right";
-					mes "at all. Are you sure those";
-					mes "are the lyrics you heard?";
+					mes "咦……？听起来完全不对。你确定听到的是这些歌词？";
 					delitem 7342,1; //File01
 					set prt_curse,7;
 					close;
@@ -1136,77 +1094,41 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 				mes "[Historian Rodafrian]";
 				mes "............";
 				mes "........................";
-				mes "Well then. Would you";
-				mes "mind if I ask you for";
-				mes "your name, adventurer?";
+				mes "那么，冒险者，可以告诉我你的名字吗？";
 				callsub S_GiveName,1;
 			}
 		}
 		mes "[Historian]";
-		mes "Although I love doing my";
-		mes "research and uncovering";
-		mes "new information regarding";
-		mes "history, I feel a little lonely";
-		mes "sometimes. Not many people";
-		mes "share my interests, you know...";
+		mes "虽然我喜欢研究并发掘历史新资料，但有时会感到孤独。毕竟很少有人和我有相同兴趣……";
 		close;
 	}
 	else if (prt_curse == 7) {
-		mes "^3355FFArms folded, Rodafrian";
-		mes "seems to be deep in thought.";
-		mes "Then, as if making making";
-		mes "an important decision, she";
-		mes "looks directly into your eyes";
-		mes "and begins to speak.^000000";
+		mes "^3355FF罗达弗里安抱着双臂，似乎陷入沉思。随后像做出重要决定般直视你的眼睛，开口说道。^000000";
 		next;
 		mes "[Historian Rodafrian]";
-		mes "Adventurer...";
-		mes "I want to know your name.";
+		mes "冒险者……我想知道你的名字。";
 		callsub S_GiveName,0;
 	}
 	else if (prt_curse > 7 && prt_curse < 30) {
 		mes "[Historian Rodafrian]";
-		mes "As I recall, Mondo should";
-		mes "be at Mount Mjolnir, located";
-		mes "in the northern region of the";
-		mes "Rune-Midgarts Kingdom. Ask";
-		mes "him for the lyrics of the song that I can't seem to remember...";
+		mes "如果我没记错，蒙多应该在卢恩-米德加尔特北部的雷神之锤山。去问他那首我记不住的歌的歌词……";
 		close;
 	}
 	else if (prt_curse == 30 || prt_curse == 55) {
 		mes "[Historian Rodafrian]";
-		mes "Oh, you've returned.";
-		mes "Have you met with Mondo";
-		mes "and figured out the lyrics of";
-		mes "that song I was looking for?";
+		mes "哦，你回来了。见到蒙多并弄清我寻找的那首歌的歌词了吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "^FF0000*The great serpent*^000000";
-		mes "^FF0000*swallowed the sea.*^000000";
-		mes "^FF0000*The eagle of the rainbow*^000000";
-		mes "^FF0000*swallowed the serpent.*^000000";
-		mes "^FF0000*Then snake scales grew on*^000000";
-		mes "^FF0000*the eagle, and it slowly died.*^000000";
+			mes "^FF0000*巨蛇^000000^FF0000吞下了大海。*^000000 ^FF0000彩虹之鹰^000000^FF0000吞下了巨蛇。*^000000^FF0000蛇鳞在鹰身上生长，^000000^FF0000鹰渐渐死去。*^000000";
 		next;
 		mes "[Historian Rodafrian]";
-		mes "Oh, yes!";
-		mes "Yes, that was it! Now";
-		mes "I remember, thank you";
-		mes "so much! Ah, back to work...";
+		mes "哦，是的！就是这样！我想起来了，非常感谢！啊，继续工作……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "^333333(As a historian, Rodafrian";
-		mes "might be able to help me in";
-		mes "investigating the curse of the";
-		mes "Geoborgs. The priests told me";
-		mes "not to tell anybody, though.";
-		mes "Should I take this risk?)^000000";
+		mes "^333333（罗达弗里安是历史学家，也许能帮我调查吉欧博格家的诅咒。但祭司们让我保密。我该冒这个险吗？）^000000";
 		next;
-		if (select("Tell her about Jormungand's curse:Don't tell her") == 1) {
-			mes "^3355FFYou explain everything";
-			mes "that you have learned to";
-			mes "Rodafrian, choosing not";
-			mes "to withhold any secrets.^000000";
+		if (select("告诉她耶梦加得的诅咒:不要告诉她") == 1) {
+			mes "^3355FF你将所知的一切告诉罗达弗里安，没有隐瞒任何秘密。^000000";
 			emotion ET_AHA;
 			next;
 			mes "[Historian Rodafrian]";
@@ -1214,42 +1136,19 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 			emotion ET_SURPRISE;
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Thank you for sharing that";
-			mes "with me. I hope you realize";
-			mes "how precious that information";
-			mes "is. I had no idea the royal";
-			mes "family was keeping that kind";
-			mes "of secret. Goodness, me...";
+			mes "谢谢你与我分享。我希望你明白这信息多么珍贵。我完全不知道王室隐藏着这种秘密。天哪……";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "You know, I don't really";
-			mes "know much about poison, but";
-			mes "I do know that, aside from our";
-			mes "own Assassins, there are poison";
-			mes "experts living in some strange";
-			mes "land located to the west.";
+			mes "我其实不太了解毒药，但除了刺客之外，西方某个奇异国度还住着毒药专家。";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Anyway, your report about";
-			mes "the Geoborg family will be";
-			mes "greatly appreciated by the";
-			mes "Rekenber Historical Research";
-			mes "Group. But first, I need to";
-			mes "finish this Morocc project...";
+			mes "总之，雷根贝勒历史研究组会非常重视你关于吉欧博格家族的报告。但我得先完成摩洛克项目……";
 			next;
 			mes "[Historian Rodafrian]";
-			mes "Anyway, keep this information";
-			mes "a secret between me and you";
-			mes "for now. Then, when I reveal the secret curse of the Geoborg royal";
-			mes "family, I'll finally outshine that Karlomoff! Bwahahahahaha!";
+			mes "总之，暂时替我保密。等我揭露吉欧博格王室的秘密诅咒，就能彻底胜过卡洛莫夫！哇哈哈哈哈！";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "^333333(Drat, she didn't give me";
-			mes "any help... All I did was";
-			mes "reveal a huge secret to her";
-			mes "that she might spread around!";
-			mes "Oh well, I guess I better head";
-			mes "back to the priests...)^000000";
+		mes "^333333（糟糕，她没有帮我……我只是向她透露了一个可能被传播的巨大秘密！算了，我最好回去找祭司……）^000000";
 			if (prt_curse == 30)  {
 				set prt_curse,31;
 				//changequest 18042,18044;
@@ -1261,26 +1160,12 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 		}
 
 		mes "[Historian Rodafrian]";
-		mes "Oh, let me thank you";
-		mes "once again for going";
-		mes "through the trouble of";
-		mes "getting that lyric for me~";
-		mes "I put my assistant through";
-		mes "enough trouble already...";
+			mes "哦，再次感谢你费心帮我找歌词~我已经让助手够辛苦了……";
 		next;
 		mes "[Historian Rodafrian]";
-		mes "I also better not forget";
-		mes "to go through Karlomoff's";
-		mes "report. I'll have to have a";
-		mes "debate with him sooner or";
-		mes "later, and I really want to";
-		mes "put that guy in his place!";
+			mes "我也不能忘了查看卡洛莫夫的报告。迟早要和他辩论，我一定要让他认清自己的位置！";
 		next;
-		mes "^3355FFRodafrian seemed very";
-		mes "happy and began to read";
-		mes "through Karlomoff's report.";
-		mes "For now, it would be best";
-		mes "to return to Father Bamph.^000000";
+			mes "^3355FF罗达弗里安非常高兴，开始阅读卡洛莫夫的报告。现在最好先回去找班普神父。^000000";
 		if (prt_curse == 30) {
 			set prt_curse,40;
 			//changequest 18042,18045;
@@ -1291,75 +1176,40 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 		close;
 	}
 	else if (prt_curse == 31 || prt_curse == 40) {
-		mes "^3355FFRodafrian seemed very";
-		mes "happy and began to read";
-		mes "through Karlomoff's report.";
-		mes "For now, it would be best";
-		mes "to return to Father Bamph.^000000";
+		mes "^3355FF罗达弗里安非常高兴，开始阅读卡洛莫夫的报告。现在最好先回去找班普神父。^000000";
 		close;
 	}
 	else if (prt_curse == 56) {
 		emotion ET_FRET;
 		mes "[Historian Rodafrian]";
-		mes "I just paid a visit to";
-		mes "Karlomoff and gave him";
-		mes "a piece of my mind! I think...";
-		mes "I think I put him in his place.";
-		mes "But I can never really tell";
-		mes "with that sneaky guy...";
+		mes "我刚去找过卡洛莫夫，把我的想法告诉他！我想……我让他认清了自己的位置。但那个狡猾的家伙很难捉摸……";
 		close;
 	}
 	else if (prt_curse == 60) {
 		emotion ET_FRET;
 		mes "[Historian Rodafrian]";
-		mes "I just aid a visit to";
-		mes "Karlomoff and gave him";
-		mes "a piece of my mind! I think...";
-		mes "I think I put him in his place.";
-		mes "But I can never really tell";
-		mes "with that sneaky guy...";
+		mes "我刚去找过卡洛莫夫，把我的想法告诉他！我想……我让他认清了自己的位置。但那个狡猾的家伙很难捉摸……";
 		next;
-		mes "It doesn't look like";
-		mes "Rodafrian can offer you";
-		mes "any more information. For";
-		mes "now, it would be best to";
-		mes "go to ^3355FFProntera Church.^000000";
+		mes "罗达弗里安似乎无法再提供信息。现在最好前往^3355FF普隆德拉教堂。^000000";
 		close;
 	}
 	else {
 		mes "[Historian Rodafrian]";
-		mes "I'm sorry, but I'm";
-		mes "really very busy with my";
-		mes "research at the moment.";
-		mes "Perhaps we can talk later";
-		mes "once I've completed this?";
+		mes "抱歉，我现在正忙于研究。等完成后再谈好吗？";
 		close;
 	}
 
 S_GiveName:
 	next;
-	select("My name is "+strcharinfo(0)+".");
+	select("我的名字是"+strcharinfo(0)+"。");
 	mes "[Historian Rodafrian]";
-	mes "Ah "+strcharinfo(0)+", eh?";
-	mes "Do you mind if I ask you a favor? I really need to verify the true";
-	mes "lyrics for this song. However,";
-	mes "I need to stay here in Morocc";
-	mes "to complete my research.";
+	mes "啊，"+strcharinfo(0)+"？我能请你帮忙吗？我需要确认这首歌的真实歌词，但必须留在摩洛克完成研究。";
 	next;
 	mes "[Historian Rodafrian]";
-	mes "Would you please find my";
-	mes "colleague Mondo and ask him";
-	mes "for this song's lyrics? You can";
-	mes "find him in the ancient ruins";
-	mes "in Mount Mjolnir, north in the";
-	mes "Rune-Midgarts Kingdom.";
+	mes "请找到我的同事蒙多，向他询问这首歌的歌词。他在卢恩-米德加尔特北部的雷神之锤山古代遗迹中。";
 	next;
 	mes "[Historian Rodafrian]";
-	mes "I apologize for asking";
-	mes "you to do what sounds like";
-	mes "a silly errand, but I actually";
-	mes "need to know this song's lyrics";
-	mes "for the sake of my research...";
+	mes "抱歉让你做这种听起来很傻的跑腿，但为了研究我确实需要知道这首歌的歌词……";
 	if (getarg(0) == 1) delitem 7342,1; //File01
 	set prt_curse,8;
 	//changequest 18031,18032;
@@ -1368,149 +1218,294 @@ S_GiveName:
 
 mjolnir_01,135,168,3	script	Historian#prt03	754,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+		mes "^3355FF等一下！你携带的物品太多。请使用卡普拉服务存放一些物品后再回来。^000000";
 		close;
 	}
 	if (prt_curse == 8) {
 		mes "[Historian Mondo]";
-		mes "Excuse me...";
-		mes "But if you don't have";
-		mes "anything important for";
-		mes "me, then would you";
-		mes "please leave? I have";
-		mes "research to attend to...";
+		mes "不好意思……如果你没有重要的事，能请你离开吗？我还有研究要做……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'm sorry, but Ms. Rodafrian";
-		mes "wanted me to ask you for the";
-		mes "lyrics of some song describing";
-		mes "the Rune-Midgarts Kingdom's";
-		mes "founding. Would you tell";
-		mes "them to me for her?";
+		mes "抱歉，罗达弗里安女士让我向你询问描述卢恩-米德加尔特王国建立的歌曲歌词。能替她告诉我吗？";
 		next;
 		mes "[Historian Mondo]";
-		mes "Rodafrian? Oh, she must";
-		mes "mean that old children's";
-		mes "song. How did it go now?";
-		mes "Ah, now I remember...";
+		mes "罗达弗里安？哦，她指的是那首古老的童谣。怎么唱来着？啊，我想起来了……";
 		next;
 		mes "[Historian Mondo]";
-		mes "^FF0000*The great serpent*^000000";
-		mes "^FF0000*swallowed the sea.*^000000";
-		mes "^FF0000*The eagle of the rainbow*^000000";
-		mes "^FF0000*swallowed the serpent.*^000000";
-		mes "^FF0000*Then snake scales grew on*^000000";
-		mes "^FF0000*the eagle, and it slowly died.*^000000";
+			mes "^FF0000*巨蛇^000000^FF0000吞下了大海。^000000^FF0000彩虹之鹰^000000^FF0000吞下了巨蛇。^000000^FF0000蛇鳞在鹰身上生长，^000000^FF0000鹰渐渐死去。*^000000";
 		next;
 		select("...........?");
 		mes "[Historian Mondo]";
-		mes "Yes, I know: the song";
-		mes "is rather morbid, despite";
-		mes "the fact that it's sung like";
-		mes "such a happy song. Sometimes";
-		mes "these little songs are supposed";
-		mes "to scare kids into doing good.";
+		mes "是的，我知道：尽管唱起来很欢快，这首歌其实相当阴暗。有时这种童谣就是用来吓唬孩子行善。";
 		next;
-		select("Excuse me...");
+		select("不好意思……");
 		mes "[Historian Mondo]";
-		mes "Hm? You look confused.";
-		mes "Did you have a question";
-		mes "to ask me about the song?";
+		mes "嗯？你看起来很困惑。想问我这首歌的事吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Actually, I heard";
-		mes "a different version";
-		mes "of this song, so I was";
-		mes "wondering why the lyrics";
-		mes "would be different...";
+		mes "其实我听过这首歌的另一个版本，所以想知道歌词为什么不同……";
 		next;
 		mes "[Historian Mondo]";
-		mes "Really now?";
-		mes "Well then, let me";
-		mes "hear the version that";
-		mes "you've heard, starting";
-		mes "from the beginning.";
+		mes "真的吗？那么请从头唱一遍你听过的版本。";
 		next;
 		callsub S_Song;
 	}
 	else if (prt_curse == 9) {
 		mes "[Historian Mondo]" ;
-		mes "Ah, would you tell me";
-		mes "the lyrics of the version of";
-		mes "the Rune-Midgarts Kingdom";
-		mes "founding myth song that";
-		mes "you happened to hear?";
+		mes "啊，你能告诉我你听到的卢恩-米德加尔特建国神话歌曲版本的歌词吗？";
 		next;
 		callsub S_Song;
 	}
 	else if (prt_curse == 10) {
 		mes "[Historian Mondo]";
-		mes "Interesting...";
-		mes "The version you heard";
-		mes "from Karlomoff is different";
-		mes "than the one I know. It's";
-		mes "possible that his version";
-		mes "is the most authentic.";
+		mes "有趣……你从卡洛莫夫那里听到的版本和我知道的不一样。也许他的版本才是最真实的。";
 		next;
 		mes "[Historian Mondo]";
-		mes "After all, I learned";
-		mes "the version I know";
-		mes "by listening to a";
-		mes "little kid sing it.";
+		mes "毕竟，我知道的版本是听一个小孩唱的。";
 		next;
-		select("A kid?");
+		select("小孩？");
 		mes "[Historian Mondo]";
-		mes "Yeah. My guess? The version";
-		mes "that the kid sang might have";
-		mes "changed as it was transmitted";
-		mes "by mouth through the generations. If you want to learn more, you";
-		mes "should probably find that kid.";
+		mes "是的。我猜那个孩子唱的版本可能在世代口耳相传中发生了变化。如果想了解更多，你最好找到那个孩子。";
 		next;
 		mes "[Historian Mondo]";
-		mes "Anyway, Karlomoff may have";
-		mes "the most accurate version of";
-		mes "the song since he's very good";
-		mes "at procuring and authenticating";
-		mes "historical written records and";
-		mes "documents. It's his specialty.";
+		mes "总之，卡洛莫夫可能拥有最准确的版本，因为他擅长搜集和鉴定历史书面记录与文件。这是他的专长。";
 		next;
 		mes "[Historian Mondo]";
-		mes "Ah, if you want to learn more,";
-		mes "then you should try to find the";
-		mes "kid that was singing the song.";
-		mes "Hmm, he might be around ^3131DDthe";
-		mes "river near here^000000. Hopefully it";
-		mes "won't be too hard to find him.";
+		mes "啊，如果想了解更多，你应该去找唱歌的孩子。嗯，他可能在^3131DD附近的河边^000000。希望不难找到。";
 		next;
 		mes "[Historian Mondo]";
-		mes "Once you're able to talk";
-		mes "to that kid, go ahead and";
-		mes "report back to Rodafrian.";
-		mes "She probably needs to know";
-		mes "soon, and I can talk to that";
-		mes "little kid at my leisure, so...";
+		mes "和那个孩子谈过后，回去向罗达弗里安报告。她可能很快就需要知道，而我可以稍后再和孩子谈……";
 		next;
 		mes "[Historian Mondo]";
-		mes "Well then, I hope you";
-		mes "find what you're looking";
-		mes "for. Good luck in your";
-		mes "travels, adventurer.";
+		mes "那么，希望你能找到想要的答案。";
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+		mes "祝你旅途顺利，冒险者。";
 		set prt_curse,11;
 		//changequest 18032,18033;
 		close;
 	}
 	else {
 		mes "[Historian Mondo]";
-		mes "Isn't this such";
-		mes "a beautiful place?";
-		mes "It's no wonder that";
-		mes "ancient peoples chose";
-		mes "to live around here...";
+		mes "这里不是很美吗？难怪古人选择在附近居住……";
 		close;
 	}
 
@@ -1545,10 +1540,9 @@ S_Song:
 	else {
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Wait, wait...";
-		mes "I think I messed up!";
+		mes "等等，等等……我好像弄错了！";
 		mes "(Those weren't the";
-		mes "correct lyrics...)";
+		mes "正确的歌词……）";
 		set prt_curse,9;
 	}
 	close;
@@ -1605,79 +1599,57 @@ OnTouch:
 
 mjolnir_01,312,269,5	script	Dog#prt	81,{
 	mes "[Dog]";
-	mes "Bow Wow!";
+	mes "汪汪！";
 	close;
 }
 
 mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 	if (prt_curse == 11) {
 		mes "[Absent-Minded Boy]";
-		mes "The great serpent";
-		mes "swallowed the sea.";
-		mes "The eagle of the rainbow";
-		mes "swallowed the serpent.";
-		mes "Then snake scales grew on";
-		mes "the eagle, and it slowly died.";
+		mes "巨蛇吞下了大海。彩虹之鹰吞下了巨蛇。然后蛇鳞在鹰身上长出，它慢慢死去。";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "Goodness...!";
-		mes "Will you please stop";
-		mes "singing that song?";
+		mes "天啊……！你能别再唱那首歌了吗？";
 		next;
 		mes "[Absent-Minded Boy]";
 		mes "..................";
 		next;
 		mes "^3355FFThe little boy quietly";
-		mes "stared at the woman for a";
-		mes "little bit, and then crouched";
-		mes "down and began petting a";
-		mes "dog sitting next to him.^000000";
+		mes "盯着女人看了一会儿，然后蹲下抚摸身边的狗。^000000";
 		next;
-		if (select("What did you just sing?:Ignore them") == 1) {
+		if (select("你刚唱了什么？:不理他们") == 1) {
 			mes "[Absent-Minded Boy]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			next;
 			mes "[Absent-Minded Boy]";
-			mes "Woof-woof, have you";
-			mes "heard this song? Mommy";
-			mes "taught me to sing it, you";
-			mes "know. She says it was sung";
-			mes "by people for a long time~";
+			mes "汪汪，你听过这首歌吗？妈妈教我唱的。她说人们唱了很久~";
 			next;
-			mes "^3355FFThe boy continued speaking";
-			mes "to the dog like an old friend,";
-			mes "ignoring your presence and";
-			mes "acting as if you didn't exist.^000000";
+			mes "^3355FF男孩继续把狗当作老朋友说话，";
+			mes "无视你的存在，仿佛你根本不存在。^000000";
+			mes "";
+			mes "";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "Kaanu...";
-			mes "What did I tell";
-			mes "you about ignoring";
-			mes "people's questions!";
+			mes "Kaanu……我怎么告诉你的，不要无视别人的问题！";
 			next;
 			mes "[Kaanu]";
 			mes ".........";
 			mes "..................";
-			mes "Uh oh, Woof-woof.";
-			mes "Mommy seems upset";
-			mes "for some reason.";
+			mes "糟糕，汪汪。妈妈似乎不知为何生气了。";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "I'm sorry, my kid is...";
-			mes "Look, did you want to know";
-			mes "more about that song? Try";
-			mes "not to worry about it: it's just an old children's tune.";
+			mes "抱歉，我的孩子……你想了解那首歌吗？别担心，它只是一首古老的儿歌。";
 			next;
-			if (select("Why are you here?:May I hear the song again?") == 1) {
+			if (select("你为什么在这里？:我能再听一次那首歌吗？") == 1) {
 				mes "[Exhausted-Looking Woman]";
 				mes ".................";
 				next;
-				mes "^3355FFThe woman's lip tightens";
-				mes "with shame. It's obvious";
-				mes "that this topic makes her";
-				mes "feel very uncomfortable.^000000";
+				mes "^3355FF女人羞愧地抿紧嘴唇。";
+				mes "显然这个话题让她非常不自在。^000000";
+				mes "";
+				mes "";
 				next;
 				mes "[Kaanu]";
 				mes "...";
@@ -1685,10 +1657,10 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 				mes ".........";
 				next;
 				mes "[Kaanu]";
-				mes "Woof-woof, do you know";
-				mes "why Mommy is always";
-				mes "so sad? I wish I knew";
-				mes "why Mommy never smiles...";
+				mes "汪汪，你知道妈妈为什么总是这么悲伤吗？";
+				mes "我真希望知道妈妈为什么从不微笑……";
+				mes "";
+				mes "";
 				next;
 				mes "[Exhausted-Looking Woman]";
 				mes "........";
@@ -1699,17 +1671,14 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 			mes "..................";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "Okay. I can do this";
-			mes "simple thing for you.";
-			mes "Let me recite this song...";
+			mes "好吧。我可以为你做这件小事。";
+			mes "让我背诵这首歌……";
+			mes "";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "The great serpent";
-			mes "swallowed the sea.";
-			mes "The eagle of the rainbow";
-			mes "swallowed the serpent.";
-			mes "Then snake scales grew on";
-			mes "the eagle, and it slowly died.";
+			mes "巨蛇吞下了大海。";
+			mes "彩虹之鹰";
+			mes "吞下了巨蛇。然后蛇鳞在鹰身上长出，它慢慢死去。";
 			set prt_curse,12;
 			close;
 		}
@@ -1721,25 +1690,18 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 	}
 	else if (prt_curse == 36) {
 		mes "^3355FFThe little boy looked";
-		mes "very worn and weary of";
-		mes "life, a look that is very";
-		mes "unsettling on the face";
-		mes "of a young child.^000000";
+		mes "看起来非常疲惫、厌倦生活，年轻孩子脸上的神情令人不安。^000000";
 		close;
 	}
 	else if (prt_curse == 45) {
 		mes "^3355FFThe little boy still";
-		mes "won't talk to you, but";
-		mes "he acknowledges your";
-		mes "presense by making eye";
-		mes "contact and smiling.^000000";
+		mes "不会和你说话，但会通过与你对视来回应你的存在。";
+			mes "与你对视并微笑。^000000";
 		close;
 	}
 	else if (prt_curse > 54) {
 		mes "^3355FFThe little boy still";
-		mes "won't talk to you, but he";
-		mes "make you feel welcome";
-		mes "by giving you a warm smile.^000000";
+			mes "不会和你说话，但会用温暖的微笑让你感到受欢迎。^000000";
 		close;
 	}
 	else {
@@ -1749,10 +1711,7 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 		mes ".........";
 		next;
 		mes "^3355FFYou find it difficult";
-		mes "to ignore the little boy's";
-		mes "probing, wary eyes directed";
-		mes "at you. It's very clear that";
-		mes "he doesn't trust you.^000000";
+			mes "无视小男孩投向你的探究、警惕目光。很明显，他不信任你。^000000";
 		close;
 	}
 }
@@ -1760,81 +1719,52 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+			mes "你现在携带的物品太多了。请使用卡普拉服务存放一些物品后再回来。^000000";
 		close;
 	}
 	if (prt_curse == 11) {
 		mes "[Absent-Minded Boy]";
-		mes "The great serpent";
-		mes "swallowed the sea.";
-		mes "The eagle of the rainbow";
-		mes "swallowed the serpent.";
-		mes "Then snake scales grew on";
-		mes "the eagle, and it slowly died.";
+			mes "巨蛇吞下了大海。彩虹之鹰吞下了巨蛇。然后蛇鳞在鹰身上长出，它慢慢死去。";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "Goodness...!";
-		mes "Will you please stop";
-		mes "singing that song?";
+			mes "天啊……！你能别再唱那首歌了吗？";
 		next;
 		mes "[Absent-Minded Boy]";
 		mes "..................";
 		next;
 		mes "^3355FFThe little boy quietly";
-		mes "stared at the woman for a";
-		mes "little bit, and then crouched";
-		mes "down and began petting a";
-		mes "dog sitting next to him.^000000";
+			mes "盯着女人看了一会儿，然后蹲下抚摸身边的狗。^000000";
 		next;
-		if (select("What did you just sing?:Ignore them") == 1) {
+			if (select("你刚唱了什么？:不理他们") == 1) {
 			mes "[Absent-Minded Boy]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			next;
 			mes "[Absent-Minded Boy]";
-			mes "Woof-woof, have you";
-			mes "heard this song? Mommy";
-			mes "taught me to sing it, you";
-			mes "know. She says it was sung";
-			mes "by people for a long time~";
+			mes "汪汪，你听过这首歌吗？妈妈教我唱的。她说人们唱了很久";
+			mes "人们唱了很久~";
 			next;
 			mes "^3355FFThe boy continued speaking";
-			mes "to the dog like an old friend,";
-			mes "ignoring your presence and";
-			mes "acting as if you didn't exist.^000000";
+			mes "像对待老朋友一样和狗说话，完全无视你的存在。^000000";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "Kaanu...";
-			mes "What did I tell";
-			mes "you about ignoring";
-			mes "people's questions!";
+			mes "Kaanu……我怎么告诉你的，不要无视别人的问题！";
 			next;
 			mes "[Kaanu]";
 			mes ".........";
 			mes "..................";
-			mes "Uh oh, Woof-woof.";
-			mes "Mommy seems upset";
-			mes "for some reason.";
+			mes "糟糕，汪汪。妈妈似乎不知为何生气了。";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "I'm sorry, my kid is...";
-			mes "Look, did you want to know";
-			mes "more about that song? Try";
-			mes "not to worry about it: it's just an old children's tune.";
+			mes "抱歉，我的孩子……你想了解那首歌吗？别担心，它只是一首古老的儿歌。";
 			next;
-			if (select("Why are you here?:May I hear the song again?") == 1) {
+			if (select("你为什么在这里？:我能再听一次那首歌吗？") == 1) {
 				mes "[Exhausted-Looking Woman]";
 				mes ".................";
 				next;
 				mes "^3355FFThe woman's lip tightens";
-				mes "with shame. It's obvious";
-				mes "that this topic makes her";
-				mes "feel very uncomfortable.^000000";
+				mes "羞愧不已。显然这个话题让她非常不舒服。^000000";
 				next;
 				mes "[Kaanu]";
 				mes "...";
@@ -1842,10 +1772,7 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 				mes ".........";
 				next;
 				mes "[Kaanu]";
-				mes "Woof-woof, do you know";
-				mes "why Mommy is always";
-				mes "so sad? I wish I knew";
-				mes "why Mommy never smiles...";
+				mes "汪汪，你知道妈妈为什么总是这么悲伤吗？我真希望知道她为什么从不微笑……";
 				next;
 				mes "[Exhausted-Looking Woman]";
 				mes "........";
@@ -1856,17 +1783,10 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 			mes "..................";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "Okay. I can do this";
-			mes "simple thing for you.";
-			mes "Let me recite this song...";
+			mes "好。我可以为你做这件简单的事。让我复述这首歌……";
 			next;
 			mes "[Exhausted-Looking Woman]";
-			mes "The great serpent";
-			mes "swallowed the sea.";
-			mes "The eagle of the rainbow";
-			mes "swallowed the serpent.";
-			mes "Then snake scales grew on";
-			mes "the eagle, and it slowly died.";
+			mes "巨蛇吞下了大海。彩虹之鹰吞下了巨蛇。然后蛇鳞在鹰身上长出，它慢慢死去。";
 			set prt_curse,12;
 			close;
 		}
@@ -1876,72 +1796,37 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 	}
 	else if (prt_curse == 12) {
 		mes "[Exhausted-Looking Woman]";
-		mes "Not too many people";
-		mes "come to this remote area.";
-		mes "What brings you all the";
-		mes "way over here, I wonder?";
+		mes "没多少人来这个偏僻地区。是什么把你带到这里的？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Actually, I'm just";
-		mes "trying to learn the";
-		mes "real lyrics of that";
-		mes "song that little boy";
-		mes "has been singing.";
+		mes "其实，我只是想了解那个男孩一直唱的歌的真正歌词。";
 		next;
 		mes "[Exhausted-Looking Woman]";
 		mes ".........";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "That song's lyrics, and";
-		mes "its meaning, can change";
-		mes "from person to person as";
-		mes "time goes on. I suppose part";
-		mes "of the reason is because it's";
-		mes "been handed down orally...";
+		mes "那首歌的歌词和含义会随着时间，在不同人之间改变。我想部分原因是它一直口耳相传……";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "It sounds like such a happy";
-		mes "song, but it's meaning had";
-		mes "changed for me ever since";
-		mes "the accident had happened...";
-		mes "It's been so long, but I don't";
-		mes "think the pain will ever heal.";
+		mes "听起来是一首如此快乐的";
+		mes "这首歌，但自事故发生后，它对我的意义变了……已经过去很久，但我不认为痛苦会痊愈。";
 		next;
-		select("Accident?");
+		select("事故？");
 		mes "[Exhausted-Looking Woman]";
-		mes "I'm... I'm sorry.";
-		mes "I don't think I can talk";
-		mes "about it. If I try, I know I'll";
-		mes "relive the horror. Every day";
-		mes "is already a struggle to cope";
-		mes "with the sins I've committed.";
+		mes "我……很抱歉。我不想谈这件事。只要回想，就会重历恐惧。每天都在努力承受自己犯下的罪。";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "I know it's selfish, but";
-		mes "I have a favor to ask of you.";
-		mes "I can't really leave this area,";
-		mes "and seldom do I receive visitors. Would you be so kind to deliver";
-		mes "something to Prontera for me?";
+		mes "我知道这很自私，但想请你帮个忙。我不能离开这里，也很少有访客。你能替我把东西送到普隆德拉吗？";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "I used to live in Prontera,";
-		mes "and ever since the accident,";
-		mes "Father Bamph has been so very";
-		mes "supportive of me. It's not enough to repay his kindness, but please";
-		mes "give these herbs to him for me.";
+		mes "我以前住在普隆德拉，事故后 Bamph 神父一直支持我。仅凭这些不足以报答他的善意，但请替我把这些草药交给他。";
 		next;
 		mes "[Exhausted-Looking Woman]";
-		mes "You can find ^3131FFFather Bamph^000000";
-		mes "in ^3131FFProntera Church^000000. When you ";
-		mes "see him, please give him my";
-		mes "warmest regards. I would do it";
-		mes "myself, but because of what I did, I can't return to Prontera...";
+		mes "你可以在^3131FF普隆德拉教堂^000000找到 ^3131FFBamph 神父^000000。见到他时请代我问候。我本想亲自去，但因为自己的所作所为，无法回到普隆德拉……";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "^333333(Alright then. I guess";
-		mes "I should deliver these";
-		mes "herbs to Prontera Church";
-		mes "before I talk to Rodafrian.)^000000";
+		mes "我应该先把这些草药送到普隆德拉教堂，再去找 Rodafrian。^000000";
 		getitem 7432,1; //Leather_Pouch
 		set prt_curse,13;
 		//changequest 18033,18034;
@@ -1949,41 +1834,21 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 	}
 	else if (prt_curse > 12 && prt_curse < 16) {
 		mes "[Exhausted-Looking Woman]";
-		mes "Father Bamph has helped";
-		mes "me so much. Please bring";
-		mes "that herb pouch to him in";
-		mes "Prontera Church, and give";
-		mes "him my warmest regards.";
+		mes "Bamph 神父帮了我很多。请把那袋草药带到普隆德拉教堂交给他，并代我问候。";
 		close;
 	}
 	else if (prt_curse == 16) {
 		mes "[Bonnie Imbullea]";
-		mes "Oh, you've come back?";
-		mes "Were you able to deliver";
-		mes "that pouch of herbs that";
-		mes "I gave you to Father Bamph?";
+		mes "哦，你回来了？你把我给你的草药袋交给 Bamph 神父了吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Yes, I did. Actually,";
-		mes "Father Bamph sent me";
-		mes "here to ask you a few";
-		mes "things. You see, he told";
-		mes "me all about the royal secret";
-		mes "and, well, your exorcism.";
+		mes "是的。其实 Bamph 神父派我来问你几件事。他告诉我王室秘密，以及你的驱魔仪式。";
 		next;
 		mes "[Bonnie Imbullea]";
-		mes "Oh. I see.";
-		mes "You must think";
-		mes "me a monster...";
-		mes "Those poor children";
-		mes "are dead because of me...";
+		mes "哦，我明白了。你一定觉得我是怪物……那些可怜的孩子因我而死……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "N-no! Not at all!";
-		mes "I just wanted to ask if there";
-		mes "was a connection between";
-		mes "the song that Kaanu has been";
-		mes "singing and Jormungand's curse.";
+		mes "不、不！完全不是！我只是想问，Kaanu 唱的歌和 Jormungand 的诅咒之间是否有联系。";
 		next;
 		mes "[Bonnie Imbullea]";
 		mes "...";
@@ -1991,133 +1856,123 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 		mes ".........";
 		next;
 		mes "[Bonnie Imbullea]";
-		mes "After the exorcism failed,";
-		mes "I should have been punished";
-		mes "with death. But the royal family and the Prontera Church took";
-		mes "mercy on me, and allowed";
-		mes "me to live here in exile.";
+		mes "驱魔失败后，我本应被处死。但王室和普隆德拉教会怜悯我，允许我在这里流放生活。";
 		emotion ET_THINK;
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "I began to sing this song";
-		mes "to keep myself distracted,";
-		mes "even if it was related to";
-		mes "the Jormungand curse.";
+		mes "[邦妮·英布莉亚]";
+		mes "我开始唱这首歌";
+		mes "让自己分心，";
+		mes "即使它与";
+		mes "耶梦加得诅咒有关。";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "You know, now that I think";
-		mes "about it, I do remember hearing";
-		mes "that after the exorcism failed,";
-		mes "a maid found a fragment of a";
-		mes "Red Gemstone while cleaning";
-		mes "the secret ceremonial grounds.";
+		mes "[邦妮·英布莉亚]";
+		mes "你知道吗，现在想想";
+		mes "我记得听说过，驱魔失败后";
+		mes "";
+		mes "女仆在清理";
+		mes "秘密仪式场地时发现一块";
+		mes "红色宝石碎片。";
 		emotion ET_SURPRISE, playerattached();
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "I always thought it";
-		mes "was a little strange.";
-		mes "I wanted to investigate";
-		mes "it, but then I was discharged";
-		mes "from the Prontera Church";
-		mes "after my failure...";
+		mes "[邦妮·英布莉亚]";
+		mes "我一直觉得这";
+		mes "有点奇怪。";
+		mes "我想调查，";
+		mes "但后来我因失败被";
+		mes "普隆德拉教会";
+		mes "解雇了……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "A fragment from";
-		mes "a Red Gemstone?";
-		mes "Maybe... maybe it's";
-		mes "evidence that someone";
-		mes "sabotaged the exorcism!";
+		mes "红色宝石的";
+		mes "碎片？";
+		mes "也许……也许这是有人";
+		mes "破坏驱魔仪式的证据！";
+		mes "";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "What happened was tragic,";
-		mes "but it would make me feel";
-		mes "so much better if that were";
-		mes "really the truth. Even if the";
-		mes "exorcism was sabotaged,";
-		mes "we can't turn back time...";
+		mes "[邦妮·英布莉亚]";
+		mes "发生的事很悲惨，";
+		mes "但如果那真相，";
+		mes "我会感觉好很多。即使";
+		mes "驱魔被破坏，";
+		mes "我们也无法改变过去……";
+		mes "";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "^333333(Hmm...";
-		mes "I better head back";
-		mes "to Prontera Church";
-		mes "and let Father Bamph";
-		mes "know about this information.)^000000";
+		mes "^333333（嗯……";
+		mes "我最好回普隆德拉教会";
+		mes "";
+		mes "告诉班普神父";
+		mes "这个消息。）";
 		set prt_curse,17;
 		//changequest 18035,18036;
 		close;
 	}
 	else if (prt_curse == 17) {
-		mes "[Bonnie Imbullea]";
-		mes "It's really very";
-		mes "difficult to live";
-		mes "with this guilt.";
-		mes "I was trained to help";
-		mes "people, not kill them!";
+		mes "[邦妮·英布莉亚]";
+		mes "带着这种愧疚生活";
+		mes "真的很难。";
+		mes "";
+		mes "我受训帮助";
+		mes "人，而不是杀人！";
 		next;
-		mes "^3355FFYou tried to comfort";
-		mes "Bonnie Imbullea for a";
-		mes "little while before you";
-		mes "return to Prontera Church.";
+		mes "^3355FF你试图安慰";
+		mes "邦妮·英布莉亚片刻，";
+		mes "然后回到";
+		mes "普隆德拉教会。";
 		close;
 	}
 	else if (prt_curse == 35 || prt_curse == 44 || prt_curse == 54) {
-		mes "^3355FFYou tell Bonnie Imbullea";
-		mes "that the deaths of the princes";
-		mes "were not her fault and that the exorcism was probably sabotaged.";
-		mes "However, you keep specifics, like the use of poison, to yourself.^000000";
+		mes "^3355FF你告诉邦妮·英布莉亚";
+		mes "王子的死亡不是她的错，驱魔可能被破坏。";
+		mes "";
+		mes "但你没有说出毒药等细节。^000000";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "Is that really true...?";
-		mes "Oh, I'm so happy! I really";
-		mes "thought I'd have to live the";
-		mes "rest of my in seclusion with";
-		mes "this horrible shame. Oh, thank";
-		mes "you so much for your help!";
+		mes "[邦妮·英布莉亚]";
+		mes "真的吗……？";
+		mes "哦，我太高兴了！我以为要";
+		mes "一生隐居，带着";
+		mes "可怕的羞耻。谢谢你！";
+		mes "";
+		mes "";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "Kaanu will be able to";
-		mes "meet other kids his own";
-		mes "age... We can finally live";
-		mes "a normal life. How wonderful...";
+		mes "[邦妮·英布莉亚]";
+		mes "卡努将能够";
+		mes "和同龄的孩子们见面……";
+		mes "我们终于可以过上";
+		mes "正常的生活了。真是太好了……";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "But wait...";
-		mes "How exactly did the";
-		mes "princes die, then?";
-		mes "There weren't any";
-		mes "wounds on the bodies";
-		mes "from what I remember...";
+		mes "[邦妮·英布莉亚]";
+		mes "但是等等……";
+		mes "那么王子们到底是";
+		mes "怎么死的？";
+		mes "据我记得，他们身上";
+		mes "没有任何伤口……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, um, I wouldn't know";
-		mes "anything about that, but";
-		mes "Father Bamph and Father";
-		mes "Biscuss are handling the";
-		mes "investigation, and they're";
-		mes "doing their best to find out.";
+		mes "呃，这个我也不清楚，";
+		mes "但班普神父和比库斯神父";
+		mes "正在负责调查，";
+		mes "他们会尽力查明真相。";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "I see. Well, I believe in";
-		mes "them: they're great priests,";
-		mes "after all. Although I may be";
-		mes "forgiven for my failure, I still fear for the royal family...";
-		mes "All I can do for now is pray.";
+		mes "[邦妮·英布莉亚]";
+		mes "我明白了。我相信他们，";
+		mes "毕竟他们都是优秀的神父。";
+		mes "虽然我的失败或许能被原谅，";
+		mes "但我仍然担心王室……";
+		mes "现在我能做的只有祈祷。";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "Anyway, I promise that";
-		mes "I won't reveal what I know";
-		mes "about this incident to the";
-		mes "public. And if you ever come";
-		mes "by the mountain again, I hope";
-		mes "you stop by to visit us.";
+		mes "[邦妮·英布莉亚]";
+		mes "总之，我保证不会把";
+		mes "我知道的这件事告诉公众。";
+		mes "如果你以后再来这座山，";
+		mes "希望你能顺便来看看我们。";
 		next;
-		mes "[Bonnie Imbullea]";
-		mes "You don't understand";
-		mes "how much the news you've";
-		mes "brought really means to me.";
-		mes "I can finally free myself from";
-		mes "this burdensome guilt...";
-		mes "Thank you, kind adventurer~";
+		mes "[邦妮·英布莉亚]";
+		mes "你不知道你带来的消息";
+		mes "对我来说有多么重要。";
+		mes "我终于可以摆脱";
+		mes "这份沉重的罪恶感了……";
+		mes "谢谢你，善良的冒险者～";
 		if (prt_curse == 35) {
 			set prt_curse,36;
 			//completequest 18050;
@@ -2126,9 +1981,9 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 			//completequest 18049;
 		} else {
 			next;
-			mes "^3355FFNow, you can return to";
-			mes "Rodafrian, the historian";
-			mes "stationed in Morocc.^000000";
+			mes "^3355FF现在，你可以回去找";
+			mes "驻扎在梦罗克的历史学家";
+			mes "罗达弗里安了。^000000";
 			set prt_curse,55;
 			//changequest 18049,18051;
 		}
@@ -2136,36 +1991,35 @@ mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
 		close;
 	}
 	else if (prt_curse == 36) {
-		mes "[Bonnie Imbullea]";
-		mes "By your grace and mercy,";
-		mes "please pity the poor souls";
-		mes "and protect the royal family...";
-		mes "Bless us with your light and";
-		mes "may your wisdom guide us...";
+		mes "[邦妮·英布莉亚]";
+		mes "愿您施以恩典与慈悲，";
+		mes "怜悯可怜的灵魂，";
+		mes "保护王室……";
+		mes "请用您的光祝福我们，";
+		mes "愿您的智慧指引我们……";
 		close;
 	}
 	else if (prt_curse == 45) {
-		mes "[Bonnie Imbullea]";
-		mes "I guess we've gotten";
-		mes "too used to the peace";
-		mes "and serenity of Mount";
-		mes "Mjolnir. It won't be easy";
-		mes "to leave, even if we're welcome to return to Prontera...";
+		mes "[邦妮·英布莉亚]";
+		mes "我想我们已经太习惯";
+		mes "妙尔尼尔山的和平";
+		mes "与宁静了。即使欢迎我们";
+		mes "回到普隆德拉，离开这里";
+		mes "也并不容易……";
 		close;
 	}
 	else if (prt_curse > 54) {
-		mes "[Bonnie Imbullea]";
-		mes "Thank you so much";
-		mes "for helping out in the";
-		mes "investigation of the";
-		mes "princes. I'd never know";
-		mes "happiness again if it";
-		mes "weren't for your efforts.";
+		mes "[邦妮·英布莉亚]";
+		mes "非常感谢你";
+		mes "帮助调查王子们的事情。";
+		mes "如果没有你的努力，";
+		mes "我恐怕再也不会知道";
+		mes "幸福是什么了。";
 		close;
 	}
 	else {
-		mes "[Bonnie Imbullea]";
-		mes "^333333*Sigh...*^000000";
+		mes "[邦妮·英布莉亚]";
+		mes "^333333*叹气……*^000000";
 		close;
 	}
 }
@@ -2176,511 +2030,454 @@ prt_church,166,106,0	warp	#prtchhall	1,1,prt_church,112,122
 
 prt_church,185,106,3	script	Father Bamph	60,{
 	if (prt_curse == 13) {
-		mes "[Father Bamph]";
-		mes "Welcome to";
-		mes "Prontera Church.";
-		mes "Please relax, and";
-		mes "let your mind and";
-		mes "spirit find rest in";
-		mes "these hallowed halls.";
+		mes "[班普神父]";
+		mes "欢迎来到";
+		mes "普隆德拉教会。";
+		mes "请放松身心，";
+		mes "让你的心灵";
+		mes "在这神圣的大厅中";
+		mes "得到安宁。";
 		next;
-		select("Give him the herb pouch.");
+		select("交给他草药袋。");
 		if (countitem(7432) < 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "Ack!";
-			mes "Now, where did I put";
-			mes "that pouch with the herbs?";
+			mes "啊！";
+			mes "我把那个装草药的袋子";
+			mes "放到哪里去了？";
 			close;
 		}
-		mes "[Father Bamph]";
-		mes "May I ask...";
-		mes "Why are you giving";
-		mes "me this pouch of herbs?";
+		mes "[班普神父]";
+		mes "请问……";
+		mes "你为什么要把";
+		mes "这袋草药交给我？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, there was this";
-		mes "lady living on Mount";
-		mes "Mjolnir who wanted me";
-		mes "to give this to you. Um, she";
-		mes "has a son named Kaanu?";
+		mes "是这样的，有位住在";
+		mes "妙尔尼尔山的女士想让我";
+		mes "把这个交给你。呃，她";
+		mes "有个叫卡努的儿子？";
 		next;
-		mes "[Father Bamph]";
-		mes "Oh, you must have met";
-		mes "Bonnie Imbullea. It's";
-		mes "been a long time since";
-		mes "I've seen her. How is";
-		mes "she doing, may I ask?";
+		mes "[班普神父]";
+		mes "哦，你一定见过";
+		mes "邦妮·英布莉亚。";
+		mes "我很久没见到她了。";
+		mes "请问她现在过得怎么样？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Oh...";
-		mes "I guess she's fine.";
-		mes "But she seems really...";
-		mes "I dunno, tormented...";
+		mes "哦……";
+		mes "我想她还好。";
+		mes "但她看起来真的……";
+		mes "我也说不清，像是很痛苦……";
 		next;
-		mes "[Father Biscuss]";
-		mes "Good! If she were happy";
-		mes "and relaxed after what she";
-		mes "did, not even God would forgive";
-		mes "her! She deserves to live the";
-		mes "rest of her life in agony!";
+		mes "[比库斯神父]";
+		mes "很好！如果她做了那种事后";
+		mes "还能开心放松，";
+		mes "就连上帝也不会原谅她！";
+		mes "她应该在痛苦中度过";
+		mes "余生！";
 		next;
-		mes "[Father Bamph]";
-		mes "Father Biscuss, how can";
-		mes "you say something like that?";
-		mes "She did her best to stop what";
-		mes "had happened! We should pity";
-		mes "her for the suffering she must be feeling. Where is your compassion?";
+		mes "[班普神父]";
+		mes "比库斯神父，你怎么能";
+		mes "说这种话？";
+		mes "她已经尽力阻止那件事了！";
+		mes "我们应该怜悯她所承受的痛苦。";
+		mes "你的同情心到哪里去了？";
 		next;
-		mes "[Father Biscuss]";
-		mes "Bah! Don't speak to me";
-		mes "about compassion! Weren't";
-		mes "you the one who recommended";
-		mes "her to perform the exorcism in";
-		mes "the first place? You didn't";
-		mes "forget that, did you?";
+		mes "[比库斯神父]";
+		mes "哼！别跟我谈同情心！";
+		mes "难道不是你最先推荐";
+		mes "让她主持驱魔仪式的吗？";
+		mes "你没忘记这件事吧？";
 		next;
-		mes "[Father Bampf]";
+		mes "[班普神父]";
 		mes "......";
 		mes ".........";
 		mes "............";
 		next;
-		mes "[Father Biscuss]";
-		mes "Hah!";
+		mes "[比库斯神父]";
+		mes "哈！";
 		next;
-		select("About Bonnie Imbullea");
-		mes "[Father Bamph]";
-		mes "Well...";
-		mes "I don't...";
-		mes "I don't know if";
-		mes "I should be telling ";
-		mes "you about that incident...";
+		select("关于邦妮·英布莉亚");
+		mes "[班普神父]";
+		mes "这个嘛……";
+		mes "我不知道……";
+		mes "我不知道是否应该";
+		mes "把那件事告诉你……";
 		next;
-		mes "[Father Biscuss]";
-		mes "You know what? If Bonnie";
-		mes "sent this adventurer here";
-		mes "for a favor, it probably means";
-		mes "she trusts this person. Besides, we need somebody to carry out";
+		mes "[比库斯神父]";
+		mes "你知道吗？邦妮让这位冒险者";
+		mes "来这里帮忙，说明她";
+		mes "信任这个人。而且，我们需要有人";
+		mes "替我们完成这项任务。";
 		if (Sex == SEX_MALE)
-			mes "this task for us. Why not him?";
+			mes "这项任务。为什么不是他？";
 		else
-			mes "this task for us. Why not her?";
+			mes "这项任务。为什么不是她？";
 		next;
-		mes "[Father Bamph]";
-		mes "Your words have the ring";
-		mes "of truth, Father Biscuss.";
-		mes "Well then, adventurer, give";
-		mes "me the opportunity to tell you";
-		mes "something very important. But, you must not tell anyone else...";
+		mes "[班普神父]";
+		mes "你的话听起来确实有道理，";
+		mes "比库斯神父。";
+		mes "那么，冒险者，请给我机会";
+		mes "告诉你一件非常重要的事。";
+		mes "但你绝不能告诉其他人……";
 		set prt_curse,14;
 		delitem 7432,1; //Leather_Pouch
 		close;
 	}
 	else if (prt_curse == 14) {
-		mes "[Father Bamph]";
-		mes "What I am about to tell";
-		mes "you must be kept secret.";
-		mes "Now, do you know about";
-		mes "Jormungand, the great serpent";
-		mes "born from the god Loki and";
-		mes "the giantess, Angrboda?";
+		mes "[班普神父]";
+		mes "我接下来要告诉你的事";
+		mes "必须保密。";
+		mes "你知道耶梦加得吗？";
+		mes "它是由神洛基与女巨人";
+		mes "安格尔波达所生的";
+		mes "巨蛇。";
 		next;
-		mes "[Father Bamph]";
-		mes "Jormungand was an evil";
-		mes "beast that, after the thousand";
-		mes "year war between the gods and";
-		mes "demons, began to attack humans.";
-		mes "It brought great chaos and much";
-		mes "suffering around the world...";
+		mes "[班普神父]";
+		mes "耶梦加得是一头邪恶的";
+		mes "野兽。在神魔之间持续千年的";
+		mes "战争结束后，它开始攻击人类。";
+		mes "它给世界带来了巨大的混乱";
+		mes "与无尽的苦难……";
 		next;
-		mes "[Father Bamph]";
-		mes "Finally, the first Tristram of";
-		mes "the Geoborg family defeated";
-		mes "Jormungand together with 6";
-		mes "other warriors, but only after";
-		mes "it killed his beloved father.";
+		mes "[班普神父]";
+		mes "最后，盖博格家族的第一代";
+		mes "特里斯坦与另外六名战士";
+		mes "一起击败了耶梦加得，";
+		mes "但那是在它杀死他敬爱的父亲之后。";
 		next;
-		mes "[Father Bamph]";
-		mes "Tristram would become the";
-		mes "first king of the Rune-Midgarts";
-		mes "Kingdom, but his family would";
-		mes "suffer from the curse placed";
-		mes "by Jormungand before its defeat. ";
+		mes "[班普神父]";
+		mes "特里斯坦后来成为";
+		mes "卢恩·米德加兹王国的第一任国王，";
+		mes "但他的家族承受了";
+		mes "耶梦加得在败亡前施下的诅咒。";
 		next;
-		mes "[Father Bamph]";
-		mes "To this day...";
-		mes "^FF0000Every first prince of";
-		mes "the Geoborg family dies";
-		mes "at a young age^000000. That is";
-		mes "Jormungand's curse and";
-		mes "the royal family's secret.";
+		mes "[班普神父]";
+		mes "直到今天……";
+		mes "^FF0000盖博格家族的每一位";
+		mes "长子都会英年早逝^000000。那就是";
+		mes "耶梦加得的诅咒，";
+		mes "也是王室的秘密。";
 		emotion ET_HUK, playerattached();
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What...?!";
-		mes "Is this really true?!";
-		mes "Isn't there any way to";
-		mes "counter this horrible curse?!";
+		mes "什么……？！";
+		mes "这是真的吗？！";
+		mes "难道没有办法";
+		mes "对抗这个可怕的诅咒吗？！";
 		next;
-		mes "[Father Bamph]";
-		mes "Please lower your voice.";
-		mes "Yes, it's a shame that the";
-		mes "royal family must suffer like";
-		mes "this. But all the exorcisms";
-		mes "that have been attempted";
-		mes "over the years have failed...";
+		mes "[班普神父]";
+		mes "请小声一点。";
+		mes "是的，王室必须承受这种";
+		mes "痛苦确实令人惋惜。";
+		mes "但多年来尝试过的所有驱魔";
+		mes "仪式都失败了……";
 		next;
-		mes "[Father Bamph]";
-		mes "Although the situation";
-		mes "appeared hopeless, King";
-		mes "Tristram III tried once again to exorcise the curse. Following";
-		mes "his orders, the greatest priests and exorcists were all summoned.";
+		mes "[班普神父]";
+		mes "虽然情况看起来毫无希望，";
+		mes "特里斯坦三世国王仍再次尝试驱除诅咒。";
+		mes "遵照他的命令，最优秀的神父与驱魔师";
+		mes "全都被召集了起来。";
 		next;
-		mes "[Father Bamph]";
-		mes "A series of tests was";
-		mes "performed to select the";
-		mes "best priests and exorcists";
-		mes "to remove this curse. In the end, ^3131FFBonnie Imbullea^000000 was chosen to";
-		mes "lead the exorcism ceremony.";
+		mes "[班普神父]";
+		mes "他们进行了一系列测试，";
+		mes "选拔最优秀的神父与驱魔师";
+		mes "来解除诅咒。最后，^3131FF邦妮·英布莉亚^000000被选中";
+		mes "主持驱魔仪式。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Wait, but you mentioned";
-		mes "samething about an accident.";
-		mes "Does that mean that she failed";
-		mes "in performing the exorcism?";
+		mes "等等，但你提到过";
+		mes "发生了意外。";
+		mes "那是否意味着她在执行";
+		mes "驱魔仪式时失败了？";
 		next;
-		mes "[Father Bamph]";
-		mes "Yes, unfortunately.";
-		mes "After the priests and";
-		mes "exorcists gathered in the";
-		mes "secret ceremonial grounds,";
-		mes "three princes were killed";
-		mes "instead of just the first.";
+		mes "[班普神父]";
+		mes "是的，很不幸。";
+		mes "神父与驱魔师聚集到";
+		mes "秘密仪式场地后，";
+		mes "结果死去的不是一位王子，";
+		mes "而是三位。";
 		next;
-		mes "[Father Biscuss]";
-		mes "Although we all swore to";
-		mes "keep that incident a secret,";
-		mes "Bonnie Imbullea took full";
-		mes "responsibility for the deaths.";
-		mes "That is why she is in self";
-		mes "imposed exile from the kingdom.";
+		mes "[比库斯神父]";
+		mes "虽然我们都发誓要保守";
+		mes "这件事的秘密，";
+		mes "邦妮·英布莉亚仍承担了";
+		mes "死亡事件的全部责任。";
+		mes "所以她才会自我流放，";
+		mes "离开王国。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What...?";
-		mes "That's...";
-		mes "That's crazy!";
+		mes "什么……？";
+		mes "这……";
+		mes "太疯狂了！";
 		next;
-		mes "[Father Biscuss]";
-		mes "I know that this";
-		mes "is a very long story,";
-		mes "and that it's a little";
-		mes "complicated. Please";
-		mes "listen to what we have";
-		mes "to ask from here on...";
+		mes "[比库斯神父]";
+		mes "我知道这是个很长的故事，";
+		mes "而且有点复杂。";
+		mes "请听听接下来";
+		mes "我们想请你做的事……";
 		emotion ET_THINK;
 		set prt_curse,15;
 		close;
 	}
 	else if (prt_curse == 15) {
-		mes "[Father Bamph]";
-		mes "Now, you should know that";
-		mes "all of the princes that were";
-		mes "killed that day bore strange";
-		mes "looking marks on their bodies.";
-		mes "It almost looked as if they";
-		mes "were growing snake scales.";
+		mes "[班普神父]";
+		mes "现在你应该知道，";
+		mes "那天死去的所有王子";
+		mes "身上都有奇怪的印记。";
+		mes "看起来就像他们的身体";
+		mes "正在长出蛇鳞。";
 		emotion ET_SURPRISE, playerattached();
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Wait, they grew snake";
-		mes "scales? That sounds just";
-		mes "like one of the versions of";
-		mes "this song I'm investigating.";
-		mes "I think it was the song about the Rune-Midgarts Kingdom's origin.";
+		mes "等等，他们长出了蛇鳞？";
+		mes "这听起来就像我正在调查的";
+		mes "那首歌的其中一个版本。";
+		mes "我想那是关于卢恩·米德加兹王国起源的歌。";
 		next;
-		mes "[Father Bamph]";
-		mes "Wait, that song?";
-		mes "Hm, I don't see how";
-		mes "it's related. Let's see";
-		mes "now, how did it go?";
-		mes "Rainbows... Eagles...";
-		mes "Ah! Now I remember!";
+		mes "[班普神父]";
+		mes "等等，那首歌？";
+		mes "嗯，我看不出它们有什么关系。";
+		mes "让我想想，歌词是怎么唱的？";
+		mes "彩虹……鹰……";
+		mes "啊！我想起来了！";
 		next;
-		mes "[Father Bamph]";
-		mes "The great serpent";
-		mes "swallowed the sea.";
-		mes "The eagle of the rainbow";
-		mes "swallowed the serpent.";
-		mes "Then the eagle built its nest.";
-		mes "A nest upon the swallowed sea.";
+		mes "[班普神父]";
+		mes "巨蛇吞下了大海。";
+		mes "彩虹之鹰吞下了巨蛇。";
+		mes "然后鹰筑起了巢。";
+		mes "巢建在被吞下的大海之上。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Hmm...";
-		mes "Well, I heard a";
-		mes "different version";
-		mes "of the same song.";
-		mes "It goes like...";
+		mes "嗯……";
+		mes "我听过同一首歌的";
+		mes "另一个版本。";
+		mes "歌词是这样的……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "The great serpent";
-		mes "swallowed the sea.";
-		mes "The eagle of the rainbow";
-		mes "swallowed the serpent.";
-		mes "Then snake scales grew on";
-		mes "the eagle, and it slowly died.";
+		mes "巨蛇吞下了大海。";
+		mes "彩虹之鹰吞下了巨蛇。";
+		mes "然后蛇鳞长在鹰的身上，";
+		mes "它慢慢死去了。";
 		next;
-		mes "[Father Bamph]";
-		mes "Oh, my. I learned the song";
-		mes "when I was a young boy from";
-		mes "my father. However, your version seems to reveal the secret curse";
-		mes "of the Geoborgs. Please tell me, where did you hear that song?";
+		mes "[班普神父]";
+		mes "天啊。我小时候从父亲那里";
+		mes "学会了这首歌。不过，你的版本";
+		mes "似乎揭示了盖博格家族的秘密诅咒。";
+		mes "请告诉我，你在哪里听到那首歌的？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, I first heard this";
-		mes "version from a historian,";
-		mes "and then I found out that";
-		mes "Bonnie Imbullea knows it as";
-		mes "well. Um, is there a problem?";
+		mes "我最初是从一位历史学家那里";
+		mes "听到这个版本的，后来发现";
+		mes "邦妮·英布莉亚也知道。";
+		mes "呃，有什么问题吗？";
 		next;
-		mes "[Father Bamph]";
-		mes "If those song lyrics are";
-		mes "spread, the secret of the";
-		mes "royal family curse could be";
-		mes "revealed to the public. Would";
-		mes "you please help us by speaking";
-		mes "to Bonnie Imbullea once again?";
+		mes "[班普神父]";
+		mes "如果那些歌词被传播出去，";
+		mes "王室诅咒的秘密可能会";
+		mes "暴露给公众。你能否再去";
+		mes "和邦妮·英布莉亚谈谈，";
+		mes "帮助我们调查？";
 		next;
-		mes "[Father Bamph]";
-		mes "If you can, please try to";
-		mes "see if you can learn of any";
-		mes "connection between the curse";
-		mes "and the song, or if she can";
-		mes "remember anything that happened";
-		mes "after the exorcism failed...";
+		mes "[班普神父]";
+		mes "如果可以，请试着查明";
+		mes "诅咒与歌曲之间是否有关，";
+		mes "或者她是否记得驱魔失败后";
+		mes "发生过什么事……";
 		set prt_curse,16;
 		//changequest 18034,18035;
 		close;
 	}
 	else if (prt_curse == 16) {
-		mes "[Father Bamph]";
-		mes "Please visit Bonnie";
-		mes "Imbullea in Mount Mjolnir";
-		mes "to see if you can learn more";
-		mes "about that song, or about what";
-		mes "happened after the attempted exorcism of the Jormungand curse.";
+		mes "[班普神父]";
+		mes "请去妙尔尼尔山拜访";
+		mes "邦妮·英布莉亚，调查那首歌，";
+		mes "以及尝试驱除耶梦加得诅咒后";
+		mes "发生了什么事。";
 		close;
 	}
 	else if (prt_curse == 17) {
-		mes "[Father Bamph]";
-		mes "Ah, have you spoken";
-		mes "to Bonnie Imbullea?";
-		mes "Please tell me if you";
-		mes "have learned anything new.";
+		mes "[班普神父]";
+		mes "啊，你和邦妮·英布莉亚";
+		mes "谈过了吗？";
+		mes "请告诉我你是否";
+		mes "发现了什么新情况。";
 		next;
-		mes "^3355FFYou related everything";
-		mes "that Bonnie Imbullea spoke";
-		mes "about, including the discovery";
-		mes "of a fragment of Red Gemstone";
-		mes "in the secret ceremonial grounds. ";
+		mes "^3355FF你把邦妮·英布莉亚说过的";
+		mes "一切都告诉了他，包括在";
+		mes "秘密仪式场地发现";
+		mes "红色宝石碎片的事。^000000";
 		next;
-		mes "[Father Bamph]";
-		mes "Red Gemstone? There's";
-		mes "no reason for that to be in";
-		mes "a holy place. Hmm. There's";
-		mes "more to this case than meets";
-		mes "the eye. We better investigate";
-		mes "the truth, starting now.";
+		mes "[班普神父]";
+		mes "红色宝石？神圣的场所里";
+		mes "不该有这种东西。嗯，";
+		mes "这件事比表面看起来更复杂。";
+		mes "我们最好现在就开始调查真相。";
 		next;
-		mes "[Father Bamph]";
-		mes "Come with me, adventurer,";
-		mes "to the secret ceremonial";
-		mes "grounds for the royal family.";
-		mes "Just use the switch hidden";
-		mes "within the bookshelf and";
-		mes "I will meet you there.";
+		mes "[班普神父]";
+		mes "跟我来，冒险者，";
+		mes "去王室的秘密仪式场地。";
+		mes "只要使用藏在书架里的开关，";
+		mes "我会在那里和你会合。";
 		set prt_curse,18;
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
+		mes "";
 		//changequest 18036,18037;
 		close;
 	}
 	else if (prt_curse > 17 && prt_curse < 22) {
-		mes "[Father Bamph]";
-		mes "Come with me to the";
-		mes "secret ceremonial grounds";
-		mes "so that we can investigate";
-		mes "the possibility of sabotage";
-		mes "with the exorcism that";
-		mes "Bonnie Imbullea performed.";
+		mes "[班普神父]";
+		mes "和我一起前往秘密仪式场地，";
+		mes "调查邦妮·英布利亚进行的驱魔仪式";
+		mes "是否可能遭到破坏。";
 		next;
-		mes "[Father Bamph]";
-		mes "There is a hidden switch";
-		mes "in the bookshelf that you";
-		mes "can use to transport yourself";
-		mes "there. Go, and I will meet";
-		mes "you in the ceremonial grounds.";
+		mes "[班普神父]";
+		mes "书架上有一个隐藏开关，";
+		mes "可以把你传送到那里。";
+		mes "你先去，我会在仪式场地与你会合。";
 		close;
 	}
 	else if (prt_curse == 22) {
-		mes "[Father Bamph]";
-		mes "This is a matter of grave";
-		mes "importance, but we can't";
-		mes "alert the royal family yet and";
-		mes "cause a panic. It would be";
-		mes "best to fully investigate this";
-		mes "first and collect proof.";
+		mes "[班普神父]";
+		mes "这件事非常重要，但我们还不能通知王室，";
+		mes "以免引发恐慌。最好先彻底调查，收集证据。";
 		next;
-		mes "[Father Bamph]";
-		mes "Brave adventurer, would";
-		mes "you please visit the Assassin";
-		mes "Guild in Morocc and see if you";
-		mes "can learn anything about how";
-		mes "we can verify whether poison";
-		mes "was used to kill the princes?";
+		mes "[班普神父]";
+		mes "勇敢的冒险者，请前往梦罗克的刺客公会，";
+		mes "看看能否了解到如何确认王子们是否因中毒而死。";
 		set prt_curse,23;
 		//changequest 18039,18040;
 		close;
 	}
 	else if (prt_curse == 23) {
-		mes "[Father Bamph]";
-		mes "Please see if you can";
-		mes "learn anything about testing";
-		mes "for the use of poison from";
-		mes "a member of the Assassin";
-		mes "Guild in Morocc.";
+		mes "[班普神父]";
+		mes "请向梦罗克刺客公会的成员打听，";
+		mes "看看能否找到检测毒杀的方法。";
 		close;
 	}
 	else if (prt_curse == 31) {
-		mes "[Father Bamph]";
-		mes "Ah, you've returned~";
-		mes "Have you managed to learn";
-		mes "anything about poison from";
-		mes "the Assassin Guild? I know";
-		mes "their members must be";
-		mes "very difficult to find...";
+		mes "[班普神父]";
+		mes "啊，你回来了~";
+		mes "你从刺客公会了解到毒药的事了吗？";
+		mes "我知道他们的成员很难找到……";
 		next;
-		mes "^3355FFYou relate all of the";
-		mes "information you learned";
-		mes "about poison to Father Bamph,";
-		mes "including the method to test";
-		mes "for the use of poison in murder. ";
+		mes "^3355FF你把从刺客公会了解到的所有毒药信息，";
+		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。";
 		next;
-		mes "[Father Bamph]";
-		mes "Ah, I see. Then, would";
-		mes "you please bring 1 Yellow";
-		mes "Gemstone and 1 Green Potion";
-		mes "to the secret ceremonial grounds as soon as you can? I will wait";
-		mes "over there for you once again.";
+		mes "[班普神父]";
+		mes "啊，我明白了。那么请尽快带 1 个黄宝石和 1 瓶绿色药水";
+		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,32;
 		//changequest 18044,18046;
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 33 || prt_curse == 41 || prt_curse == 42 || prt_curse == 51 || prt_curse == 52) {
-		mes "[Father Bamph]";
-		mes "You can use the hidden";
-		mes "switch in the bookshelf to";
-		mes "enter the secret ceremonial";
-		mes "grounds. Don't forget that we";
-		mes "need^3131FF 1 Yellow Gemstone^000000 and ^3131FF1 Green Potion^000000 to test for poison.";
+		mes "[班普神父]";
+		mes "你可以使用书架上的隐藏开关进入秘密仪式场地。";
+		mes "别忘了我们需要^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000来检测毒药。";
 		close;
 	}
 	else if (prt_curse == 34) {
-		mes "[Father Bamph]";
-		mes "I can't believe it!";
-		mes "If poison was used, then";
-		mes "the second and third princes";
-		mes "were murdered! Unbelievable...";
-		mes "How can anyone kill children?";
+		mes "[班普神父]";
+		mes "我简直不敢相信！";
+		mes "如果使用了毒药，那么第二王子和第三王子就是被谋杀的！";
+		mes "难以置信……怎么会有人杀害孩子？";
 		next;
-		mes "[Father Bamph]";
-		mes "At the very least, we now";
-		mes "know that their deaths were";
-		mes "not Bonnie Imbullea's fault.";
-		mes "Now I must discuss with Father";
-		mes "Biscuss and decide how to tell";
-		mes "the royal family about this...";
+		mes "[班普神父]";
+		mes "至少现在我们知道，他们的死不是邦妮·英布利亚的错。";
+		mes "现在我必须和比斯库斯神父讨论，决定如何把这件事告诉王室……";
 		next;
-		mes "[Father Bamph]";
-		mes "Once again, let me remind";
-		mes "you that everything that has";
-		mes "transpired here must be kept";
-		mes "secret. The public cannot know";
-		mes "of Jormungand's curse! It would cause political turmoil and chaos!";
+		mes "[班普神父]";
+		mes "再次提醒你，这里发生的一切必须保密。";
+		mes "公众不能知道耶梦加得的诅咒！否则会引发政治动荡和混乱！";
 		next;
-		mes "[Father Bamph]";
-		mes "Still, that does not mean";
-		mes "that I cannot personally thank";
-		mes "you for all of your help. I'm very grateful for what you have done,";
-		mes "adventurer. May safety accompany you on all of your journeys.";
+		mes "[班普神父]";
+		mes "不过这不代表我不能亲自感谢你的帮助。";
+		mes "我非常感激你所做的一切，冒险者。愿安全伴随你所有的旅程。";
 		set prt_curse,35;
 		//changequest 18047,18050;
 		close;
 	}
 	else if (prt_curse > 34 && prt_curse < 40 && !aru_monas) {
-		mes "[Father Bamph]";
-		mes "I'm at a loss at what";
-		mes "to do. Sometimes, even";
-		mes "I have doubts and believe";
-		mes "that Odin has abandoned us...";
+		mes "[班普神父]";
+		mes "我不知道该怎么办。";
+		mes "有时我甚至会怀疑，奥丁已经抛弃了我们……";
 		close;
 	}
 	else if (prt_curse == 40) {
-		mes "[Father Bamph]";
-		mes "Ah, you've returned~";
-		mes "Have you managed to learn";
-		mes "anything about poison from";
-		mes "the Assassin Guild? I know";
-		mes "their members must be";
-		mes "very difficult to find...";
+		mes "[班普神父]";
+		mes "啊，你回来了~";
+		mes "你从刺客公会了解到毒药的事了吗？";
+		mes "我知道他们的成员很难找到……";
 		next;
-		mes "^3355FFYou relate all of the";
-		mes "information you learned";
-		mes "about poison to Father Bamph,";
-		mes "including the method to test";
-		mes "for the use of poison in murder. ";
+		mes "^3355FF你把从刺客公会了解到的所有毒药信息，";
+		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。";
 		next;
-		mes "[Father Bamph]";
-		mes "Ah, I see. Then, would";
-		mes "you please bring^3131FF 1 Yellow";
-		mes "Gemstone^000000 and ^3131FF1 Green Potion^000000";
-		mes "to the secret ceremonial grounds as soon as you can? I will wait";
-		mes "over there for you once again.";
+		mes "[班普神父]";
+		mes "啊，我明白了。那么请尽快带^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000";
+		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,41;
 		//changequest 18045,18046;
 		close;
 	}
 	else if (prt_curse == 43 || prt_curse == 53) {
-		mes "[Father Bamph]";
-		mes "I can't believe it!";
-		mes "If poison was used, then";
-		mes "the second and third princes";
-		mes "were murdered! Unbelievable...";
-		mes "How can anyone kill children?";
+		mes "[班普神父]";
+		mes "我简直不敢相信！如果使用了毒药，";
+		mes "那么第二王子和第三王子就是被谋杀的！";
+		mes "难以置信……怎么会有人杀害孩子？";
 		next;
-		mes "[Father Bamph]";
-		mes "At the very least, we now";
-		mes "know that their deaths were";
-		mes "not Bonnie Imbullea's fault.";
-		mes "Now I must discuss with Father";
-		mes "Biscuss and decide how to tell";
-		mes "the royal family about this...";
+		mes "[班普神父]";
+		mes "至少现在我们知道，他们的死不是邦妮·英布利亚的错。";
+		mes "我必须和比斯库斯神父讨论，决定如何告知王室……";
 		next;
-		mes "[Father Bamph]";
-		mes "Oh, and would you please";
-		mes "inform ^3131FFBonnie Imbullea^000000 that";
-		mes "the deaths of the princes were";
-		mes "not her fault? I'm sure that news would bring her great relief";
-		mes "from her burden of guilt...";
+		mes "[班普神父]";
+		mes "哦，也请告诉^3131FF邦妮·英布利亚^000000，";
+		mes "王子的死不是她的错。这个消息一定能减轻她的罪疚感……";
 		next;
-		mes "[Father Bamph]";
-		mes "Once again, let me remind";
-		mes "you that everything that has";
-		mes "transpired here must be kept";
-		mes "secret. The public cannot know";
-		mes "of Jormungand's curse! It would cause political turmoil and chaos!";
+		mes "[班普神父]";
+		mes "再次提醒你，这里发生的一切必须保密。";
+		mes "公众不能知道耶梦加得的诅咒！否则会引发政治动荡和混乱！";
 		next;
-		mes "[Father Bamph]";
-		mes "Still, that does not mean";
-		mes "that I cannot personally thank";
-		mes "you for all of your help. I'm very grateful for what you have done,";
-		mes "adventurer. May safety accompany you on all of your journeys.";
+		mes "[班普神父]";
+		mes "不过这不代表我不能亲自感谢你的帮助。";
+		mes "我非常感激你所做的一切，冒险者。愿安全伴随你所有的旅程。";
 		if (prt_curse == 43)
 			set prt_curse,44;
 		else
@@ -2690,91 +2487,60 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		close;
 	}
 	else if (prt_curse > 43 && prt_curse < 50 && !aru_monas) {
-		mes "[Father Bamph]";
-		mes "Have you spoken to";
-		mes "Bonnie Imbullea yet?";
-		mes "Try not to worry about the";
-		mes "news about the princes'";
-		mes "murder. Father Biscuss";
-		mes "and I will handle it.";
+		mes "[班普神父]";
+		mes "你和邦妮·英布利亚谈过了吗？";
+		mes "别太担心王子被谋杀的消息。";
+		mes "我和比斯库斯神父会处理的。";
 		close;
 	}
 	else if (prt_curse == 50) {
-		mes "[Father Bamph]";
-		mes "Ah, you've returned~";
-		mes "Have you managed to learn";
-		mes "anything about poison from";
-		mes "the Assassin Guild? I know";
-		mes "their members must be";
-		mes "very difficult to find...";
+		mes "[班普神父]";
+		mes "啊，你回来了~";
+		mes "你从刺客公会了解到毒药的事了吗？";
+		mes "我知道他们的成员很难找到……";
 		next;
-		mes "You relate all of the";
-		mes "information you learned";
-		mes "about poison to Father Bamph,";
-		mes "including the method to test";
-		mes "for the use of poison in murder. ";
+		mes "你把从刺客公会了解到的所有毒药信息，";
+		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。";
 		next;
-		mes "[Father Bamph]";
-		mes "Ah, I see. Then, would";
-		mes "you please bring ^3131FF1 Yellow";
-		mes "Gemstone^000000 and ^3131FF1 Green Potion^000000";
-		mes "to the secret ceremonial grounds as soon as you can? I will wait";
-		mes "over there for you once again.";
+		mes "[班普神父]";
+		mes "啊，我明白了。那么请尽快带^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000";
+		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,51;
 		//changequest 18043,18046;
 		close;
 	}
 	else if (prt_curse == 60) {
+		mes "[班普神父]";
+		mes "哦，"+strcharinfo(0)+"~";
+		mes "好久不见。你和邦妮谈过了吗？";
+		mes "啊，今天我能帮你什么？";
+		next;
+		mes "^3355FF你告诉班普神父，西方的土地上生长着稀有药草，";
+		mes "但没有提及你曾告诉罗达弗里安诅咒的事。^000000";
+		next;
+		mes "[比斯库斯神父]";
+		mes "西方的土地？";
+		mes "据说那里住着狂热分子。";
+		mes "班普神父，我认为他们可能是谋杀王子的最大嫌疑人……";
+		next;
+		mes "[班普神父]";
+		mes "我承认这有可能，但我们已经很久没有和西方土地的人接触了……";
+		mes "现在做这种推测还为时过早。";
+		next;
+		select("西方的土地？");
 		mes "[Father Bamph]";
-		mes "Oh, "+strcharinfo(0)+"~";
-		mes "Long time, no see.";
-		mes "Have you spoken to";
-		mes "Bonnie yet? Ah, and";
-		mes "how may I help you today?";
+		mes "我们对西方土地了解不多。";
+		mes "曾经派过几位神父去那里传播信仰，";
+		mes "但他们失败了……";
 		next;
-		mes "^3355FFYou tell Father Bamph";
-		mes "that rare herbs grow in";
-		mes "a land to the west, although";
-		mes "you do not mention that you";
-		mes "told Rodafrian about the curse.^000000";
+		mes "[班普神父]";
+		mes "据我所知，那里几乎所有人";
+		mes "都是当地宗教的坚定信徒。";
+		mes "总之，谢谢你通知我们。接下来交给我们处理。";
 		next;
-		mes "[Father Biscuss]";
-		mes "Land to the west?";
-		mes "That place is rumored to";
-		mes "be populated by fanatics.";
-		mes "Father Bamph, I think they";
-		mes "may be prime suspects for";
-		mes "the murder of the princes...";
-		next;
-		mes "[Father Bamph]";
-		mes "Well, I'll admit that it's";
-		mes "possible, but we haven't had";
-		mes "contact with anyone from the";
-		mes "land to the west for so long...";
-		mes "It's still far too early to make those kinds of assumptions.";
-		next;
-		select("Land to the west?");
-		mes "[Father Bamph]";
-		mes "Not much is known about";
-		mes "the land to the west. We";
-		mes "did send several priests";
-		mes "there once to spread our";
-		mes "faith. However, they failed...";
-		next;
-		mes "[Father Bamph]";
-		mes "From what I can tell,";
-		mes "almost everyone there";
-		mes "is a strong adherent of";
-		mes "that region's native religion.";
-		mes "Anyway, thank you for informing";
-		mes "us. We'll handle it from here.";
-		next;
-		mes "[Father Bamph]";
-		mes "Ah, to preserve the secrets";
-		mes "of the royal family, I ask that";
-		mes "you refrain from entering the";
-		mes "secret ceremonial grounds";
-		mes "from now on. Thanks again for your help, "+strcharinfo(0)+".";
+		mes "[班普神父]";
+		mes "为了保守王室秘密，我请求你今后不要再进入秘密仪式场地。";
+		mes "再次感谢你的帮助，"+strcharinfo(0)+"。";
 		set prt_curse,61;
 		//completequest 18052;
 		close;
@@ -2783,176 +2549,121 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		if (prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) {
 // Begin Nameless Island Access Quest Addition
 			if (aru_monas == 0) {
-				mes "[Father Bamph]";
-				mes "I'm sorry, but would it";
-				mes "be alright if we talked";
-				mes "later? I have to handle";
-				mes "a very important task now...";
+				mes "[班普神父]";
+				mes "抱歉，我们稍后再谈好吗？";
+				mes "我现在必须处理一项非常重要的任务……";
 				close;
 			} else if (aru_monas == 1) {
-				mes "[Father Bamph]";
-				mes "Oh, I've been waiting for";
-				mes "you, adventurer. I'm sorry";
-				mes "for giving you such short";
-				mes "notice, but it seems that";
-				mes "you've grown much stronger";
-				mes "since the last time we met.";
+				mes "[班普神父]";
+				mes "哦，我一直在等你，冒险者。";
+				mes "抱歉这么突然叫你来，";
+				mes "但看来你比我们上次见面时强大了许多。";
 				next;
-				mes "[Father Bamph]";
-				mes "The Church has received";
-				mes "a request from Prontera";
-				mes "Palace, but we don't have";
-				mes "the resources to handle it.";
-				mes "I believe you'd be well suited";
-				mes "to this task if you'll help us.";
+				mes "[班普神父]";
+				mes "教会收到了普隆德拉王宫的请求，";
+				mes "但我们没有足够资源处理。";
+				mes "如果你愿意帮助我们，我相信你非常适合这项任务。";
 				next;
-				mes "[Father Bamph]";
-				mes "A man of high rank suddenly";
-				mes "disappeared a while ago.";
-				mes "Although Prontera Palace";
-				mes "asked us to find him, I can";
-				mes "only tell you who he is later.";
+				mes "[班普神父]";
+				mes "一位高官不久前突然失踪。";
+				mes "虽然普隆德拉王宫要求我们找到他，";
+				mes "但我之后才能告诉你他是谁。";
 				next;
-				mes "[Father Bamph]";
-				mes "All we know is that he was";
-				mes "last seen in Comodo. Please";
-				mes "speak to our informant, ^6B8E23Larjes^000000,";
-				mes "and he will assist you in your";
-				mes "search for the lost official.";
+				mes "[班普神父]";
+				mes "我们只知道他最后在科莫多出现。";
+				mes "请去找我们的线人^6B8E23拉尔杰斯^000000，";
+				mes "他会帮助你寻找失踪的官员。";
 				set aru_monas,2;
 				//changequest 17000,17001;
 				close;
 			}
 			else if (aru_monas == 2 || aru_monas == 3) {
-				mes "[Father Bamph]";
-				mes "Please go to Comodo and";
-				mes "find our informant, ^6B8E23Larjes^000000,";
-				mes "in the Casino. He will help";
-				mes "you in your search for the";
-				mes "official who disappeared.";
+				mes "[班普神父]";
+				mes "请前往科莫多，在赌场找到我们的线人^6B8E23拉尔杰斯^000000。";
+				mes "他会帮助你寻找失踪的官员。";
 				close;
 			}
 			else if (aru_monas == 4) {
-				mes "[Father Bamph]";
-				mes "Ah, so you found Larjes?";
-				mes "How has your investigation of";
-				mes "that official's disappearance";
-				mes "progressing? I hope that he";
-				mes "is still safe and sound";
-				mes "when you find him.";
+				mes "[班普神父]";
+				mes "啊，你找到拉尔杰斯了？";
+				mes "对那位官员失踪的调查进展如何？";
+				mes "希望找到他时，他仍然平安。";
 				next;
-				select("Tell him what Larjes said.");
-				mes "[Father Bamph]";
-				mes "I see. We've detected some";
-				mes "disquieting activity from";
-				mes "Arunafeltz lately, but I didn't";
-				mes "think they would make";
-				mes "their move so soon. Hmm...";
-				mes "Give me a moment to think.";
+				select("告诉他拉尔杰斯说的话。");
+				mes "[班普神父]";
+				mes "我明白了。最近我们察觉到阿鲁纳佩尔兹有些令人不安的活动，";
+				mes "但没想到他们这么快就会行动。嗯……给我一点时间思考。";
 				set aru_monas,5;
 				close;
 			}
 			else if (aru_monas == 5) {
 				if (rand(1,5) == 4) {
-					mes "[Father Bamph]";
-					mes "Well, I've considered all";
-					mes "possible scenarios. I think";
-					mes "it would work best if you";
-					mes "continue your investigation";
-					mes "on our behalf. That is, if";
-					mes "you're willing to do it.";
+					mes "[班普神父]";
+					mes "我考虑了所有可能的情况。";
+					mes "我认为最好由你代表我们继续调查，";
+					mes "当然，前提是你愿意。";
 					next;
-					mes "[Father Bamph]";
-					mes "We don't want to provoke";
-					mes "an international conflict";
-					mes "with our official involvement,";
-					mes "but I also can't force you to";
-					mes "work for us. Whether you";
-					mes "can help is your choice.";
+					mes "[班普神父]";
+					mes "我们不想因官方介入而引发国际冲突，";
+					mes "但我也不能强迫你为我们工作。";
+					mes "是否帮助我们由你决定。";
 					next;
-					if (select("Let me think about it.:Of course, I'll help.") == 1) {
-						mes "[Father Bamph]";
-						mes "I hope that you decide";
-						mes "to help us. The safety of";
-						mes "our nation depends on the";
-						mes "success of this investigation.";
-						mes "We could really use your help.";
+					if (select("让我考虑一下。:当然，我会帮忙。") == 1) {
+						mes "[班普神父]";
+						mes "希望你决定帮助我们。";
+						mes "我国的安全取决于这次调查的成功。";
+						mes "我们真的很需要你的帮助。";
 						close;
 					}
-					mes "[Father Bamph]";
-					mes "Thank you. I'm glad to hear";
-					mes "that you'll help us. You may";
-					mes "take the airship in Izlude to";
-					mes "travel to Arunafeltz, where you";
-					mes "must continue your investigation.";
+					mes "[班普神父]";
+					mes "谢谢。很高兴听到你愿意帮助我们。";
+					mes "你可以在依斯鲁得乘飞艇前往阿鲁纳佩尔兹，继续调查。";
 					next;
-					mes "[Father Bamph]";
-					mes "I believe that you should";
-					mes "be able to learn more if you";
-					mes "investigate the city of ^9370DBRachel^000000.";
-					mes "Please accept this money";
-					mes "to cover your Airship fee.";
-					mes "Thank you, and good luck.";
+					mes "[班普神父]";
+					mes "我相信调查^9370DB拉赫^000000城能让你了解更多。";
+					mes "请收下这笔钱，用来支付飞艇费用。";
+					mes "谢谢，祝你好运。";
 					set aru_monas,6;
 					set Zeny, Zeny + (checkre(0)?5000:1500);
 					//changequest 17002,17003;
 					close;
 				}
 				else {
-					mes "[Father Bamph]";
-					mes "Hmm... What's the best way";
-					mes "for us to handle this? Let";
-					mes "me think about our options.";
-					mes "We can--no. That wouldn't";
-					mes "work. This will be difficult.";
+					mes "[班普神父]";
+					mes "嗯……我们该如何处理？让我想想。";
+					mes "我们可以——不，那行不通。这会很困难。";
 					close;
 				}
 			}
 			else if (aru_monas == 6) {
 				// Anyone else see the irony in this?
-				mes "[Father Bamph]";
-				mes "You might have problems";
-				mes "in Rachel since the culture";
-				mes "there is much different than";
-				mes "our own. Their ways of doing";
-				mes "things, their government...";
-				mes "Everything is tied to religion.";
+				mes "[班普神父]";
+				mes "你在拉赫可能会遇到麻烦，那里文化不同于我们。";
+				mes "他们的办事方式、政府……一切都与宗教有关。";
 				close;
 			}
 			else if (aru_monas > 6 && aru_monas < 25) {
-				mes "[Father Bamph]";
-				mes "Thank you so much for all";
-				mes "of your hard work. Our agents";
-				mes "will contact you whenever they";
-				mes "uncover any new information.";
-				mes "Remember that no one can";
-				mes "know what we've been doing.";
+				mes "[班普神父]";
+				mes "非常感谢你的辛勤工作。";
+				mes "我们的探员发现新情报后会联系你。";
+				mes "记住，不能让任何人知道我们在做什么。";
 				close;
 			}
 			else if (aru_monas == 25 || aru_monas == 26) {
-				mes "[Father Bamph]";
-				mes "Thank you for bring us such";
-				mes "important information. With";
-				mes "your help, we were able to";
-				mes "clear a few unsolved cases.";
-				mes "We expected something like";
-				mes "this, but not this soon.";
+				mes "[班普神父]";
+				mes "谢谢你带来如此重要的信息。";
+				mes "多亏你的帮助，我们解决了几起悬案。";
+				mes "我们预料过会发生这种事，但没想到这么快。";
 				next;
-				mes "[Father Bamph]";
-				mes "I fear that the Royal Court";
-				mes "has been bickering over their";
-				mes "own selfish needs. I pray that";
-				mes "it does not grow worse, devolve";
-				mes "into chaos. ^666666*Sigh*^000000 We'll see...";
+				mes "[班普神父]";
+				mes "我担心王室一直在为自身私利争吵。";
+				mes "希望事情不会恶化、陷入混乱。^666666*叹气*^000000 走着瞧吧……";
 				close;
 			}
 			else {
-				mes "[Father Bamph]";
-				mes "It's upsetting to me that";
-				mes "Arunafeltz has been so quiet";
-				mes "lately. You know the expression";
-				mes "about there being a quiet lull";
-				mes "before a raging storm, right?";
+				mes "[班普神父]";
+				mes "最近阿鲁纳佩尔兹如此安静，让我很不安。";
+				mes "你知道暴风雨前总会有一段平静吧？";
 				close;
 			}
 // End Nameless Island Access Quest Addition
@@ -2962,54 +2673,196 @@ prt_church,185,106,3	script	Father Bamph	60,{
 
 prt_church,184,110,3	script	Father Biscuss	60,{
 	if (prt_curse == 54) {
-		mes "[Father Biscuss]";
-		mes "Hmm, I still suspect that";
-		mes "someone from the Assassin";
-		mes "Guild may have killed the";
-		mes "princes. Just in case, I'm";
-		mes "going to send a spy. Keep";
-		mes "that information secret.";
+		mes "[比斯库斯神父]";
+		mes "嗯，我仍怀疑是刺客公会的某人杀害了王子。";
+		mes "为以防万一，我会派一名间谍。保守这个秘密。";
 		next;
-		mes "[Father Biscuss]";
-		mes "So yes. You didn't learn";
-		mes "or hear anything from us,";
-		mes "and you don't know anything";
-		mes "about the royal family's curse.";
-		mes "From here on, Father Bamph";
-		mes "and I will handle this issue.";
+		mes "[比斯库斯神父]";
+		mes "所以，你什么也没从我们这里了解到或听说过，";
+		mes "也不知道王室的诅咒。";
+		mes "从现在起，这件事由我和班普神父处理。";
 		close;
 	}
 	else if (prt_curse == 35) {
-		mes "[Father Biscuss]";
-		mes "I've never seen Father";
-		mes "Bamph this way before, but";
-		mes "I can understand how he feels.";
-		mes "As one of the leaders of this";
-		mes "church, he feels responsible";
-		mes "for these princes' deaths.";
+		mes "[比斯库斯神父]";
+		mes "我以前从未见过班普神父这样，";
+		mes "但我能理解他的感受。";
+		mes "作为教会的领导者之一，他觉得自己要为王子的死负责。";
+		next;
+		mes "[比斯库斯神父]";
+		mes "我相信几天后他会好起来，";
+		mes "但现在他没有状态整理你提供的重要情报，";
+		mes "所以由我来做。";
+		next;
+		mes "[比斯库斯神父]";
+		mes "就我个人而言，我觉得……";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+	mes "发生的一切很悲惨，但必须复仇。也许这就是我一直怨恨因布莉亚的原因。总之……";
 		next;
 		mes "[Father Biscuss]";
-		mes "I'm sure he'll feel";
-		mes "better in a few days,";
-		mes "but right now, he's in no";
-		mes "condition to compile the";
-		mes "valuable info that you've";
-		mes "provided, so I'll do it.";
-		next;
-		mes "[Father Biscuss]";
-		mes "Personally, I feel that";
-		mes "what happened was tragic,";
-		mes "but it should be avenged.";
-		mes "Perhaps that why I've held";
-		mes "a grudge against Imbullea";
-		mes "for all this time. Anyway...";
-		next;
-		mes "[Father Biscuss]";
-		mes "Although we can't";
-		mes "acknowledge it publicly,";
-		mes "on behalf of the Prontera";
-		mes "Church, I want to thank";
-		mes "you for all of your help.";
+	mes "虽然我们不能公开承认，但我谨代表普隆德拉教会感谢你的一切帮助。";
 		set prt_curse,36;
 		//completequest 18050;
 		getexp (checkre(3))?90000:1600000,0;
@@ -3017,26 +2870,15 @@ prt_church,184,110,3	script	Father Biscuss	60,{
 	}
 	else if (prt_curse == 36) {
 		mes "[Father Biscuss]";
-		mes "No one can know light";
-		mes "without experiencing";
-		mes "darkness. Peace has";
-		mes "no meaning until it is";
-		mes "contrasted with chaos.";
+	mes "不经历黑暗，就无法理解光明。和平只有与混沌对比才有意义。";
 		next;
 		mes "[Father Biscuss]";
-		mes "Religion becomes even";
-		mes "more important during times";
-		mes "of chaos, and times of need.";
-		mes "I must remain calm, especially";
-		mes "when Father Bamph feels so bad about this whole incident...";
+	mes "在混沌与困境时期，宗教更加重要。我必须保持冷静，尤其是班普神父为整件事感到难过时……";
 		close;
 	}
 	else {
 		mes "[Father Biscuss]";
-		mes "Please observe";
-		mes "silence within the";
-		mes "Priest Room. Thank";
-		mes "you for cooperating.";
+	mes "请在祭司室内保持安静。感谢配合。";
 		close;
 	}
 }
@@ -3050,93 +2892,61 @@ prt_church,177,113,3	script	#gototomb	111,{
 
 prt_church,23,89,3	script	Father Biscuss#tomb	60,{
 	mes "[Father Biscuss]";
-	mes "Hm...?";
-	mes "Are you ready to";
-	mes "head back upstairs?";
+	mes "嗯……？准备回楼上了吗？";
 	next;
-	if (select("Yes:No") == 1) {
+	if (select("是:否") == 1) {
 		mes "[Father Biscuss]";
-		mes "Please follow me.";
+		mes "请跟我来。";
 		next;
 		warp "prt_church",178,111;
 		end;
 	}
 	mes "[Father Biscuss]";
-	mes "Please take your time";
-	mes "and investigate this as";
-	mes "thoroughly as you can.";
+	mes "请慢慢来，尽可能彻底地调查。";
 	close;
 }
 
 prt_church,16,114,4	script	Father Bamph#tomb	60,{
 	if (prt_curse == 18) {
 		mes "[Father Bamph]";
-		mes "There are the bodies";
-		mes "of the Geoborg princes";
-		mes "that were killed during";
-		mes "the exorcism. Please take";
-		mes "a look at the body to the left.";
+		mes "这些是驱魔时被杀的吉欧博格王子遗体。请看看左边的遗体。";
 		set prt_curse,19;
 		close;
 	}
 	else if (prt_curse == 19) {
 		mes "[Father Bamph]";
-		mes "Please take a look";
-		mes "at the body to the";
-		mes "far left, the first prince.";
+		mes "请看看最左边的遗体，也就是第一王子。";
 		close;
 	}
 	else if (prt_curse == 20) {
 		mes "["+strcharinfo(0)+"]";
-		mes "That weird mark looked";
-		mes "just like snake scales.";
-		mes "Is... Is that the mark left";
-		mes "behind by Jormungand's curse?";
+		mes "那个奇怪的印记看起来像蛇鳞。那……那是耶梦加得诅咒留下的印记吗？";
 		next;
 		mes "[Father Bamph]";
-		mes "That's right.";
-		mes "Now, let's examine the";
-		mes "body of the second prince,";
-		mes "located in the middle.";
+		mes "没错。现在检查中间的第二王子遗体。";
 		close;
 	}
 	else if (prt_curse == 21) {
 		mes "[Father Bamph]";
-		mes "Now...";
-		mes "Now we should";
-		mes "examine the third prince.";
+		mes "现在……我们该检查第三王子了。";
 		close;
 	}
 	else if (prt_curse == 22) {
 		mes "[Father Bamph]";
-		mes "Let's go upstairs where we";
-		mes "can continue this conversation.";
-		mes "Ah, you might want to ask";
-		mes "Father Biscuss to lead you.";
+		mes "我们上楼继续谈。啊，你可以请比斯库斯神父带路。";
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 41 || prt_curse == 51) {
 		mes "[Father Bamph]";
-		mes "Do you have a ^3131FFYellow";
-		mes "Gemstone^000000 and ^3131FFGreen Potion^000000";
-		mes "ready? If so, you should begin";
-		mes "testing on the body of the third prince before the others.";
+		mes "你准备好^3131FF黄色宝石^000000和^3131FF绿色药水^000000了吗？如果准备好了，应先在第三王子遗体上测试。";
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse == 42 || prt_curse == 52) {
 		mes "[Father Bamph]";
-		mes "The mark disappeared?";
-		mes "Oh, this is just horrible!";
-		mes "That would mean that poison";
-		mes "was used to murder the other";
-		mes "princes! I almost... can't...";
+		mes "印记消失了？哦，这太可怕了！这意味着有人用毒药杀害了其他王子！我几乎……无法……";
 		next;
 		mes "[Father Bamph]";
-		mes "I... I need some time";
-		mes "to recover from the shock";
-		mes "and to think about all of";
-		mes "this carefully. For now,";
-		mes "let's go back upstairs.";
+		mes "我……我需要时间从震惊中恢复，并仔细思考。现在先回楼上吧。";
 		if (prt_curse == 33) set prt_curse,34;
 		else if (prt_curse == 42) set prt_curse,43;
 		else set prt_curse,53;
@@ -3144,10 +2954,7 @@ prt_church,16,114,4	script	Father Bamph#tomb	60,{
 	}
 	else if (prt_curse == 43 || prt_curse == 53) {
 		mes "[Father Bamph]";
-		mes "We've disturbed the";
-		mes "bodies of these poor";
-		mes "souls enough. We should";
-		mes "go back upstairs now...";
+		mes "我们已经充分打扰了这些可怜灵魂的遗体。现在该回楼上了……";
 		close;
 	}
 	end;
@@ -3156,36 +2963,19 @@ prt_church,16,114,4	script	Father Bamph#tomb	60,{
 prt_church,19,111,5	script	#prince1	887,{
 	if (prt_curse == 19) {
 		mes "[Father Bamph]";
-		mes "This is the body of";
-		mes "the king's first son, the";
-		mes "crown prince. Just as it has";
-		mes "happened for generations,";
-		mes "the curse took the life of";
-		mes "the first born prince...";
+		mes "这是国王的长子、王储的遗体。就像历代发生的那样，诅咒夺走了长子的生命……";
 		next;
-		mes "^3355FFBeneath one of the";
-		mes "prince's sleeves, you";
-		mes "notice a dark mark. Upon";
-		mes "pulling up the sleeve, you";
-		mes "note that the mark resembles";
-		mes "the scales of a serpent.^000000";
+		mes "^3355FF你在王子袖子下发现一个黑色印记。拉起袖子后，发现印记像蛇鳞。^000000";
 		set prt_curse,20;
 		//changequest 18037,18038;
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse > 41 && prt_curse < 51 || prt_curse == 52) {
-		mes "^3355FFYou poured a little bit";
-		mes "of the solution made from";
-		mes "Yellow Gemstone and Green";
-		mes "Potion on the mark on the skin.";
-		mes "You waited a while, but there was no reaction from the solution.^000000";
+		mes "^3355FF你将黄色宝石和绿色药水制成的溶液滴在皮肤印记上。等了一会儿，溶液没有反应。^000000";
 		close;
 	}
 	else {
-		mes "^3355FFIt's the body of a male";
-		mes "dressed in luxurious robes.";
-		mes "Although deceased, the color";
-		mes "of life has not yet left the body. ";
+		mes "^3355FF这是一个身穿华丽长袍的男性遗体。虽然已经死去，但身体尚未完全失去生命的色彩。";
 		close;
 	}
 }
@@ -3193,43 +2983,19 @@ prt_church,19,111,5	script	#prince1	887,{
 prt_church,21,111,5	script	#prince2	887,{
 	if (prt_curse == 20) {
 		mes "[Father Bamph]";
-		mes "This is the body of the";
-		mes "second prince. The curse";
-		mes "is only supposed to kill";
-		mes "the firstborn prince, but";
-		mes "all three princes of this";
-		mes "generation were killed...";
+		mes "这是第二王子的遗体。诅咒本应只杀死长子，但这一代的三位王子都被杀了……";
 		next;
 		mes "[Father Bamph]";
-		mes "Despite our great efforts";
-		mes "to exorcise this powerful";
-		mes "curse, we all failed. Those";
-		mes "involved have begun to believe";
-		mes "that Odin may have abandoned us... ";
+		mes "尽管我们竭力驱除强大的诅咒，仍然失败了。相关人员开始相信奥丁可能抛弃了我们……";
 		emotion ET_HUK, playerattached();
 		next;
-		mes "^3355FFYou examine the body of";
-		mes "the second prince and notice";
-		mes "that the scale marks on his";
-		mes "skin are fainter, and slightly";
-		mes "different in color, than the";
-		mes "marks on the first prince.^000000";
+		mes "^3355FF你检查第二王子的遗体，发现他皮肤上的鳞片印记比第一王子的更淡，颜色也略有不同。^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Father Bamph...!";
-		mes "Look, these marks are";
-		mes "different on the second";
-		mes "prince than on the first";
-		mes "prince! See? They're different";
-		mes "in darkness and coloration.";
+		mes "班普神父……！看，第二王子的印记和第一王子不同！看到了吗？深浅和颜色都不一样。";
 		next;
 		mes "[Father Bamph]";
-		mes "Goodness, you're right!";
-		mes "How did we overlook this?";
-		mes "Hm, this supports the idea";
-		mes "that a conspiracy may be";
-		mes "involved. Let's go check";
-		mes "the body of the third prince.";
+		mes "天哪，你说得对！我们怎么会忽略？嗯，这支持有人阴谋作案的想法。去检查第三王子遗体。";
 		set prt_curse,21;
 		//changequest 18038,18039;
 		close;
@@ -3238,105 +3004,56 @@ prt_church,21,111,5	script	#prince2	887,{
 		specialeffect EF_POISONATTACK;
 		specialeffect EF_POISONHIT;
 		specialeffect EF_BUBBLE;
-		mes "^3355FFYou poured a little of the";
-		mes "solution made from Green";
-		mes "Potion and Yellow Gemstone";
-		mes "on the body's scale marks. The";
-		mes "scale marks grow fainter and";
-		mes "the solution bubbles on contact. ";
+		mes "^3355FF你将绿色药水和黄色宝石制成的溶液滴在遗体鳞片印记上。印记变淡，溶液接触时冒泡。";
 		close;
 	}
 	else {
-		mes "^3355FFIt's the body of a male";
-		mes "dressed in luxurious robes.";
-		mes "Although deceased, the color";
-		mes "of life has not yet left the body. ";
+		mes "^3355FF这是一个身穿华丽长袍的男性遗体。虽然已经死去，但身体尚未完全失去生命的色彩。";
 		close;
 	}
 }
 
 prt_church,24,111,5	script	#prince3	887,{
 	if (prt_curse == 21) {
-		mes "^3355FFYou and Father Bamph";
-		mes "hurriedly inspect the third";
-		mes "prince's body and find that the";
-		mes "scale marks on his skin are";
-		mes "a little darker than the marks";
-		mes "on the second prince's skin.^000000";
+		mes "^3355FF你和班普神父匆忙检查第三王子遗体，发现他皮肤上的鳞片印记比第二王子更深。^000000";
 		next;
 		mes "[Father Bamph]";
-		mes "This is very suspicious...";
-		mes "The deaths of the second and";
-		mes "third princes might have been";
-		mes "caused by murder, rather than";
-		mes "the curse. However, what could";
-		mes "possibly be used to kill them?";
+		mes "这非常可疑……第二、第三王子的死可能是谋杀，而非诅咒。但究竟什么能杀死他们？";
 		next;
 		while(1) {
-			if (select("A weapon!:Poison!") == 1) {
+			if (select("武器！:毒药！") == 1) {
 				mes "[Father Bamph]";
-				mes "Hmm... But none of the";
-				mes "bodies had any wounds";
-				mes "or scarring. If that were the";
-				mes "case, I'm sure the king would";
-				mes "have declared war on someone.";
-				mes "It couldn't have been a weapon.";
+				mes "嗯……但遗体没有伤口或疤痕。如果是武器，国王肯定会向某人宣战。所以不可能是武器。";
 				next;
 			}
 			else  break;
 		}
 		mes "[Father Bamph]";
-		mes "Poison...?";
-		mes "Oh dear! No one in the";
-		mes "Prontera Church would know";
-		mes "the first thing about that. But";
-		mes "maybe poison was used.";
-		mes "How can we find out for sure?";
+		mes "毒药……？哦，糟糕！普隆德拉教会没人懂毒药。但也许确实用了毒药。怎样才能确定？";
 		next;
 		mes "[Father Biscuss]";
-		mes "I say, you go straight to";
-		mes "the experts. Someone in the";
-		mes "^FF0000Assassin Guild in Morocc^000000";
-		mes "ought to know. I hear they";
-		mes "can make poison that can kill";
-		mes "a man with just one drop!";
+		mes "我建议你直接找专家。^FF0000摩洛克刺客公会^000000里有人应该知道。我听说他们能制作一滴就杀人的毒药！";
 		next;
 		mes "[Father Bamph]";
-		mes "Ah, that's a good idea!";
-		mes "Hmm, but first, let's go";
-		mes "continue this conversation";
-		mes "outside, shall we? I'd prefer";
-		mes "not to disturb these bodies...";
+		mes "啊，好主意！不过先到外面继续谈吧？我不想再打扰这些遗体……";
 		set prt_curse,22;
 		close;
 	}
 	else if (prt_curse == 22) {
 		mes "[Father Bamph]";
-		mes "Let's go upstairs where we";
-		mes "can continue this conversation.";
-		mes "Ah, you might want to ask";
-		mes "Father Biscuss to lead you.";
+		mes "我们上楼继续谈。啊，你可以请比斯库斯神父带路。";
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 41 || prt_curse == 51) {
 		if (countitem(506) > 0 && countitem(715) > 0) {
-			mes "^3355FFYou open a bottle of";
-			mes "Green Potion and insert a";
-			mes "Yellow Gemstone. The gem";
-			mes "quickly dissolves, conveniently";
-			mes "forming a solution to test for the presense of poison. You pour";
-			mes "it on the prince's scale marks.^000000";
+			mes "^3355FF你打开一瓶绿色药水并放入黄色宝石。宝石迅速溶解，形成检测毒药的溶液。你将其倒在王子的鳞片印记上。^000000";
 			next;
 			specialeffect EF_POISONATTACK;
 			specialeffect EF_POISONHIT;
 			specialeffect EF_BUBBLE;
 			mes "^3355FF*Pssssssssh*^000000";
 			next;
-			mes "^3355FFThe solution bubbles";
-			mes "once it touches the skin,";
-			mes "and the serpent scale marks";
-			mes "on the prince's body slowly";
-			mes "fade until they disappear.^000000";
+			mes "^3355FF溶液接触皮肤后冒泡，王子身上的蛇鳞印记逐渐变淡，直至消失。^000000";
 			delitem 506,1; //Green_Potion
 			delitem 715,1; //Yellow_Gemstone
 			if (prt_curse == 32) set prt_curse,33;
@@ -3345,27 +3062,15 @@ prt_church,24,111,5	script	#prince3	887,{
 			//changequest 18046,18047;
 			close;
 		}
-		mes "^3355FFYou'll need to have";
-		mes "a Green Potion and";
-		mes "a Yellow Gemstone in";
-		mes "order to test and confirm";
-		mes "whether poison killed the";
-		mes "second and third princes.^000000";
+		mes "^3355FF你需要绿色药水和黄色宝石，才能检测并确认第二、第三王子是否死于毒药。^000000";
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse == 42 || prt_curse == 52) {
-		mes "^3355FFThe serpent scale marks";
-		mes "on this prince's body have";
-		mes "vanished after you applied";
-		mes "the Green Potion and Yellow";
-		mes "Gemstone solution to the skin.^000000";
+		mes "^3355FF你将绿色药水与黄色宝石制成的溶液涂在皮肤上后，这位王子身上的蛇鳞印记消失了。^000000";
 		close;
 	}
 	else {
-		mes "^3355FFIt's the body of a male";
-		mes "dressed in luxurious robes.";
-		mes "Although deceased, the color";
-		mes "of life has not yet left the body. ";
+		mes "^3355FF这是一个身穿华丽长袍的男性遗体。虽然已经死去，但身体尚未完全失去生命的色彩。";
 		close;
 	}
 }
@@ -3373,17 +3078,11 @@ prt_church,24,111,5	script	#prince3	887,{
 moc_fild16,201,295,5	script	Assassin Guildsman#poiso	884,{
 	if (prt_curse == 23) {
 		mes "[Assassin Guildsman]";
-		mes "What business";
-		mes "brings you here?";
+		mes "你来这里有什么事？";
 		next;
-		if (select("Poison:Nothing") == 1) {
+		if (select("毒药:没什么") == 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "I need to talk to";
-			mes "a poison specialist.";
-			mes "I'm investigating";
-			mes "something for the";
-			mes "Prontera Church,";
-			mes "possibly a murder.";
+			mes "我需要和毒药专家谈谈。我正在为普隆德拉教会调查一件事，可能是谋杀案。";
 			next;
 			mes "[Assassin Guildsman]";
 			mes "...";
@@ -3391,35 +3090,21 @@ moc_fild16,201,295,5	script	Assassin Guildsman#poiso	884,{
 			mes ".........";
 			next;
 			mes "[Assassin Guildsman]";
-			mes "Listen carefully.";
-			mes "I will only tell this";
-			mes "to you one time.";
+			mes "仔细听。我只告诉你一次。";
 			next;
 			mes "[Assassin Guildsman]";
-			mes "There is an";
-			mes "Assassin's Private Pub";
-			mes "in the 7 o'clock direction";
-			mes "in Morocc. Go find someone";
-			mes "named ^3131FFMarjana^000000 inside.";
+			mes "摩洛克 7 点钟方向有刺客私人酒吧。去里面找名叫^3131FF玛尔佳娜^000000的人。";
 			set prt_curse,24;
 			//changequest 18040,18041;
 			close;
 		}
 		mes "[Assassin Guildsman]";
-		mes "No. That look in";
-		mes "your eyes. I'm sure";
-		mes "there is a reason that";
-		mes "you have come here...";
+		mes "不。看你的眼神，我确定你来这里有原因……";
 		close;
 	}
 	else {
 		mes "[Assassin Guildsman]";
-		mes "It's very dry and";
-		mes "windy today. I like this";
-		mes "weather. It feels like it";
-		mes "perfectly matches the soul";
-		mes "of a true Assassin, the loner";
-		mes "that hides in the shadows.";
+		mes "今天很干燥多风。我喜欢这种天气，感觉很符合真正刺客——躲在阴影中的独行者——的灵魂。";
 		close;
 	}
 }
@@ -3427,104 +3112,279 @@ moc_fild16,201,295,5	script	Assassin Guildsman#poiso	884,{
 que_job01,10,16,5	script	Marjana#poison	885,{
 	if (prt_curse == 24) {
 		mes "[Marjana]";
-		mes "What business brings";
-		mes "you here? I'm giving";
-		mes "you 4 minutes to speak";
-		mes "with me, so be direct.";
+		mes "你来这里有什么事？我给你 4 分钟，说话直接点。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I want to learn";
-		mes "more about poison";
-		mes "and confirm if it was";
-		mes "used to kill someone.";
+		mes "我想了解更多毒药，并确认它是否被用来杀人。";
 		next;
 		mes "[Marjana]";
-		mes "Poison? You've come";
-		mes "to just the right person.";
-		mes "If I don't know the answer,";
-		mes "I doubt you'll find anyone";
-		mes "else that would. Ask away.";
+		mes "毒药？你找对人了。如果我不知道答案，我怀疑你还能找到谁。问吧。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Is it true that an";
-		mes "Assassin's poison";
-		mes "can be so powerful,";
-		mes "that just one drop";
-		mes "can kill a person?";
+		mes "刺客的毒药真的强大到一滴就能杀人吗？";
 		next;
 		mes "[Marjana]";
-		mes "It's true that such powerful";
-		mes "poison exists, but such deadly";
-		mes "poison is usually only used by";
-		mes "Assassin Crosses. Generally,";
-		mes "normal Assassins use poisons";
-		mes "that are much less potent.";
+		mes "确实存在如此强力的毒药，但这种致命毒药通常只有刺客十字使用。一般刺客使用的毒药弱得多。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Alright. Can you make";
-		mes "a poison that leaves a";
-		mes "specific mark on the body?";
+		mes "好吧。你能制作在身体上留下特定印记的毒药吗？";
 		next;
 		mes "[Marjana]";
-		mes "Sure. There's all kinds of";
-		mes "poisons that exist that I'm";
-		mes "sure you can't even imagine.";
-		mes "However, poisons that leave";
-		mes "specific marks are difficult to";
-		mes "use, and few can handle them.";
+		mes "当然。世上有各种你无法想象的毒药。不过能留下特定印记的毒药很难使用，能驾驭的人很少。";
 		next;
 		mes "[Marjana]";
-		mes "The types of marks";
-		mes "that are left behind all";
-		mes "depend on the materials";
-		mes "used to create the poison.";
-		mes "Since some materials are";
-		mes "exclusive to certain areas...";
+		mes "留下的印记类型取决于制作毒药所用的材料。因为有些材料只在特定地区存在……";
 		next;
 		mes "[Marjana]";
-		mes "Well, the type of mark";
-		mes "that was left behind could";
-		mes "actually serve as some kind";
-		mes "of clue. What was the mark";
-		mes "on the victim's body?";
+		mes "嗯，留下的印记类型本身可以成为线索。受害者身上的印记是什么样？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "We're not sure if";
-		mes "poison was used yet,";
-		mes "but there are marks that";
-		mes "look like snake scales";
-		mes "left on the bodies.";
+		mes "我们还不确定是否用了毒药，但遗体上留下了像蛇鳞的印记。";
 		next;
 		mes "[Marjana]";
-		mes "Hmm. You know, if I had";
-		mes "to guess, I would say that";
-		mes "poison was probably used.";
-		mes "But the poison would have";
-		mes "to originate from outside of";
-		mes "the Rune-Midgarts Kingdom...";
+		mes "嗯。如果让我猜，我会说……";
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+		mes "可能使用了毒药。";
+		mes "但毒药必须";
+		mes "来自";
+		mes "卢恩-米德加尔特王国之外……";
 		next;
-		mes "[Marjana]";
-		mes "Yeah...";
-		mes "The materials used to";
-		mes "make those snake scale";
-		mes "marks... Some of them can't";
-		mes "even be found here on the";
-		mes "Midgard continent.";
+		mes "[玛丽安娜]";
+		mes "是啊……";
+		mes "制作那些";
+		mes "蛇鳞标记的材料";
+		mes "有些甚至";
+		mes "无法在米德加尔特大陆";
+		mes "找到。";
 		next;
-		mes "[Marjana]";
-		mes "We're running out of time.";
-		mes "Listen, you can confirm whether";
-		mes "poison was used to kill someone";
-		mes "by mixing a Yellow Gemstone with a Green Potion, and sprinkling";
-		mes "the solution on the body.";
+		mes "[玛丽安娜]";
+		mes "我们没时间了。";
+		mes "听着，你可以确认是否有人中毒";
+		mes "通过将黄色宝石与绿色药水混合，";
+		mes "然后把溶液洒在尸体上。";
+		mes "";
 		next;
-		mes "[Marjana]";
-		mes "If poison was used, the";
-		mes "solution with react with";
-		mes "the body. But this method";
-		mes "won't work if too much time";
-		mes "has passed after the murder.";
-		mes "You better try this soon...";
+		mes "[玛丽安娜]";
+		mes "如果使用了毒药，";
+		mes "溶液会与尸体反应。";
+		mes "但如果谋杀后";
+		mes "过去太久，";
+		mes "这种方法不会有效。";
+		mes "最好尽快尝试……";
 		set prt_curse,25;
 		close;
 	}
@@ -3542,62 +3402,62 @@ morocc,45,103,0	script	#prtcurse	-1,2,2,{
 OnTouch:
 	if (prt_curse == 25) {
 		mes "["+strcharinfo(0)+"]";
-		mes "Hm. I'd better review";
-		mes "the facts I've learned so";
-		mes "that I can better focus on";
-		mes "this investigation. Let's see~";
+		mes "嗯，我最好复习";
+		mes "已知事实，以便更好地";
+		mes "专注于";
+		mes "调查。让我看看～";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Long ago, the giant serpent";
-		mes "Jormungand threatened mankind.";
-		mes "7 warriors defeated Jormungand, led by Tristram III of the Geoborg";
-		mes "family, but Jormungand cursed the Geoborg bloodline in its defeat.";
+		mes "很久以前，巨蛇";
+		mes "耶梦加得威胁人类。";
+		mes "七名战士在乔治三世带领下击败耶梦加得，";
+		mes "但耶梦加得在败亡时诅咒了乔治家族血脉。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Ever since, the curse kills";
-		mes "the first born prince of the";
-		mes "Geoborg family at an early age.";
-		mes "However, all of the princes of";
-		mes "this generation were killed.";
+		mes "从那以后，诅咒会在幼年杀死";
+		mes "乔治家族的";
+		mes "长子王子。";
+		mes "然而这一代的所有王子";
+		mes "都被杀害。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "According to what I've";
-		mes "learned from that assassin,";
-		mes "the first prince died from the";
-		mes "curse, and the other two may";
-		mes "have died from poisoning.";
+		mes "根据我从";
+		mes "刺客那里得知的，";
+		mes "第一位王子死于诅咒，";
+		mes "另外两位可能";
+		mes "死于中毒。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "It's most likely that if";
-		mes "poison was used, then the";
-		mes "person who used it was an";
-		mes "assassin from outside of the";
-		mes "Rune-Midgarts Kingdom. Yes,";
-		mes "that's about everything I know.";
+		mes "如果使用毒药，很可能";
+		mes "使用者是来自";
+		mes "卢恩-米德加尔特王国之外";
+		mes "的刺客。是的，";
+		mes "这就是我知道的一切。";
+		mes "";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Now, that historian Rodafrian";
-		mes "has been waiting for me to tell";
-		mes "her the lyrics of that song, but Father Bamph is also waiting";
-		mes "for the info I've learned from the Assassin Guild. What should I do?";
+		mes "现在历史学家罗达弗里安";
+		mes "在等我告诉她";
+		mes "那首歌的歌词，而班普神父也在等";
+		mes "我从刺客公会得到的信息。我该怎么办？";
 		next;
-		if (select("Go to Rodafrian:Go to Father Bamph") == 1) {
+		if (select("去找罗达弗里安:去找班普神父") == 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "Well, it's easier for me";
-			mes "to visit Rodafrian now.";
-			mes "She's much closer than";
-			mes "Father Bamph, so I guess";
-			mes "that I'll go talk to her first.";
+			mes "嗯，现在去找罗达弗里安更方便。";
+			mes "她比班普神父近得多，";
+			mes "所以我想先去和她谈谈。";
+			mes "我这就出发。";
+			mes "先去找她吧。";
 			set prt_curse,30;
 			//changequest 18041,18042;
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, it's more important";
-		mes "that I go see Father Bamph";
-		mes "and investigate the princes'";
-		mes "bodies. I better head over";
-		mes "to Prontera right away.";
+		mes "嗯，去见班普神父并调查王子的尸体更重要。";
+		mes "我最好马上前往普隆德拉。";
+		mes "不能再耽搁了。";
+		mes "得尽快查明真相。";
+		mes "我现在就走。";
 		set prt_curse,50;
 		//changequest 18041,18043;
 		close;
@@ -3606,90 +3466,90 @@ OnTouch:
 
 prt_in,162,99,4	script	Librarian#curse	67,{
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.";
+		mes "^3355FF请等一下！";
+		mes "你现在携带了太多物品。";
+		mes "请使用卡普拉服务存放部分物品后，";
+		mes "再回来找我。";
+		mes "这样就能腾出负重空间。";
+		mes "谢谢你的配合。";
 		close;
 	}
 	if (prt_curse == 3) {
 		if (countitem(7431) < 1) {
-			mes "[Librarian]";
-			mes "Please make sure to return";
-			mes "library books to the correct";
-			mes "place after you use them.";
-			mes "We don't have enough staff";
-			mes "to organize all these books...";
+			mes "[图书管理员]";
+			mes "使用图书馆的书籍后，";
+			mes "请务必将它们放回正确的位置。";
+			mes "我们没有足够的人手整理这么多书……";
+			mes "请不要把书随处乱放。";
+			mes "谢谢。";
 			next;
-			if (select("Report the loss of the books:End Conversation") == 1) {
-				mes "[Librarian]";
-				mes "Oh, you lost some books?";
-				mes "Please write down the book";
-				mes "titles and pay the 700 zeny";
-				mes "penalty charge. Aftewards,";
-				mes "we will provide you with";
-				mes "replacement copies.";
+			if (select("报告书籍遗失:结束对话") == 1) {
+				mes "[图书管理员]";
+				mes "哦，你弄丢了一些书吗？";
+				mes "请写下书名，并支付 700 Zeny 的罚金。";
+				mes "之后我们会提供替代副本。";
+				mes "请如实登记。";
+				mes "谢谢你的合作。";
+				mes "请尽快处理。";
 				next;
 				if (Zeny > 699) {
-					mes "[Librarian]";
-					mes "Ah, here you are.";
-					mes "Please take these";
-					mes "replacement copies,";
-					mes "and try not to lose";
-					mes "them again. Thank you.";
+					mes "[图书管理员]";
+					mes "好的，给你。";
+					mes "请收下这些替代副本，";
+					mes "下次尽量不要再弄丢了。谢谢。";
+					mes "请妥善保管。";
+					mes "祝你阅读愉快。";
 					set Zeny, Zeny-700;
 					getitem 7431,1; //Books
 					close;
 				}
-				mes "[Librarian]";
-				mes "Hmm...";
-				mes "Come back as soon";
-				mes "as you can with the";
-				mes "700 zeny to pay the";
-				mes "lost book penalty charge.";
+				mes "[图书管理员]";
+				mes "嗯……";
+				mes "请尽快带着 700 Zeny 回来，";
+				mes "支付遗失书籍的罚金。";
+				mes "在那之前无法办理补书。";
+				mes "请不要忘记。";
 				close;
 			}
-			mes "[Librarian]";
-			mes "Please keep silent";
-			mes "while inside the library.";
-			mes "Thank you for cooperating.";
+			mes "[图书管理员]";
+			mes "在图书馆内请保持安静。";
+			mes "感谢你的配合。请勿打扰其他读者。";
+			mes "祝你使用愉快。请安静阅读。";
 			close;
 		}
 		else {
-			mes "[Librarian]";
-			mes "Being a librarian can";
-			mes "be pretty rough. People";
-			mes "just leave the books all";
-			mes "scattered, but expect them";
-			mes "to be organized. Ooh, books";
-			mes "are always getting lost too...";
+			mes "[图书管理员]";
+			mes "当图书管理员可不轻松。";
+			mes "人们总把书散得到处都是，";
+			mes "却又希望它们整齐有序。";
+			mes "唉，书也总是莫名其妙地丢失……";
+			mes "真让人头疼。";
+			mes "请大家爱护书籍。";
 			next;
-			mes "[Librarian]";
-			mes "When you have";
-			mes "to clean up their";
-			mes "messes, you get to";
-			mes "realize how sloppy";
-			mes "people can really be.";
+			mes "[图书管理员]";
+			mes "当你不得不收拾他们留下的";
+			mes "烂摊子时，才会发现";
+			mes "人们究竟可以多么马虎。";
+			mes "请替我们多考虑一下。这样大家都会轻松些。谢谢。";
+			mes "请爱护图书。";
 			close;
 		}
 	}
 	else {
-		mes "[Librarian]";
-		mes "Being a librarian can";
-		mes "be pretty rough. People";
-		mes "just leave the books all";
-		mes "scattered, but expect them";
-		mes "to be organized. Ooh, books";
-		mes "are always getting lost too...";
+		mes "[图书管理员]";
+		mes "当图书管理员可不轻松。";
+		mes "人们总把书散得到处都是，";
+		mes "却又希望它们整齐有序。";
+		mes "唉，书也总是莫名其妙地丢失……";
+		mes "真让人头疼。";
+		mes "请大家爱护书籍。";
 		next;
-		mes "[Librarian]";
-		mes "When you have";
-		mes "to clean up their";
-		mes "messes, you get to";
-		mes "realize how sloppy";
-		mes "people can really be.";
+		mes "[图书管理员]";
+		mes "当你不得不收拾他们留下的";
+		mes "烂摊子时，才会发现";
+		mes "人们究竟可以多么马虎。";
+		mes "请替我们多考虑一下。这样大家都会轻松些。谢谢。";
+		mes "请爱护图书。";
 		close;
 	}
 }

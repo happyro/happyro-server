@@ -19,33 +19,33 @@ prontera,158,356,4	script	Royal Messenger	105,{
 	setarray .@Req2[0],5013,2298,1,1001,10,996,10,994,10,995,10,997,10;
 	
 	mes "[Royal Messenger]";
-	mes "Welcome to Prontera.";
-	mes "I am the messenger in charge of the Royal Quests.";
+	mes "欢迎来到普隆德拉。";
+	mes "我是负责皇家任务的使者。";
 	next;
 	if(select("Listen...:Walk away")==2) close;
 	mes "[Royal Messenger]";
-	mes "There are two quests.";
-	mes "Choose the one you like.";
+	mes "这里有两个任务。";
+	mes "请选择你喜欢的任务。";
 	next;
 	set .@i, select("Balmung:Lord Kaho's Horns:^777777Never mind.^000000");
 	mes "[Royal Messenger]";
 	if (.@i==3) {
-		mes "Have a nice day.";
+		mes "祝你今天愉快。";
 		close; }
-	mes "You will need the following items:";
+		mes "你需要以下物品：";
 	for(set .@j,1; .@j<13; set .@j,.@j+2) {
 		mes " ~ "+getd(".@Req"+.@i+"["+(.@j+1)+"]")+"x ^0055FF"+getitemname(getd(".@Req"+.@i+"["+.@j+"]"))+"^000000";
 		if (!.@nr && countitem(getd(".@Req"+.@i+"["+.@j+"]")) < getd(".@Req"+.@i+"["+(.@j+1)+"]")) set .@nr,1; }
-	mes " ~ 1,000,000z";
+		mes " ~ 1,000,000 Zeny";
 	next;
 	mes "[Royal Messenger]";
 	if (.@nr || Zeny < 1000000) {
-		mes "Come back when you meet all the requirements.";
+		mes "满足所有要求后再回来。";
 		close; }
 	for(set .@j,1; .@j<13; set .@j,.@j+2)
 		delitem getd(".@Req"+.@i+"["+.@j+"]"), getd(".@Req"+.@i+"["+(.@j+1)+"]");
 	set Zeny, Zeny-1000000;
-	mes "I see you already have all the items you need. Here's your "+getitemname(getd(".@Req"+.@i+"[0]"))+", as promised.";
+	mes "看来你已经拥有所需的全部物品。这是答应给你的"+getitemname(getd(".@Req"+.@i+"[0]"))+"。";
 	getitem getd(".@Req"+.@i+"[0]"),1;
 	close;
 }

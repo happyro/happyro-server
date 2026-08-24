@@ -239,7 +239,7 @@ function	script	F_Porter	{
 
 Board:
 	mes "^FF0000[Porter]^000000";
-	mes "The plane is currently ported.  Would you like to board?";
+	mes "飞机目前已停靠。要登机吗？";
 	next;
 	menu "Yes.",L_Yes,"No.",L_Nope,"View Hourly Itinerary.",Itin;
 
@@ -249,13 +249,13 @@ L_Yes:
 	specialeffect2 EF_CASTSPIN;
 L_Nope:
 	mes "^FF0000[Porter]^000000";
-	mes "Have a good day.  Thank you for traveling with Airship.";
+	mes "祝你今天愉快。感谢你乘坐飞艇。";
 	close;
 
 Notime:
 	mes "^FF0000[Porter]^000000";
-	if(Sex==SEX_FEMALE) mes "Sorry, ma'am, but the plane currently isn't ported.  However, you can view the airplane's hourly itinerary.";
-	else mes "Sorry, sir, but the plane currently isn't ported.  However, you can view the airplane's hourly itinerary.";
+	if(Sex==SEX_FEMALE) mes "抱歉，女士，飞机目前没有停靠。不过你可以查看飞机的每小时航班表。";
+	else mes "抱歉，先生，飞机目前没有停靠。不过你可以查看飞机的每小时航班表。";
 	next;
 	menu "Yes, please.",Itin,"No thanks.",L_Nope;
 	close;
@@ -339,7 +339,7 @@ jupe_gate,46,18,7	script	Porter#23	774,{
 	callfunc "F_Porter",23;
 }
 airport,141,43,5	script	Itinerary Schedule	837,{
-	mes "^FF0000[Itinerary]^000000";
+	mes "^FF0000[航班表]^000000";
 	callfunc "F_Itin";
 }
 
@@ -348,7 +348,7 @@ airplane,102,68,5	script	Docker	852,{
 	mes "^FF0000[Airplane Attendant]^000000";
 	if($destination == 250)goto Notime;
 	set @dockky, $destination;
-	if($destination != 250)mes "We are currently docked at "+$locationsname$[$destination]+".  Would you like to exit?";
+	if($destination != 250)mes "我们目前停靠在"+$locationsname$[$destination]+"。要下机吗？";
 	next;
 	menu "Yes.",Lyes,"No.",Lnope;
 
@@ -360,24 +360,24 @@ Lyes:
 
 Lnope:
 	mes "^FF0000[Airplane Attendant]^000000";
-	mes "Have a good day.  Thank you for traveling with us.";
+	mes "祝你今天愉快。感谢你乘坐我们的飞机。";
 	close;
 
 Notime:
 	mes "^FF0000[Airplane Attendant]^000000";
-	if(Sex==SEX_FEMALE) mes "Sorry, ma'am, but the plane currently isn't docked.  Please wait.";
-	else mes "Sorry, sir, but the plane currently isn't docked.  Please wait.";
+	if(Sex==SEX_FEMALE) mes "抱歉，女士，飞机目前没有停靠。请稍等。";
+	else mes "抱歉，先生，飞机目前没有停靠。请稍等。";
 	close;
 
 Nowhere:
 	mes "^FF0000[Airplane Attendant]^000000";
-	mes "We're currently in air. Please wait until the pilot has announced that we have safely landed.";
+	mes "我们目前正在飞行中。请等待飞行员宣布安全着陆。";
 	close;
 }
 
 function	script	F_Itin	{
 	//This is the itinerary's function.  It should work well enough.
-	if($@currenttime==0)mes "Try again later.  A recent server reboot or rehash has messed the itinerary up for a bit.";
+	if($@currenttime==0)mes "请稍后再试。最近的服务器重启或重新加载暂时打乱了航班表。";
 	if($@currenttime==0)close;
 	if($@currenttime==0)end;
 	set @tempo, 0;

@@ -14,38 +14,38 @@
 //============================================================ 
 
 morocc,208,90,6	script	Turban Thief	58,{
-	mes "[Turban Thief]";
+	mes "[头巾小偷]";
 	if(event_umbala < 2) {
-		mes "What do you wan te withz me? Be gone!";
+		mes "你想对我做什么？滚开！";
 		close; }
 	if(sphmask_q) {
-		mes "You have no more business with me, go away!";
+		mes "你和我已经没有别的事了，走开！";
 		close; }
-	mes "E'llo mah frien, would I interesst tu with this rare mask? Its value I assure you is real mah frien. Tis manific!";
+	mes "嘿，朋友，想不想买这件稀有的面具？我保证它价值不菲，朋友。这可是精品！";
 	next;
 	callsub L_Menu,1,"1,000,000",1000000;
 	callsub L_Menu,2,"750,000",750000;
 	callsub L_Menu,3,"500,000",500000;
 	next;
-	mes "[Turban Thief]";
-	mes "Ack! Forgez it! I can do bettaz en elsez where!";
+	mes "[头巾小偷]";
+	mes "啊！算了！我在别的地方能卖得更好！";
 	set sphmask_q,1;
 	close;
 
 L_Menu:
-	mes "[Turban Thief]";
+	mes "[头巾小偷]";
 	switch(getarg(0)) {
-		case 1: mes "Wah? O ho ho ho, so you know thaz I steal dis from those savages no? Well I won'tz give it back. But I will for a pricez... wat you say?"; break;
-		case 2: mes "Ahh a business man are you no?  Fine, how about..."; break;
-		case 3: mes "Hmmm... you drive a hard bargain, ok... my final offer..."; break; }
+		case 1: mes "什么？哦呵呵呵，你知道这是我从那些野蛮人手里偷来的，对吧？我不会还回去。不过我可以按价出售……你出多少？"; break;
+		case 2: mes "啊，原来你是个商人？好吧，那就……"; break;
+		case 3: mes "嗯……你还真会砍价。好吧……这是我的最终报价……"; break; }
 	next;
-	if(select("Pay "+getarg(1)+"z:No deal")==2) return;
-	mes "[Turban Thief]";
+	if(select("支付 "+getarg(1)+"Zeny:不成交")==2) return;
+	mes "[头巾小偷]";
 	if (Zeny < getarg(2)) {
-		mes "Are youz playin wit me? You don't have ze money!";
+		mes "你在耍我吗？你根本没有钱！";
 		close; }
 	set Zeny, Zeny-getarg(2);
-	mes "O ho ho, it's a deal, then!";
+	mes "哦呵呵，成交！";
 	getitem 7114,1;
 	set sphmask_q,1;
 	close;

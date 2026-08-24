@@ -16,80 +16,80 @@
 //============================================================
 
 veins,210,345,5	script	Veins Guide#1::ve_guide	934,{
-	mes "[Veins Guide]";
-	mes "Desert City Veins welcomes adventurers seeking shelter from harsh sandstorms.";
-	mes "If this is the first time for you to use the guide services, why don't you check the...";
+	mes "[维恩斯向导]";
+	mes "沙漠城市维恩斯欢迎寻求躲避强烈沙尘暴的冒险者。";
+	mes "如果这是你第一次使用向导服务，建议先查看……";
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
-		switch(select("Village Guide:Remove Marks from Mini-Map:Notice:Cancel")) {
+		switch(select("村庄指南:移除小地图标记:注意事项:取消")) {
 		case 1:
-			mes "[Veins Guide]";
-			mes "I can tell you any building location as long as it is in Veins.";
-			mes "So where do you want to go?";
+			mes "[维恩斯向导]";
+			mes "我可以告诉你维恩斯任何建筑的位置。";
+			mes "你想去哪里？";
 			if (.@compass_check == 0) {
-				mes "Would you like me";
-				mes "to mark locations";
-				mes "on your Mini-Map?";
+				mes "你想让我";
+				mes "标记地点";
+				mes "在小地图上吗？";
 				next;
-				if (select("Yes:No") == 1) set .@compass_check,1;
+				if (select("是:否") == 1) set .@compass_check,1;
 			}
 			set .@loop2,1;
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 
-				switch(select("Temple:Inn:Weapon Shop:Tool Shop:Airship:Tavern:Geological Research Institute:Cancel")) {
+				switch(select("神殿:旅馆:武器店:工具店:货运飞艇:酒馆:地质研究所:取消")) {
 				case 1:
-					mes "[Veins Guide]";
-					mes "Our temple is located north,";
-					mes "and always crowded with sincere followers of Goddess Freya.";
+					mes "[维恩斯向导]";
+					mes "我们的神殿位于北方，";
+					mes "总是聚集着虔诚的芙蕾雅女神信徒。";
 					if (.@compass_check == 1) viewpoint 1,196,258,1,0xFF0000;
 					break;
 				case 2:
-					mes "[Veins Guide]";
-					mes "You can rest your fatigue of the journey in the Inn.";
-					mes "The left building next to me is the Inn of Veins.";
+					mes "[维恩斯向导]";
+					mes "你可以在旅馆消除旅途疲劳。";
+					mes "我旁边左侧的建筑就是维恩斯旅馆。";
 					if (.@compass_check == 1) viewpoint 1,128,266,2,0xFF00FF;
 					break;
 				case 3:
-					mes "[Veins Guide]";
-					mes "Yes, you should protect yourself from danger on your own.";
-					mes "Purchase high quality weapons at affordable prices.";
-					mes "The Veins Weapon Shop is located to the West.";
+					mes "[维恩斯向导]";
+					mes "是的，你应该自行保护自己免受危险。";
+					mes "以实惠价格购买高品质武器。";
+					mes "维恩斯武器店位于西方。";
 					if (.@compass_check == 1) viewpoint 1,150,175,3,0x99FFFF;
 					break;
 				case 4:
-					mes "[Veins Guide]";
-					mes "Have you packed enough necessities  for your adventure?";
-					mes "If not, I suggest you check what the Veins in the Center can offer you.";
+					mes "[维恩斯向导]";
+					mes "你为冒险准备了足够必需品吗？";
+					mes "如果没有，建议去维恩斯中央看看。";
 					if (.@compass_check == 1) viewpoint 1,230,161,4,0x0000FF;
 					break;
 				case 5:
-					mes "[Veins Guide]";
-					mes "Please be aware that Veins only operates cargo airships.";
+					mes "[维恩斯向导]";
+					mes "请注意，维恩斯只运营货运飞艇。";
 					if (.@compass_check == 1) viewpoint 1,273,285,5,0x00FF00;
 					break;
 				case 6:
-					mes "[Veins Guide]";
-					mes "If you'd like to make friends with";
-					mes "the townspeople, I suggest you";
-					mes "go have a drink at the tavern to";
-					mes "the west.";
+					mes "[维恩斯向导]";
+					mes "想和镇民交朋友，";
+					mes "建议你";
+					mes "去西边酒馆喝一杯，";
+					mes "";
 					if (.@compass_check == 1) viewpoint 1,150,217,6,0x00FF00;
 					break;
 				case 7:
-					mes "[Veins Guide]";
-					mes "Are you interested in studying geology?";
-					mes "Then you'd better go check out the";
-					mes "Geological Research Institute on";
-					mes "the 2nd floor of the weapon shop.";
+					mes "[维恩斯向导]";
+					mes "你对地质学感兴趣吗？";
+					mes "那就去看看";
+					mes "位于";
+					mes "武器店二楼的地质研究所。";
 					if (.@compass_check == 1) viewpoint 1,150,175,7,0x00FF00;
 					break;
 				case 8:
-					mes "[Veins Guide]";
-					mes "If you like to get rid of all the location marks on your Mini-Map,";
-					mes "just ask me again, and choose 'Remove Marks from Mini-Map' menu.";
+					mes "[维恩斯向导]";
+					mes "想移除小地图上的所有位置标记，";
+					mes "再来找我，选择“移除小地图标记”菜单即可。";
 					set .@loop2,0;
 					break;
 				}
@@ -104,20 +104,20 @@ veins,210,345,5	script	Veins Guide#1::ve_guide	934,{
 			viewpoint 2,273,285,5,0x00FF00;
 			viewpoint 2,150,217,6,0x00FF00;
 			viewpoint 2,150,175,7,0x00FF00;
-			mes "[Veins Guide]";
-			mes "Okay, they are gone now. If you have more locations to ask, just let me know.";
-			mes "Enjoy your stay in Veins.";
+			mes "[维恩斯向导]";
+			mes "好了，标记已移除。有其他地点要询问就告诉我。";
+			mes "祝你在维恩斯过得愉快。";
 			break;
 		case 3:
-			mes "[Veins Guide]";
-			mes "When you are using the ''Village Guide'' menu,";
-			mes "make sure that building locations will be marked on your mini-map at the upper right side of your screen.";
-			mes "If you cannot see your mini-map, use the short cut key ''ctrl+tab'' or press the ''Map'' button on your basic information windows, okay?";
-			mes "And you can also zoom out your mini-map by using the ''-'' button in case you cannot view the entire map of the village.";
+			mes "[维恩斯向导]";
+			mes "使用“村庄指南”菜单时，";
+			mes "建筑位置会标记在屏幕右上角的小地图上。";
+			mes "看不到小地图时，使用快捷键“Ctrl+Tab”或点击基本信息窗口的“地图”按钮。";
+			mes "如果看不到整个村庄地图，也可以点击“-”按钮缩小小地图。";
 			break;
 		case 4:
-			mes "[Veins Guide]";
-			mes "Enjoy your stay in Veins.";
+			mes "[维恩斯向导]";
+			mes "祝你在维恩斯过得愉快。";
 			close2;
 			set .@loop1,0;
 			break;

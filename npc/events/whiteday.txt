@@ -19,57 +19,56 @@ alberta,188,64,4	script	Sugar	91,{
 	set @maplePrice,0;
 	set @maplePriceT,0;
 	mes "[Sugar]";
-	mes "Welcome!";
-	mes "How delicious are sweets?";
-	mes "My teacher.........";
-	mes "The sweets craftsman of ARUBERUTA";
-	mes "There are sweets that is built hard.";
+	mes "欢迎！";
+	mes "甜点有多美味？";
+	mes "我的老师……";
+	mes "艾尔贝塔的甜点工匠";
+	mes "制作了坚硬的甜点。";
 	next;
 	mes "[Sugar]";
-	mes "It was given by the darling person.";
-	mes "In return of the present ....";
-	mes "heartfelt like";
-	mes "the sweetness of the present some how.";
+	mes "这是亲爱的人送的。";
+	mes "作为回礼……";
+	mes "真心就像";
+	mes "礼物的甜味一样。";
 	next;
-	menu "Please give me!",-,"I don't need it.",M_END,"The teacher.",M_L1;
+	menu "请给我！",-,"我不需要。",M_END,"老师。",M_L1;
 
 	mes "[Sugar]";
-	mes "Yes!";
-	mes "Select from menu here.";
-	mes "Since there is a limitation in numbers";
-	mes "Not more than ^ff0000 5 pieces^000000.";
-	mes "are allowed to carry out?";
+	mes "好的！";
+	mes "请从菜单中选择。";
+	mes "数量有限，";
+	mes "最多只能带走 ^ff0000 5 个^000000。";
 	next;
-	menu "Candy",-,"Candy Cane",L0_2,"Well baked cookie",L0_3;
-
-	set @maplePrice,3000;
+	menu "糖果",-,"拐杖糖",L0_2,"烤得很好的曲奇",L0_3;
+	
+set @maplePrice,3000;
 	set @mapleItemID,529;
 	mes "[Sugar]";
-	mes "It is a candy, and the price is";
+	mes "这是糖果，价格是";
 	mes "3000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "你想买多少？";
 	next;
 	goto L_INPUT;
-L0_2:
-	set @maplePrice,4000;
+	L0_2:
+set @maplePrice,4000;
 	set @mapleItemID,530;
 	mes "[Sugar]";
-	mes "It is a candy cane, and the price is";
+	mes "这是拐杖糖，价格是";
 	mes "4000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "你想买多少？";
 	next;
 	goto L_INPUT;
-L0_3:
-	set @maplePrice,2000;
+	L0_3:
+set @maplePrice,2000;
 	set @mapleItemID,538; 
 	mes "[Sugar]";
-	mes "It is a well baked cookie, and the price is";
+	mes "这是烤得很好的饼干，价格是";
 	mes "2000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "你想买多少？";
 	next;
-
+	
 L_INPUT:
-	input @maplenum;
+input @maplenum;
 	if (@maplenum > 5) goto L_ERROR;
 	if (@maplenum == 0) goto M_END;
 	set @maplePriceT,@maplePrice*@maplenum;
@@ -77,51 +76,52 @@ L_INPUT:
 	set Zeny,Zeny- @maplePriceT;
 	getitem @mapleItemID,@maplenum;
 	mes "[Sugar]";
-	mes "Thank you!!!";
-	mes "These sweets are really delicious.";
-	mes "Since my teacher of sweet is the No.1 teacher's in world!";
-	mes "Although you may eat by yourself";
-	mes "don't eat so much or you'll grow fat.";
-	mes "Please take care!!!";
+	mes "谢谢！！！";
+	mes "这些甜点真的很好吃。";
+	mes "因为我的甜点老师是世界第一！";
+	mes "虽然你可以自己吃，";
+	mes "但别吃太多，会变胖。";
+	mes "请保重！！！";
 	close;
-
+	
 M_L1:
-	mes "[Sugar]";
-	mes "Yes";
-	mes "The teacher of mine";
-	mes "is Mr. Kuberu, a sweets craftsman.";
-	mes "Making sweets under two persons.";
-	mes "which is allowed to self-train.";
+mes "[Sugar]";
+	mes "是的。";
+	mes "我的老师是";
+	mes "甜点工匠 Kuberu 先生。";
+	mes "他在两位大师指导下制作甜点，";
+	mes "也获准独自训练。";
 	next;
 	mes "[Sugar]";
-	mes "Although selling is seemingly to carried out ....";
-	mes "Where he is now?";
-	mes "Which I don't know.";
+	mes "虽然他似乎在出售甜点……";
+	mes "但他现在在哪里？";
+	mes "我也不知道。";
 	close;
-
+	
 L_ERROR:
-	mes "[Sugar]";
+mes "[Sugar]";
 	mes "???";
-	mes "You seem to have a failure on hearing.";
-	mes "I will tell you once again?";
-	mes "You can only purchase";
+	mes "看来你的听力有问题。";
+	mes "我再说一次？";
+	mes "你只能购买";
 	mes "^ff0000 5 pieces^000000 at once.";
 	next;
 	goto L_INPUT;
-
+	
 L_ERROR2:
-	mes "[Sugar]";
+mes "[Sugar]";
 	mes "???";
-	mes "Hmmm it seems you don't have enough money";
-	mes "to make that purchase.";
-	mes "I will ask you to check your money first.";
+	mes "嗯……看来你的钱不够";
+	mes "完成购买。";
+	mes "请先确认自己的钱。";
 	close;
-
+	
 M_END:
-	mes "[Sugar]";
-	mes "Really .... You might regret it..";
-	mes "If you change your mind.";
-	mes "I am just here ok.";
-	mes "Have a nice day!";
+mes "[Sugar]";
+	mes "真的……你可能会后悔。";
+	mes "如果改变主意，";
+	mes "我就在这里。";
+	mes "祝你今天愉快！";
 	close;
-}
+	}
+//

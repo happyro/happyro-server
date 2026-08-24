@@ -65,36 +65,36 @@ OnEvent04:
 
 1@rgsr,123,42,5	script	Oscar#rgsr	4_M_LGTGUARD,{
 	mes "[Oscar]";
-	mes "The captain sneaked in the control panel room.";
-	mes "Move quietly.";
+	mes "船长偷偷进入了控制面板室。";
+	mes "轻声行动。";
 	close;
 }
 
 1@rgsr,131,58,3	script	Aas#rgsr	4_EP17_AS,{
 	cutin "ep171_as02",1;
 	mes "[Aas]";
-	mes "The door is normally locked with the security system, so I have to stay there and work with the controller.";
-	mes "As you can see most of the entrances have been blocked already.";
-	mes "Hi";
+	mes "门通常由安保系统锁定，所以我必须留在那里操作控制器。";
+	mes "如你所见，大多数入口已经被封锁。";
+	mes "你好。";
 	next;
 	mes "[Aas]";
-	mes "It will take some time to go through them one by one.";
-	mes "I'll keep helping you through the intercom.";
+	mes "逐一处理需要一些时间。";
+	mes "我会通过对讲机继续帮助你。";
 	next;
 	mes "[Aas]";
-	mes "You'll have to go through the restaurant to reach the hallway.";
-	mes "Est will be performing the operation alone.";
+	mes "你必须穿过餐厅才能到达走廊。";
+	mes "Est 将独自执行行动。";
 	next;
 	mes "[Aas]";
-	mes "If there's a disturbance, Est may have caused it. So please check out with her before continuing.";
+	mes "如果发生骚动，可能是 Est 引起的。继续前先去确认她的情况。";
 	next;
 	mes "[Aas]";
-	mes "You should go now adventurer. I'll keep working on securing the security controller.";
-	mes "There may be researchers detained inside.";
+	mes "冒险者，你现在该走了。我会继续确保安保控制器安全。";
+	mes "里面可能关押着研究员。";
 	next;
 	mes "[Aas]";
-	mes "Please consider their safety first.";
-	mes "Now go ahead.";
+	mes "请优先考虑他们的安全。";
+	mes "现在出发吧。";
 	close2;
 	if ('rgsr == 0) {
 		'rgsr = 1;
@@ -108,29 +108,29 @@ OnEvent04:
 	enablenpc instance_npcname("Researcher#rgsr_ev_0");
 	if ('rgsr == 2) {
 		'rgsr = 3;
-		npctalk "Communication Requested.";
+		npctalk "请求通信。";
 		sleep2 2750;
-		npctalk "Analysing Signal.";
+		npctalk "正在分析信号。";
 		sleep2 2750;
-		npctalk "Activating Voice Transmission...";
+		npctalk "正在启动语音传输……";
 		sleep2 2750;
-		npctalk "Are you connected? It's Aas.";
+		npctalk "接通了吗？我是 Aas。";
 		sleep2 2750;
-		npctalk "I have gained control over some of the security system, but I haven't gained full access yet.";
+		npctalk "我已经控制了部分安保系统，但还没有完全访问权限。";
 		sleep2 2750;
-		npctalk "Unless there is a big disturbance, the alarm or security devices won't work.";
+		npctalk "除非发生重大骚动，否则警报和安保设备不会启动。";
 		sleep2 2750;
-		npctalk "I think you should open this door to open the hallway.";
+		npctalk "我觉得你应该打开这扇门，进入走廊。";
 		sleep2 2750;
-		npctalk "Ask a Detained Researcher to put their hand on the device.";
+		npctalk "让一名被拘研究员把手放在装置上。";
 		sleep2 2750;
-		npctalk "...*Zap*....";
+		npctalk "……*滋*……";
 		sleep2 2750;
-		npctalk "Voice Transmission Ended.";
+		npctalk "语音传输结束。";
 		sleep2 2750;
 		hideonnpc();
 		enablenpc();
-		npctalk "Researcher : Do you mind If I open the door?",instance_npcname("Researcher#rgsr_ev_0");
+		npctalk "研究员：介意我打开门吗？",instance_npcname("Researcher#rgsr_ev_0");
 		'rgsr = 4;
 	}
 	end;
@@ -140,8 +140,8 @@ OnEvent04:
 	if ('rgsr == 4 && 'activate == 0) {
 		'activate = 1;
 		mes "[Researcher]";
-		mes "The biometric scan is still operational, I'll be staying here to keep the door open.";
-		mes "If you're in a hurry, please go...";
+		mes "生物识别扫描仍在运行，我会留在这里保持门开启。";
+		mes "如果你赶时间，请先走……";
 		dispbottom "Control : Identity confirmed.";
 		donpcevent instance_npcname("#171_rgsr_control") + "::OnEvent02";
 		close2;
@@ -155,75 +155,75 @@ OnEvent04:
 	if ('rgsr < 7) {
 		cutin "ep162_est03",2;
 		mes "[Est]";
-		mes "Are you the one who removed the poison gas outside?";
-		mes "You arrived at a good time.";
-		mes "Because of the gas, the door was forcibly locked down!";
+		mes "是你清除了外面的毒气吗？";
+		mes "你来得正是时候。";
+		mes "因为毒气，门被强制锁上了！";
 		next;
 		cutin "ep162_est01",2;
 		mes "[Est]";
-		mes "It takes time for Aas to come hack the controller and release the gas.";
-		mes "I was going to do it myself.";
+		mes "Aas 还需要一段时间才能破解控制器并释放毒气。";
+		mes "我本来打算自己做的。";
 		next;
 		cutin "ep162_est02",2;
 		mes "[Est]";
-		mes "The guards here were wearing the same clothes as those Heart Hunters we saw before.";
-		mes "I don't think I can save all the researchers alone.";
+		mes "这里的守卫穿着和我们之前看到的心灵猎手一样的衣服。";
+		mes "我觉得自己无法独自救出所有研究员。";
 		next;
 		mes "[Est]";
-		mes "It seems we've gathered most of them here already.";
-		mes "Let's organize our next strategy.";
+		mes "看来我们已经把大多数人聚集到这里了。";
+		mes "我们来制定下一步策略。";
 		next;
 		cutin "ep162_est01",2;
 		mes "[Est]";
-		mes "There are laboratories on the other side and it's likely to be a mess.";
-		mes "I wonder if there will be a big fight.";
+		mes "另一边有实验室，那里可能一团糟。";
+		mes "不知道会不会发生一场大战。";
 		next;
 		mes "[Est]";
-		mes "From now on the Rebellion Special Forces will prioritize on rescuing the Detained Researchers.";
-		mes "If you get it, move quickly!";
+		mes "从现在起，反叛军特种部队将优先救援被拘研究员。";
+		mes "明白的话，快行动！";
 		next;
 		mes "[Est]";
-		mes "Okay, adventurer, find a communication device and get in contact with Aas.";
+		mes "好，冒险者，找到通信设备并联系 Aas。";
 		next;
 		mes "[Est]";
-		mes "You have to open the entrance of the private labs.";
+		mes "你必须打开私人实验室的入口。";
 		if ('rgsr == 4)
 			'rgsr = 5;
 		close3;
 	}
 	cutin "ep162_est02",2;
 	mes "[Est]";
-	mes "Huh. We'll focus on rescuing the hostages first.";
-	mes "Look for the Security Guard's room that Aas talked about.";
+	mes "嗯。我们先集中营救人质。";
+	mes "去找 Aas 说过的安保卫兵房间。";
 	close3;
 }
 
 1@rgsr,26,219,0	script	Access Controller#rgsr2	4_ENERGY_WHITE,{
 	if ('rgsr < 5) {
-		mes "Code is inactive.";
-		mes "The communication has been terminated.";
+		mes "代码未激活。";
+		mes "通信已终止。";
 		close;
 	}
 	if ('rgsr == 5) {
-		mes "Voice Transmission Connected.";
+		mes "语音传输已连接。";
 		close2;
 		if ('rgsr == 5)
 			'rgsr = 6;
-		npctalk "Waiting for communication response...";
+		npctalk "等待通信回应……";
 		sleep2 2750;
-		npctalk "Aas : Commander Est? We closed the hall lock, but what is the problem?";
+		npctalk "Aas：Est 指挥官？我们关闭了大厅门锁，但发生什么问题了？";
 		sleep2 2750;
-		npctalk "Aas : Oh you're the adventurer. I will give you the report. I have not fully taken over the security controller system yet.";
+		npctalk "Aas：哦，是你这位冒险者。我向你报告一下。我还没有完全接管安保控制系统。";
 		sleep2 2750;
-		npctalk "Aas : It seems it will take some time, but I've taken control of most of the monitoring modules.";
+		npctalk "Aas：看来还需要一些时间，但我已经控制了大部分监控模块。";
 		sleep2 2750;
-		npctalk "Aas : Most of the enemy troops were in the lobby and the resting area, so the lab area is less guarded.";
+		npctalk "Aas：大部分敌军都在大厅和休息区，所以实验室区域的守卫较少。";
 		sleep2 2750;
-		npctalk "Aas : However, in order to secure the central control room, you have to go through the Guard's Room where many test subjects were detected.";
+		npctalk "Aas：不过，为了确保中央控制室安全，你必须经过检测到许多实验对象的卫兵房间。";
 		sleep2 2750;
-		npctalk "Aas : The priority should be to secure the laboratories and then the Guard Room.... *click*";
+		npctalk "Aas：优先确保实验室安全，然后是卫兵房间……*咔*";
 		sleep2 2000;
-		npctalk "Est : Eh, what was that?",instance_npcname("Est#rgsr");
+		npctalk "Est：嗯，刚才那是什么？",instance_npcname("Est#rgsr");
 		if ('rgsr == 6)
 			'rgsr = 7;
 		end;
@@ -231,8 +231,8 @@ OnEvent04:
 	if ('rgsr < 7)
 		end;
 	else {
-		mes "Code is inactive.";
-		mes "The communication has been terminated.";
+		mes "代码未激活。";
+		mes "通信已终止。";
 		close;
 	}
 }
@@ -246,24 +246,24 @@ OnEvent04:
 		if (.@miss) {
 			cutin "ep171_as02",2;
 			mes "[Aas]";
-			mes "Hey, Did you check all the labs yet?";
-			mes "Please check if there are still Detained Researchers.";
+			mes "嘿，你检查完所有实验室了吗？";
+			mes "请确认是否还有被拘研究员。";
 			close3;
 		}
 		cutin "ep171_as02",1;
 		mes "[Aas]";
-		mes "The spare Master Key still remains.";
-		mes "Without it, I wouldn't have been able to control over the security systems. Are you okay?";
+		mes "备用万能钥匙还在。";
+		mes "没有它，我就无法控制安保系统。你还好吗？";
 		next;
 		mes "[Aas]";
-		mes "Now you only need to check the Central Room.";
-		mes "Did you say Heart Hunters?";
-		mes "The traitors from Schlein have already escaped.";
+		mes "现在你只需要检查中央房间。";
+		mes "你说心灵猎手？";
+		mes "来自 Schlein 的叛徒已经逃走。";
 		next;
 		mes "[Aas]";
-		mes "We've got our focus on that room.";
-		mes "That's the main idea.";
-		mes "Where is Est?";
+		mes "我们的重点就是那个房间。";
+		mes "大致就是这样。";
+		mes "Est 在哪里？";
 		next;
 		cutin "16go_01",0;
 		mes "[Goni]";
@@ -271,12 +271,12 @@ OnEvent04:
 		next;
 		cutin "ep171_as02",1;
 		mes "[Aas]";
-		mes "You have to keep looking for all the Researchers?";
-		mes "That's necessary, I understand.";
+		mes "你还必须继续寻找所有研究员吗？";
+		mes "这是必要的，我明白了。";
 		next;
 		mes "[Aas]";
-		mes "Adventurer, we head to the Central Room.";
-		mes "Meet me over there.";
+		mes "冒险者，我们前往中央房间。";
+		mes "在那里和我会合。";
 		close2;
 		cutin "",255;
 		if ('rgsr == 7) {
@@ -288,30 +288,30 @@ OnEvent04:
 	}
 	cutin "ep171_as02",1;
 	mes "[Aas]";
-	mes "Adventurer, we head to the Central Room.";
-	mes "Meet me over there.";
+	mes "冒险者，我们前往中央房间。";
+	mes "在那里和我会合。";
 	close3;
 }
 
 1@rgsr,235,143,5	script	Detained Researcher#rgsr_q01	4_F_SCIENCE,{
 	if (!'rescued[0]) {
 		mes "[Researcher]";
-		mes "My... my search... materials...";
-		mes "They took it all!";
-		mes "They took everything!";
+		mes "我的……我的研究……材料……";
+		mes "他们全拿走了！";
+		mes "他们把一切都拿走了！";
 		next;
 		cutin "16go_01",0;
 		mes "[Goni]";
 		mes "... ... ...";
 		next;
 		cutin "",255;
-		npctalk "I'm going to live! Thank you!";
-		mes "Oh, you're here to protect me?";
-		mes "I'll go with you, thank you!";
+		npctalk "我要活下去！谢谢你！";
+		mes "哦，你是来保护我的吗？";
+		mes "我跟你走，谢谢！";
 		next;
 		mes "[Researcher]";
-		mes "Oh, you're there to protect me?";
-		mes "I'll go with you, thank you!";
+		mes "哦，你是来保护我的吗？";
+		mes "我跟你走，谢谢！";
 		'rescued[0] = 1;
 		close2;
 		disablenpc();
@@ -322,26 +322,26 @@ OnEvent04:
 1@rgsr,237,108,3	script	Detained Researcher#rgsr_q02	4_LGTSCIENCE,{
 	if (!'rescued[1]) {
 		mes "[Researcher]";
-		mes "I thought they kicked out all the crazy guy...";
-		mes "I hit the back of my head like this.";
-		mes "Tsk.";
+		mes "我还以为他们把所有疯子都赶出去了……";
+		mes "我就这样撞到了后脑勺。";
+		mes "啧。";
 		next;
 		mes "[Researcher]";
-		mes "Are you here to save us?";
-		mes "Get me out of here!";
-		mes "We couldn't flee because they put poisonous gas outside the doors!";
+		mes "你是来救我们的吗？";
+		mes "带我离开这里！";
+		mes "我们无法逃跑，因为他们在门外释放了毒气！";
 		next;
 		mes "[Researcher]";
-		mes "Yeah, I know a little bit about the Heart Hunters, I will tell you everything!";
+		mes "是的，我对心灵猎手略知一二，我会把一切告诉你！";
 		next;
 		cutin "ep162_est02",2;
 		mes "[Est]";
-		mes "Ah? Do you have more information to share?";
-		mes "Do you want to go outside and talk about it calmly with me?";
+		mes "啊？你还有更多信息要分享吗？";
+		mes "要不要和我出去慢慢谈？";
 		next;
 		cutin "ep162_est01",2;
 		mes "[Est]";
-		mes "I'll take this guy out of here and you look at the other rooms.";
+		mes "我把这家伙带出去，你去看看其他房间。";
 		'rescued[1] = 1;
 		close2;
 		cutin "",255;
@@ -353,71 +353,71 @@ OnEvent04:
 1@rgsr,237,71,3	script	Detained Researcher#rgsr_q03	4_F_FRUIT,{
 	if (!'rescued[2]) {
 		mes "[Researcher]";
-		mes "Please help me!";
-		mes "I worked a lot and I'm not getting paid!";
+		mes "请帮帮我！";
+		mes "我干了这么多活，却没有拿到报酬！";
 		next;
 		mes "[Researcher]";
-		mes "Schlein, where is Schlein?";
-		mes "He's a traitor!";
-		mes "I've seen it with my own eyes, he just killed the guards...";
+		mes "Schlein，Schlein 在哪里？";
+		mes "他是叛徒！";
+		mes "我亲眼看见他杀了卫兵……";
 		next;
-		select("Calm down.");
+		select("冷静下来。");
 		mes "[Researcher]";
-		mes "Is it safe now?";
-		mes "I'm glad when I was hired at Rekenber, but what the hell is going with such a big company...";
-		next;
-		mes "[Researcher]";
-		mes "Say what? The Rebellions are coming to save us?";
-		mes "Can't I just run away with you instead?";
+		mes "现在安全吗？";
+		mes "我很高兴能被 Rekenber 雇用，但这么大的公司到底怎么了……";
 		next;
 		mes "[Researcher]";
-		mes "Oh... you're part of the recon team?";
-		mes "Alright. I'll wait for the rescue team.";
-		mes "Many people escaped by breaking the windows and ran away..";
+		mes "你说什么？反叛军要来救我们？";
+		mes "我不能直接跟你一起逃走吗？";
 		next;
 		mes "[Researcher]";
-		mes "Oh you already know.";
-		mes "Okay. I'll be quiet now and wait.";
-		mes "Your uniform is really cool though.";
+		mes "哦……你是侦察队的一员？";
+		mes "好吧。我会等救援队。";
+		mes "很多人打破窗户逃走了……";
+		next;
+		mes "[Researcher]";
+		mes "哦，你已经知道了。";
+		mes "好吧。我现在会安静等待。";
+		mes "不过你的制服真帅。";
 		'rescued[2] = 1;
 		close;
 	}
 	mes "[Researcher]";
-	mes "I know. I know.";
-	mes "If I wait here, will the Rebellions come and save me?";
-	mes "I'll be fine then.";
+	mes "我知道。我知道。";
+	mes "如果我在这里等，反叛军会来救我吗？";
+	mes "那我就没事了。";
 	next;
 	mes "[Researcher]";
-	mes "But again, your uniform is really cool.";
+	mes "不过，你的制服真的很帅。";
 	close;
 }
 
 1@rgsr,241,51,0	script	Scattered Documents#rgsr	4_ENERGY_BLUE,{
 	if (isbegin_quest(7863) == 0) {
-		mes "This is the list of the Enterprise security teams.";
-		mes "Some have circles around them... others are crossed out.";
+		mes "这是 Enterprise 安保队伍的名单。";
+		mes "有些被圈了起来……有些被划掉了。";
 		next;
 		cutin "ep171_as01",2;
 		mes "[Aas]";
-		mes "The ones circled are probably those who accepted to be recruited...";
-		mes "My team is the one with a X marked next to it.";
+		mes "被圈起来的可能是同意被招募的人……";
+		mes "我的队伍就是旁边标着 X 的那一组。";
 		next;
 		mes "[Aas]";
-		mes "It's a mercenary contract...";
-		mes "There's a rough plan for the day of the raid.";
-		mes "I can't believe it came to this...";
+		mes "这是一份佣兵合同……";
+		mes "这是袭击当天的大致计划。";
+		mes "真不敢相信事情会发展到这一步……";
 		next;
 		mes "[Aas]";
-		mes "This is meant to provoke me.";
-		mes "It won't work this time. I'll track this to the end.";
+		mes "这是故意要激怒我。";
+		mes "这次不会得逞。我会追查到底。";
 		next;
 		mes "[Aas]";
-		mes "I'd better take it back to Tess and analyze it.";
+		mes "我最好把它带回去交给 Tess 分析。";
 		setquest 7863;
 		close3;
 	}
-	mes "I've already got the data here.";
-	mes "There's nothing else to see here.";
+	mes "我已经拿到这里的数据了。";
+	mes "这里没什么可看的了。";
 	close;
 
 OnInstanceInit:
@@ -431,12 +431,12 @@ OnInstanceInit:
 		enablenpc instance_npcname("Aas#rgsr3");
 		enablenpc instance_npcname("Goni#rgsr");
 		enablenpc instance_npcname("Est#rgsr2");
-		npctalk "Am I late?",instance_npcname("Aas#rgsr3");
+		npctalk "我迟到了吗？",instance_npcname("Aas#rgsr3");
 		sleep2 1800;
-		npctalk "No you arrived just in time.",instance_npcname("Est#rgsr2");
+		npctalk "不，你来得正是时候。",instance_npcname("Est#rgsr2");
 		end;
 	}
-	mes "The device does not work.";
+	mes "装置无法运行。";
 	close;
 }
 
@@ -448,45 +448,45 @@ OnInstanceInit:
 		.@aas$ = instance_npcname("Aas#rgsr3");
 		.@gonie$ = instance_npcname("Goni#rgsr");
 		.@erst$ = instance_npcname("Est#rgsr2");
-		npctalk "Aas : The Central Room seems to be empty. I'll go in and check it out.",.@aas$;
+		npctalk "Aas：中央房间似乎是空的。我进去检查一下。",.@aas$;
 		sleep2 3000;
-		npctalk "Aas : I'll go ahead and take the researchers out of here. Will that be okay?",.@erst$;
+		npctalk "Aas：我先把研究员带离这里，可以吗？",.@erst$;
 		sleep2 3000;
-		npctalk "Aas : Yes. Nothing else is being detected on the system. With our progress so far, the enemies have all been restrained.",.@aas$;
+		npctalk "Aas：是的，系统没有检测到其他情况。按照目前的进展，敌人都已经被控制。",.@aas$;
 		sleep2 3000;
-		npctalk "Est : What are you scared of something else? I'm going back already!",.@erst$;
+		npctalk "Est：你还在害怕别的东西吗？我已经要回去了！",.@erst$;
 		sleep2 3000;
-		npctalk "Goni : ... Me too.",.@gonie$;
+		npctalk "Goni：……我也是。",.@gonie$;
 		sleep2 3000;
-		npctalk "Est : There were couple of researchers left in the labs, I'll go bring them along. I'll be waiting.",.@erst$;
+		npctalk "Est：实验室里还剩几个研究员，我去把他们带来。我会等着。",.@erst$;
 		sleep2 3000;
-		npctalk "Est : Alright, Goni. You go to the main lobby first and secure the road. I'll take the others at the conference room.",.@erst$;
+		npctalk "Est：好，Goni。你先去主大厅确保道路安全。我带其他人去会议室。",.@erst$;
 		sleep2 3000;
-		npctalk "Goni : *Nods*",.@gonie$;
+		npctalk "Goni：*点头*",.@gonie$;
 		sleep2 3000;
 		disablenpc instance_npcname("Goni#rgsr");
 		disablenpc instance_npcname("Est#rgsr2");
-		npctalk "Aas : So adventurer, let's check out the Central Room.",.@aas$;
+		npctalk "Aas：那么冒险者，我们去看看中央房间。",.@aas$;
 		if ('rgsr == 10)
 			'rgsr = 11;
 		end;
 	}
 	cutin "ep171_as02",1;
 	mes "[Aas]";
-	mes "That's the Central Room right ahead.";
+	mes "中央房间就在前面。";
 	next;
-	if (select("Enter.:Wait.") == 2) {
+	if (select("进入。:等待。") == 2) {
 		mes "[Aas]";
-		mes "Please speak to me when you're ready.";
-		mes "I don't know why, but it's tightly closed;. It takes some time to maintain access.";
+		mes "准备好后请告诉我。";
+		mes "不知道为什么，门关得很紧；保持通道需要一些时间。";
 		next;
 		mes "[Aas]";
-		mes "As confirmed by the security system, nothing is being detected on the inside...";
-		mes "I still want to confirm inside the room regardless.";
+		mes "根据安保系统确认，里面没有检测到任何东西……";
+		mes "不过我还是想确认一下房间内部。";
 		close3;
 	}
 	mes "[Aas]";
-	mes "First I'll need to disable the auto-locking mechanism, and then I'll follow right away.";
+	mes "我首先要关闭自动上锁装置，然后马上跟上。";
 	if ('rgsr == 11) {
 		'rgsr = 12;
 		donpcevent instance_npcname("#171_rgsr_control") + "::OnEvent03";
@@ -507,8 +507,8 @@ OnInstanceInit:
 1@rgsr,125,154,5	script	Est#rgsr2	4_F_ESTLOVELOY,{
 	cutin "ep162_est01",2;
 	mes "[Est]";
-	mes "I don't believe there are any enemies left inside, I'm going to pull out.";
-	mes "Just check the Central Room and then get out.";
+	mes "我不相信里面还有敌人，我要撤出了。";
+	mes "检查中央房间后就离开。";
 	close3;
 }
 
@@ -516,32 +516,32 @@ OnInstanceInit:
 	if ('rgsr == 12) {
 		specialeffect EF_RED_HIT;
 		specialeffect EF_BEGINSPELL3;
-		npctalk "Do... do not... come close to me...!! Huh, my head... it hurts...";
-		mapannounce 'map$,"Do... do not... come close to me...!! Huh, my head... it hurts...",bc_map,0x00FF00;
+		npctalk "不……不要……靠近我……！！呃，我的头……好痛……";
+		mapannounce 'map$,"不……不要……靠近我……！！呃，我的头……好痛……",bc_map,0x00FF00;
 		'rgsr = 13;
 	}
 	end;
 
 OnFail:
 	specialeffect EF_FREEZE;
-	npctalk "Awesome-!! That's it... What did you do!!";
-	mapannounce 'map$,"Awesome-!! That's it... What did you do!!",bc_map,0x00FF00;
+	npctalk "太棒了！！就是这样……你做了什么！！";
+	mapannounce 'map$,"太棒了！！就是这样……你做了什么！！",bc_map,0x00FF00;
 	end;
 }
 
 1@rgsr,144,180,0	script	Control Device#rgsr0	4_ENERGY_BLUE,{
 	if ('rgsr < 13) {
-		mes "This device has an unknown purpose.";
-		mes "There are four buttons in the room.";
+		mes "这个装置的用途不明。";
+		mes "房间里有四个按钮。";
 		close;
 	}
 	.@index = atoi(replacestr(strnpcinfo(2),"rgsr",""));
 	if (.@index > 0) {
 		if (!'rsgr_c[ (.@index - 1) ]) {
-			mes "This device has an unknown purpose.";
-			mes "There are four buttons in the room.";
+			mes "这个装置的用途不明。";
+			mes "房间里有四个按钮。";
 			next;
-			select("Press the button.");
+			select("按下按钮。" );
 			donpcevent instance_npcname("Restrained Specimen#rgsr") + "::OnFail";
 			close;
 		}
@@ -553,27 +553,27 @@ OnFail:
 			case 2: .@answer = 4; .@string$ = "one phase"; break;
 			case 3: .@answer = 3;
 		}
-		mes "This device has an unknown purpose.";
-		mes "There are four buttons in the room.";
+		mes "这个装置的用途不明。";
+		mes "房间里有四个按钮。";
 		next;
-		.@s = select("Red Button.:Blue Button.:White Button.:Yellow Button.");
+		.@s = select("红色按钮。:蓝色按钮。:白色按钮。:黄色按钮。");
 		if (.@s != .@answer)
 			donpcevent instance_npcname("Restrained Specimen#rgsr") + "::OnFail";
 		else {
 			specialeffect EF_BEGINSPELL3,AREA,instance_npcname("Restrained Specimen#rgsr");
 			if (.@index < 3) {
-				mapannounce 'map$,"Gravity control adjustment... completed... There are " + .@string$ +" remaining.",bc_map,0x0D98BA;
+				mapannounce 'map$,"重力控制调整……完成……还剩" + .@string$ +"。",bc_map,0x0D98BA;
 				'rsgr_c[.@index] = 1;
 			} else {
 				'rsgr_c[.@index] = 1;
-				mapannounce 'map$,"Gravity control adjustment... completed... Restraints have been disengaged.",bc_map,0x0D98BA;
+				mapannounce 'map$,"重力控制调整……完成……束缚已解除。",bc_map,0x0D98BA;
 				sleep2 2500;
 				donpcevent instance_npcname("#171_rgsr_control") + "::OnEvent04";
 			}
 		}
 		close;
 	}
-	mes "This device has already been activated.";
+	mes "这个装置已经启动。";
 	close;
 }
 
@@ -586,24 +586,24 @@ OnFail:
 		end;
 	cutin "ep171_as01",2;
 	mes "[Aas]";
-	mes "Est has handled everything else on the inside.";
-	mes "Sorry for not being able to help you at all.";
+	mes "里面剩下的事情Est都处理好了。";
+	mes "抱歉完全没能帮上你。";
 	next;
 	mes "[Aas]";
-	mes "Let's go back to Einbroch.";
-	mes "I'll... I'll go to my office and join you.";
+	mes "回艾因布洛克吧。";
+	mes "我……我会去办公室和你会合。";
 	next;
-	.@s = select("Move to Einbroch.:Move to Lighthalzen.:Stay for a while.");
+	.@s = select("前往艾因布洛克。:前往莱赫伦。:暂时留下。" );
 	if (.@s == 3) {
 		cutin "ep171_as02",2;
 		mes "[Aas]";
-		mes "Do you have anything else to investigate?";
-		mes "I'll wait  here.";
+		mes "还有其他要调查的吗？";
+		mes "我会在这里等。";
 		close3;
 	}
 	mes "[Aas]";
-	mes "We're going to wait for you in the Cat on Bullet.";
-	mes "Please head there and meet us in the headquarters.";
+	mes "我们会在子弹猫等你。";
+	mes "请去那里，在总部与我们会合。";
 	completequest 7862;
 	close2;
 	if (.@s == 1)
@@ -664,7 +664,7 @@ OnSummon:
 OnLeftKill:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnLeftKill";
 	if (!mobcount('map$,.@event$)) {
-		mapannounce 'map$,"Est : Who is it? Are you Aas? Are you the adventurer?",bc_map,0x0D98BA;
+		mapannounce 'map$,"Est：是谁？是Aas吗？是那位冒险者吗？",bc_map,0x0D98BA;
 		enablenpc instance_npcname("Est#rgsr");
 		enablenpc instance_npcname("Rebellion Crew#rgsr_dum01");
 	}
@@ -678,11 +678,11 @@ OnTopKill:
 1@rgsr,1,1,0	script	#rgsr_boss	HIDDEN_WARP_NPC,{
 	end;
 OnSummon:
-	mapannounce 'map$,"Ahahaha.. ahahaha... I'll kill you all!!!!",bc_map,0x00FF00;
+	mapannounce 'map$,"啊哈哈……啊哈哈……我要杀了你们！！",bc_map,0x00FF00;
 	sleep 2000;
-	mapannounce 'map$,"Aas : What is going on? *click* The lock is...!!",bc_map;
+	mapannounce 'map$,"Aas：怎么回事？*咔哒*锁……！！",bc_map;
 	sleep 2000;
-	mapannounce 'map$,"I'm not a defect! I'm not a monster!",bc_map,0x00FF00;
+	mapannounce 'map$,"我不是残次品！我不是怪物！",bc_map,0x00FF00;
 	specialeffect EF_LORD,AREA,instance_npcname("Restrained Specimen#rgsr");
 	disablenpc instance_npcname("Restrained Specimen#rgsr");
 	monster 'map$,125,188,"Failed Specimen",20353,1,instance_npcname(strnpcinfo(0))+"::OnBossKill";
@@ -725,7 +725,7 @@ OnTouch:
 OnTouch:
 	.@event$ = instance_npcname("#rgsr_mob_2")+"::OnLeftKill";
 	if (mobcount('map$,.@event$)) {
-		dispbottom "Voice Behind Door : Who's outside? exterminate that strange poison gas!!";
+		dispbottom "门后的声音：外面是谁？消灭那奇怪的毒气！！";
 		end;
 	}
 	switch (atoi(replacestr(strnpcinfo(2),"rgsr_warp_",""))) {
@@ -744,7 +744,7 @@ OnTouch:
 1@rgsr,186,216,0	script	#rgsr_warp_5	WARPNPC,1,2,{
 	.@event$ = instance_npcname("#rgsr_mob_2")+"::OnTopKill";
 	if (mobcount('map$,.@event$)) {
-		mes "An unknown entity has been detected. Access Denied.";
+		mes "检测到未知实体。拒绝访问。";
 		close;
 	}
 	switch (atoi(replacestr(strnpcinfo(2),"rgsr_warp_",""))) {
@@ -759,7 +759,7 @@ OnTouch:
 1@rgsr,214,136,0	script	#rgsr_warp_7	WARPNPC,1,2,{
 	.@event$ = instance_npcname("#rgsr_mob_2")+"::OnRightKill";
 	if (mobcount('map$,.@event$) > 0 || 'rgsr < 7) {
-		mes "An unknown entity has been detected. Access Denied.";
+		mes "检测到未知实体。拒绝访问。";
 		close;
 	}
 	switch (atoi(replacestr(strnpcinfo(2),"rgsr_warp_",""))) {
@@ -785,103 +785,103 @@ OnTouch:
 
 1@rgsr,37,126,0	script	Researcher#rgsr_dum00	4_F_SCIENCE,{
 	mes "[Detained Researcher]";
-	mes "Why do I have to feed this traitors?";
+	mes "我为什么要喂这些叛徒？";
 	close;
 }
 
 1@rgsr,35,136,7	script	Researcher#rgsr_dum01	4_LGTSCIENCE,{
 	mes "[Detained Researcher]";
-	mes "I want to go home... I just want to go home...";
+	mes "我想回家……我只想回家……";
 	close;
 }
 
 1@rgsr,38,139,3	script	Researcher#rgsr_dum02	4_M_NFMAN,{
 	mes "[Detained Researcher]";
-	mes "Are you here to save us?";
-	mes "Thank you! Thank you!";
+	mes "你是来救我们的吗？";
+	mes "谢谢！谢谢！";
 	close;
 }
 
 1@rgsr,31,186,3	script	Researcher#rgsr_dum03	4_LGTSCIENCE,{
 	mes "[Detained Researcher]";
-	mes "What the hell is happening?";
-	mes "Aaaah... I just want to go home...";
+	mes "到底发生了什么？";
+	mes "啊啊啊……我只想回家……";
 	close;
 }
 
 1@rgsr,24,186,5	script	Researcher#rgsr_dum04	4_F_SCIENCE,{
 	mes "[Detained Researcher]";
-	mes "Why did you come here to save me?";
-	mes "The Enterprise's guards... no wait...";
+	mes "你为什么来这里救我？";
+	mes "企业的守卫……不，等等……";
 	next;
 	mes "[Detained Researcher]";
-	mes "I thought that you were the one who kept us in custody...!";
-	mes "Why would they do that?";
+	mes "我以为是你把我们关起来的……！";
+	mes "他们为什么要这么做？";
 	close;
 }
 
 1@rgsr,25,182,7	script	Researcher#rgsr_dum05	4_M_HUMAN_01,{
 	mes "[Detained Researcher]";
-	mes "These scumbags took my Research Report and I escaped here.";
-	mes "It was a spray repellent to block blood-sucking insects!";
+	mes "那些混蛋拿走了我的研究报告，我逃到了这里。";
+	mes "那是能阻挡吸血昆虫的喷雾驱虫剂！";
 	next;
 	mes "[Detained Researcher]";
-	mes "That was my private research, I don't know why they took it!";
-	mes "You can't just take away someone else's Research Report.";
+	mes "那是我的私人研究，我不知道他们为什么拿走！";
+	mes "不能随便拿走别人的研究报告。";
 	close;
 }
 
 1@rgsr,40,186,3	script	Rebellion Crew#rgsr_dum01	4_M_ILYA,{
 	mes "[Rebellion Crew]";
-	mes "I've come prepared, but this was easier than thought.";
-	mes "Now I'm stuck here. Hehehehe!";
+	mes "我做好了准备，但这比想象中容易。";
+	mes "现在我被困在这里了。嘿嘿嘿！";
 	close;
 }
 
 1@rgsr,33,185,3	script	Rebellion Crew#rgsr_dum02	4_M_REBELLION2,{
 	mes "[Rebellion Crew]";
-	mes "The remaining researchers are gathered here for their security.";
-	mes "The Rebellions will protect them and help them escape.";
+	mes "剩余研究员为了安全聚集在这里。";
+	mes "反叛军会保护他们并帮助逃离。";
 	close;
 }
 
 1@rgsr,31,183,5	script	Rebellion Crew#rgsr_dum03	4_F_ANYA,{
 	mes "[Rebellion Crew]";
-	mes "I thought they had less forces on the inside, but I didn't think they'd have installed toxic gas.";
-	mes "Most people have fled already, only the enemies are remaining.";
+	mes "我以为里面的敌人兵力较少，没想到他们还安装了毒气。";
+	mes "大多数人已经逃走，只剩敌人。";
 	close;
 }
 
 1@rgsr,195,205,0	script	Research Report#rgsr_00	4_ENERGY_BLUE,{
-	mes "It is a data on new efficiency and side effect of new potions.";
-	mes "However there is information about the core ingredients.";
+	mes "这是新药剂的效率和副作用数据。";
+	mes "其中包含核心成分的信息。";
 	close;
 }
 
 1@rgsr,198,199,0	script	Research Report#rgsr_01	4_ENERGY_BLUE,{
-	mes "Some of the drawing has been torn.";
-	mes "Somebody intentionally destroyed the relevant parts.";
+	mes "部分图纸被撕掉了。";
+	mes "有人故意破坏了相关部分。";
 	close;
 }
 
 1@rgsr,207,210,0	script	Research Report#rgsr_02	4_ENERGY_BLUE,{
-	mes "Parts of the documents were severely damaged.";
-	mes "It seems to have been about attempting to create a device using the refraction of light.";
+	mes "文件部分严重损坏。";
+	mes "似乎是在尝试利用光的折射制造装置。";
 	close;
 }
 
 1@rgsr,226,226,0	script	Research Report#rgsr_03	4_ENERGY_BLUE,{
-	mes "Lloyds's enchantment and processing data.";
-	mes "Only the title was left, all the text was removed.";
+	mes "Lloyds的附魔与加工数据。";
+	mes "只剩标题，正文全被删除。";
 	close;
 }
 
 1@rgsr,231,223,0	script	Research Report#rgsr_04	4_ENERGY_BLUE,{
-	mes "The booklet is missing some pages. Someone has deliberately omitted the material.";
+	mes "小册子缺了几页。有人故意删去了材料。";
 	close;
 }
 
 1@rgsr,243,223,0	script	Research Report#rgsr_05	4_ENERGY_BLUE,{
-	mes "The experimental data has been removed. There are clear traces of someone destroying the information.";
+	mes "实验数据被删除了。明显有人破坏了信息。";
 	close;
 }

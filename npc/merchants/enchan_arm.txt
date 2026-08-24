@@ -1,5 +1,5 @@
 //===== rAthena Script ======================================= 
-//= Armor Enchanter
+//= 防具附魔师
 //===== By: ================================================== 
 //= L0ne_W0lf
 //===== Current Version: ===================================== 
@@ -19,23 +19,23 @@
 
 prontera,165,60,2	script	Apprentice Craftsman	73,{
 	disable_items;
-	mes "[Apprentice Craftsman]";
+	mes "[工匠学徒]";
 	if (Zeny >= 400000) {
-		mes "I've been studying ways to enhance an armor to maximize its capability.";
+		mes "我一直在研究如何强化防具，使其能力最大化。";
 		next;
 		mes "[Apprentice Craftsman]";
-		mes "Enchanting is an awesome skill that infuses a mysterious status powers into the armor's hidden socket.";
+		mes "附魔是一项强大的技能，能将神秘的状态力量注入防具的隐藏插槽。";
 		next;
 		mes "[Apprentice Craftsman]";
-		mes "However, you have to keep in mind that if there are two armors of the same kind in your possession, the Enchantment will be applied in the order they are placed in your inventory.";
+		mes "不过请记住，如果你的物品栏里有两件同类防具，附魔会按它们在物品栏中的顺序进行。";
 		next;
 		mes "[Apprentice Craftsman]";
-		mes "In that case, the Enchantment may be applied to an item which you didn't mean to Enchant. So just bring ^5555ffONE Armor^000000 you want enchanted to be safe...";
+		mes "这样一来，附魔可能会施加到你不想附魔的物品上。为安全起见，请只带一件你想附魔的 ^5555ff防具^000000……";
 		next;
 		mes "[Apprentice Craftsman]";
-		mes "I'm not responsible for what would happen if you have more than one of the same kind in your inventory.";
+		mes "如果你的物品栏里有多件同类防具，后果由你自行承担。";
 		next;
-		switch(select("Non Slotted Armor.:Slotted Armor.:High Grade Armor.:Maybe next time.")) {
+		switch(select("无插槽防具。:有插槽防具。:高级防具。:下次再说。")) {
 		case 1:
 			setarray .@Items[0],2307,2309,2314,2316,2321,2325,2327,2328,2330,2332,2334,2335,2341,2344,2346,2348,2350,2337,2386,2394,2395,2396;
 			set .@j,50;
@@ -51,7 +51,7 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 			break;
 		case 4:
 			mes "[Apprentice Craftsman]";
-			mes "Please come back when you have any interest in enchanting your armor.";
+			mes "想为防具附魔时，请再来找我。";
 			close;
 		}
 		set .@menu$,"";
@@ -60,10 +60,10 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 		callsub S_EnchantArmor, .@Items[select(.@menu$)-1], .@j;
 		end;
 	}
-	mes "I am in charge of Enchanting Armors. Simply put, I've been studying ways to power-up armor.";
+	mes "我负责防具附魔。简单来说，我一直在研究提升防具力量的方法。";
 	next;
 	mes "[Apprentice Craftsman]";
-	mes "If by any chance, you would want to enchant your armor, bring me 400,000 zeny and the armor you want to enchant and you are all set to go.";
+	mes "如果你想为防具附魔，只要带来 400,000 Zeny 和想附魔的防具，就可以开始了。";
 	close;
 
 S_EnchantArmor:
@@ -71,27 +71,27 @@ S_EnchantArmor:
 	set .@failrate,getarg(1);
 	mes "[Apprentice Craftsman]";
 	if (countitem(.@itemid) == 1) {
-		mes "Socket enchant will cost you 400,000 zeny. And there will be a random option enchanted. Of course, there is a chance of breaking your armor.";
+	mes "插槽附魔需要 400,000 Zeny，并会随机附加一项属性。当然，也有损坏防具的可能。";
 		next;
 		mes "[Apprentice Craftsman]";
-		mes "First and most importantly.";
-		mes "^ff5555Existing Refine Level of the Armor";
-		mes "and Cards will be GONE.^000000";
-		mes "Do you still want to try an Enchant?";
+	mes "首先，也是最重要的。";
+	mes "^ff5555防具现有的精炼等级";
+	mes "和卡片都会消失。^000000";
+	mes "你还要尝试附魔吗？";
 		next;
-		if(select("Hmm... Let me think it over.:Go ahead.") == 1) {
+		if(select("嗯……让我想想。:开始吧。") == 1) {
 			mes "[Apprentice Craftsman]";
-			mes "Well, I can't blame you. Safety first, eh?";
-			mes "Now you have a nice day.";
+			mes "好吧，我不能怪你。安全第一，对吧？";
+			mes "祝你今天愉快。";
 			close;
 		}
 		mes "[Apprentice Craftsman]";
-		mes "Quite of an adventurer huh? Well, shall we?";
+		mes "真是个勇敢的冒险者啊？那么，开始吧？";
 		close2;
 		specialeffect2 EF_MAPPILLAR;
 		if (Zeny < 400000) {
 			mes "[Apprentice Craftsman]";
-			mes "Sorry, but you don't have enough zeny.";
+			mes "抱歉，你没有足够的 Zeny。";
 			close;
 		}
 		progressbar "ffff00",7;
@@ -137,15 +137,15 @@ S_EnchantArmor:
 			default:
 				specialeffect2 EF_PHARMACY_FAIL;
 				mes "[Apprentice Craftsman]";
-				mes "Well that's too bad.";
-				mes "The requested equipment has failed to enchant.";
+				mes "那真是太遗憾了。";
+				mes "指定的装备附魔失败。";
 				close;
 		}
 		getitem2 .@itemid, 1, 1, 0, 0, 0, 0, 0, .@addpart;
 	}
 	else {
-		mes "Hmm? There's nothing to be enchanted!";
-		mes "Please come back with just ONE equipment to be enchanted.";
+		mes "嗯？没有可附魔的物品！";
+		mes "请只带一件要附魔的装备再来。";
 		close;
 	}
 }

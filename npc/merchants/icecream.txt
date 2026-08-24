@@ -18,42 +18,42 @@
 
 -	script	Ice Cream Maker::IceCreamer	-1,{
 	mes "[Ice Cream Maker]";
-	mes "Fresh Ice Cream made with snow from Lutie!";
-	mes "Enjoy it now, it won't be on sale for long!";
-	mes "^3355FF100 Zeny^000000 Ice Cream,";
-	mes "Ice Cream!";
+	mes "用卢迪雪地的雪制作的新鲜冰淇淋！";
+	mes "现在就享用吧，出售时间有限！";
+	mes "^3355FF100 Zeny^000000 的冰淇淋，";
+	mes "冰淇淋！";
 	next;
-	if(select("Gimme Ice Cream!:Cancel Trade") == 2) {
-		mes "Are you sure you don't want any?";
-		mes "I won't be selling it for long,";
-		mes "and once I run out,";
-		mes "there won't be any more!!!";
+	if(select("给我冰淇淋！:取消交易") == 2) {
+		mes "您确定不要吗？";
+		mes "我不会卖很久，";
+		mes "一旦售罄，";
+		mes "就不会再有了！！！";
 		close;
 	}
 	mes "[Ice Cream Maker]";
-	mes "Fresh Ice Cream made with snow from Lutie!";
-	mes "Everyone wants our delicious ice cream, ";
-	mes "but we have a limited amount,";
-	mes "so you can only purchase 5 at a time!!";
+	mes "用卢迪雪地的雪制作的新鲜冰淇淋！";
+	mes "大家都想要我们美味的冰淇淋，";
+	mes "但库存有限，";
+	mes "所以每次最多只能购买 5 个！！";
 	next;
 	while(true) {
 		input .@input;
 		if(.@input < 1) {
 			mes "[Ice Cream Maker]";
-			mes "If you don't want to buy any,";
-			mes "could you please let the next customer";
-			mes "make a purchase?";
-			mes "Thank you.";
+			mes "如果您不想购买，";
+			mes "能否让下一位顾客";
+			mes "先购买呢？";
+			mes "谢谢。";
 			close;
 		}
 		if(.@input > 5) {
 			mes "[Ice Cream Maker]";
-			mes "Ouch";
-			mes "You expect too much.";
-			mes "Dear customer,";
-			mes "If you eat more than 5 Ice creams,";
-			mes "If you might haveto make a lot of trips";
-			mes "to the bathroom tonight.";
+			mes "哎哟。";
+			mes "您要求得太多了。";
+			mes "亲爱的顾客，";
+			mes "如果吃下超过 5 个冰淇淋，";
+			mes "今晚您可能要频繁";
+			mes "跑厕所了。";
 			next;
 			continue;
 		}
@@ -61,22 +61,21 @@
 	}
 	if(Zeny<.@input*100) {
 		mes "[Ice Cream Maker]";
-		mes "Dear customer, your wallet seems to be light.";
-		mes "Price is ^3355FF100 Zeny^000000 per ice cream.";
+		mes "亲爱的顾客，您的钱包似乎不够鼓。";
+		mes "每个冰淇淋售价 ^3355FF100 Zeny^000000。";
 		close;
 	}
 	if(checkweight(536,.@input) == 0) {
 		mes "[Ice Cream Maker]";
-		mes "Dear customer,you look like you're carrying a lot.";
-		mes "Ice Cream is fine,";
-		mes "but you must consider your weight";
-		mes "before making a purchase.";
+		mes "亲爱的顾客，您看起来携带了很多东西。";
+		mes "冰淇淋本身没问题，";
+		mes "但购买前请先考虑您的负重。";
 		close;
-	}
+		}
 	set Zeny,Zeny-100*.@input;
 	getitem 536,.@input;	// Ice_Cream
 	close;
-}
+	}
 
 // Alberta
 alberta,120,45,2	duplicate(IceCreamer)	Ice Cream Maker#1	85
@@ -86,3 +85,4 @@ moc_fild16,88,304,4	duplicate(IceCreamer)	Ice Cream Maker#2	85
 
 // Morocc
 //morocc,160,144,4	duplicate(IceCreamer)	Ice Cream Maker#3	85
+//
