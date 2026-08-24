@@ -19,51 +19,51 @@ geffen,115,107,5	script	Lord Kaho's Servant	61,{
 	set .@n$, "[Lord Kaho's Servant]";
 
 	mes .@n$;
-	mes "I worked myself to death trying to fulfill Lord Kaho's ridiculous expectations for a headgear!";
-	mes "Now that I've finally found the formula for the perfect headgear, I'm willing to share my time and talents.";
+	mes "为了满足 Kaho 大人对头饰的荒唐要求，我差点累死！";
+	mes "现在我终于找到了完美头饰的配方，愿意分享我的时间和才能。";
 	next;
 	mes .@n$;
-	mes "You need the following to get the Kaho horns:";
+	mes "要获得 Kaho 之角，需要以下物品：";
 	mes "3x ^0055FFEmperium^000000";
 	next;
 	mes .@n$;
-	mes "Oh yeah...";
-	mes "I also forgot to mention these...";
+	mes "对了……";
+	mes "我还忘了提到这些……";
 	next;
 	mes .@n$;
 	for(set .@i,0; .@i<10; set .@i,.@i+1)
-		mes "1x ^0055FF"+getitemname(.@Items[.@i])+"^000000 (from "+getmonsterinfo(.@Drops[.@i], MOB_NAME)+")";
+		mes "1 个^0055FF"+getitemname(.@Items[.@i])+"^000000（来自"+getmonsterinfo(.@Drops[.@i], MOB_NAME)+"）";
 	next;
 	mes .@n$;
-	mes "We're not done yet, sweetie...";
-	mes "I'm a big fan of dolls, so you need to bring me these cuties!";
+	mes "还没结束呢，亲爱的……";
+	mes "我很喜欢玩偶，所以你得带来这些可爱的小家伙！";
 	for(set .@i,10; .@i<18; set .@i,.@i+1)
 		mes "1x ^0055FF"+getitemname(.@Items[.@i])+"^000000";
 	next;
 	mes .@n$;
-	mes "Finally, I've worked hard to make these horns for my master with all the items mentioned above...";
-	mes "Please include ^0055FF5 million Zeny^000000 for my efforts."; 
+	mes "最后，我会用上述所有物品努力为主人制作这对角……";
+	mes "请为我的努力支付 ^0055FF500 万 Zeny^000000。"; 
 	next;
 	mes .@n$;
-	mes "Are you ready for me to make this special item?";
+	mes "准备好让我制作这件特殊物品了吗？";
 	next;
-	if(select("Sure am!:These requirements are unfathomable!")==2) {
+	if(select("当然准备好了！:这些要求太离谱了！")==2) {
 		mes .@n$;
-		mes "What I had to go through was more unfathomable...";
-		mes "If you succeed in getting these items, you will have incredible strength!";
+		mes "我经历的事情更加离谱……";
+		mes "如果你成功收集这些物品，就会获得惊人的力量！";
 		close; }
 	mes .@n$;
 	for(set .@i,0; .@i<18; set .@i,.@i+1)
 		if (!countitem(.@Items[.@i])) { set .@nr,1; break; }
 	if (.@nr || countitem(714) < 3 || Zeny < 5000000) {
-		mes "I can't afford to make this if you don't bring all materials needed. Please understand this is to benefit heroes such as yourself!";
+		mes "如果你不带齐材料，我无法负担制作成本。请理解，这是为了造福你这样的英雄！";
 		close; }
 	for(set .@i,0; .@i<18; set .@i,.@i+1)
 		delitem .@Items[.@i],1;
 	delitem 714,3;
 	set Zeny, Zeny-5000000;
-	mes "Wow! You are brave indeed!";
+	mes "哇！你真勇敢！";
 	getitem 5013,1;
-	mes "Enjoy being God of Midgard!";
+	mes "享受成为米德加尔特之神的感觉吧！";
 	close;
 }

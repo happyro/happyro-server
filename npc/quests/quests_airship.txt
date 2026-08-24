@@ -42,242 +42,138 @@
 airplane,47,61,7	script	Crewman	4_M_ZONDAOYAJI,{
 	mes "[Kain Himere]";
 	if (kain_ticket == 4) {
-		mes "Ah...";
-		mes "Here it is!";
+		mes "啊……在这里！";
 		next;
 		mes "[Kain Himere]";
-		mes "A few days ago, a customer";
-		mes "from Einbroch left this on the";
-		mes "Airship. He called and let us";
-		mes "know that he can't come back";
-		mes "to get it, but he is staying";
-		mes "over at the Einbroch Hotel.";
+		mes "几天前，一位来自艾因布洛克的客人把它落在飞艇上。他打电话说无法回来取，但住在艾因布洛克酒店。";
 		next;
 		mes "[Kain Himere]";
-		mes "I know it's a strange";
-		mes "favor to ask, but would";
-		mes "you deliver this to Defru";
-		mes "Ark at the Einbroch Hotel?";
-		mes "Of course, I'll repay you";
-		mes "upon your return.";
+		mes "我知道请求很奇怪，但你能把它送到艾因布洛克酒店的德弗鲁·阿克吗？回来后我会报答你。";
 		next;
 		setquest 2079;
 		kain_ticket = 5;
-		mes "^3355FFKain Himere has given you a small box.^000000";
+		mes "^3355FF凯恩·海默尔给了你一个小盒子。^000000";
 		close;
 	}
-	mes "Welcome to the Airship~";
-	mes "If you have questions or";
-	mes "need any assistance, please";
-	mes "don't hesitate to ask me or";
-	mes "any one of the other crewmen.";
+	mes "欢迎乘坐飞艇～有问题或需要帮助，请随时询问我或其他船员。";
 	next;
 	if (kain_ticket == 0 || kain_ticket == 1) {
-		switch(select("About the Airship...", "Leave a Comment" )) {
+		switch(select("关于飞艇……", "留下评论" )) {
 		case 1:
 			mes "[Kain Himere]";
 			kain_ticket++;
 			if (kain_ticket == 1) {
-				mes "Is this your first time flying?";
-				mes "I understand if you feel nervous. Before I worked here, I used to feel the same way. Still, this";
-				mes "Airship is pretty amazing. It's incredible what science can do...";
+				mes "这是你第一次飞行吗？紧张很正常。我来这里工作前也一样。不过这艘飞艇很神奇，科学真是不可思议……";
 				next;
 				mes "[Kain Himere]";
-				mes "I hear from the scholars";
-				mes "who developed the Airship";
-				mes "technology that just a little";
-				mes "piece of the heart of Ymir";
-				mes "generates the power for";
-				mes "this ship to fly. Incredible...";
+				mes "开发飞艇技术的学者说，只需一小块伊米尔之心，就能产生让飞艇飞行的力量。太不可思议了……";
 				next;
 				mes "[Kain Himere]";
-				mes "You know, scientific research";
-				mes "has made living easier and more";
-				mes "comfortable in the Schwarzwald";
-				mes "Republic, much in the way magic";
-				mes "research has changed life in the Rune-Midgarts Kingdom.";
+				mes "科学研究让施瓦尔茨共和国的生活更轻松舒适，就像魔法研究改变了卢恩·米德加尔特王国的生活。";
 			}
 			else {
-				mes "You want to hear more";
-				mes "about the Airship? Hmm,";
-				mes "there's not too much that";
-				mes "I know, but let me see...";
+				mes "想听更多飞艇的事？嗯，我知道的不多，让我想想……";
 				next;
 				mes "[Kain Himere]";
-				mes "Well, it's rumored that this";
-				mes "really big corporation runs";
-				mes "this Airship. Supposedly,";
-				mes "they've got their hands in";
-				mes "all sorts of enterprises.";
+				mes "据说一家大型企业经营这艘飞艇，并涉足各种行业。";
 				next;
 				mes "[Kain Himere]";
-				mes "Since the Airships are our";
-				mes "form of national transportation,";
-				mes "the higher-ups must be making";
-				mes "a ton of money. It's pretty crazy.";
+				mes "飞艇是国家交通工具，高层一定赚了很多钱。真疯狂。";
 			}
 			close;
 		case 2:
 			mes "[Kain Himere]";
-			mes "You wish to leave";
-			mes "a comment about our";
-			mes "service? Tell me your";
-			mes "message and I'll report";
-			mes "it to the higher ups.";
-			mes "To cancel, press '0'.";
+			mes "想对服务留下评论？告诉我留言，我会报告给上级。取消请输入“0”。";
 			next;
 			input .@comment$;
 			if (.@comment$ == "kafra") {
 				mes "[Kain Himere]";
-				mes "K-Kafra...?";
-				mes "Hmm, maybe I better";
-				mes "not send this up after all...";
+				mes "卡、卡普拉……？嗯，也许还是别上报了……";
 				emotion ET_FRET;
 			} else if (.@comment$ == "0") {
 				mes "[Kain Himere]";
-				mes "Ah, well, if you have any";
-				mes "helpful criticism about our";
-				mes "service, feel free to leave";
-				mes "me a comment at any time.";
+				mes "如果对服务有有益的批评，随时欢迎留言。";
 			} else {
 				mes "["+strcharinfo(0)+"]";
 				mes .@comment$+".";
 				next;
 				mes "[Kain Himere]";
-				mes "Hmmmm...";
-				mes "I see. Well, I'll";
-				mes "send your message";
-				mes "to my superiors as";
-				mes "soon as possible.";
-				mes "Thank you very much.";
+				mes "嗯……我明白了。我会尽快把留言转给上级。非常感谢。";
 			}
 			close;
 		}
 	} else if (kain_ticket == 2 || kain_ticket == 3) {
 		if (kain_ticket == 3) {
 			mes "[Kain Himere]";
-			mes "Oh, how are you?";
-			mes "If you don't mind me";
-			mes "asking, where are you";
-			mes "headed this time?";
+			mes "哦，你好吗？不介意的话，你这次要去哪里？";
 		} else {
-			select("About the Airship...");
+			select("关于飞艇……");
 			next;
 			mes "[Kain Himere]";
-			mes "You must really want to know all about the Airship, don't you? I'm sorry, but I don't know much more than what I've already told you.";
+			mes "你真的想了解飞艇的一切，对吧？抱歉，我知道的就这么多。";
 			next;
 			mes "[Kain Himere]";
-			mes "I guess if you'd want to know more, you should study to become a Sage in Juno and do your own Airship research...";
+			mes "如果想知道更多，就去朱诺学习成为贤者，自己研究飞艇吧……";
 			next;
 			mes "[Kain Himere]";
 			mes "^666666*Sob...*^000000";
-			mes "E-excuse me...";
+			mes "抱、抱歉……";
 			mes "^666666*Sniff*^000000";
 			next;
-			switch(select("What the hell...?:What's wrong?")) {
+			switch(select("搞什么……？:怎么了？")) {
 			case 1:
 				mes "[Kain Himere]";
-				mes "I-I'm sorry...";
-				mes "That was so";
-				mes "unprofessional.";
-				mes "H-have a safe trip";
-				mes "and th-thank you for";
-				mes "using the Airship! ^333333*Sob*^000000";
+				mes "对、对不起……太失礼了。祝你旅途平安，谢谢乘坐飞艇！^333333*抽泣*^000000";
 				close;
 			case 2:
 				mes "[Kain Himere]";
-				mes "I'm sorry, but it's";
-				mes "a long story. Plus,";
-				mes "you wouldn't understand...";
+				mes "抱歉，这是个很长的故事。而且你不会理解……";
 				next;
-				select("I have time for a long story.");
+				select("我有时间听你慢慢说。");
 				mes "[Kain Himere]";
-				mes "Alright, I might as well get";
-				mes "this off my chest. I guess it";
-				mes "all started when I was a young";
-				mes "man living in Einbech.";
+				mes "好吧，我还是说出来吧。故事始于我年轻时住在艾因贝赫。";
 				next;
 				mes "[Kain Himere]";
-				mes "Those days, I was pretty hot";
-				mes "headed and short tempered,";
-				mes "but working as a miner used to";
-				mes "always bring me a sense of peace. Staking my life with my friends, mining pick in hand. Yeah...";
+				mes "那时我脾气暴躁，但做矿工总能让我平静。和朋友们一起、手握矿镐，把生命交给矿井。是的……";
 				next;
 				mes "[Kain Himere]";
-				mes "It might have been dangerous,";
-				mes "but it was good, hard and honest work. You know, the mines that connected to the Einbech lode";
-				mes "used to be everything to our little town. But then, things changed...";
+				mes "工作可能危险，但辛苦而诚实。连接艾因贝赫矿脉的矿井曾是小镇的一切，但后来情况变了……";
 				next;
 				mes "[Kain Himere]";
-				mes "The factories started popping";
-				mes "up and all the ores were moved";
-				mes "to where the smokestacks never";
-				mes "stopped churning. More miners";
-				mes "started working in the factories and the mines became lonelier...";
+				mes "工厂开始兴起，矿石被运到烟囱永不停转的地方。更多矿工进了工厂，矿井变得更加冷清……";
 				next;
 				mes "[Kain Himere]";
-				mes "But I loved working on the";
-				mes "land so much, I kept at it";
-				mes "until the accident happened.";
-				mes "Now I can't use my right arm";
-				mes "the way I used to, so I had to";
-				mes "quit my job as a miner...";
+				mes "但我太喜欢这份工作，一直坚持到事故发生。现在右臂无法像过去那样使用，只好辞去矿工工作……";
 				next;
-				select("I'm sorry to hear that.");
+				select("听到这些我很难过。");
 				next;
 				mes "[Kain Himere]";
-				mes "Yeah...";
-				mes "I was really devastated";
-				mes "when it happened. Those";
-				mes "were probably the worst";
-				mes "years of my entire life.";
+				mes "是的……事故让我崩溃，那可能是我一生中最糟糕的几年。";
 				next;
 				mes "[Kain Himere]";
-				mes "I couldn't think about";
-				mes "life without mining and";
-				mes "I just lost all enthusiasm";
-				mes "for life. I developed a drinking problem and started shutting out my family. I was so stupid...";
+				mes "我无法想象没有采矿的生活，失去了对生活的热情。我开始酗酒，疏远家人。我真傻……";
 				next;
 				mes "[Kain Himere]";
-				mes "I still can't believe how";
-				mes "supportive my wife was during";
-				mes "those days. Even when I was at";
-				mes "my lowest, she tried to sooth my sorrow and even took on a job";
-				mes "to support me and our daughter.";
+				mes "我至今难以相信妻子当时多么支持我。即使我跌入低谷，她仍安慰我，还找工作养活我和女儿。";
 				next;
 				mes "[Kain Himere]";
-				mes "^666666*Sob*^000000 It was only after she";
-				mes "died that I realized how much";
-				mes "she must have suffered. To make";
-				mes "matters worse, I had to leave my daughter behind with a neighbor";
-				mes "while I searched for work...";
+				mes "^666666*抽泣*^000000 她去世后我才";
+				mes "她去世后我才意识到她承受了多少痛苦。更糟的是，我找工作时不得不把女儿留给邻居……";
 				next;
 				mes "[Kain Himere]";
-				mes "I spent years wandering";
-				mes "from town to town, living";
-				mes "a pretty wild life until I could pick myself up again. And finally, I became an Airship crewman.";
+				mes "我多年在城镇间流浪，过着放纵生活，直到重新振作。最终我成了飞艇船员。";
 				next;
 				mes "[Kain Himere]";
-				mes "It's been twenty years";
-				mes "since I've lost my family.";
-				mes "My daughter is somewhere";
-				mes "out there, but I can't even";
-				mes "remember her name...";
+				mes "我失去家人已经二十年。女儿就在某处，但我甚至不记得她的名字……";
 				next;
-				select("Have you tried looking for her?");
+				select("你试过找她吗？");
 				mes "[Kain Himere]";
-				mes "I tried going to the house";
-				mes "where my neighbor had lived,";
-				mes "but they moved out years ago.";
-				mes "I really have no clue where she";
-				mes "could be. But I don't deserve to see her. I was a horrible father!";
+				mes "我去过邻居曾住的房子，但他们几年前就搬走了。";
+				mes "我完全不知道她在哪里。但我不配见她，我是个糟糕的父亲！";
 				next;
 				mes "[Kain Himere]";
-				mes "^666666*Sob*^000000 I'm sorry you";
-				mes "had to hear all of that,";
-				mes "but I really appreciate that";
-				mes "you've listened to me. Now";
-				mes "tell me, where are you headed?";
+				mes "^666666*抽泣*^000000 抱歉让你";
+				mes "让你听了这么多，真抱歉。但谢谢你愿意倾听。你要去哪里？";
 				break;
 			}
 		}
@@ -286,72 +182,48 @@ airplane,47,61,7	script	Crewman	4_M_ZONDAOYAJI,{
 		case 1:
 			kain_ticket = 4;
 			mes "["+strcharinfo(0)+"]";
-			mes "I'm heading";
-			mes "to Einbroch.";
+			mes "我要去艾因布洛克。";
 			next;
 			mes "[Kain Himere]";
-			mes "Perfect...!";
-			mes "If you don't mind,";
-			mes "would you do a favor";
-			mes "for me? First, let me";
-			mes "find that package...";
+			mes "太好了……！如果你不介意，可以帮我一个忙吗？先让我找到那个包裹……";
 			close;
 		case 2:
 			kain_ticket = 3;
 			mes "["+strcharinfo(0)+"]";
-			mes "I'm heading";
-			mes "to Juno.";
+			mes "我要去朱诺。";
 			next;
 			mes "[Kain Himere]";
-			mes "Ah, I see...";
-			mes "There was something";
-			mes "I needed sent to Einbroch.";
-			mes "Anyway, have a good trip.";
-			mes "Oh, and thanks for listening.";
+			mes "啊，我明白了……我有东西要送到艾因布洛克。祝你旅途愉快。谢谢你倾听。";
 			close;
 		}
 	} else if (kain_ticket > 4 && kain_ticket < 10) {
 		mes "[Kain Himere]";
-		mes "Oh hello!";
-		mes "Things are a little";
-		mes "hectic right now, but";
-		mes "did you delive-- Oh!";
-		mes "Wait, excuse me! Sir--!";
+		mes "哦，你好！现在有点忙，不过你送到——哦！等等，抱歉！先生——！";
 		next;
 		mes "^3355FFKain seems too";
-		mes "busy to speak to";
-		mes "you right now...^000000";
+		mes "现在太忙，没法和你说话……^000000";
 	} else if (kain_ticket == 10) {
 		mes "[Kain Himere]";
-		mes "Welcome back to the Airship. So did you deliver that little box safely?";
+		mes "欢迎回到飞艇。那个小盒子安全送到了吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "No, unfortunately. He was away when I got there. Let me give this box back to you.";
+		mes "不幸的是，他不在。我把盒子还给你。";
 		next;
 		mes "[Kain Himere]";
-		mes "Oh...";
-		mes "What should I do now? Oh well, sorry for putting you through so much trouble.";
+		mes "哦……现在该怎么办？算了，抱歉让你费这么多功夫。";
 		next;
 		switch(select("Casually mention Miner's Song", "Suavely mention Tarsha")) {
 		case 1:
 			mes "["+ strcharinfo(0) +"]";
-			mes "While we're on the topic";
-			mes "of boxes and deliveries,";
-			mes "have you ever heard of";
-			mes "the ''Miner's Song?''";
+			mes "说到盒子和送货，你听过《矿工之歌》吗？";
 			next;
 			mes "[Kain Himere]";
 			mes "''Miner's Song...''";
-			mes "I miss singing that";
-			mes "while working the mines.";
-			mes "I used to sing it all the time";
-			mes "when I was younger, actually.";
+			mes "我怀念在矿井工作时唱它。年轻时我经常唱。";
 			next;
 			mes "[Kain Himere]";
-			mes "I think I sang it so";
-			mes "much, I even got my little";
-			mes "daughter to sing it with me~";
-			mes "(But what was her name?!)";
+			mes "我唱得太多了，甚至让小女儿和我一起唱～";
+			mes "（但她叫什么名字？！）";
 			break;
 		case 2:
 			mes "["+ strcharinfo(0) +"]";
@@ -359,145 +231,273 @@ airplane,47,61,7	script	Crewman	4_M_ZONDAOYAJI,{
 			mes "*Cou--TARSHA--Cough*^000000";
 			next;
 			mes "[Kain Himere]";
-			mes "What the...?";
-			mes "Wait. T-Tarsha...";
-			mes "Why does it feel like that";
-			mes "name means something?";
+			mes "什么……？等等。塔莎……为什么这个名字让我感觉如此熟悉？";
 			break;
 		}
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "You know...";
-		mes "I met a little girl in Einbroch";
-		mes "who was singing the ''Miner's";
-		mes "Song.'' It seems her mother";
-		mes "Tarsha had taught it to her.";
+		mes "你知道吗……我在艾因布洛克遇到一个唱《矿工之歌》的小女孩，似乎是她母亲塔莎教她的。";
 		next;
 		mes "[Kain Himere]";
-		mes "Interesting. But usually,";
-		mes "only miners would know ";
-		mes "that song. Does this have";
-		mes "anything to do with me?";
+		mes "有趣。不过通常只有矿工知道那首歌。这和我有关吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, this little girl's mother, Tarsha, learned the song from";
-		mes "her father who might have been";
-		mes "a miner. But he mysteriously";
-		mes "disappeared years ago...";
+		mes "这个女孩的母亲塔莎从父亲那里学会这首歌，而她父亲可能是矿工。但他多年前神秘失踪了……";
 		next;
 		mes "[Kain Himere]";
-		mes "Poor girl...!";
-		mes "Her father just";
-		mes "left her?! Why,";
-		mes "she's just like...";
+		mes "可怜的女孩……！她父亲就这样离开她？！为什么，她简直像……";
 		next;
 		mes "[Kain Himere]";
-		mes "Wait...";
-		mes "Sweet Christ...";
-		mes "The miner who taught";
-		mes "Tarsha that song might";
-		mes "have been... ^0000FFme^000000.";
+		mes "等等……天啊……教塔莎唱歌的矿工可能就是……^0000FF我^000000。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, for now, we can't";
-		mes "be too sure. Do you have";
-		mes "anything that might prove";
-		mes "you're Tarsha's father?";
+		mes "现在还不能确定。你有什么能证明自己是塔莎父亲的东西吗？";
 		next;
 		mes "[Kain Himere]";
-		mes "Ehhmmm...";
-		mes "Before I left own, I buried";
-		mes "some of my stuff underneath";
-		mes "a tree in Einbech. I can't exactly remember where, but my wife's";
-		mes "journal should be there.";
+		mes "嗯……离开小镇前，我把一些东西埋在艾因贝赫的一棵树下。记不清具体位置，但我妻子的日记应该在那里。";
 		next;
 		mes "[Kain Himere]";
-		mes "Since my wife kept track";
-		mes "of everything in her journal,";
-		mes "she should have written enough";
-		mes "about our daughter for us to know whether or not this Tarsha could be my long lost daughter.";
+		mes "妻子在日记里记录了一切，应该写过足够多关于女儿的事，可以确认塔莎是不是我失散多年的女儿。";
 		next;
 		mes "[Kain Himere]";
-		mes "Now, I can't really leave";
-		mes "the Airship, so would you help";
-		mes "me by finding that journal and";
-		mes "seeing if Tarsha is really related to me somehow? I'd be grateful";
-		mes "if you could do that for me...";
+		mes "我不能离开飞艇，你能帮我找到日记，确认塔莎是否与我有血缘关系吗？如果你能帮忙，我会非常感激……";
 		changequest 2081,2082;
 		kain_ticket = 11;
 	} else if (kain_ticket == 11 || kain_ticket == 12) {
 		mes "[Kain Himere]";
-		mes "Would you find my wife's";
-		mes "journal and see if Tarsha";
-		mes "is really my daughter? The";
-		mes "journal should be buried";
-		mes "underneath a tree in Einbech.";
+		mes "你能找到我妻子的日记，确认塔莎是不是女儿吗？日记应该埋在艾因贝赫的一棵树下。";
 	} else if (kain_ticket == 13) {
-		mes "^3355FFYou better fulfill Kain's";
-		mes "request by finding his wife's";
-		mes "journal and confronting Tarsha";
-		mes "before you speak to him again.^000000";
+		mes "^3355FF你最好完成凯恩的";
+		mes "先找到他妻子的日记并与塔莎见面，再去找他。^000000";
 	} else if (kain_ticket == 14) {
 		if (countitem(7276) == 1) {// Picture_Letter
-			mes "^3355FFYou give his wife's";
-			mes "journal to Kain and tell";
-			mes "him that you learn that Tarsha";
-			mes "is really his daughter and that";
-			mes "she is happily married and is";
-			mes "an inventor in Einbroch.^000000";
+			mes "^3355FF你把他妻子的日记";
+			mes "把日记交给凯恩，告诉他塔莎就是女儿，她已幸福结婚，并在艾因布洛克做发明家。^000000";
 			next;
-			mes "^3355FFKain's eyes well";
-			mes "with tears and his";
-			mes "entire body trembles";
-			mes "with unrestrainable joy.";
+			mes "^3355FF凯恩的眼中泛起泪光";
+			mes "他含泪而泣，整个身体因无法抑制的喜悦而颤抖。";
 			next;
 			mes "[Kain Himere]";
-			mes "She must have";
-			mes "had a hard time...";
-			mes "But she doesn't";
-			mes "hate me at all.";
+			mes "她一定吃了很多苦……但她一点也不恨我。";
 			next;
 			mes "[Kain Himere]";
-			mes "Rashelle?";
-			mes "Can you see me?";
-			mes "Can I really be this";
-			mes "happy? I'm so sorry,";
-			mes "my love... ^666666*Sob...*^000000";
+			mes "拉谢尔？你能看见我吗？我真的可以这么幸福吗？对不起，我的爱人……^666666*抽泣*^000000";
 			next;
 			mes "[Kain Himere]";
-			mes "Thank you for all of";
-			mes "your help, youngster.";
-			mes "And please, take this";
-			mes "as a token of my gratitude.";
+			mes "谢谢你的帮助，年轻人。请收下这个作为谢礼。";
 			next;
 			mes "[Kain Himere]";
-			mes "I know this isn't";
-			mes "much, but please";
-			mes "understand that it's";
-			mes "all I have to give you.";
-			mes "God bless you for all";
-			mes "you've done for me~";
+			mes "我知道这不多，但这是我能给你的全部。愿神保佑你为我所做的一切～";
 			completequest 2085;
 			kain_ticket = 15;
 			delitem 7276,1;// Picture_Letter
 			getitem 7311,4;// Free_Flying_Ship_Ticket
 		} else {
 			mes "^3355FFHmmm...";
-			mes "It would be better";
-			mes "if you approached";
-			mes "Kain with the Doodled";
-			mes "Letter that you received.^000000";
+		mes "最好带着收到的涂鸦信去找凯恩。^000000";
 		}
 	} else {
 		mes "[Kain Himere]";
-		mes "Oh, how are you";
-		mes "lately, my friend?";
-		mes "I've been doing great,";
-		mes "especially since you've";
-		mes "helped me find my daughter.";
-		mes "Enjoy your travels~";
+		mes "哦，朋友，最近好吗？我过得很好，尤其是你帮我找到了女儿。祝你旅途愉快～";
 	}
 	close;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 }
 
 //----------------------------------------------------------------------------
@@ -508,44 +508,45 @@ OnTouch_:
 	if (kain_ticket == 5) {
 		kain_ticket = 6;
 		mes "["+strcharinfo(0)+"]";
-		mes "Excuse me...?";
+		mes "打扰一下……？";
 		next;
-		mes "^3355FFNo one's here!^000000";
+
+		mes "^3355FF这里没人！^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "This must be the room...";
-		mes "But where the hell is he?";
-		mes "I can't just leave this stuff";
-		mes "here if he won't come back.";
+		mes "这里应该就是房间……";
+		mes "但他到底在哪里？";
+		mes "如果他不回来，";
+		mes "我不能把这些东西留在这里。";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Oh well...";
-		mes "I guess I can";
-		mes "just give this";
-		mes "back to Kain";
-		mes "on the Airship.";
+		mes "算了……";
+		mes "我想我可以";
+		mes "把这些东西";
+		mes "还给飞艇上的";
+		mes "Kain。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "While I'm in Einbroch,";
-		mes "I may as well take a look";
-		mes "around here and see if I can";
-		mes "find anything interesting. Still, I can't help but think of Kain";
-		mes "Himere's long lost daughter... ";
+		mes "既然我在艾因布罗赫，";
+		mes "不如在附近看看，";
+		mes "说不定能找到有趣的东西。";
+		mes "不过我还是忍不住想起 Kain";
+		mes "Himere 那个失踪已久的女儿……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Maybe...";
-		mes "Just maybe...";
-		mes "I can find some";
-		mes "sort of clue about";
-		mes "where she is. She might";
-		mes "even live here in Einbroch.";
+		mes "也许……";
+		mes "只是也许……";
+		mes "我能找到一些";
+		mes "关于她下落的线索。";
+		mes "她甚至可能";
+		mes "就住在艾因布罗赫。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I think I'll do that.";
-		mes "Maybe even right this";
-		mes "minute. Treat it like";
-		mes "sort of quest or something.";
-		mes "Yeah, that could work.";
+		mes "我想我就这么做。";
+		mes "也许就从现在开始。";
+		mes "把它当作";
+		mes "某种任务之类的。";
+		mes "嗯，应该可行。";
 		close;
 	}
 }
@@ -556,86 +557,86 @@ OnTouch_:
 ein_in01,261,241,3	script	Elle Cherno	4_F_KID2,3,3,{
 OnTouch_:
 	mes "[Elle Cherno]";
-	mes "Let's get to work";
-	mes "fear-less comraaades~!";
-	mes "Do our best! Nothing";
-	mes "can stop us, lads~!";
+	mes "开始工作吧，";
+	mes "无畏的伙伴们~！";
+	mes "尽我们所能！没有什么";
+	mes "能阻挡我们，小伙子们~！";
 	if (kain_ticket == 6) {
 		next;
-		switch(select("Hello!:What are you singing?")) {
+			switch(select("你好！:你在唱什么？")) {
 		case 1:
 			mes "[Elle Cherno]";
-			mes "Let's get to work";
-			mes "fear-less comraaades~!";
-			mes "Do our best! Nothing";
-			mes "can stop us, lads~!";
+			mes "开始工作吧，";
+			mes "无畏的伙伴们~！";
+			mes "尽我们所能！没有什么";
+			mes "能阻挡我们，小伙子们~！";
 			next;
 			mes "[Elle Cherno]";
-			mes "I like this song lots!";
-			mes "Especially when I yell out";
-			mes "''comrades!'' COMRADES!";
+			mes "我非常喜欢这首歌！";
+			mes "尤其是大喊";
+			mes "“伙伴们！”伙伴们！";
 			close;
 		case 2:
 			changequest 2079,2080;
 			kain_ticket = 7;
 			mes "[Elle Cherno]";
-			mes "This...?";
-			mes "It's the ''Miner's Song!''";
-			mes "My mommy taught it to me";
-			mes "and she sings it a lot. Daddy";
-			mes "says it's too noisy, though.";
+			mes "这个……？";
+			mes "这是“矿工之歌”！";
+			mes "妈妈教我的，";
+			mes "她经常唱。";
+			mes "不过爸爸说太吵了。";
 			next;
 			mes "[Elle Cherno]";
-			mes "Mmm, when my mommy sings";
-			mes "this song, sometimes she looks";
-			mes "a little sad. Jus' today she sang it a little and looked like she was gonna cry. ^666666*Gasp!*^000000 Wait, do you";
-			mes "think maybe Mommy's sick?";
+			mes "嗯，妈妈唱这首歌时";
+			mes "有时看起来有点悲伤。";
+			mes "今天她唱了一会儿，像是要哭了。^666666*倒吸气！*^000000 等等，你觉得";
+			mes "妈妈是不是生病了？";
 			next;
 			mes "[Elle Cherno]";
-			mes "Oh no, oh no...";
-			mes "Hey, will you go see";
-			mes "if my mommy's okay for me?";
-			mes "Please? Our house is behind";
-			mes "the Hotel, so tell me if she's";
-			mes "not feeling good, promise?";
+			mes "不好，不好……";
+			mes "你能替我去看看";
+			mes "妈妈是否安好吗？";
+			mes "拜托？我们家在";
+			mes "酒店后面，如果她不舒服，";
+			mes "请告诉我，好吗？";
 			close;
 		}
 	} else if (kain_ticket == 7) {
 		next;
 		mes "[Elle Cherno]";
-		mes "Our house is right";
-		mes "behind of the Hotel.";
-		mes "Will you go there and";
-		mes "see my mommy for me,";
-		mes "please? I'm worried...";
+		mes "我们家就在";
+		mes "酒店后面。";
+		mes "你能去那里";
+		mes "替我看看妈妈吗？";
+		mes "我很担心……";
 	} else if (kain_ticket == 13) {
 		next;
 		if (checkweight(7276,1) == 0) {
 			mes "[Elle Cherno]";
-			mes "Hey! I have something";
-			mes "to give you, but you have";
-			mes "tooooo much stuff! Hey,";
-			mes "come back later so I can";
-			mes "give it to you, okay?";
+			mes "嘿！我有东西";
+			mes "要给你，但你带的东西";
+			mes "太多了！请稍后再来，";
+			mes "这样我才能";
+			mes "把东西给你，好吗？";
 			close;
 		}
 		mes "[Elle Cherno]";
-		mes "You saw my grandpa?";
-		mes "You're his friend, right?";
-		mes "A-are you gonna see";
-		mes "him later? 'Cuz... cuz...";
+		mes "你见到我爷爷了？";
+		mes "你是他的朋友，对吧？";
+		mes "你、你之后还会见他吗？";
+		mes "因为……因为……";
 		next;
 		mes "[Elle Cherno]";
-		mes "I made this for him.";
-		mes "I don't know how to write,";
-		mes "but I made Grampa a letter";
-		mes "as best as I can. Will you";
-		mes "promise to give this to him";
-		mes "for me, pleeeeeease?";
+		mes "这是我为他做的。";
+		mes "我不会写字，";
+		mes "但我尽力给爷爷写了信。";
+		mes "你能答应替我";
+		mes "把它交给他吗？";
+		mes "拜托~~~~~~？";
 		next;
-		mes "^3355FFElle put a big";
-		mes "doodled message";
-		mes "into your hands.^000000";
+		mes "^3355FFElle 把一张写满涂鸦的";
+		mes "留言放到你手中。^000000";
+		mes " ";
 		changequest 2084,2085;
 		kain_ticket = 14;
 		getitem 7276, 1; //Picture_Letter
@@ -652,30 +653,30 @@ ein_in01,123,94,1	script	Theo Cherno	4_M_REPAIR,{
 		kain_ticket = 8;
 	} else if (kain_ticket > 7 && kain_ticket < 10) {
 		mes "[Theo Cherno]";
-		mes "You're very kind,";
-		mes "adventurer. There";
-		mes "should be more people";
-		mes "in the world like you.";
+		mes "你真善良，";
+		mes "冒险者。";
+		mes "世上应该多一些";
+		mes "像你这样的人。";
 	} else if (kain_ticket > 9 && kain_ticket < 13) {
 		mes "[Theo Cherno]";
-		mes "Are you sure";
-		mes "that you can find";
-		mes "Tarsha's father? Oh,";
-		mes "you must be a godsend!";
+		mes "你确定";
+		mes "能找到";
+		mes "Tarsha 的父亲吗？哦，";
+		mes "你一定是上天的恩赐！";
+		mes " ";
 	} else if (kain_ticket > 12) {
 		emotion ET_SMILE;
 		mes "[Theo Cherno]";
-		mes "I'm so happy";
-		mes "for my wife. I....";
-		mes "I don't know how";
-		mes "I can thank you...";
+		mes "我真为妻子";
+		mes "感到高兴。我……";
+		mes "我不知道";
+		mes "该如何感谢你……";
 	} else {
 		mes "[Theo Cherno]";
-		mes "Hmm...";
-		mes "Can we talk later?";
-		mes "I'm pretty busy trying";
-		mes "to fix this thing at";
-		mes "the moment.";
+		mes "嗯……";
+		mes "我们之后再聊好吗？";
+		mes "我现在正忙着";
+		mes "修理这个东西。";
 	}
 	close;
 }
@@ -689,226 +690,225 @@ ein_in01,125,99,3	script	Tarsha Cherno	4_F_EINWOMAN,{
 		kain_ticket = 8;
 	} else if (kain_ticket == 8) {
 		mes "[Tarsha Cherno]";
-		mes "Although most of these";
-		mes "contraptions aren't worth";
-		mes "showing off, we've put a lot";
-		mes "of work in inventing these";
-		mes "machines. So, of course,";
-		mes "they give us pride~";
+		mes "虽然这些装置大多";
+		mes "不值得炫耀，";
+		mes "但我们为发明这些机器";
+		mes "付出了大量努力。";
+		mes "所以当然会为它们自豪~";
+		mes " ";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "Maybe all these little";
-		mes "projects might not be";
-		mes "that impressive, but I like";
-		mes "to think of them as stepping";
-		mes "stones to future achievements.";
+		mes "也许这些小项目";
+		mes "并不怎么了不起，";
+		mes "但我喜欢把它们看作";
+		mes "通往未来成就的";
+		mes "垫脚石。";
 	} else if (kain_ticket == 9) {
 		mes "["+strcharinfo(0)+"]";
-		mes "Excuse me, ma'am,";
-		mes "but you have a scar";
-		mes "on your shoulder. Is";
-		mes "that from an accident?";
+		mes "打扰一下，女士，";
+		mes "你肩膀上有一道伤疤。";
+		mes "那是";
+		mes "事故留下的吗？";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "Oh, that's an old";
-		mes "injury that happened";
-		mes "years ago. I suppose";
-		mes "I was quite the trouble";
-		mes "maker to the people";
-		mes "who raised me...";
+		mes "哦，那是多年前";
+		mes "留下的旧伤。";
+		mes "我想，对于抚养我的人来说，";
+		mes "我当时";
+		mes "一定是个";
+		mes "麻烦制造者……";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "You see, I lost my parents";
-		mes "when I was very young. It";
-		mes "was only later when I realized";
-		mes "I was raised by foster parents.";
-		mes "I learned that my real mother";
-		mes "died a long time ago...";
+		mes "你看，我很小的时候";
+		mes "就失去了父母。";
+		mes "后来我才知道";
+		mes "自己是由养父母抚养长大的。";
+		mes "我得知亲生母亲";
+		mes "很久以前就去世了……";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "As for my father, no";
-		mes "one knows if he's dead";
-		mes "or alive. I tried my best";
-		mes "to my foster parents happy,";
-		mes "but I ended up being too rebellious and giving them grief.";
+		mes "至于父亲，没人知道";
+		mes "他是死是活。";
+		mes "我努力让养父母开心，";
+		mes "但最后却太过叛逆，";
+		mes "给他们带来了很多烦恼。";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "I finally left home and";
-		mes "studied mechanics. I met";
-		mes "my husband in school and";
-		mes "it was the greatest thing that";
-		mes "ever happened to me~";
+		mes "最后我离开家，";
+		mes "学习机械学。";
+		mes "我在学校遇见了丈夫，";
+		mes "那是我一生中";
+		mes "最美好的事情~";
 		emotion ET_THROB, getnpcid(0, "Theo Cherno");
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "By the way, I heard";
-		mes "your daughter singing";
-		mes "some sort of Miner's Song.";
-		mes "Did you teach her that?";
+		mes "对了，我听到";
+		mes "你女儿在唱";
+		mes "什么矿工之歌。";
+		mes "是你教她的吗？";
 		emotion ET_HUK;
 		emotion ET_HUK, getnpcid(0, "Theo Cherno");
 		next;
 		mes "[Theo Cherno]";
-		mes "I don't understand";
-		mes "why little Elle likes";
-		mes "such a rowdy, man song.";
-		mes "This is all your fault, Tarsha!";
+		mes "我不明白";
+		mes "小 Elle 为什么喜欢";
+		mes "这么喧闹的男人歌曲。";
+		mes "这全都是你的错，Tarsha！";
 		emotion ET_ANGER, getnpcid(0, "Theo Cherno");
 		next;
 		emotion ET_SMILE;
 		mes "[Tarsha Cherno]";
-		mes "Oh~hohohoho~";
-		mes "I was too young to";
-		mes "remember it clearly,";
-		mes "but I'm sure my real";
-		mes "father loved that song.";
+		mes "哦~呵呵呵呵~";
+		mes "我那时太小，";
+		mes "记不太清楚，";
+		mes "但我确定亲生父亲";
+		mes "很喜欢那首歌。";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "I barely recall that";
-		mes "he used to sing it while";
-		mes "cleaning our old house.";
-		mes "Yes, I don't remember what";
-		mes "he looked like, but he must";
-		mes "have been a miner at one time.";
+		mes "我只依稀记得";
+		mes "他过去会在";
+		mes "打扫旧房子时唱歌。";
+		mes "我不记得他的长相，";
+		mes "但他以前";
+		mes "一定是矿工。";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "A miner...?";
-		mes "(Wait, that crewman,";
-		mes "Kain Himere! He was";
-		mes "a miner who lost his";
-		mes "daughter! Just maybe...)";
+		mes "矿工……？";
+		mes "（等等，那个船员，";
+		mes "Kain Himere！他就是";
+		mes "失去女儿的矿工！";
+		mes "难道……）";
 		next;
 		emotion ET_SURPRISE;
 		mes "["+ strcharinfo(0) +"]";
-		mes "...!";
-		mes "Tarsha...";
-		mes "Your father";
-		mes "may still be alive!";
+		mes "……！";
+		mes "Tarsha……";
+		mes "你的父亲";
+		mes "也许还活着！";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "...What?";
+		mes "……什么？";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "I've got to go check";
-		mes "something now, but";
-		mes "hopefully I'll be back";
-		mes "soon with good news!";
+		mes "我现在得去确认一件事，";
+		mes "希望很快就能";
+		mes "带着好消息";
+		mes "回来！";
 		changequest 2080,2081;
 		kain_ticket = 10;
 	} else if (kain_ticket == 10 || kain_ticket == 11) {
 		mes "["+strcharinfo(0)+"]";
-		mes "Tarsha, I know someone";
-		mes "who might be your father!";
-		mes "Just wait for me and hopefully";
-		mes "I'll bring back good news soon!";
+		mes "Tarsha，我认识一个";
+		mes "可能是你父亲的人！";
+		mes "等着我，希望我很快";
+		mes "就能带回好消息！";
 	} else if (kain_ticket == 12) {
 		mes "[Tarsha Cherno]";
-		mes "Oh, welcome back~";
-		mes "So were you able to";
-		mes "bring back good news?";
+		mes "哦，欢迎回来~";
+		mes "你带回";
+		mes "好消息了吗？";
 		emotion ET_SMILE;
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Why, yes.";
-		mes "Speaking of which,";
-		mes "allow me to... check";
-		mes "something first...";
+		mes "是的。";
+		mes "说到这个，";
+		mes "请允许我……";
+		mes "先确认一件事……";
 		next;
-		switch(select("Check her neck.:Check her hands.:Check her legs.:Check her forehead.")) {
+		switch(select("检查她的脖子。:检查她的手。:检查她的腿。:检查她的额头。")) {
 		case 1:
-			mes "^3355FFUh oh...";
-			mes "Nothing's there!^000000";
+			mes "^3355FF糟糕……";
+			mes "那里什么都没有！^000000";
 			next;
 			mes "[Theo Cherno]";
-			mes "H-how rude!";
-			mes "Touching another";
-			mes "man's wife...?!";
+			mes "你、你真无礼！";
+			mes "竟敢触碰";
+			mes "别人的妻子……？！";
 			next;
 			specialeffect2 EF_PIERCE;
 			percentheal -10,0;
 			close;
 		case 2:
-			mes "^3355FFYou found";
-			mes "a burn mark on";
-			mes "her hand.^000000";
+			mes "^3355FF你在她的手上";
+			mes "发现了烧伤痕迹。^000000";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "That's it!";
-			mes "Tarsha, your";
-			mes "father's name is";
-			mes "Kain Himere and he's";
-			mes "working on the Airship";
-			mes "as one of the crewmen.";
+			mes "就是这个！";
+			mes "Tarsha，你的父亲叫";
+			mes "Kain Himere，他在飞艇上";
+			mes "担任船员。";
+			mes " ";
+			mes " ";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "He misses you";
-			mes "a lot and hopes";
-			mes "that you can forgive";
-			mes "him... Someday.";
+			mes "他非常想念你，";
+			mes "希望有一天";
+			mes "你能原谅他……";
+			mes " ";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "Are...";
-			mes "Are you serious?";
-			mes "My father's alive!";
-			mes "Oh thank god! Thank";
-			mes "you so much, adventurer!";
+			mes "你……";
+			mes "你说真的吗？";
+			mes "我的父亲还活着！";
+			mes "感谢上天！";
+			mes "太谢谢你了，冒险者！";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "...........";
-			mes "So that means, my";
-			mes "real name would be";
-			mes "^3131FFTarsha Himere Cherno^000000.";
+			mes "……";
+			mes "这么说，我的";
+			mes "真名应该是";
+			mes "^3131FFTarsha Himere Cherno^000000。";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "Oh, you're a godsend!";
-			mes "I'll never forget what you've";
-			mes "done for me! I must repay";
-			mes "you somehow! But all I know";
-			mes "is mechanical engineering...";
+			mes "哦，你是上天的恩赐！";
+			mes "我永远不会忘记你";
+			mes "为我做的一切！";
+			mes "我一定要想办法报答你！";
+			mes "但我只懂机械工程……";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "Oh, I know~";
-			mes "If you have any";
-			mes "^3131FFbroken equipment^000000,";
-			mes "I can fix it with this";
-			mes "Expert Repairman. It's";
-			mes "one of our best inventions!";
+			mes "哦，我知道了~";
+			mes "如果你有";
+			mes "^3131FF损坏的装备^000000，";
+			mes "我可以用这个";
+			mes "专家修理工修好。";
+			mes "这是我们最好的发明之一！";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "I must go and see";
-			mes "my real father soon!";
-			mes "I've missed him for years!";
-			mes "Thank you again for all";
-			mes "you've done for my family~";
+			mes "我必须尽快去见";
+			mes "亲生父亲！";
+			mes "我已经想念他很多年了！";
+			mes "再次感谢你";
+			mes "为我的家人所做的一切~";
 			next;
 			mes "[Tarsha Cherno]";
-			mes "Oh, and before you";
-			mes "go, would you go see";
-			mes "Elle again? She wanted to";
-			mes "talk to you for some reason.";
+			mes "哦，在你离开前，";
+			mes "能再去见见 Elle 吗？";
+			mes "她似乎有事";
+			mes "想和你谈谈。";
 			changequest 2083,2084;
 			kain_ticket = 13;
 			close;
 		case 3:
 			mes "^3355FFUh oh...";
-			mes "Nothing's there!^000000";
+			mes "那里什么都没有！^000000";
 			next;
 			mes "[Theo Cherno]";
-			mes "H-how rude!";
-			mes "Touching another";
-			mes "man's wife...?!";
+			mes "你、你真无礼！";
+			mes "竟敢触碰";
+			mes "别人的妻子……？！";
 			next;
 			specialeffect2 EF_PIERCE;
 			percentheal -20,0;
 			close;
 		case 4:
 			mes "^3355FFUh oh...";
-			mes "Nothing's there!^000000";
+			mes "那里什么都没有！^000000";
 			next;
 			mes "[Theo Cherno]";
-			mes "H-how rude!";
-			mes "Touching another";
-			mes "man's wife...?!";
+			mes "你、你真无礼！";
+			mes "竟敢触碰";
+			mes "别人的妻子……？！";
 			next;
 			specialeffect2 EF_PIERCE;
 			percentheal -10,0;
@@ -916,15 +916,15 @@ ein_in01,125,99,3	script	Tarsha Cherno	4_F_EINWOMAN,{
 		}
 	} else if (kain_ticket > 12) {
 		mes "[Tarsha Cherno]";
-		mes "I've been feeling great";
-		mes "after all you've done for";
-		mes "us. Once again, I'd like to";
-		mes "thank you, kind adventurer.";
+		mes "多亏你为我们做的一切，";
+		mes "我一直感觉很好。";
+		mes "再次感谢你，";
+		mes "善良的冒险者。";
 	} else {
 		mes "[Tarsha Cherno]";
-		mes "I'm sorry, but";
-		mes "we're pretty busy.";
-		mes "Please excuse us~";
+		mes "抱歉，";
+		mes "我们现在很忙。";
+		mes "请原谅我们~";
 	}
 	close;
 }
@@ -948,120 +948,115 @@ function	script	F_Cherno	{
 	emotion ET_SWEAT, getnpcid(0, "Tarsha Cherno");
 	next;
 	mes "[Theo Cherno]";
-	mes "Honey...";
-	mes "I think there's";
-	mes "a critical structural";
-	mes "problem with the joint.";
+	mes "亲爱的……";
+	mes "我觉得这个连接处";
+	mes "存在严重的";
+	mes "结构问题。";
 	next;
 	mes "[Tarsha Cherno]";
-	mes "They must not";
-	mes "be connected right.";
-	mes "Maybe if we... Hmmm.";
+	mes "它们一定没有";
+	mes "正确连接。";
+	mes "也许我们可以……嗯。";
 	next;
 	mes "[Theo Cherno]";
-	mes "Well, let's call";
-	mes "it a day and finish";
-	mes "this tomorrow, yeah?";
+	mes "那么今天就到这里，";
+	mes "明天再完成它，";
+	mes "怎么样？";
 	next;
 	emotion ET_QUESTION, getnpcid(0, "Tarsha Cherno");
 	mes "[Tarsha Cherno]";
-	mes "Oh~";
-	mes "I didn't know we";
-	mes "had a guest. Hello,";
-	mes "how are you doing?";
-	mes "Are you interested in";
-	mes "any of our inventions?";
+	mes "哦~";
+	mes "我不知道家里来了客人。";
+	mes "你好，最近怎么样？";
+	mes "你对我们的发明";
+	mes "感兴趣吗？";
+	mes " ";
 	next;
 	switch(select("Nothing.:Your daughter asked me to visit you.")) {
 	case 1:
 		mes "[Theo Cherno]";
-		mes "Oh yes, my wife are";
-		mes "I are keeping ourselves";
-		mes "busy by conducting research.";
-		mes "We're trying to invent new";
-		mes "things for better living.";
-		mes "It's what we do...";
+		mes "哦，是的，我和妻子";
+		mes "一直忙于研究。";
+		mes "我们努力发明";
+		mes "改善生活的新东西。";
+		mes "这就是我们的工作……";
+		mes " ";
 		close;
 	case 2:
 		emotion ET_SWEAT, getnpcid(0, "Tarsha Cherno");
 		emotion ET_SWEAT, getnpcid(0, "Theo Cherno");
 		mes "[Tarsha Cherno]";
-		mes "Hahaha, Elle?";
-		mes "Why would our";
-		mes "daughter send";
-		mes "you to visit us?";
+		mes "哈哈哈，Elle？";
+		mes "我们的女儿";
+		mes "为什么会让你";
+		mes "来拜访我们？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Well, uh...";
-		mes "She wanted me to";
-		mes "check if her mom";
-		mes "was sick or sad";
-		mes "...Or something?";
+		mes "嗯，这个……";
+		mes "她想让我确认";
+		mes "她妈妈是否";
+		mes "生病或悲伤";
+		mes "……之类的？";
 		next;
 		emotion ET_HUK, getnpcid(0, "Tarsha Cherno");
 		mes "[Tarsha Cherno]";
-		mes "Oh my god...!";
-		mes "What is she thinking?";
-		mes "I apologize for troubling";
-		mes "you over this kind of silly";
-		mes "mistake, adventurer!";
+		mes "天啊……！";
+		mes "她到底在想什么？";
+		mes "很抱歉因为这种小错误";
+		mes "给你添麻烦了，";
+		mes "冒险者！";
 		next;
 		mes "[Theo Cherno]";
-		mes "But wait, darling.";
-		mes "I agree that sometimes";
-		mes "you look like the loneliest";
-		mes "person in the world, gazing";
-		mes "out that window with those";
-		mes "impossibly wistful eyes.";
+		mes "但是等等，亲爱的。";
+		mes "我承认，有时候你望着窗外，";
+		mes "那双眼睛忧郁得难以置信，";
+		mes "看起来像是世界上";
+		mes "最孤独的人。";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "Oh, I must be";
-		mes "making my family";
-		mes "very anxious. But";
-		mes "don't you worry, love.";
-		mes "I'm very happy with";
-		mes "you and Elle.";
+		mes "哦，我一定让家人";
+		mes "非常担心了。";
+		mes "不过别担心，亲爱的。";
+		mes "和你还有艾尔在一起，";
+		mes "我非常幸福。";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "And...";
-		mes "Kind adventurer,";
-		mes "may I ask your name?";
+		mes "还有……";
+		mes "善良的冒险者，";
+		mes "可以告诉我你的名字吗？";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "I am called,";
-		mes ""+ strcharinfo(0) +".";
+		mes "我叫";
+		mes ""+ strcharinfo(0) +"。";
 		emotion ET_SMILE;
 		next;
 		mes "[Tarsha Cherno]";
-		mes ""+ strcharinfo(0) +",";
-		mes "I appreciate your";
-		mes "concern for us. Would";
-		mes "you stay for a cup of tea?";
+		mes ""+ strcharinfo(0) +"，";
+		mes "谢谢你的关心。";
+		mes "留下来喝杯茶，";
+		mes "好吗？";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "Now, please pardon the";
-		mes "mess. My husband and I are";
-		mes "mechanical engineers focused";
-		mes "on creating machines that would";
-		mes "reduce the risk of mining ores.";
+		mes "请原谅这里有些杂乱。";
+		mes "我和丈夫都是机械工程师，";
+		mes "专注于制造能够降低";
+		mes "矿石开采风险的机器。";
 		next;
 		mes "[Tarsha Cherno]";
-		mes "Since we work at home, we";
-		mes "can't avoid having machine";
-		mes "parts lying here and there";
-		mes "sometimes. In any case, we're";
-		mes "hoping we create a machine that could make miners' lives safer...";
+		mes "因为我们在家工作，";
+		mes "有时难免把机器零件";
+		mes "随处放置。不管怎样，";
+		mes "我们希望制造出能让矿工";
+		mes "生活更安全的机器……";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Ah...";
-		mes "So that's why";
-		mes "there's so many";
-		mes "interesting things";
-		mes "in your house...";
+		mes "啊……";
+		mes "原来如此，";
+		mes "难怪你家里有这么多";
+		mes "有趣的东西……";
 		next;
-		mes "^3355FFYou begin to";
-		mes "take a look around";
-		mes "the Cherno household.^000000";
+		mes "^3355FF你开始四处观察";
+		mes "切尔诺家的内部。^000000";
 		return;
 	}
 }
@@ -1070,11 +1065,10 @@ function	script	F_Cherno	{
 // Unidentified Machine
 //----------------------------------------------------------------------------
 ein_in01,122,103,5	script	Unidentified Machine#ein	HIDDEN_NPC,{
-	mes "^3355FFIt's...";
-	mes "It's a really";
-	mes "strange looking";
-	mes "machine. Does it";
-	mes "even do anything?^000000";
+	mes "^3355FF这是……";
+	mes "一台外形非常奇怪的";
+	mes "机器。它到底";
+	mes "有什么用呢？^000000";
 	close;
 }
 
@@ -1083,117 +1077,108 @@ ein_in01,122,103,5	script	Unidentified Machine#ein	HIDDEN_NPC,{
 //----------------------------------------------------------------------------
 ein_in01,121,99,3	script	Mirror#ein	HIDDEN_NPC,{
 	if (kain_ticket == 8) {
-		mes "^3355FFIt's a mirror.";
-		mes "So, of course the";
-		mes "first thing you'll";
-		mes "see is yourself.";
+		mes "^3355FF这是一面镜子。";
+		mes "所以，你首先看到的";
+		mes "当然是自己。";
 		next;
 		.@r = rand(1,5);
 		if (.@r == 5) {
 			mes "["+strcharinfo(0)+"]";
-			mes "Oh wow...";
-			mes "I look pretty good.";
-			mes "No wait. Really, really";
-			mes "good. So this must be";
-			mes "why I get such great";
-			mes "service at restaurants...";
+			mes "哦，哇……";
+			mes "我看起来真不错。";
+			mes "不，等等，是真的非常好。";
+			mes "难怪我在餐厅总能";
+			mes "得到这么好的服务……";
 		} else if (Sex == SEX_MALE) {
 			switch(.@r) {
 			case 1:
 				mes "["+strcharinfo(0)+"]";
-				mes "Man...";
-				mes "I didn't know";
-				mes "I was so good";
-				mes "looking! Ooh yah~";
+				mes "天啊……";
+				mes "我不知道自己";
+				mes "看起来这么帅！";
+				mes "哦耶~";
 				break;
 			case 2:
 				mes "["+strcharinfo(0)+"]";
-				mes "Whoa...";
-				mes "So that's why the";
-				mes "ladies keep looking";
-				mes "at me. I'm a walking";
-				mes "free gun show!";
+				mes "哇……";
+				mes "难怪女士们总是";
+				mes "盯着我看。";
+				mes "我简直就是移动的";
+				mes "免费健身展示！";
 				break;
 			case 3:
 				mes "["+strcharinfo(0)+"]";
-				mes "It's a shame I can't job";
-				mes "change to Male Model.";
-				mes "Clearly, I'd be like, Job";
-				mes "Level 87 or something.";
-				mes "Man, I'm beautiful...";
+				mes "真遗憾我不能转职";
+				mes "成为男模。";
+				mes "我肯定能达到";
+				mes "87级之类的。";
+				mes "天啊，我真美……";
 				break;
 			case 4:
 				mes "["+strcharinfo(0)+"]";
-				mes "This is my reflection?!";
-				mes "No one can be this good";
-				mes "looking, not without special";
-				mes "effects! I mean, it's not";
-				mes "fair to everyone else...";
+				mes "这是我的倒影？！";
+				mes "没人能长得这么好看，";
+				mes "除非用了特殊效果！";
+				mes "这对其他人来说不公平……";
 				break;
 			}
 		} else {
 			switch(.@r) {
 			case 1:
 				mes "["+strcharinfo(0)+"]";
-				mes "Oh. Wow.";
-				mes "I never realized...";
-				mes "Everything is in";
-				mes "perfect proportion!";
-				mes "No wonder people";
-				mes "want to party with me~";
+				mes "哦，哇。";
+				mes "我从没意识到……";
+				mes "一切都如此";
+				mes "比例完美！";
+				mes "难怪大家都想";
+				mes "和我组队~";
 				break;
 			case 2:
 				mes "["+strcharinfo(0)+"]";
-				mes "Oh my gosh~";
-				mes "How can I look this";
-				mes "good without any makeup?";
-				mes "I-It isn't fair to all the other";
-				mes "girls... Wow, is this really me?";
+				mes "天哪~";
+				mes "不化妆也能看起来";
+				mes "这么漂亮吗？";
+				mes "这、这对其他女孩不公平……";
+				mes "哇，这真的是我吗？";
 				break;
 			case 3:
 				mes "["+strcharinfo(0)+"]";
-				mes "Am I going crazy?";
-				mes "Is that girl in the";
-				mes "mirror really me...?";
-				mes "How did I not realize";
-				mes "how gorgeous I look?";
+				mes "我是不是疯了？";
+				mes "镜子里的女孩";
+				mes "真的是我吗……？";
+				mes "我怎么没发现自己";
+				mes "竟然这么漂亮？";
 				break;
 			case 4:
 				mes "["+strcharinfo(0)+"]";
-				mes "So...";
-				mes "What did you do with";
-				mes "this mirror? Because I'm";
-				mes "looking at my reflection";
-				mes "and I can't seem to find";
-				mes "any flaws with my figure...";
+				mes "所以……";
+				mes "你对这面镜子做了什么？";
+				mes "因为我看着自己的倒影，";
+				mes "却找不到身材的任何缺点……";
 				next;
 				emotion ET_PROFUSELY_SWEAT, getnpcid(0, "Tarsha Cherno");
 				mes "[Tarsha Cherno]";
-				mes "Actually...";
-				mes "That's not one";
-				mes "of our inventions.";
-				mes "It's just a normal mirror...";
+				mes "其实……";
+				mes "那不是我们的发明。";
+				mes "只是一面普通的镜子……";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Well now...!";
-				mes "Are you sure?";
-				mes "Because my face looks";
-				mes "freakin' immaculate! And";
-				mes "it's like, I'm almost too sexy!";
+				mes "好吧……！";
+				mes "你确定吗？";
+				mes "因为我的脸看起来";
+				mes "简直完美无瑕！";
+				mes "我都快性感过头了！";
 				break;
 			}
 		}
 		next;
-		mes "^3355FFAfter enjoying that";
-		mes "little epiphany, you";
-		mes "see a reflection of";
-		mes "Tarsha's neck as you";
-		mes "set the mirror back down.^000000";
+		mes "^3355FF这番小小的自我陶醉后，";
+		mes "你把镜子放回原处时，";
+		mes "看到了塔莎脖子的倒影。^000000";
 		next;
-		mes "^3355FFAs you take a closer";
-		mes "look, you find that there's";
-		mes "a strange mark around her";
-		mes "neck. What ever could it mean?^000000";
+		mes "^3355FF仔细观察后，你发现她的";
+		mes "脖子周围有个奇怪的印记。";
+		mes "那究竟意味着什么？^000000";
 		kain_ticket = 9;
 		close;
 	}
@@ -1204,10 +1189,8 @@ ein_in01,121,99,3	script	Mirror#ein	HIDDEN_NPC,{
 //----------------------------------------------------------------------------
 einbech,45,113,5	script	Tree#t1-1::Tree	HIDDEN_NPC,{
 	if (kain_ticket == 11) {
-		mes "^3355FFYou crouch down";
-		mes "under the tree and";
-		mes "begin digging into";
-		mes "the ground.^000000";
+		mes "^3355FF你蹲在树下，";
+		mes "开始挖掘地面。^000000";
 		next;
 		mes "...";
 		mes "......";
@@ -1218,28 +1201,24 @@ einbech,45,113,5	script	Tree#t1-1::Tree	HIDDEN_NPC,{
 		next;
 		.@find_diary = rand(1,100);
 		if (.@find_diary > 10) {
-			mes "^3355ffUnfortunately,";
-			mes "you weren't able";
-			mes "to find anything.^000000";
+			mes "^3355ff遗憾的是，";
+			mes "你什么也没找到。^000000";
 		} else {
-			mes "^3355FFYou have found a journal";
-			mes "among some other articles";
-			mes "that have been buried by Kain.";
-			mes "You open the journal and begin";
-			mes "to read what's written inside.^000000";
+			mes "^3355FF你在凯恩埋藏的其他物品中";
+			mes "发现了一本日记。";
+			mes "你打开日记，开始阅读里面的内容。^000000";
 			callsub L_Diary;
 			next;
 			mes "...";
 			mes "......";
 			next;
-			mes "^3355FFThat was the last page of the journal. You picked it up so that you can bring it over to ^3131FFTarsha.^000000";
+			mes "^3355FF这是日记的最后一页。你捡起日记，准备把它交给^3131FF塔莎。^000000";
 			changequest 2082,2083;
 			kain_ticket = 12;
 		}
 	} else if (kain_ticket == 12) {
-		mes "^3355FFYou open";
-		mes "the journal";
-		mes "and begin to read...^000000";
+		mes "^3355FF你打开日记，";
+		mes "开始阅读……^000000";
 		callsub L_Diary;
 	}
 	else
@@ -1251,143 +1230,164 @@ L_Diary:
 	mes "...";
 	mes "......";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363I'm sooo happy";
-	mes "to be with Kain.";
-	mes "He's such an honest,";
-	mes "sincere man, even if";
-	mes "he is quiet sometimes.";
+	mes "<日期：OX OX>";
+	mes "^856363我和凯恩在一起";
+	mes "真的好幸福。";
+	mes "他是个诚实真挚的人，";
+	mes "虽然有时很沉默。";
 	next;
-	mes "^856363Although he's a very";
-	mes "good husband to me,";
-	mes "I'm not so good at being";
-	mes "a housewife. But I'll do";
-	mes "my very best for us both.";
+	mes "^856363虽然他是个很好的丈夫，";
+	mes "但我不太擅长做家庭主妇。";
+	mes "不过我会为了我们俩";
+	mes "尽最大的努力。";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363I fell asleep while";
-	mes "fixing dinner and burned";
-	mes "all the food. How can I be";
-	mes "so careless? But Kain ate";
-	mes "every bite, even if he had";
-	mes "to pretend that he liked it.^000000";
+	mes "<日期：OX OX>";
+	mes "^856363我做晚饭时睡着了，";
+	mes "把食物全烧焦了。怎么会这么粗心？";
+	mes "但凯恩把每一口都吃了，";
+	mes "即使他必须假装喜欢。^000000";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Kain and I will be having";
-	mes "a child soon! I'm so happy,";
-	mes "but I'm also a little worried";
-	mes "sometimes. Kain is all smiles";
-	mes "though, and he gives me relief.^000000";
+	mes "<日期：OX OX>";
+	mes "^856363凯恩和我很快就要有孩子了！";
+	mes "我好幸福，虽然有时也有点担心。";
+	mes "不过凯恩总是面带笑容，";
+	mes "让我安心。^000000";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363More people have been";
-	mes "leaving the mines to work";
-	mes "for the new factories, many";
-	mes "of them Kain's friends. I think";
-	mes "Kain's pride was pretty hurt.";
-	mes "I wonder how I can help him?^000000";
+	mes "<日期：OX OX>";
+	mes "^856363越来越多人离开矿山，";
+	mes "去新工厂工作，其中很多是凯恩的朋友。";
+	mes "我想凯恩的自尊心受到了伤害。";
+	mes "不知道我该怎样帮助他？^000000";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Kain and I are now the";
-	mes "proud parents of a beautiful";
-	mes "baby girl. We named her ^000000Tarsha^856363";
-	mes "and she has her father's eyes.";
-	mes "I'm going to be the best mother";
-	mes "that I can possibly be for her.";
+	mes "<日期：OX OX>";
+	mes "^856363凯恩和我现在是一个漂亮女婴的骄傲父母。";
+	mes "我们给她取名为^000000塔莎^856363，";
+	mes "她有一双父亲般的眼睛。";
+	mes "我会尽力成为她最好的母亲。";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Tarsha called me";
-	mes "''Mommy'' for the first";
-	mes "time! It's a miracle!";
-	mes "I want nothing else in";
-	mes "the world but for her to";
-	mes "be happy and healthy.^000000";
+	mes "<日期：OX OX>";
+	mes "^856363塔莎第一次叫我‘妈妈’！";
+	mes "这是奇迹！";
+	mes "我在世上别无所求，";
+	mes "只希望她幸福健康。^000000";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Kain got into an accident";
-	mes "at the mine. While they were";
-	mes "digging ores, toxic gas was";
-	mes "released somehow. It wasn't";
-	mes "lethal, but Kain's arm has";
-	mes "been partly paralyzed...^000000";
+	mes "<日期：OX OX>";
+	mes "^856363凯恩在矿山出了事故。";
+	mes "他们挖矿时不知怎的释放了毒气。";
+	mes "虽然没有致命，";
+	mes "但凯恩的手臂部分瘫痪了……^000000";
 	next;
-	mes "^856363When the doctor said that";
-	mes "it may even affect his memories";
-	mes "later, he became so depressed.";
-	mes "I tried to make him feel better";
-	mes "by making his favorite soup.";
-	mes "He smiled, but I could tell...^000000";
+	mes "^856363医生说这甚至可能影响他的记忆，";
+	mes "他变得非常抑郁。";
+	mes "我煮了他最喜欢的汤，";
+	mes "试着让他感觉好一些。";
+	mes "他笑了，但我看得出来……^000000";
 	next;
-	mes "^856363I could tell he's";
-	mes "not alright with this.";
-	mes "I hope he feels better";
-	mes "soon. His despair is";
-	mes "at least as great as his";
-	mes "passion for his job.^000000";
+	mes "^856363我看得出他对此很难受。";
+	mes "希望他很快好起来。";
+	mes "他的绝望至少和他对工作的热情一样强烈。^000000";
 	next;
 	mes "...";
 	mes "......";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Kain's drinking is";
-	mes "getting worse. He comes";
-	mes "home too often screaming";
-	mes "and yelling. There's too";
-	mes "much anger in him and he's";
-	mes "not the same anymore...";
+	mes "<日期：OX OX>";
+	mes "^856363凯恩酗酒越来越严重。";
+	mes "他回家时经常尖叫大喊。";
+	mes "他心中充满怒火，";
+	mes "已经不再是从前的他了……";
 	next;
 	mes "...";
 	mes "......";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Tarsha got her hand";
-	mes "scalded from boiling";
-	mes "water while playing in";
-	mes "the kitchen. Although she";
-	mes "was treated, she'll always";
-	mes "have that ^000000burn mark^856363.^000000";
+	mes "<日期：OX OX>";
+	mes "^856363塔莎在厨房玩耍时，";
+	mes "手被沸水烫伤了。";
+	mes "虽然接受了治疗，";
+	mes "但她永远会留下那个^000000烧伤痕迹^856363。^000000";
 	next;
-	mes "^856363After we got home from";
-	mes "the doctor's, Tarsha laughed";
-	mes "and played with her doll as if";
-	mes "nothing ever happened. But for";
-	mes "some reason, I couldn't stop";
-	mes "myself from crying...^000000";
+	mes "^856363离开医生那里后，塔莎笑着";
+	mes "和她的娃娃玩耍，仿佛什么都没发生。";
+	mes "但不知为什么，我忍不住哭了……^000000";
 	next;
 	mes "...";
 	mes "......";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Kain comes home less";
-	mes "nowadays. I've had to";
-	mes "start working in the store";
-	mes "after we spent all of our";
-	mes "savings. It's tough working";
-	mes "and taking care of the family.";
+	mes "<日期：OX OX>";
+	mes "^856363凯恩最近很少回家。";
+	mes "我们的积蓄花光后，";
+	mes "我不得不开始在店里工作。";
+	mes "既要工作又要照顾家庭，真的很辛苦。";
 	next;
-	mes "^856363Still, it's all worth";
-	mes "it to see Tarsha's smile.";
-	mes "But I can never stop worrying";
-	mes "about my poor, dear Kain...";
+	mes "^856363不过看到塔莎的笑容，";
+	mes "一切都值得。";
+	mes "但我永远无法停止担心";
+	mes "我可怜的凯恩……";
 	next;
 	mes "...";
 	mes "......";
 	next;
-	mes "<Date : OX OX>";
-	mes "^856363Everyday, I feel weaker";
-	mes "and weaker, as if I die";
-	mes "just a little more each day.";
-	mes "I wanted to tell Kain about";
-	mes "what the doctor said, but he's";
-	mes "not ready for this news yet...^000000";
+	mes "<日期：OX OX>";
+	mes "^856363我每天都感觉越来越虚弱，";
+	mes "仿佛每天都离死亡更近一点。";
+	mes "我想告诉凯恩医生说的话，";
+	mes "但他还没有准备好接受这个消息……^000000";
 	next;
-	mes "^856363Lately, Tarsha cries";
-	mes "a lot. My poor baby loves";
-	mes "her father, but he's always";
-	mes "so distant. But sometimes,";
-	mes "I see him sadly smile for";
-	mes "Tarsha, if only for a moment.^000000";
+	mes "^856363最近塔莎经常哭。";
+	mes "可怜的孩子爱着父亲，";
+	mes "但他总是那么疏远。";
+	mes "不过有时我会看到他为塔莎";
+	mes "悲伤地微笑，哪怕只有一瞬间。^000000";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	return;
+
+
+
 }
 einbech,36,100,5	duplicate(Tree)	Tree#t1-2	HIDDEN_NPC
 einbech,44,90,5	duplicate(Tree)	Tree#t1-3	HIDDEN_NPC
@@ -1399,48 +1399,48 @@ einbech,53,94,5	duplicate(Tree)	Tree#t1-4	HIDDEN_NPC
 ein_in01,117,80,5	script	Unidentified Machine#as	HIDDEN_NPC,{
 	if (kain_ticket > 12) {
 		mes "["+strcharinfo(0)+"]";
-		mes "This is the";
-		mes "^FF0000Expert Repairman^000000?!";
-		mes "It looks like it";
-		mes "needs repairs itself...";
+		mes "这是";
+		mes "^FF0000专家修理工^000000吗？！";
+		mes "看起来它自己";
+		mes "也需要修理……";
 		next;
-		if (select("Fix an Item", "Cancel.") == 1) {
+		if (select("修理物品", "取消。") == 1) {
 			if (getbrokenid(1) == 0) {
 				mes "*Beep-*";
-				mes "You have";
-				mes "nothing to fix.";
+				mes "你没有";
+				mes "需要修理的物品。";
 				close;
 			}
 			getinventorylist;
 			for (.@i = 0; .@i < @inventorylist_count; .@i++)
 				.@total = .@total + @inventorylist_attribute[.@i];
 			mes "*Beep-*";
-			mes "You have a total";
-			mes "of " + .@total + " damaged items.";
-			mes "Shall I repair them?";
+			mes "你总共有";
+			mes "" + .@total + " 件损坏的物品。";
+			mes "要修理它们吗？";
 			next;
-			if (select("Yes", "No") == 1) {
+			if (select("是", "否") == 1) {
 				getinventorylist;
 				for (.@i = 0; .@i < @inventorylist_count; .@i++)
 					.@total2 = .@total2 + @inventorylist_attribute[.@i];
 				if (.@total == .@total2) {
 					repairall;
 					mes "*Beep-*";
-					mes "Repair complete.";
+					mes "修理完成。";
 				} else {
 					mes "*Beep-*";
-					mes "Please check";
-					mes "your items again.";
+					mes "请再次检查";
+					mes "你的物品。";
 				}
 				close;
 			}
 		}
-		mes "You have chosen to stop.";
+		mes "你选择停止修理。";
 	} else {
-		mes "^3355FFIt's some sort of";
-		mes "strange machine.";
-		mes "Its function and purpose";
-		mes "is completely undiscernable.^000000";
+		mes "^3355FF这似乎是一台";
+		mes "奇怪的机器。";
+		mes "它的功能和用途";
+		mes "完全无法辨认。^000000";
 	}
 	close;
 }
@@ -1457,16 +1457,16 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer25000:
-	mapannounce "airplane_01","We are heading to Izlude.",bc_map,0x00FF00;
+	mapannounce "airplane_01","我们正在前往伊兹鲁德。",bc_map,0x00FF00;
 	end;
 OnTimer30000:
-	mapannounce "airplane_01","Captain: Attention, all passengers.",bc_map,0x00FF00;
+	mapannounce "airplane_01","船长：请所有乘客注意。",bc_map,0x00FF00;
 	end;
 OnTimer34000:
-	mapannounce "airplane_01","Captain: We are being approached by a group of unidentified creatures.",bc_map,0x00ff00;
+	mapannounce "airplane_01","船长：一群身份不明的生物正在接近我们。",bc_map,0x00ff00;
 	end;
 OnTimer38000:
-	mapannounce "airplane_01", "Captain: All passengers on deck, please find shelter inside the ship!",bc_map,0x00ff00;
+	mapannounce "airplane_01", "船长：甲板上的所有乘客，请赶快进入船内避难！",bc_map,0x00ff00;
 	hideonnpc "Airship Staff#airplane01";
 	end;
 OnTimer48000:
@@ -1507,10 +1507,10 @@ OnTimer48010:
 	monster "airplane_01",237,62,"Beholder",1633,1,"Airship#airplane02::OnCaptainMobDead";
 	end;
 OnTimer53000:
-	mapannounce "airplane_01", "Attendant: Captain Tarlock, we're in trouble! The monsters are heading to the propellers!",bc_map,0x00FF00;
+	mapannounce "airplane_01", "乘务员：塔洛克船长，我们有麻烦了！怪物正朝螺旋桨去！",bc_map,0x00FF00;
 	end;
 OnTimer58000:
-	mapannounce "airplane_01", "Captain Tarlock: What?! I've got to stop them!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：什么？！我必须阻止它们！",bc_map,0x70DBDB;
 	end;
 OnTimer63000:
 	hideonnpc "Airship Captain#01";
@@ -1518,10 +1518,10 @@ OnTimer63000:
 	end;
 OnTimer68000:
 	emotion ET_ANGER, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: You ugly, godforsaken creatures... Get off my ship!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：你们这些丑陋的怪物……滚下我的船！",bc_map,0x70DBDB;
 	end;
 OnTimer73000:
-	mapannounce "airplane_01", "*Kzzz...Drrrr...Boom! CRASH!*",bc_map,0x00FF00;
+	mapannounce "airplane_01", "*滋……轰……砰！坠毁！*",bc_map,0x00FF00;
 	specialeffect EF_SUI_EXPLOSION,AREA,"boom6#airplane";
 	end;
 OnTimer73500:
@@ -1553,7 +1553,7 @@ OnTimer77500:
 	end;
 OnTimer78000:
 	specialeffect EF_SUI_EXPLOSION,AREA,"boom6#airplane";
-	mapannounce "airplane_01", "Engineer: Oh no! We've got a problem with the Number One Rear Engine!",bc_map,0x00FF00;
+	mapannounce "airplane_01", "工程师：糟糕！一号后引擎出问题了！",bc_map,0x00FF00;
 	end;
 OnTimer79000:
 	specialeffect EF_SUI_EXPLOSION,AREA,"boom7#airplane";
@@ -1568,7 +1568,7 @@ OnTimer82000:
 	specialeffect EF_SUI_EXPLOSION,AREA,"boom10#airplane";
 	end;
 OnTimer83000:
-	mapannounce "airplane_01", "Pilot: Hurry! Get the women, old people and children somewhere safe first! Hurry!",bc_map,0x00FF00;
+	mapannounce "airplane_01", "飞行员：快！先把妇女、老人和孩子带到安全处！快！",bc_map,0x00FF00;
 	end;
 OnTimer84000:
 	specialeffect EF_SUI_EXPLOSION,AREA,"boom6#airplane";
@@ -1584,18 +1584,18 @@ OnTimer87000:
 	end;
 OnTimer88000:
 	emotion ET_ANGER, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: You dirty monsters are dealing with this ship's captain...",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：你们这些肮脏的怪物竟敢对付本船船长……",bc_map,0x70DBDB;
 	end;
 OnTimer93000:
 	emotion ET_ANGER, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: I'll protect this ship and my crew with my life!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：我会用生命保护这艘船和我的船员！",bc_map,0x70DBDB;
 	end;
 OnTimer98000:
 	emotion ET_HNG, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: Here goes! Special Exodus Joker XIII Doom Rifle!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：接招！特殊出埃及记小丑十三毁灭步枪！",bc_map,0x70DBDB;
 	end;
 OnTimer103000:
-	mapannounce "airplane_01", "*Bang! Bang Bang! Bang Bang! Bang Bang Bang!*",bc_map,0x00FF00;
+	mapannounce "airplane_01", "*砰！砰砰！砰砰！砰砰砰！*",bc_map,0x00FF00;
 	specialeffect EF_HIT5,AREA,"Airship Captain#02";
 	end;
 OnTimer103500:
@@ -1643,7 +1643,7 @@ OnTimer113000:
 	mapannounce "airplane_01","Captain Tarlock: Filthy animals! Stop ruining my ship!",bc_map,0x70DBDB;
 	end;
 OnTimer118000:
-	mapannounce "airplane_01", "*Bang! Bang Bang! Bang Bang! Bang Bang Bang!*",bc_map,0x00FF00;
+	mapannounce "airplane_01", "*砰！砰砰！砰砰！砰砰砰！*",bc_map,0x00FF00;
 	specialeffect EF_HIT5,AREA,"Airship Captain#02";
 	end;
 OnTimer118500:
@@ -1700,18 +1700,18 @@ OnTimer127000:
 	end;
 OnTimer128000:
 	emotion ET_FRET, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: There's... Too many to handle!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：怪物太多……应付不过来！",bc_map,0x70DBDB;
 	end;
 OnTimer133000:
-	mapannounce "airplane_01", "Pilot: Captain, sir, the situation is getting critical!",bc_map,0x00FF00;
+	mapannounce "airplane_01", "飞行员：船长，情况危急！",bc_map,0x00FF00;
 	end;
 OnTimer138000:
 	emotion ET_SWEAT, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: We'll need all the help we can get!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：我们需要所有能得到的帮助！",bc_map,0x70DBDB;
 	end;
 OnTimer143000:
 	emotion ET_SORRY, getnpcid(0, "Airship Captain#02");
-	mapannounce "airplane_01", "Captain Tarlock: All hands and any passenger who can fight! We've got to drive away these monsters!",bc_map,0x70DBDB;
+	mapannounce "airplane_01", "塔洛克船长：所有船员和能战斗的乘客都来！我们必须赶走这些怪物！",bc_map,0x70DBDB;
 	end;
 OnTimer148000:
 	hideonnpc "Airship Captain#02";
@@ -1721,57 +1721,57 @@ OnTimer400000:
 	killmonster "airplane_01","Airship#airplane02::OnMyMobDead";
 	end;
 OnTimer405000:
-	mapannounce "airplane_01","Monster threat eliminated. The Airship is now returning to normal operation.",bc_map,0x00FF00;
+	mapannounce "airplane_01","怪物威胁已消除。飞艇正在恢复正常运行。",bc_map,0x00FF00;
 	hideoffnpc "Airship Staff#airplane01";
 	end;
 OnTimer410000:
-	mapannounce "airplane_01","We will arrive in Izlude shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","我们很快抵达伊兹鲁德。",bc_map,"0x00ff00";
 	end;
 OnTimer420000:
 	$@airplanelocation2 = 1;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Izlude. Have a safe trip.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","欢迎来到伊兹鲁德。祝旅途平安。",bc_map,"0x00ff00";
 	end;
 OnTimer430000:
-	mapannounce "airplane_01","We are currently in Izlude. The Airship will take off shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","目前位于伊兹鲁德。飞艇即将起飞。",bc_map,"0x00ff00";
 	end;
 OnTimer440000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is now taking off. Our next destination is Juno.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","飞艇正在起飞。下一目的地是朱诺。",bc_map,"0x70dbdb";
 	end;
 OnTimer465000:
-	mapannounce "airplane_01","We are heading to Juno.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","我们正前往朱诺。",bc_map,"0x70dbdb";
 	end;
 OnTimer490000:
-	mapannounce "airplane_01","We will arrive in Juno shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","我们很快抵达朱诺。",bc_map,"0x70dbdb";
 	end;
 OnTimer500000:
 	$@airplanelocation2 = 2;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Juno. Have a safe trip.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","欢迎来到朱诺。祝旅途平安。",bc_map,"0x70dbdb";
 	end;
 OnTimer510000:
-	mapannounce "airplane_01","We are currently in Juno. The Airship will leave shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","目前位于朱诺。飞艇即将离开。",bc_map,"0x70dbdb";
 	end;
 OnTimer520000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is leaving the ground. Our next destination is Rachel.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","飞艇离开地面。下一目的地是拉赫。",bc_map,"0xFF8200";
 	end;
 OnTimer545000:
-	mapannounce "airplane_01","We are heading to Rachel.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","我们正前往拉赫。",bc_map,"0xFF8200";
 	end;
 OnTimer570000:
-	mapannounce "airplane_01","We will arrive in Rachel shortly.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","我们很快抵达拉赫。",bc_map,"0xFF8200";
 	end;
 OnTimer580000:
 	$@airplanelocation2 = 0;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Rachel. Have a safe trip.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","欢迎来到拉赫。祝旅途平安。",bc_map,"0xFF8200";
 	end;
 OnTimer590000:
 	mapannounce "airplane_01","We are currently in Rachel. The Airship will take off shortly.",bc_map,"0xFF8200";
@@ -1779,7 +1779,7 @@ OnTimer590000:
 OnTimer600000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is now taking off. Our next destination is Izlude.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","飞艇正在起飞。下一目的地是伊兹鲁德。",bc_map,"0x00ff00";
 	stopnpctimer;
 	set getvariableofnpc(.moninv, "International_Airship"),2;
 	donpcevent "International_Airship::OnEnable";
@@ -1792,12 +1792,12 @@ OnCaptainMobDead:
 
 airplane_01,246,54,3	script	Airship Captain#02	4_M_REINDEER,{
 	cutin "fly_felrock",2;
-	mes "[Tarlock]";
-	mes "I am Tarlock,";
-	mes "captain of this";
-	mes "Airship. Go and";
-	mes "fight with the";
-	mes "Gremlins!";
+	mes "[塔洛克]";
+	mes "我是塔洛克，";
+	mes "这艘飞艇的";
+	mes "船长。去和";
+	mes "格雷姆林战斗吧！";
+	mes "";
 	close2;
 	cutin "",255;
 	end;
@@ -1824,11 +1824,11 @@ airplane_01,227,67,0	script	boom10#airplane	HIDDEN_WARP_NPC,{ end; }
 //----------------------------------------------------------------------------
 airplane_01,238,154,3	script	Airship Captain#01	4_M_REINDEER,{
 	cutin "fly_felrock",2;
-	mes "[Tarlock]";
-	mes "I am Tarlock,";
-	mes "captain of this";
-	mes "Airship. Did you";
-	mes "have a question?";
+	mes "[塔洛克]";
+	mes "我是塔洛克，";
+	mes "这艘飞艇的";
+	mes "飞艇的船长。你有";
+	mes "问题吗？";
 	next;
 	if (lght_air >= 0 && lght_air <= 3 || lght_air == 7) {
 		.@question$ = "How does this Airship fly?";
@@ -1841,102 +1841,104 @@ airplane_01,238,154,3	script	Airship Captain#01	4_M_REINDEER,{
 	}
 	switch (select("Y-you're a reindeer?!", .@question$, "No, not really.")) {
 	case 1:
-		mes "[Tarlock]";
-		mes "Hm? Oh, that";
-		mes "We reindeer are a proud";
-		mes "race who like to travel the";
-		mes "world. But that should be";
-		mes "obvious if you think of the";
-		mes "reindeer working for Claus.";
+		mes "[塔洛克]";
+		mes "嗯？哦，那个";
+		mes "我们驯鹿是自豪的种族，";
+		mes "喜欢环游世界。想想";
+		mes "圣诞老人麾下的";
+		mes "驯鹿，就很明显了。";
+		mes "";
 		next;
-		mes "[Tarlock]";
-		mes "Well, reindeer or";
-		mes "not, I've earned the";
-		mes "captaincy of this ship";
-		mes "and the loyalty of my crew.";
-		mes "We'll do everything we can to";
-		mes "make sure your flight is safe.";
+		mes "[塔洛克]";
+		mes "无论是否是驯鹿，";
+		mes "我赢得了这艘船的";
+		mes "船长职位";
+		mes "以及船员的忠诚。";
+		mes "我们会尽力";
+		mes "确保你的飞行安全。";
 		break;
 	case 2:
-		mes "[Tarlock]";
+		mes "[塔洛克]";
 		if (lght_air == 1) {
 			if (BaseLevel <= 59) {
-				mes "Mm...?";
-				mes "Didn't you ask me that";
-				mes "before? Well, in any case";
-				mes "I apologize, but I'm still not";
-				mes "allowed to tell you that secret.";
+				mes "嗯……？";
+				mes "你之前不是问过吗？";
+				mes "总之抱歉，我仍不能告诉你这个秘密。";
+				mes "";
+				mes "";
 				break;
 			} else {
-				mes "Mm...?";
-				mes "Didn't you ask me that";
-				mes "before? Are you just curious";
-				mes "or did you really want to know?";
+				mes "嗯……？你之前不是问过吗？";
+				mes "只是好奇，还是确实想知道？";
+				mes "";
+				mes "";
 				next;
 				switch (select("No, not really...:Yes, I really want to know!")) {
 				case 1:
-					mes "[Tarlock]";
-					mes "Hahahaha~";
-					mes "Maybe someday you'll";
-					mes "figure out how this Airship";
-					mes "is able to stay aloft and";
-					mes "fly through the skies.";
+					mes "[塔洛克]";
+					mes "哈哈哈~";
+					mes "也许有一天你会弄清楚这艘飞艇如何悬浮飞行。";
+					mes "";
+					mes "";
+					mes "";
 					break;
 				case 2:
-					mes "[Tarlock]";
-					mes "In all honestly, the";
-					mes "secret to this Airship's";
-					mes "flight is something that";
-					mes "only captains are authorized";
-					mes "to know. So I shouldn't really";
-					mes "tell you anything about it.";
+					mes "[塔洛克]";
+					mes "说实话，飞艇飞行的秘密只有船长有权知道。";
+					mes "所以我不该告诉你。";
+					mes "";
+					mes "";
+					mes "";
+					mes "";
 					next;
-					mes "[Tarlock]";
-					mes "But I've never been able";
-					mes "to trust upper management";
-					mes "so I don't have any loyalty to";
-					mes "them. I wouldn't mind telling";
-					mes "you that classified info if you";
-					mes "do a little favor for me first.";
+					mes "[塔洛克]";
+					mes "但我从未信任上层管理，所以对他们没有忠诚。";
+					mes "如果你先帮我个小忙，我倒不介意告诉你机密。";
+					mes "";
+					mes "";
+					mes "";
+					mes "";
 					next;
 					switch (select("Let me think about it.:Sure.")) {
 					case 1:
-						mes "[Tarlock]";
-						mes "Alright. But don't";
-						mes "worry, I'm not going";
-						mes "to ask you to do anything";
-						mes "that you can't handle. Come";
-						mes "back after you decide, alright?";
+						mes "[塔洛克]";
+						mes "好吧。不过别担心，我不会让你做无法应付的事。决定后再回来，好吗？";
+						mes "";
+						mes "";
+						mes "";
+						mes "";
 						break;
 					case 2:
 						setquest 8032;
 						lght_air = 2;
-						mes "[Tarlock]";
-						mes "Ha-hah! I like you";
-						mes "already! Alright, here's";
-						mes "the deal. I have a younger";
-						mes "brother who I rarely see since";
-						mes "he's also an Airship Captain";
-						mes "that's always traveling.";
+						mes "[塔洛克]";
+						mes "哈、哈哈！我已经喜欢上你了！";
+						mes "事情是这样的，我有个弟弟，也是飞艇船长，总在旅行，很少见面。";
+						mes "";
+						mes "";
+						mes "";
+						mes "";
 						next;
-						mes "[Tarlock]";
-						mes "Would you bring this";
-						mes "letter to my brother,";
-						mes "Ferlock? Also, please";
-						mes "make sure that you come";
-						mes "back with his reply, alright?";
-						mes "Thank you, adventurer.";
+						mes "[塔洛克]";
+						mes "能把这封信交给我弟弟费尔洛克吗？";
+						mes "记得带着他的回信回来，好吗？谢谢你，冒险者。";
+						mes "";
+						mes "";
+						mes "";
+						mes "";
 						next;
-						mes "[Tarlock]";
-						mes "Oh, and once you meet";
-						mes "my brother, please help";
-						mes "him out. He'll explain it";
-						mes "once you see him.";
+						mes "[塔洛克]";
+						mes "哦，见到我弟弟后请帮帮他。他会亲自解释。";
+						mes "";
+						mes "";
+						mes "";
+						mes "";
 						next;
-						mes "^3131FFYou have received";
-						mes "Captain Tarlock's letter";
-						mes "to deliver to his younger";
-						mes "brother, Captain Ferlock.";
+						mes "^3131FF你收到塔洛克船长给弟弟费尔洛克船长的信。";
+						mes "";
+						mes "";
+						mes "";
+						mes "";
 						break;
 					}
 					break;
@@ -1945,93 +1947,72 @@ airplane_01,238,154,3	script	Airship Captain#01	4_M_REINDEER,{
 		} else if (lght_air == 4) {
 			lght_air = 5;
 			changequest 8034,8035;
-			mes "Oh!";
-			mes "And he answer you? Really?!";
-			mes "In fact, I wasn't";
-			mes "expecting that too much...";
-			mes "Please wait a little,";
-			mes "I'll read his letter.";
+			mes "哦！";
+			mes "他回复你了？真的吗？！";
+			mes "其实我没抱太大希望……";
+			mes "请等一下，我读读他的信。";
+			mes "";
+			mes "";
 		} else if (lght_air == 5) {
 			lght_air = 6;
-			mes "Um... Ha ha ha~!";
-			mes "This guy, he is a real lover!";
-			mes "But his true inner man";
-			mes "is limited by his duty.";
-			mes "What do you think?";
-			mes "Hoh hoh hoh.";
+			mes "嗯……哈哈哈~！";
+			mes "这家伙真是个情圣！";
+			mes "但他的真心被职责束缚。";
+			mes "你觉得呢？呵呵呵。";
+			mes "";
+			mes "";
 			next;
-			mes "^3131ffHe continue reading";
-			mes "the letter.^000000";
+			mes "^3131ff他继续读信。^000000";
+			mes "";
 		} else if (lght_air == 6) {
-			mes "Yes, I finished.";
-			mes "Even if I understand him";
-			mes "I've a totally different";
-			mes "point of view. But both";
-			mes "of us are fearless.";
+			mes "好了，我读完了。";
+			mes "虽然我理解他，但我们的观点完全不同。不过我们都无所畏惧。";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[塔洛克]";
+			mes "哦，我差点忘了。";
+			mes "我来告诉你想知道的事。";
+			mes "";
+			next;
+			mes "[塔洛克]";
+			mes "飞艇悬浮的秘密是……";
+			mes "点燃大型锅炉，水经过锅炉产生蒸汽，";
+			mes "推动活塞、齿轮和涡轮。";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[塔洛克]";
+			mes "这会带动螺旋桨。";
+			mes "就这样。明白了吗？";
+			mes "";
+			next;
+			select("嗯？就这些？没有更多了吗？");
+			mes "[塔洛克]";
+			mes "哈哈哈！";
+			mes "我只是为了让你容易理解才粗略解释。";
+			mes "你还是不满意？我已经用人人都懂的简单话说了。";
+			mes "";
+			next;
+			mes "[塔洛克]";
+			mes "显然，只有蒸汽";
+			mes "不可能让它飞起来。因此使用一种叫^ff0000符文机关^000000的放大器。";
+			next;
+			select("呃？什么是符文机关？");
+			mes "[Tarlock]";
+			mes "那是以魔法石为能源的装置。不过我不知道具体原理……大概因为当时没认真听，细节忘了。";
 			next;
 			mes "[Tarlock]";
-			mes "Oh, I almost forgot,";
-			mes "I'll teach you what you";
-			mes "wanted to know.";
+			mes "我只记得能量通过安装在蒸汽机上的符文时会被放大。";
 			next;
 			mes "[Tarlock]";
-			mes "The Airship's secret to float is...";
-			mes "The large boiler is setted on fire,";
-			mes "That moves the pistons, gears";
-			mes "and turbines with the steam";
-			mes "that is generated when the water";
-			mes "passes within the boiler.";
-			next;
-			mes "[Tarlock]";
-			mes "That turns the propeller.";
-			mes "That's all. Did you understand?";
-			next;
-			select("Um? Only that? There's no more?");
-			mes "[Tarlock]";
-			mes "Ha ha ha!";
-			mes "I explained it roughly to";
-			mes "make it easier to understand";
-			mes "by you. Still, you aren't";
-			mes "pleased? I said it in plain";
-			mes "english that everyone could";
-			mes "understand.";
-			next;
-			mes "[Tarlock]";
-			mes "Obviously, only with a steam";
-			mes "is impossible to make this fly.";
-			mes "Therefore, it uses an amplifier";
-			mes "called ^ff0000Rune Mechanism^000000.";
-			next;
-			select("Uh? What's a Rune Mechanism?");
-			mes "[Tarlock]";
-			mes "It's a device that uses a";
-			mes "magic stone as power source.";
-			mes "However, I don't know how";
-			mes "this work...";
-			mes "I forgot the details probably";
-			mes "because I didn't paid much attention.";
-			next;
-			mes "[Tarlock]";
-			mes "The only I remember is";
-			mes "that the energy is amplified";
-			mes "while it passes through the";
-			mes "Rune that is attached to a";
-			mes "steam engine.";
-			next;
-			mes "[Tarlock]";
-			mes "In fact, all this airship";
-			mes "floats thanks to the power";
-			mes "given by the stone, no";
-			mes "exaggeration.";
-			mes "It has really a strong power.";
+			mes "事实上，这艘飞艇全靠魔法石提供的力量漂浮，毫不夸张。它的力量非常强。";
 			next;
 			specialeffect2 EF_MAPPILLAR;
 			mes "[Tarlock]";
-			mes "Did you understand?";
-			mes "I'll rest a little.";
-			mes "I'm tired for reading";
-			mes "and writing those long";
-			mes "letters.";
+			mes "明白了吗？我休息一会儿。读写那些长信让我很累。";
 			completequest 8035;
 			lght_air = 7;
 			if (checkre(3))
@@ -2039,31 +2020,17 @@ airplane_01,238,154,3	script	Airship Captain#01	4_M_REINDEER,{
 			else
 				getexp 200000,10000;
 		} else if (lght_air == 7) {
-			mes "Didn't I teach you before?";
-			mes "I won't explain such a long";
-			mes "tale again!";
+			mes "我不是教过你了吗？这么长的故事我不想再讲！";
 		} else if (lght_air == 2 || lght_air == 3) {
-			mes "Hahahah! Don't worry, I'll";
-			mes "tell you know this Airship";
-			mes "flies once you deliver that";
-			mes "letter to my brother, Ferlock,";
-			mes "and bring back his reply.";
+			mes "哈哈哈！别担心，把信送给我弟弟费洛克，再带回他的回复，我就告诉你飞艇如何飞行。";
 		} else {
-			mes "Hahaha! How this";
-			mes "Airship flies? Yes, it's";
-			mes "quite wonderful, isn't it?";
-			mes "Although that's a secret,";
-			mes "let me assure you that it's";
-			mes "nothing weird or dangerous.";
+			mes "哈哈哈！飞艇怎么飞？很神奇吧？虽然这是秘密，但我保证不奇怪也不危险。";
 			lght_air = 1;
 		}
 		break;
 	case 3:
 		mes "[Tarlock]";
-		mes "Alright, then.";
-		mes "Thanks for flying";
-		mes "with us, and I hope";
-		mes "you enjoy your travels.";
+		mes "好了。感谢乘坐我们的飞艇，祝你旅途愉快。";
 		break;
 	}
 	close2;
@@ -2078,254 +2045,138 @@ airplane,236,163,5	script	Airship Captain#03	4_M_REINDEER,{
 	cutin "fly_trock.bmp",2;
 	mes "[Ferlock]";
 	if (hg_ma1 == 3 || hg_ma1 == 4) {
-		mes "Welcome to the airship. I am the captain Ferlock.";
-		mes "Is there anything that I can help you with today?";
+		mes "欢迎乘坐飞艇。我是费洛克船长。今天有什么我能帮你的吗？";
 		next;
-		select("I am looking for a man named Thierry.");
+		select("我在寻找一个叫蒂埃里的男人。");
 		mes "[Ferlock]";
-		mes "Thierry? Well, I do not think that I know that person.";
-		mes "I can guarantee you at least that he is not working for me.";
+		mes "蒂埃里？我不认识这个人。至少可以保证他不是我的员工。";
 		next;
-		select("Will you let me check the history of passenger lists?");
+		select("能让我查看乘客名单记录吗？");
 		mes "[Ferlock]";
-		mes "I am sorry, but I cannot release such personal information to an unauthorized person.";
+		mes "抱歉，我不能向未获授权的人透露此类个人信息。";
 		if (hg_ma1 == 3) close;
 		next;
-		mes "- Captain Ferlock was carefully listening to you while you were explaining the reason why you have been looking for Thierry. -";
+		mes "- 你解释寻找蒂埃里的原因时，费洛克船长认真听着。 -";
 		next;
 		mes "[Ferlock]";
-		mes "Ummm....I see, I fully understand the siatuation. But, this is my situation that I am not allowed to release our passenger lists to unauthorized people...";
+		mes "嗯……我明白情况。但我不能向未获授权的人公开乘客名单……";
 		next;
 		mes "[Ferlock]";
-		mes "*Sigh*....I guess that rules exist only to be broken one of these days... Okay, I will let you check our passenger lists. Please give me a moment.";
+		mes "*叹气*……看来规则总有一天会被打破……好，我让你查看乘客名单。请稍等。";
 		next;
-		mes "- Captain Ferlock took out a heavy book from somewhere, and wrote the name 'Thierry' on the first blank page. -";
-		mes "- As the letters slowly disappeared, pages of the book started being turned by themselves. -";
+		mes "- 费洛克船长取出一本厚书，在第一页空白处写下“蒂埃里”。字迹慢慢消失，书页开始自行翻动。 -";
 		next;
-		mes "- The pages stopped turning at a page that the name 'Thierry' was written on. -";
-		next;
-		mes "[Ferlock]";
-		mes "Haha, you must be surprised by this, huh? As you see, this book is a magic book which you do not need to turn the pages to find a specific page.";
-		mes "Well, this is how we, Schwarzwald Republicans adopt magic in their lives.";
+		mes "- 书页停在写有“蒂埃里”名字的一页。 -";
 		next;
 		mes "[Ferlock]";
-		mes "My old friend has given me this....well, it is not important at this moment anyways.";
+		mes "哈哈，你一定很惊讶吧？这是魔法书，不用翻页就能找到指定页面。施瓦尔茨共和国人就是这样把魔法融入生活。";
 		next;
 		mes "[Ferlock]";
-		mes "Let's see, Thierry, Thierry.... Yes, he was in the airship about a month ago. He was heading to Hugel, and he was one of the very first passengers of the Hugel route.";
+		mes "这是老朋友送我的……不过现在不重要。";
 		next;
 		mes "[Ferlock]";
-		mes "....Oh, did you say that he was good at researching stuffs? Now I remember him, he was the guy!";
+		mes "让我看看，蒂埃里……是的，他约一个月前乘坐飞艇，前往胡格尔，是胡格尔航线最早的乘客之一。";
 		next;
 		mes "[Ferlock]";
-		mes "It was the very first day that we operated the Hugel route. While we were heading to Hugel, a group of dragons raided our airship. ";
-		mes "We were unprepared for a such attack, so basically we were at the very dangerous moment.";
+		mes "哦，你说他擅长研究？我想起来了，就是那个人！";
 		next;
 		mes "[Ferlock]";
-		mes "It was all my fault because I knew that dragons were one of the reasons why people had not dared to visit Hugel.";
-		mes "How stupid of me! Even until then, I did not even think twice about preparing our crews for those brutal dragons' attacks.";
+		mes "那是胡格尔航线开通的第一天。前往胡格尔时，一群龙袭击了飞艇。我们毫无准备，情况极其危险。";
 		next;
 		mes "[Ferlock]";
-		mes "So the dragons seriously damaged our airship, and we were about to fall into the ground. Then this young man came forward and repaired the airship as if he knew that it would be coming.";
-		mes "I am very sure that Thierry was that guy who saved our lives.";
+		mes "都是我的错，因为我知道龙是人们不敢去胡格尔的原因之一。我真蠢，竟没考虑为船员准备应对龙袭击的方案。";
 		next;
 		mes "[Ferlock]";
-		mes "At that time, I wondered what made him look so sad and depressed. And now I know why.";
-		mes "I am so glad that I decided to help you in finding this amazing guy. Now you can go tell his fiance where he is.";
+		mes "龙严重损坏飞艇，我们差点坠落。那名年轻人挺身而出修好了飞艇，仿佛早有预料。我很确定救了我们的人就是蒂埃里。";
 		next;
 		mes "[Ferlock]";
-		mes "If you meet him, please send my regard to him.";
+		mes "当时我不明白他为何悲伤消沉，现在我知道原因了。很高兴我决定帮你找到这个了不起的人。你可以去告诉他的未婚妻他在哪里。";
+		next;
+		mes "[Ferlock]";
+		mes "见到他时请代我问候。";
 		changequest 8045,8046;
 		hg_ma1 = 5;
 	} else if (hg_ma1 == 5)
-		mes "Please tell his fiance where he is.";
+		mes "请告诉他的未婚妻他在哪里。";
 	else if (lght_air == 7 && lhz_heart == 11) {
-		mes "Ah, thank you for coming.";
-		mes "Now, I wanted to ask you";
-		mes "why you were investigating";
-		mes "Ymir's Heart Piece. Are you";
-		mes "merely curious, or did you";
-		mes "have some special reason?";
+		mes "啊，谢谢你来。我想问你为什么调查伊米尔之心碎片。只是好奇，还是有特殊原因？";
 		next;
 		switch(select("Just curious...:Well, there's someone I need to help...")) {
 		case 1:
 			mes "[Ferlock]";
-			mes "Just curious...?";
-			mes "I don't know if satisfying";
-			mes "your curiosity is worth the";
-			mes "risks that you have already";
-			mes "taken. You should be more ";
-			mes "careful in the future...";
+			mes "只是好奇……？我不知道满足好奇心是否值得你承担这些风险。以后要更加小心……";
 			break;
 		case 2:
 			mes "[Ferlock]";
-			mes "Well, I shouldn't be";
-			mes "trusting you this much,";
-			mes "but since you've helped";
-			mes "me and my brother, I feel";
-			mes "that you must be one of those altruistic adventurers. Very well.";
+			mes "我不该如此信任你，但既然你帮助过我和弟弟，我相信你是无私的冒险者。好吧。";
 			next;
 			mes "[Ferlock]";
-			mes "If you promise that you'll";
-			mes "never tell what I reveal to";
-			mes "you, then I suppose I can";
-			mes "tell you know about the Rune";
-			mes "Stone and Ymir's Heart Piece.";
+			mes "如果你保证不泄露我告诉你的事，我可以告诉你符文石和伊米尔之心碎片的秘密。";
 			next;
-			select("I promise...");
+			select("我保证……");
 			mes "[Ferlock]";
-			mes "Alright, then. I expect you";
-			mes "to keep your word. Now, you";
-			mes "already know that the Airships";
-			mes "are powered by Rune Stones, imitations of Ymir's Heart pieces.";
+			mes "好，我希望你守信。你已经知道飞艇由符文石驱动，那是伊米尔之心碎片的仿制品。";
 			next;
 			mes "[Ferlock]";
-			mes "Although Rune Stones are";
-			mes "inferior to true Ymir Heart";
-			mes "pieces, we can make as many";
-			mes "as want. As for true Ymir Heart";
-			mes "Pieces, they're difficult to find or effectively reproduce.";
+			mes "符文石虽然不如真正的伊米尔之心碎片，但可以大量制造。真正的碎片很难找到或有效复制。";
 			next;
 			mes "[Ferlock]";
-			mes "You may have already";
-			mes "figured this out, but all";
-			mes "Rune Stones are produced";
-			mes "in the Einbroch Laboratory";
-			mes "for use in the Airships. So";
-			mes "you see what's going on?";
+			mes "你可能已经猜到了，所有符文石都在艾因布洛克实验室制造，用于飞艇。现在明白了吗？";
 			next;
-			select("Wait, what's the Varmunt Project?");
+			select("等等，什么是瓦尔蒙特计划？");
 			mes "[Ferlock]";
-			mes "The Varmunt Project is";
-			mes "a continuation of one of";
-			mes "the projects started by the";
-			mes "great Sage, Varmunt. Even as";
-			mes "a child, he was renown as an";
-			mes "incredible genius, a prodigy.";
+			mes "瓦尔蒙特计划延续了伟大贤者瓦尔蒙特发起的项目。他从小就被誉为不可思议的天才。";
 			next;
 			mes "[Ferlock]";
-			mes "However, no matter how";
-			mes "much academic success he";
-			mes "enjoyed--he even became a";
-			mes "tenured professor at Juno";
-			mes "University--Varmunt was never able to finance his own research.";
+			mes "然而无论学术成就多高——甚至成为朱诺大学的终身教授——瓦尔蒙特始终无法资助自己的研究。";
 			next;
 			mes "[Ferlock]";
-			mes "Eventually, he accepted an";
-			mes "offer from Rekenber Co. to";
-			mes "develop an energy source in";
-			mes "exchange for funding. The";
-			mes "result of his work for them is the invention of the Rune Stone.";
+			mes "最终他接受雷根贝勒公司的资助，开发能源。为他们工作的成果就是发明符文石。";
 			next;
 			mes "[Ferlock]";
-			mes "However, the public isn't";
-			mes "supposed to know that Varmunt";
-			mes "invented the Rune Stones. Now,";
-			mes "Varmunt disappeared before he";
-			mes "could perfect the Rune Stone";
-			mes "creation process.";
+			mes "但公众不应知道符文石由瓦尔蒙特发明。如今他在完善制造工艺前失踪了。";
 			next;
 			mes "[Ferlock]";
-			mes "Therefore, the Rune Stones";
-			mes "we have now are unstable and";
-			mes "become useless after a while.";
-			mes "The Varmunt Project aims to";
-			mes "correct these flaws and perfect";
-			mes "the Ymir Heart replication...";
+			mes "因此现在的符文石不稳定，过一段时间就会失效。瓦尔蒙特计划旨在修正缺陷，完善伊米尔之心复制技术……";
 			next;
 			mes "[Ferlock]";
-			mes "Er, anyway, that's why";
-			mes "I was at the Einbroch";
-			mes "Laboratory today. My Rune";
-			mes "Stone was close to empty,";
-			mes "so I went there to pick up";
-			mes "a fully charged one.";
+			mes "呃，总之，这就是我今天去艾因布洛克实验室的原因。我的符文石快耗尽了，所以去拿一块充满能量的。";
 			next;
 			mes "[Ferlock]";
 			mes "^333333*Phew...*^000000";
-			mes "Would you give me";
-			mes "a moment to catch";
-			mes "my breath before";
-			mes "I continue? Yes,";
-			mes "there's a little more...";
+			mes "让我喘口气再继续，好吗？是的，还有一点……";
 			lhz_heart = 12;
 			break;
 		}
 	} else if (lght_air == 7 && lhz_heart == 12) {
-		mes "Now, "+strcharinfo(0)+",";
-		mes "you must be wondering";
-		mes "why I'm telling you all";
-		mes "this. I believe that some";
-		mes "party wishes to steal the";
-		mes "Rune Stones from the Airships.";
+		mes "现在，"+strcharinfo(0)+"，你一定想知道我为什么告诉你这些。我认为有人想偷走飞艇上的符文石。";
 		next;
 		mes "[Ferlock]";
-		mes "Have you noticed the";
-		mes "Gremlins and Beholders";
-		mes "that attack my brother's";
-		mes "ship? Believe it or not,";
-		mes "Gremlins are usually just";
-		mes "harmless and mischievous.";
+		mes "你注意到攻击我弟弟飞艇的格林姆林和邪眼了吗？信不信由你，格林姆林通常无害又顽皮。";
 		next;
 		mes "[Ferlock]";
-		mes "Gremlin wings also aren't";
-		mes "naturally powerful enough to";
-		mes "enable them to fly. However,";
-		mes "if someone implants Wills of";
-		mes "the Darkness into them, their";
-		mes "powers increase exponentially.";
+		mes "格林姆林的翅膀天生不足以飞行。但如果有人将黑暗意志植入它们，力量就会指数增长。";
 		next;
 		mes "[Ferlock]";
-		mes "Although Gremlins tend";
-		mes "not to attack humans unless";
-		mes "provoked, and that they tend";
-		mes "to shy away from people, they";
-		mes "are being controlled to steal";
-		mes "our Airships' Rune Stones.";
+		mes "格林姆林通常不会主动攻击人类，也会躲避人群，但现在被控制来偷飞艇的符文石。";
 		next;
 		mes "[Ferlock]";
-		mes "Whoever is controlling the";
-		mes "Gremlins also sends those";
-		mes "Beholder monsters in order";
-		mes "to monitor their progress";
-		mes "and observe our resistance.";
+		mes "控制格林姆林的人还派出邪眼魔物，监视进展并观察我们的抵抗。";
 		next;
 		mes "[Ferlock]";
-		mes "My brother and I have been";
-		mes "investigating this matter, but";
-		mes "so far, we haven't learned very";
-		mes "much. Now, my Airship only";
-		mes "provides domestic flights";
-		mes "and hasn't been attacked.";
+		mes "我和弟弟一直调查此事，但目前所知不多。我的飞艇只执行国内航班，尚未遭到攻击。";
 		next;
 		mes "[Ferlock]";
-		mes "Now, my brother's Airship";
-		mes "specializes in international";
-		mes "flights and suffers from the";
-		mes "Gremlin invasions, so we are";
-		mes "guessing the attackers are from outside the Schwarzwald Republic.";
+		mes "我弟弟的飞艇专营国际航班，还遭到格林姆林入侵，所以我们猜测攻击者来自施瓦尔茨共和国之外。";
 		next;
 		mes "[Ferlock]";
-		mes "In any case, that is all";
-		mes "I really know. Please keep";
-		mes "this information to yourself";
-		mes "and let me know if you learn anything new about this situation.";
+		mes "总之，这就是我知道的全部。请保密，发现新情况就告诉我。";
 		next;
 		mes "[Ferlock]";
-		mes "If I manage to uncover";
-		mes "anything about the ones";
-		mes "that are using the Wills";
-		mes "of Darkness to control the";
-		mes "Gremlins and steal our Rune";
-		mes "Stones, I'll let you know.";
+		mes "如果我查到控制格林姆林、偷走符文石的人使用黑暗意志，我会告诉你。";
 		next;
 		mes "[Ferlock]";
-		mes "Who is sending these";
-		mes "monsters to invade our";
-		mes "Airships, and for what";
-		mes "purpose do they want the";
-		mes "Rune Stones? Hmm. Well, this";
-		mes "is goodbye for now, adventurer.";
+		mes "是谁派这些魔物入侵飞艇？他们为什么想要符文石？嗯……冒险者，暂时再见。";
 		close2;
 		specialeffect2 EF_ABSORBSPIRITS;
 		completequest 8043;
@@ -2337,17 +2188,9 @@ airplane,236,163,5	script	Airship Captain#03	4_M_REINDEER,{
 		cutin "",255;
 		end;
 	} else if (lght_air == 7 && lhz_heart == 13) {
-		mes "I'll be quite busy with my";
-		mes "captaining duties and my";
-		mes "private investigation of the";
-		mes "attempted Rune Stone robberies.";
-		mes "Hopefully, we'll be able to meet again later. For now, take care.";
+		mes "我得忙于船长职责和符文石盗窃未遂案的调查。希望之后还能再见。保重。";
 	} else {
-		mes "Hey there, welcome";
-		mes "aboard the Airship. I'm";
-		mes "Ferlock, your captain";
-		mes "on this flight. How can";
-		mes "I be of service to you?";
+		mes "嘿，欢迎登上飞艇。我是这趟航班的船长费洛克。有什么能帮你？";
 		next;
 		if (lght_air == 2)
 			.@question2$ = "Give him Tarlock's Letter.";
@@ -2356,74 +2199,39 @@ airplane,236,163,5	script	Airship Captain#03	4_M_REINDEER,{
 		switch(select("How does this Airship fly?", .@question2$, "Cancel.")) {
 		case 1:
 			mes "[Ferlock]";
-			mes "I'm sorry, but I can't";
-			mes "give you that kind of";
-			mes "classified information.";
-			mes "It's too important to the";
-			mes "security and safety of";
-			mes "this Airship, you see.";
+			mes "抱歉，我不能提供那种机密信息。这关系到飞艇的安全。";
 			break;
 		case 2:
 			if (lght_air == 2) {
 				changequest 8032,8033;
 				lght_air = 3;
-				mes "^3131FFYou give Captain Ferlock";
-				mes "the letter that his brother";
-				mes "Tarlock has written for him.^000000";
+				mes "^3131FF你把塔洛克的信交给费洛克船长，";
+				mes "他的弟弟塔洛克写给他的信。^000000";
 				next;
 				mes "[Ferlock]";
-				mes "Oh, this is from my";
-				mes "brother? Hey, thanks so";
-				mes "much for bringing this to";
-				mes "me for him. Ah, give me";
-				mes "a minute to read all of";
-				mes "this, would you now?";
+				mes "哦，这是我弟弟写的？谢谢你替他带来。给我一点时间读完，好吗？";
 				next;
 				mes "[Ferlock]";
 				mes "...";
-				mes "So that's what he's been";
-				mes "up to. Huh. Hahaha! Oh, that's";
-				mes "funny. Ah, it's always good to";
-				mes "hear from Tarlock. Anyway,";
-				mes "I'm sorry to make you wait.";
+				mes "原来他一直在做这个。哈哈哈，真有趣。能收到塔洛克的消息总是很好。抱歉让你久等。";
 				next;
 				mes "[Ferlock]";
-				mes "Anyway, my brother wrote";
-				mes "about the usual stuff, but";
-				mes "he mentioned that he was";
-				mes "hoping to finally return a few";
-				mes "things he borrowed from me.";
-				mes "However, he lost them...";
+				mes "弟弟信里写了些日常琐事，还提到想归还借我的东西。不过他把东西弄丢了……";
 				next;
 				mes "[Ferlock]";
-				mes "It turns that those nasty";
-				mes "gremlins that sometimes";
-				mes "attack his ship stole my";
-				mes "things, so was he actually";
-				mes "hoping that you would";
-				mes "help me get them back.";
+				mes "原来那些偶尔袭击他飞艇的可恶格林姆林偷走了我的东西，所以他希望你帮我找回。";
 				next;
 				mes "[Ferlock]";
-				mes "Yeah, yeah. He specifically";
-				mes "mentioned that I shouldn't";
-				mes "give you my reply until you";
-				mes "hunt those monsters and get";
-				mes "my stuff back. I'm sorry, but";
-				mes "I guess you owe big bro, huh?";
+				mes "是的，他特别提到，在你猎杀那些魔物并找回我的东西前，不要把回信给你。抱歉，但是……";
+				mes "看来你欠哥哥一个人情，对吧？";
 				next;
 				mes "[Ferlock]";
-				mes "Well, if you're willing to";
-				mes "help me, would you get my";
-				mes "^ff00002 Will of the Darkness^000000 and";
-				mes "^ff00002 Prickly Fruit^000000 back for me?";
+				mes "如果你愿意帮我，能找回我的";
+				mes "^ff00002 个黑暗意志^000000和";
+				mes "^ff00002 个带刺果实^000000带回来吗？";
 				next;
 				mes "[Ferlock]";
-				mes "The monsters that attack";
-				mes "Tarlock's Airship should";
-				mes "have them. I'd appreciate";
-				mes "it if you'd help me out on";
-				mes "this, adventurer. Thanks";
-				mes "in advance and good luck~";
+				mes "攻击塔洛克飞艇的魔物应该拿着它们。冒险者，拜托你帮忙。提前谢谢，祝你好运～";
 			} else if (lght_air == 3) {
 				if (countitem(7340) >= 2 && countitem(576) >= 2) {// Will_Of_Darkness, Prickly_Fruit
 					delitem 7340, 2;
@@ -2431,41 +2239,26 @@ airplane,236,163,5	script	Airship Captain#03	4_M_REINDEER,{
 					changequest 8033,8034;
 					lght_air = 4;
 					mes "[Ferlock]";
-					mes "Oh this is great! Finally,";
-					mes "I have my stuff back! Still,";
-					mes "I have no idea why Tarlock";
-					mes "wanted these things to begin";
-					mes "with. Oh well. Would you please take this reply to Tarlock for me?";
+					mes "太好了！终于拿回东西了！不过我不知道塔洛克为什么想要它们。请把回信带给塔洛克，好吗？";
 					next;
 					mes "[Ferlock]";
-					mes "Thanks again";
-					mes "for all of your help!";
-					mes "I don't think I'd ever";
-					mes "see these things again";
-					mes "if it weren't for you~";
+					mes "再次感谢你的帮助！如果没有你，我恐怕再也见不到这些东西了～";
 					next;
-					mes "^3355FFYou have received";
-					mes "Captain Ferlock's letter";
-					mes "to deliver to his elder";
-					mes "brother, Captain Tarlock.^000000";
+				mes "^3355FF你获得了";
+	mes "费洛克船长写给哥哥塔洛克船长的信。^000000";
 				} else {
 					mes "[Ferlock]";
-					mes "Oh, I'm sorry, but it looks";
-					mes "like you're missing something.";
-					mes "Would you please go and find";
-					mes "^ff00002 Will of the Darkness^000000 and";
-					mes "^ff00002 Prickly Fruit^000000? Thanks,";
-					mes "brave adventurer~";
+					mes "哦，抱歉，你似乎还缺少东西。请去找齐它们。";
+					mes "^ff00002 个黑暗意志^000000和";
+					mes "^ff00002 个带刺果实^000000？谢谢，";
+				mes "勇敢的冒险者～";
 				}
 			}
 			break;
 		case 3:
 			mes "[Ferlock]";
-			mes "Well, I hope that";
-			mes "you enjoy your time";
-			mes "here on the Airship";
-			mes "and that you have a";
-			mes "very pleasant journey.";
+			mes "希望你享受飞艇之旅，";
+			mes "祝你旅途愉快。";
 			break;
 		}
 	}
@@ -2479,377 +2272,550 @@ airplane,236,163,5	script	Airship Captain#03	4_M_REINDEER,{
 airplane,236,63,4	script	Hallen	4_M_KID1,{
 	mes "[Hallen]";
 	if (hg_ma1 == 3 || BaseLevel < 60) {
-		mes "If you need me to";
-		mes "do anything, just";
-		mes "give me a holler.";
-		mes "Bweh heh... hollah~";
+		mes "需要我做什么就喊我一声。呜嘿嘿……喊我～";
 		if (hg_ma1 == 3) {
 			next;
-			select("Hey, do you know a guy named Thierry?");
+			select("嘿，你认识一个叫蒂埃里的人吗？");
 			mes "[Hallen]";
-			mes "Thierry? Um...I don't think so. Why don't you go ask Kaci? She might know.";
+			mes "蒂埃里？呃……我不这么认为。去问问凯茜吧？她可能知道。";
 		}
 	} else if (!lhz_heart) {
-		mes "Howdy, howdy~";
-		mes "Welcome to the Airship.";
+		mes "你好，你好～欢迎乘坐飞艇。";
 		next;
 		switch(select("I'm not a passenger.:Hey kid, what are you doing?")) {
 		case 1:
 			emotion ET_QUESTION;
 			mes "[Hallen]";
-			mes "Does that mean you're";
-			mes "one of the crewmen, then?";
-			mes "I don't think we've met before,";
-			mes "and I should be familiar with";
-			mes "everyone working here by now...";
+			mes "这意味着你是……";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+			mes "那你是船员之一吗？";
+			mes "我想我们以前没见过，";
+			mes "而且我应该已经熟悉";
+			mes "这里工作的每个人了……";
 			next;
 			emotion ET_SURPRISE;
 			mes "[Hallen]";
-			mes "Hey...!";
-			mes "If you're on duty,";
-			mes "shouldn't you be in";
-			mes "uniform? I guess you";
-			mes "don't work here after all!";
-			mes "Heh, figured it out myself~";
+			mes "嘿……！";
+			mes "如果你在值班，";
+			mes "不应该穿制服吗？";
+			mes "看来你果然不在这里工作！";
+			mes "嘿，我自己想明白了~";
 			next;
 			mes "[Hallen]";
-			mes "Eh, I need to finish";
-			mes "sweeping this deck. Then,";
-			mes "on my break, I can play a";
-			mes "little game for Apples with";
-			mes "Kaci. That's how I roll, yo.";
+			mes "嗯，我得先扫完甲板。";
+			mes "然后休息时，";
+			mes "我可以和 Kaci 玩小游戏";
+			mes "赢苹果。";
+			mes "我就是这样，伙计。";
 			break;
 		case 2:
 			mes "[Hallen]";
-			mes "Ummm... Isn't it obvious?";
-			mes "I'm sweeping the deck. I'm";
-			mes "the youngest crewman, so";
-			mes "I get stuck with the lamest";
-			mes "jobs. But once I'm done, it's";
-			mes "Dice time with Kaci. Oh yeah~";
+			mes "嗯……这不是很明显吗？";
+			mes "我在扫甲板。我是";
+			mes "最年轻的船员，";
+			mes "所以总被安排最无聊的";
+			mes "工作。不过做完后就能";
+			mes "和 Kaci 玩骰子了。哦耶~";
 			break;
 		}
 		next;
-		select("Kaci?");
+		select("Kaci？");
 		mes "[Hallen]";
-		mes "Kaci... You know, the";
-		mes "dealer of the Dice game?";
-		mes "You should try it out: just";
-		mes "roll some dice for a chance";
-		mes "to win some Apples. Hey,";
-		mes "you could get really lucky!";
+		mes "Kaci……就是那个";
+		mes "骰子游戏的庄家？";
+		mes "你应该试试：掷骰子";
+		mes "就有机会赢苹果。嘿，";
+		mes "你可能会走大运！";
 		next;
 		mes "[Hallen]";
-		mes "Heh, there's one guy that";
-		mes "won so many Apples from Kaci";
-		mes "that he was able to become";
-		mes "an Apple Merchant. Can you";
-		mes "believe that? Yeah... Kaci";
-		mes "doesn't like him so much...";
+		mes "嘿，有个人从 Kaci 那里";
+		mes "赢了很多苹果，";
+		mes "最后成了苹果商人。";
+		mes "你敢相信吗？是的……";
+		mes "Kaci 不太喜欢他……";
 		close2;
 		lhz_heart = 1;
 		end;
 	} else if (lhz_heart == 1) {
-		mes "Oh hey, it's you~";
-		mes "We talked earlier,";
-		mes "didn't we? Yeah...";
-		mes "I'm still here sweeping";
-		mes "this floor. It's gonna";
-		mes "take quite a while.";
+		mes "哦，嘿，是你~";
+		mes "我们之前聊过，";
+		mes "对吧？是的……";
+		mes "我还在扫地板。";
+		mes "还要花不少时间。";
 		next;
 		emotion ET_SURPRISE;
 		mes "[Hallen]";
-		mes "It doesn't look like";
-		mes "I'm gonna finish this";
-		mes "anytime soon. Hey, do";
-		mes "you think you could do";
-		mes "me a favor since I can't";
-		mes "really leave this joint?";
+		mes "看来我很快完不成。";
+		mes "嘿，既然我不能离开这里，";
+		mes "你能不能";
+		mes "帮我一个忙？";
 		next;
-		switch(select("Sorry, but I'm busy...:What is it?")) {
+		switch(select("抱歉，我很忙……:什么事？")) {
 		case 1:
 			mes "[Hallen]";
-			mes "Eh, alright. I guess";
-			mes "I can understand. But";
-			mes "still, I coulda made it";
-			mes "worth your while, if you";
-			mes "know what I mean~";
+			mes "嗯，好吧。我能理解。";
+			mes "不过，如果你懂我的意思，";
+			mes "我本来可以让你";
+			mes "觉得这趟很值得~";
 			close;
 		case 2:
 			mes "[Hallen]";
-			mes "Don't worry, it's not much";
-			mes "work. I'm supposed to deliver";
-			mes "letters from Juno Airport to";
-			mes "the other crewmen, but I don't";
-			mes "got the time. Now, I have";
-			mes "this letter for Kaci here...";
+			mes "别担心，工作不多。";
+			mes "我本该把朱诺机场的信";
+			mes "交给其他船员，但没时间。";
+			mes "现在，我这里有一封";
+			mes "给 Kaci 的信……";
 			next;
 			mes "[Hallen]";
-			mes "Would you go and";
-			mes "deliver this letter";
-			mes "to her for me? It's";
-			mes "from some guy named";
-			mes "Mr. Mawong, her mentor";
-			mes "or something like that.";
+			mes "你能替我把这封信";
+			mes "交给她吗？";
+			mes "寄信的人叫 Mawong 先生，";
+			mes "好像是她的导师之类的。";
 			next;
-			mes "^3355FFHallen gave you";
-			mes "Mawong's letter to";
-			mes "be delivered to Kaci.^000000";
+		mes "^3355FFHallen 把 Mawong 的信";
+		mes "交给你，让你转交 Kaci。^000000";
 			setquest 8036;
 			lhz_heart = 2;
 			next;
 			mes "[Hallen]";
-			mes "Hey, thanks a lot, pal~";
-			mes "You can find Kaci hosting";
-			mes "the Dice game in the Airship.";
+			mes "嘿，非常感谢，朋友~";
+			mes "你可以在飞艇上找到";
+			mes "主持骰子游戏的 Kaci。";
 			close;
 		}
 	} else if (lhz_heart == 2) {
 		mes "^333333*Sigh...*^000000";
-		mes "I'm so sick and";
-		mes "tired of sweeping.";
-		mes "It's like I'm some";
-		mes "kinda lame cabin boy.";
-		mes "But... I guess I am!";
+		mes "我真是又累又烦";
+		mes "一直扫地。";
+		mes "简直像个";
+		mes "没用的小舱童。";
+		mes "不过……我确实是！";
 		next;
 		mes "[Hallen]";
-		mes "Oh hey, were you";
-		mes "able to give that";
-		mes "letter to Kaci yet?";
-		mes "I think it's pretty";
-		mes "important, so try not";
-		mes "to take too long, okay?";
+		mes "哦，嘿，你把那封信";
+		mes "交给 Kaci 了吗？";
+		mes "我觉得它很重要，";
+		mes "所以别花太久时间，";
+		mes "好吗？";
+		mes " ";
 	} else if (lhz_heart == 3) {
 		mes "^333333*Sigh...*^000000";
-		mes "I'm so sick and";
-		mes "tired of sweeping.";
-		mes "It's like I'm some";
-		mes "kinda lame cabin boy.";
-		mes "But... I guess I am!";
+		mes "我真是又累又烦";
+		mes "一直扫地。";
+		mes "简直像个没用的小舱童。";
+		mes "不过……我确实是！";
 	} else if (lhz_heart == 4) {
-		mes "Hey, thanks for delivering";
-		mes "that letter to Kaci for me.";
-		mes "She wasn't too happy that";
-		mes "I asked a passenger to do";
-		mes "it, but she understood that";
-		mes "I'm totally swamped with work.";
+		mes "嘿，谢谢你替我";
+		mes "把信交给 Kaci。";
+		mes "她不太高兴我让乘客帮忙，";
+		mes "但她也明白";
+		mes "我的工作忙得不可开交。";
 		next;
 		mes "[Hallen]";
-		mes "Wouldn't you agree";
-		mes "that people should";
-		mes "help each other in";
-		mes "times of crisis?";
+		mes "你不觉得";
+		mes "人们应该在危机时刻";
+		mes "互相帮助吗？";
 		next;
 		switch(select("Not at all. Every man for himself!:Yes, I do.")) {
 		case 1:
 			mes "[Hallen]";
-			mes "Wh-what...?";
-			mes "I can't think";
-			mes "that you really";
-			mes "believe that...";
+			mes "什、什么……？";
+			mes "我真没想到";
+			mes "你居然会";
+			mes "这么想……";
 			lhz_heart = 5;
 			changequest 8038,8039;
 			close;
 		case 2:
 			mes "[Hallen]";
-			mes "Aww, really?";
-			mes "I knew that you'd";
-			mes "feel the same way";
-			mes "I do. You and me, we're";
-			mes "on the same wavelength~";
+			mes "啊，真的吗？";
+			mes "我就知道你和我";
+			mes "想法一样。";
+			mes "你和我，我们在同一波长上~";
 			next;
 			if (checkweight(501,1) != 1) {
 				mes "[Hallen]";
-				mes "Oh... Hey, I was";
-				mes "going to give you";
-				mes "a little something,";
-				mes "but you're carrying";
-				mes "too much stuff right now...";
+				mes "哦……嘿，我本来";
+				mes "想给你点东西，";
+				mes "但你现在带的";
+				mes "东西太多了……";
 				close;
 			}
 			lhz_heart = 5;
 			getitem 501,1;// Red_Potion
 			mes "[Hallen]";
-			mes "I know this isn't";
-			mes "much, but I'd like you";
-			mes "to have it. Besides, you";
-			mes "never know what'll come in";
-			mes "handy during an emergency.";
-			mes "Alright then, see you later~";
+			mes "我知道这不算什么，";
+			mes "但我想把它给你。";
+			mes "而且，紧急时刻";
+			mes "总会派上用场。";
+			mes "那么，回头见~";
 			close;
 		}
 	} else if (lhz_heart == 5) {
-		mes "Hey, hey~ How's it going?";
-		mes "I know, I know, I'm supposed";
-		mes "to be sweeping, and I'm not";
-		mes "finished yet, but sometimes,";
-		mes "you know, you just have to";
-		mes "rest and take a break, yeah?";
+		mes "嘿，嘿~最近怎么样？";
+		mes "我知道，我知道，我本该扫地，";
+		mes "但还没扫完。不过有时，";
+		mes "你知道的，总得";
+		mes "休息一下，对吧？";
 		next;
 		mes "[Hallen]";
-		mes "Ahh, busy days like these";
-		mes "remind me of working back";
-		mes "home in Juno with my neighbor,";
-		mes "Gyver. He's a genius inventor,";
-		mes "you know, and sort of like";
-		mes "a hero or role model to me.";
+		mes "啊，这样忙碌的日子";
+		mes "让我想起在朱诺老家";
+		mes "和邻居 Gyver 一起工作。";
+		mes "他是天才发明家，";
+		mes "对我来说像英雄";
+		mes "或榜样一样。";
 		next;
 		mes "[Hallen]";
-		mes "Guyver is so brilliant,";
-		mes "he can pretty much make";
-		mes "anything he wants. Someday,";
-		mes "I want to reach his level, and";
-		mes "create things that will help";
-		mes "people and make them happy.";
+		mes "Guyver 非常聪明，";
+		mes "几乎什么都能制造。";
+		mes "有一天，我也想达到他的水平，";
+		mes "创造帮助人们";
+		mes "并让他们开心的东西。";
 		next;
 		mes "[Hallen]";
-		mes "That's pretty much my";
-		mes "life ambition-- you know,";
-		mes "the kind of thing I want to";
-		mes "contribute to the world. Of";
-		mes "course, I doubt I can compare";
-		mes "to the great Sage Varmunt.";
+		mes "这就是我的人生志向——";
+		mes "也就是我想为世界";
+		mes "贡献的东西。当然，";
+		mes "我怀疑自己能否比得上";
+		mes "伟大的贤者 Varmunt。";
 		next;
 		select("Sage Varmunt?");
 		mes "[Hallen]";
-		mes "Yeah, Varmunt... He's like";
-		mes "one of the greatest Sages in";
-		mes "history. Well, nobody know too";
-		mes "much about him, but 300 years";
-		mes "ago, he was responsible for most ground breaking accomplishments.";
+		mes "是的，Varmunt……他是";
+		mes "历史上最伟大的贤者之一。";
+		mes "没人太了解他，但 300 年前，";
+		mes "他完成了许多";
+		mes "划时代的成就。";
 		next;
 		mes "[Hallen]";
-		mes "Supposedly, he single handedly";
-		mes "revolutionized science. Many of";
-		mes "the machines that are convenient to life today are his inventions.";
-		mes "Sadly, he disappeared from history and no one know how he vanished.";
+		mes "据说他凭一己之力革新了科学。";
+		mes "如今许多便利生活的机器";
+		mes "都是他的发明。";
+		mes "遗憾的是，他从历史中消失，没人知道他去了哪里。";
 		next;
 		mes "[Hallen]";
-		mes "The great Sage Varmunt...";
-		mes "It's a pretty well known";
-		mes "legend in the Schwarzwald";
-		mes "Republic. Anyway, for my";
-		mes "project, I wanted to learn";
-		mes "more about these Airships.";
+		mes "伟大的贤者 Varmunt……";
+		mes "这是施瓦茨瓦尔德共和国";
+		mes "广为人知的传说。";
+		mes "总之，为了我的项目，";
+		mes "我想更多了解这些飞艇。";
 		next;
 		mes "[Hallen]";
-		mes "These Airships are so huge";
-		mes "and heavy, and I can scarcely";
-		mes "believe that they can fly. How";
-		mes "is it even possible? Well, if";
-		mes "you could find out for me, ";
-		mes "it'd be a really big help.";
+		mes "这些飞艇又大又重，";
+		mes "我很难相信它们能飞。";
+		mes "这究竟是怎么做到的？";
+		mes "如果你能替我查清楚，";
+		mes "那就帮大忙了。";
 		if (isbegin_quest(8039) == 0)
 			changequest 8038,8039;
 		lhz_heart = 6;
 	} else if (lhz_heart == 6) {
-		mes "Hey, have you learned";
-		mes "what makes such a big,";
-		mes "heavy Airship like this fly";
-		mes "for so long in the sky?";
+		mes "嘿，你查到这么大、这么重的飞艇";
+		mes "为什么能长时间";
+		mes "飞在天空中了吗？";
 		next;
 		if (lght_air == 7) {
 			select("Umm, yeah, kind of.");
 			mes "[Hallen]";
-			mes "Really...?";
-			mes "Are you serious?";
-			mes "So what's the secret?";
-			mes "Tell me, I'm dying to know!";
+			mes "真的吗……？";
+			mes "你是认真的吗？";
+			mes "秘密是什么？";
+			mes "快告诉我，我太想知道了！";
 			next;
 			mes "^3355FFYou tell Hallen everything";
-			mes "that you've learned from";
-			mes "Captain Tarlock, but you're";
-			mes "careful not to make any";
-			mes "mention of Ymir's Heart Piece.^000000";
+			mes "你从 Tarlock 船长那里了解到，";
+			mes "但你小心地没有提及";
+			mes "伊米尔之心碎片。^000000";
 			next;
 			mes "[Hallen]";
-			mes "So... The propellers are";
-			mes "powered through steam?";
-			mes "That doesn't make sense.";
-			mes "No way, it can't be that simple. Besides, steam has its limits.";
-			mes "Are you sure that's everything?";
+			mes "所以……螺旋桨";
+			mes "是由蒸汽驱动的？";
+			mes "这说不通。";
+			mes "不可能这么简单，而且蒸汽也有局限。";
+			mes "你确定这就是全部吗？";
 			next;
 			select("Actually, there's another power source.");
-			mes "^3355FFYou reveal what you";
-			mes "learn about the Rune Stone,";
-			mes "an imitation of Ymir's Heart";
-			mes "Piece: Hallen is a well meaning";
-			mes "kid who probably won't use this";
-			mes "knowledge for evil purposes.";
+			mes "^3355FF你说出你";
+			mes "了解了符文石，";
+			mes "一种伊米尔之心碎片的仿制品。";
+			mes "Hallen 是个善良的孩子，";
+			mes "应该不会将这些知识";
+			mes "用于邪恶目的。";
 			next;
 			mes "[Hallen]";
-			mes "A-awesome! So there is";
-			mes "some special magic power";
-			mes "source that helps this Airship";
-			mes "fly! I knew it! Now, what was";
-			mes "it called again? Ah, the";
-			mes "Rune Stone, right?";
+			mes "太、太棒了！原来有某种";
+			mes "特殊魔力来源帮助飞艇飞行！";
+			mes "我就知道！它叫什么来着？";
+			mes "啊，是符文石，对吧？";
 			next;
 			mes "[Hallen]";
-			mes "An imitation of Ymir's";
-			mes "Heart Piece. Now where";
-			mes "have I heard about that";
-			mes "before? Mm, let me think...";
+			mes "模仿伊米尔之心的";
+			mes "碎片。这个我以前";
+			mes "在哪里听过？";
+			mes "嗯，让我想想……";
 			changequest 8039,8040;
 			lhz_heart = 7;
 		} else {
 			select("Actually...");
 			mes "[Hallen]";
-			mes "You didn't learn anything";
-			mes "about the Airship yet, huh?";
-			mes "Maybe Captain Ferlock might";
-			mes "know something, or any one";
-			mes "of the other Airship captains.";
-			mes "Hopefully, one will tell you...";
+			mes "你还没了解到飞艇的任何信息，对吧？";
+			mes "也许 Ferlock 船长或其他飞艇船长";
+			mes "知道些什么。";
+			mes "希望有人能告诉你……";
 			next;
 			mes "[Hallen]";
-			mes "I know that the secrets of";
-			mes "Airship flight is considered";
-			mes "classified information, but if";
-			mes "anyone can wrest those secrets,";
-			mes "it'll be one of you adventurers. So please help me out here...";
+			mes "我知道飞艇飞行的秘密属于机密，";
+			mes "但如果有人能揭开它，";
+			mes "一定是你们这些冒险者。";
+			mes "所以请帮帮我……";
 		}
 	} else if (lhz_heart == 7) {
-		mes "So the Rune Stone";
-		mes "is an imitation of just";
-		mes "a piece of Ymir's Heart.";
-		mes "But where have I heard";
-		mes "about that before...?";
+		mes "所以符文石";
+		mes "只是伊米尔之心";
+		mes "的一块仿制品。";
+		mes "但我以前在哪里";
+		mes "听过这个名字……？";
 		next;
 		emotion ET_SURPRISE;
 		mes "[Hallen]";
-		mes "Oh, that's right!";
-		mes "Kaci told me about a";
-		mes "drunkard that always";
-		mes "mentions Ymir's Heart";
-		mes "when he plays the Dice";
-		mes "game for Apples!";
+		mes "哦，对了！";
+		mes "Kaci 告诉过我一个";
+		mes "酒鬼，他玩苹果骰子游戏时";
+		mes "总会提到伊米尔之心！";
 		next;
 		if (Shinokas_Quest > 9) {
 			mes "["+strcharinfo(0)+"]";
-			mes "(^333333Wait, I met that guy when";
-			mes "I was helping Shinokas. He";
-			mes "was one of the directors of";
-			mes "the Einbroch Laboratory that";
-			mes "had a piece of Ymir's Heart.";
-			mes "It's worth investigating...^000000)";
+			mes "（^333333等等，我在";
+			mes "我曾帮助 Shinokas。";
+			mes "他是艾因布罗赫实验室的";
+			mes "一名主管，那里有一块";
+			mes "伊米尔之心碎片。";
+			mes "值得调查……^000000）";
 			next;
 		}
 		mes "[Hallen]";
-		mes "Anyway, it's not much,";
-		mes "but let me give you a little";
-		mes "something for going through";
-		mes "the trouble of learning that";
-		mes "secret information for me...";
+			mes "总之，这不算什么，";
+			mes "但感谢你费心";
+			mes "为我调查机密信息，";
+			mes "让我送你一点东西……";
 		next;
 		if (checkweight(501,1) != 1) {
 			mes "[Hallen]";
-			mes "Aw, nuts...";
-			mes "You don't have";
-			mes "enough room to";
-			mes "receive my little gift.";
-			mes "Please free up more space";
-			mes "in your inventory for me, okay?";
+				mes "哎呀，糟糕……";
+				mes "你的背包没有足够空间";
+				mes "收下我的小礼物。";
+				mes "请腾出更多空间，好吗？";
 			close;
 		}
 		if (Shinokas_Quest > 9) {
@@ -2861,25 +2827,22 @@ airplane,236,63,4	script	Hallen	4_M_KID1,{
 		}
 		getitem 501,1;
 		mes "[Hallen]";
-		mes "Here you go~";
-		mes "I know it's pretty paltry";
-		mes "compared to the rewards ";
-		mes "you adventurers usually get,";
-		mes "but hey... It's my thought that";
-		mes "counts, right? See you later~";
+		mes "给你~";
+		mes "我知道和你们冒险者";
+		mes "通常得到的奖励相比很少，";
+		mes "但心意才是最重要的，对吧？";
+		mes "回头见~";
 	} else if (lhz_heart == 8) {
-		mes "Hey, why don't you";
-		mes "ask Kaci about that";
-		mes "drunkard that's always";
-		mes "playing her Dice game?";
-		mes "You might learn more about";
-		mes "Ymir's Heart Piece, you know?";
+		mes "嘿，你为什么不问问 Kaci";
+		mes "那个总是玩骰子游戏的";
+		mes "酒鬼？";
+		mes "你也许能更多了解";
+		mes "伊米尔之心碎片。";
 	} else {
-		mes "Thanks for helping me";
-		mes "out that last time. I guess";
-		mes "learning about the Rune Stone";
-		mes "kinda inspired me to build an";
-		mes "Airship of my own someday...";
+		mes "谢谢你上次帮我。";
+		mes "了解符文石让我受到启发，";
+		mes "也许有一天我会";
+		mes "建造属于自己的飞艇……";
 	}
 	close;
 }
@@ -2887,14 +2850,12 @@ airplane,236,63,4	script	Hallen	4_M_KID1,{
 airplane,33,69,4	script	Kaci	1_F_MERCHANT_01,{
 	mes "[Kaci]";
 	if (hg_ma1 == 3) {
-		mes "You must be sooo";
-		mes "bored, adventurer~";
-		mes "How would you like";
-		mes "to play a game of Dice?";
+		mes "你一定很无聊，冒险者~";
+		mes "想玩一局骰子游戏吗？";
 		next;
-		select("Do you know a guy named Thierry?");
+		select("你认识一个叫 Thierry 的人吗？");
 		mes "[Kaci]";
-		mes "Thierry? Um...that sounds familiar...";
+		mes "Thierry？嗯……听起来很耳熟……";
 		next;
 		mes "[Kaci]";
 		mes "....................";
@@ -2903,231 +2864,270 @@ airplane,33,69,4	script	Kaci	1_F_MERCHANT_01,{
 		mes "...";
 		next;
 		mes "[Kaci]";
-		mes "Oh, right! Thierry, Thierry, Thierry! Right?";
+		mes "哦，对了！Thierry，Thierry，Thierry！对吧？";
 		next;
 		mes "[Kaci]";
-		mes "- She suddenly called out the name several times,  -";
-		mes "- so you were startled and dropped your half eaten apple. -";
+		mes "- 她突然连续喊了几次这个名字，-";
+		mes "- 你被吓了一跳，掉下了吃了一半的苹果。-";
 		next;
 		mes "[Kaci]";
-		mes "Oops, sorry, if I startled you. I could not remember the name because it has been a while since I heard of his name the last time.";
+		mes "啊，抱歉吓到你了。我有一阵子没听到他的名字，所以一时想不起来。";
 		next;
 		mes "[Kaci]";
-		mes "Thierry was a guy living in the next door while I was learning games and tricks from Mr. Mawong.";
-		mes "I remember that he was a very smart guy and was doing many research stuffs.";
+		mes "我跟 Mawong 先生学习游戏和技巧时，Thierry 就住在隔壁。";
+		mes "我记得他非常聪明，做了很多研究。";
 		next;
 		mes "[Kaci]";
-		mes "Oh yeah, and he was in love with Eukran's sister.";
-		mes "And Eukran and I were studying games together under Mr. Mawong at that time.";
-		mes "Hmm...I wonder how they have been doing.";
+		mes "哦，对了，他爱上了 Eukran 的姐姐。";
+		mes "当时 Eukran 和我一起在 Mawong 先生手下学习游戏。";
+		mes "嗯……不知道他们现在过得怎么样。";
 		next;
-		mes "- You told her that Euslan and Thierry got engaged, but Thierry had to leave her to find medicine for her illness. -";
-		next;
-		mes "[Kaci]";
-		mes "Oh...gosh...I can't believe that Euslan is has become ill....Oh......";
-		next;
-		mes "- Kaci seemed to be shocked by such devastating news. -";
-		mes "- She was mumbling something for a while, and then came back to her senses again. -";
+		mes "- 你告诉她 Euslan 和 Thierry 已订婚，但 Thierry 为寻找治疗她疾病的药物而离开。-";
 		next;
 		mes "[Kaci]";
-		mes "I am so sorry for her...I really want to give here some help...but, it has been a while for me since I saw them. So, I don't know where he is.";
+		mes "哦……天哪……真不敢相信 Euslan 生病了……哦……";
+		next;
+		mes "- 这样的坏消息似乎让 Kaci 震惊了。-";
+		mes "- 她喃喃自语了一会儿，才恢复意识。-";
 		next;
 		mes "[Kaci]";
-		mes "But, let me think if...";
+		mes "我很为她难过……我真的想帮忙……但我已经很久没见他们了，所以不知道他在哪里。";
 		next;
 		mes "[Kaci]";
-		mes "Oh, right! The airship captain might be able to help you, because he is the one who is in charge of the passenger list.";
+		mes "不过，让我想想……";
 		next;
 		mes "[Kaci]";
-		mes "Although the passenger list is classified and strictly restricted from releasing to public...";
+		mes "哦，对了！飞艇船长也许能帮你，因为他负责乘客名单。";
 		next;
 		mes "[Kaci]";
-		mes "But, if you tell him the story, he might be able to help you. Please go ask him if you can.";
+		mes "虽然乘客名单属于机密，严格禁止公开……";
 		next;
 		mes "[Kaci]";
-		mes "And if you see Euslan again, please send my regard and blessing to her.";
+		mes "但如果你把事情告诉他，他也许能帮忙。请去问问他。";
 		next;
-		mes "- You promised her to send her regards and blessings to Euslan. -";
+		mes "[Kaci]";
+		mes "如果你再次见到 Euslan，请替我向她致意并送上祝福。";
+		next;
+		mes "- 你答应替她向 Euslan 致意并送上祝福。-";
 		changequest 8044,8045;
 		hg_ma1 = 4;
 	} else if (hg_ma1 == 4)
-		mes "The airship captain might be able to help you in finding Thierry's whereabouts.";
+		mes "飞艇船长也许能帮你找到 Thierry 的下落。";
 	else if (lhz_heart == 2) {
-		mes "You must be sooo";
-		mes "bored, adventurer~";
-		mes "How would you like";
-		mes "to play a game of Dice?";
+		mes "你一定很无聊，冒险者~";
+		mes "想玩一局骰子游戏吗？";
 		next;
-		select("Give her the letter from Hallen.");
+		select("把 Hallen 的信交给她。");
 		mes "[Kaci]";
-		mes "Oh, Hallen must have";
-		mes "asked you to deliver this.";
-		mes "He should be doing this sort";
-		mes "of thing himself, instead of";
-		mes "asking customers for favors!";
-		mes "But still, he's really busy...";
+		mes "哦，一定是 Hallen";
+		mes "让你来送这封信。";
+		mes "这种事他应该自己做，";
+		mes "不该麻烦客人！";
+		mes "不过，他确实很忙……";
 		next;
 		changequest 8036,8037;
 		lhz_heart = 3;
 		mes "[Kaci]";
-		mes "Thank you for bringing";
-		mes "this to me. If you ever";
-		mes "need a little favor from";
-		mes "me, feel free to ask me,";
-		mes "alright? See you later~";
+		mes "谢谢你把它带给我。";
+		mes "如果以后需要我";
+		mes "帮一点小忙，";
+		mes "尽管来找我，好吗？回头见~";
 	} else if (lhz_heart == 3) {
-		mes "Oh, hello. Thanks for";
-		mes "delivering that letter from";
-		mes "Mr. Mawong to me, especially";
-		mes "since Hallen was too busy to";
-		mes "do it himself. Reading that";
-		mes "letter really made my day~";
+		mes "哦，你好。谢谢你把";
+		mes "Mawong 先生的信交给我，";
+		mes "尤其是 Hallen 太忙";
+		mes "没法亲自送来。";
+		mes "读到那封信让我非常开心~";
 		next;
 		while (.@a == 0 || .@b == 0 || .@c == 0) {
 			if (.@a || .@b || .@c) {
 				mes "[Kaci]";
-				mes "Please don't hesitate";
-				mes "to ask me anything if";
-				mes "you need a small favor,";
-				mes "or if you're just curious";
-				mes "about me in general~";
+				mes "如果需要我帮小忙，";
+				mes "或者只是对我好奇，";
+				mes "请随时问我，";
+				mes "不用客气~";
 				next;
 			}
 			switch(select("Ask about Hallen:Ask about Mawong:Ask about the Airship")) {
 			case 1:
 				.@a = 1;
 				mes "[Kaci]";
-				mes "Hallen? Well, he and I are";
-				mes "pretty close. Did you know";
-				mes "that we're cousins? In fact,";
-				mes "his dad, my uncle, brought";
-				mes "me as a child after my father";
-				mes "passed away 20 years ago.";
+				mes "Hallen？嗯，我和他是";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+				mes "关系很近。你知道吗，";
+				mes "我们其实是表亲。事实上，";
+				mes "他的父亲、我的叔叔，在我父亲";
+				mes "去世后把我带回家，";
+				mes "那已经是 20 年前的事了。";
 				next;
-				mes "[Kaci]";
-				mes "There was some kind of";
-				mes "mine explosion accident in";
-				mes "Einbech. I don't remember.";
-				mes "Anyway, me and Hallen are";
-				mes "like sister and brother, and";
-				mes "we always stick together.";
+				mes "[卡西]";
+				mes "艾音贝赫发生过一次";
+				mes "矿井爆炸事故，我记不清了。";
+				mes "总之，我和哈伦情同姐弟，";
+				mes "我们总是形影不离。";
+				mes "一直都是这样。";
+				mes "我们从小一起长大。";
 				next;
-				mes "[Kaci]";
-				mes "When Captain Ferlock saw me";
-				mes "host a Dice game by coincidence";
-				mes "and then hired me to work on his Airship, Hallen insisted on coming";
-				mes "along. He's stubborn like that,";
-				mes "but he's also very sweet.";
+				mes "[卡西]";
+				mes "弗雷洛克船长偶然看到我";
+				mes "主持骰子游戏，后来雇我到飞艇工作，";
+				mes "哈伦坚持要一起去。";
+				mes "他就是这么固执，";
+				mes "但人也非常温柔。";
 				break;
 			case 2:
 				.@b = 1;
-				mes "[Kaci]";
-				mes "Mr. Mawong? Oh, don't get";
-				mes "the wrong idea! He's my";
-				mes "mentor, the one who taught";
-				mes "me how to play all of these";
-				mes "wonderful games. He's pretty";
-				mes "famous around Juno, you know.";
+				mes "[卡西]";
+				mes "毛翁先生？别误会！他是我的";
+				mes "导师，教会我玩这些";
+				mes "精彩游戏的人。";
+				mes "他在朱诺一带很有名，";
+				mes "你应该知道吧。";
+				mes "大家都认识他。";
 				next;
-				mes "[Kaci]";
-				mes "I used to be so depressed,";
-				mes "not caring about the world";
-				mes "at all, after my father died.";
-				mes "Then, I ran into Mr. Mawong,";
-				mes "and he taught me how to find";
-				mes "the joy in life once again.";
+				mes "[卡西]";
+				mes "父亲去世后，我曾经非常消沉，";
+				mes "完全不在乎这个世界。";
+				mes "后来我遇到了毛翁先生，";
+				mes "是他教我重新找到";
+				mes "生活中的快乐。";
+				mes "我真的很感谢他。";
 				next;
-				mes "[Kaci]";
-				mes "Because of him, I decided";
-				mes "to learn his games and to";
-				mes "help people forget their";
-				mes "worries and just enjoy";
-				mes "themselves, even if it's";
-				mes "just for a little while.";
+				mes "[卡西]";
+				mes "所以我决定学习他的游戏，";
+				mes "帮助人们忘记烦恼，";
+				mes "尽情享受当下，";
+				mes "哪怕只有短短一会儿。";
+				mes "这就是我的愿望。";
+				mes "希望大家都能开心。";
 				break;
 			case 3:
 				.@c = 1;
-				mes "[Kaci]";
-				mes "The Airship? It's so";
-				mes "huge and beautiful, and";
-				mes "I'm always amazed that it";
-				mes "can fly so gracefully through";
-				mes "the air. I've always wanted to live someplace close to the sky...";
+				mes "[卡西]";
+				mes "飞艇？它又大又漂亮，";
+				mes "我总是惊叹它能如此优雅地";
+				mes "在空中飞行。";
+				mes "它在空中飞行的姿态如此优雅，";
+				mes "我一直想住在靠近天空的地方……";
 				next;
-				mes "[Kaci]";
-				mes "A place where I can see";
-				mes "the clouds and bask in the";
-				mes "sun. So, when Captain Ferlock";
-				mes "invited me to work here, it was";
-				mes "like a dream come true~";
+				mes "[卡西]";
+				mes "在那里我能看见云朵，";
+				mes "沐浴在阳光下。";
+				mes "所以弗雷洛克船长邀请我来这里工作时，";
+				mes "就像梦想成真一样~";
+				mes "我真的非常开心。";
 				break;
 			}
 			next;
 		}
-		mes "[Kaci]";
-		mes "By the way, if Hallen";
-		mes "bothers you with another";
-		mes "request, please refuse to";
-		mes "help him next time, okay?";
-		mes "I won't allow him to get";
-		mes "spoiled! Ho ho ho ho~";
+		mes "[卡西]";
+		mes "对了，如果哈伦又来";
+		mes "拜托你做什么，请下次拒绝";
+		mes "帮助他，好吗？";
+		mes "我不会让他被宠坏的！";
+		mes "呵呵呵呵~";
+		mes "我可不想把他宠坏！";
 		next;
-		mes "[Kaci]";
-		mes "Well, I better get";
-		mes "back to work now.";
-		mes "Have a nice day,";
-		mes "and I'll see you later~";
+		mes "[卡西]";
+		mes "好了，我得回去工作了。";
+		mes "祝你今天愉快，";
+		mes "我们下次再见~";
+		mes "一路顺风。";
 		changequest 8037,8038;
 		lhz_heart = 4;
 	} else if (lhz_heart == 8) {
-		mes "Hello, "+strcharinfo(0)+".";
-		mes "It's nice to see you again.";
-		mes "So is there anything I can";
-		mes "help you with today?";
+		mes "你好，"+strcharinfo(0)+"。";
+		mes "很高兴再次见到你。";
+		mes "今天有什么我能";
+		mes "帮上忙的吗？";
 		next;
-		select("Who's that drunk over there?");
-		mes "[Kaci]";
-		mes "Oh, him? He's one of my";
-		mes "regulars, some guy who's";
-		mes "supposed to be an Einbroch";
-		mes "Lab Director. He keeps losing";
-		mes "Apples whenever he plays Dice:";
-		mes "I think he's a gambling addict~";
+		select("那边那个醉汉是谁？");
+		mes "[卡西]";
+		mes "哦，他？他是我的常客，";
+		mes "据说是艾因布洛克";
+		mes "实验室主任。";
+		mes "他每次玩骰子都会输掉苹果，";
+		mes "我觉得他是赌博成瘾了~";
+		mes "真让人担心。";
 		next;
-		mes "[Kaci]";
-		mes "In fact, his losses make up";
-		mes "for all the Apples I lost when";
-		mes "that Apple Merchant played here. Now, it's a legendary tale that";
-		mes "we all think fondly of, but at";
-		mes "the time, it nearly broke me.";
+		mes "[卡西]";
+		mes "事实上，他输掉的苹果正好弥补了";
+		mes "苹果商人在这里玩时让我输掉的数量。";
+		mes "现在大家都把那当成传奇故事，";
+		mes "但当时我差点承受不住。";
+		mes "想起来仍然很感慨。";
 		next;
-		mes "[Kaci]";
-		mes "Anyway, aside from the fact";
-		mes "that the Einbroch Lab Director";
-		mes "is kind of a whiny person when";
-		mes "he's drunk, and a poor gambler,";
-		mes "I don't know much about him.";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "(^333333Einbroch Laboratory...";
-		mes "It's so suspicious. That";
-		mes "director knows about Ymir's";
-		mes "Heart Piece, so they must be";
-		mes "keeping something really";
-		mes "important over there.^000000)";
+		mes "[卡西]";
+		mes "总之，除了知道艾因布洛克实验室主任";
+		mes "喝醉时有点爱抱怨，";
+		mes "而且赌运很差之外，";
+		mes "我对他了解不多。";
+		mes "他平时很少谈自己的事。";
+		mes "就这些了。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "(^333333I better investigate";
-		mes "that laboratory in Einbroch";
-		mes "as soon as I can, even if it's";
-		mes "a heavily restricted area.^000000)";
+		mes "(^333333艾因布洛克实验室……";
+		mes "真可疑。那个主任知道尤弥尔";
+		mes "之心碎片的事，他们一定在那边";
+		mes "保管着非常重要的东西。^000000)";
+		mes "必须调查清楚。";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "(^333333我最好尽快调查";
+		mes "艾因布洛克的那座实验室，";
+		mes "即使那里是严格限制进入的区域。^000000)";
+		mes "不能再拖了。";
 		changequest 8041,8042;
 		lhz_heart = 9;
 	} else {
-		mes "You must be sooo";
-		mes "bored, adventurer~";
-		mes "How would you like";
-		mes "to play a game of Dice?";
+		mes "你一定很无聊吧，冒险家~";
+		mes "要不要来玩一局骰子？";
+		mes "消磨一下时间吧。";
+		mes "我随时可以开始。";
 		next;
 		callfunc "applegamble","Kaci";
 	}
@@ -3139,11 +3139,11 @@ ein_in01,279,25,0	script	#lab01_heart	HIDDEN_WARP_NPC,1,1,{
 OnTouch_:
 	if (lhz_heart == 9) {
 		mes "["+strcharinfo(0)+"]";
-		mes "(^333333I've... I've just";
-		mes "got to investigate";
-		mes "that laboratory and";
-		mes "see if anything funny";
-		mes "is going on in there.^000000)";
+		mes "(^333333我……我必须调查";
+		mes "那座实验室，";
+		mes "看看里面是否发生了";
+		mes "什么可疑的事情。^000000)";
+		mes "不能放过任何线索。";
 		close;
 	}
 }
@@ -3153,17 +3153,17 @@ ein_in01,264,17,0	script	#lab02_heart	HIDDEN_WARP_NPC,1,1,{
 OnTouch_:
 	if (lhz_heart == 9) {
 		mes "["+strcharinfo(0)+"]";
-		mes "What the...";
-		mes "It's some sort of";
-		mes "weird device. The label";
-		mes "here says, ''Password";
-		mes "Checker?'' Well, this";
-		mes "might come in handy later.";
+		mes "什么……";
+		mes "这好像是某种奇怪的装置。";
+		mes "标签上写着‘密码检查器？’";
+		mes "嗯，这东西以后";
+		mes "也许能派上用场。";
+		mes "先带在身上吧。";
 		next;
-		mes "^3355FFYou decide to bring";
-		mes "the Password Checker";
-		mes "device with you into";
-		mes "the laboratory.^000000";
+		mes "^3355FF你决定带着密码检查器";
+		mes "装置进入实验室。^000000";
+		mes "或许它能打开某扇门。";
+		mes "你把装置收好。";
 		lhz_heart = 10;
 		close;
 	}
@@ -3188,27 +3188,27 @@ ein_in01,261,35,0	script	lab03#heart	HIDDEN_WARP_NPC,1,1,{
 	end;
 OnTouch_:
 	if (lhz_heart == 9) {
-		mes "[Security System]";
-		mes "^FF0000Unauthorized person";
-		mes "detected. Password";
-		mes "Checker not detected.";
-		mes "Access denied.^000000";
+		mes "[安全系统]";
+		mes "^FF0000检测到未授权人员。";
+		mes "未检测到密码检查器。";
+		mes "拒绝访问。^000000";
+		mes "安全协议验证失败。";
 		close;
 	} else if (lhz_heart == 10) {
-		mes "[Security System]";
-		mes "^FF0000Enter the 3 digit password.";
-		mes "You will be allowed 5 tries";
-		mes "within 3 minutes to enter";
-		mes "the correct password, or";
-		mes "the password will reset.^000000";
+		mes "[安全系统]";
+		mes "^FF0000请输入 3 位密码。";
+		mes "你有 3 分钟时间尝试 5 次，";
+		mes "输入正确密码，否则密码将被重置。^000000";
+		mes "请谨慎输入。";
+		mes "超过时限将自动重置。";
 		next;
-		mes "[Password Checker]";
-		mes "^333333Hint:";
-		mes "Do not use the";
-		mes "number 0, and do";
-		mes "not enter any number";
-		mes "more than once. Make";
-		mes "sure the password is 3 digits.";
+		mes "[密码检查器]";
+		mes "^333333提示：";
+		mes "不要使用数字 0，";
+		mes "也不要重复输入任何数字。";
+		mes "请确认密码为 3 位数。";
+		mes "每一位必须各不相同。";
+		mes "输入后请等待结果。";
 		while (.@yagu100 == .@yagu10 || .@yagu100 == .@yagu1 || .@yagu10 == .@yagu1) {
 			.@yagu100 = rand(1,9);
 			.@yagu10 = rand(1,9);
@@ -3219,134 +3219,134 @@ OnTouch_:
 				next;
 				input .@input;
 				if (.@input < 100 || .@input > 999) {
-					mes "[Security System]";
-					mes "^FF0000Error.";
-					mes "The password entered";
-					mes "exceeds the number digit";
-					mes "limit. You must only enter";
-					mes "3 digit passwords.^000000";
+					mes "[安全系统]";
+					mes "^FF0000错误。";
+					mes "输入的密码超过位数限制。";
+					mes "你只能输入 3 位密码。^000000";
+					mes "请重新输入。";
+					mes "输入范围为 100 至 999。";
 					close;
 				}
 				.@input100 = .@input / 100;
 				.@input10 = (.@input % 100) / 10;
 				.@input1 = .@input % 10;
 				if ((.@input100 + .@input10 + .@input1 == 0) || .@input100 == .@input10 || .@input100 == .@input1 || .@input10 == .@input1) {
-					mes "[Security System]";
-					mes "^FF0000Error.";
-					mes "You cannot enter the";
-					mes "number 0, or use any";
-					mes "other number more than";
-					mes "once. Please try again.^000000";
+					mes "[安全系统]";
+					mes "^FF0000错误。";
+					mes "不能输入数字 0，";
+					mes "也不能重复使用其他数字。";
+					mes "请重试。^000000";
+					mes "每一位必须不同。";
 					continue;
 				}
 				break;
 			}
 			.@retry++;
-			mes "[Security System]";
+			mes "[安全系统]";
 			mes "^ff0000"+ strcharinfo(0) +"^000000";
-			mes "has entered the following:";
+			mes "输入了以下密码：";
 			mes "^0000ff"+ .@input100 +"^000000 - ^0000ff"+ .@input10 +"^000000 - ^0000ff"+ .@input1 +"^000000.";
-			mes "Please wait for authorization to complete.";
+			mes "请等待授权完成。";
 			next;
 			.@strike = (.@yagu100 == .@input100) + (.@yagu10 == .@input10) + (.@yagu1 == .@input1);
 			.@ball = (.@yagu100 == .@input10 || .@yagu100 == .@input1) + (.@yagu10 == .@input100 || .@yagu10 == .@input1) + (.@yagu1 == .@input100 || .@yagu1 == .@input10);
 			if (.@strike == 3) {
-				mes "[Security System]";
-				mes "Authorization complete.";
-				mes "Archive access granted.";
+				mes "[安全系统]";
+				mes "授权完成。";
+				mes "已允许访问档案。";
 				next;
-				mes "^3355FFThe archive door opens,";
-				mes "revealing a series of";
-				mes "filed documents. Out";
-				mes "of all of them, one of the";
-				mes "files grabs your attention.^000000";
+				mes "^3355FF档案室的门打开了，";
+				mes "里面是一排排归档文件。";
+				mes "其中一份文件";
+				mes "吸引了你的注意。^000000";
+				mes "你走近查看。";
 				next;
-				mes "Varmunt Project No. 3";
-				mes "Security Level : Grade 1-C";
+				mes "瓦尔蒙特计划 3 号";
+				mes "安全等级：1-C 级";
 				mes " ";
-				mes "Caution: Only project members";
-				mes "of the Ymir Heart Synthesization project are authorized to view";
-				mes "this classified document.";
+				mes "注意：只有尤弥尔之心合成计划的";
+				mes "项目成员才有权查看此机密文件。";
+				mes "未经授权不得阅读。";
 				next;
-				mes "Varmunt Project No. 3";
-				mes "Security Level : Grade 1-C";
+				mes "瓦尔蒙特计划 3 号";
+				mes "安全等级：1-C 级";
 				mes " ";
-				mes "All others found reading";
-				mes "this document are subject";
-				mes "to punishment or dismissal.";
+				mes "其他任何阅读此文件的人";
+				mes "都将受到惩罚或解雇。";
+				mes "请严格遵守规定。";
 				next;
-				mes "^3355FFYou perceive the sound of";
-				mes "footsteps and quickly try to";
-				mes "return the document to its";
-				mes "original place. However,";
-				mes "the person that has come";
-				mes "to the archive has already";
-				mes "seen you holding the file.^000000";
+				mes "^3355FF你听到了脚步声，连忙想把文件";
+				mes "放回原处。然而，来到档案室的人";
+				mes "已经看见你拿着文件了。^000000";
+				mes "情况不妙。";
+				mes "你赶紧转身。";
+				mes "对方已经发现了你。";
+				mes "无法再隐藏。";
 				next;
 				donpcevent "Ferlock#lab::OnEnter";
-				mes "[Ferlock]";
-				mes "Excuse me, but are";
-				mes "you an employee here?";
-				mes "I've come to pick up a";
-				mes "new Rune Stone for the";
-				mes "Airship. Wait, wait...";
-				mes "You look familiar...";
+				mes "[弗洛克]";
+				mes "不好意思，你是这里的员工吗？";
+				mes "我是来为飞艇领取新的符文石的。";
+				mes "等等，等等……";
+				mes "你看起来很眼熟……";
+				mes "我们是不是在哪里见过？";
+				mes "让我想想。";
 				next;
 				emotion ET_HUK, getnpcid(0, "Ferlock#lab");
-				mes "[Ferlock]";
-				mes "That's right, aren't you the";
-				mes "one who brought me my";
-				mes "brother's letter? Yeah, you";
-				mes "were asking me about the";
-				mes "Airship's flight mechanics.";
-				mes "So you're not an employee...";
+				mes "[弗洛克]";
+				mes "没错，你就是给我带来";
+				mes "弟弟信件的那个人？";
+				mes "对，你还问过我飞艇的飞行原理。";
+				mes "所以你不是这里的员工……";
+				mes "那你为什么会在这里？";
+				mes "真是奇怪。";
 				next;
-				mes "[Ferlock]";
-				mes "Boy, you must be more than";
-				mes "curious to be looking up that";
-				mes "information in a restricted";
-				mes "area. But don't worry, you";
-				mes "must have your reasons,";
-				mes "so I won't call the guards.";
+				mes "[弗洛克]";
+				mes "年轻人，你一定不只是好奇，";
+				mes "才会在限制区域查找这些信息。";
+				mes "不过别担心，你一定有自己的理由，";
+				mes "所以我不会叫卫兵。";
+				mes "但这里确实很危险。";
+				mes "下次一定要小心。";
 				next;
-				mes "[Ferlock]";
-				mes "Still, you better get out";
-				mes "of here. The guards patrol";
-				mes "this place regularly, so you're";
-				mes "almost sure to get caught. Hmm,";
-				mes "come and see me later at the";
-				mes "Airship, alright? Now hurry!";
+				mes "[弗洛克]";
+				mes "不过你最好赶快离开。卫兵会";
+				mes "定期巡逻这里，你很可能被抓住。";
+				mes "嗯，之后到飞艇上来找我，";
+				mes "好吗？现在快走！";
+				mes "别再逗留了。";
+				mes "祝你好运。";
 				close2;
 				donpcevent "Ferlock#lab::OnInit";
 				changequest 8042,8043;
 				lhz_heart = 11;
 				end;
 			}
-			mes "[Password Checker]";
+			mes "[密码检查器]";
 			mes " ";
-			mes "^333333Total of correct numbers";
-			mes "in correct sequence: ^ff0000"+.@strike+"^333333";
-			mes "Total of correct numbers misplaced: ^ff0000"+.@ball+"^333333.";
-			mes "Please use these results";
-			mes "to make a more accurate guess.^000000";
+			mes "^333333位置正确的数字总数：";
+			mes "位置正确的数字数量：^ff0000"+.@strike+"^333333";
+			mes "数字正确但位置错误的数量：^ff0000"+.@ball+"^333333。";
+			mes "请根据这些结果";
+			mes "做出更准确的猜测。^000000";
 			next;
 			if (.@retry > 4) {
-				mes "[Security System]";
-				mes "^FF0000The correct password";
-				mes "for this session was";
+				mes "[安全系统]";
+				mes "^FF0000本次会话的正确密码是";
+				mes "";
 				mes "^000000"+.@yagu100+"^FF0000 - ^000000"+.@yagu10+"^000000 - ^000000"+.@yagu1+"^FF0000.";
-				mes "Password will now be reset.^000000";
+				mes "密码现在将被重置。^000000";
 				close;
 			}
-			mes "[Security System]";
-			mes "Beeeeep!";
-			mes "Incorrect password.";
+			mes "[安全系统]";
+			mes "哔——！";
+			mes "密码错误。";
 			mes " ";
 			switch (.@retry) {
-				case 1: mes "Initialing 2nd attempt...^000000"; break;
-				case 2: mes "Initialing 3rd attempt...^000000"; break;
-				case 3: mes "Initialing 4th attempt...^000000"; break;
-				case 4: mes "Initialing final attempt...^000000"; break;
+				case 1: mes "开始第 2 次尝试……^000000"; break;
+				case 2: mes "开始第 3 次尝试……^000000"; break;
+				case 3: mes "开始第 4 次尝试……^000000"; break;
+				case 4: mes "开始最后一次尝试……^000000"; break;
 			}
 		}
 	}

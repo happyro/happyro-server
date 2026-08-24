@@ -82,7 +82,7 @@ OnStory02:
 	}
 	disablenpc instance_npcname("Rebellion#171_box_4");
 	enablenpc instance_npcname("Elena Volkova#171_cmd_1");
-	mapannounce 'map$,"Elena Volkova : Awesome, she came out! I've sent the signal, come to my location!",bc_map,0xFFFF99;
+	mapannounce 'map$,"Elena Volkova：太好了，她出来了！我已经发出信号，来我这里！",bc_map,0xFFFF99;
 	viewpointmap 'map$,1,172,223,5,0xFFFFFF;
 	viewpointmap 'map$,2,140,79,1,0xFFFFFF;
 	viewpointmap 'map$,2,160,119,2,0xFFFFFF;
@@ -106,7 +106,7 @@ OnDaily01:
 
 OnDaily02:
 	viewpointmap 'map$,1,172,223,5,0xFFFFFF;
-	mapannounce 'map$,"Elena Volkova : Once you've finish all of it, come to the barracks and Elyumina will guide you!",bc_map,0xFFFF99;
+	mapannounce 'map$,"Elena Volkova：全部完成后，来兵营，Elyumina 会带路！",bc_map,0xFFFF99;
 	enablenpc instance_npcname("Elyumina#171_cmd_1");
 	end;
 
@@ -132,46 +132,46 @@ OnTouch:
 	if (!'mode) {
 		cutin "162elena_01",2;
 		mes "[Elena Volkova]";
-		mes "I'll start explaining the operation. First of all...";
+	mes "我来说明这次行动。首先……";
 		specialeffect EF_TETRA_GROUND;
 		next;
 		for (.@i = 0; .@i < 6; .@i++)
 			enablenpc instance_npcname("Rebellion#171_cmd_" + .@i);
 		next;
 		mes "[Elena Volkova]";
-		mes "I'll start explaining the operation. First of all...";
-		mes "...... now you can run wild.";
+	mes "我来说明这次行动。首先……";
+	mes "……现在你们可以放手行动了。";
 		next;
 		cutin "",255;
 		mes "[Rebellion]";
-		mes "Something seems to have exploded over there. The flames have risen from the front!";
+	mes "那边好像发生了爆炸。前方燃起了火焰！";
 		next;
 		mes "[Rebellion]";
-		mes "There are 4 identified locations these explosion came from! I have ^FF0000shown them on your minimap.^000000";
+	mes "已经确认爆炸来自 4 个地点！我已将它们^FF0000标在你的小地图上^000000。";
 		viewpointmap 'map$,1,140,79,1,0xFFFFFF;
 		viewpointmap 'map$,1,160,119,2,0xFFFFFF;
 		viewpointmap 'map$,1,220,170,3,0xFFFFFF;
 		viewpointmap 'map$,1,222,236,4,0xFFFFFF;
 		next;
 		mes "[Elena Volkova]";
-		mes "It's quite sudden but, I'm changing the operation.";
-		mes "Don't worry about those already at the front, they adjust to any situation.";
+	mes "虽然很突然，但我要改变行动计划。";
+	mes "不用担心已经在前线的人，他们能适应任何情况。";
 		next;
 		mes "[Elena Volkova]";
-		mes "Divide into 4 teams, everyone at their own locations and start suppressing the leads. If any team finds Elyumina, let us know immediately.";
+	mes "分成 4 队，各自在指定地点开始压制线索。如果任何队伍找到 Elyumina，请立即通知我们。";
 		next;
 		mes "[Elena Volkova]";
-		mes "Everyone, to your position! Start the operation!";
-		npctalk "Yes!",instance_npcname("Rebellion#171_cmd_0");
+	mes "所有人就位！开始行动！";
+		npctalk "是！",instance_npcname("Rebellion#171_cmd_0");
 		npctalk ".....",instance_npcname("Rebellion#171_cmd_1");
-		npctalk "Yes!",instance_npcname("Rebellion#171_cmd_2");
-		npctalk "Yes!",instance_npcname("Rebellion#171_cmd_3");
-		npctalk "Yes!",instance_npcname("Rebellion#171_cmd_4");
-		npctalk "Yes!",instance_npcname("Rebellion#171_cmd_5");
+		npctalk "是！",instance_npcname("Rebellion#171_cmd_2");
+		npctalk "是！",instance_npcname("Rebellion#171_cmd_3");
+		npctalk "是！",instance_npcname("Rebellion#171_cmd_4");
+		npctalk "是！",instance_npcname("Rebellion#171_cmd_5");
 		next;
 		cutin "162elena_02",2;
 		mes "[Elena Volkova]";
-		mes "I ask you to act separately adventurer. Please check your ^0000CDminimap^000000 to organize the situation as quickly as possible. Join the team if they need support!";
+	mes "冒险者，我要求你单独行动。请查看你的^0000CD小地图^000000，尽快掌握情况。如果队伍需要支援，就加入他们！";
 		close2;
 		cutin "",255;
 		if ('step == 0) {
@@ -183,36 +183,36 @@ OnTouch:
 		.@elyumina$ = instance_npcname("Elyumina#171_cmd_0");
 		cutin "162elena_01",2;
 		mes "[Elena Volkova]";
-		mes "The briefing... the criminal here will be the one to do it.";
-		mes "It's hard to babysit criminals.";
-		npctalk "Elena Volkova : The briefing... the criminal here will be the one to do it. It's hard to babysit criminals.";
+	mes "说明……这里的罪犯就由你来负责。";
+	mes "照看罪犯真麻烦。";
+	npctalk "Elena Volkova：说明……这里的罪犯就由你来负责。照看罪犯真麻烦。";
 		next;
 		cutin "ep171_elyumina04",0;
 		mes "[Elyumina]";
-		mes "Haha! Isn't that your job? Do it properly. Why are you leaving the briefing to me?";
-		npctalk "Elyumina : Haha! Isn't that your job? Do it properly. Why are you leaving the briefing to me?",.@elyumina$;
+	mes "哈哈！那不是你的工作吗？好好做。为什么把说明交给我？";
+	npctalk "Elyumina：哈哈！那不是你的工作吗？好好做。为什么把说明交给我？",.@elyumina$;
 		next;
 		cutin "162elena_01",2;
 		mes "[Elena Volkova]";
-		mes "So noisy. Before we get started. Are you part of the USU now?";
-		npctalk "Elena Volkova : So noisy. Before we get started. Are you part of the USU now?";
+	mes "真吵。开始之前，你现在是 USU 的一员吗？";
+	npctalk "Elena Volkova：真吵。开始之前，你现在是 USU 的一员吗？";
 		next;
 		cutin "ep171_elyumina03",0;
 		mes "[Elyumina]";
-		mes "That, that's what he said... are you afraid that I'll be scared!";
-		mes "Heh, I'll do the explaining because I want to take care of my children!";
-		npctalk "Elyumina : Heh, I'll do the explaining because I want to take care of my children!",.@elyumina$;
+	mes "那、那是他说的……你是怕我害怕吗！";
+	mes "哼，我来说明，因为我要照顾我的孩子们！";
+	npctalk "Elyumina：哼，我来说明，因为我要照顾我的孩子们！",.@elyumina$;
 		next;
 		cutin "ep171_elyumina01",0;
 		mes "[Elyumina]";
-		mes "... Okay, it's almost time.";
-		mes "My children will start setting up traps in <TIPBOX>[four places]<INFO>8086</INFO></TIPBOX>.";
-		npctalk "Elyumina : ... Okay, it's almost time. My children will start setting up traps in four places.",.@elyumina$;
+	mes "……好了，差不多到时间了。";
+	mes "我的孩子们会开始在<TIPBOX>[四个地点]<INFO>8086</INFO></TIPBOX>设置陷阱。";
+	npctalk "Elyumina：……好了，差不多到时间了。我的孩子们会开始在四个地点设置陷阱。",.@elyumina$;
 		next;
 		mes "[Elyumina]";
-		mes "Here, take the map. The information will also be delivered to the party members as well.";
-		mes "You aren't alone right? You know my children are powerful?";
-		npctalk "Elyumina : Here, take the map. The information will also be delivered to the party members as well.",.@elyumina$;
+	mes "给你，拿好地图。信息也会发送给队伍成员。";
+	mes "你不是一个人，对吧？你知道我的孩子们很强吧？";
+	npctalk "Elyumina：给你，拿好地图。信息也会发送给队伍成员。",.@elyumina$;
 		viewpointmap 'map$,1,140,79,1,0xFFFFFF;
 		viewpointmap 'map$,1,160,119,2,0xFFFFFF;
 		viewpointmap 'map$,1,220,170,3,0xFFFFFF;
@@ -220,25 +220,25 @@ OnTouch:
 		next;
 		cutin "ep171_elyumina04",0;
 		mes "[Elyumina]";
-		mes "Go ahead and touch the traps. The traps will activate and my lovely children will appear.";
-		mes "You do remember how the traps work, right?";
-		npctalk "Elyumina : Go ahead and touch the traps. The traps will activate and my lovely children will appear.",.@elyumina$;
+	mes "去触碰陷阱吧。陷阱会启动，我可爱的孩子们就会出现。";
+	mes "你还记得陷阱怎么运作吧？";
+	npctalk "Elyumina：去触碰陷阱吧。陷阱会启动，我可爱的孩子们就会出现。",.@elyumina$;
 		next;
 		cutin "ep171_elyumina03",0;
 		mes "[Elyumina]";
-		mes "After you've cleared the four traps, EL1_A17T will come out, and this lady here will bring you to the same place as last time.";
-		npctalk "Elyumina : After you've cleared the four traps, EL1_A17T will come out, and this lady here will bring you to the same place as last time.",.@elyumina$;
+	mes "清除四个陷阱后，EL1_A17T 就会出现，这位女士会把你带到和上次相同的地方。";
+	npctalk "Elyumina：清除四个陷阱后，EL1_A17T 就会出现，这位女士会把你带到和上次相同的地方。",.@elyumina$;
 		next;
 		cutin "ep171_elyumina04",0;
 		mes "[Elyumina]";
-		mes "That's it for the explanation. Now, get to work! Muscle idiots! Ahahaha!";
-		npctalk "Elyumina : That's it for the explanation. Now, get to work! Muscle idiots! Ahahaha!",.@elyumina$;
+	mes "说明就到这里。现在开始工作！肌肉笨蛋们！啊哈哈哈！";
+	npctalk "Elyumina：说明就到这里。现在开始工作！肌肉笨蛋们！啊哈哈哈！",.@elyumina$;
 		emotion ET_SMILE,getnpcid(0,.@elyumina$);
 		next;
 		cutin "162elena_01",2;
 		mes "[Elena Volkova]";
-		mes "...I'll have a conversation with this criminal in a bit... Anyways. I'm counting on you, adventurers!";
-		npctalk "Elena Volkova : ...I'll have a conversation with this criminal in a bit... Anyways. I'm counting on you, adventurers!";
+	mes "……我待会儿会和这个罪犯谈谈……总之，拜托你们了，冒险者！";
+	npctalk "Elena Volkova：……我待会儿会和这个罪犯谈谈……总之，拜托你们了，冒险者！";
 		close2;
 		cutin "",255;
 		if ('step == 0) {
@@ -249,7 +249,7 @@ OnTouch:
 	end;
 
 OnTouch:
-	npctalk "Elena Volkova : This way. Let's brief after everyone's all assembled.";
+	npctalk "Elena Volkova：这边。等大家集合后再说明。";
 	end;
 }
 
@@ -258,26 +258,26 @@ OnTouch:
 1@cor,172,223,3	script	Elyumina#171_cmd_1	4_EP17_ELYUMINA,{
 	cutin "ep171_elyumina03",0;
 	mes "[Elyumina]";
-	mes "That was fast... It was expected that my kids wouldn't win though.";
-	mes "There's a lot more trouble going on up there~";
-	npctalk "Elyumina : That was fast... It was expected that my kids wouldn't win though. There's a lot more trouble going on up there~";
+	mes "真快……不过我早就料到我的孩子们赢不了。";
+	mes "上面还有更多麻烦呢~";
+	npctalk "Elyumina：真快……不过我早就料到我的孩子们赢不了。上面还有更多麻烦呢~";
 	next;
 	cutin "ep171_elyumina01",0;
 	mes "[Elyumina]";
-	mes "... are you going straight for my EL1-A17T?";
-	mapannounce 'map$,"Elena Volkova : Yeah, damn criminal! Why don't you open the portal right now?",bc_map,0xFFFF99;
-	npctalk "Elyumina : ... are you going straight for my EL1_A17T?";
+	mes "……你要直接去找我的 EL1-A17T 吗？";
+	mapannounce 'map$,"Elena Volkova：没错，该死的罪犯！你为什么不马上打开传送门？",bc_map,0xFFFF99;
+	npctalk "Elyumina：……你要直接去找我的 EL1_A17T 吗？";
 	next;
-	if (select("Go in.:Don't go in yet.") == 2) {
+	if (select("进去。:先不进去。") == 2) {
 		cutin "ep171_elyumina02",0;
 		mes "[Elyumina]";
-		mes "Come on, I was about to open it.";
+	mes "快点，我正要打开它。";
 		close3;
 	}
 	cutin "ep171_elyumina04",0;
 	mes "[Elyumina]";
-	mes "Hahaha! Yes. Let's work hard. Gather more battle data for me!";
-	npctalk "Elyumina : Hahaha! Yes. Let's work hard. Gather more battle data for me!";
+	mes "哈哈哈！好。努力工作吧。为我收集更多战斗数据！";
+	npctalk "Elyumina：哈哈哈！好。努力工作吧。为我收集更多战斗数据！";
 	close2;
 	cutin "",255;
 	viewpointmap 'map$,2,172,223,5,0xFFFFFF;
@@ -298,31 +298,31 @@ OnTouch:
 1@cor,224,238,3	script	Rebellion#171_box_0	4_M_REBELLION3,{
 	if (isbegin_quest(16355) == 0) {
 		mes "[Rebellion]";
-		mes "There is a suspicious box! A signal is being transmitted from the inside, it's currently being decrypted!";
+	mes "有一个可疑的箱子！里面正在传出信号，目前正在解密！";
 		close;
 	}
 	.@event$ = instance_npcname("Box#" + strnpcinfo(2))+"::OnMobKill";
 	if (isbegin_quest(16355) == 1 && mobcount('map$,.@event$)) {
 		mes "[Rebellion]";
-		mes "Destroy the Biological Battery and kill the monsters!";
+	mes "摧毁生物电池，消灭魔物！";
 		close;
 	}
 	if (isbegin_quest(16355) == 1 && !mobcount('map$,.@event$)) {
 OnTalk:
 		mes "[Rebellion]";
-		mes "Sorry for the late analysis. It wasn't a device to summon monsters.";
+	mes "抱歉分析晚了。那不是召唤魔物的装置。";
 		next;
 		mes "[Rebellion]";
-		mes "After summoning the monsters, it summons a bio-battery to strengthen the monsters and explodes.";
+	mes "召唤魔物后，它会召唤生物电池强化魔物，然后爆炸。";
 		next;
 		mes "[Rebellion]";
-		mes "If you want to handle it, just destroy it. It's good because it's a simple solution.";
+	mes "想处理它的话就摧毁它。简单直接的解决办法最好。";
 		next;
 		mes "[Rebellion]";
-		mes "Well, it looks like this is over....";
+	mes "好了，看起来结束了……";
 		next;
 		mes "[Rebellion]";
-		mes "It looks like you've found something interesting here. You should check out the other teams!";
+	mes "看来你在这里发现了有趣的东西。去看看其他队伍吧！";
 		close2;
 		completequest 16355;
 		disablenpc();
@@ -339,10 +339,10 @@ OnTalk:
 1@cor,222,236,3	script	Box#171_box_0	4_STEELBOX,{
 	if (isbegin_quest(16355) == 0) {
 		mes "[Rebellion]";
-		mes "The cause of the explosion is unknown, but I've found this suspicious box at the site. It seems to be some type of mechanism.";
+	mes "爆炸原因不明，但我在现场发现了这个可疑箱子。它似乎是某种机关。";
 		next;
 		mes "[Rebellion]";
-		mes "There is a signal being transmitted from the inside... Huh, be careful. Something's happening!";
+	mes "里面正在传出信号……嗯，小心。有什么东西要发生了！";
 		close2;
 		setquest 16355;
 		specialeffect EF_BAKU;
@@ -352,7 +352,7 @@ OnTalk:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnMobKill";
 	if (isbegin_quest(16355) == 1 && mobcount('map$,.@event$)) {
 		mes "[Rebellion]";
-		mes "Destroy the Biological Battery and kill the monsters!";
+	mes "摧毁生物电池，消灭魔物！";
 		close;
 	}
 	if (isbegin_quest(16355) == 1 && !mobcount('map$,.@event$))
@@ -371,7 +371,7 @@ OnMobKill:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnMobKill";
 	if (!mobcount('map$,.@event$)) {
 		stopnpctimer;
-		npctalk "Thank you for your hard work! Before you go, please listen to what I have to say for a while.",instance_npcname("Rebellion#" + strnpcinfo(2));
+	npctalk "辛苦了！离开之前，请听我说几句。",instance_npcname("Rebellion#" + strnpcinfo(2));
 		killmonster 'map$,instance_npcname("Biological Battery#" + strnpcinfo(2)) + "::OnBombKill";
 		disablenpc instance_npcname("Biological Battery#" + strnpcinfo(2));
 		stopnpctimer instance_npcname("Reinforced Energy#" + strnpcinfo(2));
@@ -382,7 +382,7 @@ OnMobKill:
 OnTimer1000:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnMobKill";
 	if (mobcount('map$,.@event$)) {
-		npctalk "The analysis result is, that battery is providing power to the summoned monsters. Step on it and avoid damage immediately!",instance_npcname("Rebellion#" + strnpcinfo(2));
+	npctalk "分析结果是，那块电池正在为召唤出的魔物供能。踩上去并立即躲开伤害！",instance_npcname("Rebellion#" + strnpcinfo(2));
 		enablenpc instance_npcname("Biological Battery#" + strnpcinfo(2));
 	} else {
 		stopnpctimer;
@@ -445,7 +445,7 @@ OnTimer17000:
 		specialeffect2 EF_ENHANCE;
 		specialeffect2 EF_LIGHTSPHERE_STAR;
 		sc_start SC_GLASTHEIM_STATE,30000,20,10000,SCSTART_NOTICKDEF;
-		npctalk "Power, Overwhelming power!";
+	npctalk "力量，压倒性的力量！";
 		unittalk getcharid(3),strcharinfo(0) + " : My whole body is full of power!",bc_self;
 		sleep 1500;
 		disablenpc();
@@ -459,28 +459,28 @@ OnTimer17000:
 1@cor,218,172,5	script	Rebellion#171_box_1	4_F_REBELLION2,{
 	if (isbegin_quest(16356) == 0) {
 		mes "[Rebellion]";
-		mes "There is a suspicious box! A signal is being transmitted from the inside, it's currently being decrypted!";
+	mes "有一个可疑的箱子！里面正在传出信号，目前正在解密！";
 		close;
 	}
 	.@event$ = instance_npcname("Box#" + strnpcinfo(2)) + "::OnMobKill";
 	if (isbegin_quest(16356) == 1 && mobcount('map$,.@event$)) {
 		mes "[Rebellion]";
-		mes "Avoid the Chemical Poison and kill the monsters!";
+	mes "避开化学毒物，消灭魔物！";
 		close;
 	}
 	if (isbegin_quest(16356) == 1 && !mobcount('map$,.@event$)) {
 OnTalk:
 		mes "[Rebellion]";
-		mes "It's an awful but interesting device. It wasn't a device meant to summon monsters.";
+	mes "这是个可怕却有趣的装置。它不是用来召唤魔物的。";
 		next;
 		mes "[Rebellion]";
-		mes "After summoning monsters, it constantly releases chemical poison, making it even more difficult to remove the monster.";
+	mes "召唤魔物后，它会不断释放化学毒物，让消灭魔物更加困难。";
 		next;
 		mes "[Rebellion]";
-		mes "If you touch the chemical poison, it will spread like bomb. You shouldn't get any closer.";
+	mes "碰到化学毒物后，它会像炸弹一样扩散。你不该再靠近了。";
 		next;
 		mes "[Rebellion]";
-		mes "So, it looks like this is over, I'll go join another team! You should too.";
+	mes "好了，看起来这里结束了，我要去加入其他队伍！你也应该去。";
 		close2;
 		disablenpc();
 		disablenpc instance_npcname("Box#" + strnpcinfo(2));
@@ -497,10 +497,10 @@ OnTalk:
 1@cor,220,170,3	script	Box#171_box_1	4_WOODBOX,{
 	if (isbegin_quest(16356) == 0) {
 		mes "[Rebellion]";
-		mes "The cause of the explosion is unknown, but I've found this suspicious box at the site. It seems to be some type of mechanism.";
+	mes "爆炸原因不明，但我在现场发现了这个可疑箱子。它似乎是某种机关。";
 		next;
 		mes "[Rebellion]";
-		mes "There is a signal being transmitted from the inside... Huh, be careful. Something's happening!";
+		mes "里面传出了信号……嗯，小心点。出事了！";
 		close2;
 		setquest 16356;
 		specialeffect EF_BAKU;
@@ -510,7 +510,7 @@ OnTalk:
 	.@event$ = instance_npcname(strnpcinfo(0)) + "::OnMobKill";
 	if (isbegin_quest(16356) == 1 && mobcount('map$,.@event$)) {
 		mes "[Rebellion]";
-		mes "Avoid the Chemical Poison and kill the monsters!";
+		mes "避开化学毒物，消灭怪物！";
 		close;
 	}
 	if (isbegin_quest(16356) == 1 && !mobcount('map$,.@event$))
@@ -531,14 +531,14 @@ OnMobKill:
 		stopnpctimer;
 		killmonster 'map$,instance_npcname("Chemical Poison#" + strnpcinfo(2)) + "::OnPoisonKill";
 		disablenpc instance_npcname("Chemical Poison#" + strnpcinfo(2));
-		npctalk "Thank you for your hard work! Before you go, please listen to what I have to say for a while.",instance_npcname("Rebellion#" + strnpcinfo(2));
+		npctalk "辛苦了！离开前请听我说几句。",instance_npcname("Rebellion#" + strnpcinfo(2));
 	}
 	end;
 
 OnTimer1000:
 	.@event$ = instance_npcname(strnpcinfo(0))+"::OnMobKill";
 	if (mobcount('map$,.@event$)) {
-		npctalk "It sprayed out a toxic chemical! Let's avoid stepping on it and continue with the battle!",instance_npcname("Rebellion#" + strnpcinfo(2));
+		npctalk "它喷出了有毒化学物！避开地面，继续战斗！",instance_npcname("Rebellion#" + strnpcinfo(2));
 		enablenpc instance_npcname("Chemical Poison#" + strnpcinfo(2));
 	} else
 		stopnpctimer;
@@ -562,7 +562,7 @@ OnTimer11000:
 OnTouch:
 	disablenpc();
 	stopnpctimer instance_npcname(strnpcinfo(0));
-	npctalk "When you come in contact with the Chemical Poison, the toxic materials spread. You've already stepped on it, hurry up and avoid it!",instance_npcname("Rebellion#" + strnpcinfo(2));
+	npctalk "接触化学毒物会使毒性扩散。你已经踩到了，快躲开！",instance_npcname("Rebellion#" + strnpcinfo(2));
 	.@event$ = instance_npcname(strnpcinfo(0)) + "::OnPoisonKill";
 	if (!mobcount('map$,.@event$)) {
 		getmapxy(.@m$,.@x,.@y,BL_NPC);
@@ -594,16 +594,16 @@ OnTimer10000:
 	mes "[Rebellion]";
 	mes ".....";
 	next;
-	mes "- Smoke is rising from the suspicious box. -";
+	mes "- 可疑箱子冒出了烟。-";
 	next;
-	select("Have you done this already?:Are you still silent?");
+	select("你已经做过了吗？:你还要沉默吗？");
 	mes "[Rebellion]";
 	mes ".....";
 	next;
 	mes "[Rebellion]";
-	mes "*Nods, nods*";
+	mes "*点头，点头*";
 	next;
-	mes "- Let's go support another team. -";
+	mes "- 我们去支援另一支队伍吧。-";
 	viewpointmap 'map$,2,160,119,2,0xFFFFFF;
 	close2;
 	disablenpc();
@@ -613,35 +613,35 @@ OnTimer10000:
 
 1@cor,138,82,5	script	Rebellion#171_box_3	4_F_ANYA,{
 	mes "[Rebellion]";
-	mes "Did I tell you that I'm really happy working with the Secret Wing? Thanks to them, I was chosen for this operation.";
+	mes "我说过和秘密之翼一起工作很开心吗？多亏了他们，我才被选中参加这次行动。";
 	next;
 	mes "[Rebellion]";
-	mes "Let's show them what we're all about, and that we're good guys.";
+	mes "让他们看看我们的实力，证明我们是好人。";
 	close;
 }
 
 1@cor,142,82,3	script	Rebellion#171_box_4	4_M_ILYA,{
 	mes "[Rebellion]";
-	mes "I haven't seen you in a while adventurer.";
+	mes "好久不见，冒险者。";
 	next;
 	mes "[Rebellion]";
-	mes "I already know you adventurer, but please be careful.";
+	mes "我认识你，冒险者，但请小心。";
 	close;
 }
 
 1@cor,140,79,3	script	Box#171_box_3	4_WOODBOX,{
 	mes "[Rebellion]";
-	mes "Hello adventurer.";
+	mes "你好，冒险者。";
 	specialeffect EF_M03;
 	next;
 	mes "[Rebellion]";
-	mes "It was nice to be part of this squad, we've already taken care of this box.";
+	mes "能成为这支队伍的一员真好，我们已经处理了这个箱子。";
 	next;
 	mes "[Rebellion]";
-	mes "These machines uses chemical poison, be careful.";
+	mes "这些机器使用化学毒物，小心。";
 	next;
 	mes "[Rebellion]";
-	mes "We will now conduct our search, until the signal comes. Adventurer, be careful!";
+	mes "在收到信号前我们会继续搜索。冒险者，小心！";
 	viewpointmap 'map$,2,140,79,1,0xFFFFFF;
 	close2;
 	disablenpc();
@@ -653,37 +653,37 @@ OnTimer10000:
 1@cor,172,223,3	script	Elena Volkova#171_cmd_1	4_F_ELENA,{
 	cutin "162elena_01",2;
 	mes "[Elena Volkova]";
-	mes "I've been waiting for you. I've found the crazy researcher.";
-	mes "The other guys are surrounding the place.";
+	mes "我一直在等你。我找到那个疯狂研究员了。";
+	mes "其他人已经包围了那里。";
 	next;
 	mes "[Elena Volkova]";
-	mes "In order to control such a machine in such a fine manner, Elyumina must be around.";
+	mes "要如此熟练地控制这种机器，艾莉米娜一定就在附近。";
 	next;
 	mes "[Elena Volkova]";
-	mes "It would be possible for me to handle this machine, but then I wouldn't be able to catch Elyumina.";
+	mes "我可以处理这台机器，但那样就没法抓住艾莉米娜。";
 	next;
 	mes "[Elena Volkova]";
-	mes "If you take care of the machine, the other search parties will take care of finding Elyumina.";
+	mes "如果你处理机器，其他搜索队会负责寻找艾莉米娜。";
 	next;
 	cutin "162elena_02",2;
 	mes "[Elena Volkova]";
-	mes "The Rebellion squad is well coordinated, this work will be best suited for us. So leave that task to us.";
+	mes "反叛军队伍配合默契，这项工作最适合我们。那件事交给我们吧。";
 	next;
 	cutin "162elena_01",2;
 	mes "[Elena Volkova]";
-	mes "The place we'll enter will be at 9 o'clock. I confirmed that nobody was hiding there, and we blocked the exits.";
+	mes "我们将在9点钟方向进入。我确认那里没有人藏身，也封锁了出口。";
 	next;
 	mes "[Elena Volkova]";
-	mes "Give me a signal when you're ready to get in. I'll tell the squad to let you in.";
+	mes "准备进入时给我信号。我会通知队伍放你进去。";
 	next;
-	if (select("Give signal.:Not yet.") == 2) {
+	if (select("发出信号。:还没准备好。") == 2) {
 		mes "[Elena Volkova]";
-		mes "Yes it's a dangerous opponent to face. I'm sorry to have to leave you alone to fight. Let me know when you're ready.";
+		mes "是的，那是危险的对手。抱歉要让你独自战斗，准备好后告诉我。";
 		close3;
 	}
 	cutin "162elena_02",2;
 	mes "[Elena Volkova]";
-	mes "Okay, watch out! I opened the portal so that you can go in. It's a one way entry, so make sure you're prepared!";
+	mes "好，小心！我打开了传送门，你可以进去。这是单向入口，务必做好准备！";
 	close2;
 	cutin "",255;
 	viewpointmap 'map$,2,172,223,5,0xFFFFFF;
@@ -699,25 +699,25 @@ OnTimer10000:
 		if (isbegin_quest(16363) == 0) {
 			cutin "162elena_01",2;
 			mes "[Elena Volkova]";
-			mes "Oh, yes. You've worked hard again this time. It's quite tough! How long do we have to use that scrap of metal for it to stop?";
+			mes "哦，你这次也辛苦了。真够棘手！我们还要用那块废铁多久才能让它停下？";
 			next;
 			cutin "ep171_elyumina02",0;
 			mes "[Elyumina]";
-			mes "Didn't I say not to call it scrap of metal?! You idiot!";
+			mes "我不是说过别叫它废铁吗？！你这个笨蛋！";
 			next;
 			cutin "162elena_01",2;
 			mes "[Elena Volkova]";
-			mes "Yeah yeah, it wasn't a scrap metal at first. But now we've caught it, it's scrap metal. Anyway, you've worked hard. You go back and rest now.";
+			mes "好好，起初它不是废铁。但既然我们抓住了它，现在就是废铁。总之你辛苦了，回去休息吧。";
 			next;
 			cutin "",255;
-			if (select("Go back.:Stay for a moment.") == 2) {
+			if (select("回去。:再待一会儿。") == 2) {
 				mes "[Elena Volkova]";
-				mes "Alright, let me know when you're ready to go out.";
+				mes "好的，准备出去时告诉我。";
 				close3;
 			}
 			cutin "162elena_02",2;
 			mes "[Elena Volkova]";
-			mes "Good job. It's funny that we have to do this again tomorrow. See you tomorrow.";
+			mes "干得好。明天还要再做一次，真有意思。明天见。";
 			setquest 16363;
 			getitem 25723,1;
 			getitem 25669,5;
@@ -729,30 +729,30 @@ OnTimer10000:
 	if (isbegin_quest(16354) == 1 && checkquest(16376,HUNTING) == 2) {
 		cutin "162elena_02",2;
 		mes "[Elena Volkova]";
-		mes "Well done, " +strcharinfo(0)+ ". The operation was a success!";
-		mes "I ran away also, It's quite embarrassing since you knocked down that huge scrap of metal. I also captured something mesmerizing.";
+		mes "干得好，" +strcharinfo(0)+ "。行动成功了！";
+		mes "我也逃走了。你击倒那块巨大废铁时我真狼狈。不过我还捕获了某种迷人的东西。";
 		next;
 		cutin "ep171_elyumina02",0;
 		mes "[Elyumina]";
-		mes "Scrap metal! It's a masterpiece! My great child!";
-		mes "You! You... hurt my child! You destroyed my child!";
+		mes "废铁！这是杰作！我伟大的孩子！";
+		mes "你！你……伤害了我的孩子！你毁了我的孩子！";
 		next;
 		cutin "162elena_02",2;
 		mes "[Elena Volkova]";
-		mes "Did you just call those scraps children?";
-		mes "Well, your children are probably good. Then let's go pay the price for your children's mistakes.";
+		mes "你刚才把那些废铁叫孩子？";
+		mes "你的孩子大概很优秀。那么为你孩子的错误付出代价吧。";
 		next;
 		cutin "162elena_01",2;
 		mes "[Elena Volkova]";
-		mes "What are you going to do now " + strcharinfo(0) + "?";
+		mes "你现在打算做什么，" + strcharinfo(0) + "？";
 		next;
-		if (select("I'm going right back.:I'll stay here for a bit") == 2) {
+		if (select("我马上回去。:我再待一会儿") == 2) {
 			mes "[Elena Volkova]";
-			mes "Alright, let me know when you're ready to go out.";
+			mes "好的，准备出去时告诉我。";
 			close3;
 		}
 		mes "[Elena Volkova]";
-		mes "Good work. We'll be clearing things up here, you can take a break. I'm going to interrogate her. Take a break and then come back to me.";
+		mes "干得好。我们会清理这里，你可以休息一下。我要审问她。休息后再回来找我。";
 		completequest 16354;
 		erasequest 16376;
 		setquest 16357;
@@ -764,15 +764,15 @@ OnTimer10000:
 }
 
 1@cor,140,221,3	script	Elyumina#171_cor_end	4_EP17_ELYUMINA,{
-	npctalk "Elyumina : You guys... you killed it?! You slaughtered it! Executioners!";
+	npctalk "艾莉米娜：你们……杀了它？！你们屠杀了它！刽子手！";
 	end;
 }
 1@cor,141,222,3	script	Rebellion#171_cmd_6	4_M_ILYA,{
-	npctalk "The Illusion researcher Elyumina has been captured!";
+	npctalk "幻影研究员艾莉米娜已被捕获！";
 	end;
 }
 1@cor,141,220,3	script	Rebellion#171_cmd_7	4_F_ANYA,{
-	npctalk "We've successfully captured her alive, the operation is over!";
+	npctalk "我们成功活捉了她，行动结束！";
 	end;
 }
 
@@ -891,8 +891,8 @@ OnTouch:
 		specialeffect2 EF_ENHANCE;
 		specialeffect2 EF_LIGHTSPHERE_STAR;
 		sc_start SC_GLASTHEIM_STATE,30000,20,10000,SCSTART_NOTICKDEF;
-		npctalk "Power, Overwhelming power!";
-		unittalk getcharid(3),strcharinfo(0) + " : My whole body is full of power!",bc_self;
+		npctalk "力量，压倒性的力量！";
+		unittalk getcharid(3),strcharinfo(0) + "：我的全身充满力量！",bc_self;
 		sleep 1500;
 		disablenpc();
 		setd("'rf_" + strnpcinfo(2),0);
@@ -958,7 +958,7 @@ OnTouch:
 
 1@cor,224,238,3	script	Elyumina#171_box_d0	4_EP17_ELYUMINA,{
 	if ('cor == 4) {
-		npctalk "Elyumina : You know where the barrack is? I showed it up on your minimap. I'll head there soon.";
+		npctalk "艾莉米娜：你知道兵营在哪里吗？我已在小地图上标出。我很快就会去那里。";
 		end;
 	}
 	.@id = atoi(replacestr(strnpcinfo(2),"171_box_d",""));
@@ -968,7 +968,7 @@ OnTouch:
 		case 1: .@talk$ = "Chatting during a battle, quite relaxed aren't you? Hm, that's a bit annoying."; break;
 		case 2: .@talk$ = "That's a very good combat data... Well, go ahead now!";
 	}
-	npctalk "Elyumina : " + .@talk$;
+	npctalk "艾莉米娜：" + .@talk$;
 	end;
 }
 

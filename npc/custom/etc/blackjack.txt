@@ -19,14 +19,17 @@
 
 cmd_in02,188,89,1	script	Black Jack Dealer	57,{
 	mes "[Dealer]";
-	mes "Hello there! Would you like to play a game of Black Jack?";
+	mes "你好！想玩一局二十一点吗？";
 M_Menu:
 	next;
 	menu "What are the rules?",M_0, "I want to play.",L_Play, "No thanks.",M_End;
 
 M_0:
 	mes "[Dealer]";
-	mes "What would you like to know?";
+	mes "你想了解什么？";
+	mes "我会为你说明规则。";
+	mes "请仔细听。";
+	mes "这样就能开始游戏。";
 sM_Menu0:
 	next;
 	menu "The basics.",sM_0a, "Winning and loosing.",sM_0b, "'Double Down'.",sM_0c,
@@ -34,101 +37,98 @@ sM_Menu0:
 
 sM_0a:
 	mes "[Dealer]";
-	mes "Black Jack is a card game in which the goal is to get 21, or as";
-	mes "close to 21 points as possible, without going over 21.";
+	mes "二十一点是一种纸牌游戏，目标是得到 21 点，";
+	mes "或者在不超过 21 点的前提下尽可能接近 21 点。";
 	next;
 	mes "[Dealer]";
-	mes "Before the game starts, the player must make a bet.  Once the bet";
-	mes "has been made, both the dealer and the player are dealt 2 cards";
-	mes "each.  Depending on what cards you have, you can choose to ^5533FF'stay'^000000,";
-	mes "or you can choose to ^5533FF'pull'^000000.";
+	mes "游戏开始前，玩家必须下注。下注后，庄家和玩家各发 2 张牌。";
+	mes "根据手中的牌，你可以选择^5533FF‘停牌’^000000，";
+	mes "也可以选择^5533FF‘要牌’^000000。";
+	mes "请谨慎做出决定。";
 	next;
 	mes "[Dealer]";
-	mes "When you choose to 'stay', you are telling the dealer that you don't";
-	mes "need anymore cards.  This allows the dealer to pull if he/she";
-	mes "wants to.  In order to stay, you must have ^FF3355at least 13 points^000000. The";
-	mes "dealer can only stay when he/she has^FF3355 17 points or more^000000.";
+	mes "选择‘停牌’就是告诉庄家你不需要更多牌。";
+	mes "庄家可以根据需要继续要牌。";
+	mes "停牌时你必须至少有 ^FF3355 13 点^000000。";
+	mes "庄家只有达到 ^FF3355 17 点或以上^000000 才能停牌。";
 	next;
 	mes "[Dealer]";
-	mes "When you choose to 'pull', you are telling the dealer that you want";
-	mes "another card.  By pulling more cards you can increase your point";
-	mes "total.  As long has you have ^FF3355less than 21^000000 points you can pull a";
-	mes "card from the deck.";
+	mes "选择‘要牌’就是告诉庄家你想再要一张牌。";
+	mes "要更多牌可以增加你的总点数。";
+	mes "只要你的点数 ^FF3355低于 21^000000，";
+	mes "就可以从牌堆中再抽牌。";
 	goto sM_Menu0;
 sM_0b:
 	mes "[Dealer]";
-	mes "There are 3 ways to win and loose at Black Jack.";
+	mes "二十一点有 3 种获胜或失败的情况。";
 	next;
 	mes "[Dealer]";
-	mes "1.) At the end of a Black Jack round, if you have more points";
-	mes "than the dealer you will win the round.  Conversely if you have";
-	mes "less points than the dealer you will loose.";
+	mes "1）回合结束时，如果你的点数高于庄家，就赢得回合；";
+	mes "如果点数低于庄家，就会输掉回合。";
 	next;
 	mes "[Dealer]";
-	mes "2.) If you pull a card that makes your point total go over 21 you";
-	mes "will automatically loose the round.  This is called a ^5533FF'bust'^000000.  If";
-	mes "the dealer busts then you will win the round.";
+	mes "2）如果要牌后总点数超过 21，就会自动输掉回合。";
+	mes "这称为^5533FF‘爆牌’^000000。若庄家爆牌，你将赢得回合。";
 	next;
 	mes "[Dealer]";
-	mes "3.) If you have a point total of 21 with the first 2 cards, you";
-	mes "will automatically win the round.  This is called a ^5533FF'Black Jack'^000000";
-	mes "and happens when you get an 'Ace' and a '10 valued' card. If the";
-	mes "dealer gets a Black Jack he/she will automatically win the round.";
+	mes "3）如果前两张牌的总点数为 21，就会自动赢得回合。";
+	mes "这称为^5533FF‘二十一点’^000000，通常由一张 A 和一张 10 点牌组成。";
+	mes "如果庄家拿到二十一点，庄家会自动获胜。";
 	next;
 	mes "[Dealer]";
-	mes "4.) Besides winning and loosing, you can tie with the dealer.  If";
-	mes "both you and the dealer have the same point total at the end of a";
-	mes "round, this will result in a tie with no winner and no loss or gain";
-	mes "in money.";
+	mes "4）除了胜负，你也可能和庄家平局。";
+	mes "如果回合结束时你和庄家的点数相同，";
+	mes "就会平局，没有赢家，也不会损失或赢得金钱。";
+	mes "下注将被退还。";
 	next;
 	mes "[Dealer]";
-	mes "This is called a ^5533FF'push'^000000 with the dealer.  This also";
-	mes "applies to both you and the dealer having Black Jack at the same";
-	mes "time.";
+	mes "这称为与庄家^5533FF‘和局’^000000。";
+	mes "你和庄家同时拿到二十一点时也适用。";
+	mes "请记住这个规则。";
 	goto sM_Menu0;
 sM_0c:
 	mes "[Dealer]";
-	mes "The 'Double Down' option allows you to double your current bet,";
-	mes "but with the drawback that you will only be able to pull one";
-	mes "additional card.  This option is only available at the beginning of";
-	mes "each round.";
+	mes "‘加倍下注’可以将当前赌注翻倍，";
+	mes "但代价是只能再要一张牌。";
+	mes "这个选项只在每回合开始时可用。";
+	mes "请谨慎选择。";
 	next;
 	mes "[Dealer]";
-	mes "An example of when doubling down is useful, is when";
-	mes "your first 2 cards give you a point total of 11.  You have a good";
-	mes "chance of getting 21 or 20 with the next card that you draw.  This";
-	mes "would be a good hand to double down on.";
+	mes "适合加倍下注的例子是：";
+	mes "前两张牌正好得到 11 点。";
+	mes "下一张牌很可能让你得到 21 或 20 点。";
+	mes "这种牌面很适合加倍。";
 	goto sM_Menu0;
 sM_0d:
 	mes "[Dealer]";
-	mes "The 'Ace' card is a unique card in the game of Black Jack because";
-	mes "it can have 2 values.  An Ace can be counted as either 11 points,";
-	mes "or just 1 point.  For example if you had an Ace and a 4, that would";
-	mes "give you either 15 or 5 points.";
+	mes "‘A’牌在二十一点中很特殊，因为它有两种点数。";
+	mes "A 可以算作 11 点，也可以算作 1 点。";
+	mes "例如 A 和 4 可以得到 15 点或 5 点。";
+	mes "系统会根据情况自动计算。";
 	next;
 	mes "[Dealer]";
-	mes "If you decided to stay, the Ace would automatically be counted as";
-	mes "11 points to give you 15 points total.";
+	mes "如果你选择停牌，A 会自动计算为";
+	mes "11点，因此总点数为15点。";
 	next;
 	mes "[Dealer]";
-	mes "If you had decided to pull and received a 9, the ace would";
-	mes "automatically be counted as 1 point to give you a total of 14";
-	mes "points.  If the Ace was counted as 11 points, you would have a";
-	mes "point total over 21 and would have lost.";
+	mes "如果你选择要牌并得到 9，A 会自动算作 1 点，";
+	mes "这样总点数就是 14 点。";
+	mes "如果 A 算作 11 点，总点数会超过 21，";
+	mes "你就会输掉回合。";
 	next;
 	mes "[Dealer]";
-	mes "It is because of the flexibility you have with the 'Ace' that makes";
-	mes "it the most powerful card in the game.";
+	mes "正是因为 A 的灵活性，";
+	mes "它才成为游戏中最强的牌。";
 	goto sM_Menu0;
 M_End:
 	mes "[Dealer]";
-	mes "Feel free to come back anytime";
+	mes "欢迎随时回来";
 	close;
 
 //================
 L_Play:
 	mes "[Dealer]";
-	mes "Please place your bets...";
+	mes "请下注……";
 	next;
 	menu "2z",M_1a, "10z",M_1b, "20z",M_1c, "100z",M_1d, "Too rich for my blood....",M_End;
 
@@ -151,11 +151,11 @@ M_1d:
 
 sL_NotEnuf:
 	mes "[Dealer]";
-	mes "I'm sorry but you don't have enough zeny to make that bet.";
+	mes "抱歉，你没有足够的 Zeny 来下注。";
 	close;
 
 L_Cont0:
-	mes "(the cards are being dealt)";
+	mes "（正在发牌）";
 	next;
 	deletearray $@card[0],13;
 	set @dealerTurn, 0;
@@ -172,14 +172,14 @@ L_Cont0:
 L_Start:
 	callsub sF_GetTot;
 
-	mes "- Here are the ^FF5533DEALER'S^000000 cards:";
+	mes "- 这是^FF5533庄家的^000000牌：";
 	if (@numD==2) callsub sF_D2cards;
 	if (@numD==3) callsub sF_D3cards;
 	if (@numD==4) callsub sF_D4cards;
 	if (@numD==5) callsub sF_D5cards;
-	mes "    The DEALER has: ^FF5533"+@dealTot+"^000000";
+	mes "    庄家的点数为：^FF5533"+@dealTot+"^000000";
 	mes " ";
-	mes "- Here are ^5533FFYOUR^000000 cards:";
+	mes "- 这是^5533FF你的^000000牌：";
 	if (@numP==2) callsub sF_P2cards;
 	if (@numP==3) callsub sF_P3cards;
 	if (@numP==4) callsub sF_P4cards;
@@ -198,16 +198,16 @@ L_Start:
 M_Stay:
 	mes "[Dealer]";
 	if(@playTot < 13) goto sL_PlayToLow;
-	if(@dealTot > 16) mes "The Dealer stays.";
+	if(@dealTot > 16) mes "庄家停牌。";
 	if(@dealTot > 16 || @numD == 5) goto L_Check;
-	mes "The Dealer is going to pull";
+	mes "庄家要牌";
 	next;
 	callsub sF_GetCards, @numD, @dealCard[@numD], @dealCard$[@numD], @dAce;
 	set @dealerTurn, 1;
 	goto L_Start;
 
 sL_PlayToLow:
-	mes "I'm sorry but you do not have a high enough total to stay.  You must pull.";
+	mes "抱歉，你的总点数不够停牌。必须要牌。";
 	next;
 	goto M_Hit;
 
@@ -217,8 +217,8 @@ M_Hit:
 	goto L_Start;
 M_Double:
 	mes "[Dealer]";
-	mes "Player has chosen to Double Down.  You're current bet will be";
-	mes "doubled, and you will only be able to pull 1 extra card.";
+	mes "玩家选择了加倍下注。当前赌注将翻倍，";
+	mes "并且只能再要 1 张牌。";
 	next;
 	set @dealerTurn, 1;
 	set @bet, @bet*2;
@@ -233,19 +233,19 @@ L_Check:
 
 sL_Win:
 	mes "[Dealer]";
-	mes "Congratulations, you've won!";
+	mes "恭喜你，赢得了比赛！";
 	next;
 	set Zeny, Zeny + @bet;
 	goto L_Play;
 sL_Lose:
 	mes "[Dealer]";
-	mes "I'm sorry but you've lost.";
+	mes "很遗憾，你输了。";
 	set Zeny, Zeny - @bet;
 	next;
 	goto L_Play;
 sL_Push:
 	mes "[Dealer]";
-	mes "Its a push.  You tied with the Dealer.";
+	mes "这是和局。你和庄家点数相同。";
 	next;
 	goto L_Play;
 

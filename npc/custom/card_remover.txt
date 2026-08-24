@@ -22,12 +22,12 @@ prt_in,28,73,4	script	Wise Old Woman#eAcustom	78,{
 
 	disable_items;
 	mes "[Wise Old Woman]";
-	mes "Good day, young one. I have the power to remove cards that you have compounded onto your equipment. Does this idea please you?";
+	mes "你好，年轻人。我能从装备上拆除已经插入的卡片。你觉得这个主意如何？";
 	next;
-	switch(select("Yes, it does.:What do you charge?:No thanks.")) {
+	switch(select("很好。:你怎么收费？:不用了，谢谢。")) {
 	case 1:
 		mes "[Wise Old Woman]";
-		mes "Very well. Which item shall I examine for you?";
+		mes "好的。要我检查哪件物品？";
 		next;
 
 		setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -39,111 +39,111 @@ prt_in,28,73,4	script	Wise Old Woman#eAcustom	78,{
 		set .@part, .@indices[ select(.@menu$) ];
 		if(!getequipisequiped(.@part)) {
 			mes "[Wise Old Woman]";
-			mes "Young one... Your not wearing anything there that I can remove cards from.";
+			mes "年轻人……你身上没有可以拆卡的装备。";
 			close;
 		}
 		if(getequipcardcnt(.@part) == 0) {
 			mes "[Wise Old Woman]";
-			mes "Young one... There are no cards compounded on this item. I can do nothing with it, I'm afraid.";
+			mes "年轻人……这件物品没有插入卡片。恐怕我无能为力。";
 			close;
 		}
 		set .@cardcount,getequipcardcnt(.@part);
 		
 		if (!checkweight(1202,(.@cardcount+1))) { 
-			mes "^3355FFJust a minute!";
-			mes "I can't offer any of my";
-			mes "services to you because";
-			mes "you're carrying too much";
-			mes "stuff. Put your extra items in";
-			mes "Kafra Storage and come again~";
+			mes "^3355FF请稍等！";
+			mes "我无法为你提供服务，";
+			mes "因为你携带的物品太多。";
+			mes "把多余物品放进卡普拉仓库，";
+			mes "再来找我吧~";
 			close;
-		}
+			}
 		mes "[Wise Old Woman]";
-		mes "This item has " + .@cardcount + " cards compounded on it. To perform my magic, I will need " + (.zenycost+(.@cardcount * .percardcost)) + " zeny, a ^0000FFStar Crumb^000000, and a ^0000FFYellow Gemstone^000000.";
+		mes "这件物品插入了 " + .@cardcount + " 张卡片。施展魔法需要 " + (.zenycost+(.@cardcount * .percardcost)) + " Zeny、一个 ^0000FF星星的粉末^000000 和一个 ^0000FF黄色魔力矿石^000000。";
 		next;
-		if(select("Very well. Do it.:Never mind.") == 2) {
-			mes "[Wise Old Woman]";
-			mes "Very well. Return at once if you seek my services.";
+		if(select("好的，开始吧。:算了。") == 2) {
+		mes "[Wise Old Woman]";
+			mes "好的。需要服务时随时回来。";
 			close;
-		}
+			}
 		if((zeny < (.zenycost+(.@cardcount * .percardcost))) || (countitem(1000) < 1) || (countitem(715) < 1)) {
-			mes "[Wise Old Woman]";
-			mes "You do not have all the items I require to work my magic, child. Come again when you do.";
-			close;
-		}
 		mes "[Wise Old Woman]";
-		mes "Before I begin, I must warn you--I may fail. If I do, I may destroy the cards, the item, or both. I do not give refunds. That being said, which is more important to you: The cards, or the item?";
+			mes "孩子，你没有施法所需的全部物品。准备好后再来。";
+			close;
+			}
+		mes "[Wise Old Woman]";
+		mes "开始前必须警告你——我可能会失败。失败的话，卡片、物品或两者都可能被毁。我不退款。话说回来，对你而言什么更重要：卡片还是物品？";
 		next;
-		switch(select("I changed my mind about this.:The item.:The cards.")) {
+		switch(select("我改变主意了。:物品。:卡片。")) {
 		case 1:
-			mes "[Wise Old Woman]";
-			mes "Very well. Return at once if you seek my services.";
-			close;
-		case 2:
-			set .@failtype,1;
-			break;
-		case 3:
-			set .@failtype,2;
-		}
 		mes "[Wise Old Woman]";
-		mes "Very well. I shall begin.";
+			mes "好的。需要服务时随时回来。";
+			close;
+			case 2:
+		set .@failtype,1;
+			break;
+			case 3:
+		set .@failtype,2;
+			}
+		mes "[Wise Old Woman]";
+		mes "很好。我要开始了。";
 		set Zeny, Zeny - (.zenycost+(.@cardcount * .percardcost));
 		delitem 1000,1; //Star_Crumb
 		delitem 715,1; //Yellow_Gemstone
 		
+
 		// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
 		// First value = Total failure chance (item and cards destroyed)
 		// Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
 		// Third value = Harmless failure chance (all that's lost is your investment)
-
-		set .@failchance,rand(100);
+		
+set .@failchance,rand(100);
 		if (.faildestroy==1) {
-			if(.@failchance < 2) {
-				next;
+		if(.@failchance < 2) {
+			next;
 				failedremovecards .@part,0;
 				mes "[Wise Old Woman]";
-				mes "The process was a total failure. I am afraid the item and the cards were destroyed.";
+				mes "过程彻底失败了。恐怕物品和卡片都被毁掉了。";
 				close;
-			}
+				}
 
-			if(.@failchance < 8) {
-				if (.@failtype == 1) {
-					next;
+if(.@failchance < 8) {
+			if (.@failtype == 1) {
+				next;
 					failedremovecards .@part,1;
 					mes "[Wise Old Woman]";
-					mes "While I have managed to remove the cards from the item, they were destroyed in the process. The item, however, is okay.";
+					mes "我成功从物品上拆下了卡片，但卡片在过程中被毁了。不过物品没事。";
 					close;
 				}
 
-				if (.@failtype == 2) {
-					next;
+if (.@failtype == 2) {
+				next;
 					failedremovecards .@part,2;
 					mes "[Wise Old Woman]";
-					mes "Most unfortunate. I succeeded at removing the cards, but the item itself was destroyed in the process.";
+					mes "太不幸了。我成功拆下卡片，但物品本身在过程中被毁了。";
 					close;
+					}
 				}
 			}
-		}
 
-		if(.@failchance < 10) {
-			next;
+if(.@failchance < 10) {
+		next;
 			failedremovecards .@part,3;
 			mes "[Wise Old Woman]";
-			mes "I have failed to remove the cards. Luckily, however, both the item and the cards are still okay.";
+			mes "我没能拆下卡片。不过幸运的是，物品和卡片都完好无损。";
 			close;
-		}
+			}
 		next;
 		successremovecards .@part;
 		mes "[Wise Old Woman]";
-		mes "The process was a success. Here are your cards and your item. Farewell.";
+		mes "过程成功了。这是你的卡片和物品。再见。";
 		close;
-	case 2:
-		mes "[Wise Old Woman]";
-		mes "I charge a flat fee of "+callfunc("F_InsertComma",.zenycost)+" zeny, plus "+callfunc("F_InsertComma",.percardcost)+" zeny for each card I remove from the item. In addition, I need a star crumb and a yellow gemstone to work my magic.";
+		case 2:
+	mes "[Wise Old Woman]";
+		mes "我收取固定费用 "+callfunc("F_InsertComma",.zenycost)+" Zeny，每拆一张卡片另收 "+callfunc("F_InsertComma",.percardcost)+" Zeny。此外，施法还需要星星的粉末和黄色魔力矿石。";
 		close;
-	case 3:
-		mes "[Wise Old Woman]";
-		mes "Very well. Return at once if you seek my services.";
+		case 3:
+	mes "[Wise Old Woman]";
+		mes "好的。需要服务时随时回来。";
 		close;
+		}
 	}
-}

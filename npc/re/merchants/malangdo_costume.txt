@@ -36,33 +36,33 @@
 // Costume exchange
 mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 	if (checkweight(1301,1) == 0) {
-		mes "- Please stop here!! -";
-		mes "- You have carried too much items, -";
-		mes "- Therefore unable receive any item again, -";
-		mes "- Please reduce your weight, -";
-		mes "- And come back again later! -";
+		mes "-请停一下！！-";
+		mes "-你携带的物品太多，-";
+		mes "-因此无法再领取物品，-";
+		mes "-请减轻负重，-";
+		mes "-之后再回来！-";
 		close;
 	}
 	disable_items;
-	mes "[Designer Heidam]";
-	mes "I am Designer Heidam, who has all kinds of cool costumes in the World.";
-	mes "If you have any Kitcoins with you, come look for Designer Heidam!";
+	mes "[设计师海达姆]";
+	mes "我是设计师海达姆，拥有世界各地各种酷炫服装。";
+	mes "如果你带着凯特硬币，就来找设计师海达姆！";
 	next;
-	if (select( "Exchange costume for random enchant box", "Continue conversation" ) == 2) {
-		mes "[Designer Heidam]";
-		mes "Though I look out of shape right now, I used to be a well known fashion model and designer!";
+	if (select( "用服装兑换随机附魔箱", "继续交谈" ) == 2) {
+		mes "[设计师海达姆]";
+		mes "虽然我现在身材走样，但以前可是著名的时装模特兼设计师！";
 		next;
-		mes "[Designer Heidam]";
-		mes "Don't pity me! I am well aware of my looks, but I like who I am inside.";
+		mes "[设计师海达姆]";
+		mes "别可怜我！我很清楚自己的外表，但我喜欢内在的自己。";
 		close;
 	}
 	mes "[" + strcharinfo(0) + "]";
-	mes "This item is useless to me! Do you have anything else?";
+	mes "这件物品对我没用！还有别的吗？";
 	next;
-	mes "[Designer Heidam]";
-	mes "Oh, then I can exchange it for a box of costume enchantment items.";
+	mes "[设计师海达姆]";
+	mes "哦，那我可以把它换成一箱服装附魔物品。";
 	next;
-	mes "- Rummaging -";
+	mes "-翻找中-";
 	next;
 	// ===================================================================
 	// =================== Costume Enchant Stone Box 4 ===================
@@ -440,37 +440,37 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 					continue;
 				if (countitem(.@id) < 1)
 					continue;
-				mes "[Designer Heidam]";
-				mes "I see that you have a ^3131FF" + getitemname(.@id) + "^000000. Do you want to exchange this for a costume enchantment box?";
+				mes "[设计师海达姆]";
+				mes "我看到你有^3131FF" + getitemname(.@id) + "^000000。要用它兑换服装附魔箱吗？";
 				next;
-				switch( select( "Exchange", "Look for something else", "Stop Exchanging" ) ) {
+				switch( select( "兑换", "寻找其他物品", "停止兑换" ) ) {
 				case 1:
-					mes "[Designer Heidam]";
+					mes "[设计师海达姆]";
 					if (countitem(.@id) < 1)
-						mes "Oh~ Something suddenly disappeared...";
+						mes "哦～有什么东西突然消失了……";
 					else {
-						mes "Exchange Completed.";
+						mes "兑换完成。";
 						delitem .@id, 1;
 						getitem .@box_list[.@i], 1;
 					}
-					mes "Let me check you for another item to exchange...";
+					mes "让我再检查一下你是否有其他可兑换物品……";
 					next;
 					break;
 				case 2:
 					break;
 				case 3:
-					mes "[Designer Heidam]";
-					mes "Meow? Where are you going?";
+					mes "[设计师海达姆]";
+					mes "喵？你要去哪里？";
 					close;
 				}
 			}
 		}
-		mes "[Designer Heidam]";
-		mes "Guess that is all.";
+		mes "[设计师海达姆]";
+		mes "看来就这些了。";
 		next;
-		if (select( "Look more", "Quit" ) == 2) {
-			mes "[Designer Heidam]";
-			mes "Bye~";
+		if (select( "再找找", "退出" ) == 2) {
+			mes "[设计师海达姆]";
+			mes "再见～";
 			close;
 		}
 	}
@@ -481,30 +481,30 @@ malangdo,115,154,3	script	Fashion Stone#stone	4_BULLETIN_BOARD2,{ end; }
 // Costume enchant (top, mid, low)
 mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	disable_items;
-	mes "[Aver De Dosh]";
-	mes "Welcome to Fashion Stone!!";
+	mes "[艾弗·德·多什]";
+	mes "欢迎来到时尚石服务！！";
 	next;
-	mes "[Aver De Dosh]";
-	mes "We take various costume items.";
+	mes "[艾弗·德·多什]";
+	mes "我们接受各种服装物品。";
 	next;
-	mes "[Aver De Dosh]";
-	mes "If you want cool styling for your costume, please come to me 'Aver De Dosh'!";
-	mes "Don't forget to bring ^ff0000your own costume and costume stones^000000~";
+	mes "[艾弗·德·多什]";
+	mes "如果想为服装打造酷炫造型，请来找我‘艾弗·德·多什’！";
+	mes "别忘了带上^ff0000你自己的服装和服装石^000000～";
 	next;
-	if (select( "Apply enchant.", "End Conversation." ) == 2) {
-		mes "[Aver De Dosh]";
-		mes "Please check our other upgrading services~";
+	if (select( "进行附魔。", "结束对话。" ) == 2) {
+		mes "[艾弗·德·多什]";
+		mes "也请看看我们的其他升级服务～";
 		close;
 	}
 	if (checkweight(1119,3) == 0) {
-		mes "[Aver De Dosh]";
-		mes "Kiaaaaach!!!";
-		mes "I hate bulging bags!";
-		mes "No matter how cool your costume looks, that fat bag of yours is a fashion terror you know!";
+		mes "[艾弗·德·多什]";
+		mes "呀啊啊啊！！！";
+		mes "我讨厌鼓鼓的包！";
+		mes "无论你的服装多酷，你那个肥包都是时尚灾难！";
 		next;
 		mes "[Aver De Dosh]";
-		mes "It seems you have too many items on you.";
-		mes "Come back after clearing some inventory space.";
+		mes "看来你身上物品太多。";
+		mes "清理物品栏空间后再回来。";
 		close;
 	}
 	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
@@ -513,8 +513,8 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 
 	if (.@eq_top == -1 && .@eq_mid == -1 && .@eq_low == -1) {
 		mes "[Aver De Dosh]";
-		mes "You must wear the costume you want to enchant.";
-		mes "Then, I will be able to help you out.";
+		mes "你必须穿上想附魔的服装。";
+		mes "这样我才能帮助你。";
 		close;
 	}
 	if (.@eq_top > -1) {
@@ -811,8 +811,8 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 			break;
 		default:
 			mes "[Aver De Dosh]";
-			mes "Well...";
-			mes "This costume is currently not available for an upgrade.";
+			mes "嗯……";
+			mes "这件服装目前无法升级。";
 			close;
 		}
 		break;
@@ -905,8 +905,8 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 			break;
 		default:
 			mes "[Aver De Dosh]";
-			mes "Well...";
-			mes "This costume is currently not available for an upgrade.";
+			mes "嗯……";
+			mes "这件服装目前无法升级。";
 			close;
 		}
 		break;
@@ -1029,14 +1029,14 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 			break;
 		default:
 			mes "[Aver De Dosh]";
-			mes "Well...";
-			mes "This costume is currently not available for an upgrade.";
+			mes "嗯……";
+			mes "这件服装目前无法升级。";
 			close;
 		}
 		break;
 
 	default:
-		mes "An unknown error has occurred.";
+		mes "发生未知错误。";
 		close;
 	}
 
@@ -1045,13 +1045,13 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
 	mes "[Aver De Dosh]";
-	mes "Wow~ This ^0000FF" + getitemname(.@equip_id) + "^000000!!! looks great on you!!";
-	mes "What kind of stone do you want to use for the upgrade?";
+	mes "哇~这件^0000FF" + getitemname(.@equip_id) + "^000000！！！你穿起来真好看！！";
+	mes "你想用哪种石头升级？";
 	next;
 	if (.@part == EQI_COSTUME_HEAD_TOP)
-		.@slot = select( "Upper", "Middle", "Lower", "Cancel" ) - 1;	// the slot enchanted changes according to the location
+		.@slot = select( "上部", "中部", "下部", "Cancel" ) - 1;	// the slot enchanted changes according to the location
 	else if (.@part == EQI_COSTUME_HEAD_MID)
-		.@slot = select( "", "Middle", "Lower", "Cancel" ) - 1;
+		.@slot = select( "", "中部", "下部", "Cancel" ) - 1;
 	else if (.@part == EQI_COSTUME_HEAD_LOW)
 		.@slot = 2;
 
@@ -1059,7 +1059,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	case 0:
 		if (!(.@location & EQP_COSTUME_HEAD_TOP)) {
 			mes "[Aver De Dosh]";
-			mes "The costume can't be enhanced at this location.";	// custom
+			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
 		setarray .@stone_id[0],
@@ -1117,69 +1117,69 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	case 1:
 		if (!(.@location & EQP_COSTUME_HEAD_MID)) {
 			mes "[Aver De Dosh]";
-			mes "The costume can't be enhanced at this location.";	// custom
+			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
 		setarray .@stone_id[0],
-			6642, 4882,	// ATKStone_Middle	Atk1p
-			6643, 4883,	// MATKStone_Middle	Matk1p
+			6642, 4882,	// ATKStone_中部	Atk1p
+			6643, 4883,	// MATKStone_中部	Matk1p
 			6717, 4927,	// MaxHP_Stone	HP50
-			6742, 4931,	// HealStone_Middle	HEALHP1
-			6743, 4861,	// HPStone_Middle	MHP1
-			6744, 4929,	// SPStone_Middle	MSP1
-			6945, 4700,	// STRStone_Middle	Strength1
-			6946, 4710,	// INTStone_Middle	Inteligence1
-			6947, 4730,	// AGIStone_Middle	Agility1
-			6948, 4720,	// DEXStone_Middle	Dexterity1
-			6949, 4740,	// VITStone_Middle	Vitality1
-			6950, 4750,	// LUKStone_Middle	Luck1
-			25001, 29026,	// DEFStone_Middle	Def20
-			25002, 29024,	// ChangeLUK_Middle	LUK3STR
-			25003, 29014,	// ChangeSTR_Middle	STR3INT
-			25004, 29022,	// ChangeAGI_Middle	AGI3LUK
-			25005, 29016,	// ChangeINT_Middle	INT3DEX
-			25006, 29020,	// ChangeVIT_Middle	VIT3AGI
-			25007, 29018,	// ChangeDEX_Middle	DEX3VIT
+			6742, 4931,	// HealStone_中部	HEALHP1
+			6743, 4861,	// HPStone_中部	MHP1
+			6744, 4929,	// SPStone_中部	MSP1
+			6945, 4700,	// STRStone_中部	Strength1
+			6946, 4710,	// INTStone_中部	Inteligence1
+			6947, 4730,	// AGIStone_中部	Agility1
+			6948, 4720,	// DEXStone_中部	Dexterity1
+			6949, 4740,	// VITStone_中部	Vitality1
+			6950, 4750,	// LUKStone_中部	Luck1
+			25001, 29026,	// DEFStone_中部	Def20
+			25002, 29024,	// ChangeLUK_中部	LUK3STR
+			25003, 29014,	// ChangeSTR_中部	STR3INT
+			25004, 29022,	// ChangeAGI_中部	AGI3LUK
+			25005, 29016,	// ChangeINT_中部	INT3DEX
+			25006, 29020,	// ChangeVIT_中部	VIT3AGI
+			25007, 29018,	// ChangeDEX_中部	DEX3VIT
 			25060, 29047,	// Critical_Stone	Fatal0
 			25061, 29048,	// Range_Stone	Expert_Archer0
-			25070, 29054,	// ReloadStone_Middle	Skill_Delay1_Middle
-			25141, 29145,	// EXPStone_Middle	EXP2MIDDLE
-			25173, 29157,	// CastingStone_Middle	Casting_Middle
-			25175, 29155,	// LexAeternaStone_Middle	LexAeterna
-			25410, 29424,	// SuraStone_Middle	SuraStone_Middle_
-			25414, 29429,	// RangerStone_Middle	RangerStone_Middle_
-			25418, 29433,	// SorcererStone_Middle	SorcererStone_Middle_
-			25446, 29461,	// RuneknightStone_Middle	RuneknightStone_Middle_
-			25451, 29465,	// GeneticStone_Middle	GeneticStone_Middle_
-			25454, 29469,	// WarlockStone_Middle	WarlockStone_Middle_
-			25491, 29478,	// ShadowchaseStone_Middle	ShadowchaseStone_Middle_
-			25495, 29482,	// MechanicStone_Middle	MechanicStone_Middle_
-			25499, 29486,	// WanderMinstrelStone_Middle	WanderMinstrelStone_Middle_
-			25707, 29514,	// HighpriestStone_Middle	HighpriestStone_Middle_
-			25711, 29518,	// PaladinStone_Middle	PaladinStone_Middle_
-			25715, 29522,	// AssacrossStone_Middle	AssacrossStone_Middle_
-			25799, 29612,	// SuraStone_Middle2	SuraStone_Middle2_
-			25803, 29616,	// SorcererStone_Middle2	SorcererStone_Middle2_
-			25807, 29620,	// ShadowchasStone_Middle2	ShadowchasStone_Middle2_
-			25844, 29652,	// SoulLinkerStone_Middle	SoulLinkerStone_Middle_
-			25847, 29656,	// StarGladiatorStone_Middle	StarGladiatorStone_Middle_
-			25851, 29660,	// NinjaStone_Middle	NinjaStone_Middle_
-			25856, 29665,	// GunslingerStone_Middle	GunslingerStone_Middle_
-			25860, 29669,	// DoramStone_Middle	DoramStone_Middle_
-			1000009, 310001,	// RangerStone_II_Middle	Ranger_Middle2
-			1000013, 310005,	// MechanicStone_II_Middle	Mechanic_Middle2
-			1000017, 310009,	// HighpriestStone_II_Middle	Highpriest_Middle2
-			1000215, 310182,	// WarlockStone_Middle2	Warlock_Middle2
-			1000219, 310186,	// RoyalGuardStone_Middle2	RoyalGuard_Middle2
-			1000223, 310190,	// GuillotineCrossStone_Middle2	GuillotineCross_Middle2
-			1000298, 310259,	// RuneknightStone_Middle2	Runeknight_Middle2
-			1000302, 310263,	// GeneticStone_Middle2	Genetic_Middle2
-			1000306, 310267;	// WanderMinsStone_Middle2	WandMinst_Mid2
+			25070, 29054,	// ReloadStone_中部	Skill_Delay1_中部
+			25141, 29145,	// EXPStone_中部	EXP2MIDDLE
+			25173, 29157,	// CastingStone_中部	Casting_中部
+			25175, 29155,	// LexAeternaStone_中部	LexAeterna
+			25410, 29424,	// SuraStone_中部	SuraStone_中部_
+			25414, 29429,	// RangerStone_中部	RangerStone_中部_
+			25418, 29433,	// SorcererStone_中部	SorcererStone_中部_
+			25446, 29461,	// RuneknightStone_中部	RuneknightStone_中部_
+			25451, 29465,	// GeneticStone_中部	GeneticStone_中部_
+			25454, 29469,	// WarlockStone_中部	WarlockStone_中部_
+			25491, 29478,	// ShadowchaseStone_中部	ShadowchaseStone_中部_
+			25495, 29482,	// MechanicStone_中部	MechanicStone_中部_
+			25499, 29486,	// WanderMinstrelStone_中部	WanderMinstrelStone_中部_
+			25707, 29514,	// HighpriestStone_中部	HighpriestStone_中部_
+			25711, 29518,	// PaladinStone_中部	PaladinStone_中部_
+			25715, 29522,	// AssacrossStone_中部	AssacrossStone_中部_
+			25799, 29612,	// SuraStone_中部2	SuraStone_中部2_
+			25803, 29616,	// SorcererStone_中部2	SorcererStone_中部2_
+			25807, 29620,	// ShadowchasStone_中部2	ShadowchasStone_中部2_
+			25844, 29652,	// SoulLinkerStone_中部	SoulLinkerStone_中部_
+			25847, 29656,	// StarGladiatorStone_中部	StarGladiatorStone_中部_
+			25851, 29660,	// NinjaStone_中部	NinjaStone_中部_
+			25856, 29665,	// GunslingerStone_中部	GunslingerStone_中部_
+			25860, 29669,	// DoramStone_中部	DoramStone_中部_
+			1000009, 310001,	// RangerStone_II_中部	Ranger_中部2
+			1000013, 310005,	// MechanicStone_II_中部	Mechanic_中部2
+			1000017, 310009,	// HighpriestStone_II_中部	Highpriest_中部2
+			1000215, 310182,	// WarlockStone_中部2	Warlock_中部2
+			1000219, 310186,	// RoyalGuardStone_中部2	RoyalGuard_中部2
+			1000223, 310190,	// GuillotineCrossStone_中部2	GuillotineCross_中部2
+			1000298, 310259,	// RuneknightStone_中部2	Runeknight_中部2
+			1000302, 310263,	// GeneticStone_中部2	Genetic_中部2
+			1000306, 310267;	// WanderMinsStone_中部2	WandMinst_Mid2
 		break;
 	case 2:
 		if (!(.@location & EQP_COSTUME_HEAD_LOW)) {
 			mes "[Aver De Dosh]";
-			mes "The costume can't be enhanced at this location.";	// custom
+			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
 		setarray .@stone_id[0],
@@ -1243,7 +1243,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		break;
 	default:
 		mes "[Aver De Dosh]";
-		mes "Please check our other upgrading services~";
+		mes "请看看我们的其他升级服务~";
 		close;
 	}
 	.@size = getarraysize(.@stone_id);
@@ -1273,18 +1273,18 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 
 	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
 		mes "[Aver De Dosh]";
-		mes "Hmm? You are lacking components.";
-		mes "You must have both, the costume and an enchant stone for this upgrade.";
+		mes "嗯？你缺少材料。";
+		mes "升级需要服装和附魔石两者。";
 		close;
 	}
-	mes "^FF0000   !!! Caution !!!^000000";
-	mes "^ff0000This upgrade can fail.^000000";
-	mes "^ff0000If the item already has an enchant, it will be reset and only the costume will be returned.^000000";
+	mes "^FF0000   ！！！注意！！！^000000";
+	mes "^ff0000升级可能失败。^000000";
+	mes "^ff0000如果物品已有附魔，附魔会被重置，只有服装会返还。^000000";
 	mes "^FF0000Are you sure about upgrading this item?^000000";
 	next;
-	if (select( "Yes.", "No." ) == 2) {
+	if (select( "是。", "否。" ) == 2) {
 		mes "[Aver De Dosh]";
-		mes "Please check our other upgrading services~";
+		mes "请看看我们的其他升级服务~";
 		close;
 	}
 	delitem .@stone, 1;
@@ -1296,15 +1296,15 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	delequip .@part;
 	if (rand(1,100) < 51) {
 		mes "[Aver De Dosh]";
-		mes "Wow... Elegance!!";
-		mes "This is perfect... Wow!";
+		mes "哇……优雅！！";
+		mes "太完美了……哇！";
 		.@card[.@slot] = .@enchant;
 	}
 	else {
 		mes "[Aver De Dosh]";
-		mes "History is known for failure...";
-		mes "Just like the history of fashion...";
-		mes "Sorry...to disappoint you..~ LoL.";
+		mes "历史以失败闻名……";
+		mes "就像时尚的历史一样……";
+		mes "抱歉让你失望了~哈哈。";
 		.@card[.@slot] = 0;
 	}
 	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
@@ -1315,33 +1315,33 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	disable_items;
 	mes "[Lace La Zard]";
-	mes "Welcome to Fashion Stone!!";
-	mes "My name is Lace La Zard who will make your 'Power Shoulder' dream come true.";
+	mes "欢迎来到时尚之石！！";
+	mes "我叫蕾丝·拉·扎德，会让你的‘力量护肩’梦想成真。";
 	next;
 	mes "[Lace La Zard]";
-	mes "Bring your ^ff0000Costume Garment^000000 and ^ff0000Garment Stone^000000, I will complete the perfect upgrade for you.!";
-	mes "I found this formula while working on my own humble body upgrading!";
+	mes "带来你的^ff0000服装披风^000000和^ff0000披风精炼石^000000，我会为你完成完美升级！";
+	mes "我是在进行自身身体升级时发现这个配方的！";
 	next;
-	if (select( "Apply enchant.", "End Conversation." ) == 2) {
+	if (select( "应用附魔。", "结束对话。" ) == 2) {
 		mes "[Lace La Zard]";
-		mes "Yes? Do you want to keep looking?";
+		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	if (checkweight(1119,3) == 0) {
 		mes "[Lace La Zard]";
-		mes "Well... Your heavy shoulder doesn't seem capable for an upgrade...!";
-		mes "Don't be so cruel to your shoulder!";
+		mes "嗯……你的沉重护肩似乎无法升级……！";
+		mes "别对你的护肩这么残忍！";
 		next;
-		mes "It seems you have too many items on you.";
-		mes "Come back after clearing some inventory space.";
+		mes "看来你身上带了太多物品。";
+		mes "清理一些背包空间后再回来。";
 		close;
 	}
 	.@part = EQI_COSTUME_GARMENT;
 	.@equip_id = getequipid(.@part);
 	if (.@equip_id == -1) {
 		mes "[Lace La Zard]";
-		mes "Put the garment on your shoulder.";
-		mes "I need to have a look at it before I can tell if it's worth to be upgraded..";
+		mes "把披风装备在肩上。";
+		mes "我得先看看，才能判断它是否值得升级……";
 		close;
 	}
 
@@ -1366,7 +1366,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 		break;
 	default:
 		mes "[Lace La Zard]";
-		mes "I need to have a look at it to check for upgrading posibility..";// custom
+		mes "我得先看看，才能确认是否可以升级……";// custom
 		close;
 	}
 
@@ -1374,8 +1374,8 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
 	mes "[Lace La Zard]";
-	mes "Wow a ^0000FF" + getitemname(.@equip_id) + "^000000!!! You got some taste right there, don't you?";
-	mes "Great!! I'm fully ready for this upgrade!!";
+	mes "哇，^0000FF" + getitemname(.@equip_id) + "^000000！！！你的品味真不错，对吧？";
+	mes "太棒了！！我已经完全准备好进行升级了！！";
 	next;
 	setarray .@data$[0],
 		6908, 4807, "ASPD +1",	// ASPDStone_Robe	Atk_Speed1
@@ -1422,28 +1422,28 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
 		.@j++;
 	}
-	.@menu$ += "End Conversation.";
+	.@menu$ += "结束对话。";
 	.@s = (select(.@menu$) - 1) * 3;
 	if (.@s == .@size) {
 		mes "[Lace La Zard]";
-		mes "Yes? Do you want to keep looking?";
+		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	.@id = atoi(.@data$[.@s]);
 	.@enchant = atoi(.@data$[.@s+1]);
 	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
 		mes "[Lace La Zard]";
-		mes "You must have both, the costume and an enchant stone for this upgrade.";
+		mes "升级需要服装和附魔石两者。";
 		close;
 	}
-	mes "^FF0000   !!! Caution !!!^000000";
-	mes "^ff0000This upgrade can fail.^000000";
-	mes "^ff0000If the item already has an enchant, it will be reset and only the " + .@data$[.@s+2] + " will be returned.^000000";
+	mes "^FF0000   ！！！注意！！！^000000";
+	mes "^ff0000升级可能失败。^000000";
+	mes "^ff0000如果物品已有附魔，附魔会被重置，只有" + .@data$[.@s+2] + "会返还。^000000";
 	mes "^ff0000Are you sure about upgrading this item?^000000";
 	next;
-	if (select( "Yes.", "No." ) == 2) {
+	if (select( "是。", "否。" ) == 2) {
 		mes "[Lace La Zard]";
-		mes "Yes? Do you want to keep looking?";
+		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 
@@ -1455,14 +1455,14 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	delequip .@part;
 	if (rand(100) < 50) {
 		mes "[Lace La Zard]";
-		mes "Beautiful!!";
-		mes "Did I really made this myself?!!!";
+		mes "真美！！";
+		mes "这真的是我亲手做的吗？！！！";
 		.@card[0] = .@enchant;
 	}
 	else {
 		mes "[Lace La Zard]";
-		mes "Oh no!";
-		mes "Crash!!!!! I cannot show this failure to the world!!!";
+		mes "糟糕！";
+		mes "哐！！！！我不能让世人看到这次失败！！！";
 		.@card[0] = 0;
 	}
 	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];

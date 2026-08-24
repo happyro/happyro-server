@@ -25,154 +25,154 @@
 function	script	F_CoolEventCorp	{
 	cutin "zonda_01",2;
 	mes "[Cool Event Corp. Staff]";
-	mes "Welcome to Cool Event Corp.";
-	mes "Our staff is always working";
-	mes "to surpass your expactations";
-	mes "for quality service. So how";
-	mes "may I assist you today?";
+	mes "欢迎来到 Cool Event Corp。";
+	mes "我们的员工一直努力";
+	mes "超越您的期待，";
+	mes "提供优质服务。今天";
+	mes "我能为您做些什么？";
 	next;
 	switch(select(getarg(0))) {
 	case 1:
 		mes "[Cool Event Corp. Staff]";
-		mes "Your Respawn Point";
-		mes "has been saved here";
+		mes "您的重生点";
+		mes "已保存于此处";
 		mes getarg(1)+".";
-		mes "Thank you for using the";
-		mes "Cool Event Corp. service~";
+		mes "感谢您使用";
+		mes "Cool Event Corp. 的服务～";
 		savepoint getarg(2),getarg(3),getarg(4),1,1;
 		close2;
 		break;
 	case 2:
 		mes "[Cool Event Corp. Staff]";
 		if(!callfunc("F_CanOpenStorage")){
-			mes "I'm sorry, but you";
-			mes "need the Novice's";
-			mes "Basic Skill Level 6 to";
-			mes "use the Storage Service.";
+			mes "抱歉，您需要";
+			mes "新手基础技能达到 6 级";
+			mes "才能使用仓库服务。";
 			close2;
 			break;
-		}
+			}
 		if(Zeny < 40){
-			mes "I'm sorry, but you don't";
-			mes "have enough Zeny to use";
-			mes "the Storage Service. Our";
-			mes "Storage access fee is 40 Zeny.";
+		mes "抱歉，您的 Zeny 不足，";
+			mes "无法使用仓库服务。";
+			mes "仓库访问费为 40 Zeny。";
 			close2;
 			break;
-		}
-		set Zeny, Zeny - 40;
-		mes "Let me open your personal";
-		mes "storage for you right away.";
-		mes "Thanks for supporting Cool";
-		mes "Event Corp. by using our";
-		mes "services. Have a good day~";
+			}
+			set Zeny, Zeny - 40;
+		mes "我马上为您打开";
+		mes "个人仓库。";
+		mes "感谢您使用 Cool Event Corp.";
+		mes "的服务来支持我们。祝您愉快～";
 		callfunc("F_CheckKafCode");	//check your storage password, if set
 		close2;
 		openstorage;
 		break;
-	case 3:
-		mes "Please choose";
-		mes "your destination.";
-		next;
+		case 3:
+		mes "请选择";
+		mes "您的目的地。";
+	next;
 		if (VIP_SCRIPT && !vip_status(VIP_STATUS_ACTIVE))
-			set .@cost,4400;
+		set .@cost,4400;
 		else
-			set .@cost,2200;
-		.@destination$ = getarg(5);
-		if (select(.@destination$ +" -> "+ .@cost +" z:Cancel") == 1) {
+		set .@cost,2200;
+			.@destination$ = getarg(5);
+		if (select(.@destination$ +" -> "+ .@cost +" z:取消") == 1) {
 			if ((countitem(7060) != 0) || (Zeny >= .@cost)) {
-				if (countitem(7060) != 0) {
-					delitem 7060,1; //Warp_Free_Ticket
-				}
+		if (countitem(7060) != 0) {
+		delitem 7060,1; //Warp_Free_Ticket
+			}
 				else {
 					set Zeny,Zeny-.@cost;
 				}
 				if (.@destination$ == "Veins") warp "veins",205,101;
-				else if (.@destination$ == "Rachel") warp "rachel",115,125;
+					else if (.@destination$ == "Rachel") warp "rachel",115,125;
 				cutin "",255;
 				end;
-			}
-			else {
+				}
+				else {
 				mes "[Cool Event Corp. Staff]";
-				mes "I'm sorry, but you don't have";
-				mes "enough zeny for the Teleport";
-				mes "Service. The fee to teleport";
-				mes "to "+ .@destination$ +" is "+.@cost+" zeny.";
-			}
-		}
-		close2;
-		break;
-	case 4:
+			mes "抱歉，您的 Zeny 不足，无法使用";
+			mes "传送服务。传送到";
+				mes .@destination$ +"的费用为 "+.@cost+" Zeny。";
+				}
+				}
+				close2;
+				break;
+			case 4:
 		mes "[Cool Event Corp. Staff]";
 		if(BaseClass != Job_Merchant){
-			mes "I'm sorry, but the";
-			mes "Pushcart rental service";
-			if (checkre(0))
-				mes "is only available to Merchant classes.";
+		mes "抱歉，";
+	mes "手推车租赁服务";
+		if (checkre(0))
+		mes "仅对商人系职业开放。";
 			else {
-				mes "is only available to Merchants,";
-				mes "Blacksmiths, White Smiths,";
-				mes "Alchemists and Creators.";
+			mes "仅对商人、铁匠、神工匠、";
+			mes "炼金术士和创造者开放。";
+				}
+			close2;
+				break;
+				}
+				if(getskilllv("MC_PUSHCART") == 0){
+			mes "学习手推车技能后才能";
+			mes "租用手推车。";
+			close2;
+		break;
+		}
+			if(checkcart() == 1){
+			mes "您已经装备了";
+			mes "一辆手推车。";
+			mes "很抱歉，每位顾客";
+		mes "一次只能租用";
+		mes "一辆手推车。";
+			close2;
+			break;
 			}
-			close2;
-			break;
-		}
-		if(getskilllv("MC_PUSHCART") == 0){
-			mes "You can only rent a cart after";
-			mes "learning the Pushcart Skill.";
-			close2;
-			break;
-		}
-		if(checkcart() == 1){
-			mes "You already have";
-			mes "a Pushcart equipped.";
-			mes "Unfortunately, we can't";
-			mes "rent more than one to";
-			mes "each customer at a time.";
-			close2;
-			break;
-		}
-		if(countitem(7061)){
+			if(countitem(7061)){
 			delitem 7061,1; //Cart_Free_Ticket
 			setcart;
 			close2;
-			break;
-		}
-		mes "The Pushcart rental";
-		mes "fee is 800 Zeny. Would";
-		mes "you like to rent a Pushcart?";
-		next;
-		if(select("Rent a Pushcart:Cancel") == 1){
-			if(Zeny < 800){
-				mes "[Cool Event Corp. Staff]";
-				mes "I'm sorry, but you";
-				mes "don't have enough";
-				mes "Zeny to pay the Pushcart";
-				mes "rental fee of 800 Zeny.";
-			} else {
-				set Zeny, Zeny - 800;
-				setcart;
-			}
-		}
-		close2;
 		break;
-	case 5:
-		callfunc("F_SetKafCode","[Cool Event Corp. Staff]","Cool Event Corp.");
-		//the function closes msg and removes cutins
-	case 6:
-	default:
+		}
+			mes "手推车租赁";
+			mes "费用为 800 Zeny。要租用手推车吗？";
+			next;
+			if(select("租用手推车:取消") == 1){
+		if(Zeny < 800){
 		mes "[Cool Event Corp. Staff]";
-		mes "Cool Event Corp. is always";
-		mes "striving to provide the best";
-		mes "services for our customers.";
-		mes "Help us become the best by";
-		mes "providing us with your opinions";
-		mes "and honest feedback. Thank you.";
-		close2;
-	}
-	cutin "", 255;
-	end;
-}
+		mes "抱歉，您的 Zeny 不足以支付";
+		mes "手推车 800 Zeny 的";
+		mes "租赁费用。";
+		} else {
+			set Zeny, Zeny - 800;
+				setcart;
+				}
+				}
+				close2;
+				break;
+			case 5:
+				callfunc("F_SetKafCode","[Cool Event Corp. Staff]","Cool Event Corp.");
+				//the function closes msg and removes cutins
+			case 6:
+		default:
+		mes "[Cool Event Corp. Staff]";
+		mes "Cool Event Corp. 一直";
+	mes "努力为顾客提供最好的";
+		mes "服务。";
+		mes "请提供您的意见和";
+	mes "诚实反馈，帮助我们变得更好。谢谢。";
+	close2;
+		}
+		cutin "", 255;
+		end;
+		}
+		
+		
+		
+		
+	
+	
+	
+
 
 lighthalzen,94,248,3	script	Cool Event Corp Staff::CoolEventCorpStaffLighthalzen	4_M_ZONDAMAN,{
 	callfunc "F_CoolEventCorp",

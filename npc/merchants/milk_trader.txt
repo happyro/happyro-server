@@ -21,54 +21,54 @@
 
 prontera,73,140,0	script	Milk Vendor	86,{
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FFJust a minute!";
-		mes "I can't offer any of my";
-		mes "services to you because";
-		mes "you're carrying too much";
-		mes "stuff. Put your extra items in";
-		mes "Kafra Storage and come again~";
+		mes "^3355FF等一下！";
+		mes "我无法为你提供服务，";
+		mes "因为你携带了太多";
+		mes "物品。";
+		mes "把多余物品存入";
+		mes "卡普拉仓库后再来~";
 		close;
 	}
-	mes "[Milk Vendor]";
-	mes "Hey, hey...";
-	mes "If you bring me";
-	mes "1 Empty Bottle and";
-	mes "15 Zeny, I'll exchange";
-	mes "them for 1 Milk. How";
-	mes "does that sound?";
+	mes "[牛奶商人]";
+	mes "嘿，嘿……";
+	mes "如果你带给我";
+	mes "1 个空瓶和";
+	mes "15 Zeny，我会将它们";
+	mes "兑换成 1 瓶牛奶。听起来";
+	mes "怎么样？";
 	next;
-	if (select("Exchange all empty bottles.:Cancel") == 1) {
+	if (select("兑换所有空瓶。:取消") == 1) {
 		if (countitem(713) <= 0) {
-			mes "[Milk Vendor]";
-			mes "Hey...";
-			mes "You don't have";
-			mes "any Empty Bottles.";
-			mes "I can't really give you";
-			mes "this milk any other";
-			mes "way, you know...";
+			mes "[牛奶商人]";
+			mes "嘿……";
+			mes "你没有任何";
+			mes "空瓶。";
+			mes "我无法用其他方式";
+			mes "给你";
+			mes "牛奶……";
 			close;
 		}
 		set .@bottles,countitem(713);
 		set .@total_weight,.@bottles * 50;
 		set .@total_cost,.@bottles * 15;
 		if (Zeny < .@Total_cost) {
-			mes "[Milk Vendor]";
-			mes "Oh, whoa~!";
-			mes "You don't have enough";
-			mes "zeny to exchange all";
-			mes "these Empty Bottles for";
-			mes "Milk. You need to have";
-			mes "at least " + .@total_cost + " zeny.";
+			mes "[牛奶商人]";
+			mes "哦，哇~！";
+			mes "你没有任何 enough";
+			mes "所有这些空瓶兑换成";
+			mes "牛奶。你至少需要";
+			mes "拥有";
+			mes "至少 " + .@total_cost + " zeny.";
 			close;
 		}
 		if (MaxWeight - Weight < .@total_weight) {
-			mes "[Milk Vendor]";
-			mes "Hmm...";
-			mes "Would you make";
-			mes "a little more room";
-			mes "in your inventory";
-			mes "before I give you";
-			mes "all of this milk?";
+			mes "[牛奶商人]";
+			mes "嗯……";
+			mes "你能在我给你";
+			mes "这些牛奶前";
+			mes "在背包里";
+			mes "腾出一些";
+			mes "空间吗？";
 			close;
 		}
 		set Zeny, Zeny-.@total_cost;

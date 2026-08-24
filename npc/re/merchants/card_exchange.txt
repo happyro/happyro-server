@@ -20,34 +20,34 @@
 //============================================================
 comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 	if (checkweight(1201,1) == 0) {
-		mes "You have too many items, please reduce it and come back later!";
+		mes "你携带的物品太多，请减轻负重后再来！";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "You are overweight now, please reduce it and come back later!";
+		mes "你现在超重了，请减轻负重后再来！";
 		close;
 	}
-	mes "[Terminator RX1]";
-	mes "Text Explanation Begins:";
-	mes "Press 1 for Cancel,";
-	mes "Press 2 for Explanation,";
-	mes "Press 3 for Coin Exchange,";
-	mes "Press 4 for Card Exchange.";
+	mes "[终结者RX1]";
+	mes "说明开始：";
+	mes "按1取消，";
+	mes "按2查看说明，";
+	mes "按3兑换硬币，";
+	mes "按4兑换卡片。";
 	next;
-	switch(select("1.Cancel:2.Explanation:3.Change Card into Coin:4.Change Coin into Card:^ffffff5.Start Security System^000000")) {
+	switch(select("1.取消：2.说明：3.卡片换硬币：4.硬币换卡片：^ffffff5.启动安全系统^000000")) {
 	case 1:
-		mes "[Terminator RX1]";
-		mes "You are welcome!";
+		mes "[终结者RX1]";
+		mes "不客气！";
 		close;
 	case 2:
-		mes "[Terminator RX1]";
-		mes "No.3, when you choose Coin Exchange, system will collect ONE card from your inventory randomly to exchange into ONE Coin.";
+		mes "[终结者RX1]";
+		mes "3.选择硬币兑换时，系统会随机收取你库存中的1张卡片，兑换成1枚硬币。";
 		next;
-		mes "[Terminator RX1]";
-		mes "No.4, when you choose Card Excahnge, system will collect FIVE coin from your inventory to exchange into ONE Card randomly.";
+		mes "[终结者RX1]";
+		mes "4.选择卡片兑换时，系统会收取你库存中的5枚硬币，随机兑换成1张卡片。";
 		next;
-		mes "[Terminator RX1]";
-		mes "You are welcome!";
+		mes "[终结者RX1]";
+		mes "不客气！";
 		close;
 	case 3:
 		specialeffect2 EF_COIN;
@@ -83,19 +83,19 @@ comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 			4417, 4418, 4420, 4421, 4422, 4423, 4432, 4434, 4435, 4436,
 			4437, 4438, 4439, 4442, 4443, 4444, 4445, 4447, 4448, 4449,
 			4450, 4452;
-		mes "[Terminator RX1]";
-		mes "Card searching has finished!";
+		mes "[终结者RX1]";
+		mes "卡片搜索完成！";
 		next;
-		mes "[Terminator RX1]";
-		mes "Thank you for coming!";
+		mes "[终结者RX1]";
+		mes "感谢你的光临！";
 		close;
 	case 4:
 		specialeffect2 EF_COIN;
 		specialeffect2 EF_LOUD;
 		progressbar "0xffff00",3;
 		if (countitem(6379) < 5) {
-			mes "[Terminator RX1]";
-			mes "You do not have enough coins.";
+			mes "[终结者RX1]";
+			mes "你的硬币不够。";
 			close;
 		}
 		delitem 6379,5; //Card_Coin
@@ -464,15 +464,15 @@ comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 			else
 				getitem 4092,1; //Skel_Worker_Card
 		}
-		mes "[Terminator RX1]";
-		mes "All cards have finished.";
+		mes "[终结者RX1]";
+		mes "所有卡片都处理完了。";
 		next;
-		mes "[Terminator RX1]";
-		mes "Thank you for coming!";
+		mes "[终结者RX1]";
+		mes "感谢你的光临！";
 		close;
 	case 5:
-		mes "[Terminator RX1]";
-		mes "Found unauthorized signal, starting security system...";
+		mes "[终结者RX1]";
+		mes "发现未经授权的信号，启动安全系统……";
 		close2;
 		warp "comodo",263,286;
 		end;
@@ -484,15 +484,15 @@ L_Exchange:
 	.@args = getargcount();
 	for (.@i = 0; .@i < .@args; .@i++) {
 		if (countitem(getarg(.@i))) {
-			mes "Found ^980078" + getitemname(getarg(.@i)) + "^000000,";
-			mes "Do you want to exchange ONE Card into ONE Coin?";
+			mes "发现了^980078" + getitemname(getarg(.@i)) + "^000000，";
+			mes "要将1张卡片兑换成1枚硬币吗？";
 			next;
-			switch(select("No:Yes")) {
+			switch(select("否：是")) {
 			case 1:
-				mes "^980078Do you want search for other cards?^000000";
+				mes "^980078要继续搜索其他卡片吗？^000000";
 				next;
-				if(select("No:Yes") == 1) {
-					mes "^980078Card searching is interrupted^000000";
+				if(select("否：是") == 1) {
+					mes "^980078卡片搜索已中断^000000";
 					close;
 				}
 				break;
@@ -500,10 +500,10 @@ L_Exchange:
 				if (countitem(getarg(.@i))) {
 					delitem getarg(.@i),1;
 					getitem 6379,1; //Card_Coin
-					mes "^980078" + getitemname(getarg(.@i)) + " has exchanged into Coin.^000000";
+					mes "^980078" + getitemname(getarg(.@i)) + " 已兑换为硬币。^000000";
 					next;
 				} else {
-					mes "^980078Your inventory does not contain the card for exchange.^000000";
+					mes "^980078你的背包中没有可兑换的卡片。^000000";
 					next;
 				}
 				break;
