@@ -356,7 +356,7 @@ function	script	F_KafCart	{
 	// Check if the player has the Pushcart skill
 	else if (getskilllv("MC_PUSHCART") == 0) {
 		mes "[Kafra Employee]";
-		mes "学习\"手推车\"技能后才能租赁手推车。";
+		mes "学习手推车技能后才能租赁手推车。";
 		return 1;
 	}
 	// Consume "Free Ticket for the Cart Service" if available.
@@ -650,16 +650,16 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 600, 1200, 1200, 1200, 1800;
 	}
 
-	// 行数补齐
-// 行数补齐
-	// 行数补齐
-	// 行数补齐
-		// 行数补齐
-			// 行数补齐
-	// 行数补齐
-// 行数补齐
-	// 行数补齐
-		// 行数补齐
-	// 行数补齐
-	// 行数补齐
-// 行数补齐
+	.@warp_size = getarraysize(@wrpD$);
+
+	// VIP pricing varies across the regional servers; this is most practical.
+	if (VIP_SCRIPT && !vip_status(VIP_STATUS_ACTIVE)) {
+		for ( .@i = 0; .@i < .@warp_size; .@i++ )
+			@wrpP[.@i] *= 2;
+	}
+
+	for ( .@i = 0; .@i < .@warp_size; .@i++ )
+		@wrpC$[.@i] = @wrpD$[.@i] + " -> " + @wrpP[.@i] + " z";
+	@wrpC$[ .@warp_size ] = "Cancel";
+	return;
+}
