@@ -48,456 +48,456 @@
 	}
 	if (checkweight(908,630) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
+		mes "我们之间的事务";
+		mes "已经结束。如果不忙，";
+		mes "不妨帮助你的公会？";
+		mes "我确定他们会感激。";
 		close;
-		}
-		if (.@GID == 0) {
-		mes "^3355FF你不知道原因，但这个人看起来很沮丧。他短暂与你对视后便移开目光，显然想独处。^000000";
+	}
+	if (.@GID == 0) {
+		mes "^3355FFYou're not sure why, but";
+		mes "this guy seems to be pretty";
+		mes "depressed. He briefly makes";
+		mes "eye contact with you, but then";
+		mes "breaks it off. Apparently,";
+		mes "^3355FF没有理由在无主据点逗留，你还是上路吧。^000000";
 		next;
-	mes "^3355FF没有理由继续留在无人拥有的要塞。你还是离开吧。^000000";
-	close;
-		}
-		if (getcharid(2) == .@GID) {
-		if (is_guild_leader() == true) {
-		.@time = atoi( gettimestr("%H%M",5) );
-		if (guildrelay_q == 100) {
-		if (guildtime > 2299) {
-		if (.@time > 0101 && .@time < guildtime) {
-		mes "[" + .@name$ + "]";
+		mes "^3355FFThere's no reason for you";
 		mes "哦，你回来了。休息够了吗？我相信其他公会成员现在也精神焕发。看起来你已经准备好下一项任务。";
-		next;
-		mes "[" + .@name$ + "]";
-		mes "下一步是收下这个‘信任之灵’。要让公会稳固，你必须思考公会中有多少信任。";
-	set guildrelay_q,8;
-	getitem 7240,1; //Soul_Of_Confidence
-		next;
-			mes "[" + .@name$ + "]";
-			mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
-				next;
-					mes "[" + .@name$ + "]";
-						mes "信任之灵必须交给^4D4DFF" + .@name3$ + "^000000，别忘了把信息告诉你的贤者或学者。好了，祝你旅途顺利。";
-						close;
-						}
-						else {
+		mes "stronghold. You may as well";
+		mes "head on your way.^000000";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		if (is_guild_leader() == true) {
+			.@time = atoi( gettimestr("%H%M",5) );
+			if (guildrelay_q == 100) {
+				if (guildtime > 2299) {
+					if (.@time > 0101 && .@time < guildtime) {
 						mes "[" + .@name$ + "]";
 						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
-						emotion ET_SURPRISE;
+						mes "rest up enough? I'm sure the";
+						mes "other guild members are";
+						mes "feeling refreshed by now.";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "ready for your next mission.";
 						next;
 						mes "[" + .@name$ + "]";
 						mes "你的决心和精神值得称赞，但必要时也要耐心恢复自己。我会在这里等你，请稍后再来。";
-						close;
-						}
-						}
-						else if (guildtime > 2200) {
-						if (.@time > 0001 && .@time < guildtime) {
-						mes "[" + .@name$ + "]";
-						mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
-						next;
-						mes "[" + .@name$ + "]";
-						mes "下一步是收下这个‘信任之灵’。要让公会稳固，你必须思考公会中有多少信任。";
+						mes "you is to take this, the";
+						mes "''Spirit of Trust.'' If this";
+						mes "啊，你休息得很好，大人。现在该进行第三项测试了。提醒你，这些灵魂极其珍贵，千万别弄丢。";
+						mes "you need to think how much";
+						mes "您好，大人。出什么事了吗？看起来你有什么心事。";
 						set guildrelay_q,8;
 						getitem 7240,1; //Soul_Of_Confidence
 						next;
 						mes "[" + .@name$ + "]";
-						mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
-						next;
-						mes "[" + .@name$ + "]";
-						mes "信任之灵必须交给^4D4DFF" + .@name3$ + "^000000，别忘了把信息告诉你的贤者或学者。好了，祝你旅途顺利。";
-						close;
-						}
-						else {
-						mes "[" + .@name$ + "]";
-						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
-						emotion ET_SURPRISE;
-					next;
-					mes "[" + .@name$ + "]";
-						mes "你的决心和精神值得称赞，但必要时也要耐心恢复自己。我会在这里等你，请稍后再来。";
-						close;
-						}
-						}
-						else if ((.@time - guildtime) > 0200) {
-						mes "[" + .@name$ + "]";
-						mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
-						next;
-						mes "[" + .@name$ + "]";
 						mes "下一步是收下这个‘信任之灵’。要让公会稳固，你必须思考公会中有多少信任。";
-						set guildrelay_q,8;
-						getitem 7240,1; //Soul_Of_Confidence
-						next;
-						mes "[" + .@name$ + "]";
+						mes "如果力量不用于保护弱者，总会有某种形式的恶霸来剥削他们。这就是特里斯坦三世建造要塞的原因。";
+						mes "你不是想再次参加试炼吧？";
+						mes "nature's attributes. In other";
+						mes "words, a Sage or Scholar";
 						mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
 						next;
 						mes "[" + .@name$ + "]";
-					mes "信任之灵必须交给^4D4DFF" + .@name3$ + "^000000，别忘了把信息告诉你的贤者或学者。好了，祝你旅途顺利。";
-				close;
-				}
+						mes "The Spirit of Trust must";
+						mes "be delivered to ^4D4DFF" + .@name3$ + "^000000,";
+						mes "so don't forget to relay";
+						mes "that information to your";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						close;
+					}
 					else {
 						mes "[" + .@name$ + "]";
-						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "你还留着我给你的公会之灵？看来还没找到可以托付它的骑士或圣殿骑士。必须尽快找到人。";
+						mes "Why do you look so pale?";
+						mes "You can't accomplish great";
+						mes "为了公会，让骑士或圣殿骑士站在你这边很有利：他们的战斗技能能扭转战局。";
+						mes "Rest. Your guild must be able";
+						mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
 						emotion ET_SURPRISE;
+						next;
+						mes "[" + .@name$ + "]";
+						mes "Your determination and";
+						mes "啊，休息好了吗，大人？请原谅我之前的失礼。我当时要报告你的试炼结果，一时失态了。不会再发生了。";
+						mes "啊，这是进取之灵？这意味着你完成了第一项测试。干得好。把灵魂交给我，我来给你公会奖励。";
+						mes "yourself when you must. I will";
+						mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
+						mes "come back to me later.";
+						close;
+					}
+				}
+				else if (guildtime > 2200) {
+					if (.@time > 0001 && .@time < guildtime) {
+						mes "[" + .@name$ + "]";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "rest up enough? I'm sure the";
+						mes "other guild members are";
+						mes "feeling refreshed by now.";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "ready for your next mission.";
 						next;
 						mes "[" + .@name$ + "]";
 						mes "你的决心和精神值得称赞，但必要时也要耐心恢复自己。我会在这里等你，请稍后再来。";
-						close;
-						}
-						}
-						else if (guildrelay_q == 150) {
-						if ((guildtime > 2299 && .@time > 0101 && .@time < guildtime) || (guildtime > 2199 && .@time > 0001 && .@time < guildtime) || ((.@time - guildtime) > 0200)) {
-						mes "[" + .@name$ + "]";
+						mes "you is to take this, the";
+						mes "''Spirit of Trust.'' If this";
 						mes "啊，你休息得很好，大人。现在该进行第三项测试了。提醒你，这些灵魂极其珍贵，千万别弄丢。";
+						mes "you need to think how much";
+						mes "您好，大人。出什么事了吗？看起来你有什么心事。";
+						set guildrelay_q,8;
+						getitem 7240,1; //Soul_Of_Confidence
 						next;
 						mes "[" + .@name$ + "]";
-						mes "和其他灵魂一样，请妥善保管这个。它是^4D4DFF和平之灵^000000。要塞与力量似乎与和平矛盾，但事实确实如此。";
-						set guildrelay_q,15;
-						getitem 7246,1; //Soul_Of_Peace
-						next;
-						mes "[" + .@name$ + "]";
+						mes "下一步是收下这个‘信任之灵’。要让公会稳固，你必须思考公会中有多少信任。";
 						mes "如果力量不用于保护弱者，总会有某种形式的恶霸来剥削他们。这就是特里斯坦三世建造要塞的原因。";
+						mes "你不是想再次参加试炼吧？";
+						mes "nature's attributes. In other";
+						mes "words, a Sage or Scholar";
+						mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
 						next;
 						mes "[" + .@name$ + "]";
-						mes "请派一名盗贼或神行太保把和平之灵交给^4D4DFF" + .@name4$ + "^000000。若不认识盗贼或神行太保，最好先去结识一位。";
-						next;
-						mes "[" + .@name$ + "]";
-						mes "没错，盗贼提供的潜行和情报收集无可替代。总之，" + .@name4$ + "会指导你完成第三项测试。";
-						close;
-						}
-						else {
-						mes "[" + .@name$ + "]";
+						mes "The Spirit of Trust must";
+						mes "be delivered to ^4D4DFF" + .@name3$ + "^000000,";
+						mes "so don't forget to relay";
+						mes "that information to your";
 						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+						close;
+					}
+					else {
+						mes "[" + .@name$ + "]";
+						mes "你还留着我给你的公会之灵？看来还没找到可以托付它的骑士或圣殿骑士。必须尽快找到人。";
+						mes "Why do you look so pale?";
+						mes "You can't accomplish great";
+						mes "为了公会，让骑士或圣殿骑士站在你这边很有利：他们的战斗技能能扭转战局。";
+						mes "Rest. Your guild must be able";
+						mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
 						emotion ET_SURPRISE;
 						next;
+						mes "[" + .@name$ + "]";
+						mes "Your determination and";
+						mes "啊，休息好了吗，大人？请原谅我之前的失礼。我当时要报告你的试炼结果，一时失态了。不会再发生了。";
+						mes "啊，这是进取之灵？这意味着你完成了第一项测试。干得好。把灵魂交给我，我来给你公会奖励。";
+						mes "yourself when you must. I will";
+						mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
+						mes "come back to me later.";
+						close;
+					}
+				}
+				else if ((.@time - guildtime) > 0200) {
+					mes "[" + .@name$ + "]";
+					mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+					mes "rest up enough? I'm sure the";
+					mes "other guild members are";
+					mes "feeling refreshed by now.";
+					mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+					mes "ready for your next mission.";
+					next;
 					mes "[" + .@name$ + "]";
 					mes "你的决心和精神值得称赞，但必要时也要耐心恢复自己。我会在这里等你，请稍后再来。";
-						close;
-						}
-						}
-						else if (guildrelay_q == 25) {
-						if ((guildtime > 2299 && .@time > 0401 && .@time < guildtime)
-						|| (guildtime > 2199 && .@time > 0301 && .@time < guildtime)
-						|| (guildtime > 2059 && .@time > 0201 && .@time < guildtime)
-						|| (guildtime > 1999 && .@time > 0101 && .@time < guildtime)
-						|| (guildtime > 1899 && .@time > 0001 && .@time < guildtime)
-						|| ((.@time - guildtime) > 0500)) {
-						mes "[" + .@name$ + "]";
-						mes "啊，休息好了吗，大人？请原谅我之前的失礼。我当时要报告你的试炼结果，一时失态了。不会再发生了。";
-						set guildrelay_q,999;
-						close;
-						}
-						else {
-						mes "...............................";
+					mes "you is to take this, the";
+					mes "''Spirit of Trust.'' If this";
+					mes "啊，你休息得很好，大人。现在该进行第三项测试了。提醒你，这些灵魂极其珍贵，千万别弄丢。";
+					mes "you need to think how much";
+					mes "您好，大人。出什么事了吗？看起来你有什么心事。";
+					set guildrelay_q,8;
+					getitem 7240,1; //Soul_Of_Confidence
+					next;
+					mes "[" + .@name$ + "]";
+					mes "下一步是收下这个‘信任之灵’。要让公会稳固，你必须思考公会中有多少信任。";
+					mes "如果力量不用于保护弱者，总会有某种形式的恶霸来剥削他们。这就是特里斯坦三世建造要塞的原因。";
+					mes "你不是想再次参加试炼吧？";
+					mes "nature's attributes. In other";
+					mes "words, a Sage or Scholar";
+					mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
+					next;
+					mes "[" + .@name$ + "]";
+					mes "The Spirit of Trust must";
+					mes "be delivered to ^4D4DFFY" + .@name3$ + "^000000,";
+					mes "so don't forget to relay";
+					mes "that information to your";
+					mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+					mes "啊，你休息好——哦。你脸色怎么这么苍白？过度劳累可做不成大事！休息吧，公会必须依靠你的力量。";
+					close;
+				}
+				else {
+					mes "[" + .@name$ + "]";
+					mes "你还留着我给你的公会之灵？看来还没找到可以托付它的骑士或圣殿骑士。必须尽快找到人。";
+					mes "Why do you look so pale?";
+					mes "You can't accomplish great";
+					mes "为了公会，让骑士或圣殿骑士站在你这边很有利：他们的战斗技能能扭转战局。";
+					mes "Rest. Your guild must be able";
+					mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
+					emotion ET_SURPRISE;
+					next;
+					mes "[" + .@name$ + "]";
+					mes "Your determination and";
+					mes "啊，休息好了吗，大人？请原谅我之前的失礼。我当时要报告你的试炼结果，一时失态了。不会再发生了。";
+					mes "啊，这是进取之灵？这意味着你完成了第一项测试。干得好。把灵魂交给我，我来给你公会奖励。";
+					mes "yourself when you must. I will";
+					mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
+					mes "come back to me later.";
+					close;
+				}
+			}
+			else if (guildrelay_q == 150) {
+				if ((guildtime > 2299 && .@time > 0101 && .@time < guildtime) || (guildtime > 2199 && .@time > 0001 && .@time < guildtime) || ((.@time - guildtime) > 0200)) {
+					mes "[" + .@name$ + "]";
+					mes "Ah, you look well rested,";
+					mes "master. It is now time for";
+					mes "you to proceed with the third";
+					mes "test. Let me remind you that";
+					mes "these spirits are incredibly";
+					mes "precious. Do not lose them.";
+					next;
+					mes "[" + .@name$ + "]";
+					mes "Like all the other spirits,";
+					mes "please keep this one safely.";
+					mes "This is the ^4D4DFFSpirit of Peace^000000.";
+					mes "It seems contradictive that";
+					mes "strongholds and might can";
+					mes "你做得很好，但前方还有更多试炼。现在先休息，再进行第二项测试。准备好后再来。";
+					set guildrelay_q,15;
+					getitem 7246,1; //Soul_Of_Peace
+					next;
+					mes "[" + .@name$ + "]";
+					mes "如果你不忙，不妨花时间提升公会成员的士气？也许团队建设活动会有帮助。";
+					mes "protect the weak, then";
+					mes "some bully, in one form or";
+					mes "another, will always come";
+					mes "to exploit them. That is why";
+					mes "Tristan III built the strongholds.";
+					next;
+					mes "[" + .@name$ + "]";
+					mes "Please dispatch a Rogue";
+					mes "or Stalker to bring this";
+					mes "Spirit of Peace to ^4D4DFF" + .@name4$ + "^000000.";
+					mes "If you don't know any Rogues";
+					mes "啊，你已经完成测试并获得友谊之灵了？干得好。现在你应该认识到团队合作的价值。请把友谊之灵交给我。";
+					mes "prudent for you to meet one.";
+					next;
+					mes "[" + .@name$ + "]";
+					mes "Yes, there's no substitute";
+					mes "for the subterfuge and intel";
+					mes "gathering that a Rogue can";
+					mes "provide. Anyway, " + .@name4$ + " will";
+					mes "guide you on your third test.";
+					close;
+				}
+				else {
+					mes "[" + .@name$ + "]";
+					mes "你还留着我给你的公会之灵？看来还没找到可以托付它的骑士或圣殿骑士。必须尽快找到人。";
+					mes "Why do you look so pale?";
+					mes "You can't accomplish great";
+					mes "为了公会，让骑士或圣殿骑士站在你这边很有利：他们的战斗技能能扭转战局。";
+					mes "Rest. Your guild must be able";
+					mes "哦，你回来了。休息够了吗？其他公会成员应该也恢复精神了。看来你准备好下一项任务。";
+					emotion ET_SURPRISE;
+					next;
+					mes "[" + .@name$ + "]";
+					mes "Your determination and";
+					mes "啊，休息好了吗，大人？请原谅我之前的失礼。我当时要报告你的试炼结果，一时失态了。不会再发生了。";
+					mes "啊，这是进取之灵？这意味着你完成了第一项测试。干得好。把灵魂交给我，我来给你公会奖励。";
+					mes "yourself when you must. I will";
+					mes "第二项测试是把^4D4DFF信任之灵^000000交给能操控自然属性的贤者，也就是贤者或学者来完成。";
+					mes "come back to me later.";
+					close;
+				}
+			}
+			else if (guildrelay_q == 25) {
+				if ((guildtime > 2299 && .@time > 0401 && .@time < guildtime)
+				|| (guildtime > 2199 && .@time > 0301 && .@time < guildtime)
+				|| (guildtime > 2059 && .@time > 0201 && .@time < guildtime)
+				|| (guildtime > 1999 && .@time > 0101 && .@time < guildtime)
+				|| (guildtime > 1899 && .@time > 0001 && .@time < guildtime)
+				|| ((.@time - guildtime) > 0500)) {
+					mes "[" + .@name$ + "]";
+					mes "Ah, have you rested well,";
+					mes "master? Please excuse my";
+					mes "manners a while ago. I had";
+					mes "to report your trial results,";
+					mes "and lost my composure for a";
+					mes "moment. It won't happen again.";
+					set guildrelay_q,999;
+					close;
+				}
+				else {
 					mes "...............................";
-				next;
-				mes "...............................";
+					mes "...............................";
+					next;
+					mes "...............................";
 					mes "...............................";
 					mes "...............................";
 					next;
 					mes "[" + .@name$ + "]";
 					emotion ET_HUK;
-					mes "哦！大、大人？你什么时候……？对不起，我刚才忙着工作。";
+					mes "Oh! M-master? Wh-when";
+					mes "did you...? I'm so sorry.";
+					mes "I was busy working.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "你完成试炼才过了几天。现在先休息并照顾好公会，好吗？请稍后再来，我还有很多事要处理……";
+					mes "It's only been a few days";
+					mes "since you finished the trials.";
+					mes "For now, you should rest and";
+					mes "take care of your guild, okay?";
+					mes "Please come back later.";
+					mes "I've got much to attend to...";
 					close;
-					}
-					}
-					else if (guildrelay_q == 999) {
+				}
+			}
+			else if (guildrelay_q == 999) {
+				mes "[" + .@name$ + "]";
+				mes "Good day, master.";
+				mes "Is something wrong?";
+				mes "You look as though";
+				mes "something is on your mind.";
+				next;
+				switch(select("N-no, nothing.:I want to take a lesson.")) {
+				case 1:
 					mes "[" + .@name$ + "]";
-					mes "您好，大人。出什么事了吗？看起来你有什么心事。";
-					next;
-					switch(select("没、没什么。:我想参加课程。")) {
-					case 1:
-					mes "[" + .@name$ + "]";
-					mes "嗯？真奇怪。";
+					mes "Hm? That's strange.";
 					emotion ET_SWEAT;
-					mes "你不是想再次参加试炼吧？";
+					mes "You didn't want to take";
+					mes "the trials again, did you?";
 					close;
-					case 2:
+				case 2:
 					mes "[" + .@name$ + "]";
-					mes "我明白了。你知道这并不容易，但我想你已经准备好了。拿着^4D4DFF公会之灵^000000，交给你最信任的骑士或圣殿骑士。";
+					mes "I see. You know it won't";
+					mes "be easy, but I suppose you";
+					mes "are prepared. Here, take";
+					mes "the ^4D4DFFSpirit of Guild^000000, and";
+					mes "give it to your most trusted";
+					mes "Knight or Lord Knight.";
 					set guildrelay_q,1;
 					getitem 7234,1; //Soul_Of_Guild
 					next;
 					mes "[" + .@name$ + "]";
-					mes "这名骑士应把公会之灵带给^4D4DFF" + .@name2$ + "^000000。祝你好运，愿诸神与你同在。";
+					mes "This Knight should take";
+					mes "the Spirit of Guild over";
+					mes "to ^4D4DFF" + .@name2$ + "^000000. Good luck, and";
+					mes "may the gods be with you.";
 					close;
-					}
-					}
-				else if (guildrelay_q == 1) {
+				}
+			}
+			else if (guildrelay_q == 1) {
 				if (countitem(7234) > 0) {
 					mes "[" + .@name$ + "]";
-					mes "你还留着我给你的公会之灵？看来还没找到可以托付它的骑士或圣殿骑士。必须尽快找到人。";
+					mes "You still have the Spirit of";
+					mes "Guild I gave you? I suppose";
+					mes "you haven't found a Knight or";
+					mes "Lord Knight to which it can";
+					mes "be entrusted. It is imperative";
+					mes "that you find someone soon.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "为了公会，让骑士或圣殿骑士站在你这边很有利：他们的战斗技能能扭转战局。";
+					mes "For the sake of the guild, it";
+					mes "will be advantageous to have";
+					mes "a Knight or Lord Knight on";
+					mes "your side: their combat skills";
+					mes "can turn the tide of battles.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "找到骑士后，把公会之灵交给他，并请他去找" + .@name2$ + "，因为他将主持试炼。祝你好运，大人。";
+					mes "When you do find a Knight,";
+					mes "give him the Spirit of Guild";
+					mes "and ask him to find " + .@name2$ + "";
+					mes "since he will conducting";
+					mes "the trial. Good luck";
+					mes "to you, master.";
 					close;
-					}
-					else if (countitem(7239) > 0) {
+				}
+				else if (countitem(7239) > 0) {
 					mes "[" + .@name$ + "]";
-					mes "啊，这是进取之灵？这意味着你完成了第一项测试。干得好。把灵魂交给我，我来给你公会奖励。";
+					mes "Ah, is this the Spirit";
+					mes "of Advance? This must mean";
+					mes "that you completed the first";
+					mes "test. Keep up the good work.";
+					mes "Hand me the spirit, and allow";
+					mes "me to give you your guild's reward.";
 					delitem 7239,1; //Soul_Of_Proceeding
 					set guildtime,.@time;
 					set guildrelay_q,100;
 					set .@incen_item,rand(1,100);
-				if ((.@incen_item > 0) && (.@incen_item < 25)) {
-			getitem 608,20; //Seed_Of_Yggdrasil
-			getitem 678,2; //Poison_Bottle
-				}
+					if ((.@incen_item > 0) && (.@incen_item < 25)) {
+						getitem 608,20; //Seed_Of_Yggdrasil
+						getitem 678,2; //Poison_Bottle
+					}
 					else if ((.@incen_item > 24) && (.@incen_item < 50)) {
-					getitem 607,10; //Yggdrasilberry
-					getitem 678,2; //Poison_Bottle
+						getitem 607,10; //Yggdrasilberry
+						getitem 678,2; //Poison_Bottle
 					}
 					else if ((.@incen_item > 50) && (.@incen_item < 75)) {
-					getitem 644,5; //Gift_Box
-					getitem 678,2; //Poison_Bottle
+						getitem 644,5; //Gift_Box
+						getitem 678,2; //Poison_Bottle
 					}
 					else if ((.@incen_item > 74) && (.@incen_item < 101)) {
-					getitem 603,3; //Old_Blue_Box
-					getitem 678,2; //Poison_Bottle
+						getitem 603,3; //Old_Blue_Box
+						getitem 678,2; //Poison_Bottle
 					}
 					next;
 					mes "[" + .@name$ + "]";
-					mes "你做得很好，但前方还有更多试炼。现在先休息，再进行第二项测试。准备好后再来。";
+					mes "You've done well, but";
+					mes "there are more trials";
+					mes "ahead of you. For now,";
+					mes "you should rest before";
+					mes "undertaking the second test.";
+					mes "Please come when you are ready.";
 					close;
-					}
-					else {
+				}
+				else {
 					mes "[" + .@name$ + "]";
-					mes "如果你不忙，不妨花时间提升公会成员的士气？也许团队建设活动会有帮助。";
+					mes "如果你不忙，为什么不";
+					mes "花点时间";
+					mes "提升公会成员的士气？";
+					mes "among your guild members?";
+					mes "也许团队建设";
+					mes "活动会有帮助。";
 					close;
-					}
-					}
-					else if (guildrelay_q == 8) {
-					if (countitem(7240) > 0) {
+				}
+			}
+			else if (guildrelay_q == 8) {
+				if (countitem(7240) > 0) {
 					mes "[" + .@name$ + "]";
-					mes "你一定很难找到" + .@name3$ + "。找到他后，务必让贤者或学者朋友把信任之灵交给他。";
+					mes "You must be having";
+					mes "trouble finding " + .@name3$ + ".";
+					mes "Make sure that you have";
+					mes "a Sage or Scholar friend";
+					mes "give that Spirit of Trust to";
+					mes "him once you locate him.";
 					close;
-					}
-					else if (countitem(7245) > 0) {
+				}
+				else if (countitem(7245) > 0) {
 					mes "[" + .@name$ + "]";
-					mes "啊，你已经完成测试并获得友谊之灵了？干得好。现在你应该认识到团队合作的价值。请把友谊之灵交给我。";
+					mes "Ah, so you already completed";
+					mes "the test and earned the Spirit";
+					mes "of Friendship? Good work.";
+					mes "You must now recognize the";
+					mes "value of teamwork. Please give";
+					mes "the Spirit of Friendship to me.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "现在收下这份奖励，与公会成员分享。它可能会在你们共同面对的未来挑战中派上用场。干得好！";
+					mes "Now, please take this";
+					mes "reward and share it with";
+					mes "your guild members. This";
+					mes "may come in handy in future";
+					mes "challenges that you will all";
+					mes "face together. Good work!";
 					delitem 7245,1; //Soul_Of_Friendship
 					set guildtime, atoi( gettimestr("%H%M",5) );
 					set guildrelay_q,150;
 					set .@incen_item,rand(1,100);
 					if ((.@incen_item > 0) && (.@incen_item < 16)) {
-					getitem 607,10; //Yggdrasilberry
-				getitem 644,5; //Gift_Box
-				getitem 678,3; //Poison_Bottle
+						getitem 607,10; //Yggdrasilberry
+						getitem 644,5; //Gift_Box
+						getitem 678,3; //Poison_Bottle
 					}
 					else if ((.@incen_item > 14) && (.@incen_item < 31)) {
-					getitem 607,10; //Yggdrasilberry
-					getitem 603,3; //Old_Blue_Box
-					getitem 678,3; //Poison_Bottle
+						getitem 607,10; //Yggdrasilberry
+						getitem 603,3; //Old_Blue_Box
+						getitem 678,3; //Poison_Bottle
 					}
 					else if ((.@incen_item > 29) && (.@incen_item < 46)) {
-					+// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-			// 切片行数保留
-			// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-			// 切片行数保留
-			// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					+// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-			// 切片行数保留
-			// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						+// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-			// 切片行数保留
-			// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-				// 切片行数保留
-				// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-						// 切片行数保留
-					// 切片行数保留
-					// 切片行数保留
 						getitem 607,10; //Yggdrasilberry
 						getitem 617,3; //Old_Violet_Box
 						getitem 678,3; //Poison_Bottle
@@ -538,7 +538,7 @@
 					mes "如果你不忙，为什么不";
 					mes "花点时间";
 					mes "提升公会成员的士气？";
-					mes "";
+					mes "among your guild members?";
 					mes "也许团队建设";
 					mes "活动会有帮助。";
 					next;
@@ -628,7 +628,7 @@
 			else {
 				mes "[" + .@name$ + "]";
 				mes "您好，大师。";
-				mes "我是四大贤者之一，";
+				mes "I am " + .@name$ + ", one of the four";
 				mes "奉睿智仁慈的";
 				mes "国王";
 				mes "特里斯坦三世";
@@ -656,7 +656,7 @@
 				mes "帮助公会变强，";
 				mes "让你更好地";
 				mes "保护弱者。";
-				mes "";
+				mes "able to protect the weak.";
 				next;
 				switch(select("我想参加测试。:让我考虑一下。")) {
 				case 1:
@@ -673,7 +673,7 @@
 					mes "不负责任，无法";
 					mes "完成测试。你必须找回丢失的灵魂才能继续，没有第二次机会。";
 					mes "你必须找到丢失的灵魂才能继续。没有第二次机会。";
-					mes "";
+					mes "proceed. There's no second chance.";
 					next;
 					mes "[" + .@name$ + "]";
 					mes "有几件事你";
@@ -681,7 +681,7 @@
 					mes "照顾一个灵魂。第二，必须";
 					mes "按顺序进行测试，";
 					mes "并遵循向导的指示。";
-					mes "";
+					mes "follow the guide's instructions.";
 					next;
 					mes "[" + .@name$ + "]";
 					mes "第三，灵魂必须交给";
@@ -694,8 +694,8 @@
 					mes "灵魂。务必把它交给";
 					mes "骑士或领主骑士。";
 					mes "测试现在正式开始。祝你好运。";
-					mes "";
-					mes "";
+					mes "The test has now officially";
+					mes "begun. Good luck to you.";
 					set guildrelay_q,1;
 					getitem 7234,1; //Soul_Of_Guild
 					close;
@@ -706,7 +706,7 @@
 					mes "好主意。之后随时";
 					mes "可以再次";
 					mes "来找我。";
-					mes "";
+					mes "free to visit me again later.";
 					close;
 				}
 			}
@@ -736,7 +736,7 @@
 			else if (countitem(7235) > 0) {
 				if ((guildrelay_q == 88) && (BaseJob == Job_Knight)) {
 					mes "[" + .@name$ + "]";
-					mes "啊，" + strcharinfo(0) + ";
+					mes "Ah," + strcharinfo(0) + "";
 					mes "恭喜。看来";
 					mes "看来你做得很好。";
 					mes "请把";
@@ -897,8 +897,8 @@
 					mes "如果你不记得";
 					mes "" + .@name3$ + "'s explanation,";
 					mes "你可以";
-					mes "go back 交谈，了解更多。him and ask";
-					mes "让他再告诉你一次。";
+					mes "回去请他";
+					mes "再讲一遍。";
 					close;
 				}
 				else if ((BaseJob == Job_Bard) || (BaseJob == Job_Dancer)) {
@@ -935,8 +935,8 @@
 					mes "如果你不记得";
 					mes "" + .@name3$ + "'s explanation,";
 					mes "你可以";
-					mes "go back 交谈，了解更多。him and ask";
-					mes "让他再告诉你一次。";
+					mes "回去请他";
+					mes "再讲一遍。";
 					close;
 				}
 				else if (BaseJob == Job_Assassin) {
@@ -973,8 +973,8 @@
 					mes "如果你不记得";
 					mes "" + .@name3$ + "'s explanation,";
 					mes "你可以";
-					mes "go back 交谈，了解更多。him and ask";
-					mes "让他再告诉你一次。";
+					mes "回去请他";
+					mes "再讲一遍。";
 					close;
 				}
 				else if (BaseJob == Job_Wizard) {
@@ -1011,19 +1011,19 @@
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
-					mes "" + .@name3$ + " 会了解更多";
+					mes "" + .@name3$ + "会进一步了解";
 					mes "关于友谊之魂";
-					mes "所以你应该咨询他。";
+					mes "so 你应该咨询他。";
 					close;
 				}
 			}
 			else if (countitem(7246) > 0) {
 				if (BaseJob == Job_Rogue) {
 					mes "[" + .@name$ + "]";
-					mes "Ah, " + strcharinfo(0) + ",";
+					mes "啊，" + strcharinfo(0) + "，";
 					mes "我看到你拥有";
 					mes "和平之魂。请";
 					mes "为了公会尽力";
@@ -1033,12 +1033,12 @@
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
 					mes "" + .@name4$ + " 会了解更多";
 					mes "关于和平之魂";
-					mes "所以你应该咨询他。";
+					mes "so 你应该咨询他。";
 					close;
 				}
 			}
@@ -1046,7 +1046,7 @@
 				if ((guildrelay_q == 95) && (BaseJob == Job_Priest)) {
 					mes "[" + .@name$ + "]";
 					mes "你好，" + strcharinfo(0) + ".";
-					mes "我赞赏你的努力。";
+					mes "我赞许你的表现。";
 					mes "请把那个灵魂交给";
 					mes "下一个人，让";
 					mes "测试继续。";
@@ -1061,19 +1061,19 @@
 				}
 				else if (BaseJob == Job_Priest) {
 					mes "[" + .@name$ + "]";
-					mes "啊，" + strcharinfo(0) + "，请好好照顾决心之魂。";
-					mes "";
-					mes "";
+					mes "啊，" + strcharinfo(0) + "，";
+					mes "please take good care of";
+					mes "that Spirit of Determination.";
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
 					mes "" + .@name4$ + " 会了解更多 about";
 					mes "关于决心之魂";
-					mes "所以你应该咨询他。";
+					mes "so 你应该咨询他。";
 					close;
 				}
 			}
@@ -1081,7 +1081,7 @@
 				if ((guildrelay_q == 98) && (BaseJob == Job_Priest)) {
 					mes "[" + .@name$ + "]";
 					mes "你好，" + strcharinfo(0) + ".";
-					mes "我赞赏你的努力。";
+					mes "我赞许你的表现。";
 					mes "请把那个灵魂交给";
 					mes "下一个人，让";
 					mes "测试继续。";
@@ -1096,19 +1096,19 @@
 				}
 				else if (BaseJob == Job_Crusader) {
 					mes "[" + .@name$ + "]";
-					mes "啊，" + strcharinfo(0) + "，请好好照顾服务之魂。";
-					mes "";
-					mes "";
+					mes "啊，" + strcharinfo(0) + "，";
+					mes "please take good care";
+					mes "of that Spirit of Service.";
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
 					mes "" + .@name4$ + " 会了解更多 about";
 					mes "关于服务之魂，所以请咨询他。";
-					mes "";
+					mes "你应该咨询他。";
 					close;
 				}
 			}
@@ -1116,7 +1116,7 @@
 				if ((guildrelay_q == 96) && (BaseJob == Job_Crusader)) {
 					mes "[" + .@name$ + "]";
 					mes "你好，" + strcharinfo(0) + ".";
-					mes "我赞赏你的努力。";
+					mes "我赞许你的表现。";
 					mes "请把那个灵魂交给";
 					mes "下一个人，让";
 					mes "测试继续。";
@@ -1131,19 +1131,19 @@
 				}
 				else if (BaseJob == Job_Monk) {
 					mes "[" + .@name$ + "]";
-					mes "啊，" + strcharinfo(0) + "，请好好照顾荣耀之魂。";
-					mes "";
-					mes "";
+					mes "啊，" + strcharinfo(0) + "，";
+					mes "please take good care";
+					mes "of that Spirit of Glory.";
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
 					mes "" + .@name4$ + " 会了解更多 about";
 					mes "关于荣耀之魂，所以请咨询他。";
-					mes "";
+					mes "should consult him.";
 					close;
 				}
 			}
@@ -1154,25 +1154,27 @@
 					mes "恭喜你工作";
 					mes "做得好。请把胜利之魂交给公会会长。现在就这样。";
 					mes "祝你未来好运。";
+					mes "guild master. That's it for now.";
+					mes "Good luck to you in the future.";
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "那个灵魂如果不在";
-					mes "正确的人";
+					mes "那个灵魂如果不在正确的人";
+					mes "如果不在正确的人";
 					mes "手中就没什么用。";
 					mes "" + .@name4$ + " 会了解更多 about";
 					mes "the Spirit of Victory so you";
-					mes "所以你应该咨询他。";
+					mes "should consult him.";
 					close;
 				}
 			}
 			else {
 				mes "[" + .@name$ + "]";
-				mes "抱歉，我工作太忙，现在无法帮助你。请原谅。";
-				mes "";
-				mes "";
-				mes "";
+				mes "I'm sorry, but I'm too";
+				mes "busy with my work to offer";
+				mes "you any help right now.";
+				mes "You'll have to forgive me.";
 				close;
 			}
 		}
@@ -1180,39 +1182,39 @@
 	else {
 		if (getcharid(2) == 0) {
 			mes "[" + .@name$ + "]";
-			mes "你还没有加入公会？为什么不考虑加入一个？";
-			mes "当然由你决定，但加入强大的公会不会后悔。";
-			mes "";
-			mes "";
-			mes "";
-			mes "";
+			mes "You haven't joined";
+			mes "a guild yet? Why don't";
+			mes "you think about joining";
+			mes "one? Well, it's your decision,";
+			mes "but I don't think you'd regret";
+			mes "being part of a strong guild.";
 			close;
 		}
 		else {
 			mes "[" + .@name$ + "]";
-			mes "啊，我看出你属于某个公会。";
-			mes "你是受邀客人吗？";
-			mes "";
-			mes "";
+			mes "Ah, I see that you are";
+			mes "affiliated with a guild.";
+			mes "Have you come here";
+			mes "as an invited guest?";
 			next;
 			switch(select("No, not really...:I was invited by the guild master.")) {
 			case 1:
 				mes "[" + .@name$ + "]";
-				mes "哦，真的吗？真遗憾……";
-				mes "抱歉，我不能让陌生人在这里随意进出。再见。";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
+				mes "Oh, really?";
+				mes "That's too bad...";
+				mes "My apologies, but";
+				mes "I can't allow strangers";
+				mes "to simply come and go";
+				mes "around here. Farewell, then.";
 				next;
 				warp "alde_gld",186,157;
 				close;
 			case 2:
 				mes "[" + .@name$ + "]";
-				mes "哦，真的吗？啊，我认得你，^4d4dff" + strcharinfo(0) + "^000000。";
-				mes "请进，随意一些。";
-				mes "";
-				mes "";
+				mes "Oh, really? Ah, now";
+				mes "I recognize you, ^4d4dff" + strcharinfo(0) + "^000000.";
+				mes "Please come in, and make";
+				mes "yourself comfortable.";
 				close;
 			}
 		}
@@ -1224,88 +1226,88 @@
 	getmapxy(.@m$,.@x,.@x,BL_NPC);
 	set .@GID, GetCastleData(.@m$,1);
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FF等一下！你现在携带太多物品，请存入卡普拉仓库后再回来。^000000";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
+		mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
+		mes "我们之间的事务";
+		mes "已经结束。如果不忙，";
+		mes "不妨帮助你的公会？";
+		mes "我确定他们会感激。";
 		close;
 	}
 	if (.@GID == 0) {
-		mes "^3355FF你不知道为什么，但这个人似乎很沮丧。他短暂与你对视后移开目光，显然想独处。^000000";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		next;
+		mes "^3355FFYou're not sure why, but";
+		mes "this guy seems to be pretty";
+		mes "depressed. He briefly makes";
+		mes "eye contact with you, but then";
+		mes "breaks it off. Apparently,";
 		mes "^3355FF没有理由在无主据点逗留，你还是上路吧。^000000";
-		mes "";
-		mes "";
-		mes "";
+		next;
+		mes "^3355FFThere's no reason for you";
+		mes "哦，你回来了。休息够了吗？我相信其他公会成员现在也精神焕发。看起来你已经准备好下一项任务。";
+		mes "stronghold. You may as well";
+		mes "head on your way.^000000";
 		close;
 	}
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == true) {
 			if (countitem(7234) > 0) {
 				mes "[" + .@name$ + "]";
-				mes "嗯，不能把灵魂留在自己手里。";
-				mes "快交给^FF0000骑士^000000或^FF0000领主骑士^000000！";
 				mes "你必须尽快帮助公会发展。";
-				mes "";
-				mes "";
-				mes "";
+				mes "that spirit to yourself.";
+				mes "Give it to a ^FF0000Knight^000000 or";
+				mes "a ^FF0000Lord Knight^000000. Hurry it up!";
+				mes "You need to work fast to";
+				mes "expand your guild.";
 				close;
 			}
 			else {
 				mes "[" + .@name$ + "]";
-				mes "嗯，你似乎非常忙。";
-				mes "不如休息一下？压力大时放松玩玩也没关系。呵呵呵~";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
+				mes "Hm. You seem awfully";
+				mes "busy. Why don't you just";
+				mes "take a break, and relax?";
+				mes "It's alright to have fun";
+				mes "if you're feeling a lot of";
+				mes "pressure. Heh heh heh~";
 				close;
 			}
 		}
 		else {
 			if ((BaseJob == Job_Knight) && (countitem(7234) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "第一项测试很简单。";
-				mes "收集一些物品带给我。";
 				mes "你的公会也可以帮助你。";
-				mes "";
-				mes "";
-				mes "";
+				mes "I'll start you off with";
+				mes "something pretty simple.";
+				mes "Just collect some items,";
+				mes "and bring them to me. Ah, and";
+				mes "your guild can help you too.";
 				next;
 				switch(rand(1,3)) {
 				case 1:
 					mes "[" + .@name$ + "]";
-					mes "^FF000030 个舌头^000000、^FF000030 个黑暗面具^000000和^FF000030 个肩甲^000000。";
-					mes "应该不难吧？";
-					mes "";
-					mes "";
-					mes "";
+					mes "^FF000030 Tongues^000000,";
+					mes "^FF000030 Dark Masks^000000, and";
+					mes "^FF000030 Shoulder Protectors^000000.";
+					mes "That shouldn't be too";
+					mes "hard now, right?";
 					delitem 7234,1; //Soul_Of_Guild
 					set guildrelay_q,2;
 					close;
 				case 2:
 					mes "[" + .@name$ + "]";
-					mes "^FF000030 张残页^000000、^FF000030 个圆贝壳^000000和^FF000030 根鼹鼠胡须^000000。";
-					mes "应该不难吧？";
-					mes "";
-					mes "";
-					mes "";
+					mes "^FF000030 Worn Out Pages^000000,";
+					mes "^FF000030 Round Shells^000000, and";
+					mes "这次别忘了。";
+					mes "That shouldn't be too";
+					mes "hard now, right?";
 					delitem 7234,1; //Soul_Of_Guild
 					set guildrelay_q,3;
 					close;
 				case 3:
 					mes "[" + .@name$ + "]";
-					mes "^FF000030 个褶皱^000000、^FF000030 张尖锐纸张^000000和^FF000030 根年长妖精胡须^000000。";
-					mes "应该不难吧？";
-					mes "";
-					mes "";
-					mes "";
+					mes "^FF000030 Frills^000000,";
+					mes "^FF000030 Sharp Papers^000000, and";
+					mes "^FF000030 Elder Pixie's Moustaches^000000.";
+					mes "That shouldn't be too";
+					mes "hard now, right?";
 					delitem 7234,1; //Soul_Of_Guild
 					set guildrelay_q,89;
 					close;
@@ -1313,15 +1315,12 @@
 			}
 			if ((countitem(1015) > 29) && (countitem(7196) > 29) && (countitem(7157) > 29) && (guildrelay_q == 2)) {
 				mes "[" + .@name$ + "]";
-				mes "嗯，没想到你真的";
-				mes "没想到你收集齐了这些物品。做得好。";
 				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
+				mes "expect that you'd collect";
+				mes "all these items. Good job.";
+				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
+				mes "a Blacksmith or Mastersmith.";
+				mes "Your guild's pretty good...";
 				delitem 1015,30; //Thin_N'_Long_Tongue
 				delitem 7196,30; //Shoulder_Protection
 				delitem 7157,30; //Black_Mask
@@ -1332,6 +1331,7 @@
 			if ((BaseJob == Job_Knight) && (guildrelay_q == 2)) {
 				mes "[" + .@name$ + "]";
 				mes "你忘了要带什么吗？我要";
+				mes "你忘了要带什么吗？我要";
 				mes "^FF000030 Tongues^000000,";
 				mes "^FF000030 Dark Masks^000000, and";
 				mes "^FF000030 Shoulder Protectors^000000.";
@@ -1340,12 +1340,12 @@
 			}
 			if ((countitem(1097) > 29) && (countitem(1017) > 29) && (countitem(1096) > 29) && (guildrelay_q == 3)) {
 				mes "[" + .@name$ + "]";
-				mes "嗯，没想到你真的收集齐了这些物品。做得好。";
-				mes "";
-				mes "";
 				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
-				mes "";
-				mes "";
+				mes "expect that you'd collect";
+				mes "all these items. Good job.";
+				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
+				mes "a Blacksmith or Mastersmith.";
+				mes "Your guild's pretty good...";
 				delitem 1097,30; //Worn_Out_Page
 				delitem 1017,30; //Moustache_Of_Mole
 				delitem 1096,30; //Round_Shell
@@ -1356,20 +1356,21 @@
 			if ((BaseJob == Job_Knight) && (guildrelay_q == 3)) {
 				mes "[" + .@name$ + "]";
 				mes "你忘了要带什么吗？我要";
+				mes "你忘了要带什么吗？我要";
 				mes "^FF000030 Worn Out Pages^000000,";
 				mes "^FF000030 Round Shells^000000, and";
-				mes "^FF000030 Mole Whiskers^000000.";
+				mes "这次别忘了。";
 				mes "这次别忘了。";
 				close;
 			}
 			if ((countitem(7112) > 29) && (countitem(1012) > 29) && (countitem(1040) > 29) && (guildrelay_q == 89)) {
 				mes "[" + .@name$ + "]";
-				mes "嗯，没想到你真的收集齐了这些物品。做得好。";
 				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
+				mes "expect that you'd collect";
+				mes "all these items. Good job.";
+				mes "现在把这个交给铁匠或神工匠。你的公会很不错……";
+				mes "a Blacksmith or Mastersmith.";
+				mes "Your guild's pretty good...";
 				delitem 7112,30; //Fright_Paper_Blade
 				delitem 1012,30; //Lizard_Scruff
 				delitem 1040,30; //Elder_Pixie's_Beard
@@ -1379,36 +1380,36 @@
 			}
 			if ((BaseJob == Job_Knight) && (guildrelay_q == 89)) {
 				mes "[" + .@name$ + "]";
-				mes "你忘了要带什么吗？我要^FF000030 30 个褶皱^000000、";
-				mes "^FF000030 30 个尖锐纸张^000000和^FF000030 30 个年长妖精胡须^000000。";
+				mes "你忘了要带什么吗？我要";
+				mes "你忘了要带什么吗？我要";
+				mes "^FF000030 Frills^000000,";
+				mes "^FF000030 Sharp Papers^000000, and";
+				mes "^FF000030 Elder Pixie's Moustaches^000000.";
 				mes "这次别忘了。";
-				mes "";
-				mes "";
-				mes "";
 				close;
 			}
 			if ((BaseJob == Job_Blacksmith) && (countitem(7235) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "哇，你比我预想的更快带来了物品。太好了！";
 				mes "那么你的下一项任务是……等等。";
 				mes "先消磨一会儿时间。很简单吧？";
-				mes "";
-				mes "";
-				mes "";
+				mes "expected. Great! Well then,";
+				mes "your next task for me will";
+				mes "be to... Wait. Wait and";
+				mes "kill some time. Easy, huh?";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "^FF0000只是等待。^000000";
 				mes "等待并消磨时间。";
 				mes "这段时间你想做什么都可以。";
-				mes "";
-				mes "";
+				mes "some time. You can do";
+				mes "whatever you want to";
+				mes "do during that time.";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "放松享受之后再回来。";
 				mes "时机合适时我们会继续测试，不用担心。";
-				mes "";
-				mes "";
-				mes "";
+				mes "relaxed and enjoyed yourself.";
+				mes "We can continue the testing";
+				mes "when the time is right so";
+				mes "don't you worry about it.";
 				delitem 7235,1; //Soul_Of_Courage
 				set guildrelay_q,4;
 				set guildtime, atoi( gettimestr("%H%M",5) );
@@ -1418,11 +1419,12 @@
 			if ((guildtime > 2259) && (guildrelay_q == 4) && (BaseJob == Job_Blacksmith)) {
 				if ((.@time > 0201) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "我想时间差不多了。准备继续测试了吗？";
 					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
-					mes "";
-					mes "";
-					mes "";
+					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
+					mes "to resume the testing?";
+					mes "Please give this to an";
+					mes "Alchemist or Biochemist.";
+					mes "Your work here is done.";
 					set guildrelay_q,87;
 					getitem 7237,1; //Soul_Of_Partnership
 					close;
@@ -1431,12 +1433,12 @@
 			if ((guildtime > 2159) && (guildrelay_q == 4) && (BaseJob == Job_Blacksmith)) {
 				if ((.@time > 0101) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "我想时间差不多了。准备继续测试了吗？";
-					mes "";
-					mes "";
 					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
-					mes "";
-					mes "";
+					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
+					mes "to resume the testing?";
+					mes "Please give this to an";
+					mes "Alchemist or Biochemist.";
+					mes "Your work here is done.";
 					set guildrelay_q,87;
 					getitem 7237,1; //Soul_Of_Partnership
 					close;
@@ -1445,12 +1447,12 @@
 			if ((guildtime > 2059) && (guildrelay_q == 4) && (BaseJob == Job_Blacksmith)) {
 				if ((.@time > 0001) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "我想时间差不多了。准备继续测试了吗？";
-					mes "";
-					mes "";
 					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
-					mes "";
-					mes "";
+					mes "请把这个交给炼金术士或创造者。你的工作完成了。";
+					mes "to resume the testing?";
+					mes "Please give this to an";
+					mes "Alchemist or Biochemist.";
+					mes "Your work here is done.";
 					set guildrelay_q,87;
 					getitem 7237,1; //Soul_Of_Partnership
 					close;
@@ -1458,43 +1460,41 @@
 			}
 			if ((.@time - guildtime > 0300) && (guildrelay_q == 4) && (BaseJob == Job_Blacksmith)) {
 				mes "[" + .@name$ + "]";
-				mes "我想时间差不多了。准备继续测试了吗？";
-				mes "";
-				mes "";
 				mes "请把这个交给炼金术士或创造者。你的工作完成了。";
-				mes "";
-				mes "";
+				mes "请把这个交给炼金术士或创造者。你的工作完成了。";
+				mes "to resume the testing?";
+				mes "Please give this to an";
+				mes "Alchemist or Biochemist.";
+				mes "Your work here is done.";
 				set guildrelay_q,87;
 				getitem 7237,1; //Soul_Of_Partnership
 				close;
 			}
 			if ((guildrelay_q == 4) && (BaseJob == Job_Blacksmith)) {
 				mes "[" + .@name$ + "]";
-				mes "你一定迫不及待要参加下一项测试。请耐心等待，消磨时间后再回来。";
-				mes "";
-				mes "";
-				mes "";
-				mes "";
+				mes "You must be rarin'";
+				mes "to take on the next";
+				mes "test. Please be patient,";
+				mes "kill some time, and just";
+				mes "come back to me later.";
 				close;
 			}
 			if ((BaseJob == Job_Alchemist) && (countitem(7237) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "哦，你拿到了，对吧？";
-				mes "你可能觉得这不难，";
 				mes "但现在我要给你完全不同的挑战。准备好了吗？";
-				mes "";
-				mes "";
-				mes "";
+				mes "You might not think this";
+				mes "will be so hard, but I'm";
+				mes "going to give you a much";
+				mes "different challenge now.";
+				mes "Are you ready for it?";
 				next;
 				if ((BaseLevel > 1) && (BaseLevel < 58)) {
 					mes "[" + .@name$ + "]";
-					mes "你的测试是变得更强！";
-					mes "再提升 3 个等级就能通过。怎么样？";
-					mes "";
-					mes "";
-					mes "";
-					mes "";
-					mes "";
+					mes "你的考试是";
+					mes "变得更强一点！";
+					mes "再提升 2 个等级";
+					mes "gain 3 more levels.";
+					mes "怎么样，嗯？";
 					delitem 7237,1; //Soul_Of_Partnership
 					set guildrelay_q,5;
 					close;
@@ -1514,7 +1514,7 @@
 					mes "[" + .@name$ + "]";
 					mes "你的考试是";
 					mes "变得更强一点！";
-					mes "再提升 1 个等级";
+					mes "再提升 2 个等级";
 					mes "就能通过。";
 					mes "怎么样，嗯？";
 					delitem 7237,1; //Soul_Of_Partnership
@@ -1523,11 +1523,12 @@
 				}
 				if (BaseLevel > 93) {
 					mes "[" + .@name$ + "]";
-				mes "等等，算了！";
-				mes "我本来想让你提升基础等级，";
-				mes "但你已经足够强了。";
-				mes "好吧，你通过了！把这个交给";
-				mes "^FF0000猎人^000000或 ^FF0000神射手^000000～";
+					mes "等等，算了！";
+					mes "我本来想让你提升基础等级，";
+					mes "但你已经足够强了。";
+					mes "好吧，你通过了！把这个交给";
+					mes "^FF0000猎人^000000或 ^FF0000神射手^000000～";
+					mes "to a ^FF0000Hunter^000000 or ^FF0000Sniper^000000 now~";
 					delitem 7237,1; //Soul_Of_Partnership
 					set guildrelay_q,86;
 					getitem 7238,1; //Soul_Of_Correspondence
@@ -1536,68 +1537,73 @@
 			}
 			if (((BaseLevel + 2) < (BaseLevel)) && (guildrelay_q == 5)) {
 				mes "[" + .@name$ + "]";
-				mes "你变强了一点，";
 				mes "嗯？好吧，你通过了。";
 				mes "拿着这个，交给公会里的";
 				mes "^FF0000猎人^000000或 ^FF0000神射手^000000。";
 				mes "干得好，回头见。";
+				mes "in your guild. Nice work,";
+				mes "and I'll see you around.";
 				set guildrelay_q,86;
 				getitem 7238,1; //Soul_Of_Correspondence
 				close;
 			}
 			if (((BaseLevel + 1) < (BaseLevel)) && (guildrelay_q == 6)) {
 				mes "[" + .@name$ + "]";
-				mes "你变强了一点，嗯？";
-				mes "好吧，你通过了。";
+				mes "嗯？好吧，你通过了。";
 				mes "拿着这个，交给公会里的";
 				mes "^FF0000猎人^000000或 ^FF0000神射手^000000。";
 				mes "干得好，回头见。";
+				mes "in your guild. Nice work,";
+				mes "and I'll see you around.";
 				set guildrelay_q,86;
 				getitem 7238,1; //Soul_Of_Correspondence
 				close;
 			}
 			if ((BaseLevel < (BaseLevel)) && (guildrelay_q == 7)) {
 				mes "[" + .@name$ + "]";
-				mes "你变强了一点，嗯？";
-				mes "好吧，你通过了。";
+				mes "嗯？好吧，你通过了。";
 				mes "拿着这个，交给公会里的";
 				mes "^FF0000猎人^000000或 ^FF0000神射手^000000。";
 				mes "干得好，回头见。";
+				mes "in your guild. Nice work,";
+				mes "and I'll see you around.";
 				set guildrelay_q,86;
 				getitem 7238,1; //Soul_Of_Correspondence
 				close;
 			}
 			if ((guildrelay_q == 5) || (guildrelay_q == 6) || (guildrelay_q == 7)) {
 				mes "[" + .@name$ + "]";
-				mes "你还不够强，";
-				mes "无法通过考试。";
-				mes "快去杀些怪物，";
-				mes "并获得一些 ^FF0000基础等级^000000。";
 				mes "你必须变得更强！";
+				mes "enough to pass this test.";
+				mes "Hurry up, kill some monsters,";
+				mes "and gain some ^FF0000Base Levels^000000.";
+				mes "You have to become stronger!";
 				close;
 			}
 			if ((BaseJob == Job_Hunter) && (countitem(7238) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "啊，很好，你来了。";
-				mes "我对你的请求是：";
-				mes "请为了公会";
-				mes "捐出你的猎鹰。";
+				mes "Ah, good, you're here.";
+				mes "Now, my request for you";
+				mes "is this: please donate";
+				mes "your Falcon for the";
+				mes "sake of your guild.";
 				next;
-				switch(select("捐出猎鹰:没门！")) {
+				switch(select("Donate Falcon:No way!")) {
 				case 1:
 					if (checkfalcon()) {
 						mes "[" + .@name$ + "]";
-					mes "太好了！别担心，";
-					mes "你的猎鹰会受到妥善照顾，";
-					mes "用于侦察区域";
-					mes "和投递邮件。";
-					mes "所以我才向你索要。";
-						next;
-						mes "[" + .@name$ + "]";
-					mes "现在请拿上这个";
-					mes "灵魂，把它交给";
+						mes "Great! Don't worry,";
+						mes "your Falcon will be safe";
+						mes "现在请拿上这个";
+						mes "灵魂，把它交给";
 						mes "尽快交给你的公会会长，";
 						mes "好吗？";
+						next;
+						mes "[" + .@name$ + "]";
+						mes "Now, please take this";
+						mes "spirit, and give it to";
+						mes "your guild master as";
+						mes "soon as you can, alright?";
 						setfalcon;
 						delitem 7238,1; //Soul_Of_Correspondence
 						set guildrelay_q,85;
@@ -1606,96 +1612,120 @@
 					}
 					else {
 						mes "[" + .@name$ + "]";
-					mes "我很高兴你愿意交出猎鹰，";
-					mes "但它现在似乎不在你身边。";
-					mes "去找一只，再回来。";
+						mes "I'm glad that you're";
+						mes "如果你坚持留下猎鹰，我也没办法。";
+						mes "改变主意后再回来吧。";
+						mes "除非你配合，否则我帮不了你。";
+						mes "Go get one, and come back.";
 						close;
 					}
 				case 2:
 					mes "[" + .@name$ + "]";
-				mes "如果你坚持留下猎鹰，我也没办法。";
-				mes "改变主意后再回来吧。";
-				mes "除非你配合，否则我帮不了你。";
+					mes "请把冲锋之魂交给";
+					mes "^FF0000铁匠^000000或 ^FF0000神工匠^000000。";
+					mes "交给其他人没有用。";
+					mes "back if you change your mind.";
+					mes "I can't do anything for you";
+					mes "unless you cooperate.";
 					close;
 				}
 			}
 			if ((guildrelay_q == 88) && (countitem(7235) > 0)) {
 				mes "[" + .@name$ + "]";
-			mes "请把冲锋之魂交给";
-			mes "^FF0000铁匠^000000或 ^FF0000神工匠^000000。";
-			mes "交给其他人没有用。";
+				mes "请将";
+				mes "Spirit of Charge to";
+				mes "a ^FF0000Blacksmith^000000 or ^FF0000Mastersmith^000000.";
+				mes "帮了很大的忙。";
+				mes "请把协会之魂交给";
 				close;
 			}
 			if (guildrelay_q == 88) {
 				mes "[" + .@name$ + "]";
-			mes "你没什么";
-			mes "要做的吗？";
-				mes "为什么不帮助你的公会";
-				mes "猎杀怪物？这是向他们展示技能的好机会～";
+				mes "You don't have";
+				mes "anything to do?";
+				mes "嗯。你没什么要做的吗？";
+				mes "我想无聊总比忙得不可开交好。";
+				mes "算了，你会找到事情做的。";
+				mes "show them your skills~";
 				close;
 			}
 			if ((guildrelay_q == 87) && (countitem(7237) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "请把协会之魂交给";
-				mes "^FF0000炼金术士^000000或 ^FF0000创造者^000000。";
+				mes "请将";
 				mes "交给其他人没有用。";
+				mes "an ^FF0000Alchemist^000000 or ^FF0000Biochemist^000000.";
+				mes "帮了很大的忙。";
+				mes "请把协会之魂交给";
 				close;
 			}
 			if (guildrelay_q == 87) {
 				mes "[" + .@name$ + "]";
-				mes "嗯。你没什么要做的吗？";
-				mes "我想无聊总比忙得不可开交好。";
-				mes "算了，你会找到事情做的。";
+				mes "要给你。";
+				mes "anything to do? I suppose";
+				mes "it's better to be bored";
+				mes "than to be overwhelmed.";
+				mes "Oh well, you'll figure";
+				mes "请把前进之魂交给你的";
 				close;
 			}
 			if ((guildrelay_q == 86) && (countitem(7238) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "请把协调之魂交给";
-				mes "^FF0000猎人^000000或 ^FF0000神射手^000000。";
-				mes "交给其他人没有用。";
+				mes "请将";
+				mes "Spirit of Coordination";
+				mes "你的猎鹰在公会里";
+				mes "帮了很大的忙。";
+				mes "请把协会之魂交给";
 				close;
 			}
 			if (guildrelay_q == 86) {
 				mes "[" + .@name$ + "]";
-				mes "干得好。请先休息一下，";
-				mes "之后再回来找我。";
-				mes "到那时我会有东西";
-				mes "要给你。";
+				mes "我想我们没什么事要办。";
+				mes "是我弄错了吗？";
+				mes "and then come back to me";
+				mes "later. I'll have something";
+				mes "to give you by then.";
 				close;
 			}
 			if ((guildrelay_q == 85) && (countitem(7239) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "请把前进之魂交给你的";
-				mes "^FF0000公会会长^000000。";
-				mes "交给其他人没有用。";
+				mes "请将";
+				mes "Spirit of Advance";
+				mes "to your ^FF0000guild master^000000.";
+				mes "帮了很大的忙。";
+				mes "请把协会之魂交给";
 				close;
 			}
 			if (guildrelay_q == 85) {
 				mes "[" + .@name$ + "]";
-				mes "你的猎鹰在公会里";
-				mes "帮了很大的忙。";
-				mes "嗯？已经想它了？哈哈哈！";
+				mes "Your falcon's been";
+				mes "a great help in the";
+				mes "guild. Hm? You already";
+				mes "miss it? Hahahaha!";
 				close;
 			}
 			mes "[" + .@name$ + "]";
-		mes "嗯？什么风把你吹来了？";
-		mes "我想我们没什么事要办。";
-		mes "是我弄错了吗？";
+			mes "发现你一直盯着他，";
+			mes "here? I don't think we";
+			mes "^3355FF等一下！你";
+			mes "你现在携带的物品太多：";
 			close;
 		}
 	}
 	else {
 		if (is_guild_leader(.@GID) == true) {
 			mes "[" + .@name$ + "]";
-		mes "嗯？什么风把你吹来了？";
-		mes "如果愿意，尽管慢慢参观。";
+			mes "发现你一直盯着他，";
+			mes "但选择不理你。这个据点没有其他人，";
+			mes "你也没有理由留在这里。^000000";
+			mes "if that's what pleases you.";
 			close;
 		}
 		else {
 			mes "[" + .@name$ + "]";
-		mes "这里没什么可看的，";
-		mes "但欢迎留下参观。";
-			mes "如果愿意，可以在这里看看。";
+			mes "There isn't much to see";
+			mes "嗯？你在做什么？";
+			mes "持有这个灵魂的";
+			mes "不该是你。";
 			close;
 		}
 	}
@@ -1706,58 +1736,67 @@
 	getmapxy(.@m$,.@x,.@x,BL_NPC);
 	set .@GID, GetCastleData(.@m$,1);
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FF等一下！你";
-		mes "你现在携带的物品太多：";
-		mes "把多余物品存入卡普拉仓库，";
-		mes "然后再回来。^000000";
+		mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
+		mes "我们之间的事务";
+		mes "已经结束。如果不忙，";
+		mes "不妨帮助你的公会？";
+		mes "我确定他们会感激。";
 		close;
 	}
 	if (.@GID == 0) {
-		mes "^3355FF这个疲惫的男人";
-		mes "发现你一直盯着他，";
-		mes "但选择不理你。这个据点没有其他人，";
-		mes "你也没有理由留在这里。^000000";
+		mes "^3355FFThis exhausted man";
+		mes "notices you staring at";
+		mes "him, but chooses to leave";
+		mes "我看到你带来了";
+		mes "^42426F信任之魂^000000。现在首先要做的是";
+		mes "在你和公会成员之间";
 		close;
 	}
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == true) {
 			if (countitem(7240) > 0) {
 				mes "[" + .@name$ + "]";
-				mes "嗯？你在做什么？";
-				mes "持有这个灵魂的";
-				mes "不该是你。";
-				mes "应该由贤者或教授";
-				mes "带着它来这里。";
+				mes "你的公会必须团结一致";
+				mes "才能成功。";
+				mes "be the one holding onto";
+				mes "this soul. A Sage or a";
+				mes "Professor was supposed";
+				mes "to come here with it.";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "记得把你持有的灵魂";
-				mes "交给 ^FF0000贤者^000000或 ^FF0000教授^000000，";
-				mes "再让他带给我。";
+				mes "Make sure you give";
+				mes "that soul you're holding";
+				mes "to a ^FF0000Sage^000000 or ^FF0000Professor^000000, and";
+				mes "那么你和公会成员";
 				close;
 			}
 			else {
 				mes "[" + .@name$ + "]";
-				mes "我们之间的事务";
-				mes "已经结束。如果不忙，";
-				mes "不妨帮助你的公会？";
-				mes "我确定他们会感激。";
+				mes "Our business together";
+				mes "has concluded. If you're";
+				mes "现在你知道建立羁绊";
+				mes "有多重要了。请把这个灵魂交给";
+				mes "^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000";
 				close;
 			}
 		}
 		else {
 			if ((BaseJob == Job_Sage) && (countitem(7240) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "我看到你带来了";
-				mes "^42426F信任之魂^000000。现在首先要做的是";
-				mes "在你和公会成员之间";
-				mes "建立信任。";
-				mes "多花时间和他们相处。";
+				mes "I see that you've brought";
+				mes "嗯？这么快就回来了？";
+				mes "这点时间还不足以让你真正建立羁绊。";
+				mes "和你的公会成员相处。";
+				mes "回去问问他们的梦想、";
+				mes "热情和目标！";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "我希望你在回来前";
-				mes "先在公会内部建立友好关系。";
-				mes "你的公会必须团结一致";
-				mes "才能成功。";
+				mes "I want you to build";
+				mes "up some friendly bonds";
+				mes "within your guild before";
+				mes "coming back to me. Your";
+				mes "那么你和公会成员";
+				mes "好好相处，";
 				delitem 7240,1; //Soul_Of_Confidence
 				set guildrelay_q,9;
 				set guildtime, atoi( gettimestr("%H%M",5) );
@@ -1767,237 +1806,198 @@
 			if ((guildtime > 2259) && (guildrelay_q == 9) && (BaseJob == Job_Sage)) {
 				if ((.@time > 0201) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "那么你和公会成员";
-					mes "好好相处，";
-					mes "并有机会真正了解";
-					mes "他们是谁？你必须";
-					mes "关爱你的同伴。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "^8C171730豪猪刺^000000。";
+					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "一个人完成这项任务很难，";
+					mes "但如果你和公会合作收集物品，";
+					mes "就会容易得多。现在听好，";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "现在你知道建立羁绊";
-					mes "有多重要了。请把这个灵魂交给";
-					mes "^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000";
-					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "你必须关爱同伴。";
+					mes "is. Please give this spirit";
+					mes "^8C171730燃烧的心^000000、";
+					mes "你已经完成目前该做的事。";
 					set guildrelay_q,81;
 					getitem 7241,1; //Soul_Of_Agreement
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "嗯？这么快就回来了？";
-					mes "这点时间还不足以让你真正建立羁绊。";
-					mes "和你的公会成员相处。";
-					mes "回去问问他们的梦想、";
-					mes "热情和目标！";
+					mes "^42426F十字刺客^000000。谢谢。";
+					mes "现在你知道建立羁绊有多重要。";
+					mes "请把这个灵魂交给 ^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000，";
+					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "这点时间还不足够。";
+					mes "现在还不是你真正和公会成员建立联系的时间。";
 					close;
 				}
 			}
 			else if ((guildtime > 2159) && (guildrelay_q == 9) && (BaseJob == Job_Sage)) {
 				if ((.@time > 0101) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "那么你和公会成员";
-					mes "好好相处，";
-					mes "并有机会真正了解他们是谁吗？";
-					mes "你必须关爱同伴。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "^8C171730豪猪刺^000000。";
+					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "一个人完成这项任务很难，";
+					mes "但如果你和公会合作收集物品，";
+					mes "就会容易得多。现在听好，";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "现在你知道了";
-					mes "建立羁绊有多重要。";
-					mes "请把这个灵魂交给";
-					mes "^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000";
-					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "你必须关爱同伴。";
+					mes "is. Please give this spirit";
+					mes "^8C171730燃烧的心^000000、";
+					mes "你已经完成目前该做的事。";
 					set guildrelay_q,71;
 					getitem 7241,1; //Soul_Of_Agreement
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "嗯？这么快就回来了？";
-					mes "这点时间还不足以让你真正和公会成员建立羁绊。";
-					mes "回去问问他们的梦想、热情和目标！";
+					mes "^42426F十字刺客^000000。谢谢。";
+					mes "现在你知道建立羁绊有多重要。";
+					mes "请把这个灵魂交给 ^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000，";
+					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "这点时间还不足够。";
+					mes "现在还不是你真正和公会成员建立联系的时间。";
 					close;
 				}
 			}
 			else if ((guildtime > 2059) && (guildrelay_q == 9) && (BaseJob == Job_Sage)) {
 				if ((.@time > 0001) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-					mes "那么你和公会成员好好相处，";
-					mes "并有机会真正了解他们是谁吗？";
-					mes "你必须关爱同伴。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "^8C171730豪猪刺^000000。";
+					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "一个人完成这项任务很难，";
+					mes "但如果你和公会合作收集物品，";
+					mes "就会容易得多。现在听好，";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "现在你知道建立羁绊有多重要。";
-					mes "请把这个灵魂交给 ^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000，";
-					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "回去问问他们的梦想、热情和目标！";
+					mes "你必须关爱同伴。";
+					mes "is. Please give this spirit";
+					mes "^8C171730燃烧的心^000000、";
+					mes "你已经完成目前该做的事。";
 					set guildrelay_q,71;
 					getitem 7241,1; //Soul_Of_Agreement
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-					mes "嗯？这么快就回来了？";
-					mes "这点时间还不足以让你和公会成员真正建立羁绊。";
-					mes "回去问问他们的梦想、热情和目标！";
+					mes "^42426F十字刺客^000000。谢谢。";
+					mes "现在你知道建立羁绊有多重要。";
+					mes "请把这个灵魂交给 ^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000，";
+					mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
+					mes "这点时间还不足够。";
+					mes "现在还不是你真正和公会成员建立联系的时间。";
 					close;
 				}
 			}
 			else if ((.@time - guildtime > 0300) && (guildrelay_q == 9) && (BaseJob == Job_Sage)) {
 				mes "[" + .@name$ + "]";
-				mes "那么你和公会成员好好相处，";
-				mes "并有机会真正了解";
-				mes "并有机会真正了解他们是谁吗？";
-				mes "你必须关爱同伴。";
+				mes "回去问问他们的梦想、热情和目标！";
+				mes "^8C171730豪猪刺^000000。";
+				mes "最好把它们记下来，免得忘记。祝你好运。";
+				mes "一个人完成这项任务很难，";
+				mes "但如果你和公会合作收集物品，";
+				mes "就会容易得多。现在听好，";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "你已经完成目前该做的事。";
-				mes "请把它交给 ^42426F吟游诗人^000000 或 ^42426F小丑^000000，";
-				mes "也可以交给 ^42426F舞娘^000000 或 ^42426F冷艳舞姬^000000。";
-				mes "祝你好运。";
+				mes "You have done";
+				mes "收集我要求的物品时，";
+				mes "你应该和公会成员培养默契。";
+				mes "你们公会还没有合作足够长的时间。";
+				mes "Good luck.";
 				set guildrelay_q,71;
 				getitem 7241,1; //Soul_Of_Agreement
 				close;
 			}
 			else if ((BaseJob == Job_Sage) && (guildrelay_q == 9)) {
 				mes "[" + .@name$ + "]";
-				mes "嗯？这么快就回来了？";
+				mes "^42426F十字刺客^000000。谢谢。";
+				mes "现在你知道建立羁绊有多重要。";
+				mes "请把这个灵魂交给 ^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000，";
+				mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
 				mes "这点时间还不足够。";
-		mes "现在还不是你真正和公会成员建立联系的时间。";
-		mes "回去问问他们的梦想、热情和目标吧！";
+				mes "现在还不是你真正和公会成员建立联系的时间。";
 				close;
 			}
 			if (((BaseJob == Job_Bard) || (BaseJob == Job_Dancer)) && (countitem(7241) > 0)) {
 				mes "[" + .@name$ + "]";
-		mes "为了促进公会团队合作，";
-		mes "我的测试是让你为我收集特定物品。";
+				mes "For the sake of promoting";
+				mes "teamwork amongst your guild,";
+				mes "my test will be for you to";
+				mes "gather specific items for me.";
 				next;
 				mes "[" + .@name$ + "]";
-		mes "一个人完成这项任务很难，";
-		mes "但如果你和公会合作收集物品，";
-		mes "就会容易得多。现在听好，";
-		mes "我要你收集这些东西。";
+				mes "This is a difficult task";
+				mes "to complete alone, but it";
+				mes "will be much easier if you";
+				mes "and your guild cooperate to";
+				mes "get all the items. Now listen,";
+				mes "this is what I want you to get.";
 				next;
 				switch(rand(1,3)) {
 				case 1:
 					mes "[" + .@name$ + "]";
-						mes "^8C171730燃烧的心^000000、";
-						mes "^8C171730狼爪^000000和";
-						mes "^8C171730豹爪^000000。";
-					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "^8C171730 Burning Hearts^000000,";
+					mes "^8C171730 Wolf Claws^000000, and";
+					mes "最好记下来，免得忘记。祝你好运。";
+					mes "You might want to write";
+					mes "these down so you don't";
+					mes "forget. Good luck to you.";
 					delitem 7241,1; //Soul_Of_Agreement
 					set guildrelay_q,10;
 					break;
 				case 2:
 					mes "[" + .@name$ + "]";
-						mes "^8C171730柔软的草叶^000000、";
-						mes "^8C171730木心^000000和";
-						mes "^8C171730毒蛙皮^000000。";
-					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "^8C171730 Soft Blades of Grass^000000,";
+					mes "你带来了组合之灵？务必把它交给^2F4F2F巫师^000000或^2F4F2F高阶巫师^000000。";
+					mes "^8C171730 Poisonous Toad Skins^000000.";
+					mes "You might want to write";
+					mes "these down so you don't";
+					mes "forget. Good luck to you.";
 					delitem 7241,1; //Soul_Of_Agreement
 					set guildrelay_q,11;
 					break;
 				case 3:
 					mes "[" + .@name$ + "]";
-						mes "^8C171730羚羊角^000000、";
-						mes "^8C171730蜂蜜罐^000000和";
-						mes "^8C171730豪猪刺^000000。";
-					mes "最好把它们记下来，免得忘记。祝你好运。";
+					mes "^8C171730 Antelope Horns^000000,";
+					mes "^8C171730 Honey Pots^000000, and";
+					mes "^8C171730 Porcupine Quills^000000.";
+					mes "You might want to write";
+					mes "these down so you don't";
+					mes "forget. Good luck to you.";
 					delitem 7241,1; //Soul_Of_Agreement
 					set guildrelay_q,80;
 					break;
 				}
 				next;
 				mes "[" + .@name$ + "]";
-				mes "收集我要求的物品时，";
-				mes "你应该和公会成员培养默契。";
-				mes "你们公会还没有合作足够长的时间。";
+				mes "You should be bonding";
+				mes "with your guild while you";
+				mes "gather those items I asked";
+				mes "you to bring. I know enough";
+				mes "time hasn't passed for your";
+				mes "guild to work together on this.";
 				close;
 			}
 			if ((countitem(7097) > 29) && (countitem(7172) > 29) && (countitem(920) > 29) && (guildrelay_q == 10)) {
 				mes "[" + .@name$ + "]";
-				mes "哦，太好了！你带来了所有物品。";
-				mes "那么你已经准备好领取这个灵魂了。";
-				mes "请把它交给 ^42426F刺客^000000 或";
-				mes "^42426F十字刺客^000000。谢谢。";
+				mes "哦，太好了！你把所有物品都带来了。看来你已经准备好收下这个灵魂。请把它交给^42426F刺客^000000或";
+				mes "^42426F十字斩首者^000000。谢谢你。";
+				mes "I guess you're ready to";
+				mes "take this spirit now. Please";
+				mes "give it to an ^42426FAssassin^000000 or an";
+				mes "^42426FAssassin Cross^000000. Thank you.";
 				delitem 7097,30; //Burning_Heart
 				delitem 7172,30; //Leopard_Talon
 				delitem 920,30; //Claw_Of_Wolves
 				if (BaseJob == Job_Dancer) {
 					set guildrelay_q,72;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 				}
 				else {
 					set guildrelay_q,72;
@@ -2009,6 +2009,10 @@
 				mes "[" + .@name$ + "]";
 				mes "哦，太好了！你把所有物品都带来了。看来你已经准备好收下这个灵魂。请把它交给^42426F刺客^000000或";
 				mes "^42426F十字斩首者^000000。谢谢你。";
+				mes "I guess you're ready to";
+				mes "take this spirit now. Please";
+				mes "give it to an ^42426FAssassin^000000 or an";
+				mes "^42426FAssassin Cross^000000. Thank you.";
 				delitem 7189,30; //Heart_Of_Tree
 				delitem 7194,30; //Soft_Leaf
 				delitem 7155,30; //Poison_Toad's_Skin
@@ -2023,8 +2027,12 @@
 			}
 			else if ((countitem(7106) > 29) && (countitem(7121) > 29) && (countitem(1027) > 29) && (guildrelay_q == 80)) {
 				mes "[" + .@name$ + "]";
-				mes "哦，太好了！你把所有物品都带来了。看来你准备好收下这个灵魂。请把它交给^42426F刺客^000000或";
+				mes "哦，太好了！你把所有物品都带来了。看来你已经准备好收下这个灵魂。请把它交给^42426F刺客^000000或";
 				mes "^42426F十字斩首者^000000。谢谢你。";
+				mes "I guess you're ready to";
+				mes "take this spirit now. Please";
+				mes "give it to an ^42426FAssassin^000000 or an";
+				mes "^42426FAssassin Cross^000000. Thank you.";
 				delitem 7106,30; //Goat's_Horn
 				delitem 7121,30; //Honey_Jar
 				delitem 1027,30; //Porcupine_Spike
@@ -2039,40 +2047,62 @@
 			}
 			else if (guildrelay_q == 10) {
 				mes "[" + .@name$ + "]";
-				mes "嗯？你还没和公会一起收集齐所有物品？让我提醒你需要带什么。";
+				mes "Hm? You still haven't";
+				mes "gathered all the items";
+				mes "with your guild yet?";
+				mes "嗯？你还没和公会收集齐所有物品？让我提醒你需要带什么。";
+				mes "you need to bring me.";
 				next;
 				mes "[" + .@name$ + "]";
 				mes "^8C171730 Burning Hearts^000000,";
 				mes "^8C171730 Wolf Claws^000000, and";
-				mes "^8C171730 Leopard Claws^000000.";
 				mes "最好记下来，免得忘记。祝你好运。";
+				mes "You might want to write";
+				mes "these down so you don't";
+				mes "forget. Good luck to you.";
 				close;
 			}
 			else if (guildrelay_q == 11) {
 				mes "[" + .@name$ + "]";
+				mes "Hm? You still haven't";
+				mes "gathered all the items";
+				mes "with your guild yet?";
 				mes "嗯？你还没和公会收集齐所有物品？让我提醒你需要带什么。";
+				mes "you need to bring me.";
 				next;
 				mes "[" + .@name$ + "]";
 				mes "^8C171730 Soft Blades of Grass^000000,";
-				mes "^8C171730 Wooden Hearts^000000, and";
+				mes "你带来了组合之灵？务必把它交给^2F4F2F巫师^000000或^2F4F2F高阶巫师^000000。";
 				mes "^8C171730 Poisonous Toad Skins^000000.";
-				mes "最好记下来，免得忘记。祝你好运。";
+				mes "You might want to write";
+				mes "these down so you don't";
+				mes "forget. Good luck to you.";
 				close;
 			}
 			else if (guildrelay_q == 80) {
 				mes "[" + .@name$ + "]";
+				mes "Hm? You still haven't";
+				mes "gathered all the items";
+				mes "with your guild yet?";
 				mes "嗯？你还没和公会收集齐所有物品？让我提醒你需要带什么。";
+				mes "you need to bring me.";
 				next;
 				mes "[" + .@name$ + "]";
 				mes "^8C171730 Antelope Horns^000000,";
 				mes "^8C171730 Honey Pots^000000, and";
 				mes "^8C171730 Porcupine Quills^000000.";
-				mes "最好记下来，免得忘记。祝你好运。";
+				mes "You might want to write";
+				mes "these down so you don't";
+				mes "forget. Good luck to you.";
 				close;
 			}
 			if ((BaseJob == Job_Assassin) && (countitem(7242) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "你带来了组合之灵？务必把它交给^2F4F2F巫师^000000或^2F4F2F高阶巫师^000000。";
+				mes "You brought the";
+				mes "Spirit of Combination?";
+				mes "Make sure that you give";
+				mes "提升^FF00001 个基础等级^000000后，你就能准备任务。别灰心，我知道你能做到。祝你好运。";
+				mes "a ^2F4F2FHigh Wizard^000000.";
 				delitem 7242,1; //Soul_Of_Harmony
 				set guildrelay_q,74;
 				getitem 7244,1; //Soul_Of_Unity
@@ -2080,41 +2110,79 @@
 			}
 			if ((BaseJob == Job_Wizard) && (countitem(7244) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "为了公会，你必须变得更强。有时你的法术会决定胜负。记住这一点。";
+				mes "For the sake of your";
+				mes "认清力量的范围和极限，但别让自负污染内心。骄傲会束缚力量。记住谦逊。";
+				mes "stronger. Sometimes";
+				mes "your spells will make the";
+				mes "你已经足够合格，值得我信任。请把这个灵魂交给^FF0000公会会长^000000。现在你的任务完成了。";
+				mes "and defeat. Remember that.";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "嘿，" + strcharinfo(0) + "，如果真想强大到保护公会，就必须提升等级。基础等级提高后再回来。";
+				mes "Hey," + strcharinfo(0) + ",";
+				mes "if you really want to become";
+				mes "strong enough to protect your";
+				mes "guild, then you must level up.";
+				mes "Come back to me once you've";
+				mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
 				next;
 				if ((BaseLevel > 0) && (BaseLevel < 61)) {
 					mes "[" + .@name$ + "]";
-					mes "提升^FF00003 个基础等级^000000后，你就能准备任务。别灰心，我知道你能做到。祝你好运。";
+					mes "You will be ready";
+					mes "for your task after you";
+					mes "gain ^FF00003 Base Levels^000000.";
+					mes "你还不够强，公会无法在危机中完全依靠你。必须提升等级！";
+					mes "you'll be able to reach";
+					mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
 					delitem 7244,1; //Soul_Of_Unity
 					set guildrelay_q,12;
 					close;
 				}
 				else if ((BaseLevel > 60) && (BaseLevel < 76)) {
 					mes "[" + .@name$ + "]";
-					mes "提升^FF00002 个基础等级^000000后，你就能准备任务。别灰心，我知道你能做到。祝你好运。";
+					mes "You will be ready";
+					mes "for your task after you";
+					mes "gain ^FF00002 Base Levels^000000.";
+					mes "你还不够强，公会无法在危机中完全依靠你。必须提升等级！";
+					mes "you'll be able to reach";
+					mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
 					delitem 7244,1; //Soul_Of_Unity
 					set guildrelay_q,13;
 					close;
 				}
 				else if ((BaseLevel > 75) && (BaseLevel < 97)) {
 					mes "[" + .@name$ + "]";
-					mes "提升^FF00001 个基础等级^000000后，你就能准备任务。别灰心，我知道你能做到。祝你好运。";
+					mes "You will be ready";
+					mes "for your task after you";
+					mes "gain ^FF00001 Base Level^000000.";
+					mes "你还不够强，公会无法在危机中完全依靠你。必须提升等级！";
+					mes "you'll be able to reach";
+					mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
 					delitem 7244,1; //Soul_Of_Unity
 					set guildrelay_q,14;
 					close;
 				}
 				else if (BaseLevel > 96) {
 					mes "[" + .@name$ + "]";
-					mes "嗯，你比我预想的强得多。无需我再鼓励你提升力量，我承认你很强。";
+					mes "Hm. You're much stronger";
+					mes "嗯……我认为你还没花够时间升级。继续努力。";
+					mes "need for me to encourage";
+					mes "you to develop your strength.";
+					mes "I admit that you are strong.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "认清力量的范围和极限，但别让自负污染内心。骄傲会束缚力量。记住谦逊。";
+					mes "Acknowledge the extent and";
+					mes "limits of your strength, but";
+					mes "嗯，你是另一个公会的会长，对吧？我对你没有忠诚。请离开这里。";
+					mes "your heart. Pride will always";
+					mes "shackle your power if you";
+					mes "let it. Remember humility.";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "你已经足够合格，值得我信任。请把这个灵魂交给^FF0000公会会长^000000。现在你的任务完成了。";
+					mes "You qualified enough";
+					mes "for me to trust you.";
+					mes "Please give this spirit";
+					mes "你的歌声鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的声音能创造奇迹。";
+					mes "You're done for now.";
 					delitem 7244,1; //Soul_Of_Unity
 					set guildrelay_q,75;
 					getitem 7245,1; //Soul_Of_Friendship
@@ -2123,48 +2191,79 @@
 			}
 			if ((BaseLevel + 2) < (BaseLevel) && (guildrelay_q == 12)) {
 				mes "[" + .@name$ + "]";
-				mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
+				mes "我看到你";
+				mes "completed the task";
+				mes "I have given you. It may";
+				mes "认清你的敌人。若有人反对公会，必须毫不犹豫地击溃他们。正义必须迅速执行！";
+				mes "you'll see that I had your";
+				mes "你不必继续保管组合之灵。请把它交给公会中的刺客或十字刺客。";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "你赢得了我的信任。请把这个灵魂交给^FF0000公会会长^000000。你做得很好。";
+				mes "看来你已经不太需要我了……但我永远会支持你。";
+				mes "Please give this spirit";
+				mes "你的歌声鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的声音能创造奇迹。";
+				mes "You've done well.";
 				set guildrelay_q,75;
 				getitem 7245,1; //Soul_Of_Friendship
 				close;
 			}
 			else if ((BaseLevel + 1) < (BaseLevel) && (guildrelay_q == 13)) {
 				mes "[" + .@name$ + "]";
-				mes "我看你已经";
-				mes "你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
+				mes "我看到你";
+				mes "completed the task";
+				mes "I have given you. It may";
+				mes "认清你的敌人。若有人反对公会，必须毫不犹豫地击溃他们。正义必须迅速执行！";
+				mes "you'll see that I had your";
+				mes "你不必继续保管组合之灵。请把它交给公会中的刺客或十字刺客。";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "你赢得了我的信任。请把这个灵魂交给^FF0000公会会长^000000。你做得很好。";
+				mes "看来你已经不太需要我了……但我永远会支持你。";
+				mes "Please give this spirit";
+				mes "你的歌声鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的声音能创造奇迹。";
+				mes "You've done well.";
 				set guildrelay_q,75;
 				getitem 7245,1; //Soul_Of_Friendship
 				close;
 			}
 			else if ((BaseLevel < BaseLevel) && (guildrelay_q == 14)) {
 				mes "[" + .@name$ + "]";
-				mes "我看你完成了我交给你的任务。也许很困难，但你会明白我一直为公会的最大利益着想。";
+				mes "我看到你";
+				mes "completed the task";
+				mes "I have given you. It may";
+				mes "认清你的敌人。若有人反对公会，必须毫不犹豫地击溃他们。正义必须迅速执行！";
+				mes "you'll see that I had your";
+				mes "你不必继续保管组合之灵。请把它交给公会中的刺客或十字刺客。";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "你赢得了我的信任。请把这个灵魂交给^FF0000公会会长^000000。你做得很好。";
+				mes "看来你已经不太需要我了……但我永远会支持你。";
+				mes "Please give this spirit";
+				mes "你的歌声鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的声音能创造奇迹。";
+				mes "You've done well.";
 				set guildrelay_q,75;
 				getitem 7245,1; //Soul_Of_Friendship
 				close;
 			}
 			if ((guildrelay_q == 12) && (BaseJob == Job_Wizard)) {
 				mes "[" + .@name$ + "]";
-				mes "你还不够强，公会无法在危机中完全依靠你。必须提升等级！";
+				mes "You're not strong enough";
+				mes "yet for your guild to fully";
+				mes "我们之间无事可谈。别来烦我，走你的路吧。";
+				mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
 				close;
 			}
 			else if ((guildrelay_q == 13) && (BaseJob == Job_Wizard)) {
 				mes "[" + .@name$ + "]";
-				mes "你还不够强，公会无法在危机中完全依靠你。必须提升等级！";
+				mes "You're not strong enough";
+				mes "yet for your guild to fully";
+				mes "我们之间无事可谈。别来烦我，走你的路吧。";
+				mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
 				close;
 			}
 			else if ((guildrelay_q == 14) && (BaseJob == Job_Wizard)) {
 				mes "[" + .@name$ + "]";
-				mes "嗯……我认为你还没花够时间升级。继续努力。";
+				mes "Hmm... I don't think you've";
+				mes "spent enough time leveling";
+				mes "up yet. Keep working on it.";
 				close;
 			}
 		}
@@ -2172,82 +2271,149 @@
 	else {
 		if (is_guild_leader(.@GID) == true) {
 			mes "[" + .@name$ + "]";
-			mes "嗯，你是另一个公会的会长，对吧？我对你没有忠诚。请离开这里。";
+			mes "Hm. You're the master";
+			mes "of another guild, aren't";
+			mes "you? I have no loyalty";
+			mes "towards you. Please...";
+			mes "我们之间的事情已经结束了。如果不忙，去帮助你的公会吧，他们一定会感激。";
 			close;
 		}
 		else {
 			mes "[" + .@name$ + "]";
-			mes "嗯？你没有理由继续留在要塞。请现在离开。";
+			mes "Hm? You have no reason";
+			mes "to linger in this stronghold.";
+			mes "所以你就是被托付和平之灵的人？那么……你的任务是^FF0000组建";
 			close;
 		}
 	}
 	if ((guildrelay_q == 71) && (countitem(7241) > 0)) {
 		mes "[" + .@name$ + "]";
-		mes "你不必继续保管联合之灵。请把它交给公会中的吟游诗人、诗人、舞娘或吉普赛。";
+		mes "There's no need for you";
+		mes "这是个奇怪的测试，但如果你能做到，就能证明你的待人技巧合格。";
+		mes "of Union. Please give it to";
+		mes "a Bard, Minstrel, Dancer";
+		mes "or Gypsy in your guild.";
 		close;
 	}
 	else if (guildrelay_q == 71) {
 		mes "[" + .@name$ + "]";
-		mes "提升自己也会增强公会。要为自己和团队留出时间，两者缺一不可。";
+		mes "When you improve yourself,";
+		mes "这是个奇怪的测试，但如果你能做到，就能证明你的待人技巧合格。";
+		mes "your guild. Always devote some";
+		mes "time for yourself and for your";
+		mes "team. You cannot have one";
+		mes "without the other.";
 		next;
 		mes "[" + .@name$ + "]";
-		mes "看来你已经不太需要我了……但我永远会支持你。";
+		mes "I suppose you really";
+		mes "don't have much use";
+		mes "for me anymore... But I'll";
+		mes "always offer my support.";
 		close;
 	}
 	if ((guildrelay_q == 72) && (countitem(7242) > 0)) {
 		mes "[" + .@name$ + "]";
-		mes "你不必继续保管组合之灵。请把它交给公会中的刺客或十字刺客。";
+		mes "There's no need for you";
+		mes "to hold onto that Spirit of";
+		mes "Combination. Please give";
+		mes "it to an Assassin or Assassin";
+		mes "Cross in your guild.";
 		close;
 	}
 	else if (guildrelay_q == 72) {
 		mes "[" + .@name$ + "]";
-		mes "你的歌声鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的声音能创造奇迹。";
+		mes "Your songs bolster your";
+		mes "guild's morale, and will";
+		mes "help them stand and fight,";
+		mes "no matter how desperate";
+		mes "the situation may seem.";
+		mes "Your voice can make miracles.";
 		next;
 		mes "[" + .@name$ + "]";
-		mes "看来你已经不太需要我了……但我永远会支持你。";
+		mes "I suppose you really";
+		mes "don't have much use";
+		mes "for me anymore... But I'll";
+		mes "always offer my support.";
 		close;
 	}
 	if ((guildrelay_q == 73) && (countitem(7242) > 0)) {
 		mes "[" + .@name$ + "]";
-		mes "你不必继续保管组合之灵。请把它交给公会中的刺客或十字刺客。";
+		mes "There's no need for you";
+		mes "to hold onto that Spirit of";
+		mes "Combination. Please give";
+		mes "it to an Assassin or Assassin";
+		mes "Cross in your guild.";
 		close;
 	}
 	else if (guildrelay_q == 73) {
 		mes "[" + .@name$ + "]";
-		mes "你的舞蹈鼓舞公会士气，帮助他们站起来战斗，无论局势多么绝望。你的舞姿能创造奇迹。";
+		mes "Your dances bolster your";
+		mes "guild's morale, and will";
+		mes "help them stand and fight,";
+		mes "no matter how desperate";
+		mes "the situation may seem.";
+		mes "Your voice can make miracles.";
 		next;
 		mes "[" + .@name$ + "]";
-		mes "看来你已经不太需要我了……但我永远会支持你。";
+		mes "I suppose you really";
+		mes "don't have much use";
+		mes "for me anymore... But I'll";
+		mes "always offer my support.";
 		close;
 	}
 	if ((guildrelay_q == 74) && (countitem(7244) > 0)) {
 		mes "[" + .@name$ + "]";
-		mes "你不必继续保管团结之灵。请把它交给公会中的巫师或高阶巫师。";
+		mes "There's no need for you";
+		mes "这是个奇怪的测试，但如果你能做到，就能证明你的待人技巧合格。";
+		mes "of Solidarity. Please give";
+		mes "it to a Wizard or High";
+		mes "Wizard in your guild.";
 		close;
 	}
 	else if (guildrelay_q == 74) {
 		mes "[" + .@name$ + "]";
-		mes "看来你已经不太需要我了……但我永远会支持你。";
+		mes "I suppose you really";
+		mes "don't have much use";
+		mes "for me anymore... But I'll";
+		mes "always offer my support.";
 		next;
 		mes "[" + .@name$ + "]";
-		mes "认清你的敌人。若有人反对公会，必须毫不犹豫地击溃他们。正义必须迅速执行！";
+		mes "Know who your enemies are.";
+		mes "If anybody opposes your guild,";
+		mes "you must crush them without";
+		mes "any hesitation. Your justice";
+		mes "must be meted swiftly!";
 		close;
 	}
 	if ((guildrelay_q == 75) && (countitem(7245) > 0)) {
 		mes "[" + .@name$ + "]";
-		mes "你不必继续保管友谊之灵。请把它交给公会会长。";
+		mes "There's no need for you";
+		mes "to hold onto that Spirit of";
+		mes "Friendship. Please give";
+		mes "it to your Guild Master.";
 		close;
 	}
 	else if (guildrelay_q == 75) {
 		mes "[" + .@name$ + "]";
-		mes "我看得出你一直在帮助公会成员。你的忠诚会让他们在欢乐和苦难时都站在你身边。";
+		mes "I can tell that you're";
+		mes "always trying to help all";
+		mes "the members of your guild.";
+		mes "Your loyalty will bring them";
+		mes "to your side in times of";
+		mes "joy and of tribulation.";
 		next;
 		mes "[" + .@name$ + "]";
-		mes "看来你已经不太需要我了……但我永远会支持你。";
+		mes "I suppose you really";
+		mes "don't have much use";
+		mes "for me anymore... But I'll";
+		mes "always offer my support.";
 		close;
 	}
 	mes "[" + .@name$ + "]";
-	mes "我们之间无事可谈。别来烦我，走你的路吧。";
+	mes "We have nothing to";
+	mes "do with each other.";
+	mes "Leave me be, and";
+	mes "just go on your way.";
 	close;
 }
 
@@ -2257,247 +2423,81 @@
 	set .@GID, GetCastleData(.@m$,1);
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了，请把多余物品存入卡普拉仓库后再回来。^000000";
+		mes "我们之间的事务";
+		mes "已经结束。如果不忙，";
+		mes "不妨帮助你的公会？";
+		mes "我确定他们会感激。";
 		close;
 	}
 	if (.@GID == 0) {
-		mes "^3355FF这个疲惫的人注意到你的目光，却选择不理你。要塞里没有其他人，没有理由继续待在这里。^000000";
+		mes "^3355FFThis exhausted man";
+		mes "notices you staring at";
+		mes "him, but chooses to leave";
+		mes "我看到你带来了";
+		mes "^42426F信任之魂^000000。现在首先要做的是";
+		mes "在你和公会成员之间";
 		close;
 	}
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == true) {
 			if (countitem(7246) > 0) {
 				mes "[" + .@name$ + "]";
-				mes "嗯？你带来的那个灵魂……抱歉，你带着它没有用。";
+				mes "Hm? That spirit that";
+				mes "you've brought with you...";
+				mes "I'm sorry, but it's useless";
+				mes "for you to carry it around.";
 				next;
 				mes "[" + .@name$ + "]";
-				mes "请把它交给公会中的^FF0000盗贼^000000或^FF0000神行太保^000000，再让他带给我。";
+				mes "Please give that to";
+				mes "a ^FF0000Rogue^000000 or ^FF0000Stalker^000000";
+				mes "in your guild, and then";
+				mes "ask him bring it to me.";
 				close;
 			}
 			else {
 				mes "[" + .@name$ + "]";
-				mes "我们之间的事情已经结束了。如果不忙，去帮助你的公会吧，他们一定会感激。";
+				mes "Our business together";
+				mes "has concluded. If you're";
+				mes "现在你知道建立羁绊";
+				mes "有多重要了。请把这个灵魂交给";
+				mes "^42426F吟游诗人^000000、^42426F搞笑艺人^000000、^42426F舞娘^000000";
 				close;
 			}
 		}
 		else {
 			if ((BaseJob == Job_Rogue) && (countitem(7246) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "所以你就是被托付和平之灵的人？那么……你的任务是^FF0000组建";
+				mes "So you're the one that's";
+				mes "been entrusted with the";
+				mes "Spirit of Peace? Well then...";
+				mes "My task for you is to ^FF0000form";
 				switch(rand(1,3)) {
 				case 1:
-					mes "一支拥有 6 名成员的队伍^000000。";
-					mes "不多不少。";
+					mes "a party with 6 members^000000.";
+					mes "不能多也不能少。";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "这是个奇怪的测试，但如果你能做到，就能证明你的待人技巧合格。";
+					mes "这是奇怪的测试，";
+					mes "但如果你能做到，";
+					mes "就能清楚证明";
+					mes "你的成员";
+					mes "技能达标。";
 					delitem 7246,1; //Soul_Of_Peace
 					set guildrelay_q,91;
 					close;
 				case 2:
-					mes "一支拥有 8 名成员的队伍^000000。";
-					mes "不多不少。";
+					mes "a party with 8 members^000000.";
+					mes "不能多也不能少。";
 					next;
 					mes "[" + .@name$ + "]";
-					mes "这是个奇怪的测试，但如果你能做到，就能证明你的待人技巧合格。";
+					mes "这是奇怪的测试，";
+					mes "但如果你能做到，";
+					mes "就能清楚证明";
+					mes "你的成员";
+					mes "技能达标。";
 					delitem 7246,1; //Soul_Of_Peace
 					set guildrelay_q,92;
 					close;
-+// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-+// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
-// 切片行数保留
 				case 3:
 					mes "一支由10名成员组成的队伍^000000。";
 					mes "不能多也不能少。";
@@ -2521,7 +2521,7 @@
 					mes "我看到你";
 					mes "组建了";
 					mes "人数准确的队伍。嗯。";
-					mes "";
+					mes "people that I asked. Hmm.";
 					mes "看来你可以被信任";
 					mes "在需要时领导大家。";
 					next;
@@ -2550,7 +2550,7 @@
 					mes "我看到你";
 					mes "组建了";
 					mes "人数准确的队伍。嗯。";
-					mes "";
+					mes "people that I asked. Hmm.";
 					mes "看来你可以被信任";
 					mes "在需要时领导大家。";
 					next;
@@ -2578,7 +2578,7 @@
 					mes "我看到你";
 					mes "组建了";
 					mes "人数准确的队伍。嗯。";
-					mes "";
+					mes "people that I asked. Hmm.";
 					mes "看来你可以被信任";
 					mes "在需要时领导大家。";
 					next;
@@ -2607,7 +2607,7 @@
 				mes "决心之灵，";
 				mes "但我希望你继续";
 				mes "变强。如果你想保护他人，";
-				mes "";
+				mes "intend to protect others,";
 				mes "就不能失败。";
 				next;
 				if ((BaseLevel > 1) && (BaseLevel < 61)) {
@@ -2669,13 +2669,13 @@
 					mes "嗯，你比我预想的";
 					mes "更强。";
 					mes "你不需要更多变强的任务。";
-					mes "";
+					mes "for becoming stronger.";
 					mes "但不要太自满。";
 					next;
 					mes "[" + .@name$ + "]";
 					mes "那么好吧……";
 					mes "我把这个灵魂托付给你。请务必";
-					mes "";
+					mes "this spirit. Please be";
 					mes "把它交给";
 					mes "^4D4DFF十字军^000000或^4D4DFF圣殿骑士^000000";
 					mes "公会成员。";
@@ -2697,7 +2697,7 @@
 				mes "[" + .@name$ + "]";
 				mes "那么好吧……";
 				mes "我把这个灵魂托付给你。请务必";
-				mes "";
+				mes "this spirit. Please be";
 				mes "把它交给";
 				mes "^4D4DFF十字军^000000或^4D4DFF圣殿骑士^000000";
 				mes "公会成员。";
@@ -2717,7 +2717,7 @@
 				mes "[" + .@name$ + "]";
 				mes "那么好吧……";
 				mes "我把这个灵魂托付给你。请务必";
-				mes "";
+				mes "this spirit. Please be";
 				mes "把它交给";
 				mes "^4D4DFF十字军^000000或^4D4DFF圣殿骑士^000000";
 				mes "公会成员。";
@@ -2737,7 +2737,7 @@
 				mes "[" + .@name$ + "]";
 				mes "好，拿着这个交给";
 				mes "公会中的十字军或圣殿骑士。";
-				mes "";
+				mes "who is in our guild.";
 				mes "祝你好运！";
 				set guildrelay_q,98;
 				getitem 7249,1; //Soul_Of_Service
@@ -2756,7 +2756,7 @@
 				mes "我希望你利用这段时间";
 				mes "审视自己，";
 				mes "检查你与";
-				mes "公会成员的关系。";
+				mes "或 ^42426F冷艳舞姬^000000。祝你好运。";
 				mes "当你觉得时机";
 				mes "合适时，来和我谈谈。";
 				next;
@@ -2776,20 +2776,20 @@
 			if ((guildtime > 2259) && (guildrelay_q == 21) && (BaseJob == Job_Crusader)) {
 				if ((.@time > 0201) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-				mes "是的，你来得正是时候，";
+					mes "是的，你来得正是时候，";
 					mes "正确的时机。记住";
 					mes "心中的感觉，";
-				mes "它再次出现时相信它，";
+					mes "它再次出现时相信它，";
 					mes "再次出现时相信它。现在把这个灵魂交给";
-					mes "a ^FF0000Monk^000000 or ^FF0000Champion^000000 for me...";
+					mes "把这个交给^FF0000武僧^000000或^FF0000武道家^000000……";
 					set guildrelay_q,96;
 					getitem 7250,1; //Soul_Of_Glory
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-				mes "太早了。";
-				mes "还没到时候。";
+					mes "太早了。";
+					mes "还没到时候。";
 					mes "你一直在倾听";
 					mes "自己的内心吗？更仔细地听。";
 					close;
@@ -2798,20 +2798,20 @@
 			if ((guildtime > 2159) && (guildrelay_q == 21) && (BaseJob == Job_Crusader)) {
 				if ((.@time > 0101) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-				mes "是的，你来得正是时候，";
+					mes "是的，你来得正是时候，";
 					mes "正确的时机。记住";
 					mes "心中的感觉，";
-				mes "它再次出现时相信它，";
+					mes "它再次出现时相信它，";
 					mes "再次出现时相信它。现在把这个灵魂交给";
-					mes "a ^FF0000Monk^000000 or ^FF0000Champion^000000 for me...";
+					mes "把这个交给^FF0000武僧^000000或^FF0000武道家^000000……";
 					set guildrelay_q,96;
 					getitem 7250,1; //Soul_Of_Glory
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-				mes "太早了。";
-				mes "还没到时候。";
+					mes "太早了。";
+					mes "还没到时候。";
 					mes "你一直在倾听";
 					mes "自己的内心吗？更仔细地听。";
 					close;
@@ -2820,20 +2820,20 @@
 			if ((guildtime > 2059) && (guildrelay_q == 21) && (BaseJob == Job_Crusader)) {
 				if ((.@time > 0001) && (.@time < guildtime)) {
 					mes "[" + .@name$ + "]";
-				mes "是的，你来得正是时候，";
+					mes "是的，你来得正是时候，";
 					mes "正确的时机。记住";
 					mes "心中的感觉，";
-				mes "它再次出现时相信它，";
+					mes "它再次出现时相信它，";
 					mes "再次出现时相信它。现在把这个灵魂交给";
-					mes "a ^FF0000Monk^000000 or ^FF0000Champion^000000 for me...";
+					mes "把这个交给^FF0000武僧^000000或^FF0000武道家^000000……";
 					set guildrelay_q,96;
 					getitem 7250,1; //Soul_Of_Glory
 					close;
 				}
 				else {
 					mes "[" + .@name$ + "]";
-				mes "太早了。";
-				mes "还没到时候。";
+					mes "太早了。";
+					mes "还没到时候。";
 					mes "你一直在倾听";
 					mes "自己的内心吗？更仔细地听。";
 					close;
@@ -2947,7 +2947,7 @@
 				mes "^FF000030 Rainbow Shells^000000,";
 				mes "^FF000030 Elastic Bands^000000, and";
 				mes "^FF000030 Horrendous Hairs^000000.";
-					mes "我会在这里等你";
+				mes "我会在这里等你";
 				mes "我会在这里等你。";
 				close;
 			}
@@ -2972,18 +2972,18 @@
 				mes "^FF000030 Worn-out Kimonos^000000,";
 				mes "^FF000030 Anolian Skins^000000, and";
 				mes "^FF000030 PecoPeco Feathers^000000.";
-					mes "我会在这里等你";
+				mes "我会在这里等你";
 				mes "我会在这里等你。";
 				close;
 			}
 			if ((guildrelay_q == 95) && (countitem(7247) > 0)) {
 				mes "[" + .@name$ + "]";
-				mes "请把";
+				mes "请将";
 				mes "决心之灵";
 				mes "交给^FF0000牧师^000000或^FF0000高级牧师^000000。";
 				mes "你已经知道了，";
-				mes "不是吗？请快点";
-				mes "请尽快交付。";
+				mes "对吧？请尽快";
+				mes "送达。";
 				close;
 			}
 			if (guildrelay_q == 95) {

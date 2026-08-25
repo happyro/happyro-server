@@ -83,7 +83,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 		mes "炼金术士公会。";
 		mes "我能帮你什么？";
 		next;
-		switch(select("我想了解炼金术士。:我想成为炼金术士。:没什么。")) {
+		switch(select("I would like to learn about Alchemists.:I want to become an Alchemist.:Nothing.")) {
 		case 1:
 			mes "[帕米·吉亚尼诺]";
 			mes "炼金术士研究并利用现有材料创造新物质和物品。我们的知识能在原子层面改变化学品性质。";
@@ -136,7 +136,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "申请";
 			mes "登记吗？";
 			next;
-			if (select("我想申请。:我稍后再来。") == 1) {
+			if (select("I would like to apply.:I'll do it later.") == 1) {
 				if (JobLevel < 40) {
 					mes "[帕米·吉亚尼诺]";
 					mes "嗯……";
@@ -179,28 +179,25 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 					close;
 				}
 				set Zeny, Zeny-50000;
-				mes "[Parmy Gianino]";
 				mes "让我看看。";
-				mes "" + strcharinfo(0);
 				mes "需要带来……";
 				switch(rand(1,3)) {
 				case 1:
 					set ALCH_Q,1;
 					setquest 2028;
-					mes "^551A8B7 Berserk Potions^000000.";
+					mes "^551A8B7 瓶狂暴药水^000000。";
 					break;
 				case 2:
 					set ALCH_Q,2;
 					setquest 2029;
-					mes "^551A8B100 Mini Furnaces^000000.";
+					mes "^551A8B100 个迷你熔炉^000000。";
 					break;
 				case 3:
 					set ALCH_Q,3;
 					setquest 2030;
-					mes "^551A8B7,500 Fire Arrows^000000.";
+					mes "^551A8B7,500 支火箭矢^000000。";
 				}
 				next;
-				mes "[Parmy Gianino]";
 				mes "收集齐这些物品后，";
 				mes "回来找我，";
 				mes "你的炼金术士训练";
@@ -208,13 +205,11 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 				mes "很快再见~";
 				close;
 			}
-			mes "[Parmy Gianino]";
 			mes "有才华的商人";
 			mes "永远受到这里欢迎。";
 			mes "请尽快回来。";
 			close;
 		case 3:
-			mes "[Parmy Gianino]";
 			mes "嗯……";
 			mes "如果需要什么，";
 			mes "请告诉我。";
@@ -232,7 +227,6 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			next;
 			delitem 1006,1; //Old_Magic_Book
 			delitem 1005,1; //Hammer_Of_Blacksmith
-			mes "[Parmy Gianino]";
 			mes "好，现在你需要学习";
 			mes "成为炼金术士的基础，以及混合化学品和药剂的流程。";
 			set ALCH_Q,4;
@@ -246,10 +240,8 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 				changequest 2030,2031;
 			}
 			next;
-			mes "[Parmy Gianino]";
 			mes "不过在此之前，你需要和拉斯普钦交谈。我也不太清楚你们会谈什么……";
 			next;
-			mes "[Parmy Gianino]";
 			mes "应该没什么特别的，但你仍必须和拉斯普钦交谈，因为他似乎负责炼金术士选拔流程。";
 			close;
 		}
@@ -265,7 +257,6 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "这些物品。";
 			next;
 			delitem .@items[0],.@items[1];
-			mes "[Parmy Gianino]";
 			mes "好，现在你需要学习";
 			mes "成为炼金术士的基础，以及混合化学品和药剂的流程。";
 			set ALCH_Q,4;
@@ -279,22 +270,17 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 				changequest 2030,2031;
 			}
 			next;
-			mes "[Parmy Gianino]";
 			mes "不过在此之前，你需要和拉斯普钦交谈。我也不太清楚你们会谈什么……";
 			next;
-			mes "[Parmy Gianino]";
 			mes "应该没什么特别的，但你仍必须和拉斯普钦交谈，因为他似乎负责炼金术士选拔流程。";
 			close;
 		}
 		mes "你还没准备好吗？";
 		mes "正如我之前说的，";
 		mes "你必须带来";
-		mes "^551A8B"+callfunc("F_InsertPlural",.@items[1],getitemname(.@items[0]))+"^000000.";
 		next;
-		mes "[Parmy Gianino]";
 		mes "准备好所需";
 		mes "物品后再回来。";
-		mes "";
 		close;
 	}
 	else if (ALCH_Q == 4) {
@@ -303,7 +289,6 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 		mes "他参与";
 		mes "炼金术士选拔流程，具体是什么我也不清楚。";
 		next;
-		mes "[Parmy Gianino]";
 		mes "希望这";
 		mes "不会太";
 		mes "麻烦。我想他只会面试你并询问";
@@ -314,7 +299,6 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 		mes "啊，抱歉，";
 		mes "我现在很忙~";
 		next;
-		mes "[Parmy Gianino]";
 		mes "不如问问";
 		mes "其他人，如果你不确定";
 		mes "下一步该拜访谁。";
@@ -506,38 +490,31 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			mes "[拉斯普钦·格雷戈里]";
 			mes "那么这次，";
 			mes "给我全部";
-			mes "^551A8Bright^000000 answers";
 		}
 		next;
 		switch(rand(1,3)) {
 		case 1:
 			mes "[拉斯普钦·格雷戈里]";
-			mes "12 + 23 + 34 + 45 = ?";
 			next;
 			input .@input;
 			if (.@input != 114) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "1000 - 36 - 227 - 348 = ?";
 			next;
 			input .@input;
 			if (.@input != 389) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "14 * 17 * 3 = ?";
 			next;
 			input .@input;
 			if (.@input != 714) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "9765 / 3 / 5 / 7 = ?";
 			next;
 			input .@input;
 			if (.@input != 93) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "(47 * 28) - (1376 / 4) = ?";
 			next;
 			input .@input;
 			if (.@input != 972) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "(2646 / 7) + (13 * 28) = ?";
 			next;
 			input .@input;
 			if (.@input != 742) set .@w_point,.@w_point+1;
@@ -570,37 +547,30 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			break;
 		case 2:
 			mes "[拉斯普钦·格雷戈里]";
-			mes "13 + 25 + 37 + 48 = ?";
 			next;
 			input .@input;
 			if (.@input != 123) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "1000 - 58 - 214 - 416 = ?";
 			next;
 			input .@input;
 			if (.@input != 312) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "12 * 24 * 3 = ?";
 			next;
 			input .@input;
 			if (.@input != 864) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "10530 / 3 / 5 / 2 = ?";
 			next;
 			input .@input;
 			if (.@input != 351) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "(35 * 19) - (1792 / 7) = ?";
 			next;
 			input .@input;
 			if (.@input != 409) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "(2368 / 8) + (24 * 17) = ?";
 			next;
 			input .@input;
 			if (.@input != 704) set .@w_point,.@w_point+1;
 			mes "[拉斯普钦·格雷戈里]";
-			mes "(2646 / 7) + (13 * 28) = ?";
 			next;
 			input .@input;
 			if (.@input != 742) set .@w_point,.@w_point+1;
@@ -633,56 +603,52 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			if (.@input != 8520) set .@w_point,.@w_point+1;
 			break;
 		case 3:
-			mes "[Raspuchin Gregory]";
-			mes "12 + 23 + 34 + 45 = ?";
+			mes "[拉斯普钦·格雷戈里]";
+			mes "[拉斯普钦·格雷戈里]";
 			next;
 			input .@input;
 			if (.@input != 114) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
-			mes "1000 - 58 - 214 - 416 = ?";
+			mes "[拉斯普钦·格雷戈里]";
+			mes "[拉斯普钦·格雷戈里]";
 			next;
 			input .@input;
 			if (.@input != 312) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
-			mes "14 * 17 * 3 = ?";
+			mes "[拉斯普钦·格雷戈里]";
+			mes "你答错了一题！";
 			next;
 			input .@input;
 			if (.@input != 714) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
-			mes "10530 / 3 / 5 / 2 = ?";
+			mes "[拉斯普钦·格雷戈里]";
+			mes "你能赚多少利润？";
 			next;
 			input .@input;
 			if (.@input != 351) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
+			mes "[拉斯普钦·格雷戈里]";
 			mes "(47 * 28) - (1376 / 4) = ?";
 			next;
 			input .@input;
 			if (.@input != 972) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
-			mes "(2646 / 7) + (13 * 28) = ?";
+			mes "[拉斯普钦·格雷戈里]";
+			mes "再以 20 的价格卖出，";
 			next;
 			input .@input;
 			if (.@input != 742) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
 			mes "6 瓶红色药水、7 瓶绿色药水";
 			mes "和 8 个苍蝇翅膀打 76 折后";
 			mes "的总价是多少？";
 			next;
 			input .@input;
 			if (.@input != 798) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
 			mes "2 把环柄军刀、3 顶帽子";
 			mes "和 3 双靴子的总重量是多少？";
 			next;
 			input .@input;
 			if (.@input != 480) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
 			mes "镜盾、微笑先生、皮夹克、丝绸长袍、";
 			mes "婚纱头纱、围巾和眼罩的总防御是多少？";
 			next;
 			input .@input;
 			if (.@input != 12) set .@w_point,.@w_point+1;
-			mes "[Raspuchin Gregory]";
 			mes "以 76 折买入 4 件衬衫铠甲，";
 			mes "再以原价的 20% 卖出，";
 			mes "你能赚多少利润？";
@@ -803,100 +769,84 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		}
 	}
 	if (ALCH_Q == 6) {
-		mes "...";
+		mes "如果还有疑问，";
 		next;
-		mes "[Darwin]";
-		mes "...";
-		mes "......";
+		mes "你想学习";
+		mes "如果还有疑问，";
+		mes "[苏伊·斯莉尔]";
 		next;
-		mes "[Darwin]";
-		mes "...";
-		mes "......";
 		mes "是谁……？";
 		next;
 		monster "alde_alche",13,15,"Wolf",1013,1;
 		killmonsterall "alde_alche";
-		mes "[Darwin]";
 		mes "是狼？";
 		mes "还是人？";
 		mes "你一定是在寻找";
 		mes "某种东西，对吧？";
 		next;
-		mes "[Darwin]";
 		mes "毕竟……";
 		mes "每个人都有想实现的愿望。";
 		mes "要小心。";
 		mes "别像被花朵吸引的";
 		mes "野狼一样。";
 		next;
-		mes "[Darwin]";
 		mes "为了得到别的东西，你可能最终牺牲对自己很珍贵的事物。";
 		next;
-		mes "[Darwin]";
 		mes "培育喜悦和幸福";
 		mes "就像培育花朵。";
 		mes "如果缺少某样东西，";
 		mes "花朵就会枯萎……";
 		next;
-		mes "[Darwin]";
 		mes "是什么带你";
 		mes "来到这种地方？";
 		next;
-		switch(select("我想学习如何进行实验。:再多告诉我一些花的事。:没什么。")) {
+		switch(select("我想学习实验方法。:再告诉我一些花的知识。:没什么。")) {
 		case 1:
-			mes "[Darwin]";
 			mes "你想学习";
 			mes "炼金术？";
 			mes "我所知道的一切，";
 			mes "都是为了实现";
 			mes "自己的梦想而学……";
 			next;
-			mes "[Darwin]";
 			mes "我会教你";
 			mes "基础知识……";
 			mes "但之后学到的一切";
 			mes "都必须由";
 			mes "你自己的动机引导。";
 			next;
-			mes "[Darwin]";
 			mes "我会教你";
 			mes "制作简单药剂。请立刻";
 			mes "带来以下";
 			mes "材料。";
 			next;
-			mes "[Darwin]";
-			mes "^551A8B3 Medicine Bowls^000000,";
-			mes "^551A8B3 Empty Bottles^000000,";
-			mes "^551A8B1 Red Herb^000000,";
-			mes "^551A8B1 Yellow Herb^000000 and";
-			mes "^551A8B1 White Herb^000000.";
+			mes "你想学习";
+			mes "我会理解的。";
+			mes "[达尔文]";
+			mes "它只是勾起了旧回忆。我一开始就不该开口。总之，请带来实验所需的东西。";
+			mes "希望你身处美丽的花田……";
+			mes "请把那朵花放到别处。";
 			set ALCH_Q,7;
 			changequest 2032,2033;
 			next;
-			mes "[Darwin]";
 			mes "准备好一切后，";
 			mes "再回来找我。";
 			close;
 		case 2:
-			mes "[Darwin]";
 			mes "花朵……？";
 			mes "在我心灵最深处，";
 			mes "有一朵";
 			mes "依稀记得的花……";
 			next;
-			mes "[Darwin]";
 			mes "为了我所爱的人，";
 			mes "我倾尽全部努力";
 			mes "研究那件";
 			mes "事情。";
 			next;
-			mes "[Darwin]";
 			mes "细节我不会告诉你，";
 			mes "但我主要研究的是";
 			mes "狼与";
 			mes "花朵之间的关系。";
 			next;
-			mes "[Darwin]";
 			mes "但是……";
 			mes "那是一朵花。";
 			mes "据说它的光芒";
@@ -924,12 +874,9 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		}
 	}
 	else if (ALCH_Q == 7) {
-		mes "...";
-		mes "......";
+		mes "如果还有疑问，";
+		mes "[苏伊·斯莉尔]";
 		next;
-		mes "[Darwin]";
-		mes "...";
-		mes "......";
 		mes "是谁……？";
 		next;
 		mes "[达尔文]";
@@ -944,150 +891,85 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "你是怎么得到的？";
 			next;
 			mes "[达尔文]";
-			mes "嗯……看来你确实找到了它。";
-			mes "幻觉之花很危险，也很珍贵。";
-			mes "请务必谨慎保管。";
-			mes "它可能会改变你的命运。";
-			next;
-			mes "那么……";
-			mes "你找到了它。";
-			mes "幻觉之花很危险，也很珍贵。";
-			mes "请务必谨慎保管。";
-			mes "它可能会改变你的命运。";
-			next;
-		}
-		else {
-			mes "看来你还没找到幻觉之花。";
-			mes "继续寻找并完成准备后再回来。";
-		}
-		close;
-	}
-	else {
-		mes "你还没有完成炼金术士的测试。";
-		close;
-	}
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-	// 切片边界保留
-			mes "[达尔文]";
 			mes "你在哪里找到的？！";
 			mes "那朵在月光下";
 			mes "缓缓绽放的花。";
 			mes "它真美……！";
 			mes "我从没见过这样的花。";
 			next;
-			mes "[Darwin]";
 			mes "那、那朵花……";
 			mes "请让我看看。";
 			mes "幻影之花！";
 			mes "呜啊啊啊啊！！";
 			next;
-			mes "[Darwin]";
 			mes "你能否把这朵花";
 			mes "送给我？";
 			mes "我确定这就是我一直寻找的月光花！";
 			next;
-			if (select("抱歉，我不能给你。:我就是带来送你的。") == 1) {
-				mes "[Darwin]";
+			if (select("Sorry, I can't give it to you.:I brought it to give to you.") == 1) {
 				mes "我明白。";
 				mes "你不能把如此珍贵的";
 				mes "花送给随便什么人。";
 				mes "嗯……没关系。";
 				mes "我会理解的。";
 				next;
-				mes "[Darwin]";
 				mes "它只是勾起了旧回忆。我一开始就不该开口。总之，请带来实验所需的东西。";
 				next;
-				mes "[Darwin]";
 				mes "请把那朵花放到别处。";
 				mes "它勾起了太多回忆……";
 				mes "我需要冷静。";
 				close;
 			}
-			mes "[Darwin]";
 			mes "你是";
 			mes "认真的吗？！";
 			mes "谢谢你！";
 			mes "如此珍贵的花。";
 			mes "啊，哈莫娜，我的爱……";
 			next;
-			mes "[Darwin]";
 			mes "是的……";
 			mes "我会报答你的。";
 			mes "我会把所有炼金术知识直接植入你的脑海……";
 			next;
-			mes "[Darwin]";
 			mes "睁大眼睛，";
 			mes "看着我的眼睛！！";
 			mes "直到最后都不要停！！";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
+			mes "你在做什么？";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
+			mes "你在做什么？";
+			mes "等、等等……";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
-			mes "Aenean fermentum ullamcorper.";
+			mes "你在做什么？";
+			mes "等、等等……";
+			mes "你是在";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
-			mes "Aenean fermentum ullamcorper.";
-			mes "Vestibulum ante ipsum primis in";
+			mes "你在做什么？";
+			mes "等、等等……";
+			mes "你是在";
+			mes "休息吗？";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
-			mes "Aenean fermentum ullamcorper.";
-			mes "Vestibulum ante ipsum primis in";
-			mes "faucibus orci luctus et ultrices";
+			mes "你在做什么？";
+			mes "等、等等……";
+			mes "你是在";
+			mes "休息吗？";
+			mes "我觉得你需要";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
-			mes "Aenean fermentum ullamcorper.";
-			mes "Vestibulum ante ipsum primis in";
-			mes "faucibus orci luctus et ultrices";
-			mes "posuere cubilia Curae; Morbi";
+			mes "你在做什么？";
+			mes "等、等等……";
+			mes "你是在";
+			mes "休息吗？";
+			mes "我觉得你需要";
+			mes "专注于";
 			next;
-			mes "Lorem ipsum dolor sit amet,";
-			mes "consectetuer adipiscing elit.";
-			mes "Aenean fermentum ullamcorper.";
-			mes "Vestibulum ante ipsum primis in";
-			mes "faucibus orci luctus et ultrices";
-			mes "posuere cubilia Curae; Morbi";
-			mes "massa, fermentum vitae...";
+			mes "你在做什么？";
+			mes "等、等等……";
+			mes "你是在";
+			mes "休息吗？";
+			mes "我觉得你需要";
+			mes "专注于";
+			mes "你疯了吗？";
 			next;
 			delitem 710,1; //Illusion_Flower
-			mes "[Darwin]";
-			mes "^666666*Gasp...*^000000";
 			mes "你现在是";
 			mes "炼金术士了！！";
 			mes "去联盟";
@@ -1098,19 +980,15 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			close;
 		}
 		else if (countitem(7134) > 2 && countitem(713) > 2 && countitem(507) > 0 && countitem(508) > 0 && countitem(509) > 0) {
-			mes "[Darwin]";
 			mes "看来你已经准备好一切。按约定，我会教你制作简单药剂。";
 			next;
-			mes "[Darwin]";
 			mes "首先准备药碗。然后像这样把草药放进去，慢慢捣碎。";
 			next;
-			mes "[Darwin]";
 			mes "倒入少量";
 			mes "净水并搅拌";
 			mes "直到混合物变稠。";
 			mes "之后再加入一些草药。";
 			next;
-			mes "[Darwin]";
 			mes "这就是制作方法。如果觉得分量足够，就把混合物轻轻倒入空瓶。";
 			delitem 7134,3; //Medicine_Bowl
 			delitem 713,3; //Empty_Bottle
@@ -1118,34 +996,29 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			delitem 508,1; //Yellow_Herb
 			delitem 509,1; //White_Herb
 			next;
-			mes "[Darwin]";
 			mes "好了，";
 			mes "完成了。";
 			mes "现在用我刚才解释的";
 			mes "简单步骤";
 			mes "制作一些药剂。";
 			next;
-			switch(select("准备药碗。:把药碗顶在头上。:踢药碗。")) {
+			switch(select("Prepare the Medicine Bowl.:Put the Medicine Bowl on your head.:Kick the Medicine Bowl.")) {
 			case 1:
 				break;
 			case 2:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "什么……？";
 				next;
 				break;
 			case 3:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "不！";
 				next;
 				break;
 			}
-			switch(select("把泥土放进药碗。:把草药放进药碗。:把竖琴放进药碗。")) {
+			switch(select("Put some dirt in the Medicine Bowl.:Put some Herbs in the Medicine Bowl.:Put a Harp in the Medicine Bowl.")) {
 			case 1:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
-				mes "...Eh!?";
 				mes "那不是";
 				mes "药剂！";
 				next;
@@ -1154,26 +1027,23 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 				break;
 			case 3:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "竖琴？";
 				mes "你要怎么";
 				mes "做那种事？";
 				next;
 				break;
 			}
-			switch(select("捣碎草药。:捣碎药碗。:踩达尔文的脚。")) {
+			switch(select("Crush the Herbs.:Crush the Medicine Bowl.:Crush Darwin's foot.")) {
 			case 1:
 				break;
 			case 2:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "你、你在";
 				mes "做什么！？";
 				next;
 				break;
 			case 3:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "啊……！";
 				mes "你到底在";
 				mes "做什么？！";
@@ -1181,17 +1051,15 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 				next;
 				break;
 			}
-			switch(select("喷洒净水。:喝净水。:倒入净水。")) {
+			switch(select("Spray clean water.:Drink clean water.:Pour clean water.")) {
 			case 1:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "咦？";
 				mes "你在做什么？";
 				next;
 				break;
 			case 2:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "等、等等……";
 				mes "你是在";
 				mes "休息吗？";
@@ -1200,12 +1068,11 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			case 3:
 				break;
 			}
-			switch(select("继续捣碎草药。:继续吃草药。:继续唱歌跳舞。")) {
+			switch(select("Continue crushing the Herbs.:Continue eating the Herbs.:Continue dancing and singing.")) {
 			case 1:
 				break;
 			case 2:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "吃草药？";
 				mes "我觉得你需要";
 				mes "专注于";
@@ -1214,7 +1081,6 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 				break;
 			case 3:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "唱歌跳舞？炼金术士";
 				mes "不会做那种事，";
 				mes "你疯了吗？";
@@ -1222,10 +1088,9 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 				next;
 				break;
 			}
-			switch(select("放入面条并煎炒。:倒入空瓶。:拿着药碗把它喝掉。")) {
+			switch(select("Put noodles in and fry it.:Pour it in an empty bottle.:Hold the Medicine Bowl and drink it.")) {
 			case 1:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "我们是炼金术士，";
 				mes "不是餐厅厨师。";
 				next;
@@ -1234,18 +1099,16 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 				break;
 			case 3:
 				set .@w_point,.@w_point+1;
-				mes "[Darwin]";
 				mes "嗯……";
 				mes "真是马虎……";
 				next;
 				break;
 			}
 			if (.@w_point > 0) {
-				mes "[Darwin]";
-				mes "...";
-				mes "......";
+				mes "你想学习";
+				mes "如果还有疑问，";
+				mes "[苏伊·斯莉尔]";
 				next;
-				mes "[Darwin]";
 				mes "你没有遵循步骤，弄坏了混合物！再拿些材料，";
 				mes "继续尝试直到成功。";
 				mes "请记住正确流程。";
@@ -1254,39 +1117,34 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			getitem 501,1; //Red_Potion
 			getitem 503,1; //Yellow_Potion
 			getitem 504,1; //White_Potion
-			mes "[Darwin]";
 			mes "做得好。";
 			mes "第一次能做成这样已经很好了。把刚才制作的药剂留下吧。";
 			set ALCH_Q,8;
 			changequest 2033,2035;
 			next;
-			mes "[Darwin]";
 			mes "现在去下一个房间";
 			mes "和范·赫尔蒙特交谈，";
 			mes "继续训练。";
 			next;
-			mes "[Darwin]";
 			mes "永远不要忘记……";
 			mes "你必须始终保护";
 			mes "对你最珍贵的东西。";
 			close;
 		}
 		else {
-			mes "[Darwin]";
 			mes "你忘记";
 			mes "需要带什么了吗？";
 			mes "让我再提醒你一次。";
 			mes "你必须带着……";
 			mes "回来。";
 			next;
-			mes "[Darwin]";
-			mes "^551A8B3 Medicine Bowls^000000,";
-			mes "^551A8B3 Empty Bottle^000000,";
-			mes "^551A8B1 Red Herb^000000,";
-			mes "^551A8B1 Yellow Herb^000000 and";
-			mes "^551A8B1 White Herb^000000.";
+			mes "你想学习";
+			mes "我会理解的。";
+			mes "^551A8B3 个空瓶^000000，";
+			mes "它只是勾起了旧回忆。我一开始就不该开口。总之，请带来实验所需的东西。";
+			mes "希望你身处美丽的花田……";
+			mes "请把那朵花放到别处。";
 			next;
-			mes "[Darwin]";
 			mes "准备好后";
 			mes "再回来……";
 			mes "我会等你。";
@@ -1299,7 +1157,6 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		mes "我想教你更多，";
 		mes "但现在不行。";
 		next;
-		mes "[Darwin]";
 		mes "啊……";
 		mes "哈莫娜，我的爱。";
 		mes "我甚至已经看不到那朵花了。我的灵魂也在";
@@ -1310,7 +1167,6 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		mes "我已经把所有知识都交给你，没有更多";
 		mes "可以教你的了。";
 		next;
-		mes "[Darwin]";
 		mes "去二楼和联盟领袖交谈。";
 		mes "完成后，你的炼金术士生涯就会开始。";
 		close;
@@ -1322,13 +1178,11 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		mes "你会失去一切。";
 		mes "也就没有更多可失去。";
 		next;
-		mes "[Darwin]";
 		mes "这双被诅咒的眼睛……";
 		mes "很久以前就看不见";
 		mes "我的梦想了。";
 		mes "哈哈哈哈……";
 		next;
-		mes "[Darwin]";
 		mes "天堂";
 		mes "真的存在吗……？";
 		mes "没有我的爱就不存在……";
@@ -1338,7 +1192,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 }
 
 alde_alche,79,19,5	script	Experiment Expert#am	748,{
-	mes "[Van Helmont]";
+	mes "[文森特·卡西阿洛]";
 	if (BaseJob != Job_Merchant) {
 		if (BaseJob == Job_Alchemist) {
 			mes "你想要什么？";
@@ -1346,12 +1200,10 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "打扰我，快走。";
 			mes "请不要碍事。";
 			next;
-			mes "[Van Helmont]";
 			mes "好了，快点……";
 			mes "如果你偷懒，永远";
 			mes "无法完成研究。出去尽可能多学习吧。";
 			next;
-			mes "[Van Helmont]";
 			mes "阅读科学期刊并进行实验，这就是炼金术。现在让我继续工作！";
 			close;
 		}
@@ -1362,13 +1214,11 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "就能完成了！";
 			mes "真可惜！";
 			next;
-			mes "[Van Helmont]";
 			mes "为什么……？！";
 			mes "为什么又失败了？！";
 			mes "我的计算";
 			mes "明明都正确！等、等等……！";
 			next;
-			mes "[Van Helmont]";
 			mes "也许，如果用中子梯度调节热通量，就可能成功……！";
 			close;
 		}
@@ -1377,63 +1227,52 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 		mes "啊啊啊……！";
 		mes "为什么这个公式不工作？哪里错了？理论上都正确，但公式某处一定有错误……";
 		next;
-		mes "[Van Helmont]";
 		mes "我把它倒进这里就该停止。等等，这是错误的溶液！我怎么会犯这种";
 		mes "愚蠢的错误？！这些东西什么时候";
 		mes "被调换了？！";
 		next;
-		mes "[Van Helmont]";
 		mes "好，好……";
 		mes "我只需修正这一部分。";
 		mes "不用从头开始。只要";
 		mes "修好它……等等。等等……";
 		next;
-		mes "[Van Helmont]";
-		mes ".................";
+		mes "[文森特·卡西阿洛]";
+		mes "没错，只是廉价小饰品。那条吊坠甚至不值得捡起来。";
 		next;
-		mes "[Van Helmont]";
 		mes "嗯……";
 		mes "你是谁？";
 		next;
-		if (select("我想成为炼金术士。:……") == 2) {
-			mes "[Van Helmont]";
+		if (select("I want to become an Alchemist.:.......") == 2) {
 			mes "嗯……？";
 			mes "你只是想旁观吗？好吧，但请安静，结束后立即离开。";
 			next;
-			mes "[Van Helmont]";
 			mes "别挡我的路，也别到处乱碰。这里可能有易挥发材料，发生事故会很危险。";
 			close;
 		}
-		mes "[Van Helmont]";
 		mes "你……？";
 		mes "炼金术士？";
 		mes "真有趣的商人。";
 		next;
-		mes "[Van Helmont]";
 		mes "那很好，但我有需要立即处理的实验，";
 		mes "所以别";
 		mes "妨碍我。";
 		next;
-		if (select("教我一些东西。:……") == 1) {
-			mes "[Van Helmont]";
+		if (select("Teach me something.:...") == 1) {
 			mes "啊……！";
 			mes "我不是刚说过别打扰我吗？这有什么难理解的？";
 			next;
-			mes "[Van Helmont]";
 			mes "好，好。我给你一项任务。学习一些";
 			mes "新东西后回来。让我想想。";
 			mes "学什么好呢……";
 			next;
-			mes "[Van Helmont]";
 			mes "好了，我知道了。";
 			mes "去向莫尔根斯坦学习";
 			mes "制作对抗剂和混合剂，";
 			mes "回来后告诉我。";
 			next;
-			mes "[Van Helmont]";
 			mes "你不必带任何东西。去看他工作，让他告诉你如何制作那些溶液。明白了吗？";
 			next;
-			mes "[Van Helmont]";
+			mes "[文森特·卡西阿洛]";
 			set ALCH_Q,9;
 			changequest 2035,2036;
 			mes "那么，回头见。";
@@ -1441,26 +1280,23 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "出发。";
 			close;
 		}
-		mes "[Van Helmont]";
-		mes "...";
+		mes "[文森特·卡西阿洛]";
+		mes "如果还有疑问，";
 		next;
-		mes "[Van Helmont]";
-		mes "...";
-		mes "......";
+		mes "[文森特·卡西阿洛]";
+		mes "如果还有疑问，";
+		mes "[苏伊·斯莉尔]";
 		next;
-		mes "[Van Helmont]";
-		mes "...";
-		mes "......";
+		mes "[文森特·卡西阿洛]";
+		mes "如果还有疑问，";
+		mes "[苏伊·斯莉尔]";
 		next;
-		mes "[Van Helmont]";
 		mes "如果重新校准这种化合物的燃烧率，应该能抵消粒子流中的凝聚趋势……";
 		next;
-		mes "[Van Helmont]";
 		mes "但我该怎么处理这些";
 		mes "自发结晶？！我不能随便移除基质，催化剂需要它达到三相点。";
 		mes "必须想办法。";
 		next;
-		mes "[Van Helmont]";
 		mes "该死！";
 		mes "我该";
 		mes "怎么办？！";
@@ -1469,30 +1305,22 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 	else if (ALCH_Q == 9) {
 		mes "好，如果我在触手这里切开，再把杰勒比结晶和粘稠液体溶液加入……我的药碗到底去哪了？";
 		next;
-		mes "[Van Helmont]";
 		mes "我把它们都用光了吗？！不知道尼古拉斯还有没有。唉，真麻烦。等等，等一下……";
 		next;
-		mes "[Van Helmont]";
-		mes "...";
+		mes "[文森特·卡西阿洛]";
+		mes "如果还有疑问，";
 		next;
-		mes "[Van Helmont]";
-		mes "...";
-		mes "......";
 		mes "你是谁？";
 		next;
-		if (select("我想成为炼金术士？:……") == 2) {
-			mes "[Van Helmont]";
+		if (select("I want to become an Alchemist?:.......") == 2) {
 			mes "嗯……？";
 			mes "你只是想旁观吗？好吧，但请安静，结束后立即离开。";
 			next;
-			mes "[Van Helmont]";
 			mes "别挡我的路，也别到处乱碰。这里可能有易挥发材料，发生事故会很危险。";
 			close;
 		}
-		mes "[Van Helmont]";
 		mes "啊，当然。是之前的商人。你从莫尔根斯坦那里学到了什么？我可不是随便把你送去的。";
 		next;
-		mes "[Van Helmont]";
 		mes "让我问你几个问题，";
 		mes "检查你";
 		mes "学到了什么。";
@@ -1504,13 +1332,13 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "是制作";
 			mes "反应剂所必需的？";
 			next;
-			if (select("卡沃戴利诺尔:德特里敏德斯塔:酒精") != 1) set .@w_point,.@w_point+1;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 1) set .@w_point,.@w_point+1;
 			mes "[范·赫尔蒙特]";
 			mes "哪件物品不";
 			mes "是制作";
 			mes "是制作混合剂所必需的？";
 			next;
-			if (select("卡沃戴利诺尔:德特里敏德斯塔:酒精") != 2) set .@w_point,.@w_point+1;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 2) set .@w_point,.@w_point+1;
 			if (.@w_point > 0) {
 				mes "[范·赫尔蒙特]";
 				mes "你根本没听莫尔根斯坦讲课吗？也许你";
@@ -1545,13 +1373,13 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "来制作";
 			mes "反应剂所必需的？";
 			next;
-			select("羽毛:黏稠液体:兽血");
+			select("羽毛:黏稠液体:动物血");
 			mes "[范·赫尔蒙特]";
 			mes "你需要哪件物品";
 			mes "来制作";
 			mes "是制作混合剂所必需的？";
 			next;
-			select("怪物饲料:古老嘴唇:腐烂绷带");
+			select("魔物饲料:远古嘴唇:腐烂绷带");
 			mes "[范·赫尔蒙特]";
 			mes "老实说，你不知道，对吧？！ 我不是让你去找莫尔根斯坦学习吗？！";
 			next;
@@ -1575,7 +1403,6 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 		mes "再多一点……";
 		mes "不——！只差一点点";
 		mes "就能完成了！";
-		mes "";
 		next;
 		mes "[范·赫尔蒙特]";
 		mes "为什么……？！";
@@ -1637,7 +1464,6 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			mes "恐怕如果你不是协会成员，";
 			mes "我们在这里";
 			mes "也没什么能提供给你的。";
-			mes "";
 		}
 		close2;
 		cutin "",255;
@@ -1678,13 +1504,10 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			mes "成为炼金术士了，";
 			mes "但必须先分配";
 			mes "尚未使用的技能点。";
-			mes "";
 			next;
 			mes "[文森特·卡西阿洛]";
 			mes "用完所有额外技能点后，";
 			mes "再来和我谈谈。";
-			mes "";
-			mes "";
 			close2;
 			cutin "",255;
 			end;
@@ -1709,7 +1532,6 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		mes "从今以后，你就是";
 		mes "我们辉煌协会的一员了。";
 		mes "希望你能学到很多……";
-		mes "";
 		next;
 		if (.@jlevel == 50) {
 			getitem 7133,1; //Slim_Potion_Create_Book
@@ -1717,8 +1539,6 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			mes "让我给你一些特别的东西。";
 			mes "你可以用它开始";
 			mes "自己的研究生涯。";
-			mes "";
-			mes "";
 		}
 		else {
 			switch(rand(1,6)) {
@@ -1744,16 +1564,12 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			mes "还有……";
 			mes "这是帮助你开始";
 			mes "研究的小礼物。";
-			mes "";
-			mes "";
 		}
 		next;
 		mes "[文森特·卡西阿洛]";
 		mes "那就回头见……";
 		mes "记住，作为炼金术士";
 		mes "要自豪地面对一切！";
-		mes "";
-		mes "";
 		close2;
 		cutin "",255;
 		end;
@@ -1762,12 +1578,9 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		mes "啊……";
 		mes "我想你已经登记了";
 		mes "炼金术士训练。";
-		mes "";
-		mes "";
 		next;
 		mes "[文森特·卡西阿洛]";
 		mes "请听从其他炼金术士的指导，并仔细遵循他们的指示。你会从他们那里学到很多。";
-		mes "";
 		close2;
 		cutin "",255;
 		end;
@@ -1789,7 +1602,6 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 			mes "哦……";
 			mes "你就是那个";
 			mes "想成为炼金术士的新人商人？";
-			mes "";
 			next;
 			mes "[尼古拉斯·弗拉梅尔]";
 			mes "不是谁都能成为炼金术士。你必须有动力、明确的目标和强大的专注力。";
@@ -1815,30 +1627,30 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		case 1:
 			mes "t m y a n y e o b n e g p r i";
 			next;
-			if (select("刹车:黄铜:虫子:破损:布里根？") == 5) set .@alch_t,.@alch_t+10;
+			if (select("刹车:黄铜:虫子:破损:布里刊？") == 5) set .@alch_t,.@alch_t+10;
 			mes "o n c u t a p j l e r s v m u";
 			next;
-			if (select("商贩:仓库:武器:简单:街边商店") == 1) set .@alch_t,.@alch_t+10;
+			if (select("商人:仓库:武器:简单:露天商店") == 1) set .@alch_t,.@alch_t+10;
 			mes "t v a r m e g p h e u b o y l";
 			next;
-			if (select("糖蜜:派对:领袖:甜食:糖浆") == 2) set .@alch_t,.@alch_t+10;
+			if (select("糖蜜:队伍:队长:糖果:蜜糖") == 2) set .@alch_t,.@alch_t+10;
 			mes "q z a h n a i n b r d p t n c";
 			next;
-			if (select("游击队员:党派:帕托:帕罗斯:包裹") == 2) set .@alch_t,.@alch_t+10;
+			if (select("长矛:游击队员:帕托:帕罗斯:包裹") == 2) set .@alch_t,.@alch_t+10;
 			break;
 		case 2:
 			mes "m p d i c f a r o g n k w a s";
 			next;
-			if (select("搬运工:阳光:诸神黄昏:仙境:霜冻") == 1) set .@alch_t,.@alch_t+10;
+			if (select("背包客:阳光:仙境传说:奇境:冰霜") == 1) set .@alch_t,.@alch_t+10;
 			mes "g b n o p r e f a r e t a s k";
 			next;
-			if (select("紫色:吸烟者:诸神黄昏:闪电:焦木") == 3) set .@alch_t,.@alch_t+10;
+			if (select("紫色:烟鬼:仙境传说:螺栓:焦木") == 3) set .@alch_t,.@alch_t+10;
 			mes "u g n i s j e k c e o g n d p";
 			next;
-			if (select("结痂:亲缘:捐赠:来源:开启") == 5) set .@alch_t,.@alch_t+10;
+			if (select("伤疤:亲缘:捐赠:来源:开口") == 5) set .@alch_t,.@alch_t+10;
 			mes "r o e h n r o m c a i n p t t";
 			next;
-			if (select("锻造商人:药水商人:DC商人:贩卖商人:战斗商人") == 2) set .@alch_t,.@alch_t+10;
+			if (select("锻造商人:药水商人:低价买进商人:露天商店商人:战斗商人") == 2) set .@alch_t,.@alch_t+10;
 			break;
 		case 3:
 			mes "s m i e x b w u n e t a g l r";
@@ -1846,13 +1658,13 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 			if (select("老虎:狼:南瓜:绊倒:撕裂") == 1) set .@alch_t,.@alch_t+10;
 			mes "n i e g b o p d s o a u w r v";
 			next;
-			if (select("重击:挑衅:忍耐:眩晕:阿布拉卡达布拉") == 3) set .@alch_t,.@alch_t+10;
+			if (select("狂击:挑衅:霸体:晕眩:随机技能") == 3) set .@alch_t,.@alch_t+10;
 			mes "l r m g r e x t a v i n e d e";
 			next;
-			if (select("艾尔贝塔:阔叶:深红:枫树:常青") == 5) set .@alch_t,.@alch_t+10;
+			if (select("艾尔贝塔:阔叶树:深红:枫树:常青树") == 5) set .@alch_t,.@alch_t+10;
 			mes "r o e h n r o m c a i n p t t";
 			next;
-			if (select("锻造商人:药水商人:DC商人:贩卖商人:战斗商人") == 2) set .@alch_t,.@alch_t+10;
+			if (select("锻造商人:药水商人:低价买进商人:露天商店商人:战斗商人") == 2) set .@alch_t,.@alch_t+10;
 			break;
 		}
 		mes "[尼古拉斯·弗拉梅尔]";
@@ -1868,7 +1680,6 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 			mes "[尼古拉斯·弗拉梅尔]";
 			mes "过一会儿再回来，";
 			mes "我会准备下一项训练任务。";
-			mes "";
 			next;
 			mes "[尼古拉斯·弗拉梅尔]";
 			mes "哦，在再次和我交谈前，";
@@ -1940,7 +1751,6 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		mes "我不是说过要去朱诺，";
 		mes "帮助贝恩和巴金";
 		mes "进行炼金术研究吗？";
-		mes "";
 		close;
 	}
 	else if (ALCH_Q == 24) {
@@ -1954,8 +1764,6 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		mes "[尼古拉斯·弗拉梅尔]";
 		mes "既然你能很好地帮助那对兄弟，";
 		mes "当然有资格成为炼金术士。";
-		mes "";
-		mes "";
 		next;
 		mes "[尼古拉斯·弗拉梅尔]";
 		mes "干得好！";
@@ -1972,13 +1780,10 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		mes "这是一段占位文本，";
 		mes "用于测试对话显示。";
 		mes "请继续查看炼金术研究。";
-		mes "";
-		mes "";
 		next;
 		mes "[尼古拉斯·弗拉梅尔]";
 		mes "这里还有一段模糊的占位内容……";
 		mes "^666666*喃喃自语*^000000";
-		mes "";
 		close;
 	}
 }
