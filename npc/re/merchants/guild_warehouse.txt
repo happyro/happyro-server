@@ -9,38 +9,38 @@
 
 -	script	GuildWarehouse	-1,{
 	mes "[Warehouse Manager]";
-	mes "How are you? We are specialized in guild warehouses. This is our ^0000cdstory^000000:";
-	mes "Why can't guild members share a storage? We started off with that simple question.";
+	mes "你好！我们专营公会仓库。这是我们的^0000cd故事^000000：";
+	mes "公会成员为什么不能共享仓库？我们从这个简单的问题开始。";
 	next;
 	mes "[Warehouse Manager]";
-	mes "You can open the warehouse for 1000 Zeny or look up the usage history of the guild.";
-	mes "How can I help you?";
+	mes "你可以支付 1000 Zeny 打开仓库，或查看公会的使用记录。";
+	mes "我能为你做什么？";
 	next;
-	if( select( "Open guild warehouse:View warehouse usage history" ) == 1 ){
+	if( select( "打开公会仓库:查看仓库使用记录" ) == 1 ){
 		.@guildid = getcharid( 2 );
 
 		if( .@guildid == 0 ){
 			mes "[Warehouse Manager]";
-			mes "The guild storage is only available for guild members.";
+			mes "公会仓库仅供公会成员使用。";
 			close;
 		}
 
 		if( getgdskilllv( .@guildid, "GD_GUILD_STORAGE" ) == 0 || !guild_has_permission( GUILD_PERM_STORAGE ) ){
 			mes "[Warehouse Manager]";
-			mes "It seems that it is not yet possible for your guild to use the guild warehouse or you do not have access permissions for the warehouse.";
-			mes "Please come back after checking the guild skill and the permission to access the warehouse.";
+			mes "你的公会似乎还无法使用公会仓库，或者你没有仓库访问权限。";
+			mes "请确认公会技能和仓库访问权限后再回来。";
 			close;
 		}
 
 		if( Zeny < 1000 ){
 			mes "[Warehouse Manager]";
-			mes "I am afraid you do not have enough money to settle the fee.";
-			mes "The fee is 1000 Zeny.";
+			mes "恐怕你的钱不够支付费用。";
+			mes "费用是 1000 Zeny。";
 			close;
 		}
 
 		mes "[Warehouse Manager]";
-		mes "I will open the guild storage for you then. Have a memorable time!";
+		mes "那么我就为你打开公会仓库。祝你使用愉快！";
 		close2;
 
 		if( Zeny < 1000 ){
@@ -53,8 +53,8 @@
 			end;
 		}else{
 			mes "[Warehouse Manager]";
-			mes "I am afraid someone else is using the warehouse right now.";
-			mes "Please try again after a while.";
+			mes "恐怕现在有人正在使用仓库。";
+			mes "请稍后再试。";
 			close;
 		}
 	}else{
@@ -62,20 +62,20 @@
 
 		if( .@guildid == 0 ){
 			mes "[Warehouse Manager]";
-			mes "The guild storage is only available for guild members.";
+			mes "公会仓库仅供公会成员使用。";
 			close;
 		}
 
 		if( getgdskilllv( .@guildid, "GD_GUILD_STORAGE" ) == 0 || !guild_has_permission( GUILD_PERM_STORAGE ) ){
 			mes "[Warehouse Manager]";
-			mes "It seems that it is not yet possible for your guild to use the guild warehouse or you do not have access permissions for the warehouse.";
-			mes "Please come back after checking the guild skill and the permission to access the warehouse.";
+			mes "你的公会似乎还无法使用公会仓库，或者你没有仓库访问权限。";
+			mes "请确认公会技能和仓库访问权限后再回来。";
 			close;
 		}
 
 		mes "[Warehouse Manager]";
-		mes "I will show you the usage history of the warehouse. Usage history will be retained for up to 3 months.";
-		mes "Have a memorable time!";
+		mes "我会向你展示仓库使用记录。记录最多保留 3 个月。";
+		mes "祝你使用愉快！";
 		close2;
 		guildopenstorage_log();
 		end;

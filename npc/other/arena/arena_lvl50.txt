@@ -784,19 +784,17 @@ OnMyMobDead:
 
 prt_are_in,129,188,3	script	Staff#50-1	67,{
 	mes "[Staff]";
-	mes "You did a good job.";
-	mes "Even if you have failed to clear a time attack battle, I will reward you with a small amount of arena points.";
+	mes "你做得很好。即使没能通过计时战斗，我也会奖励你少量竞技场积分。";
 	next;
 	if (arena_point == 30000) {
 		mes "[Staff]";
-		mes "Uh huh!";
-		mes "You already have enough arena points.";
-		mes "Please spend some arena points later. When I see you next time, I will make sure to give you some reward.";
+		mes "嗯哼！";
+		mes "你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
 		next;
 	}
 	else set arena_point, arena_point + 1;
 	mes "[Staff]";
-	mes "Let me guide you outside. I hope you had a good time.";
+	mes "我带你出去。希望你玩得愉快。";
 	close2;
 	specialeffect2 EF_EXIT;
 	warp "arena_room",100,75;
@@ -823,45 +821,40 @@ prt_are_in,25,188,3	script	Staff#50-2	67,{
 	}
 	set @gap50,(60 * $top_50min + $top_50sec) - (60 * @record_min50 + @record_sec50);
 	mes "[Staff]";
-	mes "Wow, you did a good job~ ";
-	mes "Your name is...^3131FF" + strcharinfo(0) +"^000000, isn't it?";
+	mes "哇，你做得很好～你的名字是……^3131FF" + strcharinfo(0) +"^000000，对吧？";
 	mes "^3131FF"+ strcharinfo(0) +"^000000, total time you spent to pass the battle..";
 	next;
 	mes "[Staff]";
-	mes "is "+@record_min50+"minutes "+@record_sec50+"seconds.";
-	mes "Congratulations!";
+	mes "是"+@record_min50+"分"+@record_sec50+"秒。";
+	mes "恭喜！";
 	next;
 	mes "[Staff]";
-	mes "The fastest player among people who cleared lvl 50s arena time force battle is ^3131FF"+$arena_50topn$+"^000000.";
+	mes "通过 50 级竞技场计时战斗的最快玩家是^3131FF"+$arena_50topn$+"^000000。";
 	next;
 	mes "[Staff]";
 	mes "^3131FF"+$arena_50topn$+"^000000's running time was ^3131FF"+$top_50min+"^000000minutes ^3131FF"+$top_50sec+"^000000seconds.";
 	next;
 	if (@gap50 < 0) {
 		mes "[Staff]";
-		mes "Although you failed to make a new record, I hope you will succeed next time.";
+	mes "虽然你没能创下新纪录，但希望下次成功。";
 		next;
 		if (arena_point > 29980) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "那么我奖励你一些竞技场积分……咦？你的积分已超过上限，花掉一些之前我无法再给你积分。";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "你可以在竞技场等候室查看积分。";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "希望你玩得愉快，我带你到竞技场入口。谢谢。";
 			close2;
 		} else {
 			set arena_point, arena_point + 20;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "我奖励你一些竞技场积分。想查看积分，请到竞技场入口找^3131FF文迪戈斯^000000。";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "我带你到竞技场入口。回头见～";
 			close2;
 		}
 		specialeffect2 EF_EXIT;
@@ -874,11 +867,10 @@ prt_are_in,25,188,3	script	Staff#50-2	67,{
 	} else {
 		emotion ET_HUK;
 		mes "[Staff]";
-		mes "Wow! You have renewed the record!";
-		mes "What a great job!";
+		mes "哇！你刷新了纪录！干得漂亮！";
 		next;
 		mes "[Staff]";
-		mes "You have been recorded as the fastest player among people who cleared ^FF0000Arena Time Force Battle lvl 50s^000000, ^3131FF"+strcharinfo(0)+"^000000.";
+		mes "你已被记录为通过^FF0000竞技场 50 级计时战斗^000000的最快玩家：^3131FF"+strcharinfo(0)+"^000000。";
 		set $top_50min, @record_min50;
 		set $top_50sec, @record_sec50;
 		set $arena_50topn$,strcharinfo(0);
@@ -886,29 +878,24 @@ prt_are_in,25,188,3	script	Staff#50-2	67,{
 		next;
 		if (arena_point > 29950) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "那么我奖励你一些竞技场积分……咦？你的积分已超过上限，花掉一些之前我无法再给你积分。";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "你可以在竞技场等候室查看积分。";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "希望你玩得愉快，我带你到竞技场入口。谢谢。";
 			close2;
 		} else {
 			mes "[Staff]";
-			mes "Let me reward you with some arena points.";
-			mes "At the same time, since you have renewed the record you will receive an extra amount of the points this time.";
+			mes "我奖励你一些竞技场积分。由于你刷新了纪录，这次还会获得额外积分。";
 			next;
 			set arena_point, arena_point + 50;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "我奖励你一些竞技场积分。想查看积分，请到竞技场入口找^3131FF文迪戈斯^000000。";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "我带你到竞技场入口。回头见～";
 			close2;
 		}
 		specialeffect2 EF_HIT5;
@@ -998,6 +985,19 @@ OnEnable:
 	disablenpc "force_03_04#50";
 	disablenpc "force_04_05#50";
 	disablenpc "force_05_06#50";
++// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
+// 切片行数保留
 	disablenpc "force_06_07#50";
 	disablenpc "force_07_08#50";
 	disablenpc "force_08_09#50";

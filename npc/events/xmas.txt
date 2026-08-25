@@ -26,89 +26,89 @@ xmas_in,100,96,4	script	Father Christmas::Santa2	718,{
 	mes "[Santa Claus]";
 	if(xmas_npc==0) set xmas_npc, 1; // For Lutie & Bard quest
 	if(#event_xmas > 0 && #event_xmas < 30 ) goto L_Start;
-	mes "Merry Christmas!";
+	mes "圣诞快乐！";
 	if(Class==0 || #event_xmas>=30 ) close; //anti exploit protection
-	mes "I have a gift for you! Ho Ho Ho!";
+	mes "我有一份礼物给你！呵呵呵！";
 	getitem rand(664,667),1; //gives one of 4 gift boxes
 	set #event_xmas,#event_xmas+1;
 	close;
 
 L_Start:
-	mes "I'm having a bit of a problem...";
-	mes "Do you care to listen?";
+	mes "我遇到了一点问题……";
+	mes "你愿意听听吗？";
 	next;
-	menu "Listen to Santa Claus.",M_0, "Give Santa Claus proof.",M_1, "Cancel.",M_End;
+	menu "听圣诞老人的话。",M_0, "给圣诞老人证据。",M_1, "取消。",M_End;
 
 	M_0:
 		mes "[Santa Claus]";
-		mes "My problem is this.";
-		mes "There seems to be a man out there";
-		mes "that is impersonating me and spreading";
-		mes "terror throughout the land.";
+		mes "问题是这样的。";
+		mes "外面似乎有个人冒充我，";
+		mes "在各地散播恐慌。";
 		next;
 		mes "[Santa Claus]";
-		mes "Like the Grinch of legend, he's taking";
-		mes "all the childrens' toys and keeping them";
-		mes "for himself.";
+		mes "像传说中的格林奇一样，他拿走孩子们的所有玩具，据为己有。";
 		next;
 		mes "[Santa Claus]";
-		mes "I'm too busy here creating my batch of ";
-		mes "toys for next year, so I can't go";
-		mes "out and find him myself.";
-		mes "So I would like you to go out and";
-		mes "Destroy this man for me.";
+		mes "我太忙了，要为明年制作玩具，无法亲自出去找他。";
+		mes "所以请你出去替我消灭这个人。";
 		next;
 		mes "[Santa Claus]";
-		mes "He has in his posession one of my";
-		mes "magic sacks, however, so he will";
-		mes "escape into it to another place each";
-		mes "time you attack him.";
+		mes "不过他手里有我的魔法袋，每次你攻击他，他都会钻进袋子逃到别处。";
 		next;
 		mes "[Santa Claus]";
-		mes "However,";
-		mes "In his haste, he tends to drop things.";
-		mes "If by chance he drops one of his Stockings";
-		mes "With Holes that he uses to steal the";
-		mes "poor childrens' toys, pick it up.";
+		mes "不过他匆忙时经常掉东西。";
+		mes "如果他掉下一只用来偷孩子玩具的破袜子，请把它捡起来。";
 		next;
 		mes "[Santa Claus]";
-		mes "If you collect 3 of these, I will give";
-		mes "you a prototype mystery box that";
-		mes "I've been keeping around the";
-		mes "lab. It spits out random presents";
-		mes "and saves me a ton of work.";
+		mes "收集 3 只袜子，我就给你一只实验室里的神秘箱原型。";
+		mes "它会随机吐出礼物，能省我很多工作。";
 		close;
-	M_1:
+		M_1:
 		mes "[Santa Claus]";
 		if(countitem(7034) < 3) goto L_NotEnuf;
 		delitem 7034,3;
-		mes "Seems you've been doing a";
-		mes "good job of taking down those";
-		mes "fake Santas. Keep it up!";
+		mes "看来你干掉那些假圣诞老人做得很好。继续努力！";
 		next;
 		getitem 644,1; //Gift Box Prototype
 		set #event_xmas,#event_xmas+1;
 		mes "[Santa Claus]";
-		mes "There's your reward.";
-		mes "If you get 3 more, I'll give you another.";
-		mes "Hope you get a good item.";
+		mes "这是你的奖励。";
+		mes "再收集 3 只，我会再给你一个。";
+		mes "希望你能得到好东西。";
 		close;
-	
+		
 		L_NotEnuf:
-			mes "You don't have enough socks as proof.";
-			mes "Go take down those evil Santas";
-			mes "and get more for me and I'll reward you.";
-			close;
-	M_End:
-		mes "[Santa Claus]";
-		mes "I see. Well, at the very least";
-		mes "we shall meet again on Christmas morning.";
+	mes "你没有足够的袜子作为证据。";
+		mes "去消灭那些邪恶的圣诞老人，收集更多，我会奖励你。";
 		close;
-
-OnInit:
-	disablenpc "Santa Claus";
-	end;
-}
+		M_End:
+		mes "[Santa Claus]";
+		mes "我明白了。至少我们会在圣诞早晨再见。";
+		close;
+		
+		OnInit:
+		disablenpc "Santa Claus";
+		end;
+		}
+		//
+		//
+		//
+	//
+		//
+			//
+			//
+			//
+			//
+	//
+		//
+		//
+		//
+		//
+//
+//
+	//
+	//
+//
 
 // Xmas Goblin Spawns
 //============================================================

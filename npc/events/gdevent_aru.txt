@@ -23,8 +23,8 @@ OnInit:
 
 OnTimer3600000:
 	donpcevent "Monster Controler1#aru::OnEnable";
-	mapannounce "arug_dun01", "Kublin: Aargh!",bc_map,"0x99CC00";
-	mapannounce "arug_dun01", "Morestone: Stop righ there! You thief!",bc_map,"0x99CC00";
+	mapannounce "arug_dun01", "库布林：啊！",bc_map,"0x99CC00";
+	mapannounce "arug_dun01", "莫尔斯通：站住！你这个小偷！",bc_map,"0x99CC00";
 	stopnpctimer;
 	end;
 }
@@ -52,8 +52,8 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("arug_dun01","Monster Controler1#aru::OnMyMObDead") == 0) {
-		mapannounce "arug_dun01", "Kublin: Aargh!",bc_map,"0x99CC00";
-		mapannounce "arug_dun01", "Morestone: I thought I heard Kublin screaming!! Who is there? What happened to Kublin? Hey you!",bc_map,"0x99CC00";
+		mapannounce "arug_dun01", "库布林：啊！",bc_map,"0x99CC00";
+		mapannounce "arug_dun01", "莫尔斯通： 我好像听到库布林在尖叫！！是谁？库布林怎么了？嘿，你！",bc_map,"0x99CC00";
 		donpcevent "Dwarf#aru_gd::OnEnable";
 	}
 	end;
@@ -61,8 +61,8 @@ OnMyMobDead:
 
 arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 	if (getcharid(2) == 0) {
-		mes "[Dwarf]";
-		mes "Hey did you see an ugly Goblin come by? He stole something from me!";
+		mes "[矮人]";
+		mes "嘿，你看到一个丑陋的哥布林经过吗？他偷了我的东西！";
 		close;
 	}
 	set .@chk_urquest,checkquest(2143,PLAYTIME);
@@ -71,88 +71,88 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 		if ($@gdevents_a$ == "") {
 			set $@gdeventv_a1,1;
 			set $@gdevents_a$,.@chk_yourgdname$;
-			mes "[Dwarf]";
-			mes "Help me!";
-			mes "Please, help me!";
+			mes "[矮人]";
+			mes "帮帮我！";
+			mes "请帮帮我！";
 			next;
-			switch(select("What happened?:Nevermind.")) {
+			switch(select("发生了什么？:算了。")) {
 			case 1:
-				mes "[Dwarf]";
-				mes "I am Morestone and I collect rare gems.";
+				mes "[矮人]";
+				mes "我是莫尔斯通，收集稀有宝石。";
 				next;
 				mes "[Morestone]";
-				mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-				mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+				mes "旅途中有人告诉我瓦尔弗雷娅和尼德霍格有很多宝石，所以我来到了这里。";
+				mes "但这里的土壤很难挖掘。 幸好，我的^3131FF镐^000000从不让我失望！";
 				next;
-				select("Pickaxe!");
+				select("镐！");
 				mes "[Morestone]";
-				mes "Yes, my beloved pickaxe!";
-				mes "I always carry it with me, you know?";
-				next;
-				mes "[Morestone]";
-				mes "We started working here together.";
-				mes "After a few days, we finally found something!";
-				next;
-				select("Something strange??");
-				mes "[Morestone]";
-				mes "No, but it was worth quite a lot.";
-				mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-				mes "His name was^3131FFKublin^000000!";
+				mes "是的，我心爱的镐！";
+				mes "我总是随身携带，你知道吗？";
 				next;
 				mes "[Morestone]";
-				mes "He stole my Pickaxe!";
-				mes "I can't live without it...";
+				mes "我们一起在这里工作。";
+				mes "几天后，我们终于发现了东西！";
+				next;
+				select("奇怪的东西？？");
+				mes "[Morestone]";
+				mes "不，但它价值不菲。";
+				mes "但我们没时间庆祝。 突然出现一只怪物，偷走了我的镐。";
+				mes "它的名字是^3131FFKublin^000000!";
+				next;
+				mes "[Morestone]";
+				mes "他偷走了我的镐！";
+				mes "没有它我活不下去……";
 				next;
 				if (countitem(6010) > 0) {
 					mes "[" + strcharinfo(0) + "]";
-					mes "Is this the pickaxe that you've been looking for?";
+					mes "这是你一直在找的镐吗？";
 					next;
 					mes "[Morestone]";
-					mes "You found my Pickaxe?";
-					mes "Show me, please!";
+					mes "你找到了我的镐？";
+					mes "请给我看看！";
 					next;
 					mes "[Morestone]";
-					mes "Oh, my! You've returned it to me!";
-					mes "My precious pickaxe, I thought I lost you forever.";
+					mes "天啊！你把它还给我了！";
+					mes "我珍贵的镐，我以为永远失去你了。";
 					next;
 					mes "[Morestone]";
-					mes "You are great! What guild are you from?";
-					mes "Could it be Gravity or Mercury?";
+					mes "你真棒！你属于哪个公会？";
+					mes "是重力公会还是水星公会？";
 					next;
 					mes "[" + strcharinfo(0) + "]";
-					mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+					mes "我是 ^3131FF"+.@chk_yourgdname$+"^.";
 					next;
 					mes "[Morestone]";
-					mes "Oh... That guild will receive my greatest respect.";
+					mes "哦……那个公会将得到我最大的尊敬。";
 					next;
 					mes "[Morestone]";
-					mes "Oh! My friend, I am very grateful for your help.";
-					mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+					mes "哦！朋友，非常感谢你的帮助。";
+					mes "作为奖励，我告诉你一个最近发现的神秘区域。";
 					next;
-					select("A mysterious area?");
+					select("神秘区域？");
 					mes "[Morestone]";
-					mes "That's right. I found it when I was digging around here.";
-					mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-					next;
-					mes "[Morestone]";
-					mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+					mes "没错，我在这里挖掘时发现了它。";
+					mes "看起来是为某种特殊用途建造的，但那里没有宝石，所以我不感兴趣。";
 					next;
 					mes "[Morestone]";
-					mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-					mes "Do you want to go there now?";
+					mes "比起独自前往，我觉得和朋友一起去更有趣……";
 					next;
-					switch(select("Wait! I'm not ready yet.:Let's go!")) {
+					mes "[Morestone]";
+					mes "如果你愿意，我可以带^3131FF你和公会成员^000000探索那里。";
+					mes "现在要去吗？";
+					next;
+					switch(select("等等！我还没准备好。:我们走！")) {
 					case 1:
 						set $@gdeventv_a1,0;
 						set $@gdevents_a$,"";
 						mes "[Morestone]";
-						mes "Take your time, and find a place to gather your friends.";
+						mes "慢慢来，找个地方集合朋友。";
 						close;
 					case 2:
 						mes "[Morestone]";
-						mes "Alright! Let's go.";
-						mes "If your friends visit me again later, I will guide them to that area again.";
-						mes "Don't forget, dwarves are grateful beings! Hahaha!";
+						mes "好！我们走。";
+						mes "如果你的朋友之后再来找我，我会再次带他们去那里。";
+						mes "别忘了，矮人是知恩图报的种族！哈哈哈！";
 						delitem 6010,1; //Pickaxe
 						set $@gdeventv_a1,1;
 						set $@gdevents_a$,.@chk_yourgdname$;
@@ -166,16 +166,16 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 					set $@gdeventv_a1,0;
 					set $@gdevents_a$,"";
 					mes "[Morestone]";
-					mes "I will tell you how to find him.";
-					mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+					mes "我告诉你怎么找到他。";
+					mes "库布林戴着可笑的金帽子，很容易认出他。";
 					close;
 				}
 			case 2:
 				set $@gdeventv_a1,0;
 				set $@gdevents_a$,"";
 				emotion ET_CRY;
-				mes "[Dwarf]";
-				mes "Ahhh...";
+				mes "[矮人]";
+				mes "啊……";
 				close;
 			}
 		}
@@ -183,109 +183,109 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 			set .@chk_urquest1,checkquest(2144);
 			if ((.@chk_urquest1 == 0) || (.@chk_urquest1 == 1)) {
 				mes "[Morestone]";
-				mes "I, Morestone, have made an alliance with the "+$@gdevents_a$+" guild.";
-				mes "Oh, you are a member.";
-				mes "Would you like to go to the mysterious area?";
+				mes "我，莫尔斯通，已经与"+$@gdevents_a$+"公会结成同盟。";
+				mes "哦，你是公会成员。";
+				mes "想去神秘区域吗？";
 				next;
-				switch(select("Let's go.:No, thanks.")) {
+				switch(select("我们走。:不了，谢谢。")) {
 				case 1:
 					mes "[Morestone]";
-					mes "I hope you enjoy yourself, my friend.";
+				mes "希望你玩得开心，我的朋友。";
 					close2;
 					warp "arug_que01",103,133;
 					end;
 				case 2:
 					mes "[Morestone]";
-					mes "If you need my assistance, just ask.";
-					mes "Ah! Dont forget, I hate monsters! So I don't want to see them. It will be better if you ask for another favour.";
+				mes "如果需要我的帮助，尽管开口。";
+				mes "啊！别忘了，我讨厌怪物！所以我不想看到它们。最好请我帮别的忙。";
 					close;
 				}
 			}
 			else {
 				set $@gdeventv_a1,1;
 				set $@gdevents_a$,.@chk_yourgdname$;
-				mes "[Dwarf]";
-				mes "Help me!";
-				mes "Please, help me!";
+				mes "[矮人]";
+				mes "帮帮我！";
+				mes "请帮帮我！";
 				next;
-				switch(select("What happened?:Nevermind.")) {
+				switch(select("发生了什么？:算了。")) {
 				case 1:
-					mes "[Dwarf]";
-					mes "I am Morestone and I collect rare gems.";
+					mes "[矮人]";
+					mes "我是莫尔斯通，收集稀有宝石。";
 					next;
 					mes "[Morestone]";
-					mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-					mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+					mes "旅途中有人告诉我瓦尔弗雷娅和尼德霍格有很多宝石，所以我来到了这里。";
+					mes "但这里的土壤很难挖掘。 幸好，我的^3131FF镐^000000从不让我失望！";
 					next;
-					select("Pickaxe!");
+					select("镐！");
 					mes "[Morestone]";
-					mes "Yes, my beloved pickaxe!";
-					mes "I always carry it with me, you know?";
-					next;
-					mes "[Morestone]";
-					mes "We started working here together.";
-					mes "After a few days, we finally found something!";
-					next;
-					select("Something strange??");
-					mes "[Morestone]";
-					mes "No, but it was worth quite a lot.";
-					mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-					mes "His name was^3131FFKublin^000000!";
+					mes "是的，我心爱的镐！";
+					mes "我总是随身携带，你知道吗？";
 					next;
 					mes "[Morestone]";
-					mes "He stole my Pickaxe!";
-					mes "I can't live without it...";
+					mes "我们一起在这里工作。";
+					mes "几天后，我们终于发现了东西！";
+					next;
+					select("奇怪的东西？？");
+					mes "[Morestone]";
+					mes "不，但它价值不菲。";
+					mes "但我们没时间庆祝。 突然出现一只怪物，偷走了我的镐。";
+					mes "它的名字是^3131FFKublin^000000!";
+					next;
+					mes "[Morestone]";
+					mes "他偷走了我的镐！";
+					mes "没有它我活不下去……";
 					next;
 					if (countitem(6010) > 0) {
 						mes "[" + strcharinfo(0) + "]";
-						mes "Is this the pickaxe that you've been looking for?";
+						mes "这是你一直在找的镐吗？";
 						next;
 						mes "[Morestone]";
-						mes "You found my Pickaxe?";
-						mes "Show me, please!";
+						mes "你找到了我的镐？";
+						mes "请给我看看！";
 						next;
 						mes "[Morestone]";
-						mes "Oh, my! You've returned it to me!";
-						mes "My precious pickaxe, I thought I lost you forever.";
+						mes "天啊！你把它还给我了！";
+						mes "我珍贵的镐，我以为永远失去你了。";
 						next;
 						mes "[Morestone]";
-						mes "You are great! What guild are you from?";
-						mes "Could it be Gravity or Mercury?";
+						mes "你真棒！你属于哪个公会？";
+						mes "是重力公会还是水星公会？";
 						next;
 						mes "[" + strcharinfo(0) + "]";
-						mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+						mes "我是 ^3131FF"+.@chk_yourgdname$+"^.";
 						next;
 						mes "[Morestone]";
-						mes "Oh... That guild will receive my greatest respect.";
+						mes "哦……那个公会将得到我最大的尊敬。";
 						next;
 						mes "[Morestone]";
-						mes "Oh! My friend, I am very grateful for your help.";
-						mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+						mes "哦！朋友，非常感谢你的帮助。";
+						mes "作为奖励，我告诉你一个最近发现的神秘区域。";
 						next;
-						select("A mysterious area?");
+						select("神秘区域？");
 						mes "[Morestone]";
-						mes "That's right. I found it when I was digging around here.";
-						mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-						next;
-						mes "[Morestone]";
-						mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+						mes "没错，我在这里挖掘时发现了它。";
+						mes "看起来是为某种特殊用途建造的，但那里没有宝石，所以我不感兴趣。";
 						next;
 						mes "[Morestone]";
-						mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-						mes "Do you want to go there now?";
+						mes "比起独自前往，我觉得和朋友一起去更有趣……";
 						next;
-						switch(select("Wait! I'm not ready yet.:Let's go!")) {
+						mes "[Morestone]";
+						mes "如果你愿意，我可以带^3131FF你和公会成员^000000探索那里。";
+						mes "现在要去吗？";
+						next;
+						switch(select("等等！我还没准备好。:我们走！")) {
 						case 1:
 							set $@gdeventv_a1,0;
 							set $@gdevents_a$,"";
 							mes "[Morestone]";
-							mes "Take your time, and find a place to gather your friends.";
+							mes "慢慢来，找个地方集合朋友。";
 							close;
 						case 2:
 							mes "[Morestone]";
-							mes "Alright! Let's go.";
-							mes "If your friends visit me again later, I will guide them to that area again.";
-							mes "Don't forget, dwarves are grateful beings! Hahaha!";
+							mes "好！我们走。";
+							mes "如果你的朋友之后再来找我，我会再次带他们去那里。";
+							mes "别忘了，矮人是知恩图报的种族！哈哈哈！";
 							delitem 6010,1; //Pickaxe
 							set $@gdeventv_a1,1;
 							set $@gdevents_a$,.@chk_yourgdname$;
@@ -299,25 +299,25 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 						set $@gdeventv_a1,0;
 						set $@gdevents_a$,"";
 						mes "[Morestone]";
-						mes "I will tell you how to find him.";
-						mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+						mes "我告诉你怎么找到他。";
+						mes "库布林戴着可笑的金帽子，很容易认出他。";
 						close;
 					}
 				case 2:
 					set $@gdeventv_a1,0;
 					set $@gdevents_a$,"";
 					emotion ET_CRY;
-					mes "[Dwarf]";
-					mes "Ah....";
+					mes "[矮人]";
+				mes "啊……";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Morestone]";
-			mes "I, Morestone, have made an alliance with the "+$@gdevents_a$+" guild.";
-			mes "Hm, you're not a member.";
-			mes "Could you please give them my greetings?";
+			mes "我，莫尔斯通，已经与"+$@gdevents_a$+"公会结成同盟。";
+			mes "嗯，你不是公会成员。";
+			mes "能请你代我向他们问好吗？";
 			close;
 		}
 	}
@@ -327,109 +327,109 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 			if ((.@chk_urquest1 == 0) || (.@chk_urquest1 == 1)) {
 				mes "[Morestone]";
 				mes "[Morestone]";
-				mes "I, Morestone, have made an alliance with the "+$@gdevents_a$+" guild.";
-				mes "Oh, you are a member.";
-				mes "Would you like to go to the mysterious area?";
+				mes "我，莫尔斯通，已经与"+$@gdevents_a$+"公会结成同盟。";
+				mes "哦，你是公会成员。";
+				mes "想去神秘区域吗？";
 				next;
-				switch(select("Let's go.:No, thanks.")) {
+				switch(select("我们走。:不了，谢谢。")) {
 				case 1:
 					mes "[Morestone]";
-					mes "I hope you enjoy yourself, my friend.";
+				mes "希望你玩得开心，我的朋友。";
 					close2;
 					warp "arug_que01",103,133;
 					end;
 				case 2:
 					mes "[Morestone]";
-					mes "If you need my assistance, just ask.";
-					mes "Ah! Dont forget, I hate monsters! So I don't want to see them. It will be better if you ask for another favour.";
+				mes "如果需要我的帮助，尽管开口。";
+				mes "啊！别忘了，我讨厌怪物！所以我不想看到它们。最好请我帮别的忙。";
 					close;
 				}
 			}
 			else {
 				set $@gdeventv_a1,1;
 				set $@gdevents_a$,.@chk_yourgdname$;
-				mes "[Dwarf]";
-				mes "Help me!";
-				mes "Please, help me!";
+				mes "[矮人]";
+				mes "帮帮我！";
+				mes "请帮帮我！";
 				next;
-				switch(select("What happened?:Nevermind.")) {
+				switch(select("发生了什么？:算了。")) {
 				case 1:
-					mes "[Dwarf]";
-					mes "I am Morestone and I collect rare gems.";
+					mes "[矮人]";
+					mes "我是莫尔斯通，收集稀有宝石。";
 					next;
 					mes "[Morestone]";
-					mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-					mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+					mes "旅途中有人告诉我瓦尔弗雷娅和尼德霍格有很多宝石，所以我来到了这里。";
+					mes "但这里的土壤很难挖掘。 幸好，我的^3131FF镐^000000从不让我失望！";
 					next;
-					select("Pickaxe!");
+					select("镐！");
 					mes "[Morestone]";
-					mes "Yes, my beloved pickaxe!";
-					mes "I always carry it with me, you know?";
-					next;
-					mes "[Morestone]";
-					mes "We started working here together.";
-					mes "After a few days, we finally found something!";
-					next;
-					select("Something strange??");
-					mes "[Morestone]";
-					mes "No, but it was worth quite a lot.";
-					mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-					mes "His name was^3131FFKublin^000000!";
+					mes "是的，我心爱的镐！";
+					mes "我总是随身携带，你知道吗？";
 					next;
 					mes "[Morestone]";
-					mes "He stole my Pickaxe!";
-					mes "I can't live without it...";
+					mes "我们一起在这里工作。";
+					mes "几天后，我们终于发现了东西！";
+					next;
+					select("奇怪的东西？？");
+					mes "[Morestone]";
+					mes "不，但它价值不菲。";
+					mes "但我们没时间庆祝。 突然出现一只怪物，偷走了我的镐。";
+					mes "它的名字是^3131FFKublin^000000!";
+					next;
+					mes "[Morestone]";
+					mes "他偷走了我的镐！";
+					mes "没有它我活不下去……";
 					next;
 					if (countitem(6010) > 0) {
 						mes "[" + strcharinfo(0) + "]";
-						mes "Is this the pickaxe that you've been looking for?";
+						mes "这是你一直在找的镐吗？";
 						next;
 						mes "[Morestone]";
-						mes "You found my Pickaxe?";
-						mes "Show me, please!";
+						mes "你找到了我的镐？";
+						mes "请给我看看！";
 						next;
 						mes "[Morestone]";
-						mes "Oh, my! You've returned it to me!";
-						mes "My precious pickaxe, I thought I lost you forever.";
+						mes "天啊！你把它还给我了！";
+						mes "我珍贵的镐，我以为永远失去你了。";
 						next;
 						mes "[Morestone]";
-						mes "You are great! What guild are you from?";
-						mes "Could it be Gravity or Mercury?";
+						mes "你真棒！你属于哪个公会？";
+						mes "是重力公会还是水星公会？";
 						next;
 						mes "[" + strcharinfo(0) + "]";
-						mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+						mes "我是 ^3131FF"+.@chk_yourgdname$+"^.";
 						next;
 						mes "[Morestone]";
-						mes "Oh... That guild will receive my greatest respect.";
+						mes "哦……那个公会将得到我最大的尊敬。";
 						next;
 						mes "[Morestone]";
-						mes "Oh! My friend, I am very grateful for your help.";
-						mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+						mes "哦！朋友，非常感谢你的帮助。";
+						mes "作为奖励，我告诉你一个最近发现的神秘区域。";
 						next;
-						select("A mysterious area?");
+						select("神秘区域？");
 						mes "[Morestone]";
-						mes "That's right. I found it when I was digging around here.";
-						mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-						next;
-						mes "[Morestone]";
-						mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+						mes "没错，我在这里挖掘时发现了它。";
+						mes "看起来是为某种特殊用途建造的，但那里没有宝石，所以我不感兴趣。";
 						next;
 						mes "[Morestone]";
-						mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-						mes "Do you want to go there now?";
+						mes "比起独自前往，我觉得和朋友一起去更有趣……";
 						next;
-						switch(select("Wait! I'm not ready yet.:Let's go!")) {
+						mes "[Morestone]";
+						mes "如果你愿意，我可以带^3131FF你和公会成员^000000探索那里。";
+						mes "现在要去吗？";
+						next;
+						switch(select("等等！我还没准备好。:我们走！")) {
 						case 1:
 							set $@gdeventv_a1,0;
 							set $@gdevents_a$,"";
 							mes "[Morestone]";
-							mes "Take your time, and find a place to gather you friends.";
+						mes "慢慢来，找个地方集合你的朋友。";
 							close;
 						case 2:
 							mes "[Morestone]";
-							mes "Alright! Let's go.";
-							mes "If your friends visit me again later, I will guide them to that area again.";
-							mes "Don't forget, dwarves are grateful beings! Hahaha!";
+							mes "好！我们走。";
+							mes "如果你的朋友之后再来找我，我会再次带他们去那里。";
+							mes "别忘了，矮人是知恩图报的种族！哈哈哈！";
 							delitem 6010,1; //Pickaxe
 							set $@gdeventv_a1,1;
 							set $@gdevents_a$,.@chk_yourgdname$;
@@ -443,25 +443,25 @@ arug_dun01,199,195,5	script	Dwarf#aru_gd	826,{
 						set $@gdeventv_a1,0;
 						set $@gdevents_a$,"";
 						mes "[Morestone]";
-						mes "I will tell you how to find him.";
-						mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+						mes "我告诉你怎么找到他。";
+						mes "库布林戴着可笑的金帽子，很容易认出他。";
 						close;
 					}
 				case 2:
 					set $@gdeventv_a1,0;
 					set $@gdevents_a$,"";
 					emotion ET_CRY;
-					mes "[Dwarf]";
-					mes "Ah....";
+					mes "[矮人]";
+				mes "啊……";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Morestone]";
-			mes "I, Morestone, have made an alliance with the "+$@gdevents_a$+" guild.";
-			mes "Hm, you're not a member.";
-			mes "Could you please give them my greetings?";
+			mes "我，莫尔斯通，已经与"+$@gdevents_a$+"公会结成同盟。";
+			mes "嗯，你不是公会成员。";
+			mes "能请你代我向他们问好吗？";
 			close;
 		}
 	}
@@ -497,11 +497,11 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 		setnpcdisplay "Pierrot Pier#aru_gd",876;
 	}
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait!! -";
-		mes "- You're carrying too many items, -";
-		mes "- you can't receive the materials. -";
-		mes "- Please use the Kafra Services, -";
-		mes "- and come back later. -";
+		mes "- 等等！！ -";
+		mes "- 你携带的物品太多了，-";
+		mes "- 你无法领取材料。-";
+		mes "- 请使用卡普拉服务，-";
+		mes "- 稍后再回来。-";
 		close;
 	}
 	if (is_guild_leader() == true) {
@@ -509,120 +509,120 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 			set .@que_2143,checkquest(2143,PLAYTIME);
 			if (.@que_2143 == -1) {
 				setnpcdisplay "Pierrot Pier#aru_gd",715;
-				mes "A lonely clown is juggling.";
+				mes "一个孤独的小丑正在玩杂耍。";
 				next;
-				mes "When looked at closely, the clown is just a puppet that looks like a human.";
+				mes "仔细看，小丑其实只是一个看起来像人类的木偶。";
 				next;
-				mes "The clown stops, then starts moving in accordance to your movements, noises start to emit from it's mouth.";
-				next;
-				mes "[Pierrot Pier]";
-				mes "Beep beep beep.";
-				mes "Hello, my friends!";
-				mapannounce "arug_que01", "Pierrot Pier: Beep beep beep! Hello, my friends!",bc_map,"0x99CC00";
+				mes "小丑停下，然后随着你的动作移动，嘴里开始发出声音。";
 				next;
 				mes "[Pierrot Pier]";
-				mes "I am the loyal servant of Gergath, and I have finally received my orders.";
-				mes "I am happy to hear all the laughter, but without my master's permission, I can't do anything.";
-				mapannounce "arug_que01", "Pierrot Pier: I am happy to hear all the laughter, but without my master's permission, I can't do anything.",bc_map,"0x99CC00";
+				mes "哔哔哔。";
+				mes "你好，我的朋友们！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：哔哔哔！朋友们，你们好！",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Did you get permission from Gergath?";
-				mapannounce "arug_que01", "Pierrot Pier: Did you get permission from Gergath?",bc_map,"0x99CC00";
+				mes "我是 Gergath 的忠诚仆人，终于收到了命令。";
+				mes "听到大家的笑声我很高兴，但没有主人的许可，我什么也做不了。";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：听到大家的笑声我很高兴，但没有主人的许可，我什么也做不了。",bc_map,"0x99CC00";
 				next;
-				switch(select("I need to check that.:No.")) {
+				mes "[Pierrot Pier]";
+				mes "你得到 Gergath 的许可了吗？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你得到格尔加斯的许可了吗？",bc_map,"0x99CC00";
+				next;
+				switch(select("我需要确认。:没有。")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "Please give me the palm of your hand.";
-					mapannounce "arug_que01", "Pierrot Pier: Please give me the palm of your hand.",bc_map,"0x99CC00";
+					mes "请把手掌给我。";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：请把手掌给我。",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Let me see...";
-					mapannounce "arug_que01", "Pierrot Pier: Let me see...",bc_map,"0x99CC00";
-					next;
-					emotion ET_THINK;
-					mes "[Pierrot Pier]";
-					mes "Hm...";
-					mapannounce "arug_que01", "Pierrot Pier: Hm...",bc_map,"0x99CC00";
+					mes "让我看看……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：让我看看……",bc_map,"0x99CC00";
 					next;
 					emotion ET_THINK;
 					mes "[Pierrot Pier]";
-					mes "Okay, I see...";
-					mapannounce "arug_que01", "Pierrot Pier: Okay, I see...",bc_map,"0x99CC00";
+					mes "嗯……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：嗯……",bc_map,"0x99CC00";
 					next;
 					emotion ET_THINK;
 					mes "[Pierrot Pier]";
-					mes "Indeed...";
-					mapannounce "arug_que01", "Pierrot Pier: Indeed...",bc_map,"0x99CC00";
+					mes "好的，我看到了……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：好，我看到了……",bc_map,"0x99CC00";
+					next;
+					emotion ET_THINK;
+					mes "[Pierrot Pier]";
+					mes "确实……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：确实如此……",bc_map,"0x99CC00";
 					next;
 					emotion ET_STARE;
 					mes "[Pierrot Pier]";
-					mes "Verification completed!";
-					mapannounce "arug_que01", "Pierrot Pier: Verification completed!",bc_map,"0x99CC00";
+					mes "验证完成！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：验证完成！",bc_map,"0x99CC00";
 					next;
 					break;
 				case 2:
 					mes "[Pierrot Pier]";
-					mes "Hm? that's right.";
-					mes "When is that person coming? I am very bored~!";
+					mes "嗯？没错。";
+					mes "那个人什么时候来？我好无聊~！";
 					close;
 				}
 				mes "[Pierrot Pier]";
-				mes "^3131FF<You're someone who can only think about nonsense everyday, you have no focus at all.>^000000";
-				mapannounce "arug_que01", "Pierrot Pier: <You're someone who can only think about nonsense everyday, you have no focus at all.>",bc_map,"0x99CC00";
+				mes "^3131FF<你每天只会想些无聊的事，完全没有专注力。>^000000";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：<你每天只会胡思乱想，完全无法集中注意力。>",bc_map,"0x99CC00";
 				next;
 				emotion ET_DELIGHT;
 				mes "[Pierrot Pier]";
-				mes "Hm? You don't think so?";
-				mapannounce "arug_que01", "Pierrot Pier: Hm? You don't think so?",bc_map,"0x99CC00";
+				mes "嗯？你不这么认为？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：嗯？你不这么认为吗？",bc_map,"0x99CC00";
 				next;
 				emotion ET_SMILE;
 				mes "[Pierrot Pier]";
-				mes "Haha, I'm just kidding. Beep beep.";
-				mes "Ah, you are the one my master speaks of.";
-				mapannounce "arug_que01", "Pierrot Pier: Haha, I'm just kidding. Beep beep. You are the one my master speaks of.",bc_map,"0x99CC00";
+				mes "哈哈，我只是开玩笑。哔哔。";
+				mes "啊，你就是主人提到的那个人。";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：哈哈，我只是开玩笑。哔哔。你就是主人提到的那个人。",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Come, the Gergath has left a message for you.";
-				mes "It's a bit old, but it should still be legible.";
+				mes "来吧，Gergath 给你留了消息。";
+				mes "虽然有点旧，但应该还能读。";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Alright, let's begin!";
+				mes "好，开始吧！";
 				setquest 2143;
 				donpcevent "Gergath#aru_gd::OnEnable";
 				close;
 			}
 			else if ((.@que_2143 == 0) || (.@que_2143 == 1)) {
 				mes "[Pierrot Pier]";
-				mes "Let's talk after I finished reading my master's message. Beep beep.";
+				mes "等我读完主人的消息再聊。哔哔。";
 				close;
 			}
 			else {
 				mes "[Pierrot Pier]";
-				mes "My master Gergath sincerely wishes you joy for you and your family everyday.";
+				mes "我的主人 Gergath 真诚祝愿你和家人每天快乐。";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Alright, would you like to play the game Gergath has prepared for you?";
+				mes "那么，想玩 Gergath 为你准备的游戏吗？";
 				next;
-				switch(select("Game instructions.:Skip instructions.:Refuse game.")) {
+				switch(select("游戏说明。:跳过说明。:拒绝游戏。")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "The game prepared by my master is very unique, yet simple and fun!";
-					mapannounce "arug_que01", "Pierrot Pier: The game prepared by my lord is very unique, yet simple and fun!",bc_map,"0x99CC00";
+					mes "主人准备的游戏非常独特，却简单又有趣！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：主人准备的游戏非常独特，却又简单有趣！",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "It's called \"Find the Treasure Map\"!!";
-					mapannounce "arug_que01", "Pierrot Pier: It's called \"Find the Treasure Map\"!!",bc_map,"0x99CC00";
+					mes "它叫‘寻找藏宝图’！！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：它叫作“寻找藏宝图”！！",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Do you see this large and green field? Beep, beep?";
-					mes "I will show you the most incredible magic here.";
-					mes "I will turn this place very white. Veeery white!";
-					mapannounce "arug_que01", "Pierrot Pier: I will turn this place very white. Veeery white!",bc_map,"0x99CC00";
+					mes "看到这片巨大绿色的原野了吗？哔哔？";
+					mes "我会在这里展示最不可思议的魔法。";
+					mes "我会把这里变得非常白，非常白！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：我要把这里变得非常白。非——常白！",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "The game instruction is just to find the treasure map within the time limit.";
-					mes "Sounds easy, right?";
-					mapannounce "arug_que01", "Pierrot Pier: The game instruction is just to find the treasure map within the time limit. ounds easy, right?",bc_map,"0x99CC00";
+					mes "游戏规则很简单：在时限内找到藏宝图。";
+					mes "听起来很容易，对吧？";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：游戏规则就是在限时内找到藏宝图。听起来很简单，对吧？",bc_map,"0x99CC00";
 					next;
 					break;
 				case 2:
@@ -630,37 +630,37 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 				case 3:
 					emotion ET_CRY;
 					mes "[Pierrot Pier]";
-					mes "Oh, you don't want to play?";
+					mes "哦，你不想玩吗？";
 					close;
 				}
 				mes "[Pierrot Pier]";
-				mes "Okay, I'm ready to begin.";
-				mes "Shall we start? Beep, beep?";
+				mes "好，我准备开始了。";
+				mes "开始吧？哔哔？";
 				next;
-				switch(select("No.:Start.")) {
+				switch(select("不。:开始。")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "Let me know when you are ready.";
+					mes "准备好后告诉我。";
 					close;
 				case 2:
 					mes "[Pierrot Pier]";
-					mes "Alright! Let us begin!";
+					mes "好！开始吧！";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Ladies, and gentlemen.";
-					mapannounce "arug_que01", "Pierrot Pier: Ladies, and gentlemen.",bc_map,"0x99CC00";
+					mes "女士们、先生们。";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：女士们、先生们。",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Who will find the treasure map in this white world?";
-					mapannounce "arug_que01", "Pierrot Pier: Who will find the treasure map in this white world?",bc_map,"0x99CC00";
+					mes "谁会在这个白色世界中找到藏宝图？";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：谁能在这个白色世界中找到藏宝图？",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Amongst all of you, who shall be the lucky one?";
-					mapannounce "arug_que01", "Pierrot Pier: Amongst all of you, who shall be the lucky one?",bc_map,"0x99CC00";
+					mes "你们之中谁会成为幸运儿？";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：你们之中谁会成为幸运儿？",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Let the game.. Begin!";
-					mapannounce "arug_que01", "Pierrot Pier: Let the game.. Begin!",bc_map,"0x99CC00";
+					mes "游戏……开始！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：游戏……开始！",bc_map,"0x99CC00";
 					set $@gdeventv_a2,1;
 					donpcevent "Controller#gdevent_a::Ongame_start";
 					erasequest 2143;
@@ -670,99 +670,99 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 		}
 		else if ($@gdeventv_a2 == 1) {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "找到藏宝图了吗？";
+			mes "让我看看你手里有什么！哔哔！";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "让我看看……";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_a::OnStop";
 				set $@gdeventv_a2,3;
 				donpcevent "eff_mvp#aru_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
-				mapannounce "arug_que01", "Pierrot Pier: Wow~~!! Success~!! What a success~!!",bc_map,"0x99CC00";
+				mes "哇~~！！";
+				mes "成功~！！";
+				mes "真是成功~！！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：哇~~！！成功~！！真是太成功了~！！",bc_map,"0x99CC00";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "啊，真遗憾，你似乎还没找到藏宝图。";
+					mes "快点！时间不多了！快！";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "我什么也没看到。你开始了吗？哔？";
+					mes "嘿嘿，你和我说话时，时间正在慢慢流逝~";
 					close;
 				}
 			}
 		}
 		else if ($@gdeventv_a2 == 2) {
 			mes "[Pierrot Pier]";
-			mes "Wah, why is it like this~!!";
-			mes "Not enough? But this makes the game fun, no? Hahaha!";
+			mes "哇，怎么会这样~！！";
+			mes "不够吗？但这才让游戏有趣，对吧？哈哈哈！";
 			next;
 			mes "[Pierrot Pier]";
-			mes "What did you think?";
+			mes "你觉得怎么样？";
 			next;
-			switch(select("It was pretty hard.:I should've been successful...")) {
+			switch(select("真的很难。:我本该成功……")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "It's like trying to find a needle in a haystack!";
-				mes "It's hard, but if you find it, it's worth ten times the effort. Beep, beep.";
+				mes "就像大海捞针！";
+				mes "虽然困难，但找到后就值得付出十倍努力。哔哔。";
 				next;
 				break;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Aaah~! Time is gold.";
-				mes "Precious time goes by so fast.";
+				mes "啊~！时间就是金钱。";
+				mes "宝贵的时间流逝得真快。";
 				next;
 				break;
 			}
 			mes "[Pierrot Pier]";
-			mes "I, Pierrot Piere, am not a heartless clown! Beep beep.";
-			mapannounce "arug_que01", "Pierrot Pier: I, Pierrot Piere, am not a heartless clown! Beep beep.",bc_map,"0x99CC00";
+			mes "我 Pierrot Piere 才不是无情的小丑！哔哔。";
+			mapannounce "arug_que01", "皮埃罗·皮埃尔：我，皮埃罗·皮埃尔，可不是无情的小丑！哔哔。",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Your success is my happiness!";
-			mes "I'll give you one more chance. How's that? Beep?";
-			mapannounce "arug_que01", "Pierrot Pier: I'll give you one more chance. How's that? Beep?",bc_map,"0x99CC00";
+			mes "你的成功就是我的幸福！";
+			mes "我再给你一次机会。怎么样？哔？";
+			mapannounce "arug_que01", "皮埃罗·皮埃尔：我再给你一次机会。怎么样？哔？",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Okay, I'm ready to begin.";
-			mes "Shall we start? Beep, beep?";
-			mapannounce "arug_que01", "Pierrot Pier: Okay, I'm ready to begin. Shall we start? Beep, beep?",bc_map,"0x99CC00";
+			mes "好，我准备开始了。";
+			mes "开始吧？哔哔？";
+			mapannounce "arug_que01", "皮埃罗·皮埃尔：好了，我准备开始了。我们开始吧？哔、哔？",bc_map,"0x99CC00";
 			next;
-			switch(select("No.:Start.")) {
+			switch(select("不。:开始。")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "Let me know when you are ready.";
+				mes "准备好后告诉我。";
 				close;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Alright! Let us begin!";
+				mes "好！开始吧！";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Ladies, and gentlemen.";
-				mapannounce "arug_que01", "Pierrot Pier: Ladies, and gentlemen.",bc_map,"0x99CC00";
+				mes "女士们、先生们。";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：女士们、先生们。",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Who will find the treasure map in this white world?";
-				mapannounce "arug_que01", "Pierrot Pier: Who will find the treasure map in this white world?",bc_map,"0x99CC00";
+				mes "谁会在这个白色世界中找到藏宝图？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：谁能在这个白色世界中找到藏宝图？",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Amongst all of you, who shall be the lucky one?";
-				mapannounce "arug_que01", "Pierrot Pier: Amongst all of you, who shall be the lucky one?",bc_map,"0x99CC00";
+				mes "你们之中谁会成为幸运儿？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你们之中谁会成为幸运儿？",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Let the game.. Begin!";
-				mapannounce "arug_que01", "Pierrot Pier: Let the game.. Begin!",bc_map,"0x99CC00";
+				mes "游戏……开始！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：游戏……开始！",bc_map,"0x99CC00";
 				set $@gdeventv_a2,10;
 				donpcevent "Controller#gdevent_a::Ongame_start";
 				close;
@@ -774,18 +774,18 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 				erasequest 2143;
 			}
 			mes "[Pierrot Pier]";
-			mes "How did you do it?";
-			mapannounce "arug_que01", "Pierrot Pier: How did you do it?",bc_map,"0x99CC00";
+			mes "你是怎么做到的？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你是怎么做到的？",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "You managed to find a needle in a haystack!";
-			mes "Amazing!";
-			mapannounce "arug_que01", "Pierrot Pier: You managed to find a needle in a haystack! Amazing!!",bc_map,"0x99CC00";
+			mes "你居然大海捞针成功了！";
+			mes "太厉害了！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你竟然在大海捞针中找到了针！太厉害了！！",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "You've completeled an unbelievable task, I will give you the wonderful gift master has prepared!! Ha!";
-			mapannounce "arug_que01", "Pierrot Pier: You've completeled an unbelievable task, I will give you the wonderful gift my master has prepared!! Ha!",bc_map,"0x99CC00";
-			mapannounce "arug_que01", "Pierrot Pier: Here, take Pierre's Treasure Boxes.",bc_map,"0x99CC00";
+			mes "你完成了不可思议的任务，我会把主人准备的精美礼物给你！！哈！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你完成了不可思议的任务，我要把主人准备的精美礼物送给你！！哈！",bc_map,"0x99CC00";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：来，收下皮埃尔的宝箱。",bc_map,"0x99CC00";
 			donpcevent "eff_mvp#aru_gd::Onmvp";
 			set $@gdeventv_a2,5;
 			getitem 14596,10; //Pierre_Treasurebox
@@ -793,53 +793,53 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 		}
 		else if ($@gdeventv_a2 == 4) {
 			mes "[Pierrot Pier]";
-			mes "Incredible! Unbelievable! Beep beep!";
+			mes "不可思议！难以置信！哔哔！";
 			close;
 		}
 		else if ($@gdeventv_a2 == 5) {
-			mapannounce "arug_que01", "Pierrot Pier: Seeing your smiles, makes Pierrot feel very happy~ See you next time!",bc_map,"0x99CC00";
+			mapannounce "arug_que01", "皮埃罗·皮埃尔：看到你们的笑容，皮埃罗非常开心~下次再见！",bc_map,"0x99CC00";
 			mes "[Pierrot Pier]";
-			mes "Did you have fun?";
+			mes "玩得开心吗？";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Seeing your smiles, makes Pierrot feel very happy~";
+			mes "看到你的笑容，Pierrot 很开心~";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I hope to see you again very soon, I must go back to being a doll now.";
-			mes "See you next time!";
+			mes "希望很快再见到你，我现在必须变回木偶了。";
+			mes "下次见！";
 			erasequest 2144;
 			close;
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "找到藏宝图了吗？";
+			mes "让我看看你手里有什么！哔哔！";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see.";
+			mes "让我看看。";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_a::OnStop";
 				set $@gdeventv_a2,3;
 				donpcevent "eff_mvp#aru_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
+				mes "哇~~！！";
+				mes "成功~！！";
+				mes "真是成功~！！";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "啊，真遗憾，你似乎还没找到藏宝图。";
+					mes "快点！时间不多了！快！";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "我什么也没看到。你开始了吗？哔？";
+					mes "嘿嘿，你和我说话时，时间正在慢慢流逝~";
 					close;
 				}
 			}
@@ -848,172 +848,172 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 	else {
 		if ($@gdeventv_a2 == 0) {
 			setnpcdisplay "Pierrot Pier#aru_gd",715;
-			mes "A lonely clown is juggling.";
+			mes "一个孤独的小丑正在玩杂耍。";
 			next;
-			mes "When looked at closely, the clown is just a puppet that looks like a human.";
+			mes "仔细看，小丑其实只是一个像人类的木偶。";
 			next;
-			mes "The clown stops, then starts moving in accordance to your movements, noises start to emit from it's mouth.";
-			next;
-			mes "[Pierrot Pier]";
-			mes "Beep beep beep.";
-			mes "Hello, my friends!";
-			mapannounce "arug_que01", "Pierrot Pier: Beep beep beep! Hello, my friends!",bc_map,"0x99CC00";
+			mes "小丑停下，然后随你的动作移动，嘴里开始发出声音。";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I am the loyal servant of Gergath, and I have finally received my orders.";
-			mes "I am happy to hear all the laughter, but without my master's permission, I can't do anything.";
-			mapannounce "arug_que01", "Pierrot Pier: I am happy to hear all the laughter, but without my master's permission, I can't do anything.",bc_map,"0x99CC00";
+			mes "哔哔哔。";
+			mes "你好，我的朋友们！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：哔哔哔！朋友们，你们好！",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Did you get permission from the Gergath?";
-			mapannounce "arug_que01", "Pierrot Pier: Did you get permission from Gergath?",bc_map,"0x99CC00";
+			mes "我是 Gergath 的忠诚仆人，终于收到了命令。";
+			mes "听到大家的笑声我很高兴，但没有主人的许可，我什么也做不了。";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：听到大家的笑声我很高兴，但没有主人的许可，我什么也做不了。",bc_map,"0x99CC00";
 			next;
-			switch(select("I need to check that.:No.")) {
+			mes "[Pierrot Pier]";
+			mes "你得到 Gergath 的许可了吗？";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：你得到格尔加斯的许可了吗？",bc_map,"0x99CC00";
+			next;
+			switch(select("我需要确认。:没有。")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "Please give me the palm of your hand.";
-				mapannounce "arug_que01", "Pierrot Pier: Please give me the palm of your hand.",bc_map,"0x99CC00";
+				mes "请把手掌给我。";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：请把手掌给我。",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Let me see...";
-				mapannounce "arug_que01", "Pierrot Pier: Let me see...",bc_map,"0x99CC00";
-				next;
-				emotion ET_THINK;
-				mes "[Pierrot Pier]";
-				mes "Hm...";
-				mapannounce "arug_que01", "Pierrot Pier: Hm...",bc_map,"0x99CC00";
+				mes "让我看看……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：让我看看……",bc_map,"0x99CC00";
 				next;
 				emotion ET_THINK;
 				mes "[Pierrot Pier]";
-				mes "Okay, I see...";
-				mapannounce "arug_que01", "Pierrot Pier: Okay, I see...",bc_map,"0x99CC00";
+				mes "嗯……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：嗯……",bc_map,"0x99CC00";
 				next;
 				emotion ET_THINK;
 				mes "[Pierrot Pier]";
-				mes "Indeed...";
-				mapannounce "arug_que01", "Pierrot Pier: Indeed...",bc_map,"0x99CC00";
+				mes "好的，我看到了……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：好，我看到了……",bc_map,"0x99CC00";
+				next;
+				emotion ET_THINK;
+				mes "[Pierrot Pier]";
+				mes "确实……";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：确实如此……",bc_map,"0x99CC00";
 				next;
 				emotion ET_STARE;
 				mes "[Pierrot Pier]";
-				mes "Verification completed!";
-				mapannounce "arug_que01", "Pierrot Pier: Verification completed!",bc_map,"0x99CC00";
+				mes "验证完成！";
+					mapannounce "arug_que01", "皮埃罗·皮埃尔：验证完成！",bc_map,"0x99CC00";
 				next;
 				break;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Hm? that's right.";
-				mes "When is that person coming? I am very bored~!";
+				mes "嗯？没错。";
+				mes "那个人什么时候来？我好无聊~！";
 				close;
 			}
 			emotion ET_SMILE;
 			mes "[Pierrot Pier]";
-			mes "^3131FF<Although you're a weirdo, you seem to be very dedicated>^000000. Beep beep.";
+			mes "^3131FF<虽然你很古怪，但似乎非常认真>^000000。哔哔。";
 			next;
 			emotion ET_PROFUSELY_SWEAT;
 			mes "[Pierrot Pier]";
-			mes "Hm? You don't think so?";
+			mes "嗯？你不这么认为？";
 			next;
 			mes "[Pierrot Pier]";
-			mes "The one my lord appointed is ^3131FF< someone who leads many people >^000000. Beep.";
+			mes "主人指定的人是 ^3131FF< 能领导许多人的人 >^000000。哔。";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Pierrot wants to be someone like that, too. Beep.";
+			mes "Pierrot 也想成为那样的人。哔。";
 			close;
 		}
 		else if ($@gdeventv_a2 == 1) {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "找到藏宝图了吗？";
+			mes "让我看看你手里有什么！哔哔！";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "让我看看……";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_a::OnStop";
 				set $@gdeventv_a2,3;
 				donpcevent "eff_mvp#aru_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
-				mapannounce "arug_que01", "Pierrot Pier: Wow~~!! Success~!! What a success~!!",bc_map,"0x99CC00";
+				mes "哇~~！！";
+				mes "成功~！！";
+				mes "真是成功~！！";
+				mapannounce "arug_que01", "皮埃罗·皮埃尔：哇~~！！成功~！！真是太成功了~！！",bc_map,"0x99CC00";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "啊，真遗憾，你似乎还没找到藏宝图。";
+					mes "快点！时间不多了！快！";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "我什么也没看到。你开始了吗？哔？";
+					mes "嘿嘿，你和我说话时，时间正在慢慢流逝~";
 					close;
 				}
 			}
 		}
 		else if ($@gdeventv_a2 == 2) {
 			mes "[Pierrot Pier]";
-			mes "Wah, why is it like this~!!";
-			mes "Not enough? But this makes the game fun, no? Hahaha!";
+			mes "哇，怎么会这样~！！";
+			mes "不够吗？但这才让游戏有趣，对吧？哈哈哈！";
 			close;
 		}
 		else if ($@gdeventv_a2 == 3) {
 			mes "[Pierrot Pier]";
-			mes "Congratulations, you have succeeded!";
-			mes "I will talk to your leader about other details.";
+			mes "恭喜，你成功了！";
+			mes "其他细节我会和你的队长谈。";
 			close;
 		}
 		else if ($@gdeventv_a2 == 4) {
 			mes "[Pierrot Pier]";
-			mes "Incredible! Unbelievable! Beep beep!";
+			mes "不可思议！难以置信！哔哔！";
 			close;
 		}
 		else if ($@gdeventv_a2 == 5) {
 			mes "[Pierrot Pier]";
-			mes "Did you have fun?";
+			mes "玩得开心吗？";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Seeing your smiles, makes Pierrot feel very happy~";
+			mes "看到你的笑容，Pierrot 很开心~";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I hope to see you again very soon, I must go back to being a doll now.";
-			mes "See you next time!";
+			mes "希望很快再见到你，我现在必须变回木偶了。";
+			mes "下次见！";
 			close;
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure?";
-			mes "Show me that thing you are holding, now!";
+			mes "找到宝藏了吗？";
+			mes "现在让我看看你手里的东西！";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "让我看看……";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_a::OnStop";
 				set $@gdeventv_a2,3;
 				donpcevent "eff_mvp#aru_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
+				mes "哇~~！！";
+				mes "成功～！！";
+				mes "太成功了～！！";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
-					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "[皮埃罗·皮埃尔]";
+					mes "啊，真遗憾，看来你还没找到藏宝图。";
+					mes "快点！时间快到了！赶紧！";
 					close;
 				}
 				else {
-					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "[皮埃罗·皮埃尔]";
+					mes "我什么也没看到。你到底开始了吗？哔？";
+					mes "嘿嘿，你和我聊天时，时间正一点点流逝～";
 					close;
 				}
 			}
@@ -1516,14 +1516,14 @@ arug_que01,104,105,3	duplicate(GD_Ev_Flower)	#aru_flower_55	976
 
 arug_dun01,5,5,1	script	Event controller#aru_gd	81,{
 	if (callfunc("F_GM_NPC",1854,0) < 1) {
-		mes "Incorrect password.";
+		mes "密码错误。";
 		close;
 	} else {
-		mes "How can I help you?";
+		mes "我能为你做什么？";
 		next;
-		switch(select("Reset.:No, thanks.")) {
+		switch(select("重置。:不用了，谢谢。")) {
 		case 1:
-			mes "Completed.";
+			mes "完成。";
 			donpcevent "Monster Controler1#aru::OnControler1#aru_gd";
 			donpcevent "Monster Controler1#aru::OnControler1#aru_gd";
 			disablenpc "Dwarf#aru_gd";
@@ -1532,7 +1532,7 @@ arug_dun01,5,5,1	script	Event controller#aru_gd	81,{
 			set $@gdevents_a$,"";
 			close;
 		case 2:
-			mes "Good bye~";
+			mes "再见～";
 			close;
 		}
 	}

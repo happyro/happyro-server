@@ -19,111 +19,111 @@
 //============================================================
 prontera,132,125,4	script	Bossnia Staff#1	908,{
 	mes "[Riss]";
-	mes "Hello?";
-	mes "I found some beautiful places";
-	mes "while I travelled all over the world.";
-	mes "I am an adventurer.";
-	mes "Haha~";
+	mes "你好？";
+	mes "我周游世界时发现了一些美丽的地方。";
+	mes "我是一名冒险者。";
+	mes "哈哈～";
 	next;
 	mes "[Riss]";
-	mes "What? My name is...";
-	mes "'Bossnia Staff'?? No no...";
-	mes "Well, my name is not so important.";
-	mes "Sometimes you should be generous.";
-	mes "No time for considering that kind of small stuff";
-	mes "when you have to concentrate on more important things.";
+	mes "什么？我的名字是……";
+	mes "‘Bossnia 工作人员’？？不不……";
+	mes "我的名字不重要。";
+	mes "有时应该慷慨一些。";
+	mes "专注于更重要的事情时，没时间考虑这种小事。";
 	next;
 	mes "[Riss]";
-	mes "Hum... anyway I want to say... something..";
-	mes "While I was travelling through some places,";
-	mes "I found a really fearful place.";
+	mes "嗯……总之我想说……一些事……";
+	mes "我旅行经过一些地方时，";
+	mes "发现了一个非常可怕的地方。";
 	next;
 	mes "[Riss]";
-	mes "Most of the time when you come to a place,";
-	mes "there is one strong and fearful monster.";
-	mes "Isn't it?";
+	mes "通常来到一个地方时，那里会有一只强大可怕的魔物。";
+	mes "不是吗？";
 	next;
 	mes "[Riss]";
-	mes "But... but... in there...";
-	mes "There are lots of fearful and strong monsters in there...";
-	mes "That was really frightful.";
+	mes "但是……但是……那里……";
+	mes "那里有许多可怕而强大的魔物……";
+	mes "真的太吓人了。";
 	next;
 	mes "[Riss]";
-	mes "If I had reacted a bit later... a few seconds...";
-	mes "I might have been killed.";
+	mes "如果我再晚几秒反应……";
+	mes "我可能已经死了。";
 	next;
 	mes "[Riss]";
-	mes "What?";
-	mes "You want to go in there?";
-	mes "Oh~ Boy~ you didn't get me.";
-	mes "In there.......";
+	mes "什么？";
+	mes "你想进去？";
+	mes "哦～天哪～你没明白我的意思。";
+	mes "那里……";
 	next;
 	mes "[Riss]";
-	mes "Uh... you already know?";
-	mes "Although you know the place, you want to go in...";
-	mes "Good, I will send you there.";
-	mes "But after you went there, don't hold";
-
+	mes "呃……你已经知道了？";
+	mes "虽然知道那个地方，你还是想进去……";
+	mes "好吧，我送你去。";
+	mes "但你进去后，别记恨我。";
+	
 	// If the VIP system is enabled, players pay a Reset Stone for 5 entrances (with a choice of warps).
 	// If it's disabled, players pay 5,000z per entrance.
-	if (VIP_SCRIPT) {
-		mes "a grudge against me. It'll cost you 1 Reset Stone for 5 access.";
-		next;
-		mes "[Riss]";
+if (VIP_SCRIPT) {
+	mes "进入一次需要 1 块重置石，可使用 5 次。";
+	next;
+	mes "[Riss]";
 		if (bossnia_event > 0) {
-			set .@type,1;
-			mes "Remaining access: "+bossnia_event;
+		set .@type,1;
+		mes "剩余次数："+bossnia_event;
 		} else if (countitem(6320)) {
 			set .@type,2;
-			mes "Do you want to go?";
+			mes "你要进去吗？";
 		} else {
-			mes "You don't have a ticket now.....";
-			mes "So come to me again with a Reset Stone later.";
-			close;
-		}
-		next;
-		if(select("Enter:Leave") == 2)
-			close;
-		set .@i, select("First:Second:Third:Fourth");
-		switch(select("Warp 1:Warp 2:Warp 3:Warp 4")) {
+			mes "你现在没有入场券……";
+			mes "之后带着重置石再来找我。";
+		close;
+			}
+			next;
+			if(select("进入:离开") == 2)
+		close;
+		set .@i, select("第一:第二:第三:第四");
+		switch(select("传送 1:传送 2:传送 3:传送 4")) {
 			case 1: set .@x,31; set .@y,208; break;
-			case 2: set .@x,31; set .@y,31; break;
-			case 3: set .@x,208; set .@y,31; break;
+		case 2: set .@x,31; set .@y,31; break;
+		case 3: set .@x,208; set .@y,31; break;
 			case 4: set .@x,208; set .@y,208; break;
-		}
-		if (.@type == 1)
+			}
+			if (.@type == 1)
 			set bossnia_event, bossnia_event-1;
 		else {
-			delitem 6320,1; //Premium_Reset_Stone
+		delitem 6320,1; //Premium_Reset_Stone
 			set bossnia_event,4;
 		}
-		specialeffect2 EF_MAXPOWER;
-		warp "bossnia_0"+.@i,.@x,.@y;
+			specialeffect2 EF_MAXPOWER;
+			warp "bossnia_0"+.@i,.@x,.@y;
 		close;
-	} else {
-		mes "a grudge against me. Also it costs 5,000 zeny.";
+		} else {
+		mes "别记恨我。每次还要花费 5,000 Zeny。";
 		next;
-		if (Zeny > 4999) {
-			mes "[Riss]";
-			mes "Would you really like to take the challenge?";
-			mes "Ok, just choose the course.";
+	if (Zeny > 4999) {
+		mes "[Riss]";
+		mes "你真的要接受挑战吗？";
+		mes "好，选择路线吧。";
 			next;
-			set .@i, select("First:Second:Third:Fourth");
+			set .@i, select("第一:第二:第三:第四");
 			mes "[Riss]";
-			mes "Take care, boy~";
-			mes "Don't hold a grudge against me.";
+			mes "保重，小伙子～";
+			mes "别记恨我。";
 			close2;
 			set Zeny, Zeny - 5000;
 			warp "bossnia_0"+.@i,rand(202,204),rand(202,204);
 			end;
-		} else {
+			} else {
 			mes "[Riss]";
-			mes "You don't have enough money...";
-			mes "Come back when you have at least 5,000 zeny.";
+			mes "你的钱不够……";
+		mes "至少准备 5,000 Zeny 后再回来。";
 			close;
-		}
-	}
-}
+			}
+			}
+			}
+		//
+	//
+//
 geffen,124,169,4	duplicate(Bossnia Staff#1)	Bossnia Staff#2	908
 payon,165,150,4	duplicate(Bossnia Staff#1)	Bossnia Staff#3	908
 morocc,142,100,4	duplicate(Bossnia Staff#1)	Bossnia Staff#4	908

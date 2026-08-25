@@ -499,28 +499,28 @@ S_Cancelquest:
 		switch( select( "No.","Yes." ) ) {
 		case 1:
 			mes "["+ .@npc_name$ +"]";
-			mes "Good luck!";
+			mes "祝你好运！";
 			close;
 		case 2:
 			mes "["+ .@npc_name$ +"]";
-			mes "As you wanted, this mission is canceled.";
+			mes "按你的要求，这项任务已取消。";
 			erasequest getarg(0);
 			close;
 		}
 	}
 	else {
-		mes "Hmm you still have some time left, but it's not the siege hour yet";
-		mes "I don't think you should go on.";
-		mes "You should cancel this mission. I would say it's failed.";
+		mes "嗯，你还剩一些时间，但现在还不是攻城时间。";
+		mes "我觉得你不该继续。";
+		mes "你应该取消这项任务，我认为它已经失败了。";
 		next;
-		switch( select( "I would like to go on.","Yes, I'll cancel it." ) ) {
+		switch( select( "我想继续。","好的，我要取消。" ) ) {
 		case 1:
 			mes "["+ .@npc_name$ +"]";
-			mes "I don't think it's worth it. Well, good luck!";
+			mes "我觉得不值得。好吧，祝你好运！";
 			close;
 		case 2:
 			mes "["+ .@npc_name$ +"]";
-			mes "As you wanted, this mission is canceled.";
+			mes "按你的要求，这项任务已取消。";
 			erasequest getarg(0);
 			close;
 		}
@@ -529,16 +529,16 @@ S_Cancelquest:
 S_Acceptquest:
 	.@npc_name$ = getarg(1);
 	next;
-	switch( select( "Accept it.","Do not accept it." ) ) {
+	switch( select( "接受。","不接受。" ) ) {
 	case 1:
 		mes "["+ .@npc_name$ +"]";
-		mes "^4d4dffThe time limit is 4 hours.^000000";
-		mes "Accomplish the mission with in that time and report to me.";
+		mes "^4d4dff时间限制为 4 小时。^000000";
+		mes "请在规定时间内完成任务并向我报告。";
 		setquest getarg(0);
 		close;
 	case 2:
 		mes "["+ .@npc_name$ +"]";
-		mes "Try another mission then.";
+		mes "那就试试其他任务吧。";
 		close;
 	}
 
@@ -547,10 +547,10 @@ S_Rentbox:
 	for ( .@count = 0; .@count < getarg(0); .@count++ ) {
 		.@miss_item01 = rand(100);
 		if (.@miss_item01 > 3)
-			mes "You didn't find anything.";
+			mes "你什么也没找到。";
 		else {
 			rentitem .@item_id[ .@miss_item01 ],86400;
-			mes "You found '"+ getitemname(.@item_id[ .@miss_item01 ]) +" !'";
+			mes "你找到了‘"+ getitemname(.@item_id[ .@miss_item01 ]) +"！‘";
 		}
 	}
 	close;
@@ -558,7 +558,7 @@ S_Rentbox:
 S_Menu:
 	for ( .@i = 1; .@i < getargcount(); .@i += 2 ) {
 		if ( isbegin_quest(getarg(.@i)) )
-			.@menu$ = .@menu$ + getarg(.@i+1) + " ^4d4dffCheck the result^000000:";
+			.@menu$ = .@menu$ + getarg(.@i+1) + " ^4d4dff查看结果^000000:";
 		else
 			.@menu$ = .@menu$ + getarg(.@i+1) + ":";
 		set getelementofarray( getarg(0),.@index ), getarg(.@i);

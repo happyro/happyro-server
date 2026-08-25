@@ -26,68 +26,68 @@ function	script	F_Okolnir	{
 	set .@GID, GetCastleData(strnpcinfo(4),1);
 	if (getcharid(2) == .@GID) {
 		if (getd("$siz_"+.@sub$+"_on") == 0) {
-			mes "[Guide]";
-			mes "This castle has a hidden secret.";
-			mes "That is the ^4d4dff'Okolnir'^000000.";
+			mes "[向导]";
+			mes "这座城堡隐藏着一个秘密。";
+			mes "那就是 ^4d4dff“奥克尼尔”^000000。";
 			next;
-			switch(select("About Okolnir.:Go to Okolnir.:Cancel.")) {
+			switch(select("关于奥克尼尔:前往奥克尼尔:取消")) {
 			case 1:
-				mes "[Guide]";
-				mes "Okolnir is a kind of virtual realm...";
-				mes "I don't know how Okolnir exists, but I guess only Valkyrie knows.";
+				mes "[向导]";
+				mes "奥克尼尔是一种虚拟领域……";
+				mes "我不知道奥克尼尔如何存在，但也许只有女武神知道。";
 				next;
-				mes "[Guide]";
-				mes "As you know this is a place to test the adventurers made by Valkyrie...";
-				mes "...you know the qualifications to enter Okolnir.";
+				mes "[向导]";
+				mes "如你所知，这是女武神用来测试冒险者的地方……";
+				mes "……你也知道进入奥克尼尔的资格。";
 				next;
 				select("Qualifications?");
-				mes "[Guide]";
-				mes "Yes, Valkyrie definitely prefers strong adventurers.";
-				mes "Only the qualified can enter Okolnir and Valhalla.";
+				mes "[向导]";
+				mes "是的，女武神确实偏爱强大的冒险者。";
+				mes "只有合格者才能进入奥克尼尔和瓦尔哈拉。";
 				next;
-				mes "[Guide]";
-				mes "It only opens when everyone comes together to work it out.";
-				mes "The key is in the castle.";
+				mes "[向导]";
+				mes "只有大家齐心协力才能开启。";
+				mes "钥匙就在城堡里。";
 				next;
-				mes "[Guide]";
-				mes "If a castle's ^4d4dffeconomy is over 65 and defense also over 30^000000, this will be acceptable to access Okolnir.";
+				mes "[向导]";
+				mes "如果城堡的 ^4d4dff经济超过 65、防御超过 30^000000，便符合进入奥克尼尔的条件。";
 				next;
-				mes "[Guide]";
-				mes "And, if you pass all of the tests given by Valkyrie in Okolnir!";
-				mes "You will also receive a mysterious gift.";
+				mes "[向导]";
+				mes "此外，还要通过女武神在奥克尼尔设置的所有测试！";
+				mes "你还会得到神秘礼物。";
 				next;
-				mes "[Guide]";
-				mes "Would you like to try to enter here?";
+				mes "[向导]";
+				mes "你想尝试进入吗？";
 				close;
 			case 2:
 				set .@Defence,GetCastleData(strnpcinfo(4),3);
 				set .@Economy,GetCastleData(strnpcinfo(4),2);
 				if ((.@Economy > 64) && (.@Defence > 29)) {
-					mes "[Guide]";
-					mes "Great! Economy and Defense are OK.";
-					mes "You can enter Okolnir now....";
-					mes "Do you want to go there?";
+					mes "[向导]";
+					mes "太好了！经济和防御都符合要求。";
+					mes "现在可以进入奥克尼尔……";
+					mes "要去那里吗？";
 					next;
-					switch(select("Sure let's go there.:No.")) {
+					switch(select("好，我们去那里:不了。")) {
 					case 1:
 						if (countitem(7839)) delitem 7839,countitem(7839); //Crystal_Key
-						mes "[Guide]";
-						mes "Ok......";
-						mes "Please follow me...";
+						mes "[向导]";
+						mes "好……";
+						mes "请跟我来……";
 						close2;
 						warp "que_q"+.@sub$,346,32;
 						end;
 					case 2:
-						mes "[Guide]";
-						mes "You can try this anytime in the future...";
-						mes "If you are ready to protect this castle.";
+						mes "[向导]";
+						mes "以后随时可以尝试……";
+						mes "等你准备好保护这座城堡。";
 						close;
 					}
 				}
 				else {
-					mes "[Guide]";
-					mes "You are not qualified yet.";
-					mes "Please develop your castle more...";
+					mes "[向导]";
+					mes "你还不符合资格。";
+					mes "请继续发展城堡……";
 					close;
 				}
 			case 3:
@@ -95,46 +95,46 @@ function	script	F_Okolnir	{
 			}
 		}
 		else if (getd("$siz_"+.@sub$+"_on") == 1) {
-			mes "[Guide]";
-			mes "... OK...";
-			mes "Good luck.";
+			mes "[向导]";
+			mes "……好……";
+			mes "祝你好运。";
 			next;
-			switch(select("Enter now.:No.")) {
+			switch(select("现在进入:不了。")) {
 			case 1:
 				if (countitem(7839) > 0) {
 					delitem 7839,countitem(7839); //Crystal_Key
 				}
-				mes "[Guide]";
-				mes "Hope you get everything you want...";
+				mes "[向导]";
+				mes "希望你得到想要的一切……";
 				close2;
 				warp "que_q"+.@sub$,346,32;
 				end;
 			case 2:
-				mes "[Guide]";
-				mes "Really?";
-				mes "Sorry to hear that.";
+				mes "[向导]";
+				mes "真的吗？";
+				mes "很遗憾。";
 				close;
 			}
 		}
 		else if (getd("$siz_"+.@sub$+"_on") == 2) {
-			mes "[Guide]";
-			mes "Building Okolnir needs quite a long time.";
-			mes "....even though it's only virtual...";
+			mes "[向导]";
+			mes "建造奥克尼尔需要很长时间。";
+			mes "……即使它只是虚拟的……";
 			next;
-			mes "[Guide]";
-			mes "It takes about 12 - 13 hours to create the virtual realm.";
+			mes "[向导]";
+			mes "创建虚拟领域大约需要 12～13 小时。";
 			close;
 		}
 		else {
-			mes "[Guide]";
-			mes "You'll have to wait.";
+			mes "[向导]";
+			mes "你需要等待。";
 			close;
 		}
 	}
 	else {
-		mes "[Guide]";
-		mes "... I've never seen you before.";
-		mes "You are strangers here. You'd better get out of here right now.";
+		mes "[向导]";
+		mes "……我以前没见过你。";
+		mes "你是这里的陌生人，最好马上离开。";
 		close;
 	}
 	end;
@@ -175,10 +175,10 @@ que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306
 	if (getcharid(2) == .@GID) {
 		cutin "wish_maiden31",1;
 		if (is_guild_leader() == true) {
-			mes "[Wish Maiden]";
-			mes "I am... Wish maiden.";
-			mes "Mourning in this virtual realm, Okolnir.";
-			mes "On behalf of the humanbeings who defeated God here.";
+			mes "[许愿少女]";
+			mes "我是……许愿少女。";
+			mes "在这个虚拟领域奥克尼尔中哀悼。";
+			mes "代表曾在这里击败神的人类。";
 			next;
 			if (compare(.@sub$,"aru")) {
 				setarray .@n, 7835,1,7836,1,7837,1,7838,1,2513,1,7291,10,7293,10,7063,100,985,20;
@@ -191,47 +191,47 @@ que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306
 			}
 			if (.@check >= 9) {
 				cutin "wish_maiden11",1;
-				mes "[Wish Maiden]";
-				mes "Are you ready to endure the trials to get the Goddess' glory?";
+				mes "[许愿少女]";
+				mes "你准备好承受试炼，获得女神的荣耀了吗？";
 				next;
-				switch(select("Yes, I am:Sorry, I'll try later")) {
+				switch(select("是的:抱歉，我以后再试")) {
 				case 1:
 					cutin "wish_maiden12",1;
-					mes "[Wish Maiden]";
-					mes "I will test whether or not you deserve the Goddess shine...";
-					mes "Isn't it simple?";
+					mes "[许愿少女]";
+					mes "我会测试你是否配得上女神的光辉……";
+					mes "很简单，不是吗？";
 					next;
-					mes "[Wish Maiden]";
-					mes "Okolnir is a virtual place.";
-					mes "There is no room for error there.";
-					mes "^ff0000You only have one hour.^000000";
+					mes "[许愿少女]";
+					mes "奥克尼尔是虚拟之地。";
+					mes "那里不容许犯错。";
+					mes "^ff0000你只有一小时。^000000";
 					next;
 					cutin "wish_maiden31",1;
-					mes "[Wish Maiden]";
-					mes "If you have not finished in that time, Okolnir will be destroyed, and I will go to rest.";
-					mes "You will have to wait again...";
+					mes "[许愿少女]";
+					mes "如果时间内未完成，奥克尼尔会被摧毁，我也会去休息。";
+					mes "你必须再次等待……";
 					next;
-					mes "[Wish Maiden]";
-					mes "Are you ready to go through?";
-					mes "^4d4dffYou need to have 16 to 20 members present^000000.";
+					mes "[许愿少女]";
+					mes "准备接受试炼了吗？";
+					mes "^4d4dff需要有 16 至 20 名成员在场^000000。";
 					next;
 					cutin "wish_maiden11",1;
-					mes "[Wish Maiden]";
-					mes "I will open the gate of Okolnir if your members are ready.";
+					mes "[许愿少女]";
+					mes "成员准备好后我会打开奥克尼尔之门。";
 					next;
-					switch(select("We are ready.:We need more time.")) {
+					switch(select("我们准备好了:我们还需要时间。")) {
 					case 1:
 						set .@saram,getmapusers("que_q"+.@sub$);
 						if (((.@saram > 15) && (.@saram < 21))) {
 							cutin "wish_maiden12",1;
-							mes "[Wish Maiden]";
-							mes "Now I will open the gate of Okolnir where I am.";
-							mes "I will wait for you on the top of Okolnir...";
+							mes "[许愿少女]";
+							mes "现在我会在这里打开奥克尼尔之门。";
+							mes "我会在奥克尼尔顶部等你……";
 							next;
-							mes "[Wish Maiden]";
-							mes "I hope that you can complete all of the trials before the virtual Okolnir is destroyed...";
-							mes "Good luck.";
-							mapannounce "que_q"+.@sub$,"Wish Maiden: The gate of Okolnir is open! Don't forget you only have one hour.",bc_map,"0x00ff00";
+							mes "[许愿少女]";
+							mes "希望你能在虚拟奥克尼尔毁灭前完成所有试炼……";
+							mes "祝你好运。";
+							mapannounce "que_q"+.@sub$,"许愿少女：奥克尼尔之门已打开！别忘了你只有一小时。",bc_map,"0x00ff00";
 							close2;
 							setd "$@gqse_"+.@sub$+"_pcc",.@saram;
 							setd "$siz_"+.@sub$+"_on",1;
@@ -243,100 +243,100 @@ que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306
 						}
 						else {
 							cutin "wish_maiden13",1;
-							mes "[Wish Maiden]";
-							mes "You need to have 16 to 20 members present to open the gate of Okolnir.";
-							mes "Come back when you are ready.";
+							mes "[许愿少女]";
+							mes "开启奥克尼尔之门需要 16 至 20 名成员在场。";
+							mes "准备好后再回来。";
 							close2;
 						}
 						break;
 					case 2:
 						cutin "wish_maiden13",1;
-						mes "[Wish Maiden]";
-						mes "Don't hesitate to try.";
-						mes "You should catch the chance when it comes to you.";
-						mes "Just gather your fellow members.";
+						mes "[许愿少女]";
+						mes "不要犹豫，试试看。";
+						mes "机会来临时要抓住。";
+						mes "召集你的公会成员即可。";
 						close2;
 					}
 					break;
 				case 2:
 					cutin "wish_maiden32",1;
-					mes "[Wish Maiden]";
-					mes "... Are you afraid of";
-					mes "the trials facing you?";
+					mes "[许愿少女]";
+					mes "……你害怕";
+					mes "即将面对的试炼吗？";
 					mes "....";
 					next;
 					cutin "wish_maiden13",1;
-					mes "[Wish Maiden]";
-					mes "Do you think that you can defeat the Goddess shine easily?";
-					mes "I feel disappointed by all of you.";
-					mes "Just go away...";
+					mes "[许愿少女]";
+					mes "你以为能轻易击败女神之光吗？";
+					mes "我对你们所有人都很失望。";
+					mes "走开吧……";
 					close2;
 				}
 			}
 			else {
 				cutin "wish_maiden11",1;
-				mes "[Wish Maiden]";
-				mes "Do you wish to enter?";
-				mes "Only those prepared may enter here.";
-				mes "You must bring several items to enter Okolnir.";
+				mes "[许愿少女]";
+				mes "你想进去吗？";
+				mes "只有做好准备的人才能进入。";
+				mes "你必须带来几件物品才能进入奥克尼尔。";
 				next;
-				mes "[Wish Maiden]";
+				mes "[许愿少女]";
 				if (compare(.@sub$,"aru")) {
-					mes "Dusk Glow";
-					mes "Dawn Essence";
-					mes "Cold Moonlight";
-					mes "Hazy Starlight.";
+					mes "暮光";
+					mes "黎明精华";
+					mes "寒冷月光";
+					mes "朦胧星光。";
 					next;
-					mes "[Wish Maiden]";
-					mes "Please bring those four things, 10 Agate, 10 Rose Quartz, and 20 Elunium,";
-					mes "a Heavenly Maiden's Robe, as well as 100 Soft feathers.";
+					mes "[许愿少女]";
+					mes "请带来这四样物品、10 个玛瑙、10 个玫瑰石英和 20 个铝，";
+					mes "以及一件天女之衣和 100 根柔软羽毛。";
 				} else {
-					mes "Goddess Tear";
-					mes "Valkyrie's Token";
-					mes "Brynhild Armor Piece";
-					mes "Hero Remains";
-					mes "Valkyrie Armor";
-					mes "Andvari's Ring.";
+					mes "女神之泪";
+					mes "女武神的信物";
+					mes "布伦希尔德铠甲碎片";
+					mes "英雄遗骸";
+					mes "女武神铠甲";
+					mes "安德瓦利之戒。";
 					next;
-					mes "[Wish Maiden]";
-					mes "You must bring those six things, 10 Gold, and 20 Elunium.";
-					mes "Many Valhala's Flowers are also required as an offering.";				
+					mes "[许愿少女]";
+					mes "你必须带来这六样物品、10 个黄金和 20 个铝。";
+					mes "还需要许多瓦尔哈拉之花作为供品。";
 				}
 				next;
-				mes "[Wish Maiden]";
-				mes "Once all of those are prepared, the gate will open.";
+				mes "[许愿少女]";
+				mes "准备好全部物品后，大门就会打开。";
 				next;
-				mes "[Wish Maiden]";
+				mes "[许愿少女]";
 				mes ".... ";
-				mes "...........The Goddess shines brightly down on you, you should be stronger to deserve it...";
+				mes "……女神的光辉照耀着你，你必须变得更强才配得上它……";
 				next;
-				mes "[Wish Maiden]";
-				mes "Remember...";
-				mes "You need to collect many soft feathers.";
-				mes "I hope that your dreams come true.";
+				mes "[许愿少女]";
+				mes "记住……";
+				mes "你需要收集许多柔软羽毛。";
+				mes "希望你的梦想成真。";
 				next;
-				mes "[Wish Maiden]";
-				mes "I will answer all your requests if you bring these to me.";
+				mes "[许愿少女]";
+				mes "带来这些物品，我会回应你的所有请求。";
 				close2;
 			}
 		}
 		else {
 			cutin "wish_maiden31",1;
-			mes "[Wish Maiden]";
-			mes "I am... Wish maiden.";
-			mes "Mourning in this virtual realm, Okolnir.";
-			mes "On behalf of the humanbeings who defeated God here.";
+			mes "[许愿少女]";
+			mes "我是……许愿少女。";
+			mes "在这个虚拟领域奥克尼尔中哀悼。";
+			mes "代表曾在这里击败神的人类。";
 			next;
-			mes "[Wish Maiden]";
-			mes "Bring me the one who brought you to this place.";
-			mes ".. Deliver him to my will.";
+			mes "[许愿少女]";
+			mes "把带你来到这里的人带来。";
+			mes "……将他交给我处置。";
 			close2;
 		}
 	}
 	else {
 		cutin "wish_maiden13",1;
-		mes "[Wish Maiden]";
-		mes "...You are not qualified.";
+		mes "[许愿少女]";
+		mes "……你没有资格。";
 		close2;
 		percentheal -100,0;
 		cutin "wish_maiden11",255;
@@ -414,7 +414,7 @@ OnTouch_:
 		end;
 	}
 	else {
-		mes "There are too many people, you can't enter.";
+		mes "人数太多，无法进入。";
 		close;
 	}
 	
@@ -501,7 +501,7 @@ OnTimer1000:
 
 OnTimer6000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: The things you seeing are not real, don't be caught in the Mystic garden.",bc_map,"0x00ff00";
+mapannounce "que_q"+.@sub$,"愿望少女：你看到的东西都不是真的，别被困在神秘花园里。",bc_map,"0x00ff00";
 	setarray .@mobname$, "Seyren Windsor","Kathryne Keyron","Cecil Damon","Margaretha Sorin","Eremes Guile","Howard Alt-Eisen";
 	setarray .@num, 72,271,1640,63,282,1645,59,294,1644,46,300,1643,51,285,1641,51,262,1642;
 	set .@c, 0;
@@ -522,7 +522,7 @@ OnReset:
 OnMyMobDead:
 	set .@sub$,callfunc("F_Okolnir");
 	if (mobcount("que_q"+.@sub$,"#gq_miromob2_"+.@sub$+"::OnMyMobDead") == 0) {
-		mapannounce "que_qaru05","The Mystic garden exit is now open.",bc_map,"0x00ff00";
+mapannounce "que_qaru05","神秘花园的出口现在开放。",bc_map,"0x00ff00";
 		setcell "que_q"+.@sub$,58,302,63,302,cell_walkable,1;
 		setcell "que_q"+.@sub$,58,302,63,302,cell_shootable,1;
 		donpcevent "#Maze_Manager_"+.@sub$+"::OnDisable";
@@ -615,52 +615,52 @@ OnStop:
 
 OnTimer1000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden : Do your best, Okolnir will disappear in one hour!",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"愿望少女：加油，奥克尔尼尔将在一小时后消失！",bc_map,"0x00ff00";
 	end;
 
 OnTimer1800000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 30 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 30 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer2400000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 20 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 20 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3000000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 10 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 10 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3300000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 5 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 5 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3360000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 4 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 4 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3420000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 3 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 3 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3480000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 2 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 2 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3540000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir will disappear in 1 minutes.",bc_map,"0xff0000";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔将在 1 分钟后消失。",bc_map,"0xff0000";
 	end;
 
 OnTimer3600000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Okolnir has begun to disappear.",bc_map,"0x4d4dff";
+	mapannounce "que_q"+.@sub$,"奥克尔尼尔开始消失了。",bc_map,"0x4d4dff";
 	disablenpc "Wish Maiden#gq_"+.@sub$;
 	donpcevent "#gq_miromob2_"+.@sub$+"::OnReset";
 	disablenpc "Piamette#"+.@sub$;
@@ -703,12 +703,12 @@ OnTimer3600000:
 
 OnTimer3605000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: ... You will fall into a deep sleep within Okolnir... ",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"愿望少女：……你将在奥克尔尼尔内陷入沉睡……",bc_map,"0x00ff00";
 	end;
 
 OnTimer3608000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: ..Have courage ... and await your chance again... ",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"愿望少女：……鼓起勇气……再次等待机会吧……",bc_map,"0x00ff00";
 	end;
 
 OnTimer3610000:
@@ -940,13 +940,13 @@ que_qsch05,2,3,0	duplicate(#miro_yf_main)	#miro_yf_sch05	844
 OnTouch_:
 	set .@sub$,callfunc("F_Okolnir");
 	if (countitem(7839)) {
-		mes "The Warp Gate responds to the Crystal Key.";
+		mes "传送门响应水晶钥匙。";
 		delitem 7839,1; //Crystal_Key
 		close2;
 		warp "que_q"+.@sub$,114,158;
 		end;
 	}
-	mes "You need the Crystal Key to activate the Warp Gate.";
+	mes "需要水晶钥匙才能启动传送门。";
 	close;
 }
 que_qaru01,132,172,0	duplicate(windpath01_main)	windpath01_aru01	45,1,1
@@ -1013,22 +1013,22 @@ OnTouch_:
 
 OnTimer2000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette mumblings : ..There were six birds, Teo. But one is....",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特喃喃自语：……有六只鸟，特奥。但其中一只是……",bc_map,"0xdb7093";
 	end;
 
 OnTimer6000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette mumblings : ...Shh.. Teo. The birds have returned..Are they birds that ran away before...? Or breakers who disguises themselves as good adventurers?",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特喃喃自语：……嘘……特奥。鸟儿回来了……是之前逃走的鸟吗……？还是伪装成善良冒险者的破坏者？",bc_map,"0xdb7093";
 	end;
 
 OnTimer10000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette mumblings : Ha! They are caged in.",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特喃喃自语：哈！它们被关进笼子了。",bc_map,"0xdb7093";
 	end;
 
 OnTimer14000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : Teo, Catch the birds! Put the cage away from here!",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：特奥，抓住鸟儿！把笼子带离这里！",bc_map,"0x00ff00";
 	donpcevent "#gdtimer01_"+.@sub$+"::OnEnable";
 	stopnpctimer;
 	end;
@@ -1114,7 +1114,7 @@ OnTimer70000:
 OnTimer75000:
 	set .@sub$,callfunc("F_Okolnir");
 	if (getd("$@gqse_"+.@sub$+"_gd") < 6) {
-		mapannounce "que_q"+.@sub$+"","Piamette : Silly birds! Silly Teo! Why can't you put away the cage at once?!",bc_map,"0x00ff00";
+		mapannounce "que_q"+.@sub$+"","皮亚梅特：笨鸟！笨特奥！为什么不能马上把笼子收好？！",bc_map,"0x00ff00";
 		for (set .@i, 1; .@i <= 6; set .@i, .@i + 1)
 			enablenpc "#"+.@sub$+"_cage0"+.@i;
 		setd "$@gqse_"+.@sub$+"_gd",0;
@@ -1158,17 +1158,17 @@ OnStop:
 
 OnTimer4000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : All of them are caught!",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：它们全被抓住了！",bc_map,"0xdb7093";
 	end;
 
 OnTimer8000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : Let's call out the keeper of the key not to let the birds go far away.",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：叫来钥匙守卫，别让鸟儿跑远。",bc_map,"0xdb7093";
 	end;
 
 OnTimer12000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : The keeper of the key is protecting my cage.",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：钥匙守卫正在保护我的笼子。",bc_map,"0xdb7093";
 	setarray .@xy, 108,151,109,135,115,116,158,106,163,133,150,154;
 	for (set .@i, 0; .@i < getarraysize(.@xy); set .@i, .@i + 2)
 		monster "que_q"+.@sub$,.@xy[.@i],.@xy[.@i+1],"Key Stone",1905,1,"#gdtimer02_"+.@sub$+"::OnMyMobDead";
@@ -1176,7 +1176,7 @@ OnTimer12000:
 
 OnTimer112000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : Whooping fun times are back! Now, Go! I'll get back to!!",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：欢闹时光回来了！现在，走吧！我会回来的！！",bc_map,"0xdb7093";
 	killmonster "que_q"+.@sub$,"#gdtimer02_"+.@sub$+"::OnMyMobDead";
 	for (set .@i, 1; .@i <= 6; set .@i, .@i + 1)
 		enablenpc "#"+.@sub$+"_cage0"+.@i;
@@ -1230,12 +1230,12 @@ OnReset:
 
 OnTimer1000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : All the keeper of keys are dead now? Who freed my birds? Teo, who did it?",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：钥匙守卫都死了吗？谁放走了我的鸟？特奥，是谁做的？",bc_map,"0xdb7093";
 	end;
 
 OnTimer5000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette : I'm pissed off now!",bc_map,"0xdb7093";
+	mapannounce "que_q"+.@sub$,"皮亚梅特：我现在气死了！",bc_map,"0xdb7093";
 	disablenpc "Piamette#"+.@sub$;
 	monster "que_q"+.@sub$,131,135,"Angry Piamette",1930,1,"#piamette_"+.@sub$+"::OnMyMobDead";
 	stopnpctimer;
@@ -1243,7 +1243,7 @@ OnTimer5000:
 
 OnMyMobDead:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Piamette has been released, so the warp gate toward the South is working now.",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"皮亚梅特已经被释放，通往南方的传送门现在可以使用了。",bc_map,"0x00ff00";
 	enablenpc "windpath03_"+.@sub$;
 	enablenpc "windpath04_"+.@sub$;
 	donpcevent "#nm_switch_"+.@sub$+"::OnEnable";
@@ -1572,17 +1572,17 @@ OnDisable:
 
 OnTimer1000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: Did you have a good time with Piamette?",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：和皮亚梅特相处得愉快吗？",bc_map,"0x00ff00";
 	end;
 
 OnTimer4000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: But it's the end. There will be summoned monsters coming soon...",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：但一切要结束了。召唤的怪物很快就要来了……",bc_map,"0x00ff00";
 	end;
 
 OnTimer9000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden: So come here to me safely...",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：所以请安全地到我这里来……",bc_map,"0x00ff00";
 	end;
 
 OnTimer10000:
@@ -1636,7 +1636,7 @@ OnDisable:
 OnTimer5000:
 	set .@sub$,callfunc("F_Okolnir");
 	setarray .@xy, 226,288,227,289,228,290,229,291,230,292,231,293,232,294,233,295,234,296,235,297,228,286,229,287,230,288,231,289,232,290,233,291,234,292,235,293,236,294,237,295,230,284,231,285,232,286,233,287,234,288,235,289,236,290,237,291,238,292,239,293;
-	mapannounce "que_q"+.@sub$,"The Western magic formation is working to summon Guard of Shadow.",bc_map,"0x4d4dff";
+	mapannounce "que_q"+.@sub$,"西侧魔法阵正在召唤暗影守卫。",bc_map,"0x4d4dff";
 	for (set .@i, 0; .@i < getarraysize(.@xy); set .@i, .@i + 2)
 		monster "que_q"+.@sub$,.@xy[.@i],.@xy[.@i+1],"Guard of Shadow",1752,1,"#nmsom"+.@sub$+"_jin01::OnMyMobDead";
 	end;
@@ -1719,7 +1719,7 @@ OnDisable:
 
 OnTimer5000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"The Eastern magic formation is working to summon Bloody Hunter.",bc_map,"0x4d4dff";
+	mapannounce "que_q"+.@sub$,"东侧魔法阵正在召唤血腥猎手。",bc_map,"0x4d4dff";
 	setarray .@xy, 263,292,264,291,265,290,266,289,267,288,268,287,269,286,270,285,271,284,272,283,265,294,266,293,267,292,268,291,269,290,270,289,271,288,272,287,273,286,274,285,267,296,268,295,269,294,270,283,271,282,272,281,273,280,274,279,275,276,276,275;
 	for (set .@i, 0; .@i < getarraysize(.@xy); set .@i, .@i + 2)
 		monster "que_q"+.@sub$,.@xy[.@i],.@xy[.@i+1],"Bloody Hunter",1753,1,"#nmsom"+.@sub$+"_jin02::OnMyMobDead";
@@ -1803,7 +1803,7 @@ OnDisable:
 
 OnTimer5000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"The Northern magic formation is working to summon Keeper of the Temple.",bc_map,"0x4d4dff";
+	mapannounce "que_q"+.@sub$,"北侧魔法阵正在召唤神殿守护者。",bc_map,"0x4d4dff";
 	setarray .@xy, 247,329,249,329,251,329,253,329,255,329,243,339,245,337,247,335,247,333,254,333,256,335,258,337,260,339;
 	for (set .@i, 0; .@i < getarraysize(.@xy); set .@i, .@i + 2)
 		monster "que_q"+.@sub$,.@xy[.@i],.@xy[.@i+1],"Keeper Of The Temple",1933,1,"#nmsom"+.@sub$+"_jin03::OnMyMobDead";
@@ -2099,12 +2099,12 @@ OnFight:
 
 OnTimer1000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden : You guys reached here.. Are your guardians dead...?",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：你们到达这里了……守护者都死了吗……？",bc_map,"0x00ff00";
 	end;
 
 OnTimer4000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden : I sincerely welcome all your best efforts!",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：我真诚欢迎你们付出的全部努力！",bc_map,"0x00ff00";
 	end;
 
 OnTimer5000:
@@ -2121,7 +2121,7 @@ OnMyMobDead:
 	if (!mobcount("que_q"+.@sub$,"Wish Maiden#"+.@sub$+"_boss::OnMyMobDead")) {
 		donpcevent "#okolnir_"+.@sub$+"::OnStop";
 		donpcevent "Wish Maiden#"+.@sub$+"_gift::OnEnable";
-		mapannounce "que_q"+.@sub$,"Wish Maiden : ..Good, you deserve the Goddess' shine.",bc_map,"0x00ff00";
+		mapannounce "que_q"+.@sub$,"许愿少女：……很好，你们配得上女神的光辉。",bc_map,"0x00ff00";
 	}
 	end;
 	
@@ -2160,24 +2160,24 @@ que_qsch05,251,255,3	duplicate(Wish Maiden#main_boss)	Wish Maiden#sch05_boss	193
 			}
 			if (.@check >= 9) {
 				cutin "wish_maiden12",1;
-				mes "[Wish Maiden]";
-				mes "As I declared, I will give the Goddess' shine to you.";
-				mes "You have the requirements to carry it...";
+				mes "[许愿少女]";
+				mes "如我所说，我会将女神的光辉赐予你们。";
+				mes "你们满足承载它的条件……";
 				next;
-				mes "[Wish Maiden]";
-				mes "You will be granted the power of the great Valkyrie...";
+				mes "[许愿少女]";
+				mes "你们将获得伟大女武神的力量……";
 				next;
-				mes "[Wish Maiden]";
-				mes "I will give you some things for fun.";
-				mes "All of you enjoy them together...";
+				mes "[许愿少女]";
+				mes "我会给你们一些有趣的东西。";
+				mes "大家一起享用吧……";
 				next;
-				mes "[Wish Maiden]";
-				mes "Go to Rachel and Juno to meet the Ravies sisters.";
+				mes "[许愿少女]";
+				mes "去拉赫和朱诺见拉维姐妹。";
 				next;
 				cutin "wish_maiden32",1;
-				mes "[Wish Maiden]";
-				mes "I will open the gate for you to come back here.";
-				mes "...Okolnir won't last forever...";
+				mes "[许愿少女]";
+				mes "我会打开大门，让你们回来。";
+				mes "……奥克尼尔不会永远存在……";
 				for (set .@i, 0; .@i < getarraysize(.@n); set .@i, .@i + 2)
 					delitem .@n[.@i],.@n[.@i+1];
 				getitem .@rwd,1;
@@ -2191,28 +2191,28 @@ que_qsch05,251,255,3	duplicate(Wish Maiden#main_boss)	Wish Maiden#sch05_boss	193
 			}
 			else {
 				cutin "wish_maiden13",1;
-				mes "[Wish Maiden]";
-				mes "As I declared, you are worthy of holding the "+getitemname(.@rwd)+".";
-				mes "However, you do not have the requirements on you...";
+				mes "[许愿少女]";
+				mes "如我所说，你们配得上持有"+getitemname(.@rwd)+".";
+				mes "但你们身上没有满足条件的物品……";
 				next;
-				mes "[Wish Maiden]";
-				mes "...Did you forget something?";
+				mes "[许愿少女]";
+				mes "……你们忘了什么吗？";
 				close2;
 			}
 		}
 		else {
 			cutin "wish_maiden12",1;
-			mes "[Wish Maiden]";
-			mes "All of you worked together as a team...";
-			mes "Humans are strong when they are united, but are easily swayed by lust.";
+			mes "[许愿少女]";
+			mes "你们作为团队共同努力……";
+			mes "人类团结时很强大，却容易被欲望动摇。";
 			next;
-			mes "[Wish Maiden]";
-			mes "Humans are imperfect, so their chief god is there for them when they need help.";
+			mes "[许愿少女]";
+			mes "人类并不完美，因此需要帮助时，主神会陪伴他们。";
 			mes "....";
 			next;
-			mes "[Wish Maiden]";
-			mes "Always be real.";
-			mes "Do not regret your actions...";
+			mes "[许愿少女]";
+			mes "始终保持真实。";
+			mes "不要后悔自己的行为……";
 			close2;
 		}
 	}
@@ -2233,7 +2233,7 @@ OnDisable:
 
 OnTimer280000:
 	set .@sub$,callfunc("F_Okolnir");
-	mapannounce "que_q"+.@sub$,"Wish Maiden : ... Okolnir will soon disappear... I will send you back to where you originally came from.",bc_map,"0x00ff00";
+	mapannounce "que_q"+.@sub$,"许愿少女：……奥克尼尔即将消失……我会把你们送回原来的地方。",bc_map,"0x00ff00";
 	end;
 
 OnTimer290000:

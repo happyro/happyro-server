@@ -26,12 +26,12 @@
 prontera,152,187,6	script	Hunting Missions	4_F_EDEN_MASTER,{
 function Chk;
 	mes "[Hunting Missions]";
-	mes "Hello, " + strcharinfo(0) + "!";
+	mes "你好，" + strcharinfo(0) + "！";
 	if (!#Mission_Delay) {
 		next;
 		mes "[Hunting Missions]";
-		mes "I can't find any records...";
-		mes "You must be new here!";
+		mes "我找不到任何记录……";
+		mes "你一定是新来的！";
 		emotion ET_HUK;
 		next;
 		callsub Mission_Info;
@@ -39,160 +39,153 @@ function Chk;
 		#Mission_Delay = 1;
 		close;
 	}
-	mes F_Rand("Working hard, as always...", "Not slacking, I hope...");
-	mes "Is there anything I can help";
-	mes "you with?";
+	mes F_Rand("一如既往地努力工作……", "希望你没有偷懒……");
+	mes "有什么我能帮你的吗？";
 	mes " ";
 	mes "^777777~ You've completed " + F_InsertPlural(Mission_Total,"mission",0,"^0055FF%d^777777 %s") + ". ~^000000";
 	next;
 	switch(select(
-		((!Mission0) ? " ~ New Mission::" : ": ~ Mission Status: ~ Abandon Mission") +
-		": ~ Information: ~ Mission Shop: ~ View Top Hunters: ~ ^777777Cancel^000000"
-	)) {
+	((!Mission0) ? "～新任务：" : ":～任务状态：～放弃任务") +
+		":～说明：～任务商店：～查看顶尖猎人：～^777777取消^000000"
+		)) {
 	case 1:
-		mes "[Hunting Missions]";
+	mes "[Hunting Missions]";
 		if (#Mission_Count) {
-			mes "You've started a mission";
-			mes "on another character.";
+		mes "你已在另一个角色上开始任务。";
 			if (!@hm_char_del_check) {  // check for deleted character
-				query_sql("SELECT 1 FROM `char_reg_num` WHERE `key` = 'Mission0' AND `char_id` IN(SELECT `char_id` FROM `char` WHERE `account_id` = " + getcharid(3) + ")", .@i);
-				if (!.@i) {
-					next;
-					mes "[Hunting Missions]";
-					mes "I can't seem to find any records";
-					mes "for that character, though...";
-					mes "One moment, please.";
+			query_sql("SELECT 1 FROM `char_reg_num` WHERE `key` = 'Mission0' AND `char_id` IN(SELECT `char_id` FROM `char` WHERE `account_id` = " + getcharid(3) + ")", .@i);
+			if (!.@i) {
+				next;
+				mes "[Hunting Missions]";
+					mes "但我似乎找不到该角色的记录……";
+					mes "请稍等。";
 					emotion ET_SCRATCH;
 					#Mission_Count = 0;
+					}
+					@hm_char_del_check = true;
+					}
+				close;
 				}
-				@hm_char_del_check = true;
-			}
-			close;
+			if (#Mission_Delay > gettimetick(2) && .Delay) {
+			mes "恐怕你必须等待 " + Time2Str(#Mission_Delay) + " 才能接取下一个任务。";
+		close;
 		}
-		if (#Mission_Delay > gettimetick(2) && .Delay) {
-			mes "I'm afraid you'll have to wait " + Time2Str(#Mission_Delay) + " before taking another mission.";
-			close;
-		}
-		mes "You must hunt:";
-		query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(name_aegis, 4) != 'meta' AND left(name_aegis, 2) != 'E_' AND base_exp > 0 AND job_exp > 0 AND (class != 'boss' OR class is null) AND (drop3_item like '%_card' OR drop4_item like '%_card' OR drop5_item like '%_card' OR drop6_item like '%_card' OR drop7_item like '%_card' OR drop8_item like '%_card' OR drop9_item like '%_card' OR drop10_item like '%_card') AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT " + .Quests, .@mob);
+			mes "你必须狩猎：";
+			query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(name_aegis, 4) != 'meta' AND left(name_aegis, 2) != 'E_' AND base_exp > 0 AND job_exp > 0 AND (class != 'boss' OR class is null) AND (drop3_item like '%_card' OR drop4_item like '%_card' OR drop5_item like '%_card' OR drop6_item like '%_card' OR drop7_item like '%_card' OR drop8_item like '%_card' OR drop9_item like '%_card' OR drop10_item like '%_card') AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT " + .Quests, .@mob);
 		
 		for (.@i = 0; .@i < .Quests; .@i++) {
-			setd "Mission" + .@i, .@mob[.@i];
-			setd "Mission" + .@i +"_", 0;
+		setd "Mission" + .@i, .@mob[.@i];
+		setd "Mission" + .@i +"_", 0;
 		}
-		#Mission_Count = rand(.Count[0], .Count[1]);
-		callsub Mission_Status;
+			#Mission_Count = rand(.Count[0], .Count[1]);
+			callsub Mission_Status;
 		next;
 		mes "[Hunting Missions]";
-		mes "Report back when";
-		mes "you've finished.";
-		mes "Good luck!";
+		mes "完成后回来报告。";
+		mes "祝你好运！";
 		close;
-	case 2:
+		case 2:
 		mes "[Hunting Missions]";
-		mes "Mission status:";
+		mes "任务状态：";
 		callsub Mission_Status;
-		close;
-	case 3:
+	close;
+		case 3:
 		mes "[Hunting Missions]";
-		mes "Do you really want to";
-		mes "abandon your mission?";
+		mes "你真的要放弃任务吗？";
 		if (.Reset < 0 && .Delay)
-			mes "Your delay time will not be reset.";
+	mes "延迟时间不会重置。";
 		else if (.Reset > 0)
-			mes "It will cost " + F_InsertComma(.Reset) + " Zeny.";
+		mes "将花费 " + F_InsertComma(.Reset) + " Zeny。";
 		next;
 		switch(select(" ~ Abandon...: ~ ^777777Cancel^000000")) {
-		case 1:
-			if (.Reset > 0) {
-				if (Zeny < .Reset) {
-					mes "[Hunting Missions]";
-					mes "You don't have enough";
-					mes "Zeny to drop this mission.";
-					emotion ET_SORRY;
-					close;
+			case 1:
+		if (.Reset > 0) {
+			if (Zeny < .Reset) {
+		mes "[Hunting Missions]";
+		mes "你的 Zeny 不够，无法放弃这个任务。";
+		emotion ET_SORRY;
+			close;
 				}
-				Zeny -= .Reset;
-				emotion ET_MONEY;
-			}
-			mes "[Hunting Missions]";
-			mes "Alright, I've dropped";
-			mes "your current mission.";
-			specialeffect2 EF_STORMKICK4;
-			for (.@i = 0; .@i < .Quests; .@i++) {
+					Zeny -= .Reset;
+					emotion ET_MONEY;
+					}
+					mes "[Hunting Missions]";
+					mes "好吧，我已经放弃了你的当前任务。";
+				specialeffect2 EF_STORMKICK4;
+				for (.@i = 0; .@i < .Quests; .@i++) {
 				setd "Mission"+.@i, 0;
-				setd "Mission"+.@i+"_", 0;
+			setd "Mission"+.@i+"_", 0;
 			}
 			#Mission_Count = 0;
 			if (.Reset < 0 && .Delay)
-				#Mission_Delay = gettimetick(2) + (.Delay * 3600);
+			#Mission_Delay = gettimetick(2) + (.Delay * 3600);
 			close;
-		case 2:
-			mes "[Hunting Missions]";
-			mes "I knew you were kidding!";
-			mes "Keep up the good work.";
+				case 2:
+				mes "[Hunting Missions]";
+			mes "我就知道你是在开玩笑！";
+			mes "继续努力。";
 			emotion ET_SMILE;
+				close;
+			}
+		case 4:
+			callsub Mission_Info;
 			close;
-		}
-	case 4:
-		callsub Mission_Info;
-		close;
-	case 5:
-		mes "[Hunting Missions]";
-		mes "You have ^0055FF" + #Mission_Points + "^000000 Mission Points.";
-		mes "Use them well!";
-		callshop "mission_shop",1;
+			case 5:
+			mes "[Hunting Missions]";
+			mes "你有 ^0055FF" + #Mission_Points + "^000000 点任务点数。";
+		mes "好好利用它们！";
+	callshop "mission_shop",1;
 		npcshopattach "mission_shop";
 		end;
 	case 6:
 		mes "[Hunting Missions]";
-		mes "The top hunters are:";
+		mes "顶尖猎人是：";
 		query_sql("SELECT char_id AS id, (SELECT `name` FROM `char` WHERE char_id = id),`value` FROM `char_reg_num` WHERE `key` = 'Mission_Total' ORDER BY CAST(`value` AS SIGNED) DESC LIMIT 5", .@id, .@name$, .@val);
 		for (.@i = 0; .@i < 5; .@i++)
 			mes "  [Rank " + (.@i+1) + "]  " + ((.@name$[.@i] == "") ? "^777777none" : "^0055FF" + .@name$[.@i]+"^000000 : ^FF0000" + .@val[.@i] + " pt.") + "^000000";
 		close;
 	case 7:
 		mes "[Hunting Missions]";
-		mes "Nothing? Okay...";
+		mes "没有？好吧……";
 		emotion ET_SCRATCH;
 		close;
+			}
+		end;
+	
+		Mission_Status:
+		@f = false;
+		deletearray .@j[0], getarraysize(.@j);
+		for (.@i = 0; .@i < .Quests; .@i++) {
+	.@j[.@i] = getd("Mission" + .@i);
+	.@j[.Quests] = .@j[.Quests] + getmonsterinfo(.@j[.@i], MOB_LV);
+.@j[.Quests+1] = .@j[.Quests+1] + (getmonsterinfo(.@j[.@i], MOB_BASEEXP) / (getbattleflag("base_exp_rate") / 100) * .Modifier[0]);
+.@j[.Quests+2] = .@j[.Quests+2] + (getmonsterinfo(.@j[.@i], MOB_JOBEXP) / (getbattleflag("job_exp_rate") / 100) * .Modifier[1]);
+	mes " > "+Chk(getd("Mission"+.@i+"_"),#Mission_Count) + getmonsterinfo(.@j[.@i], MOB_NAME) + " (" + getd("Mission"+.@i+"_") + "/" + #Mission_Count + ")^000000";
 	}
-	end;
-
-Mission_Status:
-	@f = false;
-	deletearray .@j[0], getarraysize(.@j);
-	for (.@i = 0; .@i < .Quests; .@i++) {
-		.@j[.@i] = getd("Mission" + .@i);
-		.@j[.Quests] = .@j[.Quests] + getmonsterinfo(.@j[.@i], MOB_LV);
-		.@j[.Quests+1] = .@j[.Quests+1] + (getmonsterinfo(.@j[.@i], MOB_BASEEXP) / (getbattleflag("base_exp_rate") / 100) * .Modifier[0]);
-		.@j[.Quests+2] = .@j[.Quests+2] + (getmonsterinfo(.@j[.@i], MOB_JOBEXP) / (getbattleflag("job_exp_rate") / 100) * .Modifier[1]);
-		mes " > "+Chk(getd("Mission"+.@i+"_"),#Mission_Count) + getmonsterinfo(.@j[.@i], MOB_NAME) + " (" + getd("Mission"+.@i+"_") + "/" + #Mission_Count + ")^000000";
-	}
-
-	// Reward formulas:
-	.@Mission_Points = 3 + (.@j[.Quests] / .Quests / 6);
-	.@Base_Exp = #Mission_Count * .@j[.Quests+1] / 5;
-	.@Job_Exp = #Mission_Count * .@j[.Quests+2] / 5;
-	.@Zeny = #Mission_Count * .Quests * .@j[.@i] * .Modifier[2];
-
-	next;
+	
+		// Reward formulas:
+		.@Mission_Points = 3 + (.@j[.Quests] / .Quests / 6);
+		.@Base_Exp = #Mission_Count * .@j[.Quests+1] / 5;
+		.@Job_Exp = #Mission_Count * .@j[.Quests+2] / 5;
+		.@Zeny = #Mission_Count * .Quests * .@j[.@i] * .Modifier[2];
+	
+next;
 	mes "[Hunting Missions]";
-	mes "Mission rewards:";
+	mes "任务奖励：";
 	mes " > Mission Points: ^0055FF" + .@Mission_Points + "^000000";
 	mes " > Base Experience: ^0055FF" + F_InsertComma(.@Base_Exp) + "^000000";
 	mes " > Job Experience: ^0055FF" + F_InsertComma(.@Job_Exp) + "^000000";
-	mes " > Zeny: ^0055FF" + F_InsertComma(.@Zeny) + "^000000";
+mes " > Zeny: ^0055FF" + F_InsertComma(.@Zeny) + "^000000";
 	if (@f) {
-		@f = false;
-		return;
+	@f = false;
+	return;
 	}
 	next;
 	mes "[Hunting Missions]";
-	mes "Oh, you're done!";
-	mes "Good work.";
-	mes "Here's your reward.";
-	emotion ET_BEST;
+	mes "哦，你完成了！";
+	mes "干得好。";
+		mes "这是你的奖励。";
+		emotion ET_BEST;
 	specialeffect2 EF_ANGEL;
 	specialeffect2 EF_TRUESIGHT;
 	#Mission_Points += .@Mission_Points;
@@ -200,47 +193,54 @@ Mission_Status:
 	JobExp += .@Job_Exp;
 	Zeny += .@Zeny;
 	for (.@i = 0; .@i < .Quests; .@i++) {
-		setd "Mission" + .@i, 0;
-		setd "Mission" + .@i+"_", 0;
+	setd "Mission" + .@i, 0;
+	setd "Mission" + .@i+"_", 0;
 	}
 	#Mission_Count = 0;
 	if (.Delay)
-		#Mission_Delay = gettimetick(2) + (.Delay * 3600);
+	#Mission_Delay = gettimetick(2) + (.Delay * 3600);
 	Mission_Total++;
-	if (Mission_Total == 1)
+		if (Mission_Total == 1)
 		query_sql("INSERT INTO `char_reg_num` (`char_id`,`key`,`index`,`value`) VALUES (" + getcharid(0) + ",'Mission_Total','0',1)");
 	else
-		query_sql("UPDATE `char_reg_num` SET `value` = " + Mission_Total + " WHERE `char_id` = " + getcharid(0) + " AND `key` = 'Mission_Total'");
+	query_sql("UPDATE `char_reg_num` SET `value` = " + Mission_Total + " WHERE `char_id` = " + getcharid(0) + " AND `key` = 'Mission_Total'");
 	close;
-
-Mission_Info:
+		
+	Mission_Info:
 	mes "[Hunting Missions]";
-	mes "If you so choose, I can assign";
-	mes "you a random hunting quest.";
-	mes "Some are easier than others, but";
-	mes "the rewards increase with difficulty.";
+		mes "如果你愿意，我可以给你分配随机狩猎任务。";
+	mes "有些任务更简单，但难度越高奖励越丰厚。";
+		next;
+	mes "[Hunting Missions]";
+mes "任务点数由你的所有角色共享。";
+if (.Delay)
+	mes "延迟时间也是如此。";
+	mes "不能同时让多个角色接任务。";
 	next;
 	mes "[Hunting Missions]";
-	mes "Missions points are shared";
-	mes "amongst all your characters.";
-	if (.Delay)
-		mes "Delay time is, too.";
-	mes "You can't take missions on";
-	mes "multiple characters at once.";
-	next;
-	mes "[Hunting Missions]";
-	mes "You can start a quest";
+	mes "你可以开始任务";
 	mes (.Delay ? "every " + ((.Delay == 1) ? "hour." : .Delay + " hours.") : "whenever you want.");
-	mes "That's everything~";
+	mes "就是这些～";
 	return;
-
-function Chk {
-	if (getarg(0) < getarg(1)) {
-		@f = true;
-		return "^FF0000";
+	
+	function Chk {
+		if (getarg(0) < getarg(1)) {
+	@f = true;
+	return "^FF0000";
 	} else
-		return "^00FF00";
-}
+	return "^00FF00";
+	}
+	//
+	//
+	//
+//
+//
+	//
+		//
+		//
+	//
+		//
+//
 
 OnBuyItem:
 	.@size = getarraysize(@bought_nameid);
@@ -250,14 +250,14 @@ OnBuyItem:
 	}
 	mes "[Hunting Missions]";
 	if (.@cost > #Mission_Points)
-		mes "You don't have enough Mission Points.";
+		mes "你的任务点数不够。";
 	else {
 		for (.@i = 0; .@i < .@size; .@i++) {
 			getitem @bought_nameid[.@i], @bought_quantity[.@i];
 			dispbottom "Purchased " + @bought_quantity[.@i] + "x " + getitemname(@bought_nameid[.@i]) + ".";
 		}
 		#Mission_Points -= .@cost;
-		mes "Deal completed.";
+		mes "交易完成。";
 		emotion ET_MONEY;
 	}
 	deletearray @bought_nameid[0], .@size;

@@ -18,13 +18,13 @@
 alberta,118,160,3	script	Bullet Dealer Tony#alb::bdt	4_M_04,{
 	mes "[Tony]";
 	if (BaseClass == Job_Gunslinger) {
-		mes "I'm Tony, the Bullet Dealer.";
-		mes "Come to me whenever you're";
-		mes "short on ammo. Just bring me";
-		mes "the materials, and I'll make";
-		mes "you the bullets you need.";
+		mes "我是托尼，子弹商人。";
+		mes "弹药不足时随时来找我。";
+		mes "只要带来材料，我就能为你制作";
+		mes "你所需要的子弹。";
+		mes "欢迎随时来找我。";
 		next;
-		switch(select("Poison Sphere:Flare Sphere:Lighting Sphere:Blind Sphere:Freezing Sphere:Cancel")) {
+		switch(select("毒球:火焰球:闪光球:暗盲球:冰冻球:取消")) {
 		case 1: callsub S_BulletTrade,937,10,13205;// <item required>, <amount req>, <bullet id>
 		case 2: callsub S_BulletTrade,7097,2,13203;
 		case 3: callsub S_BulletTrade,7053,3,13204;
@@ -32,27 +32,27 @@ alberta,118,160,3	script	Bullet Dealer Tony#alb::bdt	4_M_04,{
 		case 5: callsub S_BulletTrade,7054,2,13207;
 		case 6:
 			mes "[Tony]";
-			mes "Changed your mind?";
-			mes "Well, if you ever need";
-			mes "any bullets, I'll be right";
-			mes "here. Come back whenever";
-			mes "you think you'll need more";
-			mes "ammunition, Gunslinger.";
+			mes "改变主意了吗？";
+			mes "以后需要子弹的话，";
+			mes "我会一直在这里。";
+			mes "需要更多弹药时";
+			mes "随时回来吧，枪手。";
+			mes "我会为你准备好子弹。";
 			close;
 		}
 	}
-	mes "Hey, I'm Tony. I'm in";
-	mes "charge of distributing";
-	mes "and making bullets for";
-	mes "Gunslingers. It's just";
-	mes "how our guild likes";
-	mes "to do things.";
+	mes "嘿，我是托尼。负责";
+	mes "为枪手分发和制作子弹。";
+	mes "这是我们公会";
+	mes "一贯的做法。";
+	mes "希望你能理解。";
+	mes "我们只为枪手服务。";
 	next;
 	mes "[Tony]";
-	mes "I'm sorry if you came";
-	mes "here to buy some bullets.";
-	mes "I can only do business with";
-	mes "fully fledged Gunslingers.";
+	mes "如果你是来购买子弹的，抱歉。";
+	mes "我只能和真正的枪手做生意。";
+	mes "只有正式枪手才能使用这项服务。";
+	mes "欢迎符合条件的枪手来找我。";
 	close;
 
 S_BulletTrade:
@@ -61,57 +61,57 @@ S_BulletTrade:
 	.@bullet_id = getarg(2);
 
 	mes "[Tony]";
-	mes "For every set of";
-	mes callfunc("F_InsertPlural",30,getitemname(.@bullet_id))+",";
-	mes "you must give me";
-	mes "1 Emveretarcon,";
-	mes "1 Phracon, and";
-	mes callfunc("F_InsertPlural",.@required_amount,getitemname(.@required_id))+".";
+	mes "每一组";
+	mes callfunc("F_InsertPlural",30,getitemname(.@bullet_id))+"，";
+	mes "你必须给我";
+	mes "1 个艾姆韦泰拉康、";
+	mes "1 个普拉康，以及";
+	mes callfunc("F_InsertPlural",.@required_amount,getitemname(.@required_id))+"。";
 	next;
 	mes "[Tony]";
-	mes "Remember that I can give";
-	mes "a maximum of 500 sets of";
-	mes "30 bullets at a time. Please";
-	mes "enter the number of bullet sets";
-	mes "that you'd like. If you want to";
-	mes "cancel, then just enter ''0.''";
+	mes "记住，我一次最多能给你";
+	mes "500 组、每组 30 发的子弹。请";
+	mes "输入你想要的子弹组数。";
+	mes "要取消，只需输入‘0’。";
+	mes "请输入数量。";
+	mes "准备好材料后再输入。";
 	next;
 	input .@amount;
 	mes "[Tony]";
 	if (.@amount < 1 || .@amount > 500) {
-		mes "Hey, I can't give you";
-		mes "that many bullets. Don't";
-		mes "forget to enter a number";
-		mes "that's no higher than 500";
-		mes "if you want to trade your";
-		mes "items for some bullets.";
+		mes "嘿，我不能给你";
+		mes "那么多子弹。想用物品兑换子弹时，";
+		mes "别忘了输入";
+		mes "不超过 500 的数字。";
+		mes "请重新输入正确数量。";
+		mes "否则无法完成兑换。";
 	}
 	else if (countitem(1010) >= .@amount && countitem(1011) >= .@amount && countitem(.@required_id) >= (.@amount*.@required_amount)) {
 		if (checkweight(.@bullet_id,.@amount * 30) == 0) {
-			mes "Eh? Your Inventory doesn't";
-			mes "have enough space for this";
-			mes "many bullets. Come back later";
-			mes "after you make more space";
-			mes "available. Try putting some of";
-			mes "your things into Kafra Storage.";
+			mes "嗯？你的物品栏没有足够空间";
+			mes "放下这么多子弹。请先腾出空间，";
+			mes "稍后再回来。可以把一些物品";
+			mes "存入卡普拉仓库。";
+			mes "整理好后再试一次。";
+			mes "祝你顺利。";
 		} else {
-			mes "Great, everything seems";
-			mes "to be in order. Let me take";
-			mes "these materials, and here are";
-			mes "your bullets. It's a pleasure";
-			mes "to do business with you~";
+			mes "太好了，一切看起来";
+			mes "都没问题。让我收下这些材料，";
+			mes "这是你的子弹。很高兴";
+			mes "能和你做生意～";
+			mes "谢谢你的光顾。";
 			delitem 1010,.@amount; //Phracon
 			delitem 1011,.@amount; //Emveretarcon
 			delitem .@required_id,.@amount * .@required_amount;
 			getitem .@bullet_id,.@amount * 30;
 		}
 	} else {
-		mes "Huh. It looks like you";
-		mes "don't have enough materials";
-		mes "for that many bullets. Well,";
-		mes "it's no problem. Just come";
-		mes "back after gathering everything";
-		mes "that you need, okay?";
+		mes "嗯，看起来你没有足够的材料";
+		mes "制作这么多子弹。没关系，";
+		mes "收集齐所需的一切后";
+		mes "再回来就好，";
+		mes "好吗？";
+		mes "我会在这里等你。";
 	}
 	close;
 }

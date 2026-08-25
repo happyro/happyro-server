@@ -9,16 +9,16 @@
 
 moro_cav,50,64,5	script	Yellow Seed#bios	CLEAR_NPC,{
 	if (BaseLevel < 160) {
-		mes "^ff0000Characters below Level 160 cannot enter this dungeon.^000000";
+		mes "^ff0000等级低于160的角色不能进入此副本。^000000";
 		close;
 	}
 	if (isbegin_quest(15006) == 0) {
-		mes "^ff0000You first must meet Wandering Old Man to gain access to this dungeon.^000000";
+		mes "^ff0000必须先与流浪老人见面，才能进入此副本。^000000";
 		close;
 	}
 	.@party_id = getcharid(1);
 	if (.@party_id < 1) {
-		mes "^ff0000You first must form/join a party of at least 1 person to enter this dungeon.^000000";
+		mes "^ff0000必须先组建或加入至少1人的队伍，才能进入此副本。^000000";
 		close;
 	}
 	switch( checkquest(15005,PLAYTIME) ) {
@@ -27,7 +27,7 @@ moro_cav,50,64,5	script	Yellow Seed#bios	CLEAR_NPC,{
 	case 0:
 	case 1:
 		if (checkquest(15007,PLAYTIME) == 2) {// 5 mins to re-enter
-			mes "^ff0000This Memorial Dungeon cannot be accessed for 23 hours after your last visit.^000000";
+			mes "^ff0000上次访问后23小时内无法进入此纪念副本。^000000";
 			close;
 		}
 		switch( checkquest(15008,PLAYTIME) ) {
@@ -35,7 +35,7 @@ moro_cav,50,64,5	script	Yellow Seed#bios	CLEAR_NPC,{
 			break;
 		case 0:
 		case 1:
-			mes "^0000ffThis Memorial Dungeon cannot be accessed for 23 hours after your last visit.^000000";
+			mes "^0000ff上次访问后23小时内无法进入此纪念副本。^000000";
 			close;
 		case 2:
 			break;
@@ -49,12 +49,12 @@ moro_cav,50,64,5	script	Yellow Seed#bios	CLEAR_NPC,{
 		break;
 	}
 	if (is_party_leader() == true)
-		.@create$ = "Create Memorial dungeon.";
-	switch( select( .@create$, "Enter Isle of Bios.", "Cancel." ) ) {
+		.@create$ = "创建纪念副本。";
+	switch( select( .@create$, "进入生物岛。", "取消。" ) ) {
 	case 1:
 		instance_create("Isle of Bios");
-		mes "^ff0000Created the Memorial dungeon.^000000";
-		mes "^ff0000Please click and press Enter again.^000000";
+		mes "^ff0000纪念副本已创建。^000000";
+		mes "^ff0000请再次点击并按下回车。^000000";
 		close;
 	case 2:
 		switch( instance_enter("Isle of Bios") ) {
@@ -62,10 +62,10 @@ moro_cav,50,64,5	script	Yellow Seed#bios	CLEAR_NPC,{
 		case IE_NOINSTANCE:
 		case IE_OTHER:
 			if (is_party_leader(.@party_id) == false) {
-				mes "^ff0000Please note that This Memorial Dungeon cannot be accessed for 23 hours after your last visit.^000000";
+				mes "^ff0000请注意，上次访问后23小时内无法进入此纪念副本。^000000";
 				next;
 			}
-			mes "^ff0000Your party leader has not yet created a Crack of Time.^000000";
+			mes "^ff0000你的队长尚未创建时间裂隙。^000000";
 			close;
 		case IE_OK:
 			mapannounce "moro_cav", "" + strcharinfo(0) + " of the party, " + getpartyname( getcharid(1) ) + ", is entering Isle of Bios.",bc_map,"0x00FF99";
@@ -92,43 +92,43 @@ moro_cav,45,60,5	script	Wandering Old Man#sara	4_M_EINOLD,{
 	if (BaseLevel < 160) {
 		mes "[Wandering Old Man]";
 		mes "...";
-		mes "I'm afraid you're not up for this yet.";
-		mes "You have to be at least Level 160.";
+		mes "恐怕你还不够资格。";
+		mes "你至少需要160级。";
 		close;
 	}
 	if (isbegin_quest(15006) == 0) {
 		mes "[Wandering Old Man]";
-		mes "...Where am I?";
+		mes "……我在哪里？";
 		next;
 		mes "[Wandering Old Man]";
-		mes "I don't know when it began...";
-		mes "The same nightmare has been plaguing me for a long time.";
+		mes "我不知道它何时开始……";
+		mes "同一个噩梦困扰我很久了。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "In my nightmare, Demon King Morocc awakens from his century-long slumber and fills the world with darkness and horror.";
+		mes "在我的噩梦中，魔王摩洛克从百年的沉睡中醒来，让世界充满黑暗与恐怖。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "I couldn't shake off the vivid images I saw in that nightmare. I've wandered off and around like a madman and finally arrived here.";
+		mes "我无法摆脱噩梦中鲜明的画面。我像疯子一样四处游荡，最后来到了这里。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "I saw this place in my dream. It's where Demon God Morocc awakens from his slumber. My dream was showing me a possible future.";
+		mes "我在梦中见过这里。这是魔神摩洛克醒来的地方。我的梦展示了一个可能的未来。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "If my dream really is a premonition, the forces of Demon God Morocc's are within that yellow seed.";
+		mes "如果我的梦真是预兆，魔神摩洛克的力量就在那颗黄色种子里。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "I tried to enter the seed, but to no avail: I'm just too old and weak. But perhaps you can.";
+		mes "我试过进入种子，但没能成功：我太老太虚弱了。不过你或许可以。";
 		next;
 		mes "[Wandering Old Man]";
-		mes "Please investigate that yellow seed.";
-		mes "It's too dangerous for you to go alone. You should take at least one comrade with you.";
+		mes "请调查那颗黄色种子。";
+		mes "独自前往太危险了。你至少应该带一名同伴。";
 		setquest 15006;// Isle of Bios Exploration
 		completequest 15006;// Isle of Bios Exploration
 		close;
 	}
 	mes "[Wandering Old Man]";
-	mes "Please investigate that yellow seed.";
-	mes "It's too dangerous for you to go alone. You should take at least one comrade with you.";
+	mes "请调查那颗黄色种子。";
+	mes "独自前往太危险了。你至少应该带一名同伴。";
 	close;
 }
 
@@ -151,83 +151,83 @@ OnTouch_:
 	'vrid$ = instance_npcname("Vrid#bios1");
 	'reaper$ = instance_npcname("Grim Reaper Ankou#bios1");
 	initnpctimer;
-	npctalk "Vrid: Ah, someone else has come to join us.", 'vrid$;
+	npctalk "弗里德：啊，又有人来加入我们了。", 'vrid$;
 	end;
 OnTimer2500:
-	npctalk "Vrid: Did you also come to stop Morocc's resurrection?", 'vrid$;
+	npctalk "弗里德：你也是来阻止摩洛克复活的吗？", 'vrid$;
 	end;
 OnTimer5000:
-	npctalk "Vrid: I'm Vrid and this is Zeith, from Prontera. We've been traveling around the world, fighting for justice.", 'vrid$;
+	npctalk "弗里德：我是弗里德，他是来自普隆德拉的赛特。我们一直周游世界，为正义而战。", 'vrid$;
 	end;
 OnTimer7500:
-	npctalk "Vrid: Hey, Zeith. Say something.", 'vrid$;
+	npctalk "弗里德：喂，赛特，说句话。", 'vrid$;
 	end;
 OnTimer10000:
 	npctalk "Zeith: ...", 'zeith$;
 	end;
 OnTimer12500:
-	npctalk "Zeith: I'm Zeith.", 'zeith$;
+	npctalk "赛特：我是赛特。", 'zeith$;
 	end;
 OnTimer15000:
 	npctalk "Zeith: ...", 'zeith$;
 	end;
 OnTimer17500:
-	npctalk "Vrid: Don't mind him. He's not so quiet when there are only two of us.", 'vrid$;
+	npctalk "弗里德：别在意他。只有我们两人时，他可没这么安静。", 'vrid$;
 	end;
 OnTimer19500:
-	npctalk "Zeith: ...You talk enough for both of us.", 'zeith$;
+	npctalk "赛特：……你一个人说完了我们两人的份。", 'zeith$;
 	end;
 OnTimer21000:
-	npctalk "Vrid: We only came because the old geezer down below kept rambling about Morocc's resurrection.", 'vrid$;
+	npctalk "弗里德：我们是因为下面那个老头一直唠叨摩洛克复活才来的。", 'vrid$;
 	end;
 OnTimer23500:
-	npctalk "Vrid: Err, what's this place? I just touched the seed, and suddenly the scenery changed.", 'vrid$;
+	npctalk "弗里德：呃，这是什么地方？我刚碰到种子，景色突然就变了。", 'vrid$;
 	end;
 OnTimer26000:
-	npctalk "Vrid: Holy cow, are we flying in the sky?!", 'vrid$;
+	npctalk "弗里德：天啊，我们在天空中飞吗？！", 'vrid$;
 	end;
 OnTimer28500:
-	npctalk "???: *Chuckle* Do you want to know where you are?", 'reaper$;
+	npctalk "？？？：*窃笑* 想知道你们在哪里吗？", 'reaper$;
 	end;
 OnTimer31000:
-	npctalk "Zeith: Who's there?!", 'zeith$;
+	npctalk "赛特：谁在那里？！", 'zeith$;
 	end;
 OnTimer33500:
 	enablenpc 'reaper$;
-	npctalk "Grim Reaper Ankou: *Chuckle* This is the Isle of Bios, a place I conjured up in my mind.", 'reaper$;
+	npctalk "死神安考：*窃笑* 这里是生物岛，是我在脑中创造的地方。", 'reaper$;
 	end;
 OnTimer36000:
-	npctalk "Grim Reaper Ankou: You've walked into the trap, making yourself willing sacrifices for my Lord Morocc. Aren't you afraid of dying?", 'reaper$;
+	npctalk "死神安考：你们踏入了陷阱，自愿成为摩洛克大人的祭品。难道不怕死吗？", 'reaper$;
 	end;
 OnTimer38500:
-	npctalk "Vrid: Pah! If I was I wouldn't have come willingly, would I?", 'vrid$;
+	npctalk "弗里德：呸！如果怕，我就不会自愿来了，不是吗？", 'vrid$;
 	end;
 OnTimer41000:
-	npctalk "Vrid: Whoever you are, we'll kill you before you do!", 'vrid$;
+	npctalk "弗里德：不管你是谁，我们会在那之前杀了你！", 'vrid$;
 	end;
 OnTimer43500:
-	npctalk "Grim Reaper Ankou: Don't tempt me, human.", 'reaper$;
+	npctalk "死神安考：别挑衅我，人类。", 'reaper$;
 	end;
 OnTimer46000:
-	npctalk "Grim Reaper Ankou: I want to watch you die slowly and painfully. *Chuckle*", 'reaper$;
+	npctalk "死神安考：我想看着你们缓慢而痛苦地死去。*窃笑*", 'reaper$;
 	end;
 OnTimer48500:
 	disablenpc 'reaper$;
 	end;
 OnTimer51000:
-	npctalk "Vrid: Who's he? Is he trying to resurrect Morocc? ", 'vrid$;
+	npctalk "弗里德：他是谁？他想复活摩洛克吗？", 'vrid$;
 	end;
 OnTimer53500:
-	npctalk "Vrid: Let's chase him! Zeith, hurry!", 'vrid$;
+	npctalk "弗里德：追上他！赛特，快点！", 'vrid$;
 	end;
 OnTimer54000:
 	disablenpc 'vrid$;
 	end;
 OnTimer56000:
-	npctalk "Zeith: ...Ack.", 'zeith$;
+	npctalk "赛特：……呃。", 'zeith$;
 	end;
 OnTimer58500:
-	npctalk "Zeith: I hate running.", 'zeith$;
+	npctalk "赛特：我讨厌跑步。", 'zeith$;
 	end;
 OnTimer61000:
 	disablenpc 'zeith$;
@@ -349,12 +349,12 @@ OnMyMobDead:
 1@dth3,64,74,5	script	Vrid#bios3	4_M_KNIGHT_BLACK,{
 	if ('reward == 1) {
 		mes "[Vrid]";
-		mes "I came by";
-		mes "this Hero Token by accident.";
-		mes "I want to give it to you. You deserve it.";
+		mes "我偶然得到了";
+		mes "这枚英雄徽章。";
+		mes "我想把它给你，你值得拥有。";
 		next;
 		mes "[Vrid]";
-		mes "Let's get out of this creepy place!";
+		mes "我们离开这个诡异的地方吧！";
 		close2;
 		getitem 6684,1;// Token Of Hero
 		if (ep14_3_isle == 0)
@@ -384,55 +384,55 @@ OnStart:
 	'zeith3$ = instance_npcname("Zeith#bios3");
 	'vrid3$ = instance_npcname("Vrid#bios3");
 	initnpctimer;
-	npctalk "Vrid: You're lucky to be here. I got totally lost the moment I entered that maze.", 'vrid3$;
+	npctalk "弗里德：你能到这里真幸运。我一进迷宫就彻底迷路了。", 'vrid3$;
 	end;
 OnTimer2500:
-	npctalk "Vrid: If it weren't for Zeith, I'd still be in there, wandering. Thanks, Zeith.", 'vrid3$;
+	npctalk "弗里德：要不是赛特，我还在里面乱转。谢谢你，赛特。", 'vrid3$;
 	end;
 OnTimer5000:
-	npctalk "Zeith: ...Something's been bothering me.", 'zeith3$;
+	npctalk "赛特：……有件事一直让我在意。", 'zeith3$;
 	end;
 OnTimer7500:
-	npctalk "Vrid: What's up?", 'vrid3$;
+	npctalk "弗里德：怎么了？", 'vrid3$;
 	end;
 OnTimer10000:
-	npctalk "Zeith: I've got the feeling that the monsters were growing stronger with time.", 'zeith3$;
+	npctalk "赛特：我感觉那些怪物随着时间推移变得更强了。", 'zeith3$;
 	end;
 OnTimer12500:
-	npctalk "Zeith: Just like children growing up into adults.", 'zeith3$;
+	npctalk "赛特：就像孩子长大成人一样。", 'zeith3$;
 	end;
 OnTimer15000:
-	npctalk "Vrid: Um, I think you're right.", 'vrid3$;
+	npctalk "弗里德：嗯，我想你说得对。", 'vrid3$;
 	end;
 OnTimer17500:
-	npctalk "Vrid: They're all small in the beginning, and then we faced bigger and stronger ones over time.", 'vrid3$;
+	npctalk "弗里德：它们一开始都很小，后来我们遇到的越来越大、越来越强。", 'vrid3$;
 	end;
 OnTimer20000:
-	npctalk "Vrid: To me, that sounds natural. What are you worried about?", 'vrid3$;
+	npctalk "弗里德：在我看来很自然。你担心什么？", 'vrid3$;
 	end;
 OnTimer22500:
-	npctalk "Zeith: Well, I'm curious about the monster we'll face now.", 'zeith3$;
+	npctalk "赛特：我只是好奇我们现在要面对的怪物。", 'zeith3$;
 	end;
 OnTimer25000:
-	npctalk "Zeith: Whether they're stronger versions of their original selves, or something completely different.", 'zeith3$;
+	npctalk "赛特：它们是原本形态的强化版，还是完全不同的东西。", 'zeith3$;
 	end;
 OnTimer27000:
 	enablenpc 'reaper3$;
 	end;
 OnTimer27500:
-	npctalk "Grim Reaper Ankou: *Chuckle* At least one of you has a good head on his shoulders.", 'reaper3$;
+	npctalk "死神安考：*窃笑* 至少你们其中一人很聪明。", 'reaper3$;
 	end;
 OnTimer30000:
-	npctalk "Vrid: You again?", 'vrid3$;
+	npctalk "弗里德：又是你？", 'vrid3$;
 	end;
 OnTimer32500:
-	npctalk "Grim Reaper Ankou: Are you curious about your next adversaries?", 'reaper3$;
+	npctalk "死神安考：好奇接下来的对手吗？", 'reaper3$;
 	end;
 OnTimer35000:
-	npctalk "Grim Reaper Ankou: Ahead of you is an army of the immortal.", 'reaper3$;
+	npctalk "死神安考：前方是不死者的军队。", 'reaper3$;
 	end;
 OnTimer37500:
-	npctalk "Grim Reaper Ankou: *Chuckle* Come out, my soldiers!", 'reaper3$;
+	npctalk "死神安考：*窃笑* 出来吧，我的士兵！", 'reaper3$;
 	end;
 OnTimer37700:
 	specialeffect EF_READYPORTAL,AREA,'reaper3$;
@@ -444,16 +444,16 @@ OnTimer40000:
 	}
 	end;
 OnTimer42000:
-	npctalk "Vrid: Shut up, you fiend! We don't have time for your lackeys!", 'vrid3$;
+	npctalk "弗里德：闭嘴，你这恶魔！我们没时间应付你的爪牙！", 'vrid3$;
 	end;
 OnTimer45000:
-	npctalk "Vrid: I'll get rid of you myself!", 'vrid3$;
+	npctalk "弗里德：我亲自解决你！", 'vrid3$;
 	end;
 OnTimer47500:
-	npctalk "Grim Reaper Ankou: Right back at you, bigmouth.", 'reaper3$;
+	npctalk "死神安考：这句话还给你，大嘴巴。", 'reaper3$;
 	end;
 OnTimer50000:
-	npctalk "Grim Reaper Ankou: I'll teach you how terrifying it is to be helpless in the face of horror!", 'reaper3$;
+	npctalk "死神安考：我会让你知道面对恐怖却无能为力有多可怕！", 'reaper3$;
 	end;
 OnTimer52500:
 	specialeffect EF_STORMGUST,AREA,'reaper3$;
@@ -478,25 +478,25 @@ OnTimer52700:
 	}
 	end;
 OnTimer55000:
-	npctalk "Vrid: Ugh! W-what's going on?! I-I can't move!", 'vrid3$;
+	npctalk "弗里德：呃！发、发生什么了？！我、我动不了！", 'vrid3$;
 	end;
 OnTimer57500:
-	npctalk "Zeith: N-neither can I! I can't move my feet!", 'zeith3$;
+	npctalk "赛特：我、我也不能！脚动不了了！", 'zeith3$;
 	end;
 OnTimer60000:
-	npctalk "Grim Reaper Ankou: On the Isle of Bios, each day is a lifetime.", 'reaper3$;
+	npctalk "死神安考：在生物岛，每一天都是一生。", 'reaper3$;
 	end;
 OnTimer62500:
-	npctalk "Grim Reaper Ankou: You must have noticed my soldiers have grown up before the sunset.", 'reaper3$;
+	npctalk "死神安考：你们一定注意到我的士兵在日落前成长了。", 'reaper3$;
 	end;
 OnTimer65000:
-	npctalk "Grim Reaper Ankou: After nightfall, they've reached the final stage of their development: life beyond death.", 'reaper3$;
+	npctalk "死神安考：入夜后，它们将达到最终阶段：超越死亡的生命。", 'reaper3$;
 	end;
 OnTimer67500:
-	npctalk "Grim Reaper Ankou: That's right. It's time for you to experience death.", 'reaper3$;
+	npctalk "死神安考：没错。现在轮到你们体验死亡了。", 'reaper3$;
 	end;
 OnTimer70000:
-	npctalk "Grim Reaper Ankou: Get ready to feel the fear of death! *Chuckle*", 'reaper3$;
+	npctalk "死神安考：准备感受死亡的恐惧吧！*窃笑*", 'reaper3$;
 	// note: unfreeze player
 	end;
 OnTimer72000:

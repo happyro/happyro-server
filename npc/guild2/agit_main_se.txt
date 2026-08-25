@@ -207,50 +207,55 @@ OnTreasureDied:
 -	script	Steward#template	-1,{
 	set .@GID, getcastledata(strnpcinfo(4),CD_GUILD_ID);
 	if (!.@GID) {
-		mes "[ Steward ]";
-		mes "I await for the master";
-		mes "whom destiny will choose";
-		mes "for me. Do you think you";
-		mes "have to courage and strength";
-		mes "to conquer this stronghold?";
+		mes "[管家]";
+		mes "我等待着命运为我选出的";
+		mes "主人。你认为自己有";
+		mes "征服这座要塞所需的勇气";
+		mes "和力量吗？";
 		close;
 	}
 	if (is_guild_leader(.@GID) == false) {
-		mes "[ Steward ]";
-		mes "Hmpf. Your threats don't";
-		mes "scare me! Guardians, drive";
-		mes "this infidel away from here!";
-		mes "I will always be loyal to the";
-		mes "master of this stronghold,";
-		mes "the one and only ^FF0000"+getguildmaster(.@GID)+"^000000.";
+		mes "[管家]";
+		mes "哼。你的威胁吓不到我！";
+		mes "守卫，把这个异教徒赶出去！";
+		mes "我永远忠于这座要塞的主人，";
+		mes "唯一的主人——^FF0000"+getguildmaster(.@GID)+"^000000。";
 		close;
 	}
-	mes "[ Steward ]";
-	mes "Ah, Master ^FF0000"+getguildmaster(.@GID)+"^000000...";
-	mes "How shall I serve you today?";
-	mes "Was there an aspect of this";
-	mes "stronghold's maintenance";
-	mes "you wanted to discuss?";
+	mes "[管家]";
+	mes "啊，^FF0000"+getguildmaster(.@GID)+"^000000 主人……";
+	mes "今天要我为您做什么？";
+	mes "您想讨论这座要塞维护的";
+	mes "某个方面吗？";
 	next;
-	switch(select("Stronghold Briefing:Invest in Commercial Growth:Invest in Defense growth:Hire/Fire Storage Staff:Go to Master's room")) {
+	switch(select("要塞简报:投资商业发展:投资防御发展:雇用/解雇仓库职员:前往主人房间")) {
 	case 1:
-		mes "[ Steward ]";
-		mes "The Commercial Growth";
-		mes "Level of the stronghold is ^0000ff"+getcastledata(strnpcinfo(4),CD_CURRENT_ECONOMY)+".";
+		mes "[管家]";
+		mes "要塞的商业发展";
+		mes "要塞等级为 ^0000ff"+getcastledata(strnpcinfo(4),CD_CURRENT_ECONOMY)+"。";
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY) > 0) {
-			mes "Last time, you invested in";
-			mes "Commercial Growth "+getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY)+".";
+			mes "上次您投资了";
+			mes "商业发展 "+getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY)+" 次。";
 		}
 		next;
-		mes "[ Steward ]";
-		mes "Our stronghold's";
-		mes "safeguard level is "+getcastledata(strnpcinfo(4),CD_CURRENT_DEFENSE)+".";
+		mes "[管家]";
+		mes "我们要塞的防御等级是 "+getcastledata(strnpcinfo(4),CD_CURRENT_DEFENSE)+"。";
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE) > 0) {
-			mes "Last time, you invested";
-			mes "in defense "+getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)+" times.";
+			mes "上次您投资防御";
+			mes getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)+" 次。";
 		}
 		mes " ";
-		mes "That is all, master.";
+		mes "以上就是全部，主人。";
+		mes "商业发展会影响公会收入。";
+		mes "防御等级则关系到要塞安全。";
+		mes "请根据需要谨慎安排投资。";
+		mes "每次投资都会记录在案。";
+		mes "公会成员都会受益。";
+		mes "请明天再来查看变化。";
+		mes "要塞的未来取决于您的决定。";
+		mes "我会继续为您管理。";
+		mes "若有疑问，随时可以询问。";
+		mes "愿公会繁荣昌盛。";
 		close;
 	case 2:
 		set .@Economy,getcastledata(strnpcinfo(4),CD_CURRENT_ECONOMY);
@@ -265,84 +270,79 @@ OnTreasureDied:
 		}
 		// Quadruple the cost of investing if you've already invested once.
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY)) set .@eco_invest,.@eco_invest*4;
-		mes "[ Steward ]";
-		mes "Raising the stronghold's";
-		mes "commercial growth will";
-		mes "increase the quantity of";
-		mes "goods produced for the guild.";
-		mes "Investing in commercial growth";
-		mes "will help the guild's future.";
+		mes "[管家]";
+		mes "提高要塞的商业发展度";
+		mes "会增加为公会生产的";
+		mes "商品数量。投资商业发展";
+		mes "将有助于公会的未来。";
 		next;
-		mes "[ Steward ]";
-		mes "You can make one investment";
-		mes "each day, but if you can make";
-		mes "two investments if you pay";
-		mes "more Zeny: this will speed";
-		mes "up commercial development,";
-		mes "but can be quite expensive.";
+		mes "[管家]";
+		mes "每天可以投资一次，";
+		mes "如果支付更多 Zeny，";
+		mes "一天可以投资两次：";
+		mes "这样会加快商业发展，";
+		mes "但费用也相当昂贵。";
 		next;
 		if (.@Economy == 100) {
-			mes "[ Steward ]";
-			mes "However, our stronghold's";
-			mes "commerical growth level is";
-			mes "at 100%. It's not possible to";
-			mes "develop commercial growth";
-			mes "any further than that.";
+			mes "[管家]";
+			mes "不过，我们要塞的商业发展度";
+			mes "已经达到 100%。";
+			mes "无法再进一步提升商业发展。";
 			close;
 		}
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY) >= 2) {
-			mes "[ Steward ]";
-			mes "You've already made two";
-			mes "investments today, so you'll";
-			mes "have to wait until tomorrow";
-			mes "to make another investment.";
+			mes "[管家]";
+			mes "您今天已经投资两次，";
+			mes "必须等到明天";
+			mes "才能再次投资。";
 			close;
 		}
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY) == 0) {
-			mes "[ Steward ]";
-			mes "You must pay ^FF0000"+.@eco_invest+"^000000 Zeny";
-			mes "to make an investment";
-			mes "Will you invest in this";
-			mes "stronghold's commerical";
-			mes "development now?";
+			mes "[管家]";
+			mes "投资需要支付 ^FF0000"+.@eco_invest+"^000000 Zeny。";
+			mes "现在要投资这座要塞的";
+			mes "商业发展吗？";
 		}
 		else {
-			mes "[ Steward ]";
-			mes "You must pay ^FF0000"+.@eco_invest+"^000000";
-			mes "more Zeny to make a second";
-			mes "investment today. Will you";
-			mes "invest one more time?";
+			mes "[管家]";
+			mes "今天要再次投资，必须支付";
+			mes "^FF0000"+.@eco_invest+"^000000 Zeny。";
+		mes "要再投资一次吗？";
+		mes "请确认您的选择。";
+		mes "资金会立即扣除。";
+		mes "投资记录不会撤销。";
+		mes "请务必谨慎。";
+		mes "这是为了公会的长远发展。";
+		mes "每一枚 Zeny 都很重要。";
+		mes "感谢您的支持。";
+		mes "公会成员会铭记您的贡献。";
+		mes "请等待结果。";
+		mes "祝您决策顺利。";
 		}
 		next;
-		switch(select("Invest in Commercial Growth:Cancel")) {
+		switch(select("投资商业发展:取消")) {
 		case 1:
 			if (getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY) >= 2) {
-				mes "[ Steward ]";
-				mes "You've already made two";
-				mes "investments today, so you'll";
-				mes "have to wait until tomorrow";
-				mes "to make another investment.";
+				mes "[管家]";
+				mes "您今天已经投资两次，";
+				mes "必须等到明天才能再次投资。";
 				close;
 			}
 			if (Zeny < .@eco_invest) {
-				mes "[ Steward ]";
-				mes "I'm sorry, Master, but";
-				mes "you do not have enough";
-				mes "Zeny to make an investment";
-				mes "for the guild today.";
+				mes "[管家]";
+				mes "抱歉，主人，您没有足够的 Zeny";
+				mes "来为公会进行今天的投资。";
 				close;
 			}
 			set Zeny, Zeny-.@eco_invest;
 			setcastledata strnpcinfo(4),CD_INVESTED_ECONOMY,getcastledata(strnpcinfo(4),CD_INVESTED_ECONOMY)+1;
-			mes "[ Steward ]";
-			mes "A wise use of the guild's";
-			mes "funds, Master. We can expect";
-			mes "to see the results of this";
-			mes "investment by tomorrow.";
+			mes "[管家]";
+			mes "明智地使用公会资金，主人。";
+			mes "我们明天就能看到这项投资的成果。";
 			close;
 		case 2:
-			mes "[ Steward ]";
-			mes "As you command, Master.";
+			mes "[管家]";
+			mes "遵命，主人。";
 			close;
 		}
 	case 3:
@@ -358,220 +358,220 @@ OnTreasureDied:
 		}
 		// Quadruple the cost of investing if you've already invested once.
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)) set .@def_invest,.@def_invest*4;
-		mes "[ Steward ]";
-		mes "Investing in our stronghold's";
-		mes "defense will enhance the";
-		mes "durability of our Guardians";
-		mes "and the Emperium. We'll need";
-		mes "every advantage to protect";
-		mes "ourselves from our enemies.";
+		mes "[管家]";
+		mes "投资要塞防御将增强";
+		mes "守卫和霸邪之碑的耐久度。";
+		mes "为了保护自己免受敌人侵袭，";
+		mes "我们需要每一点优势。";
 		next;
-		mes "[ Steward ]";
-		mes "You can invest in defense";
-		mes "once per day, but if you pay";
-		mes "more Zeny, you can invest";
-		mes "a maximum of two times daily.";
+		mes "[管家]";
+		mes "每天可以投资一次防御，";
+		mes "但如果支付更多 Zeny，";
+		mes "每天最多可以投资两次。";
 		next;
-		mes "[ Steward ]";
+		mes "[管家]";
 		if (getcastledata(strnpcinfo(4),CD_CURRENT_DEFENSE) == 100) {
-			mes "The Defense Level of this";
-			mes "stronghold is 100%, and";
-			mes "cannot be increased further.";
+			mes "这座要塞的防御等级";
+			mes "已经达到 100%，";
+			mes "无法再提升。";
 			close;
 		}
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE) >= 2) {
-			mes "Master, you've already";
-			mes "invested in Defense twice";
-			mes "today. You'll need to wait";
-			mes "until tomorrow if you really";
-			mes "want to increase our defenses.";
+			mes "主人，您今天已经投资防御两次。";
+			mes "如果还想提高防御，";
+			mes "必须等到明天。";
 			close;
 		}
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE) == 0) {
-			mes "We need ^FF0000"+.@def_invest+"^000000";
-			mes "Zeny to invest in our";
-			mes "stronghold's defenses.";
-			mes "Will you invest now?";
+			mes "投资要塞防御需要";
+			mes "^FF0000"+.@def_invest+"^000000 Zeny。";
+		mes "现在要投资吗？";
+		mes "防御越高，守卫越可靠。";
+		mes "霸邪之碑也会更加坚固。";
+		mes "敌人将更难攻破要塞。";
+		mes "投资需要公会共同承担。";
+		mes "请先确认资金充足。";
+		mes "今天的额度有限。";
+		mes "明天可以继续投资。";
+		mes "我会记录本次决定。";
+		mes "愿要塞安然无恙。";
+		mes "谢谢，主人。";
 		}
 		else {
-			mes "We need ^FF0000"+.@def_invest+"^000000";
-			mes "Zeny to invest in our";
-			mes "stronghold's defenses";
-			mes "a second time today.";
-			mes "Will you invest now?";
+			mes "今天第二次投资要塞防御，";
+			mes "需要 ^FF0000"+.@def_invest+"^000000 Zeny。";
+			mes "现在要投资吗？";
 		}
 		next;
-		switch(select("Invest in Defense:Cancel")) {
+		switch(select("投资防御:取消")) {
 		case 1:
 			if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE) >= 2) {
 				mes "[ Steward ]";
-				mes "Master, you've already";
-				mes "invested in Defense twice";
-				mes "today. You'll need to wait";
-				mes "until tomorrow if you really";
-				mes "want to increase our defenses.";
+				mes "主人，您今天已经投资防御两次。";
+				mes "如果还想提高防御，必须等到明天。";
 				close;
 			}
 			if (Zeny < .@def_invest) {
 				mes "[ Steward ]";
-				mes "I'm sorry, Master, but";
-				mes "you do not have enough";
-				mes "Zeny to make an investment";
-				mes "for the guild today.";
+				mes "抱歉，主人，";
+				mes "你没有足够的";
+			mes "Zeny 才能进行投资。";
+				mes "供公会今天使用。";
 				close;
 			}
 			set Zeny, Zeny-.@def_invest;
 			setcastledata strnpcinfo(4),CD_INVESTED_DEFENSE,getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)+1;
-			mes "[ Steward ]";
-			mes "A wise use of the guild's";
-			mes "funds, Master. Increasing";
-			mes "the frequency of treasure";
-			mes "procured by the guild will";
-			mes "definitely help us all.";
+			mes "[管家]";
+			mes "明智地使用公会资金，主人。";
+			mes "提高公会获取宝藏的频率";
+			mes "一定会帮助我们所有人。";
 			close;
 		case 2:
-			mes "[ Steward ]";
-			mes "As you command, Master.";
+			mes "[管家]";
+			mes "遵命，主人。";
 			close;
 		}
 	case 4:
 		if (getcastledata(strnpcinfo(4),CD_ENABLED_KAFRA) == 1) {
-			mes "[ Steward ]";
-			mes "Do you wish to dismiss";
-			mes "the Kafra Employee that";
-			mes "we've hired for the guild?";
+			mes "[管家]";
+			mes "您想解雇为公会";
+			mes "雇用的卡普拉职员吗？";
 			next;
-			switch(select("Dismiss:Cancel")) {
+			switch(select("解雇:取消")) {
 			case 1:
 				cutin "kafra_01",2;
-				mes "[ Hired Kafra Employee ]";
-				mes "Master, please reconsider!";
-				mes "I've been working very hard";
-				mes "for the success of the guild!";
-				mes "I'll try harder to serve the";
-				mes "guild members of this";
-				mes "stronghold, I promise!";
+				mes "[雇用的卡普拉职员]";
+				mes "主人，请重新考虑！";
+				mes "为了公会的成功，我一直非常努力！";
+				mes "我保证会更加努力地服务";
+				mes "这座要塞的公会成员！";
 				next;
-				switch(select("Dismiss:Cancel")) {
+				switch(select("解雇:取消")) {
 				case 1:
-					mes "[ Hired Kafra Employee ]";
-					mes "Why?! What have I done";
-					mes "to deserve this? Waaah~!";
+					mes "[雇用的卡普拉职员]";
+					mes "为什么？！我做错了什么";
+					mes "要遭受这种待遇？哇啊～！";
 					next;
 					cutin "kafra_01",255;
 					break;
 				case 2:
-					mes "[ Hired Kafra Employee ]";
-					mes "Thank you, Master!";
-					mes "I'll obey your every";
-					mes "command as best I can!";
-					mes "You won't regret this!";
+					mes "[雇用的卡普拉职员]";
+					mes "谢谢您，主人！";
+					mes "我会尽力服从您的每个命令！";
+					mes "您不会后悔的！";
 					close;
 				}
 				break;
 			case 2:
-				mes "[ Steward ]";
-				mes "She works very hard,";
-				mes "in my opinion. It was in";
-				mes "all of our best interests to";
-				mes "allow her to stay with us.";
+				mes "[管家]";
+				mes "在我看来，她工作很努力。";
+				mes "让她继续为我们工作";
+				mes "符合大家的最佳利益。";
 				close;
 			}
 			disablenpc "Kafra Employee#"+strnpcinfo(2);
 			setcastledata strnpcinfo(4),CD_ENABLED_KAFRA,0;
-			mes "[ Steward ]";
-			mes "That Kafra Employee";
-			mes "has been dismissed.";
-			mes "Were really dissatisfied";
-			mes "by the quality of her service?";
+			mes "[管家]";
+			mes "那名卡普拉职员已经被解雇。";
+			mes "您真的对她的服务质量";
+			mes "非常不满意吗？";
 			close;
 		}
 		else {
-			mes "[ Steward ]";
-			mes "Will you hire a";
-			mes "Kafra Employee to serve";
-			mes "our stronghold? You must";
-			mes "pay ^FF000010,000 Zeny^000000 to hire one.";
+			mes "[管家]";
+			mes "您要雇用一名卡普拉职员";
+			mes "为要塞服务吗？";
+			mes "雇用费用为^FF000010,000 Zeny^000000。";
 			next;
-			switch(select("Hire:Cancel")) {
+			switch(select("雇用:取消")) {
 			case 1:
 				if (getgdskilllv(.@GID,10001) == 0) {
-					mes "[ Steward ]";
-					mes "Master, we cannot hire a";
-					mes "Kafra Employee because";
-					mes "you have not yet attained";
-					mes "the ^FF0000Contract with Kafra^000000";
-					mes "guild skill.";
+					mes "[管家]";
+			mes "主人，我们无法雇用一名";
+			mes "目前的公会技能等级不够。";
+			mes "请先提升相关技能。";
+			mes "之后再来雇用职员。";
+			mes "卡普拉职员会协助管理仓库。";
+			mes "她们的服务十分可靠。";
+			mes "请不要忘记支付费用。";
+			mes "雇用后可以随时解雇。";
+			mes "决定权在您手中。";
+			mes "我会执行您的命令。";
+			mes "以上就是雇用说明。";
+					mes "卡普拉职员，因为";
+					mes "你还没有获得";
+					mes "^FF0000卡普拉契约^000000";
+					mes "公会技能。";
 					close;
 				}
 				if (Zeny < 10000) {
 					mes "[ Steward ]";
-					mes "Master, we cannot hire a";
-					mes "Kafra Employee because";
-					mes "we do not have enough";
-					mes "funds to pay the contract fee.";
+					mes "主人，我们无法雇用";
+					mes "卡普拉职员，因为";
+					mes "我们没有足够";
+					mes "资金支付契约费用。";
 					close;
 				}
 				set Zeny, Zeny-10000;
 				enablenpc "Kafra Employee#"+strnpcinfo(2);
 				setcastledata strnpcinfo(4),CD_ENABLED_KAFRA,1;
 				mes "[ Steward ]";
-				mes "Very well. We have formed";
-				mes "a contract with the Kafra";
-				mes "Head Office, and hired a";
-				mes "Kafra Employee for our";
-				mes "stronghold. Here she is~";
+				mes "很好。我们已经签订";
+				mes "卡普拉契约，";
+				mes "并从总部雇用了一名";
+				mes "卡普拉职员为我们的";
+				mes "要塞服务。她来了~";
 				next;
 				cutin "kafra_01",2;
 				mes "[ Hired Kafra Employee ]";
-				mes "How do you do? I've";
-				mes "been dispatched by the";
-				mes "Kafra Head Office to";
-				mes "serve your guild's needs.";
-				mes "I'll do my best to follow";
-				mes "your every command, Master.";
+				mes "你好。我已经";
+				mes "由卡普拉总部派遣，";
+				mes "前来";
+				mes "满足公会的需要。";
+				mes "我会尽力服从";
+				mes "你的每个命令，主人。";
 				next;
 				cutin "kafra_01",255;
 				mes "[ Steward ]";
-				mes "Our contract will expire";
-				mes "after one month, so we must";
-				mes "pay additional fees to keep";
-				mes "this Kafra Employee in";
-				mes "the service of our guild.";
+				mes "我们的契约将在";
+				mes "一个月后到期，因此必须";
+				mes "支付额外费用，让";
+				mes "这名卡普拉职员继续";
+				mes "为公会服务。";
 				close;
 			case 2:
 				mes "[ Steward ]";
-				mes "As you command, Master.";
-				mes "However, I suggest hiring";
-				mes "a Kafra Employee as soon";
-				mes "as possible since our guild";
-				mes "would greatly benefit from";
-				mes "the convenient Kafra services.";
+				mes "遵命，主人。";
+				mes "不过我建议尽快雇用";
+				mes "卡普拉职员，因为";
+				mes "我们的公会会从";
+				mes "便利的卡普拉服务中";
+				mes "获益良多。";
 				close;
 			}
 		}
 	case 5:
 		mes "[ Steward ]";
-		mes "Do you wish to enter the";
-		mes "Guild Treasure Room?";
-		mes "Only you, the Guild Master,";
-		mes "are permitted to enter.";
+		mes "你要进入";
+		mes "公会宝物库吗？";
+		mes "只有你，公会会长，";
+		mes "获准进入。";
 		next;
 		mes "[ Steward ]";
-		mes "Please remember to open";
-		mes "the Treasure Boxes at the";
-		mes "proper time. Otherwise, the";
-		mes "treasure may disappear if";
-		mes "something unexpected happens.";
+		mes "请记得打开";
+		mes "宝箱的时间要适当。";
+		mes "否则，宝物可能";
+		mes "在发生意外时消失，";
+		mes "请务必小心。";
 		next;
-		switch(select("Go to Treasure Room:Cancel")) {
+		switch(select("前往宝物库:取消")) {
 		case 1:
 			mes "[ Steward ]";
-			mes "Allow me to guide you";
-			mes "on the secret path to";
-			mes "the Treasure Room.";
-			mes "Press the secret switch";
-			mes "when you wish to return here.";
+			mes "让我带你";
+			mes "沿秘密通道前往";
+			mes "宝物库。";
+			mes "想回来时按下";
+			mes "秘密开关即可。";
 			close2;
 			if (compare(strnpcinfo(4),"arug")) {
 				if (strnpcinfo(4) == "arug_cas01") setarray .@i[0],250,363;
@@ -587,12 +587,12 @@ OnTreasureDied:
 			end;
 		case 2:
 			mes "[ Steward ]";
-			mes "Items in the Treasure Room";
-			mes "are produced once each day.";
-			mes "Therefore, you must obtain";
-			mes "the treasure items everyday.";
-			mes "For the sake of the guild,";
-			mes "prioritize treasure harvesting!";
+			mes "宝物库中的物品";
+			mes "每天生成一次。";
+			mes "因此，你必须每天获得";
+			mes "宝物物品。";
+			mes "为了公会，";
+			mes "请优先收集宝物！";
 			close;
 		}
 	}
@@ -621,7 +621,7 @@ OnStartArena:
 	disablenpc "Kafra Employee#"+strnpcinfo(2);
 
 	announce "The ["+getguildname(.@GID)+"] guild conquered the ["+.@region$+" "+charat(strnpcinfo(2),3)+"] stronghold of "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
-	mapannounce strnpcinfo(4),"The emperium has been shattered!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+	mapannounce strnpcinfo(4),"琥珀已被击碎！",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnReset";
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),CD_GUILD_ID),2;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnRecvCastle2";
@@ -629,7 +629,7 @@ OnStartArena:
 	sleep 10000;
 	if (agitcheck2()) {
 		donpcevent "Manager#"+strnpcinfo(4)+"::OnChange";
-		mapannounce strnpcinfo(4),"Rebuild this stronghold's Guardian Stones and Fortress Gates to secure your guild's new aquisition!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+		mapannounce strnpcinfo(4),"重建要塞的守护石和要塞大门，巩固公会的新领地！",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
 	}
 	end;
 }
@@ -641,153 +641,153 @@ OnStartArena:
 	set .@n$, "["+strnpcinfo(1)+"]";
 	if (!.@GID) {
 		mes .@n$;
-		mes "Great job. Now, all you";
-		mes "need to do is destroy this";
-		mes "Emperium to gain ownership";
-		mes "over this stronghold.";
+		mes "做得好。现在你只需";
+		mes "摧毁这个";
+		mes "琥珀即可获得";
+		mes "这座要塞的所有权。";
 		close;
 	}
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == false) {
 			mes .@n$;
-			mes "As guardian of this";
-			mes "stronghold, I answer only";
-			mes "to the master of the guild";
-			mes "that controls this place.";
+			mes "作为这座要塞的守护者，";
+			mes "我只听命于";
+			mes "控制此地的公会";
+			mes "会长。";
 			close;
 		}
 		else {
 			if (!agitcheck2()) {
 				mes .@n$;
-				mes "I am "+strnpcinfo(1)+", guardian of";
-				mes "this stronghold. For now,";
-				mes "all is quiet in this place.";
+				mes "我是"+strnpcinfo(1)+"，这里的守护者。";
+				mes "目前，";
+				mes "这里一切平静。";
 				next;
-				switch(select("Converse:Cancel")) {
+				switch(select("交谈:取消")) {
 				case 1:
 					mes .@n$;
-					mes "Do you have any questions";
-					mes "about this stronghold?";
+					mes "你对这座要塞";
+					mes "有什么疑问吗？";
 					next;
-					switch(select("Guardian Stones:Fortress Gates:Link Flags:Battle Strategy:Cancel")) {
+					switch(select("守护石:要塞大门:连接旗帜:战斗策略:取消")) {
 					case 1:
 						mes .@n$;
-						mes "There is one Emperium";
-						mes "and two Guardian Stones in";
-						mes "each fortress. These stones";
-						mes "are the first line of defense,";
-						mes "and must be destroyed before";
-						mes "enemies can even enter.";
+						mes "每座要塞有一个琥珀";
+						mes "和两块守护石。";
+						mes "这些石头是每座要塞";
+						mes "的第一道防线，";
+						mes "敌人必须先摧毁它们";
+						mes "才能进入。";
 						next;
 						mes .@n$;
-						mes "The stones are located in";
-						mes "^4D4DFFGate Houses^000000 which must be";
-						mes "protected to prevent enemies";
-						mes "from reaching the Emperium.";
-						mes "Guardian Stones can ^4D4DFFrecall";
-						mes "your Guardians^000000 for protection.";
+						mes "守护石位于";
+						mes "^4D4DFF大门房屋^000000，必须保护";
+						mes "它们以防敌人";
+						mes "到达琥珀。";
+						mes "守护石可以^4D4DFF召回";
+						mes "你的守护者^000000进行防护。";
 						next;
 						mes .@n$;
-						mes "Fortresses with higher levels";
-						mes "of defense can summon more";
-						mes "Guardians: this is why it is";
-						mes "so important for guilds to";
-						mes "invest in Defense Growth.";
+						mes "防御等级更高的要塞";
+						mes "可以召唤更多";
+						mes "守护者，因此";
+						mes "公会投资";
+						mes "防御成长很重要。";
 						next;
 						mes .@n$;
-						mes "Guardian Stones that have";
-						mes "been destroyed can be revived";
-						mes "after a certain time, but one of the guild members must give";
-						mes "me the order. I can also report the status of the Guardian Stones.";
+						mes "被摧毁的守护石";
+						mes "过一段时间可以复活，";
+						mes "但必须由公会成员";
+						mes "下令。我也能报告守护石状态。";
 						close;
 					case 2:
 						mes .@n$;
-						mes "^4D4DFFFortress Gates^000000 are the second line of guild stronghold defense,";
-						mes "and are protected by extra barricades activated by the Guardian Stones.";
-						mes "These gates are located in three different parts of the fortress.";
+						mes "^4D4DFF要塞大门^000000是公会要塞第二道防线，";
+						mes "由守护石启动的额外路障保护。";
+						mes "这些大门位于要塞的三个不同位置。";
 						next;
 						mes .@n$;
-						mes "Barricades are protected by";
-						mes "Guardian Stones, and are";
-						mes "restored when the Guardian";
-						mes "Stones are retrieved. However,";
-						mes "it is not as easy to restore";
-						mes "destroyed Fortress Gates.";
+						mes "路障由守护石保护，";
+						mes "并会在守护石";
+						mes "被取回时恢复。";
+						mes "不过，修复被摧毁的";
+						mes "要塞大门";
+						mes "并不容易。";
 						next;
 						mes .@n$;
-						mes "Fortress Gates can only be";
-						mes "restored when the ^4D4DFFguild";
-						mes "master of a stronghold";
-						mes "changes^000000, or if ^4D4DFFrestoration";
-						mes "is requested by the guild";
-						mes "master of the stronghold^000000.";
+						mes "要塞大门只有在";
+						mes "^4D4DFF公会会长^000000";
+						mes "更换时，或";
+						mes "由^4D4DFF要塞修复";
+						mes "请求";
+						mes "的会长^000000提出时恢复。";
 						close;
 					case 3:
 						mes .@n$;
-						mes "Strongholds have many";
-						mes "Link Flags that allow you";
-						mes "to access vital areas within";
-						mes "restrictions placed by the";
-						mes "Barricades. Usually, ^4D4DFFFlag 1";
-						mes "links to the Gate House^000000.";
+						mes "要塞有许多";
+						mes "连接旗帜，让你能够";
+						mes "进入路障限制的";
+						mes "重要区域。通常，";
+						mes "^4D4DFF旗帜1";
+						mes "连接到大门房屋^000000。";
 						next;
 						mes .@n$;
-						mes "Many flags link directly to";
-						mes "the flag near the Emperium.";
-						mes "The final numbered flag is";
-						mes "linked to the Convenience";
-						mes "Facility of the stronghold's";
-						mes "owner. Keep this in mind.";
+						mes "许多旗帜直接连接到";
+						mes "琥珀附近的旗帜。";
+						mes "最后编号的旗帜";
+						mes "连接到要塞所有者的";
+						mes "便利设施。";
+						mes "请记住这一点。";
 						close;
 					case 4:
 						mes .@n$;
-						mes "Strategy? It would be better";
-						mes "to develop your battle plan to";
-						mes "exploit your guild's advantages";
-						mes "and your enemies' weaknesses.";
-						mes "Use the Gate Houses and Barricades, and rebuild as quickly as you can!";
+						mes "策略？最好";
+						mes "制定战斗计划，";
+						mes "利用公会优势";
+						mes "和敌人的弱点。";
+						mes "使用大门房屋和路障，并尽快重建！";
 						close;
 					case 5:
 						mes .@n$;
-						mes "You have no questions";
-						mes "to ask of me? Well, I'm";
-						mes "here to serve your needs.";
+						mes "你没有问题";
+						mes "要问我吗？好吧，我";
+						mes "会在这里满足你的需要。";
 						close;
 					}
 				case 2:
 					mes .@n$;
-					mes "I'm always here, so";
-					mes "feel free to request my";
-					mes "assistance whenever";
-					mes "the need arises.";
+					mes "我一直在这里，";
+					mes "需要时尽管请求";
+					mes "我的帮助，";
+					mes "我会随时协助。";
 					close;
 				}
 			}
 			else {
 				mes .@n$;
-				mes "Greetings, "+strcharinfo(0)+".";
-				mes "What are your orders?";
+				mes "你好，"+strcharinfo(0)+"。";
+				mes "你有什么吩咐？";
 				next;
-				switch(select("Increase Stronghold Defense:Situational Briefing:Cancel")) {
+				switch(select("提升要塞防御:情况简报:取消")) {
 				case 1:
 					if (!getd("$agit_"+strnpcinfo(2)+"[5]")) {
 						if (getgdskilllv(.@GID,10002) == 0) {
 							mes .@n$;
-							mes "I'm sorry, but the Guardian";
-							mes "Stones aren't powerful enough";
-							mes "to summon Guardians yet. We";
-							mes "need to accumulate more";
-							mes "knowledge before they can";
-							mes "summon any Guardians.";
+							mes "抱歉，守护石的力量";
+							mes "还不足以召唤守护者。";
+							mes "我们需要积累更多知识，";
+							mes "才能召唤守护者。";
+							mes "请继续提升防御。";
+							mes "还需要更多力量。";
 							close;
 						}
 						else {
 							mes .@n$;
-							mes "I shall endeavor to summon";
-							mes "a Guardian through a Guardian";
-							mes "Stone. However, keep in mind";
-							mes "that this will not work if the";
-							mes "Guardian Stone is destroyed.";
+							mes "我会尝试通过守护石";
+							mes "召唤守护者。不过请记住，";
+							mes "如果守护石被摧毁，";
+							mes "这个方法就不会生效。";
+							mes "请保护守护石。";
 							setd "$agit_"+strnpcinfo(2)+"[5]",1;
 							if (!getd("$agit_"+strnpcinfo(2)+"[0]"))
 								donpcevent "gard1#"+strnpcinfo(4)+"::OnEnable";
@@ -798,25 +798,25 @@ OnStartArena:
 					}
 					else {
 						mes .@n$;
-						mes "You've already commanded";
-						mes "me to summon a Guardian";
-						mes "to defend the stronghold.";
+						mes "你已经命令我召唤";
+						mes "守护者来防卫要塞。";
+						mes "请稍候。";
 						close;
 					}
 				case 2:
 					mes .@n$;
-					mes "Our defense status is...";
+					mes "我们的防御状态是……";
 					setarray .@status$[0],"^4D4DFFOperational","^FF0000Destroyed","^008000Repairing";
-					mes "1st Guardian Stone: "+.@status$[getd("$agit_"+strnpcinfo(2)+"[0]")]+"^000000";
-					mes "2nd Guardian Stone: "+.@status$[getd("$agit_"+strnpcinfo(2)+"[1]")]+"^000000";
-					mes "1st Fortress Gate: "+.@status$[getd("$agit_"+strnpcinfo(2)+"[2]")]+"^000000";
-					mes "2nd Fortress Gate: "+.@status$[getd("$agit_"+strnpcinfo(2)+"[3]")]+"^000000";
-					mes "3rd Fortress Gate: "+.@status$[getd("$agit_"+strnpcinfo(2)+"[4]")]+"^000000";
+					mes "第1守护石："+.@status$[getd("$agit_"+strnpcinfo(2)+"[0]")]+"^000000";
+					mes "第2守护石："+.@status$[getd("$agit_"+strnpcinfo(2)+"[1]")]+"^000000";
+					mes "第1要塞大门："+.@status$[getd("$agit_"+strnpcinfo(2)+"[2]")]+"^000000";
+					mes "第2要塞大门："+.@status$[getd("$agit_"+strnpcinfo(2)+"[3]")]+"^000000";
+					mes "第3要塞大门："+.@status$[getd("$agit_"+strnpcinfo(2)+"[4]")]+"^000000";
 					close;
 				case 3:
 					mes .@n$;
-					mes "I'll be standing by,";
-					mes "awaiting your orders.";
+					mes "我会待命，";
+					mes "等待你的命令。";
 					close;
 				}
 			}
@@ -824,8 +824,8 @@ OnStartArena:
 	}
 	else {
 		mes .@n$;
-		mes "Who are you? Scoundrel!";
-		mes "Leave this stronghold now!";
+		mes "你是谁？恶棍！";
+		mes "现在离开这座要塞！";
 		close;
 	}
 
@@ -841,34 +841,34 @@ OnInit:
 	set .@GID, getcastledata(strnpcinfo(4),CD_GUILD_ID);
 	if (getcharid(2) == .@GID && getgdskilllv(.@GID,10001)) {
 		mes "[Kafra Employee]";
-		mes "Welcome, proud member";
-		mes "of the ^FF0000"+GetGuildName(.@GID)+"^000000 Guild!";
-		mes "The Kafra Corporation is ready";
-		mes "to assist you wherever you go!";
+		mes "欢迎，尊贵的";
+		mes "^FF0000"+GetGuildName(.@GID)+"^000000公会成员！";
+		mes "卡普拉公司随时准备";
+		mes "在你所到之处提供帮助！";
 		next;
-		switch(select("Use Storage:Use Warp Service:Rent Pushcart:Cancel")) {
+		switch(select("使用仓库:使用传送服务:租用手推车:取消")) {
 		case 1:
 			if(!callfunc("F_CanOpenStorage")){
 				mes "[Kafra Employee]";
-				mes "I'm so sorry, but you must";
-				mes "have at least Novice Skill";
-				mes "Lv.6 to use the Storage.";
+				mes "非常抱歉，你必须拥有";
+				mes "至少6级初心者技能，";
+				mes "才能使用仓库。";
 			}
 			else openstorage;
 			break;
 		case 2:
 			mes "[Kafra Employee]";
-			mes "Please tell me your";
-			mes "Warp destination.";
+			mes "请告诉我你的";
+			mes "传送目的地。";
 			next;
-			switch(select("Rachel -> 200 z:Cancel")) {
+			switch(select("拉赫:200 Zeny:取消")) {
 			case 1:
 				if (Zeny < 200) {
 					mes "[Kafra Employee]";
-					mes "I'm sorry, but you don't";
-					mes "have enough Zeny to pay";
-					mes "the warp fee. Would you";
-					mes "please check your funds again?";
+					mes "抱歉，你没有足够的Zeny";
+					mes "支付传送费用。";
+					mes "请再次检查你的资金。";
+					mes "需要200 Zeny。";
 					close2;
 					cutin "kafra_01",255;
 					end;
@@ -884,29 +884,29 @@ OnInit:
 		case 3:
 			if (BaseClass != Job_Merchant) {
 				mes "[Kafra Employee]";
-				mes "I'm sorry, but the Pushcart";
-				mes "rental service can only be";
-				mes "used by Merchant, Blacksmith,";
-				mes "and Alchemist class characters.";
+				mes "抱歉，手推车租用服务";
+				mes "只能由商人、铁匠";
+				mes "和炼金术士职业角色使用。";
+				mes "请更换职业。";
 			}
 			else if (checkcart() == 1) {
 				mes "[Kafra Employee]";
-				mes "Hm? You've already";
-				mes "rented a Pushcart.";
+				mes "嗯？你已经";
+				mes "租用了一辆手推车。";
 			}
 			else {
 				mes "[Kafra Employee]";
-				mes "The Pushcart rental fee";
-				mes "is 800 Zeny. Would you";
-				mes "like to rent a Pushcart?";
+				mes "手推车租金是800 Zeny。";
+				mes "要租用一辆手推车吗？";
+				mes "请确认。";
 				next;
-				switch(select("Rent Pushcart:Cancel")) {
+				switch(select("租用手推车:取消")) {
 				case 1:
 					if (Zeny < 800) {
 						mes "[Kafra Employee]";
-						mes "I'm sorry, but you don't";
-						mes "have enough Zeny to rent";
-						mes "one of our Pushcarts.";
+						mes "抱歉，你没有足够Zeny";
+						mes "租用我们的手推车。";
+						mes "请准备800 Zeny。";
 						close2;
 						cutin "kafra_01",255;
 						end;
@@ -921,10 +921,10 @@ OnInit:
 			break;
 		case 4:
 			mes "[Kafra Employee]";
-			mes "Thank you for using the";
-			mes "Kafra Service. Wherever";
-			mes "you go, Kafra will be";
-			mes "there to support you!";
+			mes "感谢你使用卡普拉服务。";
+			mes "无论你去哪里，";
+			mes "卡普拉都会";
+			mes "在那里支持你！";
 			close2;
 			cutin "kafra_01",255;
 			end;
@@ -935,12 +935,12 @@ OnInit:
 	}
 	else {
 		mes "[Kafra Employee]";
-		mes "I'm sorry, but I've been";
-		mes "exclusively contracted";
-		mes "to the members of the";
+		mes "抱歉，我已专门签约";
+		mes "为";
+		mes "以下公会成员服务：";
 		mes "^FF0000"+getguildname(.@GID)+"^000000 Guild.";
-		mes "You'll have to ask another";
-		mes "Kafra Employee to help you...";
+		mes "请找其他卡普拉职员";
+		mes "帮助你……";
 		close2;
 		cutin "kafra_01",255;
 		end;
@@ -954,54 +954,54 @@ OnInit:
 	set .@num, atoi(charat(strnpcinfo(1),0));
 	set .@var$,"$agit_"+strnpcinfo(2);
 	if (getcharid(2) == .@GID) {
-		mes "^3355FFYou will need the";
-		mes "following materials to";
-		mes "rebuild a destroyed";
-		mes "Guardian Stone.^000000";
+		mes "^3355FF你需要以下材料";
+		mes "来重建被摧毁的";
+		mes "守护石。^000000";
+		mes "请准备齐全。";
 		next;
-		mes "1 Oridecon";
-		mes "1 Elunium";
-		mes "30 Stones";
-		mes "5 Blue Gemstones";
-		mes "5 Yellow Gemstones";
-		mes "5 Red Gemstones";
+		mes "1个皓思";
+		mes "1个铝";
+		mes "30块石头";
+		mes "5颗蓝色宝石";
+		mes "5颗黄色宝石";
+		mes "5颗红色宝石";
 		next;
-		mes "^3355FFDo you want to continue?^000000";
+		mes "^3355FF要继续吗？^000000";
 		next;
-		if(select("No:Continue") == 1) {
-			mes "^3355FFWork canceled.^000000";
+		if(select("否:继续") == 1) {
+			mes "^3355FF工作已取消。^000000";
 			close;
 		}
 		if ((countitem(984) > 0) && (countitem(985) > 0) && (countitem(7049) > 29) && (countitem(717) > 4) && (countitem(715) > 4) && (countitem(716) > 4)) {
-			mes "^3355FFArrange Stones, Elunium, and";
-			mes "Oridecon, in that order, in the";
-			mes "center. Then you must arrange";
-			mes "the enchanted Gemstones to";
-			mes "rebuild the Guardian Stone.^000000";
+			mes "^3355FF按顺序将石头、铝和";
+			mes "皓思放在中央。然后排列";
+			mes "附魔宝石以重建守护石。^000000";
+			mes "请仔细操作。";
+			mes "完成后即可重建。";
 			next;
 			setarray .@stone$[0],"Elunium","Oridecon","Stones";
-			set .@i, select("Elunium:Oridecon:Stone")-1;
+			set .@i, select("铝:皓思:石头")-1;
 			if (.@i == 2) set .@nice,.@nice+10;
-			mes "^3355FF"+.@stone$[.@i]+" has been";
-			mes "placed in the center.^000000";
+			mes "^3355FF"+.@stone$[.@i]+"已被";
+			mes "放置在中央。^000000";
 			next;
-			set .@i, select("Elunium:Oridecon:Stone")-1;
+			set .@i, select("铝:皓思:石头")-1;
 			if (.@i == 0) set .@nice,.@nice+10;
-			mes "^3355FFYou have lined the";
-			mes "outside of the center";
-			mes "with some "+.@stone$[.@i]+".^000000";
+			mes "^3355FF你已用一些";
+			mes ""+.@stone$[.@i]+"排列中央";
+			mes "外围。^000000";
 			next;
-			set .@i, select("Elunium:Oridecon:Stone")-1;
+			set .@i, select("铝:皓思:石头")-1;
 			if (.@i == 1) set .@nice,.@nice+10;
-			mes "^3355FFYou covered the";
-			mes "rest of the materials";
-			mes "with some "+.@stone$[.@i]+".^000000";
+			mes "^3355FF你已用一些";
+			mes ""+.@stone$[.@i]+"覆盖其余";
+			mes "材料。^000000";
 			next;
-			mes "^3355FFNow you need to arrange";
-			mes "the enchanted Gemstones";
-			mes "accordingly. You can identify";
-			mes "their Magic properties by";
-			mes "their casting effect.^000000";
+			mes "^3355FF现在需要排列";
+			mes "附魔宝石";
+			mes "。你可以根据";
+			mes "施法效果来识别它们的";
+			mes "魔法属性。^000000";
 			next;
 			setarray .@effect[0],EF_BEGINSPELL4,EF_BEGINSPELL2,EF_VOLCANO;
 			setarray .@color$[0],"Red","Yellow","Blue";
@@ -1009,17 +1009,17 @@ OnInit:
 				if (.@roof0 > 7) break;
 				set .@i, rand(getarraysize(.@effect));
 				specialeffect .@effect[.@i];
-				mes "^3355FFThe Gemstones must";
-				mes "be arranged in the correct";
-				mes "order according to their";
-				mes "magic properties and power.^000000";
+				mes "^3355FF宝石必须";
+				mes "按照正确的顺序";
+				mes "根据它们的";
+				mes "魔法属性和力量排列。^000000";
 				next;
-				set .@j, select("Red Gemstone:Yellow Gemstone:Blue Gemstone")-1;
-				mes "^3355FFYou placed the "+.@color$[.@j]+" Gemstone.^000000";
+				set .@j, select("红宝石:黄宝石:蓝宝石")-1;
+				mes "^3355FF你放置了 "+.@color$[.@j]+" 宝石。^000000";
 				if (.@i == .@j) {
-					mes "^3355FFHowever, the Guardian Stone";
-					mes "Repair System failed because";
-					mes "of a magic power conflict.^000000";
+					mes "^3355FF但是，守护石";
+					mes "修复系统因";
+					mes "魔力冲突而失败。^000000";
 					close;
 				}
 				set .@nice,.@nice+10;
@@ -1029,23 +1029,23 @@ OnInit:
 			}
 			if (.@nice > 90) {
 				if (!getd(.@var$+"["+(.@num-1)+"]")) {
-					mes "^3355FFThe Guardian Stone";
-					mes "Repair System has";
-					mes "already completed.^000000";
+					mes "^3355FF守护石";
+					mes "修复系统已经";
+					mes "完成。^000000";
 					close;
 				}
 				else {
 					if (!agitcheck2()) {
-						mes "^3355FFIt is impossible to";
-						mes "rebuild the Guardian";
-						mes "Stone because the";
-						mes "Emperium is not present.^000000";
+						mes "^3355FF无法";
+						mes "重建守护石，";
+						mes "因为";
+						mes "皇帝石并不存在。^000000";
 						close;
 					}
 					else {
-						mes "^3355FFThe Gemstones have been";
-						mes "arranged, and the Guardian";
-						mes "Stone is successfully repaired.^000000";
+						mes "^3355FF宝石已经";
+						mes "排列，守护石";
+						mes "已成功修复。^000000";
 						delitem 984,1; //Oridecon
 						delitem 985,1; //Elunium
 						delitem 7049,30; //Stone
@@ -1059,10 +1059,10 @@ OnInit:
 						setd .@var$+"["+(.@num-1)+"]",0;
 						set .@df_all,getd(.@var$+"[0]")+getd(.@var$+"[1]");
 						if (!.@df_all) {
-							mapannounce strnpcinfo(4),"Both Guardian Stones have been erected, bolstering this stronghold's defenses!",bc_map,"0x00ff00";
+							mapannounce strnpcinfo(4),"两块守护石已经竖立，强化了要塞防御！",bc_map,"0x00ff00";
 							donpcevent "RL0#"+strnpcinfo(4)+"::OnEnable";
 						}
-						else mapannounce strnpcinfo(4),"The "+strnpcinfo(1)+" has been repaired successfully.",bc_map,"0x00ff00";
+						else mapannounce strnpcinfo(4),strnpcinfo(1)+"已成功修复。",bc_map,"0x00ff00";
 						if (getd(.@var$+"[5]") == 1)
 							donpcevent "gard"+.@num+"#"+strnpcinfo(4)+"::OnEnable";
 						end;
@@ -1070,10 +1070,10 @@ OnInit:
 				}
 			}
 			else {
-				mes "^3355FFAfter all of that work...";
-				mes "It looks like you failed";
-				mes "to fix the Guardian Stone,";
-				mes "and lost some materials.^000000";
+				mes "^3355FF经过这么多努力……";
+				mes "看来你没能";
+				mes "修复守护石，";
+				mes "还损失了一些材料。^000000";
 				delitem 7049,10; //Stone
 				delitem 717,2; //Blue_Gemstone
 				delitem 715,2; //Yellow_Gemstone
@@ -1082,9 +1082,9 @@ OnInit:
 			}
 		}
 		else {
-			mes "^3355FFYou don't have enough";
-			mes "materials to repair";
-			mes "the Guardian Stone.^000000";
+			mes "^3355FF你的材料不足";
+			mes "无法修复";
+			mes "守护石。^000000";
 			close;
 		}
 	}
@@ -1110,24 +1110,24 @@ OnEnable:
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == true) {
 			if (getd(.@var$+"["+(.@num+1)+"]") == 2) {
-				mes "^3355FFDemolished Fortress";
-				mes "Gates can be repaired,";
-				mes "but you will need to gather";
-				mes "the following materials.^000000";
+				mes "^3355FF被摧毁的要塞";
+				mes "城门可以修复，";
+				mes "但你需要收集";
+				mes "以下材料。^000000";
 				next;
-				mes "^4D4DFF10 Steel^000000,";
-				mes "^4D4DFF30 Trunks^000000,";
-				mes "^4D4DFF5 Oridecon^000000, and";
+				mes "^4D4DFF10个钢铁^000000,";
+				mes "^4D4DFF30个树枝^000000,";
+				mes "^4D4DFF5个奥利代根^000000，和";
 				mes "^4D4DFF10 Emveretarcon^000000.";
 				next;
-				select("Continue");
+				select("继续");
 				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
-					mes "^3355FFYou will need Trunks to";
-					mes "repair the support frame,";
-					mes "Oridecon to enhance the";
-					mes "gate's endurance, and";
-					mes "Emveretarcon to basically";
-					mes "hold everything together.^000000";
+					mes "^3355FF你需要树枝来";
+					mes "修复支撑框架，";
+					mes "奥利代根增强";
+					mes "城门耐久度，";
+					mes "艾贝勒塔康用于";
+					mes "将一切固定在一起。^000000";
 					next;
 					set .@ro_of01,rand(10,15);
 					while(1) {
@@ -1135,68 +1135,68 @@ OnEnable:
 						else {
 							switch(rand(1,4)) {
 							case 1:
-								mes "^3355FFThe support frame";
-								mes "is badly damaged:";
-								mes "fixing this part";
-								mes "is a top priority.^000000";
+								mes "^3355FF支撑框架";
+								mes "严重损坏：";
+								mes "修复这部分";
+								mes "是首要任务。^000000";
 								next;
-								switch(select("Trunk:Steel:Emveretarcon:Oridecon")) {
+								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
 								case 1:
-									mes "^3355FFThe frame has been";
-									mes "reinforced with wood.^000000";
+									mes "^3355FF框架已经用木材";
+									mes "加固。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
 									specialeffect2 EF_REPAIRWEAPON;
 									next;
 									break;
 								case 2:
-									mes "^3355FFYou tried using steel,";
-									mes "but it's not working very";
-									mes "well. You'll have to try";
-									mes "something else.^000000";
+									mes "^3355FF你尝试使用钢铁，";
+									mes "但效果不太好。";
+									mes "你必须尝试";
+									mes "其他材料。^000000";
 									close;
 								case 3:
-									mes "^3355FFYou tried using emveretarcon";
-									mes "to reinforce the gate, but it's";
-									mes "not working well at all.";
-									mes "You'll have to start over.^000000";
+									mes "^3355FF你尝试使用艾贝勒塔康";
+									mes "加固城门，但";
+									mes "效果完全不好。";
+									mes "你必须重新开始。^000000";
 									close;
 								case 4:
-									mes "^3355FFYou tried using oridecon,";
-									mes "but it's not working very";
-									mes "well. You'll have to try";
-									mes "something else.^000000";
+									mes "^3355FF你尝试使用奥利代根，";
+									mes "但效果不太好。";
+									mes "你必须尝试";
+									mes "其他材料。^000000";
 									close;
 								}
 								break;
 							case 2:
-								mes "^3355FFIt looks like the gate's";
-								mes "overall endurance needs to";
-								mes "be reinforced with something.^000000";
+								mes "^3355FF看起来城门的";
+								mes "整体耐久度需要";
+								mes "用某种东西加固。^000000";
 								next;
-								switch(select("Trunk:Steel:Emveretarcon:Oridecon")) {
+								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
 								case 1:
-									mes "^3355FFYou tried using wood";
-									mes "to reinforce the gate.^000000";
+									mes "^3355FF你尝试使用木材";
+									mes "加固城门。^000000";
 									set .@ro_of02,.@ro_of02+1;
 									next;
 									break;
 								case 2:
 									mes "^3355FFYou tried using steel";
-									mes "to reinforce the gate, but";
-									mes "it's not working well at all.";
-									mes "You'll have to start over.^000000";
+									mes "来加固城门，但";
+									mes "效果完全不好。";
+									mes "你必须重新开始。^000000";
 									close;
 								case 3:
-									mes "^3355FFYou tried using emveretarcon";
-									mes "to reinforce the gate, but it's";
-									mes "not working well at all.";
-									mes "You'll have to start over.^000000";
+									mes "^3355FF你尝试使用艾贝勒塔康";
+									mes "加固城门，但";
+									mes "效果完全不好。";
+									mes "你必须重新开始。^000000";
 									close;
 								case 4:
-									mes "^3355FFYou hammered the";
-									mes "oridecon: it looks";
-									mes "like this will work.^000000";
+									mes "^3355FF你用锤子敲打了";
+									mes "奥利代根：看起来";
+									mes "这样就能奏效。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
 									specialeffect2 EF_REPAIRWEAPON;
@@ -1205,92 +1205,91 @@ OnEnable:
 								}
 								break;
 							case 3:
-								mes "^3355FFThe damage to the gate";
-								mes "has caused all these";
-								mes "cracks. You'll have to";
-								mes "weld them solid somehow.^000000";
+								mes "^3355FF城门的损坏";
+								mes "造成了这些裂缝。你必须";
+								mes "想办法把它们焊牢。^000000";
 								next;
-								switch(select("Trunk:Steel:Emveretarcon:Oridecon")) {
+								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
 								case 1:
-									mes "^3355FFYou tried using wood to fix";
-									mes "this problem, but it seems";
-									mes "to have made it worse.";
-									mes "You'll have to start all over.^000000";
+								mes "^3355FF你尝试使用木材修复";
+									mes "这个问题，但似乎";
+									mes "让情况更糟了。";
+									mes "你必须重新开始。^000000";
 									close;
-								case 2:
-									mes "^3355FFYou used steel to weld";
-									mes "all the cracks: the gate is";
-									mes "is starting to look more solid.^000000";
+									case 2:
+								mes "^3355FF你使用钢铁焊接了";
+									mes "所有裂缝：城门";
+									mes "看起来开始更加牢固。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
 									specialeffect2 EF_REPAIRWEAPON;
 									next;
 									break;
-								case 3:
-									mes "^3355FFYou tried using emveretarcon";
-									mes "to reinforce the gate, but it's";
-									mes "not working well at all.";
-									mes "You'll have to start over.^000000";
+									case 3:
+								mes "^3355FF你尝试使用艾贝勒塔康";
+									mes "加固城门，但";
+									mes "效果完全不好。";
+									mes "你必须重新开始。^000000";
 									close;
-								case 4:
-									mes "^3355FFYou tried using oridecon,";
-									mes "but it's not working very";
-									mes "well. You'll have to try";
-									mes "something else.^000000";
+									case 4:
+								mes "^3355FF你尝试使用奥利代根，";
+									mes "但效果不太好。";
+									mes "你必须尝试";
+									mes "其他材料。^000000";
 									close;
-								}
+									}
 								break;
-							case 4:
-								mes "^3355FFNow you need to make";
-								mes "sure that the gate is held";
-								mes "together pretty solidly.^000000";
+								case 4:
+							mes "^3355FF现在你需要让";
+								mes "确保城门被";
+								mes "牢牢固定在一起。^000000";
 								next;
-								switch(select("Trunk:Steel:Emveretarcon:Oridecon")) {
+								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
 								case 1:
-									mes "^3355FFYou tried using wood to fix";
-									mes "this problem, but it seems";
-									mes "to have made it worse.";
-									mes "You'll have to start all over.^000000";
+								mes "^3355FF你尝试使用木材修复";
+									mes "这个问题，但似乎";
+									mes "让情况更糟了。";
+									mes "你必须重新开始。^000000";
 									close;
-								case 2:
-									mes "^3355FFYou tried using steel,";
-									mes "but it's not working very";
-									mes "well. You'll have to try";
-									mes "something else.^000000";
+									case 2:
+								mes "^3355FF你尝试使用钢铁，";
+									mes "但效果不太好。";
+									mes "你必须尝试";
+									mes "其他材料。^000000";
 									close;
-								case 3:
-									mes "^3355FFYou successfully used";
-									mes "the emveretarcon to repair";
-									mes "much of the gate's damage.^000000";
+									case 3:
+								mes "^3355FF你成功使用了";
+									mes "艾贝勒塔康来修复";
+									mes "城门的大部分损坏。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
 									specialeffect2 EF_REPAIRWEAPON;
 									next;
 									break;
-								case 4:
-									mes "^3355FFYou tried using oridecon,";
-									mes "but it's not working very";
-									mes "well. You'll have to try";
-									mes "something else.^000000";
+									case 4:
+								mes "^3355FF你尝试使用奥利代根，";
+									mes "但效果不太好。";
+									mes "你必须尝试";
+									mes "其他材料。^000000";
 									close;
+									}
 								}
 							}
 						}
-					}
 					mes "^3355FFWell, it looks like";
-					mes "you're just about done";
-					mes "with repairing the gate.^000000";
+					mes "你就快完成";
+					mes "城门修复了。^000000";
 					next;
 					if (!agitcheck2()) {
-						mes "^3355FFUnfortunately, the Fortress";
-						mes "Gate can't be reconstructed:";
-						mes "the Emperium is no longer here.^000000";
+					mes "^3355FF遗憾的是，要塞";
+						mes "无法重建城门：";
+						mes "皇帝石已不在这里。^000000";
 						close;
-					}
+						}
 					else {
-						if (.@rp_temp == .@ro_of01) {
-							mes "^3355FFThe Fortress Gate has";
-							mes "been successfully repaired!^000000";
+					if (.@rp_temp == .@ro_of01) {
+						mes "^3355FFThe Fortress Gate has";
+							mes "已成功修复！^000000";
 							delitem 1019,30; //Wooden_Block
 							delitem 999,10; //Steel
 							delitem 1011,10; //Emveretarcon
@@ -1301,32 +1300,33 @@ OnEnable:
 							if (.@num == 1) set .@str$,"1st";
 							else if (.@num == 2) set .@str$,"2nd";
 							else if (.@num == 3) set .@str$,"3rd";
-							mapannounce strnpcinfo(4),"The "+.@str$+" Fortress Gate has been reconstructed!",bc_map,"0x00ff00";
+							mapannounce strnpcinfo(4),.@str$+"要塞城门已经重建！",bc_map,"0x00ff00";
 							if (.@num == 1) setd .@var$+"[2]",0;
 							else {
-								setarray getd(.@var$+"["+.@num+"]"),2,0;
+							setarray getd(.@var$+"["+.@num+"]"),2,0;
 								donpcevent "Control Device0"+(.@num-1)+"#"+strnpcinfo(2)+"::OnEnable";
-							}
+								}
 							end;
-						}
+							}
 						else {
-							mes "^3355FFThe wall has been breached,";
-							mes "and the attempt to repair the";
-							mes "Fortress Gate has failed.";
-							mes "You lost some of your";
-							mes "repair resources...^000000";
+						mes "^3355FF城墙已经被突破，";
+							mes "城墙的修复尝试失败了。";
+							mes "修复要塞城门的尝试失败了。";
+							mes "你损失了一些";
+							mes "修复材料……^000000";
 							delitem 984,2; //Oridecon
 							delitem 999,4; //Steel
 							delitem 1019,14; //Wooden_Block
 							delitem 1011,3; //Emveretarcon
 							close;
+							}
 						}
 					}
-				}
 				else {
-					mes "^3355FFYou can't attempt to repair";
-					mes "the Fortress Gate if you don't";
-					mes "have all the needed materials.^000000";
+				mes "^3355FF你无法尝试修复";
+					mes "要塞城门，除非你拥有";
+					mes "全部所需材料。";
+					mes "所有需要的材料。^000000";
 					close;
 				}
 			}
@@ -1420,7 +1420,7 @@ OnTimer3600000:
 	set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2))+1;
 	callsub OnSummon,getd(.@var$);
 	setarray .count$[5],"1st","2nd","3rd","4th","5th";
-	mapannounce strnpcinfo(2),"The "+.count$[getd(.@var$)]+" Guardian has been summoned from the Gate House.",bc_map,"0xff4500";
+	mapannounce strnpcinfo(2),"守护者已从城门大厅被召唤出来。",bc_map,"0xff4500";
 	if (getd(.@var$) == 9) {
 		setd .@var$,0;
 		stopnpctimer;
@@ -1496,7 +1496,7 @@ OnGuardianStoneDied:
 	if (getd(.@var$+"[0]") == 1 || getd(.@var$+"[0]") == 2) set .@destroyed, .@destroyed+1;
 	if (getd(.@var$+"[1]") == 1 || getd(.@var$+"[1]") == 2) set .@destroyed, .@destroyed+1;
 	if (.@destroyed == 2) {
-		mapannounce strnpcinfo(2),"All of the Guardian Stones have been destroyed!",bc_map,"0x00ff00";
+		mapannounce strnpcinfo(2),"所有守护石都被摧毁了！",bc_map,"0x00ff00";
 		donpcevent "RL0#"+strnpcinfo(2)+"::OnDisable";
 	}
 	else mapannounce strnpcinfo(2),"The "+((.@num == 1)?"1st":"2nd")+" Guardian Stone has been destroyed!",bc_map,"0x00ff00";
@@ -1712,28 +1712,23 @@ OnDisable:
 function	script	LinkFlag	{
 	if (!getcharid(2) || getcharid(2) != getcastledata(strnpcinfo(4),CD_GUILD_ID)) end;
 	if (getarg(0) == "Convenience Facility") {
-		mes "^3355FFThis is the Stronghold";
-		mes "Teleport Service. Would";
-		mes "you like to teleport to the";
-		mes "Convenience Facility for";
-		mes "guild members?^000000";
-		if(select("Go to Convenience Facility:Cancel") == 1)
+		mes "^3355FF这里是要塞传送服务。";
+		mes "要传送到公会成员的";
+		mes "便利设施吗？^000000";
+		if(select("前往便利设施:取消") == 1)
 			warp strnpcinfo(4),getarg(1),getarg(2);
 		close;
 	}
 	if (getarg(0) == "Emperium Center") {
-		mes "^3355FFThis is the Stronghold";
-		mes "Teleport Service. Would";
-		mes "you like to teleport to";
-		mes "the Emperium Center?^000000";
-		if(select("Teleport:Cancel") == 1)
+		mes "^3355FF这里是要塞传送服务。";
+		mes "要传送到霸邪之碑中心吗？^000000";
+		if(select("传送:取消") == 1)
 			warp strnpcinfo(4),getarg(1),getarg(2);
 		close;
 	}
-	mes "^3355FFThis is the Stronghold";
-	mes "Teleport Service. Please";
-	mes "choose a destination";
-	mes "within the stronghold.^000000";
+	mes "^3355FF这里是要塞传送服务。";
+	mes "请选择要塞内的";
+	mes "传送目的地。^000000";
 	for(set .@i,0; .@i<getargcount(); set .@i,.@i+3)
 		set .@menu$, .@menu$+getarg(.@i)+":";
 	set .@menu$, .@menu$+"Cancel";
@@ -1750,22 +1745,19 @@ function	script	ReturnFlag	{
 	set .@str$, (compare(strnpcinfo(4),"aru"))?"Arunafeltz":"Schwarzwald";
 	.@GID =  getcastledata(.@map$,CD_GUILD_ID);
 	if (!.@GID) {
-		mes "[ "+.@str$+" Royal Edict ]";
-		mes "The Holy Kingdom of";
-		mes .@str$+" declares that";
-		mes "one has yet to claim lordship";
-		mes "over this stronghold. The one";
-		mes "that breaks the Emperium will";
-		mes "be recognized as its new owner.";
+		mes "[ "+.@str$+"王国告示 ]";
+		mes "神圣的"+.@str$+"王国宣布，";
+		mes "这座要塞尚未有领主。";
+		mes "击破霸邪之碑的人";
+		mes "将被认可为新的所有者。";
 		close;
 	}
 	if (getcharid(2) == .@GID && getarg(1,0)) {
-		mes "[ Ringing Voice ]";
-		mes "Courageous one,";
-		mes "do you wish to return";
-		mes "to your stronghold?";
+		mes "[回响的声音]";
+		mes "勇敢的人，";
+		mes "你想返回自己的要塞吗？";
 		next;
-		if(select("Return to the Stronghold:Cancel") == 1 && getcharid(2) == getcastledata(.@map$,CD_GUILD_ID)) {
+		if(select("返回要塞:取消") == 1 && getcharid(2) == getcastledata(.@map$,CD_GUILD_ID)) {
 			if (compare(.@map$,"arug")) {
 				if (.@map$ == "arug_cas01") setarray .@i[0],67,193;
 				else if (.@map$ == "arug_cas02") setarray .@i[0],43,256;
@@ -1780,19 +1772,20 @@ function	script	ReturnFlag	{
 		}
 		close;
 	}
-	mes "[ "+.@str$+" Royal Edict ]";
-	mes "The Holy Kingdom of";
-	mes .@str$+" decrees that";
-	mes "this stronghold is owned";
-	mes "by the ^FF0000"+getguildname(.@GID)+"^000000 Guild.";
+	mes "[ "+.@str$+"王国告示 ]";
+	mes "神圣的"+.@str$+"王国宣布，";
+	mes "这座要塞属于";
+	mes "^FF0000"+getguildname(.@GID)+"^000000 公会。";
+	mes "这份告示代表王国的权威。";
+	mes "所有公会都必须遵守。";
 	next;
-	mes "[ "+.@str$+" Royal Edict ]";
-	mes "^FF0000"+getguildmaster(.@GID)+"^000000 is";
-	mes "Guild Master of ^FF0000"+getguildname(.@GID)+"^000000.";
-	mes "Any that object must claim this";
-	mes "stronghold through strength of";
-	mes "steel and magic during the";
-	mes "appointed Guild Siege times.";
+	mes "[ "+.@str$+"王国告示 ]";
+	mes "^FF0000"+getguildmaster(.@GID)+"^000000 是";
+	mes "^FF0000"+getguildname(.@GID)+"^000000 公会的会长。";
+	mes "任何异议者都必须在指定的公会战期间，";
+	mes "凭借钢铁与魔法的力量夺取这座要塞。";
+	mes "公会战的胜者将获得荣耀。";
+	mes "请做好充分准备。";
 	close;
 }
 
@@ -1800,10 +1793,13 @@ function	script	ReturnFlag	{
 //============================================================
 -	script	Switch#template	-1,{
 	mes " ";
-	mes "^3355FFWill you pull";
-	mes "this small lever?^000000";
+	mes "^3355FF要拉动";
+		mes "这根小拉杆吗？^000000";
+		mes "它可能会打开隐藏的通道。";
+		mes "请确认是否要继续。";
+		mes "行动前要做好准备。";
 	next;
-	if(select("Pull Lever:Cancel") == 2) close;
+	if(select("拉动拉杆:取消") == 2) close;
 	if (compare(strnpcinfo(4),"arug")) {
 		if (strnpcinfo(4) == "arug_cas01") setarray .@i[0],121,357;
 		else if (strnpcinfo(4) == "arug_cas02") setarray .@i[0],387,323;
@@ -1822,9 +1818,10 @@ function	script	ReturnFlag	{
 //============================================================
 -	script	Sunflower#template	-1,{
 	if (getcharid(2) == getcastledata(strnpcinfo(4),CD_GUILD_ID)) {
-		mes "- It's an amazingly huge sunflower; as big as a human! ... You feel something mysterious emanating from the flower. -";
+		mes "- 这是株大得惊人的向日葵，和人一样高！……你感觉到花朵散发着神秘气息。-";
+		mes "- 花朵似乎在微微发光。-";
 		next;
-		switch(select("Hold the stem.:Do nothing.")) {
+		switch(select("握住茎。:什么也不做。")) {
 		case 1:
 			if (compare(strnpcinfo(4),"arug")) {
 				set .@map$,"arug_dun01";
@@ -1840,7 +1837,10 @@ function	script	ReturnFlag	{
 			warp .@map$,.@mapx[.@i],.@mapy[.@i];
 			close;
 		case 2:
-			mes "It's too scary to touch unknown things.";
+			mes "触碰未知的东西太可怕了。";
+			mes "还是保持距离比较安全。";
+		mes "下次再来探索吧。";
+		mes "愿你探索顺利。";
 			close;
 		}
 	}

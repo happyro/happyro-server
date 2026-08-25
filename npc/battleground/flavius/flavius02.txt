@@ -23,7 +23,7 @@
 bat_room,142,227,4	script	Lieutenant Huvas	418,{
 	end;
 OnInit:
-	waitingroom "Battle Station",11,"start#bat_b02::OnReadyCheck",1,0,80;
+	waitingroom "战斗站",11,"start#bat_b02::OnReadyCheck",1,0,80;
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id1, waitingroom2bg("bat_b02",10,290,"start#bat_b02::OnGuillaumeQuit","");
@@ -33,7 +33,7 @@ OnEnterBG:
 bat_room,142,204,0	script	Lieutenant Yukon	414,{
 	end;
 OnInit:
-	waitingroom "Battle Station",11,"start#bat_b02::OnReadyCheck",1,0,80;
+	waitingroom "战斗站",11,"start#bat_b02::OnReadyCheck",1,0,80;
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id2, waitingroom2bg("bat_b02",390,10,"start#bat_b02::OnCroixQuit","");
@@ -165,7 +165,7 @@ OnTimer10000:
 
 bat_b02,1,1,3	script	OBJ#bat_b02_a	844,{
 OnEnable:
-	$@FlavBG2_C1_ID = bg_monster($@FlaviusBG2_id1,"bat_b02",61,150,"Pink Crystal",1915,"OBJ#bat_b02_a::OnMyMobDead");
+	$@FlavBG2_C1_ID = bg_monster($@FlaviusBG2_id1,"bat_b02",61,150,"粉色水晶",1915,"OBJ#bat_b02_a::OnMyMobDead");
 	setunitdata $@FlavBG2_C1_ID,UMOB_DMGIMMUNE,1; // Make Crystal immune to damage until Guardians are defeated
 	end;
 
@@ -175,7 +175,7 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("bat_b02","OBJ#bat_b02_a::OnMyMobDead") < 1) {
-		mapannounce "bat_b02", "Guillaume's Crystal has been destroyed.",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "纪尧姆的水晶已被摧毁。",bc_map,"0xFFCE00";
 		if ($@Croix_ScoreBG2 > 0) {
 			set $@FlaviusBG2_Victory,2;
 			set $@Croix_ScoreBG2,$@Croix_ScoreBG2+1;
@@ -201,7 +201,7 @@ OnMyMobDead:
 
 bat_b02,1,2,3	script	OBJ#bat_b02_b	844,{
 OnEnable:
-	$@FlavBG2_C2_ID = bg_monster($@FlaviusBG2_id2,"bat_b02",328,150,"Blue Crystal",1914,"OBJ#bat_b02_b::OnMyMobDead");
+	$@FlavBG2_C2_ID = bg_monster($@FlaviusBG2_id2,"bat_b02",328,150,"蓝色水晶",1914,"OBJ#bat_b02_b::OnMyMobDead");
 	setunitdata $@FlavBG2_C2_ID,UMOB_DMGIMMUNE,1; // Make Crystal immune to damage until Guardians are defeated
 	end;
 
@@ -211,7 +211,7 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("bat_b02","OBJ#bat_b02_b::OnMyMobDead") < 1) {
-		mapannounce "bat_b02", "Croix's Crystal has been destroyed.",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "克鲁瓦的水晶已被摧毁。",bc_map,"0xFFCE00";
 		if ($@Guill_ScoreBG2 > 0) {
 			set $@FlaviusBG2_Victory,1;
 			set $@Guill_ScoreBG2,$@Guill_ScoreBG2+1;
@@ -237,8 +237,8 @@ OnMyMobDead:
 
 bat_b02,1,3,3	script	guardian#bat_b02_a	844,{
 OnEnable:
-	bg_monster $@FlaviusBG2_id1,"bat_b02",108,159,"Guillaume Camp Guardian",1949,"guardian#bat_b02_a::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id1,"bat_b02",108,141,"Guillaume Camp Guardian",1949,"guardian#bat_b02_a::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id1,"bat_b02",108,159,"纪尧姆营地守护者",1949,"guardian#bat_b02_a::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id1,"bat_b02",108,141,"纪尧姆营地守护者",1949,"guardian#bat_b02_a::OnMyMobDead";
 	end;
 
 OnKill:
@@ -248,7 +248,7 @@ OnKill:
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_a::OnMyMobDead") < 1) {
 		donpcevent "cell#bat_b02_a::OnGreen";
-		mapannounce "bat_b02", "The Guardian protecting Guillaume's Crystal has been slain.",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "保护纪尧姆水晶的守护者已被击败。",bc_map,"0xFFCE00";
 		setunitdata $@FlavBG2_C1_ID,UMOB_DMGIMMUNE,0; // Make Crystal damageable again
 	}
 	end;
@@ -256,8 +256,8 @@ OnMyMobDead:
 
 bat_b02,1,3,3	script	guardian#bat_b02_b	844,{
 OnEnable:
-	bg_monster $@FlaviusBG2_id2,"bat_b02",307,160,"Croix Camp Guardian",1949,"guardian#bat_b02_b::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id2,"bat_b02",307,138,"Croix Camp Guardian",1949,"guardian#bat_b02_b::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id2,"bat_b02",307,160,"克鲁瓦营地守护者",1949,"guardian#bat_b02_b::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id2,"bat_b02",307,138,"克鲁瓦营地守护者",1949,"guardian#bat_b02_b::OnMyMobDead";
 	end;
 
 OnKill:
@@ -267,7 +267,7 @@ OnKill:
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_b::OnMyMobDead") < 1) {
 		donpcevent "cell#bat_b02_b::OnGreen";
-		mapannounce "bat_b02", "The Guardian protecting Croix's Crystal has been slain.",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "保护克鲁瓦水晶的守护者已被击败。",bc_map,"0xFFCE00";
 		setunitdata $@FlavBG2_C2_ID,UMOB_DMGIMMUNE,0; // Make Crystal damageable again
 	}
 	end;
@@ -312,9 +312,9 @@ OnStop:
 bat_b02,10,294,3	script	Battle Therapist#b02_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Battle Therapist]";
-	mes "Just close your eyes,";
-	mes "and take a deep breath.";
-	mes "You can be free from pain.";
+	mes "闭上眼睛，";
+	mes "深呼吸。";
+	mes "你就能摆脱痛苦。";
 	close;
 
 OnTimer25000:
@@ -361,9 +361,9 @@ OnTouch:
 bat_b02,389,14,3	script	Battle Therapist#b02_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Battle Therapist]";
-	mes "Just close your eyes,";
-	mes "and take a deep breath.";
-	mes "You can be free from pain.";
+	mes "闭上眼睛，";
+	mes "深呼吸。";
+	mes "你就能摆脱痛苦。";
 	close;
 
 OnTimer25000:
@@ -470,31 +470,31 @@ OnStop:
 	end;
 
 OnTimer7000:
-	mapannounce "bat_b02", "Guillaume Vintenar Axl Rose : Let's attack to destroy that Crystal!",bc_map,"0xFF9900";
+	mapannounce "bat_b02", "纪尧姆·温特纳·艾克斯尔·罗斯：进攻，摧毁那块水晶！",bc_map,"0xFF9900";
 	end;
 
 OnTimer8000:
-	mapannounce "bat_b02", "Croix Vintenar Swandery : Even though Guillaume is struggling to win against us, the victory is ours. Let's show them our power.",bc_map,"0xFF99CC";
+	mapannounce "bat_b02", "克鲁瓦·温特纳·斯旺德里：纪尧姆虽在努力取胜，但胜利属于我们。让他们见识我们的力量。",bc_map,"0xFF99CC";
 	end;
 
 OnTimer1800000:
-	mapannounce "bat_b02", "Marollo VII : Guillaume Marollo, Croix Marollo! And their followers!",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马罗洛七世：纪尧姆·马罗洛、克鲁瓦·马罗洛，以及他们的追随者！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1803000:
-	mapannounce "bat_b02", "Marollo VII : Both camps are competitive, so it's hard to judge which team is superior.",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马罗洛七世：双方势均力敌，很难判断哪支队伍更强。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1808000:
-	mapannounce "bat_b02", "Marollo VII : This battle of Flavian is such a waste of time. I will decide victory and defeat by your progress.",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马罗洛七世：这场弗拉维乌斯战斗真浪费时间。我会根据你们的进展决定胜负。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1822000:
-	mapannounce "bat_b02", "Marollo VII : If you can't accept the results, try again in another valley battle!",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马罗洛七世：如果无法接受结果，就在另一场山谷战斗中再试一次！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1825000:
-	mapannounce "bat_b02", "Axl Rose, Swandery : Yes, sir.",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "艾克斯尔·罗斯、斯旺德里：是，长官。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1830000:
@@ -548,8 +548,8 @@ bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
 			callfunc "F_BG_Badge",0,"Guillaume","Flavius"; //Croix wins
 	}
 	else {
-		mes "[Axl Rose]";
-		mes "Why are you here, Croix mercenary? I am definitely sure of victory against foolish Croix such as you. Ha!";
+		mes "[艾克塞尔·罗斯]";
+		mes "克鲁瓦的雇佣兵，你为什么会在这里？面对你这样的蠢货，我必将获胜。哈！";
 		close;
 	}
 	bg_leave;
@@ -573,8 +573,8 @@ bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
 			callfunc "F_BG_Badge",1,"Croix","Flavius"; //Croix wins
 	}
 	else {
-		mes "[Swandery]";
-		mes "Why do you come here as a Guillaume? You will be sent to where you should be!";
+		mes "[斯旺德里]";
+		mes "身为纪尧姆的人，你为何来到这里？我会把你送回该去的地方！";
 		close;
 	}
 	bg_leave;
@@ -590,21 +590,21 @@ OnInit:
 bat_b02,1,10,3	script	Release all#b02	81,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
-		mes "Cancelled.";
+		mes "已取消。";
 		close;
 	} else if (.@i == 0) {
 		end;
 	} else {
-		mes "May I help you?";
+		mes "需要我帮忙吗？";
 		next;
-		switch(select("Release all.:Cancel.")) {
+		switch(select("全部释放。:取消。")) {
 		case 1:
-			mes "Bye.";
+			mes "再见。";
 			close2;
 			mapwarp "bat_b02","bat_room",154,150;
 			end;
 		case 2:
-			mes "Cancelled.";
+			mes "已取消。";
 			close;
 		}
 	}

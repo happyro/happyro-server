@@ -740,19 +740,19 @@ OnMyMobDead:
 
 prt_are_in,181,188,3	script	Staff#80-1	67,{
 	mes "[Staff]";
-	mes "You did a good job.";
-	mes "Even if you have failed to clear a time attack battle, I will reward you with a small amount of arena points.";
+	mes "干得好。";
+	mes "即使没能完成计时战斗，我也会奖励少量竞技场点数。";
 	next;
 	if (arena_point == 30000) {
 		mes "[Staff]";
-		mes "Uh huh!";
-		mes "You already have enough arena points.";
-		mes "Please spend some arena points later. When I see you next time, I will make sure to give you some reward.";
+		mes "嗯哼！";
+		mes "你已经有足够竞技场点数。";
+		mes "请稍后花掉一些点数，下次我会给你奖励。";
 		next;
 	}
 	else set arena_point, arena_point + 1;
 	mes "[Staff]";
-	mes "Let me guide you outside. I hope you had a good time.";
+	mes "让我带你出去。希望你玩得开心。";
 	close2;
 	specialeffect2 EF_EXIT;
 	warp "arena_room",100,75;
@@ -779,45 +779,45 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 	}
 	set @gap80,(60 * $top_80min + $top_80sec) - (60 * @record_min80 + @record_sec80);
 	mes "[Staff]";
-	mes "Wow, you did a good job~ ";
-	mes "Your name is...^3131FF" + strcharinfo(0) +"^000000, isn't it?";
+	mes "哇，干得好～";
+	mes "你的名字是……^3131FF"+strcharinfo(0)+"^000000，对吧？";
 	mes "^3131FF"+ strcharinfo(0) +"^000000, total time you spent to pass the battle..";
 	next;
 	mes "[Staff]";
-	mes "is "+@record_min80+"minutes "+@record_sec80+"seconds.";
-	mes "Congratulations!";
+	mes "是 "+@record_min80+" 分钟 "+@record_sec80+" 秒。";
+	mes "恭喜！";
 	next;
 	mes "[Staff]";
-	mes "The fastest player among people who cleared Lv80 arena time force battle is ^3131FF"+$arena_80topn$+"^000000.";
+	mes "完成 80 级竞技场计时战斗的玩家中，最快的是 ^3131FF"+$arena_80topn$+"^000000。";
 	next;
 	mes "[Staff]";
 	mes "^3131FF"+$arena_80topn$+"^000000's running time was ^3131FF"+$top_80min+"^000000minutes ^3131FF"+$top_80sec+"^000000seconds.";
 	next;
 	if (@gap80 < 0) {
 		mes "[Staff]";
-		mes "Although you failed to make a new record, I hope you will succeed next time.";
+		mes "虽然你没能刷新记录，希望下次成功。";
 		next;
 		if (arena_point > 29980) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "那我奖励你一些竞技场点数……嗯？";
+			mes "你的点数超过上限，花掉一些后才能继续获得。";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "你可以在竞技场等候室查看竞技场点数。";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "希望你玩得愉快，现在让我带你到竞技场入口。";
+			mes "谢谢。";
 			close2;
 		} else {
 			set arena_point, arena_point + 20;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "让我奖励你一些竞技场点数。";
+			mes "如果想查看点数，请到竞技场入口和 ^3131FFVendigos^000000 交谈。";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "让我带你到竞技场入口。";
+			mes "回头见～";
 			close2;
 		}
 		specialeffect2 EF_EXIT;
@@ -830,11 +830,11 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 	} else {
 		emotion ET_HUK;
 		mes "[Staff]";
-		mes "Wow! You have renewed the record!";
+		mes "哇！你刷新了记录！";
 		mes "What a great job!";
 		next;
 		mes "[Staff]";
-		mes "You have been recorded as the fastest player among people who cleared ^FF0000Arena Time Force Battle lvl 80s^000000, ^3131FF"+strcharinfo(0)+"^000000.";
+		mes "你已被记录为完成^FF0000 Lv80 竞技场时空战^000000的最快玩家，^3131FF"+strcharinfo(0)+"^000000。";
 		set $top_80min, @record_min80;
 		set $top_80sec, @record_sec80;
 		set $arena_80topn$,strcharinfo(0);
@@ -842,29 +842,29 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 		next;
 		if (arena_point > 29980) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "那么让我奖励你一些竞技场点数……咦？";
+			mes "你的竞技场点数已超过上限。在花掉一些点数前，我无法再给你更多。";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "你可以在竞技场等候室查看竞技场点数。";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "希望你玩得愉快，现在让我带你到竞技场入口。";
+			mes "谢谢。";
 			close2;
 		} else {
 			mes "[Staff]";
-			mes "Let me reward you with some arena points.";
-			mes "At the same time, since you have renewed the record you will receive an extra amount of the points this time.";
+			mes "让我奖励你一些竞技场点数。";
+			mes "由于你刷新了纪录，这次还会获得额外点数。";
 			next;
 			set arena_point, arena_point + 50;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "让我奖励你一些竞技场点数。";
+			mes "如果想查看点数，请到竞技场入口和 ^3131FFVendigos^000000 交谈。";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "让我带你到竞技场入口。";
+			mes "回头见～";
 			close2;
 		}
 		specialeffect2 EF_HIT5;
@@ -883,15 +883,15 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "prt_are_in","This broadcast informs you about the restriction for arena lvl 80s.",0,0xFFCE00;
+	mapannounce "prt_are_in","本广播通知你 Lv80 竞技场的限制。",0,0xFFCE00;
 	end;
 
 OnTimer3000:
-	mapannounce "prt_are_in","For a smooth game play, exit warp portal will be activated in 1 minute.",0,0xFFCE00;
+	mapannounce "prt_are_in","为保证游戏顺利进行，出口传送门将在 1 分钟后开启。",0,0xFFCE00;
 	end;
 
 OnTimer4000:
-	mapannounce "prt_are_in","Please proceed your battle quickly as possible in order to avoid disadvantage. Thank you for your cooperation.",0,0xFFCE00;
+	mapannounce "prt_are_in","请尽快完成战斗，避免陷入不利局面。感谢你的配合。",0,0xFFCE00;
 	end;
 
 OnTimer60000:
@@ -915,13 +915,13 @@ OnOut:
 
 -	script	cast#80	-1,{
 OnTimeOver1:
-	mapannounce "force_4-1","Arena will be reactivated due to an error occurred during battle.",0,0xFFCE00;
+	mapannounce "force_4-1","由于战斗中发生错误，竞技场将重新启动。",0,0xFFCE00;
 	end;
 OnTimeOver2:
-	mapannounce "force_4-1","Arena will be activated due to an error occurred in the waiting room.",0,0xFFCE00;
+	mapannounce "force_4-1","由于等候室发生错误，竞技场将启动。",0,0xFFCE00;
 	end;
 OnNomal1:
-	mapannounce "force_4-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_4-1","竞技场将重新启动。",0,0xFFCE00;
 	end;
 OnNomal2:
 	mapannounce "force_4-1","Arena will be reactivated.",0,0xFFCE00;

@@ -11,45 +11,45 @@
 moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 	disable_items;
 	mes "[Hero Token Exchanger]";
-	mes "If you fought Morocc";
-	mes "and collected";
-	mes "Hero Tokens,";
-	mes "I can exchange them with a special ring for you.";
-	mes "Do you want to take a look at my ring?";
+	mes "如果您与梦罗克战斗过";
+	mes "并收集了";
+	mes "英雄徽章，";
+	mes "我可以为您兑换一枚特殊戒指。";
+	mes "想看看我的戒指吗？";
 	while(true) {
 		next;
 		if (checkweight(2163,2) == 0) {
 			mes "[Hero Token Exchanger]";
-			mes "Your pack has a lot of items,";
-			mes "Please come again after arrange it!";
+			mes "您的背包里有太多物品，";
+			mes "整理后再回来吧！";
 			close;
 		}
-		switch( select( "Ring description", "Exchange with the ring.", "End conversation." ) ) {
+		switch( select( "戒指说明", "兑换戒指。", "结束对话。" ) ) {
 		case 1:
 			mes "[Hero Token Exchanger]";
-			mes "This Hero Ring";
-			mes "may not";
-			mes "look";
-			mes "impressive,";
+			mes "这枚英雄戒指";
+			mes "看起来也许";
+			mes "并不";
+			mes "起眼，";
 			next;
 			mes "[Hero Token Exchanger]";
-			mes "but take it to";
-			mes "Expert Enchanter Byrnes,";
-			mes "and he can Enchant";
-			mes "all 4 sockets in it";
-			mes "and bring out";
-			mes "its latent abilities.";
+			mes "但把它带给";
+			mes "附魔专家 Byrnes，";
+			mes "他可以为 4 个插槽附魔，";
+			mes "唤醒它";
+			mes "潜藏的能力。";
+			mes "";
 			next;
 			mes "[Hero Token Exchanger]";
-			mes "Hero Ring";
-			mes "can aid you";
-			mes "in subjugating";
-			mes "Morocc.";
-			mes "Any more questions?";
+			mes "英雄戒指";
+			mes "可以帮助您";
+			mes "征讨";
+			mes "梦罗克。";
+			mes "还有其他问题吗？";
 			continue;
 		case 2:
-			mes "- Hero Ring -";
-			mes "^006400A ring made for warriors^000000";
+			mes "- 英雄戒指 -";
+			mes "^006400为战士打造的戒指^000000";
 			mes "^006400on the quest to defeat Morocc..^000000";
 			mes "^006400When Enchanted,^000000";
 			mes "^006400it lends its owner^000000";
@@ -59,68 +59,68 @@ moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 			mes "^006400Slot: 0/Equip To: All Jobs^000000";
 			next;
 			mes "[Hero Token Exchanger]";
-			mes "Hero Ring requires";
-			mes "30 Hero Tokens";
-			mes "for the exchange.";
-			mes "Do you want to exchange?";
+			mes "兑换英雄戒指";
+			mes "需要 30 个英雄徽章。";
+			mes "要兑换吗？";
 			next;
-			if (select( "Previous menu.", "Exchange 30 Hero Tokens." ) == 1) {
-				mes "[Hero Token Exchanger]";
-				mes "Think";
-				mes "again.";
-				continue;
-			}
-			if (countitem(6684) < 30) {
-				mes "[Hero Token Exchanger]";
-				mes "^006400Hero Token^000000";
-				mes "is given to";
-				mes "those who bravely fought Morocc.";
-				mes "You don't have";
-				mes "30 ^006400Hero Tokens^000000,";
-				mes "and therefore I can't assist you.";
-				continue;
-			}
+			if (select( "返回上级菜单。", "兑换 30 个英雄徽章。" ) == 1) {
 			mes "[Hero Token Exchanger]";
-			mes "I'll exchange";
+				mes "请再";
+				mes "考虑一下。";
+				continue;
+				}
+			if (countitem(6684) < 30) {
+			mes "[Hero Token Exchanger]";
+				mes "^006400Hero Token^000000";
+				mes "英雄徽章会赠予";
+				mes "勇敢对抗梦罗克的人。";
+				mes "您没有足够的徽章，";
+				mes "30 ^006400Hero Tokens^000000,";
+				mes "所以我无法帮助您。";
+				continue;
+				}
+			mes "[Hero Token Exchanger]";
+			mes "我会用它兑换";
 			mes "30 ^006400Hero Tokens^000000";
-			mes "with 1 ^006400Hero Ring^000000.";
-			mes "Anything else?";
+			mes "1 枚 ^006400英雄戒指^000000。";
+			mes "还需要别的吗？";
 			delitem 6684,30;	// TokenOfHero
 			getitem 2981,1;		// RingOfHero
 			continue;
-		case 3:
-			mes "[Hero Token Exchanger]";
-			mes "One day";
-			mes "you'll find yourself";
-			mes "in need of Hero Ring.";
+			case 3:
+		mes "[Hero Token Exchanger]";
+			mes "总有一天";
+			mes "您会发现自己";
+			mes "需要英雄戒指。";
 			close;
+			}
 		}
 	}
-}
+//
 
 moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 	disable_items;
 	mes "[Byrnes]";
-	mes "Have you heard of Hero Ring? Only true heroes deserve to possess that magnificent ring, and I've been waiting for one.";
-	mes "What can I do for you?";
+	mes "您听说过英雄戒指吗？只有真正的英雄才配拥有那枚华丽的戒指，我一直在等待这样的英雄。";
+	mes "我能为您做些什么？";
 	next;
 	switch( select( "Enchant Hero Ring.", "Reset Enchantments on Hero Ring.", "Cancel." ) ) {
 	case 1:
 		mes "[Byrnes]";
-		mes "I can Enchant only equipped rings. Which one of the equipped rings do you want to Enchant?";
+		mes "我只能为已装备的戒指附魔。您想为哪一枚已装备的戒指附魔？";
 		next;
 		setarray .@eqi_slot[0], EQI_ACC_L, EQI_ACC_R;
 		.@s = select( "Left", "Right" ) - 1;
 		switch( getequipid(.@eqi_slot[.@s]) ) {
 		case -1:
 			mes "[Byrnes]";
-			mes "Please equip the Hero Ring that you want to enchant.";
+			mes "请装备想要附魔的英雄戒指。";
 			close;
 		case 2981:
 			break;
 		default:
 			mes "[Byrnes]";
-			mes "Please equip your Hero Ring. I can't Enchant anything else.";
+			mes "请装备英雄戒指。我无法为其他物品附魔。";
 			close;
 		}
 		// custom at this point
@@ -132,7 +132,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		if (.@card[0] > 0) {
 			mes "[Byrnes]";
-			mes "A fully enchanted Hero Ring cannot be enchanted any further.";
+			mes "已经完成全部附魔的英雄戒指无法继续附魔。";
 			close;
 		}
 		if (.@card[3] == 0) {
@@ -152,7 +152,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 			.@slot = 1;
 		}
 		mes "[Byrnes]";
-		mes "Which ability do you want as an enchantment on slot " + .@slot + "?";
+		mes "您想在插槽 " + .@slot + " 上附魔哪种能力？";
 		next;
 		.@enchant_list_size = getarraysize(.@enchant_list$);
 		for ( .@i = 0; .@i < .@enchant_list_size; ++.@i )
@@ -222,40 +222,40 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 		.@card[.@slot-1] = .@bonus[ rand(.@bonus_size) ];	// unknown rates
 		specialeffect2 EF_ANGEL2;
 		mes "[Byrnes]";
-		mes "Enchantment completed!";
+		mes "附魔完成！";
 		delequip .@eqi_slot[.@s];
 		getitem2 2981,1,1,0,0,.@card[0],.@card[1],.@card[2],.@card[3];
 		close;
 	case 2:
 		mes "[Byrnes]";
-		mes "To reset Enchantments on your Hero Ring, I need 3 Hero Tokens.";
+		mes "要重置英雄戒指的附魔，我需要 3 个英雄徽章。";
 		next;
 		if (countitem(6684) < 3) {
 			mes "[Byrnes]";
-			mes "You don't have enough Hero Tokens. I can't reset your Hero Ring.";
+			mes "您的英雄徽章不足，无法重置英雄戒指。";
 			close;
 		}
 		mes "[Byrnes]";
-		mes "I can reset only equipped rings. Which one of the equipped rings do you want to reset?";
+		mes "我只能重置已装备的戒指。您想重置哪一枚？";
 		next;
 		setarray .@eqi_slot[0], EQI_ACC_L, EQI_ACC_R;
 		.@s = select( "Left", "Right" ) - 1;
 		switch( getequipid(.@eqi_slot[.@s]) ) {
 		case -1:
 			mes "[Byrnes]";
-			mes "You first have to equip the item to reset its Enchantment status.";
+			mes "请先装备要重置附魔状态的物品。";
 			close;
 		case 2981:
 			break;
 		default:
 			mes "[Byrnes]";
-			mes "Please equip your Hero Ring. I can't reset anything else.";
+			mes "请装备英雄戒指。我无法重置其他物品。";
 			close;
 		}
 		// custom at this point
 		if (countitem(6684) < 3) {
 			mes "[Byrnes]";
-			mes "You don't have enough Hero Tokens. I can't reset your Hero Ring.";
+			mes "您的英雄徽章不足，无法重置英雄戒指。";
 			close;
 		}
 		setarray .@card[0],
@@ -266,7 +266,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		if (.@card[3] == 0) {
 			mes "[Byrnes]";
-			mes "Your Hero Ring is currently in a state without enchantment.";
+			mes "您的英雄戒指当前没有附魔。";
 			close;
 		}
 
@@ -276,7 +276,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		specialeffect2 EF_ANGEL2;
 		mes "[Byrnes]";
-		mes "Initialization completed.";
+		mes "初始化完成。";
 		delitem 6684,3;
 		delequip .@eqi_slot[.@s];
 		getitem 2981,1;

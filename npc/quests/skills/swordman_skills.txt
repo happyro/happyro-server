@@ -21,51 +21,37 @@
 	if ((BaseClass == Job_Swordman) && (JobLevel >= 35 || (BaseJob == Job_Knight || BaseJob == Job_Crusader))) {
 		if (getskilllv("SM_MOVINGRECOVERY") == 1) {
 			mes "[De Thomas]";
-			mes "Oh, it's you?";
-			mes "Long time no see!";
-			mes "You seem healthier than before.";
-			mes "Hahahaha!";
-			mes "Take care! See you again!";
+			mes "哦，是你？好久不见！你看起来比以前健康。哈哈哈！保重，回头见！";
 			close;
 		} else if (countitem(713) >= 200 && countitem(1058) >= 1) {
 			mes "[De Thomas]";
-			mes "Welcome back...";
-			mes "Are you ready to learn Body Movin'?";
+			mes "欢迎回来……准备好学习身体移动了吗？";
 			next;
-			switch (select("Yes.:No, I'm not ready yet.")) {
+			switch (select("是。:不，我还没准备好。")) {
 			case 1:
 				mes "[De Thomas]";
-				mes "Let's see.....";
+				mes "让我看看……";
 				next;
 				mes "[De Thomas]";
-				mes "Ok! I shall now teach you...";
-				mes "...The Body Movin' skill!";
+				mes "好！现在我要教你……身体移动技能！";
 				next;
 				delitem 713,200; //Empty_Bottle
 				delitem 1058,1; //Wing_Of_Moth
 				skill "SM_MOVINGRECOVERY",1,SKILL_PERM;
 				mes "[De Thomas]";
-				mes "There you go!";
-				mes "Try it yourself.";
-				mes "But don't overdo it.";
+				mes "给你！自己试试，但别过度使用。";
 				next;
 				mes "[De Thomas]";
-				mes "Oh yeah, I won't be needing your";
-				mes "armor so you can keep it.";
-				mes "Good luck now!";
+				mes "对了，我不需要你的盔甲，你可以留着。现在祝你好运！";
 				close;
 			case 2:
 				mes "[De Thomas]";
-				mes "Is that so?";
-				mes "Then come when you are prepared.";
+			mes "这样啊？准备好后再来。";
 				close;
 			}
 		} else {
 			mes "[De Thomas]";
-			mes "Hmmm... He's a swordsman...";
-			mes "You know that I am De Thomas Carlos, right?";
-			mes "Knight of Prontera's 3rd Calvary.";
-			mes "De Thomas Carlos!";
+			mes "嗯……他是剑士……你知道我叫德·托马斯·卡洛斯吧？普隆德拉第三骑兵队的骑士。德·托马斯·卡洛斯！";
 			next;
 			mes "[De Thomas]";
 
@@ -74,18 +60,15 @@
 			//mes "Come back when it is.";
 
 			// custom: old dialog
-			mes "You do not have all the items I asked for.";
+			mes "你还没有带齐我要求的物品。";
 			next;
 			mes "[De Thomas]";
-			mes "Remember, I need ^008800200 empty bottles^000000, your armor, and a ^008800Moth Wing^000000. Come back when you have it all.";
+			mes "记住，我需要^008800200 个空瓶^000000、你的盔甲和一片^008800蛾翅^000000。带齐后再回来。";
 			close;
 		}
 	} else {
 		mes "[De Thomas]";
-		mes "My name is De Thomas Carlos.";
-		mes "Knight of Prontera's 3rd Calvary.";
-		mes "I have a certain duty these days.";
-		mes "Ehem! Need I say more.";
+		mes "我叫德·托马斯·卡洛斯。普隆德拉第三骑兵队的骑士。最近我有一项职责。咳！还需要我多说吗？";
 		close;
 	}
 	end;
@@ -93,52 +76,32 @@
 OnTouch:
 	if ((BaseClass == Job_Swordman) && (JobLevel >= 35 || (BaseJob == Job_Knight || BaseJob == Job_Crusader))) {
 		mes "[De Thomas]";
-		mes "Oh, no! You must have been hurt! Are you ok?";
-		mes "You must have fought hard to get such serious injuries..";
-		mes "Being a swordsman must come with a lot of responsibility and sacrifice.";
+		mes "哦，不！你一定受伤了！还好吗？你一定经历了苦战才会伤得这么重。成为剑士一定伴随着许多责任和牺牲。";
 		next;
 		mes "[De Thomas]";
 		if (Sex == SEX_MALE)
-			mes "For these swordsmen and knights, there is a wonderful skill.";
+			mes "对于剑士和骑士，有一项很棒的技能。";
 		else
-			mes "For these swordswomen and knights, there is a wonderful skill young lady.";
-		mes "I present to you - HP Recovery While Moving!";
-		mes "Body moving is a splendid skill";
-		mes "that allows you to regain strength(HP)";
-		mes "while you are moving!";
+			mes "对于女剑士和骑士，有一项很棒的技能，年轻的小姐。";
+		mes "我向你介绍——移动时恢复 HP！身体移动是很棒的技能，让你在移动时恢复体力（HP）！";
 		next;
 		mes "[De Thomas]";
-		mes "It is currently under development";
-		mes "so it may not recover that much,";
-		mes "but it will help a little.";
-		mes "What do you think? Would you like to learn this skill?";
+		mes "它目前仍在开发中，所以恢复量也许不多，但总会有帮助。你觉得怎么样？想学这个技能吗？";
 		next;
-		switch (select("What a nice skill! I want to learn it!:No, thank you.")) {
+		switch (select("好棒的技能！我想学！:不用了，谢谢。")) {
 		case 1:
 			mes "[De Thomas]";
-			mes "Very well. I will tell you what you need to learn this skill.";
-			mes "First, your job level must be higher than ^00880035^000000.";
-			mes "You will also need ^008800200 empty bottles^000000.";
-			mes "Why? Because it is proof that you fought fiercely to have used that many potions.";
+			mes "很好。我来告诉你学习这项技能所需的条件。首先，职业等级必须高于^00880035^000000。还需要^008800200 个空瓶^000000。为什么？因为用掉这么多药水证明你经历过激烈战斗。";
 			next;
 			mes "[De Thomas]";
-			mes "Also, the armor you used in battle.";
-			mes "This is also proof of an experienced fighter.";
-			mes "For the armor... your armor is perfect!";
-			mes "Bring your armor!";
-			mes "Last but not least... bring me one ^008800Moth Wing^000000.";
+			mes "还有你战斗时使用的盔甲，这也是经验丰富的战士的证明。盔甲方面……你的盔甲正合适！把它带来！最后……带给我一片^008800蛾翅^000000。";
 			next;
-			select("Eh? You need that, too?");
+			select("嗯？那个也需要？");
 			mes "[De Thomas]";
-			mes "Not really.. I don't really NEED it.";
-			mes "It's just that my niece has gotten a bug hunting as a holiday task during the summer vacation.";
-			mes "Of course! It would be much easier for me to get it myself.";
-			mes "but I must work here all the time so I don't exactly have the time to go out and get it.";
+			mes "其实不……我并不真的需要。只是我的侄女暑假把捕虫当作假期任务。当然我自己去拿容易得多，但我必须一直在这里工作，没时间出去。";
 			next;
 			mes "[De Thomas]";
-			mes "Don't you think it is pitiful that I have to stay in once place everyday, not being able to go outside?";
-			mes "Please, find me one...*sniffsniff*";
-			mes "If you don't...";
+			mes "你不觉得我每天只能待在一个地方、不能出去很可怜吗？请帮我找一片……*抽鼻子* 如果你不帮……";
 			close;
 		case 2:
 			mes "[De Thomas]";
@@ -153,23 +116,17 @@ prt_in,75,88,5	script	Leon Von Frich	85,3,3,{
 	if ((BaseClass == Job_Swordman) && (JobLevel >= 25 || (BaseJob == Job_Knight || BaseJob == Job_Crusader))) {
 		if (getskilllv("SM_FATALBLOW") == 1) {
 			mes "[Leon]";
-			mes "Eh?";
-			mes "I was wondering who that was!";
-			mes "Why it's you from before!";
-			mes "Nice to see you again! How are you?";
-			mes "Be careful! Hahaha!";
+			mes "嗯？我还在想是谁！原来是之前见过的你！很高兴再见到你！最近好吗？小心点！哈哈哈！";
 			close;
 		}
 		else if ((countitem(1752) > 9) && (countitem(1751) > 9) && (countitem(532) > 0) && (countitem(962) > 29) && (countitem(526) > 4)) {
 			mes "[Leon]";
-			mes "Ooh! You are more than ready";
-			mes "to learn Fatal Blow!";
-			mes "So how about it? Would you like to learn?";
+			mes "哦！你已经完全准备好学习致命攻击了！怎么样？想学吗？";
 			next;
-			switch (select("Yes!:No, I don't want to.:But, what is Fatal Blow?")) {
+			switch (select("是！:不，我不想学。:不过，什么是致命攻击？")) {
 			case 1:
 				mes "[Leon]";
-				mes "OK, lets begin!";
+				mes "好，开始吧！";
 				next;
 				delitem 1752,10; //Fire_Arrow
 				delitem 1751,10; //Silver_Arrow
@@ -178,127 +135,91 @@ prt_in,75,88,5	script	Leon Von Frich	85,3,3,{
 				delitem 526,5; //Royal_Jelly
 				skill "SM_FATALBLOW",1,SKILL_PERM;
 				mes "[Leon]";
-				mes "Success!";
-				mes "Go use your new skill to its full potential.";
-				mes "Hahahahahahahaha!";
+				mes "成功！去充分发挥新技能的潜力吧。哈哈哈哈哈哈！";
 				close;
 			case 2:
 				mes "[Leon]";
-				mes "I don't like you!!!";
+				mes "我讨厌你！！！";
 				close;
 			case 3:
 				mes "[Leon]";
-				mes "I developed this skill recently.";
-				mes "When you use bash, depending ";
-				mes "on your level, you can stun ";
-				mes "your opponent. .";
-				mes "You have learned bash, haven't you?";
+				mes "我最近开发了这项技能。使用狂击时，根据你的等级可以击晕对手。你学过狂击，对吧？";
 				next;
 				mes "[Leon]";
-				mes "What do you think. Stun is";
-				mes "a very useful technique. Don't you find this skill attractive?";
-				mes "When you think you do, just come right back to me!";
+				mes "你觉得怎么样？击晕是非常有用的技巧。你不觉得这项技能很有吸引力吗？想学的话就回来找我！";
 				close;
 			}
 		}
 		mes "[Leon]";
-		mes "Ooh! A young and strong swordsman!";
+		mes "哦！年轻又强壮的剑士！";
 		next;
 		mes "[Leon]";
-		mes "Wow, seeing your arm, you must enjoy using bash?";
+		mes "哇，看你的手臂，你一定喜欢使用狂击吧？";
 		next;
-		select("Eh, I... just...");
+		select("嗯，我……只是……");
 		mes "[Leon]";
 		if (Sex == SEX_FEMALE) {
-			mes "No need to be surprised.";
-			mes "If you use a sword, of course you ought to have a good arm!";
+			mes "不用惊讶。使用剑当然要有强壮的手臂！";
 		}
 		else {
-			mes "Nothing to be embarrassed about.";
-			mes "Even if you are a female you need a strong arm to use a sword!";
+			mes "没什么好害羞的。即使是女性，使用剑也需要强壮的手臂！";
 		}
-		mes "In times of only useless and lazy youngsters,";
-		mes "I'm glad I met someone strong like you.";
+		mes "在尽是无用懒惰年轻人的时代，我很高兴遇到你这样强壮的人。";
 		next;
 		mes "[Leon]";
-		mes "Yes, I would like to give a present to an awesome swordsman like you.";
+		mes "是的，我想送一份礼物给你这样的优秀剑士。";
 		next;
-		switch (select("What present?:It's ok.")) {
+		switch (select("什么礼物？:没关系。")) {
 		case 1:
 			mes "[Leon]";
-			mes "Haha nothing special, but a skill to attack the vital point!";
+			mes "哈哈，没什么特别的，只是一项攻击要害的技能！";
 			next;
 		case 2:
 			mes "[Leon]";
-			mes "...Haha nothing special, just a skill that aims at the vital spot!";
+			mes "……哈哈，没什么特别的，只是瞄准要害的技能！";
 			next;
 		}
 		mes "[Leon]";
-		mes "It's a skill I developed recently.";
-		mes "When you use bash, depending on";
-		mes "your level, your opponent can";
-		mes "become stunned.";
-		mes "You have learned bash, haven't you?";
+		mes "这是我最近开发的技能。使用狂击时，根据你的等级，对手可能会被击晕。你学过狂击，对吧？";
 		next;
 		mes "[Leon]";
-		mes "When I was a swordsman like you,";
-		mes "I used to enjoy using Bash. Every time, I thought";
-		mes "- maybe the attack would be more powerful";
-		mes "if I use stun at the same time.";
+		mes "我像你一样当剑士时，喜欢使用狂击。每次我都想——如果同时使用击晕，攻击也许会更强。";
 		next;
 		mes "[Leon]";
-		mes "I drew back from the battlefield to do research";
-		mes "and finally, I developed this wonderful new skill!";
-		mes "Would you like to learn this skill?";
+		mes "我从战场退下进行研究，终于开发出这项绝妙的新技能！你想学习吗？";
 		next;
-		switch (select("Yes.:No.:Do you have any advice on how to eat sushi?")) {
+		switch (select("是。:不。:你有什么吃寿司的建议吗？")) {
 		case 1:
 			mes "[Leon]";
-			mes "Ok. I'll tell you the requirements.";
-			mes "First you need to have level 5 Bash.";
-			mes "You will also need to prepare 10 Fire Arrows, 10 Silver Arrows, 1 bottle of Banana Juice, 30 Tentacles, and 5 bottles of Royal Jelly.";
-			mes "They are.. somewhat like ingredients.";
+			mes "好，我告诉你要求。首先需要狂击等级 5。还要准备 10 根火箭、10 根银箭、1 瓶香蕉汁、30 根触手和 5 瓶蜂王浆。它们……有点像材料。";
 			next;
 			mes "[Leon]";
-			mes "come to me again once you have all the materials.";
-			mes "We shall talk then.";
+			mes "材料集齐后再来找我。到时我们再谈。";
 			close;
 		case 2:
 			mes "[Leon]";
-			mes "Hahahahahahahahahaha!";
+			mes "哈哈哈哈哈哈哈哈！";
 			mes "... ";
 			mes " ... ";
 			mes " ...";
-			mes "I'm at a loss of words!?";
+			mes "我无话可说了！？";
 			close;
 		case 3:
 			mes "[Sushi King Leon]";
-			mes "The best way to eat sushi is";
-			mes "with your hands.";
-			mes "That is the basic.";
-			mes "And dip the fish, not the rice,";
-			mes "in the soy sauce.";
+			mes "吃寿司最好的方法是用手。这是基本原则。把鱼而不是米饭蘸进酱油。";
 			next;
 			mes "[Sushi King Leon]";
-			mes "That way you get a richer flavor.";
-			mes "Also, always eat the kind that is in season.";
-			mes "Eating in the order of white fish then";
-			mes "blue fish will make it taste better!";
-			mes "Mmm! I like sushi~~!";
+			mes "这样味道更浓郁。另外，始终吃当季的种类。先吃白鱼再吃青鱼，味道会更好！嗯！我喜欢寿司~~！";
 			close;
 		}
 	}
 	mes "[Leon]";
-	mes "Oh, no! I have nothing to offer you!";
-	mes "I can't say nice and fun things to anyone";
-	mes "other than swordsmen!";
-	mes "See you in a better world!";
+	mes "哦，不！我没什么能给你的！除了剑士，我对谁都说不出好听有趣的话！来世再见！";
 	close;
 
 OnTouch_:
 	mes "[Leon]";
-	mes "Hahahahahahaha!";
-	mes "Hahahahahahaha!";
+	mes "哈哈哈哈哈哈！哈哈哈哈哈哈！";
 	close;
 }
 
@@ -306,37 +227,27 @@ prt_in,94,57,3	script	Juan	85,4,4,{
 	if (BaseClass == Job_Swordman) {
 		if (getskilllv("SM_AUTOBERSERK") == 1) {
 			mes "[Juan]";
-			mes "Mmm? Long time no see!";
-			mes "How are you?";
-			mes "You got stronger than before.";
-			mes "Many expect great things from you.";
-			mes "You can do it.";
+			mes "嗯？好久不见！最近好吗？你比以前更强了。很多人对你寄予厚望。你能做到。";
 			close;
 		}
 		else if (JobLevel < 10 && (BaseJob != Job_Knight && BaseJob != Job_Crusader)) {
 			mes "[?]";
-			mes "What are you?";
-			mes "Eh, still a beginner.";
-			mes "I'm busy, so go train a little more";
-			mes "before coming back.";
+			mes "你是什么人？呃，还是个新手。我很忙，所以多训练一阵再回来。";
 			close;
 		}
 		else if (JobLevel < 30 && (BaseJob != Job_Knight && BaseJob != Job_Crusader)) {
 			mes "[Juan]";
-			mes "Oh, nice to meet you.";
-			mes "You can be on your way. (smiley~)";
+			mes "哦，很高兴见到你。你可以走了。（微笑~）";
 			close;
 		}
 		else if ((countitem(924) > 34) && (countitem(958) > 9) && (countitem(957) > 9) && (countitem(518) > 9)) {
 			mes "[Juan]";
-			mes "Ooh. Young swordsman!";
-			mes "You are ready to learn the";
-			mes "newest skill, Auto Berserk?!";
+			mes "哦，年轻的剑士！你准备好学习最新技能自动狂暴了吗？！";
 			next;
-			switch (select("Hoho, I would like to learn it now.:What is that?")) {
+			switch (select("呵呵，我现在就想学。:那是什么？")) {
 			case 1:
 				mes "[Juan]";
-				mes "Ok. Then...";
+				mes "好。那么……";
 				next;
 				delitem 924,35; //Powder_Of_Butterfly
 				delitem 958,10; //Horrendous_Mouth
@@ -344,131 +255,70 @@ prt_in,94,57,3	script	Juan	85,4,4,{
 				delitem 518,10; //Honey
 				skill "SM_AUTOBERSERK",1,SKILL_PERM;
 				mes "[Juan]";
-				mes "You have just become a swordsman";
-				mes "that can use Auto Berserk.";
-				mes "You can go about ";
-				mes "and achieve great things!";
+				mes "你现在已经成为能使用自动狂暴的剑士。你可以继续前进，成就伟业！";
 				next;
 				mes "[Juan]";
-				mes "Good luck!";
+				mes "祝你好运！";
 				next;
 				mes "[Juan]";
-				mes "....................................oh yeah.";
-				mes "I forgot to say something.";
-				mes "There are some things you must keep in mind.";
+				mes "……哦，对了。我忘了说一件事。有些事情你必须牢记。";
 				next;
 				mes "[Juan]";
-				mes "Once you regain health,";
-				mes "this skill will subside.";
-				mes "Also, there isn't really a time limit";
-				mes "but it can still disappear when";
-				mes "it is attacked with a skill that can";
-				mes "nullify provoke.";
+				mes "一旦恢复健康，这项技能就会停止。此外它没有真正的时间限制，但受到能抵消挑衅的技能攻击时也会消失。";
 				next;
 				mes "[Juan]";
-				mes "If you don't remember these characteristics,";
-				mes "you may run into some problems on the battlefield";
-				mes "when the skill disappears all of a sudden.";
+				mes "如果不记得这些特性，技能突然消失时，你可能会在战场上遇到麻烦。";
 				next;
 				mes "[Juan]";
-				mes "Then... bye for real~";
+				mes "那么……这次真的再见~";
 				close;
 			case 2:
 				mes "[Juan]";
-				mes "Auto Berserk?";
-				mes "It's a skill crucial on the battlefield.";
-				mes "When your health is in red,";
-				mes "your hidden potential provokes yourself";
-				mes "to help you in battle.";
+				mes "自动狂暴？这是战场上至关重要的技能。当生命值变红时，你的隐藏潜能会激发自己，帮助你战斗。";
 				next;
 				mes "[Juan]";
-				mes "It is perfect for those that";
-				mes "fight on the battlefield like fire!";
-				mes "With your ability, you can learn";
-				mes "this skill right now.";
-				mes "Then, I shall tell you the necessary materials.";
+				mes "它非常适合在战场上如火焰般战斗的人！凭你的能力，现在就能学习。接下来我告诉你所需材料。";
 				next;
 				mes "[Juan]";
-				mes "You need 35 Powder of Butterfly.";
-				mes "The energy from the magnificent";
-				mes "wings of a butterfly will";
-				mes "help you gather your strength!";
-				mes "And 10 Horrendous Mouth.";
-				mes "10 Decayed Nail.";
-				mes "and last but not least...";
-				mes "10 Honey!";
+				mes "你需要 35 个蝴蝶粉末。蝴蝶华丽翅膀的能量会帮助你聚集力量！还要 10 个可怕的嘴、10 个腐烂的指甲，最后……10 个蜂蜜！";
 				next;
 				mes "[Juan]";
-				mes "Did you get all that down?";
-				mes "As always, please come back";
-				mes "when you are ready.";
-				mes "I look forward to seeing you again.";
+				mes "都记下来了吗？准备好后请再回来。我期待再次见到你。";
 				close;
 			}
 		}
 		mes "[Juan]";
-		mes "Oh no, you have more injuries";
-		mes "since the last time I saw you.";
-		mes "You went into battle like this?";
-		mes "Seems like you are straining yourself.";
+		mes "哦，不，你比我上次见你时伤得更重。你就这样上战场了？看来你太勉强自己了。";
 		next;
 		mes "[Juan]";
-		mes "Even though you may have a lot of strength";
-		mes "you can't do much when you reach your limits so";
-		mes "don't overestimate your powers.";
-		mes "Of course you could always use the";
-		mes "skill we developed to overcome these limits.";
+		mes "即使你力量很强，达到极限后也无能为力，所以别高估自己。当然，你可以使用我们开发的技能突破极限。";
 		next;
-		switch (select("Eh! What are you talking about?:Haha, there can't be such a thing.:Keuuuuuuuh!")) {
+		switch (select("嗯！你在说什么？:哈哈，不可能有这种东西。:咳呜呜呜！")) {
 		case 1:
 			mes "[Juan]";
-			mes "The skill is called Berserk.";
-			mes "It is deemed the flower of a battlefield.";
-			mes "When your health is red,";
-			mes "your hidden potential is provokes yourself";
-			mes "to help you in battle.";
+			mes "这项技能叫狂暴，被称为战场之花。当生命值变红时，你的隐藏潜能会激发自己，帮助你战斗。";
 			next;
 			mes "[Juan]";
-			mes "It is perfect for those that";
-			mes "fight on the battlefield like fire!";
-			mes "With your ability, you can learn";
-			mes "this skill right now.";
-			mes "Then, I shall tell you the necessary materials.";
+			mes "它非常适合在战场上如火焰般战斗的人！凭你的能力，现在就能学习。接下来我告诉你所需材料。";
 			next;
 			mes "[Juan]";
-			mes "You need 35 Powder of Butterfly.";
-			mes "The energy from the magnificent";
-			mes "wings of a butterfly will";
-			mes "help you gather your strength!";
-			mes "And 10 Horrendous Mouth.";
-			mes "10 Decayed Nail.";
-			mes "and last but not least...";
-			mes "10 Honeys!";
+			mes "你需要 35 个蝴蝶粉末、10 个可怕的嘴、10 个腐烂的指甲，最后……10 个蜂蜜！";
 			next;
 			mes "[Juan]";
-			mes "Did you get all that down?";
-			mes "As always, please come back";
-			mes "when you are ready.";
-			mes "I look forward to seeing you again.";
+			mes "都记下来了吗？准备好后请再回来。我期待再次见到你。";
 			close;
 		case 2:
 			mes "[Juan]";
-			mes "Bleh, were you fooled all your life.";
-			mes "I don't know. Don't talk to me.";
+			mes "呸，你一辈子都被骗了吗？我不知道。别和我说话。";
 			close;
 		case 3:
 			mes "[Juan]";
-			mes "Keuuuuuuuuuuuuuh!";
-			mes "Ooowwwwwuuuuuuuuuuuuuhhh!";
-			mes "Keuaaaaaaaaaaah!";
+			mes "咳呜呜呜呜！哎呜呜呜呜呜呜！咳啊啊啊！";
 			close;
 		}
 	}
 	mes "[Juan]";
-	mes "Are you enjoying your trip?";
-	mes "I hope you have nice days ahead of you.";
-	mes "Ah, I am just a kind knight Juan.";
-	mes "Don't worry about me too much. Hahaha...";
+		mes "旅途愉快吗？希望你今后的日子美好。我只是善良的胡安骑士。别太担心我。哈哈哈……";
 	close;
 }
 

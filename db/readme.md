@@ -1,20 +1,20 @@
-# Import Directories
+# 导入目录
 
-## What is the import directory for?
+## 导入目录的用途是什么？
 
-The `import/` directory provides a way for you to change your config settings without the need to even touch the main `/conf/` and `/db/` files.
+`import/` 目录允许你修改配置，而无需改动主 `/conf/` 和 `/db/` 文件。
 
-By placing your custom entries into the `import/` directory within these two locations, your core files will not need to have any conflicts resolved when you update your server. You store your changes, and the rest is updated with rAthena.
+将自定义条目放入这两个位置中的 `import/` 目录后，更新服务器时无需解决核心文件冲突。你只需保存自己的更改，其余内容由 rAthena 更新。
 
-## How does this work?
+## 它是如何工作的？
 
-Think of "import" as in "override". Place only the settings you have changed in the import files, or settings you are "overriding".
+可以将“import”理解为“覆盖”。只需在导入文件中放入你修改或正在“覆盖”的设置。
 
 For example, when setting up a server there are always a few config settings that users would like to change in order for rAthena to suit their needs. The following example will show you how to use the `/db/import/` directory correctly. (for `/conf/import/` examples, see [/conf/readme.md](/conf/readme.md))
 
-### Achievements
+### 成就
 ---
-We want to add our own custom achievement that can be given to a player via an NPC Script and another that we can give to our GMs.
+我们要添加自定义成就：一个可通过 NPC 脚本授予玩家，另一个可授予 GM。
 
 #### /db/import/achievement_db.yml
 
@@ -34,9 +34,9 @@ We want to add our own custom achievement that can be given to a player via an N
 ```
 
 
-### Instances
+### 副本
 ---
-We want to add our own customized Housing Instance.
+我们要添加自定义住宅副本。
 
 #### /db/import/instance_db.yml
 
@@ -54,9 +54,9 @@ We want to add our own customized Housing Instance.
 ```
 
 
-### Mob Alias
+### 怪物别名
 ---
-We want to make Porings look like Baphomet.
+我们要让波利显示为巴风特的外观。
 
 #### /db/import/mob_avail.yml
 
@@ -66,9 +66,9 @@ We want to make Porings look like Baphomet.
 ```
 
 
-### Custom Maps
+### 自定义地图
 ---
-We want to add our own custom maps. For this we need to add our map names to `import/map_index.txt` and then to the `import/map_cache.dat` file for the Map Server to load.
+我们要添加自定义地图。需要先将地图名称加入 `import/map_index.txt`，再写入 `import/map_cache.dat`，供地图服务器加载。
 
 #### /db/import/map_index.txt
 
@@ -82,9 +82,9 @@ We want to add our own custom maps. For this we need to add our map names to `im
 ```
 
 
-### Item Trade Restrictions
+### 物品交易限制
 ---
-We want to ensure that specific items cannot be traded, sold, dropped, placed in storage, etc.
+我们要确保特定物品不能交易、出售、丢弃或存入仓库等。
 
 #### /db/import/item_db.yml
 
@@ -125,9 +125,9 @@ We want to ensure that specific items cannot be traded, sold, dropped, placed in
 ```
 
 
-### Custom Quests
+### 自定义任务
 ---
-We want to add our own custom quests to the quest_db.
+我们要向 quest_db 添加自定义任务。
 
 #### /db/import/quest_db.yml
 
@@ -140,4 +140,4 @@ We want to add our own custom quests to the quest_db.
 
 
 
-We cannot stress enough how helpful this system is for everyone. The majority of git conflicts will simply go away if users make use of the `import/` system.
+这个系统对所有人都非常有帮助。只要使用 `import/` 系统，大多数 Git 冲突都会消失。

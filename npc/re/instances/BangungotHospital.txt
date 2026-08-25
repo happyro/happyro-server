@@ -42,9 +42,9 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 			}
 			if (checkquest(11309,HUNTING) == 2) {
 				mes "[Nurse Maenne]";
-				mes "You got rid of Bangungot!";
-				mes "The nurse might be waiting for you";
-				mes "in front of the hospital!";
+				mes "你消灭了梦魇！";
+				mes "护士可能正在";
+				mes "医院门口等你！";
 				close2;
 				cutin "",255;
 				end;
@@ -70,15 +70,15 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 			case 0:
 			case 1:
 				mes "[Nurse Maenne]";
-				mes "Now the entrance";
-				mes "to go up second floor";
-				mes "is closed.";
+				mes "现在通往";
+				mes "二楼的入口";
+				mes "已经关闭。";
 				next;
 				mes "[Nurse Maenne]";
-				mes "To go up";
-				mes "the second floor again";
-				mes "Open the gate";
-				mes "after lapse of time.";
+				mes "想再次前往";
+				mes "二楼，";
+				mes "请等待一段时间";
+				mes "后再打开大门。";
 				close2;
 				cutin "",255;
 				end;
@@ -87,13 +87,13 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 					callsub S_NoParty;
 				if (isbegin_quest(11309) == 1) {
 					mes "[Nurse Maenne]";
-					mes "From the Bangungot at second floor";
-					mes "You returned safely to here!!";
+					mes "你从二楼的梦魇";
+					mes "平安回到这里了！！";
 					next;
 					mes "[Nurse Maenne]";
-					mes "If you want to go up";
-					mes "second floor again";
-					mes "Please come to me.";
+					mes "如果想再次前往";
+					mes "二楼，";
+					mes "请来找我。";
 					completequest 9224;
 					erasequest 9224;
 					close2;
@@ -116,9 +116,9 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 				callsub S_NoParty;
 			if (malaya_bang < 40) {
 				mes "[Nurse Maenne]";
-				mes ".....?";
-				mes "Now you can't go up";
-				mes "to the 2nd floor.";
+				mes "……？";
+				mes "现在不能前往";
+				mes "二楼。";
 				close2;
 				cutin "",255;
 				end;
@@ -127,17 +127,17 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 				switch( checkquest(9224,PLAYTIME) ) {// Explore Hospital 2F
 				case -1:
 					mes "[Nurse Maenne]";
-					mes "This is fatal situation.";
-					mes "that is why you can't go up";
-					mes "2nd floor.";
+					mes "情况非常危险。";
+					mes "所以你不能前往";
+					mes "二楼。";
 					close2;
 					cutin "",255;
 					end;
 				case 0:
 				case 1:
 					mes "[Nurse Maenne]";
-					mes "To the second floor of hospital";
-					mes "Do you want go up second floor again?";
+					mes "要前往医院二楼吗？";
+					mes "要再次上楼吗？";
 					callsub S_Enter, false, false;
 				case 2:
 					callsub S_Enter, true;
@@ -146,18 +146,18 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 			// else
 			if (checkweight(607,11) == 0) {
 				mes "[Nurse Maenne]";
-				mes "You have too much stuff.";
-				mes "Please reduce your stuff and";
-				mes "come to me again.";
+				mes "你携带的物品太多。";
+				mes "请减少物品后";
+				mes "再来找我。";
 				close2;
 				cutin "",255;
 				end;
 			}
 			if (checkweight(607,1) == 0) {
 				mes "[Nurse Maenne]";
-				mes "It's too heavy.";
-				mes "Please reduce the weight and";
-				mes "come to me again.";
+				mes "负重太高。";
+				mes "请减轻负重后";
+				mes "再来找我。";
 				close2;
 				cutin "",255;
 				end;
@@ -199,27 +199,26 @@ ma_dun01,147,10,5	script	Nurse#ma_dun01	4_F_NURSE,{
 
 S_Closed:
 	mes "[Nurse Maenne]";
-	mes "- The door is closed to 1st floor";
-	mes "when this Nurse came in?";
-	mes "I call her behind but";
-	mes "She doesn't respond. -";
+	mes "- 一楼的门关上了";
+	mes "护士进来时还不是这样？";
+	mes "我在后面叫她，";
+	mes "但她没有回应。-";
 	close2;
 	cutin "",255;
 	end;
 
 S_Complete:
 	mes "[Nurse Maenne]";
-	mes "You returned safely from the Bangungot on the second floor!!";
-	mes "However, it's not";
-	mes "really over yet.";
+	mes "你从二楼的梦魇中平安回来了！！";
+	mes "不过，事情还";
+	mes "没有真正结束。";
 	next;
 	mes "[Nurse Maenne]";
-	mes "I'm pretty sure it";
-	mes "never disappears easily.";
-	mes "I don't know what will happen";
-	mes "about Bangungot, so";
-	mes "after a lapse of time";
-	mes "please return to me.";
+	mes "我很确定它";
+	mes "不会轻易消失。";
+	mes "我不知道梦魇会怎样，";
+	mes "所以过一段时间后";
+	mes "请再回来找我。";
 	if (getarg(0) == true) {
 		completequest 9222;
 		erasequest 9222;
@@ -230,10 +229,10 @@ S_Complete:
 	return;
 
 S_NoParty:
-	mes "- I guess...";
-	mes "I can't talk him alone.";
-	mes "After registering a party";
-	mes "let me try to say something. -";
+	mes "- 我想……";
+	mes "我不能单独和他说话。";
+	mes "登记队伍后，";
+	mes "让我试着说点什么。-";
 	close2;
 	cutin "",255;
 	end;
@@ -245,66 +244,64 @@ S_Enter:
 			.@menu$ = "Prepare to enter the second floor.";
 		mes "[Nurse Maenne]";
 		if (getarg(0) == false) {
-			mes "I already heard that story so";
-			mes "I pretty much know that.";
-			mes "What are you going to do?";
-			mes "Do you want to go up";
-			mes "to the second floor?";
+			mes "我已经听过那个故事，";
+			mes "基本了解情况了。";
+			mes "你打算怎么做？";
+			mes "要前往二楼吗？";
+			mes "前往二楼吗？";
 		}
 		else {
-			mes "You are back...";
-			mes "There is bad news.";
-			mes "I heard that";
-			mes "the Bangungot is appeared";
-			mes "again.";
+			mes "你回来了……";
+			mes "有个坏消息。";
+			mes "我听说";
+			mes "梦魇又出现了。";
 			next;
 			mes "[Nurse Maenne]";
-			mes ""+ strcharinfo(0) +" 's help";
-			mes "is needed again.";
-			mes "Please could you give me";
-			mes "one more chance?";
+			mes "又需要"+ strcharinfo(0) +"的帮助。";
+			mes "能不能再给我";
+			mes "一次机会？";
 		}
 	}
 	next;
-	switch( select( .@menu$, "Enter the second floor.", "Do not enter." ) ) {
+	switch( select( .@menu$, "进入二楼。", "不进入。" ) ) {
 	case 1:
 		if (instance_create(.@md_name$) < 0) {
 			mes "[Nurse Maenne]";
-			mes "A critical situation has happened.";
-			mes "You can't go up to the 2nd floor.";
+			mes "发生了危急情况。";
+			mes "你不能前往二楼。";
 			break;
 		}
 		mes "[Nurse Maenne]";
-		mes "We are preparing to go up";
-		mes "to the second floor.";
-		mes "At the second floor";
-		mes "there is a chaotic rumor that";
-		mes "the dead do not die.";
-		mes "Please refer to this story.";
+		mes "我们正在准备前往";
+		mes "二楼。";
+		mes "二楼有一则";
+		mes "混乱的传闻，";
+		mes "死者不会死。";
+		mes "请参考这个故事。";
 		next;
 		mes "[Nurse Maenne]";
-		mes "When you finish everything,";
-		mes "please talk to me again.";
-		mes "I really appreciate it.";
+		mes "完成一切后，";
+		mes "请再来和我谈谈。";
+		mes "真的非常感谢。";
 		break;
 	case 2:
 		switch( instance_enter(.@md_name$) ) {
 		case IE_OTHER:
 			mes "[Nurse Maenne]";
-			mes "A critical situation has happened.";
-			mes "You can't go up to the 2nd floor.";
+			mes "发生了危急情况。";
+			mes "你不能前往二楼。";
 			break;
 		case IE_NOINSTANCE:
 			mes "[Nurse Maenne]";
-			mes "You can't go up to";
-			mes "the 2nd floor now.";
+			mes "你不能前往";
+			mes "现在前往二楼。";
 			break;
 		case IE_NOMEMBER:
 			mes "[Nurse Maenne]";
-			mes "It's too dangerous to go";
-			mes "up to the 2nd floor alone.";
-			mes "Please come here with";
-			mes "several people.";
+			mes "独自前往二楼";
+			mes "太危险了。";
+			mes "请和几个人";
+			mes "一起过来。";
 			break;
 		case IE_OK:
 			mapannounce "ma_dun01", getpartyname(getcharid(1)) + " party's " + strcharinfo(0) + " member entered " + .@md_name$ + ".",bc_map,"0x00ff99";
@@ -328,8 +325,8 @@ S_Enter:
 		break;
 	case 3:
 		mes "[Nurse Maenne]";
-		mes "Alright.";
-		mes "If you change mind, come back again.";
+		mes "好的。";
+		mes "改变主意后再回来。";
 		break;
 	}
 	close2;
@@ -340,13 +337,13 @@ S_Enter:
 // GM Management NPC :: ma_hos_enter_2
 //============================================================
 sec_in02,27,30,0	script	Bangungot Gate	2_MONEMUS,{
-	mes "Password";
+	mes "密码";
 	next;
 	if (callfunc("F_GM_NPC","1854",1) == 0) {
-		mes "Good Luck.";
+		mes "祝你好运。";
 		close;
 	}
-	switch(select("Receive 9222:Receive 9223:Erase 9222:Erase 9223:Receive 9224:Erase 9224:Receive malaya_bang 30:Receive malaya_bang 40:Receive 11309:Erase 11309:Cancel")) {
+	switch(select("领取9222:领取9223:删除9222:删除9223:领取9224:删除9224:领取malaya_bang 30:领取malaya_bang 40:领取11309:删除11309:取消")) {
 		case 1: setquest 9222; end;
 		case 2: setquest 9223; end;
 		case 3: erasequest 9222; end;
@@ -507,7 +504,7 @@ OnTimer3000:
 	if (mobcount('map_name$,instance_npcname("#Ward6 Entry") + "::OnMyMobDead") < 1) {
 		specialeffect EF_BAT2;
 		donpcevent instance_npcname("#Summon Boss") + "::OnEnable";
-		mapannounce 'map_name$, "Bangungot: You had the choice to enter here, but you have no choice to get out as you want...",bc_map,"0xFF82FF";
+		mapannounce 'map_name$, "邦贡诺特：你可以选择进入这里，但不能随心所欲地离开……",bc_map,"0xFF82FF";
 	}
 	stopnpctimer;
 	end;
@@ -530,7 +527,7 @@ OnMyMobDead:
 OnTimer1000:
 	if (mobcount('map_name$,instance_npcname("#Summon Boss") + "::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("#Summon Pillar") + "::OnEnable1";
-		mapannounce 'map_name$, "Bangungot: I....cannot.....finish...like.......this.",bc_map,"0xFF82FF";
+		mapannounce 'map_name$, "邦贡诺特：我……不能……就这样……结束……",bc_map,"0xFF82FF";
 		disablenpc instance_npcname("#Summon Boss");
 	}
 	stopnpctimer;
@@ -563,7 +560,7 @@ OnMyMobDead:
 	end;
 OnTimer1000:
 	if (mobcount('map_name$,instance_npcname("#Boss Room Entry") + "::OnMyMobDead") < 1)
-		mapannounce 'map_name$, "Bangungot: HAHAHAH... That's not enough, I will be even stronger....",bc_map,"0xFF82FF";
+		mapannounce 'map_name$, "邦贡诺特：哈哈哈……这还不够，我会变得更强……",bc_map,"0xFF82FF";
 	stopnpctimer;
 	end;
 
@@ -598,24 +595,24 @@ OnInstanceInit:
 1@ma_h,147,143,0	script	#Boss Room Entry_time	HIDDEN_WARP_NPC,{ //10,10
 	end;
 OnEnable:
-	mapannounce 'map_name$, "Bangungot: You poor little things. I will invite you to the world of infectious disease...",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡诺特：可怜的小东西们。我会邀请你们进入传染病的世界……",bc_map,"0xFF82FF";
 	initnpctimer;
 	end;
 OnTimer25000:
-	mapannounce 'map_name$, "Bangungot: You will know what it is...",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡诺特：你们会知道那是什么……",bc_map,"0xFF82FF";
 	for ( .@i = 10; .@i <= 22; ++.@i )
 		disablenpc instance_npcname("#Patternwarp" + .@i);
 	end;
 OnTimer35000:
-	mapannounce 'map_name$, "Bangungot: Real pain! You will know!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡诺特：真正的痛苦！你们会知道！！",bc_map,"0xFF82FF";
 	for ( .@i = 25; .@i <= 33; ++.@i )
 		disablenpc instance_npcname("#Patternwarp" + .@i);
 	end;
 OnTimer45000:
-	mapannounce 'map_name$, "Bangungot: Have you ever heard the patients screaming?",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡诺特：你们听过病人的惨叫吗？",bc_map,"0xFF82FF";
 	end;
 OnTimer55000:
-	mapannounce 'map_name$, "Bangungot: If you haven't, I will let you!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡诺特：如果没有，我就让你们听听！！",bc_map,"0xFF82FF";
 	enablenpc instance_npcname("#Summon Ward Mob");
 	donpcevent instance_npcname("#Summon Ward Mob") + "::OnEnable7";
 	end;
@@ -630,15 +627,15 @@ OnTimer60500:
 		enablenpc instance_npcname("#Patternwarp" + .@i);
 	end;
 OnTimer90000:
-	mapannounce 'map_name$, "Bangungot: Delight coming from agony is my nutrient.",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：痛苦带来的喜悦就是我的养分。",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Boss Room Entry") + "::OnSpawn";
 	end;
 OnTimer110000:
-	mapannounce 'map_name$, "Bangungot: Remain here, cursed disease.....",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：留在这里吧，受诅咒的疾病……",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Boss Room Entry") + "::OnSpawn";
 	end;
 OnTimer125000:
-	mapannounce 'map_name$, "Bangungot: You wanna hang out with me ......?",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：想和我一起玩吗……？",bc_map,"0xFF82FF";
 	end;
 OnTimer128000:
 	for ( .@i = 1; .@i <= 8; ++.@i )
@@ -674,14 +671,14 @@ OnInstanceInit:
 1@ma_h,111,177,0	script	#Boss Room Entry_2	WARPNPC,{
 	end;
 OnEnable:
-	mapannounce 'map_name$, "Bangungot: You are pretty powerful...",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：你还挺强的……",bc_map,"0xFF82FF";
 	initnpctimer;
 	end;
 OnTimer3000:
-	mapannounce 'map_name$, "Bangungot: But can you...",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：但你能……",bc_map,"0xFF82FF";
 	end;
 OnTimer6000:
-	mapannounce 'map_name$, "Bangungot: ...defeat me again...?",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：……再次击败我吗……？",bc_map,"0xFF82FF";
 	end;
 OnTimer9000:
 	for ( .@i = 1; .@i <= 8; ++.@i )
@@ -694,7 +691,7 @@ OnTimer9500:
 		disablenpc instance_npcname("#Patternwarp" + .@i);
 	end;
 OnTimer10000:
-	mapannounce 'map_name$, "Bangungot: You stupid persoon....",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：你这个蠢货……",bc_map,"0xFF82FF";
 	for ( .@i = 10; .@i <= 22; ++.@i )
 		enablenpc instance_npcname("#Patternwarp" + .@i);
 	end;
@@ -807,10 +804,10 @@ OnEnable:
 	disablenpc instance_npcname("#Summon Ward Mob");
 	end;
 OnTimer2000:
-	mapannounce 'map_name$, "Bangungot: My spirit will be with your cursed body...",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：我的灵魂会与你受诅咒的身体同在……",bc_map,"0xFF82FF";
 	end;
 OnTimer4000:
-	mapannounce 'map_name$, "Bangungot: My inferiors...!! Go!! Go torment the patients in the wards!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：我的下属们……！！去吧！！去折磨病房里的患者！！",bc_map,"0xFF82FF";
 	end;
 OnTimer6000:
 	mapannounce 'map_name$, "- Bangungot's inferiors are bothering patients!! If you don't slay them all, Bangungot will be stronger. -",bc_map,"0xFF8200";
@@ -856,9 +853,9 @@ OnTimer1000:
 		donpcevent instance_npcname("#Summon Pillar_time") + "::OnStopTimer";
 		donpcevent instance_npcname("#Summon Pillar") + "::OnEnable3";
 		donpcevent instance_npcname("#Boss Room Entry") + "::OnReset";
-		mapannounce 'map_name$, "Bangungot: Oh....cannot believe that I lost...",bc_map,"0xFF4500";
-		mapannounce 'map_name$, "Bangungot: But don't think this is the end!!",bc_map,"0xFF4500";
-		mapannounce 'map_name$, "Bangungot: I WILL BE BACK!!!!!",bc_map,"0xFF4500";
+		mapannounce 'map_name$, "邦贡特：哦……不敢相信我输了……",bc_map,"0xFF4500";
+		mapannounce 'map_name$, "邦贡特：但别以为这就是结束！！",bc_map,"0xFF4500";
+		mapannounce 'map_name$, "邦贡特：我还会回来的！！！！！",bc_map,"0xFF4500";
 	}
 	stopnpctimer;
 	end;
@@ -880,22 +877,22 @@ OnTimer1000:
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Dummy_Patternwarp45");
 	end;
 OnTimer7000:
-	mapannounce 'map_name$, "Bangungot: I never die!!!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：我永远不会死！！！！",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Dummy_Patternwarp45");
 	end;
 OnTimer14000:
-	mapannounce 'map_name$, "Bangungot: If you dare, kill me!! I will revive soon!!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：有胆量就杀了我！！我很快就会复活！！！",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Dummy_Patternwarp45");
 	end;
 OnTimer21000:
-	mapannounce 'map_name$, "Bangungot: I cannot die this way...!!!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：我不能这样死去……！！！！",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Dummy_Patternwarp45");
 	end;
 OnTimer30000:
 	donpcevent instance_npcname("#Summon Pillar") + "::OnReset";
 	end;
 OnTimer31000:
-	mapannounce 'map_name$, "Bangungot: Hahahahaha!! I'm back with the power from the pillar of spirit!!!",bc_map,"0xFF82FF";
+	mapannounce 'map_name$, "邦贡特：哈哈哈哈哈！！我带着灵魂之柱的力量回来了！！！",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Summon Pillar") + "::OnReset";
 	end;
 OnTimer36000:
@@ -942,7 +939,7 @@ OnInstanceInit:
 1@ma_h,43,86,4	script	Moaning Patient#1	4_F_PATIENT,{
 	end;
 OnEnable:
-	mapannounce 'map_name$, "Moaning Patient: aaawwww....",bc_map,"0xFF0000";
+	mapannounce 'map_name$, "呻吟的患者：啊啊啊……",bc_map,"0xFF0000";
 	initnpctimer;
 	end;
 OnTimer5000:

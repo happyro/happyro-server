@@ -12,8 +12,8 @@ prt_lib_q,9,25,0	script	lib_q_to_pprt	WARPNPC,1,1,{
 	end;
 OnTouch:
 	if (ep16_royal < 21) {
-		mes "There are more to find out.";
-		mes "Go back to Nillem.";
+		mes "还有更多事情需要查明。";
+		mes "回去找 Nillem。";
 		close;
 	}
 	warp "prt_q",155,354;
@@ -24,11 +24,11 @@ prt_cas,152,163,0	script	way_to_qroom_L_qroom_L_to_way	WARPNPC,1,1,{
 	end;
 OnTouch:
 	if (ep16_royal == 0) {
-		npctalk "That way is a royal villa for VIPs. Outsiders cannot access the place.", "Royal Guardian Knight#02", bc_self;
+		npctalk "那边是 VIP 专用的王室别墅。外人无法进入。", "Royal Guardian Knight#02", bc_self;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 3000;
 		setpcblock PCBLOCK_NPC, false;
-		npctalk "If you are invited, a severnt should be there to greet you. Please be guided officially.", "Royal Guardian Knight#02", bc_self;
+		npctalk "如果你受邀，届时会有侍从迎接你。请遵循正式引导。", "Royal Guardian Knight#02", bc_self;
 		end;
 	}
 	warp "prt_cas_q",150,8;
@@ -39,11 +39,11 @@ prt_cas,278,163,0	script	way_to_qroom_R_qroom_R_to_way	WARPNPC,1,1,{
 	end;
 OnTouch:
 	if (ep16_royal == 0) {
-		npctalk "That way is a royal villa for VIPs. Outsiders cannot access the place.", "Royal Guardian Knight#03", bc_self;
+		npctalk "那边是 VIP 专用的王室别墅。外人无法进入。", "Royal Guardian Knight#03", bc_self;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 3000;
 		setpcblock PCBLOCK_NPC, false;
-		npctalk "If you are invited, a severnt should be there to greet you. Please be guided officially.", "Royal Guardian Knight#03", bc_self;
+		npctalk "如果你受邀，届时会有侍从迎接你。请遵循正式引导。", "Royal Guardian Knight#03", bc_self;
 		end;
 	}
 	warp "prt_cas_q",135,119;
@@ -54,7 +54,7 @@ prt_cas_q,130,32,0	script	qroom_heine_in_qroom_heine_out	WARPNPC,1,1,{
 	end;
 OnTouch:
 	if (ep16_royal > 7 && ep16_royal < 16) {
-		mes "It is locked.";
+		mes "锁住了。";
 		close;
 	}
 	warp "prt_cas_q",30,78;
@@ -65,12 +65,12 @@ prt_cas_q,130,56,0	script	qroom_nerius_in_qroom_nerius_out	WARPNPC,1,1,{
 	end;
 OnTouch:
 	if (ep16_royal > 2 && ep16_royal < 15 && ep16_royal != 7) {
-		mes "It is locked.";
+		mes "锁住了。";
 		close;
 	}
 	if (ep16_royal == 15) {
 		if (isbegin_quest(7697) < 1) {
-			mes "Let's first reply to the servant that the invitation will be accepted.";
+			mes "先回复侍从，表示我们接受邀请。";
 			close;
 		}
 	}
@@ -85,7 +85,7 @@ OnTouch_:
 		warp "prt_pri00",60,127;
 	else {
 		mes "[Guardian Knight]";
-		mes "You cannot go that way.";
+		mes "你不能从那边走。";
 		close2;
 		warp "prt_lib",60,61;
 	}
@@ -98,7 +98,7 @@ OnTouch_:
 	if (ep16_royal >= 2)
 		warp "prt_pri00",54,134;
 	else {
-		npctalk "You shouldn't enter the place like that.", "Guardian Knight#ep16_prigate01", bc_self;
+		npctalk "你不该那样进入这个地方。", "Guardian Knight#ep16_prigate01", bc_self;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 2000;
 		setpcblock PCBLOCK_NPC, false;

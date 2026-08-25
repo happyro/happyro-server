@@ -20,88 +20,88 @@
 alberta,88,193,5	script	Sunglasses Trader	73,{
 	mes "[Sunglasses Trader]";
 	if(SG_QUEST1 == 1) {
-		mes "There is nothing more I can tell you.";
+		mes "我没有更多可以告诉您的了。";
 		next;
 		mes "[Sunglasses Trader]";
-		mes "Go see Maseph. She is somewhere north of Morocc.";
+		mes "去找 Maseph。她在梦罗克北边的某处。";
 		close; }
-	mes "Hello. What can I do for you?";
+	mes "您好。我能为您做些什么？";
 	next;
-	if(select("I heard that you can make ^0000FFSlotted Sunglasses^000000.:Nothing, sorry to bother you.")==2) {
+	if(select("听说您能制作^0000FF打孔太阳镜^000000。:没事，打扰了。")==2) {
 		mes "[Sunglasses Trader]";
-		mes "Come back to me than you are ready.";
+		mes "准备好后再来找我。";
 		close; }
 	mes "[Sunglasses Trader]";
-	mes "I do not make them, but I can tell you where to find the person who does. For a small fee...";
+	mes "我不会制作，但可以告诉您去哪里找会制作的人。只收取少量费用……";
 	next;
-	if(select("How much?:No way, I will find her myself!")==2) {
+	if(select("多少钱？:不用，我自己去找她！")==2) {
 		mes "[Sunglasses Trader]";
-		mes "Suit yourself, the Maker will not make you ^0000FFSlotted Sunglasses^000000 unless she knows that you are coming.";
-		mes "Only I can tell her you are coming.";
+		mes "随您便。除非她知道您要来，否则制作者不会为您制作^0000FF打孔太阳镜^000000。";
+		mes "只有我能告诉她您要来。";
 		next;
 		mes "[Sunglasses Trader]";
-		mes "Come back to me when you have given up. Hahaha...";
+		mes "放弃后再回来找我。哈哈哈……";
 		close; }
 	mes "[Sunglasses Trader]";
-	mes "In order for me to tell you information on ^0000FFSlotted Sunglasses^000000 you need to get me:";
+	mes "若要我告诉您^0000FF打孔太阳镜^000000的消息，您需要给我：";
 	mes " - ^0000881 Carat Diamond^000000";
 	mes " - ^00008850 Feathers^000000";
 	mes " - ^000088100000z^000000";
 	next;
-	if(select("Alright, here.:That's too much!")==2) {
+	if(select("好的，给您。:太多了！")==2) {
 		mes "[Sunglasses Trader]";
 		mes "Suit yourself.";
 		close; }
 	mes "[Sunglasses Trader]";
 	if (countitem(730) < 1 || countitem(949) < 50 || Zeny < 100000) {
-		mes "You're missing something. Come back when you've gathered all the materials.";
+		mes "您还缺少一些东西。收集齐所有材料后再来。";
 		close; }
 	delitem 730,1;
 	delitem 949,50;
 	set Zeny, Zeny-100000;
 	set SG_QUEST1,1;
 	mes "[Sunglasses Trader]";
-	mes "Great. Now, listen carefully.";
+	mes "很好。现在请仔细听。";
 	next;
 	mes "[Sunglasses Trader]";
-	mes "Look for someone named Maseph somewhere north of Morocc.";
-	mes "I will send her a message to let her know that you are coming.";
+	mes "去梦罗克北边寻找名叫 Maseph 的人。";
+	mes "我会给她捎信，告诉她您要来。";
 	close;
 }
 
 moc_fild07,334,186,5	script	Maseph	702,{
 	mes "[Maseph]";
 	if(SG_QUEST1 != 1) {
-		mes "Lovely day, isn't it ?";
+		mes "天气真好，不是吗？";
 		close; }
-	mes "Hello there.";
-	mes "You came for the ^000088Slotted Sunglasses^000000, right?";
+	mes "您好。";
+	mes "您是为了^000088打孔太阳镜^000000而来，对吗？";
 	next;
-	if(select("Yes:No, sorry to bother you.")==2) {
+	if(select("是的:不是，抱歉打扰了。")==2) {
 		mes "[Maseph]";
-		mes "Off you go, then.";
+		mes "那您请便。";
 		close; }
 	mes "[Maseph]";
-	mes "To make one, I will need one pair of ^000088Sunglasses^000000 and 400000z.";
+	mes "制作一副需要一副^000088太阳镜^000000和 400000z。";
 	next;
-	if(select("Here you go.:No, thanks.")==2) {
+	if(select("给您。:不用了，谢谢。")==2) {
 		mes "[Maseph]";
-		mes "As you wish.";
+		mes "如您所愿。";
 		close; }
 	mes "[Maseph]";
 	if (countitem(2201) < 1) {
-		mes "I need one pair of ^000088Sunglasses^000000. Come back to me when you have one.";
+		mes "我需要一副^000088太阳镜^000000。拿到后再来找我。";
 		close; }
 	if (Zeny < 400000) {
-		mes "You do not have enough Zeny. Come back to me when you do.";
+		mes "您的 Zeny 不足。准备好后再来找我。";
 		close; }
 	delitem 2201,1;
 	set Zeny, Zeny-400000;
-	mes "Thank you. I will get on it right away...";
+	mes "谢谢。我马上开始制作……";
 	next;
 	mes "[Maseph]";
-	mes "Here you go, my friend.";
-	mes "Enjoy your ^000088Slotted Sunglasses^000000.";
+	mes "给您，我的朋友。";
+	mes "请享用您的^000088打孔太阳镜^000000。";
 	getitem 2202,1;
 	set SG_QUEST1,0;
 	close;

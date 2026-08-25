@@ -14,11 +14,11 @@
 malangdo,221,174,6	script	Holink#mal_cash	559,{
 	disable_items;
 	mes "[Holink]";
-	mes "I am the meow~ Blacksmith Holink~";
-	mes "Master of refining, Holink~";
-	mes "I am the special cat Holink who learned from Morocc~";
-	mes "My daughter is so proud of me, Holink~";
-	mes "What should Holink~ refine today?";
+	mes "我是喵～铁匠 Holink～";
+	mes "精炼大师 Holink～";
+	mes "我是从梦罗克学习归来的特别猫咪 Holink～";
+	mes "我的女儿为我感到骄傲，Holink～";
+	mes "今天要让 Holink～ 精炼什么呢？";
 	next;
 
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -30,43 +30,43 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		mes "[Holink]";
 		switch(.@part) {
 		case EQI_HEAD_TOP:
-			mes "My teacher Aragam said meow~";
-			mes "There's no cure for stupidity...";
+			mes "我的老师 Aragam 说过喵～";
+			mes "愚蠢是无药可救的……";
 			break;
 		case EQI_ARMOR:
-			mes "There's nothing to see here, meow!!";
+			mes "这里没什么可看的，喵！！";
 			break;
 		case EQI_HAND_L:
-			mes "Meow? What do you want me to do with this left hand...?";
+			mes "喵？您想让我拿这只左手做什么……？";
 			break;
 		case EQI_HAND_R:
-			mes "Meow? What do you want me to do with this right hand...?";
+			mes "喵？您想让我拿这只右手做什么……？";
 			break;
 		case EQI_GARMENT:
-			mes "Meow? You don't have anything on.";
+			mes "喵？您身上什么都没装备。";
 			break;
 		case EQI_SHOES:
-			mes "Kyang~! Do not mess with my sensitive olfactory, meow~.";
+			mes "喵呜～！别打扰我敏锐的嗅觉，喵～";
 			break;
 		case EQI_ACC_L:
 		case EQI_ACC_R:
-			mes "Meow? Where is the accessory?";
+			mes "喵？饰品在哪里？";
 			break;
 		case EQI_HEAD_MID:
 		case EQI_HEAD_LOW:
-			mes "Meow? You talking about the other head parts, meow?~";
+			mes "喵？您说的是其他头部装备吗，喵～？";
 			break;
 		}
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
 		mes "[Holink]";
-		mes "Even Aragam can't refine such a thing, meow.";
+		mes "连 Aragam 也无法精炼这种东西，喵。";
 		close;
 	}
 	if (getequiprefinerycnt(.@part) >= 10) {
 		mes "[Holink]";
-		mes "Meow~ Perfect refining. Did Aragam do this, meow?~";
+		mes "喵～完美的精炼。是 Aragam 做的吗，喵～？";
 		close;
 	}
 	mes "[Holink]";
@@ -81,7 +81,7 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 	if( .@itemtype == IT_ARMOR ){
 		.@equip_lv = getequiparmorlv( .@part );
 		.@type$ = "armor";
-		mes "You have chosen an armor, meow~";
+		mes "您选择了防具，喵～";
 
 		switch(.@equip_lv) {
 			case 1:
@@ -98,21 +98,21 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		switch( .@equip_lv ){
 			case 1: // Level 1 Weapon
 				.@price = 500;
-				mes "A level 1 weapon...?";
+				mes "1 级武器……？";
 				break;
 			case 2: // Level 2 Weapon
 				.@price = 2000;
-				mes "Meow, a level 2 weapon...?";
+				mes "喵，2 级武器……？";
 				break;
 			case 3: // Level 3 Weapon
 				.@price = 20000;
-				mes "Meow Meow~~ A level 3 weapon~~";
+				mes "喵喵～～3 级武器～～";
 				break;
 			case 4: // Level 4 Weapon
 				.@price = 50000;
-				mes "Me-Meow!... A level 4 weapon...!";
-				mes "I've only seen it twice while";
-				mes "learning from Aragam... Me-Meow!!";
+				mes "喵、喵……！4 级武器……！";
+				mes "我跟随 Aragam 学习时";
+				mes "也只见过两次……喵、喵！！";
 				break;
 			default:
 				// TODO:
@@ -123,48 +123,48 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		close;
 	}
 
-	mes "You need ^ff9999"+getitemname(.@material)+"^000000 and ^ff9999"+.@price+"^000000 Zeny for this refine, meow~";
-	mes "Want to continue, meow?~";
+	mes "这次精炼需要 ^ff9999"+getitemname(.@material)+"^000000 和 ^ff9999"+.@price+"^000000 Zeny，喵～";
+	mes "要继续吗，喵～？";
 	next;
-	if(select("Yes!!:No!!") == 2) {
+	if(select("是！！:不！！") == 2) {
 		mes "[Holink]";
-		mes "Kyack!!";
-		mes "You don't believe in refine master Holink, meow?~";
+		mes "喵啊！！";
+		mes "您不相信精炼大师 Holink 吗，喵～？";
 		close;
 	}
 	if (getequippercentrefinery(.@part, true) < 100) {
 		mes "[Holink]";
-		mes "Meow!!";
+		mes "喵！！";
 		if (.@type$ == "armor")
-			mes "This armor was already refined so many times, meow.";
+			mes "这件防具已经精炼过很多次了，喵。";
 		else {
-			mes "Danger. Danger~";
-			mes "This weapon was refined a lot, meow~";
+			mes "危险。危险～";
+			mes "这件武器已经精炼很多次了，喵～";
 			next;
 			mes "[Holink]";
 		}
-		mes "You might break it if you continue";
-		mes "to try refining this item further, meow.";
+		mes "如果继续精炼这件物品，";
+		mes "它可能会损坏，喵。";
 		next;
 		mes "[Holink]";
-		mes "Once the "+.@type$+" is broken, you can";
-		mes "never use it again, meow. Not to mention... all current";
-		mes "^ff0000cards and enchantments will vanish for sure^000000.";
-		mes "You still want to try, meow~?";
+		mes .@type$+"一旦损坏，您将";
+		mes "再也无法使用它，喵。更不用说……当前所有";
+		mes "^ff0000卡片和附魔都会消失^000000。";
+		mes "还要继续尝试吗，喵～？";
 		next;
-		if(select("Yes, I do!!:Forget about it!!") == 2) {
+		if(select("是的，我要继续！！:算了吧！！") == 2) {
 			mes "[Holink]";
-			mes "Meow! Wise choice, meow.";
-			mes "But!!";
-			mes "I am not happy to see you doubting the refine master Holink, meow~";
+			mes "喵！明智的选择，喵。";
+			mes "但是！！";
+			mes "看到您怀疑精炼大师 Holink，我可不高兴，喵～";
 			close;
 		}
 	}
 	if (countitem(.@material) == 0 || Zeny < .@price) {
 		mes "[Holink]";
-		mes "You don't have the ingredients.";
-		mes "You need ^ff9999"+getitemname(.@material)+"^000000 and ^ff9999"+.@price+"^000000 Zeny, meow~";
-		mes "Go get it, meow~";
+		mes "您的材料不够。";
+		mes "您需要 ^ff9999"+getitemname(.@material)+"^000000 和 ^ff9999"+.@price+"^000000 Zeny，喵～";
+		mes "去收集吧，喵～";
 		close;
 	}
 	delitem .@material,1;
@@ -175,28 +175,28 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt)) {
 		mes "[Holink]";
 		emotion ET_FRET;
-		mes "Wait a second...";
-		mes "Do you think I'm stupid?!";
-		mes "You switched the item while I wasn't looking! Get out of here!";
+		mes "等一下……";
+		mes "您以为我很蠢吗？！";
+		mes "您趁我不注意换了装备！快离开这里！";
 		close;
 	}
 
 	if (getequippercentrefinery(.@part, true) > rand(100)) {
 		successrefitem .@part;
 		mes "[Holink]";
-		mes "Me~ Me~ Meow! Fun fun refining~";
+		mes "喵～喵～喵！精炼真有趣～";
 		next;
 		emotion ET_CHUP;
 		mes "[Holink]";
-		mes "Perfect!! Perfect, meow!!";
-		mes "I am the disciple of the refining wizard Aragam~";
-		mes "Holink!!";
-		mes "Another day of successful refining, meow!!";
+		mes "完美！！完美，喵！！";
+		mes "我是精炼巫师 Aragam 的弟子～";
+		mes "Holink！！";
+		mes "又是精炼成功的一天，喵！！";
 		close;
 	}
 	failedrefitem .@part;
 	mes "[Holink]";
-	mes "Meo~ Meow~ Kyaaak!!";
+	mes "喵～喵～呀啊！！";
 	next;
 	switch(rand(1,5)) {
 		case 1: emotion ET_CRY; break;
@@ -206,17 +206,17 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		case 5: emotion ET_BIGTHROB; break;
 	}
 	mes "[Holink]";
-	mes "Meow!! Aaaaakk~~!!!!";
-	mes "Kyaaak!! I have failed, meow!!";
+	mes "喵！！啊啊啊～～！！！！";
+	mes "呀啊！！我失败了，喵！！";
 	next;
 	mes "[Holink]";
 	mes "......";
 	mes "......";
-	mes "All~ Everything~ Broken, meow...";
+	mes "全～全都～坏掉了，喵……";
 	next;
 	mes "[Holink]";
-	mes "Meow.... Master Aragam once said,";
-	mes "learn from your failures...";
-	mes "Human, this one failure will be the beginning of your success in the future.";
+	mes "喵……Aragam 大师曾说过，";
+	mes "要从失败中学习……";
+	mes "人类，这次失败会成为您未来成功的起点。";
 	close;
 }
