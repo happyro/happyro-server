@@ -23,16 +23,16 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 	if (Zeny >= 400000) {
 		mes "我一直在研究如何强化防具，使其能力最大化。";
 		next;
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 		mes "附魔是一项强大的技能，能将神秘的状态力量注入防具的隐藏插槽。";
 		next;
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 		mes "不过请记住，如果你的物品栏里有两件同类防具，附魔会按它们在物品栏中的顺序进行。";
 		next;
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 		mes "这样一来，附魔可能会施加到你不想附魔的物品上。为安全起见，请只带一件你想附魔的 ^5555ff防具^000000……";
 		next;
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 		mes "如果你的物品栏里有多件同类防具，后果由你自行承担。";
 		next;
 		switch(select("无插槽防具。:有插槽防具。:高级防具。:下次再说。")) {
@@ -50,7 +50,7 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 			set .@j,60;
 			break;
 		case 4:
-			mes "[Apprentice Craftsman]";
+			mes "[工匠学徒]";
 			mes "想为防具附魔时，请再来找我。";
 			close;
 		}
@@ -62,35 +62,35 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 	}
 	mes "我负责防具附魔。简单来说，我一直在研究提升防具力量的方法。";
 	next;
-	mes "[Apprentice Craftsman]";
+	mes "[工匠学徒]";
 	mes "如果你想为防具附魔，只要带来 400,000 Zeny 和想附魔的防具，就可以开始了。";
 	close;
 
 S_EnchantArmor:
 	set .@itemid,getarg(0);
 	set .@failrate,getarg(1);
-	mes "[Apprentice Craftsman]";
+	mes "[工匠学徒]";
 	if (countitem(.@itemid) == 1) {
 	mes "插槽附魔需要 400,000 Zeny，并会随机附加一项属性。当然，也有损坏防具的可能。";
 		next;
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 	mes "首先，也是最重要的。";
 	mes "^ff5555防具现有的精炼等级";
 	mes "和卡片都会消失。^000000";
 	mes "你还要尝试附魔吗？";
 		next;
 		if(select("嗯……让我想想。:开始吧。") == 1) {
-			mes "[Apprentice Craftsman]";
+			mes "[工匠学徒]";
 			mes "好吧，我不能怪你。安全第一，对吧？";
 			mes "祝你今天愉快。";
 			close;
 		}
-		mes "[Apprentice Craftsman]";
+		mes "[工匠学徒]";
 		mes "真是个勇敢的冒险者啊？那么，开始吧？";
 		close2;
 		specialeffect2 EF_MAPPILLAR;
 		if (Zeny < 400000) {
-			mes "[Apprentice Craftsman]";
+			mes "[工匠学徒]";
 			mes "抱歉，你没有足够的 Zeny。";
 			close;
 		}
@@ -136,7 +136,7 @@ S_EnchantArmor:
 			case 36: set .@addpart,4750;break;
 			default:
 				specialeffect2 EF_PHARMACY_FAIL;
-				mes "[Apprentice Craftsman]";
+				mes "[工匠学徒]";
 				mes "那真是太遗憾了。";
 				mes "指定的装备附魔失败。";
 				close;
