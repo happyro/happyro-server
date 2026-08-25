@@ -1,6 +1,6 @@
 # HappyRO 代理说明
 
-本仓库属于仅限局域网运行的 HappyRO Web 栈。
+本仓库属于 HappyRO Web 栈。
 
 ## Git 规则
 
