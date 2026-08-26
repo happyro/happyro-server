@@ -163,46 +163,46 @@ mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 	mes "这只猫正在温暖的"+((strnpcinfo(2) == "albe")?"艾尔贝塔":"伊兹鲁德")+"阳光下睡觉。";
 	next;
 	if(select("让他睡吧:和他说话") == 1) close;
-	mes "[Odgnalam]";
+	mes "[奥德格纳拉姆]";
 	mes "喵？嗯？";
 	next;
 	if (ep13_yong1 == 0) {
 		set .@price,1000;
-		set .@s1$,"Huh! You are so annoying. Let me send you to ^A2314BMalangdo^000000 for ^0000FF1000 Zeny^000000.";
-		set .@s2$,"Money? Where is the money? You can't go anywhere without the money. Shame on you.";
+		set .@s1$,"真是的，你太烦人了。我收取 ^0000FF1000 Zeny^000000，就送你去^A2314B马兰多^000000。";
+		set .@s2$,"钱呢？钱在哪里？没有钱哪儿也去不了。真丢脸。";
 	} else if (ep13_yong1 < 60) {
 		set .@price,999;
-		set .@s1$,"You have a little relationship with fleet of cat. I'll give you special discount price ^0000FF999 Zeny^000000 to ^A2314BMalangdo^000000, because you have relationship with fleet.";
-		set .@s2$,"Where is the money? You don't have a sense of honor.";
+		set .@s1$,"你和猫咪舰队有些交情，我给你特别优惠。只需 ^0000FF999 Zeny^000000 就送你去^A2314B马兰多^000000。";
+		set .@s2$,"钱在哪里？你一点信用都没有。";
 	} else if (ep13_yong1 > 59 && ep13_yong1 < 80) {
 		set .@price,500;
-		set .@s1$,"You gave several help to our cat's fleet so let me give you special that with 50% discount price ^0000FF500 Zeny^000000. I'll send you to ^A2314BMalangdo^000000.";
-		set .@s2$,"You don't have any money for paying 50% discount price? I can't believe it.";
+		set .@s1$,"你多次帮助猫咪舰队，我给你五折优惠。只需 ^0000FF500 Zeny^000000 就送你去^A2314B马兰多^000000。";
+		set .@s2$,"连五折后的费用都付不起吗？真不敢相信。";
 	} else {
-		mes "[Odgnalam]";
+		mes "[奥德格纳拉姆]";
 		mes "你是猫咪舰队的英雄。你的事迹在我们之间是传奇。";
 		next;
-		mes "[Odgnalam]";
+		mes "[奥德格纳拉姆]";
 		mes "既然你是猫咪舰队的英雄，我就免费送你去^A2314B马兰多^000000。";
 		next;
 		if(select("送我去马兰多！:不去了。") == 1) {
-			mes "[Odgnalam]";
+			mes "[奥德格纳拉姆]";
 			mes "旅途舒适……好了，出发~";
 			warp "malangdo",217,85;
 		}
 		close;
 	}
-	mes "[Odgnalam]";
+	mes "[奥德格纳拉姆]";
 	mes .@s1$;
 	next;
 	if(select("送我去马兰多！:不去了。") == 2) close;
 	if (Zeny < .@price) {
-		mes "[Odgnalam]";
+		mes "[奥德格纳拉姆]";
 		mes "钱呢？钱在哪里？没有钱哪儿也去不了。真丢脸。";
 		close;
 	}
 	set Zeny, Zeny - .@price;
-	mes "[Odgnalam]";
+	mes "[奥德格纳拉姆]";
 	mes "我马上送你过去。出发~";
 	warp "malangdo",217,85;
 	close;
