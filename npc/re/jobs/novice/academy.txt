@@ -25,14 +25,14 @@ OnTouch:
 	if (getd(".start" + strnpcinfo(1)) == 0) {
 		setd ".start" + strnpcinfo(1), 1;
 		initnpctimer;
-		mapannounce strnpcinfo(4), "[Tip] You can move to the desired point by clicking the ground with the left mouse button.", bc_map,0xFF0000;
+		mapannounce strnpcinfo(4), "[提示] 点击地面即可移动到目标位置。", bc_map,0xFF0000;
 	}
 	end;
 OnTimer9000:
-	mapannounce strnpcinfo(4), "[Tip] While holding down the right mouse button, drag to rotate the screen.", bc_map,0xFF0000;
+	mapannounce strnpcinfo(4), "[提示] 按住鼠标右键并拖动即可旋转视角。", bc_map,0xFF0000;
 	end;
 OnTimer18000:
-	mapannounce strnpcinfo(4), "[Tip] You can leave through the bluish warp gate.", bc_map,0xFF0000;
+	mapannounce strnpcinfo(4), "[提示] 可以通过蓝色传送门离开这里。", bc_map,0xFF0000;
 	emotion ET_SURPRISE, getnpcid(0, "#room_out" + replacestr( strnpcinfo(4), "iz_int", "" ));
 	end;
 OnTimer21000:
@@ -42,7 +42,7 @@ OnTimer24000:
 	emotion ET_SURPRISE, getnpcid(0, "#room_out" + replacestr( strnpcinfo(4), "iz_int", "" ));
 	end;
 OnTimer27000:
-	mapannounce strnpcinfo(4), "[Tip] Leave this area to continue.", bc_map,0xFF0000;
+	mapannounce strnpcinfo(4), "[提示] 离开这个区域以继续冒险。", bc_map,0xFF0000;
 	stopnpctimer;
 	setd ".start" + strnpcinfo(1), 0;
 	end;
@@ -65,7 +65,7 @@ iz_int04,51,30,0	duplicate(iz_int#intro_evt02)	iz_int04#intro_evt02	HIDDEN_WARP_
 
 //== Wounded Swordsman (iz_int) =================================
 iz_int,56,32,3	script	Wounded Swordsman#intro_npc01_iz_int	4_TOWER_01,5,5,{
-	npctalk "Oh...", "", bc_self;
+	npctalk "呃……", "", bc_self;
 	cloakonnpcself();
 	cloakoffnpcself( "Wounded Swordsman#intro_npc02_" + strnpcinfo(4) );
 	end;
@@ -87,32 +87,32 @@ iz_int04,56,32,3	duplicate(Wounded Swordsman#intro_npc01_iz_int)	Wounded Swordsm
 
 iz_int,56,32,3	script	Wounded Swordsman#intro_npc02_iz_int	4_TOWER_02,{
 	if (isbegin_quest(21001) == 0) {
-		mes "[Wounded]";
+		mes "[伤员]";
 		mes "哇！非常感谢！";
 		mes "我不知道我们的船怎么会变成这样";
 		mes "但我们应该去见船长。";
 		next;
-		mes "[Wounded]";
+		mes "[伤员]";
 		mes "……哦，我的身体好像伤得太重了。";
 		mes "也许你可以不管我，自己去？";
 		setquest 21001;
 		next;
 		cutin "tutorial02",4;
-		mes "^4d4dff!- Information -!^000000";
+		mes "^4d4dff！- 信息 -！^000000";
 		mes "已接取 NPC 任务。";
 	}
 	else {
-		mes "[Wounded]";
+		mes "[伤员]";
 		mes "幸运的是，船里没有进水。";
 		mes "我会在这里等，你应该去见船长。";
 		next;
-		mes "[Wounded]";
+		mes "[伤员]";
 		mes "我没事！我没事！";
 		mes "别担心我，你真的应该去见船长！";
 		next;
-		mes "^4d4dff!- Information -!^000000";
+		mes "^4d4dff！- 信息 -！^000000";
 	}
-	mes "^4d4dffQuestinfo Shortcut is Alt + U^000000";
+	mes "^4d4dff按 Alt + U 可以打开任务信息窗口。^000000";
 	mes "你可以随时在那里查看任务状态。";
 	close2;
 	cutin "",255;
@@ -133,36 +133,36 @@ iz_int04,56,32,3	duplicate(Wounded Swordsman#intro_npc02_iz_int)	Wounded Swordsm
 int_land,78,103,5	script	Captain Carocc#intro_npc03	4_M_REINDEER,{
 	switch( isbegin_quest(21008) ) {
 	case 0:
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "船舱里还有人？！";
 		mes "至少你平安无事。";
 		mes "你还好吗？";
 		next;
 		if (select("我没事，但其他人需要帮助。", "我想我是最后一个？") == 1) {
-			mes "[Captain Carocc]";
+			mes "[卡洛克船长]";
 			mes "还有其他人？";
 			mes "我会派救援队去找他们。";
 			mes "谢谢你的报告。";
 		} else {
-			mes "[Captain Carocc]";
+			mes "[卡洛克船长]";
 			mes "好，那就好。";
 			mes "暴风雨来得很突然，但我没想到它会给我们造成这么严重的影响。";
 		}
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "至少大多数人都安全了。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "看那边的树，^4d4dff沿着它们向西南走^000000，就能找到一艘新船。";
 		mes "那艘船会带你去^4d4dff伊兹鲁德^000000，也就是我们原本的目的地。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "啊！说到这个，这座岛上的^4d4dff波利^000000会掉落一些可用于修理的材料。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "^4d4dff猎杀波利，并把 2 个木材带给南边的船员^000000。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "这任务很艰难，但看起来你足够强壮。";
 		specialeffect2 EF_HEAL2;
 		heal 9999,0;
@@ -176,7 +176,7 @@ int_land,78,103,5	script	Captain Carocc#intro_npc03	4_M_REINDEER,{
 		}
 		setquest 21008;
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "说到波利，你必须装备好装备。";
 		mes "你应该装备一件^4d4dff武器和一件护甲^000000。";
 		next;
@@ -190,16 +190,16 @@ int_land,78,103,5	script	Captain Carocc#intro_npc03	4_M_REINDEER,{
 		mes "双击或拖放即可装备或卸下物品。^000000";
 		next;
 		cutin "",255;
-		mes "[Captain Carlock]";
+		mes "[卡洛克船长]";
 		mes "你检查过所有装备了吗？";
 		mes "应该完成^4d4dff技能点分配^000000。";
 		next;
-		mes "[Captain Carlock]";
+		mes "[卡洛克船长]";
 		mes "为了顺利战斗，你必须合理分配能力点。";
 		mes "^4d4dff想提高力量就要提升 Str^000000。^4d4dff想提高命中就要提升 Dex^000000。";
 		break;
 	case 1:
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		specialeffect2 EF_HEAL2;
 		heal 9999, 0;
 		skilleffect 34,0;
@@ -209,11 +209,11 @@ int_land,78,103,5	script	Captain Carocc#intro_npc03	4_M_REINDEER,{
 		mes "^4d4dff船^000000停泊在西南方，会带你去伊兹鲁德。";
 		mes "别忘了为船^4d4dff收集一些木材^000000。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "别忘了提升你的^4d4dff技能^000000。";
 		break;
 	case 2:
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "一切准备就绪，可以驶向伊兹鲁德了。";
 		mes "船位于岛的西南部。";
 		close;
@@ -226,7 +226,7 @@ int_land,78,103,5	script	Captain Carocc#intro_npc03	4_M_REINDEER,{
 	mes "！- 信息 -！";
 	mes "^4d4dff请合理分配战斗所需的属性点^000000。";
 	next;
-	mes "[Captain Carocc]";
+	mes "[卡洛克船长]";
 	mes "猎杀波利，把木材带给船员。";
 	mes "祝你好运！";
 	close;
@@ -245,47 +245,47 @@ int_land04,78,103,5	duplicate(Captain Carocc#intro_npc03)	Captain Carocc#intro_n
 int_land,73,100,3	script	Lumin#new_ship	4_M_NOV_RUMIN,{
 	if (isbegin_quest(7471) == 0) {
 		cutin "nov_lumin01.bmp",0;
-		mes "[Lumin]";
+		mes "[卢敏]";
 		mes ".............";
 		mes "..?";
 		next;
 		cutin "fly_trock.bmp",2;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "做了个好梦吗？";
 		mes "我们很快就要到伊兹鲁德了。到时候你可以和其他人交谈，就像刚才和我交谈一样。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "我觉得那边的家伙失去了记忆，所以我给他取了个新名字。";
-		mes "Lumin.";
+		mes "卢敏。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "许多年轻人来到^4d4dff卢恩·米德加尔特王国^000000追寻梦想。";
 		mes "伊兹鲁德是卢恩·米德加尔特王国首都普隆德拉的卫星城市。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "伊兹鲁德总是欢迎像你这样刚开始世界旅程的年轻冒险者。";
 		mes "当然，你也是其中之一。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "我很想再告诉你一些故事，但现在该准备抵达了。";
 		mes "伊兹鲁德有一所为你这样的新人的学院。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "之后我再告诉你更多详情。我们在港口甲板见。";
 		next;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "下船时，你应该进入那边的^4d4dff闪耀传送门^000000。";
 		mes "所有传送都通过传送门进行。";
 		setquest 7471;
 		completequest 7471;
 		next;
 		cutin "nov_lumin01.bmp", 0;
-		mes "[Lumin]";
+		mes "[卢敏]";
 		mes "是。";
 		next;
 		cloakonnpcself();
 		cutin "fly_trock.bmp",2;
-		mes "[Captain Carocc]";
+		mes "[卡洛克船长]";
 		mes "哎呀。";
 		mes "真是可爱的反应。";
 		close2;
@@ -293,29 +293,29 @@ int_land,73,100,3	script	Lumin#new_ship	4_M_NOV_RUMIN,{
 		end;
 	}
 	cutin "nov_lumin01.bmp",0;
-	mes "[Lumin]";
+	mes "[卢敏]";
 	mes ".....";
 	next;
 	select("我应该自我介绍吗？", "我叫～！");
 	mes "[" + strcharinfo(0) + "]";
 	mes "我是" + strcharinfo(0) + "!";
 	next;
-	mes "[Lu]";
+	mes "[卢]";
 	mes ".....";
 	next;
-	mes "[Lu]";
+	mes "[卢]";
 	mes ".....";
 	mes "……所以呢？";
 	next;
 	cloakonnpcself();
-	mes "- Lu 带着讥讽的表情走开了。-";
+	mes "- 卢带着讥讽的表情走开了。-";
 	next;
 	cutin "fly_trock.bmp",2;
-	mes "[Captain Carocc]";
+	mes "[卡洛克船长]";
 	mes "看来……他性格很害羞。";
 	mes "你去伊兹鲁德时，能去看看他吗？";
 	next;
-	mes "[Captain Carocc]";
+	mes "[卡洛克船长]";
 	mes "接下来我会驾驶这艘船环绕岛屿航行。";
 	mes "我们走吧？";
 	close2;
@@ -334,41 +334,41 @@ int_land04,73,100,3	duplicate(Lumin#new_ship)	Lumin#new_ship04	4_M_NOV_RUMIN
 int_land,58,69,5	script	Sailor#intro_npc04	4W_SAILOR,{
 	if (isbegin_quest(21008) == 1) {
 		if (countitem(6008) < 2) {
-			mes "[Sailor]";
+			mes "[船员]";
 			mes "这些波利偷走了我修船的材料。你能帮我拿回来吗？";
 			mes "这座岛上有很多波利。";
 			next;
-			mes "[Sailor]";
+			mes "[船员]";
 			mes "如果你能帮忙，我会非常感激。";
 			mes "我不能踏上这座岛。";
 			mes "所以我才来请求你的帮助～";
 			close;
 		}
-		mes "[Sailor]";
+		mes "[船员]";
 		mes "难以置信，太完美了！你愿意加入我的船员队伍吗？";
 		mes "别说了！！";
 		mes "来吧，我们准备启航了！";
 		mes "非常感谢你！";
 		next;
-		mes "[Sailor]";
+		mes "[船员]";
 		mes "如果你想和我们一起航行到伊兹鲁德，就上船吧！";
 		delitem 6008,2;
 		getexp 100,100;
 		getitem 611,5;
 		completequest 21008;
 		next;
-		mes "[Sailor]";
+		mes "[船员]";
 		mes "哦，还有，拿着这些^4d4dff放大镜^000000。";
 		mes "猎杀怪物时，你可能会发现^4d4dff未鉴定物品^000000。";
 		next;
-		mes "[Sailor]";
+		mes "[船员]";
 		mes "使用放大镜即可鉴定物品。";
 		next;
-		mes "[Sailor]";
+		mes "[船员]";
 		mes "也许你和那些波利战斗时已经获得了一些未鉴定物品？";
 		close;
 	}
-	mes "[Sailor]";
+	mes "[船员]";
 	mes "船很快就要驶向伊兹鲁德了～！";
 	mes "启航时我会通知你～！";
 	close;
