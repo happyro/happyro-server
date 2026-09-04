@@ -36,6 +36,7 @@
 #include "duel.hpp"
 #include "elemental.hpp"
 #include "guild.hpp"
+#include "game_control.hpp"
 #include "homunculus.hpp"
 #include "instance.hpp"
 #include "intif.hpp"
@@ -57,6 +58,7 @@ using namespace rathena;
 using namespace rathena::server_map;
 
 std::string default_codepage = "";
+std::string game_control_socket = "";
 
 int32 map_server_port = 3306;
 std::string map_server_ip = "127.0.0.1";
@@ -4203,6 +4205,8 @@ int32 map_config_read(const char *cfgName)
 			console_msg_log = atoi(w2);//[Ind]
 		else if (strcmpi(w1, "console_log_filepath") == 0)
 			safestrncpy(console_log_filepath, w2, sizeof(console_log_filepath));
+		else if (strcmpi(w1, "game_control_socket") == 0)
+			game_control_socket = w2;
 		else if (strcmpi(w1, "import") == 0)
 			map_config_read(w2);
 		else
@@ -5008,6 +5012,7 @@ static int32 cleanup_db_sub(DBKey key, DBData *data, va_list va)
  *------------------------------------------*/
 void MapServer::finalize(){
 	ShowStatus("Terminating...\n");
+	game_control_stop();
 	channel_config.closing = true;
 
 	//Ladies and babies first.
@@ -5106,6 +5111,11 @@ void MapServer::finalize(){
 	map_sql_close();
 
 	ShowStatus("Finished.\n");
+}
+
+void MapServer::handle_main( t_tick next ){
+	game_control_process();
+	Core::handle_main(next);
 }
 
 static int32 map_abort_sub(map_session_data* sd, va_list ap)
@@ -5355,6 +5365,10 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	cli_get_options(argc,argv);
 
 	map_config_read(MAP_CONF_NAME);
+	if (!game_control_socket.empty() && !game_control_start(game_control_socket)) {
+		ShowError("Failed to start Game Control socket at %s.\n", game_control_socket.c_str());
+		return false;
+	}
 
 	if (save_settings == CHARSAVE_NONE)
 		ShowWarning("Value of 'save_settings' is not set, player's data only will be saved every 'autosave_time' (%d seconds).\n", autosave_interval/1000);

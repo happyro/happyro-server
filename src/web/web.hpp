@@ -44,6 +44,9 @@ struct Web_Config {
 	bool allow_gifs;
 
 	std::string allowed_origin_cors;				// allowed origin for CORS
+	bool game_control_enabled;
+	std::string game_control_secret;
+	std::string game_control_socket;
 };
 
 struct Inter_Config {
@@ -54,6 +57,8 @@ struct Inter_Config {
 enum e_http_status{
 	HTTP_BAD_REQUEST = 400,
 	HTTP_NOT_FOUND = 404,
+	HTTP_SERVICE_UNAVAILABLE = 503,
+	HTTP_NOT_IMPLEMENTED = 501,
 };
 
 extern struct Web_Config web_config;

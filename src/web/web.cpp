@@ -27,6 +27,7 @@
 
 #include "charconfig_controller.hpp"
 #include "emblem_controller.hpp"
+#include "game_control_controller.hpp"
 #include "http.hpp"
 #include "merchantstore_controller.hpp"
 #include "partybooking_controller.hpp"
@@ -154,6 +155,12 @@ bool web_config_read(const char* cfgName, bool normal) {
 			web_config.allow_gifs = config_switch(w2) == 1;
 		else if (!strcmpi(w1, "allowed_origin_cors"))
 			web_config.allowed_origin_cors = w2;
+		else if (!strcmpi(w1, "game_control_enabled"))
+			web_config.game_control_enabled = config_switch(w2) == 1;
+		else if (!strcmpi(w1, "game_control_secret"))
+			web_config.game_control_secret = w2;
+		else if (!strcmpi(w1, "game_control_socket"))
+			web_config.game_control_socket = w2;
 	}
 	fclose(fp);
 	ShowInfo("Finished reading %s.\n", cfgName);
@@ -293,6 +300,9 @@ void web_set_defaults() {
 	safestrncpy(web_config.msgconf_name, "conf/msg_conf/web_msg.conf", sizeof(web_config.msgconf_name));
 	web_config.allow_gifs = true;
 	web_config.allowed_origin_cors = "";
+	web_config.game_control_enabled = false;
+	web_config.game_control_secret = "";
+	web_config.game_control_socket = "";
 
 	inter_config.emblem_transparency_limit = 100;
 	inter_config.emblem_woe_change = true;
@@ -436,7 +446,8 @@ void logger(const Request & req, const Response & res) {
 	if (web_config.print_req_res) {
 		ShowDebug("Incoming Headers are:\n");
 		for (const auto & header : req.headers) {
-			ShowDebug("\t%s: %s\n", header.first.c_str(), header.second.c_str());
+			const char* value = !strcmpi(header.first.c_str(), "Authorization") ? "[REDACTED]" : header.second.c_str();
+			ShowDebug("\t%s: %s\n", header.first.c_str(), value);
 		}
 		ShowDebug("Incoming Pages are:\n");
 		for (const auto & file : req.files) {
@@ -467,6 +478,9 @@ bool WebServer::initialize( int32 argc, char* argv[] ){
 	// read web-server configuration
 	web_set_defaults();
 	web_config_read(web_config.webconf_name, true);
+	if (!game_control_config_is_valid()) {
+		return false;
+	}
 	msg_config_read(web_config.msgconf_name);
 
 	inter_config_read(INTER_CONF_NAME);
@@ -496,6 +510,9 @@ bool WebServer::initialize( int32 argc, char* argv[] ){
 	http_server->Post("/party/search", partybooking_search);
 	http_server->Post("/userconfig/load", userconfig_load);
 	http_server->Post("/userconfig/save", userconfig_save);
+	http_server->Get("/game-control/v1/capabilities", game_control_capabilities);
+	http_server->Get("/game-control/v1/battle-config", game_control_battle_config);
+	http_server->Post("/game-control/v1/commands", game_control_command);
 
 	// set up logger
 	http_server->set_logger(logger);

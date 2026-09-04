@@ -1,0 +1,18 @@
+[Unit]
+Description=HappyRO web server
+After=happyro-map-server.service
+Requires=happyro-map-server.service
+
+[Service]
+Type=simple
+User=happyro
+Group=happyro
+WorkingDirectory=/vol2/1000/kugarocks/happyro/repos/happyro-server
+ExecStart=/vol2/1000/kugarocks/happyro/repos/happyro-server/web-server
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
