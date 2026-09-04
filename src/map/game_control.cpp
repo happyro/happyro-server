@@ -22,6 +22,7 @@
 
 #include "map.hpp"
 #include "battle.hpp"
+#include "chrif.hpp"
 #include "mob.hpp"
 #include "pc.hpp"
 
@@ -397,7 +398,7 @@ void game_control_process() {
 				if (!payload.contains(name))
 					continue;
 				int32 value = 0;
-				if (!read_integer(payload[name], 1, pc_maxparameter(sd, static_cast<e_params>(parameter - SP_STR)), value)) {
+				if (!read_integer(payload[name], 1, std::numeric_limits<int16>::max(), value)) {
 					valid = false;
 					break;
 				}
@@ -409,7 +410,9 @@ void game_control_process() {
 			result = {{"error", {{"code", "invalid_parameter"}}}};
 		} else {
 			for (const auto& [parameter, value] : updates)
-				pc_setparam(sd, parameter, value);
+				pc_setstat(sd, parameter, value);
+			status_calc_pc(sd, SCO_FORCE);
+			chrif_save(sd, CSAVE_NORMAL);
 			status = 200;
 			result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"str", sd->status.str}, {"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex}, {"luk", sd->status.luk}}}}}};
 		}
