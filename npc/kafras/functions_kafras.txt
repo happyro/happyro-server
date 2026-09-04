@@ -296,9 +296,8 @@ function	script	F_KafTele	{
 	else {
 		if (Zeny < @wrpP[.@j]) {
 			mes "[Kafra Employee]";
-		mes "抱歉，你没有足够的Zeny";
-		mes "使用传送服务。传送费用为";
-			mes "to " + @wrpD$[.@j] + " is " + @wrpP[.@j] + " zeny.";
+			mes "抱歉，你没有足够的 Zeny 使用传送服务。";
+			mes "前往" + @wrpN$[.@j] + "的传送费用为 " + @wrpP[.@j] + " Zeny。";
 			close3;
 		}
 		Zeny -= @wrpP[.@j];
@@ -597,6 +596,7 @@ function	script	F_EntKafCode	{
 function	script	F_KafSet	{
 	deletearray @wrpC$[0], getarraysize(@wrpC$);
 	deletearray @wrpD$[0], getarraysize(@wrpD$);
+	deletearray @wrpN$[0], getarraysize(@wrpN$);
 	deletearray @wrpP$[0], getarraysize(@wrpP$);
 	deletearray @viewpX[0], getarraysize(@viewpX);
 	deletearray @viewpY[0], getarraysize(@viewpY);
@@ -658,8 +658,38 @@ function	script	F_KafSet	{
 			@wrpP[.@i] *= 2;
 	}
 
-	for ( .@i = 0; .@i < .@warp_size; .@i++ )
-		@wrpC$[.@i] = @wrpD$[.@i] + " -> " + @wrpP[.@i] + " z";
+	for ( .@i = 0; .@i < .@warp_size; .@i++ ) {
+		.@destination$ = @wrpD$[.@i];
+		if (.@destination$ == "Al De Baran")
+			.@destination$ = "艾尔迪巴兰";
+		else if (.@destination$ == "Alberta")
+			.@destination$ = "艾尔贝塔";
+		else if (.@destination$ == "Comodo")
+			.@destination$ = "克魔岛";
+		else if (.@destination$ == "Comodo Pharos Beacon")
+			.@destination$ = "克魔岛灯塔";
+		else if (.@destination$ == "Geffen")
+			.@destination$ = "吉芬";
+		else if (.@destination$ == "Izlude")
+			.@destination$ = "伊兹鲁德";
+		else if (.@destination$ == "Juno")
+			.@destination$ = "朱诺";
+		else if (.@destination$ == "Mjolnir Dead Pit")
+			.@destination$ = "妙勒尼废弃矿坑";
+		else if (.@destination$ == "Morocc")
+			.@destination$ = "梦罗克";
+		else if (.@destination$ == "Orc Dungeon")
+			.@destination$ = "兽人地下洞窟";
+		else if (.@destination$ == "Payon")
+			.@destination$ = "斐扬";
+		else if (.@destination$ == "Prontera")
+			.@destination$ = "普隆德拉";
+		else if (.@destination$ == "Umbala")
+			.@destination$ = "汶巴拉";
+
+		@wrpN$[.@i] = .@destination$;
+		@wrpC$[.@i] = .@destination$ + " -> " + @wrpP[.@i] + " Zeny";
+	}
 	@wrpC$[ .@warp_size ] = "取消";
 	return;
 }
