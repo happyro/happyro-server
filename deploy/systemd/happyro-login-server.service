@@ -1,0 +1,17 @@
+[Unit]
+Description=HappyRO login server
+After=network.target mariadb.service
+
+[Service]
+Type=simple
+User=happyro
+Group=happyro
+WorkingDirectory=/vol2/1000/kugarocks/happyro/repos/happyro-server
+ExecStart=/vol2/1000/kugarocks/happyro/repos/happyro-server/login-server
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
