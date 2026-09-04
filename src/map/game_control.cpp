@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <condition_variable>
+#include <cerrno>
 #include <cstdio>
 #include <cstring>
 #include <mutex>
@@ -152,20 +153,59 @@ bool game_control_start(const std::string& path) {
 		return false;
 
 	socket_path = path;
-	::unlink(socket_path.c_str());
 	listener_fd = socket(AF_UNIX, SOCK_STREAM, 0);
-	if (listener_fd < 0)
+	if (listener_fd < 0) {
+		socket_path.clear();
 		return false;
+	}
 
 	sockaddr_un address{};
 	address.sun_family = AF_UNIX;
 	std::strncpy(address.sun_path, socket_path.c_str(), sizeof(address.sun_path) - 1);
-	if (bind(listener_fd, reinterpret_cast<sockaddr*>(&address), sizeof(address)) < 0
-		|| chmod(socket_path.c_str(), S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP) < 0
+	if (bind(listener_fd, reinterpret_cast<sockaddr*>(&address), sizeof(address)) < 0) {
+		const int bind_error = errno;
+		close_request(listener_fd);
+		listener_fd = -1;
+		if (bind_error != EADDRINUSE) {
+			socket_path.clear();
+			return false;
+		}
+
+		const int probe_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+		if (probe_fd < 0) {
+			socket_path.clear();
+			return false;
+		}
+		if (connect(probe_fd, reinterpret_cast<sockaddr*>(&address), sizeof(address)) == 0) {
+			close_request(probe_fd);
+			socket_path.clear();
+			return false;
+		}
+		const int connect_error = errno;
+		close_request(probe_fd);
+		if (connect_error != ECONNREFUSED && connect_error != ENOENT) {
+			socket_path.clear();
+			return false;
+		}
+
+		if (::unlink(socket_path.c_str()) < 0 && errno != ENOENT) {
+			socket_path.clear();
+			return false;
+		}
+		listener_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+		if (listener_fd < 0 || bind(listener_fd, reinterpret_cast<sockaddr*>(&address), sizeof(address)) < 0) {
+			close_request(listener_fd);
+			listener_fd = -1;
+			socket_path.clear();
+			return false;
+		}
+	}
+	if (chmod(socket_path.c_str(), S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP) < 0
 		|| listen(listener_fd, 16) < 0) {
 		close_request(listener_fd);
-	listener_fd = -1;
-	::unlink(socket_path.c_str());
+		listener_fd = -1;
+		::unlink(socket_path.c_str());
+		socket_path.clear();
 		return false;
 	}
 
