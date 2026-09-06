@@ -592,14 +592,14 @@ static void warp_get_suggestions(map_session_data* sd, const char *name) {
 /*==========================================
  * @rura, @warp, @mapmove
  *------------------------------------------*/
-ACMD_FUNC(mapmove)
+bool atcommand_mapmove(int32 fd, map_session_data* sd, const char* message)
 {
 	char map_name[MAP_NAME_LENGTH_EXT];
 	uint16 mapindex;
 	int16 x = 0, y = 0;
 	int16 m = -1;
 
-	nullpo_retr(-1, sd);
+	nullpo_retr(false, sd);
 
 	memset(map_name, '\0', sizeof(map_name));
 
@@ -607,7 +607,7 @@ ACMD_FUNC(mapmove)
 		(sscanf(message, "%15s %6hd %6hd", map_name, &x, &y) < 3 &&
 		 sscanf(message, "%15[^,],%6hd,%6hd", map_name, &x, &y) < 1)) {
 			clif_displaymessage(fd, msg_txt(sd,909)); // Please enter a map (usage: @warp/@rura/@mapmove <mapname> <x> <y>).
-			return -1;
+			return false;
 	}
 
 	mapindex = mapindex_name2idx(map_name, nullptr);
@@ -620,7 +620,7 @@ ACMD_FUNC(mapmove)
 		if (battle_config.warp_suggestions_enabled)
 			warp_get_suggestions(sd, map_name);
 
-		return -1;
+		return false;
 	}
 
 	if ((x || y) && map_getcell(m, x, y, CELL_CHKNOPASS))
@@ -631,19 +631,24 @@ ACMD_FUNC(mapmove)
 	}
 	if ((map_getmapflag(m, MF_NOWARPTO) && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) || !pc_job_can_entermap((enum e_job)sd->status.class_, m, pc_get_group_level(sd))) {
 		clif_displaymessage(fd, msg_txt(sd,247)); // You are not authorized to warp to this map.
-		return -1;
+		return false;
 	}
 	if (sd->m >= 0 && map_getmapflag(sd->m, MF_NOWARP) && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) {
 		clif_displaymessage(fd, msg_txt(sd,248)); // You are not authorized to warp from your current map.
-		return -1;
+		return false;
 	}
 	if (pc_setpos(sd, mapindex, x, y, CLR_TELEPORT) != SETPOS_OK) {
 		clif_displaymessage(fd, msg_txt(sd,1)); // Map not found.
-		return -1;
+		return false;
 	}
 
 	clif_displaymessage(fd, msg_txt(sd,0)); // Warped.
-	return 0;
+	return true;
+}
+
+ACMD_FUNC(mapmove)
+{
+	return atcommand_mapmove(fd, sd, message) ? 0 : -1;
 }
 
 /*==========================================

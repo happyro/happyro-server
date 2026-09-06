@@ -722,7 +722,10 @@ enum e_config_type : uint32 {
 	CONFIG_PET_AUTOFEED,
 	CONFIG_HOMUNCULUS_AUTOFEED,
 	// CONFIG_UNKNOWN,
-	CONFIG_DISABLE_SHOWCOSTUMES = 5
+	CONFIG_DISABLE_SHOWCOSTUMES = 5,
+	CONFIG_NAVIGATION_TELEPORT_ALLOWED = 1000,
+	CONFIG_NAVIGATION_TELEPORT_CROSS_MAP,
+	CONFIG_NAVIGATION_TELEPORT_COOLDOWN
 };
 
 enum e_memorial_dungeon_command : uint16 {
@@ -1204,6 +1207,8 @@ void clif_send_homdata( homun_data& hd, e_hom_state2 state );
 void clif_homunculus_updatestatus( const map_session_data& sd, _sp type );
 
 void clif_configuration( const map_session_data* sd, enum e_config_type type, bool enabled );
+void clif_navigation_teleport_config( const map_session_data* sd );
+void clif_navigation_teleport_config_all();
 void clif_viewequip_ack( const map_session_data& sd, const map_session_data& tsd );
 void clif_equipcheckbox( const map_session_data& sd );
 

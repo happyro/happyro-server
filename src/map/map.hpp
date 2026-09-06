@@ -31,6 +31,7 @@ namespace rathena::server_map {
 class MapServer : public Core{
 	protected:
 		bool initialize( int32 argc, char* argv[] ) override;
+		void handle_main( t_tick next ) override;
 		void finalize() override;
 		void handle_crash() override;
 		void handle_shutdown() override;
