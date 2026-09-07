@@ -1505,6 +1505,52 @@ struct PACKET_ZC_HAPPYRO_MONSTER_SPAWN_RESULT {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_MONSTER_SPAWN_RESULT, 0xcff);
 
+struct PACKET_CZ_HAPPYRO_NPC_TELEPORT {
+	int16 packetType;
+	uint32 requestId;
+	char map[MAP_NAME_LENGTH_EXT];
+	uint16 npcX;
+	uint16 npcY;
+	int32 npcClass;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_NPC_TELEPORT, 0xcfc);
+
+struct PACKET_CZ_HAPPYRO_NPC_AVAILABILITY_ENTRY {
+	char map[MAP_NAME_LENGTH_EXT];
+	uint16 npcX;
+	uint16 npcY;
+	int32 npcClass;
+} __attribute__((packed));
+
+struct PACKET_CZ_HAPPYRO_NPC_AVAILABILITY {
+	int16 packetType;
+	uint16 packetLength;
+	uint32 requestId;
+	uint16 count;
+	PACKET_CZ_HAPPYRO_NPC_AVAILABILITY_ENTRY npcs[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_NPC_AVAILABILITY, 0xcfa);
+
+struct PACKET_ZC_HAPPYRO_NPC_AVAILABILITY_RESULT {
+	int16 packetType;
+	uint16 packetLength;
+	uint32 requestId;
+	uint16 count;
+	uint8 available[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_AVAILABILITY_RESULT, 0xcfb);
+
+struct PACKET_ZC_HAPPYRO_NPC_TELEPORT_RESULT {
+	int16 packetType;
+	uint32 requestId;
+	uint16 result;
+	char map[MAP_NAME_LENGTH_EXT];
+	uint16 x;
+	uint16 y;
+	uint32 cooldownRemaining;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_TELEPORT_RESULT, 0xcfd);
+
 struct PACKET_CZ_BROADCAST{
 	int16 packetType;
 	uint16 packetSize;

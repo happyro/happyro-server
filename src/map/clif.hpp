@@ -1213,6 +1213,8 @@ void clif_homunculus_updatestatus( const map_session_data& sd, _sp type );
 void clif_configuration( const map_session_data* sd, enum e_config_type type, bool enabled );
 void clif_navigation_teleport_config( const map_session_data* sd );
 void clif_navigation_teleport_config_all();
+void clif_parse_happyro_npc_teleport( int32 fd, map_session_data* sd );
+void clif_parse_happyro_npc_availability( int32 fd, map_session_data* sd );
 void clif_game_tools_monster_spawn_config( const map_session_data* sd );
 void clif_game_tools_monster_spawn_config_all();
 void clif_parse_happyro_monster_spawn( int32 fd, map_session_data* sd );

@@ -1165,6 +1165,7 @@ skill_unit *map_find_skill_unit_oncell(block_list *,int16 x,int16 y,uint16 skill
 // search and creation
 int32 map_get_new_object_id(void);
 int32 map_search_freecell(block_list *src, int16 m, int16 *x, int16 *y, int16 rx, int16 ry, int32 flag, int32 tries = 50);
+bool map_cell_free(int16 m, int16 x, int16 y, int32 type);
 bool map_closest_freecell(int16 m, int16 *x, int16 *y, int32 type, int32 flag);
 bool map_nearby_freecell(int16 m, int16 &x, int16 &y, int32 type, int32 flag);
 //
