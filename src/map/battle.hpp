@@ -195,6 +195,9 @@ struct Battle_Config
 	int32 mvp_item_second_get_time;
 	int32 mvp_item_third_get_time;
 	int32 base_exp_rate,job_exp_rate;
+	int32 navigation_teleport_policy;
+	int32 navigation_teleport_cross_map;
+	int32 navigation_teleport_cooldown;
 	int32 drop_rate0item;
 	int32 death_penalty_type;
 	int32 death_penalty_base,death_penalty_job;

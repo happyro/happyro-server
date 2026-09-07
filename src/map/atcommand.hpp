@@ -24,6 +24,7 @@ enum AtCommandType : uint8 {
 typedef int32 (*AtCommandFunc)(const int32 fd, map_session_data* sd, const char* command, const char* message);
 
 bool is_atcommand(const int32 fd, map_session_data* sd, const char* message, int32 type);
+bool atcommand_mapmove(int32 fd, map_session_data* sd, const char* message);
 
 void do_init_atcommand(void);
 void do_final_atcommand(void);

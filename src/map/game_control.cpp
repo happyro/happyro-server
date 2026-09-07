@@ -23,6 +23,7 @@
 #include "map.hpp"
 #include "battle.hpp"
 #include "chrif.hpp"
+#include "clif.hpp"
 #include "mob.hpp"
 #include "pc.hpp"
 
@@ -275,7 +276,7 @@ void game_control_process() {
 		status = 200;
 		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
-		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp"};
+		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown"};
 		nlohmann::json values = nlohmann::json::object();
 		for (const char* key : keys)
 			values[key] = battle_get_value(key);
@@ -295,6 +296,9 @@ void game_control_process() {
 			{"item_rate_card", 1000000},
 			{"item_rate_card_boss", 1000000},
 			{"item_rate_card_mvp", 1000000},
+			{"navigation_teleport_policy", 2},
+			{"navigation_teleport_cross_map", 1},
+			{"navigation_teleport_cooldown", 3600},
 		};
 		bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
 		std::unordered_set<std::string> keys;
@@ -335,6 +339,11 @@ void game_control_process() {
 				status = 409;
 				result = {{"error", {{"code", "configuration_conflict"}}}};
 			} else {
+				if (keys.count("navigation_teleport_policy") != 0
+					|| keys.count("navigation_teleport_cross_map") != 0
+					|| keys.count("navigation_teleport_cooldown") != 0) {
+					clif_navigation_teleport_config_all();
+				}
 				status = 200;
 				result = {{"data", {{"result", {{"changes", applied}}}}}};
 			}

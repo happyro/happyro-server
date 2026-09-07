@@ -10284,7 +10284,7 @@ void clif_feel_hate_reset( const map_session_data* sd )
 /// value:
 ///		false = disabled
 ///		true = enabled
-void clif_configuration( const map_session_data* sd, enum e_config_type type, bool enabled ){
+static void clif_configuration_value( const map_session_data* sd, enum e_config_type type, int32 value ){
 	int32 fd;
 	nullpo_retv(sd);
 	fd = sd->fd;
@@ -10292,8 +10292,33 @@ void clif_configuration( const map_session_data* sd, enum e_config_type type, bo
 	WFIFOHEAD(fd, packet_len(0x2d9));
 	WFIFOW(fd, 0) = 0x2d9;
 	WFIFOL(fd, 2) = type;
-	WFIFOL(fd, 6) = enabled;
+	WFIFOL(fd, 6) = value;
 	WFIFOSET(fd, packet_len(0x2d9));
+}
+
+void clif_configuration( const map_session_data* sd, enum e_config_type type, bool enabled ){
+	clif_configuration_value(sd, type, enabled);
+}
+
+static bool clif_navigation_teleport_allowed( const map_session_data* sd ){
+	return battle_config.navigation_teleport_policy == 2
+		|| (battle_config.navigation_teleport_policy == 1 && pc_can_use_command(sd, "mapmove", COMMAND_ATCOMMAND));
+}
+
+void clif_navigation_teleport_config( const map_session_data* sd ){
+	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_ALLOWED, clif_navigation_teleport_allowed(sd));
+	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_CROSS_MAP, battle_config.navigation_teleport_cross_map);
+	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_COOLDOWN, battle_config.navigation_teleport_cooldown);
+}
+
+static int32 clif_navigation_teleport_config_sub( map_session_data* sd, va_list args ){
+	(void)args;
+	clif_navigation_teleport_config(sd);
+	return 0;
+}
+
+void clif_navigation_teleport_config_all(){
+	map_foreachpc(clif_navigation_teleport_config_sub);
 }
 
 
@@ -11019,6 +11044,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 #endif
 		clif_pet_autofeed_status(sd,false);
 		clif_configuration( sd, CONFIG_CALL, sd->status.disable_call );
+		clif_navigation_teleport_config(sd);
 #if PACKETVER >= 20170920
 		if( battle_config.homunculus_autofeed_always ){
 			// Always send ON or OFF
@@ -11554,12 +11580,32 @@ void clif_parse_MapMove( int32 fd, map_session_data* sd){
 	char map_name[MAP_NAME_LENGTH_EXT];
 
 	safestrncpy( map_name, p->map, sizeof( map_name ) );
+	const uint16 mapindex = mapindex_name2idx(map_name, nullptr);
 
-	char command[CHAT_SIZE_MAX];
+	if (!clif_navigation_teleport_allowed(sd)) {
+		clif_displaymessage(fd, msg_txt(sd,247));
+		return;
+	}
+	if (!battle_config.navigation_teleport_cross_map && mapindex != 0 && mapindex != sd->mapindex) {
+		clif_displaymessage(fd, "Cross-map navigation teleport is disabled.");
+		return;
+	}
 
-	safesnprintf( command, sizeof( command ),"%cmapmove %s %hu %hu", atcommand_symbol, map_name, p->x, p->y );
+	const t_tick tick = gettick();
+	const t_tick cooldown = static_cast<t_tick>(battle_config.navigation_teleport_cooldown) * 1000;
+	if (sd->navigation_teleport_tick != 0 && DIFF_TICK(tick, sd->navigation_teleport_tick) < cooldown) {
+		clif_displaymessage(fd, "Navigation teleport is cooling down.");
+		return;
+	}
 
-	is_atcommand(fd, sd, command, 1);
+	char parameters[CHAT_SIZE_MAX];
+	safesnprintf(parameters, sizeof(parameters), "%s %hu %hu", map_name, p->x, p->y);
+	if (atcommand_mapmove(fd, sd, parameters)) {
+		sd->navigation_teleport_tick = tick;
+		char command[CHAT_SIZE_MAX];
+		safesnprintf(command, sizeof(command), "%cmapmove %s", atcommand_symbol, parameters);
+		log_atcommand(sd, command);
+	}
 }
 
 
