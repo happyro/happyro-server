@@ -19,8 +19,10 @@
 #include <nlohmann/json.hpp>
 
 #include <common/showmsg.hpp>
+#include <common/strlib.hpp>
 
 #include "map.hpp"
+#include "map_channel.hpp"
 #include "battle.hpp"
 #include "chrif.hpp"
 #include "clif.hpp"
@@ -75,6 +77,16 @@ bool read_character_id(const nlohmann::json& target, int32& char_id) {
 	} catch (...) {
 		return false;
 	}
+}
+
+int32 merge_map_channel_player(map_session_data* sd, va_list args) {
+	(void)args;
+	map_channel_normalize_name(sd->status.save_point.map, sizeof(sd->status.save_point.map));
+	const char* current_map = mapindex_id2name(sd->mapindex);
+	const char* canonical_map = map_channel_canonical_name(current_map);
+	if (std::strcmp(current_map, canonical_map) != 0)
+		pc_setpos(sd, mapindex_name2id(canonical_map), sd->x, sd->y, CLR_TELEPORT);
+	return 0;
 }
 
 bool payload_has_only_keys(const nlohmann::json& payload, std::initializer_list<const char*> allowed) {
@@ -276,7 +288,7 @@ void game_control_process() {
 		status = 200;
 		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
-		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown", "game_tools_monster_spawn_policy", "game_tools_monster_spawn_cooldown", "game_tools_monster_spawn_duration", "game_tools_monster_spawn_allow_boss"};
+		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown", "navigation_map_channels_enabled", "game_tools_monster_spawn_policy", "game_tools_monster_spawn_cooldown", "game_tools_monster_spawn_duration", "game_tools_monster_spawn_allow_boss"};
 		nlohmann::json values = nlohmann::json::object();
 		for (const char* key : keys)
 			values[key] = battle_get_value(key);
@@ -299,6 +311,7 @@ void game_control_process() {
 			{"navigation_teleport_policy", 2},
 			{"navigation_teleport_cross_map", 1},
 			{"navigation_teleport_cooldown", 3600},
+			{"navigation_map_channels_enabled", 1},
 			{"game_tools_monster_spawn_policy", 2},
 			{"game_tools_monster_spawn_cooldown", 3600},
 			{"game_tools_monster_spawn_duration", 3600},
@@ -345,8 +358,13 @@ void game_control_process() {
 			} else {
 				if (keys.count("navigation_teleport_policy") != 0
 					|| keys.count("navigation_teleport_cross_map") != 0
-					|| keys.count("navigation_teleport_cooldown") != 0) {
+					|| keys.count("navigation_teleport_cooldown") != 0
+					|| keys.count("navigation_map_channels_enabled") != 0) {
 					clif_navigation_teleport_config_all();
+				}
+				if (keys.count("navigation_map_channels_enabled") != 0
+					&& !battle_config.navigation_map_channels_enabled) {
+					map_foreachpc(merge_map_channel_player);
 				}
 				if (keys.count("game_tools_monster_spawn_policy") != 0
 					|| keys.count("game_tools_monster_spawn_cooldown") != 0

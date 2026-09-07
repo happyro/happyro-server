@@ -44,6 +44,7 @@
 #include "log.hpp"
 #include "mail.hpp"
 #include "map.hpp"
+#include "map_channel.hpp"
 #include "mercenary.hpp"
 #include "mob.hpp"
 #include "npc.hpp"
@@ -10309,6 +10310,7 @@ void clif_navigation_teleport_config( const map_session_data* sd ){
 	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_ALLOWED, clif_navigation_teleport_allowed(sd));
 	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_CROSS_MAP, battle_config.navigation_teleport_cross_map);
 	clif_configuration_value(sd, CONFIG_NAVIGATION_TELEPORT_COOLDOWN, battle_config.navigation_teleport_cooldown);
+	clif_configuration_value(sd, CONFIG_NAVIGATION_MAP_CHANNELS_ENABLED, battle_config.navigation_map_channels_enabled);
 }
 
 static int32 clif_navigation_teleport_config_sub( map_session_data* sd, va_list args ){
@@ -11661,6 +11663,8 @@ void clif_parse_MapMove( int32 fd, map_session_data* sd){
 	char map_name[MAP_NAME_LENGTH_EXT];
 
 	safestrncpy( map_name, p->map, sizeof( map_name ) );
+	if (!battle_config.navigation_map_channels_enabled)
+		safestrncpy(map_name, map_channel_canonical_name(map_name), sizeof(map_name));
 	const uint16 mapindex = mapindex_name2idx(map_name, nullptr);
 
 	if (!clif_navigation_teleport_allowed(sd)) {

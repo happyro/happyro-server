@@ -198,6 +198,7 @@ struct Battle_Config
 	int32 navigation_teleport_policy;
 	int32 navigation_teleport_cross_map;
 	int32 navigation_teleport_cooldown;
+	int32 navigation_map_channels_enabled;
 	int32 game_tools_monster_spawn_policy;
 	int32 game_tools_monster_spawn_cooldown;
 	int32 game_tools_monster_spawn_duration;

@@ -49,6 +49,7 @@
 #include "itemdb.hpp" // MAX_ITEMGROUP
 #include "log.hpp"
 #include "map.hpp"
+#include "map_channel.hpp"
 #include "mercenary.hpp"
 #include "mob.hpp"
 #include "npc.hpp"
@@ -2213,6 +2214,10 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 	sd->vars_dirty = false;
 	sd->vars_ok = false;
 	sd->vars_received = 0x0;
+	if (!battle_config.navigation_map_channels_enabled) {
+		map_channel_normalize_name(sd->status.last_point.map, sizeof(sd->status.last_point.map));
+		map_channel_normalize_name(sd->status.save_point.map, sizeof(sd->status.save_point.map));
+	}
 
 	// Check if the player's last point requires special handling and if conditions apply to return the player to his savepoint
 	if( pc_lastpoint_special( *sd ) ){
