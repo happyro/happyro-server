@@ -726,6 +726,32 @@ int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y, const char
 	return (md) ? md->id : 0; // id of last spawned mob
 }
 
+std::vector<s_temporary_monster_spawn> mob_spawn_temporary_near(
+	map_session_data* sd, int32 mob_id, int32 amount, int32 radius, int32 duration_seconds)
+{
+	std::vector<s_temporary_monster_spawn> spawned;
+	if (sd == nullptr || mob_db.find(mob_id) == nullptr || amount <= 0 || radius <= 0 || duration_seconds <= 0)
+		return spawned;
+
+	for (int32 index = 0; index < amount; ++index) {
+		int16 x = sd->x;
+		int16 y = sd->y;
+		if (!map_search_freecell(sd, sd->m, &x, &y, radius, radius, 0))
+			continue;
+
+		const int32 entity_id = mob_once_spawn(sd, sd->m, x, y, nullptr, mob_id, 1, nullptr, SZ_SMALL, AI_NONE);
+		if (entity_id <= 0)
+			continue;
+
+		if (mob_data* mob = map_id2md(entity_id))
+			mob->deletetimer = add_timer(gettick() + duration_seconds * 1000, mob_timer_delete, mob->id, 0);
+
+		spawned.push_back({entity_id, sd->m, x, y});
+	}
+
+	return spawned;
+}
+
 /*==========================================
  * Spawn mobs in the specified area.
  *------------------------------------------*/

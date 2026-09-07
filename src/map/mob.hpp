@@ -284,6 +284,13 @@ struct s_mob_db {
 	s_mob_db();
 };
 
+struct s_temporary_monster_spawn {
+	int32 entity_id;
+	int16 map_id;
+	int16 x;
+	int16 y;
+};
+
 class MobDatabase : public TypesafeCachedYamlDatabase <uint32, s_mob_db> {
 private:
 	bool parseDropNode( std::string nodeName, const ryml::NodeRef& node, uint8 max, std::vector<std::shared_ptr<s_mob_drop>>& drops );
@@ -508,6 +515,8 @@ mob_data *mob_once_spawn_sub(block_list *bl, int16 m, int16 x, int16 y, const ch
 
 int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y,
 	const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai);
+std::vector<s_temporary_monster_spawn> mob_spawn_temporary_near(
+	map_session_data* sd, int32 mob_id, int32 amount, int32 radius, int32 duration_seconds);
 
 int32 mob_once_spawn_area(map_session_data* sd, int16 m,
 	int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai);

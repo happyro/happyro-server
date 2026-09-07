@@ -2046,4 +2046,6 @@
 	parseable_packet( HEADER_CZ_MOVE_ITEM_TO_PERSONAL, sizeof( PACKET_CZ_MOVE_ITEM_TO_PERSONAL ), clif_parse_MoveFromKafraFav, 0 );
 #endif
 
+	parseable_packet( HEADER_CZ_HAPPYRO_MONSTER_SPAWN, sizeof( PACKET_CZ_HAPPYRO_MONSTER_SPAWN ), clif_parse_happyro_monster_spawn, 0 );
+
 #endif /* CLIF_PACKETDB_HPP */

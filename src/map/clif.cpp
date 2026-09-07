@@ -10321,6 +10321,86 @@ void clif_navigation_teleport_config_all(){
 	map_foreachpc(clif_navigation_teleport_config_sub);
 }
 
+static bool clif_game_tools_monster_spawn_allowed( const map_session_data* sd ){
+	return battle_config.game_tools_monster_spawn_policy == 2
+		|| (battle_config.game_tools_monster_spawn_policy == 1 && pc_can_use_command(sd, "monster", COMMAND_ATCOMMAND));
+}
+
+void clif_game_tools_monster_spawn_config( const map_session_data* sd ){
+	clif_configuration_value(sd, CONFIG_GAME_TOOLS_MONSTER_SPAWN_ALLOWED, clif_game_tools_monster_spawn_allowed(sd));
+	clif_configuration_value(sd, CONFIG_GAME_TOOLS_MONSTER_SPAWN_COOLDOWN, battle_config.game_tools_monster_spawn_cooldown);
+	clif_configuration_value(sd, CONFIG_GAME_TOOLS_MONSTER_SPAWN_ALLOW_BOSS, battle_config.game_tools_monster_spawn_allow_boss);
+}
+
+static int32 clif_game_tools_monster_spawn_config_sub( map_session_data* sd, va_list args ){
+	(void)args;
+	clif_game_tools_monster_spawn_config(sd);
+	return 0;
+}
+
+void clif_game_tools_monster_spawn_config_all(){
+	map_foreachpc(clif_game_tools_monster_spawn_config_sub);
+}
+
+enum e_happyro_monster_spawn_result : uint16 {
+	HAPPYRO_MONSTER_SPAWN_SUCCESS = 0,
+	HAPPYRO_MONSTER_SPAWN_DISABLED,
+	HAPPYRO_MONSTER_SPAWN_COOLDOWN,
+	HAPPYRO_MONSTER_SPAWN_INVALID_MONSTER,
+	HAPPYRO_MONSTER_SPAWN_BOSS_DISABLED,
+	HAPPYRO_MONSTER_SPAWN_MAP_FORBIDDEN,
+	HAPPYRO_MONSTER_SPAWN_NO_CELL,
+};
+
+static void clif_happyro_monster_spawn_result( int32 fd, e_happyro_monster_spawn_result result, uint32 entity_id = 0 ){
+	PACKET_ZC_HAPPYRO_MONSTER_SPAWN_RESULT packet{};
+	packet.packetType = HEADER_ZC_HAPPYRO_MONSTER_SPAWN_RESULT;
+	packet.result = result;
+	packet.entityId = entity_id;
+
+	WFIFOHEAD(fd, sizeof(packet));
+	memcpy(WFIFOP(fd, 0), &packet, sizeof(packet));
+	WFIFOSET(fd, sizeof(packet));
+}
+
+void clif_parse_happyro_monster_spawn( int32 fd, map_session_data* sd ){
+	const auto* packet = reinterpret_cast<PACKET_CZ_HAPPYRO_MONSTER_SPAWN*>(RFIFOP(fd, 0));
+	if (!clif_game_tools_monster_spawn_allowed(sd)) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_DISABLED);
+		return;
+	}
+
+	const auto monster = mob_db.find(packet->monsterId);
+	if (monster == nullptr) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_INVALID_MONSTER);
+		return;
+	}
+	if (!battle_config.game_tools_monster_spawn_allow_boss && monster->get_bosstype() != BOSSTYPE_NONE) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_BOSS_DISABLED);
+		return;
+	}
+	if (mapdata_flag_gvg2(map_getmapdata(sd->m))) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_MAP_FORBIDDEN);
+		return;
+	}
+
+	const t_tick tick = gettick();
+	const t_tick cooldown = static_cast<t_tick>(battle_config.game_tools_monster_spawn_cooldown) * 1000;
+	if (sd->game_tools_monster_spawn_tick != 0 && DIFF_TICK(tick, sd->game_tools_monster_spawn_tick) < cooldown) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_COOLDOWN);
+		return;
+	}
+
+	const auto spawned = mob_spawn_temporary_near(sd, packet->monsterId, 1, 3, battle_config.game_tools_monster_spawn_duration);
+	if (spawned.empty()) {
+		clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_NO_CELL);
+		return;
+	}
+
+	sd->game_tools_monster_spawn_tick = tick;
+	clif_happyro_monster_spawn_result(fd, HAPPYRO_MONSTER_SPAWN_SUCCESS, spawned.front().entity_id);
+}
+
 
 /// The player's 'view equip' state, sent during login.
 /// 02da <open equip window>.B (ZC_CONFIG_NOTIFY)
@@ -11045,6 +11125,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 		clif_pet_autofeed_status(sd,false);
 		clif_configuration( sd, CONFIG_CALL, sd->status.disable_call );
 		clif_navigation_teleport_config(sd);
+		clif_game_tools_monster_spawn_config(sd);
 #if PACKETVER >= 20170920
 		if( battle_config.homunculus_autofeed_always ){
 			// Always send ON or OFF

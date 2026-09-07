@@ -276,7 +276,7 @@ void game_control_process() {
 		status = 200;
 		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
-		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown"};
+		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown", "game_tools_monster_spawn_policy", "game_tools_monster_spawn_cooldown", "game_tools_monster_spawn_duration", "game_tools_monster_spawn_allow_boss"};
 		nlohmann::json values = nlohmann::json::object();
 		for (const char* key : keys)
 			values[key] = battle_get_value(key);
@@ -299,6 +299,10 @@ void game_control_process() {
 			{"navigation_teleport_policy", 2},
 			{"navigation_teleport_cross_map", 1},
 			{"navigation_teleport_cooldown", 3600},
+			{"game_tools_monster_spawn_policy", 2},
+			{"game_tools_monster_spawn_cooldown", 3600},
+			{"game_tools_monster_spawn_duration", 3600},
+			{"game_tools_monster_spawn_allow_boss", 1},
 		};
 		bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
 		std::unordered_set<std::string> keys;
@@ -343,6 +347,11 @@ void game_control_process() {
 					|| keys.count("navigation_teleport_cross_map") != 0
 					|| keys.count("navigation_teleport_cooldown") != 0) {
 					clif_navigation_teleport_config_all();
+				}
+				if (keys.count("game_tools_monster_spawn_policy") != 0
+					|| keys.count("game_tools_monster_spawn_cooldown") != 0
+					|| keys.count("game_tools_monster_spawn_allow_boss") != 0) {
+					clif_game_tools_monster_spawn_config_all();
 				}
 				status = 200;
 				result = {{"data", {{"result", {{"changes", applied}}}}}};
@@ -454,18 +463,8 @@ void game_control_process() {
 			result = {{"error", {{"code", "invalid_parameter"}}}};
 		} else {
 			nlohmann::json spawned = nlohmann::json::array();
-			for (int32 index = 0; index < count; ++index) {
-				int16 x = sd->x;
-				int16 y = sd->y;
-				if (!map_search_freecell(sd, sd->m, &x, &y, radius, radius, 0))
-					continue;
-				const int32 id = mob_once_spawn(sd, sd->m, x, y, nullptr, monster_id, 1, nullptr, SZ_SMALL, AI_NONE);
-				if (id <= 0)
-					continue;
-				if (mob_data* mob = map_id2md(id))
-					mob->deletetimer = add_timer(gettick() + duration * 1000, mob_timer_delete, mob->id, 0);
-				spawned.push_back({{"entity_id", id}, {"map", mapindex_id2name(map_getmapdata(sd->m)->index)}, {"x", x}, {"y", y}});
-			}
+			for (const auto& entry : mob_spawn_temporary_near(sd, monster_id, count, radius, duration))
+				spawned.push_back({{"entity_id", entry.entity_id}, {"map", mapindex_id2name(map_getmapdata(entry.map_id)->index)}, {"x", entry.x}, {"y", entry.y}});
 			if (spawned.empty()) {
 				status = 409;
 				result = {{"error", {{"code", "no_spawn_cell"}}}};

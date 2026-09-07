@@ -1492,6 +1492,19 @@ struct PACKET_CZ_MOVETO_MAP{
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_MOVETO_MAP, 0x140);
 
+struct PACKET_CZ_HAPPYRO_MONSTER_SPAWN {
+	int16 packetType;
+	uint32 monsterId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_MONSTER_SPAWN, 0xcfe);
+
+struct PACKET_ZC_HAPPYRO_MONSTER_SPAWN_RESULT {
+	int16 packetType;
+	uint16 result;
+	uint32 entityId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_MONSTER_SPAWN_RESULT, 0xcff);
+
 struct PACKET_CZ_BROADCAST{
 	int16 packetType;
 	uint16 packetSize;
