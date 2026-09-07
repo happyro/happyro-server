@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <condition_variable>
+#include <climits>
 #include <cerrno>
 #include <cstdio>
 #include <cstring>
@@ -19,8 +20,10 @@
 #include <nlohmann/json.hpp>
 
 #include <common/showmsg.hpp>
+#include <common/strlib.hpp>
 
 #include "map.hpp"
+#include "map_channel.hpp"
 #include "battle.hpp"
 #include "chrif.hpp"
 #include "clif.hpp"
@@ -35,6 +38,7 @@
 #endif
 
 namespace {
+	constexpr int64 GAME_CONTROL_MAX_STAT = SHRT_MAX;
 struct Request {
 	int fd;
 	std::string body;
@@ -46,6 +50,43 @@ std::thread listener;
 bool stopping = false;
 int listener_fd = -1;
 std::string socket_path;
+
+struct GameControlSettingDefinition {
+	const char* key;
+	int64 minimum;
+	int64 maximum;
+};
+
+constexpr GameControlSettingDefinition game_control_settings[] = {
+	{"base_exp_rate", 0, std::numeric_limits<int32>::max()},
+	{"job_exp_rate", 0, std::numeric_limits<int32>::max()},
+	{"item_rate_common", 0, 1000000},
+	{"item_rate_common_boss", 0, 1000000},
+	{"item_rate_common_mvp", 0, 1000000},
+	{"item_rate_card", 0, 1000000},
+	{"item_rate_card_boss", 0, 1000000},
+	{"item_rate_card_mvp", 0, 1000000},
+	{"navigation_teleport_policy", 0, 2},
+	{"navigation_teleport_cross_map", 0, 1},
+	{"navigation_teleport_cooldown", 0, 3600},
+	{"navigation_map_channels_enabled", 0, 1},
+	{"game_tools_monster_spawn_policy", 0, 2},
+	{"game_tools_monster_spawn_cooldown", 0, 3600},
+	{"game_tools_monster_spawn_duration", 1, 3600},
+	{"game_tools_monster_spawn_allow_boss", 0, 1},
+	{"game_tools_character_maintenance_policy", 1, 2},
+	{"game_tools_game_settings_policy", 1, 2},
+};
+
+const GameControlSettingDefinition* find_game_control_setting(const std::string& key) {
+	return std::find_if(std::begin(game_control_settings), std::end(game_control_settings),
+		[&](const auto& definition) { return key == definition.key; });
+}
+
+struct CommandResult {
+	int status;
+	nlohmann::json body;
+};
 
 std::string response(int status, const nlohmann::json& body) {
 	return std::to_string(status) + "\n" + body.dump() + "\n";
@@ -77,6 +118,16 @@ bool read_character_id(const nlohmann::json& target, int32& char_id) {
 	}
 }
 
+int32 merge_map_channel_player(map_session_data* sd, va_list args) {
+	(void)args;
+	map_channel_normalize_name(sd->status.save_point.map, sizeof(sd->status.save_point.map));
+	const char* current_map = mapindex_id2name(sd->mapindex);
+	const char* canonical_map = map_channel_canonical_name(current_map);
+	if (std::strcmp(current_map, canonical_map) != 0)
+		pc_setpos(sd, mapindex_name2id(canonical_map), sd->x, sd->y, CLR_TELEPORT);
+	return 0;
+}
+
 bool payload_has_only_keys(const nlohmann::json& payload, std::initializer_list<const char*> allowed) {
 	if (!payload.is_object())
 		return false;
@@ -100,6 +151,74 @@ bool read_integer(const nlohmann::json& value, int64 minimum, int64 maximum, int
 	} catch (...) {
 		return false;
 	}
+}
+
+CommandResult process_battle_config_command(const std::string& command_type, const nlohmann::json& body) {
+	if (command_type == "battle_config.read") {
+		nlohmann::json values = nlohmann::json::object();
+		for (const auto& definition : game_control_settings)
+			values[definition.key] = battle_get_value(definition.key);
+		return {200, nlohmann::json{{"data", {{"result", {{"values", values}}}}}}};
+	}
+
+	const auto& payload = body["payload"];
+	const auto changes = payload.contains("changes") && payload["changes"].is_array()
+		? payload["changes"]
+		: nlohmann::json::array();
+	bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
+	std::unordered_set<std::string> keys;
+	for (const auto& change : changes) {
+		if (!change.is_object() || !payload_has_only_keys(change, {"key", "value"})
+			|| !change.contains("key") || !change["key"].is_string() || !change.contains("value")) {
+			valid = false;
+			break;
+		}
+		const std::string key = change["key"].get<std::string>();
+		const auto* definition = find_game_control_setting(key);
+		int32 value = 0;
+		if (definition == nullptr || !keys.insert(key).second
+			|| !read_integer(change["value"], definition->minimum, definition->maximum, value)) {
+			valid = false;
+			break;
+		}
+	}
+	if (!valid)
+		return {400, {{"error", {{"code", "invalid_parameter"}}}}};
+
+	nlohmann::json applied = nlohmann::json::array();
+	std::vector<std::pair<std::string, int32>> previous_values;
+	for (const auto& change : changes) {
+		const std::string key = change["key"].get<std::string>();
+		const int32 previous = battle_get_value(key.c_str());
+		const std::string value = std::to_string(change["value"].get<int64>());
+		if (battle_set_value(key.c_str(), value.c_str()) == 0) {
+			valid = false;
+			break;
+		}
+		previous_values.emplace_back(key, previous);
+		applied.push_back({{"key", key}, {"previous", previous}, {"value", battle_get_value(key.c_str())}});
+	}
+	if (!valid) {
+		for (auto it = previous_values.rbegin(); it != previous_values.rend(); ++it) {
+			const std::string previous = std::to_string(it->second);
+			battle_set_value(it->first.c_str(), previous.c_str());
+		}
+		return {409, {{"error", {{"code", "configuration_conflict"}}}}};
+	}
+
+	if (keys.count("navigation_teleport_policy") != 0
+		|| keys.count("navigation_teleport_cross_map") != 0
+		|| keys.count("navigation_teleport_cooldown") != 0
+		|| keys.count("navigation_map_channels_enabled") != 0)
+		clif_navigation_teleport_config_all();
+	if (keys.count("navigation_map_channels_enabled") != 0 && !battle_config.navigation_map_channels_enabled)
+		map_foreachpc(merge_map_channel_player);
+	if (keys.count("game_tools_monster_spawn_policy") != 0
+		|| keys.count("game_tools_monster_spawn_cooldown") != 0
+		|| keys.count("game_tools_monster_spawn_allow_boss") != 0)
+		clif_game_tools_monster_spawn_config_all();
+
+	return {200, {{"data", {{"result", {{"changes", applied}}}}}}};
 }
 
 void close_request(int fd) {
@@ -272,14 +391,17 @@ void game_control_process() {
 	if (!body.is_object() || !body.contains("type") || !body["type"].is_string()
 		|| !body.contains("payload") || !body["payload"].is_object()) {
 		// Keep the default invalid-command response.
-	} else if (const std::string command_type = body["type"].get<std::string>(); command_type == "capabilities") {
+	} else if (const std::string command_type = body["type"].get<std::string>(); command_type == "battle_config.read" || command_type == "battle_config.apply") {
+		const CommandResult command = process_battle_config_command(command_type, body);
+		status = command.status;
+		result = command.body;
+	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
-		const char* keys[] = {"base_exp_rate", "job_exp_rate", "item_rate_common", "item_rate_common_boss", "item_rate_common_mvp", "item_rate_card", "item_rate_card_boss", "item_rate_card_mvp", "navigation_teleport_policy", "navigation_teleport_cross_map", "navigation_teleport_cooldown"};
 		nlohmann::json values = nlohmann::json::object();
-		for (const char* key : keys)
-			values[key] = battle_get_value(key);
+		for (const auto& definition : game_control_settings)
+			values[definition.key] = battle_get_value(definition.key);
 		status = 200;
 		result = {{"data", {{"result", {{"values", values}}}}}};
 	} else if (command_type == "battle_config.apply") {
@@ -287,19 +409,6 @@ void game_control_process() {
 		const auto changes = payload.contains("changes") && payload["changes"].is_array()
 			? payload["changes"]
 			: nlohmann::json::array();
-		const std::pair<const char*, int64> allowed[] = {
-			{"base_exp_rate", std::numeric_limits<int32>::max()},
-			{"job_exp_rate", std::numeric_limits<int32>::max()},
-			{"item_rate_common", 1000000},
-			{"item_rate_common_boss", 1000000},
-			{"item_rate_common_mvp", 1000000},
-			{"item_rate_card", 1000000},
-			{"item_rate_card_boss", 1000000},
-			{"item_rate_card_mvp", 1000000},
-			{"navigation_teleport_policy", 2},
-			{"navigation_teleport_cross_map", 1},
-			{"navigation_teleport_cooldown", 3600},
-		};
 		bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
 		std::unordered_set<std::string> keys;
 		for (const auto& change : changes) {
@@ -309,10 +418,10 @@ void game_control_process() {
 				break;
 			}
 			const std::string key = change["key"].get<std::string>();
-			const auto definition = std::find_if(std::begin(allowed), std::end(allowed), [&](const auto& item) { return key == item.first; });
+			const auto* definition = find_game_control_setting(key);
 			int32 value = 0;
-			if (definition == std::end(allowed) || !keys.insert(key).second
-				|| !read_integer(change["value"], 0, definition->second, value)) {
+			if (definition == nullptr || !keys.insert(key).second
+				|| !read_integer(change["value"], definition->minimum, definition->maximum, value)) {
 				valid = false;
 				break;
 			}
@@ -341,14 +450,25 @@ void game_control_process() {
 			} else {
 				if (keys.count("navigation_teleport_policy") != 0
 					|| keys.count("navigation_teleport_cross_map") != 0
-					|| keys.count("navigation_teleport_cooldown") != 0) {
+					|| keys.count("navigation_teleport_cooldown") != 0
+					|| keys.count("navigation_map_channels_enabled") != 0) {
 					clif_navigation_teleport_config_all();
+				}
+				if (keys.count("navigation_map_channels_enabled") != 0
+					&& !battle_config.navigation_map_channels_enabled) {
+					map_foreachpc(merge_map_channel_player);
+				}
+				if (keys.count("game_tools_monster_spawn_policy") != 0
+					|| keys.count("game_tools_monster_spawn_cooldown") != 0
+					|| keys.count("game_tools_monster_spawn_allow_boss") != 0) {
+					clif_game_tools_monster_spawn_config_all();
 				}
 				status = 200;
 				result = {{"data", {{"result", {{"changes", applied}}}}}};
 			}
 		}
-	} else if (command_type != "character.progression.update"
+	} else if (command_type != "character.snapshot"
+		&& command_type != "character.progression.update"
 		&& command_type != "character.stats.update"
 		&& command_type != "character.stats.reset"
 		&& command_type != "character.skills.reset"
@@ -367,36 +487,54 @@ void game_control_process() {
 		} else if (map_session_data* sd = map_charid2sd(char_id); sd == nullptr) {
 			status = 409;
 			result = {{"error", {{"code", "character_offline"}}}};
-		} else if (command_type == "character.progression.update") {
-		const auto& payload = body["payload"];
-		if (!payload_has_only_keys(payload, {"base_level", "job_level", "job_id"}) || payload.empty()) {
-			status = 400;
-			result = {{"error", {{"code", "invalid_parameter"}}}};
-		} else {
-			bool valid = true;
-			int32 base_level = 0;
-			int32 job_level = 0;
-			int32 job_id = 0;
-			if (payload.contains("base_level"))
-				valid = read_integer(payload["base_level"], 1, std::numeric_limits<int32>::max(), base_level);
-			if (valid && payload.contains("job_level"))
-				valid = read_integer(payload["job_level"], 1, std::numeric_limits<int32>::max(), job_level);
-			if (valid && payload.contains("job_id"))
-				valid = read_integer(payload["job_id"], 1, std::numeric_limits<int32>::max(), job_id);
-			if (valid && payload.contains("job_id"))
-				valid = pc_jobchange(sd, job_id, 0);
-			if (!valid) {
+		} else if (command_type == "character.snapshot") {
+			if (!body["payload"].empty()) {
 				status = 400;
 				result = {{"error", {{"code", "invalid_parameter"}}}};
 			} else {
-				if (payload.contains("base_level"))
-					pc_setparam(sd, SP_BASELEVEL, base_level);
-				if (payload.contains("job_level"))
-					pc_setparam(sd, SP_JOBLEVEL, job_level);
 				status = 200;
-				result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->class_}}}}}};
+				result = {{"data", {{"result", {
+					{"char_id", sd->status.char_id}, {"name", sd->status.name}, {"base_level", sd->status.base_level},
+					{"job_level", sd->status.job_level}, {"job_id", sd->class_}, {"str", sd->status.str},
+					{"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex},
+					{"luk", sd->status.luk}, {"status_points", sd->status.status_point}, {"skill_points", sd->status.skill_point},
+					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
+					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
+					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
+					{"max_stat", GAME_CONTROL_MAX_STAT}, {"map", mapindex_id2name(sd->mapindex)}, {"x", sd->x}, {"y", sd->y}
+				}}}}};
 			}
-		}
+		} else if (command_type == "character.progression.update") {
+			const auto& payload = body["payload"];
+			if (!payload_has_only_keys(payload, {"base_level", "job_level", "job_id"}) || payload.empty()) {
+				status = 400;
+				result = {{"error", {{"code", "invalid_parameter"}}}};
+			} else {
+				bool valid = true;
+				int32 base_level = 0;
+				int32 job_level = 0;
+				int32 job_id = 0;
+				if (payload.contains("base_level"))
+					valid = read_integer(payload["base_level"], 1, pc_maxbaselv(sd), base_level);
+				if (valid && payload.contains("job_level"))
+					valid = read_integer(payload["job_level"], 1, pc_maxjoblv(sd), job_level);
+				if (valid && payload.contains("job_id"))
+					valid = read_integer(payload["job_id"], 1, std::numeric_limits<int32>::max(), job_id);
+				if (valid && payload.contains("job_id"))
+					valid = pc_jobchange(sd, job_id, 0);
+				if (!valid) {
+					status = 400;
+					result = {{"error", {{"code", "invalid_parameter"}}}};
+				} else {
+					if (payload.contains("base_level"))
+						pc_setparam(sd, SP_BASELEVEL, base_level);
+					if (payload.contains("job_level"))
+						pc_setparam(sd, SP_JOBLEVEL, job_level);
+					chrif_save(sd, CSAVE_NORMAL);
+					status = 200;
+					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->class_}}}}}};
+				}
+			}
 		} else if (command_type == "character.stats.update") {
 		const auto& payload = body["payload"];
 		const std::pair<const char*, int64> stats[] = {{"str", SP_STR}, {"agi", SP_AGI}, {"vit", SP_VIT}, {"int", SP_INT}, {"dex", SP_DEX}, {"luk", SP_LUK}};
@@ -407,7 +545,7 @@ void game_control_process() {
 				if (!payload.contains(name))
 					continue;
 				int32 value = 0;
-				if (!read_integer(payload[name], 1, std::numeric_limits<int16>::max(), value)) {
+				if (!read_integer(payload[name], 1, GAME_CONTROL_MAX_STAT, value)) {
 					valid = false;
 					break;
 				}
@@ -454,18 +592,8 @@ void game_control_process() {
 			result = {{"error", {{"code", "invalid_parameter"}}}};
 		} else {
 			nlohmann::json spawned = nlohmann::json::array();
-			for (int32 index = 0; index < count; ++index) {
-				int16 x = sd->x;
-				int16 y = sd->y;
-				if (!map_search_freecell(sd, sd->m, &x, &y, radius, radius, 0))
-					continue;
-				const int32 id = mob_once_spawn(sd, sd->m, x, y, nullptr, monster_id, 1, nullptr, SZ_SMALL, AI_NONE);
-				if (id <= 0)
-					continue;
-				if (mob_data* mob = map_id2md(id))
-					mob->deletetimer = add_timer(gettick() + duration * 1000, mob_timer_delete, mob->id, 0);
-				spawned.push_back({{"entity_id", id}, {"map", mapindex_id2name(map_getmapdata(sd->m)->index)}, {"x", x}, {"y", y}});
-			}
+			for (const auto& entry : mob_spawn_temporary_near(sd, monster_id, count, radius, duration))
+				spawned.push_back({{"entity_id", entry.entity_id}, {"map", mapindex_id2name(map_getmapdata(entry.map_id)->index)}, {"x", entry.x}, {"y", entry.y}});
 			if (spawned.empty()) {
 				status = 409;
 				result = {{"error", {{"code", "no_spawn_cell"}}}};

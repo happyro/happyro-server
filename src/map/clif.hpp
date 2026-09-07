@@ -59,7 +59,7 @@ enum e_searchstore_failure : uint16;
 
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
-	MAX_PACKET_DB  = 0xCFF,
+	MAX_PACKET_DB  = 0xD01,
 #if !defined(MAX_PACKET_POS)
 	MAX_PACKET_POS = 20,
 #endif
@@ -725,7 +725,11 @@ enum e_config_type : uint32 {
 	CONFIG_DISABLE_SHOWCOSTUMES = 5,
 	CONFIG_NAVIGATION_TELEPORT_ALLOWED = 1000,
 	CONFIG_NAVIGATION_TELEPORT_CROSS_MAP,
-	CONFIG_NAVIGATION_TELEPORT_COOLDOWN
+	CONFIG_NAVIGATION_TELEPORT_COOLDOWN,
+	CONFIG_NAVIGATION_MAP_CHANNELS_ENABLED,
+	CONFIG_GAME_TOOLS_MONSTER_SPAWN_ALLOWED = 1010,
+	CONFIG_GAME_TOOLS_MONSTER_SPAWN_COOLDOWN,
+	CONFIG_GAME_TOOLS_MONSTER_SPAWN_ALLOW_BOSS
 };
 
 enum e_memorial_dungeon_command : uint16 {
@@ -1209,6 +1213,12 @@ void clif_homunculus_updatestatus( const map_session_data& sd, _sp type );
 void clif_configuration( const map_session_data* sd, enum e_config_type type, bool enabled );
 void clif_navigation_teleport_config( const map_session_data* sd );
 void clif_navigation_teleport_config_all();
+void clif_parse_happyro_npc_teleport( int32 fd, map_session_data* sd );
+void clif_parse_happyro_npc_availability( int32 fd, map_session_data* sd );
+void clif_parse_happyro_map_teleport( int32 fd, map_session_data* sd );
+void clif_game_tools_monster_spawn_config( const map_session_data* sd );
+void clif_game_tools_monster_spawn_config_all();
+void clif_parse_happyro_monster_spawn( int32 fd, map_session_data* sd );
 void clif_viewequip_ack( const map_session_data& sd, const map_session_data& tsd );
 void clif_equipcheckbox( const map_session_data& sd );
 
