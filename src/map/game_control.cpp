@@ -501,7 +501,7 @@ void game_control_process() {
 				status = 200;
 				result = {{"data", {{"result", {
 					{"char_id", sd->status.char_id}, {"name", sd->status.name}, {"base_level", sd->status.base_level},
-					{"job_level", sd->status.job_level}, {"job_id", sd->class_}, {"str", sd->status.str},
+					{"job_level", sd->status.job_level}, {"job_id", sd->status.class_}, {"str", sd->status.str},
 					{"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex},
 					{"luk", sd->status.luk}, {"status_points", sd->status.status_point}, {"skill_points", sd->status.skill_point},
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
@@ -542,7 +542,7 @@ void game_control_process() {
 						pc_setparam(sd, SP_JOBLEVEL, job_level);
 					chrif_save(sd, CSAVE_NORMAL);
 					status = 200;
-					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->class_}}}}}};
+					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->status.class_}}}}}};
 				}
 			}
 		} else if (command_type == "character.stats.update") {
