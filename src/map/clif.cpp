@@ -10505,6 +10505,92 @@ void clif_parse_happyro_npc_teleport( int32 fd, map_session_data* sd ){
 		map_name, x, y, battle_config.navigation_teleport_cooldown);
 }
 
+enum e_happyro_map_teleport_result : uint16 {
+	HAPPYRO_MAP_TELEPORT_SUCCESS = 0,
+	HAPPYRO_MAP_TELEPORT_DISABLED,
+	HAPPYRO_MAP_TELEPORT_CROSS_MAP_DISABLED,
+	HAPPYRO_MAP_TELEPORT_COOLDOWN,
+	HAPPYRO_MAP_TELEPORT_INVALID_MAP,
+	HAPPYRO_MAP_TELEPORT_MAP_FORBIDDEN,
+	HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE,
+	HAPPYRO_MAP_TELEPORT_FAILED,
+};
+
+static void clif_happyro_map_teleport_result( int32 fd, uint32 request_id,
+	e_happyro_map_teleport_result result, const char* map_name = "", uint16 x = 0, uint16 y = 0,
+	uint32 cooldown_remaining = 0 ){
+	PACKET_ZC_HAPPYRO_MAP_TELEPORT_RESULT packet{};
+	packet.packetType = HEADER_ZC_HAPPYRO_MAP_TELEPORT_RESULT;
+	packet.requestId = request_id;
+	packet.result = result;
+	safestrncpy(packet.map, map_name, sizeof(packet.map));
+	packet.x = x;
+	packet.y = y;
+	packet.cooldownRemaining = cooldown_remaining;
+	WFIFOHEAD(fd, sizeof(packet));
+	memcpy(WFIFOP(fd, 0), &packet, sizeof(packet));
+	WFIFOSET(fd, sizeof(packet));
+}
+
+void clif_parse_happyro_map_teleport( int32 fd, map_session_data* sd ){
+	const auto* packet = reinterpret_cast<PACKET_CZ_HAPPYRO_MAP_TELEPORT*>(RFIFOP(fd, 0));
+	if (!clif_navigation_teleport_allowed(sd)) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_DISABLED);
+		return;
+	}
+
+	char map_name[MAP_NAME_LENGTH_EXT];
+	safestrncpy(map_name, packet->map, sizeof(map_name));
+	if (!battle_config.navigation_map_channels_enabled)
+		map_channel_normalize_name(map_name, sizeof(map_name));
+	const uint16 mapindex = mapindex_name2idx(map_name, nullptr);
+	const int16 map_id = mapindex == 0 ? -1 : map_mapindex2mapid(mapindex);
+	const map_data* mapdata = map_id < 0 ? nullptr : map_getmapdata(map_id);
+	if (mapdata == nullptr) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_INVALID_MAP);
+		return;
+	}
+	if (!battle_config.navigation_teleport_cross_map && mapindex != sd->mapindex) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_CROSS_MAP_DISABLED);
+		return;
+	}
+	if ((map_getmapflag(map_id, MF_NOWARPTO) && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
+		|| !pc_job_can_entermap(static_cast<enum e_job>(sd->status.class_), map_id, pc_get_group_level(sd))
+		|| (sd->m >= 0 && map_getmapflag(sd->m, MF_NOWARP) && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_MAP_FORBIDDEN);
+		return;
+	}
+	if ((packet->x != 0 || packet->y != 0) && (packet->x >= mapdata->xs || packet->y >= mapdata->ys)) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE);
+		return;
+	}
+
+	const t_tick tick = gettick();
+	const t_tick cooldown = static_cast<t_tick>(battle_config.navigation_teleport_cooldown) * 1000;
+	if (sd->navigation_teleport_tick != 0) {
+		const t_tick elapsed = DIFF_TICK(tick, sd->navigation_teleport_tick);
+		if (elapsed < cooldown) {
+			const uint32 remaining = static_cast<uint32>((cooldown - elapsed + 999) / 1000);
+			clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_COOLDOWN,
+				map_name, 0, 0, remaining);
+			return;
+		}
+	}
+
+	char parameters[CHAT_SIZE_MAX];
+	safesnprintf(parameters, sizeof(parameters), "%s %hu %hu", map_name, packet->x, packet->y);
+	if (!atcommand_mapmove(fd, sd, parameters)) {
+		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_FAILED);
+		return;
+	}
+	sd->navigation_teleport_tick = tick;
+	char command[CHAT_SIZE_MAX];
+	safesnprintf(command, sizeof(command), "%cmapmove %s", atcommand_symbol, parameters);
+	log_atcommand(sd, command);
+	clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_SUCCESS,
+		map_name, sd->x, sd->y, battle_config.navigation_teleport_cooldown);
+}
+
 static bool clif_game_tools_monster_spawn_allowed( const map_session_data* sd ){
 	return battle_config.game_tools_monster_spawn_policy == 2
 		|| (battle_config.game_tools_monster_spawn_policy == 1 && pc_can_use_command(sd, "monster", COMMAND_ATCOMMAND));
