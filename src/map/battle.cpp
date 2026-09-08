@@ -3233,7 +3233,7 @@ static bool is_attack_hitting(struct Damage* wd, block_list *src, block_list *ta
 	status_change *tsc = status_get_sc(target);
 	map_session_data *sd = BL_CAST(BL_PC, src);
 	std::bitset<NK_MAX> nk = battle_skill_get_damage_properties(skill_id, wd->miscflag);
-	int16 flee, hitrate;
+	int32 flee, hitrate;
 
 	if (!first_call)
 		return (wd->dmg_lv != ATK_FLEE);

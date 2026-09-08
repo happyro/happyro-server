@@ -39,6 +39,12 @@
 
 namespace {
 	constexpr int64 GAME_CONTROL_MAX_STAT = SHRT_MAX;
+
+	int32 stat_safe_max(const map_session_data* sd, e_params parameter) {
+		(void)sd;
+		(void)parameter;
+		return GAME_CONTROL_MAX_STAT;
+	}
 struct Request {
 	int fd;
 	std::string body;
@@ -501,7 +507,11 @@ void game_control_process() {
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
-					{"max_stat", GAME_CONTROL_MAX_STAT}, {"map", mapindex_id2name(sd->mapindex)}, {"x", sd->x}, {"y", sd->y}
+					{"max_stat", stat_safe_max(sd, PARAM_STR)},
+					{"max_stats", { {"str", stat_safe_max(sd, PARAM_STR)}, {"agi", stat_safe_max(sd, PARAM_AGI)},
+						{"vit", stat_safe_max(sd, PARAM_VIT)}, {"int", stat_safe_max(sd, PARAM_INT)},
+						{"dex", stat_safe_max(sd, PARAM_DEX)}, {"luk", stat_safe_max(sd, PARAM_LUK)} }},
+					{"map", mapindex_id2name(sd->mapindex)}, {"x", sd->x}, {"y", sd->y}
 				}}}}};
 			}
 		} else if (command_type == "character.progression.update") {
@@ -519,7 +529,7 @@ void game_control_process() {
 				if (valid && payload.contains("job_level"))
 					valid = read_integer(payload["job_level"], 1, pc_maxjoblv(sd), job_level);
 				if (valid && payload.contains("job_id"))
-					valid = read_integer(payload["job_id"], 1, std::numeric_limits<int32>::max(), job_id);
+					valid = read_integer(payload["job_id"], 0, std::numeric_limits<int32>::max(), job_id);
 				if (valid && payload.contains("job_id"))
 					valid = pc_jobchange(sd, job_id, 0);
 				if (!valid) {
@@ -545,7 +555,7 @@ void game_control_process() {
 				if (!payload.contains(name))
 					continue;
 				int32 value = 0;
-				if (!read_integer(payload[name], 1, GAME_CONTROL_MAX_STAT, value)) {
+				if (!read_integer(payload[name], 1, stat_safe_max(sd, static_cast<e_params>(parameter)), value)) {
 					valid = false;
 					break;
 				}
