@@ -3377,10 +3377,10 @@ struct status_data {
 	uint32 max_hp;
 	uint32 max_sp;
 	uint32 max_ap;
-	int16
+	uint16
 		str, agi, vit, int_, dex, luk,
-		pow, sta, wis, spl, con, crt,
-		eatk;
+		pow, sta, wis, spl, con, crt;
+	int16 eatk;
 	int32 batk;
 	uint16
 #ifdef RENEWAL

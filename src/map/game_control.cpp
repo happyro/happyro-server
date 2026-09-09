@@ -30,6 +30,7 @@
 #include "battle.hpp"
 #include "chrif.hpp"
 #include "clif.hpp"
+#include "log.hpp"
 #include "mob.hpp"
 #include "pc.hpp"
 
@@ -59,9 +60,13 @@ std::thread listener;
 bool stopping = false;
 int listener_fd = -1;
 std::string socket_path;
-std::unordered_map<std::string, std::string> item_grant_responses;
-std::deque<std::string> item_grant_response_order;
-constexpr size_t ITEM_GRANT_RESPONSE_CACHE_SIZE = 256;
+std::unordered_map<std::string, std::string> resource_grant_responses;
+std::deque<std::string> resource_grant_response_order;
+constexpr size_t RESOURCE_GRANT_RESPONSE_CACHE_SIZE = 256;
+
+bool is_resource_grant_command(const std::string& command_type) {
+	return command_type == "character.inventory.item_grant" || command_type == "character.currency.zeny_grant";
+}
 
 struct GameControlSettingDefinition {
 	const char* key;
@@ -75,6 +80,12 @@ constexpr GameControlSettingDefinition game_control_settings[] = {
 	{"item_rate_common", 0, 1000000},
 	{"item_rate_common_boss", 0, 1000000},
 	{"item_rate_common_mvp", 0, 1000000},
+	{"item_rate_heal", 0, 1000000},
+	{"item_rate_heal_mvp", 0, 1000000},
+	{"item_rate_use", 0, 1000000},
+	{"item_rate_use_mvp", 0, 1000000},
+	{"item_rate_equip", 0, 1000000},
+	{"item_rate_equip_mvp", 0, 1000000},
 	{"item_rate_card", 0, 1000000},
 	{"item_rate_card_boss", 0, 1000000},
 	{"item_rate_card_mvp", 0, 1000000},
@@ -166,6 +177,46 @@ bool read_integer(const nlohmann::json& value, int64 minimum, int64 maximum, int
 	}
 }
 
+uint32 max_job_level(int32 job_id) {
+	return job_id >= 0 && job_db.exists(job_id) ? job_db.get_maxJobLv(job_id) : 1;
+}
+
+uint32 earned_job_skill_points(const map_session_data* sd) {
+	uint32 earned = sd->status.job_level - 1;
+	const uint64 variant = sd->class_ & (JOBL_UPPER | JOBL_BABY);
+	const uint64 first_class = sd->class_ & MAPID_FIRSTMASK;
+
+	if (first_class != MAPID_SUMMONER && (first_class != MAPID_NOVICE || (sd->class_ & JOBL_2)))
+		earned += max_job_level(JOB_NOVICE) - 1;
+	if ((sd->class_ & JOBL_2) && (sd->class_ & MAPID_SECONDMASK) != MAPID_SUPER_NOVICE) {
+		const int32 first_job = pc_mapid2jobid(first_class | variant, sd->status.sex);
+		earned += max_job_level(first_job) - 1;
+	}
+	if (sd->class_ & JOBL_THIRD) {
+		const int32 second_job = pc_mapid2jobid((sd->class_ & MAPID_SECONDMASK) | variant, sd->status.sex);
+		earned += max_job_level(second_job) - 1;
+	}
+	if (sd->class_ & JOBL_FOURTH) {
+		const int32 third_job = pc_mapid2jobid(sd->class_ & MAPID_THIRDMASK, sd->status.sex);
+		earned += max_job_level(third_job) - 1;
+	}
+
+	return earned;
+}
+
+uint32 extra_job_skill_points(map_session_data* sd) {
+	const uint32 accounted = sd->status.skill_point + pc_calc_skillpoint(sd);
+	const uint32 earned = earned_job_skill_points(sd);
+	return accounted > earned ? accounted - earned : 0;
+}
+
+void reconcile_job_skill_points(map_session_data* sd, uint32 extra) {
+	const uint32 spent = pc_calc_skillpoint(sd);
+	const uint32 entitled = earned_job_skill_points(sd) + extra;
+	sd->status.skill_point = entitled > spent ? std::min(entitled - spent, static_cast<uint32>(INT16_MAX)) : 0;
+	clif_updatestatus(*sd, SP_SKILLPOINT);
+}
+
 CommandResult process_battle_config_command(const std::string& command_type, const nlohmann::json& body) {
 	if (command_type == "battle_config.read") {
 		nlohmann::json values = nlohmann::json::object();
@@ -218,6 +269,23 @@ CommandResult process_battle_config_command(const std::string& command_type, con
 		}
 		return {409, {{"error", {{"code", "configuration_conflict"}}}}};
 	}
+
+	const bool reload_mob_database = keys.count("base_exp_rate") != 0
+		|| keys.count("job_exp_rate") != 0
+		|| keys.count("item_rate_common") != 0
+		|| keys.count("item_rate_common_boss") != 0
+		|| keys.count("item_rate_common_mvp") != 0
+		|| keys.count("item_rate_heal") != 0
+		|| keys.count("item_rate_heal_mvp") != 0
+		|| keys.count("item_rate_use") != 0
+		|| keys.count("item_rate_use_mvp") != 0
+		|| keys.count("item_rate_equip") != 0
+		|| keys.count("item_rate_equip_mvp") != 0
+		|| keys.count("item_rate_card") != 0
+		|| keys.count("item_rate_card_boss") != 0
+		|| keys.count("item_rate_card_mvp") != 0;
+	if (reload_mob_database)
+		mob_reload();
 
 	if (keys.count("navigation_teleport_policy") != 0
 		|| keys.count("navigation_teleport_cross_map") != 0
@@ -403,9 +471,9 @@ void game_control_process() {
 	nlohmann::json result = {{"error", {{"code", "invalid_command"}}}};
 	const std::string command_type = body.is_object() ? body.value("type", "") : "";
 	const std::string command_id = body.is_object() ? body.value("id", "") : "";
-	if (command_type == "character.inventory.item_grant" && !command_id.empty()) {
-		const auto cached = item_grant_responses.find(command_id);
-		if (cached != item_grant_responses.end()) {
+	if (is_resource_grant_command(command_type) && !command_id.empty()) {
+		const auto cached = resource_grant_responses.find(command_id);
+		if (cached != resource_grant_responses.end()) {
 #ifndef _WIN32
 			send(request.fd, cached->second.data(), cached->second.size(), 0);
 #endif
@@ -422,7 +490,7 @@ void game_control_process() {
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
 		nlohmann::json values = nlohmann::json::object();
 		for (const auto& definition : game_control_settings)
@@ -494,11 +562,13 @@ void game_control_process() {
 		}
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.progression.update"
+		&& command_type != "character.skill_points.update"
 		&& command_type != "character.stats.update"
 		&& command_type != "character.stats.reset"
 		&& command_type != "character.skills.reset"
 		&& command_type != "character.vitals.restore"
 		&& command_type != "character.inventory.item_grant"
+		&& command_type != "character.currency.zeny_grant"
 		&& command_type != "monster.spawn") {
 		status = 501;
 		result = {{"error", {{"code", "unsupported_command"}}}};
@@ -517,6 +587,22 @@ void game_control_process() {
 			const GameControlItemGrantResult grant = game_control_grant_inventory_item(sd, body["payload"]);
 			status = grant.status;
 			result = grant.body;
+		} else if (command_type == "character.currency.zeny_grant") {
+			const auto& payload = body["payload"];
+			int32 amount = 0;
+			if (!payload_has_only_keys(payload, {"amount"}) || !payload.contains("amount")
+				|| !read_integer(payload["amount"], 1, MAX_ZENY, amount)) {
+				status = 400;
+				result = {{"error", {{"code", "invalid_parameter"}}}};
+			} else if (amount > MAX_ZENY - sd->status.zeny) {
+				status = 409;
+				result = {{"error", {{"code", "zeny_amount_exceeded"}}}};
+			} else {
+				pc_getzeny(sd, amount, LOG_TYPE_COMMAND);
+				chrif_save(sd, CSAVE_NORMAL);
+				status = 200;
+				result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"amount", amount}, {"zeny", sd->status.zeny}}}}}};
+			}
 		} else if (command_type == "character.snapshot") {
 			if (!body["payload"].empty()) {
 				status = 400;
@@ -527,10 +613,11 @@ void game_control_process() {
 					{"char_id", sd->status.char_id}, {"name", sd->status.name}, {"base_level", sd->status.base_level},
 					{"job_level", sd->status.job_level}, {"job_id", sd->status.class_}, {"str", sd->status.str},
 					{"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex},
-					{"luk", sd->status.luk}, {"status_points", sd->status.status_point}, {"skill_points", sd->status.skill_point},
+					{"luk", sd->status.luk}, {"status_points", sd->status.status_point}, {"skill_points", sd->status.skill_point}, {"zeny", sd->status.zeny},
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
+					{"max_skill_points", INT16_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},
 					{"max_stats", { {"str", stat_safe_max(sd, PARAM_STR)}, {"agi", stat_safe_max(sd, PARAM_AGI)},
 						{"vit", stat_safe_max(sd, PARAM_VIT)}, {"int", stat_safe_max(sd, PARAM_INT)},
@@ -548,14 +635,27 @@ void game_control_process() {
 				int32 base_level = 0;
 				int32 job_level = 0;
 				int32 job_id = 0;
+				const bool changes_job_progression = payload.contains("job_level") || payload.contains("job_id");
+				const uint32 extra_skill_points = changes_job_progression ? extra_job_skill_points(sd) : 0;
 				if (payload.contains("base_level"))
 					valid = read_integer(payload["base_level"], 1, pc_maxbaselv(sd), base_level);
 				if (valid && payload.contains("job_level"))
-					valid = read_integer(payload["job_level"], 1, pc_maxjoblv(sd), job_level);
+					valid = read_integer(payload["job_level"], 1, MAX_LEVEL, job_level);
 				if (valid && payload.contains("job_id"))
 					valid = read_integer(payload["job_id"], 0, std::numeric_limits<int32>::max(), job_id);
-				if (valid && payload.contains("job_id"))
-					valid = pc_jobchange(sd, job_id, 0);
+				if (valid && payload.contains("job_id")) {
+					const uint64 map_id = pc_jobid2mapid(job_id);
+					const int32 normalized_job_id = map_id == static_cast<uint64>(-1)
+						? -1
+						: pc_mapid2jobid(map_id, sd->status.sex);
+					valid = normalized_job_id >= 0 && job_db.exists(normalized_job_id);
+					if (valid && payload.contains("job_level"))
+						valid = static_cast<uint32>(job_level) <= job_db.get_maxJobLv(normalized_job_id);
+					if (valid && normalized_job_id != sd->status.class_)
+						valid = pc_jobchange(sd, normalized_job_id, 0);
+				} else if (valid && payload.contains("job_level")) {
+					valid = static_cast<uint32>(job_level) <= pc_maxjoblv(sd);
+				}
 				if (!valid) {
 					status = 400;
 					result = {{"error", {{"code", "invalid_parameter"}}}};
@@ -564,10 +664,26 @@ void game_control_process() {
 						pc_setparam(sd, SP_BASELEVEL, base_level);
 					if (payload.contains("job_level"))
 						pc_setparam(sd, SP_JOBLEVEL, job_level);
+					if (changes_job_progression)
+						reconcile_job_skill_points(sd, extra_skill_points);
 					chrif_save(sd, CSAVE_NORMAL);
 					status = 200;
-					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->status.class_}}}}}};
+					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->status.class_}, {"skill_points", sd->status.skill_point}}}}}};
 				}
+			}
+		} else if (command_type == "character.skill_points.update") {
+			const auto& payload = body["payload"];
+			int32 skill_points = 0;
+			if (!payload_has_only_keys(payload, {"skill_points"}) || !payload.contains("skill_points")
+				|| !read_integer(payload["skill_points"], 0, INT16_MAX, skill_points)) {
+				status = 400;
+				result = {{"error", {{"code", "invalid_parameter"}}}};
+			} else {
+				pc_setparam(sd, SP_SKILLPOINT, skill_points);
+				clif_updatestatus(*sd, SP_SKILLPOINT);
+				chrif_save(sd, CSAVE_NORMAL);
+				status = 200;
+				result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"skill_points", sd->status.skill_point}}}}}};
 			}
 		} else if (command_type == "character.stats.update") {
 		const auto& payload = body["payload"];
@@ -669,12 +785,12 @@ void game_control_process() {
 		}
 	}
 	const std::string output = response(status, result);
-	if (command_type == "character.inventory.item_grant" && !command_id.empty()) {
-		item_grant_responses[command_id] = output;
-		item_grant_response_order.push_back(command_id);
-		if (item_grant_response_order.size() > ITEM_GRANT_RESPONSE_CACHE_SIZE) {
-			item_grant_responses.erase(item_grant_response_order.front());
-			item_grant_response_order.pop_front();
+	if (is_resource_grant_command(command_type) && !command_id.empty()) {
+		resource_grant_responses[command_id] = output;
+		resource_grant_response_order.push_back(command_id);
+		if (resource_grant_response_order.size() > RESOURCE_GRANT_RESPONSE_CACHE_SIZE) {
+			resource_grant_responses.erase(resource_grant_response_order.front());
+			resource_grant_response_order.pop_front();
 		}
 	}
 #ifndef _WIN32
