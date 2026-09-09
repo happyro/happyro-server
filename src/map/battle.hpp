@@ -205,6 +205,7 @@ struct Battle_Config
 	int32 game_tools_monster_spawn_allow_boss;
 	int32 game_tools_character_maintenance_policy;
 	int32 game_tools_game_settings_policy;
+	int32 game_tools_item_grant_policy;
 	int32 drop_rate0item;
 	int32 death_penalty_type;
 	int32 death_penalty_base,death_penalty_job;

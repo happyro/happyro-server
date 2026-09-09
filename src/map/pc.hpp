@@ -1531,6 +1531,7 @@ int32 pc_allskillup(map_session_data*);
 int32 pc_resetlvl(map_session_data*,int32 type);
 int32 pc_resetstate(map_session_data*);
 int32 pc_resetskill(map_session_data*, int32);
+int32 pc_calc_skillpoint(map_session_data*);
 int32 pc_resetfeel(map_session_data*);
 int32 pc_resethate(map_session_data*);
 bool pc_equipitem(map_session_data *sd, int16 n, int32 req_pos, bool equipswitch=false);

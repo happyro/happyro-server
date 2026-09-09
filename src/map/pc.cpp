@@ -2520,7 +2520,7 @@ void pc_reg_received(map_session_data *sd)
 	channel_autojoin(sd);
 }
 
-static int32 pc_calc_skillpoint(map_session_data* sd)
+int32 pc_calc_skillpoint(map_session_data* sd)
 {
 	uint16 i, skill_point = 0;
 
