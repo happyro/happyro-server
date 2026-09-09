@@ -1,9 +1,11 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 
 #include "game_control.hpp"
+#include "game_control_item_grant.hpp"
 
 #include <algorithm>
 #include <condition_variable>
+#include <deque>
 #include <climits>
 #include <cerrno>
 #include <cstdio>
@@ -15,6 +17,7 @@
 #include <initializer_list>
 #include <thread>
 #include <unordered_set>
+#include <unordered_map>
 #include <vector>
 
 #include <nlohmann/json.hpp>
@@ -56,6 +59,9 @@ std::thread listener;
 bool stopping = false;
 int listener_fd = -1;
 std::string socket_path;
+std::unordered_map<std::string, std::string> item_grant_responses;
+std::deque<std::string> item_grant_response_order;
+constexpr size_t ITEM_GRANT_RESPONSE_CACHE_SIZE = 256;
 
 struct GameControlSettingDefinition {
 	const char* key;
@@ -82,6 +88,7 @@ constexpr GameControlSettingDefinition game_control_settings[] = {
 	{"game_tools_monster_spawn_allow_boss", 0, 1},
 	{"game_tools_character_maintenance_policy", 1, 2},
 	{"game_tools_game_settings_policy", 1, 2},
+	{"game_tools_item_grant_policy", 1, 2},
 };
 
 const GameControlSettingDefinition* find_game_control_setting(const std::string& key) {
@@ -394,16 +401,28 @@ void game_control_process() {
 
 	int status = 400;
 	nlohmann::json result = {{"error", {{"code", "invalid_command"}}}};
+	const std::string command_type = body.is_object() ? body.value("type", "") : "";
+	const std::string command_id = body.is_object() ? body.value("id", "") : "";
+	if (command_type == "character.inventory.item_grant" && !command_id.empty()) {
+		const auto cached = item_grant_responses.find(command_id);
+		if (cached != item_grant_responses.end()) {
+#ifndef _WIN32
+			send(request.fd, cached->second.data(), cached->second.size(), 0);
+#endif
+			close_request(request.fd);
+			return;
+		}
+	}
 	if (!body.is_object() || !body.contains("type") || !body["type"].is_string()
 		|| !body.contains("payload") || !body["payload"].is_object()) {
 		// Keep the default invalid-command response.
-	} else if (const std::string command_type = body["type"].get<std::string>(); command_type == "battle_config.read" || command_type == "battle_config.apply") {
+	} else if (command_type == "battle_config.read" || command_type == "battle_config.apply") {
 		const CommandResult command = process_battle_config_command(command_type, body);
 		status = command.status;
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type == "battle_config.read") {
 		nlohmann::json values = nlohmann::json::object();
 		for (const auto& definition : game_control_settings)
@@ -479,6 +498,7 @@ void game_control_process() {
 		&& command_type != "character.stats.reset"
 		&& command_type != "character.skills.reset"
 		&& command_type != "character.vitals.restore"
+		&& command_type != "character.inventory.item_grant"
 		&& command_type != "monster.spawn") {
 		status = 501;
 		result = {{"error", {{"code", "unsupported_command"}}}};
@@ -493,6 +513,10 @@ void game_control_process() {
 		} else if (map_session_data* sd = map_charid2sd(char_id); sd == nullptr) {
 			status = 409;
 			result = {{"error", {{"code", "character_offline"}}}};
+		} else if (command_type == "character.inventory.item_grant") {
+			const GameControlItemGrantResult grant = game_control_grant_inventory_item(sd, body["payload"]);
+			status = grant.status;
+			result = grant.body;
 		} else if (command_type == "character.snapshot") {
 			if (!body["payload"].empty()) {
 				status = 400;
@@ -645,6 +669,14 @@ void game_control_process() {
 		}
 	}
 	const std::string output = response(status, result);
+	if (command_type == "character.inventory.item_grant" && !command_id.empty()) {
+		item_grant_responses[command_id] = output;
+		item_grant_response_order.push_back(command_id);
+		if (item_grant_response_order.size() > ITEM_GRANT_RESPONSE_CACHE_SIZE) {
+			item_grant_responses.erase(item_grant_response_order.front());
+			item_grant_response_order.pop_front();
+		}
+	}
 #ifndef _WIN32
 	send(request.fd, output.data(), output.size(), 0);
 #endif

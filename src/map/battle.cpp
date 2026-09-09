@@ -8303,6 +8303,7 @@ static const struct _battle_data {
 	{ "game_tools_monster_spawn_allow_boss", &battle_config.game_tools_monster_spawn_allow_boss, 0,      0,      1,              },
 	{ "game_tools_character_maintenance_policy", &battle_config.game_tools_character_maintenance_policy, 2, 1, 2,              },
 	{ "game_tools_game_settings_policy",     &battle_config.game_tools_game_settings_policy, 2,     1,      2,              },
+	{ "game_tools_item_grant_policy",        &battle_config.game_tools_item_grant_policy, 2,        1,      2,              },
 	{ "pvp_exp",                            &battle_config.pvp_exp,                         1,      0,      1,              },
 	{ "death_penalty_type",                 &battle_config.death_penalty_type,              0,      0,      2,              },
 	{ "death_penalty_base",                 &battle_config.death_penalty_base,              0,      0,      INT_MAX,        },
