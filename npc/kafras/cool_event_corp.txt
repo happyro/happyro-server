@@ -26,50 +26,40 @@ function	script	F_CoolEventCorp	{
 	cutin "zonda_01",2;
 	mes "[Cool Event Corp. Staff]";
 	mes "欢迎来到 Cool Event Corp。";
-	mes "我们的员工一直努力";
-	mes "超越您的期待，";
-	mes "提供优质服务。今天";
-	mes "我能为您做些什么？";
+	mes "我们的员工一直努力超越您的期待，提供优质服务。";
+	mes "今天我能为您做些什么？";
 	next;
 	switch(select(getarg(0))) {
 	case 1:
 		mes "[Cool Event Corp. Staff]";
-		mes "您的重生点";
-		mes "已保存于此处";
-		mes getarg(1)+".";
-		mes "感谢您使用";
-		mes "Cool Event Corp. 的服务～";
+		mes "您的重生点已保存于此处" + getarg(1) + ".";
+		mes "感谢您使用 Cool Event Corp. 的服务～";
 		savepoint getarg(2),getarg(3),getarg(4),1,1;
 		close2;
 		break;
 	case 2:
 		mes "[Cool Event Corp. Staff]";
 		if(!callfunc("F_CanOpenStorage")){
-			mes "抱歉，您需要";
-			mes "新手基础技能达到 6 级";
-			mes "才能使用仓库服务。";
+			mes "抱歉，您需要新手基础技能达到 6 级才能使用仓库服务。";
 			close2;
 			break;
 			}
 		if(Zeny < 40){
-		mes "抱歉，您的 Zeny 不足，";
-			mes "无法使用仓库服务。";
+		mes "抱歉，您的 Zeny 不足，无法使用仓库服务。";
 			mes "仓库访问费为 40 Zeny。";
 			close2;
 			break;
 			}
 			set Zeny, Zeny - 40;
-		mes "我马上为您打开";
-		mes "个人仓库。";
-		mes "感谢您使用 Cool Event Corp.";
-		mes "的服务来支持我们。祝您愉快～";
+		mes "我马上为您打开个人仓库。";
+		mes "感谢您使用 Cool Event Corp. 的服务来支持我们。";
+		mes "祝您愉快～";
 		callfunc("F_CheckKafCode");	//check your storage password, if set
 		close2;
 		openstorage;
 		break;
 		case 3:
-		mes "请选择";
-		mes "您的目的地。";
+		mes "请选择您的目的地。";
 	next;
 		if (VIP_SCRIPT && !vip_status(VIP_STATUS_ACTIVE))
 		set .@cost,4400;
@@ -91,9 +81,8 @@ function	script	F_CoolEventCorp	{
 				}
 				else {
 				mes "[Cool Event Corp. Staff]";
-			mes "抱歉，您的 Zeny 不足，无法使用";
-			mes "传送服务。传送到";
-				mes .@destination$ +"的费用为 "+.@cost+" Zeny。";
+			mes "抱歉，您的 Zeny 不足，无法使用传送服务。";
+				mes "传送到 " + .@destination$ + " 的费用为 " + .@cost + " Zeny。";
 				}
 				}
 				close2;
@@ -101,29 +90,22 @@ function	script	F_CoolEventCorp	{
 			case 4:
 		mes "[Cool Event Corp. Staff]";
 		if(BaseClass != Job_Merchant){
-		mes "抱歉，";
-	mes "手推车租赁服务";
 		if (checkre(0))
-		mes "仅对商人系职业开放。";
+		mes "抱歉，手推车租赁服务仅对商人系职业开放。";
 			else {
-			mes "仅对商人、铁匠、神工匠、";
-			mes "炼金术士和创造者开放。";
+			mes "抱歉，手推车租赁服务仅对商人、铁匠、神工匠、炼金术士和创造者开放。";
 				}
 			close2;
 				break;
 				}
 				if(getskilllv("MC_PUSHCART") == 0){
-			mes "学习手推车技能后才能";
-			mes "租用手推车。";
+			mes "学习手推车技能后才能租用手推车。";
 			close2;
 		break;
 		}
 			if(checkcart() == 1){
-			mes "您已经装备了";
-			mes "一辆手推车。";
-			mes "很抱歉，每位顾客";
-		mes "一次只能租用";
-		mes "一辆手推车。";
+			mes "您已经装备了一辆手推车。";
+			mes "很抱歉，每位顾客一次只能租用一辆手推车。";
 			close2;
 			break;
 			}
@@ -133,15 +115,12 @@ function	script	F_CoolEventCorp	{
 			close2;
 		break;
 		}
-			mes "手推车租赁";
-			mes "费用为 800 Zeny。要租用手推车吗？";
+			mes "手推车租赁费用为 800 Zeny。要租用手推车吗？";
 			next;
 			if(select("租用手推车:取消") == 1){
 		if(Zeny < 800){
 		mes "[Cool Event Corp. Staff]";
-		mes "抱歉，您的 Zeny 不足以支付";
-		mes "手推车 800 Zeny 的";
-		mes "租赁费用。";
+		mes "抱歉，您的 Zeny 不足以支付 800 Zeny 的手推车租赁费用。";
 		} else {
 			set Zeny, Zeny - 800;
 				setcart;
@@ -155,11 +134,8 @@ function	script	F_CoolEventCorp	{
 			case 6:
 		default:
 		mes "[Cool Event Corp. Staff]";
-		mes "Cool Event Corp. 一直";
-	mes "努力为顾客提供最好的";
-		mes "服务。";
-		mes "请提供您的意见和";
-	mes "诚实反馈，帮助我们变得更好。谢谢。";
+		mes "Cool Event Corp. 一直努力为顾客提供最好的服务。";
+		mes "请提供您的意见和诚实反馈，帮助我们变得更好。谢谢。";
 	close2;
 		}
 		cutin "", 255;

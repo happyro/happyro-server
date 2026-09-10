@@ -10577,15 +10577,20 @@ void clif_parse_happyro_map_teleport( int32 fd, map_session_data* sd ){
 		}
 	}
 
-	char parameters[CHAT_SIZE_MAX];
-	safesnprintf(parameters, sizeof(parameters), "%s %hu %hu", map_name, packet->x, packet->y);
-	if (!atcommand_mapmove(fd, sd, parameters)) {
+	int16 x = packet->x;
+	int16 y = packet->y;
+	if ((x != 0 || y != 0) && map_getcell(map_id, x, y, CELL_CHKNOPASS)
+		&& !map_search_freecell(nullptr, map_id, &x, &y, 10, 10, 1)) {
+		x = 0;
+		y = 0;
+	}
+	if (pc_setpos(sd, mapindex, x, y, CLR_TELEPORT) != SETPOS_OK) {
 		clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_FAILED);
 		return;
 	}
 	sd->navigation_teleport_tick = tick;
 	char command[CHAT_SIZE_MAX];
-	safesnprintf(command, sizeof(command), "%cmapmove %s", atcommand_symbol, parameters);
+	safesnprintf(command, sizeof(command), "%cmapmove %s %hu %hu", atcommand_symbol, map_name, packet->x, packet->y);
 	log_atcommand(sd, command);
 	clif_happyro_map_teleport_result(fd, packet->requestId, HAPPYRO_MAP_TELEPORT_SUCCESS,
 		map_name, sd->x, sd->y, battle_config.navigation_teleport_cooldown);

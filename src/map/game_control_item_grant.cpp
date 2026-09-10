@@ -41,7 +41,8 @@ GameControlItemGrantResult game_control_grant_inventory_item(
 	map_session_data* sd,
 	const nlohmann::json& payload
 ) {
-	if (!payload.is_object() || payload.size() != 2 || !payload.contains("item_id") || !payload.contains("amount"))
+	if (!payload.is_object() || (payload.size() != 2 && payload.size() != 3) || !payload.contains("item_id")
+		|| !payload.contains("amount") || (payload.size() == 3 && !payload.contains("identify")))
 		return {400, {{"error", {{"code", "invalid_parameter"}}}}};
 
 	int32 item_id = 0;
@@ -49,6 +50,12 @@ GameControlItemGrantResult game_control_grant_inventory_item(
 	if (!read_integer(payload["item_id"], 1, std::numeric_limits<int32>::max(), item_id)
 		|| !read_integer(payload["amount"], 1, MAX_AMOUNT, amount))
 		return {400, {{"error", {{"code", "invalid_parameter"}}}}};
+	bool identify = false;
+	if (payload.contains("identify")) {
+		if (!payload["identify"].is_boolean())
+			return {400, {{"error", {{"code", "invalid_parameter"}}}}};
+		identify = payload["identify"].get<bool>();
+	}
 
 	const auto item_data = item_db.find(static_cast<t_itemid>(item_id));
 	if (item_data == nullptr || !item_data->flag.available)
@@ -69,7 +76,7 @@ GameControlItemGrantResult game_control_grant_inventory_item(
 	for (int32 index = 0; index < grant_count; ++index) {
 		item granted{};
 		granted.nameid = item_data->nameid;
-		granted.identify = itemdb_isidentified(item_data->nameid);
+		granted.identify = identify ? 1 : itemdb_isidentified(item_data->nameid);
 		const e_additem_result result = pc_additem(sd, &granted, grant_amount, LOG_TYPE_COMMAND);
 		if (result != ADDITEM_SUCCESS)
 			return {409, {{"error", {{"code", error_code(result)}}}}};

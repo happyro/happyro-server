@@ -635,6 +635,7 @@ void game_control_process() {
 				int32 base_level = 0;
 				int32 job_level = 0;
 				int32 job_id = 0;
+				bool changed_job = false;
 				const bool changes_job_progression = payload.contains("job_level") || payload.contains("job_id");
 				const uint32 extra_skill_points = changes_job_progression ? extra_job_skill_points(sd) : 0;
 				if (payload.contains("base_level"))
@@ -651,8 +652,10 @@ void game_control_process() {
 					valid = normalized_job_id >= 0 && job_db.exists(normalized_job_id);
 					if (valid && payload.contains("job_level"))
 						valid = static_cast<uint32>(job_level) <= job_db.get_maxJobLv(normalized_job_id);
-					if (valid && normalized_job_id != sd->status.class_)
+					if (valid && normalized_job_id != sd->status.class_) {
 						valid = pc_jobchange(sd, normalized_job_id, 0);
+						changed_job = valid;
+					}
 				} else if (valid && payload.contains("job_level")) {
 					valid = static_cast<uint32>(job_level) <= pc_maxjoblv(sd);
 				}
@@ -666,6 +669,11 @@ void game_control_process() {
 						pc_setparam(sd, SP_JOBLEVEL, job_level);
 					if (changes_job_progression)
 						reconcile_job_skill_points(sd, extra_skill_points);
+					if (changed_job) {
+						pc_setparam(sd, SP_HP, sd->battle_status.max_hp);
+						pc_setparam(sd, SP_SP, sd->battle_status.max_sp);
+						pc_setparam(sd, SP_AP, sd->battle_status.max_ap);
+					}
 					chrif_save(sd, CSAVE_NORMAL);
 					status = 200;
 					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->status.class_}, {"skill_points", sd->status.skill_point}}}}}};
