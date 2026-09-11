@@ -1217,11 +1217,11 @@ int32 mapif_parse_CreateGuild(int32 fd,uint32 account_id,char *name,struct guild
 
 	// Set default positions
 	g->guild.position[0].mode = GUILD_PERM_DEFAULT;
-	strcpy(g->guild.position[0].name,"GuildMaster");
-	strcpy(g->guild.position[MAX_GUILDPOSITION-1].name,"Newbie");
+	strcpy(g->guild.position[0].name,"会长");
+	strcpy(g->guild.position[MAX_GUILDPOSITION-1].name,"新成员");
 	g->guild.position[0].modified = g->guild.position[MAX_GUILDPOSITION-1].modified = GS_POSITION_MODIFIED;
 	for(i=1;i<MAX_GUILDPOSITION-1;i++) {
-		sprintf(g->guild.position[i].name,"Position %d",i+1);
+		sprintf(g->guild.position[i].name,"职位 %d",i);
 		g->guild.position[i].modified = GS_POSITION_MODIFIED;
 	}
 
