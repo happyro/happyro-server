@@ -3,6 +3,7 @@
 #include "game_control_item_grant.hpp"
 
 #include <limits>
+#include <vector>
 
 #include <common/mmo.hpp>
 
@@ -73,13 +74,29 @@ GameControlItemGrantResult game_control_grant_inventory_item(
 	if (check == CHKADDITEM_NEW && pc_inventoryblank(sd) < item_data->inventorySlotNeeded(amount))
 		return {409, {{"error", {{"code", "inventory_full"}}}}};
 
+	std::vector<int32> granted_indexes;
+	granted_indexes.reserve(grant_count);
 	for (int32 index = 0; index < grant_count; ++index) {
 		item granted{};
 		granted.nameid = item_data->nameid;
 		granted.identify = identify ? 1 : itemdb_isidentified(item_data->nameid);
+		int32 empty_slot = -1;
+		if (grant_count > 1) {
+			for (int32 slot = 0; slot < MAX_INVENTORY; ++slot) {
+				if (sd->inventory.u.items_inventory[slot].nameid == 0) {
+					empty_slot = slot;
+					break;
+				}
+			}
+		}
 		const e_additem_result result = pc_additem(sd, &granted, grant_amount, LOG_TYPE_COMMAND);
-		if (result != ADDITEM_SUCCESS)
+		if (result != ADDITEM_SUCCESS) {
+			for (auto it = granted_indexes.rbegin(); it != granted_indexes.rend(); ++it)
+				pc_delitem(sd, *it, grant_amount, 0, 0, LOG_TYPE_COMMAND);
 			return {409, {{"error", {{"code", error_code(result)}}}}};
+		}
+		if (empty_slot >= 0)
+			granted_indexes.push_back(empty_slot);
 	}
 
 	chrif_save(sd, CSAVE_NORMAL);

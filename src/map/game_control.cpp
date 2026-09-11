@@ -33,6 +33,7 @@
 #include "log.hpp"
 #include "mob.hpp"
 #include "pc.hpp"
+#include "status.hpp"
 
 #ifndef _WIN32
 #include <sys/socket.h>
@@ -491,75 +492,6 @@ void game_control_process() {
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
 		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
-	} else if (command_type == "battle_config.read") {
-		nlohmann::json values = nlohmann::json::object();
-		for (const auto& definition : game_control_settings)
-			values[definition.key] = battle_get_value(definition.key);
-		status = 200;
-		result = {{"data", {{"result", {{"values", values}}}}}};
-	} else if (command_type == "battle_config.apply") {
-		const auto& payload = body["payload"];
-		const auto changes = payload.contains("changes") && payload["changes"].is_array()
-			? payload["changes"]
-			: nlohmann::json::array();
-		bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
-		std::unordered_set<std::string> keys;
-		for (const auto& change : changes) {
-			if (!change.is_object() || !payload_has_only_keys(change, {"key", "value"})
-				|| !change.contains("key") || !change["key"].is_string() || !change.contains("value")) {
-				valid = false;
-				break;
-			}
-			const std::string key = change["key"].get<std::string>();
-			const auto* definition = find_game_control_setting(key);
-			int32 value = 0;
-			if (definition == nullptr || !keys.insert(key).second
-				|| !read_integer(change["value"], definition->minimum, definition->maximum, value)) {
-				valid = false;
-				break;
-			}
-		}
-		if (!valid) {
-			status = 400;
-			result = {{"error", {{"code", "invalid_parameter"}}}};
-		} else {
-			nlohmann::json applied = nlohmann::json::array();
-			std::vector<std::pair<std::string, int32>> previous_values;
-			for (const auto& change : changes) {
-				const std::string key = change["key"].get<std::string>();
-				const int32 previous = battle_get_value(key.c_str());
-				const std::string value = std::to_string(change["value"].get<int64>());
-				if (battle_set_value(key.c_str(), value.c_str()) == 0) { valid = false; break; }
-				previous_values.emplace_back(key, previous);
-				applied.push_back({{"key", key}, {"previous", previous}, {"value", battle_get_value(key.c_str())}});
-			}
-			if (!valid) {
-				for (auto it = previous_values.rbegin(); it != previous_values.rend(); ++it) {
-					const std::string previous = std::to_string(it->second);
-					battle_set_value(it->first.c_str(), previous.c_str());
-				}
-				status = 409;
-				result = {{"error", {{"code", "configuration_conflict"}}}};
-			} else {
-				if (keys.count("navigation_teleport_policy") != 0
-					|| keys.count("navigation_teleport_cross_map") != 0
-					|| keys.count("navigation_teleport_cooldown") != 0
-					|| keys.count("navigation_map_channels_enabled") != 0) {
-					clif_navigation_teleport_config_all();
-				}
-				if (keys.count("navigation_map_channels_enabled") != 0
-					&& !battle_config.navigation_map_channels_enabled) {
-					map_foreachpc(merge_map_channel_player);
-				}
-				if (keys.count("game_tools_monster_spawn_policy") != 0
-					|| keys.count("game_tools_monster_spawn_cooldown") != 0
-					|| keys.count("game_tools_monster_spawn_allow_boss") != 0) {
-					clif_game_tools_monster_spawn_config_all();
-				}
-				status = 200;
-				result = {{"data", {{"result", {{"changes", applied}}}}}};
-			}
-		}
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.progression.update"
 		&& command_type != "character.skill_points.update"
@@ -670,9 +602,13 @@ void game_control_process() {
 					if (changes_job_progression)
 						reconcile_job_skill_points(sd, extra_skill_points);
 					if (changed_job) {
-						pc_setparam(sd, SP_HP, sd->battle_status.max_hp);
-						pc_setparam(sd, SP_SP, sd->battle_status.max_sp);
-						pc_setparam(sd, SP_AP, sd->battle_status.max_ap);
+						if (pc_isdead(sd))
+							status_revive(sd, 100, 100, 100);
+						else {
+							pc_setparam(sd, SP_HP, sd->battle_status.max_hp);
+							pc_setparam(sd, SP_SP, sd->battle_status.max_sp);
+							pc_setparam(sd, SP_AP, sd->battle_status.max_ap);
+						}
 					}
 					chrif_save(sd, CSAVE_NORMAL);
 					status = 200;
@@ -782,10 +718,20 @@ void game_control_process() {
 			status = 400;
 			result = {{"error", {{"code", "invalid_parameter"}}}};
 		} else {
+			bool restore_hp = false;
+			bool restore_sp = false;
+			bool restore_ap = false;
 			for (const auto& vital : vitals) {
-				if (vital == "hp") pc_setparam(sd, SP_HP, sd->battle_status.max_hp);
-				else if (vital == "sp") pc_setparam(sd, SP_SP, sd->battle_status.max_sp);
-				else pc_setparam(sd, SP_AP, sd->battle_status.max_ap);
+				if (vital == "hp") restore_hp = true;
+				else if (vital == "sp") restore_sp = true;
+				else restore_ap = true;
+			}
+			if (restore_hp && pc_isdead(sd))
+				status_revive(sd, 100, restore_sp ? 100 : 0, restore_ap ? 100 : 0);
+			else {
+				if (restore_hp) pc_setparam(sd, SP_HP, sd->battle_status.max_hp);
+				if (restore_sp) pc_setparam(sd, SP_SP, sd->battle_status.max_sp);
+				if (restore_ap) pc_setparam(sd, SP_AP, sd->battle_status.max_ap);
 			}
 			status = 200;
 			result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"hp", sd->battle_status.hp}, {"sp", sd->battle_status.sp}, {"ap", sd->battle_status.ap}}}}}};
