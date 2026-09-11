@@ -642,7 +642,6 @@ bool atcommand_mapmove(int32 fd, map_session_data* sd, const char* message)
 		return false;
 	}
 
-	clif_displaymessage(fd, msg_txt(sd,0)); // Warped.
 	return true;
 }
 
