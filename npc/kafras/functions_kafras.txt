@@ -81,10 +81,8 @@ function	script	F_Kafra	{
 	switch(.@welcome) {
 	default:// Default message (obsolete)
 		mes "[Kafra Employee]";
-		mes "欢迎来到";
-		mes "卡普拉公司。";
-		mes "卡普拉服务";
-		mes "永远站在你这边。";
+		mes "欢迎来到卡普拉公司。";
+		mes "卡普拉服务永远站在你这边。";
 		mes "我能为你做什么？";
 		break;
 	case 1:// Niflheim specific message
@@ -102,14 +100,11 @@ function	script	F_Kafra	{
 		mes "[Kafra Employee]";
 		mes "你是从远方来研究我们的文化，还是来观光？";
 		mes "不管怎样，何不留一会儿？";
-		mes "空气中永远弥漫着";
-		mes "野花的怡人香气。";
+		mes "空气中永远弥漫着野花的怡人香气。";
 		break;
 	case 4:// Luoyang and Ayothaya specific message (obsolete)
 		mes "[Kafra Employee]";
-		mes "卡普拉服务地点众多，";
-		mes "无论走到哪里，";
-		mes "都不会离家太远。";
+		mes "卡普拉服务地点众多，无论走到哪里，都不会离家太远。";
 		break;
 	case 5:// NPC has it's own welcome message. (Display nothing)
 		break;
@@ -159,16 +154,11 @@ function	script	F_Kafra	{
 				callfunc "F_KafTele",.@welcome;
 			else {
 				mes "[Kafra Employee]";
-				mes "由于^FF0000有限";
-				mes "运输协定^000000，卡普拉公司";
-				mes "无法在";
-				mes "施瓦尔茨瓦尔德共和国";
-				mes "提供传送服务。";
+				mes "由于^FF0000有限运输协定^000000，卡普拉公司无法在施瓦尔茨瓦尔德共和国提供传送服务。";
 				next;
 				mes "[Kafra Employee]";
-				mes "请改用";
-				mes "飞艇服务。感谢你的";
-				mes "理解与配合。";
+				mes "请改用飞艇服务。";
+				mes "感谢你的理解与配合。";
 			}
 			next;
 		}
@@ -220,9 +210,7 @@ function	script	F_KafStor	{
 		mes "基、基础技能6级……^000000";
 			return;
 		}
-		mes "抱歉，你需要";
-		mes "初学者基础技能达到6级，才能";
-		mes "使用仓库服务。";
+		mes "抱歉，你需要初学者基础技能达到6级，才能使用仓库服务。";
 		return;
 	}
 	// Accessing Normal Storage (Skipped if accessing Storage from Guild castle)
@@ -243,9 +231,8 @@ function	script	F_KafStor	{
 					return;
 				}
 				// Standard Message
-				mes "抱歉，你没有足够的Zeny";
-				mes "使用仓库服务。我们的";
-				mes "仓库使用费是" + .@fee + " Zeny。";
+				mes "抱歉，你没有足够的 Zeny 使用仓库服务。";
+				mes "仓库使用费是 " + .@fee + " Zeny。";
 				return;
 			}
 			Zeny -= .@fee;
@@ -265,10 +252,8 @@ function	script	F_KafStor	{
 		// Normal message
 		else {
 			mes "[Kafra Employee]";
-			mes "来，我为你打开";
-			mes "仓库。";
-			mes "感谢使用";
-			mes "卡普拉服务。";
+			mes "来，我为你打开仓库。";
+			mes "感谢使用卡普拉服务。";
 		}
 	}
 	callfunc("F_CheckKafCode");	//check your storage password, if set
@@ -283,8 +268,7 @@ function	script	F_KafStor	{
 //===================================================
 function	script	F_KafTele	{
 	mes "[Kafra Employee]";
-	mes "请选择";
-	mes "目的地。";
+	mes "请选择目的地。";
 	next;
 	.@j = select( implode(@wrpC$,":") ) - 1;
 	if (@wrpC$[.@j] == "取消")
@@ -333,23 +317,18 @@ function	script	F_KafCart	{
 	// Ensure that the class wanting to rent a pushcart is a merchant
 	if (BaseClass != Job_Merchant) {
 		mes "[Kafra Employee]";
-		mes "抱歉，手推车租赁服务";
 		if (checkre(0) == true)
-			mes "仅对商人系职业开放。";
+			mes "抱歉，手推车租赁服务仅对商人系职业开放。";
 		else {
-			mes "仅对商人、铁匠、";
-			mes "神工匠、炼金术士和创造者开放。";
+			mes "抱歉，手推车租赁服务仅对商人、铁匠、神工匠、炼金术士和创造者开放。";
 		}
 		return 1;
 	}
 	// Make sure the invoking character does not have a cart already
 	else if (checkcart() == true) {
 		mes "[Kafra Employee]";
-		mes "你已经装备了";
-		mes "手推车。";
-		mes "很遗憾，我们不能";
-		mes "一次只能服务一位顾客。";
-		mes "一次只能服务一位顾客。";
+		mes "你已经装备了手推车。";
+		mes "很遗憾，每位顾客一次只能租用一辆手推车。";
 		return 1;
 	}
 	// Check if the player has the Pushcart skill
@@ -365,16 +344,13 @@ function	script	F_KafCart	{
 	else {
 		.@rental_fee = getarg(1);
 		mes "[Kafra Employee]";
-		mes "手推车租赁";
-		mes "费用为" + .@rental_fee + " Zeny。要租赁手推车吗？";
+		mes "手推车租赁费用为 " + .@rental_fee + " Zeny。要租赁手推车吗？";
 		next;
 		if (select("租赁手推车。:取消") == 2)
 			return 0;
 		if (Zeny < .@rental_fee) {
 			mes "[Kafra Employee]";
-			mes "抱歉，你没有足够的Zeny";
-			mes "支付手推车";
-			mes "租赁费" + .@rental_fee + " Zeny。";
+			mes "抱歉，你没有足够的 Zeny 支付 " + .@rental_fee + " Zeny 的手推车租赁费。";
 			return 1;
 		}
 		Zeny -= .@rental_fee;
@@ -404,14 +380,11 @@ function	script	F_KafInfo	{
 			mes "[Kafra Employee]";
 			mes "让我看看……";
 			mes "" + strcharinfo(0) + "...";
-		mes "啊，你总共有";
-		mes "" + RESRVPTS + "点特别储备积分。";
+		mes "啊，你总共有 " + RESRVPTS + " 点特别储备积分。";
 			next;
 			mes "[Kafra Employee]";
-		mes "你可以在艾尔帕兰卡普拉总部";
-		mes "用特别储备积分兑换";
-		mes "奖励。请使用我们的便捷服务，";
-		mes "了解奖励计划的好处。";
+		mes "你可以在艾尔帕兰卡普拉总部用特别储备积分兑换奖励。";
+		mes "请使用我们的便捷服务，了解奖励计划的好处。";
 			if (getarg(0) == 1)
 				return;
 			next;
@@ -440,14 +413,10 @@ function	script	F_KafEnd	{
 	.@type = getarg(0);
 	mes "[Kafra Employee]";
 	if (getarg(1) == true) {// Save
-		mes "你的重生点";
-		mes "已保存于此处";
-		mes "" + getarg(2) + ".";
-		mes "感谢使用";
-		mes "卡普拉服务。";
+		mes "你的重生点已保存于此处" + getarg(2) + ".";
+		mes "感谢使用卡普拉服务。";
 	} else if (.@type == 0 || .@type == 5) {// Generic End
-		mes "我们卡普拉公司";
-		mes "始终努力提供最佳服务，希望满足你的冒险需求和卓越标准。";
+		mes "我们卡普拉公司始终努力提供最佳服务，希望满足你的冒险需求和卓越标准。";
 	} else if (.@type == 1) {// Niflheim End
 		percentheal 0,-25;
 		mes "^666666卡、卡普拉永、永远";
