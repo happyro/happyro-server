@@ -1530,6 +1530,8 @@ struct PACKET_CZ_HAPPYRO_NPC_AVAILABILITY {
 	PACKET_CZ_HAPPYRO_NPC_AVAILABILITY_ENTRY npcs[];
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_HAPPYRO_NPC_AVAILABILITY, 0xcfa);
+static_assert(sizeof(PACKET_CZ_HAPPYRO_NPC_AVAILABILITY) == 10, "NPC request header wire layout");
+static_assert(sizeof(PACKET_CZ_HAPPYRO_NPC_AVAILABILITY_ENTRY) == 24, "NPC request entry wire layout");
 
 struct PACKET_ZC_HAPPYRO_NPC_AVAILABILITY_RESULT {
 	int16 packetType;
@@ -1539,6 +1541,7 @@ struct PACKET_ZC_HAPPYRO_NPC_AVAILABILITY_RESULT {
 	uint8 available[];
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_AVAILABILITY_RESULT, 0xcfb);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_NPC_AVAILABILITY_RESULT) == 10, "NPC result header wire layout");
 
 struct PACKET_ZC_HAPPYRO_NPC_TELEPORT_RESULT {
 	int16 packetType;
