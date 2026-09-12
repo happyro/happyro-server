@@ -392,6 +392,8 @@ int32 recv_to_fifo(int32 fd)
 		return 0;
 	}
 
+	if (session[fd]->rdata_size == session[fd]->rdata_pos)
+		session[fd]->rdata_frame_tick = last_tick;
 	session[fd]->rdata_size += len;
 	session[fd]->rdata_tick = last_tick;
 #ifdef SHOW_SERVER_STATS
@@ -1023,17 +1025,30 @@ int32 do_sockets(t_tick next)
 			}
 		}
 
+		// An absolute frame deadline also bounds a peer that keeps sending a
+		// trickle of bytes without ever completing a packet.
+		if (!session[i]->flag.server && session[i]->rdata_frame_tick &&
+			DIFF_TICK(last_tick, session[i]->rdata_frame_tick) > stall_time) {
+			ShowWarning("Session #%d incomplete frame timed out (%zu bytes buffered).\n", i, session[i]->rdata_size - session[i]->rdata_pos);
+			set_eof(i);
+		}
 		session[i]->func_parse(i);
 
 		if(!session[i])
 			continue;
 
-		// after parse, check client's RFIFO size to know if there is an invalid packet (too big and not parsed)
-		if (session[i]->rdata_size == RFIFO_SIZE && session[i]->max_rdata == RFIFO_SIZE) {
+		// Parsers may deliberately process only a few packets per cycle. Reclaim
+		// consumed bytes before deciding that an unparsed frame fills the buffer.
+		if (session[i]->rdata_pos)
+			session[i]->rdata_frame_tick = last_tick;
+		RFIFOFLUSH(i);
+		if (!session[i]->rdata_size)
+			session[i]->rdata_frame_tick = 0;
+		if (session[i]->rdata_size == session[i]->max_rdata) {
+			ShowWarning("Session #%d receive buffer exhausted (%zu bytes unconsumed).\n", i, session[i]->rdata_size);
 			set_eof(i);
 			continue;
 		}
-		RFIFOFLUSH(i);
 	}
 
 #ifdef SHOW_SERVER_STATS

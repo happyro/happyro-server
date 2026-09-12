@@ -10382,13 +10382,19 @@ static npc_data* clif_happyro_navigation_npc( map_session_data* sd, const char* 
 
 void clif_parse_happyro_npc_availability( int32 fd, map_session_data* sd ){
 	const uint16 packet_length = RFIFOW(fd, 2);
-	if (packet_length < sizeof(PACKET_CZ_HAPPYRO_NPC_AVAILABILITY))
+	if (packet_length < sizeof(PACKET_CZ_HAPPYRO_NPC_AVAILABILITY)) {
+		ShowWarning("NPC availability: truncated header (%u bytes), session #%d.\n", packet_length, fd);
+		set_eof(fd);
 		return;
+	}
 	const auto* packet = reinterpret_cast<PACKET_CZ_HAPPYRO_NPC_AVAILABILITY*>(RFIFOP(fd, 0));
 	constexpr uint16 max_count = 50;
 	const size_t expected_length = sizeof(*packet) + static_cast<size_t>(packet->count) * sizeof(packet->npcs[0]);
-	if (packet->count > max_count || packet_length != expected_length)
+	if (packet->count > max_count || packet_length != expected_length) {
+		ShowWarning("NPC availability: invalid count/length (%u/%u), session #%d.\n", packet->count, packet_length, fd);
+		set_eof(fd);
 		return;
+	}
 
 	const uint16 response_length = static_cast<uint16>(sizeof(PACKET_ZC_HAPPYRO_NPC_AVAILABILITY_RESULT) + packet->count);
 	WFIFOHEAD(fd, response_length);
@@ -26174,13 +26180,12 @@ static int32 clif_parse(int32 fd)
 			return 0;
 		}
 	}
-	if ((int32)RFIFOREST(fd) < packet_len){
-		ShowWarning( "clif_parse: Received packet 0x%04x with expected packet length %d, but only %d bytes remaining, disconnecting session #%d.\n", cmd, packet_len, RFIFOREST( fd ), fd );
-#ifdef DUMP_INVALID_PACKET
-		ShowDump( RFIFOP( fd, 0 ), RFIFOREST( fd ) );
-#endif
-		set_eof( fd );
-		return 0; // not enough data received to form the packet
+	if ((int32)RFIFOREST(fd) < packet_len) {
+		// TCP preserves bytes, not packet boundaries. Reserve enough space for a
+		// validated frame and wait without consuming bytes or advancing cryptKey.
+		if (session[fd]->max_rdata < static_cast<size_t>(packet_len))
+			realloc_fifo(fd, packet_len, session[fd]->max_wdata);
+		return 0;
 	}
 
 #ifdef PACKET_OBFUSCATION
