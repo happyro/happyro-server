@@ -59,7 +59,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	mes "你好。我能帮助你吗？";
 	next;
 	while (1) {
-		switch (select("伊甸园集团是什么？：加入伊甸园集团：登记新任务：搜索任务：取消。")) {
+		switch (select("伊甸园集团是什么？:加入伊甸园集团:登记新任务:搜索任务:取消。")) {
 		case 1:
 			mes "[莱姆·伊维诺]";
 			mes "伊甸园集团是帮助米德加尔特受苦人们的组织。";
@@ -82,7 +82,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 				mes "只要向我登记，就能成为伊甸园成员。";
 				mes "想加入伊甸园集团吗？";
 				next;
-				switch (select("是的，我想加入：不，我不想加入。")) {
+				switch (select("是的，我想加入:不，我不想加入。")) {
 				case 1:
 					mes "[莱姆·伊维诺]";
 					mes "好的。太棒了！请在这里写下你的名字。";
@@ -93,7 +93,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 					mes "让我看看。";
 					next;
 					mes "[莱姆·伊维诺]";
-					mes "你的名字是^3131FFBo"+.@input$+"Ba^000000……？对吗？";
+					mes "你的名字是^3131FF波"+.@input$+"巴^000000……？对吗？";
 					mes "咦？不是吗？？";
 					next;
 					emotion ET_SWEAT;
@@ -135,22 +135,22 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			mes "[莱姆·伊维诺]";
 			mes "想登记一些希望我们完成的任务吗？";
 			next;
-			if(select("是的，我想登记：不，我不想。") == 1) {
+			if(select("是的，我想登记:不，我不想。") == 1) {
 				mes "[莱姆·伊维诺]";
 					mes "好的。请在上面写下你的名字。";
 				input .@input$;
 				next;
 				mes "[莱姆·伊维诺]";
-				mes "^3131FF"+strcharinfo(0)+"^000000.. Is that your name?";
+				mes "^3131FF"+strcharinfo(0)+"^000000……这是你的名字吗？";
 					mes "嗯，你的字迹不清楚。我看不懂。";
 				next;
 				mes "[莱姆·伊维诺]";
-				mes "^3131FF"+strcharinfo(0)+"^000000, tell me what you want to register for.";
+				mes "^3131FF"+strcharinfo(0)+"^000000，告诉我你想登记什么任务。";
 				mes "我们应该去哪个地图？";
 				input .@input$;
 				next;
 				mes "[莱姆·伊维诺]";
-				mes "^3131FFMission Map: "+.@inputstr$+"^000000";
+				mes "^3131FF任务地图："+.@input$+"^000000";
 				mes "嗯，我会记下。";
 				next;
 				mes "[莱姆·伊维诺]";
@@ -174,12 +174,12 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 				next;
 				emotion ET_HNG;
 				mes "[莱姆·伊维诺]";
-				mes "^3131FFClient: Lime Evenor^000000";
+				mes "^3131FF委托人：莱姆·伊维诺^000000";
 				mes "^3131FF任务：练习一个月的书写。^000000";
 				mes "你的字迹实在太差了！";
 				next;
 				mes "[莱姆·伊维诺]";
-				mes "^3131FFMission:"+.@input$+"^000000";
+				mes "^3131FF任务："+.@input$+"^000000";
 				mes "总之，你已经完成新任务登记。";
 				next;
 				mes "[莱姆·伊维诺]";
@@ -224,7 +224,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	mes "想成为解决问题的人吗？";
 	mes "伊甸园集团可以解决你的问题。";
 	next;
-	switch (select("前往伊甸园集团：不想再说话了。")) {
+	switch (select("前往伊甸园集团:不想再说话了。")) {
 	case 1:
 		mes "[伊甸园传送人员]";
 		mes "去我们的秘密基地吧！";
@@ -319,23 +319,23 @@ OnTouch:
 
 moc_para01,47,39,3	script	#warp_2_pass	111,{
 	if (callfunc("F_HasEdenGroupMark")) {
-		mes "[Lime Evenor]";
+		mes "[莱姆·伊维诺]";
 		mes "哦，这里是伊甸园成员专属的地方。";
 		mes "如果你是成员，随时都可以来！";
 		next;
-		switch (select("进入：不进入。")) {
+		switch (select("进入:不进入。")) {
 		case 1:
 			mes "这扇门装饰得很漂亮，但似乎有点太沉重。";
 			close2;
 			warp "moc_para01",106,14;
 			end;
 		case 2:
-			mes "[Lime Evenor]";
+			mes "[莱姆·伊维诺]";
 			mes "好吧，既然你没兴趣。";
 			close;
 		}
 	}
-	mes "[Lime Evenor]";
+	mes "[莱姆·伊维诺]";
 	mes "哦，这里只对伊甸园成员开放。";
 	mes "想进去就必须加入伊甸园集团。";
 	close;
@@ -424,7 +424,7 @@ moc_para01,20,35,5	script	Office Assistant Neede	814,{
 	mes "我不信任伊维诺。她从不表露感情……她会向老板告我的状。";
 	next;
 	emotion ET_HNG, getnpcid(0, "Secretary Lime Evenor");
-	mes "[Lime Evenor]";
+	mes "[莱姆·伊维诺]";
 	mes "我不是那种女孩。";
 	next;
 	emotion ET_KEK;

@@ -20,35 +20,35 @@
 // Acolyte Warper (part of other/acolyte_warp.txt)
 //============================================================
 moc_para01,14,32,5	script	Aperture#acolytewarp	90,{
-	mes "[Aperture]";
+	mes "[阿帕彻]";
 	mes "你好，冒险者。";
 	mes "我一直研究米德加尔特各地的魔法，提升我认为服事职业最伟大的技能之一。";
 	next;
 
 	if (is_function("VIP_iRO_Acolyte"))
-		callfunc "VIP_iRO_Acolyte","[Aperture]","Prontera";
+		callfunc "VIP_iRO_Acolyte","[阿帕彻]","Prontera";
 
-	mes "[Aperture]";
+	mes "[阿帕彻]";
 	mes "我是唯一达到 10 级传送之阵技能的服事！";
 	emotion ET_THINK, playerattached();
 	next;
-	mes "[Aperture]";
+	mes "[阿帕彻]";
 	mes "没错！而且……";
 	mes "我保证不会忘记已经记住的地点。";
 	mes "总有一天，我会提升技能，传送到任何想去的地方～";
 	next;
-	mes "[Aperture]";
+	mes "[阿帕彻]";
 	mes "只需少量费用，我可以把你传送到许多记住的地点。";
 	mes "要使用这项服务吗？";
 	next;
 	switch(select("是:否")) {
 	case 1:
-		mes "[Aperture]";
+		mes "[阿帕彻]";
 		mes "你想去哪里？";
 		mes "祝你旅途好运。";
 		next;
 
-		setarray .@towns$[0], "Prontera", "Izlude", "Geffen", "Payon", "Morocc", "Alberta", "Al De Baran", "Comodo", "Umbala", "Juno", "Einbroch", "Lighthalzen", "Hugel", "Rachel";
+		setarray .@towns$[0], "普隆德拉", "依斯鲁得", "吉芬", "斐扬", "梦罗克", "艾尔贝塔", "艾尔迪巴兰", "科摩多", "汶巴拉", "朱诺", "艾因布洛克", "里希塔乐镇", "毁葛", "拉赫";
 		setarray .@cost[0],          600,      600,     1200,    1200,     1200,      1800,          2200,     2200,     2200,   1800,       2200,          2200,    2200,     2200;
 
 		set .@size, getarraysize(.@towns$);
@@ -56,16 +56,16 @@ moc_para01,14,32,5	script	Aperture#acolytewarp	90,{
 			set .@menu$, .@menu$+.@towns$[.@i]+" -> "+.@cost[.@i]+"z:";
 		set .@i, select(.@menu$+"取消")-1;
 		if (.@i == .@size) {
-			mes "[Aperture]";
+			mes "[阿帕彻]";
 			mes "需要传送时再回来。";
 			close;
 		}
 		if (Zeny < .@cost[.@i]) {
-			mes "[Aperture]";
+			mes "[阿帕彻]";
 			mes "抱歉，你没有";
-			mes "足够的 Zeny 支付传送";
+			mes "足够的 金币 支付传送";
 			mes "服务费用。传送到";
-			mes .@towns$[.@i]+"需要 "+.@cost[.@i]+" Zeny。";
+			mes .@towns$[.@i]+"需要 "+.@cost[.@i]+" 金币。";
 			close;
 		}
 		specialeffect2 EF_READYPORTAL;
@@ -91,26 +91,27 @@ moc_para01,14,32,5	script	Aperture#acolytewarp	90,{
 		}
 		close;
 	case 2:
-		mes "[Aperture]";
+		mes "[阿帕彻]";
 		mes "需要传送时再回来。";
 		close;
 	}
 }
 
 function	script	VIP_iRO_Acolyte	{
+	.@destination$ = getarg(1) == "Juno" ? "朱诺" : "普隆德拉";
 	if (!vip_status(VIP_STATUS_ACTIVE)) {
 		mes getarg(0);
 		mes "不过，只有 VIP 才能使用我的全部力量。";
-		mes "但我仍然可以把你传送到"+getarg(1)+"。";
+		mes "但我仍然可以把你传送到"+.@destination$+"。";
 		next;
-		switch(select(getarg(0)+" -> 1800z:Cancel")) {
+		switch(select(getarg(0)+" -> 1800z:取消")) {
 		case 1:
 			if (Zeny < 1800) {
 				mes getarg(0);
 				mes "抱歉，你没有";
-				mes "足够的 Zeny 支付传送";
+				mes "足够的 金币 支付传送";
 				mes "服务费用。传送到";
-				mes getarg(1)+"需要 1,800 Zeny。";
+			mes .@destination$+"需要 1,800 金币。";
 				close;
 			}
 			specialeffect2 EF_READYPORTAL;
@@ -134,25 +135,25 @@ function	script	VIP_iRO_Acolyte	{
 // Primo d'Buffer, VIP stat bonuses
 //============================================================
 moc_para01,26,15,3	script	Primo d'Buffer	790,{
-	mes "[Primo d'Buffer]";
+	mes "[增益师普里莫]";
 	mes "你好，冒险者，看起来你迫不及待要出去拯救世界！";
 	if (!vip_status(VIP_STATUS_ACTIVE)) {
 		mes "我还看得出你没有^6666ffVIP 状态^000000。";
 		next;
-		mes "[Primo d'Buffer]";
-		mes "我的命令是用特殊 Buff 帮助标记为 VIP 的冒险者！";
+		mes "[增益师普里莫]";
+		mes "我的命令是用特殊 增益效果 帮助标记为 VIP 的冒险者！";
 		mes "如果你是 VIP，我会给你^ff0000所有属性 +7，持续 30 分钟^000000。";
 		next;
-		mes "[Primo d'Buffer]";
-		mes "如果想成为 VIP，可以使用 WarpPortal 为账号^FF8C42充值^000000 VIP 状态。当然，VIP 还有许多其他优势，例如更高的经验和掉落率、更多仓库空间，以及像我这样的特殊 Buff NPC！";
+		mes "[增益师普里莫]";
+		mes "如果想成为 VIP，可以使用 WarpPortal 为账号^FF8C42充值^000000 VIP 状态。当然，VIP 还有许多其他优势，例如更高的经验和掉落率、更多仓库空间，以及像我这样的特殊 增益效果 NPC！";
 		mes "旅途愉快！";
 		close;
 	}
 	mes "我也能看出你已经拥有‘^007FFFVIP 状态^000000’的祝福。";
 	next;
-	mes "[Primo d'Buffer]";
+	mes "[增益师普里莫]";
 	mes "太棒了！";
-	mes "这是所有属性 +7、持续 30 分钟的 Buff，助你踏上旅程。需要补充属性时再回来！";
+	mes "这是所有属性 +7、持续 30 分钟的 增益效果，助你踏上旅程。需要补充属性时再回来！";
 	close2;
 	sc_start SC_FOOD_STR_CASH,1200000,7;
 	sc_start SC_FOOD_AGI_CASH,1200000,7;
@@ -170,27 +171,27 @@ moc_para01,53,30,3	script	Clearchus	470,{
 		mes "必须等计时器结束后才能雇佣新佣兵。";
 		close;	
 	}
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "年轻的冒险者，你好！我代表米德加尔特佣兵任务处。";
 	next;
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "我们让有志成为佣兵的人与像你这样的冒险者组队训练。";
 	next;
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "我们的组织有 10,000 人！现在让我看看你是否登记了这项服务。";
 	next;
 	if (!vip_status(VIP_STATUS_ACTIVE)) {
-		mes "[Clearchus]";
-		mes "遗憾的是你似乎不是 VIP。请先取得 VIP 才能使用这项服务。你可以在伊甸园总部与 Gramps 交谈，获得临时 VIP 权限。";
+		mes "[克里阿库斯]";
+		mes "遗憾的是你似乎不是 VIP。请先取得 VIP 才能使用这项服务。你可以在伊甸园总部与 老爷爷 交谈，获得临时 VIP 权限。";
 		next;
-		mes "[Clearchus]";
-		mes "VIP 对冒险者非常有用，可以使用额外的卡普拉服务、折扣传送、专属内容和 Primo d'Buffer。完整 VIP 还能提升经验、掉落和仓库容量！";
+		mes "[克里阿库斯]";
+		mes "VIP 对冒险者非常有用，可以使用额外的卡普拉服务、折扣传送、专属内容和 增益师普里莫。完整 VIP 还能提升经验、掉落和仓库容量！";
 		close;
 	}
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "你的名字在名单上。";
 	next;
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "你想要哪种技能组合的佣兵？";
 	next;
 
@@ -216,10 +217,10 @@ moc_para01,53,30,3	script	Clearchus	470,{
 	else if (BaseLevel < 91) set .@i,8;
 	else set .@i,9;
 
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "我正好想到合适的佣兵！";
 	next;
-	mes "[Clearchus]";
+	mes "[克里阿库斯]";
 	mes "玩得开心，听见了吗？";
 	getitem .@base_id + .@i,1;
 	if (isbegin_quest(62238) > 0)
@@ -231,24 +232,24 @@ moc_para01,53,30,3	script	Clearchus	470,{
 // Carrot & Red Potion Traders
 //============================================================
 moc_para01,166,51,3	script	Phelix#edco	85,{
-	mes "[Phelix]";
+	mes "[菲利克斯]";
 	mes "哦……看你的表情，你想让我工作并给你肉和胡萝卜……";
-	mes "我的朋友 Izaac 带着一些红色药水，但我这里只有胡萝卜。";
+	mes "我的朋友 艾扎克 带着一些红色药水，但我这里只有胡萝卜。";
 	mes "所以我可以用^0000CC3 个果冻换 1 根胡萝卜^000000。";
 	next;
-	mes "[Phelix]";
+	mes "[菲利克斯]";
 	mes "如果你对我的提议感兴趣，就把我说的果冻带来。";
 	next;
 	select("请给我胡萝卜。");
-	mes "[Phelix]";
+	mes "[菲利克斯]";
 	mes "好，让我看看你有什么……";
 	next;
 	if (countitem(909) < 3) {
-		mes "[Phelix]";
+		mes "[菲利克斯]";
 		mes "嗯，伙计，我说的是 3 个果冻换 1 根胡萝卜……明白吗？";
 		close;
 	}
-	mes "[Phelix]";
+	mes "[菲利克斯]";
 	mes "不算太糟……";
 	mes "你想要多少？";
 	next;
@@ -258,34 +259,34 @@ moc_para01,166,51,3	script	Phelix#edco	85,{
 		break;
 	case 2:
 		set .@available, countitem(909) / 3;
-		mes "[Phelix]";
+		mes "[菲利克斯]";
 		mes "你想要多少？";
 		mes "^ff0000你最多可以换取 " + .@available + " 根胡萝卜。^000000";
 		input .@input;
 		next;
 		if (.@input < 1 || .@input > 10000) {
-			mes "[Phelix]";
+			mes "[菲利克斯]";
 			mes "不想交易？也好……";
 			close;
 		}
 		if (.@input > .@available) {
-			mes "[Phelix]";
+			mes "[菲利克斯]";
 			mes "伙计，我说过每 3 个果冻换 1 根胡萝卜。";
 			close;
 		}
 		set .@amount, .@input;
 		break;
 	case 3:
-		mes "[Phelix]";
+		mes "[菲利克斯]";
 		mes "不想交易就别来烦我。";
 		close;
 	}
 	if (checkweight(515,.@amount) == 0) {
-		mes "[Phelix]";
+		mes "[菲利克斯]";
 		mes "你超重了。";
 		close;
 	}
-	mes "[Phelix]";
+	mes "[菲利克斯]";
 	mes "给你～！正如我承诺的。";
 	mes "别把脸塞得太满。";
 	delitem 909,.@amount*3; //Jellopy
@@ -294,25 +295,25 @@ moc_para01,166,51,3	script	Phelix#edco	85,{
 }
 
 moc_para01,163,51,7	script	Izaac#edco	86,{
-	mes "[Izaac]";
+	mes "[艾扎克]";
 	mes "日安！";
 	mes "你从魔物那里收集过奇怪的东西吗？";
 	mes "我想要果冻、绒毛、贝壳、鸟羽、树根、虫皮和蛹之类的东西。";
 	mes "我有用处。";
 	next;
-	mes "[Izaac]";
+	mes "[艾扎克]";
 	mes "当然，我不会白要你的东西。不如用以下物品换取^CC00001 1 瓶红色药水^000000：";
-	mes "^00CC005 Shell^000000";
-	mes "^0000CC10 Fluff^000000";
-	mes "^00CC0010 Jellopy^000000";
-	mes "^0000CC6 Tree Root^000000";
-	mes "^00CC001 Worm Peeling^000000";
+	mes "^00CC005 贝壳^000000";
+	mes "^0000CC10 绵绒^000000";
+	mes "^00CC0010 杰勒比结晶^000000";
+	mes "^0000CC6 树根^000000";
+	mes "^00CC001 蠕虫蜕皮^000000";
 	mes "^0000CC7 根鸟羽^000000";
-	mes "^00CC006 Chrysalis^000000";
+	mes "^00CC006 蛹^000000";
 	next;
 	switch(select("好的！:我觉得这是敲诈！:不了，谢谢。")) {
 	case 1:
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "那么你想带给我";
 		mes "哪种物品？";
 		next;
@@ -325,7 +326,7 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 			set .@menu$, .@menu$+getitemname(.@items[.@i])+":";
 		set .@select, select(.@menu$+"取消")-1;
 		if (.@select == .@size) {
-			mes "[Izaac]";
+			mes "[艾扎克]";
 			mes "好的～";
 			mes "没问题。";
 			close;
@@ -335,14 +336,14 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 		set .@price, .@count[.@select];
 
 		if (countitem(.@item) < .@price) {
-			mes "[Izaac]";
+			mes "[艾扎克]";
 			mes "嘿，你答应我的";
 			mes .@item$+"在哪里？";
 			mes "你答应过我的吧？";
 			mes "把"+.@item$+"给我！";
 			close;
 		}
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "好，让我检查一下";
 		mes "";
 		mes "你带了多少"+.@item$+"。";
@@ -350,18 +351,18 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 		next;
 		set .@amount, countitem(.@item) / .@price;
 		set .@trade_amount, .@amount * .@price;
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "你有";
 		mes "总共 "+countitem(.@item)+" 个"+.@item$+"……";
 		mes "这些可以换取";
 		mes "总共 "+.@amount+" 瓶红色药水。";
 		next;
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "你觉得怎么样？";
 		mes "成交吗？";
 		next;
 		if(select("成交。:不成交。") == 2) {
-			mes "[Izaac]";
+			mes "[艾扎克]";
 			mes "嗯～";
 			mes "好吧。";
 			mes "不过";
@@ -370,27 +371,27 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 			close;
 		}
 		if (checkweight(501,.@amount) == 0) { //custom check
-			mes "[Izaac]";
+			mes "[艾扎克]";
 			mes "你超重了。";
 			close;
 		}
 		delitem .@item,.@trade_amount;
 		getitem 501,.@amount; //Red_Potion
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "给你！";
 		mes "看看我给了你多少";
 		mes .@item$+"，应该没问题。";
 		mes "谢谢，交易愉快～";
 		close;
 	case 2:
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "敲诈……？";
 		mes "如果你查查交易物品的市场价值，";
 		mes "其实是我在这里";
 		mes "被敲诈。";
 		close;
 	case 3:
-		mes "[Izaac]";
+		mes "[艾扎克]";
 		mes "好吧，没问题。";
 		mes "改变主意后再回来找我。";
 		close;
@@ -400,17 +401,17 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 // Safe to 7 Certificate Exchanger
 //============================================================
 moc_para01,50,39,4	script	Eve Natalia	882,{
-	mes "[Eve Natalia]";
+	mes "[伊芙·娜塔莉娅]";
 		mes "所以我会在城里待一阵子，看看能否和 MVP 猎人做些生意！";
 		mes "我愿意收取一些 MVP 装备，作为交换给你这些升级证书；";
 		mes "如果进展顺利，我还会开拓更多商机！";
 	next;
-	mes "[Eve Natalia]";
+	mes "[伊芙·娜塔莉娅]";
 		mes "那么，你有我需要的装备，可以换取随机安全精炼 +7 证书吗？";
 	next;
 	switch(select("什么装备？:是的，我愿意！:算了。")) {
 	case 1:
-		mes "[Eve Natalia]";
+		mes "[伊芙·娜塔莉娅]";
 		mes "尼德霍格的影子外套 4 张随机安全精炼至 +7 证书";
 		mes "女武神之盾 4 张随机安全精炼至 +7 证书";
 		mes "女武神铠甲 5 张随机安全精炼至 +7 证书";
@@ -422,7 +423,7 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 		mes "纳格特·齐格红色双刃剑 2 张随机安全精炼至 +7 证书";
 		close;
 	case 2:
-		mes "[Eve Natalia]";
+		mes "[伊芙·娜塔莉娅]";
 			mes "我会询问你想交易哪件装备，请确认物品栏中的第一件正是你想交出的装备。";
 			mes "^CC0000如果它插了卡、精炼过或附魔过，请在继续前将它存入仓库。^000000";
 		next;
@@ -436,27 +437,27 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 		set .@item, .@items[.@i];
 		set .@amount, .@tickets[.@i];
 
-		mes "[Eve Natalia]";
+		mes "[伊芙·娜塔莉娅]";
 		mes "我看到你有 "+countitem(.@item)+" 件 "+getitemname(.@item)+"。";
 		mes "那么要用物品栏中的第一件换取 ^00CC00"+.@amount+" 张随机安全精炼 +7 证书^000000吗？";
 		mes "如果有，请告诉我‘1’，取消则输入‘0’。";
 		next;
 		input .@input;
 		if (.@input < 0 || .@input > 1) {
-			mes "[Eve Natalia]";
+			mes "[伊芙·娜塔莉娅]";
 			mes "这只是 0 或 1，不会很难。";
 			close;
 		} else if (.@input == 0) {
-			mes "[Eve Natalia]";
+			mes "[伊芙·娜塔莉娅]";
 			mes "交易前最好确认清楚，祝你今天愉快。";
 			close;
 		}
 		if (countitem(.@item) == 0) {
-			mes "[Eve Natalia]";
+			mes "[伊芙·娜塔莉娅]";
 			mes "你连 1 个都没有……别浪费我的时间。";
 			close;
 		}
-		mes "[Eve Natalia]";
+		mes "[伊芙·娜塔莉娅]";
 		mes "太好了，你获得了 ^CC0000" + .@amount + "^000000 张安全精炼 +7 证书！";
 		delitem .@item,1;
 		for(set .@i,0; .@i<.@amount; set .@i,.@i+1) {
@@ -470,7 +471,7 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 	case 3:
 		break;
 	}
-	mes "[Eve Natalia]";
+	mes "[伊芙·娜塔莉娅]";
 	mes "好吧，以后有事找我时别害羞！";
 	close;
 }
@@ -482,10 +483,10 @@ moc_para01,48,184,2	script	Gum & Manual Exchanger	562,{
 		mes "你现在携带的物品太多。";
 		close;	
 	}
-	mes "[Trader Machine]";
+	mes "[交易机]";
 	mes "放入泡泡糖和/或战斗手册，可以兑换效率更高的糖果和手册。";
 	next;
-	mes "[Trader Machine]";
+	mes "[交易机]";
 	mes "兑换比例：";
 	mes "2 个泡泡糖 -> 1 个高级泡泡糖";
 	mes "2 本战斗手册 -> 1 本高级战斗手册";
@@ -869,10 +870,10 @@ moc_para01,13,22,4	script	Merry Badger#xch	882,{
 			mes "每周特惠是……";
 			next;
 			mes "[快乐獾]";
-			mes "好的，我有一项 3 个功勋徽章或 1,000,000 Zeny 的特惠。本周我会提供^00CC0040 个光粒^000000、40 个火药^000000、^0000CC3 个伊西多尔^000000";
+			mes "好的，我有一项 3 个功勋徽章或 1,000,000 金币 的特惠。本周我会提供^00CC0040 个光粒^000000、40 个火药^000000、^0000CC3 个伊西多尔^000000";
 			mes "^00CC0010 个多刺果^000000、^0000CC1 个曼陀罗花盆^000000和^00CC003 个古老树枝^000000。";
 			next;
-			switch( select( "徽章", "Zeny", "否" ) ) {
+			switch( select( "徽章", "金币", "否" ) ) {
 			case 1:
 				if (countitem(6495) < 3) {
 					mes "[快乐獾]";
@@ -885,7 +886,7 @@ moc_para01,13,22,4	script	Merry Badger#xch	882,{
 			case 2:
 				if (Zeny < 1000000) {
 					mes "[快乐獾]";
-					mes "你的^00CC00Zeny^000000不够。重新开始吧！";
+					mes "你的^00CC00金币^000000不够。重新开始吧！";
 					next;
 					continue;
 				}
@@ -1016,7 +1017,7 @@ moc_para01,35,168,1	cashshop	Kafra Utility Shop#eden	113,16677:25,13990:400,1639
 
 // Weapon/Armor Refiner "Normalson" (merchants/refine.txt)
 moc_para01,14,185,4	script	Normalson#ed	826,{
-	callfunc "refinemain","Normalson",0;
+	callfunc "refinemain","诺玛尔森",0;
 	end;
 }
 
@@ -1076,7 +1077,7 @@ moc_para01,29,35,4	script	Gramps#huntquests	866,{
 
 moc_para01,174,33,3	script	Bathory#2012spirits	1102,{
 	mes "[巴托里]";
-	mes "嘻嘻嘻嘻！本周的热点是古拉斯特海姆，我只收 1,000 Zeny 就能把人送去那里！";
+	mes "嘻嘻嘻嘻！本周的热点是古拉斯特海姆，我只收 1,000 金币 就能把人送去那里！";
 	next;
 	mes "[巴托里]";
 	mes "怎么样？想乘坐美丽的巴托里的扫帚吗？";
@@ -1086,7 +1087,7 @@ moc_para01,174,33,3	script	Bathory#2012spirits	1102,{
 		if (Zeny < 1000) {
 			mes "[巴托里]";
 			mes "来吧，亲爱的……";
-			mes "你连 1,000 Zeny 都没有吗？";
+			mes "你连 1,000 金币 都没有吗？";
 			close;
 		}
 		mes "[巴托里]";
@@ -1297,14 +1298,14 @@ moc_para01,179,27,3	script	Dark Luhir#new10	4_F_VALKYRIE2,{
 		close;
 	case 3:
 		mes "[暗黑路希尔]";
-		mes "重置堕落天使之翼属性需要 1,000,000 Zeny。";
+		mes "重置堕落天使之翼属性需要 1,000,000 金币。";
 		mes "要继续吗？";
 		next;
 		if (select( "是", "不用了！" ) == 2)
 			close;
 		if (Zeny < 1000000) {
 			mes "[暗黑路希尔]";
-			mes "你这个骗子，Zeny 不够！";
+			mes "你这个骗子，金币 不够！";
 			close;
 		}
 		if (getequipid(EQI_GARMENT) == 2589) {

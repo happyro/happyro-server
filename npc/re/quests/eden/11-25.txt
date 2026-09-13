@@ -73,20 +73,20 @@ moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	4_BOARD3,{
 		case 9: callsub L_Quest,11122,"收集羽毛"," - 猎杀 30 只^4d4dff‘大嘴鸟’^000000 - "," - 位于普隆德拉南方。- ";
 		case 10: callsub L_Quest,11123,"收集毒蘑菇"," - 猎杀 30 只^4d4dff毒蘑菇^000000 - "," - 位于吉芬塔内，并- "," - 带回 5 个^4d4dff毒蘑菇^000000。- ";
 		case 11:
-			mes " - Stop reading the bulletin board. - ";
+			mes " - 停止阅读公告板。- ";
 			close;
 	}
 
 L_Quest:
 	.@quest_status = checkquest(getarg(0)+10,PLAYTIME);
 	if (.@quest_status == 0 || .@quest_status == 1) {
-		mes " - Mission ^4d4dff"+ getarg(1) +"^000000 - ";
-		mes " - is already finished for today. - ";
+		mes " - 任务 ^4d4dff"+ getarg(1) +"^000000 - ";
+		mes " - 今天已经完成了。- ";
 		mes " ";
 		mes " - 管理员：斯派克 - ";
 		close;
 	}
-	mes " - Mission '"+ getarg(1) +"' - ";
+	mes " - 任务 '"+ getarg(1) +"' - ";
 	for ( .@i = 2; .@i < getargcount(); .@i++ )
 		mes getarg(.@i);
 	mes " ";
@@ -121,17 +121,17 @@ moc_para01,32,30,6	script	Spike	4_F_CHILD,{
 			}
 		}
 		else if (.@j >= 0) {
-			mes "[Spike]";
+			mes "[斯派克]";
 			mes "你还没有完成任务。";
 			mes "继续加油，马上就完成了。";
 			close;
 		}
 	}
-	mes "[Spike]";
+	mes "[斯派克]";
 	mes "你在找工作吗？";
 	mes "我们总有很多工作要做。";
 	next;
-	mes "[Spike]";
+	mes "[斯派克]";
 	mes "四处看看，找些有趣的任务吧。";
 	close;
 
@@ -142,17 +142,17 @@ L_Quest:
 		.@req_amount = getarg(4,0);
 		if (.@item_req) {
 			if (countitem(.@item_req) < .@req_amount) {
-				mes "[Spike]";
+				mes "[斯派克]";
 				mes "你的"+ getitemname(.@item_req) +".";
 				mes "你需要带来"+ .@req_amount +" "+ getitemname(.@item_req) +".";
 				close;
 			}
 		}
-		mes "[Spike]";
+		mes "[斯派克]";
 		mes "嗯……让我看看~";
 		mes "你完成了‘"+ getarg(1) +"’任务。";
 		next;
-		mes "[Spike]";
+		mes "[斯派克]";
 		mes "干得好~！！";
 		mes "我们的委托人对你的工作非常满意。他会感谢你的努力。";
 		mes "请再帮助我们。谢谢！";
