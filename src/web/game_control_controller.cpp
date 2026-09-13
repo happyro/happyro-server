@@ -130,7 +130,7 @@ bool game_control_config_is_valid() {
 		return true;
 	}
 
-	if (!is_loopback_bind_address(web_config.web_ip)) {
+	if (!web_config.game_control_allow_remote && !is_loopback_bind_address(web_config.web_ip)) {
 		ShowError("Game Control requires the web-server to bind to a loopback address.\n");
 		return false;
 	}
