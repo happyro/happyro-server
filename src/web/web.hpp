@@ -45,6 +45,7 @@ struct Web_Config {
 
 	std::string allowed_origin_cors;				// allowed origin for CORS
 	bool game_control_enabled;
+	bool game_control_allow_remote;
 	std::string game_control_secret;
 	std::string game_control_socket;
 };
