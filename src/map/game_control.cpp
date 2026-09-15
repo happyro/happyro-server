@@ -82,10 +82,13 @@ constexpr GameControlSettingDefinition game_control_settings[] = {
 	{"item_rate_common_boss", 0, 1000000},
 	{"item_rate_common_mvp", 0, 1000000},
 	{"item_rate_heal", 0, 1000000},
+	{"item_rate_heal_boss", 0, 1000000},
 	{"item_rate_heal_mvp", 0, 1000000},
 	{"item_rate_use", 0, 1000000},
+	{"item_rate_use_boss", 0, 1000000},
 	{"item_rate_use_mvp", 0, 1000000},
 	{"item_rate_equip", 0, 1000000},
+	{"item_rate_equip_boss", 0, 1000000},
 	{"item_rate_equip_mvp", 0, 1000000},
 	{"item_rate_card", 0, 1000000},
 	{"item_rate_card_boss", 0, 1000000},
@@ -277,10 +280,13 @@ CommandResult process_battle_config_command(const std::string& command_type, con
 		|| keys.count("item_rate_common_boss") != 0
 		|| keys.count("item_rate_common_mvp") != 0
 		|| keys.count("item_rate_heal") != 0
+		|| keys.count("item_rate_heal_boss") != 0
 		|| keys.count("item_rate_heal_mvp") != 0
 		|| keys.count("item_rate_use") != 0
+		|| keys.count("item_rate_use_boss") != 0
 		|| keys.count("item_rate_use_mvp") != 0
 		|| keys.count("item_rate_equip") != 0
+		|| keys.count("item_rate_equip_boss") != 0
 		|| keys.count("item_rate_equip_mvp") != 0
 		|| keys.count("item_rate_card") != 0
 		|| keys.count("item_rate_card_boss") != 0
