@@ -10827,7 +10827,7 @@ int32 pc_percentheal(map_session_data *sd,int32 hp,int32 sp)
 	return 0;
 }
 
-static int32 jobchange_killclone(block_list *bl, va_list ap)
+static int32 jobchange_cleanup_summon(block_list *bl, va_list ap)
 {
 	mob_data *md;
 		int32 flag;
@@ -10835,7 +10835,8 @@ static int32 jobchange_killclone(block_list *bl, va_list ap)
 	nullpo_ret(md);
 	flag = va_arg(ap, int32);
 
-	if (md->master_id && md->special_state.clone && md->master_id == flag)
+	if (md->master_id == flag &&
+		(md->special_state.clone || md->special_state.ai == AI_ABR || md->special_state.ai == AI_BIONIC))
 		status_kill(md);
 	return 1;
 }
@@ -11019,7 +11020,7 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 	if (sd->state.buyingstore)
 		buyingstore_close(sd);
 
-	map_foreachinmap(jobchange_killclone, sd->m, BL_MOB, sd->id);
+	map_foreachinmap(jobchange_cleanup_summon, sd->m, BL_MOB, sd->id);
 
 	//Remove peco/cart/falcon
 	i = sd->sc.option;

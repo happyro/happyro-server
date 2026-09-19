@@ -113,7 +113,7 @@ monk_test,309,146,3	script	Friar Patrick#edq	412,{
 					mes "[帕特里克修士]";
 					mes "队伍名称是 "+getpartyname(.@party_id)+"……";
 					mes "队长名称是 "+strcharinfo(0)+"……";
-					if (instance_create("Sealed Catacomb") < 0) {
+					if (instance_create("封印地下墓穴") < 0) {
 						mes "嗯……这里似乎出了问题……我马上检查。请稍等。";
 					}
 					else {
@@ -156,7 +156,6 @@ monk_test,309,146,3	script	Friar Patrick#edq	412,{
 				next;
 				erasequest 3040;
 				if (checkquest(3041)>=0) erasequest 3041;
-				if (checkquest(3045)>=0) erasequest 3045;
 				mes "[帕特里克修士]";
 				mes "呼……结束了。巴风特的诅咒已经解除，你可以再次进入。";
 			}
@@ -214,7 +213,7 @@ monk_test,306,151,3	script	Grave of Baphomet#edq	111,{
 	//set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
 
 	if (.@ins_bapho_check == -1) {
-		switch(instance_enter("Sealed Catacomb")) {
+		switch(instance_enter("封印地下墓穴")) {
 		case IE_OTHER:
 		case IE_NOINSTANCE:
 		mes "摸起来很冷，没有任何反应。";
@@ -243,7 +242,6 @@ monk_test,306,151,3	script	Grave of Baphomet#edq	111,{
 		specialeffect2 EF_HOLYHIT;
 		erasequest 3040;
 		if (checkquest(3041)>=0) erasequest 3041;
-		if (checkquest(3045)>=0) erasequest 3045;
 		next;
 		mes "[帕特里克修士]";
 		mes "呼……结束了。你身上的诅咒都解除了，可以再次进入。";

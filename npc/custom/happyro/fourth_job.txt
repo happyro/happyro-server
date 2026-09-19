@@ -1,0 +1,55 @@
+// HappyRO unified fourth-job advancement. Job IDs and transitions follow
+// src/common/mmo.hpp and npc/custom/jobmaster.txt; no equipment or level grants.
+prontera,153,193,6	script	四转职业导师	123,{
+	mes "[四转职业导师]";
+	.@eac = eaclass();
+	if (.@eac & EAJL_BABY) {
+		mes "宝宝职业不能进行四转。";
+		close;
+	}
+	.@target = -1;
+	.@job_level = 70;
+	switch (.@eac) {
+	case EAJ_STAR_EMPEROR: .@target = roclass(EAJ_SKY_EMPEROR); break;
+	case EAJ_SOUL_REAPER: .@target = roclass(EAJ_SOUL_ASCETIC); break;
+	case EAJ_REBELLION: .@target = roclass(EAJ_NIGHT_WATCH); break;
+	case EAJ_KAGEROUOBORO: .@target = roclass(EAJ_SHINKIROSHIRANUI); break;
+	case EAJ_SUPER_NOVICE_E: .@target = roclass(EAJ_HYPER_NOVICE); break;
+	case EAJ_SUMMONER:
+		.@target = roclass(EAJ_SPIRIT_HANDLER);
+		.@job_level = 60;
+		break;
+	default:
+		if ((.@eac & (EAJL_THIRD | EAJL_UPPER)) == (EAJL_THIRD | EAJL_UPPER)
+			&& !( .@eac & EAJL_FOURTH))
+			// Fourth map IDs no longer carry the transcendent flag.
+			.@target = roclass((.@eac & ~EAJL_UPPER) | EAJL_FOURTH);
+		break;
+	}
+	if (.@target < 0) {
+		mes "你目前的职业没有可在这里进行的四转。";
+		mes "常规职业须先成为对应的进阶三转职业；扩展职业须完成前一阶段转职。";
+		close;
+	}
+	mes "转职条件：Base 200，Job " + .@job_level + "。";
+	if (BaseLevel < 200 || JobLevel < .@job_level) {
+		mes "你的等级还未达到要求，请继续冒险。";
+		close;
+	}
+	if (SkillPoint) {
+		mes "请先分配完当前的技能点，再来进行四转。";
+		close;
+	}
+	mes "转职后保留基础等级，职业等级从 1 开始，并开启特性属性与 AP。";
+	mes "不再适用的装备与状态将由职业规则处理。";
+	next;
+	if (select("确认四转:暂不转职") == 2)
+		close;
+	jobchange .@target;
+	mes "[四转职业导师]";
+	if (Class == .@target)
+		mes "转职完成！你现在可以继续突破 Base 200，并学习新职业的技能。";
+	else
+		mes "转职未完成，请检查当前角色状态。";
+	close;
+}

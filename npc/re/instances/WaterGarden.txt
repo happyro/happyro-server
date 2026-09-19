@@ -50,7 +50,7 @@ ba_maison,238,44,5	script	Harad#jh_ba1	4_EP17_BASIC_B,{
 	cutin "",255;
 	.@normal = is_party_leader();
 	.@hard = (.@normal && isbegin_quest(16430) == 2);
-	.@md_name$ = "Water Garden";	// default
+	.@md_name$ = "水之花园";	// default
 	switch( select( (.@normal ? "Create Water Garden" : ""), (.@hard ? "Create Water Garden Hard" : ""), "^0000CDGarden Entrance^000000" ) ) {
 	case 1:
 		.@quest_given = 16437;
@@ -66,14 +66,14 @@ ba_maison,238,44,5	script	Harad#jh_ba1	4_EP17_BASIC_B,{
 			mes "- 此副本仅限 180 级以上。-";
 			close3;
 		}
-		.@md_name$ = "Water Garden Hard";
+		.@md_name$ = "水之花园（困难）";
 		.@quest_given = 16438;
 		.@other_quest = 16437;
 		break;
 	case 3:
 		if (ep172_watergarden > 3) {
 			.@instance_name$ = instance_live_info(ILI_NAME, instance_id(IM_PARTY));
-			if (.@instance_name$ != "Water Garden" && .@instance_name$ != "Water Garden Hard") {
+			if (.@instance_name$ != "水之花园" && .@instance_name$ != "水之花园（困难）") {
 				cutin "ep172_beta",2;
 				mes "[Harad]";
 				mes "副本尚未创建。";
@@ -86,9 +86,9 @@ ba_maison,238,44,5	script	Harad#jh_ba1	4_EP17_BASIC_B,{
 			next;
 			cutin "",255;
 			if (select( "^0000CDEnter Water Garden", "Enter Water Garden Hard^000000" ) == 1)
-				.@md_name$ = "Water Garden";
+				.@md_name$ = "水之花园";
 			else
-				.@md_name$ = "Water Garden Hard";
+				.@md_name$ = "水之花园（困难）";
 		}
 		if (instance_enter(.@md_name$) != IE_OK) {
 			cutin "ep172_beta",2;

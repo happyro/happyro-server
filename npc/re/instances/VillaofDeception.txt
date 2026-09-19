@@ -42,8 +42,8 @@ wolfvill,79,260,4	script(CLOAKED)	Aira#con	4_M_BRZ_JACI,{
 	mes "" + strcharinfo(0) + "，多亏了你我才安全抵达村子。";
 	mes "但别墅里似乎有什么东西复活了。我想还需要再找人帮忙。";
 	next;
-	.@md_name_normal$ = "Villa of Deception";
-	.@md_name_hard$ = "Villa of Deception Advanced";
+	.@md_name_normal$ = "欺诈别墅";
+	.@md_name_hard$ = "欺诈别墅（高级）";
 
 	if (is_party_leader() == true) {
 		.@create_normal$ = "^000044创建" + .@md_name_normal$ + "^000000";
@@ -156,7 +156,7 @@ OnInstanceInit:
 	'min_reaper = 3;
 
 	// Setting according to the mode
-	if (instance_live_info(ILI_NAME) == "Villa of Deception Advanced") {
+	if (instance_live_info(ILI_NAME) == "欺诈别墅（高级）") {
 		'advs_difficult = 1;
 		'sanare_id = 21377;	// EP18_MD_SANARE_L
 		'hunter_id = 21378;	// EP18_MD_HEARTHUNTER_L
@@ -928,7 +928,7 @@ OnTouch:	// effect ?
 
 // exit
 1@advs,123,358,4	script	#box_admin	4_ENERGY_YELLOW,2,2,{
-	.@is_hard = (instance_live_info(ILI_NAME) == "Villa of Deception Advanced");
+	.@is_hard = (instance_live_info(ILI_NAME) == "欺诈别墅（高级）");
 	if (isbegin_quest(12520) == 1 && !.@is_hard || isbegin_quest(12521) == 1 && .@is_hard) {
 		if (checkweight(1000405,10, 1000471,1) == 0) {
 			mes "-等一下！！-";
