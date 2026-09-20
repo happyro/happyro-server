@@ -25,7 +25,60 @@ def references(source):
                 yield line, value
 
 
+def call_targets(source):
+    """Resolve current scripts' literals, local aliases and selection arrays.
+
+    Unsupported expressions fail explicitly so new dynamic forms need review.
+    This collects possible values per file, not execution paths or quest gates.
+    """
+    source = TOKENS.sub(lambda m: m[0] if m[0].startswith('"') else ' ' * len(m[0]), source)
+
+    def resolve(expression, seen=frozenset()):
+        expression = expression.strip()
+        if re.fullmatch(r'"[^"\n]+"', expression):
+            return {expression[1:-1]}
+        variable = re.fullmatch(r'(\.@\w+\$)(?:\[[^]]+\])?', expression)
+        if not variable or variable[1] in seen:
+            raise ValueError(f'Unresolved instance expression: {expression}')
+        name = variable[1]
+        assignments = re.findall(re.escape(name) + r'\s*=(?!=)\s*([^;]+);', source)
+        assignments += re.findall(r'\bset\s+' + re.escape(name) + r'\s*,\s*([^;]+);', source)
+        arrays = re.findall(r'setarray\s+' + re.escape(name) + r'\[0\]\s*,\s*([^;]+);', source)
+        values = set()
+        for rhs in assignments:
+            values.update(resolve(rhs, seen | {name}))
+        for rhs in arrays:
+            for entry in rhs.split(','):
+                values.update(resolve(entry, seen | {name}))
+        if not values:
+            raise ValueError(f'No definition for instance expression: {expression}')
+        return values
+
+    for match in re.finditer(r'\binstance_(?:create|enter)\s*\(\s*([^,)]+)', source):
+        yield source.count('\n', 0, match.start()) + 1, resolve(match[1])
+
+
 class InstanceNameTests(unittest.TestCase):
+    def test_every_create_and_enter_call_resolves_to_registered_names(self):
+        names = set(re.findall(r'^    Name: (.+)$', (ROOT / 'db/re/instance_db.yml').read_text(), re.M))
+        checked = 0
+        for path in sorted((ROOT / 'npc').rglob('*.txt')):
+            with self.subTest(file=str(path.relative_to(ROOT))):
+                for line, targets in call_targets(path.read_bytes().decode('utf-8', errors='surrogateescape')):
+                    self.assertFalse(targets - names, f'{path}:{line}: {targets - names}')
+                    checked += 1
+        self.assertGreater(checked, 100)
+
+    def test_alias_array_and_unsupported_expression_handling(self):
+        source = '''.@normal$ = "one"; .@hard$ = "two";
+        .@target$ = .@normal$; .@target$ = .@hard$;
+        instance_enter(.@target$);
+        setarray .@choices$[0], "one", "two";
+        instance_create(.@choices$[.@selection]);'''
+        self.assertEqual([targets for _, targets in call_targets(source)], [{'one', 'two'}, {'one', 'two'}])
+        with self.assertRaisesRegex(ValueError, 'Unresolved'):
+            list(call_targets('instance_create(getarg(0));'))
+
     def test_registered_names_cover_script_references(self):
         names = set(re.findall(r'^    Name: (.+)$', (ROOT / 'db/re/instance_db.yml').read_text(), re.M))
         checked = 0
