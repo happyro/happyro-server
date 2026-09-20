@@ -2,6 +2,7 @@
 
 #include "game_control.hpp"
 #include "game_control_item_grant.hpp"
+#include "game_control_traits.hpp"
 
 #include <algorithm>
 #include <condition_variable>
@@ -497,12 +498,14 @@ void game_control_process() {
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.progression.update"
 		&& command_type != "character.skill_points.update"
 		&& command_type != "character.stats.update"
 		&& command_type != "character.stats.reset"
+		&& command_type != "character.traits.update"
+		&& command_type != "character.traits.reset"
 		&& command_type != "character.skills.reset"
 		&& command_type != "character.vitals.restore"
 		&& command_type != "character.inventory.item_grant"
@@ -554,6 +557,7 @@ void game_control_process() {
 					{"luk", sd->status.luk}, {"status_points", sd->status.status_point}, {"skill_points", sd->status.skill_point}, {"zeny", sd->status.zeny},
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
+					{"sex", sd->status.sex}, {"traits", game_control_traits_snapshot(sd)},
 					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
 					{"max_skill_points", INT16_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},
@@ -562,6 +566,16 @@ void game_control_process() {
 						{"dex", stat_safe_max(sd, PARAM_DEX)}, {"luk", stat_safe_max(sd, PARAM_LUK)} }},
 					{"map", mapindex_id2name(sd->mapindex)}, {"x", sd->x}, {"y", sd->y}
 				}}}}};
+				auto& jobs = result["data"]["result"]["jobs"] = nlohmann::json::array();
+				for (int32 job = 0; job < JOB_MAX; ++job) {
+					if (!job_db.exists(job) || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER)
+						continue;
+					const uint64 map_id = pc_jobid2mapid(job);
+					if (map_id == static_cast<uint64>(-1) || pc_mapid2jobid(map_id, sd->status.sex) != job)
+						continue;
+					jobs.push_back({{"id", job}, {"max_base_level", job_db.get_maxBaseLv(job)},
+						{"max_job_level", job_db.get_maxJobLv(job)}, {"traits", static_cast<bool>(pc_is_trait_job(map_id))}});
+				}
 			}
 		} else if (command_type == "character.progression.update") {
 			const auto& payload = body["payload"];
@@ -570,43 +584,54 @@ void game_control_process() {
 				result = {{"error", {{"code", "invalid_parameter"}}}};
 			} else {
 				bool valid = true;
-				int32 base_level = 0;
+				int32 base_level = sd->status.base_level;
 				int32 job_level = 0;
-				int32 job_id = 0;
+				int32 job_id = sd->status.class_;
 				bool changed_job = false;
 				const bool changes_job_progression = payload.contains("job_level") || payload.contains("job_id");
 				const uint32 extra_skill_points = changes_job_progression ? extra_job_skill_points(sd) : 0;
-				if (payload.contains("base_level"))
-					valid = read_integer(payload["base_level"], 1, pc_maxbaselv(sd), base_level);
-				if (valid && payload.contains("job_level"))
-					valid = read_integer(payload["job_level"], 1, MAX_LEVEL, job_level);
 				if (valid && payload.contains("job_id"))
-					valid = read_integer(payload["job_id"], 0, std::numeric_limits<int32>::max(), job_id);
+					valid = read_integer(payload["job_id"], 0, JOB_MAX - 1, job_id);
 				if (valid && payload.contains("job_id")) {
 					const uint64 map_id = pc_jobid2mapid(job_id);
 					const int32 normalized_job_id = map_id == static_cast<uint64>(-1)
 						? -1
 						: pc_mapid2jobid(map_id, sd->status.sex);
-					valid = normalized_job_id >= 0 && job_db.exists(normalized_job_id);
-					if (valid && payload.contains("job_level"))
-						valid = static_cast<uint32>(job_level) <= job_db.get_maxJobLv(normalized_job_id);
-					if (valid && normalized_job_id != sd->status.class_) {
-						valid = pc_jobchange(sd, normalized_job_id, 0);
-						changed_job = valid;
-					}
-				} else if (valid && payload.contains("job_level")) {
-					valid = static_cast<uint32>(job_level) <= pc_maxjoblv(sd);
+					valid = normalized_job_id == job_id && job_db.exists(job_id)
+						&& job_id != JOB_WEDDING && job_id != JOB_XMAS && job_id != JOB_SUMMER;
 				}
+				if (valid && payload.contains("base_level"))
+					valid = read_integer(payload["base_level"], 1, job_db.get_maxBaseLv(job_id), base_level);
+				if (valid)
+					valid = base_level <= job_db.get_maxBaseLv(job_id);
+				if (valid && payload.contains("job_level"))
+					valid = read_integer(payload["job_level"], 1, job_db.get_maxJobLv(job_id), job_level);
 				if (!valid) {
 					status = 400;
 					result = {{"error", {{"code", "invalid_parameter"}}}};
 				} else {
+					// All requested values are valid before any character mutation.
+					// Lower the level before changing jobs so pc_jobchange cannot silently cap it.
+					if (base_level < sd->status.base_level) {
+						const uint32 refund = statpoint_db.get_table_point(sd->status.base_level)
+							- statpoint_db.get_table_point(base_level);
+						pc_setparam(sd, SP_BASELEVEL, base_level);
+						if (sd->status.status_point < refund)
+							game_control_base_stats_reset(sd);
+						else {
+							sd->status.status_point -= refund;
+							clif_updatestatus(*sd, SP_STATUSPOINT);
+						}
+					}
+					if (job_id != sd->status.class_)
+						changed_job = pc_jobchange(sd, job_id, 0);
 					if (payload.contains("base_level"))
 						pc_setparam(sd, SP_BASELEVEL, base_level);
 					if (payload.contains("job_level"))
 						pc_setparam(sd, SP_JOBLEVEL, job_level);
 					if (changes_job_progression)
 						reconcile_job_skill_points(sd, extra_skill_points);
+					game_control_traits_reconcile(sd);
 					if (changed_job) {
 						if (pc_isdead(sd))
 							status_revive(sd, 100, 100, 100);
@@ -663,15 +688,30 @@ void game_control_process() {
 			status = 200;
 			result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"str", sd->status.str}, {"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex}, {"luk", sd->status.luk}}}}}};
 		}
+		} else if (command_type == "character.traits.update" || command_type == "character.traits.reset") {
+			const auto& payload = body["payload"];
+			const bool reset = command_type == "character.traits.reset";
+			const bool valid = reset
+				? pc_is_trait_job(sd->class_) && payload_has_only_keys(payload, {})
+				: game_control_traits_update(sd, payload);
+			if (!valid) {
+				status = 400;
+				result = {{"error", {{"code", "invalid_parameter"}}}};
+			} else {
+				if (reset)
+					game_control_traits_reconcile(sd, true);
+				chrif_save(sd, CSAVE_NORMAL);
+				status = 200;
+				result = {{"data", {{"result", {{"traits", game_control_traits_snapshot(sd)}}}}}};
+			}
 		} else if (command_type == "character.stats.reset") {
 		const auto& payload = body["payload"];
 		if (!payload_has_only_keys(payload, {}) || !payload.empty()) {
 			status = 400;
 			result = {{"error", {{"code", "invalid_parameter"}}}};
-		} else if (pc_resetstate(sd) == 0) {
-			status = 409;
-			result = {{"error", {{"code", "reset_failed"}}}};
 		} else {
+			game_control_base_stats_reset(sd);
+			chrif_save(sd, CSAVE_NORMAL);
 			status = 200;
 			result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"str", sd->status.str}, {"agi", sd->status.agi}, {"vit", sd->status.vit}, {"int", sd->status.int_}, {"dex", sd->status.dex}, {"luk", sd->status.luk}}}}}};
 		}
