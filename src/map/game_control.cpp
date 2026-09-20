@@ -222,6 +222,15 @@ void reconcile_job_skill_points(map_session_data* sd, uint32 extra) {
 	clif_updatestatus(*sd, SP_SKILLPOINT);
 }
 
+void reset_job_change_levels(map_session_data* sd) {
+	sd->change_level_2nd = 0;
+	sd->change_level_3rd = 0;
+	sd->change_level_4th = 0;
+	pc_setglobalreg(sd, add_str(JOBCHANGE2ND_VAR), 0);
+	pc_setglobalreg(sd, add_str(JOBCHANGE3RD_VAR), 0);
+	pc_setglobalreg(sd, add_str(JOBCHANGE4TH_VAR), 0);
+}
+
 CommandResult process_battle_config_command(const std::string& command_type, const nlohmann::json& body) {
 	if (command_type == "battle_config.read") {
 		nlohmann::json values = nlohmann::json::object();
@@ -623,8 +632,12 @@ void game_control_process() {
 							clif_updatestatus(*sd, SP_STATUSPOINT);
 						}
 					}
-					if (job_id != sd->status.class_)
+					if (job_id != sd->status.class_) {
+						// Game Control can cross unrelated class trees. Rebuild the
+						// advancement history so skill-up limits use the new lineage.
+						reset_job_change_levels(sd);
 						changed_job = pc_jobchange(sd, job_id, 0);
+					}
 					if (payload.contains("base_level"))
 						pc_setparam(sd, SP_BASELEVEL, base_level);
 					if (payload.contains("job_level"))
