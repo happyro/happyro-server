@@ -82,7 +82,7 @@ slabw01,236,91,3	script	Rookie#ep162_04	4_M_ROOKIE,{
 		mes "哇！就是这个！我总是学得很快！";
 		mes "好了，现在进去吧！";
 		cloakoffnpc( "Central_room#evt_gate01", getcharid(0) );
-		instance_create("Werner Laboratory central room#1");	// officially there is only one 'Werner Laboratory central room' instance
+		instance_create("沃纳实验室中央房间#1");	// officially there is only one 'Werner Laboratory central room' instance
 		close;
 	}
 	if (terra_gloria_main == 22) {
@@ -130,7 +130,7 @@ slabw01,236,91,3	script	Rookie#ep162_04	4_M_ROOKIE,{
 		mes "哇！就是这个！我总是学得很快！";
 		mes "好了，现在进去吧！";
 		cloakoffnpc( "Central_room#evt_gate01", getcharid(0) );
-		instance_create("Werner Laboratory central room#2");
+		instance_create("沃纳实验室中央房间#2");
 		close;
 	case 2:
 		mes "[新手]";
@@ -162,9 +162,9 @@ slabw01,246,88,3	script	Central_room#evt_gate01	PORTAL,{
 		close;
 	}
 	if (terra_gloria_main == 21)
-		.@md_name$ = "Werner Laboratory central room#1";
+		.@md_name$ = "沃纳实验室中央房间#1";
 	else
-		.@md_name$ = "Werner Laboratory central room#2";	// officially player without the daily hunting quest can enter in the instance, allowing to spam the instance without delay
+		.@md_name$ = "沃纳实验室中央房间#2";	// officially player without the daily hunting quest can enter in the instance, allowing to spam the instance without delay
 	switch( instance_enter(.@md_name$) ) {
 	case IE_NOMEMBER:
 		end;
@@ -200,7 +200,7 @@ OnTouch:
 	if (is_party_leader() == false)
 		end;
 	disablenpc instance_npcname("#sl_evt01");
-	if (instance_live_info(ILI_NAME) == "Werner Laboratory central room#1")	// terra_gloria_main == 21
+	if (instance_live_info(ILI_NAME) == "沃纳实验室中央房间#1")	// terra_gloria_main == 21
 		enablenpc instance_npcname("Eisen Werner#werner01");
 	else {
 		enablenpc instance_npcname("Guard#gard01");
@@ -428,7 +428,7 @@ OnInstanceInit:
 	switch( .@type ) {
 	case 0:
 		enablenpc instance_npcname("#slwwarp01");
-		if (instance_live_info(ILI_NAME) == "Werner Laboratory central room#1")	// terra_gloria_main == 21
+		if (instance_live_info(ILI_NAME) == "沃纳实验室中央房间#1")	// terra_gloria_main == 21
 			enablenpc instance_npcname("Eisen Werner#werner03");
 		else {
 			enablenpc instance_npcname("Guard#gard05");
@@ -437,7 +437,7 @@ OnInstanceInit:
 		}
 		break;
 	case 1:
-		if (instance_live_info(ILI_NAME) == "Werner Laboratory central room#1")
+		if (instance_live_info(ILI_NAME) == "沃纳实验室中央房间#1")
 			enablenpc instance_npcname("Eisen Werner#werner04");
 		else
 			enablenpc instance_npcname("Central Entrance#door");
@@ -664,7 +664,7 @@ OnTouch:
 		warp 'map_slw$,55,153;
 		end;
 	}
-	if (instance_live_info(ILI_NAME) == "Werner Laboratory central room#1") {
+	if (instance_live_info(ILI_NAME) == "沃纳实验室中央房间#1") {
 		if ('event_final == 0) {
 			'event_final = 1;
 			enablenpc instance_npcname("Eisen Werner#werner05");
@@ -981,7 +981,7 @@ OnTouch:
 	mes "[Seyren]";
 	mes "趁我现在还有意志，我有一条信息要告诉你。";
 	next;
-	if (instance_live_info(ILI_NAME) == "Werner Laboratory central room#1") {
+	if (instance_live_info(ILI_NAME) == "沃纳实验室中央房间#1") {
 		mes "[Seyren]";
 		mes "请继续前进。";
 		mes "普隆德拉的骑士Seyren Windsor任务失败了。";

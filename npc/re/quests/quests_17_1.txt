@@ -686,7 +686,7 @@ ein_fild03,278,269,4	script	Rebellion Crew#171_einf	CLEAR_NPC,{
 		mes "[Rebellion Crew]";
 		mes "都准备好了吗？";
 		next;
-		.@md_name$ = "Sealed OS";
+		.@md_name$ = "封印的 OS";
 		.@party_id = getcharid(1);
 		.@party_name$ = getpartyname(.@party_id);
 		switch (select("Open the gate.:Go inside.:Quit.")) {
@@ -895,7 +895,7 @@ lighthalzen,55,278,3	script	Rekenber Guard Oscar#171_light	4_M_LGTGUARD,{
 		mes "先确保‘雷根希尔姆’安全，再查清楚。";
 		mes "准备好了吗？";
 		next;
-		.@md_name$ = "Regenschirm";
+		.@md_name$ = "雷根希尔";
 		.@party_id = getcharid(1);
 		.@party_name$ = getpartyname(.@party_id);
 		if (!.@party_id) {
@@ -6341,7 +6341,7 @@ sp_cor,180,169,3	script	Elena Volkova#rm171_1	4_F_ELENA,{
 		cutin "",255;
 		switch (select("准备", "进入", "取消")) {
 		case 1:
-			if (instance_create("Cor Memorial") < 1) {
+			if (instance_create("科尔纪念馆") < 1) {
 				cutin "162elena_01",2;
 				mes "[Elena Volkova]";
 				mes "似乎出了问题。你的请求失败了。请稍后再试。如果问题持续，请联系行动队。";
@@ -6354,7 +6354,7 @@ sp_cor,180,169,3	script	Elena Volkova#rm171_1	4_F_ELENA,{
 		case 2:
 			if (is_party_leader() == false)	// additionnal check
 				end;
-			switch (instance_enter("Cor Memorial")) {
+			switch (instance_enter("科尔纪念馆")) {
 			case IE_OK:
 				cloakonnpcself( "Rebellion#rm171_1" );
 				cloakonnpcself( "Rebellion#rm171_2" );
@@ -7605,7 +7605,7 @@ sp_cor,163,56,4	script	Est#171_ocp	4_F_ESTLOVELOY,{
 		}
 		cutin "",255;
 		.@party_name$ = getpartyname(.@party_id);
-		.@md_name$ = "OS Occupation";
+		.@md_name$ = "OS 占领战";
 		switch (select(is_party_leader() ? "准备进行 OS 占领。":"","进入","退出")) {
 		case 1:
 			if (instance_create(.@md_name$) == -3)
@@ -7667,7 +7667,7 @@ sp_cor,160,55,5	script	Operation Officer#171_ocp	4_M_ILYA,{
 		close;
 	}
 	.@party_name$ = getpartyname(.@party_id);
-	.@md_name$ = "2nd OS Search";
+	.@md_name$ = "OS 搜索 2";
 	switch (select(is_party_leader() ? "准备第二次 OS 搜索。":"","进入","退出")) {
 	case 1:
 		if (instance_create(.@md_name$) == -3)
@@ -7827,7 +7827,7 @@ sp_cor,113,130,3	script	Rebellion#rm171_8	4_M_REBELLION3,{
 		.@menu$ = "Ready";
 	switch (select( .@menu$, "进入", "取消" )) {
 	case 1:
-		if (instance_create("Cor Memorial") < 1) {
+		if (instance_create("科尔纪念馆") < 1) {
 			mes "[Rebellion]";
 			mes "似乎出了问题。你的请求失败了。请稍后再试。如果问题持续，请联系行动队。";
 			close;
@@ -7837,7 +7837,7 @@ sp_cor,113,130,3	script	Rebellion#rm171_8	4_M_REBELLION3,{
 		mes "好，如果 MD 已激活，再来和我交谈并选择^0000CD进入^000000。进入后行动就会开始。";
 		close;
 	case 2:
-		switch (instance_enter("Cor Memorial")) {
+		switch (instance_enter("科尔纪念馆")) {
 		case IE_OK:
 			if (isbegin_quest(16363) > 0)
 				erasequest 16363;
