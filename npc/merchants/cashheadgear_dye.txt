@@ -45,7 +45,7 @@ prt_in,253,168,4	script	Alora	862,{
 		if(.@i == 1)    set .@menu$, .@hgn$[.@i];
 		else            set .@menu$, .@menu$ +":"+ .@hgn$[.@i];
 	}
-	set .@menu$, .@menu$ +":Cancel";
+	set .@menu$, .@menu$ +":取消";
 	set .@t, select(.@menu$);
 	if(.@t == getarraysize(.@hgn$)) {
 		mes "[Alora]";
@@ -66,7 +66,7 @@ prt_in,253,168,4	script	Alora	862,{
 			set .@menu$, .@menu$ +":"+ .@colour$;
 		}
 	}
-	set .@menu$, .@menu$ +":Cancel";
+	set .@menu$, .@menu$ +":取消";
 	set .@c, select(.@menu$);
 	if(.@c == getarraysize(getd(".@hg_"+.@t+""))) {
 		mes "[Alora]";
@@ -89,7 +89,7 @@ prt_in,253,168,4	script	Alora	862,{
 	next;
 	set .@menu$, "算了";
 	for(set .@i,1; .@i < getarraysize(getd(".@hg_"+.@t+"")); set .@i,.@i+1) {
-		if(.@i == 1)    set .@menu$, .@menu$ +":Normal "+ getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
+		if(.@i == 1)    set .@menu$, .@menu$ +":普通 "+ getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
 		else            set .@menu$, .@menu$ +":"+ getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
 	}
 	set .@mine, select(.@menu$) - 1;

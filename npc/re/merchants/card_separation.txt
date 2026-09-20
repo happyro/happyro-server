@@ -54,7 +54,7 @@
 		if (getequipisequiped(.@equip_slot[.@i]))
 			set .@menu$, .@menu$+getequipname(.@equip_slot[.@i])+":";
 		else
-			set .@menu$, .@menu$+"^999999"+.@equip_name$[.@i]+" (empty)^000000:";
+			set .@menu$, .@menu$+"^999999"+.@equip_name$[.@i]+"（空）^000000:";
 	}
 
 	set .@i, select("停止操作:"+((.@Jeremy)?"这怎么可能？":"")+":"+.@menu$);
@@ -147,9 +147,9 @@
 		set .@menu$,"";
 		for ( .@i = 0; .@i < MAX_SLOTS; .@i++ ) {
 			if (.@equip_card[.@i] && getiteminfo(.@equip_card[.@i], ITEMINFO_SUBTYPE) == CARD_NORMAL) // Armor Enchant System
-				.@menu$ = .@menu$ + "Socket " + (.@i+1) + " - " + getitemname(.@equip_card[.@i])+":";
+				.@menu$ = .@menu$ + "卡槽 " + (.@i+1) + " - " + getitemname(.@equip_card[.@i])+":";
 			else {
-				.@menu$ = .@menu$ + "^777777Socket " + (.@i+1) + " - No card^000000:";
+				.@menu$ = .@menu$ + "^777777卡槽 " + (.@i+1) + " - 未插卡^000000:";
 			}
 		}
 		set .@i, select("停止操作:"+.@menu$);
@@ -265,10 +265,10 @@
 		mes .@n$;
 		if (.@Jeremy) {
 			mes "除了卡片，^ff0000所有附魔效果都会消失。^000000如果同意，请选择操作类型：";
-			set .@menu$,"Alright, let's do it!";
+			set .@menu$,"好，开始吧！";
 		} else {
 			mes "可以继续吗？";
-			set .@menu$,"I got it. Just do it quickly!";
+			set .@menu$,"明白了，快开始吧！";
 		}
 		next;
 		switch(select("下次吧……:"+.@menu$)) {

@@ -4277,9 +4277,9 @@ rebel_in,70,78,3	script	Elena Volkova#16.2rm	4_F_ELENA,{
 	if (lebedev_quest_16_2 == 0 || lebedev_quest_16_2 == 11)
 		.@menu$[1] = "我今天不忙，顺便来看看。";
 	else if (lebedev_quest_16_2 == 10)
-		.@menu$[1] = "我带来了 Lebedev 姐妹。";
+		.@menu$[1] = "我带来了列别捷夫姐妹。";
 	else
-		.@menu$[1] = "告诉她 Lebedev 双胞胎的事。";
+		.@menu$[1] = "告诉她列别捷夫双胞胎的事。";
 
 	switch( select( .@menu$[0], .@menu$[1] ) ) {
 	case 1:
@@ -7636,7 +7636,7 @@ rebel_in,162,87,5	script	Rebellion Guard leader#2	4_M_REBELLION,{
 	setarray .@item_id[0], 25165, 25167, 25166;
 	setarray .@amount[0], 1, 1, 4;
 	while(true) {
-		setarray .@menu$[0], "Dien's High Class Tea", "Ridsh's Old Letter", "Cotnes's Very Shining Ring", "Don't do it.";
+		setarray .@menu$[0], "迪恩的高级茶", "里德什的旧信", "科特尼斯的闪亮戒指", "不做了。";
 		for ( .@i = 0; .@i < 3; ++.@i ) {
 			switch( checkquest(.@quest_id[.@i],HUNTING) ) {
 			case -1:
@@ -7646,7 +7646,7 @@ rebel_in,162,87,5	script	Rebellion Guard leader#2	4_M_REBELLION,{
 					break;
 				case 0:
 				case 1:
-					.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + " (standing by)^000000";
+					.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + "（等待中）^000000";
 					.@quest_status[.@i] = 2;
 					break;
 				case 2:
@@ -7656,14 +7656,14 @@ rebel_in,162,87,5	script	Rebellion Guard leader#2	4_M_REBELLION,{
 				break;
 			case 0:
 			case 1:
-				.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + " (doing now)^000000";
+				.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + "（进行中）^000000";
 				.@quest_status[.@i] = 1;
 				break;
 			case 2:
 				if (countitem(.@item_id[.@i]) >= .@amount[.@i])
 					.@quest_status[.@i] = 3;
 				else {
-					.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + " (doing now)^000000";
+					.@menu$[.@i] = "^8C8C8C" + .@menu$[.@i] + "（进行中）^000000";
 					.@quest_status[.@i] = 1;
 				}
 				break;
@@ -14344,18 +14344,18 @@ prt_in,165,89,1	script	Librarian in charge of juveniles 	1_F_LIBRARYGIRL,{
 	if (.@r == 0)
 	setarray .@menu$[0], "101 块饼干的故事", "没有枪就没有生活", "猫头鹰法师林莎";
 	else if (.@r == 1)
-		setarray .@menu$[0], "My younger sister is so cute", "Record of my travel to Kunrun by foot", "The secret of the business told by Babayaga";
+		setarray .@menu$[0], "我的妹妹真可爱", "徒步昆仑旅行记", "芭芭雅嘎的经商秘诀";
 	else if (.@r == 3)
-		setarray .@menu$[0], "Guidebook for food materials in Dungeon", "Famous Lasagna Restaurants", "Hair&Beauty - Fairy's edition";
+		setarray .@menu$[0], "地下城食材指南", "拉萨格纳美食名店", "美发与美容——妖精篇";
 
 	switch( .@quest_id[.@i] ) {
 	case 16021:
 		.@right_answer = 0;
-		.@menu$[0] = "It's dizzy after being shaken 1,000 times.";
+		.@menu$[0] = "摇晃一千次后头晕目眩";
 		break;
 	case 16022:
 		.@right_answer = 1;
-		.@menu$[1] = "Rebellion, the history of liberty";
+		.@menu$[1] = "反叛军，自由的历史";
 		break;
 	case 16023:
 		.@right_answer = 2;

@@ -899,17 +899,17 @@ OnAgitInvest:
 			set .@owner_id[.@i], getcastledata(.@npc$+"g_cas0"+.@i,CD_GUILD_ID);
 			set .@owner_name$[.@i], getguildname(.@owner_id[.@i]);
 			if (.@guild == .@owner_id[.@i]) {
-				set .@menu$, .@menu$+.@castle_name$[.@i]+" ["+.@owner_name$[.@i]+"] Guild:";
+				set .@menu$, .@menu$+.@castle_name$[.@i]+" ["+.@owner_name$[.@i]+"] 公会:";
 				set .@castles_owned, .@castles_owned | (1<<.@i);
 			} else
-				set .@menu$, .@menu$+"^aaaaaaNot the guild that claimed "+.@castle_name$[.@i]+"^000000:";
+				set .@menu$, .@menu$+"^aaaaaa并非占领该城堡的公会："+.@castle_name$[.@i]+"^000000:";
 		}
 		mes .@n$;
 		mes "你想投资^4d4dff"+.@realm$+"^000000区域吗？";
 		mes "如果那里已经有城堡被占领，你投资的将是该城堡和占领它的公会。";
 		next;
 		if (.@castles_owned) {
-			set .@i, select(.@menu$+"Cancel");
+			set .@i, select(.@menu$+"取消");
 			if (.@i == 6) {
 				mes .@n$;
 				mes "已取消。";

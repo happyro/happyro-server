@@ -1257,7 +1257,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		for ( .@i = .@offset; .@i < .@size; .@i += 2 ) {
 			.@str$ = sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
 			if ((getstrlen(.@menu$ + .@str$) + 4) >= .@max_menu_size) {
-				.@menu$ += "^0000ffNext^000000:";
+				.@menu$ += "^0000ff下一页^000000:";
 				break;
 			}
 			.@menu$ += .@str$;
@@ -1419,7 +1419,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@size = getarraysize(.@data$);
 	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
 		.@id = atoi(.@data$[.@i]);
-		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
+		.@menu$ += sprintf( "%d. %s（剩余 %d）:", (.@j+1), getitemname(.@id), countitem(.@id) );
 		.@j++;
 	}
 	.@menu$ += "结束对话。";

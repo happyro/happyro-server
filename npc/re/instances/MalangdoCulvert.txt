@@ -40,14 +40,14 @@ mal_in01,172,28,2	script	Albo#mal	561,{
 	setarray .@names$[0],
 		"General Culvert Daily Service","^990000Hard Culvert Daily Service^000000",
 		"General Culvert Weekly Service","^990000Hard Culvert Weekly Service^000000";
-	set .@menu$,"Why are doing this job?:";
+	set .@menu$,"为什么要做这份工作？:";
 	for(set .@i,0; .@i<4; set .@i,.@i+1) {
 		if (checkquest(.@quests[.@i],PLAYTIME) > -1) {
 			set .@status[.@i],2;
-			set .@menu$, .@menu$+"^aaaaaa- There is no new task -^000000:";
+			set .@menu$, .@menu$+"^aaaaaa- 没有新任务 -^000000:";
 		} else if (.@i%2 && BaseLevel < 140) {
 			set .@status[.@i],0;
-			set .@menu$, .@menu$+"^aaaaaaCan't take this job because level is too low^000000:";
+			set .@menu$, .@menu$+"^aaaaaa等级不足，无法接取这项工作^000000:";
 		} else {
 			set .@status[.@i],1;
 			set .@menu$, .@menu$+.@names$[.@i]+":";
