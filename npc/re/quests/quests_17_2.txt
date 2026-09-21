@@ -5399,13 +5399,13 @@ ba_bath,286,68,5	script	Boiler#172ba02	4_EP17_BASIC_B,{
 	.@hunting = checkquest(17376,HUNTING);
 
 	if (.@playtime == 0 || .@playtime == 1)
-		.@menu$ = "^C0C0C0Help on work - Cooldown^000000";
+		.@menu$ = "^C0C0C0帮忙工作 - 冷却中^000000";
 	else if (.@hunting == 0 || .@hunting == 1)
-		.@menu$ = "^C0C0C0Help on work - On Progress^000000";
+		.@menu$ = "^C0C0C0帮忙工作 - 进行中^000000";
 	else
-		.@menu$ = "Help on work";
+		.@menu$ = "帮忙工作";
 
-	if (select( .@menu$, "I came to say hello." ) == 2) {
+	if (select( .@menu$, "我来打个招呼。" ) == 2) {
 		mes "[锅炉]";
 		mes "是啊，我不知道你为什么来。这里没有变化，我们还在处理锅炉。";
 		close3;
@@ -6540,11 +6540,11 @@ ba_bath,288,68,3	script	Sweep#172ba02	4_EP17_CLEANER,{
 	.@hunting = checkquest(17379,HUNTING);
 
 	if (.@playtime == 0 || .@playtime == 1)
-		.@menu$ = "^C0C0C0Fish extermination - Cooldown^000000";
+		.@menu$ = "^C0C0C0消灭鱼类 - 冷却中^000000";
 	else if (.@hunting == 0 || .@hunting == 1)
-		.@menu$ = "^C0C0C0Fish extermination - On Progress^000000";
+		.@menu$ = "^C0C0C0消灭鱼类 - 进行中^000000";
 	else
-		.@menu$ = "Fish extermination";
+		.@menu$ = "消灭鱼类";
 
 	if (select( .@menu$, "我对清洁很好奇。" ) == 2) {
 		mes "[Sweep]";
@@ -7195,7 +7195,7 @@ ba_2whs01,150,51,5	script	Chirp#172wh01	4_EP17_BASKET,{
 	.@quest_menu$[0] = callsub( S_Menu, 17359,17360, "仓库清理" );
 	.@quest_menu$[1] = callsub( S_Menu, 17361,17362, "地下室清理" );
 
-	switch( select( .@quest_menu$[0], .@quest_menu$[1], "Is there something wrong?" ) ) {
+	switch( select( .@quest_menu$[0], .@quest_menu$[1], "有什么问题吗？" ) ) {
 	case 1:
 		.@lvl = 160;
 		.@hunt = 17359;
@@ -7300,16 +7300,16 @@ S_Menu:
 			break;
 		case 0:
 		case 1:
-			.@menu$ = "^777777" + .@string$ + " - Ongoing^000000";
+			.@menu$ = "^777777" + .@string$ + " - 进行中^000000";
 			break;
 		case 2:
-			.@menu$ = "" + .@string$ + " - Completed";
+			.@menu$ = "" + .@string$ + " - 已完成";
 			break;
 		}
 		break;
 	case 0:
 	case 1:
-		.@menu$ = "^777777" + .@string$ + " - Waiting^000000";
+		.@menu$ = "^777777" + .@string$ + " - 等待中^000000";
 		break;
 	case 2:
 		.@menu$ = .@string$;
@@ -8553,7 +8553,7 @@ S_Menu:
 			break;
 		case 0:
 		case 1:
-			.@menu$ = "^777777" + .@string$ + " (Ongoing)^000000";
+			.@menu$ = "^777777" + .@string$ + "（进行中）^000000";
 			break;
 		case 2:
 			.@menu$ = .@string$ + " [130]";
@@ -8562,7 +8562,7 @@ S_Menu:
 		break;
 	case 0:
 	case 1:
-		.@menu$ = "^777777" + .@string$ + " (Waiting)^000000";
+		.@menu$ = "^777777" + .@string$ + "（等待中）^000000";
 		break;
 	case 2:
 		.@menu$ = .@string$ + " [130]";

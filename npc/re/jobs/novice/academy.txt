@@ -2072,12 +2072,12 @@ iz_ac01,59,43,3	script	Therapist#ac	4_M_6THPRIN1,{
 		mes "你是学生吗？";
 		mes "你的身体有什么问题吗？";
 		next;
-		.@menu$ = "Help me!:Teach me the First Aid Skill:^ff0000Red Herb Quest^000000:Save Location";
+		.@menu$ = "帮帮我！:教我紧急治疗技能:^ff0000红色药草任务^000000:保存位置";
 	} else {
 		mes "这里是皇家克里图拉学院的医务室。";
 		mes "我能帮你什么？";
 		next;
-		.@menu$ = "Help me!:First Aid Skill::I want to rest.";
+		.@menu$ = "帮帮我！:紧急治疗技能::我想休息。";
 	}
 	switch(select(.@menu$)) {
 	case 1:
@@ -2608,9 +2608,9 @@ iz_ac01,100,39,5	script	Academy Receptionist#1	4_F_01,{
 		mes "我能为你做什么？";
 		next;
 		if (isbegin_quest(4269) == 2)
-			.@menu$ = ":What's inside and outside the Academy.:Trainer location guide.:End Coversation.";
+			.@menu$ = ":学院内外介绍。:导师位置指南。:结束对话。";
 		else
-			.@menu$ = "Register for the Academy:Explanation about the Academy:Location for trainers:Coversation finished";
+			.@menu$ = "学院报名:学院介绍:导师位置:结束对话";
 		switch(select(.@menu$)) {
 		case 1:
 			if (Class == Job_Novice) {
@@ -3560,7 +3560,7 @@ izlude,115,181,5	script	Shop Helper#iz	4_F_KHELLISIA,{
 	while(1) {
 		mes "你想知道什么？";
 		next;
-		set .@menu$,"Shop types:Currency types:Cash Shop:"+(Class == Job_Novice && !isbegin_quest(1238)?"Experience training.":"No, I know enough.");
+		set .@menu$,"商店种类:货币种类:商城:"+(Class == Job_Novice && !isbegin_quest(1238)?"体验教学。":"不用了，我已经了解了。");
 		switch(select(.@menu$)) {
 			case 1:
 				mes "[Shop Helper Leonie]";
@@ -7310,7 +7310,7 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 		mes "天哪！你比小猪还可爱！你想学习成为^ff0000枪手^000000吗？";
 		next;
 		if (.@has_manual == 1) {
-			.@menu$ = "What is a Gunslinger?:Can I try out the skills?:Becoming a Gunslinger?:How can I try out the skills?:Cancel";
+			.@menu$ = "什么是神枪手？:能体验技能吗？:如何成为神枪手？:怎样体验技能？:取消";
 		} else {
 			.@menu$ = "枪手是什么？:我能试用技能吗？:成为枪手？::取消";
 		}
@@ -12072,14 +12072,14 @@ iz_ac02,156,169,5	script	Acolyte Leader Alice#2	4_F_ACOLYTE,{
 			mes "如果你没有选择服事作为职业，不如多了解一下？";
 			cutin "acact_01.bmp", 2;
 			next;
-			.@menu$ = "What is an Acolyte?:Battle Acolyte:Support Acolyte:Change job class to Acolyte.:End Conversation";
+			.@menu$ = "什么是服事？:战斗型服事:辅助型服事:转职为服事。:结束对话";
 		} else {
 			mes "[Alice Yisha]";
 			mes "我想你已经不需要我的帮助了。";
 			mes "你对服事有什么疑问吗？";
 			cutin "acact_03.bmp", 2;
 			next;
-			.@menu$ = "What is an Acolyte?:Battle Acolyte:Support Acolyte::End Conversation";
+			.@menu$ = "什么是服事？:战斗型服事:辅助型服事::结束对话";
 		}
 		switch(select(.@menu$)) {
 			case 1:
@@ -12791,7 +12791,7 @@ izlude_d,153,126,1	duplicate(Refinery Owner Han#iz)	Refinery Owner Han#iz_d	4_M_
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
 	for(set .@i,1; .@i<=10; set .@i,.@i+1)
-		.@menu$ = .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]): F_getpositionname(.@indices[.@i]) +" - [Unarmed]" ) +":";
+		.@menu$ = .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]): F_getpositionname(.@indices[.@i]) +" - [未装备]" ) +":";
 	.@part = .@indices[ select(.@menu$) ];
 	if (!getequipisequiped(.@part)) {
 		mes "[精炼机 Wagjak]";

@@ -3198,12 +3198,12 @@ harboro1,231,254,3	script	Exotic Merchant	1_M_MERCHANT,{
 	for ( .@i = 0; .@i < .@size; .@i++ ) {
 		.@item_name$ = getitemname(.@item_id[.@i]);
 		if (countitem(.@item_id[.@i]) < 5)
-			.@menu$ += "^777777Not enough " + .@item_name$ + "^000000:";
+			.@menu$ += "^777777数量不足：" + .@item_name$ + "^000000:";
 		else
 			.@menu$ += "" + .@item_name$ + ":";
 	}
 
-	.@s = select( "Cancel:" + .@menu$ ) - 2;
+	.@s = select( "取消:" + .@menu$ ) - 2;
 	if (.@s == -1) {
 		mes "[Exotic Merchant]";
 		mes "嗯，你想要回自己的东西？";

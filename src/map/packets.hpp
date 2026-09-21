@@ -1574,6 +1574,15 @@ struct PACKET_ZC_HAPPYRO_MAP_TELEPORT_RESULT {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_MAP_TELEPORT_RESULT, 0xd01);
 
+struct PACKET_ZC_HAPPYRO_NAVIGATION_CONTROL {
+	int16 packetType;
+	uint8 action; // 0: stop, 1: walk, 2: preview
+	char map[MAP_NAME_LENGTH_EXT];
+	uint16 x;
+	uint16 y;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_NAVIGATION_CONTROL, 0xd02);
+
 struct PACKET_CZ_BROADCAST{
 	int16 packetType;
 	uint16 packetSize;

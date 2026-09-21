@@ -3,12 +3,14 @@
 
 #include <array>
 #include <algorithm>
+#include <climits>
 #include "battle.hpp"
 #include "clif.hpp"
 #include "pc.hpp"
 #include "status.hpp"
 
 namespace {
+constexpr int32 maintenance_trait_max = SHRT_MAX;
 constexpr std::array<const char*, 6> names = {"pow", "sta", "wis", "spl", "con", "crt"};
 
 uint32 budget(const map_session_data* sd) {
@@ -30,7 +32,7 @@ nlohmann::json game_control_traits_snapshot(const map_session_data* sd) {
 	nlohmann::json values, maximums;
 	for (int i = 0; i < names.size(); ++i) {
 		values[names[i]] = pc_getstat(sd, SP_POW + i);
-		maximums[names[i]] = pc_maxparameter(sd, static_cast<e_params>(PARAM_POW + i));
+		maximums[names[i]] = maintenance_trait_max;
 	}
 	return {{"enabled", static_cast<bool>(pc_is_trait_job(sd->class_))}, {"values", values},
 		{"maximums", maximums}, {"points", sd->status.trait_point}, {"budget", budget(sd)}};
@@ -47,18 +49,13 @@ bool game_control_traits_update(map_session_data* sd, const nlohmann::json& payl
 		if (it == names.end() || !value.is_number_integer())
 			return false;
 		const int i = it - names.begin();
-		if (value < 0 || value > pc_maxparameter(sd, static_cast<e_params>(PARAM_POW + i)))
+		if (value < 0 || value > maintenance_trait_max)
 			return false;
 		values[i] = value.get<int32>();
 	}
-	uint32 used = 0;
-	for (int32 value : values)
-		used += value;
-	if (used > budget(sd))
-		return false;
 	for (int i = 0; i < names.size(); ++i)
 		pc_setstat(sd, SP_POW + i, values[i]);
-	sd->status.trait_point = budget(sd) - used;
+	// Maintenance sets attributes directly without spending unallocated points.
 	refresh(sd);
 	return true;
 }
@@ -67,12 +64,12 @@ void game_control_traits_reconcile(map_session_data* sd, bool reset) {
 	uint32 used = 0;
 	for (int i = 0; i < names.size(); ++i)
 		used += pc_getstat(sd, SP_POW + i);
-	if (reset || used > budget(sd) || !pc_is_trait_job(sd->class_)) {
+	if (reset || !pc_is_trait_job(sd->class_)) {
 		for (int i = 0; i < names.size(); ++i)
 			pc_setstat(sd, SP_POW + i, 0);
 		used = 0;
 	}
-	sd->status.trait_point = budget(sd) - used;
+	sd->status.trait_point = used < budget(sd) ? budget(sd) - used : 0;
 	refresh(sd);
 }
 

@@ -48,7 +48,7 @@ ba_maison,120,321,5	script(CLOAKED)	#he_admin1	MD_ASSISTANT,{
 	.@md_name$ = "隐秘花园";
 
 	if (instance_live_info(ILI_NAME,instance_id(IM_PARTY)) == .@md_name$)
-		.@menu$ = "^FF0000Enter^000000";
+		.@menu$ = "^FF0000进入^000000";
 
 	switch( select( "退出并退后。", "认证身份", .@menu$ ) ) {
 	case 1:
@@ -98,9 +98,9 @@ ba_maison,120,321,5	script(CLOAKED)	#he_admin2	MD_ASSISTANT,{
 	mes "身份已确认。你可以进入安全区域。需要什么帮助？";
 	next;
 	if (BaseLevel >= 150)
-		.@menu$[0] = "1st Security Zone.";
+		.@menu$[0] = "安全区域 1。";
 	if (BaseLevel >= 180)
-		.@menu$[1] = "^FF00002nd Security Zone.^000000";
+		.@menu$[1] = "^FF0000安全区域 2。^000000";
 
 	switch( select( "退后。", "身份认证", "进入区域" ) ) {
 	case 1:
@@ -196,7 +196,7 @@ OnInstanceInit:
 			specialeffect EF_HALLUTIME;
 			mes "^FF0000ERROR^000000";
 			mes "^FF0000图案不匹配。^000000";
-			.@menu$ = "^FF0000Try entering a different pattern^000000";
+			.@menu$ = "^FF0000尝试输入其他图案^000000";
 		}
 		specialeffect EF_GUARD4;
 		mes "^0000FF图案已识别。^000000";
@@ -263,7 +263,7 @@ OnInstanceInit:
 
 		setarray .@names$[0],"Lisa","Barbara","Jennifer","Dorothy","Jun","Yeongchun","Susan","Martha","Hannah","Helen","Chunja","Karen","How do I stop this?";
 		.@size = getarraysize(.@names$);
-		.@menu$[0] = "Quit";	// note: script continues regardless of the selection
+		.@menu$[0] = "退出";	// note: script continues regardless of the selection
 		for ( .@i = 1; .@i < 4; ++.@i ) {
 			.@r = rand(.@size);
 			.@menu$[.@i] = .@names$[.@r];

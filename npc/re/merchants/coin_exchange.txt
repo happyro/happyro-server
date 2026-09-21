@@ -37,12 +37,12 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 		6420, //Cgrade_Coin
 		6421, //Dgrade_Coin
 		6422; //Egrade_Coin
-	.@menu$ = "Stop:";
+	.@menu$ = "停止:";
 	for(.@i = 1; .@i<=6; .@i++) {
 		if (countitem(.@coins[.@i]))
 			.@menu$ = .@menu$ + getitemname(.@coins[.@i]) + ":";
 		else
-			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (None)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+"（无）^000000:";
 	}
 	.@i = select(.@menu$);
 	switch(.@i) {
@@ -73,14 +73,14 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	setarray .@exchange_loss[0],rand(1,4),rand(1,2); // Amount deducted per exchange.
 	setarray .@exchange_id[0],.@coins[.@coin_select-1],.@coins[.@coin_select+1];
 	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // Cannot exchange for Silvervine.
-	.@menu$ = "Stop:";
+	.@menu$ = "停止:";
 	for(.@i = 0; .@i<2; .@i++) {
 		if (.@exchange_id[.@i] == 0)
-			.@menu$ = .@menu$ + "^ff3333Unavailable exchange to "+.@exchange_name$[.@i]+" coin^000000:";
+			.@menu$ = .@menu$ + "^ff3333无法兑换为"+.@exchange_name$[.@i]+"币^000000:";
 		else if (countitem(.@coin) < .@exchange_rate[.@i])
-			.@menu$ = .@menu$ + "^aaaaaaExchange to "+.@exchange_name$[.@i]+" coin (null)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa兑换为"+.@exchange_name$[.@i]+"币（无）^000000:";
 		else
-			.@menu$ = .@menu$ + "Exchange to "+.@exchange_name$[.@i]+" coin - "+getitemname(.@coin)+" ("+.@exchange_rate[.@i]+" needed):";
+			.@menu$ = .@menu$ + "兑换为"+.@exchange_name$[.@i]+"币 - "+getitemname(.@coin)+" ("+.@exchange_rate[.@i]+" 个):";
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
@@ -122,17 +122,17 @@ malangdo,218,165,5	script	Special Vending Machine	562,{
 	mes "欢迎来到 CX-82。您有银藤果，可以购买拥有特殊能力的马郎多特产。";
 	next;
 	callsub L_AddItem, //DisplayName,ItemID,Cost
-		"Seagod's Protection [23 hours]",16740,4,
-		"Seagod's Protection [7 days]",16763,12,
-		"Seagod's Protection [15 days]",16764,24,
-		"Octopus Hunting Stick [23 hours]",16765,2,
-		"Octopus Hunting Stick [3 days]",16766,5,
-		"Octopus Hunting Stick [7 days]",16767,10,
-		"Premium Lubricant",6441,56,
-		"Ordinary Lubricant",6440,36,
-		"Sillit Pong",6443,192;
+		"海神的保护 [23 小时]",16740,4,
+		"海神的保护 [7 天]",16763,12,
+		"海神的保护 [15 天]",16764,24,
+		"章鱼狩猎棒 [23 小时]",16765,2,
+		"章鱼狩猎棒 [3 天]",16766,5,
+		"章鱼狩猎棒 [7 天]",16767,10,
+		"高级润滑剂",6441,56,
+		"普通润滑剂",6440,36,
+		"Sillit Pong 瓶",6443,192;
 L_AddItem:
-	.@menu$ = "Explanation:";
+	.@menu$ = "说明:";
 	for(.@i = 0; .@i<getargcount(); .@i += 3)
 		.@menu$ = .@menu$ + getarg(.@i)+":";
 	.@i = select(.@menu$)-2;
@@ -155,9 +155,9 @@ L_AddItem:
 	mes "您选择了 ^005500"+getarg(.@i*3)+"^000000。购买需要 ^005500"+.@cost+"^000000 个银藤果。";
 	next;
 	if (countitem(6417) < .@cost)
-		.@ven_menu$ = "^999999Silvervine Fruit (missing "+(.@cost - countitem(6417))+")^000000";
+		.@ven_menu$ = "^999999木天蓼果实（缺少 "+(.@cost - countitem(6417))+"）^000000";
 	else
-		.@ven_menu$ = "Purchase - Silvervine Fruit (have "+countitem(6417)+")";
+		.@ven_menu$ = "购买木天蓼果实（持有 "+countitem(6417)+"）";
 	switch(select("停止:"+.@ven_menu$)) {
 	case 1:
 		mes "[Special Vending Machine]";
@@ -201,7 +201,7 @@ malangdo,236,179,5	script	Dark Merchant K	554,{
 			else
 				.@menu$ = .@menu$ + "^aaaaaa兑换 "+(.@coin_amount[.@i]/10)+" 枚莫拉硬币（不足）^000000:";
 		}
-		.@i = select(.@menu$+"Quit")-1;
+		.@i = select(.@menu$+"退出")-1;
 		if (.@i == getarraysize(.@coin_amount)) {
 			mes "[Merchant K]";
 			mes "下次再兑换吧。";
@@ -246,12 +246,12 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 		6420, //Cgrade_Coin
 		6421, //Dgrade_Coin
 		6422; //Egrade_Coin
-	.@menu$ = "Quit:";
+	.@menu$ = "退出:";
 	for(.@i = 1; .@i<=6; .@i++) {
 		if (countitem(.@coins[.@i]))
-			.@menu$ = .@menu$ + getitemname(.@coins[.@i])+" (have "+countitem(.@coins[.@i])+"):";
+			.@menu$ = .@menu$ + getitemname(.@coins[.@i])+"（持有 "+countitem(.@coins[.@i])+"）:";
 		else
-			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (None)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+"（无）^000000:";
 	}
 	.@i = select(.@menu$)-1;
 	if (.@i == 0) {
@@ -282,24 +282,24 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 	mes "---------------------";
 	mes "^ff3333兑换硬币时会收取少量商店手续费。^000000";
 	next;
-	.@menu$ = "Quit:";
+	.@menu$ = "退出:";
 	if (.@exchange_id[0] == 0)
-		.@menu$ = .@menu$ + "^ff3333Cannot exchange to higher level coin^000000:";
+		.@menu$ = .@menu$ + "^ff3333无法兑换为高级币^000000:";
 	else {
 		if (countitem(.@coin) >= 99)
-			.@menu$ = .@menu$ + "Exchange 99 "+getitemname(.@coin)+" into higher level coin:";
+			.@menu$ = .@menu$ + "将 99 枚"+getitemname(.@coin)+"兑换为高级币:";
 		else
-			.@menu$ = .@menu$ + "^aaaaaaExchange to higher level coin (Not enough)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa兑换为高级币（数量不足）^000000:";
 	}
 	if (.@exchange_id[1] == 0)
-		.@menu$ = .@menu$ + "^ff3333Cannot exchange to lower level coin^000000:";
+		.@menu$ = .@menu$ + "^ff3333无法兑换为低级币^000000:";
 	else {
 		if (countitem(.@coin) > 500)
-			.@menu$ = .@menu$ + "Exchange 500 "+getitemname(.@coin)+" into lower level coin:";
+			.@menu$ = .@menu$ + "将 500 枚"+getitemname(.@coin)+"兑换为低级币:";
 		else if (countitem(.@coin))
-			.@menu$ = .@menu$ + "Exchange "+countitem(.@coin)+" "+getitemname(.@coin)+" into lower level coin:";
+			.@menu$ = .@menu$ + "兑换 "+countitem(.@coin)+" "+getitemname(.@coin)+"兑换为低级币:";
 		else
-			.@menu$ = .@menu$ + "^aaaaaaExchange to lower level coin (Not enough)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa兑换为低级币（数量不足）^000000:";
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
@@ -1127,9 +1127,9 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 		.@item_check =1;
 	for(.@i = 0; .@i<getarraysize(.@items); .@i++) {
 		if (.@item_check && countitem(.@items[.@i]))
-			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^2502FDAble to Replicate^000000):";
+			.@menu$ = .@menu$+getitemname(.@items[.@i])+"（^2502FD可以复制^000000）:";
 		else
-			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^777777Insufficient ingredients^000000):";
+			.@menu$ = .@menu$+getitemname(.@items[.@i])+"（^777777材料不足^000000）:";
 	}
 	.@i = select(.@menu$)-1;
 	mes "[Paltu]";

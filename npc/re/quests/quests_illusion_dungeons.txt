@@ -8456,10 +8456,10 @@ com_d02_i,238,266,4	script	Request Board#Lu	4_BOARD3,{
 		close;
 	}
 
-	.@quest_menu$[0] = callsub( S_MenuGather, 5848,5849, "Evidence of eradication of Megaliths" );
-	.@quest_menu$[1] = callsub( S_MenuGather, 5850,5851, "Evidence of eradication of Wootan" );
-	.@quest_menu$[2] = callsub( S_MenuHunt, 5852,5853, "Operation to eradicate Megaliths" );
-	.@quest_menu$[3] = callsub( S_MenuHunt, 5854,5855, "Operation to eradicate Wootan" );
+	.@quest_menu$[0] = callsub( S_MenuGather, 5848,5849, "消灭巨石怪的证明" );
+	.@quest_menu$[1] = callsub( S_MenuGather, 5850,5851, "消灭伍坦的证明" );
+	.@quest_menu$[2] = callsub( S_MenuHunt, 5852,5853, "巨石怪讨伐行动" );
+	.@quest_menu$[3] = callsub( S_MenuHunt, 5854,5855, "伍坦讨伐行动" );
 
 	.@playtime_5849 = checkquest(5849,PLAYTIME);
 	.@playtime_5851 = checkquest(5851,PLAYTIME);
@@ -8468,15 +8468,15 @@ com_d02_i,238,266,4	script	Request Board#Lu	4_BOARD3,{
 
 	// menu to take all quests at once
 	if (.@playtime_5849 > 0 || .@playtime_5851 > 0 || .@playtime_5853 > 0 || .@playtime_5855 > 0) {	// at least one of the quests is in cooldown
-		.@quest_menu$[4] = "^777777[Waiting] Receive all quests^000000";
+		.@quest_menu$[4] = "^777777[等待中] 接取全部任务^000000";
 		.@all_quests = 0;
 	}
 	else if (isbegin_quest(5848) > 0 || isbegin_quest(5850) > 0 || isbegin_quest(5852) > 0 || isbegin_quest(5854) > 0) {	// at least one of the quests is in progress
-		.@quest_menu$[4] = "^777777[Progress] Receive all quests^000000";
+		.@quest_menu$[4] = "^777777[进行中] 接取全部任务^000000";
 		.@all_quests = 1;
 	}
 	else {	// can take all quests
-		.@quest_menu$[4] = "[Daily] Accept all quests";
+		.@quest_menu$[4] = "[每日] 接取全部任务";
 		.@all_quests = 2;
 	}
 
@@ -8664,22 +8664,22 @@ S_MenuGather:
 	case -1:
 		switch( isbegin_quest(getarg(0)) ) {
 		case 0:
-			.@menu$ = "[Daily] " + .@string$;
+			.@menu$ = "[每日] " + .@string$;
 			break;
 		case 1:
 		case 2:
 			// note: the amount of item is not checked
-			.@menu$ = "^777777[Progress] " + .@string$ + "^000000";
+			.@menu$ = "^777777[进行中] " + .@string$ + "^000000";
 			break;
 		}
 		break;
 	case 0:
 	case 1:
-		.@menu$ = "^777777[Waiting]" + .@string$ + "^000000";
+		.@menu$ = "^777777[等待中]" + .@string$ + "^000000";
 		break;
 	case 2:
 		erasequest getarg(1);
-		.@menu$ = "[Daily]" + .@string$;
+		.@menu$ = "[每日]" + .@string$;
 		break;
 	}
 	return .@menu$;
@@ -8691,24 +8691,24 @@ S_MenuHunt:
 	case -1:
 		switch( checkquest(getarg(0),HUNTING) ) {
 		case -1:
-			.@menu$ = "[Daily] " + .@string$;
+			.@menu$ = "[每日] " + .@string$;
 			break;
 		case 0:
 		case 1:
-			.@menu$ = "^777777[Progress] " + .@string$ + "^000000";
+			.@menu$ = "^777777[进行中] " + .@string$ + "^000000";
 			break;
 		case 2:
-			.@menu$ = "^777777[Reward] " + .@string$ + "^000000";
+			.@menu$ = "^777777[领取奖励] " + .@string$ + "^000000";
 			break;
 		}
 		break;
 	case 0:
 	case 1:
-		.@menu$ = "^777777[Waiting] " + .@string$ + "^000000";
+		.@menu$ = "^777777[等待中] " + .@string$ + "^000000";
 		break;
 	case 2:
 		erasequest getarg(1);
-		.@menu$ = "[Daily] " + .@string$;
+		.@menu$ = "[每日] " + .@string$;
 		break;
 	}
 	return .@menu$;
@@ -9547,13 +9547,13 @@ iz_d04_i,127,228,4	script	Jerrymon#jerry3	1_M_01,{
 		case -1:
 			switch( isbegin_quest(3413) ) {
 			case 0:
-				.@menu$[0] = "Collect " + getitemname(25899) + "";
+				.@menu$[0] = "收集" + getitemname(25899) + "";
 				break;
 			case 1:
 				if (countitem(25899) < 10)
-					.@menu$[0] = "Collecting " + getitemname(25899) + " - In Progress";
+					.@menu$[0] = "收集" + getitemname(25899) + " - 进行中";
 				else
-					.@menu$[0] = "Collect " + getitemname(25899) + " - Done";
+					.@menu$[0] = "收集" + getitemname(25899) + " - 已完成";
 				break;
 			case 2:
 				end;
@@ -9561,10 +9561,10 @@ iz_d04_i,127,228,4	script	Jerrymon#jerry3	1_M_01,{
 			break;
 		case 0:
 		case 1:
-			.@menu$[0] = "^999999" + getitemname(25899) + " Collection - Pending^000000";
+			.@menu$[0] = "^999999" + getitemname(25899) + "收集 - 等待中^000000";
 			break;
 		case 2:
-			.@menu$[0] = "Collect " + getitemname(25899) + "";
+			.@menu$[0] = "收集" + getitemname(25899) + "";
 			break;
 		}
 
@@ -9572,23 +9572,23 @@ iz_d04_i,127,228,4	script	Jerrymon#jerry3	1_M_01,{
 		case -1:
 			switch( checkquest(3415,HUNTING) ) {
 			case -1:
-				.@menu$[1] = "Kill Deep Sea Creatures";
+				.@menu$[1] = "消灭深海生物";
 				break;
 			case 0:
 			case 1:
-				.@menu$[1] = "Kill sea creatures - In Progress";
+				.@menu$[1] = "消灭深海生物 - 进行中";
 				break;
 			case 2:
-				.@menu$[1] = "Kill Deep Sea Creatures - Done";
+				.@menu$[1] = "消灭深海生物 - 已完成";
 				break;
 			}
 			break;
 		case 0:
 		case 1:
-			.@menu$[1] = "^999999Deep Sea Creatures Killed - Pending^000000";
+			.@menu$[1] = "^999999消灭深海生物 - 等待中^000000";
 			break;
 		case 2:
-			.@menu$[1] = "Kill Deep Sea Creatures";
+			.@menu$[1] = "消灭深海生物";
 			break;
 		}
 

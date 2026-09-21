@@ -91,12 +91,12 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 		break;
 	}
 	.@size = getarraysize(.@module_etc);
-	.@menu$ = "Cancel:";
+	.@menu$ = "取消:";
 
 	// Build the menu according to all the modules with the given grade in inventory
 	for ( .@i = 0; .@i < .@size; ++.@i ) {
 		if (countitem(.@module_etc[.@i]) < 1)
-			.@menu$ += "^808080(Module Amount 0)^000000" + ":";
+			.@menu$ += "^808080（模块数量为 0）^000000" + ":";
 		else {
 			.@item_name$ = getitemname(.@module_etc[.@i]);
 			.@item_name$ = replacestr(.@item_name$, "Automatic Modification Module(", "");
