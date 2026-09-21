@@ -509,9 +509,10 @@ void game_control_process() {
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.points.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.progression.update"
+		&& command_type != "character.points.update"
 		&& command_type != "character.skill_points.update"
 		&& command_type != "character.stats.update"
 		&& command_type != "character.stats.reset"
@@ -581,7 +582,7 @@ void game_control_process() {
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"sex", sd->status.sex}, {"traits", game_control_traits_snapshot(sd)},
 					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
-					{"max_skill_points", INT16_MAX},
+					{"max_skill_points", INT16_MAX}, {"max_status_points", INT32_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},
 					{"max_stats", { {"str", stat_safe_max(sd, PARAM_STR)}, {"agi", stat_safe_max(sd, PARAM_AGI)},
 						{"vit", stat_safe_max(sd, PARAM_VIT)}, {"int", stat_safe_max(sd, PARAM_INT)},
@@ -671,6 +672,26 @@ void game_control_process() {
 					status = 200;
 					result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"base_level", sd->status.base_level}, {"job_level", sd->status.job_level}, {"job_id", sd->status.class_}, {"skill_points", sd->status.skill_point}}}}}};
 				}
+			}
+		} else if (command_type == "character.points.update") {
+			const auto& payload = body["payload"];
+			int32 skill_points = 0, status_points = 0;
+			const bool valid = payload_has_only_keys(payload, {"skill_points", "status_points"}) && !payload.empty()
+				&& (!payload.contains("skill_points") || read_integer(payload["skill_points"], 0, INT16_MAX, skill_points))
+				&& (!payload.contains("status_points") || read_integer(payload["status_points"], 0, INT32_MAX, status_points));
+			if (!valid) {
+				status = 400;
+				result = {{"error", {{"code", "invalid_parameter"}}}};
+			} else {
+				// Validate both balances before changing either one.
+				if (payload.contains("skill_points"))
+					pc_setparam(sd, SP_SKILLPOINT, skill_points);
+				if (payload.contains("status_points"))
+					pc_setparam(sd, SP_STATUSPOINT, status_points);
+				chrif_save(sd, CSAVE_NORMAL);
+				status = 200;
+				result = {{"data", {{"result", {{"char_id", sd->status.char_id},
+					{"skill_points", sd->status.skill_point}, {"status_points", sd->status.status_point}}}}}};
 			}
 		} else if (command_type == "character.skill_points.update") {
 			const auto& payload = body["payload"];
