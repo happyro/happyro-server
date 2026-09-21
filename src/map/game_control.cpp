@@ -3,6 +3,8 @@
 #include "game_control.hpp"
 #include "game_control_item_grant.hpp"
 #include "game_control_traits.hpp"
+#include "game_control_skills.hpp"
+#include "game_control_navigation.hpp"
 
 #include <algorithm>
 #include <condition_variable>
@@ -507,7 +509,7 @@ void game_control_process() {
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.progression.update"
 		&& command_type != "character.skill_points.update"
@@ -516,6 +518,9 @@ void game_control_process() {
 		&& command_type != "character.traits.update"
 		&& command_type != "character.traits.reset"
 		&& command_type != "character.skills.reset"
+		&& command_type != "character.skills.learn_all"
+		&& command_type != "character.navigation.teleport"
+		&& command_type != "character.navigation.route"
 		&& command_type != "character.vitals.restore"
 		&& command_type != "character.inventory.item_grant"
 		&& command_type != "character.currency.zeny_grant"
@@ -533,6 +538,14 @@ void game_control_process() {
 		} else if (map_session_data* sd = map_charid2sd(char_id); sd == nullptr) {
 			status = 409;
 			result = {{"error", {{"code", "character_offline"}}}};
+		} else if (command_type == "character.navigation.route") {
+			const auto navigation = game_control_route(sd, body["payload"]);
+			status = navigation.status;
+			result = navigation.body;
+		} else if (command_type == "character.navigation.teleport") {
+			const auto navigation = game_control_teleport(sd, body["payload"]);
+			status = navigation.status;
+			result = navigation.body;
 		} else if (command_type == "character.inventory.item_grant") {
 			const GameControlItemGrantResult grant = game_control_grant_inventory_item(sd, body["payload"]);
 			status = grant.status;
@@ -754,6 +767,15 @@ void game_control_process() {
 				status = 200;
 				result = {{"data", {{"result", {{"spawned", spawned}}}}}};
 			}
+		}
+		} else if (command_type == "character.skills.learn_all") {
+		if (!body["payload"].empty()) {
+			status = 400;
+			result = {{"error", {{"code", "invalid_parameter"}}}};
+		} else {
+			const int32 learned = game_control_learn_job_skills(sd);
+			status = 200;
+			result = {{"data", {{"result", {{"char_id", sd->status.char_id}, {"learned_skills", learned}, {"skill_points", sd->status.skill_point}}}}}};
 		}
 		} else if (command_type == "character.skills.reset") {
 		if (!body["payload"].empty()) {
