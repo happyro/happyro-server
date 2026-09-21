@@ -516,7 +516,8 @@ bool skill_pos_maxcount_check(block_list *src, int16 x, int16 y, uint16 skill_id
  * @return modified heal value
  */
 int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint16 skill_lv, bool heal) {
-	int32 skill, hp = 0;
+	int32 skill;
+	int64 hp = 0;
 #ifdef RENEWAL
 	int32 hp_bonus = 0;
 	double global_bonus = 1;
@@ -571,7 +572,7 @@ int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint
 
 		case SOA_TALISMAN_OF_PROTECTION:
 			hp = (500 + pc_checkskill(sd,SOA_TALISMAN_MASTERY) * 50) * skill_lv * status_get_lv(src) / 100;
-			hp += (status_get_lv(src) + status_get_int(src)) / 5 * 30 * status_get_crt(src) / 100;
+			hp += static_cast<int64>(status_get_lv(src) + status_get_int(src)) / 5 * 30 * status_get_crt(src) / 100;
 			break;
 
 		default:
@@ -764,16 +765,16 @@ int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint
 	}
 
 #ifdef RENEWAL
-	hp = (int32)(hp * global_bonus);
+	hp = static_cast<int64>(cap_value(hp * global_bonus, static_cast<double>(INT_MIN), static_cast<double>(INT_MAX)));
 
 	// Final heal increased by HPlus.
 	// Is this the right place for this??? [Rytech]
 	if ( sd && status_get_hplus(src) > 0 && skill_id != SOA_TALISMAN_OF_PROTECTION)
 		hp += hp * status_get_hplus(src) / 100;
 
-	return (heal) ? max(1, hp) : hp;
+	return cap_value(hp, heal ? 1 : INT_MIN, INT_MAX);
 #else
-	return hp;
+	return cap_value(hp, INT_MIN, INT_MAX);
 #endif
 }
 

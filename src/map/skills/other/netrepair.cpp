@@ -14,7 +14,7 @@ void SkillNetRepair::castendNoDamageId(block_list* src, block_list* target, uint
 	status_data* tstatus = status_get_status_data(*target);
 
 	if (flag & 1) {
-		int32 heal_amount = tstatus->max_hp * 10 / 100;
+		int32 heal_amount = static_cast<int64>(tstatus->max_hp) * 10 / 100;
 		clif_skill_nodamage(nullptr, *target, AL_HEAL, heal_amount);
 		status_heal(target, heal_amount, 0, 0);
 	} else {

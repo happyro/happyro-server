@@ -32,7 +32,7 @@ void SkillVenomSplasher::castendNoDamageId(block_list *src, block_list *target, 
 	if( status_has_mode(tstatus,MD_STATUSIMMUNE)
 	// Renewal dropped the 3/4 hp requirement
 #ifndef RENEWAL
-		|| tstatus-> hp > tstatus->max_hp*3/4
+		|| tstatus-> hp > static_cast<int64>(tstatus->max_hp)*3/4
 #endif
 			) {
 		if (sd) {

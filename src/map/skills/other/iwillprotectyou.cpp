@@ -15,7 +15,7 @@ void SkillIWillProtectYou::castendNoDamageId(block_list* src, block_list* target
 	uint8 hp_rate = abs(skill_get_hp_rate(getSkillId(), skill_lv));
 
 	if (hp_rate && status_get_hp(src) > status_get_max_hp(src) / hp_rate) {
-		int32 gain_hp = tstatus->max_hp * hp_rate / 100; // The earned is the same % of the target HP than it costed the caster. [Skotlex]
+		int32 gain_hp = static_cast<int64>(tstatus->max_hp) * hp_rate / 100; // The earned is the same % of the target HP than it costed the caster. [Skotlex]
 
 		clif_skill_nodamage(src,*target,getSkillId(),status_heal(target, gain_hp, 0, 0));
 	}

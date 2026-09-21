@@ -10699,7 +10699,8 @@ void pc_heal(map_session_data *sd,uint32 hp,uint32 sp, uint32 ap, int32 type)
  */
 int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 {
-	int32 bonus, tmp, penalty = 0;
+	int32 penalty = 0;
+	int64 bonus, tmp;
 
 	if (hp) {
 		bonus = 100 + (sd->battle_status.vit * 2) + pc_checkskill(sd, SM_RECOVERY) * 10 + pc_checkskill(sd, AM_LEARNINGPOTION) * 5;
@@ -10726,7 +10727,7 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 
 		tmp = hp * bonus / 100; // Overflow check
 		if (bonus != 100 && tmp > hp)
-			hp = tmp;
+			hp = cap_value(tmp, INT_MIN, INT_MAX);
 	}
 	if (sp) {
 		bonus = 100 + (sd->battle_status.int_ * 2) + pc_checkskill(sd, MG_SRECOVERY) * 10 + pc_checkskill(sd, AM_LEARNINGPOTION) * 5;
@@ -10748,7 +10749,7 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 
 		tmp = sp * bonus / 100; // Overflow check
 		if (bonus != 100 && tmp > sp)
-			sp = tmp;
+			sp = cap_value(tmp, INT_MIN, INT_MAX);
 	}
 	if (!sd->sc.empty()) {
 		// Critical Wound and Death Hurt stack
@@ -10762,21 +10763,21 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 			penalty = 100;
 
 		if (sd->sc.getSCE(SC_VITALITYACTIVATION))
-			hp += hp / 2; // 1.5 times
+			hp = cap_value(static_cast<int64>(hp) + hp / 2, INT_MIN, INT_MAX); // 1.5 times
 
 		if (sd->sc.getSCE(SC_WATER_INSIGNIA) && sd->sc.getSCE(SC_WATER_INSIGNIA)->val1 == 2) {
-			hp += hp / 10;
-			sp += sp / 10;
+			hp = cap_value(static_cast<int64>(hp) + hp / 10, INT_MIN, INT_MAX);
+			sp = cap_value(static_cast<int64>(sp) + sp / 10, INT_MIN, INT_MAX);
 		}
 
 #ifdef RENEWAL
 		if (sd->sc.getSCE(SC_APPLEIDUN))
-			hp += sd->sc.getSCE(SC_APPLEIDUN)->val3 / 100;
+			hp = cap_value(static_cast<int64>(hp) + sd->sc.getSCE(SC_APPLEIDUN)->val3 / 100, INT_MIN, INT_MAX);
 #endif
 
 		if (penalty > 0) {
-			hp -= hp * penalty / 100;
-			sp -= sp * penalty / 100;
+			hp = cap_value(hp - static_cast<int64>(hp) * penalty / 100, INT_MIN, INT_MAX);
+			sp = cap_value(sp - static_cast<int64>(sp) * penalty / 100, INT_MIN, INT_MAX);
 		}
 
 #ifdef RENEWAL
@@ -12952,7 +12953,7 @@ void pc_bleeding (map_session_data& sd, t_tick diff_tick)
 //&2: SP regen
 void pc_regen (map_session_data& sd, t_tick diff_tick)
 {
-	int32 hp = 0, sp = 0;
+	int64 hp = 0, sp = 0;
 
 	for (auto &it : sd.hp_regen) {
 		it.tick += diff_tick;
@@ -12973,7 +12974,7 @@ void pc_regen (map_session_data& sd, t_tick diff_tick)
 	for (auto &it : sd.percent_hp_regen) {
 		it.tick += diff_tick;
 		while (it.tick >= it.rate) {
-			hp += sd.status.max_hp * it.value / 100;
+			hp += static_cast<int64>(sd.status.max_hp) * it.value / 100;
 			it.tick -= it.rate;
 		}
 	}
@@ -12981,7 +12982,7 @@ void pc_regen (map_session_data& sd, t_tick diff_tick)
 	for (auto &it : sd.percent_sp_regen) {
 		it.tick += diff_tick;
 		while (it.tick >= it.rate) {
-			sp += sd.status.max_sp * it.value / 100;
+			sp += static_cast<int64>(sd.status.max_sp) * it.value / 100;
 			it.tick -= it.rate;
 		}
 	}

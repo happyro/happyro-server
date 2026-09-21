@@ -33,7 +33,7 @@ void SkillRepair::castendNoDamageId(block_list *src, block_list *target, uint16 
 		default: hp = 23; break;
 	}
 
-	int32 heal = dstsd->status.max_hp * hp / 100;
+	int32 heal = static_cast<int64>(dstsd->status.max_hp) * hp / 100;
 	status_heal(target, heal, 0, 2);
 	clif_skill_nodamage(src, *target, getSkillId(), skill_lv, heal != 0);
 }

@@ -21,7 +21,8 @@ void SkillAidPotion::castendNoDamageId(block_list* src, block_list* target, uint
 	status_data* tstatus = status_get_status_data(*target);
 	status_change* tsc = status_get_sc(target);
 
-	int32 j,hp = 0,sp = 0;
+	int32 j;
+	int64 hp = 0, sp = 0;
 	if( dstmd && dstmd->mob_id == MOBID_EMPERIUM ) {
 		flag |= SKILL_NOCONSUME_REQ;
 		return;
@@ -49,21 +50,21 @@ void SkillAidPotion::castendNoDamageId(block_list* src, block_list* target, uint
 		if( sd->sc.getSCE(SC_SPIRIT) && sd->sc.getSCE(SC_SPIRIT)->val2 == SL_ALCHEMIST )
 			bonus += sd->status.base_level;
 		if( potion_per_hp > 0 || potion_per_sp > 0 ) {
-			hp = tstatus->max_hp * potion_per_hp / 100;
+			hp = static_cast<int64>(tstatus->max_hp) * potion_per_hp / 100;
 			hp = hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 			if( dstsd ) {
-				sp = dstsd->status.max_sp * potion_per_sp / 100;
+				sp = static_cast<int64>(dstsd->status.max_sp) * potion_per_sp / 100;
 				sp = sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 			}
 		} else {
 			if( potion_hp > 0 ) {
-				hp = potion_hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+				hp = static_cast<int64>(potion_hp) * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 				hp = hp * (100 + (tstatus->vit * 2)) / 100;
 				if( dstsd )
 					hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10) / 100;
 			}
 			if( potion_sp > 0 ) {
-				sp = potion_sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+				sp = static_cast<int64>(potion_sp) * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 				sp = sp * (100 + (tstatus->int_ * 2)) / 100;
 				if( dstsd )
 					sp = sp * (100 + pc_checkskill(dstsd,MG_SRECOVERY)*10) / 100;
@@ -129,6 +130,9 @@ void SkillAidPotion::castendNoDamageId(block_list* src, block_list* target, uint
 	if (target->type == BL_HOM)
 		hp *= 3; // Heal effectiveness is 3x for Homunculus
 #endif
+
+	hp = cap_value(hp, 0, INT_MAX);
+	sp = cap_value(sp, 0, INT_MAX);
 
 	clif_skill_nodamage(src,*target,getSkillId(),skill_lv);
 	if( hp > 0 || sp <= 0 )
