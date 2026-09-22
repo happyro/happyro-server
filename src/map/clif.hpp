@@ -517,6 +517,10 @@ enum useskill_fail_cause : uint8_t
 	USESKILL_FAIL_NEED_SHOTGUN_GLAUNCHER,
 	USESKILL_FAIL_NEED_SHIELD,
 	USESKILL_FAIL_TARGET_SHADOW_SPACE,
+	// HappyRO detail codes; retain the existing ACK packet layout.
+	USESKILL_FAIL_REQUIRED_STATE = 112, // btype: e_require_state
+	USESKILL_FAIL_REQUIRED_STATUS = 113, // btype: prerequisite skill ID
+	USESKILL_FAIL_REQUIRED_AMMO = 114, // btype: required ammo bitmask
 	USESKILL_FAIL_MAX
 };
 
