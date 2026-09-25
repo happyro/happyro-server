@@ -4154,8 +4154,11 @@ int32 map_config_read(const char *cfgName)
 			chrif_setuserid(w2);
 		else if (strcmpi(w1, "passwd") == 0)
 			chrif_setpasswd(w2);
-		else if (strcmpi(w1, "char_ip") == 0)
-			char_ip_set = chrif_setip(w2);
+		else if (strcmpi(w1, "char_ip") == 0) {
+			chrif_setip(w2);
+			// A configured hostname remains valid while DNS is temporarily unavailable.
+			char_ip_set = w2[0] != '\0';
+		}
 		else if (strcmpi(w1, "char_port") == 0)
 			chrif_setport(atoi(w2));
 		else if (strcmpi(w1, "map_ip") == 0)

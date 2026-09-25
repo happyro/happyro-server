@@ -239,14 +239,13 @@ void chrif_checkdefaultlogin(void) {
 // sets char-server's ip address
 int32 chrif_setip(const char* ip) {
 	char ip_str[16];
+	safestrncpy(char_ip_str, ip, sizeof(char_ip_str));
 
 	if ( !( char_ip = host2ip(ip) ) ) {
 		ShowWarning("Failed to Resolve Char Server Address! (%s)\n", ip);
 
 		return 0;
 	}
-
-	safestrncpy(char_ip_str, ip, sizeof(char_ip_str));
 
 	ShowInfo("Char Server IP Address : '" CL_WHITE "%s" CL_RESET "' -> '" CL_WHITE "%s" CL_RESET "'.\n", ip, ip2str(char_ip, ip_str));
 
@@ -1861,6 +1860,12 @@ static TIMER_FUNC(check_connect_char_server){
 		}
 
 		chrif_state = 0;
+		// Resolve on every reconnect: an upstream container may have a new address.
+		char_ip = host2ip(char_ip_str);
+		if (!char_ip) {
+			ShowWarning("Failed to resolve Char Server Address (%s); retrying later.\n", char_ip_str);
+			return 0;
+		}
 		char_fd = make_connection(char_ip, char_port,false,10);
 
 		if (char_fd == -1)//Attempt to connect later. [Skotlex]

@@ -2945,10 +2945,10 @@ bool char_config_read(const char* cfgName, bool normal){
 					safestrncpy(charserv_config.wisp_server_name, w2, sizeof(charserv_config.wisp_server_name));
 				}
 			} else if (strcmpi(w1, "login_ip") == 0) {
+				safestrncpy(charserv_config.login_ip_str, w2, sizeof(charserv_config.login_ip_str));
 				charserv_config.login_ip = host2ip(w2);
 				if (charserv_config.login_ip) {
 					char ip_str[16];
-					safestrncpy(charserv_config.login_ip_str, w2, sizeof(charserv_config.login_ip_str));
 					ShowStatus("Login server IP address : %s -> %s\n", w2, ip2str(charserv_config.login_ip, ip_str));
 				}
 			} else if (strcmpi(w1, "login_port") == 0) {
@@ -3213,7 +3213,7 @@ bool CharacterServer::initialize( int32 argc, char *argv[] ){
 	char_mmo_sql_init();
 	char_read_fame_list(); //Read fame lists.
 
-	if ((naddr_ != 0) && (!(charserv_config.login_ip) || !(charserv_config.char_ip) ))
+	if ((naddr_ != 0) && (!charserv_config.login_ip_str[0] || !(charserv_config.char_ip) ))
 	{
 		char ip_str[16];
 		ip2str(addr_[0], ip_str);
@@ -3222,7 +3222,7 @@ bool CharacterServer::initialize( int32 argc, char *argv[] ){
 			ShowStatus("Multiple interfaces detected..  using %s as our IP address\n", ip_str);
 		else
 			ShowStatus("Defaulting to %s as our IP address\n", ip_str);
-		if (!(charserv_config.login_ip) ) {
+		if (!charserv_config.login_ip_str[0]) {
 			safestrncpy(charserv_config.login_ip_str, ip_str, sizeof(charserv_config.login_ip_str));
 			charserv_config.login_ip = str2ip(charserv_config.login_ip_str);
 		}
