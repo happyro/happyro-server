@@ -30,11 +30,11 @@ void SkillKaute::castendNoDamageId(block_list *src, block_list *target, uint16 s
 			return;
 		}
 	}
-	if (!status_charge(src, sstatus->max_hp * (10 + 2 * skill_lv) / 100, 0)) {
+	if (!status_charge(src, static_cast<int64>(sstatus->max_hp) * (10 + 2 * skill_lv) / 100, 0)) {
 		if (sd)
 			clif_skill_fail( *sd, getSkillId(), USESKILL_FAIL );
 		return;
 	}
 	clif_skill_nodamage(src, *target, getSkillId(), skill_lv);
-	status_heal(target, 0, tstatus->max_sp * (10 + 2 * skill_lv) / 100, 2);
+	status_heal(target, 0, static_cast<int64>(tstatus->max_sp) * (10 + 2 * skill_lv) / 100, 2);
 }

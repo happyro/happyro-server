@@ -5,6 +5,7 @@
 #define CONFIG_CONST_H
 
 #include <common/cbasetypes.hpp>
+#include <common/utils.hpp>
 
 /**
  * rAthena configuration file (http://rathena.org)
@@ -94,7 +95,7 @@ const t_exp MAX_LEVEL_JOB_EXP = 999999999;
 #ifdef RENEWAL_LVDMG
 	#define RE_LVL_DMOD(val) \
 		if( status_get_lv(src) > 99 && val > 0 ) \
-			skillratio = skillratio * status_get_lv(src) / val;
+			skillratio = cap_value(static_cast<int64>(skillratio) * status_get_lv(src) / (val), INT32_MIN, INT32_MAX);
 	#define RE_LVL_MDMOD(val) \
 		if( status_get_lv(src) > 99 && val > 0) \
 			md.damage = md.damage * status_get_lv(src) / val;

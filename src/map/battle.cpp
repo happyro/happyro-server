@@ -2451,7 +2451,7 @@ static int32 battle_calc_base_weapon_attack(block_list *src, struct status_data 
 	status_change *sc = status_get_sc(src);
 
 	if (sd && sd->equip_index[type] >= 0 && sd->inventory_data[sd->equip_index[type]]) {
-		int16 base_stat;
+		int32 base_stat;
 
 		switch (sd->status.weapon) {
 			case W_BOW:
@@ -2473,10 +2473,10 @@ static int32 battle_calc_base_weapon_attack(block_list *src, struct status_data 
 		}
 
 		float variance = 5.0f * wa->atk * wa->wlv / 100.0f;
-		float base_stat_bonus = wa->atk * base_stat / 200.0f;
+		float base_stat_bonus = static_cast<int64>(wa->atk) * base_stat / 200.0f;
 
-		atkmin = max(0, (int32)(atkmin - variance + base_stat_bonus));
-		atkmax = min(UINT16_MAX, (int32)(atkmax + variance + base_stat_bonus));
+		atkmin = cap_value((int32)(atkmin - variance + base_stat_bonus), 0, UINT16_MAX);
+		atkmax = cap_value((int32)(atkmax + variance + base_stat_bonus), 0, UINT16_MAX);
 
 		if ((sc && sc->getSCE(SC_MAXIMIZEPOWER)) || critical == true)
 			damage = atkmax;
@@ -3043,7 +3043,7 @@ static bool is_attack_critical(struct Damage* wd, block_list *src, const block_l
 		status_change *sc = status_get_sc(src);
 		const status_change *tsc = status_get_sc(target);
 		const map_session_data *tsd = BL_CAST(BL_PC, target);
-		int16 cri = sstatus->cri;
+		int32 cri = sstatus->cri;
 
 		if (sd) {
 			cri += sd->indexed_bonus.critaddrace[tstatus->race] + sd->indexed_bonus.critaddrace[RC_ALL];
@@ -4558,7 +4558,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, block_list *src, block_lis
 		if (sc->getSCE(SC_MADNESSCANCEL))
 			ATK_ADD(wd->equipAtk, wd->equipAtk2, 100);
 		if (sc->getSCE(SC_MAGICALBULLET)) {
-			int16 tmdef = tstatus->mdef + tstatus->mdef2;
+			int32 tmdef = tstatus->mdef + tstatus->mdef2;
 
 			if (sstatus->matk_min > tmdef && sstatus->matk_max > sstatus->matk_min) {
 				ATK_ADD(wd->weaponAtk, wd->weaponAtk2, i64max((sstatus->matk_min + rnd() % (sstatus->matk_max - sstatus->matk_min)) - tmdef, 0));
@@ -4727,9 +4727,9 @@ static void battle_calc_defense_reduction( Damage* wd, block_list* src, block_li
 	status_data* tstatus = status_get_status_data(*target);
 
 	//Defense reduction
-	int16 vit_def;
-	defType def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
-	int16 def2 = tstatus->def2;
+	int32 vit_def;
+	int32 def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
+	int32 def2 = tstatus->def2;
 
 	if (sd) {
 		int32 i = sd->indexed_bonus.ignore_def_by_race[tstatus->race] + sd->indexed_bonus.ignore_def_by_race[RC_ALL];
@@ -4860,8 +4860,8 @@ static void battle_calc_defense_reduction( Damage* wd, block_list* src, block_li
 		if (def1 == -400) /* -400 creates a division by 0 and subsequently crashes */
 			def1 = -399;
 		ATK_ADD2(wd->damage, wd->damage2,
-			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) ? (def1 * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0,
-			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L) ? (def1 * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0
+			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) ? (static_cast<int64>(def1) * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0,
+			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L) ? (static_cast<int64>(def1) * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0
 		);
 		if (!attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_R) && !is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R))
 			wd->damage = wd->damage * (4000 + def1) / (4000 + 10 * def1) - vit_def;
@@ -5581,10 +5581,10 @@ static struct Damage battle_calc_weapon_attack(block_list *src, block_list *targ
 		// All skills that use the simple defense formula (damage substracted by DEF+DEF2) ignore Res
 		if ((wd.damage + wd.damage2) && tstatus->res > 0 && !nk[NK_SIMPLEDEFENSE]) {
 			// (Res flat reduction is already applied)
-			int16 res = tstatus->res;
+			int32 res = tstatus->res;
 
 			// % Res ignored
-			int16 ignore_res = 0;
+			int32 ignore_res = 0;
 
 			if (sd != nullptr) {
 				// (in case other bonuses are implemented) % Res ignored is the sum of all types of % Res
@@ -6043,10 +6043,10 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 		// MRes reduces magical damage by a percentage and is calculated before MDEF and other reductions.
 		if (ad.damage != 0 && tstatus->mres > 0) {
 			// (MRes flat reduction is already applied)
-			int16 mres = tstatus->mres;
+			int32 mres = tstatus->mres;
 
 			// % MRes ignored
-			int16 ignore_mres = 0;
+			int32 ignore_mres = 0;
 
 			if (sd != nullptr) {
 				// (in case other bonuses are implemented) % MRes ignored is the sum of all types of % MRes
@@ -6512,7 +6512,7 @@ struct Damage battle_calc_misc_attack(block_list *src,block_list *target,uint16 
 			// final damage = base damage + ((mirror image count + 1) / 5 * base damage) - (edef + sdef)
 			// modified def formula
 			{
-				int16 totaldef;
+				int32 totaldef;
 				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
 				status_change *sc = status_get_sc(src);
 
@@ -6523,7 +6523,7 @@ struct Damage battle_calc_misc_attack(block_list *src,block_list *target,uint16 
 					md.damage += (md.damage * (((i + 1) * 10) / 5)) / 10;
 				}
 				// modified def reduction, final damage = base damage - (edef + sdef)
-				totaldef = tstatus->def2 + (int16)status_get_def(target);
+				totaldef = tstatus->def2 + status_get_def(target);
 				md.damage -= totaldef;
 				md.flag |= BF_WEAPON;
 			}
@@ -6602,7 +6602,7 @@ struct Damage battle_calc_misc_attack(block_list *src,block_list *target,uint16 
 		if(sc && sc->opt1 && sc->opt1 != OPT1_STONEWAIT && sc->opt1 != OPT1_BURNING)
 			i = 1;
 		else {
-			int16
+			int32
 				flee = tstatus->flee,
 #ifdef RENEWAL
 				hitrate = 0; //Default hitrate

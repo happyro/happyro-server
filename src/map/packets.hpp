@@ -1583,6 +1583,12 @@ struct PACKET_ZC_HAPPYRO_NAVIGATION_CONTROL {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NAVIGATION_CONTROL, 0xd02);
 
+struct PACKET_CZ_HAPPYRO_STOP_MOVE {
+	int16 packetType;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_STOP_MOVE, 0xd03);
+static_assert(sizeof(PACKET_CZ_HAPPYRO_STOP_MOVE) == 2, "Stop movement request wire layout");
+
 struct PACKET_CZ_BROADCAST{
 	int16 packetType;
 	uint16 packetSize;

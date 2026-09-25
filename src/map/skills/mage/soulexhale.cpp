@@ -30,7 +30,7 @@ void SkillSoulExhale::castendNoDamageId(block_list* src, block_list* target, uin
 		}
 
 		dstmd->state.soul_change_flag = 1;
-		sp2 = sstatus->max_sp * 3 / 100;
+		sp2 = static_cast<int64>(sstatus->max_sp) * 3 / 100;
 		status_heal(src, 0, sp2, 2);
 		clif_skill_nodamage(src, *target, getSkillId(), skill_lv);
 		return;

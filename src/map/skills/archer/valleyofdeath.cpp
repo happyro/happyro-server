@@ -18,7 +18,7 @@ void SkillValleyOfDeath::castendNoDamageId(block_list *src, block_list *target, 
 			return;
 
 		tstatus->hp = max(tstatus->sp, 1);
-		tstatus->sp -= tstatus->sp * ( 60 - 10 * skill_lv ) / 100;
+		tstatus->sp -= static_cast<int64>(tstatus->sp) * ( 60 - 10 * skill_lv ) / 100;
 		clif_skill_nodamage(src,*target,getSkillId(),skill_lv);
 		pc_revive(reinterpret_cast<map_session_data*>(target),true,true);
 		clif_resurrection( *target );

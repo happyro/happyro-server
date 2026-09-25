@@ -24,7 +24,7 @@ void SkillHowlingOfMandragora::castendNoDamageId(block_list *src, block_list *ta
 			return; // Don't activate if target is a monster or zap SP if target already has Mandragora active.
 		if (rnd()%100 < rate) {
 			sc_start(src,target,type,100,skill_lv,skill_get_time(getSkillId(),skill_lv));
-			status_zap(target,0,status_get_max_sp(target) * (25 + 5 * skill_lv) / 100);
+			status_zap(target,0,static_cast<int64>(status_get_max_sp(target)) * (25 + 5 * skill_lv) / 100);
 		}
 	} else {
 		map_foreachinallrange(skill_area_sub,target,skill_get_splash(getSkillId(),skill_lv),BL_CHAR,src,getSkillId(),skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_nodamage_id);

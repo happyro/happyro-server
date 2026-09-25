@@ -16,8 +16,8 @@ void SkillCompetentia::castendNoDamageId(block_list* src, block_list* target, ui
 	status_data* tstatus = status_get_status_data(*target);
 
 	if (sd == nullptr || sd->status.party_id == 0 || (flag & 1)) {
-		int32 hp_amount = tstatus->max_hp * (20 * skill_lv) / 100;
-		int32 sp_amount = tstatus->max_sp * (20 * skill_lv) / 100;
+		int32 hp_amount = cap_value(static_cast<int64>(tstatus->max_hp) * (20 * skill_lv) / 100, 0, INT_MAX);
+		int32 sp_amount = cap_value(static_cast<int64>(tstatus->max_sp) * (20 * skill_lv) / 100, 0, INT_MAX);
 
 		clif_skill_nodamage(nullptr, *target, AL_HEAL, hp_amount);
 		status_heal(target, hp_amount, 0, 0);

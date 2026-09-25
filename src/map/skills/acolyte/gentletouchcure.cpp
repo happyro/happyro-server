@@ -19,7 +19,7 @@ void SkillGentleTouchCure::castendNoDamageId(block_list *src, block_list *target
 	if (dstmd && (dstmd->mob_id == MOBID_EMPERIUM || status_get_class_(target) == CLASS_BATTLEFIELD))
 		heal = 0;
 	else {
-		heal = (120 * skill_lv) + (status_get_max_hp(target) * skill_lv / 100);
+		heal = (120 * skill_lv) + (static_cast<int64>(status_get_max_hp(target)) * skill_lv / 100);
 		status_heal(target, heal, 0, 0);
 	}
 

@@ -20,7 +20,7 @@ void SkillThirdFlameBomb::calculateSkillRatio(const Damage* wd, const block_list
 	const status_data* sstatus = status_get_status_data(*src);
 
 	skillratio += -100 + 650 * skill_lv + 10 * sstatus->pow;
-	skillratio += sstatus->max_hp * 20 / 100;
+	skillratio += static_cast<int64>(sstatus->max_hp) * 20 / 100;
 	RE_LVL_DMOD(100);
 }
 

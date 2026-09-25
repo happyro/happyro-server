@@ -516,7 +516,8 @@ bool skill_pos_maxcount_check(block_list *src, int16 x, int16 y, uint16 skill_id
  * @return modified heal value
  */
 int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint16 skill_lv, bool heal) {
-	int32 skill, hp = 0;
+	int32 skill;
+	int64 hp = 0;
 #ifdef RENEWAL
 	int32 hp_bonus = 0;
 	double global_bonus = 1;
@@ -571,7 +572,7 @@ int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint
 
 		case SOA_TALISMAN_OF_PROTECTION:
 			hp = (500 + pc_checkskill(sd,SOA_TALISMAN_MASTERY) * 50) * skill_lv * status_get_lv(src) / 100;
-			hp += (status_get_lv(src) + status_get_int(src)) / 5 * 30 * status_get_crt(src) / 100;
+			hp += static_cast<int64>(status_get_lv(src) + status_get_int(src)) / 5 * 30 * status_get_crt(src) / 100;
 			break;
 
 		default:
@@ -764,16 +765,16 @@ int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint
 	}
 
 #ifdef RENEWAL
-	hp = (int32)(hp * global_bonus);
+	hp = static_cast<int64>(cap_value(hp * global_bonus, static_cast<double>(INT_MIN), static_cast<double>(INT_MAX)));
 
 	// Final heal increased by HPlus.
 	// Is this the right place for this??? [Rytech]
 	if ( sd && status_get_hplus(src) > 0 && skill_id != SOA_TALISMAN_OF_PROTECTION)
 		hp += hp * status_get_hplus(src) / 100;
 
-	return (heal) ? max(1, hp) : hp;
+	return cap_value(hp, heal ? 1 : INT_MIN, INT_MAX);
 #else
-	return hp;
+	return cap_value(hp, INT_MIN, INT_MAX);
 #endif
 }
 
@@ -8197,12 +8198,12 @@ static bool skill_check_condition_sc_required( map_session_data& sd, uint16 skil
 				cause = USESKILL_FAIL_GC_WEAPONBLOCKING;
 				break;
 			default:
-				cause = USESKILL_FAIL_LEVEL;
+				cause = USESKILL_FAIL_REQUIRED_STATUS;
 				break;
 		}
 
 		if (!sc->getSCE(reqStatus)) {
-			clif_skill_fail( sd, skill_id, cause );
+			clif_skill_fail( sd, skill_id, cause, status_db.getSkill(reqStatus) );
 			return false;
 		}
 	}
@@ -9044,19 +9045,19 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 	switch (require.state) {
 		case ST_HIDDEN:
 			if(!pc_ishiding(&sd)) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_RIDING:
 			if(!pc_isriding(&sd) && !pc_isridingdragon(&sd)) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_FALCON:
 			if(!pc_isfalcon(&sd)) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
@@ -9068,13 +9069,13 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 			break;
 		case ST_SHIELD:
 			if(sd.status.shield <= 0) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_RECOVER_WEIGHT_RATE:
 			if( sd.regen.state.overweight ) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
@@ -9083,7 +9084,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 				sd.ud.canmove_tick = gettick(); //When using a combo, cancel the can't move delay to enable the skill. [Skotlex]
 
 			if (!unit_can_move(&sd)) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
@@ -9092,7 +9093,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 				break;
 			if (map_getcell(sd.m,sd.x,sd.y,CELL_CHKWATER) && !map_getcell(sd.m,sd.x,sd.y,CELL_CHKLANDPROTECTOR))
 				break;
-			clif_skill_fail( sd, skill_id );
+			clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 			return false;
 		case ST_RIDINGDRAGON:
 			if( !pc_isridingdragon(&sd) ) {
@@ -9102,13 +9103,13 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 			break;
 		case ST_WUG:
 			if( !pc_iswug(&sd) ) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_RIDINGWUG:
 			if( !pc_isridingwug(&sd) ) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
@@ -9127,31 +9128,31 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 			break;
 		case ST_PECO:
 			if(!pc_isriding(&sd)) {
-				clif_skill_fail( sd, skill_id );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_SUNSTANCE:
 			if (!(sc && (sc->getSCE(SC_SUNSTANCE) || sc->getSCE(SC_UNIVERSESTANCE)))) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_MOONSTANCE:
 			if (!(sc && (sc->getSCE(SC_LUNARSTANCE) || sc->getSCE(SC_UNIVERSESTANCE)))) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_STARSTANCE:
 			if (!(sc && (sc->getSCE(SC_STARSTANCE) || sc->getSCE(SC_UNIVERSESTANCE)))) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
 		case ST_UNIVERSESTANCE:
 			if (!(sc && sc->getSCE(SC_UNIVERSESTANCE))) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL );
+				clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_STATE, require.state );
 				return false;
 			}
 			break;
@@ -9525,30 +9526,14 @@ bool skill_check_condition_castend( map_session_data& sd, uint16 skill_id, uint1
 				break;
 		}
 #endif
-		if((i=sd.equip_index[EQI_AMMO]) < 0 || !sd.inventory_data[i] ) {
-			clif_arrow_fail( sd, ARROWFAIL_NO_AMMO );
-			return false;
-		} else if( sd.inventory.u.items_inventory[i].amount < require.ammo_qty + extra_ammo ) {
-			char e_msg[100];
-			if (require.ammo&(1<<AMMO_BULLET|1<<AMMO_GRENADE|1<<AMMO_SHELL)) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL_NEED_MORE_BULLET );
-				return false;
-			}
-			else if (require.ammo&(1<<AMMO_KUNAI)) {
-				clif_skill_fail( sd, skill_id, USESKILL_FAIL_NEED_EQUIPMENT_KUNAI );
-				return false;
-			}
-			sprintf(e_msg,msg_txt(&sd,381), //Skill Failed. [%s] requires %dx %s.
-						skill_get_desc(skill_id),
-						require.ammo_qty,
-						itemdb_ename(sd.inventory.u.items_inventory[i].nameid));
-			clif_messagecolor(&sd,color_table[COLOR_RED],e_msg,false,SELF);
+		if ((i = sd.equip_index[EQI_AMMO]) < 0 || !sd.inventory_data[i] ||
+			!(require.ammo & (1 << sd.inventory_data[i]->subtype))) {
+			clif_skill_fail( sd, skill_id, USESKILL_FAIL_REQUIRED_AMMO, require.ammo );
 			return false;
 		}
-		if (!(require.ammo&1<<sd.inventory_data[i]->subtype)) { //Ammo type check. Send the "wrong weapon type" message
-			//which is the closest we have to wrong ammo type. [Skotlex]
-			clif_arrow_fail( sd, ARROWFAIL_NO_AMMO ); //Haplo suggested we just send the equip-arrows message instead. [Skotlex]
-			//clif_skill_fail( sd, skill_id, USESKILL_FAIL_THIS_WEAPON );
+		if (sd.inventory.u.items_inventory[i].amount < require.ammo_qty + extra_ammo) {
+			clif_skill_fail( sd, skill_id, USESKILL_FAIL_NEED_ITEM,
+				require.ammo_qty + extra_ammo, sd.inventory.u.items_inventory[i].nameid );
 			return false;
 		}
 	}

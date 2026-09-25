@@ -2378,10 +2378,10 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		case W_GATLING:
 		case W_SHOTGUN:
 		case W_GRENADE:
-			temp_aspd = status->dex * status->dex / 7.0f + status->agi * status->agi * 0.5f;
+			temp_aspd = static_cast<int64>(status->dex) * status->dex / 7.0f + static_cast<int64>(status->agi) * status->agi * 0.5f;
 			break;
 		default:
-			temp_aspd = status->dex * status->dex / 5.0f + status->agi * status->agi * 0.5f;
+			temp_aspd = static_cast<int64>(status->dex) * status->dex / 5.0f + static_cast<int64>(status->agi) * status->agi * 0.5f;
 			break;
 	}
 	temp_aspd = (float)(sqrt(temp_aspd) * 0.25f) + 196;
@@ -2545,7 +2545,7 @@ uint16 status_base_atk_max( const block_list* bl, const status_data* status, int
 		case BL_MOB:
 		case BL_MER:
 		case BL_ELEM:
-			return status->rhw.atk * 120 / 100;
+			return cap_value(status->rhw.atk * 120 / 100, 0, USHRT_MAX);
 		case BL_HOM:
 			return (status_get_homluk(bl) + status_get_homstr(bl) + status_get_homdex(bl)) / 3;
 		default:
@@ -2563,12 +2563,12 @@ uint16 status_base_matk_min( const block_list* bl, const status_data* status, in
 		case BL_MOB:
 		case BL_MER:
 		case BL_ELEM:
-			return status->int_ + level + status->rhw.matk * 70 / 100;
+			return cap_value(status->int_ + level + status->rhw.matk * 70 / 100, 0, USHRT_MAX);
 		case BL_HOM:
-			return status_get_homint(bl) + level + (status_get_homint(bl) + status_get_homdex(bl)) / 5;
+			return cap_value(status_get_homint(bl) + level + (status_get_homint(bl) + status_get_homdex(bl)) / 5, 0, USHRT_MAX);
 		case BL_PC:
 		default:
-			return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			return cap_value(status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl, 0, USHRT_MAX);
 	}
 }
 
@@ -2582,12 +2582,12 @@ uint16 status_base_matk_max( const block_list* bl, const status_data* status, in
 		case BL_MOB:
 		case BL_MER:
 		case BL_ELEM:
-			return status->int_ + level + status->rhw.matk * 130 / 100;
+			return cap_value(status->int_ + level + status->rhw.matk * 130 / 100, 0, USHRT_MAX);
 		case BL_HOM:
-			return status_get_homint(bl) + level + (status_get_homluk(bl) + status_get_homint(bl) + status_get_homdex(bl)) / 3;
+			return cap_value(status_get_homint(bl) + level + (status_get_homluk(bl) + status_get_homint(bl) + status_get_homdex(bl)) / 3, 0, USHRT_MAX);
 		case BL_PC:
 		default:
-			return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			return cap_value(status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl, 0, USHRT_MAX);
 	}
 }
 #endif
@@ -3549,7 +3549,7 @@ static uint32 status_calc_maxhp_pc( map_session_data& sd, uint32 vit ){
 		dmax = 1.0;
 	}
 
-	return cap_value( static_cast<uint32>( dmax ), 1, std::numeric_limits<uint32>::max() );
+	return static_cast<uint32>( cap_value( dmax, 1.0, static_cast<double>(std::numeric_limits<uint32>::max()) ) );
 }
 
 /**
@@ -3600,7 +3600,7 @@ static uint32 status_calc_maxsp_pc( map_session_data& sd, uint32 int_ ){
 		dmax = 1.0;
 	}
 
-	return cap_value( static_cast<uint32>( dmax ), 1, std::numeric_limits<uint32>::max() );
+	return static_cast<uint32>( cap_value( dmax, 1.0, static_cast<double>(std::numeric_limits<uint32>::max()) ) );
 }
 
 /**
@@ -3639,7 +3639,7 @@ static uint32 status_calc_maxap_pc( map_session_data& sd ){
 		dmax = 0.;
 	}
 
-	return cap_value( static_cast<uint32>( dmax ), 0, std::numeric_limits<uint32>::max() );
+	return static_cast<uint32>( cap_value( dmax, 0.0, static_cast<double>(std::numeric_limits<uint32>::max()) ) );
 }
 
 /**
@@ -4327,11 +4327,11 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 // ----- CONCENTRATION CALCULATION -----
 	if ((skill = pc_checkskill(sd, NW_GRENADE_MASTERY)) > 0)
-		base_status->con += skill;
+		base_status->con = cap_value(static_cast<int64>(base_status->con) + skill, 0, USHRT_MAX);
 
 // ----- SPELL CALCULATION -----
 	if ((skill = pc_checkskill(sd, SOA_SOUL_MASTERY)) > 0)
-		base_status->spl += skill;
+		base_status->spl = cap_value(static_cast<int64>(base_status->spl) + skill, 0, USHRT_MAX);
 
 // ------ ATTACK CALCULATION ------
 
@@ -4344,8 +4344,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
 		base_status->batk += 4;
 #else
-	base_status->watk = status_weapon_atk(base_status->rhw);
-	base_status->watk2 = status_weapon_atk(base_status->lhw);
+	base_status->watk = cap_value(status_weapon_atk(base_status->rhw), 0, USHRT_MAX);
+	base_status->watk2 = cap_value(status_weapon_atk(base_status->lhw), 0, USHRT_MAX);
 	base_status->eatk = sd->bonus.eatk;
 #endif
 
@@ -4353,7 +4353,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	base_status->max_hp = sd->status.max_hp = status_calc_maxhp_pc( *sd, base_status->vit );
 
 	if(battle_config.hp_rate != 100)
-		base_status->max_hp = (uint32)(battle_config.hp_rate * (base_status->max_hp/100.));
+		base_status->max_hp = static_cast<uint32>(cap_value(battle_config.hp_rate * (base_status->max_hp/100.), 0.0, static_cast<double>(UINT_MAX)));
 
 	if (sd->status.base_level < 100)
 		base_status->max_hp = cap_value(base_status->max_hp,1,(uint32)battle_config.max_hp_lv99);
@@ -4366,7 +4366,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	base_status->max_sp = sd->status.max_sp = status_calc_maxsp_pc( *sd, base_status->int_ );
 
 	if(battle_config.sp_rate != 100)
-		base_status->max_sp = (uint32)(battle_config.sp_rate * (base_status->max_sp/100.));
+		base_status->max_sp = static_cast<uint32>(cap_value(battle_config.sp_rate * (base_status->max_sp/100.), 0.0, static_cast<double>(UINT_MAX)));
 
 	base_status->max_sp = cap_value(base_status->max_sp,1,(uint32)battle_config.max_sp);
 
@@ -4374,7 +4374,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	base_status->max_ap = sd->status.max_ap = status_calc_maxap_pc( *sd );
 
 	if (battle_config.ap_rate != 100)
-		base_status->max_ap = (uint32)(battle_config.ap_rate * (base_status->max_ap / 100.));
+		base_status->max_ap = static_cast<uint32>(cap_value(battle_config.ap_rate * (base_status->max_ap / 100.), 0.0, static_cast<double>(UINT_MAX)));
 
 	base_status->max_ap = cap_value(base_status->max_ap, 0, (uint32)battle_config.max_ap);
 
@@ -4409,104 +4409,104 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		sd->matk_rate = 0;
 
 	if(sd->matk_rate != 100) {
-		base_status->matk_max = base_status->matk_max * sd->matk_rate/100;
-		base_status->matk_min = base_status->matk_min * sd->matk_rate/100;
+		base_status->matk_max = cap_value(static_cast<int64>(base_status->matk_max) * sd->matk_rate/100, 0, USHRT_MAX);
+		base_status->matk_min = cap_value(static_cast<int64>(base_status->matk_min) * sd->matk_rate/100, 0, USHRT_MAX);
 	}
 
 	if(sd->hit_rate < 0)
 		sd->hit_rate = 0;
 	if(sd->hit_rate != 100)
-		base_status->hit = base_status->hit * sd->hit_rate/100;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) * sd->hit_rate/100, SHRT_MIN, SHRT_MAX);
 
 	if(sd->flee_rate < 0)
 		sd->flee_rate = 0;
 	if(sd->flee_rate != 100)
-		base_status->flee = base_status->flee * sd->flee_rate/100;
+		base_status->flee = cap_value(static_cast<int64>(base_status->flee) * sd->flee_rate/100, SHRT_MIN, SHRT_MAX);
 
 	if(sd->def2_rate < 0)
 		sd->def2_rate = 0;
 	if(sd->def2_rate != 100)
-		base_status->def2 = base_status->def2 * sd->def2_rate/100;
+		base_status->def2 = cap_value(static_cast<int64>(base_status->def2) * sd->def2_rate/100, SHRT_MIN, SHRT_MAX);
 
 	if(sd->mdef2_rate < 0)
 		sd->mdef2_rate = 0;
 	if(sd->mdef2_rate != 100)
-		base_status->mdef2 = base_status->mdef2 * sd->mdef2_rate/100;
+		base_status->mdef2 = cap_value(static_cast<int64>(base_status->mdef2) * sd->mdef2_rate/100, SHRT_MIN, SHRT_MAX);
 
 	if(sd->critical_rate < 0)
 		sd->critical_rate = 0;
 	if(sd->critical_rate != 100)
-		base_status->cri = cap_value(base_status->cri * sd->critical_rate/100,SHRT_MIN,SHRT_MAX);
+		base_status->cri = cap_value(static_cast<int64>(base_status->cri) * sd->critical_rate/100,SHRT_MIN,SHRT_MAX);
 	if (pc_checkskill(sd, SU_POWEROFLIFE) > 0)
-		base_status->cri += 200;
+		base_status->cri = cap_value(static_cast<int64>(base_status->cri) + 200, SHRT_MIN, SHRT_MAX);
 
 	if(sd->flee2_rate < 0)
 		sd->flee2_rate = 0;
 	if(sd->flee2_rate != 100)
-		base_status->flee2 = base_status->flee2 * sd->flee2_rate/100;
+		base_status->flee2 = cap_value(static_cast<int64>(base_status->flee2) * sd->flee2_rate/100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->patk_rate < 0)
 		sd->patk_rate = 0;
 	if (sd->patk_rate != 100)
-		base_status->patk = base_status->patk * sd->patk_rate / 100;
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) * sd->patk_rate / 100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->smatk_rate < 0)
 		sd->smatk_rate = 0;
 	if (sd->smatk_rate != 100)
-		base_status->smatk = base_status->smatk * sd->smatk_rate / 100;
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) * sd->smatk_rate / 100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->res_rate < 0)
 		sd->res_rate = 0;
 	if (sd->res_rate != 100)
-		base_status->res = base_status->res * sd->res_rate / 100;
+		base_status->res = cap_value(static_cast<int64>(base_status->res) * sd->res_rate / 100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->mres_rate < 0)
 		sd->mres_rate = 0;
 	if (sd->mres_rate != 100)
-		base_status->mres = base_status->mres * sd->mres_rate / 100;
+		base_status->mres = cap_value(static_cast<int64>(base_status->mres) * sd->mres_rate / 100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->hplus_rate < 0)
 		sd->hplus_rate = 0;
 	if (sd->hplus_rate != 100)
-		base_status->hplus = base_status->hplus * sd->hplus_rate / 100;
+		base_status->hplus = cap_value(static_cast<int64>(base_status->hplus) * sd->hplus_rate / 100, SHRT_MIN, SHRT_MAX);
 
 	if (sd->crate_rate < 0)
 		sd->crate_rate = 0;
 	if (sd->crate_rate != 100)
-		base_status->crate = base_status->crate * sd->crate_rate / 100;
+		base_status->crate = cap_value(static_cast<int64>(base_status->crate) * sd->crate_rate / 100, SHRT_MIN, SHRT_MAX);
 
 // ----- HIT CALCULATION -----
 
 	// Absolute modifiers from passive skills
 #ifndef RENEWAL
 	if((skill=pc_checkskill(sd,BS_WEAPONRESEARCH))>0)
-		base_status->hit += skill*2;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (skill*2), SHRT_MIN, SHRT_MAX);
 #endif
 	if((skill=pc_checkskill(sd,AC_VULTURE))>0) {
 #ifndef RENEWAL
-		base_status->hit += skill;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + skill, SHRT_MIN, SHRT_MAX);
 #endif
 		if(sd->status.weapon == W_BOW)
 			base_status->rhw.range += skill;
 	}
 	if(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE) {
 		if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0)
-			base_status->hit += 2*skill;
+			base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (2*skill), SHRT_MIN, SHRT_MAX);
 		if((skill=pc_checkskill(sd,GS_SNAKEEYE))>0) {
-			base_status->hit += skill;
+			base_status->hit = cap_value(static_cast<int64>(base_status->hit) + skill, SHRT_MIN, SHRT_MAX);
 			base_status->rhw.range += skill;
 		}
 	}
 	if((sd->status.weapon == W_1HAXE || sd->status.weapon == W_2HAXE) && (skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
-		base_status->hit += skill * 3;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (skill * 3), SHRT_MIN, SHRT_MAX);
 	if((sd->status.weapon == W_MACE || sd->status.weapon == W_2HMACE) && (skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
-		base_status->hit += skill * 2;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (skill * 2), SHRT_MIN, SHRT_MAX);
 	if (pc_checkskill(sd, SU_POWEROFLIFE) > 0)
-		base_status->hit += 20;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + 20, SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill_imperial_guard(sd, 2)) > 0)// IG_SPEAR_SWORD_M
-		base_status->hit += skill * 3;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (skill * 3), SHRT_MIN, SHRT_MAX);
 	if (sd->status.weapon == W_BOOK && (skill = pc_checkskill(sd, SKE_WAR_BOOK_MASTERY)) > 0)
-		base_status->hit += skill * 3;
+		base_status->hit = cap_value(static_cast<int64>(base_status->hit) + (skill * 3), SHRT_MIN, SHRT_MAX);
 
 	if ((skill = pc_checkskill(sd, SU_SOULATTACK)) > 0)
 		base_status->rhw.range += skill_get_range2(sd, SU_SOULATTACK, skill, true);
@@ -4515,60 +4515,60 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,TF_MISS))>0)
-		base_status->flee += skill*(sd->class_&JOBL_2 && (sd->class_&MAPID_FIRSTMASK) == MAPID_THIEF? 4 : 3);
+		base_status->flee = cap_value(static_cast<int64>(base_status->flee) + (skill*(sd->class_&JOBL_2 && (sd->class_&MAPID_FIRSTMASK) == MAPID_THIEF? 4 : 3)), SHRT_MIN, SHRT_MAX);
 	if((skill=pc_checkskill(sd,MO_DODGE))>0)
-		base_status->flee += (skill*3) / 2;
+		base_status->flee = cap_value(static_cast<int64>(base_status->flee) + ((skill*3) / 2), SHRT_MIN, SHRT_MAX);
 	if (pc_checkskill(sd, SU_POWEROFLIFE) > 0)
-		base_status->flee += 20;
+		base_status->flee = cap_value(static_cast<int64>(base_status->flee) + 20, SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill(sd, SHC_SHADOW_SENSE)) > 0)
-		base_status->flee += skill * 10;
+		base_status->flee = cap_value(static_cast<int64>(base_status->flee) + (skill * 10), SHRT_MIN, SHRT_MAX);
 
 // ----- CRITICAL CALCULATION -----
 
 #ifdef RENEWAL
 	if ((skill = pc_checkskill(sd, DC_DANCINGLESSON)) > 0)
-		base_status->cri += skill * 10;
+		base_status->cri = cap_value(static_cast<int64>(base_status->cri) + (skill * 10), SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill(sd, PR_MACEMASTERY)) > 0 && (sd->status.weapon == W_MACE || sd->status.weapon == W_2HMACE))
-		base_status->cri += skill * 10;
+		base_status->cri = cap_value(static_cast<int64>(base_status->cri) + (skill * 10), SHRT_MIN, SHRT_MAX);
 #endif
 	if ((skill = pc_checkskill(sd, SHC_SHADOW_SENSE)) > 0)
 	{
 		if (sd->status.weapon == W_DAGGER || sd->status.weapon == W_DOUBLE_DD || 
 			sd->status.weapon == W_DOUBLE_DS || sd->status.weapon == W_DOUBLE_DA)
-			base_status->cri += 100 + skill * 40;
+			base_status->cri = cap_value(static_cast<int64>(base_status->cri) + (100 + skill * 40), SHRT_MIN, SHRT_MAX);
 		else if (sd->status.weapon == W_KATAR)
-			base_status->cri += 50 + skill * 20;
+			base_status->cri = cap_value(static_cast<int64>(base_status->cri) + (50 + skill * 20), SHRT_MIN, SHRT_MAX);
 	}
 
 // ----- P.Atk/S.Matk CALCULATION -----
 	if ((skill = pc_checkskill(sd, TR_STAGE_MANNER)) > 0 && (sd->status.weapon == W_BOW || sd->status.weapon == W_MUSICAL || sd->status.weapon == W_WHIP)) {
-		base_status->patk += skill * 3;
-		base_status->smatk += skill * 3;
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) + (skill * 3), SHRT_MIN, SHRT_MAX);
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) + (skill * 3), SHRT_MIN, SHRT_MAX);
 	}
 	if ((skill = pc_checkskill(sd, HN_SELFSTUDY_TATICS)) > 0)
-		base_status->patk += skill;
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) + skill, SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill(sd, HN_SELFSTUDY_SOCERY)) > 0)
-		base_status->smatk += skill;
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) + skill, SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill(sd, NW_P_F_I)) > 0 && (sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
-		base_status->patk += skill + 2;
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) + (skill + 2), SHRT_MIN, SHRT_MAX);
 	if ((skill = pc_checkskill(sd, SOA_TALISMAN_MASTERY)) > 0)
-		base_status->smatk += skill;
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) + skill, SHRT_MIN, SHRT_MAX);
 	if (sd->status.weapon == W_BOOK && (skill = pc_checkskill(sd, SKE_WAR_BOOK_MASTERY)) > 0)
-		base_status->patk += skill+2;
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) + (skill+2), SHRT_MIN, SHRT_MAX);
 
 	// 2-Handed Staff Mastery
 	if( sd->status.weapon == W_2HSTAFF && ( skill = pc_checkskill( sd, AG_TWOHANDSTAFF ) ) > 0 ){
-		base_status->smatk += skill * 2;
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) + (skill * 2), SHRT_MIN, SHRT_MAX);
 	}
 
 	if ((skill = pc_checkskill(sd, SH_MYSTICAL_CREATURE_MASTERY)) > 0) {
-		base_status->smatk += skill * 15 / 10;
-		base_status->patk += skill * 15 / 10;
+		base_status->smatk = cap_value(static_cast<int64>(base_status->smatk) + (skill * 15 / 10), SHRT_MIN, SHRT_MAX);
+		base_status->patk = cap_value(static_cast<int64>(base_status->patk) + (skill * 15 / 10), SHRT_MIN, SHRT_MAX);
 	}
 
 // ----- PHYSICAL RESISTANCE CALCULATION -----
 	if ((skill = pc_checkskill_imperial_guard(sd, 1)) > 0)// IG_SHIELD_MASTERY
-		base_status->res += skill * 3;
+		base_status->res = cap_value(static_cast<int64>(base_status->res) + (skill * 3), SHRT_MIN, SHRT_MAX);
 
 // ----- EQUIPMENT-DEF CALCULATION -----
 
@@ -4576,16 +4576,16 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	if(sd->def_rate < 0)
 		sd->def_rate = 0;
 	if(sd->def_rate != 100) {
-		i = base_status->def * sd->def_rate/100;
+		i = cap_value(static_cast<int64>(base_status->def) * sd->def_rate / 100, DEFTYPE_MIN, DEFTYPE_MAX);
 		base_status->def = cap_value(i, DEFTYPE_MIN, DEFTYPE_MAX);
 	}
 
 	if(pc_ismadogear(sd) && pc_checkskill(sd, NC_MAINFRAME) > 0)
-		base_status->def += 20 + (pc_checkskill(sd, NC_MAINFRAME) * 20);
+		base_status->def = cap_value(static_cast<int64>(base_status->def) + (20 + (pc_checkskill(sd, NC_MAINFRAME) * 20)), DEFTYPE_MIN, DEFTYPE_MAX);
 
 #ifndef RENEWAL
 	if (!battle_config.weapon_defense_type && base_status->def > battle_config.max_def) {
-		base_status->def2 += battle_config.over_def_bonus*(base_status->def -battle_config.max_def);
+		base_status->def2 = cap_value(static_cast<int64>(base_status->def2) + (battle_config.over_def_bonus*(base_status->def -battle_config.max_def)), SHRT_MIN, SHRT_MAX);
 		base_status->def = (unsigned char)battle_config.max_def;
 	}
 #endif
@@ -4596,13 +4596,13 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	if(sd->mdef_rate < 0)
 		sd->mdef_rate = 0;
 	if(sd->mdef_rate != 100) {
-		i =  base_status->mdef * sd->mdef_rate/100;
+		i = cap_value(static_cast<int64>(base_status->mdef) * sd->mdef_rate / 100, DEFTYPE_MIN, DEFTYPE_MAX);
 		base_status->mdef = cap_value(i, DEFTYPE_MIN, DEFTYPE_MAX);
 	}
 
 #ifndef RENEWAL
 	if (!battle_config.magic_defense_type && base_status->mdef > battle_config.max_def) {
-		base_status->mdef2 += battle_config.over_def_bonus*(base_status->mdef -battle_config.max_def);
+		base_status->mdef2 = cap_value(static_cast<int64>(base_status->mdef2) + (battle_config.over_def_bonus*(base_status->mdef -battle_config.max_def)), SHRT_MIN, SHRT_MAX);
 		base_status->mdef = (signed char)battle_config.max_def;
 	}
 #endif
@@ -5265,7 +5265,8 @@ void status_calc_regen(block_list *bl, struct status_data *status, struct regen_
 {
 	map_session_data *sd;
 	status_change *sc;
-	int32 val, skill, reg_flag;
+	int64 val;
+	int32 skill, reg_flag;
 
 	if( !(bl->type&BL_REGEN) || !regen )
 		return;
@@ -5302,15 +5303,15 @@ void status_calc_regen(block_list *bl, struct status_data *status, struct regen_
 
 		val = 0;
 		if( (skill=pc_checkskill(sd,SM_RECOVERY)) > 0 )
-			val += skill*5 + skill*status->max_hp/500;
+			val += skill*5 + static_cast<int64>(skill)*status->max_hp/500;
 
 		sregen->hp = cap_value(val, 0, SHRT_MAX);
 
 		val = 0;
 		if( (skill=pc_checkskill(sd,MG_SRECOVERY)) > 0 )
-			val += skill*3 + skill*status->max_sp/500;
+			val += skill*3 + static_cast<int64>(skill)*status->max_sp/500;
 		if( (skill=pc_checkskill(sd,NJ_NINPOU)) > 0 )
-			val += skill*3 + skill*status->max_sp/500;
+			val += skill*3 + static_cast<int64>(skill)*status->max_sp/500;
 		if( (skill=pc_checkskill(sd,WM_LESSON)) > 0 )
 			val += 3 + 3 * skill;
 
@@ -5326,20 +5327,20 @@ void status_calc_regen(block_list *bl, struct status_data *status, struct regen_
 
 		val = 0;
 		if( (skill=pc_checkskill(sd,MO_SPIRITSRECOVERY)) > 0 )
-			val += skill*4 + skill*status->max_hp/500;
+			val += skill*4 + static_cast<int64>(skill)*status->max_hp/500;
 
 		if( (skill=pc_checkskill(sd,TK_HPTIME)) > 0 && sd->state.rest )
-			val += skill*30 + skill*status->max_hp/500;
+			val += skill*30 + static_cast<int64>(skill)*status->max_hp/500;
 		sregen->hp = cap_value(val, 0, SHRT_MAX);
 
 		val = 0;
 		if( (skill=pc_checkskill(sd,TK_SPTIME)) > 0 && sd->state.rest ) {
-			val += skill*3 + skill*status->max_sp/500;
+			val += skill*3 + static_cast<int64>(skill)*status->max_sp/500;
 			if ((skill=pc_checkskill(sd,SL_KAINA)) > 0) // Power up Enjoyable Rest
 				val += (30+10*skill)*val/100;
 		}
 		if( (skill=pc_checkskill(sd,MO_SPIRITSRECOVERY)) > 0 )
-			val += skill*2 + skill*status->max_sp/500;
+			val += skill*2 + static_cast<int64>(skill)*status->max_sp/500;
 		sregen->sp = cap_value(val, 0, SHRT_MAX);
 	}
 
@@ -6146,7 +6147,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 		/// After status_calc_critical so the bonus is applied despite if you have or not a sc bugreport:5240
 		if (sd) {
 			if (sd->status.weapon == W_KATAR)
-				status->cri *= 2;
+				status->cri = cap_value(status->cri * 2, 0, SHRT_MAX);
 		}
 	}
 
@@ -6200,7 +6201,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 			status->max_hp = status_calc_maxhp_pc( *sd, status->vit );
 
 			if(battle_config.hp_rate != 100)
-				status->max_hp = (uint32)(battle_config.hp_rate * (status->max_hp/100.));
+				status->max_hp = static_cast<uint32>(cap_value(battle_config.hp_rate * (status->max_hp/100.), 0.0, static_cast<double>(UINT_MAX)));
 
 			if (sd->status.base_level < 100)
 				status->max_hp = umin(status->max_hp,(uint32)battle_config.max_hp_lv99);
@@ -6223,7 +6224,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 			status->max_sp = status_calc_maxsp_pc( *sd, status->int_ );
 
 			if(battle_config.sp_rate != 100)
-				status->max_sp = (uint32)(battle_config.sp_rate * (status->max_sp/100.));
+				status->max_sp = static_cast<uint32>(cap_value(battle_config.sp_rate * (status->max_sp/100.), 0.0, static_cast<double>(UINT_MAX)));
 
 			status->max_sp = umin(status->max_sp,(uint32)battle_config.max_sp);
 		}
@@ -6249,8 +6250,8 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 			matk_max += sd->bonus.ematk_hidden;
 
 			if (sd->matk_rate != 100) {
-				matk_min = matk_min * sd->matk_rate / 100;
-				matk_max = matk_max * sd->matk_rate / 100;
+				matk_min = cap_value(static_cast<int64>(matk_min) * sd->matk_rate / 100, INT_MIN, INT_MAX);
+				matk_max = cap_value(static_cast<int64>(matk_max) * sd->matk_rate / 100, INT_MIN, INT_MAX);
 			}
 		}
 
@@ -6267,8 +6268,8 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 		matk_max = status_calc_consumablematk( sc, matk_max );
 
 		if (sc && sc->getSCE(SC_MAGICPOWER) && sc->getSCE(SC_MAGICPOWER)->val4) {
-			matk_min += matk_min * sc->getSCE(SC_MAGICPOWER)->val3 / 100;
-			matk_max += matk_max * sc->getSCE(SC_MAGICPOWER)->val3 / 100;
+			matk_min = cap_value(matk_min + static_cast<int64>(matk_min) * sc->getSCE(SC_MAGICPOWER)->val3 / 100, INT_MIN, INT_MAX);
+			matk_max = cap_value(matk_max + static_cast<int64>(matk_max) * sc->getSCE(SC_MAGICPOWER)->val3 / 100, INT_MIN, INT_MAX);
 		}
 
 		// Custom since JOB_SOUL_REAPER does not exist in pre-renewal
@@ -6329,8 +6330,8 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 
 		// Apply MATK % from skill Mystical Amplification
 		if (sc && sc->getSCE(SC_MAGICPOWER)) {
-			matk_min += matk_min * sc->getSCE(SC_MAGICPOWER)->val3 / 100;
-			matk_max += matk_max * sc->getSCE(SC_MAGICPOWER)->val3 / 100;
+			matk_min = cap_value(matk_min + static_cast<int64>(matk_min) * sc->getSCE(SC_MAGICPOWER)->val3 / 100, INT_MIN, INT_MAX);
+			matk_max = cap_value(matk_max + static_cast<int64>(matk_max) * sc->getSCE(SC_MAGICPOWER)->val3 / 100, INT_MIN, INT_MAX);
 		}
 
 		// ExtraMATK = EquipMATK + ConsumableMATK + PseudoBuffMATK
@@ -6358,8 +6359,8 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 
 		// Apply MATK % (from equipments, usable items...)
 		if (sd != nullptr && sd->matk_rate != 100) {
-			matk_min = matk_min * sd->matk_rate / 100;
-			matk_max = matk_max * sd->matk_rate / 100;
+			matk_min = cap_value(static_cast<int64>(matk_min) * sd->matk_rate / 100, INT_MIN, INT_MAX);
+			matk_max = cap_value(static_cast<int64>(matk_max) * sd->matk_rate / 100, INT_MIN, INT_MAX);
 		}
 
 		status->matk_min = static_cast<uint16>( cap_value(matk_min,0,USHRT_MAX) );
@@ -6458,7 +6459,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 		if (status->spl == b_status->spl && status->con == b_status->con)
 			status->smatk = status_calc_smatk(&bl, sc, b_status->smatk);
 		else
-			status->smatk = status_calc_smatk(&bl, sc, b_status->smatk) + (status->spl - b_status->spl) / 3 + (status->con - b_status->con) / 5;
+			status->smatk = cap_value(status_calc_smatk(&bl, sc, b_status->smatk) + (status->spl - b_status->spl) / 3 + (status->con - b_status->con) / 5, 0, SHRT_MAX);
 	}
 
 	if (flag[SCB_RES]) {
@@ -6494,7 +6495,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 			status->max_ap = status_calc_maxap_pc( *sd );
 
 			if (battle_config.ap_rate != 100)
-				status->max_ap = (uint32)(battle_config.ap_rate * (status->max_ap / 100.));
+				status->max_ap = static_cast<uint32>(cap_value(battle_config.ap_rate * (status->max_ap / 100.), 0.0, static_cast<double>(UINT_MAX)));
 
 			status->max_ap = umin(status->max_ap, (uint32)battle_config.max_ap);
 		} else

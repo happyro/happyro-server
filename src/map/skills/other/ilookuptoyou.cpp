@@ -15,7 +15,7 @@ void SkillILookUpToYou::castendNoDamageId(block_list* src, block_list* target, u
 	uint8 sp_rate = abs(skill_get_sp_rate(getSkillId(), skill_lv));
 
 	if (sp_rate && status_get_sp(src) > status_get_max_sp(src) / sp_rate) {
-		int32 gain_sp = tstatus->max_sp * sp_rate / 100; // The earned is the same % of the target SP than it costed the caster. [Skotlex]
+		int32 gain_sp = static_cast<int64>(tstatus->max_sp) * sp_rate / 100; // The earned is the same % of the target SP than it costed the caster. [Skotlex]
 
 		clif_skill_nodamage(src,*target,getSkillId(),status_heal(target, 0, gain_sp, 0));
 	}

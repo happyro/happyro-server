@@ -11620,6 +11620,21 @@ void clif_parse_WalkToXY(int32 fd, map_session_data *sd)
 }
 
 
+/// Shorten a released joystick's route without snapping back to a cell center.
+/// 0d03 (CZ_HAPPYRO_STOP_MOVE)
+void clif_parse_happyro_stop_move(int32 fd, map_session_data* sd)
+{
+	if (pc_isdead(sd) || !unit_is_walking(sd) || sd->ud.state.force_walk || sd->ud.state.running
+		|| sd->ud.stepaction || sd->ud.target_to != 0)
+		return;
+
+	const auto previous_length = sd->ud.walkpath.path_len;
+	unit_stop_walking_soon(*sd);
+	// The shared helper broadcasts to other players; the moving player needs its own route update.
+	if (sd->ud.walkpath.path_len != previous_length)
+		clif_walkok(*sd);
+}
+
 /// Notification about the result of a disconnect request (ZC_ACK_REQ_DISCONNECT).
 /// 018b <result>.W
 /// result:
