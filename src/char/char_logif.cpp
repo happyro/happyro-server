@@ -810,6 +810,12 @@ TIMER_FUNC(chlogif_check_connect_logserver){
 		return 0;
 
 	ShowInfo("Attempt to connect to login-server...\n");
+	// Resolve on every reconnect, including recovery from startup DNS failures.
+	charserv_config.login_ip = host2ip(charserv_config.login_ip_str);
+	if (!charserv_config.login_ip) {
+		ShowWarning("Failed to resolve Login Server Address (%s); retrying later.\n", charserv_config.login_ip_str);
+		return 0;
+	}
 	login_fd = make_connection(charserv_config.login_ip, charserv_config.login_port, false,10);
 	if (login_fd == -1)
 	{	//Try again later. [Skotlex]
