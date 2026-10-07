@@ -188,6 +188,14 @@ uint32 max_job_level(int32 job_id) {
 	return job_id >= 0 && job_db.exists(job_id) ? job_db.get_maxJobLv(job_id) : 1;
 }
 
+int32 minimum_base_level(int32 job_id) {
+	return pc_is_trait_job(pc_jobid2mapid(job_id)) ? 200 : 1;
+}
+
+int32 normalize_base_level(int32 job_id, int32 requested) {
+	return std::clamp(requested, minimum_base_level(job_id), static_cast<int32>(job_db.get_maxBaseLv(job_id)));
+}
+
 uint32 earned_job_skill_points(const map_session_data* sd) {
 	uint32 earned = sd->status.job_level - 1;
 	const uint64 variant = sd->class_ & (JOBL_UPPER | JOBL_BABY);
@@ -581,7 +589,7 @@ void game_control_process() {
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"sex", sd->status.sex}, {"traits", game_control_traits_snapshot(sd)},
-					{"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
+					{"min_base_level", minimum_base_level(sd->status.class_)}, {"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
 					{"max_skill_points", INT16_MAX}, {"max_status_points", INT32_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},
 					{"max_stats", { {"str", stat_safe_max(sd, PARAM_STR)}, {"agi", stat_safe_max(sd, PARAM_AGI)},
@@ -596,7 +604,7 @@ void game_control_process() {
 					const uint64 map_id = pc_jobid2mapid(job);
 					if (map_id == static_cast<uint64>(-1) || pc_mapid2jobid(map_id, sd->status.sex) != job)
 						continue;
-					jobs.push_back({{"id", job}, {"max_base_level", job_db.get_maxBaseLv(job)},
+					jobs.push_back({{"id", job}, {"min_base_level", minimum_base_level(job)}, {"max_base_level", job_db.get_maxBaseLv(job)},
 						{"max_job_level", job_db.get_maxJobLv(job)}, {"traits", static_cast<bool>(pc_is_trait_job(map_id))}});
 				}
 			}
@@ -624,9 +632,9 @@ void game_control_process() {
 						&& job_id != JOB_WEDDING && job_id != JOB_XMAS && job_id != JOB_SUMMER;
 				}
 				if (valid && payload.contains("base_level"))
-					valid = read_integer(payload["base_level"], 1, job_db.get_maxBaseLv(job_id), base_level);
+					valid = read_integer(payload["base_level"], 1, INT32_MAX, base_level);
 				if (valid)
-					valid = base_level <= job_db.get_maxBaseLv(job_id);
+					base_level = normalize_base_level(job_id, base_level);
 				if (valid && payload.contains("job_level"))
 					valid = read_integer(payload["job_level"], 1, job_db.get_maxJobLv(job_id), job_level);
 				if (!valid) {
@@ -652,7 +660,7 @@ void game_control_process() {
 						reset_job_change_levels(sd);
 						changed_job = pc_jobchange(sd, job_id, 0);
 					}
-					if (payload.contains("base_level"))
+					if (base_level != sd->status.base_level)
 						pc_setparam(sd, SP_BASELEVEL, base_level);
 					if (payload.contains("job_level"))
 						pc_setparam(sd, SP_JOBLEVEL, job_level);
