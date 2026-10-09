@@ -13,7 +13,7 @@
 	mes "你好！";
 	mes "要购买箭矢还是兑换箭袋？";
 	next;
-	switch ( select( "Buy Arrows", "Quiver Exchange", "Sell Items", "Cancel" )) {
+	switch ( select( "购买箭矢", "兑换箭袋", "出售物品", "取消" )) {
 	case 1:
 		close2;	// !Fix me: official server uses "callshop" then "close"
 		callshop "Arrow_Archer", 1;
@@ -45,7 +45,7 @@ OnInit:
 	mes "你好！";
 	mes "你想看看什么？";
 	next;
-	switch ( select( "Buy Weapons", "Buy Ammunition", "Cartridge Exchange", "Sell Items", "Cancel" )) {
+	switch ( select( "购买武器", "购买弹药", "兑换弹匣", "出售物品", "取消" )) {
 	case 1:
 		mes "[弹药商人]";
 		mes "我会准备武器。";
@@ -88,7 +88,7 @@ OnInit:
 	mes "[忍者道具商人]";
 	mes "你好，有什么需要帮忙的吗？";
 	next;
-	switch ( select( "Buy Ninjutsu Tool", "Parchment Exchange", "Sell Items", "Cancel" )) {
+	switch ( select( "购买忍者道具", "兑换苦无卷轴", "出售物品", "取消" )) {
 	case 1:
 		close2;	// !Fix me: official server uses "callshop" then "close"
 		callshop "Weapons_Ninja", 1;
@@ -119,7 +119,7 @@ OnInit:
 	mes "这里有魔导机甲的装备，不能出售的除外！";
 	mes "有什么可以帮你？";
 	next;
-	switch ( select( "Buy Component", "Consumables and Cooling Device", "Box Exchange", "Sell Items", "Cancel" )) {
+	switch ( select( "购买机甲部件", "消耗品与冷却装置", "兑换补给箱", "出售物品", "取消" )) {
 	case 1:
 		mes "[魔导机甲商人]";
 		mes "我会开始准备魔导机甲部件。";
@@ -159,24 +159,24 @@ OnInit:
 //= Talisman Merchant
 //============================================================
 -	script	#over_talisman	HIDDEN_NPC,{
-	mes "[护符商人]";
-	mes "你好，是来看精灵的吗？";
+	mes "[符咒商人]";
+	mes "你好，要购买符咒吗？";
 	next;
-	switch ( select( "Buy Talisman", "Talisman Bundle Exchange", "Cancel" )) {
+	switch ( select( "购买符咒", "兑换符咒包", "取消" )) {
 	case 1:
-		mes "[护符商人]";
+		mes "[符咒商人]";
 		mes "你会喜欢的。";
 		close2;
 		callshop "Talisman_Merchant", 1;
 		break;
 	case 2:
-		mes "[护符商人]";
+		mes "[符咒商人]";
 		mes "我们也可以兑换套装。";
 		close2;
 		callshop "Talisman_Bundle", 1;
 		break;
 	case 3:
-		mes "[护符商人]";
+		mes "[符咒商人]";
 		mes "谢谢。欢迎再来。";
 		close;
 	}

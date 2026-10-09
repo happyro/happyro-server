@@ -1,3 +1,4 @@
+#include "npc_custom.hpp"
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
@@ -4272,6 +4273,11 @@ void map_reloadnpc(bool clear)
 #else
 	map_reloadnpc_sub("npc/pre-re/scripts_main.conf");
 #endif
+	try {
+		for (const auto& file : happyro_custom::additions()) npc_addsrcfile(file.c_str(), false);
+	} catch (const std::exception& error) {
+		ShowError("Custom NPC manifest: %s\n", error.what());
+	}
 }
 
 int32 inter_config_read(const char *cfgName)

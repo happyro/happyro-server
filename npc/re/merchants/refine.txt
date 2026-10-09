@@ -79,16 +79,13 @@ function	script	refinenew	{
 
 	if (!getequipisequiped(.@part)) { //custom check
 		mes "["+ .@npc_name$ +"]";
-		mes "那里没有装备";
-		mes "我可以";
-		mes "强化的物品。";
+		mes "你没有穿戴可以强化的装备。";
 		emotion ET_FRET;
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
 		mes "["+ .@npc_name$ +"]";
-		mes "我想我完全不能";
-		mes "强化这件物品……";
+		mes "这件物品无法强化……";
 		close;
 	}
 	.@refinerycnt = getequiprefinerycnt(.@part); //save refinery count
@@ -100,8 +97,7 @@ function	script	refinenew	{
 	if (.@refinerycnt >= 20) { //custom check
 		mes "["+ .@npc_name$ +"]";
 		mes "我不能再强化这件物品了。";
-		mes "它已经达到";
-		mes "强化极限！";
+		mes "它已经达到强化极限！";
 		close;
 	}
 	.@refineitemid = getequipid(.@part); // save id of the item
@@ -345,18 +341,11 @@ function	script	refinenew	{
 -	script	Austri#ref	-1,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 等一下！！-";
-		mes "- 你现在携带的物品-";
-		mes "- 太多了。-";
-		mes "- 请减轻负重后-";
-		mes "- 再试一次。-";
+		mes "你现在携带的物品太多了，请减轻负重后再试一次。";
 		close;
 	}
 	mes "[Austri]";
-	mes "如果你带来 3 个";
-	mes "神之金属或铝";
-	mes "我可以把它们兑换成";
-	mes "布拉迪姆或卡尼姆。";
-	mes "只要给我 50,000 Zeny。";
+	mes "带来 3 个神之金属或铝，再支付 50,000 Zeny，我就可以将它们兑换成布拉迪姆或卡尼姆。";
 	next;
 	switch(select("神之金属兑换布拉迪姆。:铝兑换卡尼姆。:纯化布拉迪姆兑换卡尼姆。:不用了。")) {
 	case 1:
@@ -379,8 +368,7 @@ function	script	refinenew	{
 		getitem .@i[2],1;
 		mes "[Austri]";
 		if (.@i[0] == 6090) {
-			mes "用纯化布拉迪姆强化";
-			mes "可能会有点贵。";
+			mes "用纯化布拉迪姆强化可能会有点贵。";
 			mes "我可以把它兑换成卡尼姆。";
 		} else
 			mes "好！这是你的"+getitemname(.@i[2])+"。";
@@ -388,10 +376,7 @@ function	script	refinenew	{
 		close;
 	}
 	mes "[Austri]";
-	mes "你最好别想";
-	mes "因为钱不够";
-	mes "或没有";
-	mes ""+getitemname(.@i[0])+"而骗我。";
+	mes "请先准备好足够的费用和" + getitemname(.@i[0]) + "，再来找我精炼。";
 	close;
 }
 prt_in,85,71,5	duplicate(Austri#ref)	Austri#prt	826
@@ -577,8 +562,7 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	emotion ET_CHUP;
 	mes "[Clink]";
 	mes "好！！完美！！";
-	mes "没有我不能精炼的东西";
-	mes "用这把特殊的锤子。";
+	mes "有了这把特殊的锤子，就没有我不能精炼的东西。";
 	mes "你可以赞美我！！";
 	mes "真是美好的一天！！";
 	close;

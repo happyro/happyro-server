@@ -169,8 +169,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				input .@input;
 				if (.@input == 0) {
 					mes "[Christopher Guillenrow]";
-					mes "交易已";
-					mes "取消。";
+					mes "交易已取消。";
 					mes "祝你平安。";
 					close;
 				}
@@ -207,8 +206,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				input .@input;
 				if (.@input == 0) {
 					mes "[Christopher Guillenrow]";
-					mes "交易已";
-					mes "取消。";
+					mes "交易已取消。";
 					mes "祝你平安。";
 					close;
 				}
@@ -635,8 +633,7 @@ function	script	refinemain	{
 	.@features = getarg(1);
 	mes "["+ .@npc_name$ +"]";
 	mes "我是武器工匠。";
-	mes "我可以精炼各种武器、防具和装备，";
-	mes "告诉我你想精炼什么吧。";
+	mes "我可以精炼各种武器、防具和装备，告诉我你想精炼什么吧。";
 	next;
 
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -656,25 +653,21 @@ function	script	refinemain	{
 
 	if(!getequipisequiped(.@part)) { //custom check
 		mes "["+ .@npc_name$ +"]";
-		mes "你那里没有穿戴";
-		mes "任何我可以精炼的";
-		mes "物品。";
+		mes "你没有穿戴可以精炼的物品。";
 		emotion ET_FRET;
 		close;
 	}
 	//Check if the item is refinable...
 	if(!getequipisenableref(.@part)) {
 		mes "["+ .@npc_name$ +"]";
-		mes "我想这件物品";
-		mes "完全无法精炼……";
+		mes "我想这件物品完全无法精炼……";
 		close;
 	}
 	//Check to see if the items is already +10
 	if(getequiprefinerycnt(.@part) >= 10) {
 		mes "["+ .@npc_name$ +"]";
 		mes "我不能再精炼这件物品了。";
-		mes "它已经达到";
-		mes "精炼上限！";
+		mes "它已经达到精炼上限！";
 		close;
 	}
 	.@refineitemid = getequipid(.@part); // save id of the item
@@ -771,24 +764,20 @@ function	script	refinemain	{
 		}
 		if(getequippercentrefinery(.@part) < 100) {
 			mes "["+ .@npc_name$ +"]";
-			mes "糟糕！如果继续精炼，";
-			mes "这件物品有可能会";
+			mes "糟糕！继续精炼可能会损坏这件物品。";
 			switch(.@material) {
 			case 985:
-				mes "被破坏！这意味着^FF0000这件装备^000000以及附在防具上的^FF0000卡片^000000或特殊属性都会^FF0000消失^000000。";
+				mes "一旦损坏，^FF0000这件装备^000000以及附在防具上的^FF0000卡片^000000或特殊属性都会^FF0000消失^000000。";
 				break;
 			default:
-				mes "被破坏，你会^FF0000失去武器^000000、武器上的^FF0000卡片^000000，";
-				mes "以及附加的特殊属性。";
+				mes "一旦损坏，你会^FF0000失去武器^000000、武器上的^FF0000卡片^000000，以及附加的特殊属性。";
 				break;
 			}
 			next;
 			mes "["+getarg(0)+"]";
 			mes "我已经说得很清楚了。";
-			mes "武器一旦被破坏，";
-			mes "就再也无法找回。";
-			mes "你真的可能会永远";
-			mes "^FF0000失去这件武器^000000。";
+			mes "武器一旦被破坏，就再也无法找回。";
+			mes "你真的可能会永远^FF0000失去这件武器^000000。";
 			mes "你还要继续精炼吗？";
 			next;
 			if(select("是:否") == 2){
@@ -802,8 +791,7 @@ function	script	refinemain	{
 			mes "["+ .@npc_name$ +"]";
 			mes "看来你的 Zeny 或 "+getitemname(.@material)+"";
 			mes "不够……再去准备一些吧。";
-			mes "你需要我的话，我会一直";
-			mes "在这里。";
+			mes "你需要我的话，我会一直在这里。";
 			close;
 		}
 		Zeny = Zeny-.@price;
@@ -836,8 +824,7 @@ function	script	refinemain	{
 				mes "对、对不起！";
 			} else {
 				mes "糟糕！";
-				mes "它承受不了";
-				mes "更多的精炼了！";
+				mes "它承受不了更多的精炼了！";
 				mes "真是抱歉……";
 			}
 			close;
@@ -849,19 +836,14 @@ function	script	refinemain	{
 		if (.@win == 1) {
 			mes "完美！";
 			mes "嘿嘿！";
-			mes "又一次，";
-			mes "大师的作品";
-			mes "毫无瑕疵～";
+			mes "又一次，大师的作品毫无瑕疵～";
 		} else if(.@win == 2) {
 			mes "成功……！";
-			mes "今天我的惊人";
-			mes "才能再次大放异彩，";
-			mes "闪耀夺目。";
+			mes "今天我的惊人才能再次大放异彩，闪耀夺目。";
 		} else {
 			mes "嘿嘿！";
 			mes "全部完成了。";
-			mes "毫无疑问，我的作品";
-			mes "一定令你满意。";
+			mes "毫无疑问，我的作品一定令你满意。";
 			mes "纯粹而彻底的完美～";
 		}
 		close;
@@ -1009,11 +991,8 @@ function	script	phramain	{
 	}
 	.@npc_name$ = getarg(0);
 	mes "["+ .@npc_name$ +"]";
-	mes "我出售两种";
-	mes "用于淬炼武器的金属。";
-	mes "我有供 1 级武器使用的 ^007777普拉康^000000，";
-	mes "以及供 2 级武器使用的 ^007777艾姆威泰勒矿石^000000";
-	mes "。";
+	mes "我出售两种用于淬炼武器的金属。";
+	mes "我有供 1 级武器使用的 ^007777普拉康^000000，以及供 2 级武器使用的 ^007777艾姆威泰勒矿石^000000。";
 	next;
 	switch(select("普拉康 - 200 Zeny:艾姆威泰勒矿石 - 1000 Zeny:询问其他金属")) {
 	case 1:
@@ -1027,8 +1006,7 @@ function	script	phramain	{
 	case 3:
 		mes "["+ .@npc_name$ +"]";
 		mes "其他金属？";
-		mes "高等级武器或任何护甲都需要特殊金属。不过，神之金属和铝原石很";
-		mes "难找到……";
+		mes "高等级武器或任何护甲都需要特殊金属。不过，神之金属和铝原石很难找到……";
 		close;
 	}
 	mes "["+ .@npc_name$ +"]";
@@ -1039,16 +1017,13 @@ function	script	phramain	{
 		input .@input;
 		if (.@input == 0) {
 			mes "["+ .@npc_name$ +"]";
-			mes "交易已";
-			mes "取消。";
+			mes "交易已取消。";
 			close;
 		}
 		else if (.@input < 0 || .@input > 500) {
 			mes "["+ .@npc_name$ +"]";
-			mes "好，你最多可以";
-			mes "购买 500 个。";
-			mes "不能更多，";
-			mes "明白了吗？很好。";
+			mes "好，你最多可以购买 500 个。";
+			mes "不能更多，明白了吗？很好。";
 			next;
 		}
 		else {
@@ -1074,8 +1049,7 @@ function	script	phramain	{
 	Zeny = Zeny-.@sell;
 	mes "["+ .@npc_name$ +"]";
 	mes "给你！";
-	mes "感谢";
-	mes "惠顾。";
+	mes "感谢惠顾。";
 	close;
 }
 
@@ -1123,11 +1097,7 @@ function	script	orimain	{
 	}
 	.@npc_name$ = getarg(0);
 	mes "["+ .@npc_name$ +"]";
-	mes "我可以净化你的";
-	mes "神之金属原石或";
-	mes "铝原石。我需要";
-	mes "5 个原石制作";
-	mes "1 个纯矿石。";
+	mes "我可以净化你的神之金属原石或铝原石。每制作 1 个纯矿石，需要 5 个原石。";
 	next;
 	switch(select("制作神之金属:制作铝:询问附魔石")) {
 	case 1:
@@ -1136,8 +1106,7 @@ function	script	orimain	{
 			getitem 984,1; // Oridecon
 			mes "["+ .@npc_name$ +"]";
 			mes "这是你的神之金属。";
-			mes "欢迎随时";
-			mes "回来。";
+			mes "欢迎随时回来。";
 			close;
 		}
 		else {
@@ -1152,8 +1121,7 @@ function	script	orimain	{
 			getitem 985,1; // Elunium
 			mes "["+ .@npc_name$ +"]";
 			mes "这是你的铝。";
-			mes "欢迎随时";
-			mes "回来。";
+			mes "欢迎随时回来。";
 			close;
 		}
 		else {
@@ -1165,8 +1133,7 @@ function	script	orimain	{
 	case 3:
 		mes "["+ .@npc_name$ +"]";
 		mes "附魔石……？";
-		mes "我做石匠 20 年，听说过很多。传说有";
-		mes "四种。";
+		mes "我做石匠 20 年，听说过很多。传说有四种。";
 		next;
 		mes "["+ .@npc_name$ +"]";
 		mes "每种附魔石拥有一种属性：地、风、水或火。";
@@ -1259,10 +1226,8 @@ function	script	repairmain	{
 	.@npc_name$ = getarg(0);
 	mes "["+ .@npc_name$ +"]";
 	mes "你好！";
-	mes "想让我";
-	mes "修理什么物品吗？";
-	mes "物品修理";
-	mes "交给我就行！";
+	mes "想让我修理什么物品吗？";
+	mes "物品修理交给我就行！";
 	next;
 	switch(select("我确实有些物品……:现在没有。")) {
 	case 1:
@@ -1333,10 +1298,7 @@ function	script	repairmain	{
 	case 2:
 		mes "["+ .@npc_name$ +"]";
 		mes "呵呵呵……";
-		mes "如果没有";
-		mes "物品要修理，";
-		mes "就没必要";
-		mes "来找我。";
+		mes "如果没有物品要修理，就没必要来找我。";
 		close;
 	}
 }

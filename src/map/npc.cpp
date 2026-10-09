@@ -1,3 +1,4 @@
+#include "npc_custom.hpp"
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
@@ -3610,8 +3611,11 @@ int32 npc_addsrcfile(const char* name, bool loadscript)
 		return 1;
 	}
 
-	//Check if this is not a file
-	if(check_filepath(name)!=2){
+	std::string resolved;
+	try { resolved = happyro_custom::source(name); }
+	catch (const std::exception& error) { ShowError("Custom NPC: %s\n", error.what()); return 0; }
+	// Check the selected source; never fall back from an invalid override.
+	if(check_filepath(resolved.c_str())!=2){
 		ShowError("npc_addsrcfile: Can't find source file \"%s\"\n", name );
 		return 0;
 	}
@@ -5645,13 +5649,17 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
  */
 int32 npc_parsesrcfile(const char* filepath)
 {
-	if (check_filepath(filepath) != 2) { //this is not a file 
+	std::string resolved;
+	try { resolved = happyro_custom::source(filepath); }
+	catch (const std::exception& error) { ShowError("Custom NPC: %s\n", error.what()); return 0; }
+	if (resolved != filepath) ShowInfo("NPC override: %s -> %s\n", filepath, resolved.c_str());
+	if (check_filepath(resolved.c_str()) != 2) { //this is not a file
 		ShowDebug("npc_parsesrcfile: Path doesn't seem to be a file skipping it : '%s'.\n", filepath);
 		return 0;
 	} 
             
 	// read whole file to buffer
-	FILE* fp = fopen(filepath, "rb");
+	FILE* fp = fopen(resolved.c_str(), "rb");
 	if (fp == nullptr) {
 		ShowError("npc_parsesrcfile: File not found '%s'.\n", filepath);
 		return 0;
@@ -5670,7 +5678,7 @@ int32 npc_parsesrcfile(const char* filepath)
 	}
 	fclose(fp);
 
-	if ((unsigned char)buffer[0] == 0xEF && (unsigned char)buffer[1] == 0xBB && (unsigned char)buffer[2] == 0xBF) {
+	if (len >= 3 && (unsigned char)buffer[0] == 0xEF && (unsigned char)buffer[1] == 0xBB && (unsigned char)buffer[2] == 0xBF) {
 		// UTF-8 BOM. This is most likely an error on the user's part, because:
 		// - BOM is discouraged in UTF-8, and the only place where you see it is Notepad and such.
 		// - It's unlikely that the user wants to use UTF-8 data here, since we don't really support it, nor does the client by default.

@@ -36,44 +36,44 @@ function	script	F_Brilliant_Soda	{
 	switch( select( "70-79 级", "80-89 级", "90 级以上", "取消" ) ) {
 	case 1:
 		callsub( S_Menu,
-			70, "Einbroch Northeast Field", "ein_fild06", 253,351,
-			71, "Geffen Northwest Field", "gef_fild06",214,31,
-			71, "Lighthalzen North Field", "lhz_fild01", 240,103,
-			75, "Turtle Island", "tur_dun01",155,46,
-			75, "In front of Thanatos Tower", "hu_fild01", 137,157,
-			75, "Starlight Coral Zone", "mal_dun01",146,126,
-			76, "Einbroch Northwest Field", "ein_fild03",135,50,
-			77, "Lighthalzen East Field", "lhz_fild03", 167,340
+			70, "艾因布洛克东北原野", "ein_fild06", 253,351,
+			71, "吉芬西北原野", "gef_fild06",214,31,
+			71, "里希塔乐镇北部原野", "lhz_fild01", 240,103,
+			75, "乌龟岛", "tur_dun01",155,46,
+			75, "塔纳托斯之塔入口", "hu_fild01", 137,157,
+			75, "星光珊瑚地带", "mal_dun01",146,126,
+			76, "艾因布洛克西北原野", "ein_fild03",135,50,
+			77, "里希塔乐镇东部原野", "lhz_fild03", 167,340
 		);
 		return;
 	case 2:
 		// Official menu text seems wrong
 		callsub( S_Menu,
 			// 80, "Turtle Island Dungeon", "ra_fild08",164,47,
-			80, "Rachel Northeast", "ra_fild08",164,47,
-			80, "Ice dungeon", "ice_dun01",158,18,
+			80, "拉赫东北部", "ra_fild08",164,47,
+			80, "冰洞", "ice_dun01",158,18,
 			// 80, "Rachel East Ida Plain", "ra_fild03",363,183,
-			80, "Rachel North Ida Plain", "ra_fild03",363,183,
-			85, "Rachel Northeast of the plain", "ra_fild04", 269,69,
+			80, "拉赫北部伊达平原", "ra_fild03",363,183,
+			85, "拉赫东北平原", "ra_fild04", 269,69,
 			// 85, "Rachel Ice Cave 1st Floor", "ve_fild07",158,350,
-			85, "Veins South", "ve_fild07",158,350,
-			86, "Rachel's North Ida Plain", "ra_fild05", 53,356,
-			86, "Rachel Northeast North Audumrah Grassland", "ra_fild01", 229,319,
+			85, "贝恩斯南部", "ve_fild07",158,350,
+			86, "拉赫北方伊达平原", "ra_fild05", 53,356,
+			86, "拉赫东北方奥杜姆拉草原", "ra_fild01", 229,319,
 			// 86, "Veins South Field", "ra_fild12", 54,219,
-			86, "Rachel East Field", "ra_fild12", 54,219,
+			86, "拉赫东部原野", "ra_fild12", 54,219,
 			// 87, "Rachel North North East Audumla Grassland", "tur_dun03", 130,186,
 			// 88, "Rachel North East North Audumla Grassland", "tur_dun02", 146,256
-			87, "Turtle Island Dungeon 2", "tur_dun03", 130,186,
-			88, "Turtle Island Dungeon 3", "tur_dun02", 146,256
+			87, "乌龟岛地下城 2 层", "tur_dun03", 130,186,
+			88, "乌龟岛地下城 3 层", "tur_dun02", 146,256
 		);
 		return;
 	case 3:
 		callsub( S_Menu,
 			// 90, "Rachel Southwest Field", "ve_fild01", 354,276,
-			90, "Veins North North Field", "ve_fild01", 354,276,
-			90, "Veins North Field", "ve_fild04", 52,247,
-			93, "Lighthalzen North Porto Luna", "ra_fild06", 287,39,
-			95, "In front of Thor Volcano", "ve_fild03", 348,226
+			90, "贝恩斯北方原野", "ve_fild01", 354,276,
+			90, "贝恩斯北部原野", "ve_fild04", 52,247,
+			93, "里希塔乐镇北方福尔图鲁纳", "ra_fild06", 287,39,
+			95, "托尔火山入口", "ve_fild03", 348,226
 		);
 		return;
 	case 4:
@@ -94,7 +94,7 @@ S_Menu:
 		return;
 	.@s = .@s * 5;
 	if (BaseLevel < getarg(.@s)) {
-		mes "- 仅限高于" + getarg(.@s) + "级的角色。-";
+		mes "- 需要达到 " + getarg(.@s) + " 级才能前往。-";
 		close;
 	}
 	delitem 1000374,1;	// Brilliant_Soda
@@ -151,7 +151,7 @@ mes "我负责管理碳酸水自动售货机，或者带你去调查员所在处
 mes "嗯，只是有点困难……";
 	mes "是的，只要你给我一瓶" + .@item_name$ + "，我就用清爽的方式把你传送过去。";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 mes "你不去吗？唉，真遗憾……";
 		close;
@@ -171,7 +171,7 @@ mes "那么，要把你送到哪里？";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -224,7 +224,7 @@ mes "是的，我可以带你去调查员那里";
 mes "嗯，我想马上送你过去，但现在有点力不从心。";
 mes "我可以喝一瓶" + .@item_name$ + "吗？";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 mes "这是为了世界，你不去吗？";
 		close;
@@ -245,7 +245,7 @@ mes "没办法。我把" + .@item_name$ + "还给你。";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -299,7 +299,7 @@ mes "我会宣传碳酸水自动售货机，或者带你去调查员所在处！
 mes "直接送你过去有点困难……我也赚不到钱。";
 mes "是的，给我一瓶" + .@item_name$ + "，我就提供传送服务！";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 mes "呃，你现在不去吗？那我就不为你服务" + .@item_name$ + "了。抱歉。";
 		close;
@@ -319,7 +319,7 @@ mes "哦，你现在不去吗？那我就把" + .@item_name$ + "还给你。";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -372,7 +372,7 @@ mes "是的，我可以带你去调查员那里";
 mes "唉，我实在没法直接送你过去！";
 mes "只要你给我一瓶" + .@item_name$ + "，我就提供传送！";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 mes "你是不去了吗？嗯，那也没办法！";
 		close;
@@ -393,7 +393,7 @@ mes "嗯，那你就不能拿这个！";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -446,7 +446,7 @@ mes "是的，我可以带你去调查员那里";
 mes "哦，抱歉。这不是免费的……";
 mes "好，能给我一瓶" + .@item_name$ + "吗？我就送你过去！";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 mes "你不去吗？这是为了公众利益！";
 		close;
@@ -467,7 +467,7 @@ mes "唉……我把" + .@item_name$ + "还给你……";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -521,7 +521,7 @@ mes "是的，我可以带你去调查员那里";
 	mes "直接送你过去有点困难，但我又拿不到钱……";
 	mes "好吧，你能给我一杯" + .@item_name$ + "吗？我马上送你过去。";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + ".", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 		mes "你不走吗？";
 		close;
@@ -537,11 +537,11 @@ mes "是的，我可以带你去调查员那里";
 	mes "现在要送你去哪里？";
 	callfunc( "F_Brilliant_Soda" );
 	mes .@npc_name$;
-	mes "你不走吗？ Then, the " + .@item_name$ + "... 给，我把它还给你。";
+	mes "你不走吗？那这瓶" + .@item_name$ + "... 给，我把它还给你。";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -568,7 +568,7 @@ lighthalzen,171,106,5	script	Assistant Staff#lig	4_M_CRU_HEAD,{
 		next;
 		mes .@npc_name$;
 		mes "我的任务是协助地图调查员在城内宣传魔物协会，并管理" + .@item_name$ + "自动售货机。";
-		mes "是的，我可以带你去调查员所在地";
+		mes "是的，我可以带你去调查员所在地。";
 		setquest 16547;
 		completequest 16547;
 		next;
@@ -597,28 +597,28 @@ lighthalzen,171,106,5	script	Assistant Staff#lig	4_M_CRU_HEAD,{
 	mes "好！！！价格是一瓶" + .@item_name$ + "！！！";
 	mes "你不会以为我会免费传送你吧！！！";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + ".", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 		mes "什么……？我不去讨伐！！！";
 		close;
 	}
 	if (countitem(1000374) < 1) {
 		mes .@npc_name$;
-		mes "如果你需要" + .@item_name$ + ", face this vending machine that I manage！！！";
+		mes "如果你需要" + .@item_name$ + "，就去我管理的自动售货机购买吧！！！";
 		mes "付出代价，赢得奖励！！！";
 		close;
 	}
 	mes .@npc_name$;
-	mes "你的" + .@item_name$ + ", I gladly received it！！！";
+	mes "你的" + .@item_name$ + "，我就收下了！！！";
 	mes "现在你想去哪里进行魔物讨伐！！！";
 	callfunc( "F_Brilliant_Soda" );
 	mes .@npc_name$;
 	mes "什么……？我不去讨伐！！！";
-	mes "别自相矛盾！！！……我把" + .@item_name$ + ".";
+	mes "别自相矛盾！！！……那你就先留着" + .@item_name$ + "吧。";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -645,7 +645,7 @@ prontera,168,125,5	script	Assistant Alonzo#prt	4_M_CRU_HEAD,{
 		next;
 		mes .@npc_name$;
 		mes "我的任务是协助地图调查员在城内宣传魔物协会，并管理" + .@item_name$ + "自动售货机。";
-		mes "是的，我可以带你去调查员所在地";
+		mes "是的，我可以带你去调查员所在地。";
 		setquest 16547;
 		completequest 16547;
 		next;
@@ -664,35 +664,35 @@ prontera,168,125,5	script	Assistant Alonzo#prt	4_M_CRU_HEAD,{
 		next;
 		mes .@npc_name$;
 		mes "我的任务是协助地图调查员在城内宣传魔物协会，并管理" + .@item_name$ + "自动售货机。";
-		mes "是的，我可以带你去调查员所在地";
+		mes "是的，我可以带你去调查员所在地。";
 		close;
 	}
 	mes .@npc_name$;
 	mes "直接送你过去有点困难。我也很累。";
 	mes "你能给我一瓶" + .@item_name$ + "吗？那会给我能量。";
 	next;
-	if (select( "给我一瓶" + .@item_name$ + ".", "我拒绝。" ) == 2) {
+	if (select( "交出一瓶" + .@item_name$ + "。", "我拒绝。" ) == 2) {
 		mes .@npc_name$;
 		mes "哦，你不走吗？";
 		close;
 	}
 	if (countitem(1000374) < 1) {
 		mes .@npc_name$;
-		mes "如果你没有" + .@item_name$ + ", you can purchase it.";
+		mes "如果你没有" + .@item_name$ + "，可以在旁边购买。";
 		mes "请使用这里的碳酸水自动售货机。";
 		close;
 	}
 	mes .@npc_name$;
-	mes "好的，" + .@item_name$ + "肯定会给你能量。";
+	mes "好的，" + .@item_name$ + "肯定会让我恢复精神。";
 	mes "要把你带到哪里？";
 	callfunc( "F_Brilliant_Soda" );
 	mes .@npc_name$;
 	mes "哦，你不走吗？";
-	mes "那我把" + .@item_name$ + ".";
+	mes "那你就先留着" + .@item_name$ + "吧，需要传送时再来找我。";
 	close;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 	end;
 }
 
@@ -714,7 +714,7 @@ ein_fild06,257,351,4	script	Map Examiner Bast#yma	4_F_CHNDRESS1,{
 	case 0:
 	case 1:
 		mes .@npc_name$;
-		mes "BNP工作过度很累，请明天再来。讨伐任务每天只能进行一次。";
+		mes "工作太多，我已经很累了，请明天再来。讨伐任务每天只能进行一次。";
 		next;
 		switch( select( "你看起来很累。要喝点东西吗？", "传送到附近城镇。" ) ) {
 		case 1:
@@ -738,7 +738,7 @@ ein_fild06,257,351,4	script	Map Examiner Bast#yma	4_F_CHNDRESS1,{
 			mes .@npc_name$;
 			mes "我可以把你送到艾因布洛克吗？给我一瓶" + mesitemlink( 1000374 ) + "，我就能传送你。";
 			next;
-			select( "给我1瓶" + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "你没有" + .@item_name$ + "，但朱诺魔物协会为什么让你拿这个？这只是一杯饮料。";
@@ -761,7 +761,7 @@ ein_fild06,257,351,4	script	Map Examiner Bast#yma	4_F_CHNDRESS1,{
 	switch( checkquest(5916,HUNTING) ) {
 	case -1:
 		mes .@npc_name$;
-		mes "你好～冒险者～我是朱诺魔物协会的INPU。";
+		mes "你好，冒险者！我是朱诺魔物协会的地图调查员巴斯特。";
 		next;
 		switch( select( "领取讨伐任务。", "讨伐任务？", "传送到附近城镇。", "问候。" ) ) {
 		case 1:
@@ -789,7 +789,7 @@ ein_fild06,257,351,4	script	Map Examiner Bast#yma	4_F_CHNDRESS1,{
 			mes .@npc_name$;
 			mes "我可以把你送到艾因布洛克吗？给我一瓶" + mesitemlink( 1000374 ) + "，我就能传送你。";
 			next;
-			select( "给我1瓶" + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "你没有" + .@item_name$ + "，但朱诺魔物协会为什么让你拿这个？这只是一杯饮料。";
@@ -827,7 +827,7 @@ ein_fild06,257,351,4	script	Map Examiner Bast#yma	4_F_CHNDRESS1,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5917,PLAYTIME) == 0 || checkquest(5917,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 70 && checkquest(5916,HUNTING) == -1 && checkquest(5917,PLAYTIME) == -1" );
@@ -874,7 +874,7 @@ gef_fild06,209,31,6	script	Map Examiner Gefil#yma	4_M_MIDDLE,{
 			mes .@npc_name$;
 			mes "给我1瓶" + mesitemlink( 1000374 ) + "，我就能把你传送到吉芬。";
 			next;
-			select( "给我1瓶" + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "你没有" + .@item_name$ + ". 这只是一杯饮料。";
@@ -918,7 +918,7 @@ gef_fild06,209,31,6	script	Map Examiner Gefil#yma	4_M_MIDDLE,{
 			mes .@npc_name$;
 			mes "给我1瓶" + mesitemlink( 1000374 ) + "，我就能把你传送到吉芬。";
 			next;
-			select( "给我1瓶" + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "你没有" + .@item_name$ + ". 这只是一杯饮料。";
@@ -955,7 +955,7 @@ gef_fild06,209,31,6	script	Map Examiner Gefil#yma	4_M_MIDDLE,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5921,PLAYTIME) == 0 || checkquest(5921,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 71 && checkquest(5920,HUNTING) == -1 && checkquest(5921,PLAYTIME) == -1" );
@@ -1094,7 +1094,7 @@ lhz_fild01,240,107,4	script	Map Examiner Lipiri#yma	4_M_HUBOY,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5919,PLAYTIME) == 0 || checkquest(5919,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 71 && checkquest(5920,HUNTING) == -1 && checkquest(5921,PLAYTIME) == -1" );
@@ -1230,7 +1230,7 @@ mal_dun01,141,126,4	script	Map Examiner Mother One#yma	4_F_TAEKWON,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5927,PLAYTIME) == 0 || checkquest(5927,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 75 && checkquest(5926,HUNTING) == -1 && checkquest(5927,PLAYTIME) == -1" );
@@ -1323,7 +1323,7 @@ hu_fild01,133,157,6	script	Map Examiner Huf#yma	4_MAL_CAPTAIN,{
 			mes .@npc_name$;
 			mes "你要回家吗？最近的城市是修格尔。我需要 1 个" + mesitemlink( 1000374 ) + "。";
 			next;
-			select( "Give me 1 " + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "去附近城市需要 1 个" + .@item_name$ + "。";
@@ -1366,7 +1366,7 @@ hu_fild01,133,157,6	script	Map Examiner Huf#yma	4_MAL_CAPTAIN,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5925,PLAYTIME) == 0 || checkquest(5925,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 75 && checkquest(5924,HUNTING) == -1 && checkquest(5925,PLAYTIME) == -1" );
@@ -1392,7 +1392,7 @@ tur_dun01,159,46,4	script	Map Examiner Tural#yma	4_M_BRZ_MAN1,{
 		mes .@npc_name$;
 		mes "明天可以再次进行乌龟岛讨伐任务。什么时候才能回去当厨师呢？";
 		next;
-		switch( select( "You look tired. Would you like a drink?", "Teleport to a nearby city." ) ) {
+		switch( select( "你看起来很累，要喝点东西吗？", "传送到附近城镇。" ) ) {
 		case 1:
 			if (countitem(1000374) < 3) {
 				mes .@npc_name$;
@@ -1413,7 +1413,7 @@ tur_dun01,159,46,4	script	Map Examiner Tural#yma	4_M_BRZ_MAN1,{
 			mes .@npc_name$;
 			mes "给我一个" + mesitemlink( 1000374 ) + "，我就能传送你到艾尔贝塔。";
 			next;
-			select( "Give me 1 " + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "给我" + .@item_name$ + "，我就传送你到艾尔贝塔。";
@@ -1454,7 +1454,7 @@ tur_dun01,159,46,4	script	Map Examiner Tural#yma	4_M_BRZ_MAN1,{
 			mes .@npc_name$;
 			mes "给我一个" + mesitemlink( 1000374 ) + "，我就能传送你到艾尔贝塔。";
 			next;
-			select( "Give me 1 " + .@item_name$ + "." );
+			select( "交出 1 瓶" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
 				mes .@npc_name$;
 				mes "给我" + .@item_name$ + "，我就传送你到艾尔贝塔。";
@@ -1494,7 +1494,7 @@ tur_dun01,159,46,4	script	Map Examiner Tural#yma	4_M_BRZ_MAN1,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5925,PLAYTIME) == 0 || checkquest(5925,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 75 && checkquest(5922,HUNTING) == -1 && checkquest(5923,PLAYTIME) == -1" );
@@ -1524,7 +1524,7 @@ ein_fild03,135,46,5	script	Map Examiner Tailing#tailing	1_M_YOUNGKNIGHT,{
 		mes .@npc_name$;
 		mes "如果你明天再来帮忙讨伐怪物，我会很感激！！";
 		next;
-		if (select( "交出" + .@item_name$ + ".", "不交出。" ) == 2)
+		if (select( "交出" + .@item_name$ + "。", "不交出。" ) == 2)
 			end;
 		if (countitem(1000374) < 3) {
 			mes "- 需要 3 个" + .@item_name$ + "。-";
@@ -1552,7 +1552,7 @@ ein_fild03,135,46,5	script	Map Examiner Tailing#tailing	1_M_YOUNGKNIGHT,{
 	switch( checkquest(3471,HUNTING) ) {
 	case -1:
 		mes .@npc_name$;
-		mes "你好！！你又来了！我是朱诺怪物协会的地图调查员 Tailing！";
+		mes "你好！你又来了！我是朱诺魔物协会的地图调查员泰林！";
 		next;
 		switch( select( "接受讨伐任务。", "传送到附近城市。", "询问讨伐任务。", "下次再来。" ) ) {
 		case 1:
@@ -1636,7 +1636,7 @@ ein_fild03,135,46,5	script	Map Examiner Tailing#tailing	1_M_YOUNGKNIGHT,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 76 && checkquest(3471,HUNTING) == -1" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(3471,HUNTING) == 2" );
@@ -1664,7 +1664,7 @@ lhz_fild03,167,344,3	script	Map Examiner Modaka#madaka	4_F_JOB_KNIGHT,{
 		mes .@npc_name$;
 		mes "如果你明天再来帮忙讨伐怪物，我会很感激！！";
 		next;
-		if (select( "交出" + .@item_name$ + ".", "不交出。" ) == 2)
+		if (select( "交出" + .@item_name$ + "。", "不交出。" ) == 2)
 			end;
 		if (countitem(1000374) < 3) {
 			mes "- 需要 3 个" + .@item_name$ + "。-";
@@ -1691,7 +1691,7 @@ lhz_fild03,167,344,3	script	Map Examiner Modaka#madaka	4_F_JOB_KNIGHT,{
 	switch( checkquest(3473,HUNTING) ) {
 	case -1:
 		mes .@npc_name$;
-		mes "你好！！你又来了！我是朱诺怪物协会派遣的地图调查员 Modaka！";
+		mes "你好！你又来了！我是朱诺魔物协会派遣的地图调查员莫达卡！";
 		next;
 		switch( select( "接受讨伐任务。", "传送到附近城市。", "询问讨伐任务。", "下次再来。" ) ) {
 		case 1:
@@ -1775,7 +1775,7 @@ lhz_fild03,167,344,3	script	Map Examiner Modaka#madaka	4_F_JOB_KNIGHT,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 77 && checkquest(3473,HUNTING) == -1" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(3473,HUNTING) == 2" );
@@ -1863,7 +1863,7 @@ tur_dun02,151,256,4	script	Map Examiner Tidun#yma	4_M_NINJA_BLUE,{
 			close;
 		case 3:
 			mes .@npc_name$;
-			mes "如果你给我一个" + mesitemlink( 1000374 ) + ", I can teleport you to the nearby city, Alberta.";
+			mes "如果你给我一个" + mesitemlink( 1000374 ) + "，我就可以把你传送到附近的艾尔贝塔。";
 			next;
 			select( "给我 1 个" + .@item_name$ + "。" );
 			if (countitem(1000374) < 1) {
@@ -1902,7 +1902,7 @@ tur_dun02,151,256,4	script	Map Examiner Tidun#yma	4_M_NINJA_BLUE,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5929,PLAYTIME) == 0 || checkquest(5929,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 80 && checkquest(5928,HUNTING) == -1 && checkquest(5929,PLAYTIME) == -1" );
@@ -2031,7 +2031,7 @@ tur_dun03,125,186,6	script	Map Examiner Tsensor#yma	4_M_SIT_NOVICE,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "(checkquest(5931,PLAYTIME) == 0 || checkquest(5931,PLAYTIME) == 1) && countitem(1000374) > 2" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 80 && checkquest(5930,HUNTING) == -1 && checkquest(5931,PLAYTIME) == -1" );
@@ -2170,7 +2170,7 @@ ra_fild12,50,219,1	script	Map Examiner Chakari#chakari	4_F_JOB_ASSASSIN,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	// note: ! displayed when playtime ongoing
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 80 && checkquest(3475,HUNTING) == -1" );
@@ -2311,7 +2311,7 @@ ice_dun01,161,13,3	script	Map Examiner Dove#dove123	8_F_GIRL,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 85 && checkquest(3483,HUNTING) == -1" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(3483,HUNTING) == 2" );
@@ -2454,7 +2454,7 @@ ra_fild08,163,47,5	script	Map Examiner Lucia#rsia	4_F_04,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 85 && checkquest(3479,HUNTING) == -1" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(3479,HUNTING) == 2" );
@@ -2543,7 +2543,7 @@ ra_fild04,274,69,5	script	Map Examiner Sukumari#85	4_M_MOC_SOLDIER,{
 			mes "如果你有" + .@item_name$ + ", 请给我一瓶……我就送你过去。";
 			mes "哈～最近很流行，但我没法去买。";
 			next;
-			if (select( "给我1瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
+			if (select( "交出 1 瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
 				mes .@npc_name$;
 				mes "啊……那我能怎么办？";
 				mes "我什么时候才能再试……";
@@ -2575,7 +2575,7 @@ ra_fild04,274,69,5	script	Map Examiner Sukumari#85	4_M_MOC_SOLDIER,{
 		mes "如果你有" + .@item_name$ + ", 请给我一瓶……我就送你过去。";
 		mes "哈～最近很流行，但我没法去买。";
 		next;
-		if (select( "给我1瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
 			mes .@npc_name$;
 			mes "啊……那我能怎么办？";
 			mes "我什么时候才能再试……";
@@ -2604,7 +2604,7 @@ ra_fild04,274,69,5	script	Map Examiner Sukumari#85	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 86 && checkquest(8668,HUNTING) == -1 && checkquest(8667,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8667,PLAYTIME) == 2" );
@@ -2638,7 +2638,7 @@ ve_fild07,158,354,3	script	Map Examiner Shevko#chevco	2_M_DYEINGER,{
 		if (select( "发送" + .@item_name$ + "。", "不要传送。" ) == 2)
 			end;
 		if (countitem(1000374) < 3) {
-			mes " - Requires 3 " + .@item_name$ + ". - ";
+			mes "- 需要 3 瓶" + .@item_name$ + "。- ";
 			close;
 		}
 		delitem 1000374,3;	// Brilliant_Soda
@@ -2750,7 +2750,7 @@ ve_fild07,158,354,3	script	Map Examiner Shevko#chevco	2_M_DYEINGER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 86 && checkquest(3477,HUNTING) == -1" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(3477,HUNTING) == 2" );
@@ -2837,7 +2837,7 @@ ra_fild03,368,183,5	script	Map Examiner Lauren#85	4_M_MOC_SOLDIER,{
 			mes "如果你有" + .@item_name$ + ", 请给我一瓶……我就送你过去。";
 			mes "待在这里真令人悲伤。";
 			next;
-			if (select( "给我1瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
+			if (select( "交出 1 瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
 				mes .@npc_name$;
 				mes "啊……那我能怎么办？";
 				close;
@@ -2860,14 +2860,14 @@ ra_fild03,368,183,5	script	Map Examiner Lauren#85	4_M_MOC_SOLDIER,{
 	case 1:
 		mes .@npc_name$;
 		mes "请在附近猎杀80只魔物。";
-		mes "...Yes? Mobility service?";
+		mes "……嗯？需要传送服务吗？";
 		next;
 		mes .@npc_name$;
 		mes "这里最近的地方是^0033FF拉赫^000000，";
 		mes "如果你有" + .@item_name$ + ", 请给我一瓶……我就送你过去。";
 		mes "哈～最近很流行，但我没法去买。";
 		next;
-		if (select( "给我1瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
 			mes .@npc_name$;
 			mes "啊……那我能怎么办？";
 			mes "我什么时候才能再试……";
@@ -2895,7 +2895,7 @@ ra_fild03,368,183,5	script	Map Examiner Lauren#85	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 86 && checkquest(8665,HUNTING) == -1 && checkquest(8664,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8664,PLAYTIME) == 2" );
@@ -2985,7 +2985,7 @@ ra_fild05,48,356,5	script	Map Examiner Valenzela#85	4_M_MOC_SOLDIER,{
 			mes "如果你有" + .@item_name$ + ", 请给我一瓶……我就送你过去。";
 			mes "哈～最近很流行，但我没法去买。";
 			next;
-		if (select( "给我1瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，拉赫", "不" ) == 2) {
 				mes .@npc_name$;
 				mes "啊……那我能怎么办？";
 				mes "我什么时候才能再试……";
@@ -3017,7 +3017,7 @@ ra_fild05,48,356,5	script	Map Examiner Valenzela#85	4_M_MOC_SOLDIER,{
 		mes "如果你有" + .@item_name$ + "，请给我一个……我就传送你过去。";
 		mes "哈~这东西最近很流行，可我没法去买。";
 		next;
-		if (select( "Give me 1 " + .@item_name$ + ", Rachel", "No" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，前往拉赫", "取消" ) == 2) {
 			mes .@npc_name$;
 			mes "啊……那我该怎么办？";
 			mes "什么时候再试呢……";
@@ -3047,7 +3047,7 @@ ra_fild05,48,356,5	script	Map Examiner Valenzela#85	4_M_MOC_SOLDIER,{
 
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 87 && checkquest(8671,HUNTING) == -1 && checkquest(8670,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8670,PLAYTIME) == 2" );
@@ -3081,7 +3081,7 @@ ra_fild01,224,319,5	script	Map Examiner Ciara#85	4_M_MOC_SOLDIER,{
 		mes "原则上讨伐任务每天只能进行一次。";
 		mes "今天先休息一下，下次再来……";
 		next;
-		if (select( "I recommend " + .@item_name$ + "", "See you tomorrow" ) == 2) {
+		if (select( "请你喝" + .@item_name$ + "", "明天再见" ) == 2) {
 			mes .@npc_name$;
 			mes "好的！明天再见。";
 			close;
@@ -3117,12 +3117,12 @@ ra_fild01,224,319,5	script	Map Examiner Ciara#85	4_M_MOC_SOLDIER,{
 		}
 		mes "另外，如果你就在附近，我们也提供传送服务。";
 		next;
-		switch( select( "Subjugation Quest", "Move to a nearby city", "Stop" ) ) {
+		switch( select( "讨伐任务", "传送到附近城镇", "结束对话" ) ) {
 		case 1:
 			mes .@npc_name$;
 			mes "如果你在我看到的奥杜姆拉草原击杀 80 只怪物，协会会认可你的成就并给予经验值。";
 			next;
-			if (select( "Accept", "Refuse" ) == 2) {
+			if (select( "接受", "拒绝" ) == 2) {
 				mes .@npc_name$;
 				mes "这是互惠互利的，你为什么拒绝……";
 				close;
@@ -3138,7 +3138,7 @@ ra_fild01,224,319,5	script	Map Examiner Ciara#85	4_M_MOC_SOLDIER,{
 			mes "如果你有" + .@item_name$ + "，请给我一个……我就传送你过去。";
 			mes "哈~这东西最近很流行，可我没法去买。";
 			next;
-			if (select( "Give me 1 " + .@item_name$ + ", Rachel", "No" ) == 2) {
+			if (select( "交出 1 瓶" + .@item_name$ + "，前往拉赫", "取消" ) == 2) {
 				mes .@npc_name$;
 				mes "哦……那我该怎么办？不行。";
 				mes "什么时候再试呢……";
@@ -3163,14 +3163,14 @@ ra_fild01,224,319,5	script	Map Examiner Ciara#85	4_M_MOC_SOLDIER,{
 	case 1:
 		mes .@npc_name$;
 		mes "请在附近击杀 80 只怪物。";
-		mes "...Yes? Mobility service?";
+		mes "……嗯？需要传送服务吗？";
 		next;
 		mes .@npc_name$;
 		mes "这里最近的地方是^0033FF拉赫^000000，";
 		mes "如果你有" + .@item_name$ + "，请给我一个……我就传送你过去。";
 		mes "哈~这东西最近很流行，可我没法去买。";
 		next;
-		if (select( "Give me 1 " + .@item_name$ + ", Rachel", "No" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，前往拉赫", "取消" ) == 2) {
 			mes .@npc_name$;
 			mes "啊……那我该怎么办？";
 			mes "什么时候再试呢……";
@@ -3199,7 +3199,7 @@ ra_fild01,224,319,5	script	Map Examiner Ciara#85	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 88 && checkquest(8662,HUNTING) == -1 && checkquest(8661,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8661,PLAYTIME) == 2" );
@@ -3230,10 +3230,10 @@ ve_fild01,354,280,3	script	Map Examiner Yirun Seo#suiroon	4_F_SISTER,{
 		mes .@npc_name$;
 		mes "明天再来帮忙讨伐怪物的话，我会很感激！！";
 		next;
-		if (select( "Send " + .@item_name$ + ".", "Do not pass." ) == 2)
+		if (select( "交出" + .@item_name$ + "。", "不交出。" ) == 2)
 			end;
 		if (countitem(1000374) < 3) {
-			mes " - Requires 3 " + .@item_name$ + ". - ";
+			mes "- 需要 3 瓶" + .@item_name$ + "。- ";
 			close;
 		}
 		delitem 1000374,3;	// Brilliant_Soda
@@ -3246,7 +3246,7 @@ ve_fild01,354,280,3	script	Map Examiner Yirun Seo#suiroon	4_F_SISTER,{
 		next;
 		specialeffect EF_FLASHER;
 		mes .@npc_name$;
-		mes " huh……这浓烈的味道……！";
+		mes "呼……这浓烈的味道……！";
 		next;
 		mes .@npc_name$;
 		mes "呃……你对我来说是新人，等一下。我也要喝一点，过一会儿再和我说话好吗？";
@@ -3260,7 +3260,7 @@ ve_fild01,354,280,3	script	Map Examiner Yirun Seo#suiroon	4_F_SISTER,{
 		mes .@npc_name$;
 		mes "你好！！我叫徐伊伦，是朱诺怪物协会派来的地图检查员！";
 		next;
-		switch( select( "Receive a subjugation quest.", "Teleport to a nearby city.", "Ask about a subjugation quest.", "Come next." ) ) {
+		switch( select( "领取讨伐任务。", "传送到附近城镇。", "了解讨伐任务。", "下次再来。" ) ) {
 		case 1:
 			mes .@npc_name$;
 			mes "哦，你想接委托吗？";
@@ -3279,7 +3279,7 @@ ve_fild01,354,280,3	script	Map Examiner Yirun Seo#suiroon	4_F_SISTER,{
 			mes .@npc_name$;
 			mes "给我一个" + .@item_name$ + "，我马上就送你过去！";
 			next;
-			if (select( "Move", "Do not move" ) == 2) {
+			if (select( "传送", "不传送" ) == 2) {
 				mes .@npc_name$;
 				mes "好的，需要传送就告诉我！！";
 				close;
@@ -3342,7 +3342,7 @@ ve_fild01,354,280,3	script	Map Examiner Yirun Seo#suiroon	4_F_SISTER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 90 && checkquest(3481,HUNTING) == -1 && checkquest(3482,PLAYTIME) == -1" );
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, "checkquest(3482,PLAYTIME) == 2" );
@@ -3377,7 +3377,7 @@ ve_fild04,52,242,5	script	Map Examiner Rana#85	4_M_MOC_SOLDIER,{
 		mes "原则上讨伐任务每天只能进行一次。";
 		mes "今天先休息一下，下次再来……";
 		next;
-		if (select( "I recommend " + .@item_name$ + "", "See you tomorrow" ) == 2) {
+		if (select( "请你喝" + .@item_name$ + "", "明天再见" ) == 2) {
 			mes .@npc_name$;
 			mes "好的！明天再见。";
 			close;
@@ -3410,7 +3410,7 @@ ve_fild04,52,242,5	script	Map Examiner Rana#85	4_M_MOC_SOLDIER,{
 		case 1:
 			mes .@npc_name$;
 			mes "请在附近击杀 80 只怪物。";
-			mes "...Yes? Mobility service?";
+			mes "……嗯？需要传送服务吗？";
 			next;
 			callsub( S_Warp );
 		case 2:
@@ -3429,7 +3429,7 @@ ve_fild04,52,242,5	script	Map Examiner Rana#85	4_M_MOC_SOLDIER,{
 	case 1:
 		mes .@npc_name$;
 		mes "请在附近击杀 80 只怪物。";
-		mes "...Yes? Mobility service?";
+		mes "……嗯？需要传送服务吗？";
 		next;
 		callsub( S_Warp );
 	case 2:
@@ -3462,7 +3462,7 @@ S_Quest:
 	}
 	mes "另外，如果你就在附近，我们也提供传送服务。";
 	next;
-	switch( select( "Listen to the situation", "Move to a nearby city", "Stop" ) ) {
+	switch( select( "了解情况", "传送到附近城镇", "结束对话" ) ) {
 	case 1:
 		if (.@quest_id == 8675) {
 			mes .@npc_name$;
@@ -3481,7 +3481,7 @@ S_Quest:
 		mes .@npc_name$;
 		mes "如果你在我看到的维因斯原野击杀 80 只怪物，协会会认可你的成就并给予经验值。";
 		next;
-		if (select( "Accept", "Refuse" ) == 2) {
+		if (select( "接受", "拒绝" ) == 2) {
 			mes .@npc_name$;
 			mes "这是互惠互利的，你为什么拒绝……";
 			close;
@@ -3521,7 +3521,7 @@ S_Warp:
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 90 && checkquest(8675,HUNTING) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(8675) == 2 && checkquest(8677,HUNTING) == -1 && checkquest(8676,PLAYTIME) == -1" );
@@ -3557,7 +3557,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 		mes "原则上，讨伐任务每天只能进行一次。";
 		mes "今天先休息，下次再来……";
 		next;
-		if (select( "I recommend " + .@item_name$ + "", "See you tomorrow" ) == 2) {
+		if (select( "请你喝" + .@item_name$ + "", "明天再见" ) == 2) {
 			mes .@npc_name$;
 			mes "好的！明天见。";
 			close;
@@ -3590,7 +3590,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 	case -1:
 		if (!.@skip) {
 			mes .@npc_name$;
-			mes "你好，冒险者！我是朱诺怪物协会的 Kantu。";
+			mes "你好，冒险者！我是朱诺魔物协会的坎图。";
 			mes "我想请冒险者调查怪物讨伐，你觉得如何？";
 			next;
 			mes .@npc_name$;
@@ -3613,7 +3613,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 			mes "那么，可以请你帮忙讨伐吗？";
 			mes "在这片波托鲁纳原野猎杀 80 只怪物后，协会会认可你的成就并给予经验值。";
 			next;
-			if (select( "Accept", "Refuse" ) == 2) {
+			if (select( "接受", "拒绝" ) == 2) {
 				mes .@npc_name$;
 				mes "啊……你能帮帮我们吗？";
 				close;
@@ -3629,7 +3629,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 			mes "如果你有" + .@item_name$ + "，请给我一个……我会传送你过去。";
 			mes "哈~ 最近很流行，但我没法去买。";
 			next;
-			if (select( "Give me 1 " + .@item_name$ + ", Rachel", "No" ) == 2) {
+			if (select( "交出 1 瓶" + .@item_name$ + "，前往拉赫", "取消" ) == 2) {
 				mes .@npc_name$;
 				mes "我也没办法。";
 				close;
@@ -3659,7 +3659,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 		mes "这里最近的地方是 ^0033FF拉赫^000000，";
 		mes "如果你有" + .@item_name$ + "，请给我一个……我会传送你过去。";
 		next;
-		if (select( "Give me 1 " + .@item_name$ + ", Rachel", "No" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，前往拉赫", "取消" ) == 2) {
 			mes .@npc_name$;
 				mes "我也没办法。";
 			close;
@@ -3675,7 +3675,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 		end;
 	case 2:
 		mes .@npc_name$;
-		mes "你好，冒险者！我是朱诺怪物协会的 Kantu。";
+		mes "你好，冒险者！我是朱诺魔物协会的坎图。";
 		mes "我想请冒险者调查怪物讨伐，你觉得如何？";
 		next;
 		getexp 194712,185136;
@@ -3691,7 +3691,7 @@ ra_fild06,292,39,5	script	Map Examiner Kantu#85	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 93 && checkquest(8672,HUNTING) == -1 && checkquest(8673,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(8672) == 2 && checkquest(8674,HUNTING) == -1 && checkquest(8673,PLAYTIME) == -1" );
@@ -3726,7 +3726,7 @@ ve_fild03,348,230,5	script	Map Examiner Dew#85	4_M_MOC_SOLDIER,{
 	mes "原则上，讨伐任务每天只能进行一次。";
 	mes "今天先休息，下次再来……";
 		next;
-		if (select( "I recommend " + .@item_name$ + "", "See you tomorrow" ) == 2) {
+		if (select( "请你喝" + .@item_name$ + "", "明天再见" ) == 2) {
 			mes .@npc_name$;
 			mes "好的！明天见。";
 			close;
@@ -3765,7 +3765,7 @@ ve_fild03,348,230,5	script	Map Examiner Dew#85	4_M_MOC_SOLDIER,{
 			mes .@npc_name$;
 			mes "在这片维因斯原野猎杀 80 只怪物后，协会会认可你的成就并给予经验值。";
 			next;
-			if (select( "Accept", "Refuse" ) == 2) {
+			if (select( "接受", "拒绝" ) == 2) {
 				mes .@npc_name$;
 				mes "抱歉。";
 				close;
@@ -3780,7 +3780,7 @@ ve_fild03,348,230,5	script	Map Examiner Dew#85	4_M_MOC_SOLDIER,{
 			mes "这里最近的地方是 ^0033FF维因斯^000000，";
 			mes "如果你有" + .@item_name$ + "，请给我一个……我会传送你过去。";
 			next;
-			if (select( "Give me 1 " + .@item_name$ + " with Veins", "No" ) == 2) {
+			if (select( "交出 1 瓶" + .@item_name$ + "，前往贝恩斯", "取消" ) == 2) {
 				mes .@npc_name$;
 				mes "啊……那我能怎么办？";
 				close;
@@ -3810,7 +3810,7 @@ ve_fild03,348,230,5	script	Map Examiner Dew#85	4_M_MOC_SOLDIER,{
 		mes "如果你有" + .@item_name$ + "，请给我一个……我会传送你过去。";
 		mes "哈~ 最近很流行，但我没法去买。";
 		next;
-		if (select( "Give me 1 " + .@item_name$ + " with Veins", "No" ) == 2) {
+		if (select( "交出 1 瓶" + .@item_name$ + "，前往贝恩斯", "取消" ) == 2) {
 			mes .@npc_name$;
 			mes "啊……那我能怎么办？";
 			close;
@@ -3837,7 +3837,7 @@ ve_fild03,348,230,5	script	Map Examiner Dew#85	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
-	setunittitle getnpcid(0), "<Juno Monster Society>";
+	setunittitle getnpcid(0), "<朱诺魔物协会>";
 
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "BaseLevel >= 95 && checkquest(8680,HUNTING) == -1 && checkquest(8679,PLAYTIME) == -1" );
 	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8679,PLAYTIME) == 2" );

@@ -76,7 +76,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[Vagrant Cain]";
 	mes "哦，我知道您不喜欢普通东西才来这里。告诉我吧，只要费用和材料合适，我什么都能制作。";
 	next;
-	.@s = select( "没有想要的。", "我想要 Celine 的缎带。", "我在寻找 Noble Cross。", "我想要 Evilspirit Gloves。" );
+	.@s = select( "没有想要的。", "我想要 塞琳娜的丝带。", "我在寻找 高贵十字架。", "我想要 恶灵丝线手套。" );
 	switch(.@s) {
 	case 1:
 		mes "[Vagrant Cain]";
@@ -84,20 +84,20 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		close;
 	case 2:
 		.@string$[0] = "哦～您在寻找非常独特的头具，朋友。您的眼光真好。";
-		.@string$[1] = "兑换 ^0000ffCeline 的缎带^000000 需要 ^0000ff1000 枚血腥硬币^000000和 ^0000ff+9 以上的繁茂玫瑰^000000。材料够吗？";
-		.@string$[2] = "请准备 ^0000ff1000 枚血腥硬币^000000和一顶 ^0000ff+9 以上的繁茂玫瑰^000000来兑换 ^0000ffCeline 的缎带^000000。别忘了！";
+		.@string$[1] = "兑换 ^0000ff塞琳娜的丝带^000000 需要 ^0000ff1000 枚血腥硬币^000000和 ^0000ff+9 以上的繁茂玫瑰^000000。材料够吗？";
+		.@string$[2] = "请准备 ^0000ff1000 枚血腥硬币^000000和一顶 ^0000ff+9 以上的繁茂玫瑰^000000来兑换 ^0000ff塞琳娜的丝带^000000。别忘了！";
 		.@string$[3] = "确定要交换吗？^ff0000物品的精炼等级、效果和卡片都会消失，且无法退款^000000。请慎重考虑！";
 		break;
 	case 3:
 		.@string$[0] = "哦～您在寻找非常珍贵的武器，朋友。您的眼光真好。";
-		.@string$[1] = "兑换 ^0000ffNoble Cross^000000 需要 ^0000ff2000 枚血腥硬币^000000和一把 ^0000ffGrand Cross（插槽）^000000。材料够吗？";
-		.@string$[2] = "请准备 ^0000ff2000 枚血腥硬币^000000和一把 ^0000ffGrand Cross（插槽）^000000来兑换 ^0000ffNoble Cross^000000。别忘了！";
-		.@string$[3] = "Are you really going to trade them? ^ff0000The refine levels, effects, and card of the item will disappear and you cannot get a refund^000000. Please consider it!";
+		.@string$[1] = "兑换 ^0000ff高贵十字架^000000 需要 ^0000ff2000 枚血腥硬币^000000和一把 ^0000ff圣十字[1]^000000。材料够吗？";
+		.@string$[2] = "请准备 ^0000ff2000 枚血腥硬币^000000和一把 ^0000ff圣十字[1]^000000来兑换 ^0000ff高贵十字架^000000。别忘了！";
+		.@string$[3] = "确定要兑换吗？^ff0000物品的精炼等级、效果和卡片都会消失，且无法退款^000000。请慎重考虑！";
 		break;
 	case 4:
 		.@string$[0] = "哦～您在寻找非常稀有的饰品，朋友。您的眼光真好。";
-		.@string$[1] = "兑换 ^0000ffEvilspirit Gloves^000000 需要 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ffHurt Mind、Kind Heart 和 Red Lantern^000000。材料够吗？";
-		.@string$[2] = "请准备 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ffHurt Mind、Kind Heart 和 Red Lantern^000000来兑换 ^0000ffEvilspirit Gloves^000000。别忘了！";
+		.@string$[1] = "兑换 ^0000ff恶灵丝线手套^000000 需要 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ff受伤的心、温柔的心 和 红色提灯^000000。材料够吗？";
+		.@string$[2] = "请准备 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ff受伤的心、温柔的心 和 红色提灯^000000来兑换 ^0000ff恶灵丝线手套^000000。别忘了！";
 		.@string$[3] = "确定要交换吗？^ff0000物品的效果和卡片都会消失，且无法退款^000000。若您有同类物品，我也无法确定会选择哪一个。请慎重考虑。";
 		break;
 	}
@@ -107,7 +107,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[Vagrant Cain]";
 	mes .@string$[1];
 	next;
-	if (select( "I don't have them now", "I will trade it right away" ) == 1) {
+	if (select( "我还没有准备好材料。", "现在就兑换。" ) == 1) {
 		mes "[Vagrant Cain]";
 		mes "准备好后再回来。我会提醒您所需材料。";
 		next;
@@ -118,7 +118,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[Vagrant Cain]";
 	mes .@string$[3];
 	next;
-	if (select( "I will try it next time", "Exchange them right away" ) == 1) {
+	if (select( "下次再来。", "确认兑换。" ) == 1) {
 		mes "[Vagrant Cain]";
 		mes "好的，您已经决定了。希望下次还能见到您，呵呵。";
 		close;
@@ -142,7 +142,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	case 3:
 		mes "[Vagrant Cain]";
 		if (getequipid(EQI_HAND_R) != 1540)// Grand_Cross_
-			mes "您右手装备的不是 Grand Cross（插槽）。带来我说的正确物品，呵呵。";
+			mes "您右手装备的不是 圣十字[1]。带来我说的正确物品，呵呵。";
 		else if (countitem(7642) < 2000)
 			mes "您的血腥硬币不足。需要准确收集 2000 枚，少于这个数量就没办法了。";
 		else {
@@ -166,7 +166,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 			mes "您的材料不足。";
 			next;
 			mes "[Vagrant Cain]";
-			mes "请准备 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ffHurt Mind、Kind Heart 和 Red Lantern^000000来兑换 ^0000ffEvilspirit Gloves^000000。";
+			mes "请准备 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ff受伤的心、温柔的心 和 红色提灯^000000来兑换 ^0000ff恶灵丝线手套^000000。";
 		}
 		close;
 	}
@@ -234,13 +234,13 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		break;
 	case 16029:	// Noble_Cross
 		mes "[Black Beard Joe]";// custom
-		mes "哦，您装备了 ^0000ffNoble Cross^000000！这件物品需要找其他人附魔。";
+		mes "哦，您装备了 ^0000ff高贵十字架^000000！这件物品需要找其他人附魔。";
 		next;
 		mes "[Black Beard Joe]";
 		mes "我已经试过几次，但都没有成功。";
 		next;
 		mes "[Black Beard Joe]";
-		mes "想为这件武器附魔，请去马郎多岛找 ^0000ffMayomayo^000000！他应该能做到。";
+		mes "想为这件武器附魔，请去马郎多岛找 ^0000ff玛约玛约^000000！他应该能做到。";
 		close;
 	default:
 		break;
@@ -263,17 +263,17 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		if (.@card[3] == 0) {
 			.@slot_num = 3;
 			mes "好，尝试第一次附魔。通常不会损坏。成功率大约 95%？";
-			.@string$ = "You blow hot and cold, this fickle friend.!";
+			.@string$ = "你总是改来改去，真是个善变的朋友！";
 		}
 		else if (.@card[2] == 0) {
 			.@slot_num = 2;
 			mes "哦～第二次附魔。现在变危险了。成功率约 70%。要继续吗？失败的话整件饰品都会损坏。";// custom
-			.@string$ = "You blow hot and cold, this fickle friend.!";
+			.@string$ = "你总是改来改去，真是个善变的朋友！";
 		}
 		else if (.@card[1] == 0) {
 			.@slot_num = 1;
 			mes "这是最后一次附魔。还要继续吗？此时^ff0000成功率低于 50%^000000。当然，成功就太好了……嗯，我尊重您的决定，但请记住这一点。";// custom
-			.@string$ = "Wise! The third enchantment is too greedy.";// custom translation
+			.@string$ = "明智的选择！第三次附魔风险太大了。";// custom translation
 		}
 		else {
 			mes "哦～它已经达到上限，无法继续附魔。请知足并好好使用吧。";// custom
@@ -289,7 +289,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		.@enchant_type = 3;
 		.@slot_num = 3;
 		mes "武器只能附魔一次，而且不会失败，就当作额外效果吧，嘻嘻。";
-		.@string$ = "You blow hot and cold, this fickle friend.!";
+		.@string$ = "你总是改来改去，真是个善变的朋友！";
 		break;
 	case EQI_HEAD_TOP:
 	case EQI_SHOES:
@@ -312,7 +312,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 			mes "哦～它已经达到上限，无法继续附魔。请知足并好好使用吧。";// custom
 			close;
 		}
-		.@string$ = "You blow hot and cold, this fickle friend.!";
+		.@string$ = "你总是改来改去，真是个善变的朋友！";
 		break;
 	default:
 		mes "[Black Beard Joe]";
