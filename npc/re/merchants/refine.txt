@@ -345,9 +345,9 @@ function	script	refinenew	{
 		close;
 	}
 	mes "[Austri]";
-	mes "带来 3 个神之金属或铝，再支付 50,000 Zeny，我就可以将它们兑换成布拉迪姆或卡尼姆。";
+	mes "带来 3 个神之金属或铝，再支付 50,000 Zeny，我就可以将它们兑换成钸镭矿石或钙矿石。";
 	next;
-	switch(select("神之金属兑换布拉迪姆。:铝兑换卡尼姆。:纯化布拉迪姆兑换卡尼姆。:不用了。")) {
+	switch(select("神之金属兑换钸镭矿石。:铝兑换钙矿石。:精制钸镭兑换钙矿石。:不用了。")) {
 	case 1:
 		setarray .@i[0],984,3,6224;  //Oridecon -> Bradium
 		break;
@@ -368,8 +368,8 @@ function	script	refinenew	{
 		getitem .@i[2],1;
 		mes "[Austri]";
 		if (.@i[0] == 6090) {
-			mes "用纯化布拉迪姆强化可能会有点贵。";
-			mes "我可以把它兑换成卡尼姆。";
+			mes "用精制钸镭强化可能会有点贵。";
+			mes "我可以把它兑换成钙矿石。";
 		} else
 			mes "好！这是你的"+getitemname(.@i[2])+"。";
 		mes "拿好并好好使用。";
@@ -634,13 +634,13 @@ prt_in,63,69,3	script	Dietrich#ns_prt	4_M_02,{
 	switch( select( "查看基础冶炼矿石", "查看高级冶炼矿石", "查看以太冶炼矿石", "取消" ) ) {
 	case 1:
 		mes "[" + strnpcinfo(1) + "]";
-		mes "普拉康和埃姆维泰拉康可用于冶炼低级武器。";
+		mes "强化武器金属-级数一和强化武器金属-级数二可用于冶炼低级武器。";
 		close2;
 		callshop "market_refine_" + strnpcinfo(4);
 		end;
 	case 2:
 		mes "[" + strnpcinfo(1) + "]";
-		mes "我们正在提纯铝石或奥里德矿石，或将其交换为布拉迪姆或卡尼乌姆。";
+		mes "我们可以提纯铝或神之金属，也可以将其兑换为钙矿石或钸镭矿石。";
 		close2;
 		callshop "barter_refine_1";
 		end;
