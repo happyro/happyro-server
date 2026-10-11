@@ -42,6 +42,8 @@ struct login_session_data {
 	char sex;			/// 'F','M','S'
 
 	char userid[NAME_LENGTH];	/// account name
+	char resume_ticket[65]; // HappyRO one-use session ticket; never a password
+	bool ticket_login;
 	char passwd[PASSWD_LENGTH]; // 23+1 for plaintext, 32+1 for md5-ed passwords
 	int32 passwdenc;			/// was the passwd transmited encrypted or clear ?
 	char md5key[20];		/// md5 key of session (each connection could be encrypted with a md5 key)

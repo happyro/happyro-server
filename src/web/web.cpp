@@ -25,6 +25,7 @@
 #include <common/utils.hpp>
 #include <config/core.hpp>
 
+#include "session_controller.hpp"
 #include "charconfig_controller.hpp"
 #include "emblem_controller.hpp"
 #include "game_control_controller.hpp"
@@ -446,7 +447,7 @@ void display_helpscreen(bool do_exit)
 // called just before sending repsonse
 void logger(const Request & req, const Response & res) {
 	// make this a config
-	if (web_config.print_req_res) {
+	if (web_config.print_req_res && req.path.compare(0, 9, "/session/") != 0) {
 		ShowDebug("Incoming Headers are:\n");
 		for (const auto & header : req.headers) {
 			const char* value = !strcmpi(header.first.c_str(), "Authorization") ? "[REDACTED]" : header.second.c_str();
@@ -499,6 +500,9 @@ bool WebServer::initialize( int32 argc, char* argv[] ){
 	http_server->set_pre_routing_handler(cors_handler);
 
 	// set up routes
+	http_server->Post("/session/create", session_create);
+	http_server->Post("/session/resume", session_resume);
+	http_server->Post("/session/revoke", session_revoke);
 	http_server->Post("/charconfig/load", charconfig_load);
 	http_server->Post("/charconfig/save", charconfig_save);
 	http_server->Post("/emblem/download", emblem_download);

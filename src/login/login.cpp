@@ -352,7 +352,7 @@ int32 login_mmo_auth(struct login_session_data* sd, bool isServer) {
 		return 0; // 0 = Unregistered ID
 	}
 
-	if( !login_check_password( *sd, acc ) ) {
+	if( sd->ticket_login ? (isServer || !accounts->consume_session_ticket(accounts, acc.account_id, sd->resume_ticket)) : !login_check_password( *sd, acc ) ) {
 		ShowNotice("Invalid password (account: '%s', ip: %s)\n", sd->userid, ip);
 		return 1; // 1 = Incorrect Password
 	}
@@ -404,6 +404,11 @@ int32 login_mmo_auth(struct login_session_data* sd, bool isServer) {
 			ShowNotice("Invalid client hash (account: %s, sent md5: %s, ip: %s)\n", sd->userid, smd5, ip);
 			return 5;
 		}
+	}
+
+	if (sd->ticket_login) {
+		const auto* online = login_get_online_user(acc.account_id);
+		if (online && online->char_server >= -1) return 8;
 	}
 
 	ShowNotice("Authentication accepted (account: %s, id: %d, ip: %s)\n", sd->userid, acc.account_id, ip);

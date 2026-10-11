@@ -83,6 +83,11 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 	{
 		struct online_login_data* data = login_get_online_user( sd->account_id );
 
+		if (data && sd->ticket_login && data->char_server >= -1) {
+			// Automatic login must never evict another active login or pending ticket.
+			logclif_sent_auth_result(fd, 8);
+			return;
+		}
 		if( data )
 		{// account is already marked as online!
 			if( data->char_server > -1 )
@@ -262,8 +267,24 @@ static bool logclif_parse_updclhash( int32 fd, struct login_session_data& sd ){
 	return true;
 }
 
+// 0x0d05: header(2), username(24), one-use ticket(64), clienttype(1).
+static bool logclif_parse_session_login(int32 fd, login_session_data& sd) {
+	memcpy(sd.userid, RFIFOP(fd, 2), 24);
+	sd.userid[sizeof(sd.userid) - 1] = '\0';
+	memcpy(sd.resume_ticket, RFIFOP(fd, 26), 64);
+	sd.resume_ticket[64] = '\0';
+	sd.ticket_login = true;
+	sd.passwd[0] = '\0';
+	sd.clienttype = RFIFOB(fd, 90);
+	const int32 result = login_mmo_auth(&sd, false);
+	if (result == -1) logclif_auth_ok(&sd);
+	else logclif_auth_failed(&sd, result);
+	return true;
+}
+
 template <typename P>
 static bool logclif_parse_reqauth_raw( int32 fd, login_session_data& sd ){
+	sd.ticket_login = false;
 	P* p = (P*)RFIFOP( fd, 0 );
 
 	char ip[16];
@@ -295,6 +316,7 @@ static bool logclif_parse_reqauth_raw( int32 fd, login_session_data& sd ){
 
 template <typename P>
 static bool logclif_parse_reqauth_md5( int32 fd, login_session_data& sd ){
+	sd.ticket_login = false;
 	P* p = (P*)RFIFOP( fd, 0 );
 
 	char ip[16];
@@ -327,6 +349,7 @@ static bool logclif_parse_reqauth_md5( int32 fd, login_session_data& sd ){
 
 template <typename P>
 static bool logclif_parse_reqauth_sso( int32 fd, login_session_data& sd ){
+	sd.ticket_login = false;
 	P* p = (P*)RFIFOP( fd, 0 );
 
 	char ip[16];
@@ -483,6 +506,7 @@ static bool logclif_parse_otp_login( int32 fd, struct login_session_data& ){
 class LoginPacketDatabase : public PacketDatabase<login_session_data>{
 public:
 	LoginPacketDatabase(){
+		this->add( 0x0d05, true, 91, logclif_parse_session_login );
 		this->add( HEADER_CA_CONNECT_INFO_CHANGED, true, sizeof( PACKET_CA_CONNECT_INFO_CHANGED ), logclif_parse_keepalive );
 		this->add( HEADER_CA_EXE_HASHCHECK, true, sizeof( PACKET_CA_EXE_HASHCHECK ), logclif_parse_updclhash );
 		this->add( HEADER_CA_LOGIN, true, sizeof( PACKET_CA_LOGIN ), logclif_parse_reqauth_raw<PACKET_CA_LOGIN> );

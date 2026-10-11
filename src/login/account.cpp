@@ -71,12 +71,28 @@ bool account_db_sql_disable_monitor_vip( AccountDB* self, const uint32 account_i
 static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 account_id);
 static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, bool is_new, bool refresh_token);
 
+static bool account_db_sql_consume_session_ticket(AccountDB* self, uint32 account_id, const char* ticket) {
+	if (strlen(ticket) != 64 || strspn(ticket, "0123456789abcdef") != 64) return false;
+	auto* db = reinterpret_cast<AccountDB_SQL*>(self);
+	// Atomic consumption: replay, expiry and password changes all fail closed.
+	if (SQL_SUCCESS != Sql_Query(db->accounts,
+		"UPDATE happyro_sessions s JOIN `%s` a ON a.account_id=s.account_id "
+		"SET s.ticket_hash=NULL,s.ticket_expires=0 WHERE s.account_id='%u' "
+		"AND s.ticket_hash=SHA2('%s',256) AND s.ticket_expires>UNIX_TIMESTAMP() "
+		"AND s.expires>UNIX_TIMESTAMP() AND s.password_hash=SHA2(a.user_pass,256) "
+		"AND a.state=0 AND a.sex<>'S' AND a.unban_time<=UNIX_TIMESTAMP() "
+		"AND (a.expiration_time=0 OR a.expiration_time>UNIX_TIMESTAMP())",
+		db->account_db, account_id, ticket)) return false;
+	return Sql_NumRowsAffected(db->accounts) == 1;
+}
+
 /// public constructor
 AccountDB* account_db_sql(void) {
 	AccountDB_SQL* db = (AccountDB_SQL*)aCalloc(1, sizeof(AccountDB_SQL));
 	new(db) AccountDB_SQL();
 
 	// set up the vtable
+	db->vtable.consume_session_ticket = &account_db_sql_consume_session_ticket;
 	db->vtable.init         = &account_db_sql_init;
 	db->vtable.destroy      = &account_db_sql_destroy;
 	db->vtable.get_property = &account_db_sql_get_property;

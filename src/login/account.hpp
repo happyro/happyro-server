@@ -56,6 +56,8 @@ struct AccountDBIterator {
 
 
 struct AccountDB {
+	bool (*consume_session_ticket)(AccountDB* self, uint32 account_id, const char* ticket);
+
 	/// Initializes this database, making it ready for use.
 	/// Call this after setting the properties.
 	///
