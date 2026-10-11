@@ -10,7 +10,7 @@
 
 可以将“import”理解为“覆盖”。只需在导入文件中放入你修改或正在“覆盖”的设置。
 
-For example, when setting up a server there are always a few config settings that users would like to change in order for rAthena to suit their needs. The following example will show you how to use the `/db/import/` directory correctly. (for `/conf/import/` examples, see [/conf/readme.md](/conf/readme.md))
+For example, when setting up a server there are always a few config settings that users would like to change in order for rAthena to suit their needs. The following example will show you how to use the `/db/import/` directory correctly. (for `/conf/import/` examples, see [/conf/readme.md](../conf/readme.md))
 
 ### 成就
 ---

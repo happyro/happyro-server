@@ -9,7 +9,7 @@
 
 ## 安装前检查
 
-1. 创建专用运行用户和组（示例为 `happyro`），并确保其可以读取仓库、`conf/`、`db/` 和运行时资源。运行后台 Laravel 的用户必须加入 `happyro` 服务组，才能访问 Game Control Socket；admin 仓库的 systemd 模板已通过 `SupplementaryGroups=happyro` 声明这一关系。
+1. 创建专用运行用户和组（示例为 `happyro`），并确保其可以读取仓库、`conf/`、`db/` 和运行时资源。web-server 必须能连接 map-server 的 Socket。后台 Laravel 经 HTTP 调用 web-server；其 `SupplementaryGroups=happyro` 用于共享配置文件的访问与更新，不代表直接调用 Socket。
 2. 修改模板中的 `User`、`Group`、`WorkingDirectory` 和 `ExecStart` 为实际绝对路径。
 3. 核对 `conf/` 及 `conf/import/` 的最终配置。后读取的同名键会覆盖先读取的值。
 4. Game Control 未启用时保持 `game_control_enabled: no`，并保持 `game_control_socket` 为空；启用时必须同时配置有效的绝对 Socket 路径，否则 web-server 会在启动时拒绝配置。
@@ -27,7 +27,7 @@ systemctl start happyro-map-server.service
 systemctl start happyro-web-server.service
 ```
 
-启动顺序由 `Requires` 和 `After` 约束为 login -> char -> map -> web。map-server 的 `RuntimeDirectory=happyro` 会创建 `/run/happyro`，Unix Socket 必须配置在该目录下，例如 `/run/happyro/map-control.sock`。Socket 默认权限为 `0660`，目录和服务组必须允许后台用户访问。
+启动顺序由 `Requires` 和 `After` 约束为 login -> char -> map -> web。map-server 的 `RuntimeDirectory=happyro` 会创建 `/run/happyro`，Unix Socket 必须配置在该目录下，例如 `/run/happyro/map-control.sock`。Socket 默认权限为 `0660`，目录和服务组必须允许 web-server 用户访问。
 
 ## Game Control 验收
 

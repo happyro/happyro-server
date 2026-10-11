@@ -8,6 +8,6 @@ Game Control 让 Admin 和冒险工具向 map-server 发送已授权命令。web
 - 不少于 32 字节的 `game_control_secret`
 - map-server 与 web-server 相同的 Unix Socket 路径
 
-未启用时保持 `game_control_enabled: no`，Socket 为空。Socket 默认权限 `0660`，运行 Admin 的用户必须能访问服务组。
+未启用时保持 `game_control_enabled: no`，Socket 为空。Socket 默认权限 `0660`，web-server 运行用户必须能访问 map-server 的 Socket；Admin 经 HTTP 调用 web-server，不直接连接 Socket。
 
-部署验收见 [deploy/README.md](../deploy/README.md)。产品约束见 Admin `docs/product/features/game-control.md`。
+部署验收见 [deploy/README.md](../deploy/README.md)。产品约束见 Admin `docs/product/game-control.md`。

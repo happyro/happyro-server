@@ -8,13 +8,12 @@ HappyRO 的游戏服务端，基于 [rAthena](https://github.com/rathena/rathena
 
 ## 文档
 
-- [HappyRO 配置](docs/happyro-configuration.md)
-- [Game Control](docs/game-control.md)
-- [构建与测试](docs/build-and-test.md)
-- [上游 rAthena](docs/upstream.md)
-- 原始帮助文件仍在 [doc/](doc/)
+- [文档索引](docs/README.md)：配置、构建、协议、Game Control 与落点维护。
+- [脚本与数据参考](doc/README.md)：与当前源码配套的 rAthena 资料。
 
 ## 本机入口
+
+以下命令从 HappyRO 根仓库执行：
 
 ```bash
 make configure-server

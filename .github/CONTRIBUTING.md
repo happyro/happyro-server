@@ -21,7 +21,7 @@ This bit of information is here to guide you through the process of creating a b
 * **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/rathena/rathena/issues). If the same issue exists, feel free to leave a comment and tell us you are experiencing the issue as well and if possible add some additional or missing information!
 * If you are unable to find an open issue addressing the problem, [open a new one](#submit-a-bug-report)!
 
-#### Submit A Bug Report :inbox_tray:
+#### Submit A Bug Report
 
 There are several things that go into making a bug report a good bug report!
 
