@@ -22,11 +22,11 @@
 //= 1.9 Some optimization/standardization. [Euphy]
 //============================================================
 
-que_bingo,48,84,5	script	Bingo Waiting Room	124,{
+que_bingo,48,84,5	script	宾果等候室	124,{
 	end;
 
 OnInit:
-	waitingroom "宾果等候室 - 5 人",50,"Bingo Waiting Room::OnWarp",5,1000;
+	waitingroom "宾果等候室 - 5 人",50,"宾果等候室::OnWarp",5,1000;
 	end;
 
 OnWarp:
@@ -85,9 +85,7 @@ OnTouch:
 L_Fill:
 	set @bingo_fill,callfunc("Func_Bingo",@bingo_case);
 	if (!@bingo_fill) {
-		mes "你输入的数字";
-  		mes "超过限制，或你已经";
-		mes "输入过这些数字。";
+		mes "你输入的数字超出范围，或与之前输入的数字重复。";
 		mes "请重新输入数字。";
 		next;
 	} else if (@bingo_fill) {
@@ -126,23 +124,23 @@ OnEnter:
 	end;
 
 OnTimer1000:
-	mapannounce "que_bingo","Eukran：大家好！我是宾果向导 Eukran～",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：大家好！我是宾果向导 尤克兰～",1,0xFFAB54;
 	end;
 
 OnTimer6000:
-	mapannounce "que_bingo","Eukran：请各位参赛者进入屏幕下方的传送门，并输入数字选择宾果牌。",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：请各位参赛者进入屏幕下方的传送门，并输入数字选择宾果牌。",1,0xFFAB54;
 	end;
 
 OnTimer11000:
-	mapannounce "que_bingo","Eukran：所有参赛者必须在 3 分钟内选择宾果牌，否则游戏将取消。",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：所有参赛者必须在 3 分钟内选择宾果牌，否则游戏将取消。",1,0xFFAB54;
 	end;
 
 OnTimer192000:
-	mapannounce "que_bingo","Eukran：请在 5 秒内输入数字，否则游戏将取消。",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：请在 5 秒内输入数字，否则游戏将取消。",1,0xFFAB54;
 	end;
 
 OnTimer200000:
-	mapannounce "que_bingo","Eukran：很抱歉，游戏已取消。请下次再来和我们一起玩宾果！",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：很抱歉，游戏已取消。请下次再来和我们一起玩宾果！",1,0xFFAB54;
 	end;
 
 OnTimer202000:
@@ -163,7 +161,7 @@ OnTimer204000:
 	disablenpc "out3#bingo";
 	set $@hu_bingoa,0;
 	set $@hu_bingob,0;
-	donpcevent "Bingo Waiting Room::OnStart";
+	donpcevent "宾果等候室::OnStart";
 	end;
 }
 
@@ -178,7 +176,7 @@ OnStart:
 	end;
 
 OnTimer2000:
-	mapannounce "que_bingo","Eukran：很好，大家似乎都准备好了～",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：很好，大家似乎都准备好了～",1,0xFFAB54;
 	disablenpc "plate1#bingo";
 	disablenpc "plate2#bingo";
 	disablenpc "plate3#bingo";
@@ -187,7 +185,7 @@ OnTimer2000:
 	end;
 
 OnTimer5000:
-	mapannounce "que_bingo","Eukran：现在，游戏开始！",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：现在，游戏开始！",1,0xFFAB54;
 	setarray $@bingoarray[0],1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25;
 	set .@max_index, 24;
 	for(set .@i,0; .@i < 25; set .@i,.@i +1) {
@@ -199,7 +197,7 @@ OnTimer5000:
 	end;
 
 OnTimer8000:
-	mapannounce "que_bingo","Eukran：我会公布宾果数字。如果你的宾果牌上有 5 个数字连成一条直线，就喊出“宾果”来获胜～",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：我会公布宾果数字。如果你的宾果牌上完成了 5 条连线，就输入“Bingo”来获胜～",1,0xFFAB54;
 	end;
 
 OnTimer10000:
@@ -262,19 +260,19 @@ OnTimer340000:
 	end;
 
 OnTimer440000:
-	mapannounce "que_bingo","Eukran：我已经公布了所有选中的数字，但还没听到有人喊“宾果”。",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：我已经公布了所有选中的数字，但还没听到有人喊“宾果”。",1,0xFFAB54;
 	end;
 
 OnTimer445000:
-	mapannounce "que_bingo","Eukran：给大家 10 秒检查是否有人获胜。如果 10 秒内没人能喊“宾果”，游戏将无胜者结束。",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：给大家 10 秒检查是否有人获胜。如果 10 秒内没人能喊“宾果”，游戏将无胜者结束。",1,0xFFAB54;
 	end;
 
 OnTimer460000:
-	mapannounce "que_bingo","Eukran：很抱歉，游戏结束，没有胜者。感谢大家参与～",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：很抱歉，游戏结束，没有胜者。感谢大家参与～",1,0xFFAB54;
 	donpcevent "1a#bingo::OnInit";
 	areawarp "que_bingo",44,115,54,126,"que_bingo",40,121;
 	set $@hu_bingoa,0;
-	donpcevent "Bingo Waiting Room::OnStart";
+	donpcevent "宾果等候室::OnStart";
 	end;
 }
 
@@ -448,10 +446,10 @@ OnTouch:
 	if(@bingoplate[5] == @bingoplate[10] && @bingoplate[5] == @bingoplate[15] && @bingoplate[5] == @bingoplate[20] && @bingoplate[5] == @bingoplate[25]) set @bingowin,@bingowin +1;
 	if(@bingoplate[1] == @bingoplate[7] && @bingoplate[1] == @bingoplate[13] && @bingoplate[1] == @bingoplate[19] && @bingoplate[1] == @bingoplate[25]) set @bingowin,@bingowin +1;
 	if(@bingoplate[5] == @bingoplate[9] && @bingoplate[5] == @bingoplate[13] && @bingoplate[5] == @bingoplate[17] && @bingoplate[5] == @bingoplate[21]) set @bingowin,@bingowin +1;
-	if($@bingoresult == 1 || $@bingoresult == 21) mes "[ "+$@bingoresult+"st Number - "+$bingo[$@bingoresult -1]+" ]";
-	else if($@bingoresult == 2 || $@bingoresult == 22) mes "[ "+$@bingoresult+"nd Number - "+$bingo[$@bingoresult -1]+" ]";
-	else if($@bingoresult == 3 || $@bingoresult == 23) mes "[ "+$@bingoresult+"rd Number - "+$bingo[$@bingoresult -1]+" ]";
-	else mes "[ "+$@bingoresult+"th Number - "+$bingo[$@bingoresult -1]+" ]"; 
+	if($@bingoresult == 1 || $@bingoresult == 21) mes "[ 第 "+$@bingoresult+" 个号码："+$bingo[$@bingoresult -1]+" ]";
+	else if($@bingoresult == 2 || $@bingoresult == 22) mes "[ 第 "+$@bingoresult+" 个号码："+$bingo[$@bingoresult -1]+" ]";
+	else if($@bingoresult == 3 || $@bingoresult == 23) mes "[ 第 "+$@bingoresult+" 个号码："+$bingo[$@bingoresult -1]+" ]";
+	else mes "[ 第 "+$@bingoresult+" 个号码："+$bingo[$@bingoresult -1]+" ]"; 
 	mes "["+@bingo_a1$+"] ["+@bingo_a2$+"] ["+@bingo_a3$+"] ["+@bingo_a4$+"] ["+@bingo_a5$+"]";
 	mes "["+@bingo_b1$+"] ["+@bingo_b2$+"] ["+@bingo_b3$+"] ["+@bingo_b4$+"] ["+@bingo_b5$+"]";
 	mes "["+@bingo_c1$+"] ["+@bingo_c2$+"] ["+@bingo_c3$+"] ["+@bingo_c4$+"] ["+@bingo_c5$+"]";
@@ -462,12 +460,8 @@ OnTouch:
 		if (@bingowin > 4) {
 			next;
 			mes "我们刚刚完成了 5 条连线！";
-			mes "喊出 ^ff0000宾果^000000！";
-			mes "我、我们刚刚让";
-			mes "5 个数字连成了一行！";
-			mes "快喊“^FF0000宾果^000000！”";
-			mes "记住，你只有";
-			mes "一次喊出的机会！";
+			mes "快输入“^FF0000Bingo^000000”来喊出宾果！";
+			mes "记住，你只有一次机会！";
 			input @bingoyell$;
 			if (@bingoyell$ == "Bingo") {
 				if ($@hu_bingoa == 5) {
@@ -479,20 +473,14 @@ OnTouch:
 
 				} else if ($@hu_bingoa == 6) {
 					next;
-					mes "糟糕！很抱歉，";
-					mes "已经有人先喊了";
-					mes "“宾果”。";
-					mes "很抱歉，你错过了";
-					mes "机会！祝你下次好运，";
-					mes "好吗？";
+					mes "糟糕！很抱歉，已经有人先喊了“宾果”。";
+					mes "你错过了机会，祝你下次好运！";
 					close;
 				}
 			} else {
 				next;
-				mes "很抱歉，你";
-				mes "喊错了。下次请";
-				mes "务必喊出";
-				mes "“^FF0000宾果^000000”，好吗？";
+				mes "很抱歉，你输入的内容不对。";
+				mes "下次请务必输入“^FF0000Bingo^000000”，好吗？";
 				close;
 			}
 		}
@@ -664,22 +652,22 @@ OnTouch:
 	end;
 
 OnTimer1000:
-	mapannounce "que_bingo","Eukran: Wow, Bingo! It's Bingo!",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：哇，宾果！有人喊出宾果了！",1,0xFFAB54;
 	end;
 
 OnTimer5000:
-	mapannounce "que_bingo","Eukran: "+$@bingowinner$+" has said Bingo!",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰："+$@bingowinner$+" 喊出了宾果！",1,0xFFAB54;
 	end;
 
 OnTimer10000:
 	if ($@bingoresult == 16)
-		mapannounce "que_bingo","Eukran: Congratulations, "+$@bingowinner$+"! You will be rewarded with 50 Marvelous Medals.",1,0xFFAB54;
+		mapannounce "que_bingo","尤克兰：恭喜，"+$@bingowinner$+"！你将获得 50 枚奖牌。",1,0xFFAB54;
 	else
-		mapannounce "que_bingo","Eukran: Congratulations, "+$@bingowinner$+"! You will be rewarded with 1 Marvelous Medal.",1,0xFFAB54;
+		mapannounce "que_bingo","尤克兰：恭喜，"+$@bingowinner$+"！你将获得 1 枚奖牌。",1,0xFFAB54;
 	end;
 
 OnTimer15000:
-	mapannounce "que_bingo","Eukran: Thank you all for participating in the game. See you next time!",1,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：感谢大家参与游戏，下次再见！",1,0xFFAB54;
 	end;
 
 OnTimer20000:
@@ -716,7 +704,7 @@ OnTimer5000:
 	disablenpc "end1e#bingo";
 	areawarp "que_bingo",44,115,54,126,"que_bingo",40,121;
 	set $@hu_bingoa,0;
-	donpcevent "Bingo Waiting Room::OnStart";
+	donpcevent "宾果等候室::OnStart";
 	end;
 }
 
@@ -861,7 +849,7 @@ function	script	Func_Bingo	{
 
 function	script	Func_BingoResult	{
 	.@num = getarg(0);
-	mapannounce "que_bingo","Eukran: The "+ callfunc("F_GetNumSuffix",.@num) +" number is "+ $bingo[.@num - 1] +". Please check your Bingo Plate.",4,0xFFAB54;
+	mapannounce "que_bingo","尤克兰：第 "+ .@num +" 个号码是 "+ $bingo[.@num - 1] +"。请核对你的宾果牌。",4,0xFFAB54;
 	enablenpc .@num +"a#bingo";
 	enablenpc .@num +"b#bingo";
 	enablenpc .@num +"c#bingo";
@@ -871,26 +859,23 @@ function	script	Func_BingoResult	{
 	end;
 }
 
-que_bingo,49,31,4	script	Arcade Helper#1	47,{
+que_bingo,49,31,4	script	游乐场助手#1	47,{
 	mes "[助手]";
-	mes "如果想玩宾果游戏，";
-	mes "请往这边走。";
+	mes "如果想玩宾果游戏，请往这边走。";
 	close;
 }
-que_bingo,42,31,4	duplicate(Arcade Helper#1)	Arcade Helper#2	66
+que_bingo,42,31,4	duplicate(游乐场助手#1)	游乐场助手#2	66
 
-que_bingo,54,17,5	script	Arcade Owner	712,{
+que_bingo,54,17,5	script	游乐场老板	712,{
 	mes "[游乐场老板]";
-	mes "欢迎来到";
-	mes "宾果游戏街机厅。";
+	mes "欢迎来到宾果游戏街机厅。";
 	mes "想玩一局宾果吗？";
 	mes "有问题的话尽管问。";
 	next;
-	switch(select("宾果规则:宾果房间:奇迹奖牌")) {
+	switch(select("宾果规则:宾果房间:奖牌")) {
 	case 1:
 		mes "[游乐场老板]";
-		mes "宾果的规则很简单。首先拿一张";
-		mes "有 25 个格子的牌，排列成五行五列。";
+		mes "宾果的规则很简单。首先拿一张有 25 个格子的牌，排列成五行五列。";
 		mes "然后按你喜欢的顺序给格子编号。";
 		next;
 		mes "[游乐场老板]";
@@ -899,14 +884,12 @@ que_bingo,54,17,5	script	Arcade Owner	712,{
 		mes "游戏主持人会随机喊出 1 到 25 的数字。";
 		next;
 		mes "[游乐场老板]";
-		mes "每次主持人喊出数字，务必在宾果牌上";
-		mes "标记对应的数字格。以下是";
-		mes "获胜条件……";
+		mes "每次主持人喊出数字，务必在宾果牌上标记对应的数字格。";
+		mes "以下是获胜条件……";
 		next;
 		mes "[游乐场老板]";
-		mes "如果用主持人喊出的数字，横向、纵向或斜向";
-		mes "连成一条 5 格直线，就要马上喊出";
-		mes "‘宾果’这个词。";
+		mes "用主持人喊出的数字，横向、纵向或斜向连成一条 5 格直线，就算完成一条连线。";
+		mes "完成 5 条连线后，马上输入‘Bingo’来喊出宾果。";
 		next;
 		mes "[游乐场老板]";
 		mes "第一个喊出‘宾果’的人获胜！";
@@ -940,17 +923,16 @@ que_bingo,54,17,5	script	Arcade Owner	712,{
 		close;
 	case 3:
 		mes "[游乐场老板]";
-		mes "赢得宾果游戏后，你会获得‘奇迹奖牌’，";
+		mes "赢得宾果游戏后，你会获得‘奖牌’，";
 		mes "只能在本街机厅使用，也不能与其他玩家交易。";
 		next;
 		mes "[游乐场老板]";
-		mes "通常赢一局宾果会获得 1 枚奇迹奖牌，";
+		mes "通常赢一局宾果会获得 1 枚奖牌，";
 		mes "特殊条件下可以一次获得 50 枚。";
 		mes "也可以参加怪物赛跑游戏赢取更多奖牌。";
 		next;
 		mes "[游乐场老板]";
-		mes "尽可能收集奇迹奖牌，";
-		mes "并在怪物赛跑竞技场兑换商品。";
+		mes "尽可能收集奖牌，并在怪物赛跑竞技场兑换商品。";
 		mes "听说艾音布罗克也有使用奖牌的地方，但我不清楚。";
 // 切片行数保留
 // 切片行数保留

@@ -17,14 +17,14 @@
 	next;
 	switch( select( "说明", "兑换 " + .@storage_ticket_name$, "兑换新手装备" ) ) {
 	case 1:
-		mes "[Exchange " + .@storage_ticket_name$ + "]";
+		mes "[兑换 " + .@storage_ticket_name$ + "]";
 		mes "4 个" + .@storage_ticket_name$ + "可兑换 1 张免费传送、飞艇或手推车服务券，或 1 张免费大嘴鸟骑乘券、15 个新手苍蝇翅膀、5 个新手蝴蝶翅膀、30 瓶新手药水。";
 		next;
-		mes "[Trade Novice Gears]";
-		mes "克里图拉学院的新手铠甲、兜帽、凉鞋、短剑和盾牌可兑换 4 个" + .@storage_ticket_name$ + "。";
+		mes "[兑换新手装备]";
+		mes "克里图拉学院的新手铠甲、兜帽、凉鞋、短剑和盾牌，每件可兑换 4 个" + .@storage_ticket_name$ + "。";
 		next;
-		mes "[Trade Novice Gears]";
-		mes "新手蛋壳可兑换克里图拉发型优惠券，用于更换发型。";
+		mes "[兑换新手装备]";
+		mes "每个新手蛋壳可兑换一张克里图拉发型优惠券，用于更换发型。";
 		close;
 	case 2:
 		setarray .@exchange[0],
@@ -47,6 +47,10 @@
 			mes .@storage_ticket_name$ + "数量不足，无法进行兑换。";
 			close;
 		}
+		if (!checkweight(.@exchange[.@s],.@exchange[.@s+1])) {
+			mes "请先为兑换物品预留足够的负重和物品栏空间。";
+			close;
+		}
 		if (.@exchange[.@s+1] > 1)
 			.@amount$ = .@exchange[.@s+1] + " ";
 		mes "已将 4 个" + .@storage_ticket_name$ + "兑换为" + .@amount$ + getitemname(.@exchange[.@s]);
@@ -55,15 +59,34 @@
 		close;
 	case 3:
 		mes "将所有新手装备兑换为优惠券。";
-		mes "选择继续以进行兑换。";
+		mes "包含正在穿戴、已精炼或插卡的上述新手装备，请确认后再继续。";
 		next;
 		if (select( "继续", "取消。" ) == 2) {
 			mes "交易已中断。";
 			close;
 		}
-		mes "正在将所有装备兑换为优惠券。";
+		mes "正在将所有可兑换的新手装备兑换为优惠券。";
 		setarray .@list[0],2352,2510,2414,1243,2112,5055;
 		.@size = getarraysize(.@list);
+		for (.@i = 0; .@i < .@size; .@i++) {
+			.@count = countitem(.@list[.@i]);
+			if (.@list[.@i] == 5055)
+				.@hair_coupons += .@count;
+			else
+				.@storage_tickets += 4 * .@count;
+		}
+		if (.@storage_tickets > 0) {
+			.@reward_ids[.@reward_size] = .@storage_ticket;
+			.@reward_amounts[.@reward_size++] = .@storage_tickets;
+		}
+		if (.@hair_coupons > 0) {
+			.@reward_ids[.@reward_size] = 6593;
+			.@reward_amounts[.@reward_size++] = .@hair_coupons;
+		}
+		if (.@reward_size > 0 && !checkweight2(.@reward_ids,.@reward_amounts)) {
+			mes "请先为全部兑换券预留足够的负重和物品栏空间。";
+			close;
+		}
 		
 		for ( .@i = 0, .@i < .@size; .@i++ ) {
 			.@count = countitem(.@list[.@i]);	// note: maybe check if equipped items are skipped

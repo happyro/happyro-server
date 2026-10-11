@@ -8,11 +8,11 @@
 //============================================================
 
 // Main Quest: Step 28.
-ra_fild10,179,176,5	script	Merchant#ep18_gorge	4_EP18_MERCHANT,{
+ra_fild10,179,176,5	script	商人#ep18_gorge	4_EP18_MERCHANT,{
 	.@md_name$ = "奥兹迷宫";
 
 	if (ep18_main == 29) {
-		mes "[Disguised Miriam]";
+		mes "[乔装的米丽娅姆]";
 		mes "现在进入 <font style='font-size:14px'><B>^e5555e绿野仙踪迷宫^000000</B></font>。";
 		mes "^e5555e请做好准备^000000后再回来找我。";
 		cutin "ep18_merchant.png",2;
@@ -22,11 +22,11 @@ ra_fild10,179,176,5	script	Merchant#ep18_gorge	4_EP18_MERCHANT,{
 		close3;
 	}
 	if (ep18_main == 30) {
-		mes "[Disguised Miriam]";
+		mes "[乔装的米丽娅姆]";
 		mes "那么前往^e5555e" + .@md_name$ + "^000000吧。";
 		next;
 		if (getcharid(1) == 0 || is_party_leader() == false) {
-			mes "[Disguised Miriam]";
+			mes "[乔装的米丽娅姆]";
 			mes "我觉得^ff0000进入前先组队^000000比较好……";
 			close;
 		}
@@ -38,21 +38,21 @@ ra_fild10,179,176,5	script	Merchant#ep18_gorge	4_EP18_MERCHANT,{
 			mes "^0000ff" + .@md_name$ + " ^000000- 未知错误";
 				close;
 			}
-			mes "[Disguised Miriam]";
+			mes "[乔装的米丽娅姆]";
 			mes "最好稍等片刻再进入。";
 			close;
 		case 2:
 			switch( instance_enter(.@md_name$) ) {
 			case IE_OTHER:
-				mes "[Disguised Miriam]";
+				mes "[乔装的米丽娅姆]";
 				mes "^ff0000发生未知错误。^000000";
 				close;
 			case IE_NOINSTANCE:
-				mes "[Disguised Miriam]";
+				mes "[乔装的米丽娅姆]";
 				mes "稍等片刻再试。";
 				close;
 			case IE_NOMEMBER:
-				mes "[Disguised Miriam]";
+				mes "[乔装的米丽娅姆]";
 				mes "^ff0000只有队伍成员可以进入纪念副本。^000000";
 				close;
 			case IE_OK:
@@ -63,7 +63,7 @@ ra_fild10,179,176,5	script	Merchant#ep18_gorge	4_EP18_MERCHANT,{
 			end;
 		}
 	}
-	mes "[Merchant]";
+	mes "[商人]";
 	mes "好像有人在附近，但很快消失了。";
 	mes "他们去哪了？";
 	cutin "ep18_merchant.png",2;
@@ -76,7 +76,7 @@ OnInit:
 }
 
 // Step 1
-1@oz,284,164,3	script	Rope#outoz	4_ROPEPILE,{
+1@oz,284,164,3	script	绳子#outoz	4_ROPEPILE,{
 	mes "我想可以用绳子爬上去。";
 	next;
 	if (select( "使用绳子爬上去。", "不使用。" ) == 2)
@@ -85,15 +85,15 @@ OnInit:
 	end;
 }
 
-1@oz,282,175,3	script	Miriam#ozmd1	4_EP18_MIRIAM,{
+1@oz,282,175,3	script	米丽娅姆#ozmd1	4_EP18_MIRIAM,{
 	if ('event_oz != 0)
 		end;
 	'event_oz = 1;
-	.@miriam1$ = instance_npcname("Miriam#ozmd1");
-	.@maggi1$ = instance_npcname("Maggi#ozmd1");
-	.@mark1$ = instance_npcname("Mark#ozmd1");
-	.@tamarin1$ = instance_npcname("Tamarin#ozmd1");
-	.@miriam2$ = instance_npcname("Miriam#ozmd2");
+	.@miriam1$ = instance_npcname("米丽娅姆#ozmd1");
+	.@maggi1$ = instance_npcname("玛姬#ozmd1");
+	.@mark1$ = instance_npcname("马克#ozmd1");
+	.@tamarin1$ = instance_npcname("塔玛琳#ozmd1");
+	.@miriam2$ = instance_npcname("米丽娅姆#ozmd2");
 
 	setpcblock PCBLOCK_NPC, true;
 	npctalk "米丽娅姆：这里是绿野仙踪迷宫的入口。", .@miriam1$;
@@ -132,18 +132,18 @@ OnInit:
 	end;
 }
 
-1@oz,279,175,5	duplicate(dummy_cloaked_npc)	Maggi#ozmd1	4_4JOB_MAGGI
-1@oz,280,175,3	duplicate(dummy_cloaked_npc)	Mark#ozmd1	4_EP18_MARK
-1@oz,279,177,3	duplicate(dummy_cloaked_npc)	Tamarin#ozmd1	4_EP18_TAMARIN
+1@oz,279,175,5	duplicate(dummy_cloaked_npc)	玛姬#ozmd1	4_4JOB_MAGGI
+1@oz,280,175,3	duplicate(dummy_cloaked_npc)	马克#ozmd1	4_EP18_MARK
+1@oz,279,177,3	duplicate(dummy_cloaked_npc)	塔玛琳#ozmd1	4_EP18_TAMARIN
 
 
 // Step 2
-1@oz,271,272,3	script(DISABLED)	Miriam#ozmd2	4_EP18_MIRIAM,{
+1@oz,271,272,3	script(DISABLED)	米丽娅姆#ozmd2	4_EP18_MIRIAM,{
 	if ('event_oz != 1)
 		end;
 	'event_oz = 2;
-	.@miriam2$ = instance_npcname("Miriam#ozmd2");
-	'miriam3$ = instance_npcname("Miriam#ozmd3");
+	.@miriam2$ = instance_npcname("米丽娅姆#ozmd2");
+	'miriam3$ = instance_npcname("米丽娅姆#ozmd3");
 	setpcblock PCBLOCK_NPC, true;
 	npctalk "米丽娅姆：穿过前方的桥，就是绿野仙踪迷宫的真正入口。", .@miriam2$;
 	sleep2 2000;
@@ -163,13 +163,13 @@ OnInstanceInit:
 
 
 // Step 3
-1@oz,241,272,3	script(DISABLED)	Miriam#ozmd3	EP18_NPC_MIRIAM,{
+1@oz,241,272,3	script(DISABLED)	米丽娅姆#ozmd3	EP18_NPC_MIRIAM,{
 	if ('event_oz != 2)
 		end;
 	'event_oz = 3;
-	.@maggi3$ = instance_npcname("Maggi#ozmd3");
-	.@mark3$ = instance_npcname("Mark#ozmd3");
-	.@tamarin3$ = instance_npcname("Tamarin#ozmd3");
+	.@maggi3$ = instance_npcname("玛姬#ozmd3");
+	.@mark3$ = instance_npcname("马克#ozmd3");
+	.@tamarin3$ = instance_npcname("塔玛琳#ozmd3");
 
 	setpcblock PCBLOCK_NPC, true;
 	npctalk "米丽娅姆：这座桥很危险，最好分担行李，一个一个地过桥。", 'miriam3$;
@@ -207,28 +207,28 @@ OnEvent4:
 	end;
 OnEvent5:
 	disablenpc 'miriam3$;
-	enablenpc instance_npcname("Miriam#ozmd4");
-	enablenpc instance_npcname("Ash Toad#ozmd1");
+	enablenpc instance_npcname("米丽娅姆#ozmd4");
+	enablenpc instance_npcname("灰烬蟾蜍#ozmd1");
 	end;
 }
 
-1@oz,245,272,3	duplicate(dummy_cloaked_npc)	Maggi#ozmd3	4_4JOB_MAGGI
-1@oz,244,273,3	duplicate(dummy_cloaked_npc)	Mark#ozmd3	4_EP18_MARK
-1@oz,244,270,3	duplicate(dummy_cloaked_npc)	Tamarin#ozmd3	4_EP18_TAMARIN
+1@oz,245,272,3	duplicate(dummy_cloaked_npc)	玛姬#ozmd3	4_4JOB_MAGGI
+1@oz,244,273,3	duplicate(dummy_cloaked_npc)	马克#ozmd3	4_EP18_MARK
+1@oz,244,270,3	duplicate(dummy_cloaked_npc)	塔玛琳#ozmd3	4_EP18_TAMARIN
 
 
 // Step 4 + 5
-1@oz,157,272,3	script(DISABLED)	Miriam#ozmd4	4_EP18_MIRIAM,{
+1@oz,157,272,3	script(DISABLED)	米丽娅姆#ozmd4	4_EP18_MIRIAM,{
 	if ('event_oz != 3)
 		end;
 	'event_oz = 4;
 
-	.@miriam4$ = instance_npcname("Miriam#ozmd4");
-	.@tamarin4$ = instance_npcname("Tamarin#ozmd4");
-	.@ashtoad2$ = instance_npcname("Ash Toad#ozmd2");
-	.@maggi4$ = instance_npcname("Maggi#ozmd4");
-	.@mark4$ = instance_npcname("Mark#ozmd4");
-	.@ashtoad3$ = instance_npcname("Ash Toad#ozmd3");
+	.@miriam4$ = instance_npcname("米丽娅姆#ozmd4");
+	.@tamarin4$ = instance_npcname("塔玛琳#ozmd4");
+	.@ashtoad2$ = instance_npcname("灰烬蟾蜍#ozmd2");
+	.@maggi4$ = instance_npcname("玛姬#ozmd4");
+	.@mark4$ = instance_npcname("马克#ozmd4");
+	.@ashtoad3$ = instance_npcname("灰烬蟾蜍#ozmd3");
 
 	setpcblock PCBLOCK_NPC, true;
 	mapannounce 'map_name$, "米丽娅姆：啊！！有怪物！！！", bc_map, 0xB7EE,FW_NORMAL,16;
@@ -247,9 +247,9 @@ OnEvent5:
 	mapannounce 'map_name$, "马克：请支援前方！！！", bc_map, 0xB7EE,FW_NORMAL,16;
 	sleep2 1000;
 	'mob_count_oz = 0;
-	monster 'map_name$,145,274,"Ash Toad",21295,1, .@miriam4$ + "::OnMobDead"; // EP18_ASH_TOAD
+	monster 'map_name$,145,274,"灰烬蟾蜍",21295,1, .@miriam4$ + "::OnMobDead"; // EP18_ASH_TOAD
 	enablenpc .@ashtoad3$;
-	monster 'map_name$,143,278,"Ash Toad",21295,1, .@miriam4$ + "::OnMobDead"; // EP18_ASH_TOAD
+	monster 'map_name$,143,278,"灰烬蟾蜍",21295,1, .@miriam4$ + "::OnMobDead"; // EP18_ASH_TOAD
 	setpcblock PCBLOCK_NPC, false;
 	end;
 
@@ -263,15 +263,15 @@ OnMobDead:
 		end;
 	'event_oz = 5;
 
-	.@tamarin4$ = instance_npcname("Tamarin#ozmd4");
-	.@ashtoad2$ = instance_npcname("Ash Toad#ozmd2");
-	.@maggi4$ = instance_npcname("Maggi#ozmd4");
-	.@mark4$ = instance_npcname("Mark#ozmd4");
-	.@ashtoad3$ = instance_npcname("Ash Toad#ozmd3");
-	.@maram4$ = instance_npcname("Maram#ozmd4");
-	.@ashtoad1$ = instance_npcname("Ash Toad#ozmd1");
-	.@tamarin4$ = instance_npcname("Tamarin#ozmd4");
-	.@miriam4$ = instance_npcname("Miriam#ozmd4");
+	.@tamarin4$ = instance_npcname("塔玛琳#ozmd4");
+	.@ashtoad2$ = instance_npcname("灰烬蟾蜍#ozmd2");
+	.@maggi4$ = instance_npcname("玛姬#ozmd4");
+	.@mark4$ = instance_npcname("马克#ozmd4");
+	.@ashtoad3$ = instance_npcname("灰烬蟾蜍#ozmd3");
+	.@maram4$ = instance_npcname("玛拉姆#ozmd4");
+	.@ashtoad1$ = instance_npcname("灰烬蟾蜍#ozmd1");
+	.@tamarin4$ = instance_npcname("塔玛琳#ozmd4");
+	.@miriam4$ = instance_npcname("米丽娅姆#ozmd4");
 
 	setpcblock PCBLOCK_NPC, true;
 	npctalk "塔玛琳：成功了！！！", .@tamarin4$;
@@ -334,32 +334,32 @@ OnMobDead:
 	disablenpc .@mark4$;
 	disablenpc .@tamarin4$;
 	disablenpc .@miriam4$;
-	enablenpc instance_npcname("Maram#ozmd5");
+	enablenpc instance_npcname("玛拉姆#ozmd5");
 	end;
 }
 
-1@oz,156,272,5	duplicate(dummy_disabled_npc)	Ash Toad#ozmd1	EP18_ASH_TOAD
-1@oz,164,272,3	duplicate(dummy_disabled_npc)	Ash Toad#ozmd2	EP18_ASH_TOAD
-1@oz,153,275,5	duplicate(dummy_disabled_npc)	Ash Toad#ozmd3	EP18_ASH_TOAD
-1@oz,155,275,3	duplicate(dummy_disabled_npc)	Maggi#ozmd4	4_4JOB_MAGGI
-1@oz,156,274,3	duplicate(dummy_disabled_npc)	Mark#ozmd4	4_EP18_MARK
-1@oz,161,272,5	duplicate(dummy_disabled_npc)	Tamarin#ozmd4	4_EP18_TAMARIN
+1@oz,156,272,5	duplicate(dummy_disabled_npc)	灰烬蟾蜍#ozmd1	EP18_ASH_TOAD
+1@oz,164,272,3	duplicate(dummy_disabled_npc)	灰烬蟾蜍#ozmd2	EP18_ASH_TOAD
+1@oz,153,275,5	duplicate(dummy_disabled_npc)	灰烬蟾蜍#ozmd3	EP18_ASH_TOAD
+1@oz,155,275,3	duplicate(dummy_disabled_npc)	玛姬#ozmd4	4_4JOB_MAGGI
+1@oz,156,274,3	duplicate(dummy_disabled_npc)	马克#ozmd4	4_EP18_MARK
+1@oz,161,272,5	duplicate(dummy_disabled_npc)	塔玛琳#ozmd4	4_EP18_TAMARIN
 
-1@oz,162,275,3	duplicate(dummy_cloaked_npc)	Maram#ozmd4	4_EP18_MARAM
+1@oz,162,275,3	duplicate(dummy_cloaked_npc)	玛拉姆#ozmd4	4_EP18_MARAM
 
 
 // Step 6
-1@oz,98,172,3	script(DISABLED)	Maram#ozmd5	EP18_NPC_MARAM,{
+1@oz,98,172,3	script(DISABLED)	玛拉姆#ozmd5	EP18_NPC_MARAM,{
 	if ('event_oz != 5)
 		end;
 	'event_oz = 6;
-	.@miriam$ = instance_npcname("Miriam#ozmd5");
-	.@maram$ = instance_npcname("Maram#ozmd5");
+	.@miriam$ = instance_npcname("米丽娅姆#ozmd5");
+	.@maram$ = instance_npcname("玛拉姆#ozmd5");
 
 	npctalk "玛拉姆：以前不是这样的，但地面开始融化，可能是托尔山的影响，怪物也越来越多。", .@maram$;
-	cloakoffnpcself( "Maggi#ozmd5" );
-	cloakoffnpcself( "Mark#ozmd5" );
-	cloakoffnpcself( "Tamarin#ozmd5" );
+	cloakoffnpcself( "玛姬#ozmd5" );
+	cloakoffnpcself( "马克#ozmd5" );
+	cloakoffnpcself( "塔玛琳#ozmd5" );
 	enablenpc .@miriam$;
 	setpcblock PCBLOCK_NPC, true;
 	sleep2 2000;
@@ -375,53 +375,53 @@ OnMobDead:
 	sleep2 2000;
 	setpcblock PCBLOCK_NPC, false;
 	npctalk "玛拉姆：我的朋友好像遇到麻烦了！我先过去，你们小心跟上！", .@maram$;
-	cloakonnpcself( "Maggi#ozmd5" );
-	cloakonnpcself( "Mark#ozmd5" );
-	cloakonnpcself( "Tamarin#ozmd5" );
+	cloakonnpcself( "玛姬#ozmd5" );
+	cloakonnpcself( "马克#ozmd5" );
+	cloakonnpcself( "塔玛琳#ozmd5" );
 	unitwalk getnpcid(0),68,165, .@maram$ + "::OnMove";
 	donpcevent .@miriam$ + "::OnMove";
 	end;
 OnMove:
-	disablenpc instance_npcname("Maram#ozmd5");
-	enablenpc instance_npcname("Maram#ozmd7");
-	enablenpc instance_npcname("Imril#ozmd6");
+	disablenpc instance_npcname("玛拉姆#ozmd5");
+	enablenpc instance_npcname("玛拉姆#ozmd7");
+	enablenpc instance_npcname("伊姆里尔#ozmd6");
 	end;
 }
 
-1@oz,97,167,3	script(DISABLED)	Miriam#ozmd5	EP18_NPC_MIRIAM,{
+1@oz,97,167,3	script(DISABLED)	米丽娅姆#ozmd5	EP18_NPC_MIRIAM,{
 	end;
 OnMove:
 	npcwalkto 67,164;
 	end;
 }
 
-1@oz,92,170,3	duplicate(dummy_cloaked_npc)	Maggi#ozmd5	4_4JOB_MAGGI
-1@oz,91,169,3	duplicate(dummy_cloaked_npc)	Mark#ozmd5	4_EP18_MARK
-1@oz,89,170,5	duplicate(dummy_cloaked_npc)	Tamarin#ozmd5	4_EP18_TAMARIN
+1@oz,92,170,3	duplicate(dummy_cloaked_npc)	玛姬#ozmd5	4_4JOB_MAGGI
+1@oz,91,169,3	duplicate(dummy_cloaked_npc)	马克#ozmd5	4_EP18_MARK
+1@oz,89,170,5	duplicate(dummy_cloaked_npc)	塔玛琳#ozmd5	4_EP18_TAMARIN
 
 
 
 // Step 7
-1@oz,68,165,3	script(DISABLED)	Maram#ozmd7	4_EP18_MARAM,{
+1@oz,68,165,3	script(DISABLED)	玛拉姆#ozmd7	4_EP18_MARAM,{
 	if ('event_oz != 6)
 		end;
 	'event_oz = 7;
 	npctalk "玛拉姆：伊姆里尔，你还好吗？";
-	donpcevent instance_npcname("Imril#ozmd6") + "::OnStart";
+	donpcevent instance_npcname("伊姆里尔#ozmd6") + "::OnStart";
 	disablenpc();
 	end;
 }
 
 
 // Step 8
-1@oz,61,163,5	script(DISABLED)	Imril#ozmd6	4_EP18_IMRIL,{
+1@oz,61,163,5	script(DISABLED)	伊姆里尔#ozmd6	4_EP18_IMRIL,{
 	end;
 
 OnStart:
 	'mob_count_oz = 0;
-	.@npc_name$ = instance_npcname("Imril#ozmd6");
-	monster 'map_name$,64,164,"Ash Toad",21295,1, .@npc_name$ + "::OnMobDead"; // EP18_ASH_TOAD
-	monster 'map_name$,62,161,"rake hand",21296,1, .@npc_name$ + "::OnMobDead"; // EP18_RAKEHAND
+	.@npc_name$ = instance_npcname("伊姆里尔#ozmd6");
+	monster 'map_name$,64,164,"灰烬蟾蜍",21295,1, .@npc_name$ + "::OnMobDead"; // EP18_ASH_TOAD
+	monster 'map_name$,62,161,"爪手",21296,1, .@npc_name$ + "::OnMobDead"; // EP18_RAKEHAND
 	end;
 
 OnMobDead:
@@ -432,12 +432,12 @@ OnMobDead:
 		end;
 	'event_oz = 8;
 
-	.@maram8$ = instance_npcname("Maram#ozmd8");
-	.@imril6$ = instance_npcname("Imril#ozmd6");
-	.@miriam5$ = instance_npcname("Miriam#ozmd5");
-	.@maggi6$ = instance_npcname("Maggi#ozmd6");
-	.@mark6$ = instance_npcname("Mark#ozmd6");
-	.@tamarin6$ = instance_npcname("Tamarin#ozmd6");
+	.@maram8$ = instance_npcname("玛拉姆#ozmd8");
+	.@imril6$ = instance_npcname("伊姆里尔#ozmd6");
+	.@miriam5$ = instance_npcname("米丽娅姆#ozmd5");
+	.@maggi6$ = instance_npcname("玛姬#ozmd6");
+	.@mark6$ = instance_npcname("马克#ozmd6");
+	.@tamarin6$ = instance_npcname("塔玛琳#ozmd6");
 
 	setpcblock PCBLOCK_NPC, true;
 
@@ -477,10 +477,10 @@ OnMobDead:
 	end;
 }
 
-1@oz,68,165,3	duplicate(dummy_cloaked_npc)	Maram#ozmd8	4_EP18_MARAM
-1@oz,61,168,3	duplicate(dummy_cloaked_npc)	Maggi#ozmd6	4_4JOB_MAGGI
-1@oz,65,167,3	duplicate(dummy_cloaked_npc)	Mark#ozmd6	4_EP18_MARK
-1@oz,59,171,3	duplicate(dummy_cloaked_npc)	Tamarin#ozmd6	4_EP18_TAMARIN
+1@oz,68,165,3	duplicate(dummy_cloaked_npc)	玛拉姆#ozmd8	4_EP18_MARAM
+1@oz,61,168,3	duplicate(dummy_cloaked_npc)	玛姬#ozmd6	4_4JOB_MAGGI
+1@oz,65,167,3	duplicate(dummy_cloaked_npc)	马克#ozmd6	4_EP18_MARK
+1@oz,59,171,3	duplicate(dummy_cloaked_npc)	塔玛琳#ozmd6	4_EP18_TAMARIN
 
 
 
@@ -491,12 +491,12 @@ OnTouch:
 	if ('event_oz != 8)
 		end;
 	'event_oz = 9;
-	enablenpc instance_npcname("Maram#ozmd6");
+	enablenpc instance_npcname("玛拉姆#ozmd6");
 	end;
 }
 
 // Step 10 (maybe not required ?)
-1@oz,44,255,5	script(DISABLED)	Maram#ozmd6	4_EP18_MARAM,{
+1@oz,44,255,5	script(DISABLED)	玛拉姆#ozmd6	4_EP18_MARAM,{
 	if ('event_oz != 9)
 		end;
 	'event_oz = 10;
@@ -504,22 +504,22 @@ OnTouch:
 	initnpctimer;
 	end;
 OnTimer2000:
-	disablenpc instance_npcname("Maram#ozmd6");
-	enablenpc instance_npcname("Maram#ozmd9");
-	enablenpc instance_npcname("Rope#outoz2");
+	disablenpc instance_npcname("玛拉姆#ozmd6");
+	enablenpc instance_npcname("玛拉姆#ozmd9");
+	enablenpc instance_npcname("绳子#outoz2");
 	end;
 }
 
 // Step 11
 // (Step 29 on the main quest).
-1@oz,21,189,5	script(DISABLED)	Maram#ozmd9	4_EP18_MARAM,{
+1@oz,21,189,5	script(DISABLED)	玛拉姆#ozmd9	4_EP18_MARAM,{
 	if ('event_oz != 10)
 		end;
 	'event_oz = 11;
 
-	.@maram9$ = instance_npcname("Maram#ozmd9");
-	.@miriam7$ = instance_npcname("Miriam#ozmd7");
-	.@imril7$ = instance_npcname("Imril#ozmd7");
+	.@maram9$ = instance_npcname("玛拉姆#ozmd9");
+	.@miriam7$ = instance_npcname("米丽娅姆#ozmd7");
+	.@imril7$ = instance_npcname("伊姆里尔#ozmd7");
 
 	setpcblock PCBLOCK_NPC, true;
 	npctalk "玛拉姆：爬上前面的绳子就能出去。", .@maram9$;
@@ -544,12 +544,12 @@ OnInstanceInit:
 	end;
 }
 
-1@oz,22,187,5	duplicate(dummy_cloaked_npc)	Miriam#ozmd7	4_EP18_MIRIAM
-1@oz,16,185,3	duplicate(dummy_cloaked_npc)	Imril#ozmd7	4_EP18_IMRIL
+1@oz,22,187,5	duplicate(dummy_cloaked_npc)	米丽娅姆#ozmd7	4_EP18_MIRIAM
+1@oz,16,185,3	duplicate(dummy_cloaked_npc)	伊姆里尔#ozmd7	4_EP18_IMRIL
 
 
 // Step 12
-1@oz,28,190,3	script(DISABLED)	Rope#outoz2	4_ROPEPILE,{
+1@oz,28,190,3	script(DISABLED)	绳子#outoz2	4_ROPEPILE,{
 	if ('event_oz != 11) {
 		mes "现在还不能使用。先和玛拉姆谈谈。";
 		close;
@@ -572,8 +572,8 @@ OnInstanceInit:
 	end;
 OnTouch_:
 	getmapxy .@map$,.@x,.@y, BL_NPC;
-	monster 'map_name$,.@x-1,.@y,"Ash Toad",21295,1;	// EP18_ASH_TOAD
-	monster 'map_name$,.@x+1,.@y,"Rake Hand",21296,1;	// EP18_RAKEHAND
+	monster 'map_name$,.@x-1,.@y,"灰烬蟾蜍",21295,1;	// EP18_ASH_TOAD
+	monster 'map_name$,.@x+1,.@y,"爪手",21296,1;	// EP18_RAKEHAND
 	cloakonnpcself();
 	end;
 }

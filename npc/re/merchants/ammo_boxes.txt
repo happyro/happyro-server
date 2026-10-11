@@ -16,13 +16,13 @@
 //============================================================
 
 que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
-	mes "[Kenny]";
-	mes "子弹袋能让你更轻松地携带子弹。";
+	mes "[肯尼]";
+	mes "弹药筒能让你更轻松地携带子弹。";
 	mes "来看看吧～";
 	next;
-	switch(select("各种子弹盒:球体兑换:旧球体兑换:霰弹兑换:取消")) {
+	switch(select("各种弹药筒:球体兑换:旧球体兑换:霰弹兑换:取消")) {
 	case 1:
-		switch(select("子弹盒:血腥子弹盒:银色子弹盒:AP弹药盒:烈焰弹药盒:冰冻弹药盒:闪电弹药盒:魔法石弹药盒:净化弹药盒:照明弹盒:闪电弹盒:冰弹盒:毒弹盒:致盲弹盒:取消")) {
+		switch(select("弹药筒:弹药筒·血:弹药筒·银:弹药筒·穿甲弹:弹药筒·灼热弹:弹药筒·冰冻弹:弹药筒·电击弹:弹药筒·魔石弹:弹药筒·净化弹:火焰子弹弹药筒:闪电子弹弹药筒:冰子弹弹药筒:毒子弹弹药筒:致盲子弹弹药筒:取消")) {
 			case 1: callsub S_Casing,13200,12149;
 			case 2: callsub S_Casing,13222,22737;
 			case 3: callsub S_Casing,13221,22738;
@@ -40,7 +40,7 @@ que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
 			case 15: callsub S_Close;
 		}
 	case 2:
-		switch(select("火焰子弹:风之子弹:冰冻子弹:毒子弹:致盲子弹:取消")) {
+		switch(select("炽焰球:闪电球:冰冻球:毒球:致盲球:取消")) {
 		case 1: callsub S_Sphere_Exchange,13223,13228;
 		case 2: callsub S_Sphere_Exchange,13224,13229;
 		case 3: callsub S_Sphere_Exchange,13227,13230;
@@ -49,7 +49,7 @@ que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
 		case 6: callsub S_Close;
 		}
 	case 3:
-		switch(select("火焰球:风之球:冰冻球:毒球:致盲球:取消")) {
+		switch(select("旧式火焰弹:旧式闪电弹:旧式冰冻弹:旧式毒性弹:旧式暗盲弹:取消")) {
 		case 1: callsub S_Old_Sphere_Exchange,13203,13228;
 		case 2: callsub S_Old_Sphere_Exchange,13204,13229;
 		case 3: callsub S_Old_Sphere_Exchange,13207,13230;
@@ -58,7 +58,7 @@ que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
 		case 6: callsub S_Close;
 		}
 	case 4:
-		switch(select("L型霰弹:M型霰弹:H型霰弹:SH型霰弹:XH型霰弹:取消")) {
+		switch(select("重弹L:重弹M:重弹H:霰弹弹药SH:霰弹弹药XH:取消")) {
 		case 1: callsub S_Slug_Exchange,13210,24;
 		case 2: callsub S_Slug_Exchange,13211,12;
 		case 3: callsub S_Slug_Exchange,13212,8;
@@ -79,37 +79,37 @@ S_Casing:
 	.@pack_count = .@bullet_count / 500;
 
 	if (.@bullet_count < 500 || getequipid(EQI_AMMO) != -1 || BaseClass != Job_Gunslinger) {
-		mes "[Kenny]";
-		mes "嘿～你需要准确数量的物品才能兑换。再去收集一些吧。";
-		mes "你必须有500个以上的^FF0000" + .@bullet_str$ + "^000000，明白吗？兑换前也不要^FF0000装备^000000它们。";
+		mes "[肯尼]";
+		mes "嘿～这项兑换只对神枪手系职业开放，请准备好材料，并先卸下弹药栏中的所有弹药。";
+		mes "你至少需要 500 发^FF0000" + .@bullet_str$ + "^000000，明白吗？兑换前请确保弹药栏^FF0000未装备任何弹药^000000。";
 		close;
 	}
 
-	mes "[Kenny]";
+	mes "[肯尼]";
 	mes "你选择了^FF0000" + .@pack_str$ + "^000000。";
-	mes "需要500发^3131FF" + .@bullet_str$ + "^000000才能制作1个^3131FF" + .@bullet_str$ + "^000000物品，费用为^3131FF500^000000 Zeny。";
+	mes "需要 500 发^3131FF" + .@bullet_str$ + "^000000才能制作 1 个^3131FF" + .@pack_str$ + "^000000，费用为^3131FF500^000000 Zeny。";
 	mes "你想兑换多少？";
 	next;
 	switch(select("全部兑换:只制作1个:取消")) {
 		case 1:
-			mes "[Kenny]";
+			mes "[肯尼]";
 			mes "子弹数量：^3131FF" + .@bullet_count;
-			mes "子弹袋数量：^3131FF" + .@pack_count;
-			mes "所需Zeny：^3131FF" + .@pack_count * 500;
+			mes "弹药筒数量：^3131FF" + .@pack_count;
+			mes "所需 Zeny：^3131FF" + .@pack_count * 500;
 			next;
 			mes "要兑换吗？";
 			next;
 			switch(select("兑换:取消")) {
 				case 1:
 					if (Zeny < .@pack_count * 500) {
-						mes "[Kenny]";
-						mes "嘿～你需要准确数量的Zeny才能兑换。再去收集一些吧。";
+						mes "[肯尼]";
+						mes "嘿～你的 Zeny 不够，请准备好费用再来。";
 						mes "你必须有^FF0000" + .@pack_count * 500 + "^000000，明白吗？";
 						close;
 					}
-					mes "[Kenny]";
+					mes "[肯尼]";
 					mes "完成了。";
-					mes "背包重量超过70%时，子弹袋就无法使用。请注意。";
+					mes "打开弹药筒前，请预留足够的负重和背包空间。";
 					Zeny -= .@pack_count * 500;
 					delitem .@bullet_id, .@pack_count * 500;
 					getitem .@pack_id, .@pack_count;
@@ -119,14 +119,14 @@ S_Casing:
 			}
 		case 2:
 			if (Zeny < 500) {
-				mes "[Kenny]";
-				mes "嘿～你需要准确数量的Zeny才能兑换。再去收集一些吧。";
-				mes "You must have ^FF0000500^000000, ok?";
+				mes "[肯尼]";
+				mes "嘿～你的 Zeny 不够，请准备好费用再来。";
+				mes "你需要 ^FF0000500^000000 Zeny，明白吗？";
 				close;
 			}
-			mes "[Kenny]";
-			mes "All done.";
-			mes "背包重量超过70%时，子弹袋就无法使用。请注意。";
+			mes "[肯尼]";
+			mes "完成了。";
+			mes "打开弹药筒前，请预留足够的负重和背包空间。";
 			Zeny -= 500;
 			delitem .@bullet_id, 500;
 			getitem .@pack_id, 1;
@@ -144,20 +144,20 @@ S_Sphere_Exchange:
 	.@new_count = .@old_count / 10;
 
 	if (.@old_count < 10 || getequipid(EQI_AMMO) != -1 || BaseClass != Job_Gunslinger) {
-		mes "[Kenny]";
-		mes "嘿～你需要准确数量的物品才能兑换。再去收集一些吧。";
-		mes "你必须有10个以上的^FF0000" + .@old_str$ + "^000000，明白吗？兑换前也不要^FF0000装备^000000它们。";
+		mes "[肯尼]";
+		mes "嘿～这项兑换只对神枪手系职业开放，请准备好材料，并先卸下弹药栏中的所有弹药。";
+		mes "你至少需要 10 个^FF0000" + .@old_str$ + "^000000，明白吗？兑换前请确保弹药栏^FF0000未装备任何弹药^000000。";
 		close;
 	}
 
-	mes "[Kenny]";
+	mes "[肯尼]";
 	mes "你选择了^FF0000" + .@old_str$ + "^000000。";
 	mes "需要10个^3131FF" + .@old_str$ + "^000000才能制作1个^3131FF" + .@new_str$ + "^000000。";
 	mes "你想兑换多少？";
 	next;
 	switch(select("全部兑换:只制作1个:取消")) {
 		case 1:
-			mes "[Kenny]";
+			mes "[肯尼]";
 			mes .@old_str$ + "数量：^3131FF" + .@old_count;
 			mes .@new_str$ + "数量：^3131FF" + .@new_count;
 			next;
@@ -165,7 +165,7 @@ S_Sphere_Exchange:
 			next;
 			switch(select("兑换:取消")) {
 				case 1:
-					mes "[Kenny]";
+					mes "[肯尼]";
 					mes "完成了。";
 					delitem .@old_id, .@new_count * 10;
 					getitem .@new_id, .@new_count;
@@ -174,8 +174,8 @@ S_Sphere_Exchange:
 					close;
 			}
 		case 2:
-			mes "[Kenny]";
-			mes "All done.";
+			mes "[肯尼]";
+			mes "完成了。";
 			delitem .@old_id, 10;
 			getitem .@new_id, 1;
 			close;
@@ -191,28 +191,28 @@ S_Old_Sphere_Exchange:
 	.@old_count = countitem(.@old_id);
 
 	if (.@old_count < 1 || getequipid(EQI_AMMO) != -1 || BaseClass != Job_Gunslinger) {
-		mes "[Kenny]";
-		mes "嘿～你需要准确数量的物品才能兑换。再去收集一些吧。";
-		mes "你必须有1个以上的^FF0000" + .@old_str$ + "^000000，明白吗？兑换前也不要^FF0000装备^000000它们。";
+		mes "[肯尼]";
+		mes "嘿～这项兑换只对神枪手系职业开放，请准备好材料，并先卸下弹药栏中的所有弹药。";
+		mes "你至少需要 1 个^FF0000" + .@old_str$ + "^000000，明白吗？兑换前请确保弹药栏^FF0000未装备任何弹药^000000。";
 		close;
 	}
 
-	mes "[Kenny]";
+	mes "[肯尼]";
 	mes "你选择了^FF0000" + .@old_str$ + "^000000。";
 	mes "需要1个^3131FF" + .@old_str$ + "^000000才能制作1个^3131FF" + .@new_str$ + "^000000。";
 	mes "你想兑换多少？";
 	next;
 	switch(select("全部兑换:只制作1个:取消")) {
 		case 1:
-			mes "[Kenny]";
-			mes .@old_str$ + " count: ^3131FF" + .@old_count;
+			mes "[肯尼]";
+			mes .@old_str$ + "数量：^3131FF" + .@old_count;
 			mes .@new_str$ + "数量：^3131FF" + .@old_count;
 			next;
 			mes "要兑换吗？";
 			next;
 			switch(select("兑换:取消")) {
 				case 1:
-					mes "[Kenny]";
+					mes "[肯尼]";
 					mes "完成了。";
 					delitem .@old_id, .@old_count;
 					getitem .@new_id, .@old_count;
@@ -221,8 +221,8 @@ S_Old_Sphere_Exchange:
 					close;
 			}
 		case 2:
-			mes "[Kenny]";
-			mes "All done.";
+			mes "[肯尼]";
+			mes "完成了。";
 			delitem .@old_id, 1;
 			getitem .@new_id, 1;
 			close;
@@ -239,20 +239,20 @@ S_Slug_Exchange:
 	.@new_count = .@count / .@req_count;
 
 	if (.@count < .@req_count || getequipid(EQI_AMMO) != -1 || BaseClass != Job_Gunslinger) {
-		mes "[Kenny]";
-		mes "嘿～你需要准确数量的物品才能兑换。再去收集一些吧。";
-		mes "你必须有" + .@req_count + "个以上的^FF0000" + .@slug_str$ + "^000000，明白吗？兑换前也不要^FF0000装备^000000它们。";
+		mes "[肯尼]";
+		mes "嘿～这项兑换只对神枪手系职业开放，请准备好材料，并先卸下弹药栏中的所有弹药。";
+		mes "你至少需要 " + .@req_count + " 个^FF0000" + .@slug_str$ + "^000000，明白吗？兑换前请确保弹药栏^FF0000未装备任何弹药^000000。";
 		close;
 	}
 
-	mes "[Kenny]";
+	mes "[肯尼]";
 	mes "你选择了^FF0000" + .@slug_str$ + "^000000。";
 	mes "需要" + .@req_count + "个^3131FF" + .@slug_str$ + "^000000才能制作1个^3131FF" + .@new_slug_str$ + "^000000。";
 	mes "你想兑换多少？";
 	next;
 	switch(select("全部兑换:只制作1个:取消")) {
 		case 1:
-			mes "[Kenny]";
+			mes "[肯尼]";
 			mes .@slug_str$ + "数量：^3131FF" + .@count;
 			mes .@new_slug_str$ + "数量：^3131FF" + .@new_count;
 			next;
@@ -260,7 +260,7 @@ S_Slug_Exchange:
 			next;
 			switch(select("兑换:取消")) {
 				case 1:
-					mes "[Kenny]";
+					mes "[肯尼]";
 					mes "完成了。";
 					delitem .@slug_id, .@new_count * .@req_count;
 					getitem 25187, .@new_count;
@@ -269,8 +269,8 @@ S_Slug_Exchange:
 					close;
 			}
 		case 2:
-			mes "[Kenny]";
-			mes "All done.";
+			mes "[肯尼]";
+			mes "完成了。";
 			delitem .@slug_id, .@req_count;
 			getitem 25187, 1;
 			close;
@@ -279,7 +279,7 @@ S_Slug_Exchange:
 	}
 
 S_Close:
-	mes "[Kenny]";
+	mes "[肯尼]";
 	mes "好的。";
 	mes "如果还需要什么，请再回来。";
 	close;

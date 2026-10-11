@@ -22,7 +22,7 @@
 //============================================================
 -	script	RareDiamondMerchant	58,{
 
-	set .@npc$, "[Rare Diamond Merchant]";
+	set .@npc$, "[稀有钻石商人]";
 
 	mes .@npc$;
 	mes "女士们先生们！！！";
@@ -50,7 +50,7 @@
 
 	set .@menu$, "^FF82FF‘17 克拉钻石’^000000？";
 	if (countitem(6024))
-		set .@menu$, .@menu$ + ":把我的 17 克拉钻石换成金币……";
+		set .@menu$, .@menu$ + ":把我的 17 克拉钻石换成 Zeny……";
 
 	switch(select(.@menu$)) {
 	case 1:
@@ -132,6 +132,14 @@
 					mes "正在计算价格和服务费……";
 					mes "501,000,000 Zeny。";
 					mes "金额已确认。";
+					if (Zeny < 501000000) {
+						mes "你的余额不足，交易已取消。";
+						close;
+					}
+					if (!checkweight(6024,1)) {
+						mes "请先为钻石预留足够的负重和物品栏空间。";
+						close;
+					}
 					emotion ET_BLABLA;
 					set Zeny, Zeny - 501000000;
 					getitem 6024, 1;
@@ -207,8 +215,16 @@
 				next;
 				
 				mes .@npc$;
+				if (countitem(6024) < 1) {
+					mes "你已没有可回兑的 17 克拉钻石，交易已取消。";
+					close;
+				}
+				if (Zeny > MAX_ZENY - 499000000) {
+					mes "回兑后会超过你可携带的金币上限，请先将部分金币存入银行。";
+					close;
+				}
 				mes "感谢惠顾。";
-				mes "以后需要^FF82FF‘17 克拉钻石’^000000时，随时带着 5 亿 Zeny 再来。";
+				mes "以后需要^FF82FF‘17 克拉钻石’^000000时，随时再来。记得准备 5 亿 Zeny 和 1,000,000 Zeny 服务费。";
 				emotion ET_THANKS;
 				delitem 6024, 1;
 				set Zeny, Zeny + 499000000;

@@ -35,44 +35,36 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 			mes "你成长了许多！";
 			mes "我真的为你骄傲。";
 		} else {
-			mes "愿你";
-			mes "永远得到祝福……";
+			mes "愿你永远得到祝福……";
 		}
 		close;
 	}
 	switch(tu_acolyte01){
 	case 0:
 		mes "欢迎你，小家伙。";
-		mes "命运一定让";
-		mes "我们相遇，";
-		mes "今天见面。很高兴认识你。";
+		mes "一定是命运让我们今天相遇，很高兴认识你。";
 		next;
 		mes "[普劳平牧师]";
-		mes "但我担心";
-		mes "你可能不知道接下来";
-		mes "作为服事该做什么……";
+		mes "但我担心，你可能不知道作为服事接下来该做什么……";
 		next;
-		switch(select("I'm not worried.:What should I do?")){
+		switch(select("我不担心。:我该做什么？")){
 		case 1:
 			mes "[普劳平牧师]";
 			mes "看到你坚定的眼神让我放心。 遇到困难随时向我求助。 再见，受祝福的孩子。";
 			close;
 		case 2:
 			mes "[普劳平牧师]";
-			mes "普隆德拉东北方有一座修道院";
-			mes "，名为圣卡皮托利纳修道院。 去那里寻找 ^3131FF 阿斯特修女^000000. 她温柔善良，";
-			mes "有很多东西可以教你。";
+			mes "普隆德拉东北方有一座圣卡皮托利纳修道院。去那里寻找^3131FF阿斯特修女^000000吧，她温柔善良，有很多东西可以教你。";
 			next;
 			mes "[普劳平牧师]";
 			mes "我期待看到你在阿斯特修女的指导下成为更优秀的服事。";
 			mes "如果愿意，我可以送你去修道院。";
 			tu_acolyte01 = 1;
 			next;
-			if(select("Go to the convent.:Do not go.")==1){
+			if(select("前往修道院。:暂时不去。")==1){
 				mes "[普劳平牧师]";
 				mes "替我向阿斯特修女问好。";
 				mes "一路平安，小家伙……";
-				mes "Have a safe trip, little one...";
 				close2;
 				warp "prt_monk",30,250;
 				end;
@@ -80,16 +72,11 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 				mes "[普劳平牧师]";
 				mes "如果愿意，我随时可以送你去修道院。";
 				mes "需要帮助时就来找我。";
-				mes "the convent at anytime.";
-				mes "Whenever you feel like";
-				mes "you need help, come to me.";
 				close;
 			}
 		}
 	case 7:
-		mes "你是在寻找教堂里";
-		mes "负责弓箭手事务的人吗？嗯……";
-		mes "at the church? Hmm...";
+		mes "你是在寻找教堂里负责弓箭手事务的人吗？嗯……";
 		next;
 		mes "[普劳平牧师]";
 		mes "啊，他现在在修道院。想在圣卡皮托利纳修道院见莫金斯主教，就从普隆德拉向^3131FF北^000000、^3131FF东^000000、^3131FF东^000000再向^3131FF东^000000走。";
@@ -99,28 +86,21 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 			emotion ET_SURPRISE;
 			mes "哎呀，你似乎很快就适应了服事身份。";
 			mes "训练困难吗？";
-			mes "into your role as an Acolyte.";
-			mes "Was the training difficult?";
 			next;
 			mes "[普劳平牧师]";
 			mes "你有东西要给我？哦，是收据！";
 			mes "我正想知道发生了什么。谢谢你的帮忙。";
-			mes "receipt! I was wondering";
-			mes "what had happened. Thank";
-			mes "you for all of your trouble.";
 			next;
 			mes "[普劳平牧师]";
 			mes "哎呀，哎呀。";
 			mes "有一阵子没见了。";
 			mes "不知道该送你什么？";
-			mes "anything I can give you?";
 			next;
 			mes "[普劳平牧师]";
 			mes "这些怎么样？";
 			mes "我知道不算贵重，但我年轻时当服事时它们帮了我很多。";
-			mes "but they were quite helpful to me when I was a young Acolyte like yourself.";
 			next;
-			if (select("Wand:Flail") == 1)
+			if (select("魔杖:连枷") == 1)
 				getitem 1604,1; //Wand
 			else
 				getitem 1510,1; //Flail
@@ -133,27 +113,21 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 			close;
 		}
 	case 25:
-		mes "现在你必须找到自己的道路，";
-		mes "依靠自身力量成为更优秀的服事。";
-		mes "a better Acolyte using";
-		mes "your own strength.";
+		mes "现在你必须找到自己的道路，依靠自身力量成为更优秀的服事。";
 		next;
 		mes "[普劳平牧师]";
 		mes "我虽担心，但相信你的勇气与善良。愿你永远受到保护和祝福。";
-		mes "you always be blessed.";
 		close;
 	}
 	mes "圣卡皮托利纳修道院的阿斯特修女是个真诚又慈爱的人。";
-	mes "a sincere and loving person.";
 	next;
 	mes "[普劳平牧师]";
 	mes "要我送你去修道院，向这位优秀的老师学习吗？";
 	next;
-	if(select("Yes, please.:No thanks.")==1){
+	if(select("好的，拜托了。:不用，谢谢。")==1){
 		mes "[普劳平牧师]";
 		mes "替我向阿斯特修女问好。";
 		mes "一路平安，小家伙……";
-		mes "Have a safe trip, little one...";
 		close2;
 		warp "prt_monk",30,250;
 		end;
@@ -161,9 +135,6 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 		mes "[普劳平牧师]";
 		mes "如果愿意，我随时可以送你去修道院。";
 		mes "需要帮助时就来找我。";
-		mes "the convent at anytime.";
-		mes "Whenever you feel like";
-		mes "you need help, come to me.";
 	}
 	close;
 }
@@ -174,115 +145,83 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 	mes "[阿丝黛]";
 	switch(tu_acolyte01){
 	case 1:
-		mes "Oh my...";
-		mes "How did such";
-		mes "你都是从阿斯特那里学的吗？太厉害了……";
-		mes "manage to reach";
-		mes "this remote place?";
+		mes "哎呀……你这样年轻的孩子，是怎么来到这么偏远的地方的？";
 		next;
-		if(select("I came for fun.:Priest Praupin suggested I come here.")==1){
+		if(select("我来玩玩。:普劳平牧师建议我来这里。")==1){
 			mes "[阿丝黛]";
-			mes "This convent is always quiet and peaceful. Sitting on the benches and feeling the almighty presense all around you is such a relaxing, meditative experience.";
+			mes "修道院总是宁静祥和。坐在长椅上，感受神的力量环绕四周，能让人放松身心、静心冥想。";
 		}
 		else {
 			mes "[阿丝黛]";
-			mes "Priest Praupin?";
-			mes "He's a very kind man";
-			mes "who's always thinking";
-			mes "about others. So he's";
-			mes "sent you to me for training?";
+			mes "普劳平牧师？他是位总为别人着想的好人。是他让你来找我接受训练的吗？";
 			next;
 			mes "[阿丝黛]";
-			mes "Before we begin,";
-			mes "why don't you rest";
-			mes "for a little bit? You must be tired after traveling all the way here. When you're ready, just come";
-			mes "see me, okay?";
+			mes "开始之前，先休息一下吧。走了这么远，你一定累了。准备好了就来找我，好吗？";
 			tu_acolyte01 = 2;
 		}
 		close;
 	case 2:
-		mes "This castle, Saint Capitolina Convent, is a beautiful and peaceful place that brings";
-		mes "calm to any heart.";
+		mes "圣卡皮托利纳修道院是个美丽而宁静的地方，能让人的内心平静下来。";
 		next;
 		mes "[阿丝黛]";
-		mes "Well then...";
-		mes "Shall we begin";
-		mes "the lessons?";
+		mes "那么……我们开始上课吧？";
 		next;
 		mes "[阿丝黛]";
 		mes ""+strcharinfo(0)+",";
-		mes "have you thought about what kind of Acolyte you would like to become? It's very important that you plan for the future that you want.";
+		mes "你想过成为怎样的服事吗？为自己期待的未来做好规划非常重要。";
 		next;
-		if(select("One that supports others.:One that punishes evil.")==1){
+		if(select("帮助他人的服事。:惩戒邪恶的服事。")==1){
 			mes "[阿丝黛]";
-			mes "Ah, you have such";
-			mes "a generous heart!";
-			mes "Healing the pain of others and supporting your comrades in battle. You must have become an Acolyte in order to become a ^3131FFPriest^000000.";
+			mes "啊，你真有一颗宽厚的心！";
+			mes "治疗他人的伤痛，在战斗中支援同伴。你成为服事，一定是为了将来成为^3131FF牧师^000000吧。";
 			next;
 			mes "[阿丝黛]";
-			mes "Priests have great supportive abilities and the power to battle evil. They use weapons to battle monsters like other fighters, but are ^3131FFforbidden from using blades^000000.";
+			mes "牧师拥有强大的支援能力和对抗邪恶的力量。他们也使用武器与魔物战斗，但^3131FF不能使用刀剑^000000。";
 		} else {
 			mes "[阿丝黛]";
-			mes "We call those who use their fists as tools of divine punishment Monks. They deliver our message";
-			mes "of love and peace in a more... colorful manner.";
+			mes "用拳头施行神圣惩戒的人被称为武僧。他们用更……特别的方式传递爱与和平。";
 			next;
 			mes "[阿丝黛]";
-			mes "But the path towards becoming";
-			mes "a Monk will require great patience and self-restraint. You'll often see Monks training their minds";
-			mes "and bodies throughout the land.";
+			mes "不过，成为武僧需要极大的耐心与自律。你经常能在各地看到他们锻炼身心。";
 		}
 		next;
 		mes "[阿丝黛]";
-		mes "Well, you still have a long way to go. The best thing to do would be to take your time planning and consider your future seriously.";
+		mes "你还有很长的路要走。不妨慢慢规划，认真考虑自己的未来。";
 		next;
 		mes "[阿丝黛]";
-		mes "你认为服事最需要的技能是什么？";
 		mes ""+strcharinfo(0)+"...";
-		mes "What do you think";
-		mes "is the most necessary";
-		mes "skill for an Acolyte?";
+		mes "你认为服事最需要的技能是什么？";
 		next;
-		switch(select("Heal:Aqua Benedicta:Teleport")){
+		switch(select("治愈术:天使之泪:瞬间移动")){
 		case 1:
 			mes "[阿丝黛]";
-			mes "Ah, yes.";
-			mes "^3131FFHeal ^000000 is a basic, yet important skill for people like us. It can recover your own health as";
-			mes "well as that of others.";
+			mes "啊，没错。";
+			mes "^3131FF治愈术^000000是我们基础而重要的技能，既能恢复自己的生命，也能治疗他人。";
 			break;
 		case 2:
 			mes "[阿丝黛]";
-			mes "这是重要技能，但并非所有服事的必修。";
-			mes "normal water and turns it into Holy Water. This is an important skill, but not considered one of the essentials that all Acolytes";
-			mes "should know.";
+			mes "天使之泪能把普通的水变成圣水。它是重要技能，但并非所有服事都必须掌握。";
 			next;
 			mes "[阿丝黛]";
-			mes "In my opinion,";
-			mes "^3131FFHeal^000000 is the most important";
-			mes "skill that an Acolyte can learn. It's a special ability that can save others and defeat the";
-			mes "monsters borne of darkness.";
+			mes "在我看来，^3131FF治愈术^000000是服事最重要的技能。它既能救助他人，也能击败黑暗中诞生的魔物。";
 			break;
 		case 3:
 			mes "[阿丝黛]";
-			mes "^3131FFTeleport^000000 allows you to instantly move to another place. It is a great skill, but it's difficult to consider it necessary for all Acolytes.";
+			mes "^3131FF瞬间移动^000000能让你立即前往另一个地方。这是很棒的技能，但并非每位服事都必须掌握。";
 			next;
 			mes "[阿丝黛]";
-			mes "In my opinion,";
-			mes "^3131FFHeal^000000 is the most important skill that an Acolyte can learn. It's a special ability that can save others and defeat the";
-			mes "monsters borne of darkness.";
+			mes "在我看来，^3131FF治愈术^000000是服事最重要的技能。它既能救助他人，也能击败黑暗中诞生的魔物。";
 			break;
 		}
 		next;
 		mes "[阿丝黛]";
-		mes "You can use the holy power";
-		mes "in the Heal skill to attack Undead monsters (^3131FFShift + Heal^000000). The light of truth protects the righteous and destroys the wicked.";
+		mes "你可以用治愈术中的神圣力量攻击不死魔物（^3131FFShift + 治愈术^000000）。真理之光保护正义，消灭邪恶。";
 		next;
 		mes "[阿丝黛]";
-		mes "汇聚到双手……";
-		mes "strength within your";
-		mes "heart into your hands...";
+		mes "将心中的力量汇聚到双手……";
 		next;
 		mes "[阿丝黛]";
-		mes "HEAL !!";
+		mes "治愈术！";
 		npcskill "AL_HEAL",11,99,60;
 		tu_acolyte01 = 3;
 		if(getskilllv("AL_HEAL") == 0){
@@ -291,37 +230,26 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		}
 		close;
 	case 3:
-		mes "I would like to give you an assignment, but what do you";
-		mes "think? I believe learning the basics is your most important";
-		mes "task for now.";
+		mes "我想给你安排一项练习，你觉得怎么样？我认为你现在最重要的是掌握基础。";
 		next;
 		if(getskilllv("AL_HEAL") < 3){
 			mes "[阿丝黛]";
-			mes "Well then, learn";
-			mes "the Heal skill up to";
-			mes "^3131FFLevel 3 ^000000 and then";
-			mes "return to me.";
+			mes "那么，先把治愈术学到^3131FF3 级^000000，再回来找我吧。";
 			next;
 			mes "[阿丝黛]";
-			mes "我会借给你教会的钉锤，好好使用，完成后^3131FF归还^000000，好吗？";
-			mes "so fight weaker monsters for now.";
-			mes "I will lend you a Mace from the church, so use it well and ^3131FFreturn it^000000 when you're done, alright?";
+			mes "你的力量还不成熟，先与^3131FF较弱的魔物^000000战斗吧。我会借给你教会的钉锤，请好好使用，完成后记得^3131FF归还^000000。";
 			next;
 			mes "[阿丝黛]";
-			mes "First ^0033FFstart fighting monsters around each town such as Prontera^000000. It'd be more convenient to fight the monsters here, but they might be too strong for you right now.";
+			mes "先从^0033FF普隆德拉等城镇周围的魔物^000000开始练习吧。这里虽然方便，但附近的魔物现在可能还太强。";
 			next;
 			mes "[阿丝黛]";
-			mes "I'll change your Save Point so that you will respawn in the convent. Once you've learned Level 3 Heal, you can use a Butterfly Wing to return here.";
+			mes "我会把你的重生点设在修道院。学会 3 级治愈术后，就可以用蝴蝶翅膀回到这里。";
 			next;
 			mes "[阿丝黛]";
-			mes "他很照顾年轻的服事。";
-			mes "and he will send you back here.";
-			mes "He takes special care in helping young Acolytes.";
+			mes "你也可以找普隆德拉教堂的普劳平牧师，他会送你回来。他很照顾年轻的服事。";
 			next;
 			mes "[阿丝黛]";
-			mes "Well then,";
-			mes "I hope you";
-			mes "have a safe trip.";
+			mes "那么，祝你一路平安。";
 			tu_acolyte01 = 4;
 			getitem 1504,1; //Mace
 			getitem 602,1; //Wing_Of_Butterfly
@@ -330,16 +258,10 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		else {
 			mes "[阿丝黛]";
 			mes "哎呀！欢迎回来~";
-			mes "You've already";
-			mes "learned how to";
-			mes "properly use the";
-			mes "Heal skill. Very good!";
+			mes "你已经学会正确使用治愈术了，非常好！";
 			next;
 			mes "[阿丝黛]";
-			mes "I believe you're";
-			mes "ready for me to discuss";
-			mes "the next subject. Now,";
-			mes "let's see... Hmm...";
+			mes "我相信你已经准备好学习下一个内容了。让我想想……嗯……";
 			tu_acolyte01 = 5;
 		}
 		close;
@@ -348,20 +270,16 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 			if(countitem(1504) > 0){// Mace
 				mes "哎呀！欢迎回来~";
 				mes "我看你已经完成任务了。干得好！";
-				mes "I see that you've";
-				mes "completed the assignment";
-				mes "already. Good work!";
 				next;
 				mes "[阿丝黛]";
 				mes "如果不介意，请把钉锤还给我。";
 				mes "你是否携带^FF0000其他带元素属性的钉锤^000000？";
 				mes "如果有，请先存起来。我的视力太差，分辨不出来……呵呵。";
-				mes "I am afraid that my sight is too bad to distinguish the difference...Hoho.";
 				next;
 				mes "[阿丝黛]";
 				mes "现在要我从你的物品栏取走钉锤吗？";
 				next;
-				if(select("Sure.:Let me check again.") == 2) {
+				if(select("好的。:让我再检查一下。") == 2) {
 					mes "[阿丝黛]";
 					mes "好，没问题。";
 					mes "请确保不要携带^FF0000带元素属性的钉锤^000000。";
@@ -382,8 +300,6 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 			else {
 				mes "哎呀！欢迎回来~";
 				mes "我看你已经完成任务了。干得好！";
-				mes "I see that you've";
-				mes "completed the assignment.";
 				next;
 				mes "[阿丝黛]";
 				mes "你一定忘了我借给你的钉锤。请带回来，我好归还教会。";
@@ -392,55 +308,39 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		}
 		mes "学习 3 级治愈的训练很辛苦吗？";
 		mes "请不要气馁。";
-		mes "to learn Level 3 Heal?";
-		mes "Please don't be discouraged.";
 		next;
 		mes "[阿丝黛]";
 		mes "基础是掌握未来高级技能的关键。记住，你的努力和痛苦终将化为荣耀与幸福。";
-		mes "and happiness.";
 		close;
 	case 5:
 		mes "我可以再告诉你一些服事职业的事。初心者必须训练并前往普隆德拉教堂，才能成为一转职业服事。";
 		next;
 		mes "[阿丝黛]";
-		mes "成为职业等级 ^3131FF40^000000 的服事后，你可以转职为更专业的二转职业。";
-		mes "at ^3131FFJob Level 40^000000, you will have the opportunity to change to a more specialized Second Job Class.";
+		mes "服事的职业等级达到^3131FF40 级^000000后，就有机会转职为更专业的^3131FF二转职业^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "When changing";
-		mes "to the Second Jobs,";
-		mes "Acolytes can become ^3131FFPriests^000000,";
-		mes "the apostles of mercy, or ^3131FFMonks^000000";
-		mes "who carry out God's wrath.";
+		mes "服事转为二转职业时，可以选择慈悲的使徒——^3131FF牧师^000000，或施行神圣惩戒的^3131FF武僧^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Priests and Monks can";
-		mes "change to the Transcendent Class";
-		mes "by visiting Valkyrie in Valhalla. Priests can become ^3131FFHigh Priests^000000 and Monks can become ^3131FFChampions^000000.";
+		mes "牧师和武僧可以拜访英灵殿的女武神，走上进阶职业的道路：牧师可以成为^3131FF神官^000000，武僧可以成为^3131FF武术宗师^000000。";
 		next;
 		mes "[阿丝黛]";
 		mes "都明白了吗？呵呵呵~现在不用强记，慢慢就会掌握。";
-		mes "Ho ho ho~ No need to try to remember everything right now. You'll get the hang of it.";
 		tu_acolyte01 = 6;
 		close;
 	case 6:
 		mes ""+strcharinfo(0)+",";
 		mes "我刚收到这封信，但似乎寄错了。";
 		mes "它其实是给加德隆牧师的。";
-		mes "to Priest Gardron.";
 		next;
 		mes "[阿丝黛]";
 		mes "不过我现在有点忙，你能替我把信送给隔壁建筑的加德隆牧师吗？";
-		mes "my work right now, so would you deliver this to Priest Gardron in the next building for me?";
 		tu_acolyte01 = 7;
 		getitem 7148,1; //Mother_Letter
 		close;
 	case 7:
 		mes "请把这封信交给加德隆牧师。";
 		mes "他就在附近的建筑里。";
-		mes "to Priest Gardron for me?";
-		mes "You can find him in the";
-		mes "building nearby.";
 		close;
 	case 9:
 		mes "你代表修道院为加德隆牧师前往"+(checkre(0)?"普隆德拉":"斐扬")+"？一定很辛苦……";
@@ -451,233 +351,158 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		next;
 		mes "[阿丝黛]";
 		mes "现在教你^FF0000祝福^000000。这是传递神之祝福的神圣技能，可暂时提升^3131FFSTR^000000、^3131FFINT^000000、^3131FFDEX^000000并解除^3131FF诅咒^000000。";
-		mes "about ^FF0000Blessing^000000. This is a holy skill that delivers the blessing of God. Blessing will temporarily raise ^3131FFSTR^000000,^3131FFINT^000000,^3131FFDEX^000000 and remove ^3131FFCurse^000000.";
 		next;
 		mes "[阿丝黛]";
-		mes "Like Heal,";
-		mes "祝福实际上会对不死魔物施加诅咒。";
-		mes "against Undead monsters.";
+		mes "和治愈术一样，祝福也能用于对付不死魔物（^3131FFShift + 祝福^000000），削弱它们的能力。";
+		next;
 		mes "[阿丝黛]";
 		mes "学习 5 级^3131FF天使之保护^000000后才能学习祝福。该技能会提高你抵抗不死和恶魔魔物伤害的能力。";
-		mes "place a curse on the Undead.";
 		next;
 		mes "[阿丝黛]";
-		mes "Blessing can be learned after you learn Level 5 ^3131FFDivine Protection^000000. That's the skill that will increase your resistance to damage from Undead and Demon monsters.";
+		mes "能侍奉神明、将祝福带给他人，是莫大的荣幸。这一课就讲到这里。";
 		next;
 		mes "[阿丝黛]";
-		mes "Being able to serve God and";
-		mes "[阿丝黛]";
+		mes "哦，对了！我一直在照顾这里西北方墓地里的一只流浪狗，现在该喂它了。";
 		next;
 		mes "[阿丝黛]";
+		mes "不好意思，能麻烦你替我去喂一下那只狗吗？";
+		next;
 		mes "^3355FF阿丝黛修女给了你一些狗粮。^000000";
-		mes "In the cemetary northwest";
-		mes "of here, I've been taking care of a lost dog. Right now, it's time to feed him.";
-		next;
-		mes "[阿丝黛]";
-		mes "如何驱逐";
-		mes "邪灵？";
-		mes "当然要用和解除诅咒相同的方法……";
-		next;
-		mes "^3355FFSister Asthe gives";
-		mes "you some dog food.^000000";
 		tu_acolyte01 = 10;
 		close;
 	case 11:
 	case 12:
-		mes "How to expel";
-		mes "an evil spirit?";
-		mes "[阿丝黛]";
-		mes "你已经";
-		mes "remove a curse...";
+		mes "如何驱逐邪灵？当然要用和解除诅咒相同的方法……";
 		next;
 		mes "[阿丝黛]";
-		mes "你有东西要交给我？";
-		mes "I believe";
-		mes "this is a test";
-		mes "given to you by God.";
+		mes "啊……我相信这是神给你的考验。";
 		next;
 		mes "[阿丝黛]";
-		mes "You already";
-		mes "想出答案。";
-		mes "仔细思考，";
-		mes "答案自然会出现。";
+		mes "你已经知道答案了。仔细想想，答案自然会出现。";
 		tu_acolyte01 = 12;
 		close;
 	case 13:
-		mes "你记得学会祝福后，";
-		mes "就能学习神圣保护，";
-		mes "对吧？";
-		mes "Blessing, right?";
+		mes "还记得吗？学习天使之保护是学习祝福的前提。";
 		next;
 		mes "[阿丝黛]";
-		mes "还可以学习 ^3131FF天使之击^000000 和 ^3131FF天使之护^000000。";
-		mes "Skill Window, you'll see that you can also learn ^3131FFDemon Bane^000000 and ^3131FFAngelus^000000, depending on your level of Divine Protection.";
+		mes "打开技能窗口，你会看到随着天使之保护等级提升，还可以学习^3131FF天使之击^000000和^3131FF天使之护^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "对我们这些侍奉神明、驱逐邪恶的人很有用。";
+		mes "^3131FF天使之击^000000能提高你对不死和恶魔魔物的攻击力，对驱逐邪恶很有帮助。";
 		next;
 		mes "[阿丝黛]";
-		mes "学会 3 级天使之击后，就能学习 ^3131FF十字驱魔^000000，降低目标不死或幽灵怪物的防御。";
+		mes "学会 3 级天使之击后，就能学习^3131FF十字驱魔^000000，降低目标不死或幽灵魔物的防御。";
 		specialeffect EF_SIGNUM;
 		next;
 		mes "[阿丝黛]";
-		mes "^3131FF天使之赐福^000000 会提高队伍成员（包括你自己）的防御力。效果受 VIT 属性影响，VIT 越高，效果越好。";
+		mes "^3131FF天使之护^000000会提高队伍成员（包括你自己）的防御力，效果与 VIT 属性有关。";
 		specialeffect EF_ANGELUS;
 		next;
 		mes "[阿丝黛]";
-		mes "神圣保护的说明";
-		mes "就到这里。";
-		mes "进入下一课前先休息一下，";
-		mes "好吗？我会在这里等着。";
-		mes "alright? I'll be right here.";
+		mes "这一部分就讲到这里。进入下一课前先休息一下吧，我会在这里等你。";
 		tu_acolyte01 = 14;
 		close;
 	case 14:
-		mes "下一课。";
-		mes "我们来谈谈";
-		mes "^3131FF敏捷提升^000000 技能是";
-		mes "治愈技能树的内容。";
-		mes "part of the Heal skill tree.";
+		mes "下一课来讲治愈术技能树中的^3131FF敏捷提升^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "You can learn Increase AGI after you learn Level 3 ^3131FFHeal^000000. True to its name, Increase AGI temporarily increases the ^3131FFagility (AGI)^000000 of its target.";
+		mes "学会 3 级^3131FF治愈术^000000后，就能学习敏捷提升。它会暂时提高目标的^3131FF敏捷（AGI）^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Increase AGI";
-		mes "^3131FF攻击速度^000000，";
-		mes "以及 ^3131FF移动速度^000000。";
-		mes "^3131FFAttack Speed^000000,";
-		mes "[阿斯特]";
+		mes "敏捷提升还会提高^3131FF闪避率^000000、^3131FF攻击速度^000000和^3131FF移动速度^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Try it for";
-		mes "yourself, okay?";
+		mes "亲自感受一下效果吧！";
 		tu_acolyte01 = 15;
 		npcskill "AL_INCAGI",10,0,0;
 		close;
 	case 15:
-		mes "Once you learn";
-		mes "Level 1 Increase AGI,";
-		mes "[阿斯特]";
-		mes "正如你所料，敏捷下降会减慢敌人，降低其敏捷、移动速度、闪避率和攻击速度。效果与敏捷提升完全相反。";
+		mes "学会 1 级敏捷提升后，就能开始学习^3131FF敏捷下降^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "[阿斯特]";
+		mes "敏捷下降会减慢敌人，降低其敏捷和移动速度，也会影响闪避率与攻击速度。";
 		tu_acolyte01 = 15;
 		next;
 		mes "[阿丝黛]";
-		mes "治愈可以移除异常状态，";
+		mes "治愈术技能树中还有^3131FF治疗术^000000，学会 2 级治愈术后就能学习。";
 		next;
 		mes "[阿丝黛]";
-		mes "对其施加诅咒。";
-		mes "statuses like ^3131FFSilence^000000, ^3131FFCurse^000000,";
-		mes "and ^3131FFStone Curse^000000. When used on Undead monsters, Cure will";
-		mes "[阿斯特]";
+		mes "治疗术能解除^3131FF沉默^000000、^3131FF黑暗^000000和^3131FF混乱^000000等异常状态。";
 		specialeffect EF_CURE;
 		next;
 		mes "[阿丝黛]";
-		mes "For now, don't forget that the Increase AGI, Decrease AGI and";
-		mes "Cure skills can only be learned";
-		mes "by learning the Heal skill.";
+		mes "记住，敏捷提升、敏捷下降和治疗术，都需要先学习治愈术。";
 		tu_acolyte01 = 16;
 		close;
 	case 16:
-		mes "You've been learning";
-		mes "[阿斯特]";
-		mes "成为服事者后，";
-		mes "就可以学习 ^3131FF光猎^000000 技能。";
+		mes "你学得真快，我很高兴我们已经讲到这里了。";
 		next;
 		mes "[阿丝黛]";
-		mes "光猎用于侦测 ^3131FF隐藏的敌人^000000。法师有类似的洞察技能，但只能侦测敌人；光猎会同时侦测并";
-		mes "伤害隐藏的敌人。";
-		mes "learn the ^3131FFRuwach^000000 skill.";
+		mes "成为服事后，就可以学习^3131FF光猎^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "学会光猎后，";
-		mes "就能学习 ^3131FF瞬间移动^000000。瞬间移动会将你立刻传送到地图随机位置或保存点。";
+		mes "光猎能发现^3131FF隐藏的敌人^000000，并对它们造成伤害。法师也有类似的侦测技能。";
 		specialeffect EF_RUWACH;
 		next;
 		mes "[阿丝黛]";
-		mes "After you have learned Ruwach,";
-		mes "[阿斯特]";
+		mes "学会光猎后，就能学习^3131FF瞬间移动^000000，前往地图上的随机位置或自己的重生点。";
 		next;
 		mes "[阿丝黛]";
-		mes "After learning Level 2 Teleport, you can learn ^3131FFWarp Portal^000000 which will allow you to warp to a Memo Point, or saved destination, by consuming ^FF00001 Blue Gemstone^000000.";
+		mes "学会 2 级瞬间移动后，就能学习^3131FF传送之阵^000000。施放时消耗^FF00001 个蓝色宝石^000000，可以前往记忆点。";
 		next;
 		mes "[阿丝黛]";
-		mes "只要记住，瞬间移动和传送之阵";
-		mes "能让侍奉神明的人";
+		mes "精通传送之阵后，可以^3131FF记住三个记忆点^000000。在允许记录的地图上使用^FF0000/memo^000000命令即可记录位置。";
 		next;
 		mes "[阿丝黛]";
-		mes "[阿斯特]";
-		mes "我把家和修道院保存为记忆点，所以只要在工作和家之间来回传送即可。";
-		mes "and Warp Portal allow servants";
-		mes "[阿斯特]";
-		mes "现在……";
+		mes "听起来有点复杂吗？只要记住，瞬间移动和传送之阵能让我们更方便地往返各地。";
 		next;
 		mes "[阿丝黛]";
-		mes "一项技能叫 ^3131FF霸邪之阵^000000。";
+		mes "我把家和修道院记作传送点，这样就能方便地往返了。";
 		next;
 		mes "[阿丝黛]";
-		mes "霸邪之阵能保护 3×3 格、共 9 格范围内的角色免受^FF0000远程攻击^000000。若与弓箭手或其他弓类使用者组队，请小心不要误挡他们的攻击。";
-		mes "The last skill";
-		mes "of the Ruwach tree";
-		mes "[阿斯特]";
+		mes "光猎技能树的最后一项技能叫作^3131FF光之障壁^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Pneuma shields characters";
-		mes "[阿斯特]";
+		mes "光之障壁能保护 3×3 格范围内的角色，阻挡^FF0000远程物理攻击^000000。和弓箭手组队时，要小心别误挡他们的攻击。";
 		specialeffect2 EF_PNEUMA;
 		next;
 		mes "[阿丝黛]";
-		mes "There are some Undead monsters";
-		mes "[阿斯特]";
+		mes "有些不死魔物能够远程攻击。用光之障壁保护自己，再用治愈术攻击它们，是一种应对方法。";
 		next;
 		mes "[阿丝黛]";
-		mes "Now, we've covered some";
-		mes "[阿斯特]";
+		mes "这一课内容比较复杂，你想再听一遍吗？";
 		next;
-		if(select("Listen again.:Move to the next topic.")==1){
+		if(select("再听一遍。:进入下一课。")==1){
 			mes "[阿丝黛]";
-			mes "Alright,";
-			mes "give me a moment";
-			mes "to catch my breath~";
+			mes "好的，让我先喘口气。";
 		} else {
 			mes "[阿丝黛]";
-			mes "送到普隆德拉圣堂！";
-			mes "What a smart Acolyte~";
+			mes "呵呵，真是个聪明的服事！";
 			tu_acolyte01 = 17;
 		}
 		close;
 	case 17:
-		mes "[阿斯特]";
-		mes "有些邮件似乎比其他的更紧急，请按指定顺序投递。";
-		mes "be sent to the Prontera Sanctuary!";
+		mes "[阿丝黛]";
+		mes "哎呀！这些东西都被误送到我这里了，其中一些原本应该送到普隆德拉圣堂。";
 		next;
 		mes "[阿丝黛]";
-		mes "Would you do another favor for me again? Please distribute the mail here and to Prontera Church since";
-		mes "[阿斯特]";
+		mes "能再帮我一个忙吗？请替我把信件和包裹送到修道院各处及普隆德拉教堂，我实在抽不开身。";
 		next;
 		mes "[阿丝黛]";
-		mes "[阿斯特]";
+		mes "有些邮件比较紧急，请务必按我说的顺序投递。";
 		next;
 		mes "[阿丝黛]";
-		mes "The first is a package to a worker in the north. His name is ^3131FFVeiner^000000. The next delivery is for ^3131FFHedrick^000000, who's near the convent entrance.";
+		mes "第一件包裹交给北边的工人^3131FF维纳^000000，第二件交给修道院入口附近的^3131FF赫德里克^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "哦……！";
+		mes "第三件是铁匠公会寄给制作武僧武器和护甲的^3131FF铁匠^000000的包裹。第四件交给隔壁建筑的^3131FF卡文牧师^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "先把一些物品放进卡普拉仓库吧？";
-		mes "Here you go, the letters and packages...";
-		if(MaxWeight - Weight < 2430){
+		mes "最后是交给^3131FF普劳平牧师^000000的收据，就是介绍你来找我的那位牧师。这些信件和包裹就拜托你了。";
+		if(MaxWeight - Weight < 2430 || !checkweight(7183,1,7181,1,1081,2,7148,1)){
 			next;
 			mes "[阿丝黛]";
-			mes "哦……！";
-			mes "You don't seem to";
-			mes "have enough space";
-			mes "to carry everything.";
-			mes "Why don't you put some of your things in Kafra Storage first?";
+			mes "哦……你似乎装不下全部物品。请先把一些东西存进卡普拉仓库，再来领取吧。";
 		} else {
 			tu_acolyte01 = 18;
 			getitem 7183,1; //Sister_Letter
@@ -691,78 +516,63 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 	case 20:
 	case 21:
 	case 22:
-		mes "第三件来自铁匠公会，给制作武僧武器和护甲的 ^3131FF铁匠^000000。第四件送给隔壁建筑的 ^3131FF卡文牧师^000000。";
-		mes "forget the order";
-		mes "[阿斯特]";
-		mes "最后一件是给告诉你我的 ^3131FF普劳平牧师^000000 的收据。好，旅途平安～";
-		mes "and packages. That's";
-		mes "very important.";
+		mes "[阿丝黛]";
+		mes "别忘了投递信件和包裹的顺序，这很重要。";
 		next;
 		mes "[阿丝黛]";
-		mes "The first is a package to a worker in the north. His name is ^3131FFVeiner^000000. The next delivery is for ^3131FFHedrick^000000, who's near the convent entrance.";
+		mes "第一件包裹交给北边的工人^3131FF维纳^000000，第二件交给修道院入口附近的^3131FF赫德里克^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "哦……！";
+		mes "第三件是铁匠公会寄给制作武僧武器和护甲的^3131FF铁匠^000000的包裹。第四件交给隔壁建筑的^3131FF卡文牧师^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Oh, and this last delivery is a receipt for ^3131FFPriest Praupin^000000, the priest who told you about me. Alright, have a safe trip~";
+		mes "最后把收据交给^3131FF普劳平牧师^000000。好，祝你一路平安！";
 		close;
 	case 23:
-		mes "Ah, you're finishing";
-		mes "[阿斯特]";
-		mes "我感觉你已经成为普劳平牧师的好朋友。希望他也一直是你的好朋友。";
+		mes "[阿丝黛]";
+		mes "啊，你把东西都送到了？非常感谢！这么久没见，和普劳平牧师重逢的感觉怎么样？";
 		next;
 		mes "[阿丝黛]";
-		mes "好，那么下次";
+		mes "一生中，我们会结识许多人，与他们相处的回忆会一直留在心里。";
 		next;
 		mes "[阿丝黛]";
-		mes "最后一课。";
+		mes "孤独的时候，让这些回忆照亮心中的阴霾吧。想起在乎的人，能帮助我们抚平艰难时刻的伤痛。";
 		next;
 		mes "[阿丝黛]";
-		mes "Those who can cherish the present can form lasting relationships. They're the first who will embrace happiness in the future. Remember that.";
+		mes "珍惜当下的人，才能建立长久的情谊，也更容易拥抱未来的幸福。请记住这一点。";
 		next;
 		mes "[阿丝黛]";
-		mes "[阿斯特]";
+		mes "我觉得你已经成为普劳平牧师的好朋友了，希望你们的友谊能一直延续。";
 		next;
 		mes "[阿丝黛]";
-		mes "[阿斯特]";
-		mes "像这样把水放进杯子，集中全部神圣能量……然后……";
-		mes "meet, I will give";
-		mes "you my final lesson.";
+		mes "那么，下次见面时，我会教你最后一课。";
 		tu_acolyte01 = 24;
 		close;
 	case 24:
-		mes "The last skill";
-		mes "[阿斯特]";
-		mes "这就是制作 ^3131FF圣水^000000 的方法。记住，使用圣水技能时 ^3131FF双脚必须接触水面^000000。";
+		mes "[阿丝黛]";
+		mes "最后要教你的技能是^3131FF天使之泪^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "呵呵～";
-		mes "好了，我要教你的";
+		mes "水太常见了，以至于我们常常忘记它是自然的根本。它很普通，却不可或缺。";
 		next;
 		mes "[阿丝黛]";
-		mes "但你做得很好。";
+		mes "像这样把水放进杯子，集中全部神圣力量……然后……";
 		next;
 		specialeffect EF_AQUA;
 		mes "[阿丝黛]";
-		mes "Aqua";
-		mes "[阿斯特]";
+		mes "天使之泪！";
 		next;
 		mes "[阿丝黛]";
-		mes "This is how you create ^3131FFHoly Water^000000. Remember that your ^3131FFfeet must be touching water^000000 in order to use the Aqua Benedicta skill.";
+		mes "这样就能制作^3131FF圣水^000000。记住，使用天使之泪时，^3131FF双脚必须接触水面^000000。";
 		next;
 		mes "[阿丝黛]";
-		mes "Ho ho~";
-		mes "Well, that's all";
-		mes "I have to teach you.";
-		mes "It may have been rough,";
-		mes "如果你和别人发生争执，";
+		mes "呵呵，我要教你的内容就到这里了。过程也许不轻松，但你做得很好。";
 		next;
 		mes "[阿丝黛]";
-		mes "Oh! If you go back to the Prontera Sanctuary, I believe you can learn a secret skill. It couldn't hurt to stop by and check.";
+		mes "对了！回到普隆德拉圣堂后，你还可以打听一下秘密技能。不妨去看看。";
 		next;
 		mes "[阿丝黛]";
-		mes "Well, please don't forget what I've taught you. I hope you look back with fondness at our time together amongst these beautiful flowers. May God bless you~";
+		mes "请不要忘记学过的知识。希望将来回想起我们在花丛中的这段时光，你也会感到温暖。愿神保佑你。";
 		tu_acolyte01 = 25;
 		if (checkre(3))
 			getexp 1000,1000;
@@ -771,17 +581,14 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		specialeffect2 EF_CONE;
 		close;
 	}
-	mes "If you get into an";
-	mes "argument with someone,";
-	mes "talk it over while sharing";
-	mes "a nice, warm meal.";
+	mes "[阿丝黛]";
+	mes "如果和别人发生争执，不妨一起吃顿热乎的饭，边吃边谈。";
 	next;
 	mes "[阿丝黛]";
-	mes "那是什么？";
+	mes "暖暖的美食下肚，心中的怒气也许就会像雪一样融化。";
 	next;
 	mes "[阿丝黛]";
-	mes "I'm not joking!";
-	mes "If you happen to get in a fight with someone close to you, this might help. I'm speaking from life experience, you know.";
+	mes "我可不是开玩笑！和亲近的人吵架时，这个办法或许有用。这可是我的人生经验。";
 	close;
 }
 
@@ -789,57 +596,38 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 // Priest Gardron
 //============================================================
 monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
-	mes "请再找找看。";
+	mes "[加德隆牧师]";
 	if(tu_acolyte01 == 7){
 		if(countitem(7148) >= 1){// Mother_Letter
-			mes "二、三……";
-			mes "那是什么？";
-			mes "你有东西要给我？";
+			mes "[加德隆牧师]";
+			mes "嗯？那是什么？你有东西要给我？";
 			next;
 			emotion ET_SURPRISE;
-			mes "请再找找看。";
-			mes "嗯，看起来你一定是忘了带，";
+			mes "[加德隆牧师]";
+			mes "哦！这是家乡母亲寄来的信。谢谢你替我送来，年轻的服事。";
 			next;
-			mes "请再找找看。";
-			mes "I've worried about";
-			mes "her, especially since";
-			mes "she is getting old now, but I'm relieved to hear that her health";
-			mes "is good. We are truly blessed...";
+			mes "[加德隆牧师]";
+			mes "母亲年纪大了，我一直很担心她。听说她身体安好，我总算放心了。我们真是蒙受了祝福。";
 			delitem 7148,1; //Mother_Letter
 			tu_acolyte01 = 8;
 		} else {
-			mes "二、三……";
-			mes "那是什么？";
-			mes "You have something for";
-			mes "非常感谢！";
+			mes "[加德隆牧师]";
+			mes "嗯？你有东西要给我？一封信？";
 			next;
-			mes "请再找找看。";
-			mes "你还保护了";
-			mes "you must have forgotten";
-			mes "愿神保佑你。";
+			mes "[加德隆牧师]";
+			mes "看起来你忘了带，或者把信放在别处了。请再找找看。";
 		}
 		close;
 	} else if(tu_acolyte01 == 8){
 		if(countitem((checkre(0)?939:957)) > 4){// Bee_Sting
-			mes "哦……！";
-			mes "愿神与你同在。";
-			mes "一路小心。";
-			mes "Two... Three...";
+			mes "[加德隆牧师]";
+			mes "哦，你回来了！让我数数……一、二、三……";
 			next;
-			mes "请再找找看。";
-			mes "Thank you very much!";
-			mes "You've done a great job";
-			mes "on behalf of the convent,";
-			mes "not to mention the fact that";
-			mes "you've protected the citizens";
-			mes "of "+(checkre(0)?"Prontera":"Payon")+" from danger.";
+			mes "[加德隆牧师]";
+			mes "非常感谢！你为修道院尽了力，也保护了"+(checkre(0)?"普隆德拉":"斐扬")+"的居民免受危险。";
 			next;
-			mes "请再找找看。";
-			mes "几天前，普隆德拉的一位修女发来电报，";
-			mes "说西部原野的黄蜂伤害了居民，";
-			mes "所以她请求修道院帮忙处理。";
-			mes "我们必须尽快采取行动。";
-			mes "Acolyte training.";
+			mes "[加德隆牧师]";
+			mes "愿你永远得到祝福。现在回到阿丝黛修女那里，继续服事训练吧。";
 			tu_acolyte01 = 9;
 			percentheal 100,100;
 			if (checkre(3))
@@ -851,75 +639,55 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			close;
 		} else {
 			if (checkre(0)) {
-				mes "请处理在^FF0000普隆德拉西部原野^000000肆虐的黄蜂。";
-				mes "它们给居民带来了麻烦。";
-				mes "拜托你了。";
-				mes "so she asked the abbey to help with them.";
+				mes "[加德隆牧师]";
+				mes "几天前，普隆德拉的一位修女来信，说西部原野的黄蜂伤害了居民，希望修道院能派人帮忙。";
 				next;
-				mes "请再找找看。";
-				mes "如果你带回 ^3131FF5 个^000000 ^3131FF蜂针^000000，";
-				mes "我会给你一些帮助。";
-				mes "so it's a big problem.";
+				mes "[加德隆牧师]";
+				mes "可是我们目前也人手不足，真是令人发愁。";
 				next;
-				mes "请再找找看。";
-				mes "....!";
+				mes "[加德隆牧师]";
+				mes "……！";
 				emotion ET_SURPRISE;
 				next;
-				mes "请再找找看。";
-				mes "May I entrust you, acolyte "+strcharinfo(0)+",";
-				mes "主啊，请保护这位服事免受邪恶怪物伤害。";
-				mes "Please dispose of Hornets";
-				mes "which are causing trouble on ^FF0000the western field of Prontera^000000.";
+				mes "[加德隆牧师]";
+				mes "服事"+strcharinfo(0)+"，能把这件急事托付给你吗？请处理在^FF0000普隆德拉西部原野^000000肆虐的黄蜂。";
 				next;
-				mes "请再找找看。";
-				mes "I know that you are undergoing the discipline,";
-				mes "刚才斐扬长老给我捎来消息，";
-				mes "据说斐扬的居民正在遭受僵尸袭击。";
+				mes "[加德隆牧师]";
+				mes "我知道你还在训练中。带回^3131FF5 个^000000^3131FF蜂针^000000作为证明，我会给你一些帮助。";
 				next;
-				mes "请再找找看。";
-				mes "他请求修道院援助，但我们遇到了大问题。";
+				mes "[加德隆牧师]";
+				mes "现在要去普隆德拉吗？";
 				next;
-				if(select("Let's go to Prontera!:I'll be back after doing some preparation.") == 1) {
-					mes "请再找找看。";
-					mes "Okay, I will send you to Prontera.";
-					mes "Please dispose of Hornets and bring me 5 Bee Stings for confirmation.";
-					mes "My Lord, please protect this acolyte from evil monsters.";
+				if(select("前往普隆德拉！:我先准备一下。") == 1) {
+					mes "[加德隆牧师]";
+					mes "好的，我送你去普隆德拉。请处理黄蜂并带回 5 个蜂针。愿神保护你免受邪恶魔物的伤害。";
 					close2;
 					warp "prontera",116,72;
 					end;
 				}
 			} else {
-				mes "斐扬地下城一楼。";
-				mes "the residents of Payon are being attacked by Zombies.";
+				mes "[加德隆牧师]";
+				mes "刚才斐扬长老来信，说当地居民正在遭受僵尸袭击。";
 				next;
-				mes "请再找找看。";
-				mes "带着材料回来时我会帮你。";
+				mes "[加德隆牧师]";
+				mes "他向修道院求援，但我们能处理这件事的人手不够。";
 				next;
-				mes "请再找找看。";
-				mes "....!";
+				mes "[加德隆牧师]";
+				mes "……！";
 				emotion ET_SURPRISE;
 				next;
-				mes "请再找找看。";
-				mes ""+strcharinfo(0)+",";
-				mes "may I ask";
-				mes "很好，很好。";
-				mes "我会把你送到那里，";
-				mes "去斐扬地下城击杀怪物，带回 5 个腐朽的指甲。愿神保佑你……";
+				mes "[加德隆牧师]";
+				mes ""+strcharinfo(0)+"，能请你去斐扬地下城一楼，讨伐骷髅和僵尸吗？";
 				next;
-				mes "请再找找看。";
-				mes "Since you're still in basic training, I will give you some";
-				mes "help if you return with";
-				mes "^3131FF5 Decayed Nails^000000.";
+				mes "[加德隆牧师]";
+				mes "你还在基础训练中。带回^3131FF5 个腐朽的指甲^000000，我会给你一些帮助。";
 				next;
-				mes "请再找找看。";
-				mes "Now then...";
-				mes "愿光明永远";
+				mes "[加德隆牧师]";
+				mes "那么，现在要去斐扬吗？";
 				next;
-				if(select("Let's go to Payon!:Um, let me get ready first.")==1) {
-					mes "请再找找看。";
-					mes "就不会有奇迹……";
-					mes "I shall send you";
-					mes "there to fight the monsters in Payon Dungeon so that you can return with 5 Decayed Nails. May God bless you...";
+				if(select("前往斐扬！:我先准备一下。")==1) {
+					mes "[加德隆牧师]";
+					mes "很好，我送你去斐扬。请讨伐地下城的魔物，并带回 5 个腐朽的指甲。愿神保佑你。";
 					close2;
 					warp "payon",161,58;
 					end;
@@ -928,56 +696,50 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			close;
 		}
 	}
-	mes "May light always";
-	mes "come and illuminate";
-	mes "the darkness. In times";
-	mes "of hardship, remind us";
-	mes "that there are no miracles";
-	mes "without hope...";
+	mes "[加德隆牧师]";
+	mes "愿光明照亮黑暗。艰难时刻，也请记住：没有希望，就不会有奇迹。";
 	close;
 }
 
 // Dog
 //============================================================
 prt_monk,235,245,5	script	Dog#tu	4_DOG01,{
-	mes "威吓地瞪着你。^000000";
-	mes "^CDB79EBark bark!";
-	mes "Woof woof!^000000";
+	mes "[狗]";
+	mes "^CDB79E汪汪！";
+	mes "汪汪！^000000";
 	next;
 	if(tu_acolyte01 == 10){
 		while(1) {
-			switch(select("Give a treat.:Pet the dog.:End actions.")){
+			switch(select("喂食。:摸摸狗。:结束互动。")){
 			case 1:
 				.@dog_food++;
 				if(.@dog_food > 4){
-					mes "威吓地瞪着你。^000000";
-					mes "^CDB79EGrrrrrr...!^000000";
+					mes "[狗]";
+					mes "^CDB79E呜呜……！^000000";
 					emotion ET_FRET;
 					next;
-					mes "^3355FFThe dog grinds";
-					mes "its teeth and glares";
-					mes "at you menacingly.^000000";
+					mes "^3355FF狗咬紧牙齿，凶狠地瞪着你。^000000";
 				} else {
-					mes "威吓地瞪着你。^000000";
-					mes "^CDB79ERoof roof!^000000";
+					mes "[狗]";
+					mes "^CDB79E汪汪！^000000";
 					emotion ET_THROB;
 				}
 				break;
 			case 2:
-				mes "威吓地瞪着你。^000000";
-				mes "^CDB79ERoof roof~^000000";
+				mes "[狗]";
+				mes "^CDB79E汪汪～^000000";
 				emotion ET_THROB;
 				break;
 			case 3:
-				mes "威吓地瞪着你。^000000";
-				mes "^CDB79ERoof roof!^000000";
-				break;
+				mes "[狗]";
+				mes "^CDB79E汪汪！^000000";
+				close;
 			}
 			next;
 		}
 	}
 	mes "["+strcharinfo(0)+"]";
-	mes "So cute~!";
+	mes "真可爱！";
 	close;
 }
 
@@ -987,131 +749,99 @@ prt_monk,243,238,5	script	Boy#boy_voi	HIDDEN_WARP_NPC,5,5,{
 OnTouch_:
 	if(tu_acolyte01 != 10) end;
 	mes "[??]";
-	mes "^333333*Sniff*^000000";
-	mes "Sister...";
+	mes "^333333*抽泣*^000000";
+	mes "姐姐……";
 	close;
 }
 
 // Ill Girl
 //============================================================
 prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
-	mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
+	mes "[生病的女孩]";
 	if(tu_acolyte01 > 12){
 		mes "谢谢你帮助我。";
-		mes "虽然姐姐已经不在我身边，我很难过，";
-		mes "但我应该振作起来，对吧？我会努力的！";
+		mes "虽然姐姐已经不在我身边，我很难过，但我应该振作起来，对吧？我会努力的！";
 		emotion ET_SMILE;
 		close;
 	}
 	mes "姐姐，不要走……";
-	mes "^333333*Sniff* *Cough cough!*^000000";
+	mes "^333333*抽泣，咳咳！*^000000";
 	mes "好、好痛……！";
 	mes "姐……姐……";
 	if(tu_acolyte01 == 10){
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "^333333*Sniff...*^000000";
-		mes "你是来自";
-		mes "修道院的吗？";
+		mes "[生病的女孩]";
+		mes "^333333*抽泣……*^000000";
+		mes "你是从修道院来的吗？";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "...";
-		mes "......";
+		mes "[生病的女孩]";
+		mes "……";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "救救……";
-		mes "我的姐姐……";
+		mes "[生病的女孩]";
+		mes "救救……我的姐姐……";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "^333333*Sniff sniff*";
-		mes "^333333*Cough cough*";
+		mes "[生病的女孩]";
+		mes "^333333*抽泣，咳咳……*^000000";
 		mes "好、好痛……";
 		next;
 		select("你没事吧？");
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "我的姐姐……";
-		mes "她非常漂亮……";
-		mes "也是个非常善良的女孩。";
-		mes "可是有一天……";
+		mes "[生病的女孩]";
+		mes "我的姐姐……她非常漂亮，也是个非常善良的女孩。可是有一天……";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "一个外表恶心的家伙，身上裹着黏糊糊的东西袭击了她。";
-		mes "她中了毒，身体变得越来越冷……^333333*抽泣*^000000";
-		mes "colder and... ^333333*Sniff*^000000";
+		mes "[生病的女孩]";
+		mes "一个外表恶心、浑身裹着黏液的家伙袭击了她。她中了毒，身体变得越来越冷……^333333*抽泣*^000000";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "但全身都很沉重，还一直做噩梦……";
-		mes "my whole body feels heavy and I've been having these nightmares...";
+		mes "[生病的女孩]";
+		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，但全身都很沉重，还一直做噩梦……";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "我也会这样";
-		mes "和姐姐一起死去吗？";
-		mes "sister like this?";
+		mes "[生病的女孩]";
+		mes "^333333*咳咳！*^000000";
+		mes "我也会这样和姐姐一起死去吗？";
 		next;
-		mes "也许你应该仔细看看她到底怎么了。^000000";
-		mes "really sick. Maybe you";
-		mes "should take a better look";
-		mes "你没事吧？";
+		mes "^3355FF这个女孩看起来病得很重。也许你应该仔细看看她到底怎么了。^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Are you alright?";
-		mes "................";
+		mes "你没事吧？";
+		mes "…………";
 		next;
 		specialeffect EF_CURSEATTACK;
 		soundeffectall "_curse.wav",0;
 		emotion ET_HUK;
 		mes "["+strcharinfo(0)+"]";
-		mes "This is....!";
-		mes "A cursed spirit";
-		mes "我会治好你……";
-		mes "一定会的。";
+		mes "这是……！一个受诅咒的灵魂正在折磨这个可怜的女孩！";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'll cure you...";
-		mes "For sure.";
+		mes "我会治好你……一定会的。";
 		tu_acolyte01 = 11;
 	}
 	else if(tu_acolyte01 == 11){
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "It hurts...!";
-		mes "^3355FF你走到女孩身边，把双手放在她背上，施放神圣法术……^000000";
+		mes "[生病的女孩]";
+		mes "好痛……！我……我受不了了……！";
 	}
 	else if(tu_acolyte01 == 12){
 		next;
-		mes "^3355FFYou go towards";
-		mes "治……";
-		mes "治愈术！！";
-		mes "a holy spell...^000000";
+		mes "^3355FF你走到女孩身边，把双手放在她背上，施放神圣法术……^000000";
 		next;
-		switch(select("Heal!:Blessing!:Cure!:Recovery!:Signum Crucis!:B.S Sacramenti!")){
+		switch(select("治愈术！:祝福！:治愈！:状态恢复！:十字驱魔！:圣体降福！")){
 		case 1:
 			mes "["+strcharinfo(0)+"]";
-			mes "H...";
-			mes "Heal !!";
+			mes "治……治愈术！";
 			specialeffect EF_HEAL;
 			next;
-			mes "赐福！";
-			mes "这就是";
-			mes "神的力量吗？";
+			mes "^3355FF什么也没有发生。看来这个技能无法驱逐邪灵。^000000";
 			close;
 		case 2:
 			if(getskilllv("AL_BLESSING") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "B...";
-				mes "祝福！";
+				mes "祝……祝福！";
 				next;
 				if(rand(100) < getskilllv("AL_BLESSING")*10){
 					specialeffect EF_BLESSING;
 					mes "["+strcharinfo(0)+"]";
-					mes "I...";
-					mes "I did it!!";
+					mes "我……我成功了！";
 					next;
-					mes "^3355FFWhat a great";
-					mes "chance for you to";
-					mes "practice your abilities!";
-					mes "It seemed that this good";
-					mes "咦……？";
+					mes "^3355FF这是一次锻炼能力的好机会！帮助女孩驱逐邪灵，也让你的技能更加熟练了。^000000";
 					tu_acolyte01 = 13;
 					if (checkre(3))
 						getexp 0,500;
@@ -1122,71 +852,49 @@ prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
 					break;
 				} else {
 					mes "["+strcharinfo(0)+"]";
-					mes "Huh...?";
-					mes "It's not working...";
-					mes "治、治愈……！";
-					mes "I'm still learning?";
+					mes "咦……？没有效果……也许是因为我还不够熟练？";
 					close;
 				}
 			} else {
-				mes "^3355FFYou didn't learn";
 				mes "^3355FF你还没学会这个技能，暂时无法使用。^000000";
-				mes "not able to use it for now.^000000";
 				close;
 			}
 		case 3:
 			if(getskilllv("AL_CURE") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "C-Cure...!";
+				mes "治、治愈……！";
 				specialeffect EF_CURE;
 				next;
-				mes "赐福！";
-				mes "这就是";
-				mes "神的力量吗？";
+				mes "^3355FF什么也没有发生。看来这个技能无法驱逐邪灵。^000000";
 			}
 			else {
-				mes "^3355FFYou didn't learn";
 				mes "^3355FF你还没学会这个技能，暂时无法使用。^000000";
-				mes "not able to use it for now.^000000";
 			}
 			close;
 		case 4:
-			mes "好累……";
-			mes "我还是回家吧？";
+			mes "^3355FF这不是服事能够使用的技能……^000000";
 			close;
 		case 5:
 			if(getskilllv("AL_CRUCIS") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "身体轻多了……";
-				mes "Signum Crucis!";
+				mes "十、十字驱魔！";
 				specialeffect EF_SIGNUM;
 				next;
-				mes "赐福！";
-				mes "这就是";
-				mes "神的力量吗？";
+				mes "^3355FF什么也没有发生。看来这个技能无法驱逐邪灵。^000000";
 			}
 			else {
-				mes "^3355FFYou didn't learn";
 				mes "^3355FF你还没学会这个技能，暂时无法使用。^000000";
-				mes "not able to use it for now.^000000";
 			}
 			close;
 		case 6:
-			mes "好累……";
-			mes "我还是回家吧？";
+			mes "^3355FF这不是服事能够使用的技能……^000000";
 			close;
 		}
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "你有东西要交给我？";
-		mes "会是什么呢？";
-		mes "So relaxed.";
-		mes "So much lighter...";
+		mes "[生病的女孩]";
+		mes "啊……感觉好舒服，身体轻多了……";
 		next;
-		mes "我当时和她在一起，也病倒了。虽然中毒没那么严重，";
-		mes "哦，比比！你最好了！";
-		mes "do this?";
-		mes "Is this the";
-		mes "power of God?";
+		mes "[生病的女孩]";
+		mes "是你治好了我吗？这就是神的力量吗？";
 	}
 	close;
 }
@@ -1194,44 +902,30 @@ prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
 // Veiner
 //============================================================
 prt_monk,197,228,3	script	Veiner	4_M_ORIENT02,{
-	mes "今天干得真辛苦！";
+	mes "[维纳]";
 	if(countitem(1081) && tu_acolyte01 == 18){// Merchant_Box_1
-		mes "我等不及";
-		mes "再见到她了！";
+		mes "好累……我还是回家吧？";
 		next;
-		mes "今天干得真辛苦！";
-		mes "那是什么？";
-		mes "You have a delivery";
-		mes "好、好累……";
-		mes "你能帮我搬东西吗？";
+		mes "[维纳]";
+		mes "那是什么？你有东西要交给我？会是什么呢？";
 		next;
-		mes "今天干得真辛苦！";
-		mes "This is...!";
-		mes "It's Handmade Chocolate";
-		mes "from my honey bunny!";
-		mes "Oh Bibi! You're the best!";
+		mes "[维纳]";
+		mes "这是……！亲爱的给我做的手工巧克力！哦，比比，你最好了！";
 		specialeffect EF_VALLENTINE;
 		specialeffect EF_HEARTCASTING;
 		next;
-		mes "今天干得真辛苦！";
-		mes "而且效率也很高！";
-		mes "和往常一样干得漂亮，";
+		mes "[维纳]";
+		mes "对了，非常感谢你替我送来。不好意思，一收到亲爱的消息，我就会兴奋得忘乎所以。";
 		emotion ET_THANKS;
 		tu_acolyte01 = 19;
 		delitem 1081,1; //Merchant_Box_1
 	}
 	else if(tu_acolyte01 > 18){
-		mes "这封信是给我的吗？";
-		mes "不知道是谁寄来的。";
-		mes "啊，是妈妈寄来的！";
+		mes "我等不及再见到她了！比比……我爱你！";
 		emotion ET_CHUPCHUP;
 	}
 	else {
-		mes "天啊！";
-		mes "这封信充满了";
-		mes "母爱的力量！";
-		mes "me carry my stuff?";
-		mes "P-please...";
+		mes "好、好累……你能帮我搬东西吗？拜、拜托了……";
 	}
 	close;
 }
@@ -1239,33 +933,24 @@ prt_monk,197,228,3	script	Veiner	4_M_ORIENT02,{
 // Hedrick
 //============================================================
 prt_monk,28,260,5	script	Hedrick	1_M_04,{
-	mes "以后需要什么就来找我，好吗？";
-	mes "^333333*Whew!*^000000";
-	mes "Man I worked hard today!";
-	mes "And so efficiently too!";
-	mes "Awesome job as usual,";
-	mes "Hedrick. You're number one!";
+	mes "[赫德里克]";
+	mes "^333333*呼！*^000000";
+	mes "今天干得真辛苦，而且效率也很高！赫德里克，你和往常一样干得漂亮，你是最棒的！";
 	if(countitem(7148)==0 || tu_acolyte01 != 19) close;// Mother_Letter
 	next;
-	mes "以后需要什么就来找我，好吗？";
-	mes "我向公会订的东西终于到了！";
-	mes "这里太偏远，要保持库存可真不容易。";
-	mes "I wonder who it's from.";
-	mes "Ah, it's from my mom!";
+	mes "[赫德里克]";
+	mes "哦……？这封信是给我的吗？不知道是谁寄来的。啊，是妈妈寄来的！";
 	next;
-	mes "以后需要什么就来找我，好吗？";
-	mes "Whoa...!";
-	mes "Holy cow!";
-	mes "This letter is";
-	mes "full of the energy";
-	mes "of motherly love!";
+	mes "[赫德里克]";
+	mes "哇！天啊！这封信充满了母爱的力量！";
 	specialeffect EF_STEELBODY;
 	next;
-	mes "以后需要什么就来找我，好吗？";
-	mes "愿你";
-	mes "Here, why don't";
-	mes "you have one of the";
-	mes "cookies she sent me?";
+	mes "[赫德里克]";
+	mes "多谢了！来，尝一块妈妈寄给我的饼干吧。";
+	if (!checkweight(538,1)) {
+		mes "请先为饼干预留足够的负重和物品栏空间，再来交信。";
+		close;
+	}
 	delitem 7148,1; //Mother_Letter
 	tu_acolyte01 = 20;
 	getitem 538,1; //Well_Baked_Cookie
@@ -1277,14 +962,11 @@ prt_monk,28,260,5	script	Hedrick	1_M_04,{
 prt_monk,136,261,0	script	Weapon Merchant#tu	HIDDEN_WARP_NPC,9,9,{
 OnTouch_:
 	if(tu_acolyte01 != 20 || countitem(1081) == 0) end;// Merchant_Box_1
-	mes "[Weapon Merchant]";
-	mes "The stuff I requested from the guild is finally here!";
-	mes "希望她能领悟神的教诲，";
+	mes "[武器商人]";
+	mes "我向公会订的东西终于到了！这里太偏远，要保持库存可真不容易。";
 	next;
-	mes "[Weapon Merchant]";
-	mes "Hey, thanks so much!";
-	mes "安息吧……";
-	mes "you need anything, okay?";
+	mes "[武器商人]";
+	mes "真是太感谢了！以后需要什么就来找我，好吗？";
 	delitem 1081,1; //Merchant_Box_1
 	tu_acolyte01 = 21;
 	close;
@@ -1293,282 +975,186 @@ OnTouch_:
 // Karven
 //============================================================
 monk_in,103,176,7	script	Karven	1_M_PASTOR,{
-	mes "我叫格洛丽亚。";
-	mes "想知道我名字的";
+	mes "[卡尔文]";
 	if(tu_acolyte01 == 21 && countitem(7183)){
 		delitem 7183, 1;// Sister_Letter
 		tu_acolyte01 = 22;
-		mes "我父亲是吉芬的铁匠，据说在我出生那天完成了一件惊人的武器。";
+		mes "愿逝者永远安息……";
 		next;
-		mes "我叫格洛丽亚。";
-		mes "I'm saying prayers";
-		mes "for the recently departed.";
-		mes "知道有武器以自己命名确实有点奇怪，";
-		mes "不过我非常喜欢自己的名字。父母总不可能是因为那件武器才给我取名吧？";
+		mes "[卡尔文]";
+		mes "我正在为最近去世的人祈祷。如果没有急事，请改天再来。";
 		next;
-		mes "我叫格洛丽亚。";
-		mes "A letter?";
-		mes "我还是个正在训练的年轻服事，";
-		mes "总是犯错！";
-		mes "What could she want";
-		mes "this time?";
+		mes "[卡尔文]";
+		mes "一封信？哦，一定是妹妹寄来的。这次她又有什么事呢？";
 		next;
-		mes "我叫格洛丽亚。";
-		mes "不过有一件事我做得非常好！";
-		mes "the word of God and returns";
-		mes "to living a good life once";
-		mes "传送门！";
+		mes "[卡尔文]";
+		mes "希望她能领悟神的教诲，重新过上良善的生活。非常感谢你。";
 		close;
 	}
-	mes "另一个在普隆德拉。";
+	mes "愿逝者安息……";
 	close;
 }
 
 // Gloria
 //============================================================
 prt_monk,219,164,3	script	Gloria#tu	4_F_SISTER,{
-	mes "传、传送门！";
+	mes "[格洛丽亚]";
 	if(BaseJob != Job_Acolyte){
-		mes "Hi, hi~";
-		mes "I'm Gloria.";
-		mes "使用传送门需要一颗^3131FF蓝色宝石^000000。";
-		mes "这是要帮我吗？";
-		mes "哇，我好感动！";
+		mes "你好呀～我叫格洛丽亚。想知道我名字背后的有趣故事吗？";
 		next;
-		mes "传、传送门！";
-		mes "My father was a Blacksmith in Geffen, and supposedly he finished an incredible weapon on the day";
-		mes "I was born. He thought it was a sign of good luck, so he named";
-		mes "交给我吧！";
+		mes "[格洛丽亚]";
+		mes "我父亲是吉芬的铁匠，据说在我出生那天完成了一件惊人的武器。他觉得这是好运的征兆，就用我的名字为那件武器命名了！";
 		next;
-		mes "传、传送门！";
-		mes "It's a little strange knowing that there's a weapon named after";
-		mes "you, but I like my name very much. I mean, it's not like my parents named me after that weapon, right?";
+		mes "[格洛丽亚]";
+		mes "知道有武器以自己命名确实有点奇怪，不过我非常喜欢自己的名字。父母总不可能是因为那件武器才给我取名吧？";
 		close;
 	}
 	if(tu_acolyte01 > 0 && tu_acolyte01 < 25){
-		mes "哇……";
-		mes "你都是从阿斯特那里学的吗？太厉害了……";
-		mes "你一定比我强多了，我都不好意思再炫耀把人传送到普隆德拉了。^333333*抽泣*^000000";
-		mes "always making mistakes!";
+		mes "我还是个正在训练的年轻服事，总是犯错！";
 		next;
-		mes "传、传送门！";
-		mes "^333333*Sniff*^000000";
-		mes "And I get scolded";
-		mes "almost all the time...";
-		mes "But there's one thing";
-		mes "that I can do really well!";
+		mes "[格洛丽亚]";
+		mes "^333333*抽泣*^000000";
+		mes "我几乎每天都挨骂……不过有一件事我做得非常好！";
 		next;
-		mes "传、传送门！";
-		mes "新手服事？";
-		mes "看起来你似乎还没学会多少技能？";
-		mes "One of my Memo Points is here";
-		mes "and the other is in Prontera.";
+		mes "[格洛丽亚]";
+		mes "传送门！我学会了 2 级传送门！一个记忆点在这里，另一个在普隆德拉。";
 		next;
-		mes "传、传送门！";
-		mes "Anyway, whenever";
-		mes "you need to, I can";
-		mes "我靠攻击^3131FF绿青蛙^000000训练，";
-		mes "拳头都打出血了！";
+		mes "[格洛丽亚]";
+		mes "你需要的时候，我可以送你去普隆德拉。告诉我一声就行！";
 		next;
-		switch(select("I'm okay for now.:Send me to Prontera.")){
+		switch(select("我暂时不需要。:请送我去普隆德拉。")){
 		case 1:
-			mes "传、传送门！";
-			mes "In order to use";
-			mes "Warp Portal, you need";
-			mes "我靠和那些^3131FF恶心的蟑螂^000000战斗训练。";
-			mes "Is this to help me?";
-			mes "Wow, I'm touched!";
+			mes "[格洛丽亚]";
+			mes "使用传送门需要一颗^3131FF蓝色宝石^000000。你不去是为了替我省下宝石吗？哇，我好感动！";
 			emotion ET_CRY;
 			close;
 		case 2:
-			mes "传、传送门！";
-			mes "我在那座满是树木的城镇地牢里和^3131FF僵尸^000000战斗训练。";
-			mes "Here we go~!!";
-			mes "W-warp Portal!";
+			mes "[格洛丽亚]";
+			mes "交给我吧！准备出发～！传、传送门！";
 			close2;
 			warp "prontera",116,72;
 			end;
 		}
 	}
-	mes "Wow...";
-	mes "祝你好运……";
-	mes "新手。";
-	mes "Prontera anymore. ^333333*Sniff*^000000";
+	mes "哇……你都是从阿丝黛那里学的吗？太厉害了……你一定比我强多了，我都不好意思再炫耀把人传送到普隆德拉了。^333333*抽泣*^000000";
 	close;
 }
 
 // Cleope Verce
 //============================================================
 prt_monk,153,210,3	script	Cleope Verce	4_F_SISTER,{
-	mes "不过，你似乎还要很久";
+	mes "[克莉奥佩·维尔斯]";
 	if(BaseJob == Job_Acolyte){
 		if (JobLevel < 40) {
 			if (BaseLevel < 26) {
-				mes "Oh my.. ";
-				mes "我会和那些^3131FF白鼠^000000、^3131FF大蟑螂^000000战斗～";
-				mes "It doesn't even seem";
-				mes "like you've learned";
-				mes "我会直接走进^3131FF海洋深处^000000寻找魔物。";
+				mes "哎呀，是新手服事吗？看起来你似乎还没学会多少技能？";
 				next;
-				mes "不过，你似乎还要很久";
-				mes "我曾经和^3131FF外表诡异的树木魔物^000000战斗。";
-				mes "In my days";
-				mes "as an Acolyte,";
+				mes "[克莉奥佩·维尔斯]";
+				mes "呵呵～想当年我还是服事的时候……";
 				switch(rand(1,4)){
 				case 1:
-					mes "I trained by attacking";
-					mes "我会和修道院前的^3131FF猴子^000000战斗。";
-					mes "bled from all the punching!";
+					mes "我靠攻击^3131FF绿青蛙^000000训练，拳头都打出血了！";
 					break;
 				case 2:
-					mes "I beat up ^3131FFwooden sticks";
-					mes "那些都是";
-					mes "糟糕的回忆。";
+					mes "我总是痛打那些^3131FF摇摇欲坠的木棍^000000和^3131FF巨大的蘑菇^000000！";
 					break;
 				case 3:
-					mes "I trained by fighting those ^3131FFdisgusting cockroaches^000000.";
+					mes "我靠和那些^3131FF恶心的蟑螂^000000战斗训练。";
 					next;
-					mes "不过，你似乎还要很久";
-					mes "才能成为经验丰富的服事。呵呵～";
-					mes "Actually, that's not such a good memory when I think about it.";
+					mes "[克莉奥佩·维尔斯]";
+					mes "呃……现在想起来，那还真不是什么美好的回忆。";
 					break;
 				case 4:
-					mes "年轻的朋友，祝你好运。";
+					mes "我在那座满是树木的城镇地牢里和^3131FF僵尸^000000战斗训练。";
 					break;
 				}
 				next;
-				mes "不过，你似乎还要很久";
-				mes "You'll have to go through a lot until you reach the point where I'm at right now. Ho ho ho! You still have a looong way to go~";
+				mes "[克莉奥佩·维尔斯]";
+				mes "要达到我现在的程度，你还得经历很多事情。呵呵呵！你还有很长的路要走呢～";
 				next;
 				emotion ET_KIK;
-				mes "不过，你似乎还要很久";
-				mes "Good luck...";
-				mes "Rookie.";
+				mes "[克莉奥佩·维尔斯]";
+				mes "祝你好运……新手。";
 				close;
 			} else if(BaseLevel < 36){
-				mes "Oh my.. ";
-				mes "A young Acolyte?";
-				mes "You seem to have just";
-				mes "started learning your skills?";
+				mes "哎呀，是年轻的服事吗？看起来你才刚开始学习技能？";
 				next;
-				mes "不过，你似乎还要很久";
-				mes "我曾经和^3131FF外表诡异的树木魔物^000000战斗。";
-				mes "When I was";
-				mes "around your age,";
+				mes "[克莉奥佩·维尔斯]";
+				mes "呵呵～我在你这个年纪的时候……";
 				switch(rand(1,5)){
 				case 1:
-					mes "I'd fight with those ^3131FFwhite";
-					mes "mice^000000 and ^3131FFbig roaches^000000~";
+					mes "我会和那些^3131FF白鼠^000000、^3131FF大蟑螂^000000战斗～";
 					break;
 				case 2:
-					mes "I'd walk straight into the";
-					mes "^3131FFdepths of the ocean^000000 to find monsters to hunt.";
+					mes "我会直接走进^3131FF海洋深处^000000寻找魔物。";
 					break;
 				case 3:
-					mes "I used to fight ^3131FFcreepy";
-					mes "looking tree monsters^000000.";
+					mes "我曾经和^3131FF外表诡异的树木魔物^000000战斗。";
 					break;
 				case 4:
-					mes "I used to fight hundreds";
-					mes "of ^3131FFuuuuuug~ly orcs^000000.";
+					mes "我曾经和成百上千只^3131FF丑陋的兽人^000000战斗。";
 					break;
 				case 5:
-					mes "I would fight the ^3131FFmonkeys";
-					mes "in front of the convent^000000.";
+					mes "我会和^3131FF修道院前的猴子^000000战斗。";
 					break;
 				}
 				next;
-				mes "不过，你似乎还要很久";
-				mes "Those were";
-				mes "bad memories.";
-				mes "If someone told me";
-				mes "to go there again,";
-				mes "I'd go insane.";
+				mes "[克莉奥佩·维尔斯]";
+				mes "那些都是糟糕的回忆。要是有人让我再去一次，我一定会发疯。";
 				next;
-				mes "不过，你似乎还要很久";
-				mes "Still, it seems you";
-				mes "have a long way to go";
-				mes "until you become a well";
-				mes "experienced Acolyte. Ho ho~";
+				mes "[克莉奥佩·维尔斯]";
+				mes "不过，你似乎还要很久才能成为经验丰富的服事。呵呵～";
 				next;
 				emotion ET_KIK;
-				mes "不过，你似乎还要很久";
-				mes "祝你好运，";
-				mes "young friend.";
+				mes "[克莉奥佩·维尔斯]";
+				mes "年轻的朋友，祝你好运。";
 				close;
 			} else if(BaseLevel < 46){
-				mes "Well, well, well~";
-				mes "你好，年轻的服事。";
-				mes "你还有点";
-				mes "稚嫩，但我想你";
-				mes "也不算真正的新手了。";
+				mes "哎呀，你好，年轻的服事。你还有点稚嫩，不过我想你也不算真正的新手了。";
 				next;
-				mes "不过，你似乎还要很久";
-				mes "我记得我在你这个年纪时，";
-				mes "曾经";
+				mes "[克莉奥佩·维尔斯]";
+				mes "我记得在你这个年纪时……";
 				switch(rand(1,6)){
 				case 1:
-					mes "总是在^3131FF吉芬西边^000000的城堡里和这些^3131FF可怕的恶灵^000000战斗。我真不知道自己怎么活下来的";
-					mes "all that?";
+					mes "我总是在^3131FF吉芬西边^000000的城堡里和那些^3131FF可怕的恶灵^000000战斗，真不知道自己是怎么活下来的。";
 					break;
 				case 2:
-					mes "总是和这些^3131FF可爱的";
-					mes "波利^000000玩耍！";
+					mes "我总是和那些^3131FF可爱的波利^000000玩耍！";
 					next;
-					mes "不过，你似乎还要很久";
+					mes "[克莉奥佩·维尔斯]";
 					mes "不过还是得小心它们的攻击。那时它们很强！";
 					break;
 				case 3:
-					mes "和^3131FF会射击的鬼魂^000000战斗！它们确实吓人，但有光之障壁的话打败它们很容易！";
+					mes "我和^3131FF会射击的鬼魂^000000战斗！它们确实吓人，但有光之障壁的话，打败它们很容易！";
 					break;
 				case 4:
-					mes "几乎每天都在吉芬西边的城堡里痛打那些^3131FF会射箭的恶魔^000000。那时它们真多。";
+					mes "我几乎每天都在吉芬西边的城堡里痛打那些^3131FF会射箭的恶魔^000000。那时它们真多。";
 					break;
 				case 5:
-					mes "和这些^3131FF肥猪^000000战斗。它们很强，总让我吃尽苦头。";
+					mes "我和那些^3131FF肥猪^000000战斗。它们很强，总让我吃尽苦头。";
 					break;
 				case 6:
-					mes "痛打这些^3131FF活生生的";
-					mes "沙漠沙块^000000。我发誓，它们是活的！";
+					mes "我痛打那些^3131FF活生生的沙漠沙块^000000。我发誓，它们是活的！";
 					break;
 				}
 				next;
-				mes "不过，你似乎还要很久";
-				mes "^333333*Sigh*^000000";
-				mes "啊，回忆啊～";
-				mes "当然，如果能";
-				mes "有机会重新来过，";
-				mes "我也不知道";
-				mes "会不会接受……";
+				mes "[克莉奥佩·维尔斯]";
+				mes "^333333*叹气*^000000";
+				mes "啊，回忆啊～当然，如果有机会重新来过，我也不知道自己会不会接受……";
 				next;
-				mes "不过，你似乎还要很久";
-				mes "总之，你还有";
-				mes "许多冒险";
-				mes "在等着你。希望";
-				mes "你在还是服事时";
-				mes "留下许多美好";
-				mes "回忆。";
+				mes "[克莉奥佩·维尔斯]";
+				mes "总之，还有许多冒险在等着你。希望你在还是服事的时候，留下许多美好的回忆。";
 				next;
 				emotion ET_KIK;
-				mes "不过，你似乎还要很久";
-				mes "祝你好运，";
-				mes "年轻的朋友～";
+				mes "[克莉奥佩·维尔斯]";
+				mes "年轻的朋友，祝你好运～";
 				close;
 			}
 		}
-		mes "嗯？";
-		mes "看来你作为服事";
-		mes "学到了很多！";
-		mes "虽然不想承认，";
-		mes "但你已经优秀到让我";
-		mes "不能再叫你新手了～";
+		mes "嗯？看来你作为服事学到了很多！虽然不想承认，但你已经优秀到让我不能再叫你新手了～";
 		close;
 	}
-	mes "你好你好。";
-	mes "今天阳光";
-	mes "很温暖，";
-	mes "不是吗？天气";
-	mes "真舒服……";
+	mes "你好你好。今天阳光很温暖，不是吗？天气真舒服……";
 	close;
 }
 // Range NPC
@@ -1580,12 +1166,10 @@ OnTouch_:
 		case 4:
 		case 10:
 		case 25:
-			mes "[Sound by Window]";
-			mes "...";
+			mes "[窗边的声音]";
+			mes "……";
 			next;
-			mes "^3355FF那扇窗传来某种";
-			mes "声音……^000000";
-			mes "yonder window...^000000";
+			mes "^3355FF那扇窗传来某种声音……^000000";
 			close;
 		}
 	}
@@ -1600,169 +1184,110 @@ prt_monk,223,123,3	script	Eavesdrop#tu	HIDDEN_NPC,{
 		close;
 	}
 	if(tu_acolyte01 > 3 && tu_acolyte01 < 10){
-		mes "[Voices from Window]";
-		mes "^A68064Sir...";
-		mes "宫殿里似乎";
-		mes "出了问题。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064先生……宫殿里似乎出了问题。^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600怎么了？";
-		mes "发生什么事了吗？^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600怎么了？发生什么事了吗？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064我不确定。";
-		mes "我说不清楚，但官员们似乎在害怕什么。也许";
-		mes "发生了某种事故？^000000";
+		mes "[窗边的声音]";
+		mes "^A68064我不确定。我说不清楚，但官员们似乎在害怕什么。也许发生了某种事故？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600嗯，我也不知道。";
-		mes "Why don't we just wait and see";
-		mes "会发生什么？真相总会水落石出。^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600嗯，我也不知道。不如静观其变？真相总会水落石出。^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064好的，先生。";
-		mes "不过，我还是忍不住";
-		mes "感到不安……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064好的，先生。不过，我还是忍不住感到不安……^000000";
 	}
 	else if(tu_acolyte01 > 9 && tu_acolyte01 < 25){
-		mes "[Voices from Window]";
-		mes "^A68064我听宫殿里的一位";
-		mes "官员说，";
-		mes "他们正在请求";
-		mes "我们进行驱魔。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064我听宫殿里的一位官员说，他们正在请求我们进行驱魔。^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600驱魔？";
-		mes "是僵尸袭击了";
-		mes "王国吗？^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600驱魔？是僵尸袭击了王国吗？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064不，我不认为";
-		mes "是那样，但";
-		mes "他们正在请求";
-		mes "一位技艺高超的圣职者……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064不，我不认为是那样，但他们正在请求一位技艺高超的圣职者……^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600嗯……";
-		mes "我想知道";
-		mes "到底发生了什么……^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600嗯……我想知道到底发生了什么……^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064一有消息";
-		mes "我就";
-		mes "通知你。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064一有消息我就通知你。^000000";
 		next;
-		mes "[Voices from Window]";
+		mes "[窗边的声音]";
 		mes "^CD6600谢谢……^000000";
 	}
 	else if(tu_acolyte01 > 24){
-		mes "[Voices from Window]";
+		mes "[窗边的声音]";
 		mes "^A68064……先生，你知道^855E42盖波格家族的诅咒^A68064吗？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600盖波格？";
-		mes "你是说";
-		mes "王室";
-		mes "受到了诅咒？^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600盖波格？你是说王室受到了诅咒？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064是的……";
-		mes "这可能就是为什么";
-		mes "特里斯坦三世国王陛下";
-		mes "和他的廷臣最近";
-		mes "行为古怪……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064是的……这可能就是为什么特里斯坦三世国王陛下和他的廷臣最近行为古怪……^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064你看……";
-		mes "耶梦加得据说";
-		mes "在符文米德加尔特建立之初";
-		mes "诅咒了盖波格家族。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064你看……耶梦加得据说在符文米德加尔特建立之初诅咒了盖波格家族。^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600耶梦加得？！";
-		mes "我们怎么可能";
-		mes "对抗它的魔法？";
-		mes "连阿斯加德人";
-		mes "都无法应对";
-		mes "巨蛇的力量！^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600耶梦加得？！我们怎么可能对抗它的魔法？连阿斯加德人都无法应对巨蛇的力量！^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064太可怕了……";
-		mes "因为诅咒，";
-		mes "盖波格家族每一代的长子据说都会早逝……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064太可怕了……因为诅咒，盖波格家族每一代的长子据说都会早逝……^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600你是说所有第一王子和公主";
-		mes "至今都死了吗？如果是真的，传出去会惹麻烦……^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600你是说所有第一王子和公主至今都死了吗？如果是真的，传出去会惹麻烦……^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600宫殿里发生的就是这个吗？";
-		mes "大王子最近去世了吗？^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600宫殿里发生的就是这个吗？大王子最近去世了吗？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064不……";
-		mes "其实是第二位";
-		mes "大王子";
-		mes "去世，不是第一位。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064不……其实是第二位大王子去世，不是第一位。^000000";
 		next;
-		mes "[Voices from Window]";
+		mes "[窗边的声音]";
 		mes "^CD6600什么！？^000000";
 		next;
-		mes "[Voices from Window]";
+		mes "[窗边的声音]";
 		mes "^A68064小、小声点！^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600那么……";
-		mes "是怎么发生的？";
-		mes "是事故吗？^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600那么……是怎么发生的？是事故吗？^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064他们还没确定";
-		mes "确切死因。但宫廷官员想让我们看看能否彻底解除耶梦加得的诅咒。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064他们还没确定确切死因。但宫廷官员想让我们看看能否彻底解除耶梦加得的诅咒。^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600耶梦加得的诅咒？";
-		mes "这么多年后还能解除吗？如此古老的";
-		mes "魔法可能对我们教会的任何人来说";
-		mes "都太强大了……^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600耶梦加得的诅咒？这么多年后还能解除吗？如此古老的魔法可能对我们教会的任何人来说都太强大了……^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064这个任务无比艰巨！";
-		mes "如果失败，我们会失去民众的信任。教会和王室真的需要奇迹……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064这个任务无比艰巨！如果失败，我们会失去民众的信任。教会和王室真的需要奇迹……^000000";
 		next;
-		mes "[Voice from Window]";
+		mes "[窗边的声音]";
 		mes "^CD6600教会怎么回应？真的要派人解除连阿斯加德人都难以对付的怪物诅咒吗？^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064我不太确定。";
-		mes "可能拥有";
-		mes "所需技能的人";
-		mes "年纪太大。不过，他们";
-		mes "还没有放弃希望……^000000";
+		mes "[窗边的声音]";
+		mes "^A68064我不太确定。可能拥有所需技能的人年纪太大。不过，他们还没有放弃希望……^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064这件事关系王室声誉和王国稳定，因此大家都非常小心";
-		mes "地保持沉默。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064这件事关系王室声誉和王国稳定，因此大家都非常小心地保持沉默。^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064我先回王国，有其他消息会告诉你。不过大家都必须谨慎，可能要过";
-		mes "一阵子才会有新消息。^000000";
+		mes "[窗边的声音]";
+		mes "^A68064我先回王国，有其他消息会告诉你。不过大家都必须谨慎，可能要过一阵子才会有新消息。^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^CD6600非常感谢。";
-		mes "我会等着";
-		mes "你的消息。^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600非常感谢。我会等着你的消息。^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^CD6600哦，天啊。";
-		mes "请驱散逼近符文米德加尔特王国的黑暗。请用你的光与慈悲保护我们。^000000";
+		mes "[窗边的声音]";
+		mes "^CD6600哦，天啊。请驱散逼近符文米德加尔特王国的黑暗。请用你的光与慈悲保护我们。^000000";
 	}
 	close;
 }
 
 sec_in02,17,156,3	script	1st Job Quest Reset	4_F_JOB_BLACKSMITH,{
 	callfunc "F_GM_NPC";
-	mes "[1st Job Quest]";
+	mes "[一转职业任务]";
 	mes "你想重置哪项？";
 	next;
 	switch(select("剑士:商人:弓箭手:服事:盗贼:法师")) {

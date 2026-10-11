@@ -29,7 +29,7 @@ te_alde_gld,215,184,4	duplicate(TE Potion Merchant#prt)	TE Potion Merchant#alde	
 		mes "不过，租赁装备^4d4dff在 TE 城战区域以外不会生效。^000000";
 		next;
 		mes "[装备租赁管理员]";
-		mes "^4d4dff角色达到 40 级后才能租用装备。^000000";
+		mes "^4d4dff这些装备需要角色达到 40 级才能穿戴。^000000";
 		mes "请选择需要的装备。";
 		next;
 		while(1) {
@@ -135,6 +135,10 @@ S_Rent:
 		else {
 			mes "请收下"+ getarg(.@index+1) +".";
 			mes "^4d4dff这件装备的租用期限为 24 小时^000000，到期后会自动消失。";
+			if (!checkweight(getarg(.@index),1)) {
+				mes "请先为所选租赁装备预留足够的负重和物品栏空间。";
+				close;
+			}
 			rentitem getarg(.@index),86400;
 		}
 		mes "还需要其他装备吗？";

@@ -12,62 +12,55 @@
 //= 1.2 Cleaning. [Euphy]
 //============================================================
 
-gonryun,180,118,4	script	Iron man#gnp	85,{
+gonryun,180,118,4	script	大力士#gnp	85,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 等一下！！ -";
-		mes "- 你现在携带了 -";
-		mes "- 太多物品。 -";
-		mes "- 请减轻负重后 -";
-		mes "- 再试一次。 -";
+		mes "- 你现在携带了太多物品。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	if (BaseJob == Job_Novice) {
-		mes "[Songmoodoo]";
+		mes "[宋木杜]";
 		mes "儿童不得进入这里。";
 		close;
 	}
 	if (in_battle == 3) set in_battle,1;
 	if (in_battle < 1) {
-		mes "[Songmoodoo]";
-		mes "嘿嘿~这可不是";
-		mes "每天都能看到的东西。";
+		mes "[宋木杜]";
+		mes "嘿嘿~这可不是每天都能看到的东西。";
 		mes "哦~你看起来很强！";
 		mes "想试试吗？";
 		next;
 		switch(select("为什么不？:这是什么？:不用了。")){
 		case 1:
-			mes "[Songmoodoo]";
+			mes "[宋木杜]";
 			mes "哈哈~我就知道你会试。";
-			mes "如果你能把它举起来，";
-			mes "我就告诉你有趣的事。";
+			mes "如果你能把它举起来，我就告诉你有趣的事。";
 			mes "准备好了吗？";
 			next;
-			mes "^0000FF宋木杜指着一块石头，";
-			mes "让你把它举起来。";
+			mes "^0000FF宋木杜指着一块石头，让你把它举起来。";
 			if (BaseJob < Job_Knight) callsub L_Lifting,690;
 			else if (BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Merchant || BaseJob == Job_Monk) callsub L_Lifting,1100;
 			else callsub L_Lifting,730;
 			break;
 		case 2:
-			mes "[Songmoodoo]";
+			mes "[宋木杜]";
 			mes "没什么大不了的。";
-			mes "如果你相信自己很强，";
-			mes "这可能是体验";
-			mes "新事物的好机会。想试试吗？";
+			mes "如果你相信自己很强，这可能是体验新事物的好机会。想试试吗？";
 			break;
 		case 3:
-			mes "[Songmoodoo]";
+			mes "[宋木杜]";
 			mes "我想还是算了……";
 			emotion ET_HNG;
 			break;
 		}
 	} else if (in_battle == 1) {
-		mes "[Songmoodoo]";
+		mes "[宋木杜]";
 		mes "很高兴再次见到你！";
 		mes "要出发吗？";
 		next;
 		if (select("好的:下次吧") == 1) {
-			mes "[Songmoodoo]";
+			mes "[宋木杜]";
 			mes "很好！哈哈。";
 			mes "我喜欢你的自信。";
 			mes "祝你好运~";
@@ -75,12 +68,12 @@ gonryun,180,118,4	script	Iron man#gnp	85,{
 			warp "gon_test",53,6;
 			end;
 		} else {
-			mes "[Songmoodoo]";
+			mes "[宋木杜]";
 			mes "好吧……";
 			mes "那下次见。";
 		}
 	} else {
-		mes "[Songmoodoo]";
+		mes "[宋木杜]";
 		mes "你从那里逃跑了？";
 		mes "看来你还不够强！";
 		mes "我再给你一次机会。";
@@ -97,45 +90,42 @@ L_Lifting:
 		getitem 7049, getarg(0); // Stone
 		next;
 		emotion ET_BEST;
-		mes "[Songmoodoo]";
+		mes "[宋木杜]";
 		mes "哇~太棒了~";
-		mes "下次见到你时";
-		mes "我带你去个好地方。";
+		mes "下次见到你时，我带你去个好地方。";
 		mes "回头见~";
 	} else {
 		mes "看起来对你来说太重了。^000000";
 		next;
-		mes "[Songmoodoo]";
+		mes "[宋木杜]";
 		mes "你的训练还不够。";
 		mes "多练习后再回来。";
 	}
 	return;
 }
 
-gon_test,50,14,4	script	Administrator#gnp	780,{
-	mes "[Administrator]";
+gon_test,50,14,4	script	管理员#gnp	780,{
+	mes "[管理员]";
 	if (BaseJob == Job_Novice) {
 		mes "儿童不得进入这里。";
 		close;
 	}
 	if ($@in_battle) {
-		mes "抱歉，战斗场地";
-		mes "现在有人使用。";
+		mes "抱歉，战斗场地现在有人使用。";
 		mes "请稍后再试。";
 		close;
 	}
 	mes "准备好了吗？";
 	mes " ";
-	mes "记住，战斗需要支付";
-	mes "500 Zeny。";
+	mes "记住，战斗需要支付 500 Zeny。";
 	next;
 	if (select("是的，让我战斗！:请稍等。") == 2) {
-		mes "[Administrator]";
+		mes "[管理员]";
 		mes "好的，下次见。";
 		close;
 	}
 	if (Zeny < 500) {
-		mes "[Administrator]";
+		mes "[管理员]";
 		mes "抱歉，你没有足够的 Zeny。";
 		close;
 	}
@@ -143,21 +133,20 @@ gon_test,50,14,4	script	Administrator#gnp	780,{
 	set in_battle,1;
 	warp "gon_test",42,86;
 	set $@in_battle,1;
-	setnpctimer 0,"Summoner#gnp";
-	startnpctimer "Summoner#gnp";
+	setnpctimer 0,"召唤师#gnp";
+	startnpctimer "召唤师#gnp";
 	end;
 }
 
-gon_test,42,89,4	script	Summoner#gnp	774,{
-	mes "[SongYeunWoo]";
+gon_test,42,89,4	script	召唤师#gnp	774,{
+	mes "[宋延宇]";
 	if (in_battle == 3) {
 		mes "登记后请再回来。";
 		close;
 	} else if (in_battle == 2) {
 		mes "你已经进行过一场比赛。";
 		mes "一次只能进行一场比赛。";
-		mes "想和其他怪物比赛的话，";
-		mes "请重新进入。";
+		mes "想和其他怪物比赛的话，请重新进入。";
 		close;
 	}
 	mes "欢迎。";
@@ -168,36 +157,36 @@ gon_test,42,89,4	script	Summoner#gnp	774,{
 	for (set .@i,1; .@i < 6; set .@i, .@i+1)
 		set .@gnpGroupMob$, .@gnpGroupMob$ + ":" + .gnpMobsName$[(.@gnpGroup-1)*6 + .@i];
 	set .@gnpMob, select(.@gnpGroupMob$);
-	mes "[SongYeunWoo]";
+	mes "[宋延宇]";
 	mes "战斗开始！";
 	close2;
 	set in_battle,2;
-	if (getnpctimer(0) < 180000) monster "gon_test",56,86,.gnpMobsName$[(.@gnpGroup-1)*6 + .@gnpMob - 1],.gnpMobsId[(.@gnpGroup-1)*6 + .@gnpMob - 1],1,"Summoner#gnp::OnGnpMobDead";
+	if (getnpctimer(0) < 180000) monster "gon_test",56,86,.gnpMobsName$[(.@gnpGroup-1)*6 + .@gnpMob - 1],.gnpMobsId[(.@gnpGroup-1)*6 + .@gnpMob - 1],1,"召唤师#gnp::OnGnpMobDead";
 	end;
 OnInit:
 	initnpctimer;
 	stopnpctimer;
-	setarray .gnpMobsName$[0],"皮带","西托毒素","献血证书","塔兰图拉","当朗拳","沙漠之牙";
+	setarray .gnpMobsName$[0],"吸血蝙蝠","毒魔菇","红蝙蝠","艾斯蜘蛛","螳螂","沙漠之狼";
 	setarray .gnpMobsId[0],1419,1428,1434,1430,1457,1432;
-	setarray .gnpMobsName$[6],"野猪骷髅","食人熊","矿工","斗犬","美人鱼公主","独子";
+	setarray .gnpMobsName$[6],"邪骸兽人","雪熊","邪骸矿工","黑狐","人鱼","妖道";
 	setarray .gnpMobsId[6],1462,1442,1469,1460,1425,1472;
-	setarray .gnpMobsName$[12],"三叶虫","猎犬","胡桃夹子","海马","JAKK","尸体";
+	setarray .gnpMobsName$[12],"三叶虫","犬妖弓箭手","玩具士兵","马克","南瓜先生","绿腐尸";
 	setarray .gnpMobsId[12],1454,1455,1443,1426,1436,1423;
-	setarray .gnpMobsName$[18],"玛尔杜克","洋葱茎","蠕虫","自动人偶","卖火柴的女孩","红色邪恶";
+	setarray .gnpMobsName$[18],"马尔杜克","灰森灵","艾吉欧蜈蚣","傀儡娃娃","魔灵娃娃","赤苍蝇";
 	setarray .gnpMobsId[18],1458,1440,1429,1459,1444,1422;
-	setarray .gnpMobsName$[24],"娜迦","霉菌","追踪导弹","阿勇","阿比龙","细菌";
+	setarray .gnpMobsName$[24],"蛇女伊丝","朽魔","黑蛇","毕帝特地龙","毕帝特飞龙","小恶魔";
 	setarray .gnpMobsId[24],1421,1481,1424,1465,1466,1433;
-	setarray .gnpMobsName$[30],"胜利系统","胖弓箭手","小黑山羊","变态者","宝箱","新手";
+	setarray .gnpMobsName$[30],"梦魇","兽人弓箭手","小巴风特","邪恶使者","邪恶箱","九尾狐";
 	setarray .gnpMobsId[30],1427,1473,1431,1446,1474,1471;
-	setarray .gnpMobsName$[36],"飓风","外部野猪","迷宫地主","怨恨骑士","怨恨弓箭手","蝶精";
+	setarray .gnpMobsName$[36],"风魔巫师","兽人战士长","米洛斯","幽灵剑士","幽灵弓箭手","邪骸战俘";
 	setarray .gnpMobsId[36],1450,1439,1461,1467,1453,1479;
-	setarray .gnpMobsName$[42],"嘴唇","温迪戈","E 卡","触手怪","肌肉警报器","恶魔十字";
+	setarray .gnpMobsName$[42],"人鱼士兵","恶灵","裘卡","梅纳海葵","钟怪","暗神官";
 	setarray .gnpMobsId[42],1451,1475,1437,1441,1476,1435;
-	setarray .gnpMobsName$[48],"蛆虫","大框架","阅读季节","闪亮手指","手提包","怨恨大骑士";
+	setarray .gnpMobsName$[48],"卷甲虫","镜妖","飞行魔书","史汀","虎蜥人","卡利斯格";
 	setarray .gnpMobsId[48],1477,1448,1478,1489,1488,1438;
-	setarray .gnpMobsName$[54],"女王","火焰之人","执行者之剑","变异龙","杂烩汤","巨剑";
+	setarray .gnpMobsName$[54],"艾斯恩魔女","帕莎纳","行刑者","半龙人","凯美拉","兽牙怪";
 	setarray .gnpMobsId[54],1482,1464,1487,1449,1456,1486;
-	setarray .gnpMobsName$[60],"怪物鸟","拷问者","战士","副拷问者","巨型剑";
+	setarray .gnpMobsName$[60],"狮鹫兽","瑞比欧","邪骸浪人","兽人腐尸","弑神者";
 	setarray .gnpMobsId[60],1447,1483,1490,1484,1485;
 	end;
 
@@ -206,7 +195,7 @@ OnTimer120000:
 	end;
 
 OnTimer180000:
-	killmonster "gon_test","Summoner#gnp::OnGnpMobDead";
+	killmonster "gon_test","召唤师#gnp::OnGnpMobDead";
 	end;
 
 OnTimer182000:
@@ -226,7 +215,7 @@ OnGnpMobDead:
 end;
 }
 
-	gon_test,46,14,3	script	Guide of field of fight	770,{
+	gon_test,46,14,3	script	竞技场向导	770,{
 	mes "[宋熙妍]";
 	mes "……";
 	mes "你好~";
@@ -236,8 +225,7 @@ end;
 	switch(select("战斗场地？:女士，有空吗？:进去。:出去。:不了。")){
 		case 1:
 		mes "[宋熙妍]";
-		mes "顾名思义，";
-		mes "这里是进行比赛的场地。";
+		mes "顾名思义，这里是进行比赛的场地。";
 		mes "我们有不同等级的各种怪物。";
 		next;
 		mes "[宋熙妍]";
@@ -274,7 +262,7 @@ end;
 	close;
 }
 
-gon_test,70,103,3	script	ChowAnAn#gnp	773,{
+gon_test,70,103,3	script	周安安#gnp	773,{
 	mes "[周安安]";
 	mes "想回去吗？";
 	next;

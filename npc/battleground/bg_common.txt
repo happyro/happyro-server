@@ -25,10 +25,10 @@
 
 // Generals
 //============================================================
-bat_room,161,158,3	script	Gen. Guillaume's Aide#01	419,{ end; }
-bat_room,161,160,3	script	Gen. Guillaume's Aide#03	419,{ end; }
+bat_room,161,158,3	script	吉约姆将军副官#01	419,{ end; }
+bat_room,161,160,3	script	吉约姆将军副官#03	419,{ end; }
 
-bat_room,160,141,3	script	Prince Croix	416,{
+bat_room,160,141,3	script	克鲁瓦王子	416,{
 	cutin "bat_crua1",2;
 	mes "[克鲁瓦王子]";
 	mes "睿智的冒险者，何不借助你的力量帮助我们取得胜利？";
@@ -75,12 +75,12 @@ bat_room,160,141,3	script	Prince Croix	416,{
 		switch(select("好，我想加入你。:结束对话")) {
 		case 1:
 			cutin "bat_crua1",2;
-			mes "[Prince Croix]";
+			mes "[克鲁瓦王子]";
 			mes "非常感谢。有你这样的冒险者相助，我感觉自己一定能赢。";
 			mes "现在请下楼，和同伴一起磨炼本领，对抗敌人！";
 			break;
 		case 2:
-			mes "[Prince Croix]";
+			mes "[克鲁瓦王子]";
 			mes "为了马洛尔！";
 			break;
 		}
@@ -92,10 +92,10 @@ bat_room,160,141,3	script	Prince Croix	416,{
 	end;
 }
 
-bat_room,161,140,3	script	Prince Croix's Aide#01	415,{ end; }
-bat_room,161,142,3	script	Prince Croix's Aide#02	415,{ end; }
+bat_room,161,140,3	script	克鲁瓦王子副官#01	415,{ end; }
+bat_room,161,142,3	script	克鲁瓦王子副官#02	415,{ end; }
 
-bat_room,160,159,3	script	General Guillaume	420,{
+bat_room,160,159,3	script	吉约姆将军	420,{
 	cutin "bat_kiyom2",2;
 	mes "[吉约姆将军]";
 	mes "热血的冒险者，我们需要你的力量赢得这场战斗。";
@@ -141,7 +141,7 @@ bat_room,160,159,3	script	General Guillaume	420,{
 		mes "[吉约姆将军]";
 		mes "他太无知，不肯承认所谓的和平建立在无数战争牺牲者的生命之上；普通民众和上层阶级对此视而不见，却享受着这种生活。";
 		next;
-		mes "[General Guillaume]";
+		mes "[吉约姆将军]";
 		mes "他太天真，无法理解现实……";
 		mes "我不能把马洛尔交给这样活在梦里的人！";
 		next;
@@ -182,7 +182,7 @@ bat_room,160,159,3	script	General Guillaume	420,{
 
 // BattleGround Warper
 //============================================================
-bat_room,148,150,5	script	Teleporter#Battlefield	124,{
+bat_room,148,150,5	script	传送员#Battlefield	124,{
 	mes "[传送员]";
 	mes "想离开战场吗？使用我的服务即可返回城镇。";
 	next;
@@ -192,35 +192,35 @@ bat_room,148,150,5	script	Teleporter#Battlefield	124,{
 		switch(bat_return) {
 		default:
 		case 1:
-			setarray .@mapname$[0],"Prontera.","prontera";
+			setarray .@mapname$[0],"普隆德拉","prontera";
 			setarray .@xy[0],116,72;
 			break;
 		case 2:
-			setarray .@mapname$[0],"Morocc Ruins.","moc_ruins";
+			setarray .@mapname$[0],"梦罗克遗迹","moc_ruins";
 			setarray .@xy[0],152,48;
 			break;
 		case 3:
-			setarray .@mapname$[0],"Al De Baran.","aldebaran";
+			setarray .@mapname$[0],"艾尔帕兰","aldebaran";
 			setarray .@xy[0],168,112;
 			break;
 		case 4:
-			setarray .@mapname$[0],"Geffen.","geffen";
+			setarray .@mapname$[0],"吉芬","geffen";
 			setarray .@xy[0],120,39;
 			break;
 		case 5:
-			setarray .@mapname$[0],"Payon.","payon";
+			setarray .@mapname$[0],"斐扬","payon";
 			setarray .@xy[0],161,58;
 			break;
 		case 6:
-			setarray .@mapname$[0],"Lighthalzen.","lighthalzen";
+			setarray .@mapname$[0],"里希塔乐","lighthalzen";
 			setarray .@xy[0],159,93;
 			break;
 		case 7:
-			setarray .@mapname$[0],"Rachel.","rachel";
+			setarray .@mapname$[0],"拉赫","rachel";
 			setarray .@xy[0],115,124;
 			break;
 		case 8:
-			setarray .@mapname$[0],"Morocc.","morocc";
+			setarray .@mapname$[0],"梦罗克","morocc";
 			setarray .@xy[0],156,46;
 			break;
 		}
@@ -236,7 +236,7 @@ bat_room,148,150,5	script	Teleporter#Battlefield	124,{
 	end;
 }
 
--	script	Maroll Battle Recruiter::BatRecruit	728,{
+-	script	马洛尔战斗招募员::BatRecruit	728,{
 	mes "[马洛尔战斗招募员]";
 	mes "你好，冒险者。";
 	mes "我是来自遥远马洛尔王国的骑士。";
@@ -279,13 +279,13 @@ bat_room,148,150,5	script	Teleporter#Battlefield	124,{
 	end;
 }
 
-prontera,123,83,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit1	728
-moc_ruins,75,162,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit2	728
-aldebaran,146,109,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit3	728
-geffen,109,66,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit4	728
-payon,189,105,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit5	728
-lighthalzen,153,86,5	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit6	728
-rachel,149,138,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit7	728
+prontera,123,83,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit1	728
+moc_ruins,75,162,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit2	728
+aldebaran,146,109,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit3	728
+geffen,109,66,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit4	728
+payon,189,105,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit5	728
+lighthalzen,153,86,5	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit6	728
+rachel,149,138,3	duplicate(BatRecruit)	马洛尔战斗招募员::BatRecruit7	728
 
 // Additional warps
 // Empty
@@ -318,21 +318,21 @@ bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
 
 // Kafra
 //============================================================
-bat_room,148,147,4	script	Kafra Staff::kaf_bat	861,{
+bat_room,148,147,4	script	卡普拉职员::kaf_bat	861,{
 	cutin "kafra_09",2;
 	callfunc "F_Kafra",0,2,1,150,0;
 }
 
 // Repairman
 //============================================================
-bat_room,138,144,4	script	Repairman#bg	86,{
-	callfunc "repairmain","Repairman";
+bat_room,138,144,4	script	修理工#bg	86,{
+	callfunc "repairmain","修理工";
 	end;
 }
 
 // GM Management NPC
 //============================================================
-bat_room,1,151,3	script	Switch#batgnd	81,{
+bat_room,1,151,3	script	战场管理#batgnd	81,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
 		mes "命令已取消。";
@@ -344,24 +344,24 @@ bat_room,1,151,3	script	Switch#batgnd	81,{
 		next;
 		switch(select("关闭战场:开启战场:重置 a01:重置 b01:重置 a02:重置 b02")) {
 		case 1:
-			disablenpc "Tierra Gorge Officer#01a";
-			disablenpc "Tierra Gorge Officer#02a";
-			disablenpc "Tierra Gorge Officer#01b";
-			disablenpc "Tierra Gorge Officer#02b";
-			disablenpc "Flavius Officer#01a";
-			disablenpc "Flavius Officer#01b";
-			disablenpc "Flavius Officer#02a";
-			disablenpc "Flavius Officer#02b";
+			disablenpc "提耶拉峡谷军官#01a";
+			disablenpc "提耶拉峡谷军官#02a";
+			disablenpc "提耶拉峡谷军官#01b";
+			disablenpc "提耶拉峡谷军官#02b";
+			disablenpc "弗拉维乌斯军官#01a";
+			disablenpc "弗拉维乌斯军官#01b";
+			disablenpc "弗拉维乌斯军官#02a";
+			disablenpc "弗拉维乌斯军官#02b";
 			break;
 		case 2:
-			enablenpc "Tierra Gorge Officer#01a";
-			enablenpc "Tierra Gorge Officer#02a";
-			enablenpc "Tierra Gorge Officer#01b";
-			enablenpc "Tierra Gorge Officer#02b";
-			enablenpc "Flavius Officer#01a";
-			enablenpc "Flavius Officer#01b";
-			enablenpc "Flavius Officer#02a";
-			enablenpc "Flavius Officer#02b";
+			enablenpc "提耶拉峡谷军官#01a";
+			enablenpc "提耶拉峡谷军官#02a";
+			enablenpc "提耶拉峡谷军官#01b";
+			enablenpc "提耶拉峡谷军官#02b";
+			enablenpc "弗拉维乌斯军官#01a";
+			enablenpc "弗拉维乌斯军官#01b";
+			enablenpc "弗拉维乌斯军官#02a";
+			enablenpc "弗拉维乌斯军官#02b";
 			break;
 		case 3:
 			donpcevent "start#bat_a01::OnEnable";
@@ -383,13 +383,11 @@ bat_room,1,151,3	script	Switch#batgnd	81,{
 
 // Badges Exchange
 //============================================================
-bat_room,160,150,3	script	Erundek	109,{
+bat_room,160,150,3	script	艾伦德克	109,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 请稍等！-";
-		mes "- 你目前携带了 -";
-		mes "- 太多物品。-";
-		mes "- 请在减轻负重后 -";
-		mes "- 再试一次。-";
+		mes "- 你携带的物品太多。-";
+		mes "- 请减轻负重后再试。-";
 		close;
 	}
 	mes "[艾伦德克]";
@@ -404,38 +402,38 @@ bat_room,160,150,3	script	Erundek	109,{
 		next;
 		switch(select("武器:防具:饰品:消耗品")) {
 		case 1:
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "你选择了 ^3131FF武器^000000。";
 			mes "以下武器可用战场徽章兑换。";
 			mes "请注意，^3131FF勇气徽章^000000物品标记为 (BB)，^3131FF勇猛徽章^000000物品标记为 (VB)。";
 			next;
 			switch(select("短剑/单手剑/双手剑/双手矛:法杖/钝器/双手斧/手里剑:弓/拳刃/乐器/鞭子:书/拳套:左轮/步枪/加特林/霰弹枪/榴弹发射器")) {
 			case 1:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "以下物品属于 ^3131FF短剑、单手剑、双手剑和双手矛^000000 类别。";
 				next;
 				setarray .@Weapons[0],13036,7828,13037,7829,13411,7828,13410,7829,1183,7828,1184,7829,1425,7828,1482,7829;
 				break;
 			case 2:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "以下物品属于 ^3131FF法杖/钝器/双手斧/风魔手里剑^000000 类别。";
 				next;
 				setarray .@Weapons[0],1632,7828,1633,7829,1634,7828,1635,7829,1543,7828,1542,7829,1380,7828,1379,7829,13305,7828,13306,7829;
 				break;
 			case 3:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "以下武器属于 ^3131FF弓/拳刃/乐器/鞭子^000000 类别。";
 				next;
 				setarray .@Weapons[0],1739,7828,1738,7829,1279,7828,1280,7829,1924,7828,1923,7829,1978,7828,1977,7829;
 				break;
 			case 4:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "以下武器属于 ^3131FF书/拳套^000000 类别。";
 				next;
 				setarray .@Weapons[0],1574,7828,1575,7829,1824,7828,1823,7829;
 				break;
 			case 5:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "以下武器属于 ^3131FF左轮/步枪/加特林/霰弹枪/榴弹发射器^000000 类别。";
 				next;
 				setarray .@Weapons[0],13108,7828,13171,7829,13172,7828,13173,7829,13174,7829;
@@ -446,7 +444,7 @@ bat_room,160,150,3	script	Erundek	109,{
 				set .@menu$, .@menu$+getitemname(.@Weapons[.@i])+((.@Weapons[.@i+1]==7828)?"(BB)":"(VB)")+":";
 			set .@i, (select(.@menu$)-1)*2;
 			set .@type$, ((.@Weapons[.@i+1]==7828)?"(BB)":"(VB)");
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "你选择了 ^3131FF"+getitemname(.@Weapons[.@i])+.@type$+"^000000。";
 			mes "你可以用 ^FF0000100 "+getitemname(.@Weapons[.@i+1])+"^000000 兑换此物品。";
 			mes "要兑换吗？";
@@ -455,15 +453,15 @@ bat_room,160,150,3	script	Erundek	109,{
 			case 1:
 				break;
 			case 2:
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "要花费 ^FF0000100 "+getitemname(.@Weapons[.@i+1])+"^000000，获得 ^3131FF"+getitemname(.@Weapons[.@i])+.@type$+"^000000 吗？";
 				next;
-				mes "[Erundek]";
+				mes "[艾伦德克]";
 				mes "请注意，战场奖励物品是 ^FF0000角色绑定^000000 的。确定要兑换吗？";
 				next;
 				switch(select("是:否")) {
 				case 1:
-					mes "[Erundek]";
+					mes "[艾伦德克]";
 					if (countitem(.@Weapons[.@i+1]) >= 100) {
 						mes "感谢你的兑换。";
 						delitem .@Weapons[.@i+1],100;
@@ -476,11 +474,11 @@ bat_room,160,150,3	script	Erundek	109,{
 				}
 				break;
 			}
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "还需要时间查看物品吗？";
 			close;
 		case 2:
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "你选择了 ^3131FF防具^000000。";
 			mes "以下防具可用战场徽章兑换。";
 			next;
@@ -494,12 +492,12 @@ bat_room,160,150,3	script	Erundek	109,{
 			}
 			break;
 		case 3:
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "你选择了 ^3131FF饰品^000000。";
 			mes "你可以按职业使用徽章兑换荣誉勋章，具体如下：";
 			next;
 			setarray .@Items[0],2733,500,2720,500,2721,500,2722,500,2723,500,2724,500,2725,500;
-			set .@menu1$,"Gunslinger:Swordman/Taekwon Master:Thief:Acolyte:Magician:Archer:Merchant";
+			set .@menu1$,"神枪手:剑士/拳圣:盗贼:服事:魔法师:弓箭手:商人";
 			break;
 		case 4:
 			mes "[艾伦德克]";
@@ -525,7 +523,7 @@ bat_room,160,150,3	script	Erundek	109,{
 	mes "[艾伦德克]";
 	mes "你选择了 ^3131FF"+getitemname(.@Items[.@i])+"^000000。";
 	switch(.@Items[.@i]) {
-		case 2720: mes "此物品仅限剑士和跆拳宗师职业。"; break;
+		case 2720: mes "此物品仅限剑士和拳圣职业。"; break;
 		case 2721: mes "此物品仅限盗贼职业。"; break;
 		case 2722: mes "此物品仅限服事职业。"; break;
 		case 2723: mes "此物品仅限魔法师职业。"; break;
@@ -539,16 +537,16 @@ bat_room,160,150,3	script	Erundek	109,{
 	next;
 	switch(select("不兑换:兑换")) {
 	case 1:
-		mes "[Erundek]";
+		mes "[艾伦德克]";
 		mes "还需要时间查看物品吗？";
 		break;
 	case 2:
-		mes "[Erundek]";
+		mes "[艾伦德克]";
 		mes "你想使用哪种徽章兑换？";
 		mes "兑换需要 ^3131FF"+.@Items[.@i+1]+" 枚徽章^000000。";
 		next;
 		if (.@item[0] < 12269 || .@item[0] > 12273 ) {
-			mes "[Erundek]";
+			mes "[艾伦德克]";
 			mes "请注意，战场奖励物品是 ^FF0000角色绑定^000000 的。确定要兑换吗？";
 			next;
 		}

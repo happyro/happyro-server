@@ -48,7 +48,7 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 	mes "请选择一种遗物。";
 	next;
 	mes "[造物师]";
-	mes "我会根据天气和心情，从两种装备中随机给你一件。";
+	mes "我会根据你选择的类别，从对应的装备中随机给你一件。";
 	next;
 	mes "[造物师]";
 	mes "只要 10 枚莫拉硬币，我就能给你一件遗物！";
@@ -75,7 +75,7 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 				mes "你已经拥有戒指，可以获得我们的遗物了！";
 				close;
 			}
-			if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Arch_Bishop) {
+			if ((eaclass() & EAJ_THIRDMASK) == EAJ_ARCH_BISHOP) {
 				setarray .@items[0],2864,2865,2866; //Light_Of_Cure,Seal_Of_Cathedral,Ring_Of_Archbishop
 				break;
 			} else {
@@ -100,13 +100,17 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 			break;
 		}
 		set .@item, .@items[rand(getarraysize(.@items))];
+		if (!checkweight(.@item,1)) {
+			mes "请先为兑换装备预留足够的负重和物品栏空间。";
+			close;
+		}
 		delitem 6380,10; //Mora_Coin
 		getitem .@item,1;
 		mes "[造物师]";
 		mes "你获得了 ^aa00aa"+getitemname(.@item)+"^000000. 愿光明的祝福与你同在。";
 		close;
 	case 3:
-		if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Arch_Bishop) {
+		if ((eaclass() & EAJ_THIRDMASK) == EAJ_ARCH_BISHOP) {
 			mes "[造物师]";
 			mes "我们可以为无法控制戒指的人把戒指兑换成硬币。";
 			next;
@@ -131,6 +135,10 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 			mes "如果改变主意，请再来找我。";
 			close;
 		case 2:
+			if (!checkweight(6380,10)) {
+				mes "请先为兑换的硬币预留足够的负重和物品栏空间。";
+				close;
+			}
 			delitem .@item,1;
 			getitem 6380,10; //Mora_Coin
 			mes "[造物师]";
@@ -510,14 +518,14 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 		else if (.@i <= 1998) setarray .@enchants[1],4722,4761,4761; //Dexterity3 Matk2 Matk2
 		else if (.@i <= 2000) setarray .@enchants[1],4722,4761,4713; //Dexterity3 Matk2 Inteligence4
 		else if (.@i <= 2858) {
-			mes "[Artifact Crafter]";
+			mes "[古物工匠]";
 			mes "糟糕……它坏了……嗯，这种事难免。下次好运吧。";
 			close;
 		}
 		break;
 	}
 	getitem2 .@item,1,1,0,0,0,.@enchants[1],.@enchants[2],.@enchants[3];
-	mes "[Artifact Crafter]";
+	mes "[古物工匠]";
 	mes "看来我的努力成功了。";
 	close;
 }
@@ -553,7 +561,7 @@ mora,152,97,5	script	Guardian of Power#pa082	515,{
 	mes "[力量守护者]";
 	mes "^ff0000请谨慎选择，因为这些遗物来之不易^000000。你想为哪个职业选择？";
 	next;
-	setarray .@jobs$[0],"Rune Knight","Guillotine Cross","Ranger";
+	setarray .@jobs$[0],"符文骑士","十字斩首者","游侠";
 	set .@job, select("取消:符文骑士:十字斩首者:游侠")-2;
 	if (.@job == -1) {
 		mes "[力量守护者]";
@@ -605,26 +613,26 @@ mora,148,98,3	script	Artifact Researcher#new	521,{
 		close;
 	}
 	disable_items;
-	mes "[Artifact Researcher]";
+	mes "[古物研究员]";
 	mes "很高兴见到你。";
 	mes "我在摩拉研究古代遗物和神器。冒险者的新发现让这个村庄对我来说充满了乐趣。";
 	next;
 	switch(select("再多告诉我一些……:赋予遗物能力。:重置强化能力。")) {
 	case 1:
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 	mes "摩拉村发现了新的遗物，你没听说吗？";
 		next;
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 	mes "如果你遇到这些遗物，可以从中提取隐藏的力量。";
 		next;
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 	mes "我会继续研究这些遗物。我们研究员以摩拉硬币作为服务报酬……";
 		next;
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 	mes "我可以为遗物赋予能力，费用是 100,000 Zeny 和 1 枚摩拉硬币。";
 		next;
-		mes "[Artifact Researcher]";
-	mes "我的服务最大的优点是不会损害遗物上已有的强化。";
+		mes "[古物研究员]";
+	mes "附魔成功时会保留精炼等级和已有附魔；后续附魔失败可能清除已有附魔，第三次附魔还可能摧毁装备。";
 		close;
 	case 2:
 		set @mora_enchant_select,1;
@@ -634,23 +642,23 @@ mora,148,98,3	script	Artifact Researcher#new	521,{
 		break;
 	}
 	if (Zeny < 100000 || countitem(6380) == 0) {
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 	mes "朋友，我可不是免费提供服务。100,000 Zeny 和 1 枚摩拉硬币，要求不算过分吧？";
 		close;
 	}
-	mes "[Artifact Researcher]";
+	mes "[古物研究员]";
 	mes "好，你准备好了吗？在我开始之前，你想强化哪种装备？";
 	next;
 	set .@i, select("我没有装备该物品:1. 武器:2. 鞋子:3. 披风:4. 铠甲:5. 饰品")-2;
 	if (.@i == -1) {
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 		mes "请先装备该物品。";
 		close;
 	}
 	setarray .@parts[0], EQI_HAND_R, EQI_SHOES, EQI_GARMENT, EQI_ARMOR, EQI_ACC_L;
 	set .@part, .@parts[.@i];
 	if (!getequipisequiped(.@part)) {
-		mes "[Artifact Researcher]";
+		mes "[古物研究员]";
 		mes "请先装备该物品。";
 		close;
 	}
@@ -712,7 +720,7 @@ mora,148,98,3	script	Artifact Researcher#new	521,{
 		}
 		break;
 	}
-	mes "[Artifact Researcher]";
+	mes "[古物研究员]";
 	mes "^990099"+getequipname(.@part)+"^000000？";
 	mes "我真想研究这件装备……";
 	set @mora_equip_part,0;
@@ -735,12 +743,12 @@ L_Socket:
 		// If refine is +9 or higher, unlock bonus enchant type.
 		if (.@equip_refine >= 9 && .@bonus_enchant > 0) {
 			if (.@enchant_type < 1 || .@enchant_type > 11 || .@bonus_enchant > 11) {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "嗯……出了点问题。";
 				close;
 			}
-			setarray .@enchant_type$[1],"ATK Type","Critical Type","Evasion Type","Healer Type","Spell Ability 1","Assist Ability 1","Assist Ability 2","Strength","Range Type","Physical Type","Spell Ability 2";
-			mes "[Artifact Researcher]";
+			setarray .@enchant_type$[1],"攻击型","暴击型","回避型","治疗型","魔法能力一型","辅助能力一型","辅助能力二型","力量型","远程型","物理型","魔法能力二型";
+			mes "[古物研究员]";
 			mes "这是对装备的大幅强化。现在可以进行扩展强化。你想强化哪项属性？";
 			next;
 			switch(select(.@enchant_type$[.@enchant_type],.@enchant_type$[.@bonus_enchant])) {
@@ -753,27 +761,27 @@ L_Socket:
 		}
 		if (.@equip_card[3] == 0 && .@allowed_slot < 4) {
 			set .@slot,4;
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "将进一步强化能力。之前的强化不会受到影响。要继续吗？";
 		} else if (.@equip_card[2] == 0 && .@allowed_slot < 3) {
 			set .@slot,3;
-			mes "[Artifact Researcher]";
-			mes "开始第二次强化。之前的强化不会受到影响。";
+			mes "[古物研究员]";
+			mes "开始第二次强化。成功时会保留已有附魔；失败时会清除已有附魔，但保留装备和精炼等级。";
 			next;
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "这次尝试可能会失败。要继续吗？";
 		} else if (.@equip_card[1] == 0 && .@allowed_slot < 2) {
 			set .@slot,2;
-			mes "[Artifact Researcher]";
-			mes "开始第三次强化吧。此阶段可以赋予最佳属性，但请记住，^990000现在有几率摧毁遗物并抹除之前的强化^000000。继续吗？";
+			mes "[古物研究员]";
+			mes "开始第三次强化吧。此阶段可以赋予最佳属性，但失败可能^990000清除已有附魔，或摧毁整件遗物^000000。继续吗？";
 		} else {
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "这件遗物已经强化到极限，以当前状态无法继续强化。";
 			close;
 		}
 		next;
 		if(select("我稍后再回来。:请继续！") == 1) {
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "如果改变主意，请再回来。";
 			close;
 		}
@@ -783,7 +791,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(301,655);
 			else if (.@slot == 2) set .@i, rand(451,750);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -810,7 +818,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(201,610);
 			else if (.@slot == 2) set .@i, rand(381,750);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -837,7 +845,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(301,670);
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -864,7 +872,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(201,535);
 			else if (.@slot == 2) set .@i, rand(301,650);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -891,7 +899,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(401,760);
 			else if (.@slot == 2) set .@i, rand(401,766);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -918,7 +926,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(321,720);
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -945,7 +953,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(321,720);
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -972,7 +980,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(301,685);
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生了未知错误。";
 				close;
 			}
@@ -999,7 +1007,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(201,610);
 			else if (.@slot == 2) set .@i, rand(321,750);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生未知错误。";
 				close;
 			}
@@ -1026,7 +1034,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(401,800);
 			else if (.@slot == 2) set .@i, rand(601,930);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生未知错误。";
 				close;
 			}
@@ -1053,7 +1061,7 @@ L_Socket:
 			else if (.@slot == 3) set .@i, rand(401,760);
 			else if (.@slot == 2) set .@i, rand(401,766);
 			else {
-				mes "[Artifact Researcher]";
+				mes "[古物研究员]";
 				mes "发生未知错误。";
 				close;
 			}
@@ -1076,7 +1084,7 @@ L_Socket:
 			else set .@enchant,9;
 			break;
 		default:
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "看来是我错了……";
 			close;
 		}
@@ -1101,12 +1109,12 @@ L_Socket:
 				set .@equip_card[3],0;
 			}
 		} else {
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "我想神器存在强化上限。";
 			close;
 		}
 		if (Zeny < 100000 || countitem(6380) == 0) {
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "除非你支付费用，否则我不会工作。";
 			close;
 		}
@@ -1115,18 +1123,18 @@ L_Socket:
 		delequip .@part;
 		if (.@enchant == 9) {
 			specialeffect2 EF_SUI_EXPLOSION;
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "就是这个！";
  			mes "我……很抱歉，但装备被摧毁了。";
 			close;
 		}
 		if (.@enchant == 0) {
 			specialeffect2 EF_SHIELDCHARGE;
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "由于力量平衡不匹配，已有能力被摧毁了。很遗憾，请下次再试。";
 		} else {
 			specialeffect2 EF_REPAIRWEAPON;
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			// Replacing original dialogue since it doesn't make sense.
 			//mes "The artifact ^990000"+.@slot+" will have the first enhancement retained.";
 			mes "我成功强化了神器 ^990000"+.@equip_name$+"^000000 的插槽 "+.@slot+"。";
@@ -1138,19 +1146,19 @@ L_Socket:
 		close;
 	} else if (.@select == 2) {
 		if (Zeny < 100000 || countitem(6380) == 0) {
-			mes "[Artifact Researcher]";
+			mes "[古物研究员]";
 			mes "想使用服务就必须付费。";
 			close;
 		}
-		specialeffect2 EF_REPAIRWEAPON;
-		mes "[Artifact Researcher]";
-		mes "强化能力仍然保留。";
-		delitem 6380,1; //Mora_Coin
-		set Zeny, Zeny-100000;
-
 		// anti-hack
 		if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
 			close;
+
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[古物研究员]";
+		mes "附魔已重置，精炼等级和插入的卡片仍然保留。";
+		delitem 6380,1; //Mora_Coin
+		set Zeny, Zeny-100000;
 
 		delequip .@part;
 
@@ -1181,7 +1189,7 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 	mes "那些莫拉神器看起来太完美了！";
 	mes "但我知道你想让它们变得更好！";
 	next;
-	mes "[Artifact Collector]";
+	mes "[古物收藏家]";
 	mes "冒险者你好。告诉你如何赋予神器力量后，我们马上就会成为好朋友！";
 	next;
 	switch(select("就这么做！:赋予神器力量？:不，这不适合我！")) {
@@ -1189,99 +1197,99 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 		break;
 	case 2:
 		emotion ET_OK;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "看来你很会判断人。";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我在莫拉研究神器已经两百多年了。一直努力将它们强化到完美的 +9！";
 		next;
 		select("咕嘟……+9？！");
 		emotion ET_HUK, playerattached();
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我的工作是收集古老遗物，并将它们精炼到极致！";
 		next;
 		emotion ET_CRY;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "寻找适合实验的完美神器是我毕生的事业。";
 		mes "而且见证祖先遗产的奇迹也令人满足。";
 		next;
 		select("我能理解这有多有趣。");
 		emotion ET_GOODBOY;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "谢谢你，人类。";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我已经做了两百多年，说实话，现成的材料已经用光了，工匠和神器制作师也不再和我交易……";
 		next;
 		emotion ET_THINK;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "不过，最近开始来访的人类也许能带来新的库存！";
 		next;
 		select("人类……库存？");
 		emotion ET_QUESTION, playerattached();
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "是的！如果人类能带来新的神器，我就能完成终极成就！";
 		next;
 		select("终极成就？");
 		emotion ET_QUESTION, playerattached();
 		emotion ET_OK;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "耐心点，我们会说到的……";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我的职业是收藏家，但最大的成就是赋予一些神器更强的力量！";
 		mes "目前我只完善了少数几种神器的强化能力。";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "你也许就是能帮我完成计划的人类。";
 		next;
 		emotion ET_OTL;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "命运偶尔的安排真是令人喜爱……";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "+1、+2、+3、+4、+5、+6 的强化还不够强，无法进行我的工艺。";
 		next;
 		emotion ET_OTL;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "但 +7！+7 很稀有，勉强足够用于我的制作尝试。";
 		next;
 		select("我又要被利用了……");
 		emotion ET_SCRATCH, playerattached();
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "你说得对！我知道你们人类即使朋友不开口，也会自然地帮助朋友……";
 		next;
 		select("我不确定……");
 		emotion ET_QUESTION, playerattached();
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我当然接受你的帮助！找来这些……";
 		next;
-		mes "- Golden Rod Staff -";
-		mes "- Aqua Staff -";
-		mes "- Crimson Staff -";
-		mes "- Forest Staff -";
-		mes "- Staff of Mercy -";
-		mes "- Mace of Judgement -";
+		mes "- 金色长杖 -";
+		mes "- 水色长杖 -";
+		mes "- 深红长杖 -";
+		mes "- 森林长杖 -";
+		mes "- 慈悲之杖 -";
+		mes "- 审判之锤 -";
 		next;
 		select("还有别的吗？");
 		emotion ET_QUESTION, playerattached();
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "除了 +7 之外，神器上还必须有特定的附魔，才能催化这个过程。";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "如果缺少 +7 或特定附魔，我就做不到。";
 		next;
 		select("所以强化等级会保留？");
 		emotion ET_HUK, playerattached();
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "不会，但你得到的东西会好得多！";
 		next;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "现在你想进一步了解我正在寻找的神器了吧？";
 		next;
 		emotion ET_QUESTION;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "尽管问吧！";
 		next;
 		setarray .@artifacts[0],1657,16013,2007,2008,2009,2010;
@@ -1290,12 +1298,12 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 			set .@i, select("我不感兴趣:慈悲之杖:审判之锤:黄金魔杖:水之杖:猩红之杖:森林之杖")-2;
 			if (.@i == -1) {
 				emotion ET_QUESTION;
-				mes "[Artifact Collector]";
+				mes "[古物收藏家]";
 				mes "好吧，也许有一天你会感兴趣。";
 				close;
 			}
-			mes "[Artifact Collector]";
-			mes getitemname(.@artifacts[.@i])+" must of course be refined to +7 or higher for me to distill it to an enchantment.";
+			mes "[古物收藏家]";
+			mes getitemname(.@artifacts[.@i])+"必须精炼到 +7 或以上，我才能提取其中的附魔力量。";
 			next;
 			switch(.@i) {
 			case 0:
@@ -1311,27 +1319,27 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 				set .@str$, "MATK+2%, INT+4";
 				break;
 			}
-			mes "[Artifact Collector]";
-			mes "它还必须带有以下任一附魔："+.@str$+" to be craftable by me.";
+			mes "[古物收藏家]";
+			mes "它还必须带有以下任一附魔，我才能加工："+.@str$+"。";
 			next;
 			select(getitemname(.@empowered[.@i])+" 的属性？");
 			callsub L_ShowInfo, .@empowered[.@i];
-			mes "[Artifact Collector]";
+			mes "[古物收藏家]";
 			mes "但如果你得到一件，请让我来处理，求你了。";
 			next;
 		}
 	case 3:
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "祝你今天愉快。再见～";
 		close;
 	}
 	emotion ET_SPARK;
-	mes "[Artifact Collector]";
+	mes "[古物收藏家]";
 	mes "让我看看你带来了什么。";
 	next;
 	if (!getequipisequiped(EQI_HAND_R)) {
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我不知道你想做什么……你没有的东西我无法强化。";
 		close;
 	}
@@ -1361,50 +1369,50 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 		break;
 	default:
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "你拥有的武器不是我能处理的神器。";
 		close;
 	}
 	if (.@equip_refine < 7) {
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "我必须坚持神器强化等级至少要达到 +7！";
 		close;
 	}
 	if (!.@empowered) {
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "这些属性不适合我的研究过程，试着重新随机。";
 		close;
 	}
 	emotion ET_SEXY;
-	mes "[Artifact Collector]";
+	mes "[古物收藏家]";
 	mes "我兴奋得浑身发麻！";
 	mes "你带来了我需要的一切！！";
 	next;
 	emotion ET_OK;
-	mes "[Artifact Collector]";
-	mes "如果你准备好了，我就要展示如何处理你的 +" + .@equip_refine + " Artifact!";
+	mes "[古物收藏家]";
+	mes "如果你准备好了，我就要展示如何处理你的 +" + .@equip_refine + "装备！";
 	next;
-	mes "[Artifact Collector]";
-	mes "我会拿走你的 ^FF0000"+getequipname(EQI_HAND_R)+"^000000 and exchange it, are you ready?";
+	mes "[古物收藏家]";
+	mes "我会拿走你的 ^FF0000"+getequipname(EQI_HAND_R)+"^000000进行兑换，准备好了吗？";
 	next;
 	switch(select("不要啊！:是的，我准备好了！:之后会变成什么？")) {
 	case 1:
 		emotion ET_FRET;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "你一定是在开玩笑……你让我白高兴了……";
 		close;
 	case 2:
 		break;
 	case 3:
 		callsub L_ShowInfo, .@empowered;
-		mes "[Artifact Collector]";
+		mes "[古物收藏家]";
 		mes "你确定要继续吗？";
 		next;
 		if(select("不，我不想。:是的，继续吧！") == 1) {
 			emotion ET_FRET;
-			mes "[Artifact Collector]";
+			mes "[古物收藏家]";
 			mes "你一定是在开玩笑……你让我白高兴了……";
 			close;
 		}
@@ -1418,12 +1426,12 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 
 	delequip EQI_HAND_R;
 	getitem .@empowered,1;
-	mes "[Artifact Collector]";
+	mes "[古物收藏家]";
 	mes "完成得非常完美，你一定会很开心！再见，朋友～";
 	close;
 
 L_ShowInfo:
-	mes "[Artifact Collector]";
+	mes "[古物收藏家]";
 	mes getitemname(getarg(0));
 	switch(getarg(0)) {
 	case 1660: //Wand_Of_Affection2
@@ -1435,7 +1443,7 @@ L_ShowInfo:
 		mes "治愈加成增加 20%。";
 		mes "与长袍、鞋子和慈悲长袍一起装备时，治愈加成额外增加 45%，且“治愈术”SP 消耗增加 50。";
 		mes "受到近距离物理攻击时，有一定概率施放 1 级沉默术。";
-		mes "使用净化、Laudaramus 和 Laudaagnus 后的延迟减少 3 秒。";
+		mes "使用净化、枝条赞歌和羔羊赞歌后的延迟减少 3 秒。";
 		break;
 	case 16018: //Mace_Of_Judgement2
 		mes "钝器 / 攻击力：170";
@@ -1497,9 +1505,11 @@ L_ShowInfo:
 function	script	F_Mora_Enchant	{
 	specialeffect2 EF_REPAIRWEAPON;
 	progressbar "ffff00",3;
+	if (countitem(6380) < 5 || countitem(getarg(0)) < 1) {
+		mes "所需的 5 枚莫拉硬币或待附魔装备不足，尚未扣除任何物品。";
+		close;
+	}
 	delitem 6380,5; //Mora_Coin
-	if (countitem(getarg(0)) < 1)
-		return 0;
 	delitem getarg(0),1;
 	set .@i, rand(1,4568);
 	if (.@i <= 3168) {

@@ -15,11 +15,11 @@
 //= 1.3 Script updates, and removed a level restriction. [Euphy]
 //============================================================
 
-arena_room,147,42,1	script	Lv80 Waiting Room	124,{
+arena_room,147,42,1	script	80级等候室	124,{
 	end;
 
 OnInit:
-	waitingroom "Individual; Level 80 to " + MAX_LEVEL,50,"Lv80 Waiting Room::OnStartArena",1,1000,80;
+	waitingroom "个人挑战－80级起，最高等级：" + MAX_LEVEL,50,"80级等候室::OnStartArena",1,1000,80;
 	enablewaitingroomevent;
 	end;
 
@@ -34,7 +34,7 @@ OnStart:
 	end;
 }
 
-force_4-1,99,20,4	script	Octus#arena	124,{
+force_4-1,99,20,4	script	奥克图斯#arena	124,{
 	end;
 
 OnStart:
@@ -44,68 +44,68 @@ OnStart:
 	end;
 
 OnTimer3000:
-	mapannounce "force_4-1","Good day, my name is Octus, the guide of Time Force Battle for lvl 80s!",0;
+	mapannounce "force_4-1","大家好，我是奥克图斯，负责引导80级以上时空战竞技场的挑战！",0;
 	end;
 
 OnTimer4000:
-	mapannounce "force_4-1","Remember your right decision will save a lot of your time!",0;
+	mapannounce "force_4-1","记住，正确的判断能帮你节省大量时间！",0;
 	end;
 
 OnTimer8000:
-	mapannounce "force_4-1","In order to complete this battle course, you must start from the far left of this room to the clock wise direction. Please move to the far left side. You have 7 minutes from now.",0;
+	mapannounce "force_4-1","请从房间最左侧开始，顺时针完成各阶段挑战。现在向最左侧前进，你有8分钟时间！",0;
 	end;
 
 OnTimer60000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 7 minutes ",0;
+	mapannounce "force_4-1","剩余时间：7分钟",0;
 	end;
 
 OnTimer120000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 6 minutes ",0;
+	mapannounce "force_4-1","剩余时间：6分钟",0;
 	end;
 
 OnTimer180000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 5 minutes ",0;
+	mapannounce "force_4-1","剩余时间：5分钟",0;
 	end;
 
 OnTimer240000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 4 minutes ",0;
+	mapannounce "force_4-1","剩余时间：4分钟",0;
 	end;
 
 OnTimer300000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 3 minutes ",0;
+	mapannounce "force_4-1","剩余时间：3分钟",0;
 	end;
 
 OnTimer360000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 2 minutes ",0;
+	mapannounce "force_4-1","剩余时间：2分钟",0;
 	end;
 
 OnTimer420000:
 	if (getmapusers("force_4-1") == 0) {
-		donpcevent "Octus#arena::OnFailClearStage";
+		donpcevent "奥克图斯#arena::OnFailClearStage";
 	}
-	mapannounce "force_4-1","Remaining Time : 1 minute ",0;
+	mapannounce "force_4-1","剩余时间：1分钟",0;
 	end;
 
 OnTimer480000:
-	mapannounce "force_4-1","Your time is over. I hope you had a good time~",0;
+	mapannounce "force_4-1","时间到了，希望你玩得开心！",0;
 	end;
 
 OnTimer485000:
@@ -123,7 +123,7 @@ OnTimer494000:
 
 OnTimer495000:
 	mapwarp "force_4-1","prt_are_in",178,190,0,0;
-	donpcevent "Octus#arena::OnFailClearStage";
+	donpcevent "奥克图斯#arena::OnFailClearStage";
 	end;
 
 OnTimerOff:
@@ -133,78 +133,78 @@ OnTimerOff:
 OnFailClearStage:
 	donpcevent "cast#80::OnTimeOver1";
 	mapwarp "force_4-1","prt_are_in",178,190,0,0;
-	donpcevent "Octus#arena::OnTimerOff";
+	donpcevent "奥克图斯#arena::OnTimerOff";
 	donpcevent "arena#80::OnReset_All";
 	donpcevent "alloff#80::OnEnable";
-	donpcevent "Lv80 Waiting Room::OnStart";
+	donpcevent "80级等候室::OnStart";
 	end;
 
 On01_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must kill all Nightmares!",0;
+	mapannounce "force_4-1","目标：击败所有梦魇！",0;
 	end;
 
 On01_End:
-	mapannounce "force_4-1","A door to the north room has opened!",0;
+	mapannounce "force_4-1","北侧房间的门已打开！",0;
 	end;
 
 On02_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must kill all monsters!",0;
+	mapannounce "force_4-1","目标：消灭所有魔物！",0;
 	end;
 
 On02_End:
-	mapannounce "force_4-1","A door to the north room has opened!",0;
+	mapannounce "force_4-1","北侧房间的门已打开！",0;
 	end;
 
 On03_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must kill all Assaulters!",0;
+	mapannounce "force_4-1","目标：击败所有风灵龟！",0;
 	end;
 
 On03_End:
-	mapannounce "force_4-1","Clear! A door to the east room has opened!",0;
+	mapannounce "force_4-1","过关！东侧房间的门已打开！",0;
 	end;
 
 On04_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must kill all Nine Tails!",0;
+	mapannounce "force_4-1","目标：击败所有九尾狐！",0;
 	end;
 
 On04_End:
-	mapannounce "force_4-1","A door to the east room has opened!",0;
+	mapannounce "force_4-1","东侧房间的门已打开！",0;
 	end;
 
 On05_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must kill all Walking Petites!",0;
+	mapannounce "force_4-1","目标：击败所有毕帝特地龙！",0;
 	end;
 
 On05_End:
-	mapannounce "force_4-1","Clear! A door to the south room has opened!",0;
+	mapannounce "force_4-1","过关！南侧房间的门已打开！",0;
 	end;
 
 On06_Start:
-	mapannounce "force_4-1","In order to clear this battle, kill all monsters in this room!",0;
+	mapannounce "force_4-1","目标：消灭房间内的所有魔物！",0;
 	end;
 
 On06_End:
-	mapannounce "force_4-1","A door to the south room has opened!",0;
+	mapannounce "force_4-1","南侧房间的门已打开！",0;
 	end;
 
 On07_Start:
-	mapannounce "force_4-1","In order to clear this battle, kill all Fur-Seals while dodging Mermen!",0;
+	mapannounce "force_4-1","目标：避开人鱼士兵，击败所有海豹宝宝！",0;
 	end;
 
 On07_End:
-	mapannounce "force_4-1","Clear! A door to the west room has opened!",0;
+	mapannounce "force_4-1","过关！西侧房间的门已打开！",0;
 	end;
 
 On08_Start:
-	mapannounce "force_4-1","Please escape to the north exit!",0;
+	mapannounce "force_4-1","请前往北侧出口！",0;
 	end;
 
 On09_Start:
-	mapannounce "force_4-1","In order to clear this battle, you must defeat an Ancient Mummy!",0;
+	mapannounce "force_4-1","目标：击败狂暴木乃伊！",0;
 	end;
 
 On09_End:
-	mapannounce "force_4-1","Boss Clear! - A door at the north has opened. Thank you. ",0;
+	mapannounce "force_4-1","首领已击败！北侧出口已打开，谢谢。",0;
 	end;
 }
 
@@ -270,7 +270,7 @@ OnStart:
 	disablenpc "force_07_08#80";
 	disablenpc "force_08_09#80";
 	disablenpc "force_exit#80";
-	donpcevent "Octus#arena::OnTimerOff";
+	donpcevent "奥克图斯#arena::OnTimerOff";
 	//donpcevent "force_09mob#80::OnTimerOff";
 	donpcevent "force_01mob#80::OnReset";
 	donpcevent "force_02mob#80::OnReset";
@@ -290,7 +290,7 @@ OnStart:
 	donpcevent "force_09ex#80::OnReset";
 	enablenpc "force_08_01#80";
 	donpcevent "force_01start#80::OnEnable";
-	donpcevent "Octus#arena::OnStart";
+	donpcevent "奥克图斯#arena::OnStart";
 	end;
 
 OnReset_All:
@@ -314,28 +314,28 @@ OnReset_All:
 
 force_4-1,62,26,1	script	force_08_01#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On01_Start";
+	donpcevent "奥克图斯#arena::On01_Start";
 	warp "force_4-1",40,26;
 	end;
 }
 
 force_4-1,25,44,1	script	force_01_02#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On02_Start";
+	donpcevent "奥克图斯#arena::On02_Start";
 	warp "force_4-1",25,69;
 	end;
 }
 
 force_4-1,25,134,1	script	force_02_03#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On03_Start";
+	donpcevent "奥克图斯#arena::On03_Start";
 	warp "force_4-1",25,159;
 	end;
 }
 
 force_4-1,44,174,1	script	force_03_04#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On04_Start";
+	donpcevent "奥克图斯#arena::On04_Start";
 	warp "force_4-1",69,174;
 	end;
 
@@ -343,28 +343,28 @@ OnTouch_:
 
 force_4-1,134,174,1	script	force_04_05#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On05_Start";
+	donpcevent "奥克图斯#arena::On05_Start";
 	warp "force_4-1",159,174;
 	end;
 }
 
 force_4-1,174,155,1	script	force_05_06#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On06_Start";
+	donpcevent "奥克图斯#arena::On06_Start";
 	warp "force_4-1",174,130;
 	end;
 }
 
 force_4-1,174,65,1	script	force_06_07#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On07_Start";
+	donpcevent "奥克图斯#arena::On07_Start";
 	warp "force_4-1",174,40;
 	end;
 }
 
 force_4-1,155,26,1	script	force_07_08#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On08_Start";
+	donpcevent "奥克图斯#arena::On08_Start";
 	warp "force_4-1",132,26;
 	enablenpc "force_08_09#80";
 	end;
@@ -372,14 +372,14 @@ OnTouch_:
 
 force_4-1,99,54,1	script	force_08_09#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::On09_Start";
+	donpcevent "奥克图斯#arena::On09_Start";
 	warp "force_4-1",99,82;
 	end;
 }
 
 force_4-1,99,124,1	script	force_exit#80	45,1,1,{
 OnTouch_:
-	donpcevent "Octus#arena::OnTimerOff";
+	donpcevent "奥克图斯#arena::OnTimerOff";
 	donpcevent "#arn_timer_80::OnEnable";
 	mapwarp "force_4-1","prt_are_in",73,192,0,0;
 	end;
@@ -397,11 +397,11 @@ OnReset:
 	end;
 
 OnSummonMob1:
-	monster "force_4-1",11,25,"Hunter Fly",1422,1,"force_01ex#80::OnMyMobDead";
-	monster "force_4-1",22,22,"Hunter Fly",1422,1,"force_01ex#80::OnMyMobDead";
-	monster "force_4-1",25,25,"Hunter Fly",1422,1,"force_01ex#80::OnMyMobDead";
-	monster "force_4-1",35,13,"Hunter Fly",1422,1,"force_01ex#80::OnMyMobDead";
-	monster "force_4-1",18,33,"Hunter Fly",1422,1,"force_01ex#80::OnMyMobDead";
+	monster "force_4-1",11,25,"赤苍蝇",1422,1,"force_01ex#80::OnMyMobDead";
+	monster "force_4-1",22,22,"赤苍蝇",1422,1,"force_01ex#80::OnMyMobDead";
+	monster "force_4-1",25,25,"赤苍蝇",1422,1,"force_01ex#80::OnMyMobDead";
+	monster "force_4-1",35,13,"赤苍蝇",1422,1,"force_01ex#80::OnMyMobDead";
+	monster "force_4-1",18,33,"赤苍蝇",1422,1,"force_01ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -410,11 +410,11 @@ OnMyMobDead:
 
 -	script	force_01mob#80	-1,{
 OnEnable:
-	monster "force_4-1",35,13,"Nightmare",1427,1,"force_01mob#80::OnMyMobDead";
-	monster "force_4-1",25,36,"Nightmare",1427,1,"force_01mob#80::OnMyMobDead";
-	monster "force_4-1",22,23,"Nightmare",1427,1,"force_01mob#80::OnMyMobDead";
-	monster "force_4-1",25,17,"Nightmare",1427,1,"force_01mob#80::OnMyMobDead";
-	monster "force_4-1",25,15,"Nightmare",1427,1,"force_01mob#80::OnMyMobDead";
+	monster "force_4-1",35,13,"梦魇",1427,1,"force_01mob#80::OnMyMobDead";
+	monster "force_4-1",25,36,"梦魇",1427,1,"force_01mob#80::OnMyMobDead";
+	monster "force_4-1",22,23,"梦魇",1427,1,"force_01mob#80::OnMyMobDead";
+	monster "force_4-1",25,17,"梦魇",1427,1,"force_01mob#80::OnMyMobDead";
+	monster "force_4-1",25,15,"梦魇",1427,1,"force_01mob#80::OnMyMobDead";
 	donpcevent "force_01ex#80::OnSummonMob1";
 	end;
 
@@ -424,7 +424,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_01mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On01_End";
+		donpcevent "奥克图斯#arena::On01_End";
 		donpcevent "arena#80::OnReset_01";
 	}
 	end;
@@ -442,26 +442,26 @@ OnReset:
 	end;
 
 OnEnable:
-	monster "force_4-1",24,80,"Marionette",1459,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",23,110,"Marionette",1459,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",26,90,"Marionette",1459,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",28,75,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",24,90,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",28,85,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",24,82,"Deviruchi",1433,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",28,86,"Skel Prisoner",1479,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",27,73,"Skel Prisoner",1479,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",26,118,"Skel Prisoner",1479,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",25,127,"Skel Prisoner",1479,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",28,128,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",27,100,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",29,90,"Zombie",1394,1,"force_02mob#80::OnMyMobDead";
-	monster "force_4-1",28,128,"Raydric Archer",1453,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",24,80,"傀儡娃娃",1459,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",23,110,"傀儡娃娃",1459,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",26,90,"傀儡娃娃",1459,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",28,75,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",24,90,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",28,85,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",24,82,"小恶魔",1433,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",28,86,"邪骸战俘",1479,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",27,73,"邪骸战俘",1479,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",26,118,"邪骸战俘",1479,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",25,127,"邪骸战俘",1479,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",28,128,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",27,100,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",29,90,"腐尸",1394,1,"force_02mob#80::OnMyMobDead";
+	monster "force_4-1",28,128,"幽灵弓箭手",1453,1,"force_02mob#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_02mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On02_End";
+		donpcevent "奥克图斯#arena::On02_End";
 		donpcevent "arena#80::OnReset_02";
 	}
 	end;
@@ -479,14 +479,14 @@ OnReset:
 	end;
 
 OnSummonMob_03:
-	monster "force_4-1",26,173,"Clock Tower Keeper",1527,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",21,173,"Marionette",1459,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",31,173,"Clock Tower Keeper",1527,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",26,178,"Marionette",1459,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",21,178,"Marionette",1459,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",31,178,"Marionette",1459,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",26,186,"Sidewinder",1424,1,"force_03ex#80::OnMyMobDead";
-	monster "force_4-1",26,161,"Sidewinder",1424,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",26,173,"钟塔守护者",1527,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",21,173,"傀儡娃娃",1459,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",31,173,"钟塔守护者",1527,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",26,178,"傀儡娃娃",1459,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",21,178,"傀儡娃娃",1459,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",31,178,"傀儡娃娃",1459,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",26,186,"黑蛇",1424,1,"force_03ex#80::OnMyMobDead";
+	monster "force_4-1",26,161,"黑蛇",1424,1,"force_03ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -496,8 +496,8 @@ OnMyMobDead:
 -	script	force_03mob#80	-1,{
 OnEnable:
 	donpcevent "force_03ex#80::OnSummonMob_03";
-	monster "force_4-1",23,174,"Assaulter",1364,1,"force_03mob#80::OnMyMobDead";
-	monster "force_4-1",18,173,"Assaulter",1364,1,"force_03mob#80::OnMyMobDead";
+	monster "force_4-1",23,174,"风灵龟",1364,1,"force_03mob#80::OnMyMobDead";
+	monster "force_4-1",18,173,"风灵龟",1364,1,"force_03mob#80::OnMyMobDead";
 	end;
 
 OnReset:
@@ -507,7 +507,7 @@ OnReset:
 OnMyMobDead:
 	donpcevent "force_03ex#80::OnSummonMob_03";
 	if (mobcount("force_4-1","force_03mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On03_End";
+		donpcevent "奥克图斯#arena::On03_End";
 		donpcevent "arena#80::OnReset_03";
 	}
 	end;
@@ -525,15 +525,15 @@ OnReset:
 	end;
 
 OnSummonMob_04:
-	monster "force_4-1",99,174,"Archer Skeleton",1420,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",101,174,"Archer Skeleton",1420,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",103,174,"Archer Skeleton",1420,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",105,174,"Archer Skeleton",1420,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",107,174,"Archer Skeleton",1420,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",109,177,"Pasana",1464,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",99,170,"Minorous",1461,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",111,170,"Minorous",1461,1,"force_04ex#80::OnMyMobDead";
-	monster "force_4-1",110,170,"Lava Golem",1549,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",99,174,"邪骸弓箭手",1420,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",101,174,"邪骸弓箭手",1420,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",103,174,"邪骸弓箭手",1420,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",105,174,"邪骸弓箭手",1420,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",107,174,"邪骸弓箭手",1420,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",109,177,"帕莎纳",1464,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",99,170,"米洛斯",1461,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",111,170,"米洛斯",1461,1,"force_04ex#80::OnMyMobDead";
+	monster "force_4-1",110,170,"熔岩巨石",1549,1,"force_04ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -544,10 +544,10 @@ OnMyMobDead:
 -	script	force_04mob#80	-1,{
 OnEnable:
 	donpcevent "force_04ex#80::OnSummonMob_04";
-	monster "force_4-1",80,172,"Nine Tails",1471,1,"force_04mob#80::OnMyMobDead";
-	monster "force_4-1",105,172,"Nine Tails",1471,1,"force_04mob#80::OnMyMobDead";
-	monster "force_4-1",90,172,"Nine Tails",1471,1,"force_04mob#80::OnMyMobDead";
-	monster "force_4-1",117,172,"Nine Tails",1471,1,"force_04mob#80::OnMyMobDead";
+	monster "force_4-1",80,172,"九尾狐",1471,1,"force_04mob#80::OnMyMobDead";
+	monster "force_4-1",105,172,"九尾狐",1471,1,"force_04mob#80::OnMyMobDead";
+	monster "force_4-1",90,172,"九尾狐",1471,1,"force_04mob#80::OnMyMobDead";
+	monster "force_4-1",117,172,"九尾狐",1471,1,"force_04mob#80::OnMyMobDead";
 	end;
 OnReset:
 	killmonster "force_4-1","force_04mob#80::OnMyMobDead";
@@ -555,7 +555,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_04mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On04_End";
+		donpcevent "奥克图斯#arena::On04_End";
 		donpcevent "arena#80::OnReset_04";
 	}
 	end;
@@ -573,10 +573,10 @@ OnReset:
 	end;
 
 OnSummonMob_05:
-	monster "force_4-1",168,190,"Petite",1466,1,"force_05ex#80::OnMyMobDead";
-	monster "force_4-1",173,166,"Petite",1466,1,"force_05ex#80::OnMyMobDead";
-	monster "force_4-1",171,176,"Petite",1466,1,"force_05ex#80::OnMyMobDead";
-	monster "force_4-1",188,167,"Petite",1466,1,"force_05ex#80::OnMyMobDead";
+	monster "force_4-1",168,190,"毕帝特飞龙",1466,1,"force_05ex#80::OnMyMobDead";
+	monster "force_4-1",173,166,"毕帝特飞龙",1466,1,"force_05ex#80::OnMyMobDead";
+	monster "force_4-1",171,176,"毕帝特飞龙",1466,1,"force_05ex#80::OnMyMobDead";
+	monster "force_4-1",188,167,"毕帝特飞龙",1466,1,"force_05ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -585,10 +585,10 @@ OnMyMobDead:
 
 -	script	force_05mob#80	-1,{
 OnEnable:
-	monster "force_4-1",164,174,"Petite",1465,1,"force_05mob#80::OnMyMobDead";
-	monster "force_4-1",169,159,"Petite",1465,1,"force_05mob#80::OnMyMobDead";
-	monster "force_4-1",174,183,"Petite",1465,1,"force_05mob#80::OnMyMobDead";
-	monster "force_4-1",177,170,"Petite",1465,1,"force_05mob#80::OnMyMobDead";
+	monster "force_4-1",164,174,"毕帝特地龙",1465,1,"force_05mob#80::OnMyMobDead";
+	monster "force_4-1",169,159,"毕帝特地龙",1465,1,"force_05mob#80::OnMyMobDead";
+	monster "force_4-1",174,183,"毕帝特地龙",1465,1,"force_05mob#80::OnMyMobDead";
+	monster "force_4-1",177,170,"毕帝特地龙",1465,1,"force_05mob#80::OnMyMobDead";
 	end;
 
 OnReset:
@@ -597,7 +597,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_05mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On05_End";
+		donpcevent "奥克图斯#arena::On05_End";
 		donpcevent "arena#80::OnReset_05";
 	}
 	else donpcevent "force_05ex#80::OnSummonMob_05";
@@ -613,20 +613,20 @@ OnEnable:
 
 -	script	force_06ex#80	-1,{
 OnEnable:
-	donpcevent "Octus#arena::On06_start";
+	donpcevent "奥克图斯#arena::On06_start";
 	end;
 }
 
 -	script	force_06mob#80	-1,{
 OnEnable:
-	monster "force_4-1",173,118,"Baphomet Jr.",1431,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",173,90,"Baphomet Jr.",1431,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",177,72,"Baphomet Jr.",1431,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",171,108,"Deviruchi",1433,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",171,85,"Deviruchi",1433,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",171,79,"Alice",1521,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",175,118,"Alice",1521,1,"force_06mob#80::OnMyMobDead";
-	monster "force_4-1",175,99,"Alice",1521,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",173,118,"小巴风特",1431,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",173,90,"小巴风特",1431,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",177,72,"小巴风特",1431,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",171,108,"小恶魔",1433,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",171,85,"小恶魔",1433,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",171,79,"爱丽丝女仆",1521,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",175,118,"爱丽丝女仆",1521,1,"force_06mob#80::OnMyMobDead";
+	monster "force_4-1",175,99,"爱丽丝女仆",1521,1,"force_06mob#80::OnMyMobDead";
 	end;
 
 OnReset:
@@ -635,7 +635,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_06mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On06_End";
+		donpcevent "奥克图斯#arena::On06_End";
 		donpcevent "arena#80::OnReset_06";
 	}
 	end;
@@ -653,9 +653,9 @@ OnReset:
 	end;
 
 OnSummonMob_07:
-	monster "force_4-1",160,34,"Merman",1451,1,"force_07ex#80::OnMyMobDead";
-	monster "force_4-1",163,27,"Merman",1451,1,"force_07ex#80::OnMyMobDead";
-	monster "force_4-1",163,23,"Merman",1451,1,"force_07ex#80::OnMyMobDead";
+	monster "force_4-1",160,34,"人鱼士兵",1451,1,"force_07ex#80::OnMyMobDead";
+	monster "force_4-1",163,27,"人鱼士兵",1451,1,"force_07ex#80::OnMyMobDead";
+	monster "force_4-1",163,23,"人鱼士兵",1451,1,"force_07ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -665,9 +665,9 @@ OnMyMobDead:
 -	script	force_07mob#80	-1,{
 OnEnable:
 	donpcevent "force_07ex#80::OnSummonMob_07";
-	monster "force_4-1",165,27,"Fur-Seal",1533,1,"force_07mob#80::OnMyMobDead";
-	monster "force_4-1",184,23,"Fur-Seal",1533,1,"force_07mob#80::OnMyMobDead";
-	monster "force_4-1",174,19,"Fur-Seal",1533,1,"force_07mob#80::OnMyMobDead";
+	monster "force_4-1",165,27,"海豹宝宝",1533,1,"force_07mob#80::OnMyMobDead";
+	monster "force_4-1",184,23,"海豹宝宝",1533,1,"force_07mob#80::OnMyMobDead";
+	monster "force_4-1",174,19,"海豹宝宝",1533,1,"force_07mob#80::OnMyMobDead";
 	end;
 
 OnReset:
@@ -676,7 +676,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_07mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On07_End";
+		donpcevent "奥克图斯#arena::On07_End";
 		donpcevent "arena#80::OnReset_07";
 	}
 	end;
@@ -706,11 +706,11 @@ OnReset:
 	end;
 
 OnSummonMob_09:
-	monster "force_4-1",91,99,"Argos",1430,1,"force_09ex#80::OnMyMobDead";
-	monster "force_4-1",95,105,"Argos",1430,1,"force_09ex#80::OnMyMobDead";
-	monster "force_4-1",122,99,"Argos",1430,1,"force_09ex#80::OnMyMobDead";
-	monster "force_4-1",88,107,"Argos",1430,1,"force_09ex#80::OnMyMobDead";
-	monster "force_4-1",85,104,"Argos",1430,1,"force_09ex#80::OnMyMobDead";
+	monster "force_4-1",91,99,"艾斯蜘蛛",1430,1,"force_09ex#80::OnMyMobDead";
+	monster "force_4-1",95,105,"艾斯蜘蛛",1430,1,"force_09ex#80::OnMyMobDead";
+	monster "force_4-1",122,99,"艾斯蜘蛛",1430,1,"force_09ex#80::OnMyMobDead";
+	monster "force_4-1",88,107,"艾斯蜘蛛",1430,1,"force_09ex#80::OnMyMobDead";
+	monster "force_4-1",85,104,"艾斯蜘蛛",1430,1,"force_09ex#80::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -719,7 +719,7 @@ OnMyMobDead:
 
 -	script	force_09mob#80	-1,{
 OnEnable:
-	monster "force_4-1",99,99,"Ancient Mummy",1522,1,"force_09mob#80::OnMyMobDead";
+	monster "force_4-1",99,99,"狂暴木乃伊",1522,1,"force_09mob#80::OnMyMobDead";
 	donpcevent "force_09ex#80::OnSummonMob_09";
 	end;
 
@@ -729,7 +729,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_4-1","force_09mob#80::OnMyMobDead") < 1) {
-		donpcevent "Octus#arena::On09_End";
+		donpcevent "奥克图斯#arena::On09_End";
 		donpcevent "arena#80::OnReset_09";
 		donpcevent "arena#80::OnReset_All";
 		set $arena_min80end,gettime(DT_MINUTE);
@@ -738,20 +738,20 @@ OnMyMobDead:
 	end;
 }
 
-prt_are_in,181,188,3	script	Staff#80-1	67,{
-	mes "[Staff]";
+prt_are_in,181,188,3	script	工作人员#80-1	67,{
+	mes "[工作人员]";
 	mes "干得好。";
 	mes "即使没能完成计时战斗，我也会奖励少量竞技场点数。";
 	next;
 	if (arena_point == 30000) {
-		mes "[Staff]";
+		mes "[工作人员]";
 		mes "嗯哼！";
 		mes "你已经有足够竞技场点数。";
 		mes "请稍后花掉一些点数，下次我会给你奖励。";
 		next;
 	}
 	else set arena_point, arena_point + 1;
-	mes "[Staff]";
+	mes "[工作人员]";
 	mes "让我带你出去。希望你玩得开心。";
 	close2;
 	specialeffect2 EF_EXIT;
@@ -759,7 +759,7 @@ prt_are_in,181,188,3	script	Staff#80-1	67,{
 	end;
 }
 
-prt_are_in,77,187,3	script	Staff#80-2	67,{
+prt_are_in,77,187,3	script	工作人员#80-2	67,{
 	if($arena_min80end < $arena_min80st) {
 		if($arena_sec80end < $arena_sec80st) {
 			set @record_min80,60 - $arena_min80st + $arena_min80end -1;
@@ -778,44 +778,44 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 		}
 	}
 	set @gap80,(60 * $top_80min + $top_80sec) - (60 * @record_min80 + @record_sec80);
-	mes "[Staff]";
+	mes "[工作人员]";
 	mes "哇，干得好～";
 	mes "你的名字是……^3131FF"+strcharinfo(0)+"^000000，对吧？";
-	mes "^3131FF"+ strcharinfo(0) +"^000000, total time you spent to pass the battle..";
+	mes "^3131FF"+ strcharinfo(0) +"^000000，你完成挑战的总用时是……";
 	next;
-	mes "[Staff]";
+	mes "[工作人员]";
 	mes "是 "+@record_min80+" 分钟 "+@record_sec80+" 秒。";
 	mes "恭喜！";
 	next;
-	mes "[Staff]";
+	mes "[工作人员]";
 	mes "完成 80 级竞技场计时战斗的玩家中，最快的是 ^3131FF"+$arena_80topn$+"^000000。";
 	next;
-	mes "[Staff]";
-	mes "^3131FF"+$arena_80topn$+"^000000's running time was ^3131FF"+$top_80min+"^000000minutes ^3131FF"+$top_80sec+"^000000seconds.";
+	mes "[工作人员]";
+	mes "^3131FF"+$arena_80topn$+"^000000的纪录是^3131FF"+$top_80min+"^000000分^3131FF"+$top_80sec+"^000000秒。";
 	next;
 	if (@gap80 < 0) {
-		mes "[Staff]";
+		mes "[工作人员]";
 		mes "虽然你没能刷新记录，希望下次成功。";
 		next;
 		if (arena_point > 29980) {
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "那我奖励你一些竞技场点数……嗯？";
-			mes "你的点数超过上限，花掉一些后才能继续获得。";
+			mes "领取奖励会超出竞技场点数上限，请先花掉一些点数。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "你可以在竞技场等候室查看竞技场点数。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "希望你玩得愉快，现在让我带你到竞技场入口。";
 			mes "谢谢。";
 			close2;
 		} else {
 			set arena_point, arena_point + 20;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "让我奖励你一些竞技场点数。";
-			mes "如果想查看点数，请到竞技场入口和 ^3131FFVendigos^000000 交谈。";
+			mes "如果想查看点数，请到竞技场入口和 ^3131FF文迪戈斯^000000 交谈。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "让我带你到竞技场入口。";
 			mes "回头见～";
 			close2;
@@ -825,44 +825,44 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_80::OnStop";
 		donpcevent "alloff#80::OnEnable";
-		donpcevent "Lv80 Waiting Room::OnStart";
+		donpcevent "80级等候室::OnStart";
 		end;
 	} else {
 		emotion ET_HUK;
-		mes "[Staff]";
+		mes "[工作人员]";
 		mes "哇！你刷新了记录！";
-		mes "What a great job!";
+		mes "做得太棒了！";
 		next;
-		mes "[Staff]";
-		mes "你已被记录为完成^FF0000 Lv80 竞技场时空战^000000的最快玩家，^3131FF"+strcharinfo(0)+"^000000。";
+		mes "[工作人员]";
+		mes "你已被记录为完成^FF0000 80级以上 竞技场时空战^000000的最快玩家，^3131FF"+strcharinfo(0)+"^000000。";
 		set $top_80min, @record_min80;
 		set $top_80sec, @record_sec80;
 		set $arena_80topn$,strcharinfo(0);
-		donpcevent "Vendigos::OnLineRec_80";
+		donpcevent "文迪戈斯::OnLineRec_80";
 		next;
 		if (arena_point > 29980) {
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "那么让我奖励你一些竞技场点数……咦？";
-			mes "你的竞技场点数已超过上限。在花掉一些点数前，我无法再给你更多。";
+			mes "领取奖励会超出竞技场点数上限，请先花掉一些点数。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "你可以在竞技场等候室查看竞技场点数。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "希望你玩得愉快，现在让我带你到竞技场入口。";
 			mes "谢谢。";
 			close2;
 		} else {
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "让我奖励你一些竞技场点数。";
 			mes "由于你刷新了纪录，这次还会获得额外点数。";
 			next;
 			set arena_point, arena_point + 50;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "让我奖励你一些竞技场点数。";
-			mes "如果想查看点数，请到竞技场入口和 ^3131FFVendigos^000000 交谈。";
+			mes "如果想查看点数，请到竞技场入口和 ^3131FF文迪戈斯^000000 交谈。";
 			next;
-			mes "[Staff]";
+			mes "[工作人员]";
 			mes "让我带你到竞技场入口。";
 			mes "回头见～";
 			close2;
@@ -872,7 +872,7 @@ prt_are_in,77,187,3	script	Staff#80-2	67,{
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_80::OnStop";
 		donpcevent "alloff#80::OnEnable";
-		donpcevent "Lv80 Waiting Room::OnStart";
+		donpcevent "80级等候室::OnStart";
 		end;
 	}
 }
@@ -883,7 +883,7 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "prt_are_in","本广播通知你 Lv80 竞技场的限制。",0,0xFFCE00;
+	mapannounce "prt_are_in","本广播通知你 80级以上 竞技场的限制。",0,0xFFCE00;
 	end;
 
 OnTimer3000:
@@ -891,7 +891,7 @@ OnTimer3000:
 	end;
 
 OnTimer4000:
-	mapannounce "prt_are_in","请尽快完成战斗，避免陷入不利局面。感谢你的配合。",0,0xFFCE00;
+	mapannounce "prt_are_in","请尽快领取奖励，以免离场后无法补领。感谢配合。",0,0xFFCE00;
 	end;
 
 OnTimer60000:
@@ -899,7 +899,7 @@ OnTimer60000:
 	donpcevent "arn_warp_80::OnOut";
 	donpcevent "#arn_timer_80::OnStop";
 	donpcevent "alloff#80::OnEnable";
-	donpcevent "Lv80 Waiting Room::OnStart";
+	donpcevent "80级等候室::OnStart";
 	end;
 
 OnStop:
@@ -915,16 +915,16 @@ OnOut:
 
 -	script	cast#80	-1,{
 OnTimeOver1:
-	mapannounce "force_4-1","由于战斗中发生错误，竞技场将重新启动。",0,0xFFCE00;
+	mapannounce "force_4-1","战斗已结束，竞技场将重新开放。",0,0xFFCE00;
 	end;
 OnTimeOver2:
-	mapannounce "force_4-1","由于等候室发生错误，竞技场将启动。",0,0xFFCE00;
+	mapannounce "force_4-1","等候时间已结束，竞技场将重新开放。",0,0xFFCE00;
 	end;
 OnNomal1:
 	mapannounce "force_4-1","竞技场将重新启动。",0,0xFFCE00;
 	end;
 OnNomal2:
-	mapannounce "force_4-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_4-1","竞技场将重新开放。",0,0xFFCE00;
 	end;
 }
 
@@ -947,8 +947,8 @@ OnEnable:
 	donpcevent "force_07ex#80::OnReset";
 	//donpcevent "force_08ex#80::OnReset";
 	donpcevent "force_09ex#80::OnReset";
-	donpcevent "Octus#arena::OnTimerOff";
-	disablenpc "Octus#arena";
+	donpcevent "奥克图斯#arena::OnTimerOff";
+	disablenpc "奥克图斯#arena";
 	disablenpc "force_01_02#80";
 	disablenpc "force_02_03#80";
 	disablenpc "force_03_04#80";
@@ -960,7 +960,7 @@ OnEnable:
 	disablenpc "force_exit#80";
 	disablenpc "arena#80";
 	donpcevent "#arn_timer_80::OnStop";
-	enablenpc "Octus#arena";
+	enablenpc "奥克图斯#arena";
 	enablenpc "arena#80";
 	end;
 

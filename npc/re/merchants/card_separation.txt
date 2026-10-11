@@ -17,7 +17,7 @@
 -	script	::CardSeparation_mal	-1,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "您携带的物品种类太多。减少物品后再继续吧。";
+		mes "您的背包空间或剩余负重不足。整理背包后再继续吧。";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
@@ -26,25 +26,25 @@
 	}
 	if (strnpcinfo(1) == "Jeremy") {
 		set .@Jeremy,1;
-		set .@n$, "[Jeremy]";
-		setarray .@equip_name$[0],  "Armor",  "Shoes",  "Garment", "Upper Hat";
+		set .@n$, "[杰里米]";
+		setarray .@equip_name$[0],  "铠甲",  "鞋子",  "披风", "头饰（上段）";
 		setarray .@equip_slot[0], EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP;
 
 		mes .@n$;
 		mes "好久不见～";
-		mes "我学会了从铠甲、鞋子、披风和头具中分离卡片的新技能。要试试吗？";
+		mes "我学会了从铠甲、鞋子、披风和上段头饰中分离卡片的新技能。要试试吗？";
 	} else {
 		set .@Jeremy,0;
-		set .@n$, "[Richard]";
-		setarray .@equip_name$[0], "Left hand", "Right hand";
+		set .@n$, "[理查德]";
+		setarray .@equip_name$[0], "左手", "右手";
 		setarray .@equip_slot[0],   EQI_HAND_L,   EQI_HAND_R;
 
 		mes .@n$;
-		mes "傻 Jeremy 不愿处理武器和盾牌，因为取出卡片可能会损坏它们。所以我准备了武器和盾牌的卡片分离技能……";
+		mes "傻杰里米不愿处理武器和盾牌，因为取出卡片可能会损坏它们。所以我准备了武器和盾牌的卡片分离技能……";
 	}
 	next;
 	mes .@n$;
-	mes "通常费用为 1,000,000 Zeny。分离卡片时，可以使用^990000降低装备或卡片损坏概率的特殊物品^000000。不会额外收取 Zeny。";
+	mes "普通分离需支付 1,000,000 Zeny；也可以改用^990000降低装备或卡片损坏概率的特殊物品^000000，使用这些物品时不另收 Zeny。";
 	next;
 	mes .@n$;
 	mes "即使使用特殊物品，也可能损坏装备或卡片。此外，^ff0000精炼等级可能会丢失^000000。您有要分离的装备吗？";
@@ -67,10 +67,10 @@
 		mes .@n$;
 		mes "您想知道特别之处吗？我不想只给您说明，那就讲个故事吧……";
 		next;
-		mes "^000099Jeremy 正在伸展肩膀和双手。他可能在等人和他交谈。^000000";
+		mes "^000099杰里米正在伸展肩膀和双手。他可能在等人和他交谈。^000000";
 		next;
 		mes .@n$;
-		mes "您知道马郎多的特产是罐头食品吗？";
+		mes "您知道马兰岛的特产是罐头食品吗？";
 		next;
 		select("我知道。数量很有限吗？");
 		mes .@n$;
@@ -84,7 +84,7 @@
 		mes "不过经过再生精炼，这些鱼油变得很有价值，可用于旧装备护理和工业润滑。";
 		next;
 		mes .@n$;
-		mes "此外，这种油非常适合从已装备武器中分离遗物，因此高级润滑剂和普通润滑剂无法用 Zeny 购买。";
+		mes "此外，这种油非常适合从装备中分离卡片，因此高级润滑剂和普通润滑剂无法用 Zeny 购买。";
 		next;
 		mes .@n$;
 		mes "不用担心钱。高级润滑剂确实很贵。支付一些 Zeny，我可以给您更便宜的润滑剂。";
@@ -125,7 +125,7 @@
 		}
 		if (!getarraysize(.@equip_card)) {
 			mes .@n$;
-			mes "该卡片未装备。要再检查一次吗？";
+			mes "这件装备上没有卡片。要再检查一次吗？";
 			close;
 		}
 		if ((.@equip_card[0] && compare(.@mvp_list$,"|"+.@equip_card[0]+"|")) ||
@@ -141,7 +141,7 @@
 		//	close;
 		//}
 
-		mes "[Richard]";
+		mes "[理查德]";
 		mes "要分离哪个编号插槽中的卡片？从左侧插槽开始编号为 1、2、3、4。";
 		next;
 		set .@menu$,"";
@@ -162,7 +162,7 @@
 			set .@slot, .@i-2;
 			if (.@equip_card[.@slot] == 0 || getiteminfo(.@equip_card[.@slot], ITEMINFO_SUBTYPE) == CARD_ENCHANT) {
 				mes .@n$;
-				mes "该插槽没有装备卡片。要再检查一次吗？";
+				mes "这个插槽没有插入卡片。要再检查一次吗？";
 				close;
 			}
 			break;
@@ -178,10 +178,10 @@
 			mes "请选择操作费用。";
 		next;
 		set .@menu$,
-			"Next time...:"+
-			((Zeny >= 1000000)?"Use 1,000,000z (Do not use special item):":"^999999Use 1,000,000z (Insufficient)^000000:")+
-			((countitem(6441))?"Use Premium Lubricant:":"^999999Premium Lubricant (Insufficient)^000000:")+
-			((countitem(6440))?"Use Ordinary Lubricant":"^999999Ordinary Lubricant (Insufficient)^000000");
+			"下次吧……:"+
+			((Zeny >= 1000000)?"支付 1,000,000 Z（不使用特殊物品）:":"^999999支付 1,000,000 Z（余额不足）^000000:")+
+			((countitem(6441))?"使用高级润滑剂:":"^999999高级润滑剂（数量不足）^000000:")+
+			((countitem(6440))?"使用普通润滑剂":"^999999普通润滑剂（数量不足）^000000");
 		switch(select(.@menu$)) {
 		case 1:
 			mes .@n$;
@@ -213,7 +213,7 @@
 				close;
 			}
 			mes .@n$;
-			mes "使用高级润滑剂会大幅降低损坏概率，但我无法保证 100% 安全。确定要继续吗？";
+			mes "高级润滑剂会降低装备、卡片损坏及精炼等级丢失的概率，但无法保证 100% 安全。确定要继续吗？";
 			next;
 			if(select("下次吧……:继续") == 1) {
 				mes .@n$;
@@ -232,7 +232,7 @@
 				close;
 			}
 			mes .@n$;
-			mes "使用普通润滑剂会大幅降低损坏概率，但我无法保证 100% 安全。确定要继续吗？";
+			mes "普通润滑剂只会降低卡片损坏的概率，不会降低装备损坏或精炼等级丢失的概率。确定要继续吗？";
 			next;
 			if(select("下次吧……:继续") == 1) {
 				mes .@n$;
@@ -247,9 +247,9 @@
 		}
 	} else if (.@boss_chk == 1) {
 		mes .@n$;
-		mes "这件装备含有珍贵的 MVP 卡片。润滑剂无法分离该卡片。带来超级表面活性剂 ^0000ff希利特·庞^000000 后我才能操作。";
+		mes "这件装备含有珍贵的 MVP 卡片。润滑剂无法分离该卡片。带来超级表面活性剂 ^0000ffSillit Pong瓶^000000 后我才能操作。";
 		next;
-		switch(select("下次吧……:我有 希利特·庞。")) {
+		switch(select("下次吧……:我有 Sillit Pong瓶。")) {
 		case 1:
 			mes .@n$;
 			mes "需要服务时随时来找我。";
@@ -257,7 +257,7 @@
 		case 2:
 			if (countitem(6443) == 0) {
 				mes .@n$;
-				mes "您没有 希利特·庞。";
+				mes "您没有 Sillit Pong瓶。";
 				close;
 			}
 			break;
@@ -356,7 +356,7 @@
 		mes "^0000ff卡片分离成功。^000000";
 	} else {
 		mes "卡片分离过程中表面发生了腐蚀。";
-		mes "卡片已损坏。^ff0000无法恢复。^000000";
+		mes "有卡片已损坏。^ff0000无法恢复。^000000";
 	}
 	next;
 	mes .@n$;
@@ -364,4 +364,4 @@
 	close;
 }
 malangdo,215,166,4	duplicate(CardSeparation_mal)	Jeremy#pa0829	553	// Armors :: mal_yong
-malangdo,208,166,6	duplicate(CardSeparation_mal)	Richard#pa0829	559	// Weapons :: soc_weapon
+malangdo,208,166,6	duplicate(CardSeparation_mal)	理查特#pa0829	559	// Weapons :: soc_weapon

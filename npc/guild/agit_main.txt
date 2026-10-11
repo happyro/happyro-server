@@ -94,7 +94,7 @@ OnStartArena:
 		end;
 	}
 	if (!mobcount(strnpcinfo(2),"Agit#"+strnpcinfo(2)+"::OnAgitBreak")) {
-		monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Emperium",1288,1,"Agit#"+strnpcinfo(2)+"::OnAgitBreak";
+		monster strnpcinfo(2),.@emproom[0],.@emproom[1],"华丽金属",1288,1,"Agit#"+strnpcinfo(2)+"::OnAgitBreak";
 	}
 	end;
 
@@ -126,7 +126,7 @@ OnAgitBreak:
 
 	// Refresh castle data, disable Kafra and reset Invest information.
 	donpcevent strnpcinfo(0)+"::OnRecvCastle";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "卡普拉员工#"+strnpcinfo(2);
 	for( set .@i, CD_INVESTED_ECONOMY; .@i <= CD_ENABLED_KAFRA; set .@i, .@i+1 ) {
 		SetCastleData strnpcinfo(2), .@i, 0;
 	}
@@ -159,11 +159,11 @@ OnGuildBreak:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	// Kill guardians, disable the Kafra, and set owner to 0.
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "卡普拉员工#"+strnpcinfo(2);
 	SetCastleData strnpcinfo(2),CD_GUILD_ID,0;
 	// Wait before refreshing guild information.
 	sleep 7000;
-	Announce "Guild Base [" + GetCastleName(strnpcinfo(2)) + "] has been abandoned.",0;
+	Announce "公会据点 [" + GetCastleName(strnpcinfo(2)) + "] 已被放弃。",0;
 	donpcevent strnpcinfo(0)+"::OnRecvCastle";
 	end;
 
@@ -176,100 +176,100 @@ OnRecvCastle:
 		killmonsterall strnpcinfo(2);
 		if (compare(strnpcinfo(2),"aldeg")) {
 			// Normal Spawns
-			monster strnpcinfo(2),0,0,"Evil Druid",1117,10;
-			monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
-			monster strnpcinfo(2),0,0,"Abysmal Knight",1219,2;
-			monster strnpcinfo(2),0,0,"Executioner",1205,1;
-			monster strnpcinfo(2),0,0,"Penomena",1216,10;
-			monster strnpcinfo(2),0,0,"Alarm",1193,18;
-			monster strnpcinfo(2),0,0,"Clock",1269,9;
-			monster strnpcinfo(2),0,0,"Raydric Archer",1276,7;
-			monster strnpcinfo(2),0,0,"Wanderer",1208,3;
-			monster strnpcinfo(2),0,0,"Alice",1275,1;
-			monster strnpcinfo(2),0,0,"Bloody Knight",1268,1;
-			monster strnpcinfo(2),0,0,"Dark Lord",1272,1;
+			monster strnpcinfo(2),0,0,"暗神官",1117,10;
+			monster strnpcinfo(2),0,0,"卡利斯格",1132,4;
+			monster strnpcinfo(2),0,0,"深渊骑士",1219,2;
+			monster strnpcinfo(2),0,0,"行刑者",1205,1;
+			monster strnpcinfo(2),0,0,"梅纳海葵",1216,10;
+			monster strnpcinfo(2),0,0,"钟怪",1193,18;
+			monster strnpcinfo(2),0,0,"古钟魔",1269,9;
+			monster strnpcinfo(2),0,0,"幽灵弓箭手",1276,7;
+			monster strnpcinfo(2),0,0,"邪骸浪人",1208,3;
+			monster strnpcinfo(2),0,0,"爱丽丝女仆",1275,1;
+			monster strnpcinfo(2),0,0,"血腥骑士",1268,1;
+			monster strnpcinfo(2),0,0,"黑暗之王",1272,1;
 			// Set Emperium room spawn coordinates and spawn monsters.
 			if (strnpcinfo(2) == "aldeg_cas01") { setarray .@emproom[0],216,23; }
 			else if (strnpcinfo(2) == "aldeg_cas02") { setarray .@emproom[0],213,23; }
 			else if (strnpcinfo(2) == "aldeg_cas03") { setarray .@emproom[0],205,31; }
 			else if (strnpcinfo(2) == "aldeg_cas04") { setarray .@emproom[0],36,217; }
 			else if (strnpcinfo(2) == "aldeg_cas05") { setarray .@emproom[0],27,101; }
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Dark Lord",1272,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Tower Keeper",1270,4;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Bloody Knight",1268,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Abysmal Knight",1219,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Archer",1276,5;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"黑暗之王",1272,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"钟塔守护者",1270,4;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"血腥骑士",1268,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"深渊骑士",1219,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"幽灵弓箭手",1276,5;
 		}
 		else if (compare(strnpcinfo(2),"gefg")) {
 			// Normal Spawns
-			monster strnpcinfo(2),0,0,"Evil Druid",1117,10;
-			monster strnpcinfo(2),0,0,"Wind Ghost",1263,11;
-			monster strnpcinfo(2),0,0,"Bathory",1102,10;
-			monster strnpcinfo(2),0,0,"Jakk",1130,10;
-			monster strnpcinfo(2),0,0,"Marduk",1140,20;
-			monster strnpcinfo(2),0,0,"Raydric",1163,9;
-			monster strnpcinfo(2),0,0,"Alice",1275,1;
-			monster strnpcinfo(2),0,0,"Abysmal Knight",1219,1;
-			monster strnpcinfo(2),0,0,"Moonlight Flower",1150,1;
-			monster strnpcinfo(2),0,0,"Phreeoni",1159,1;
+			monster strnpcinfo(2),0,0,"暗神官",1117,10;
+			monster strnpcinfo(2),0,0,"风魔巫师",1263,11;
+			monster strnpcinfo(2),0,0,"巫婆",1102,10;
+			monster strnpcinfo(2),0,0,"南瓜先生",1130,10;
+			monster strnpcinfo(2),0,0,"马尔杜克",1140,20;
+			monster strnpcinfo(2),0,0,"幽灵剑士",1163,9;
+			monster strnpcinfo(2),0,0,"爱丽丝女仆",1275,1;
+			monster strnpcinfo(2),0,0,"深渊骑士",1219,1;
+			monster strnpcinfo(2),0,0,"月夜猫",1150,1;
+			monster strnpcinfo(2),0,0,"皮里恩",1159,1;
 			// Set Emperium room spawn coordinates and spawn monsters.
 			if (strnpcinfo(2) == "gefg_cas01") { setarray .@emproom[0],197,181; }
 			else if (strnpcinfo(2) == "gefg_cas02") { setarray .@emproom[0],176,178; }
 			else if (strnpcinfo(2) == "gefg_cas03") { setarray .@emproom[0],244,166; }
 			else if (strnpcinfo(2) == "gefg_cas04") { setarray .@emproom[0],174,177; }
 			else if (strnpcinfo(2) == "gefg_cas05") { setarray .@emproom[0],194,184; }
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Mysteltainn",1203,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Orc Hero",1087,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"High Orc",1213,10;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Orc Archer",1189,10;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"弑神者",1203,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"兽人英雄",1087,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"兽人战士长",1213,10;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"兽人弓箭手",1189,10;
 		}
 		else if (compare(strnpcinfo(2),"payg")) {
 			// Normal Spawns
-			monster strnpcinfo(2),0,0,"Greatest General",1277,9;
-			monster strnpcinfo(2),0,0,"Wanderer",1208,10;
-			monster strnpcinfo(2),0,0,"Mutant Dragonoid",1262,5;
-			monster strnpcinfo(2),0,0,"Bathory",1102,5;
-			monster strnpcinfo(2),0,0,"Moonlight Flower",1150,1;
-			monster strnpcinfo(2),0,0,"Eddga",1115,1;
-			monster strnpcinfo(2),0,0,"Horong",1129,11;
-			monster strnpcinfo(2),0,0,"Raydric Archer",1276,5;
-			monster strnpcinfo(2),0,0,"Kobold Archer",1282,4;
-			monster strnpcinfo(2),0,0,"Gargoyle",1253,5;
+			monster strnpcinfo(2),0,0,"将军魔碑",1277,9;
+			monster strnpcinfo(2),0,0,"邪骸浪人",1208,10;
+			monster strnpcinfo(2),0,0,"半龙人",1262,5;
+			monster strnpcinfo(2),0,0,"巫婆",1102,5;
+			monster strnpcinfo(2),0,0,"月夜猫",1150,1;
+			monster strnpcinfo(2),0,0,"虎王",1115,1;
+			monster strnpcinfo(2),0,0,"鬼火",1129,11;
+			monster strnpcinfo(2),0,0,"幽灵弓箭手",1276,5;
+			monster strnpcinfo(2),0,0,"犬妖弓箭手",1282,4;
+			monster strnpcinfo(2),0,0,"蝙蝠弓箭手",1253,5;
 			// Set Emperium room spawn coordinates and spawn monsters.
 			if (strnpcinfo(2) == "payg_cas01") { setarray .@emproom[0],139,139; }
 			else if (strnpcinfo(2) == "payg_cas02") { setarray .@emproom[0],38,25; }
 			else if (strnpcinfo(2) == "payg_cas03") { setarray .@emproom[0],269,265; }
 			else if (strnpcinfo(2) == "payg_cas04") { setarray .@emproom[0],270,28; }
 			else if (strnpcinfo(2) == "payg_cas05") { setarray .@emproom[0],30,30; }
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Moonlight Flower",1150,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Eddga",1115,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Wanderer",1208,6;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Archer",1276,5;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"月夜猫",1150,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"虎王",1115,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"邪骸浪人",1208,6;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"幽灵弓箭手",1276,5;
 		}
 		else if (compare(strnpcinfo(2),"prtg")) {
 			// Normal Spawns
-			monster strnpcinfo(2),0,0,"Raydric",1163,1;
-			monster strnpcinfo(2),0,0,"Khalitzburg",1132,10;
-			monster strnpcinfo(2),0,0,"Abysmal Knight",1219,5;
-			monster strnpcinfo(2),0,0,"Bloody Knight",1268,5;
-			monster strnpcinfo(2),0,0,"Stormy Knight",1251,1;
-			monster strnpcinfo(2),0,0,"Hatii",1252,1;
-			monster strnpcinfo(2),0,0,"Raydric Archer",1276,5;
-			monster strnpcinfo(2),0,0,"Gryphon",1259,2;
-			monster strnpcinfo(2),0,0,"Chimera",1283,3;
-			monster strnpcinfo(2),0,0,"Alice",1275,1;
-			monster strnpcinfo(2),0,0,"Zealotus",1200,1;
+			monster strnpcinfo(2),0,0,"幽灵剑士",1163,1;
+			monster strnpcinfo(2),0,0,"卡利斯格",1132,10;
+			monster strnpcinfo(2),0,0,"深渊骑士",1219,5;
+			monster strnpcinfo(2),0,0,"血腥骑士",1268,5;
+			monster strnpcinfo(2),0,0,"冰暴骑士",1251,1;
+			monster strnpcinfo(2),0,0,"卡仑",1252,1;
+			monster strnpcinfo(2),0,0,"幽灵弓箭手",1276,5;
+			monster strnpcinfo(2),0,0,"狮鹫兽",1259,2;
+			monster strnpcinfo(2),0,0,"凯美拉",1283,3;
+			monster strnpcinfo(2),0,0,"爱丽丝女仆",1275,1;
+			monster strnpcinfo(2),0,0,"艾斯恩魔女",1200,1;
 			// Set Emperium room spawn coordinates and spawn monsters.
 			if (strnpcinfo(2) == "prtg_cas01") { setarray .@emproom[0],197,197; }
 			else if (strnpcinfo(2) == "prtg_cas02") { setarray .@emproom[0],157,174; }
 			else if (strnpcinfo(2) == "prtg_cas03") { setarray .@emproom[0],16,220; }
 			else if (strnpcinfo(2) == "prtg_cas04") { setarray .@emproom[0],291,14; }
 			else if (strnpcinfo(2) == "prtg_cas05") { setarray .@emproom[0],266,266; }
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Guardian Knight",1268,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Guardian Master",1251,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Hatii",1252,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Guardian Knight",1219,1;
-			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Archer",1276,5;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"守护骑士",1268,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"守护者首领",1251,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"卡仑",1252,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"守护骑士",1219,1;
+			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"幽灵弓箭手",1276,5;
 		}
 		// Add custom Guild Castles here.
 		else {
@@ -277,7 +277,7 @@ OnRecvCastle:
 		}
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 		// Disable Kafra Staff...
-		disablenpc "Kafra Staff#"+strnpcinfo(2);
+		disablenpc "卡普拉员工#"+strnpcinfo(2);
 		end;
 	}
 	else {
@@ -309,7 +309,7 @@ OnRecvCastle:
 		// And load purchased Guardian in castles.
 		donpcevent "Guardian#"+strnpcinfo(2)+"::OnSpawnGuardians";
 		// And display Kafra if purchased.
-		if (GetCastleData(strnpcinfo(2),CD_ENABLED_KAFRA) < 1) disablenpc "Kafra Staff#"+strnpcinfo(2);
+		if (GetCastleData(strnpcinfo(2),CD_ENABLED_KAFRA) < 1) disablenpc "卡普拉员工#"+strnpcinfo(2);
 	}
 	end;
 }
@@ -337,19 +337,19 @@ OnRecvCastle:
 		set .@GID,GetCastleData(strnpcinfo(2),CD_GUILD_ID);
 	
 	if (compare(strnpcinfo(2),"aldeg")) {
-	setarray .@destination$[0],"Al De Baran","aldebaran";
+	setarray .@destination$[0],"艾尔迪巴兰","aldebaran";
 		setarray .@coordinates[0],132,103;
 	}
 else if (compare(strnpcinfo(2),"gefg")) {
-	setarray .@destination$[0],"Geffen","geffen";
+	setarray .@destination$[0],"吉芬","geffen";
 	setarray .@coordinates[0],120,39;
 		}
 		else if (compare(strnpcinfo(2),"payg")) {
-		setarray .@destination$[0],"Payon","payon";
+		setarray .@destination$[0],"斐扬","payon";
 		setarray .@coordinates[0],70,100;
 		}
 		else if (compare(strnpcinfo(2),"prtg")) {
-			setarray .@destination$[0],"Prontera","prontera";
+			setarray .@destination$[0],"普隆德拉","prontera";
 				setarray .@coordinates[0],278,211;
 				}
 				// Add custom Guild Castles here.
@@ -359,21 +359,21 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				
 				cutin "kafra_01",2;
 			if (getcharid(2) == .@GID) {
-			mes "[Kafra Employee]";
+			mes "[卡普拉员工]";
 			mes "欢迎。^ff0000" + GetGuildName(.@GID) + "^000000 公会成员。";
 			mes "无论你去哪里，卡普拉公司都会陪伴你。";
 			next;
 			switch (select("使用仓库:使用传送服务:租用手推车:取消")) {
 			case 1:
 			if(!callfunc("F_CanOpenStorage")){
-			mes "[Kafra Employee]";
+			mes "[卡普拉员工]";
 			mes "抱歉，你需要初心者基本技能达到 6 级，";
 		mes "才能使用仓库服务。";
 			close2;
 			cutin "",255;
 			end;
 			}
-			mes "[Kafra Employee]";
+			mes "[卡普拉员工]";
 			mes "来，让我为你打开仓库。";
 				mes "感谢使用卡普拉服务。";
 					close2;
@@ -381,13 +381,13 @@ else if (compare(strnpcinfo(2),"gefg")) {
 					openstorage;
 					end;
 					case 2:
-					mes "[Kafra Employee]";
+					mes "[卡普拉员工]";
 					mes "请选择目的地。";
 					next;
 				switch (select(.@destination$+" -> 200z:取消")) {
 				case 1:
 				if (Zeny < 200) {
-				mes "[Kafra Employee]";
+				mes "[卡普拉员工]";
 				mes "抱歉，你没有足够的 Zeny 支付传送服务。";
 				mes "传送到 "+.@destination$+" 的费用是 200 Zeny。";
 			close2;
@@ -406,7 +406,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				}
 				case 3:
 				if (BaseClass != Job_Merchant) {
-				mes "[Kafra Employee]";
+				mes "[卡普拉员工]";
 			mes "抱歉，手推车租赁服务仅对商人、铁匠、神工匠、";
 			mes "炼金术士、生化学家、机械工匠和基因研究者开放。";
 				close2;
@@ -414,21 +414,21 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				end;
 				}
 				if (checkcart()) {
-				mes "[Kafra Employee]";
+				mes "[卡普拉员工]";
 				mes "你已经装备了手推车。";
 				mes "很遗憾，每位顾客一次只能租一辆。";
 				close2;
 			cutin "",255;
 			end;
 			}
-			mes "[Kafra Employee]";
+			mes "[卡普拉员工]";
 			mes "手推车租金是 800 Zeny。";
 			mes "你要租一辆吗？";
 			next;
 			switch (select("租用手推车。:取消")) {
 				case 1:
 					if (Zeny < 800) {
-					mes "[Kafra Employee]";
+					mes "[卡普拉员工]";
 					mes "抱歉，你没有足够的 Zeny";
 					mes "支付 800 Zeny 的手推车租金。";
 					close2;
@@ -447,7 +447,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				end;
 				}
 			case 4:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 			mes "卡普拉公司一直努力为你提供最佳服务。";
 			mes "希望满足你的冒险需求和卓越标准。";
 			close2;
@@ -455,7 +455,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 			end;
 			}
 		}
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes "我只被授权为 ^ff0000"+GetGuildName(.@GID)+"^000000 公会提供服务。";
 	mes "请尝试附近其他卡普拉职员。抱歉给你带来不便。";
 	close2;
@@ -773,14 +773,14 @@ else if (compare(strnpcinfo(2),"gefg")) {
 		mes "请选择要召唤的守护者。";
 		next;
 		for( set .@i, 0; .@i <= 7 ; set .@i, .@i+1 ) {
-			if (.@guardiantype[.@i] == 1) { set .@type$,"Guardian Soldier"; }
-			else if (.@guardiantype[.@i] == 2) { set .@type$,"Guardian Archer"; }
-			else { set .@type$,"Guardian Knight"; }
+			if (.@guardiantype[.@i] == 1) { set .@type$,"守护士兵"; }
+			else if (.@guardiantype[.@i] == 2) { set .@type$,"守护弓箭手"; }
+			else { set .@type$,"守护骑士"; }
 			if (guardianinfo(strnpcinfo(2),.@i,0)) {
-				setarray .@gname$[.@i], .@type$ + " - Implemented (" + guardianinfo(strnpcinfo(2),.@i,2) + "/" + guardianinfo(strnpcinfo(2),.@i,1) + ")";
+				setarray .@gname$[.@i], .@type$ + " - 已召唤 (" + guardianinfo(strnpcinfo(2),.@i,2) + "/" + guardianinfo(strnpcinfo(2),.@i,1) + ")";
 			}
 			else {
-				setarray .@gname$[.@i], .@type$ + " - Not Implemented";
+				setarray .@gname$[.@i], .@type$ + " - 未召唤";
 			}
 		}
 		set .@menu$,.@gname$[0]+":"+.@gname$[1]+":"+.@gname$[2]+":"+.@gname$[3]+":"+.@gname$[4]+":"+.@gname$[5]+":"+.@gname$[6]+":"+.@gname$[7];
@@ -828,18 +828,18 @@ else if (compare(strnpcinfo(2),"gefg")) {
 			switch (select("解雇:取消")) {
 			case 1:
 				cutin "kafra_01",2;
-				mes "[ Hired Kafra Employee ]";
+				mes "[ 受雇的卡普拉员工 ]";
 				mes "我工作得这么努力……主人怎么能这样……请……请重新考虑……再确认一次，主人……求你……";
 				next;
 				switch (select("解雇:取消")) {
 				case 1:
-					mes "[ Hired Kafra Employee ]";
+					mes "[ 受雇的卡普拉员工 ]";
 					mes "哦，天哪！这太荒唐了！";
 					next;
 					cutin "",255;
 					break;
 				case 2:
-					mes "[ Hired Kafra Employee ]";
+					mes "[ 受雇的卡普拉员工 ]";
 					mes "我会为你努力工作……谢谢！";
 					close;
 				}
@@ -849,7 +849,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				mes "在我看来她工作很努力。留下她是个好决定。";
 				close;
 			}
-			disablenpc "Kafra Staff#"+strnpcinfo(2);
+			disablenpc "卡普拉员工#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),CD_ENABLED_KAFRA,0;
 			mes "["+strnpcinfo(1)+"]";
 			mes "....";
@@ -873,13 +873,13 @@ else if (compare(strnpcinfo(2),"gefg")) {
 				close;
 			}
 			set Zeny, Zeny - 10000;
-			enablenpc "Kafra Staff#"+strnpcinfo(2);
+			enablenpc "卡普拉员工#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),CD_ENABLED_KAFRA,1;
 			mes "["+strnpcinfo(1)+"]";
 			mes "我们已与卡普拉总部签订合同，并雇用了卡普拉职员。";
 			next;
 			cutin "kafra_01",2;
-			mes "[ Hired Kafra Employee ]";
+			mes "[ 受雇的卡普拉员工 ]";
 			mes "你好，我是总部派来的。";
 			mes "我会尽力不损害公会声誉。";
 			next;
@@ -922,7 +922,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 	set .@GID,GetCastleData(strnpcinfo(2),CD_GUILD_ID);
 
 	if (.@GID == 0) {
-		mes "[Ringing Voice]";
+		mes "[回荡的声音]";
 	mes "‘克服考验的人展现了极大的勇气……并将找到通往另一项考验的道路。’";
 		close;
 	}
@@ -964,7 +964,7 @@ else if (compare(strnpcinfo(2),"gefg")) {
 		end;
 	}
 
-	mes "[Ringing Voice]";
+	mes "[回荡的声音]";
 	mes "‘只有真正勇敢的人才能接受测试。’";
 	next;
 	mes " ";
@@ -1270,7 +1270,7 @@ OnClock0001:
 		set .@box,1 << .@i;
 		// Spawn or do not spawn chests if one already exists.
 		if ((getd("$@"+strnpcinfo(2)+"_treasure") & .@box) == 0) {
-			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
+			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"宝箱",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
 		}
 	}

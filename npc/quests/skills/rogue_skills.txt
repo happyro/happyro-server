@@ -64,7 +64,7 @@ OnTouch_:
 		mes "动、动不了了！";
 		next;
 		mes "[海嘉拉·格雷格]";
-		mes "哦？没想到你这么快就能施放封闭空间！";
+		mes "哦？没想到你这么快就能施放近身禁锢！";
 		mes "太厉害了，真是太厉害了！";
 		mes "现在正是你掌握这个技能的好机会……";
 		next;
@@ -75,8 +75,7 @@ OnTouch_:
 		next;
 		mes "[海嘉拉·格雷格]";
 		mes "如果他打算向左移动，气场会是白色。";
-		mes "向右移动时会变成黄色，";
-		mes "后退时则是浅红色。";
+		mes "向右移动时会变成黄色，后退时则是浅红色。";
 		next;
 		setarray .@Effects[1],EF_CHANGECOLD,EF_CHANGEWIND,EF_CHANGEEARTH;
 		for(set .@lim_1,0; .@lim_1<10; set .@lim_1,.@lim_1+1) {
@@ -84,7 +83,7 @@ OnTouch_:
 			specialeffect .@Effects[.@move_1];
 			if (select("挡住他的左路:挡住他的右路:挡住他的退路") == .@move_1) {
 				mes "^3355FF杀手仍然无法移动，看起来非常困惑！";
-				mes "你现在完美地使用了封闭空间技能！^000000";
+				mes "你现在完美地使用了近身禁锢技能！^000000";
 				specialeffect EF_POTION1;
 				specialeffect2 EF_POTION7;
 			}
@@ -118,9 +117,9 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 	if (BaseJob == Job_Rogue) {
 		if (ROG_SK == 12 && Upper == 1) {
 			mes "[海嘉拉·格雷格]";
-			mes "嗯？啊，是超越后导致的失忆吗？";
+			mes "嗯？啊，是转生后导致的失忆吗？";
 			mes "那么我来教你这个技能。";
-			mes "再次施放封闭空间技能。";
+			mes "再次施放近身禁锢技能。";
 			specialeffect2 EF_LIGHTSPHERE;
 			skill "RG_CLOSECONFINE",1,SKILL_PERM;
 			set ROG_SK,13;
@@ -128,7 +127,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 		}
 		else if (ROG_SK == 13 && Upper == 1) {
 			mes "[海嘉拉·格雷格]";
-			mes "是影舞者吗？";
+			mes "是潜行者吗？";
 			mes "记住要用你的能力对付那些值得追踪的敌人。";
 			mes "祝你好运，冒险者。";
 			close;
@@ -299,7 +298,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 						mes "[海嘉拉·格雷格]";
 						mes "嗯……好吧，我想";
 						if (Upper == 1)
-							mes "我可以信任同为影舞者的你";
+							mes "我可以信任同为潜行者的你";
 						else
 							mes "我可以信任同为盗贼的你";
 						mes "来帮助我摆脱困境。盗亦有道。";
@@ -311,12 +310,11 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 								mes "他也是第一个选择不同道路、而非遵循原本职业路线的人。";
 							next;
 							mes "[海嘉拉·格雷格]";
-							mes "他原本是武僧，但超越后不知为何成为了影舞者。";
+							mes "他原本是武僧，但转生后不知为何成为了潜行者。";
 							mes "他保留武僧的蓄气技能知识，并将其改造成盗贼可用的技能。";
 							next;
 							mes "[海嘉拉·格雷格]";
-							mes "蔡泽培把这种新盗贼技能的基础记录在一本书里，";
-							mes "我很幸运地得到了它。但我刚拿到书，就开始遭到勒索……";
+							mes "蔡泽培把这种新盗贼技能的基础记录在一本书里，我很幸运地得到了它。但我刚拿到书，就开始遭到勒索……";
 							next;
 							mes "[海嘉拉·格雷格]";
 							mes "有些无耻之徒会不择手段把书从我手里夺走。";
@@ -329,8 +327,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 							if (select("当然！:抱歉，我很忙。") == 1) {
 								mes "[海嘉拉·格雷格]";
 								mes "哦，非常感谢你！";
-								mes "听着，我不能冒险被发现，";
-								mes "所以请把这封信带给我最小的儿子^FF0000路易斯·格雷格^000000。快点，时间不多了！";
+								mes "听着，我不能冒险被发现，所以请把这封信带给我最小的儿子^FF0000路易斯·格雷格^000000。快点，时间不多了！";
 								set ROG_SK,2;
 								close;
 							}
@@ -366,7 +363,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 				mes "[海嘉拉·格雷格]";
 				mes "我明白了。既然如此。";
 				mes "我就展示你如此渴望的技能……";
-				mes "^FF0000封闭空间^000000！";
+				mes "^FF0000近身禁锢^000000！";
 				specialeffect EF_CHANGECOLD;
 				specialeffect2 EF_CHANGEWIND;
 				next;
@@ -384,19 +381,19 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 			else if (ROG_SK == 2) {
 				mes "[海嘉拉·格雷格]";
 				mes "我们没时间了……请尽快把这封信带给我最小的儿子^FF0000路易斯^000000！";
-				mes "你可以在盗贼公会、^FF0000小霍尔格伦^000000附近找到他。";
+				mes "你可以在流氓公会、^FF0000小霍尔格伦^000000附近找到他。";
 				close;
 			}
 			else if (ROG_SK == 3) {
 				mes "[海嘉拉·格雷格]";
-				mes "路易斯让你去找^FF0000托尔^000000？他在盗贼公会、^FF0000小赫尔曼索恩^000000附近，对吧？";
+				mes "路易斯让你去找^FF0000托尔^000000？他在流氓公会、^FF0000小赫尔曼索恩^000000附近，对吧？";
 				mes "抱歉让你一个个去找我的儿子……我知道这很麻烦。";
 				close;
 			}
 			else if (ROG_SK == 4) {
 				mes "[海嘉拉·格雷格]";
 				mes "啊，你在找^FF0000杰伊^000000？";
-				mes "他就在盗贼公会这里的^FF0000小安东尼奥^000000附近，至少通常在那里。";
+				mes "他就在流氓公会这里的^FF0000小安东尼奥^000000附近，至少通常在那里。";
 				close;
 			}
 			else if (ROG_SK == 5) {
@@ -406,7 +403,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 				set ROG_SK,6;
 				next;
 				mes "[海嘉拉·格雷格]";
-				mes "啊，好消息！他已经联系盗贼公会请求额外保护，并通知了守卫。";
+				mes "啊，好消息！他已经联系流氓公会请求额外保护，并通知了守卫。";
 				mes "我终于可以稍微放松了。没人敢招惹盗贼。";
 				next;
 				mes "[海嘉拉·格雷格]";
@@ -438,85 +435,80 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 			}
 			else if (ROG_SK == 9) {
 				mes "[海嘉拉·格雷格]";
-				mes "哦，你回来了！听说你已经完成训练，准备了解封闭空间的应用。";
+				mes "哦，你回来了！听说你已经完成训练，准备了解近身禁锢的应用。";
 				next;
 				mes "[海嘉拉·格雷格]";
 				mes "哇！什么——？！停下！请、请阻止那个人！";
 				mes "不能让他偷走那本书！";
 				specialeffect EF_COMBOATTACK5;
-				donpcevent "Killer#Rogueguild::OnEnable";
+				donpcevent "#killershow01::OnEnable";
 				set ROG_SK,10;
 				close;
 			}
 			else if (ROG_SK == 10) {
 				mes "[海嘉拉·格雷格]";
-				mes "那个人刚偷走了封闭空间技能书！";
+				mes "那个人刚偷走了近身禁锢技能书！";
 				mes "拜托！别让他逃走！那本书价值连城！";
 				donpcevent "#killershow01::OnEnable";
 				close;
 			}
 			else if (ROG_SK == 11) {
-				donpcevent "Killer#Rogueguild::OnDisable";
+				disablenpc "Killer#Rogueguild";
 				donpcevent "#killershow01::OnDisable";
 				mes "^3355FF你把蔡泽培撰写的技能书还给了海嘉拉。^000000";
 				next;
 				mes "[海嘉拉·格雷格]";
-				mes "非常感谢你的帮助。如果你想了解封闭空间的详细信息，我可以继续说明。";
+				mes "非常感谢你的帮助。如果你想了解近身禁锢的详细信息，我可以继续说明。";
 				next;
 				if (select("好的，请说。:不用了，谢谢。") == 1) {
 					mes "[海嘉拉·格雷格]";
-					mes "你应该知道，封闭空间能使靠近你的敌人无法移动。";
+					mes "你应该知道，近身禁锢能使靠近你的敌人无法移动。";
 					mes "不过对玩家和魔物使用时有些细节差异。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "封闭空间类似武僧的蓄气技能，";
-					mes "但只会限制敌人的移动，不会限制攻击能力。";
+					mes "近身禁锢类似武僧的蓄气技能，但只会限制敌人的移动，不会限制攻击能力。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "除了封闭空间持续期间只能使用一次的背刺，";
-					mes "我们可以在封闭空间状态下使用任何技能。";
+					mes "除了近身禁锢持续期间只能使用一次的背刺，我们可以在近身禁锢状态下使用任何技能。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "受到封闭空间影响的敌人可以使用苍蝇翅膀、蝴蝶翅膀、瞬间移动或隐匿逃脱。";
+					mes "受到近身禁锢影响的敌人可以使用苍蝇翅膀、蝴蝶翅膀、瞬间移动或隐匿逃脱。";
 					mes "不过攻城战期间只有隐匿有效。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "因此，在公会战攻城期间，封闭空间会非常有用，";
-					mes "前提是目标没有使用隐匿技能逃脱。";
+					mes "因此，在公会战攻城期间，近身禁锢会非常有用，前提是目标没有使用隐匿技能逃脱。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "除了 Boss 魔物以外，封闭空间会使魔物无法移动 10 秒，";
-					mes "为盗贼组队狩猎带来新的可能。";
+					mes "除了 Boss 魔物以外，近身禁锢会使魔物无法移动 10 秒，为盗贼组队狩猎带来新的可能。";
 					next;
 					mes "[海嘉拉·格雷格]";
-					mes "关于封闭空间我能告诉你的就这些。";
-					mes "希望你能通过练习进一步了解这个技能，";
-					mes "成为像蔡泽培一样伟大的传奇。";
+					mes "关于近身禁锢我能告诉你的就这些。";
+					mes "希望你能通过练习进一步了解这个技能，成为像蔡泽培一样伟大的传奇。";
 					set ROG_SK,12;
 					skill "RG_CLOSECONFINE",1,SKILL_PERM;
 					specialeffect2 EF_LIGHTSPHERE;
 					close;
 				}
 					mes "[海嘉拉·格雷格]";
-			mes "好吧……希望你能通过勤奋练习进一步了解近身束缚。祝你好运，再次感谢你的帮助。";
+			mes "好吧……希望你能通过勤奋练习进一步了解近身禁锢。祝你好运，再次感谢你的帮助。";
 				set ROG_SK,12;
 				skill "RG_CLOSECONFINE",1,SKILL_PERM;
 				specialeffect2 EF_LIGHTSPHERE;
 				close;
 			}
-			mes "[Haijara Greg]";
+			mes "[海嘉拉·格雷格]";
 			mes "谢谢你帮我保护这本无价的技能书。希望下次见面时，我们会成为战场上的战友……";
 			close;
 		}
 	}
 	else {
-		mes "[Haijara Greg]";
+		mes "[海嘉拉·格雷格]";
 		mes "你、你怎么找到这里的？我以为这个紧急避难室连流氓也无法进入！";
 		next;
-		mes "[Haijara Greg]";
+		mes "[海嘉拉·格雷格]";
 		mes "这可不妙！他们找到我只是时间问题……";
 		next;
-		mes "[Haijara Greg]";
+		mes "[海嘉拉·格雷格]";
 		mes "求你……找一个我能信任的潜行者或流氓来帮我！我没多少时间了……";
 		close;
 	}
@@ -525,79 +517,79 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 in_rogue,152,29,0	script	Louis Greg#rogueguild	84,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "我父亲他……他突然消失了！他正在教我和兄弟们一项新技能，但最近不知为何变得疑神疑鬼……";
 			next;
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "也许他躲起来了？我知道流氓公会有一间隐藏的紧急避难室，但连我也不知道在哪里。希望一切平安……";
 			set ROG_SK,1;
 			close;
 		}
 		else if (ROG_SK == 1) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "父亲警告过，如果别人知道我们学习的新技能，可能会来找我们。也许他躲进了流氓公会的紧急避难室……";
 			close;
 		}
 		else if (ROG_SK == 2) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "这是什么……？父亲的信？哦，他一定没事！快，让我马上读读！";
 			set ROG_SK,3;
 			next;
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "不好，父亲现在也许安全，但他正被危险的人追捕？哥哥托尔一定要知道。让我赶快给他写信……";
 			next;
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "我知道自己没资格求你帮忙，但我想父亲一定信任你。请把我的信交给哥哥托尔好吗？";
 			next;
-			mes "[Louis Greg]";
-			mes "你可以在流氓公会里赫尔曼索恩 Jr.旁边找到托尔。如果你能帮助我的家人，我会非常感激。";
+			mes "[路易斯·格雷格]";
+			mes "你可以在流氓公会里小赫尔曼索恩旁边找到托尔。如果你能帮助我的家人，我会非常感激。";
 			close;
 		}
 		else if (ROG_SK == 3) {
-			mes "[Louis Greg]";
-			mes "我的哥哥^FF0000托尔^000000必须马上知道！请替我把这封信交给他。他应该就在流氓公会的^FF0000赫尔曼索恩 Jr.^000000附近。";
+			mes "[路易斯·格雷格]";
+			mes "我的哥哥^FF0000托尔^000000必须马上知道！请替我把这封信交给他。他应该就在流氓公会的^FF0000小赫尔曼索恩^000000附近。";
 			close;
 		}
 		else if (ROG_SK == 4) {
-			mes "[Louis Greg]";
-			mes "你在找我的哥哥杰伊？他通常和安东尼奥 Jr.一起待在流氓公会。";
+			mes "[路易斯·格雷格]";
+			mes "你在找我的哥哥杰伊？他通常和小安东尼奥一起待在流氓公会。";
 			close;
 		}
 		else if (ROG_SK == 5) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "如果你要和父亲说话，他大概还在流氓公会的隐藏紧急避难室。我仍不知道那地方究竟在哪里……";
 			close;
 		}
 		else if (ROG_SK == 6) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "你想学习流氓的秘密技能？哦，你应该和^FF0000托尔^000000谈。我……我很不擅长向别人解释事情。真的很差。";
 			close;
 		}
 		else if (ROG_SK == 7) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "嗯？你正在学习流氓秘密技能，对吧？哦，那你还不该来这里。请回去再和^FF0000托尔^000000谈谈，好吗？";
 			close;
 		}
 		else if (ROG_SK == 8) {
-			mes "[Louis Greg]";
+			mes "[路易斯·格雷格]";
 			mes "哦，哦！你完成训练了？啊，那你得再去找托尔！";
 			close;
 		}
 		else if (ROG_SK == 9) {
-			mes "[Louis Greg]";
-			mes "你想进一步了解近身束缚？那你最好和父亲谈。我自己也刚学会那个技能。";
+			mes "[路易斯·格雷格]";
+			mes "你想进一步了解近身禁锢？那你最好和父亲谈。我自己也刚学会那个技能。";
 			close;
 		}
 		else if (ROG_SK == 11) {
-			mes "[Louis Greg]";
-			mes "我刚听兄弟们说，蔡泽培开发近身束缚是为了残酷击打敌人，让他们无法逃跑。是真的吗？";
+			mes "[路易斯·格雷格]";
+			mes "我刚听兄弟们说，蔡泽培开发近身禁锢是为了残酷击打敌人，让他们无法逃跑。是真的吗？";
 			close;
 		}
-		mes "[Louis Greg]";
+		mes "[路易斯·格雷格]";
 		mes "哇，你真厉害！真希望我也像你一样强大。我讨厌当小孩！";
 		close;
 	}
-	mes "[Louis Greg]";
+	mes "[路易斯·格雷格]";
 	mes "我为什么成为流氓？我想只是喜欢偷偷摸摸。而且，遵守道德和法律太难了，你懂的？";
 	close;
 }
@@ -605,52 +597,52 @@ in_rogue,152,29,0	script	Louis Greg#rogueguild	84,{
 in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "父亲去哪儿了？希望那些怪人没有抓到他。幸运的话，他躲进了紧急避难室，但还是……";
 			set ROG_SK,1;
 			close;
 		}
 		else if (ROG_SK == 1) {
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "嗯……父亲可能躲在紧急避难室。我从没找到过，但玛姬说入口巧妙地藏在她左边。嗯……";
 			close;
 		}
 		else if (ROG_SK == 2) {
-			mes "[Thor Greg]";
-			mes "你在找我的弟弟^FF0000路易^000000？哦，他总是在流氓公会的^FF0000霍尔格雷恩 Jr.^000000附近。你找他做什么？";
+			mes "[托尔·格雷格]";
+			mes "你在找我的弟弟^FF0000路易斯^000000？哦，他总是在流氓公会的^FF0000小霍尔格伦^000000附近。你找他做什么？";
 			close;
 		}
 		else if (ROG_SK == 3) {
-			mes "[Thor Greg]";
-			mes "你给我的是什么？路易的信？让我看看……";
+			mes "[托尔·格雷格]";
+			mes "你给我的是什么？路易斯的信？让我看看……";
 			set ROG_SK,4;
 			next;
-			mes "[Thor Greg]";
-			mes "天啊，父亲遇到大麻烦了！我得马上告诉哥哥杰伊！快，在公会里^FF0000安东尼奥 Jr.^000000旁边找到^FF0000杰伊^000000！请、请快点！";
+			mes "[托尔·格雷格]";
+			mes "天啊，父亲遇到大麻烦了！我得马上告诉哥哥杰伊！快，在公会里^FF0000小安东尼奥^000000旁边找到^FF0000杰伊^000000！请、请快点！";
 			close;
 		}
 		else if (ROG_SK == 4) {
-			mes "[Thor Greg]";
-			mes "你可以在流氓公会里找到和安东尼奥 Jr.待在一起的杰伊。请尽快把我写的信交给他！";
+			mes "[托尔·格雷格]";
+			mes "你可以在流氓公会里找到和小安东尼奥待在一起的杰伊。请尽快把我写的信交给他！";
 			close;
 		}
 		else if (ROG_SK == 5) {
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "希望父亲没有离开流氓公会的紧急避难室。那里可能是唯一安全的地方……";
 			close;
 		}
 		else if (ROG_SK == 6) {
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "什么？父亲要我教你流氓秘密技能？好吧，我会像父亲教我那样训练你。你想先听解释吗？";
 			next;
-			mes "[Thor Greg]";
-			mes "如果你不想听解释，我就直接把你送到训练场，让你学习^FF0000近身束缚^000000。";
+			mes "[托尔·格雷格]";
+			mes "如果你不想听解释，我就直接把你送到训练场，让你学习^FF0000近身禁锢^000000。";
 			next;
 			if (select("听解释:前往训练场") == 1) {
-				mes "[Thor Greg]";
-				mes "好，学习^FF0000近身束缚^000000的第一步，就是掌握阻挡敌人移动的方法。我会把你送到特殊训练场练习。";
+				mes "[托尔·格雷格]";
+				mes "好，学习^FF0000近身禁锢^000000的第一步，就是掌握阻挡敌人移动的方法。我会把你送到特殊训练场练习。";
 				next;
-				mes "[Thor Greg]";
+				mes "[托尔·格雷格]";
 				mes "在那里你会遇到训练伙伴。靠近她，预测并阻挡她向左、向右或向后移动。准备好，我现在送你过去……";
 				close2;
 				warp "in_rogue",89,114;
@@ -660,49 +652,49 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
 			end;
 		}
 		else if (ROG_SK == 7) {
-			mes "[Thor Greg]";
-			mes "好，我就打破第四面墙，假设你与游戏断开了连接。你要回训练场学习^FF0000近身束缚^000000吗？";
+			mes "[托尔·格雷格]";
+			mes "好，我就打破第四面墙，假设你与游戏断开了连接。你要回训练场学习^FF0000近身禁锢^000000吗？";
 			next;
 			if (select("好的。:不用了，谢谢。") == 1) {
-				mes "[Thor Greg]";
-				mes "好，学习^FF0000近身束缚^000000的第一步，就是掌握阻挡敌人移动的方法。我会把你送到特殊训练场练习。";
+				mes "[托尔·格雷格]";
+				mes "好，学习^FF0000近身禁锢^000000的第一步，就是掌握阻挡敌人移动的方法。我会把你送到特殊训练场练习。";
 				next;
-				mes "[Thor Greg]";
+				mes "[托尔·格雷格]";
 				mes "在那里你会遇到训练伙伴。靠近她，预测并阻挡她向左、向右或向后移动。准备好，我现在送你过去……";
 				set ROG_SK,6;
 				close2;
 				warp "in_rogue",89,114;
 				end;
 			}
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "好，好。准备继续训练时，告诉我一声。";
 			close;
 
 		}
 		else if (ROG_SK == 8) {
-			mes "[Thor Greg]";
-			mes "我听基娜说你完成训练了。恭喜！现在请和父亲谈谈，让他详细解释近身束缚。";
+			mes "[托尔·格雷格]";
+			mes "我听基恩娜说你完成训练了。恭喜！现在请和父亲谈谈，让他详细解释近身禁锢。";
 			set ROG_SK,9;
 			close;
 		}
 		else if (ROG_SK == 9) {
-			mes "[Thor Greg]";
-			mes "请和父亲谈谈，让他解释近身束缚的细节。他应该还在流氓公会的紧急避难室。";
+			mes "[托尔·格雷格]";
+			mes "请和父亲谈谈，让他解释近身禁锢的细节。他应该还在流氓公会的紧急避难室。";
 			close;
 		}
 		else if (ROG_SK == 11) {
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "蔡泽培会对对手说‘我是蔡泽培，你是……？’，就在对方回答前把他们打得半死。";
 			next;
-			mes "[Thor Greg]";
+			mes "[托尔·格雷格]";
 			mes "他确实是流氓中的传奇英雄……！";
 			close;
 		}
-		mes "[Thor Greg]";
+		mes "[托尔·格雷格]";
 		mes "嗯……？看来你甚至比我还强。大概没多少人敢招惹你……";
 		close;
 	}
-	mes "[Thor Greg]";
+	mes "[托尔·格雷格]";
 	mes "嗯，偷这个，偷那个。*叹气* 我最丢脸的缺点是：偷到 Zeny 后几乎马上就花光。不负责任……";
 	close;
 }
@@ -710,90 +702,79 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
 in_rogue,181,114,3	script	Jay Greg#rogueguild	85,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "我父亲一定藏在流氓公会的紧急避难室。奇怪的是，我和兄弟们一直找不到，也无法确认他是否安全……";
 			set ROG_SK,1;
 			next;
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "最近有些怪人追捕他，还威胁我们的家人。不过他刚教了我们一项新技能，可以用来保护自己……";
 			close;
 		}
 		else if (ROG_SK == 1) {
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "我猜父亲藏在流氓公会的紧急避难室。我们一直找不到，但据说入口藏在玛姬附近。";
 			close;
 		}
 		else if (ROG_SK == 2) {
-			mes "[Jay Greg]";
-			mes "你在找弟弟路易？他就在流氓公会，应该不难找。他大概就在霍尔格雷恩 Jr.附近。";
+			mes "[杰伊·格雷格]";
+			mes "你在找弟弟路易斯？他就在流氓公会，应该不难找。他大概就在小霍尔格伦附近。";
 			close;
 		}
 		else if (ROG_SK == 3) {
-			mes "[Jay Greg]";
-			mes "托尔？他应该就在流氓公会某处。你试过在赫尔马索恩 Jr.附近找吗？";
+			mes "[杰伊·格雷格]";
+			mes "托尔？他应该就在流氓公会某处。你试过在小赫尔曼索恩附近找吗？";
 			close;
 		}
 		else if (ROG_SK == 4) {
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "给我的信……？啊，是托尔寄来的，我最好马上读读。嗯……";
 			set ROG_SK,5;
 			next;
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "我明白了……我必须马上向流氓公会报告，并给父亲回信。嗯，让我现在写一封。请稍等……";
 			next;
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "好了，写完了。请尽快把它交给父亲。我知道这要求很高，但我自己找不到隐藏的紧急避难室……";
 			close;
 		}
 		else if (ROG_SK == 5) {
-			mes "[Jay Greg]";
+			mes "[杰伊·格雷格]";
 			mes "请尽快把我的回信交给父亲。他仍藏在流氓公会的紧急避难室，前提是敌人还没找到他。";
 			close;
 		}
 		else if (ROG_SK == 6) {
-			mes "[Jay Greg]";
-			mes "你需要训练近身束缚？我想只有托尔能进入训练场，所以先去和他谈谈。";
+			mes "[杰伊·格雷格]";
+			mes "你需要训练近身禁锢？我想只有托尔能进入训练场，所以先去和他谈谈。";
 			close;
 		}
 		else if (ROG_SK == 7) {
-			mes "[Jay Greg]";
-			mes "你需要训练近身束缚？我想只有托尔能进入训练场，所以先去和他谈谈。";
+			mes "[杰伊·格雷格]";
+			mes "你需要训练近身禁锢？我想只有托尔能进入训练场，所以先去和他谈谈。";
 			close;
 		}
 		else if (ROG_SK == 8) {
-			mes "[Jay Greg]";
-			mes "啊，你完成近身束缚训练了？太好了，现在去告诉我哥哥托尔。";
+			mes "[杰伊·格雷格]";
+			mes "啊，你完成近身禁锢训练了？太好了，现在去告诉我哥哥托尔。";
 			close;
 		}
 		else if (ROG_SK == 9) {
 			mes "[杰伊·格雷格]";
-			mes "嗯。你最好";
-			mes "和我父亲谈谈，了解";
-			mes "更多关于紧身技能的细节。";
-			mes "你在盗贼公会的";
-			mes "紧急房间见过他吗？";
+			mes "嗯。你最好和我父亲谈谈，了解更多关于近身禁锢技能的细节。";
+			mes "你在流氓公会的紧急房间见过他吗？";
 			close;
 		}
 		else if (ROG_SK == 12) {
 			mes "[杰伊·格雷格]";
-			mes "蔡泽培看起来确实是个";
-			mes "固执又粗鲁的家伙。";
-			mes "但他能创造自己的技能，";
-			mes "一定相当聪明。";
+			mes "蔡泽培看起来确实是个固执又粗鲁的家伙。";
+			mes "但他能创造自己的技能，一定相当聪明。";
 			close;
 		}
 		mes "[杰伊·格雷格]";
-		mes "我感觉你将会成为";
-		mes "最优秀的盗贼之一，";
-		mes "如果你现在还不是的话。";
+		mes "我感觉你将会成为最优秀的盗贼之一，如果你现在还不是的话。";
 		close;
 	}
 	mes "[杰伊·格雷格]";
-	mes "自从学会恐吓以来，";
-	mes "我变得很爱动手，甚至有点";
-	mes "自虐倾向。我的意思是，";
-	mes "如果他们用技能攻击你，";
-	mes "你就能用同样的技能反击！";
+	mes "自从学会恐吓以来，我变得很爱动手，甚至有点自虐倾向。我的意思是，如果他们用技能攻击你，你就能用同样的技能反击！";
 	close;
 }
 
@@ -933,11 +914,7 @@ function	script	F_Kienna	{
 	if (ROG_SK == 6) {
 		donpcevent "#1stmove::OnDisable";
 		mes "[基恩娜]";
-		mes "好，在这个";
-		mes "练习中，你需要预测";
-		mes "我会往哪边移动，并阻挡";
-		mes "我的移动，也就是";
-		mes "让我无法动弹。准备好~";
+		mes "好，在这个练习中，你需要预测我会往哪边移动，并阻挡我的移动，也就是让我无法动弹。准备好~";
 		set ROG_SK,7;
 		next;
 		for(set .@lim_1,0; .@lim_1<10; set .@lim_1,.@lim_1+1) {
@@ -953,65 +930,57 @@ function	script	F_Kienna	{
 			}
 			else {
 				mes "[基恩娜]";
-				mes "抱歉，但我没有";
-				mes "往那个方向移动。";
+				mes "抱歉，但我没有往那个方向移动。";
 				mes "你的阻挡失败了……";
 			}
 			next;
 		}
 		mes "[基恩娜]";
-		mes "好了，我们在这里";
-		mes "结束。你的训练等级是";
+		mes "好了，训练到此结束。让我公布你的成绩。";
 		switch(.@suc_1) { 
 		case 10:
-			mes "训练等级为‘’^0000FFS^000000‘’。";
+			mes "训练等级为“^0000FFS^000000”。";
 			mes "这是满分！";
 			break;
 		case 9:
-			mes "训练等级为‘’^0000FFA^000000‘’。";
+			mes "训练等级为“^0000FFA^000000”。";
 			mes "你真的很擅长！";
 			break;
 		case 8:
-			mes "训练等级为‘’^0000FFB +^000000‘’。";
+			mes "训练等级为“^0000FFB +^000000”。";
 			mes "非常值得称赞！";
 			break;
 		case 7:
-			mes "训练等级为‘’^0000FFB^000000‘’。";
+			mes "训练等级为“^0000FFB^000000”。";
 			mes "做得很棒~";
 			break;
 		case 6:
-			mes "训练等级为‘’^0000FFC +^000000‘’。";
-			mes "还不错，但你";
-			mes "只是勉强通过！";
+			mes "训练等级为“^0000FFC +^000000”。";
+			mes "还不错，但你只是勉强通过！";
 			break;
 		case 5:
-			mes "训练等级为‘’^FF0000C^000000‘’。";
+			mes "训练等级为“^FF0000C^000000”。";
 			break;
 		case 4:
-			mes "训练等级为‘’^FF0000D+^000000‘’。";
+			mes "训练等级为“^FF0000D+^000000”。";
 			break;
 		case 3:
-			mes "训练等级为‘’^FF0000D^000000‘’。";
+			mes "训练等级为“^FF0000D^000000”。";
 			break;
 		case 2:
-			mes "训练等级为‘’^FF0000F^000000‘’。";
+			mes "训练等级为“^FF0000F^000000”。";
 			break;
 		case 1:
-			mes "训练等级为‘’^FF0000F -^000000‘’。";
+			mes "训练等级为“^FF0000F -^000000”。";
 			break;
 		case 0:
 			mes "训练等级是……";
-			mes "实际上我无法";
-			mes "计算出来。发生什么了？！";
+			mes "实际上我无法计算出来。发生什么了？！";
 		}
 		next;
 		if (.@suc_1 > 5) {
 			mes "[基恩娜]";
-			mes "很高兴告诉你，";
-			mes "你完成了训练！让我把你";
-			mes "送回索尔·格雷格，";
-			mes "这样你就能完成";
-			mes "^FF0000紧身^000000技能的学习。";
+			mes "很高兴告诉你，你完成了训练！让我把你送回托尔·格雷格，这样你就能完成^FF0000近身禁锢^000000技能的学习。";
 			set ROG_SK,8;
 			disablenpc "Kienna#"+getarg(0);
 			donpcevent "#1st5min::OnDisable";
@@ -1023,12 +992,8 @@ function	script	F_Kienna	{
 		}
 		else {
 			mes "[基恩娜]";
-			mes "嗯，以这个等级，";
-			mes "我不认为你已经";
-			mes "准备好完成";
-			mes "紧身技能的学习。";
-			mes "要再试一次";
-			mes "训练吗？";
+			mes "嗯，以这个等级，我不认为你已经准备好完成近身禁锢技能的学习。";
+			mes "要再试一次训练吗？";
 			next;
 			if (select("是！:不用了，谢谢。") == 1) {
 				disablenpc "Kienna#"+getarg(0);
@@ -1048,10 +1013,7 @@ function	script	F_Kienna	{
 	}
 	else if (ROG_SK == 7) {
 		mes "[基恩娜]";
-		mes "你一定是在练习中途";
-		mes "取消了训练。很遗憾，";
-		mes "你必须从这项训练的";
-		mes "最开始重新进行。";
+		mes "你一定是在练习中途取消了训练。很遗憾，你必须从这项训练的最开始重新进行。";
 		set ROG_SK,6;
 		close2;
 		disablenpc "Kienna#"+getarg(0);
@@ -1061,10 +1023,8 @@ function	script	F_Kienna	{
 	}
 	else if (ROG_SK == 8) {
 		mes "[基恩娜]";
-		mes "你已经完成了";
-		mes "紧身技能的训练。";
-		mes "你不再需要";
-		mes "我的帮助。";
+		mes "你已经完成了近身禁锢技能的训练。";
+		mes "你不再需要我的帮助。";
 		close2;
 		donpcevent "Waiting Room#rogue10::OnEnable";
 		warp "in_rogue",264,124;
@@ -1072,10 +1032,8 @@ function	script	F_Kienna	{
 	}
 	else {
 		mes "[基恩娜]";
-		mes "抱歉，但我不认为你";
-		mes "应该在这里。";
-		mes "如果你迷路了，我送你去";
-		mes "盗贼公会吧……";
+		mes "抱歉，但我不认为你应该在这里。";
+		mes "如果你迷路了，我送你去流氓公会吧……";
 		close2;
 		donpcevent "Waiting Room#rogue10::OnEnable";
 		warp "in_rogue",264,124;

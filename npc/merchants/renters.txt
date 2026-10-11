@@ -36,39 +36,30 @@ prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
 	mes "[大嘴鸟饲养员]";
 	if (BaseJob == Job_Knight && Class < Job_Rune_Knight) {
 		mes "欢迎。";
-		mes "尊敬的骑士，";
-		mes "想租一只";
-		mes "大嘴鸟吗？租金为";
-		mes "费用为 "+.@price+" zeny.";
+		mes "尊敬的骑士，想租一只大嘴鸟吗？租金为 "+.@price+" Zeny。";
 		next;
 		switch(select("租用大嘴鸟:取消")) {
 		case 1:
 			if (Zeny < .@price) {
 				mes "[大嘴鸟饲养员]";
-				mes "你没有足够";
-				mes "的 Zeny。";
+				mes "你没有足够的 Zeny。";
 				mes "你是不是……";
 				mes "破产了？";
 				close;
 			}
 			else if(getskilllv("KN_RIDING") == 0) {
 				mes "[大嘴鸟饲养员]";
-				mes "抱歉，你";
-				mes "不符合此服务";
-				mes "资格。请先学习";
-				mes "大嘴鸟骑乘技能。";
+				mes "抱歉，你不符合此服务资格。请先学习骑乘大嘴鸟技能。";
 				close;
 			}
 			else if(checkriding()) {
 				mes "[大嘴鸟饲养员]";
-				mes "你已经";
-				mes "骑乘";
-				mes "大嘴鸟。";
+				mes "你已经骑乘大嘴鸟了。";
 				close;
 			}
 			else if(ismounting()) {
 				mes "[大嘴鸟饲养员]";
-				mes "请先解除现金坐骑。";
+				mes "请先解除商城坐骑。";
 				close;
 			}
 			set Zeny, Zeny-.@price;
@@ -77,15 +68,11 @@ prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
 		case 2:
 			mes "[大嘴鸟饲养员]";
 			mes "我明白了。";
-			mes "那么，";
-			mes "祝你今天愉快。";
+			mes "那么，祝你今天愉快。";
 			close;
 		}
 	} else {
-		mes "抱歉，这些";
-		mes "大嘴鸟只提供给";
-		mes "骑士";
-		mes "和骑士领主。";
+		mes "抱歉，这些大嘴鸟只提供给骑士和骑士领主。";
 		close;
 	}
 }
@@ -107,38 +94,29 @@ prontera,232,318,3	script	Peco Peco Breeder#cru	105,{
 	if (BaseJob == Job_Crusader && Class < Job_Rune_Knight) {
 		if(Upper != 1 ) mes "欢迎，十字军。";
 		else mes "欢迎，圣骑士。";
-		mes "我们为你准备了特别的";
-		mes "大嘴鸟。租用一只";
-		mes "需要支付";
-		mes "费用为 "+.@price+" Zeny。";
+		mes "我们为你准备了特别的大嘴鸟。租用一只需要支付 "+.@price+" Zeny。";
 		next;
 		switch(select("租用大嘴鸟:退出")) {
 		case 1:
 			if (Zeny < .@price) {
 				mes "[大嘴鸟饲养员]";
-				mes "你没有足够";
-				mes "的 Zeny。";
-				mes "如果你想要";
-				mes "一只大嘴鸟，请";
-				mes "带来 "+.@price+" zeny...";
+				mes "你没有足够的 Zeny。";
+				mes "如果你想要一只大嘴鸟，请带来 "+.@price+" Zeny……";
 				close;
 			}
 			else if(getskilllv("KN_RIDING") == 0) {
 				mes "[大嘴鸟饲养员]";
-				mes "你必须先学习";
-				mes "大嘴鸟骑乘技能，之后我才能";
-				mes "租给你。";
+				mes "你必须先学习骑乘大嘴鸟技能，之后我才能租给你。";
 				close;
 			}
 			else if(checkriding()) {
 				mes "[大嘴鸟饲养员]";
-				mes "你已经";
-				mes "骑乘 大嘴鸟。";
+				mes "你已经骑乘大嘴鸟了。";
 				close;
 			}
 			else if(ismounting()) {
 				mes "[大嘴鸟饲养员]";
-				mes "请先解除现金坐骑。";
+				mes "请先解除商城坐骑。";
 				close;
 			}
 			set Zeny, Zeny-.@price;
@@ -151,10 +129,7 @@ prontera,232,318,3	script	Peco Peco Breeder#cru	105,{
 		}
 	} else {
 		mes "我能为你做什么？";
-		mes "请注意，大嘴鸟租赁";
-		mes "服务";
-		mes "仅适用于";
-		mes "十字军和圣骑士。";
+		mes "请注意，大嘴鸟租赁服务仅适用于十字军和圣骑士。";
 		close;
 	}
 }
@@ -170,46 +145,39 @@ hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
 	if (BaseJob == Job_Hunter) {
 		if (checkwug()) {
 			mes "嗯……";
-			mes "你必须先解除狼的召唤，";
-			mes "才能租用猎鹰！";
+			mes "你必须先解除狼的召唤，才能租用猎鹰！";
 			close;
 		}
 		mes "需要一只猎鹰吗？";
-		mes "只需支付 "+.@price+" Zeny，";
-		mes "就能租用一只可靠的猛禽～";
+		mes "只需支付 "+.@price+" Zeny，就能租用一只可靠的猛禽～";
 		next;
 		switch(select("租用猎鹰:取消")) {
 		case 1:
 			if (checkwug()) {
 				mes "[猎鹰饲养员]";
 				mes "嗯……";
-				mes "你必须先解除狼的召唤，";
-				mes "才能租用猎鹰！";
+				mes "你必须先解除狼的召唤，才能租用猎鹰！";
 				close;
 			}
 			if (Zeny < .@price) {
 				mes "[猎鹰饲养员]";
 				mes "这是怎么回事？";
 				mes "你的 Zeny 不够？！";
-				mes "与其打怪，";
-				mes "还是先去赚点钱吧～";
+				mes "与其打怪，还是先去赚点钱吧～";
 				close;
 			}
 			else if(getskilllv("HT_FALCON") == 0) {
 				mes "[猎鹰饲养员]";
 				mes "哎呀～";
-				mes "先去学习如何";
-				mes "管理猎鹰吧！";
-				mes "如果你不会照顾它，";
-				mes "我可不能租给你。";
+				mes "先去学习猎鹰精通技能吧！";
+				mes "如果你不会照顾它，我可不能租给你。";
 				close;
 			}
 			else if(checkfalcon()) {
 				mes "[猎鹰饲养员]";
 				mes "嗯……";
 				mes "你已经有一只猎鹰了。";
-				mes "它就在你身边，";
-				mes "难道你没看见吗？";
+				mes "它就在你身边，难道你没看见吗？";
 				close;
 			}
 			set Zeny, Zeny-.@price;
@@ -224,8 +192,7 @@ hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
 		}
 	} else {
 		mes "年轻人，真傻！";
-		mes "猎鹰只能由猎人";
-		mes "和神射手使用，明白了吗？";
+		mes "猎鹰只能由猎人和神射手使用，明白了吗？";
 		mes "……嘿嘿，嫉妒了？";
 		close;
 	}

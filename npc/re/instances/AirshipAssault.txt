@@ -12,7 +12,7 @@
 //= 2.2 Dialogues clean-ups [Aleos]
 //============================================================
 
-dali02,136,79,3	script	Adventurer Leon#air1	4_M_DST_GRAND,{
+dali02,136,79,3	script	冒险家莱昂::Adventurer Leon#air1	4_M_DST_GRAND,{
 	mes "[冒险家莱昂]";
 	mes "嗯……观察几天后，这里似乎是刻有飞艇记忆的装置。";
 	next;
@@ -21,13 +21,13 @@ dali02,136,79,3	script	Adventurer Leon#air1	4_M_DST_GRAND,{
 	close;
 }
 
-dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
+dali02,142,81,3	script	次元装置::Dimensional Device#air1	PORTAL,{
 	if (checkquest(15050,PLAYTIME) == 2) {
 		erasequest 15050;// Memorial Dungeon: Airship Assault
 		erasequest 15051;
 	}
 	else if (checkquest(15051,PLAYTIME) == 2) {// Memorial Dungeon: Airship Assault
-		mes "^ff0000纪念副本在上次进入后23小时内无法再次进入。^000000";
+		mes "^ff0000本次挑战已结束，请在下次每日 4 点重置后再来。^000000";
 		close;
 	}
 	.@party_id = getcharid(1);
@@ -59,8 +59,8 @@ dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
 		mes "^0000ff" + .@md_name$ + "^000000 - 创建失败！";
 			close;
 		}
-		mes "^ff0000次元装置形成后，^000000";
-		mes "^ff0000点击即可再次进入。^000000";
+		mes "^ff0000副本创建完成后，^000000";
+		mes "^ff0000再次交谈并选择“使用装置”即可进入。^000000";
 		close;
 	case 2:
 		switch( instance_enter(.@md_name$) ) {
@@ -69,7 +69,7 @@ dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
 				setquest 15050;// Memorial Dungeon: Airship Assault
 				setquest 15051;// Memorial Dungeon: Airship Assault
 			}
-			mapannounce "dali02", "" + strcharinfo(0) + ", member of the party " + getpartyname( getcharid(1) ) + " entered the instance " + .@md_name$ + ".", bc_map,"0x00ff99";
+			mapannounce "dali02", "[" + getpartyname( getcharid(1) ) + "] 队伍的成员 [" + strcharinfo(0) + "] 已进入副本“" + .@md_name$ + "”。", bc_map,"0x00ff99";
 			specialeffect2 EF_WARP;
 			// warp "1@air1",244,73;
 			end;
@@ -98,137 +98,137 @@ dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
 1@air2,244,73,0	warp	warp5a#air2	2,2,dali02,137,82
 
 // Entrance
-1@air1,240,57,3	script	Loki#air1	4_M_ROKI2,{
+1@air1,240,57,3	script	洛基::Loki#air1	4_M_ROKI2,{
 	if ('airship_status == 0) {
 		cutin "ep14_roki02",2;
-		mes "[Loki]";
+		mes "[洛基]";
 		mes "……幸好这里没有那些讨厌的东西……";
 		close3;
 	}
 	cutin "ep14_roki02",2;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "……无论如何我都会守住这里。下到飞艇内部去……！！";
 	close3;
 }
 
-1@air1,235,57,5	script	Fenrir#air1	4_F_FENRIR,{
+1@air1,235,57,5	script	芬里尔::Fenrir#air1	4_F_FENRIR,{
 	if ('airship_status == 0) {
 		cutin "fenrir_a",2;
-		mes "[Fenrir]";
+		mes "[芬里尔]";
 		mes "依靠机械的力量在空中飞行……科技的发展真是不可思议。";
 		next;
-		mes "[Fenrir]";
+		mes "[芬里尔]";
 		mes "但我感觉这里还有某种力量……我认为这艘飞艇不可能只靠科技飞行。";
 		close3;
 	}
 	cutin "fenrir_b",2;
-	mes "[Fenrir]";
-	mes "我会在这里面对它们。Chaos，和 Iris 一起下到飞艇下层！";
+	mes "[芬里尔]";
+	mes "我会在这里面对它们。混沌，和 艾莉丝 一起下到飞艇下层！";
 	close3;
 }
 
-1@air1,215,67,5	script	Iris#air1	4_F_IRIS,{ end; }
-1@air1,214,66,5	duplicate(Iris#air1)	Chaos#air1	4_M_CHAOS
+1@air1,215,67,5	script	艾莉丝::Iris#air1	4_F_IRIS,{ end; }
+1@air1,214,66,5	duplicate(Iris#air1)	混沌::Chaos#air1	4_M_CHAOS
 
-1@air1,217,67,3	script	Captain Ferlock#air1	4_M_REINDEER,{
+1@air1,217,67,3	script	费洛克船长::Captain Ferlock#air1	4_M_REINDEER,{
 	if ('airship_status == 0) {
 		cutin "h_iris02",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "哇～太棒了！！风好凉快～！！";
 		mes "好耶～我们在天空中飞！而且还是免费的！";
 		next;
-		mes "[Iris]";
-		mes "这艘大船不用魔法就能飞，不是很神奇吗？Chaos？";
+		mes "[艾莉丝]";
+		mes "这艘大船不用魔法就能飞，不是很神奇吗？混沌？";
 		next;
 		cutin "h_chaos02",2;
-		mes "[Chaos]";
+		mes "[混沌]";
 		mes "......";
 		next;
 		cutin "h_iris02",2;
-		mes "[Iris]";
-		mes "...?? Chaos?";
+		mes "[艾莉丝]";
+		mes "...?? 混沌?";
 		next;
 		cutin "h_chaos02",2;
-		mes "[Chaos]";
-		mes ".....Sage Kadmon..";
+		mes "[混沌]";
+		mes ".....贤者卡德蒙..";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "你不听我说话，究竟在做什么！！！！";
 		next;
 		cutin "h_chaos03",2;
-		mes "[Chaos]";
+		mes "[混沌]";
 		mes "啊！啊啊～！！";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "哼！这就是心不在焉的下场！";
 		next;
 		cutin "h_chaos03",2;
-		mes "[Chaos]";
-		mes "啊……Iris！！你想杀了我吗～！！";
+		mes "[混沌]";
+		mes "啊……艾莉丝！！你想杀了我吗～！！";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "哼！我才不在乎你死不死……";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "嘿！！不许在船上胡闹！！";
 		mes "年轻人就是这样，毫无礼貌！再闹我就把你们全扔下去！！";
 		next;
 		cutin "h_iris02",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "哎呀……对了，船长，这艘大飞艇是怎么在天空中飞的？太神奇了！";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "嗯？问得好。";
 		mes "如你所见，我们加热大型锅炉把水烧开，再利用蒸汽压力推动活塞，带动齿轮和涡轮，最后让螺旋桨转动。";
 		next;
 		cutin "h_iris02",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "呃……原来这就是大船漂浮的原理……神秘感消失了。我还以为会有什么神秘装置……有点失望……";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "没错。这艘大船不可能只靠蒸汽停在天空中，所以使用了名为‘符文引擎’的增幅器。";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "符文引擎？那是什么？";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "那是使用魔法石的装置。";
 		mes "传说它是破碎心脏坠落的碎片……虽然听起来很荒谬，但这不重要……";
 		next;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "这种石头被称为‘伊米尔之泪’。与蒸汽机等机车引擎连接后，石头释放的符文会增幅能量。";
 		next;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "说实话，一块拇指大小的石头推动这艘船并不夸张。它拥有难以想象的力量。";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "那么小的东西……！！！";
 		next;
 		cutin "ep14_roki02",2;
-		mes "[Loki]";
+		mes "[洛基]";
 		mes "……嗯？";
 		mes "有什么东西朝这边来了……";
 		next;
 		cutin "",255;
-		mes "[Guard]";
+		mes "[卫兵]";
 		mes "警报！！警报！！7 点钟方向发现大型飞龙部队！！";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "什么？！";
 		next;
 		cutin "",255;
-		mes "[Guard]";
-		mes "格、格雷姆林！！格雷姆林从飞龙上降落了！！";
+		mes "[卫兵]";
+		mes "格、小妖精！！小妖精从飞龙上降落了！！";
 		for ( .@i = 1; .@i <= 8; .@i++ )
 			enablenpc instance_npcname("Gremlin#" + .@i + "air1");
 		enablenpc instance_npcname("Rotar Zairo#1air1");
@@ -241,66 +241,66 @@ dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
 	}
 	if ('airship_status == 1) {
 		cutin "h_chaos01",2;
-		mes "[Chaos]";
+		mes "[混沌]";
 		mes "嗯……这又是什么？";
 		next;
 		cutin "h_arcana02",2;
-		mes "[Arcana]";
+		mes "[阿卡娜]";
 		mes "哈哈哈哈～让你久等了！！";
 		mes "美丽女巫阿卡娜的空中怪物惊喜秀！！";
 		next;
 		cutin "h_chaos03",2;
-		mes "[Chaos]";
+		mes "[混沌]";
 		mes "什、什么秀？";
 		next;
 		cutin "h_arcana02",2;
-		mes "[Arcana]";
-		mes "现在……开始吧！格雷姆林们～！！";
+		mes "[阿卡娜]";
+		mes "现在……开始吧！小妖精们～！！";
 		mes "派对时间～！！";
 		next;
 		cutin "",255;
-		mes "[Guard]";
+		mes "[卫兵]";
 		mes "船、船长！情况严重！";
-		mes "格雷姆林遍布整艘船！！";
+		mes "小妖精遍布整艘船！！";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
-		mes "什么？！这些是格雷姆林？！";
+		mes "[费洛克船长]";
+		mes "什么？！这些是小妖精？！";
 		mes "你们这些混蛋！！现在就从那里下来！！";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "船长，没必要这么激动。";
-		mes "格雷姆林只是喜欢摆弄机器的怪物。更何况……";
+		mes "小妖精只是喜欢摆弄机器的怪物。更何况……";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "你根本不知道自己在说什么！！";
 		mes "我们现在在 8000 高空！！哪怕轻微故障也可能导致致命坠毁！";
 		next;
 		cutin "",255;
-		mes "[Guard]";
+		mes "[卫兵]";
 		mes "啊！！后部 1 号引擎！！";
 		mes "……情况严重！它们正前往引擎室！我们必须保护符文引擎！！";
 		next;
 		cutin "fly_felrock2",2;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "可恶……我把武器放在哪里了……";
 		mes "嘿，人类！！我去船长室找武器时，你们挡住那些麻烦的家伙！！";
 		next;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "尤其不能让它们接近符文引擎！！如果引擎被毁，船就无法继续飞行！！";
 		next;
-		mes "[Captain Ferlock]";
+		mes "[费洛克船长]";
 		mes "可恶……要是我的武器在手就好了……";
 		next;
 		disablenpc instance_npcname("Captain Ferlock#air1");
 		cutin "h_chaos02",2;
-		mes "[Chaos]";
-		mes "Iris！！我们下到引擎室！Loki 和 Fenrir，守住这里！";
+		mes "[混沌]";
+		mes "艾莉丝！！我们下到引擎室！洛基 和 芬里尔，守住这里！";
 		next;
 		cutin "h_iris01",2;
-		mes "[Iris]";
+		mes "[艾莉丝]";
 		mes "哦……好！那么……走吧！！";
 		close2;
 		cutin "",255;
@@ -310,19 +310,19 @@ dali02,142,81,3	script	Dimensional Device#air1	PORTAL,{
 	end;
 }
 
-1@air1,236,57,3	duplicate(Iris#air1)	Gremlin#1air1	3176
-1@air1,239,57,5	duplicate(Iris#air1)	Gremlin#2air1	3176
-1@air1,230,50,5	duplicate(Iris#air1)	Gremlin#3air1	3176
-1@air1,226,62,3	duplicate(Iris#air1)	Gremlin#4air1	3176
-1@air1,241,48,3	duplicate(Iris#air1)	Gremlin#5air1	3176
-1@air1,225,40,7	duplicate(Iris#air1)	Gremlin#6air1	3176
-1@air1,236,48,7	duplicate(Iris#air1)	Gremlin#7air1	3176
-1@air1,224,66,5	duplicate(Iris#air1)	Gremlin#8air1	3176
-1@air1,213,75,5	duplicate(Iris#air1)	Wywern#air1	3180
-1@air1,218,78,3	duplicate(Iris#air1)	Acidus#1air1	3178
-1@air1,208,78,5	duplicate(Iris#air1)	Acidus#2air1	3179
-1@air1,200,78,5	duplicate(Iris#air1)	Rotar Zairo#1air1	3175
-1@air1,223,78,3	duplicate(Iris#air1)	Rotar Zairo#2air1	3175
+1@air1,236,57,3	duplicate(Iris#air1)	小妖精::Gremlin#1air1	3176
+1@air1,239,57,5	duplicate(Iris#air1)	小妖精::Gremlin#2air1	3176
+1@air1,230,50,5	duplicate(Iris#air1)	小妖精::Gremlin#3air1	3176
+1@air1,226,62,3	duplicate(Iris#air1)	小妖精::Gremlin#4air1	3176
+1@air1,241,48,3	duplicate(Iris#air1)	小妖精::Gremlin#5air1	3176
+1@air1,225,40,7	duplicate(Iris#air1)	小妖精::Gremlin#6air1	3176
+1@air1,236,48,7	duplicate(Iris#air1)	小妖精::Gremlin#7air1	3176
+1@air1,224,66,5	duplicate(Iris#air1)	小妖精::Gremlin#8air1	3176
+1@air1,213,75,5	duplicate(Iris#air1)	飞龙::Wywern#air1	3180
+1@air1,218,78,3	duplicate(Iris#air1)	俄希托斯::Acidus#1air1	3178
+1@air1,208,78,5	duplicate(Iris#air1)	俄希托斯::Acidus#2air1	3179
+1@air1,200,78,5	duplicate(Iris#air1)	直升机哥布灵::Rotar Zairo#1air1	3175
+1@air1,223,78,3	duplicate(Iris#air1)	直升机哥布灵::Rotar Zairo#2air1	3175
 
 // Step 1
 1@air1,0,0,0	script	#airshipputmob1	HIDDEN_WARP_NPC,{
@@ -341,52 +341,52 @@ OnStart:
 OnTimer500:
 	disablenpc instance_npcname("Iris#air1");
 	disablenpc instance_npcname("Chaos#air1");
-	mapannounce 'map_air1$, "Enemies have suddenly appeared and are attempting to destroy the Airship.", bc_map,"0xFFFF00";
+	mapannounce 'map_air1$, "敌人突然出现，正试图摧毁飞艇。", bc_map,"0xFFFF00";
 	
 	enablenpc instance_npcname("warp1#air1");
 	.@label$ = instance_npcname("#airshipputmob1") + "::OnMyMobDead";
-	monster 'map_air1$,113,66, "Beholder",3177,1, .@label$;
-	monster 'map_air1$,113,58, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 94,76, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 96,46, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 67,69, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 67,54, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 67,30, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 46,57, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 44,64, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 35,45, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 25,65, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 25,63, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 25,61, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 36,79, "Beholder",3177,1, .@label$;
-	monster 'map_air1$, 63,91, "Beholder",3177,1, .@label$;
+	monster 'map_air1$,113,66, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$,113,58, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 94,76, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 96,46, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 67,69, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 67,54, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 67,30, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 46,57, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 44,64, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 35,45, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 25,65, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 25,63, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 25,61, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 36,79, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air1$, 63,91, "恶魔之眼",3177,1, .@label$;
 
-	monster 'map_air1$,106,56, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$,115,68, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 95,64, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 96,56, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 82,77, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 63,30, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 44,61, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 42,53, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 33,54, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 18,65, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 18,61, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 18,56, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 32,71, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 69,90, "Rotar Zairo",3175,1, .@label$;
-	monster 'map_air1$, 84,45, "Rotar Zairo",3175,1, .@label$;
+	monster 'map_air1$,106,56, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$,115,68, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 95,64, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 96,56, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 82,77, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 63,30, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 44,61, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 42,53, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 33,54, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 18,65, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 18,61, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 18,56, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 32,71, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 69,90, "直升机哥布灵",3175,1, .@label$;
+	monster 'map_air1$, 84,45, "直升机哥布灵",3175,1, .@label$;
 	end;
 OnTimer1500:
-	mapannounce 'map_air1$, "Go to the bottom of the Airship and defeat the enemy.", bc_map,"0xFFFF00";
+	mapannounce 'map_air1$, "前往飞艇下层，击败敌人。", bc_map,"0xFFFF00";
 	end;
 OnTimer2500:
-	mapannounce 'map_air1$, "All the enemies on one floor have to be defeated in order to progress.", bc_map,"0xFFFF00";
+	mapannounce 'map_air1$, "必须击败本层的所有敌人，才能继续前进。", bc_map,"0xFFFF00";
 	stopnpctimer;
 	end;
 OnMyMobDead:
 	if (mobcount( 'map_air1$, instance_npcname("#airshipputmob1") + "::OnMyMobDead" ) < 1) {
-		mapannounce 'map_air1$, "All the enemies on this floor have been defeated. Go down to the next floor.", bc_map,"0xFFFF00";
+		mapannounce 'map_air1$, "本层的敌人已全部被击败。前往下一层。", bc_map,"0xFFFF00";
 		disablenpc instance_npcname("#airshipputmob1");
 		donpcevent instance_npcname("#airshipputmob2") + "::OnStart";
 		'airship_status = 3;
@@ -394,8 +394,8 @@ OnMyMobDead:
 	end;
 }
 
-1@air1,120,62,3	script	Traveling Knight#air1	4_M_JOB_KNIGHT1,{
-	mes "[Traveling Knight]";
+1@air1,120,62,3	script	旅行骑士::Traveling Knight#air1	4_M_JOB_KNIGHT1,{
+	mes "[旅行骑士]";
 	mes "这些是什么东西？";
 	mes "要我把它们全砍倒吗？……不，这点钱还不值得我插手……";
 	close2;
@@ -403,8 +403,8 @@ OnMyMobDead:
 	end;
 }
 
-1@air1,95,47,3	script	Passed out Drunkard#air1	4_M_LIEMAN,{
-	mes "[Passed out Drunkard]";
+1@air1,95,47,3	script	醉倒的酒鬼::Passed out Drunkard#air1	4_M_LIEMAN,{
+	mes "[醉倒的酒鬼]";
 	mes "呃……喝醉了……嗝";
 	mes "……呼噜……Zzz";
 	close2;
@@ -412,36 +412,36 @@ OnMyMobDead:
 	end;
 }
 
-1@air1,75,71,5	script	Wealthy man at a meal#a	1_M_JOBTESTER,{
-	mes "[Wealthy man at a meal]";
+1@air1,75,71,5	script	用餐的富翁::Wealthy man at a meal#a	1_M_JOBTESTER,{
+	mes "[正在用餐的富翁]";
 	mes "什、什么怪物？！";
 	mes "竟敢打扰我宝贵的用餐时间！守卫！你们在哪里！";
 	close;
 }
 
-1@air1,61,88,5	script	Free Riding Bard#air1	1_M_BARD,{
-	mes "[Free Riding Bard]";
+1@air1,61,88,5	script	搭便车的诗人::Free Riding Bard#air1	1_M_BARD,{
+	mes "[搭便车的吟游诗人]";
 	mes "哇……华丽～太棒了～";
 	mes "连爆炸的飞艇都如此壮观～哇～";
 	close;
 }
 
-1@air1,46,61,5	script	Airship Cafeteria Manager#air1	1_M_PUBMASTER,{
-	mes "[Airship Cafeteria Manager]";
+1@air1,46,61,5	script	飞艇餐厅经理::Airship Cafeteria Manager#air1	1_M_PUBMASTER,{
+	mes "[飞艇餐厅经理]";
 	mes "它们看起来很可怕，但也是我餐厅的客人。";
 	mes "怪物客人，你想吃什么？";
 	next;
-	mes "[Airship Cafeteria Manager]";
+	mes "[飞艇餐厅经理]";
 	mes "啊……呃！救命！！";
 	close;
 }
 
-1@air1,28,67,5	script	Gambling Spirit#air1	4_M_YURI,{
-	mes "[Gambling Spirit]";
+1@air1,28,67,5	script	赌徒::Gambling Spirit#air1	4_M_YURI,{
+	mes "[赌徒]";
 	mes "嘿！别碰我的牌！";
 	mes "把你的手和脑袋拿开！";
 	next;
-	mes "[Gambling Spirit]";
+	mes "[赌徒]";
 	mes "嗯……？！";
 	mes "我才刚开始享受胜利，这些怪物就出现了？！你们是因为我赢了点钱，想偷走我的钱吗？嗯？！";
 	close;
@@ -463,41 +463,41 @@ OnStart:
 	enablenpc instance_npcname("warp2b#air1");
 	.@label$ = instance_npcname("#airshipputmob2") + "::OnMyMobDead";
 
-	monster 'map_air1$,111,190, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$,120,190, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 97,198, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 97,201, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 82,191, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 82,199, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 66,197, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 67,161, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 54,173, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 69,213, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 43,175, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 36,190, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 41,202, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 26,195, "Gremlins",3176,1, .@label$;
-	monster 'map_air1$, 20,193, "Gremlins",3176,1, .@label$;
+	monster 'map_air1$,111,190, "小妖精",3176,1, .@label$;
+	monster 'map_air1$,120,190, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 97,198, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 97,201, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 82,191, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 82,199, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 66,197, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 67,161, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 54,173, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 69,213, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 43,175, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 36,190, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 41,202, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 26,195, "小妖精",3176,1, .@label$;
+	monster 'map_air1$, 20,193, "小妖精",3176,1, .@label$;
 
-	monster 'map_air1$, 82,186, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 81,202, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 97,178, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 97,175, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 67,180, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 65,157, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 64,212, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 37,173, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 37,201, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 32,186, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 20,181, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 18,186, "Acidus",3179,1, .@label$;
-	monster 'map_air1$, 55,200, "Acidus",3179,1, .@label$;
-	monster 'map_air1$,115,184, "Acidus",3179,1, .@label$;
-	monster 'map_air1$,115,189, "Acidus",3179,1, .@label$;
+	monster 'map_air1$, 82,186, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 81,202, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 97,178, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 97,175, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 67,180, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 65,157, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 64,212, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 37,173, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 37,201, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 32,186, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 20,181, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 18,186, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$, 55,200, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$,115,184, "俄希托斯",3179,1, .@label$;
+	monster 'map_air1$,115,189, "俄希托斯",3179,1, .@label$;
 	end;
 OnMyMobDead:
 	if (mobcount( 'map_air1$, instance_npcname("#airshipputmob2") + "::OnMyMobDead" ) < 1) {
-		mapannounce 'map_air1$, "All the enemies on this floor have been defeated. Head to the engine room entrance.", bc_map,"0xFFFF00";
+		mapannounce 'map_air1$, "本层的敌人已全部被击败。前往引擎室入口。", bc_map,"0xFFFF00";
 		enablenpc instance_npcname("Iris#2air1");
 		enablenpc instance_npcname("Chaos#2air1");
 		enablenpc instance_npcname("Gremlin#2aair1");
@@ -507,52 +507,52 @@ OnMyMobDead:
 	end;
 }
 
-1@air1,93,193,3	script	Airship Crew#1air1	4_M_EIN_SOLDIER,{
+1@air1,93,193,3	script	飞艇船员::Airship Crew#1air1	4_M_EIN_SOLDIER,{
 	mes "[飞艇船员]";
 	mes "这里是引擎室入口。别让它们进去！";
 	close;
 }
 
-1@air1,22,182,7	script	Airship Crew#2air1	4_M_EIN_SOLDIER,{
+1@air1,22,182,7	script	飞艇船员::Airship Crew#2air1	4_M_EIN_SOLDIER,{
 	mes "[飞艇船员]";
 	mes "该死……敌人太多了！引擎室要被攻陷了！！";
 	close;
 }
 
-1@air1,43,191,4	script	King's Escort#1air1	8W_SOLDIER,{
+1@air1,43,191,4	script	国王护卫::King's Escort#1air1	8W_SOLDIER,{
 	mes "[国王护卫]";
 	mes "无论发生什么，都不能吵醒沉睡的国王！";
 	close;
 }
-1@air1,39,191,4	duplicate(King's Escort#1air1)	King's Escort#2air1	8W_SOLDIER
+1@air1,39,191,4	duplicate(King's Escort#1air1)	国王护卫::King's Escort#2air1	8W_SOLDIER
 
-1@air1,58,197,3	script	Tourist#1air1	4_M_LIEMAN,{
+1@air1,58,197,3	script	游客::Tourist#1air1	4_M_LIEMAN,{
 	mes "[" + strnpcinfo(1) + "]";
 	mes "……呼噜……呼呼";
 	close;
 }
-1@air1,49,169,5	duplicate(Tourist#1air1)	Tourist#2air1	4_M_LIEMAN
-1@air1,42,205,3	duplicate(Tourist#1air1)	King of a Small Country#1air1	4_M_TRISTAN
+1@air1,49,169,5	duplicate(Tourist#1air1)	游客::Tourist#2air1	4_M_LIEMAN
+1@air1,42,205,3	duplicate(Tourist#1air1)	小国国王::King of a Small Country#1air1	4_M_TRISTAN
 
-1@air1,88,187,5	duplicate(Iris#air1)	Chaos#2air1	4_M_CHAOS
-1@air1,93,188,5	duplicate(Iris#air1)	Gremlin#2aair1	3176
+1@air1,88,187,5	duplicate(Iris#air1)	混沌::Chaos#2air1	4_M_CHAOS
+1@air1,93,188,5	duplicate(Iris#air1)	小妖精::Gremlin#2aair1	3176
 
-1@air1,88,189,5	script	Iris#2air1	4_F_IRIS,{
+1@air1,88,189,5	script	艾莉丝::Iris#2air1	4_F_IRIS,{
 	if ('airship_status == 4) {
 		cutin "h_chaos02",2;
 	mes "[混沌]";
-		mes "该死……它们已经到这里了！多亏了你，卢恩引擎才得以守住。";
+		mes "该死……它们已经到这里了！多亏了你，符文引擎才得以守住。";
 		next;
 		cutin "h_iris01",2;
 	mes "[艾莉丝]";
-		mes "呃……哦！！有只哥布灵正朝引擎室去！！";
+		mes "呃……哦！！有只小妖精正朝引擎室去！！";
 		next;
 		cutin "h_chaos03",2;
 	mes "[混沌]";
 		mes "……！！我们必须阻止它！！";
 		next;
 		cutin "",255;
-	mes "[哥布灵]";
+	mes "[小妖精]";
 		mes "吱吱……！！";
 		if ('airship_status == 4) {
 			hideonnpc instance_npcname("Gremlin#2aair1");
@@ -572,7 +572,7 @@ OnMyMobDead:
 		next;
 		cutin "",255;
 	mes "[船员]";
-		mes "啊！卢恩引擎！！引擎室爆炸了！！消防队！快灭火！！";
+		mes "啊！符文引擎！！引擎室爆炸了！！消防队！快灭火！！";
 		next;
 		cutin "h_chaos02",2;
 	mes "[混沌]";
@@ -606,37 +606,37 @@ OnStart:
 	enablenpc instance_npcname("Airship Cafeteria Manager#air2");
 
 	.@label$ = instance_npcname("#airshipputmob3") + "::OnMyMobDead";
-	monster 'map_air2$,115,68, "Beholder",3177,1, .@label$;
-	monster 'map_air2$,106,56, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 95,64, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 96,56, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 84,45, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 63,30, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 76,77, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 69,90, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 50,57, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 42,53, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 32,71, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 18,65, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 18,61, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 18,56, "Beholder",3177,1, .@label$;
-	monster 'map_air2$, 33,54, "Beholder",3177,1, .@label$;
+	monster 'map_air2$,115,68, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$,106,56, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 95,64, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 96,56, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 84,45, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 63,30, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 76,77, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 69,90, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 50,57, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 42,53, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 32,71, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 18,65, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 18,61, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 18,56, "恶魔之眼",3177,1, .@label$;
+	monster 'map_air2$, 33,54, "恶魔之眼",3177,1, .@label$;
 
-	monster 'map_air2$,113,66, "Acidus",3178,1, .@label$;
-	monster 'map_air2$,113,58, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 94,76, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 96,46, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 67,30, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 67,54, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 67,69, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 63,91, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 51,50, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 36,79, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 25,65, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 25,63, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 25,61, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 30,45, "Acidus",3178,1, .@label$;
-	monster 'map_air2$, 38,72, "Acidus",3178,1, .@label$;
+	monster 'map_air2$,113,66, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$,113,58, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 94,76, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 96,46, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 67,30, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 67,54, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 67,69, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 63,91, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 51,50, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 36,79, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 25,65, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 25,63, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 25,61, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 30,45, "俄希托斯",3178,1, .@label$;
+	monster 'map_air2$, 38,72, "俄希托斯",3178,1, .@label$;
 	end;
 OnMyMobDead:
 	if (mobcount( 'map_air2$, instance_npcname("#airshipputmob3") + "::OnMyMobDead" ) < 1) {
@@ -658,31 +658,31 @@ OnMyMobDead:
 	end;
 }
 
-1@air2,95,47,3	duplicate(Passed out Drunkard#air1)	Passed out Drunkard#air2	4_M_LIEMAN
-1@air2,75,71,5	duplicate(Wealthy man at a meal#a)	Wealthy man at a meal#b	1_M_JOBTESTER
+1@air2,95,47,3	duplicate(Passed out Drunkard#air1)	醉倒的酒鬼::Passed out Drunkard#air2	4_M_LIEMAN
+1@air2,75,71,5	duplicate(Wealthy man at a meal#a)	用餐的富翁::Wealthy man at a meal#b	1_M_JOBTESTER
 
-1@air2,120,62,3	script	Traveling Knight#air2	4_M_JOB_KNIGHT1,{
+1@air2,120,62,3	script	旅行骑士::Traveling Knight#air2	4_M_JOB_KNIGHT1,{
 	mes "[旅行骑士]";
 	mes "啊……啊！！";
 	mes "要爆炸了！必须过去……我必须去另一边的飞艇！！";
 	close;
 }
 
-1@air2,61,88,5	script	Free Riding Bard#air2	1_M_BARD,{
+1@air2,61,88,5	script	搭便车的诗人::Free Riding Bard#air2	1_M_BARD,{
 	mes "[搭便车的吟游诗人]";
 	mes "哇……华丽~ 太棒了~";
 	mes "连爆炸中的船都如此不可思议~ 哇~";
 	close;
 }
 
-1@air2,28,67,5	script	Gambling Spirit#air2	4_M_YURI,{
-	mes "[赌博之灵]";
+1@air2,28,67,5	script	赌徒::Gambling Spirit#air2	4_M_YURI,{
+	mes "[赌徒]";
 	mes "这是什么？火吗？";
 	mes "啊啊啊啊啊~";
 	close;
 }
 
-1@air2,46,61,5	script	Airship Cafeteria Manager#air2	1_M_PUBMASTER,{
+1@air2,46,61,5	script	飞艇餐厅经理::Airship Cafeteria Manager#air2	1_M_PUBMASTER,{
 	mes "[飞艇餐厅经理]";
 	mes "这艘船……要掉下去了……";
 	mes "但我要和这艘船共命运。船与我是一体的！";
@@ -693,7 +693,7 @@ OnMyMobDead:
 }
 
 // Step 4
-1@air2,236,57,3	script	Gremlin#1air2	3176,{
+1@air2,236,57,3	script	小妖精::Gremlin#1air2	3176,{
 	end;
 OnExplosion1:
 	specialeffect EF_SUI_EXPLOSION;
@@ -714,25 +714,25 @@ OnExplosion2:
 	end;
 }
 
-1@air2,239,57,5	duplicate(Iris#air1)	Gremlin#2air2	3176
-1@air2,230,50,5	duplicate(Iris#air1)	Gremlin#3air2	3176
-1@air2,226,62,3	duplicate(Iris#air1)	Gremlin#4air2	3176
-1@air2,241,48,3	duplicate(Iris#air1)	Gremlin#5air2	3176
-1@air2,225,40,7	duplicate(Iris#air1)	Gremlin#6air2	3176
-1@air2,236,48,7	duplicate(Iris#air1)	Gremlin#7air2	3176
-1@air2,224,66,5	duplicate(Iris#air1)	Gremlin#8air2	3176
+1@air2,239,57,5	duplicate(Iris#air1)	小妖精::Gremlin#2air2	3176
+1@air2,230,50,5	duplicate(Iris#air1)	小妖精::Gremlin#3air2	3176
+1@air2,226,62,3	duplicate(Iris#air1)	小妖精::Gremlin#4air2	3176
+1@air2,241,48,3	duplicate(Iris#air1)	小妖精::Gremlin#5air2	3176
+1@air2,225,40,7	duplicate(Iris#air1)	小妖精::Gremlin#6air2	3176
+1@air2,236,48,7	duplicate(Iris#air1)	小妖精::Gremlin#7air2	3176
+1@air2,224,66,5	duplicate(Iris#air1)	小妖精::Gremlin#8air2	3176
 
-1@air2,229,56,5	duplicate(Iris#air1)	Loki#air2	4_M_ROKI2
-1@air2,241,54,3	duplicate(Iris#air1)	Iris#air2	4_F_IRIS
-1@air2,213,75,5	duplicate(Iris#air1)	Wywern#air2	3180
-1@air2,235,59,3	duplicate(Iris#air1)	Wywern#2air2	3180
-1@air2,235,49,3	duplicate(Iris#air1)	Wywern#3air2	3180
-1@air2,218,78,3	duplicate(Iris#air1)	Acidus#1air2	3178
-1@air2,208,78,5	duplicate(Iris#air1)	Acidus#2air2	3179
-1@air2,200,78,5	duplicate(Iris#air1)	Rotar Zairo#1air2	3175
-1@air2,223,78,3	duplicate(Iris#air1)	Rotar Zairo#2air2	3175
+1@air2,229,56,5	duplicate(Iris#air1)	洛基::Loki#air2	4_M_ROKI2
+1@air2,241,54,3	duplicate(Iris#air1)	艾莉丝::Iris#air2	4_F_IRIS
+1@air2,213,75,5	duplicate(Iris#air1)	飞龙::Wywern#air2	3180
+1@air2,235,59,3	duplicate(Iris#air1)	飞龙::Wywern#2air2	3180
+1@air2,235,49,3	duplicate(Iris#air1)	飞龙::Wywern#3air2	3180
+1@air2,218,78,3	duplicate(Iris#air1)	俄希托斯::Acidus#1air2	3178
+1@air2,208,78,5	duplicate(Iris#air1)	俄希托斯::Acidus#2air2	3179
+1@air2,200,78,5	duplicate(Iris#air1)	直升机哥布灵::Rotar Zairo#1air2	3175
+1@air2,223,78,3	duplicate(Iris#air1)	直升机哥布灵::Rotar Zairo#2air2	3175
 
-1@air2,229,54,5	script	Fenrir#air2	4_F_FENRIR,{
+1@air2,229,54,5	script	芬里尔::Fenrir#air2	4_F_FENRIR,{
 	if ('airship_status != 6)
 		end;
 	cutin "fenrir_a",2;
@@ -900,7 +900,7 @@ OnStart:
 	disablenpc instance_npcname("Wywern#2air2");
 	disablenpc instance_npcname("Wywern#3air2");
 	enablenpc instance_npcname("calla#air2");
-	monster 'map_air2$,235,49,"Wywern",3180,1, instance_npcname("calla#air2") + "::OnMyMobDead";// E1_G_S_NYDHOG
+	monster 'map_air2$,235,49,"飞龙",3180,1, instance_npcname("calla#air2") + "::OnMyMobDead";// E1_G_S_NYDHOG
 	end;
 OnMyMobDead:
 	if (mobcount( 'map_air2$, instance_npcname("calla#air2") + "::OnMyMobDead" ) < 1) {
@@ -915,10 +915,10 @@ OnMyMobDead:
 }
 
 // Step 5
-1@air2,232,51,5	script	Iris#2air2	4_F_IRIS,{
+1@air2,232,51,5	script	艾莉丝::Iris#2air2	4_F_IRIS,{
 	if ('airship_status != 8)
 		end;
-	mes "[哥布灵们]";
+	mes "[小妖精们]";
 	mes "吱吱……咆哮~！！";
 	next;
 	cutin "h_iris01",2;
@@ -949,7 +949,7 @@ OnMyMobDead:
 	cutin "",255;
 	mes "- 砰！砰砰！砰！";
 	next;
-	mes "[哥布灵们]";
+	mes "[小妖精们]";
 	mes "呃啊！！";
 	next;
 	cutin "fly_felrock2",2;
@@ -995,7 +995,7 @@ OnMyMobDead:
 	end;
 }
 
-1@air2,247,51,3	duplicate(Iris#air1)	Captain Ferlock#air2	4_M_REINDEER
+1@air2,247,51,3	duplicate(Iris#air1)	费洛克船长::Captain Ferlock#air2	4_M_REINDEER
 
 1@air2,104,52,0	script	callb#air2	HIDDEN_WARP_NPC,{
 	end;
@@ -1006,7 +1006,7 @@ OnStart:
 	disablenpc instance_npcname("Captain Ferlock#air2");
 	disablenpc instance_npcname("Iris#2air2");
 	enablenpc instance_npcname("callb#air2");
-	monster 'map_air2$,247,51,"Out of control Captain",3181,1, instance_npcname("callb#air2") + "::OnMyMobDead";// E1_FELOCK
+	monster 'map_air2$,247,51,"失控的船长",3181,1, instance_npcname("callb#air2") + "::OnMyMobDead";// E1_FELOCK
 	end;
 OnMyMobDead:
 	if (mobcount( 'map_air2$, instance_npcname("callb#air2") + "::OnMyMobDead" ) < 1)
@@ -1022,36 +1022,36 @@ OnTimer6000:
 }
 
 // Final
-1@air2,239,58,5	script	Chaos#air2	4_M_CHAOS,{
+1@air2,239,58,5	script	混沌::Chaos#air2	4_M_CHAOS,{
 	if ('airship_status > 10) {
 		cutin "h_chaos02",2;
-		mes "[Chaos]";
+		mes "[混沌]";
 		mes "你现在就离开这里！！这艘船很危险！！";
 		close3;
 	}
 	cutin "fly_felrock2",2;
-	mes "[Captain Ferlock]";
-	mes "糟糕……我刚才疯狂射击。看来很多小恶魔都消失了？嘿嘿嘿。";
+	mes "[费洛克船长]";
+	mes "糟糕……我刚才疯狂射击。看来很多小妖精都消失了？嘿嘿嘿。";
 	next;
 	cutin "h_iris01",2;
-	mes "[Iris]";
+	mes "[艾莉丝]";
 	mes "船被你弄坏了！！";
 	next;
 	cutin "h_arcana02",2;
-	mes "[Arcana]";
+	mes "[阿卡娜]";
 	mes "替我们做了工作。嗯，我想这样就够了？";
 	next;
-	mes "[Arcana]";
+	mes "[阿卡娜]";
 	mes "那么我们该溜走了……";
 	next;
 	cutin "h_guardian1",1;
-	mes "[Laksmi]";
-	mes "哦？……看，Basara。他们似乎撤退了。";
+	mes "[拉克希米]";
+	mes "哦？……看，巴萨拉。他们似乎撤退了。";
 	next;
-	mes "[Basara]";
+	mes "[巴萨拉]";
 	mes "当然！！他们感受到我们的实力了！！呵呵呵～";
 	next;
-	mes "[Basara]";
+	mes "[巴萨拉]";
 	mes "说到这个，再来一发风魔手里剑！！";
 	next;
 	for ( .@i = 1; .@i < 4; .@i++ ) {
@@ -1063,89 +1063,89 @@ OnTimer6000:
 	mes "- 砰砰！砰！";
 	next;
 	cutin "fenrir_b",2;
-	mes "[Fenrir]";
+	mes "[芬里尔]";
 	mes "呀！！看来我们要掉下去了！！";
 	mes "……太矮了……够不到……";
 	next;
-	mes "[Fenrir]";
+	mes "[芬里尔]";
 	mes "……这就是结局吗？";
 	mes "……又是一个我无法到达的地方……";
-	mes "Chaos……";
+	mes "混沌……";
 	next;
 	cutin "ep14_roki02",2;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "……抓住我";
 	next;
 	cutin "fenrir_b",2;
-	mes "[Fenrir]";
-	mes "Lo……ki？";
+	mes "[芬里尔]";
+	mes "洛……基？";
 	next;
 	cutin "ep14_roki02",2;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "你在看什么？来，上来……";
 	next;
 	cutin "",255;
-	mes "[Guard]";
+	mes "[卫兵]";
 	mes "确认所有引擎停止！！";
 	mes "我们必须赶快逃离！";
 	next;
 	cutin "fly_felrock2",2;
-	mes "[Captain Ferlock]";
+	mes "[费洛克船长]";
 	mes "该死……";
 	mes "所有人上救生艇！";
 	mes "优先让乘客登上救生艇！登满后立即放艇！";
 	next;
 	cutin "h_chaos02",2;
-	mes "[Chaos]";
+	mes "[混沌]";
 	mes "等等！！还有人没上来！！";
 	next;
 	cutin "fly_felrock2",2;
-	mes "[Captain Ferlock]";
+	mes "[费洛克船长]";
 	mes "我们无能为力！";
 	mes "继续拖延会让其他人陷入危险！！很遗憾，但我们已经尽力了！";
 	next;
 	cutin "h_chaos03",2;
-	mes "[Chaos]";
+	mes "[混沌]";
 	mes "但留下的人也是宝贵的生命！你要抛下他们吗？！什么？！";
 	next;
 	cutin "fly_felrock2",2;
-	mes "[Captain Ferlock]";
+	mes "[费洛克船长]";
 	mes "是的，你说得对……";
 	mes "那么善后就交给你了。我走了！！";
 	disablenpc instance_npcname("Captain Ferlock#2air2");
 	next;
 	cutin "h_chaos03",2;
-	mes "[Chaos]";
+	mes "[混沌]";
 	mes "喂！你要去哪！啊！！";
 	mes "我会抓住你。我会杀了你！！";
 	next;
 	cutin "h_guardian1",1;
-	mes "[Basara]";
+	mes "[巴萨拉]";
 	mes "现在不是对付这些小恶魔的时候。";
 	next;
-	mes "[Basara]";
+	mes "[巴萨拉]";
 	mes "我能感受到更大的邪恶浪潮。";
 	mes "把这些小家伙交给他们。走！";
 	next;
-	mes "[Laksmi&Shiva]";
+	mes "[拉克希米与希瓦]";
 	mes "收到！！游侠飞行形态！！";
 	next;
 	cutin "h_iris01",2;
-	mes "[Iris]";
+	mes "[艾莉丝]";
 	mes "嗯？嘿！！";
 	mes "毁掉船后你们想去哪？！";
 	next;
-	mes "[Iris]";
+	mes "[艾莉丝]";
 	mes "下次抓到你们，我一定让你们死！！紧张起来！！听懂了吗？！准备好，乡巴佬！！";
 	next;
 	cutin "h_guardian3",1;
-	mes "[Guardian Heroines]";
+	mes "[守护女英雄]";
 	mes "……乡巴佬？（愤怒）";
 	next;
-	mes "[Guardian Heroines]";
+	mes "[守护女英雄]";
 	mes "那些贬低并谴责正义之路的人……我们应该毫不留情地施以正义审判，对吧？";
 	next;
-	mes "[Guardian Heroines]";
+	mes "[守护女英雄]";
 	mes "去死吧，恶徒！！风魔手里剑！！";
 	next;
 	donpcevent instance_npcname("Gremlin#1air2") + "::OnExplosion1";
@@ -1153,21 +1153,21 @@ OnTimer6000:
 	mes "- 砰！砰砰！砰！";
 	next;
 	cutin "h_iris01",2;
-	mes "[Iris]";
+	mes "[艾莉丝]";
 	mes "呀！！";
 	next;
 	cutin "h_guardian1",1;
-	mes "[Guardian Heroines]";
+	mes "[守护女英雄]";
 	mes "啊哈哈哈哈！！";
 	mes "活该～！！走吧！！";
 	next;
 	cutin "h_chaos03",2;
-	mes "[Chaos]";
-	mes "Iris！！到这里来！！";
-	mes "我们赶快找到Fenrir和Loki，离开这里！！";
+	mes "[混沌]";
+	mes "艾莉丝！！到这里来！！";
+	mes "我们赶快找到芬里尔和洛基，离开这里！！";
 	next;
 	cutin "h_chaos02",2;
-	mes "[Chaos]";
+	mes "[混沌]";
 	mes "你现在就离开这里！！这艘船很危险！！";
 	close2;
 	if ('airship_status == 10){
@@ -1179,7 +1179,7 @@ OnTimer6000:
 	end;
 }
 
-1@air2,243,58,3	duplicate(Iris#air1)	Captain Ferlock#2air2	4_M_REINDEER
+1@air2,243,58,3	duplicate(Iris#air1)	费洛克船长::Captain Ferlock#2air2	4_M_REINDEER
 
 // Explosions
 1@air2,113,52,0	duplicate(Iris#air1)	fire1#air2	HIDDEN_WARP_NPC

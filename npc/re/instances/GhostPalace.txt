@@ -8,18 +8,18 @@
 //= 1.1 Fixed NPC names. [zackdreaver]
 //============================================================
 
-dali02,43,129,5	script	Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
+dali02,43,129,5	script	讨厌的皇家卫兵::Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
 	if (BaseLevel < 120) {
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "虽然我需要帮手，但你的实力还不够，菜鸟~！";
 		next;
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "训练到至少 120 级后再回来！";
 		close;
 	}
 	.@party_id = getcharid(1);
 	if (is_party_leader() == false || .@party_id < 1) {
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "我只能为队长打开秘密通道。请让队长来和我谈话。";
 		close;
 	}
@@ -37,7 +37,7 @@ dali02,43,129,5	script	Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
 		erasequest 1261;// Cursed Swordman
 		close;
 	}
-	mes "[令人不快的皇家卫兵]";
+	mes "[讨厌的皇家卫兵]";
 	mes "我需要帮助，哪怕是你这样的家伙。";
 	next;
 	mes "[讨厌的皇家卫兵]";
@@ -47,10 +47,10 @@ dali02,43,129,5	script	Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
 	mes "你先跑，我会追上来。我们必须救她。";
 	next;
 	if (select( "我会帮忙。", "现在不是时候。" ) == 2) {
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "现在所有皇家卫兵都在与怪物战斗，甚至为此丧命。";
 		next;
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "无论心中多么恐惧，我们都必须救出公主！";
 		close;
 	}
@@ -62,9 +62,9 @@ dali02,43,129,5	script	Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
 	close;
 }
 
-dali02,40,134,5	script	Interdimensional Device#dk	PORTAL,{
+dali02,40,134,5	script	次元装置::Interdimensional Device#dk	PORTAL,{
 	if (BaseLevel < 120) {
-		mes "[令人不快的皇家卫兵]";
+		mes "[讨厌的皇家卫兵]";
 		mes "虽然我需要帮手，但你的实力还不够，菜鸟~！";
 		next;
 		mes "[讨厌的皇家卫兵]";
@@ -90,11 +90,10 @@ dali02,40,134,5	script	Interdimensional Device#dk	PORTAL,{
 		mes "[讨厌的皇家卫兵]";
 		mes "袭击宫殿的怪物正在秘密入口附近游荡。被它们发现就糟了……请稍等。";
 		next;
-		mes "入口的时间限制结束后，";
-		mes "我们再尝试进入。";
+		mes "每天凌晨 4 点重置入场冷却后，我们再尝试进入。";
 		close;
 	case 2:
-		mes "^0000ff进入剑士诅咒的时间限制已结束。请再次与讨厌的皇家卫兵交谈。^000000";
+		mes "^0000ff幽灵宫殿的入场冷却已结束。请再次与讨厌的皇家卫兵交谈。^000000";
 		erasequest 1261;// Cursed Swordman
 		close;
 	}
@@ -125,7 +124,7 @@ dali02,40,134,5	script	Interdimensional Device#dk	PORTAL,{
 }
 
 // 1st floor
-1@spa,41,204,5	script	King#dk	4_M_RUSKING,{
+1@spa,41,204,5	script	国王::King#dk	4_M_RUSKING,{
 	mes "[国王]";
 	mes "现任命你为蒂亚拉公主的贴身护卫。我最信任你的忠诚。";
 	npctalk "国王：现任命你为蒂亚拉公主的贴身护卫。我最信任你的忠诚。";
@@ -208,7 +207,7 @@ OnInstanceInit:
 	end;
 }
 
-1@spa,42,201,1	script	Lurid Royal Guard#dk	4_M_SAKRAYROYAL,{ end; }
+1@spa,42,201,1	script	阴森皇家卫兵::Lurid Royal Guard#dk	4_M_SAKRAYROYAL,{ end; }
 
 1@spa,1,1,1	script	#gp_control_1	HIDDEN_WARP_NPC,{
 	end;
@@ -220,10 +219,10 @@ OnStart:
 	end;
 OnTimer2000:
 	.@label$ = instance_npcname("#gp_control_1") + "::OnMyMobDead1";
-	monster 'map_spa$,50,194,"Cursed Soldier",2948,1, .@label$;		// CURSED_SOLDIER
-	monster 'map_spa$,34,208,"Cursed Soldier",2948,1, .@label$;		// CURSED_SOLDIER
-	monster 'map_spa$,32,194,"Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
-	monster 'map_spa$,52,209,"Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,50,194,"受到诅咒的士兵",2948,1, .@label$;		// CURSED_SOLDIER
+	monster 'map_spa$,34,208,"受到诅咒的士兵",2948,1, .@label$;		// CURSED_SOLDIER
+	monster 'map_spa$,32,194,"受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,52,209,"受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
 	stopnpctimer;
 	end;
 OnMyMobDead1:
@@ -234,8 +233,8 @@ OnMyMobDead1:
 	end;
 OnSpawn1:
 	.@label$ = instance_npcname("#gp_control_1") + "::OnMyMobDead2";
-	monster 'map_spa$,37,182,"Cursed Soldier",2948,1, .@label$;		// CURSED_SOLDIER
-	monster 'map_spa$,46,182,"Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,37,182,"受到诅咒的士兵",2948,1, .@label$;		// CURSED_SOLDIER
+	monster 'map_spa$,46,182,"受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
 	end;
 OnMyMobDead2:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_1") + "::OnMyMobDead2") < 1) {
@@ -246,9 +245,9 @@ OnMyMobDead2:
 	end;
 OnSpawn2:
 	.@label$ = instance_npcname("#gp_control_1") + "::OnMyMobDead3";
-	monster 'map_spa$,30,200,"Cursed Soldier",2948,1, .@label$;		// CURSED_SOLDIER
-	monster 'map_spa$,51,200,"Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
-	monster 'map_spa$,53,199,"Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,30,200,"受到诅咒的士兵",2948,1, .@label$;		// CURSED_SOLDIER
+	monster 'map_spa$,51,200,"受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,53,199,"受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
 	end;
 OnMyMobDead3:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_1") + "::OnMyMobDead3") < 1) {
@@ -261,7 +260,7 @@ OnMyMobDead3:
 }
 
 // 2nd floor
-1@spa,132,122,7	script	Lurid Royal Guard#dk1	4_M_SAKRAYROYAL,{
+1@spa,132,122,7	script	阴森皇家卫兵::Lurid Royal Guard#dk1	4_M_SAKRAYROYAL,{
 	.@tiara$ = instance_npcname("Princess Tiara#dk");
 	cutin "npc-tiara.bmp",3;
 	mes "[阴森皇家卫兵]";
@@ -280,7 +279,7 @@ OnMyMobDead3:
 	mes "那么，我能做什么？";
 	npctalk "蒂亚拉公主：那么，我能做什么？", .@tiara$;
 	next;
-	mes "[阴森的皇家卫兵]";
+	mes "[阴森皇家卫兵]";
 	mes "殿下，必须由你自己决定……";
 	npctalk "阴森皇家卫兵：殿下，必须由你自己决定……";
 	next;
@@ -288,7 +287,7 @@ OnMyMobDead3:
 	mes "如果我嫁到另一个国家，你会更轻松吗？";
 	npctalk "蒂亚拉公主：如果我嫁到另一个国家，你会更轻松吗？", .@tiara$;
 	next;
-	mes "[阴森的皇家卫兵]";
+	mes "[阴森皇家卫兵]";
 	mes "我会永远陪在你身边，保护你。";
 	npctalk "阴森皇家卫兵：我会永远陪在你身边，保护你。";
 	cutin "npc-tiara.bmp",255;
@@ -297,7 +296,7 @@ OnMyMobDead3:
 	mes "怪物进城堡了吗？请保护我！";
 	npctalk "蒂亚拉公主：怪物进城堡了吗？请保护我！", .@tiara$;
 	next;
-	mes "[阴森的皇家卫兵]";
+	mes "[阴森皇家卫兵]";
 	mes "跟在我身后。我们走！";
 	npctalk "阴森皇家卫兵：跟在我身后。我们走！";
 	close2;
@@ -305,7 +304,7 @@ OnMyMobDead3:
 	end;
 }
 
-1@spa,135,125,3	duplicate(Lurid Royal Guard#dk)	Princess Tiara#dk	4_F_MAYSEL
+1@spa,135,125,3	duplicate(Lurid Royal Guard#dk)	蒂亚拉公主::Princess Tiara#dk	4_F_MAYSEL
 
 1@spa,1,1,1	script	#gp_control_2	HIDDEN_WARP_NPC,{
 	end;
@@ -323,28 +322,28 @@ OnStart:
 	end;
 OnTimer2000:
 	.@label$ = instance_npcname("#gp_control_2") + "::OnMyMobDead1";
-	monster 'map_spa$,135,116,"Broken Promise",2950,1, .@label$;	// BROKEN_MIND
-	monster 'map_spa$,110,120,"Broken Promise",2950,1, .@label$;	// BROKEN_MIND
-	monster 'map_spa$,122,112,"Floating Sorrow",2951,1, .@label$;	// FLOATING_WORD
-	monster 'map_spa$,121,129,"Unfulfilled Love",2952,1, .@label$;	// LIKE_LOVE
+	monster 'map_spa$,135,116,"无法献出的心意",2950,1, .@label$;	// BROKEN_MIND
+	monster 'map_spa$,110,120,"无法献出的心意",2950,1, .@label$;	// BROKEN_MIND
+	monster 'map_spa$,122,112,"声声叹息",2951,1, .@label$;	// FLOATING_WORD
+	monster 'map_spa$,121,129,"以爱之名",2952,1, .@label$;	// LIKE_LOVE
 	stopnpctimer;
 	end;
 OnMyMobDead1:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_2") + "::OnMyMobDead1") < 1) {
 		sleep 2000;
 		.@label$ = instance_npcname("#gp_control_2") + "::OnMyMobDead2";
-		monster 'map_spa$,120,103,"Broken Promise",2950,1, .@label$;	// BROKEN_MIND
-		monster 'map_spa$,115,137,"Floating Sorrow",2951,1, .@label$;	// FLOATING_WORD
-		monster 'map_spa$,103,130,"Unfulfilled Love",2952,1, .@label$;	// LIKE_LOVE
+		monster 'map_spa$,120,103,"无法献出的心意",2950,1, .@label$;	// BROKEN_MIND
+		monster 'map_spa$,115,137,"声声叹息",2951,1, .@label$;	// FLOATING_WORD
+		monster 'map_spa$,103,130,"以爱之名",2952,1, .@label$;	// LIKE_LOVE
 	}
 	end;
 OnMyMobDead2:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_2") + "::OnMyMobDead2") < 1) {
 		sleep 2000;
 		.@label$ = instance_npcname("#gp_control_2") + "::OnMyMobDead3";
-		monster 'map_spa$,98,119,"Floating Sorrow",2951,1, .@label$;	// FLOATING_WORD
-		monster 'map_spa$,98,120,"Floating Sorrow",2951,1, .@label$;	// FLOATING_WORD
-		monster 'map_spa$,103,109,"Unfulfilled Love",2952,1, .@label$;	// LIKE_LOVE
+		monster 'map_spa$,98,119,"声声叹息",2951,1, .@label$;	// FLOATING_WORD
+		monster 'map_spa$,98,120,"声声叹息",2951,1, .@label$;	// FLOATING_WORD
+		monster 'map_spa$,103,109,"以爱之名",2952,1, .@label$;	// LIKE_LOVE
 	}
 	end;
 OnMyMobDead3:
@@ -363,12 +362,12 @@ OnMyMobDead3:
 }
 
 // 3rd floor
-1@spa,32,54,1	script	King#dk1	4_M_RUSKING,{
+1@spa,32,54,1	script	国王::King#dk1	4_M_RUSKING,{
 	mes "[国王]";
 	mes "是你把怪物带到这里的！你想除掉我，独占公主吗？";
 	npctalk "国王：是你把怪物带到这里的！你想除掉我，独占公主吗？";
 	next;
-	mes "[阴森的皇家卫兵]";
+	mes "[阴森皇家卫兵]";
 	mes "这是陷阱，陛下！请相信我！";
 	npctalk "阴森皇家卫兵：这是陷阱，陛下！请相信我！", instance_npcname("Lurid Royal Guard#dk2");
 	next;
@@ -391,7 +390,7 @@ OnMyMobDead3:
 	end;
 }
 
-1@spa,35,56,5	script	Magic Sword Tartanos#dk1	4_TRACE,{
+1@spa,35,56,5	script	魔剑塔塔诺斯::Magic Sword Tartanos#dk1	4_TRACE,{
 	end;
 OnStart:
 	enablenpc instance_npcname("Magic Sword Tartanos#dk1");
@@ -417,7 +416,7 @@ OnTimer23000:
 	npctalk "不祥之声：只要与我订立契约，我就能给予你无限力量。";
 	end;
 OnTimer28000:
-	npctalk "阴森的皇家卫兵：我……我……", instance_npcname("Lurid Royal Guard#dk3");
+	npctalk "阴森皇家卫兵：我……我……", instance_npcname("Lurid Royal Guard#dk3");
 	end;
 OnTimer33000:
 	npctalk "魔剑塔塔诺斯：咯咯咯……你想要什么，小子？";
@@ -430,12 +429,12 @@ OnTimer34000:
 	end;
 }
 
-1@spa,28,52,7	duplicate(Lurid Royal Guard#dk)	Captain of the Guard#dk	4_M_KY_KNT
-1@spa,25,53,7	duplicate(Lurid Royal Guard#dk)	Soldier#dk1	4_M_CRU_SOLD
-1@spa,34,53,1	duplicate(Lurid Royal Guard#dk)	Soldier#dk2	4_M_CRU_SOLD
-1@spa,30,52,7	duplicate(Lurid Royal Guard#dk)	Soldier#dk3	4_M_KY_SOLD
-1@spa,30,58,5	duplicate(Lurid Royal Guard#dk)	Lurid Royal Guard#dk2	4_M_SAKRAY_TIED
-1@spa,31,57,5	duplicate(Lurid Royal Guard#dk)	Lurid Royal Guard#dk3	4_M_SAKRAY_TIED
+1@spa,28,52,7	duplicate(Lurid Royal Guard#dk)	卫兵队长::Captain of the Guard#dk	4_M_KY_KNT
+1@spa,25,53,7	duplicate(Lurid Royal Guard#dk)	士兵::Soldier#dk1	4_M_CRU_SOLD
+1@spa,34,53,1	duplicate(Lurid Royal Guard#dk)	士兵::Soldier#dk2	4_M_CRU_SOLD
+1@spa,30,52,7	duplicate(Lurid Royal Guard#dk)	士兵::Soldier#dk3	4_M_KY_SOLD
+1@spa,30,58,5	duplicate(Lurid Royal Guard#dk)	阴森皇家卫兵::Lurid Royal Guard#dk2	4_M_SAKRAY_TIED
+1@spa,31,57,5	duplicate(Lurid Royal Guard#dk)	阴森皇家卫兵::Lurid Royal Guard#dk3	4_M_SAKRAY_TIED
 
 1@spa,1,1,1	script	#gp_control_3	HIDDEN_WARP_NPC,{
 	end;
@@ -445,11 +444,11 @@ OnStart:
 	end;
 OnTimer2000:
 	.@label$ = instance_npcname("#gp_control_3") + "::OnMyMobDead1";
-	monster 'map_spa$,31,57, "Regretful Memory",2953,1, .@label$; 	// CURSED_MEMORY
-	monster 'map_spa$,59,24, "Regretful Memory",2953,1, .@label$; 	// CURSED_MEMORY
-	monster 'map_spa$,23,40, "Wasted Friendship",2955,1, .@label$; 	// OLD_FRIENDSHIP
-	monster 'map_spa$,54,45, "Tarnished Oath",2954,1, .@label$; 	// COLORLESS_VOW
-	monster 'map_spa$,26,20, "Tarnished Oath",2954,1, .@label$; 	// COLORLESS_VOW
+	monster 'map_spa$,31,57, "讨人厌的回忆",2953,1, .@label$; 	// CURSED_MEMORY
+	monster 'map_spa$,59,24, "讨人厌的回忆",2953,1, .@label$; 	// CURSED_MEMORY
+	monster 'map_spa$,23,40, "褪色的友情",2955,1, .@label$; 	// OLD_FRIENDSHIP
+	monster 'map_spa$,54,45, "崩坏的誓约",2954,1, .@label$; 	// COLORLESS_VOW
+	monster 'map_spa$,26,20, "崩坏的誓约",2954,1, .@label$; 	// COLORLESS_VOW
 	stopnpctimer;
 	end;
 OnMyMobDead1:
@@ -458,9 +457,9 @@ OnMyMobDead1:
 	end;
 OnSpawn1:
 	.@label$ = instance_npcname("#gp_control_3") + "::OnMyMobDead2";
-	monster 'map_spa$,30,52, "Tarnished Oath",2954,1, .@label$; 	// COLORLESS_VOW
-	monster 'map_spa$,58,58, "Wasted Friendship",2955,1, .@label$; 	// OLD_FRIENDSHIP
-	monster 'map_spa$,54,24, "Regretful Memory",2953,1, .@label$; 	// CURSED_MEMORY
+	monster 'map_spa$,30,52, "崩坏的誓约",2954,1, .@label$; 	// COLORLESS_VOW
+	monster 'map_spa$,58,58, "褪色的友情",2955,1, .@label$; 	// OLD_FRIENDSHIP
+	monster 'map_spa$,54,24, "讨人厌的回忆",2953,1, .@label$; 	// CURSED_MEMORY
 	end;
 OnMyMobDead2:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_3") + "::OnMyMobDead2") < (1 + 'bool_double_spawn)) {
@@ -478,72 +477,72 @@ OnSpawn2:
 	donpcevent instance_npcname("#gp_control_4") + "::OnStart";
 	// 35 mobs
 	.@label$ = instance_npcname("#gp_control_3") + "::OnMyMobDead3";
-	monster 'map_spa$,67,46, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "You are trapped...";
-	monster 'map_spa$,62,48, "Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "Run away!";
-	monster 'map_spa$,57,46, "Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
-	unittalk $@mobid[0], "Run away quickly!";
-	monster 'map_spa$,51,48, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "Faithful royal guard...";
-	monster 'map_spa$,56,55, "Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "Run away!";
-	monster 'map_spa$,62,56, "Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
-	unittalk $@mobid[0], "You are trapped...";
-	monster 'map_spa$,66,58, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "You put your princess in grave danger...";
-	monster 'map_spa$,66,64, "Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "Faithful royal guard...";
-	monster 'map_spa$,62,65, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "Run away quickly!";
-	monster 'map_spa$,57,67, "Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "You are trapped...";
-	monster 'map_spa$,49,66, "Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
-	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,44,66, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,45,20, "Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,38,20, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,67,46, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	unittalk $@mobid[0], "你被困住了……";
-	monster 'map_spa$,32,20, "Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
+	monster 'map_spa$,62,48, "崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
 	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,51,22, "Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
+	monster 'map_spa$,57,46, "褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
 	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,26,34,"Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
-	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,21,37,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "忠诚的皇家卫士……";
-	monster 'map_spa$,18,39,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,51,48, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "忠诚的皇家卫兵……";
+	monster 'map_spa$,56,55, "崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
 	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,21,45,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,23,49,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,62,56, "褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
 	unittalk $@mobid[0], "你被困住了……";
-	monster 'map_spa$,25,54,"Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
-	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,29,54,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
+	monster 'map_spa$,66,58, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	unittalk $@mobid[0], "你让公主陷入了致命危险……";
-	monster 'map_spa$,56,39,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,61,36,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "忠诚的皇家卫士……";
-	monster 'map_spa$,66,38,"Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
+	monster 'map_spa$,66,64, "崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "忠诚的皇家卫兵……";
+	monster 'map_spa$,62,65, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	unittalk $@mobid[0], "快逃！";
-	monster 'map_spa$,42,54,"Wasted Friendship",2955,1, .@label$;	// OLD_FRIENDSHIP
+	monster 'map_spa$,57,67, "崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "你被困住了……";
+	monster 'map_spa$,49,66, "褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
 	unittalk $@mobid[0], "逃跑！";
-	monster 'map_spa$,35,54,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,44,66, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,45,20, "崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "逃跑！";
+	monster 'map_spa$,38,20, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	unittalk $@mobid[0], "你被困住了……";
-	monster 'map_spa$,43,60,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
-	unittalk $@mobid[0], "忠诚的皇家卫士……";
-	monster 'map_spa$,30,25,"Tarnished Oath",2954,1, .@label$;		// COLORLESS_VOW
+	monster 'map_spa$,32,20, "褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,51,22, "褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,26,34,"褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "逃跑！";
+	monster 'map_spa$,21,37,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "忠诚的皇家卫兵……";
+	monster 'map_spa$,18,39,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,21,45,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "逃跑！";
+	monster 'map_spa$,23,49,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "你被困住了……";
+	monster 'map_spa$,25,54,"褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,29,54,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
 	unittalk $@mobid[0], "你让公主陷入了致命危险……";
-	monster 'map_spa$,30,31,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,56,39,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "逃跑！";
+	monster 'map_spa$,61,36,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "忠诚的皇家卫兵……";
+	monster 'map_spa$,66,38,"褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "快逃！";
+	monster 'map_spa$,42,54,"褪色的友情",2955,1, .@label$;	// OLD_FRIENDSHIP
+	unittalk $@mobid[0], "逃跑！";
+	monster 'map_spa$,35,54,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	unittalk $@mobid[0], "你被困住了……";
-	monster 'map_spa$,65,64, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	monster 'map_spa$,65,67, "Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	monster 'map_spa$,18,43,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
-	monster 'map_spa$,21,43,"Regretful Memory",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,43,60,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "忠诚的皇家卫兵……";
+	monster 'map_spa$,30,25,"崩坏的誓约",2954,1, .@label$;		// COLORLESS_VOW
+	unittalk $@mobid[0], "你让公主陷入了致命危险……";
+	monster 'map_spa$,30,31,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	unittalk $@mobid[0], "你被困住了……";
+	monster 'map_spa$,65,64, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,65,67, "讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,18,43,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
+	monster 'map_spa$,21,43,"讨人厌的回忆",2953,1, .@label$;	// CURSED_MEMORY
 	end;
 OnMyMobDead3:
 	end;
@@ -555,11 +554,11 @@ OnMyMobDead3:
 OnStart:
 	enablenpc instance_npcname("#gp_control_4");
 	.@label$ = instance_npcname("#gp_control_4") + "::OnMyMobDead1";
-	monster 'map_spa$,215,194, "Sweet Slaughter",2956,1, .@label$;		// SWEET_SLAUGHTER
-	monster 'map_spa$,194,178, "Sweet Slaughter",2956,1, .@label$;		// SWEET_SLAUGHTER
-	monster 'map_spa$,191,211, "Sweet Slaughter",2956,1, .@label$;		// SWEET_SLAUGHTER
-	monster 'map_spa$,185,203, "Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
-	monster 'map_spa$,209,218, "Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,215,194, "甜蜜杀戮",2956,1, .@label$;		// SWEET_SLAUGHTER
+	monster 'map_spa$,194,178, "甜蜜杀戮",2956,1, .@label$;		// SWEET_SLAUGHTER
+	monster 'map_spa$,191,211, "甜蜜杀戮",2956,1, .@label$;		// SWEET_SLAUGHTER
+	monster 'map_spa$,185,203, "受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,209,218, "受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
 	end;
 OnMyMobDead1:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_4") + "::OnMyMobDead1") < (1 + 'bool_double_spawn)) {
@@ -569,8 +568,8 @@ OnMyMobDead1:
 	end;
 OnSpawn1:
 	.@label$ = instance_npcname("#gp_control_4") + "::OnMyMobDead2";
-	monster 'map_spa$,189,192, "Cursed Gatekeeper",2949,1, .@label$;	// CURSED_SENTINEL
-	monster 'map_spa$,211,209, "Sweet Slaughter",2956,1, .@label$;		// SWEET_SLAUGHTER
+	monster 'map_spa$,189,192, "受到诅咒的守门员",2949,1, .@label$;	// CURSED_SENTINEL
+	monster 'map_spa$,211,209, "甜蜜杀戮",2956,1, .@label$;		// SWEET_SLAUGHTER
 	end;
 OnMyMobDead2:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_4") + "::OnMyMobDead2") < 1) {
@@ -588,42 +587,42 @@ OnMyMobDead2:
 	end;
 }
 
-1@spa,199,214,1	script	Lurid Royal Guard#dk4	4_M_SAKRAYROYAL,{
+1@spa,199,214,1	script	阴森皇家卫兵::Lurid Royal Guard#dk4	4_M_SAKRAYROYAL,{
 	.@prince$ = instance_npcname("Visiting Prince#dk");
-	mes "[Lurid Royal Guard]";
+	mes "[阴森皇家卫兵]";
 	mes "蒂亚拉公主在哪里？";
-	npctalk "Lurid Royal Guard: 蒂亚拉公主在哪里？";
+	npctalk "阴森皇家卫兵： 蒂亚拉公主在哪里？";
 	next;
-	mes "[Visiting Prince]";
+	mes "[来访的王子]";
 	mes "你来得太晚了……但你带来了我寻找的东西。谢谢你的帮助。";
-	npctalk "Visiting Prince: 你来得太晚了……但你带来了我寻找的东西。谢谢你的帮助。", .@prince$;
+	npctalk "来访的王子： 你来得太晚了……但你带来了我寻找的东西。谢谢你的帮助。", .@prince$;
 	next;
-	mes "[Visiting Prince]";
+	mes "[来访的王子]";
 	mes "被诅咒的魔剑塔塔诺斯！准备好迎接新主人了吗？";
-	npctalk "Visiting Prince: 被诅咒的魔剑塔塔诺斯！准备好迎接新主人了吗？", .@prince$;
+	npctalk "来访的王子： 被诅咒的魔剑塔塔诺斯！准备好迎接新主人了吗？", .@prince$;
 	next;
 	cutin "tartanos.bmp",3;
-	mes "[Magic Sword Tartanos]";
+	mes "[魔剑塔塔诺斯]";
 	mes "你竟敢！";
-	npctalk "Magic Sword Tartanos: 你竟敢！", instance_npcname("Magic Sword Tartanos#dk2");
+	npctalk "魔剑塔塔诺斯： 你竟敢！", instance_npcname("Magic Sword Tartanos#dk2");
 	next;
-	mes "[Visiting Prince]";
+	mes "[来访的王子]";
 	mes "啊，啊！！！";
-	npctalk "Visiting Prince: 啊，啊！！！", .@prince$;
+	npctalk "来访的王子： 啊，啊！！！", .@prince$;
 	donpcevent instance_npcname("#gp_control_5") + "::OnStart";
 	close2;
 	cutin "",255;
 	end;
 }
-1@spa,201,214,1	duplicate(Lurid Royal Guard#dk)	Magic Sword Tartanos#dk2	CLEAR_NPC
-1@spa,197,218,5	duplicate(Lurid Royal Guard#dk)	Visiting Prince#dk	4_M_KNIGHT_SILVER
-1@spa,194,214,5	duplicate(Lurid Royal Guard#dk)	King's Corpse#dk	4_M_TRISTAN
-1@spa,211,194,3	duplicate(Lurid Royal Guard#dk)	Captain's Corpse#dk	4_M_LIEMAN
-1@spa,201,198,1	duplicate(Lurid Royal Guard#dk)	Soldier's Corpse#dk	4_M_DIEMAN
-1@spa,197,190,1	duplicate(Lurid Royal Guard#dk)	Soldier's Corpse#dk1	4_M_DIEMAN
-1@spa,191,207,7	duplicate(Lurid Royal Guard#dk)	Soldier's Corpse#dk2	4_M_DIEMAN
-1@spa,206,209,7	duplicate(Lurid Royal Guard#dk)	Soldier's Corpse#dk3	4_M_DIEMAN
-1@spa,189,195,1	duplicate(Lurid Royal Guard#dk)	Soldier's Corpse#dk4	4_M_DIEMAN
+1@spa,201,214,1	duplicate(Lurid Royal Guard#dk)	魔剑塔塔诺斯::Magic Sword Tartanos#dk2	CLEAR_NPC
+1@spa,197,218,5	duplicate(Lurid Royal Guard#dk)	来访的王子::Visiting Prince#dk	4_M_KNIGHT_SILVER
+1@spa,194,214,5	duplicate(Lurid Royal Guard#dk)	国王的尸体::King's Corpse#dk	4_M_TRISTAN
+1@spa,211,194,3	duplicate(Lurid Royal Guard#dk)	队长的尸体::Captain's Corpse#dk	4_M_LIEMAN
+1@spa,201,198,1	duplicate(Lurid Royal Guard#dk)	士兵的尸体::Soldier's Corpse#dk	4_M_DIEMAN
+1@spa,197,190,1	duplicate(Lurid Royal Guard#dk)	士兵的尸体::Soldier's Corpse#dk1	4_M_DIEMAN
+1@spa,191,207,7	duplicate(Lurid Royal Guard#dk)	士兵的尸体::Soldier's Corpse#dk2	4_M_DIEMAN
+1@spa,206,209,7	duplicate(Lurid Royal Guard#dk)	士兵的尸体::Soldier's Corpse#dk3	4_M_DIEMAN
+1@spa,189,195,1	duplicate(Lurid Royal Guard#dk)	士兵的尸体::Soldier's Corpse#dk4	4_M_DIEMAN
 
 1@spa,1,1,1	script	#gp_control_5	HIDDEN_WARP_NPC,{
 	end;
@@ -641,8 +640,8 @@ OnStart:
 	disablenpc instance_npcname("Soldier's Corpse#dk4");
 	sleep 1000;
 	.@label$ = instance_npcname("#gp_control_5") + "::OnMyMobDead";
-	monster 'map_spa$,198,218, "Torturous Redeemer",2959,1, .@label$;	// TORTUROUS_REDEEMER
-	monster 'map_spa$,198,182, "Sweet Slaughter",2956,1, .@label$;		// SWEET_SLAUGHTER
+	monster 'map_spa$,198,218, "异变的王子",2959,1, .@label$;	// TORTUROUS_REDEEMER
+	monster 'map_spa$,198,182, "甜蜜杀戮",2956,1, .@label$;		// SWEET_SLAUGHTER
 	end;
 OnMyMobDead:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_5") + "::OnMyMobDead") < 1) {
@@ -661,44 +660,44 @@ OnMyMobDead:
 }
 
 // 5th floor
-1@spa,216,43,3	script	Princess Tiara#dk1	4_F_MAYSEL,{
+1@spa,216,43,3	script	蒂亚拉公主::Princess Tiara#dk1	4_F_MAYSEL,{
 	.@guard$ = instance_npcname("Lurid Royal Guard#dk5");
-	mes "[Princess Tiara]";
+	mes "[蒂亚拉公主]";
 	mes "你遵守了诺言。";
-	npctalk "Princess Tiara: 你遵守了诺言。";
+	npctalk "蒂亚拉公主： 你遵守了诺言。";
 	next;
-	mes "[Lurid Royal Guard]";
+	mes "[阴森皇家卫兵]";
 	mes "公主！";
-	npctalk "Lurid Royal Guard: 公主！", .@guard$;
+	npctalk "阴森皇家卫兵： 公主！", .@guard$;
 	next;
 	cutin "npc-tiara.bmp",3;
-	mes "[Princess Tiara]";
+	mes "[蒂亚拉公主]";
 	mes "谢谢你……现在我可以在你身边安息了……";
-	npctalk "Princess Tiara: 谢谢你……现在我可以在你身边安息了……";
+	npctalk "蒂亚拉公主： 谢谢你……现在我可以在你身边安息了……";
 	next;
-	mes "[Lurid Royal Guard]";
+	mes "[阴森皇家卫兵]";
 	mes "不……不！！！";
-	npctalk "Lurid Royal Guard: 不……不！！！", .@guard$;
+	npctalk "阴森皇家卫兵： 不……不！！！", .@guard$;
 	next;
 		mes "[蒂亚拉公主的声音]";
 	mes "我想永远平静地和你在一起……永远……";
-	npctalk "Princess Tiara: 我想永远平静地和你在一起……永远……";
+	npctalk "蒂亚拉公主： 我想永远平静地和你在一起……永远……";
 	next;
 	cutin "b-tiara.BMP",3;
-	mes "[Lurid Royal Guard]";
+	mes "[阴森皇家卫兵]";
 	mes "不……啊啊啊啊！！～～";
-	npctalk "Lurid Royal Guard: 不……啊啊啊啊！！～～", .@guard$;
+	npctalk "阴森皇家卫兵： 不……啊啊啊啊！！～～", .@guard$;
 	next;
 		mes "[蒂亚拉公主的声音]";
 	mes "我爱你……";
-	npctalk "Princess Tiara: 我爱你……";
+	npctalk "蒂亚拉公主： 我爱你……";
 	cutin "",255;
 	close2;
 	donpcevent instance_npcname("#gp_control_6") + "::OnStart";
 	end;
 }
 
-1@spa,213,42,7	duplicate(Lurid Royal Guard#dk)	Lurid Royal Guard#dk5	4_M_SAKRAYROYAL
+1@spa,213,42,7	duplicate(Lurid Royal Guard#dk)	阴森皇家卫兵::Lurid Royal Guard#dk5	4_M_SAKRAYROYAL
 
 1@spa,1,1,1	script	#gp_control_6	HIDDEN_WARP_NPC,{
 	end;
@@ -715,47 +714,47 @@ OnStart:
 	disablenpc instance_npcname("5th floor of Palace");
 	sleep 2000;
 	.@label$ = instance_npcname("#gp_control_6") + "::OnMyMobDead1";
-	monster 'map_spa$,217,52, "Forgotten Name" ,2957,1, .@label$;	// FORGOTTEN_NAME
+	monster 'map_spa$,217,52, "别问我是谁" ,2957,1, .@label$;	// FORGOTTEN_NAME
 	unittalk $@mobid[0], "醒醒！看看我们……我们是怪物吗？";
-	monster 'map_spa$,190,21, "Tarnished Oath" ,2954,1, .@label$;	// COLORLESS_VOW
-	unittalk $@mobid[0], "Sakray 杀死了国王，还试图杀掉我们！";
-	monster 'map_spa$,198,49, "Tarnished Oath" ,2954,1, .@label$;	// COLORLESS_VOW
+	monster 'map_spa$,190,21, "崩坏的誓约" ,2954,1, .@label$;	// COLORLESS_VOW
+	unittalk $@mobid[0], "萨克莱杀死了国王，还试图杀掉我们！";
+	monster 'map_spa$,198,49, "崩坏的誓约" ,2954,1, .@label$;	// COLORLESS_VOW
 	unittalk $@mobid[0], "这是什么……？？";
-	monster 'map_spa$,212,28, "Fatal Days" ,2958,1, .@label$;		// FATAL_DAYS
-	unittalk $@mobid[0], "Sakray killed a 公主！";
+	monster 'map_spa$,212,28, "往事只能回味" ,2958,1, .@label$;		// FATAL_DAYS
+	unittalk $@mobid[0], "萨克莱杀死了公主！";
 	end;
 OnMyMobDead1:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_6") + "::OnMyMobDead1") < 1) {
 		sleep 2000;
 		.@label$ = instance_npcname("#gp_control_6") + "::OnMyMobDead2";
-		monster 'map_spa$,217,43, "Forgotten Name" ,2957,1, .@label$;	// FORGOTTEN_NAME
+		monster 'map_spa$,217,43, "别问我是谁" ,2957,1, .@label$;	// FORGOTTEN_NAME
 		unittalk $@mobid[0], "醒醒！看看我们……我们是怪物吗？";
-		monster 'map_spa$,193,24, "Forgotten Name" ,2957,1, .@label$;	// FORGOTTEN_NAME
-		unittalk $@mobid[0], "Sakray..?? why.....Sakray!";
-		monster 'map_spa$,216,59, "Tarnished Oath" ,2954,1, .@label$;	// COLORLESS_VOW
-		unittalk $@mobid[0], "Sakray 杀死了国王，还试图杀掉我们！";
-		monster 'map_spa$,197,57, "Fatal Days" ,2958,1, .@label$;		// FATAL_DAYS
-		unittalk $@mobid[0], "Sakray killed a 公主！";
+		monster 'map_spa$,193,24, "别问我是谁" ,2957,1, .@label$;	// FORGOTTEN_NAME
+		unittalk $@mobid[0], "萨克莱……？为什么……萨克莱！";
+		monster 'map_spa$,216,59, "崩坏的誓约" ,2954,1, .@label$;	// COLORLESS_VOW
+		unittalk $@mobid[0], "萨克莱杀死了国王，还试图杀掉我们！";
+		monster 'map_spa$,197,57, "往事只能回味" ,2958,1, .@label$;		// FATAL_DAYS
+		unittalk $@mobid[0], "萨克莱杀死了公主！";
 	}
 	end;
 OnMyMobDead2:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_6") + "::OnMyMobDead2") < 1) {
 		sleep 2000;
 		.@label$ = instance_npcname("#gp_control_6") + "::OnMyMobDead3";
-		monster 'map_spa$,193,39, "Forgotten Name" ,2957,1, .@label$;	// FORGOTTEN_NAME
+		monster 'map_spa$,193,39, "别问我是谁" ,2957,1, .@label$;	// FORGOTTEN_NAME
 		unittalk $@mobid[0], "醒醒！看看我们……我们是怪物吗？";
-		monster 'map_spa$,212,34, "Forgotten Name" ,2957,1, .@label$;	// FORGOTTEN_NAME
-		unittalk $@mobid[0], "Sakray..?? why.....Sakray!";
-		monster 'map_spa$,201,64, "Tarnished Oath" ,2954,1, .@label$;	// COLORLESS_VOW
-		unittalk $@mobid[0], "Sakray 杀死了国王，还试图杀掉我们！";
-		monster 'map_spa$,175,44, "Fatal Days" ,2958,1, .@label$;		// FATAL_DAYS
-		unittalk $@mobid[0], "Sakray killed a 公主！";
+		monster 'map_spa$,212,34, "别问我是谁" ,2957,1, .@label$;	// FORGOTTEN_NAME
+		unittalk $@mobid[0], "萨克莱……？为什么……萨克莱！";
+		monster 'map_spa$,201,64, "崩坏的誓约" ,2954,1, .@label$;	// COLORLESS_VOW
+		unittalk $@mobid[0], "萨克莱杀死了国王，还试图杀掉我们！";
+		monster 'map_spa$,175,44, "往事只能回味" ,2958,1, .@label$;		// FATAL_DAYS
+		unittalk $@mobid[0], "萨克莱杀死了公主！";
 	}
 	end;
 OnMyMobDead3:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_6") + "::OnMyMobDead3") < 1) {
 		sleep 2000;
-		monster 'map_spa$,200,45, "Torturous Redeemer" ,2961,1, instance_npcname("#gp_control_6") + "::OnMyMobDead4";	// E_TORTUROUS_REDEEMER
+		monster 'map_spa$,200,45, "异变的王子" ,2961,1, instance_npcname("#gp_control_6") + "::OnMyMobDead4";	// E_TORTUROUS_REDEEMER
 	unittalk $@mobid[0], "魔剑塔塔诺斯！如果得不到你，我就毁掉你……不好！怎么会这样？";
 		sleep 5000;
 		killmonster 'map_spa$, instance_npcname("#gp_control_6") + "::OnMyMobDead4";
@@ -768,68 +767,68 @@ OnMyMobDead4:
 	end;
 }
 
-1@spa,196,44,5	script	Sakray#dk	4_M_SAKRAY,{
-	mes "[Lurid Royal Guard]";
+1@spa,196,44,5	script	萨克莱::Sakray#dk	4_M_SAKRAY,{
+	mes "[阴森皇家卫兵]";
 	mes "你满意了吗……魔剑塔塔诺斯？";
-	npctalk "Lurid Royal Guard: 你满意了吗……魔剑塔塔诺斯？";
+	npctalk "阴森皇家卫兵： 你满意了吗……魔剑塔塔诺斯？";
 	next;
-	mes "[Magic Sword Tartanos]";
+	mes "[魔剑塔塔诺斯]";
 	mes "我需要更多鲜血……萨克莱，把他的血献给我。";
-	npctalk "Magic Sword Tartanos: 我需要更多鲜血……萨克莱，把他的血献给我。", instance_npcname("Magic Sword Tartanos#dk3");
+	npctalk "魔剑塔塔诺斯： 我需要更多鲜血……萨克莱，把他的血献给我。", instance_npcname("Magic Sword Tartanos#dk3");
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "好，很好。一个旅人。你看到了吗？";
-	npctalk "Sakray: 好，很好。一个旅人。你看到了吗？";
+	npctalk "萨克莱： 好，很好。一个旅人。你看到了吗？";
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "萨克莱，你想要什么？同情？还是陷阱？";
 	unittalk getcharid(3), "" + strcharinfo(0) + " : 萨克莱，你想要什么？同情？还是陷阱？";
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "不……我不需要费力去抓一个新手。";
-	npctalk "Sakray: 不……我不需要费力去抓一个新手。";
+	npctalk "萨克莱： 不……我不需要费力去抓一个新手。";
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "既然如此……那为什么……？";
 	unittalk getcharid(3), "" + strcharinfo(0) + " : 既然如此……那为什么……？";
 	next;
 	cutin "cry-b.bmp",2;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "我想借你摆脱体内的一部分人性。";
-	npctalk "Sakray: 我想借你摆脱体内的一部分人性。";
+	npctalk "萨克莱： 我想借你摆脱体内的一部分人性。";
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "我对结果相当满意。";
-	npctalk "Sakray: 我对结果相当满意。";
+	npctalk "萨克莱： 我对结果相当满意。";
 	next;
-	mes "[Magic Sword Tartanos]";
+	mes "[魔剑塔塔诺斯]";
 	mes "萨克莱，现在把鲜血献给我！";
-	npctalk "Magic Sword Tartanos: 萨克莱，现在把鲜血献给我！", instance_npcname("Magic Sword Tartanos#dk3");
+	npctalk "魔剑塔塔诺斯： 萨克莱，现在把鲜血献给我！", instance_npcname("Magic Sword Tartanos#dk3");
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "如果你是我，你会怎么做？";
-	npctalk "Sakray: 如果你是我，你会怎么做？";
+	npctalk "萨克莱： 如果你是我，你会怎么做？";
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "你能从这个诅咒中解脱吗？";
-	npctalk "Sakray: 你能从这个诅咒中解脱吗？";
+	npctalk "萨克莱： 你能从这个诅咒中解脱吗？";
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "...";
 	unittalk getcharid(3), "" + strcharinfo(0) + " : ...";
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "呵呵……我会一直注视你，直到你长大成人。";
-	npctalk "Sakray: 呵呵……我会一直注视你，直到你长大成人。";
+	npctalk "萨克莱： 呵呵……我会一直注视你，直到你长大成人。";
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "为了塔塔诺斯，我以后愿意猎杀你。";
-	npctalk "Sakray: 为了塔塔诺斯，我以后愿意猎杀你。";
+	npctalk "萨克莱： 为了塔塔诺斯，我以后愿意猎杀你。";
 	cutin "",255;
 	next;
-	mes "[Sakray]";
+	mes "[萨克莱]";
 	mes "那么，再见。";
-	npctalk "Sakray: 那么，再见。";
+	npctalk "萨克莱： 那么，再见。";
 	close2;
 	donpcevent instance_npcname("#tb") + "::OnStart";
 	end;
@@ -852,10 +851,10 @@ OnTimer8000:
 	npctalk "萨克莱的声音：我会永远陪在你身边。请在我身旁安息。", instance_npcname("#sv");
 	end;
 OnTimer13000:
-	npctalk "Magic Sword Tartanos: 萨克莱，不要忘记我们之间的血之契约。", instance_npcname("#tv");
+	npctalk "魔剑塔塔诺斯： 萨克莱，不要忘记我们之间的血之契约。", instance_npcname("#tv");
 	end;
 OnTimer17000:
-	npctalk "Magic Sword Tartanos: 在找到令我满意的鲜血之前，你的灵魂属于我……", instance_npcname("#tv");
+	npctalk "魔剑塔塔诺斯： 在找到令我满意的鲜血之前，你的灵魂属于我……", instance_npcname("#tv");
 	end;
 OnTimer22000:
 	npctalk "萨克莱的声音：和我一起在阴影中安息。", instance_npcname("#sv");
@@ -873,44 +872,42 @@ OnTimer28500:
 	end;
 }
 
-1@spa,195,41,1	duplicate(Lurid Royal Guard#dk)	Magic Sword Tartanos#dk3	CLEAR_NPC
+1@spa,195,41,1	duplicate(Lurid Royal Guard#dk)	魔剑塔塔诺斯::Magic Sword Tartanos#dk3	CLEAR_NPC
 1@spa,198,43,1	duplicate(Lurid Royal Guard#dk)	#sv	CLEAR_NPC
 1@spa,196,41,1	duplicate(Lurid Royal Guard#dk)	#tv	CLEAR_NPC
 
-1@spa,204,29,1	script	King#dk11	4_M_RUSKING,{
+1@spa,204,29,1	script	国王::King#dk11	4_M_RUSKING,{
 	disable_items;
-	mes "[King]";
+	mes "[国王]";
 	mes "嘿，你还活着吗？";
 	mes "没想到会遇到还活着的人。";
 	next;
 	.@item_name_req$ = getitemname(6672);// Gray_Shard
-	mes "[King]";
+	mes "[国王]";
 	mes "你有 ^006400" + .@item_name_req$ + "^000000 吗？";
 	mes "能把它给我吗？";
-	mes "忠诚皇家卫兵的记忆";
-	mes "以及他所爱之人的记忆";
-	mes "都包含在这些碎片中。";
+	mes "忠诚皇家卫兵与他所爱之人的记忆，都包含在这些碎片中。";
 	next;
-	mes "[King]";
+	mes "[国王]";
 	mes "你愿意把 ^006400" + .@item_name_req$ + "^000000 给我吗？";
 	mes "罪恶感正在吞噬我的灵魂。";
 	mes "我的灵魂被困在幽灵宫殿内。";
 	next;
-	mes "[King]";
+	mes "[国王]";
 	mes "我正在从碎片中收集萨克莱遗弃的记忆。";
 	next;
-	mes "[King]";
+	mes "[国王]";
 	mes "如果你给我 ^006400" + .@item_name_req$ + "^000000，我就能为你制作装备。";
 	next;
-	mes "[King]";
+	mes "[国王]";
 	mes "被诅咒的骑士……";
 	mes "请帮我拯救萨克莱的灵魂。";
 	next;
 	setarray .@item_name$[0],
-		"Thanos Sword", "Thanos Broadsword", "Thanos Spear", "Thanos Two-Handed Spear", "Thanos Staff",
-		"Thanos Two-handed Staff", "Thanos Bow", "Thanos Dagger", "Thanos Katar", "Thanos Knuckle",
-		"Thanos Hammer", "Thanos Axe", "Thanos Violin", "Thanos Whip",
-		"Gray Shield", "Gray Armor", "Gray Robe", "Gray Cloak", "Gray Shoes", "Gray Helmet";
+		"塔纳托斯之剑", "塔纳托斯巨剑", "塔纳托斯之矛", "塔纳托斯长矛", "塔纳托斯之杖",
+		"塔纳托斯双手法杖", "塔纳托斯之弓", "塔纳托斯匕首", "塔纳托斯拳刃", "塔纳托斯拳套",
+		"塔纳托斯之锤", "塔纳托斯之斧", "塔纳托斯小提琴", "塔纳托斯之鞭",
+		"灰之盾", "灰之铠", "灰色长袍", "灰色斗篷", "灰之靴", "土色头盔";
 	setarray .@items_list[0],13441,21009,1438,1496,1669,2023,18119,13093,28000,1836,16028,28100,1933,1988,2187,15090,15091,20721,22033,18820;
 
 	for ( .@i = 0; .@i < 20; .@i++ )
@@ -920,46 +917,42 @@ OnTimer28500:
 	while(true) {
 		.@s = select(.@menu$) - 1;
 		if (.@s == 20) {
-			mes "[King]";
-			mes "总有一天，萨克莱一定会";
-			mes "摆脱这个诅咒。";
-			mes "我相信";
-			mes "^006400" + .@item_name_req$ + "^000000 是唯一的方法，";
-			mes "能拯救他……";
+			mes "[国王]";
+			mes "总有一天，萨克莱一定会摆脱这个诅咒。";
+			mes "我相信，^006400" + .@item_name_req$ + "^000000 是拯救他的唯一方法……";
 			close;
 		}
 		.@cost = ( .@s > 13 ? 100 : 200 );
-		mes "[King]";
+		mes "[国王]";
 		mes "要制作 ^FF0000" + .@item_name$[.@s] + "^000000，";
 		mes "我需要 " + .@cost + " 个 ^006400" + .@item_name_req$ + "^000000。";
 		next;
 		if (select( "取消", "交出 " + .@cost + " 个" + .@item_name_req$ + "。" ) == 1) {
-			mes "[King]";
-			mes "总有一天，萨克莱一定会";
-			mes "摆脱这个诅咒。";
+			mes "[国王]";
+			mes "总有一天，萨克莱一定会摆脱这个诅咒。";
 			next;
 			continue;
 		}
 		if (countitem(6672) < .@cost) {
-			mes "[King]";
+			mes "[国王]";
 			mes "你没有足够的 ^006400" + .@item_name_req$ + "^000000";
 			mes "无法制作 ^FF0000" + .@item_name$[.@s] + "^000000。";
 			mes "我需要 " + .@cost + " 个 ^006400" + .@item_name_req$ + "^000000。";
 			next;
 			continue;
 		}
-		mes "[King]";
+		mes "[国王]";
 		mes "我会制作 ^FF0000" + .@item_name$[.@s] + "^000000。";
 		mes "需要使用 " + .@cost + " 个 ^006400" + .@item_name_req$ + "^000000。";
 		next;
 		mes "你看见光芒穿过国王交叠的双手，逐渐凝聚成形。";
 		next;
-		mes "[King]";
+		mes "[国王]";
 		mes "好了，完成了。";
 		mes "拿着这个 ^FF0000" + .@item_name$[.@s] + "^000000，";
 		mes "去面对萨克莱和塔塔诺斯。";
 		next;
-		mes "[King]";
+		mes "[国王]";
 		mes "力量需要牺牲。";
 		mes "请务必小心……";
 		delitem 6672,.@cost;// Gray Shard
@@ -968,12 +961,11 @@ OnTimer28500:
 	}
 }
 
-1@spa,210,28,0	script	Way out of Palace	WARPNPC,2,2,{
+1@spa,210,28,0	script	宫殿出口::Way out of Palace	WARPNPC,2,2,{
 	end;
 OnTouch_:
 	mes "该离开幽灵宫殿了。";
-	mes "一切都已完成，";
-	mes "幽灵宫殿将会消失……";
+	mes "一切都已完成，幽灵宫殿将会消失……";
 	close2;
 	if (isbegin_quest(1263) == 2)
 		getitem 6672,1;// Gray Shard
@@ -987,7 +979,7 @@ OnTouch_:
 	end;
 }
 
-1@spa,41,217,0	warp	The second floor of Palace	2,2,1@spa,114,120
-1@spa,117,137,0	warp	3rd floor in the palace	2,2,1@spa,60,43
-1@spa,54,28,0	warp	4th floor in the palace	2,2,1@spa,218,186
-1@spa,178,186,0	warp	5th floor of Palace	2,2,1@spa,186,57
+1@spa,41,217,0	warp	宫殿二楼::The second floor of Palace	2,2,1@spa,114,120
+1@spa,117,137,0	warp	宫殿三楼::3rd floor in the palace	2,2,1@spa,60,43
+1@spa,54,28,0	warp	宫殿四楼::4th floor in the palace	2,2,1@spa,218,186
+1@spa,178,186,0	warp	宫殿五楼::5th floor of Palace	2,2,1@spa,186,57

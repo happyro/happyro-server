@@ -10,7 +10,7 @@
 //= 1.3 Cleanup and sanity checks [Everade]
 //============================================================
 
-cmd_fild07,58,278,3	script	Reckless Explorer#pa0829_01	4_F_GON,{
+cmd_fild07,58,278,3	script	鲁莽的探险家::Reckless Explorer#pa0829_01	4_F_GON,{
 	mes "^FF0000请注意，在副本内进行驯服等异常的魔物处理不属于正常行为，可能会妨碍副本进度。^000000"; 
 	next;
 	if (BaseLevel < 100) {
@@ -22,19 +22,19 @@ cmd_fild07,58,278,3	script	Reckless Explorer#pa0829_01	4_F_GON,{
 		mes "[ 鲁莽的探险家 ]";
 		mes "啊，不，我没打算进去。我也没打算违反任何法律。";
 		next;
-		select("What are you talking about?");
+		select("你在说什么？");
 		mes "[ 鲁莽的探险家 ]";
 		mes "哈？";
 		next;
 		mes "[ 鲁莽的探险家 ]";
 		mes "嗯，你是王宫镇压部队的人吗？";
 		next;
-		select("I'm an ordinary adventurer.");
+		select("我只是个普通冒险者。");
 		mes "[ 鲁莽的探险家 ]";
 		mes "呼～那就放心了。";
 		mes "我以前从没见过你，所以以为你是王宫的镇压部队成员。";
 		next;
-		if (select("What if I am one of the suppression squad?:What's the matter?") == 1) {
+		if (select("如果我就是镇压部队的人呢？:发生什么事了？") == 1) {
 			mes "[ 鲁莽的探险家 ]";
 			mes "我只是出来散步的普通女性。散步就到此为止，我要去……";
 			close;
@@ -55,7 +55,7 @@ cmd_fild07,58,278,3	script	Reckless Explorer#pa0829_01	4_F_GON,{
 		mes "[ 鲁莽的探险家 ]";
 		mes "我认识一些偷偷进去并发了财的人。所以我也打算试试，你有兴趣吗？";
 		next;
-		if (select("I'm not interested.:Yes.") == 1) {
+		if (select("我没兴趣。:有兴趣。") == 1) {
 			mes "[ 鲁莽的探险家 ]";
 			mes "真遗憾。改变主意后随时回来，我随时欢迎你。";
 			close;
@@ -91,19 +91,19 @@ cmd_fild07,58,278,3	script	Reckless Explorer#pa0829_01	4_F_GON,{
 	.@party_id = getcharid(1);
 	if (!.@party_id) {
 		mes "[ 鲁莽的探险家 ]";
-		mes "一个人是不可能的。要不要至少组织一支队伍，或加入其他队伍后再回来？";
+		mes "需要先组队。组建一支队伍，或加入其他队伍后再来吧。";
 		close;
 	}
-	if (select("Prepare to enter Infinite Space:Cancel") == 2)
+	if (select("准备进入无限空间:取消") == 2)
 		close;
 	mes "[ 鲁莽的探险家 ]";
 	mes "通道打开后先喘口气，再来和我谈谈。";
 	if (instance_create(.@md_name$) == -3)
-		dispbottom "The reservation of the instance '" + .@md_name$ + "' has failed due to an active instance.";
+		dispbottom "已有正在使用的副本，无法预约「" + .@md_name$ + "」。";
 	close;
 }
 
-cmd_fild07,54,280,5	script	Temporary Entrance#pa0829_01	PORTAL,{
+cmd_fild07,54,280,5	script	临时入口::Temporary Entrance#pa0829_01	PORTAL,{
 	switch (checkquest(12365,PLAYTIME)) {
 		case -1:
 			break;
@@ -118,12 +118,12 @@ cmd_fild07,54,280,5	script	Temporary Entrance#pa0829_01	PORTAL,{
 			break;
 	}
 	.@party_id = getcharid(1);
-	.@party_name = getpartyname(.@party_id);
+	.@party_name$ = getpartyname(.@party_id);
 	.@md_name$ = "无限空间";
 	switch (instance_enter(.@md_name$)) {
 		case IE_OK:
 			setquest 12365;
-			mapannounce "cmd_fild07", strcharinfo(0) + " of the party, "+ .@party_name$ +", is entering the " + .@md_name$ + ".", bc_map, "0x00FF99";
+			mapannounce "cmd_fild07", .@party_name$ + " 队伍的成员 " + strcharinfo(0) + " 已进入" + .@md_name$ + "。", bc_map, "0x00FF99";
 			end;
 
 		default:

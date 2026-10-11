@@ -53,22 +53,20 @@ prontera,168,228,3	duplicate(runesale)	Rune Merchant#prt	4W_M_01
 job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
 		mes "- 等一下！！-";
-		mes "- 你现在携带的物品 -";
-		mes "- 太多了。-";
-		mes "- 减轻一些负重后 -";
-		mes "- 再试一次吧。-";
+		mes "- 你现在携带的物品太多了。-";
+		mes "- 减轻一些负重后再试一次吧。-";
 		close;
 	}
-	if (Class == Job_Guillotine_Cross || Class == Job_Guillotine_Cross_T || Class == Job_Baby_Guillotine_Cross) {
-		mes "[Rare Poison Herb Collector]";
+	if ((eaclass() & EAJ_THIRDMASK) == EAJ_GUILLOTINE_CROSS) {
+		mes "[稀有毒草收藏家]";
 		mes "我周游世界收集稀有毒草。最近开始交易一种叫伊西多尔的草药。如果你感兴趣，可以购买。";
 		next;
-		.@i = select("如何购买？:用动物之血交换:用苦味草交换:用致命毒草交换:用冰冻玫瑰交换:用薄荷交换:用希纳雷交换")-2;
+		.@i = select("如何购买？:用动物血肉交换:用苦味草交换:用致命毒草交换:用冰冻玫瑰交换:用止痛药交换:用希纳莱交换")-2;
 		if (.@i == -1) {
-			mes "[Rare Poison Herb Collector]";
-			mes "支付 10,000 Zeny 和以下一种稀有物品即可购买：动物之血、苦味草、致命毒草、冰冻玫瑰、薄荷或希纳雷。";
+			mes "[稀有毒草收藏家]";
+			mes "每购买 1 个伊西多尔，需要支付 10,000 Zeny，并提供以下任意一种物品 1 个：动物血肉、苦味草、致命毒草、冰冻玫瑰、止痛药或希纳莱。";
 			next;
-			mes "[Rare Poison Herb Collector]";
+			mes "[稀有毒草收藏家]";
 			mes "为什么要钱？只是对我这样的收藏家表示一点敬意。哈哈哈……";
 			close;
 		} else {
@@ -76,29 +74,33 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 			.@item = .@exchange[.@i];
 			.@price = 10000;
 
-			mes "[Rare Poison Herb Collector]";
+			mes "[稀有毒草收藏家]";
 			mes "你想要多少？";
-			mes "每种最多只能购买‘2000’个。";
+			mes "每次最多只能购买‘2000’个。";
 			mes "想取消请输入‘0’。";
 			next;
 			input .@amount;
 			if (.@amount == 0) {
-				mes "[Rare Poison Herb Collector]";
+				mes "[稀有毒草收藏家]";
 				mes "你取消了交易。";
 				close;
 			}
 			if (.@amount > 2000) {
-				mes "[Rare Poison Herb Collector]";
-				mes "数量必须少于 2,000！";
+				mes "[稀有毒草收藏家]";
+				mes "数量不能超过 2,000！";
 				close;
 			}
 			.@total = .@amount * .@price;
 			if (countitem(.@item) < .@amount || Zeny < .@total) {
-				mes "[Rare Poison Herb Collector]";
+				mes "[稀有毒草收藏家]";
 				mes "等你准备好交换所需的全部物品后再回来。";
 				close;
 			}
-			mes "[Rare Poison Herb Collector]";
+			mes "[稀有毒草收藏家]";
+			if (!checkweight(709,.@amount)) {
+				mes "请先为物品预留足够的负重和物品栏空间。";
+				close;
+			}
 			mes "很好。我已经收到钱和特殊物品了。";
 			delitem .@item, .@amount;
 			Zeny = Zeny - .@total;
@@ -106,7 +108,7 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 			close;
 		}
 	}
-	mes "[Rare Poison Herb Collector]";
+	mes "[稀有毒草收藏家]";
 	mes "我周游世界收集稀有毒草。但我不想把草药卖给你这样的人……哈哈哈……";
 	close;
 }

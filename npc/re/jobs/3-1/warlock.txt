@@ -191,8 +191,10 @@ function	script	F_Warlock	{
 	mes "[埃格诺莉亚大师]";
 				mes "去和那个头发奇怪的家伙谈谈。";
 				mes "他会告诉你该做什么。";
-				set job_wl,2;
-				setquest 11106;
+				if (job_wl == 0) {
+					set job_wl,2;
+					setquest 11106;
+				}
 				close;
 			case 2:
 	mes "[埃格诺莉亚大师]";
@@ -244,8 +246,7 @@ spl_in02,77,107,5	script	Assistant#Warlock1	446,{
 			next;
 	mes "[埃格诺莉亚大师]";
 			mes "太吵了。";
-			mes "我要冥想，";
-			mes "照我说的做。";
+			mes "我要冥想，照我说的做。";
 			next;
 	mes "[哟普]";
 			mes "嗯……";
@@ -253,8 +254,7 @@ spl_in02,77,107,5	script	Assistant#Warlock1	446,{
 			next;
 	mes "[哟普]";
 			mes "嘿，人类！";
-			mes "你想成为";
-			mes "术士吗？";
+			mes "你想成为术士吗？";
 			next;
 		}
 		if (SkillPoint != 0) {
@@ -262,8 +262,7 @@ spl_in02,77,107,5	script	Assistant#Warlock1	446,{
 			set job_wl,3;
 			close;
 		}
-		mes "这是大师的决定，";
-		mes "所以告诉我你的选择。";
+		mes "这是大师的决定，所以告诉我你的选择。";
 		next;
 	mes "[哟普]";
 		mes "我们需要测试你的身体能否承受术士的力量。";
@@ -312,6 +311,14 @@ L_Quest:
 	if (getarg(0)) {
 	mes "[哟普]";
 		mes "让我们看看你有多强。别忘了佩戴这个。";
+		if ((job_wl != 2 && job_wl != 3) || BaseJob != Job_Wizard || SkillPoint != 0) {
+			mes "请先确认任务进度，并用完所有技能点。";
+			close;
+		}
+		if (!checkweight(2796,1,2797,1)) {
+			mes "请先为两枚魔法石戒指预留足够的负重和物品栏空间。";
+			close;
+		}
 		set job_wl,4;
 		getitem 2796,1; //Magical_Stone
 		getitem 2797,1; //Magical_Stone_
@@ -408,6 +415,22 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
   mes "[哟普]";
 							mes "我就不追究你的过错了。";
 							mes "请小心保管它。";
+							if (job_wl != 4 || countitem(732) < 1) {
+								mes "请确认任务进度，并带上一颗 3 克拉钻石。";
+								close;
+							}
+							.@missing1 = !isequipped(2796) && countitem(2796) == 0;
+							.@missing2 = !isequipped(2797) && countitem(2797) == 0;
+							if (!.@missing1 && !.@missing2) {
+								mes "两枚魔法石戒指都在你身上，不需要补领。";
+								close;
+							}
+							if ((.@missing1 && .@missing2 && !checkweight(2796,1,2797,1)) ||
+							    (.@missing1 && !.@missing2 && !checkweight(2796,1)) ||
+							    (!.@missing1 && .@missing2 && !checkweight(2797,1))) {
+								mes "请先为需要补领的魔法石戒指预留足够的负重和物品栏空间。";
+								close;
+							}
 							delitem 732,1; //Crystal_Jewel__
 							if (isequipped(2796) == 0 && countitem(2796) == 0)
 								getitem 2796,1; //Magical_Stone
@@ -488,6 +511,14 @@ spl_in02,84,103,3	script	Assistant#Warlock2	439,{
 		next;
   mes "[哟普]";
 		mes "我会带你进入魔法室。";
+		if (job_wl != 6 || BaseJob != Job_Wizard) {
+			mes "请先确认转职任务进度。";
+			close;
+		}
+		if (!checkweight(12384,5,12386,5,12387,5,12385,5)) {
+			mes "请先为四种彩虹红宝石预留足够的负重和物品栏空间。";
+			close;
+		}
 		set job_wl,7;
 		changequest 11109,11110;
 		getitem 12384,5; //Rainbow_Ruby_Water
@@ -503,10 +534,18 @@ spl_in02,84,103,3	script	Assistant#Warlock2	439,{
 		mes "最好减轻负重。";
 			close;
 		}
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "要再试一次吗？";
 		mes "我再给你一些红宝石。";
 		next;
+		if (job_wl != 7 || BaseJob != Job_Wizard) {
+			mes "请先确认转职任务进度。";
+			close;
+		}
+		if (!checkweight(12384,5,12386,5,12387,5,12385,5)) {
+			mes "请先为四种彩虹红宝石预留足够的负重和物品栏空间。";
+			close;
+		}
 		if (countitem(12384)) delitem 12384,countitem(12384); //Rainbow_Ruby_Water
 		if (countitem(12386)) delitem 12386,countitem(12386); //Rainbow_Ruby_Wind
 		if (countitem(12387)) delitem 12387,countitem(12387); //Rainbow_Ruby_Earth
@@ -519,7 +558,7 @@ spl_in02,84,103,3	script	Assistant#Warlock2	439,{
 		warp "job3_war01",23,20;
 		end;
 	} else if (job_wl == 8) {
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "你成功结晶了空洞之石。";
 		mes "抱歉，我曾经怀疑你。";
 		if (countitem(12384)) delitem 12384,countitem(12384); //Rainbow_Ruby_Water
@@ -527,23 +566,23 @@ spl_in02,84,103,3	script	Assistant#Warlock2	439,{
 		if (countitem(12387)) delitem 12387,countitem(12387); //Rainbow_Ruby_Earth
 		if (countitem(12385)) delitem 12385,countitem(12385); //Rainbow_Ruby_Fire
 		next;
-		mes "[Yoop]";
-		mes "所有测试都完成了。现在去和Engoloria大师谈谈。";
+		mes "[哟普]";
+		mes "所有测试都完成了。现在去和埃格诺莉亚大师谈谈。";
 		mes "我很高兴你成功了。";
 		set job_wl,9;
 		changequest 11111,11112;
 		close;
 	} else if (job_wl == 9) {
-		mes "[Yoop]";
-		mes "所有测试都完成了。现在去和Engoloria大师谈谈。";
+		mes "[哟普]";
+		mes "所有测试都完成了。现在去和埃格诺莉亚大师谈谈。";
 		mes "我很高兴你成功了。";
 		close;
 	} else {
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "我能感觉到你拥有强大的魔力。";
 		mes "我真羡慕你。";
 		next;
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "它值得特别对待。";
 		mes "不要滥用它。";
 		close;
@@ -555,7 +594,7 @@ spl_in02,78,110,5	script	Assistant#Warlock3	437,{
 		callfunc "F_Warlock";
 		end;
 	}
-	mes "[Assistant]";
+	mes "[助手]";
 	mes "......";
 	switch(job_wl) {
 		case 1: mes "没什么要对我说的话，就离开吧。"; break;
@@ -563,15 +602,15 @@ spl_in02,78,110,5	script	Assistant#Warlock3	437,{
 		default: mes "我师父冥想时请保持安静。"; break;
 	}
 	next;
-	switch(select("Leave:Stay")) {
+	switch(select("离开。:留下。")) {
 	case 1:
-		mes "[Assistant]";
+		mes "[助手]";
 		mes "那请小心。";
 		close2;
 		warp "splendide",200,100;
 		end;
 	case 2:
-		mes "[Assistant]";
+		mes "[助手]";
 		mes "......";
 		close;
 	}
@@ -582,10 +621,10 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 		callfunc "F_Warlock";
 		end;
 	} else if (job_wl == 1) {
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "你有事要问我吗？";
 		next;
-		switch(select("How can I be a Warlock?:Cancel.")) {
+		switch(select("我要怎样才能成为术士？:取消。")) {
 		case 1:
 			if (VIP_SCRIPT) {
 				callfunc "VIP_Third_Class";
@@ -593,33 +632,35 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 				setquest 11106;
 				next;
 			}
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "你是认真的吗？";
 			mes "人类，你渴望力量，对吧。";
 			next;
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "变得更强的强烈欲望会让你的灵魂更加美丽。";
 			next;
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "但是，我需要确认你是否合格。";
 			next;
-			mes "[Master Egnoloria]";
-			mes "Yoop！";
+			mes "[埃格诺莉亚大师]";
+			mes "哟普！";
 			next;
-			mes "[Yoop]";
+			mes "[哟普]";
 			mes "是！！";
 			next;
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "把这个交给人类。";
 			next;
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "去和那个头发奇怪的男人谈谈。";
 			mes "他会告诉你该做什么。";
-			set job_wl,2;
-			setquest 11106;
+			if (job_wl == 1) {
+				set job_wl,2;
+				setquest 11106;
+			}
 			close;
 		case 2:
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 			mes "很好。";
 			mes "你是人类，所以这给你。";
 			close2;
@@ -627,36 +668,36 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 			end;
 		}
 	} else if (job_wl == 2) {
-		mes "[Master Egnoloria]";
-		mes "我正在冥想，我说过要和Yoop谈。";
-		mes "Yoop有一条有趣的马尾。";
+		mes "[埃格诺莉亚大师]";
+		mes "我正在冥想，我说过要和哟普谈。";
+		mes "哟普有一条有趣的马尾。";
 		mes "别打扰我。";
 		close;
 	} else if (job_wl == 3 || job_wl == 4) {
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "……";
 		next;
-		mes "[Assistant]";
+		mes "[助手]";
 		mes "师父正在冥想。";
 		mes "请安静。";
 		close;
 	} else if (job_wl == 5) {
-		mes "[Master Egnoloria]";
-		mes "我听Yoop说可以制造一种非常有用的石头。";
+		mes "[埃格诺莉亚大师]";
+		mes "我听哟普说可以制造一种非常有用的石头。";
 		next;
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "它可以用来制作施展强大魔法的魔法首饰。";
 		next;
-		mes "[Master Egnoloria]";
-		mes "Yoop。";
+		mes "[埃格诺莉亚大师]";
+		mes "哟普。";
 		next;
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "是，师父！";
 		next;
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "请带他去魔法房间。";
 		next;
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "好的，师父。";
 		mes "请跟我来。";
 		emotion ET_AHA, getnpcid(0, "Assistant#Warlock2");
@@ -664,15 +705,15 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 		changequest 11108,11109;
 		close;
 	} else if (job_wl < 9) {
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "......";
 		next;
-		mes "[Yoop]";
+		mes "[哟普]";
 		mes "我师父现在正在冥想，请跟我来。";
 		close;
 	} else if (job_wl == 9) {
 		if (BaseLevel < 99 || BaseJob != Job_Wizard) {
-			mes "[Master Egnoloria]";
+			mes "[埃格诺莉亚大师]";
 		mes "嗯……？";
 		mes "你是怎么走到这一步的……";
 			close;
@@ -682,21 +723,20 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 		mes "减少物品后再回来。";
 			close;
 		}
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		if (SkillPoint != 0) {
 			mes "除非你喜欢当前职业，否则应该使用所有技能点。";
 			close;
 		}
 		if (ismounting()) {
-			mes "你正骑着坐骑，";
-			mes "所以无法转职。";
+			mes "你正骑着坐骑，所以无法转职。";
 			mes "请卸下坐骑后再试！";
 			close;
 		}
 		mes "美丽的光芒……";
 		mes "别让我对你失望……";
 		next;
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "你已经成为术士的一员。";
 		mes "为此感到自豪吧。";
 		next;
@@ -704,8 +744,16 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 		mes "^0000ff你还剩技能点，请使用全部技能点后重新开始！^000000";
 			close;
 		}
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "这块结晶魔法石会保护你。";
+		if (job_wl != 9 || BaseJob != Job_Wizard || BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0 || ismounting()) {
+			mes "请确认转职进度、等级和技能点，并解除坐骑后再来。";
+			close;
+		}
+		if (!checkweight(5753,1,2795,1)) {
+			mes "请先为转职奖励预留足够的负重和两个物品栏空位。";
+			close;
+		}
 		if (Class == Job_High_Wizard) {
 			if (JobLevel > 69) set job_wl,13;
 			else if (JobLevel > 59) set job_wl,12;
@@ -718,7 +766,7 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 		getitem 2795,1; //Green_Apple_Ring
 		close;
 	} else if (job_wl > 9) {
-		mes "[Master Egnoloria]";
+		mes "[埃格诺莉亚大师]";
 		mes "你适应术士的力量了吗？";
 		mes "如果粗心大意，就会被自己的力量推翻。";
 		close;
@@ -726,28 +774,28 @@ spl_in02,80,108,5	script	Guild Master#Warlock	465,{
 }
 
 job3_war01,22,22,7	script	Yoop#WRR	439,{
-	mes "[Yoop]";
-	mes "请Ebein把你送到魔法房间，他会送你过去。";
+	mes "[哟普]";
+	mes "请艾贝因把你送到魔法房间，他会送你过去。";
 	mes "排队等待进入魔法室。";
 	close;
 }
 
 job3_war01,29,25,0	script	Ebein#WRR	437,{
-	mes "[Ebein]";
+	mes "[艾贝因]";
 	mes "你想参加测试吗？";
 	mes "在等候室待命后，就能进入魔法室。";
 	next;
-	mes "[Ebein]";
+	mes "[艾贝因]";
 	mes "如果房间里有其他人，只需等待一会儿。";
 	next;
-	switch(select("Go to the waiting room.:Go outside.")) {
+	switch(select("去等候室。:去外面。")) {
 	case 1:
-		mes "[Ebein]";
+		mes "[艾贝因]";
 		mes "那请自己进入房间。";
 		mes "魔法室里的魔物很强，确保有足够的药水来完成测试。";
 		close;
 	case 2:
-		mes "[Ebein]";
+		mes "[艾贝因]";
 		mes "......";
 		mes "那我送你出去。";
 		mes "再见……";
@@ -762,41 +810,75 @@ job3_war01,29,25,5	script	The chamber of magic#1	437,{
 OnInit:
 	//disablenpc  "The chamber of magic#1";
 	hideonnpc "The chamber of magic#1";
-	waitingroom "The chamber of magic",20,"The chamber of magic#1::OnStartArena",1;
+	waitingroom "魔法室",20,"The chamber of magic#1::OnStartArena",1;
 	enablewaitingroomevent;
 	end;
 OnStartArena:
-	warpwaitingpc "job3_war02",29,25;
-	donpcevent "The chamber of magic#2::OnEnable";
-	initnpctimer;
+	if (.Owner) end;
 	disablewaitingroomevent;
-	end;
-OnTimer10000:
-	if (getmapusers("job3_war02") == 0) {
-		donpcevent "The chamber of magic#2::OnReset";
-		donpcevent "The chamber of magic#2::OnDisable";
-		stopnpctimer "The chamber of magic#2";
-		donpcevent "The chamber of magic#3::OnReset";
-		donpcevent "The chamber of magic#3::OnDisable";
-		stopnpctimer "The chamber of magic#3";
-		donpcevent "The chamber of magic#4::OnReset";
-		donpcevent "The chamber of magic#4::OnDisable";
-		stopnpctimer "The chamber of magic#4";
-		donpcevent "Hollow Stone#Warlock::OnReset";
-		donpcevent "Hollow Stone#Warlock::OnDisable";
-		stopnpctimer "Hollow Stone#Warlock";
-		stopnpctimer;
+	warpwaitingpc "job3_war02",29,25;
+	if (!$@warpwaitingpcnum || !attachrid($@warpwaitingpc[0])) {
 		enablewaitingroomevent;
 		end;
 	}
+	if (BaseJob != Job_Wizard || job_wl != 7 || Hp <= 0) {
+		warp "spl_in02",79,102;
+		detachrid;
+		enablewaitingroomevent;
+		end;
+	}
+	.Owner = getcharid(0);
+	.Account = getcharid(3);
+	.Phase = 1;
+	detachrid;
 	initnpctimer;
+	donpcevent "The chamber of magic#2::OnEnable";
+	end;
+OnTimer10000:
+	if (.Owner && isloggedin(.Account,.Owner)) {
+		getmapxy .@map$,.@x,.@y,BL_PC,.Account;
+		if (.@map$ == "job3_war02") {
+			initnpctimer;
+			end;
+		}
+	}
+	callsub S_Cleanup;
+	enablewaitingroomevent;
 	end;
 OnEnable:
+	if (.Owner) end;
 	enablewaitingroomevent;
 	end;
 OnDisable:
 	disablewaitingroomevent;
 	end;
+OnRelease:
+	callsub S_Cleanup;
+	enablewaitingroomevent;
+	end;
+OnReturn:
+	if (.Owner && isloggedin(.Account,.Owner)) {
+		getmapxy .@map$,.@x,.@y,BL_PC,.Account;
+		if (.@map$ == "job3_war02")
+			warpchar "spl_in02",79,102,.Owner;
+	}
+	end;
+S_Cleanup:
+	stopnpctimer;
+	.Phase = 0;
+	setarray .@controllers$[0],"The chamber of magic#2","The chamber of magic#3","The chamber of magic#4","Hollow Stone#Warlock";
+	for (.@i = 0; .@i < getarraysize(.@controllers$); .@i++) {
+		stopnpctimer .@controllers$[.@i];
+		donpcevent .@controllers$[.@i]+"::OnReset";
+		donpcevent .@controllers$[.@i]+"::OnDisable";
+	}
+	stopnpctimer "Ebein#E1";
+	stopnpctimer "Ebein#E2";
+	donpcevent "Ebein#E1::OnDisable";
+	donpcevent "Ebein#E2::OnDisable";
+	.Owner = 0;
+	.Account = 0;
+	return;
 }
 
 -	script	The chamber of magic#2	-1,{
@@ -804,15 +886,16 @@ OnInit:
 	disablenpc();
 	end;
 OnEnable:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != ((strnpcinfo(0) == "The chamber of magic#2")?1:2) || !getvariableofnpc(.Owner,"The chamber of magic#1")) end;
 	enablenpc();
-	monster "job3_war02",23,32,"Magic Monster",2047,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",23,21,"Magic Monster",2048,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",34,32,"Magic Monster",2049,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",34,21,"Magic Monster",2050,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",23,32,"Magic Monster",2047,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",23,21,"Magic Monster",2048,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",34,32,"Magic Monster",2049,1,strnpcinfo(0)+"::OnMyMobDead";
-	monster "job3_war02",34,21,"Magic Monster",2050,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",23,32,"魔法魔物",2047,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",23,21,"魔法魔物",2048,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",34,32,"魔法魔物",2049,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",34,21,"魔法魔物",2050,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",23,32,"魔法魔物",2047,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",23,21,"魔法魔物",2048,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",34,32,"魔法魔物",2049,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_war02",34,21,"魔法魔物",2050,1,strnpcinfo(0)+"::OnMyMobDead";
 	initnpctimer;
 	end;
 OnReset:
@@ -822,7 +905,9 @@ OnDisable:
 	disablenpc();
 	end;
 OnMyMobDead:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != ((strnpcinfo(0) == "The chamber of magic#2")?1:2) || getcharid(0) != getvariableofnpc(.Owner,"The chamber of magic#1") || job_wl != 7) end;
 	if (mobcount("job3_war02",strnpcinfo(0)+"::OnMyMobDead") < 1) {
+		set getvariableofnpc(.Phase,"The chamber of magic#1"),((strnpcinfo(0) == "The chamber of magic#2")?2:3);
 		stopnpctimer;
 		mapannounce "job3_war02","魔物入侵已停止。",bc_map;
 		set .@str$, "The chamber of magic#"+((strnpcinfo(0) == "The chamber of magic#2")?"3":"4");
@@ -861,20 +946,21 @@ OnTimer293000:
 		mapannounce "job3_war02","距离魔法室稳定还剩10秒……",bc_map;
 	end;
 OnTimer303000:
+	set getvariableofnpc(.Phase,"The chamber of magic#1"),0;
 		mapannounce "job3_war02","魔法稳定失败。",bc_map;
 	donpcevent "The chamber of magic#2::OnReset";
 	donpcevent "The chamber of magic#3::OnReset";
 	donpcevent "The chamber of magic#4::OnReset";
 	end;
 OnTimer304000:
-	mapwarp "job3_war02","spl_in02",79,102;
+	donpcevent "The chamber of magic#1::OnReturn";
 	end;
 OnTimer305000:
 	donpcevent "The chamber of magic#2::OnDisable";
 	donpcevent "The chamber of magic#3::OnDisable";
 	donpcevent "The chamber of magic#4::OnDisable";
-	donpcevent "The chamber of magic#1::OnEnable";
 	stopnpctimer;
+	donpcevent "The chamber of magic#1::OnRelease";
 	end;
 }
 -	duplicate(The chamber of magic#2)	The chamber of magic#3	-1
@@ -884,15 +970,16 @@ OnInit:
 	disablenpc "The chamber of magic#4";
 	end;
 OnEnable:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != 3 || !getvariableofnpc(.Owner,"The chamber of magic#1")) end;
 	enablenpc "The chamber of magic#4";
-	monster "job3_war02",23,32,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",23,21,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",34,32,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",34,21,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",23,32,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",23,21,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",34,32,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
-	monster "job3_war02",34,21,"Magic Monster",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",23,32,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",23,21,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",34,32,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",34,21,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",23,32,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",23,21,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",34,32,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
+	monster "job3_war02",34,21,"魔法魔物",1002,1,"The chamber of magic#4::OnMyMobDead";
 	initnpctimer;
 	end;
 OnReset:
@@ -902,7 +989,9 @@ OnDisable:
 	disablenpc "The chamber of magic#4";
 	end;
 OnMyMobDead:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != 3 || getcharid(0) != getvariableofnpc(.Owner,"The chamber of magic#1") || job_wl != 7) end;
 	if (mobcount("job3_war02","The chamber of magic#4::OnMyMobDead") < 1) {
+		set getvariableofnpc(.Phase,"The chamber of magic#1"),4;
 		mapannounce "job3_war02","稳定后，碎片会向中心移动。",bc_map;
 		stopnpctimer;
 		donpcevent "Hollow Stone#Warlock::OnEnable";
@@ -927,20 +1016,21 @@ OnTimer58000:
 	mapannounce "job3_war02","距离魔法室稳定还剩5秒……",bc_map;
 	end;
 OnTimer63000:
+	set getvariableofnpc(.Phase,"The chamber of magic#1"),0;
 	mapannounce "job3_war02","魔法稳定失败，碎片失去了力量。",bc_map;
 	donpcevent "The chamber of magic#2::OnReset";
 	donpcevent "The chamber of magic#3::OnReset";
 	donpcevent "The chamber of magic#4::OnReset";
 	end;
 OnTimer64000:
-	mapwarp "job3_war02","spl_in02",79,102;
+	donpcevent "The chamber of magic#1::OnReturn";
 	end;
 OnTimer65000:
 	donpcevent "The chamber of magic#2::OnDisable";
 	donpcevent "The chamber of magic#3::OnDisable";
 	donpcevent "The chamber of magic#4::OnDisable";
-	donpcevent "The chamber of magic#1::OnEnable";
 	stopnpctimer;
+	donpcevent "The chamber of magic#1::OnRelease";
 	end;
 }
 
@@ -949,6 +1039,7 @@ OnInit:
 	disablenpc "Hollow Stone#Warlock";
 	end;
 OnEnable:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != 4 || !getvariableofnpc(.Owner,"The chamber of magic#1")) end;
 	enablenpc "Hollow Stone#Warlock";
 	donpcevent "The chamber of magic#2::OnReset";
 	donpcevent "The chamber of magic#2::OnDisable";
@@ -956,7 +1047,7 @@ OnEnable:
 	donpcevent "The chamber of magic#3::OnDisable";
 	donpcevent "The chamber of magic#4::OnReset";
 	donpcevent "The chamber of magic#4::OnDisable";
-	monster "job3_war02",29,27,"Hollow Stone",2035,1,"Hollow Stone#Warlock::OnMyMobDead";
+	monster "job3_war02",29,27,"空洞之石",2035,1,"Hollow Stone#Warlock::OnMyMobDead";
 	initnpctimer;
 	end;
 OnReset:
@@ -966,8 +1057,11 @@ OnDisable:
 	disablenpc "Hollow Stone#Warlock";
 	end;
 OnMyMobDead:
+	if (getvariableofnpc(.Phase,"The chamber of magic#1") != 4 || getcharid(0) != getvariableofnpc(.Owner,"The chamber of magic#1") || job_wl != 7) end;
 	if (mobcount("job3_war02","Hollow Stone#Warlock::OnMyMobDead") < 1) {
+		set getvariableofnpc(.Phase,"The chamber of magic#1"),5;
 		mapannounce "job3_war02","空洞之石吸收了足够魔力并完成结晶。",bc_map;
+		stopnpctimer "The chamber of magic#1";
 		set job_wl,8;
 		changequest 11110,11111;
 		donpcevent "Hollow Stone#Warlock::OnReset";
@@ -1011,16 +1105,17 @@ OnTimer593000:
 	mapannounce "job3_war02","还剩 10 秒完成石头结晶……",bc_map;
 	end;
 OnTimer603000:
+	set getvariableofnpc(.Phase,"The chamber of magic#1"),0;
 	mapannounce "job3_war02","空洞石结晶失败。",bc_map;
 	donpcevent "Hollow Stone#Warlock::OnReset";
 	end;
 OnTimer605000:
-	mapwarp "job3_war02","spl_in02",79,102;
+	donpcevent "The chamber of magic#1::OnReturn";
 	end;
 OnTimer607000:
 	donpcevent "Hollow Stone#Warlock::OnDisable";
 	stopnpctimer;
-	donpcevent "The chamber of magic#1::OnEnable";
+	donpcevent "The chamber of magic#1::OnRelease";
 	end;
 }
 
@@ -1043,7 +1138,7 @@ OnTimer3000:
 OnTimer6000:
 	donpcevent "Ebein#E1::OnDisable";
 	stopnpctimer;
-	donpcevent "The chamber of magic#1::OnEnable";
+	donpcevent "The chamber of magic#1::OnRelease";
 	end;
 }
 
@@ -1062,7 +1157,7 @@ OnTimer3000:
 	end;
 OnTimer5000:
 	mapannounce "job3_war02","魔法室开始充满魔力。",bc_map;
-	mapwarp "job3_war02","spl_in02",79,102;
+	donpcevent "The chamber of magic#1::OnReturn";
 	end;
 OnTimer6000:
 	donpcevent "Ebein#E2::OnDisable";
@@ -1108,5 +1203,5 @@ job3_war01,1,2,0	script	Button Girl#wl	66,{
 	}
 }
 
-spl_fild02,0,0	monster	Bradium Golem	2049,20,5000
-spl_fild02,0,0	monster	Naga	2047,20,5000
+spl_fild02,0,0	monster	钸镭矿石魔像	2049,20,5000
+spl_fild02,0,0	monster	纳迦	2047,20,5000

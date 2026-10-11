@@ -291,7 +291,7 @@ moc_para01,25,35,4	script	Instructor Boya#para01	4_M_KNIGHT_GOLD,{
 		mes "装备仓库负责人会提供一些装备。";
 		next;
 		mes "[博雅]";
-		mes "通过第二步训练后，我们会为学员提供装备和防具。";
+		mes "通过第三步训练后，我们会为学员提供装备和防具。";
 		mes "去仓库找负责人。";
 		next;
 		mes "[博雅]";
@@ -311,7 +311,7 @@ moc_para01,25,35,4	script	Instructor Boya#para01	4_M_KNIGHT_GOLD,{
 		mes "装备仓库负责人会提供一些装备。";
 		next;
 		mes "[博雅]";
-		mes "通过第二步训练后，我们会为学员提供装备和防具。";
+		mes "通过第三步训练后，我们会为学员提供装备和防具。";
 		mes "去仓库找负责人。";
 		next;
 		mes "[博雅]";
@@ -332,7 +332,7 @@ moc_para01,25,35,4	script	Instructor Boya#para01	4_M_KNIGHT_GOLD,{
 		mes "装备仓库负责人会提供一些装备。";
 		next;
 		mes "[博雅]";
-		mes "通过第二步训练后，我们会为学员提供装备和防具。";
+		mes "通过第三步训练后，我们会为学员提供装备和防具。";
 		mes "去仓库找负责人。";
 		next;
 		mes "[博雅]";
@@ -361,12 +361,10 @@ moc_para01,25,35,4	script	Instructor Boya#para01	4_M_KNIGHT_GOLD,{
 		mes "所以才设立了这些课程。";
 		next;
 		mes "[博雅]";
-		mes "原则上这些补给是给初心者的";
-		mes "但专家想参加训练，我们也会接受。";
+		mes "原则上这些补给是给初心者的，但专家想参加训练，我们也会接受。";
 		next;
 		mes "[博雅]";
-		mes "虽然制服和装备可能没什么用，";
-		mes "参加训练就代表他们想成为我们团队的一员。";
+		mes "虽然制服和装备可能没什么用，参加训练就代表他们想成为我们团队的一员。";
 		next;
 		mes "[博雅]";
 		mes "是的，就这些。";
@@ -757,8 +755,7 @@ moc_fild11,180,253,5	script	Talking Dog#para03	972,{
 			mes "多亏你的帮助，我才能舒适地休息。";
 			next;
 			mes "[会说话的狗]";
-			mes "你帮助征服了沙漠，";
-			mes "并通过了初心者训练步骤，所以我要跺脚庆祝。";
+			mes "你帮助征服了沙漠，并通过了初心者训练步骤，所以我要跺脚庆祝。";
 			mes "呼噜噜噜噜。哈。";
 			next;
 			mes "[会说话的狗]";
@@ -849,8 +846,7 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 		mes "我也许站在这里这样和你说话，喵，但我仍然是一只猫，喵……";
 		next;
 		mes "[胆小的猫]";
-		mes "亲爱的人类，你是";
-		mes "我的同伴吗？";
+		mes "亲爱的人类，你是我的同伴吗？";
 		mes "真……真的吗……！";
 		mes "亲爱的，博雅 的帮助就像巨人一样，而且……";
 		next;
@@ -890,10 +886,7 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 			mes "我真的不喜欢那些讨厌的爬虫……";
 			mes "喵～！";
 			next;
-			mes "^4d4dff这只猫被一只盗虫";
-			mes "吓得僵在了";
-			mes "原地。猎杀这里的";
-			mes "盗虫。^000000";
+			mes "^4d4dff这只猫被一只盗虫吓得僵在了原地。猎杀这里的盗虫。^000000";
 			set para_suv01,7;
 			changequest 7133,7134;
 			close;
@@ -1800,6 +1793,10 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			mes "伊甸园靴子 I 一双。";
 			mes "伊甸园披风一件。";
 			mes "总共 4 件补给，仅此而已。";
+			if (!checkweight(5583,1,2560,1,2456,1,15009,1)) {
+				mes "请为整套补给预留足够的负重和物品栏空间。";
+				close;
+			}
 			para_suv01 = 12;
 			para_suv02 = 1;
 			getitem 5583,1; //Para_Team_Hat1
@@ -1876,6 +1873,7 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			mes "伊甸园靴子 II 和制服 II。";
 			next;
 			mes "[迈克尔]";
+			callsub S_CheckSupplies,2457,15010,13050;
 			para_suv01 = 23;
 			getitem 13050,1; //P_Dagger1
 			getitem 2457,1; //Para_Team_Boots2
@@ -1956,6 +1954,7 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			mes "让我看看……你会获得……";
 			mes "伊甸园靴子 III 和制服 III。";
 			next;
+			callsub S_CheckSupplies,2458,15011,0;
 			para_suv01 = 38;
 			getitem 2458,1; //Para_Team_Boots3
 			getitem 15011,1; //Para_Team_Uniform3
@@ -2050,6 +2049,22 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 		mes "抱歉，我帮不了你。";
 		close;
 	}
+S_CheckSupplies:
+	setarray .@supply_items[0],getarg(0),getarg(1);
+	if (getarg(2))
+		.@supply_items[2] = getarg(2);
+	if (para_suv02 == 0) {
+		.@supply_n = getarraysize(.@supply_items);
+		setarray .@supply_items[.@supply_n],5583,2560;
+	}
+	for (.@supply_n = 0; .@supply_n < getarraysize(.@supply_items); .@supply_n++)
+		.@supply_amounts[.@supply_n] = 1;
+	if (!checkweight2(.@supply_items,.@supply_amounts)) {
+		mes "请为整套补给预留足够的负重和物品栏空间。";
+		close;
+	}
+	return;
+
 S_Upgrade:
 	mes "[迈克尔]";
 	mes "我明白了。";
@@ -2114,6 +2129,7 @@ S_Select:
 	if (para_suv01 == 22) {
 		mes "此外你还会获得伊甸园集团靴子II和制服II。";
 		next;
+		callsub S_CheckSupplies,2457,15010,getarg(.@i);
 		getitem 2457,1;	// Para_Team_Boots2
 		getitem 15010,1;// Para_Team_Uniform2
 		para_suv01 = 23;
@@ -2121,6 +2137,7 @@ S_Select:
 	else {
 		mes "此外你还会获得伊甸园集团靴子III和制服III。";
 		next;
+		callsub S_CheckSupplies,2458,15011,getarg(.@i);
 		getitem 2458,1;// Para_Team_Boots3
 		getitem 15011,1;// Para_Team_Uniform3
 		para_suv01 = 38;
@@ -2132,7 +2149,7 @@ S_Select:
 		mes "所以你还会获得伊甸园集团帽子和斗篷。";
 		getitem 5583,1;// Para_Team_Hat
 		getitem 2560,1;// Para_Team_Manteau
-		if (para_suv01 == 22)
+		if (para_suv01 == 23)
 			para_suv02 = 2;
 		else
 			para_suv02 = 3;
@@ -2141,7 +2158,7 @@ S_Select:
 		mes "再次检查你的补给，并好好保管。";
 	}
 	else {
-		if (para_suv01 == 22)
+		if (para_suv01 == 23)
 			para_suv02 = 2;
 		else
 			para_suv02 = 3;
@@ -2241,6 +2258,10 @@ moc_para01,179,44,3	script	Chef	820,{
 					mes "嘿，给你。";
 					mes "请享用。";
 					next;
+					if (Zeny < 2700) {
+						mes "你的余额不足，请准备好 2700 金币后再来。";
+						close;
+					}
 					mes "- 吃完饭后，你感觉有点饱。";
 					mes "你恢复了一些HP和SP。-";
 					set Zeny, Zeny - 2700;
@@ -2258,6 +2279,10 @@ moc_para01,179,44,3	script	Chef	820,{
 				mes "嘿，给你。";
 				mes "请享用。";
 				next;
+				if (Zeny < 3000) {
+					mes "你的余额不足，请准备好 3000 金币后再来。";
+					close;
+				}
 				mes "- 吃完饭后，你感觉有点饱。";
 				mes "你恢复了一些HP和SP。-";
 				set Zeny, Zeny - 3000;
@@ -2280,6 +2305,10 @@ moc_para01,179,44,3	script	Chef	820,{
 					mes "嘿，给你。";
 					mes "请享用。";
 					next;
+					if (Zeny < 3600) {
+						mes "你的余额不足，请准备好 3600 金币后再来。";
+						close;
+					}
 					mes "- 吃完饭后，你感觉有点饱。";
 					mes "你恢复了一些HP和SP。-";
 					set Zeny, Zeny - 3600;
@@ -2297,6 +2326,10 @@ moc_para01,179,44,3	script	Chef	820,{
 				mes "嘿，给你。";
 				mes "请享用。";
 				next;
+				if (Zeny < 4000) {
+					mes "你的余额不足，请准备好 4000 金币后再来。";
+					close;
+				}
 				mes "- 吃完饭后，你感觉有点饱。";
 				mes "你恢复了一些HP和SP。-";
 				set Zeny, Zeny - 4000;
@@ -2315,6 +2348,10 @@ moc_para01,179,44,3	script	Chef	820,{
 					mes "嘿，给你。";
 					mes "请享用。";
 					next;
+					if (Zeny < 4500) {
+						mes "你的余额不足，请准备好 4500 金币后再来。";
+						close;
+					}
 					mes "- 肋眼卷是在橡木上烤制的。";
 					mes "- 吃完饭后，你感觉有点饱。";
 					mes "你恢复了HP和SP。-";
@@ -2333,6 +2370,10 @@ moc_para01,179,44,3	script	Chef	820,{
 				mes "嘿，给你。";
 				mes "请享用。";
 				next;
+				if (Zeny < 5000) {
+					mes "你的余额不足，请准备好 5000 金币后再来。";
+					close;
+				}
 				mes "嘿，给你。";
 				mes "- 肋眼卷是在橡木上烤制的。";
 				mes "- 吃完饭后，你感觉有点饱。";
@@ -2607,8 +2648,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 				if (BaseLevel < 80) {
 					mes "啊，这个地方应该不错！";
 					mes "你知道古城在哪里吗？";
-					mes "如果不是那场可怕的事故，古城仍然会是";
-					mes "卢恩·米德加尔特的首都，而不是普隆德拉。";
+					mes "如果不是那场可怕的事故，古城仍然会是卢恩·米德加尔特的首都，而不是普隆德拉。";
 					next;
 					mes "[乌尔教官]";
 					mes "总之，那座古老城堡现在充满了不死怪物。";
@@ -2699,7 +2739,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 		mes "如果他发脾气，我也不会惊讶。";
 		next;
 		mes "[乌尔教官]";
-		mes "总之，干得好。很高兴你没有受伤。.";
+		mes "总之，干得好。很高兴你没有受伤。";
 		mes "铁匠 BK 说他会强化你的武器。";
 		next;
 		callsub S_Para2;
@@ -2823,8 +2863,7 @@ S_Quest7990:
 	mes "别忘了带上伊甸园集团徽章。";
 	next;
 	mes "[乌尔教官]";
-	mes "城市的污染令人难以忍受";
-	mes "但周围的原野相对干净……";
+	mes "城市的污染令人难以忍受，但周围的原野相对干净……";
 	mes "这对你来说应该很简单。";
 	para_2nd01 = 12;
 	setquest 7223;// Advanced Training in Einbroch
@@ -2859,8 +2898,7 @@ S_Quest89100:
 		mes "[乌尔教官]";
 		mes "你只要找到那里的伊甸园集团代理人。";
 		mes "告诉他是我派你去的，他会给你指示。";
-		mes "你可以探索新世界";
-		mes "就像度假一样，对吧？";
+		mes "你可以探索新世界，就像度假一样，对吧？";
 		next;
 		mes "[乌尔教官]";
 		mes "哈哈哈！";
@@ -2901,8 +2939,7 @@ comodo,173,354,5	script	Dispatched Instructor#02	1_M_JOBTESTER,{
 		mes "你是为了任务来的吗？";
 		next;
 		mes "[罗密欧]";
-		mes "我不知道这里是否适合你";
-		mes "不如试试看。";
+		mes "我不知道这里是否适合你，不如试试看。";
 		next;
 		mes "[罗密欧]";
 		mes "这座洞穴里的许多怪物都是由石头形成的。";
@@ -2938,8 +2975,7 @@ comodo,173,354,5	script	Dispatched Instructor#02	1_M_JOBTESTER,{
 			mes "那里应该有可以狩猎的目标。";
 			next;
 			mes "[罗密欧]";
-			mes "与其直接走出去，";
-			mes "不如在路上杀死约 10 只石头波利。";
+			mes "与其直接走出去，不如在路上杀死约 10 只石头波利。";
 			next;
 			mes "[罗密欧]";
 			mes "这样从北边来的旅客就能安全通过。";
@@ -2953,8 +2989,7 @@ comodo,173,354,5	script	Dispatched Instructor#02	1_M_JOBTESTER,{
 			setquest 7216;// More Golem Hunting
 		}
 		else {
-			mes "作为这座洞穴难度的测试";
-			mes "去击败 3 只石头波利。";
+			mes "作为这座洞穴难度的测试，去击败 3 只石头波利。";
 			mes "也要小心其他怪物。";
 			next;
 			mes "[罗密欧]";
@@ -3031,6 +3066,10 @@ um_fild01,34,280,5	script	Instructor Romeo#2nd02	1_M_JOBTESTER,{
 			mes "[罗密欧]";
 			mes "这里没有更多训练任务。";
 			mes "回去向 乌尔 报告。";
+			if (countitem(7196) < 5 || countitem(7100) < 7) {
+				mes "材料不足，请带齐 5 个乌坦战士肩甲和 7 片树精尖叶后再来。";
+				close;
+			}
 			delitem 7196,5;
 			delitem 7100,7;
 			para_2nd01 = 5;
@@ -3455,6 +3494,10 @@ ice_dun01,154,13,5	script	Dispatched Instructor#05	4_F_JOB_BLACKSMITH,{
 			mes "[娜奥米]";
 			mes "看来我也该自己做一点了~";
 			mes "呜哈哈~";
+			if (countitem(7066) < 30 || countitem(7453) < 1 || countitem(519) < 1) {
+				mes "材料不足，请带齐 30 个冰块、1 个甜酱和 1 瓶牛奶后再来。";
+				close;
+			}
 			delitem 7066,30;
 			delitem 7453,1;
 			delitem 519,1;
@@ -3739,10 +3782,6 @@ spl_fild02,377,149,3	script	Dispatched Instructor#08	4_M_DST_MASTER,{
 }
 
 moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
-	if (checkweight(2571,5) == 0) {
-	mes "- 你的背包中物品太多，无法继续 -";
-		close;
-	}
 	mes "[索恩]";
 	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "嗯，你是伊甸园成员吗？";
@@ -3853,6 +3892,12 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 				next;
 				mes "[索恩]";
 				mes "如果以后有需要强化的装备，再来找我。";
+				for (.@i = 0; .@i < getarraysize(.@item); ++.@i) {
+					if (countitem(.@item[.@i]) < .@amount[.@i]) {
+						mes "材料不足，请带齐委托要求的材料后再来。";
+						close;
+					}
+				}
 				delitem .@item[0],.@amount[0];
 				if (.@countitem[1])
 					delitem .@item[1],.@amount[1];
@@ -3919,7 +3964,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 					1289,"伊甸园拳刃 I","拳刃，攻击力 155";
 			}
 			else if (BaseJob == Job_Rogue || BaseClass == Job_Novice)
-				getitem 13066,1;// P.Dagger III
+				.@weapon = 13066;// P.Dagger III
 			else if (BaseJob == Job_Alchemist || BaseJob == Job_Blacksmith) {
 				callsub L_Select,"你可以选择钝器、军刀或斧头。",
 					16014,"伊甸园钝器 III","钝器，攻击力 172",// P_Mace3
@@ -3927,7 +3972,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 					1391,"伊甸园斧头 I","斧头，攻击力 195"; //P.Two-Handed Axe I
 			}
 			else if (BaseJob == Job_Wizard)
-				getitem 1658,1;// P.Staff III
+				.@weapon = 1658;// P.Staff III
 			else if (BaseJob == Job_Sage) {
 				callsub L_Select,"",
 					1658,"伊甸园法杖 III","法杖，魔法攻击力 +170，智力 +4，攻击力 60", //P.Staff III
@@ -3945,7 +3990,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 					16014,"伊甸园钝器 III","钝器，攻击力 172"; //P.Mace III
 			}
 			else if (BaseJob == Job_Hunter)
-				getitem 18106,1;// P.Bow III
+				.@weapon = 18106;// P.Bow III
 			else if (BaseJob == Job_Bard) {
 				callsub L_Select,"",
 					18106,"伊甸园弓 III","弓，攻击力 140", //P.Bow III
@@ -3962,16 +4007,16 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 					13310,"伊甸园风魔手里剑 I","风魔手里剑，魔法攻击力 +50，攻击力 170"; //P.Huuma Suriken I
 			}
 			else if (Class == Job_Star_Gladiator)
-				getitem 1583,1; //P.Book I
+				.@weapon = 1583; //P.Book I
 			else if (Class == Job_Soul_Linker) {
 				callsub L_Select,"",
 					13066,"伊甸园短剑 III","短剑，魔法攻击力 +80，攻击力 165", //P.Dagger III
 					1658,"伊甸园法杖 III","法杖，魔法攻击力 +170，智力 +4，攻击力 60"; //P.Staff III
 			}
 			else if (Class == Job_Gunslinger)
-				getitem 13114,1; //P.Revolver III
+				.@weapon = 13114; //P.Revolver III
 			else if (Class == Job_Summoner)
-				getitem 26101,1; //P.Foxtail III
+				.@weapon = 26101; //P.Foxtail III
 			else {
 				mes "嗯，你符合领取装备的条件。";
 				mes "是的，我明白。";
@@ -3980,6 +4025,13 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 				mes "不过好像出了点问题，我也不清楚是什么……";
 				close;
 			}
+			setarray .@reward_items[0],.@weapon,18514,2571,2473,15031;
+			setarray .@reward_amounts[0],1,1,1,1,1;
+			if (!checkweight2(.@reward_items,.@reward_amounts)) {
+				mes "请先为整套武器和防具预留足够的负重及五个物品栏空位。";
+				close;
+			}
+			getitem .@weapon,1;
 			para_2nd02 = 2;
 			getitem 18514,1;// Paradise Hat II
 			getitem 2571,1;// Paradise Mantle II
@@ -4016,7 +4068,7 @@ L_Select:
 	next;
 	.@i = (select(.@menu$) -1) *3 +1;
 	mes "[托伦]";
-	getitem getarg(.@i),1;
+	.@weapon = getarg(.@i);
 	return;
 S_Enchant:
 	mes "[索恩]";
@@ -4081,6 +4133,10 @@ S_Enchant:
 			next;
 			specialeffect EF_REPAIRWEAPON;
 			progressbar "ffff00",3;
+			if (countitem(getarg(0)) < 1) {
+				mes "装备不在背包中，请带上要强化的装备后再来。";
+				close;
+			}
 			delitem getarg(0),1;
 			para_2nd04 = 4;
 			// erasequest 7240;// Equipment Enhancement
@@ -4192,13 +4248,17 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				mes "[BK]";
 				mes .@string$;
 				mes "看看吧。你的武器现在更强了。";
-				para_2nd03 = 1 + .@add;
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				progressbar "ffff00",3;
-				para_2nd02 = 3;
+				if (countitem(.@wplist[.@s]) < 1) {
+					mes "装备不在背包中，请带上要强化的装备后再来。";
+					close;
+				}
 				delitem .@wplist[.@s],1;
 				getitem2 .@wplist[.@s],1,1,0,0,0,0,0,.@card;
+				para_2nd03 = 1 + .@add;
+				para_2nd02 = 3;
 				mes "[BK]";
 				mes "是不是很棒？";
 				mes "我知道，我知道，我很厉害！";
@@ -4264,6 +4324,10 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 					next;
 					specialeffect EF_REPAIRWEAPON;
 					progressbar "ffff00",3;
+					if (countitem(.@wplist[.@i]) < 1) {
+						mes "装备不在背包中，请带上要强化的装备后再来。";
+						close;
+					}
 					delitem .@wplist[.@i],1;
 					para_2nd02 = 4;
 					if (para_2nd03 == 1) {
@@ -4310,6 +4374,10 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				progressbar "ffff00",3;
+				if (countitem(.@wplist[.@s]) < 1) {
+					mes "装备不在背包中，请带上要强化的装备后再来。";
+					close;
+				}
 				delitem .@wplist[.@s],1;
 				para_2nd02 = 5;
 				if (para_2nd03 == 111)

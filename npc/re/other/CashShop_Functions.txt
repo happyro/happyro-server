@@ -27,8 +27,13 @@ function	script	VIP_Third_Class	{
 			case 1:
 				mes "[来自虚空的声音]";
 				mes "祝你好运，冒险者。";
-				delitem 6320,1; //Premium_Reset_Stone
 				next;
+				if (countitem(6320) < 1) {
+					mes "[来自虚空的声音]";
+					mes "请带上1个重置石后再来报名。";
+					close;
+				}
+				delitem 6320,1; //Premium_Reset_Stone
 				break;
 			case 2:
 				mes "[来自虚空的声音]";

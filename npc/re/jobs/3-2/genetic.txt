@@ -19,36 +19,36 @@
 //============================================================
 
 alde_alche,35,186,5	script	Alchemist Union Member	805,{
-	mes "[Alchemist Union Member]";
+	mes "[炼金术士公会成员]";
 	if (BaseLevel > 98 && JobLevel > 49){
 		if (BaseJob == Job_Alchemist) {
 			if (SkillPoint != 0) {
-				mes "- You still have unused skill points. Come back when you have used all of them. -";
+				mes "- 你还有未使用的技能点，请全部用完后再来。 -";
 				close;
 			}
 			if (job_gen == 0) {
 				mes "我们的炼金术士公会培养了许多初级炼金术士，负责各种晋升与研究。";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "他们遍布米德加尔特各地，活跃于科学和特殊物品制作等领域。";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "我们将新公会成员称为^3131FF‘基因学者’^000000。";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "基因学者是炼金术领域达到巅峰的人，如今引领着米德加尔特的炼金术发展。";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "看来你也是这方面的专家，要不要去见见其他基因学者？";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "不久前，一位基因学者公布了关于新生命的轰动研究。";
 				mes "你知识渊博，应该能理解她的工作吧？";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "她的研究也许能帮助你获得成为基因学者所需的知识！";
 				next;
-				mes "[Alchemist Union Member]";
+				mes "[炼金术士公会成员]";
 				mes "听起来怎么样？想见见基因学者吗？";
 				next;
 				switch(select("当然，我想见基因学者。:我不想见基因学者。")) {
@@ -59,17 +59,19 @@ alde_alche,35,186,5	script	Alchemist Union Member	805,{
 						setquest 2215;
 						next;
 					}
-					mes "[Alchemist Union Member]";
+					mes "[炼金术士公会成员]";
 					mes "明智的选择！";
-					mes "那位声名狼藉的基因学者 ‘Devries’。";
+					mes "那位声名狼藉的基因学者 ‘德弗里斯’。";
 					next;
-					mes "[Alchemist Union Member]";
+					mes "[炼金术士公会成员]";
 					mes "你可以在里希塔乐镇西部的炼金术实验室找到她。那里还有另一位研究武器的基因学者，也可以去拜访。";
-					set job_gen,1;
-					setquest 2215;
+					if (job_gen == 0) {
+						set job_gen,1;
+						setquest 2215;
+					}
 					close;
 				case 2:
-					mes "[Alchemist Union Member]";
+					mes "[炼金术士公会成员]";
 					mes "你对生命研究不感兴趣吗？";
 					close;
 				}
@@ -81,321 +83,318 @@ alde_alche,35,186,5	script	Alchemist Union Member	805,{
 	}
 	mes "我们的炼金术士公会培养了许多初级炼金术士，负责各种晋升与研究。";
 	next;
-	mes "[Alchemist Union Member]";
+	mes "[炼金术士公会成员]";
 	mes "他们遍布米德加尔特各地，活跃于科学和特殊物品制作等领域。";
 	next;
-	mes "[Alchemist Union Member]";
+	mes "[炼金术士公会成员]";
 	mes "我们将新公会成员称为^3131FF‘基因学者’^000000。";
 	next;
-	mes "[Alchemist Union Member]";
+	mes "[炼金术士公会成员]";
 	mes "基因学者是炼金术领域达到巅峰的人，如今引领着米德加尔特的炼金术发展。";
 	close;
 }
 
 job3_gen01,25,58,3	script	Devries#gen	865,{
 	if (SkillPoint != 0) {
-		mes "- You still have some unused skill points. -";
+		mes "- 你还有未使用的技能点。 -";
 		close;
 	}
 	if (job_gen == 1) {
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "哦！吸血植物样本 C 又枯萎了。";
 		mes "要换一种生长护理材料吗？";
 		mes "嘿，请快点振作起来！";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "哦？陌生人？";
 		mes "看你的样子，你也在做炼金术，对吧？";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "如今炼金术士越来越多，但真正认真研究这门学问的人并不多！";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "他们只顾着说‘看我的炸弹伤害！’或‘我的生命体不是更漂亮吗？’";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "炼金术士公会说会支持研究者，但研究成果竟只是‘容易培育的孢子’！";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "因此我的实验室到处都是孢子！到处都是！";
 		next;
 		select("你为什么这样说话？");
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "因为我来自卢恩-米德加尔特！";
 		mes "你去过卢恩-米德加尔特吗？那里的人都这样说话。";
 		next;
 		switch(select("不可能？！:我也来自卢恩-米德加尔特。")) {
 		case 1:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "不可能？";
 			mes "你来自卢恩-米德加尔特的村子？";
 			mes "我的村子很大，那里的人都这样说话。";
 			break;
 		case 2:
 			emotion ET_THROB;
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "真的！难怪我觉得你身上有种熟悉的气息。";
 			mes "在施瓦茨瓦尔德遇到老乡，很高兴见到你！";
 			break;
 		}
 		next;
-		mes "- Thump!! -";
+		mes "- 砰！！ -";
 		next;
 		emotion ET_ANGER;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "呜啊啊啊！那个女人又开始了！";
 		next;
 		select("那是什么声音？");
-		mes "[Devries]";
-		mes "那是我的室友 Demi Calberine 进行实验的声音。";
-		mes "Demi 是火焰外壳技师，所以总是这么吵。";
+		mes "[德弗里斯]";
+		mes "那是我的室友 德米·卡尔贝琳 进行实验的声音。";
+		mes "德米 是火焰外壳技师，所以总是这么吵。";
 		next;
 		emotion ET_CRY;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "你看！";
 		mes "我的孢子和植物都被吓坏了！";
 		mes "这么吵我没法工作，压力太大了！！";
 		next;
-		mes "- Munch Crunch -";
+		mes "- 咔嚓咔嚓 -";
 		next;
-		mes "[Devries]";
-		mes "心情不好时，我会一点点品尝 Orlean 先生亲手制作的饼干。";
+		mes "[德弗里斯]";
+		mes "心情不好时，我会一点点品尝 奥尔良 先生亲手制作的饼干。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "这是从普隆德拉得到的高级饼干。咬一口，仿佛漂浮到了阿斯加德。";
-		mes "甜饼干的柔软滋味盖过 Demi Calberine 刺耳的声音。";
+		mes "甜饼干的柔软滋味盖过 德米·卡尔贝琳 刺耳的声音。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "想尝一块吗？";
 		mes "啊，我已经全吃完了。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "没关系！我房间二楼还有一箱！";
 		mes "我忍不住一次买了很多。呵呵呵。";
 		next;
-		mes "- Zooooooooooooooooing -";
+		mes "- 嗡—— -";
 		specialeffect EF_ENDURE;
 		next;
 		specialeffect EF_REPAIRWEAPON,AREA,"#from1to2gen";
-		mes "- (Screeching Sounds)!!! -";
-		mes "- (Screeching)!!! -";
+		mes "- 刺耳的尖啸声！！！ -";
+		mes "- 尖啸声！！！ -";
 		next;
 		specialeffect EF_CRASHEARTH,AREA,"#from1to2gen";
-		mes "- Bump! Bump! Bump! -";
+		mes "- 砰！砰！砰！ -";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "..................";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "呜啊啊啊啊啊";
 		mes "呀啊啊啊啊啊！！！";
 		next;
-		mes "[Devries]";
-		mes "Demi～～～～～～～～～～！！！";
-		mes "Demi～～～～～～～～！！！";
+		mes "[德弗里斯]";
+		mes "德米～～～～～～～～～～！！！";
+		mes "德米～～～～～～～～！！！";
 		next;
-		mes "- For now it seems that I -";
-		mes "- need to calm down Devries. -";
+		mes "- 现在看来，我得先让德弗里斯冷静下来。 -";
 		set job_gen,2;
 		close;
 	} else if (job_gen == 2) {
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "呀啊啊啊啊啊！！！";
-		mes "Demi～～～！！！";
-		mes "Demi～～～～！！！";
+		mes "德米～～～！！！";
+		mes "德米～～～～！！！";
 		next;
-		mes "- Hmm. -";
-		mes "- What'll make her calm? -";
+		mes "- 嗯…… -";
+		mes "- 怎样才能让她冷静下来？ -";
 		close;
 	} else if (job_gen == 3) {
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "呀啊啊啊啊啊！！！";
-		mes "Demi～～～！！！";
-		mes "Demi～～～～！！！";
+		mes "德米～～～！！！";
+		mes "德米～～～～！！！";
 		next;
-		select("把饼干递给 Devries。");
-		mes "- Devries quickly snatches -";
-		mes "- away the cookie and stuffs -";
-		mes "- it all in her mouth. -";
+		select("把饼干递给 德弗里斯。");
+		mes "- 德弗里斯迅速抢过饼干，一股脑塞进嘴里。 -";
 		next;
-		mes "- Crunch Crunch Crunch -";
-		mes "- Crunch Crunch Crunch -";
-		mes "- Crunch Crunch Crunch -";
+		mes "- 咔嚓咔嚓咔嚓 -";
+		mes "- 咔嚓咔嚓咔嚓 -";
+		mes "- 咔嚓咔嚓咔嚓 -";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "啊，甜美的奶油味还留在舌尖。";
 		mes "这让我真正安心。";
 		next;
 		emotion ET_HNG;
-		mes "[Devries]";
-		mes "Demi 今天也在努力研究。";
+		mes "[德弗里斯]";
+		mes "德米 今天也在努力研究。";
 		mes "呼呼呼，她真是个勤奋的人。";
 		next;
-		mes "- That cookie changed her mood quick. -";
+		mes "- 那块饼干真快就让她心情变好了。 -";
 		emotion ET_BEST, playerattached();
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "你是因为热爱炼金术来到这里的吗？";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "等等，我们还没自我介绍。";
-		mes "我叫 Devries。";
+		mes "我叫 德弗里斯。";
 		mes "我对制造展现新奇成长的生命体很感兴趣。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "年轻的炼金术士，你叫什么？";
 		next;
 		select("我叫"+strcharinfo(0)+"。" );
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "哦，"+strcharinfo(0)+"！";
 		mes "真是特别的名字。很高兴见到你。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "但我记不住你的名字。";
-		mes "所以我就叫你 <Popo>，可以吗？";
+		mes "所以我就叫你 <波波>，可以吗？";
 		next;
 		select("我呃……" );
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "很好……";
-		mes "Popo，你听说过我的研究吗？";
+		mes "波波，你听说过我的研究吗？";
 		mes "你就是因为这个来这里的，对吧？";
 		next;
 		switch(select("没有。:是的。")) {
 		case 1:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "嗯，你脸上都写着呢。";
 			mes "不用害羞。";
 			break;
 		case 2:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "果然如此，对吧？";
 			mes "正如我所料，同乡之间确实有种默契。";
 			break;
 		}
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "你看到我发狂时，想起了我之前说的话，让我平静下来。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "我喜欢你自我管理、注意细节的方式。";
 		mes "你有成为基因学者的才能。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "^FF0000成为基因学者后，不能再参加尚未研究过的炼金术士或创造者课程。^000000";
 		mes "如果你能接受，现在就试试吧？";
 		next;
 		switch(select("以后再试。:我想成为基因学者！")) {
 		case 1:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "好吧。";
 			mes "虽然你的知识还不如基因学者，但基础知识也很重要。";
-			mes "Popo，完成学习后再回来。";
+			mes "波波，完成学习后再回来。";
 			set job_gen,4;
 			close;
 		case 2:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "很好！";
 			mes "开始吧！";
 			set job_gen,5;
 			close;
 		}
 	} else if (job_gen == 4) {
-		mes "[Devries]";
-		mes "Popo！";
+		mes "[德弗里斯]";
+		mes "波波！";
 		mes "准备好试试了吗？";
 		next;
 		switch(select("没有。:是的！")) {
 		case 1:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "必须尽力而为！寻求知识没有捷径！";
 			close;
 		case 2:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "非常好！";
 			mes "开始吧！";
 			set job_gen,5;
 			close;
 		}
 	} else if (job_gen == 5) {
-		mes "[Devries]";
-		mes "Popo，你怎么看植物？";
+		mes "[德弗里斯]";
+		mes "波波，你怎么看植物？";
 		mes "你喜欢植物吗？对哪种植物感兴趣？";
 		next;
-		mes "- Boom, Boom, Boom -";
+		mes "- 轰、轰、轰 -";
 		next;
 		emotion ET_SWEAT;
-		mes "[Devries]";
-		mes "啊，请告诉我 Demi Calberine 没有又开始吧？";
-		mes "希望我的预感是错的……拜托……Demi，拜托……";
+		mes "[德弗里斯]";
+		mes "啊，请告诉我 德米·卡尔贝琳 没有又开始吧？";
+		mes "希望我的预感是错的……拜托……德米，拜托……";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "我说到哪里了？";
 		mes "哦，对了。植物在炼金术中非常重要。";
 		next;
-		mes "[Devries]";
-		mes "炼金术能让 Flora 和 Geographer 快速成长，使它们像炼金术士一样帮助战斗……";
+		mes "[德弗里斯]";
+		mes "炼金术能让 噬人花 和 邪恶向日葵 快速成长，使它们像炼金术士一样帮助战斗……";
 		next;
-		mes "- Boom!! Boom!! Boom!! Boom!! -";
+		mes "- 轰！！轰！！轰！！轰！！ -";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes ".......................";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "技术方面，植物相对容易……";
 		next;
-		mes "- Boom!!!!!! -";
+		mes "- 轰！！！ -";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "杂交……";
 		next;
-		mes "- Pop!!!!!! -";
-		mes "- Keeeeeeeeeeeeeh!!!! -";
-		mes "- Boooooooooooooom!!!! -";
-		mes "- Boom!! Boom!! Boom!! -";
+		mes "- 啪！！！ -";
+		mes "- 吱——！！！ -";
+		mes "- 轰隆——！！！ -";
+		mes "- 轰！！轰！！轰！！ -";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes ".......................";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
-		mes "Popo。";
+		mes "[德弗里斯]";
+		mes "波波。";
 		next;
 		emotion ET_THINK;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "我会给你基因学者测试。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "主题是<完美隔音系统>！";
-		mes "请使用实验室一楼的植物和实验设备，想办法让我摆脱 Demi Calberine 的噪音。";
+		mes "请使用实验室一楼的植物和实验设备，想办法让我摆脱 德米·卡尔贝琳 的噪音。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "好了，赶快开始吧！";
 		set job_gen,6;
 		close;
 	} else if (job_gen == 6) {
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "主题是<完美隔音系统>！";
-		mes "请使用实验室一楼的植物和实验设备，想办法让我摆脱 Demi Calberine 的噪音。";
+		mes "请使用实验室一楼的植物和实验设备，想办法让我摆脱 德米·卡尔贝琳 的噪音。";
 		next;
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "柜子里有一些指南可以参考。";
 		mes "好了，赶快开始吧！";
 		close;
 	} else if (job_gen > 6 && job_gen < 60) {
-		mes "[Devries]";
+		mes "[德弗里斯]";
 		mes "有什么问题吗？";
 		next;
 		switch(select("没什么。:实验失败了。")) {
 		case 1:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "最好赶快开始，不然我要尖叫了！！！";
 			close;
 		case 2:
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "那就从头开始吧？";
 			mes "你为什么问我这种事？";
 			set job_gen,7;
@@ -408,76 +407,85 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 			close;
 		}
 	} else if (job_gen == 60 || job_gen == 61) {
-		mes "- Zing Zing Zigi Zigi -";
+		mes "- 嗡嗡滋滋 -";
 		next;
-		mes "- Zing Zing Zigi Zigi -";
+		mes "- 嗡嗡滋滋 -";
 		next;
-		mes "[Devries]";
-		mes "Demi Calberine 到底在做什么？";
+		mes "[德弗里斯]";
+		mes "德米·卡尔贝琳 到底在做什么？";
 		mes "真是太吵了。";
 		next;
-		mes "[Devries]";
-		mes "Popo，你的研究完成了吗？";
+		mes "[德弗里斯]";
+		mes "波波，你的研究完成了吗？";
 		mes "把那些种子给我。";
 		next;
-		if (countitem(6273) == 0 && countitem(6272) == 0) {
-			mes "[Devries]";
+		if (job_gen != 60 && job_gen != 61) close;
+		if ((job_gen == 60 && countitem(6273) == 0) || (job_gen == 61 && countitem(6272) == 0)) {
+			mes "[德弗里斯]";
 			mes "发生了什么？";
 			mes "没有成果怎么能说研究完成了？";
 			mes "重新开始。";
 			set job_gen,7;
 		} else {
-			mes "[Devries]";
-			mes "好，让我看看 Popo 制作的种子。";
+			mes "[德弗里斯]";
+			mes "好，让我看看 波波 制作的种子。";
 			mes "结果如何？";
 			next;
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "把种子放进超级培养器并调整温度……";
 			next;
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "可恶！";
 			next;
 			if (job_gen == 60) {
 				specialeffect EF_FLASHER,AREA,"Super Cultivator#gen";
 				specialeffect EF_PHARMACY_OK,AREA,"Super Cultivator#gen";
-				mes "[Devries]";
-				mes "Popo，你看！";
+				mes "[德弗里斯]";
+				mes "波波，你看！";
 				mes "真是神秘的植物！";
 				next;
-				mes "[Devries]";
+				mes "[德弗里斯]";
 				mes "培养器内部现在充满了带刺藤茎！";
 				mes "藤茎仿佛筑起墙壁，强韧生长并彼此缠绕！";
 				next;
-				mes "[Devries]";
-				mes "就是这个，Popo！";
+				mes "[德弗里斯]";
+				mes "就是这个，波波！";
 				mes "这种植物的特性可以用于许多用途！";
 				next;
-				mes "[Devries]";
-				mes "真是太棒了，Popo。";
+				mes "[德弗里斯]";
+				mes "真是太棒了，波波。";
 				mes "我知道你知识丰富，但你的能力远不止于此！";
 				next;
-				mes "[Devries]";
+				mes "[德弗里斯]";
 				mes "我会把结果告诉炼金术士公会。";
 				mes "我会寄推荐信，说明你的能力出众，能成为杰出成员。";
 				next;
-				mes "[Devries]";
+				mes "[德弗里斯]";
 				mes "公会回复需要时间，你能等一会儿吗？";
-				mes "为什么不去楼上找 Demi Calberine？";
+				mes "为什么不去楼上找 德米·卡尔贝琳？";
 				next;
-				mes "[Devries]";
+				mes "[德弗里斯]";
 				mes "她也是基因学者，专长是迷你加农炮。";
 				mes "去看看她的实验结果吧。";
 				mes "能把这条消息交给她吗？告诉她实验时安静一点。";
+				if (job_gen != 60 || countitem(6273) < 1) {
+					mes "实验进度或种子发生了变化，请带上对应的实验结果后再来。";
+					close;
+				}
 				delitem 6273,1; //Altered_Seed
 				set job_gen,62;
 				changequest 2215,2216;
 			} else {
 				specialeffect EF_SPELLBREAKER,AREA,"Super Cultivator#gen";
 				specialeffect EF_PHARMACY_FAIL,AREA,"Super Cultivator#gen";
-				mes "[Devries]";
-				mes "糟糕！你失败了，Popo。";
+				mes "[德弗里斯]";
+				mes "糟糕！你失败了，波波。";
 				mes "它完全没有生长，已经枯萎了。";
 				mes "回去重新开始！";
+				if (job_gen != 61 || countitem(6272) < 1) {
+					mes "实验进度或种子发生了变化，请带上对应的实验结果后再来。";
+					close;
+				}
 				delitem 6272,1; //Experiment_Seed
 				set job_gen,7;
 			}
@@ -491,7 +499,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		close;
 	} else if (job_gen > 61 && job_gen < 76) {
 		if (checkquest(2223,HUNTING) == 2) {
-			mes "[Devries]";
+			mes "[德弗里斯]";
 			mes "哦，等一下。";
 			mes "邮件好像到了。";
 			set job_gen,76;
@@ -508,10 +516,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		next;
 		if (checkweight(1201,2) == 0 || MaxWeight - Weight < 2000) {
 			mes "- 等一下！！ -";
-			mes "- 你目前携带了 -";
-			mes "- 太多物品。 -";
-			mes "- 请重试 -";
-			mes "- 减轻负重后。 -";
+			mes "- 你目前携带的物品太多，请减轻负重后重试。 -";
 			close;
 		}
 		mes "[德弗里斯]";
@@ -556,13 +561,20 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		next;
 		mes "[德弗里斯]";
 		if (ismounting()) {
-			mes "你正骑着坐骑，";
-			mes "所以无法转职。";
+			mes "你正骑着坐骑，所以无法转职。";
 			mes "请卸下坐骑后重试！";
 			close;
 		}
 		mes "恭喜你，波波！";
 		mes "从现在起你就是基因研究者！！";
+		if (job_gen != 76 || BaseJob != Job_Alchemist || BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0 || checkcart() || ismounting()) {
+			mes "请确认转职进度、等级和技能点，并卸下手推车、解除坐骑后再来。";
+			close;
+		}
+		if (!checkweight(5752,1,2795,1)) {
+			mes "请先为转职奖励预留足够的负重和两个物品栏空位。";
+			close;
+		}
 		jobchange roclass(eaclass()|EAJL_THIRD);
 		set job_gen,77;
 		getitem 5752,1; //Midas_Whisper
@@ -656,7 +668,7 @@ function	script	Genetic_Job_Plant	{
 			next;
 			switch(select("把它用作材料。:不用。")) {
 			case 1:
-				if (getarg(3,0)) set .@str$,"some of the ";
+				if (getarg(3,0)) set .@str$,"一些";
 				mes "- 你获得了"+.@str$+getarg(1)+"。 -";
 				setquest getarg(0);
 				close;
@@ -740,6 +752,14 @@ job3_gen01,7,50,3	script	Testing Table#gen	844,{
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "很好。现在可以让德弗里斯小姐看看这颗种子了！";
+		if (job_gen != 7) {
+			mes "实验进度发生了变化，请重新确认。";
+			close;
+		}
+		if (!checkweight(6272,1) || ((checkquest(2209) == 1 || checkquest(2210) == 1 || checkquest(2211) == 1) && !checkweight(6273,1))) {
+			mes "请先为实验种子预留足够的负重和物品栏空间。";
+			close;
+		}
 		if ((checkquest(2209) == -1 || checkquest(2209) == 0) &&
 		    (checkquest(2210) == -1 || checkquest(2210) == 0) &&
 		    (checkquest(2211) == -1 || checkquest(2211) == 0)){
@@ -817,11 +837,11 @@ job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 		changequest 2216,2217;
 		set job_gen,63;
 		close;
-	} else if (job_gen > 62 && job_gen < 74) {
+	} else if (job_gen > 62 && job_gen < 73) {
 		mes "啊，糟糕，糟糕~~~";
 		mes "你找到零件了吗？还没有？你答应过的，请快一点！";
 		close;
-	} else if (job_gen == 74) {
+	} else if (job_gen == 73) {
 		mes "用这辆手推车火力不够，那就这样安装吧……";
 		next;
 		select("我拿到零件了。");
@@ -904,8 +924,7 @@ job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 		mes "只能改装经过长期打磨、通过质量认证的手推车。";
 		next;
 		mes "[德米·卡尔贝琳]";
-		mes "在成为基因研究者之前，只要有时间就应该练习手推车技巧。";
-		mes "直到你的肌肉能与手推车强力协调，让它移动得优美，";
+		mes "在成为基因研究者之前，只要有时间就应该练习手推车技巧，直到你能自如地操控手推车，让它灵活移动。";
 		next;
 		mes "[德米·卡尔贝琳]";
 		mes "如果你愿意，^FF0000我可以告诉你一个很好的训练地点。^000000";
@@ -913,7 +932,7 @@ job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 		next;
 		mes "[德米·卡尔贝琳]";
 		mes "练习一下挥动你的手推车怎么样？";
-		mes "至少挥动手推车^FF0000100^000000次，就能消除压力，也能把手推车打磨得足够好。";
+		mes "去孢子围栏击败^FF0000100 只毒魔菇^000000吧！练习手推车技巧，既能消除压力，也能把手推车打磨得足够好。";
 		next;
 		mes "[德米·卡尔贝琳]";
 		mes "好了，我得为下一份订单工作了。";
@@ -957,23 +976,24 @@ job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 }
 
 -	script	Scattered Stuff#gen	-1,{
-	if (job_gen > 62 && job_gen < 74) {
+	if (job_gen > 62 && job_gen < 73) {
 		mes "- 地板上散落着很多东西，实验室一片混乱。 -";
 		next;
+		if (job_gen <= 62 || job_gen >= 73) close;
 		mes "- 你找到了一小块金属碎片。 -";
 		set job_gen, job_gen+1;
 		specialeffect EF_BASH;
 		disablenpc();
 		initnpctimer;
 		close;
-	} else if (job_gen == 74) {
+	} else if (job_gen == 73) {
 		mes "- 我想零件都收集齐了。 -";
 		close;
 	}
 	end;
 OnTimer7000:
-	enablenpc();
 	stopnpctimer;
+	enablenpc();
 	end;
 }
 job3_gen01,84,45,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen1	111
@@ -1034,21 +1054,21 @@ OnTouch:
 	end;
 }
 
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
-job3_gen01,26,34	monster	Poison Spore	1428,1,7000
-job3_gen01,23,33	monster	Poison Spore	1428,1,7000
-job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000
+job3_gen01,26,34	monster	毒魔菇	1428,1,7000
+job3_gen01,23,33	monster	毒魔菇	1428,1,7000
+job3_gen01,21,30	monster	毒魔菇	1428,1,7000

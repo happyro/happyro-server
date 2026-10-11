@@ -178,10 +178,10 @@ function	script	F_SexMes	{
 // -- callfunc "F_Bye"
 //////////////////////////////////////////////////////////////////////////////////
 function	script	F_Hi	{
-	return callfunc("F_Rand","Hi!","Hello!","Good day!","How are you?","Hello there.");
+	return callfunc("F_Rand","嗨！","你好！","日安！","你好吗？","你好。");
 }
 function	script	F_Bye	{
-	return callfunc("F_Rand","Bye. See you again.","Later.","Goodbye.","Good luck!","Have a nice day!","Byebye!!!");
+	return callfunc("F_Rand","再见，下次见。","回头见。","再见。","祝你好运！","祝你今天愉快！","拜拜！");
 }
 
 
@@ -205,11 +205,11 @@ function	script	F_ItemName	{
 	}
 	switch (getarg(1,0)) {
 		case 0: break;
-		case 1: set .@t$,.@t$+"Ice "; break;
-		case 2: set .@t$,.@t$+"Earth "; break;
-		case 3: set .@t$,.@t$+"Fire "; break;
-		case 4: set .@t$,.@t$+"Wind "; break;
-		default: set .@t$,.@t$+"Strange "; break;
+		case 1: set .@t$,.@t$+"水属性 "; break;
+		case 2: set .@t$,.@t$+"地属性 "; break;
+		case 3: set .@t$,.@t$+"火属性 "; break;
+		case 4: set .@t$,.@t$+"风属性 "; break;
+		default: set .@t$,.@t$+"未知属性 "; break;
 	}
 	return "^000090"+.@t$+getitemname(getarg(0))+"^000000";
 }
@@ -262,78 +262,78 @@ function	script	F_Load2Skills	{
 //////////////////////////////////////////////////////////////////////////////////
 function	script	F_GetWeaponType	{
 	switch(getiteminfo(getarg(0), ITEMINFO_VIEW)) {
-		case 1: return "Dagger"; break;
-		case 2: return "One-handed Sword"; break;
-		case 3: return "Two-handed Sword"; break;
-		case 4: return "One-handed Spear"; break;
-		case 5: return "Two-handed Spear"; break;
-		case 6: return "One-handed Axe"; break;
-		case 7: return "Two-handed Axe"; break;
-		case 8: return "Mace"; break;
+		case 1: return "短剑"; break;
+		case 2: return "单手剑"; break;
+		case 3: return "双手剑"; break;
+		case 4: return "单手枪"; break;
+		case 5: return "双手枪"; break;
+		case 6: return "单手斧"; break;
+		case 7: return "双手斧"; break;
+		case 8: return "钝器"; break;
 		//case 9: return "Unused"; break;
-		case 10: return "Staff"; break;
-		case 11: return "Bow"; break;
-		case 12: return "Knuckle"; break;
-		case 13: return "Instrument"; break;
-		case 14: return "Whip"; break;
-		case 15: return "Book"; break;
-		case 16: return "Katar"; break;
-		case 17: return "Revolver"; break;
-		case 18: return "Rifle"; break;
-		case 19: return "Gatling gun"; break;
-		case 20: return "Shotgun"; break;
-		case 21: return "Grenade Launcher"; break;
-		case 22: return "Shuriken"; break;
-		default: return "Unknown Weapon"; break;
+		case 10: return "法杖"; break;
+		case 11: return "弓"; break;
+		case 12: return "拳套"; break;
+		case 13: return "乐器"; break;
+		case 14: return "鞭子"; break;
+		case 15: return "书"; break;
+		case 16: return "拳刃"; break;
+		case 17: return "左轮手枪"; break;
+		case 18: return "来福枪"; break;
+		case 19: return "格林机枪"; break;
+		case 20: return "霰弹枪"; break;
+		case 21: return "榴弹发射器"; break;
+		case 22: return "风魔手里剑"; break;
+		default: return "未知武器"; break;
 	}
 	end;
 }
 function	script	F_GetArmorType	{
 	switch(getiteminfo(getarg(0), ITEMINFO_LOCATIONS)) {
 		case EQP_HEAD_LOW:
-			return "Lower Headgear";
+			return "头饰（下段）";
 		case EQP_HAND_R:
 			return callfunc("F_GetWeaponType",getarg(0));
 		case EQP_GARMENT:
-			return "Garment";
+			return "披风";
 		case EQP_ACC_L:
 		case EQP_ACC_R:
 		case EQP_ACC_RL:
-			return "Accessory";
+			return "饰品";
 		case EQP_ARMOR:
-			return "Armor";
+			return "铠甲";
 		case EQP_HAND_L:
-			return "Shield";
+			return "盾牌";
 		case EQP_SHOES:
-			return "Shoes";
+			return "鞋子";
 		case EQP_HEAD_TOP:
-			return "Upper Headgear";
+			return "头饰（上段）";
 		case EQP_HEAD_MID:
-			return "Middle Headgear";
+			return "头饰（中段）";
 		case EQP_COSTUME_HEAD_TOP:
-			return "Costume Upper Headgear";
+			return "时装头饰（上段）";
 		case EQP_COSTUME_HEAD_MID:
-			return "Costume Midle Headgear";
+			return "时装头饰（中段）";
 		case EQP_COSTUME_HEAD_LOW:
-			return "Costume Lower Headgear";
+			return "时装头饰（下段）";
 		case EQP_COSTUME_GARMENT:
-			return "Costume Garment";
+			return "时装披风";
 		case EQP_AMMO:
-			return "Ammo";
+			return "箭矢／弹药";
 		case EQP_SHADOW_ARMOR:
-			return "Shadow Armor";
+			return "影子铠甲";
 		case EQP_SHADOW_WEAPON:
-			return "Shadow Weapon";
+			return "影子武器";
 		case EQP_SHADOW_SHIELD:
-			return "Shadow Shield";
+			return "影子盾牌";
 		case EQP_SHADOW_SHOES:
-			return "Shadow Shoes";
+			return "影子战靴";
 		case EQP_SHADOW_ACC_R:
 		case EQP_SHADOW_ACC_L:
 		case EQP_SHADOW_ACC_RL:
-			return "Shadow Accessory";
+			return "影子饰品";
 		default:
-			return "Unknown Equip";
+			return "未知装备";
 	}
 }
 
@@ -359,24 +359,24 @@ function	script	Time2Str	{
 	
 	set .@Time$, "";
 	if( .@Days > 1 )
-		set .@Time$, .@Time$ + .@Days + " days, ";
+		set .@Time$, .@Time$ + .@Days + "天，";
 	else if( .@Days > 0 )
-		set .@Time$, .@Time$ + .@Days + " day, ";
+		set .@Time$, .@Time$ + .@Days + "天，";
 
 	if( .@Hours > 1 )
-		set .@Time$, .@Time$ + .@Hours + " hours, ";
+		set .@Time$, .@Time$ + .@Hours + "小时，";
 	else if( .@Hours > 0 )
-		set .@Time$, .@Time$ + .@Hours + " hour, ";
+		set .@Time$, .@Time$ + .@Hours + "小时，";
 
 	if( .@Minutes > 1 )
-		set .@Time$, .@Time$ + .@Minutes + " minutes, ";
+		set .@Time$, .@Time$ + .@Minutes + "分钟，";
 	else if( .@Minutes > 0 )
-		set .@Time$, .@Time$ + .@Minutes + " minute, ";
+		set .@Time$, .@Time$ + .@Minutes + "分钟，";
 
 	if( .@Time_Left > 1 || .@Time_Left == 0 )
-		set .@Time$, .@Time$ + .@Time_Left + " seconds";
+		set .@Time$, .@Time$ + .@Time_Left + "秒";
 	else if( .@Time_Left == 1 )
-		set .@Time$, .@Time$ + .@Time_Left + " second";
+		set .@Time$, .@Time$ + .@Time_Left + "秒";
 	
 	return .@Time$;
 }
@@ -632,29 +632,29 @@ function	script	F_CanChangeJob	{
 //////////////////////////////////////////////////////////////////////////////////
 function	script	F_getpositionname	{
 	switch( getarg(0,999) ) {
-		case EQI_ACC_L:		return "Accessory 1";
-		case EQI_ACC_R:		return "Accessory 2";
-		case EQI_SHOES:		return "Shoes";
-		case EQI_GARMENT:	return "Robe";
-		case EQI_HEAD_LOW:	return "Head 3";
-		case EQI_HEAD_MID:	return "Head 2";
-		case EQI_HEAD_TOP:	return "Head";
-		case EQI_ARMOR:		return "Body";
-		case EQI_HAND_L:	return "Left hand";
-		case EQI_HAND_R:	return "Right hand";
-		case EQI_COSTUME_HEAD_TOP:	return "Upper Costume Headgear";
-		case EQI_COSTUME_HEAD_MID:	return "Middle Costume Headgear";
-		case EQI_COSTUME_HEAD_LOW:	return "Lower Costume Headgear";
-		case EQI_COSTUME_GARMENT:	return "Costume Garment";
-		case EQI_AMMO:			return "Arrow/Ammunition";
-		case EQI_SHADOW_ARMOR:	return "Shadow Armor";
-		case EQI_SHADOW_WEAPON:	return "Shadow Weapon";
-		case EQI_SHADOW_SHIELD:	return "Shadow Shield";
-		case EQI_SHADOW_SHOES:	return "Shadow Shoes";
-		case EQI_SHADOW_ACC_R:	return "Shadow Accessory 2";
-		case EQI_SHADOW_ACC_L:	return "Shadow Accessory 1";
+		case EQI_ACC_L:		return "饰品 1";
+		case EQI_ACC_R:		return "饰品 2";
+		case EQI_SHOES:		return "鞋子";
+		case EQI_GARMENT:	return "披风";
+		case EQI_HEAD_LOW:	return "头饰（下段）";
+		case EQI_HEAD_MID:	return "头饰（中段）";
+		case EQI_HEAD_TOP:	return "头饰（上段）";
+		case EQI_ARMOR:		return "铠甲";
+		case EQI_HAND_L:	return "左手";
+		case EQI_HAND_R:	return "右手";
+		case EQI_COSTUME_HEAD_TOP:	return "时装头饰（上段）";
+		case EQI_COSTUME_HEAD_MID:	return "时装头饰（中段）";
+		case EQI_COSTUME_HEAD_LOW:	return "时装头饰（下段）";
+		case EQI_COSTUME_GARMENT:	return "时装披风";
+		case EQI_AMMO:			return "箭矢／弹药";
+		case EQI_SHADOW_ARMOR:	return "影子铠甲";
+		case EQI_SHADOW_WEAPON:	return "影子武器";
+		case EQI_SHADOW_SHIELD:	return "影子盾牌";
+		case EQI_SHADOW_SHOES:	return "影子战靴";
+		case EQI_SHADOW_ACC_R:	return "影子饰品 2";
+		case EQI_SHADOW_ACC_L:	return "影子饰品 1";
 		default:
-			return "Unknown";
+			return "未知部位";
 	}
 }
 

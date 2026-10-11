@@ -67,6 +67,10 @@ que_job01,68,84,1	script	Black Marketeer#Buying	881,{
 					mes "你不懂基本商业规则吗？一切都有价格。";
 					mes "想要东西就得付钱。";
 				} else {
+					if (!checkweight(12548,.@input)) {
+						mes "请先为许可证预留足够的负重和物品栏空间。";
+						close;
+					}
 					mes "哈……哈哈哈！";
 					mes "休先生，我会接管你的许可证生意。等着瞧！";
 					mes "*咯咯笑*";
@@ -137,6 +141,10 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 					if (Zeny < (.@input*200)) {
 						mes "但你的钱似乎不够。";
 					} else {
+						if (!checkweight(6377,.@input)) {
+							mes "请先为许可证预留足够的负重和物品栏空间。";
+							close;
+						}
 						mes "感谢惠顾。";
 						getitem 6377,.@input; //Buy_Market_Permit
 						set Zeny,Zeny-(.@input*200);
@@ -173,8 +181,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 			next;
 			select("好吧，你到底想说什么？");
 			mes "[休先生]";
-			mes "哦，对了。总之，你可以通过露天商店";
-			mes "批量购买特定物品。";
+			mes "哦，对了。总之，你可以通过收购商店批量购买特定物品。";
 			next;
 			mes "[休先生]";
 			mes "要开设批量收购商店，需要商人公会发行的许可证。";
@@ -206,7 +213,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				mes "哎呀，真令人失望！";
 				mes "批量收购能在很多方面帮助你的生意，";
 				mes "但决定权在你。";
-				mes "我随时愿意为你咨询！";
+				mes "我随时愿意为你提供咨询！";
 				close;
 			}
 			mes "[休先生]";
@@ -222,6 +229,10 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				mes "[休先生]";
 				mes .@name$+"……";
 				mes "你的字迹不错。";
+				if (!checkweight(6377,5)) {
+					mes "请先为许可证预留足够的负重和物品栏空间。";
+					close;
+				}
 				mes "好了，你现在获准开设批量收购商店。";
 				set Zeny,Zeny-10000;
 				getitem 6377,5; //Buy_Stall_Permit
@@ -234,7 +245,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				mes "另外，背包里必须至少有一件想购买的物品，因为你要通过商店展示给别人。";
 				next;
 				mes "[休先生]";
-				mes "技能现在应该已经登记在技能窗口。如果看不到，请缩小技能列表并检查三转标签。";
+				mes "你现在可以在技能窗口中找到批量收购商店技能。";
 				next;
 				mes "[休先生]";
 				mes "这是给你试用的 5 张批量收购商店许可证。";

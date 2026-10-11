@@ -5,7 +5,7 @@
 //============================================================
 
 itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
-	mes "[Equipment Reform PR Agent]";
+	mes "[装备改造宣传员]";
 	mes "你好，冒险者！";
 	mes "你对现在的装备不满意吗？";
 	mes "不想尝试不同于普通方法的新改造吗？";
@@ -13,21 +13,21 @@ itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
 	next;
 	switch( select( "走吧。", "听听说明。", "退出。" ) ) {
 	case 1:
-		mes "[Equipment Reform PR Agent]";
+		mes "[装备改造宣传员]";
 		mes "很好！研究所其他设施属于机密，无法进入，所以我们会引导你们这些外来者走特殊通道！";
 		close2;
 		warp "rgsr_in",125,170;
 		end;
 	case 2:
-		mes "[Equipment Reform PR Agent]";
+		mes "[装备改造宣传员]";
 		mes "雷根贝勒研究所正在世界各地研究武器、铠甲、饰品及其他装备的改造……";
 		mes "我们仍在收集数据、研究改造，因此需要大量冒险者装备来推进研究。";
 		next;
-		mes "[Equipment Reform PR Agent]";
+		mes "[装备改造宣传员]";
 		mes "研究仍在进行，完成后会追加许多新装备，敬请期待！";
 		close;
 	case 3:
-		mes "[Equipment Reform PR Agent]";
+		mes "[装备改造宣传员]";
 		mes "以后感兴趣的话再回来！";
 		close;
 	}
@@ -35,19 +35,19 @@ itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
 lighthalzen,99,156,3	duplicate(Equipment Reform PR Agent#it01)	Equipment Reform PR Agent#lh01	4_F_ZONDAGIRL
 
 rgsr_in,112,167,7	script	Enchant Researcher#rg02-1	MD_ED_M_SCIENCE,{
-	mes "[Torus]";
+	mes "[托鲁斯]";
 	mes "嗯？除了队长，你还想见我们队里的其他人吗？";
 	mes "那就是我～";
 	mes "我负责附魔。";
 	mes "让我看看你带了什么？";
 	next;
 	if (select( "OS武器附魔", "退出" ) == 2) {
-		mes "[Torus]";
+		mes "[托鲁斯]";
 		mes "需要时再回来。";
 		mes "我们也需要研究数据。";
 		close;
 	}
-	mes "[Torus]";
+	mes "[托鲁斯]";
 	mes "在哪里……";
 	close2;
 	item_enchant(33);
@@ -59,7 +59,7 @@ OnInit:
 }
 
 rgsr_in,115,169,5	script	Weapon Researcher#rg02	MD_ED_M_SCIENCE,{
-	mes "[Frasa]";
+	mes "[弗雷萨]";
 	mes "让我看看……你是客人。";
 	mes "我喜欢知道自己想要什么的人。";
 	mes "可改造物品也可在<TIPBOX>[列表]<INFO>9163</INFO></TIPBOX>中查看。";
@@ -67,12 +67,12 @@ rgsr_in,115,169,5	script	Weapon Researcher#rg02	MD_ED_M_SCIENCE,{
 	next;
 	switch( select( "塔纳托斯武器", "OS武器", "退出" ) ) {
 	case 1:
-		mes "[Frasa]";
+		mes "[弗雷萨]";
 		mes "^0000FF塔纳托斯武器^000000改造分为低级和中级。";
 		next;
 		switch( select( "低级改造", "中级改造", "退出" ) ) {
 		case 1:
-			mes "[Frasa]";
+			mes "[弗雷萨]";
 			mes "塔纳托斯武器低级改造。";
 			mes "^FF0000精炼等级降低5^000000，但消耗材料较少。";
 			mes "改造要求武器精炼等级+9或以上。";
@@ -80,7 +80,7 @@ rgsr_in,115,169,5	script	Weapon Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("Thanos_W_Reform_1");
 			end;
 		case 2:
-			mes "[Frasa]";
+			mes "[弗雷萨]";
 			mes "塔纳托斯武器中级改造。";
 			mes "^FF0000精炼等级降低1^000000，但消耗更多材料。";
 			mes "改造要求武器精炼等级+9或以上。";
@@ -88,32 +88,32 @@ rgsr_in,115,169,5	script	Weapon Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("Thanos_W_Reform_2");
 			end;
 		case 3:
-			mes "[Frasa]";
+			mes "[弗雷萨]";
 			mes "需要改造时再回来。";
 			mes "只要帮助我们的研究，随时欢迎回来。";
 			close;
 		}
 		end;
 	case 2:
-		mes "[Frasa]";
+		mes "[弗雷萨]";
 		mes "^0000FFOS武器^000000……";
 		mes "改造要求精炼等级+7或以上。";
 		mes "精炼等级不会降低。";
 		mes "你带来材料了吗？";
 		next;
 		if (select( "转换", "退出" ) == 2) {
-			mes "[Frasa]";
+			mes "[弗雷萨]";
 			mes "需要改造时再回来。";
 			mes "只要帮助我们的研究，随时欢迎回来。";
 			close;
 		}
-		mes "[Frasa]";
+		mes "[弗雷萨]";
 		mes "让我看看你带了什么。";
 		close2;
 		item_reform("OS_Weapon_Reform");
 		end;
 	case 3:
-		mes "[Frasa]";
+		mes "[弗雷萨]";
 	mes "如果你需要改造，请再回来。";
 		mes "只要帮助我们的研究，随时欢迎回来。";
 		close;
@@ -126,10 +126,10 @@ OnInit:
 }
 
 rgsr_in,115,180,5	script	Armor Researcher#rg02	MD_ED_M_SCIENCE,{
-	mes "[Algebra]";
-	mes "啊，我们已经走到这一步，但团队研究仍缺少实验。";
-	mes "下次我会改进一些并取得队长许可，再继续。";
-	mes "Okay?";
+	mes "[阿尔吉布拉]";
+	mes "啊，虽然研究已经进展到这一步，但我们团队还需要更多实验。";
+	mes "我会再改进一下，取得队长许可后再继续。";
+	mes "好吗？";
 	npctalk "皱眉。", "", bc_self;
 	close;
 
@@ -156,7 +156,7 @@ rgsr_in,137,187,3	script	Assistant#rg04	4_F_HUWOMAN,{
 	npctalk "助手：不，不是那个……就是它。就是它……", "", bc_self;
 	sleep2 300;
 	npctalk "助手：嗝……差点就是大日子……你没见到他吧？", "Assistant#rg02", bc_self;
-	npctalk "Grid：？", "Ore Researcher#rg02", bc_self;
+	npctalk "格里德：？", "Ore Researcher#rg02", bc_self;
 	end;
 }
 
@@ -230,93 +230,93 @@ OnInit:
 }
 
 rgsr_in,131,187,5	script	Ore Researcher#rg02	MD_ED_M_SCIENCE,{
-	mes "[Grid]";
-	mes "Come on.";
+	mes "[格里德]";
+	mes "来吧。";
 	mes "这是低预算实验室，所以一直这样。";
 	mes "我和助手负责精炼实验室使用的宝石。需要收费。";
 	next;
 	switch( select( "查看兑换清单", "你们兑换什么？", "退出" ) ) {
 	case 1:
-		mes "[Grid]";
+		mes "[格里德]";
 		mes "让我看看……";
 		mes "现在有这些项目。";
 		next;
 		switch( select( "宝石精炼", "高级矿石兑换", "购买额外矿石", "取消" ) ) {
 		case 1:
-			mes "[Grid]";
+			mes "[格里德]";
 			mes "宝石精炼。";
 			close2;
 			callshop("barter_rgsr_in_1");
 			end;
 		case 2:
-			mes "[Grid]";
+			mes "[格里德]";
 			mes "高级矿石兑换。";
 			close2;
 			callshop("barter_rgsr_in_2");
 			end;
 		case 3:
-			mes "[Grid]";
+			mes "[格里德]";
 			mes "矿石不够？那么我正在特别收集一种东西……";
-			mes "你有暗影分解器吗？";
+			mes "你有暗影矿吗？";
 			close2;
 			callshop("barter_rgsr_in_3");
 			end;
 		case 4:
-			mes "[Grid]";
+			mes "[格里德]";
 			mes "需要什么就再来。";
 			close;
 		}
 		end;
 	case 2:
-		mes "[Grid]";
+		mes "[格里德]";
 		mes "研究显示材料非常稀有。团队雇佣了冒险者，但带来的数量仍远远不够。";
-		mes "因此冒险者带材料来时，我们会提供相应研究价值。";
+		mes "因此，冒险者带来材料后，我们就会提供相应的研究成果作为回报。";
 		next;
-		mes "[Grid]";
+		mes "[格里德]";
 		mes "幸运的是，我们负责研究，来找我们的冒险者提供材料并使用我们的技术。";
 		mes "想改造什么，只需带来指定材料。";
 		next;
-		mes "[Grid]";
+		mes "[格里德]";
 		mes "你是冒险者，知道这意味着什么吧？";
 		close;
 	case 3:
-		mes "[Grid]";
+		mes "[格里德]";
 		mes "需要什么就再来。";
 		close;
 	}
 }
 
 rgsr_in,137,178,3	script	Accessories Researcher#rg02	MD_ED_M_SCIENCE,{
-	mes "[Champ]";
+	mes "[查姆]";
 	mes "终于有冒险者来确认我的研究了，是你吗？";
-	mes "遗憾的是，我们团队还没准备好走出去。";
+	mes "遗憾的是，我们团队的研究成果还不足以对外提供服务。";
 	next;
-	mes "[Champ]";
+	mes "[查姆]";
 	mes "研究仍未完成。";
-	mes "得到队长许可后下次再见。";
+	mes "等我取得队长许可，我们下次再见吧。";
 	close;
 
 OnInit:
-	setunittitle( getnpcid(0), "Team Zerter");
+	setunittitle( getnpcid(0), "泽尔特研究团队");
 	end;
 }
 
 rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
-	mes "[Stack]";
-	mes "想看看Licht团队的成果吗？";
+	mes "[斯塔克]";
+	mes "想看看利希特团队的成果吗？";
 	mes "我们为这个实验室感到自豪。";
 	mes "你想改造哪一件？";
 	mes "可改造物品位于<TIPBOX>[列表]<INFO>9166</INFO></TIPBOX>。";
 	next;
 	switch( select( "特殊铠甲", "特殊武器", "退出" ) ) {
 	case 1:
-		mes "[Stack]";
+		mes "[斯塔克]";
 		mes "^0000FF特殊铠甲^000000有低级、中级和高级改造。";
 		mes "不可精炼铠甲只能进行高级改造。";
 		next;
 		switch( select( "低级改造", "中级改造", "高级改造", "退出" ) ) {
 		case 1:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "铠甲低级改造？好。";
 			mes "^FF0000精炼等级降低5^000000，但消耗材料较少。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -324,7 +324,7 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Armor_Reform_1");
 			end;
 		case 2:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "铠甲中级改造？好。";
 			mes "^FF0000精炼等级降低1^000000，但消耗更多材料。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -332,7 +332,7 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Armor_Reform_2");
 			end;
 		case 3:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "铠甲高级改造？好。";
 			mes "^FF0000精炼等级提高1^000000，但消耗更多材料。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -341,18 +341,18 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Armor_Reform_3");
 			end;
 		case 4:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "已经要走了吗？";
-			mes "你还需要看看我们更多出色成果！";
+			mes "你还应该多看看我们的出色成果！";
 			close;
 		}
 	case 2:
-		mes "[Stack]";
+		mes "[斯塔克]";
 		mes "^0000FF特殊武器^000000有低级、中级和高级改造。";
 		next;
 		switch( select( "低级改造", "中级改造", "高级改造", "退出" ) ) {
 		case 1:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "武器低级改造？好。";
 			mes "^FF0000精炼等级降低5^000000，但消耗材料较少。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -360,7 +360,7 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Weapon_Reform_1");
 			end;
 		case 2:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "武器中级改造？好。";
 			mes "^FF0000精炼等级降低1^000000，但消耗更多材料。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -368,7 +368,7 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Weapon_Reform_2");
 			end;
 		case 3:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "武器高级改造？好。";
 			mes "^FF0000精炼等级提高1^000000，但消耗更多材料。";
 			mes "改造要求装备精炼等级+9或以上。";
@@ -376,16 +376,16 @@ rgsr_in,136,171,5	script	Special Equipment Researcher#rg02	MD_ED_M_SCIENCE,{
 			item_reform("C_Weapon_Reform_3");
 			end;
 		case 4:
-			mes "[Stack]";
+			mes "[斯塔克]";
 			mes "已经要走了吗？";
-			mes "你还需要看看我们更多出色成果！";
+			mes "你还应该多看看我们的出色成果！";
 			close;
 		}
 		end;
 	case 3:
-		mes "[Stack]";
+		mes "[斯塔克]";
 		mes "已经要走了吗？";
-		mes "你还需要看看我们更多出色成果！";
+		mes "你还应该多看看我们的出色成果！";
 		close;
 	}
 	end;
@@ -396,37 +396,37 @@ OnInit:
 }
 
 rgsr_in,128,174,5	script	Director#rg02	1_M_LIBRARYMASTER,{
-	mes "[Director]";
+	mes "[主管]";
 	mes "……来吧。";
-	mes "你来时可能听过说明，但简单介绍一下，这里还有很长的路。我们正在把许多武器、铠甲、饰品等改造成不同的东西。";
+	mes "你来时可能已经听过说明，我再简单介绍一下吧。我们的研究还有很长的路要走，目前正在尝试改造各种武器、铠甲和饰品，让它们焕然一新。";
 	next;
-	mes "[Director]";
+	mes "[主管]";
 	mes "转换装备必须降低精炼等级，但这是获得更强力量的代价。";
 	next;
-	mes "[Director]";
+	mes "[主管]";
 	mes "研究仍在继续，不知道何时何地会突然完成并提供给冒险者。";
 	mes "就是这样……数据收集完毕后总会有办法。";
 	next;
-	mes "[Director]";
-	mes "这一次，Licht团队做到了。";
+	mes "[主管]";
+	mes "这一次，利希特团队做到了。";
 	mes "如果感兴趣，看看完成了哪些研究。";
 	next;
-	mes "[Director]";
+	mes "[主管]";
 	mes "大家都喜欢安静，所以别大声说话。";
 	close;
 }
 
 rgsr_in,122,160,5	script	Exit Guard#rg01	4_M_LGTGUARD,{
-	mes "[Exit guard]";
+	mes "[出口警卫]";
 	mes "结束了吗？";
-	mes "要^FF0000返回莱赫伦^000000吗？";
+	mes "要^FF0000返回里希塔乐^000000吗？";
 	next;
 	if (select( "返回。", "还有工作。" ) == 2) {
-		mes "[Exit guard]";
+		mes "[出口警卫]";
 		mes "完成后随时告诉我们。";
 		close;
 	}
-	mes "[Exit guard]";
+	mes "[出口警卫]";
 	mes "我带你回去。";
 	close2;
 	warp "lighthalzen",101,156;
@@ -434,16 +434,16 @@ rgsr_in,122,160,5	script	Exit Guard#rg01	4_M_LGTGUARD,{
 }
 
 rgsr_in,129,160,3	script	Exit Guard#rg02	4_M_LGTGUARD,{
-	mes "[Exit guard]";
-	mes "Are you done?";
+	mes "[出口警卫]";
+	mes "结束了吗？";
 	mes "要^FF0000返回道具商城^000000吗？";
 	next;
 	if (select( "返回。", "还有工作。" ) == 2) {
-		mes "[Exit guard]";
+		mes "[出口警卫]";
 		mes "完成后随时告诉我们。";
 		close;
 	}
-	mes "[Exit guard]";
+	mes "[出口警卫]";
 	mes "我带你回去。";
 	close2;
 	warp "itemmall",16,47;

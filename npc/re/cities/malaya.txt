@@ -19,36 +19,36 @@
 // Port Malaya Transportation
 //============================================================
 // Old coordinates: alberta (237,71)
-alberta,196,202,3	script	Optamara Crew#alberta	100,{
-	mes "[Optamara Crew]";
+alberta,196,202,3	script	奥普塔玛拉船员#alberta	100,{
+	mes "[奥普塔玛拉船员]";
 	mes "嘿，你好！";
 	mes "前往马来港需要10,000 Zeny。感兴趣吗？";
 	next;
 	switch(select("关于马来港。:前往马来港。:取消。")) {
 	case 1:
-		mes "[Optamara Crew]";
-		mes "马来港是一个小村庄，从阿尔伯特向西南航行即可抵达。";
+		mes "[奥普塔玛拉船员]";
+		mes "马来港是一个小村庄，从艾尔贝塔向西南航行即可抵达。";
 		next;
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "之前村里有些问题，我没能去那里，但现在似乎都解决了！";
 		next;
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "我不太确定，但那是个像舒适温馨公园一样的村庄。";
 		next;
-		mes "[Optamara Crew]";
-		mes "我差点就不再回到舒适的阿尔伯特了。";
+		mes "[奥普塔玛拉船员]";
+		mes "我差点就不再回到舒适的艾尔贝塔了。";
 		next;
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "我相信你到了马来港也会有同样感受。";
 		close;
 	case 2:
 		if (Zeny < 10000) {
-			mes "[Optamara Crew]";
+			mes "[奥普塔玛拉船员]";
 			mes "天哪！！";
 			mes "你不知道那里离这里多远。当然不是免费的。请带10,000 Zeny回来。抱歉！";
 			close;
 		}
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "太好了！";
 		mes "出发前往马来港！！";
 		set Zeny, Zeny-10000;
@@ -56,74 +56,74 @@ alberta,196,202,3	script	Optamara Crew#alberta	100,{
 		warp "malaya",271,55;
 		end;
 	case 3:
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "现在的冒险者都一副很忙的样子。有时间再来，我们可以一起去马来港。";
 		close;
 	}
 }
 
-malaya,276,55,4	script	Optamara Crew#malaya	100,{
+malaya,276,55,4	script	奥普塔玛拉船员#malaya	100,{
 	if (malaya_hi < 10) {
-		mes "[Optamara Crew]";
-		mes "我想村子仍然很忙。参观完了吗？总有船开往阿尔伯特。";
+		mes "[奥普塔玛拉船员]";
+		mes "我想村子仍然很忙。参观完了吗？总有船开往艾尔贝塔。";
 		next;
 	} else if (malaya_hi < 20) {
-		mes "[Optamara Crew]";
-		mes "我想是某位无名冒险者帮村民解决了烦恼。耶！要回阿尔伯特吗？";
+		mes "[奥普塔玛拉船员]";
+		mes "我想是某位无名冒险者帮村民解决了烦恼。耶！要回艾尔贝塔吗？";
 		next;
 	} else {
-		mes "[Optamara Crew]";
-		mes "要和我一起回阿尔伯特吗？";
+		mes "[奥普塔玛拉船员]";
+		mes "要和我一起回艾尔贝塔吗？";
 		next;
 	}
 	switch(select("返回。:不返回。")) {
 	case 1:
-		mes "[Optamara Crew]";
+		mes "[奥普塔玛拉船员]";
 		mes "太好了！我们现在就出发去艾尔贝塔！！";
 		close2;
 		warp "alberta",192,217;
 		end;
 	case 2:
-		mes "[Optamara Crew]";
-		mes "没关系。想回阿尔伯特时再来这里。";
+		mes "[奥普塔玛拉船员]";
+		mes "没关系。想回艾尔贝塔时再来这里。";
 		close;
 	}
 }
 
 // Generic Port Malaya NPCs
 //============================================================
-ma_in01,30,94,4	script	Inn Keeper#ma	583,{
+ma_in01,30,94,4	script	旅馆老板#ma	583,{
 	if (malaya_hi < 10) {
-		mes "[Inn Keeper]";
+		mes "[旅馆老板]";
 		mes "哦呀！来参观吗？";
 		mes "真不巧。村子现在有点混乱，所以我暂时歇业。抱歉。";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[Inn Keeper]";
+		mes "[旅馆老板]";
 		mes "你就是村民们谈论的冒险者？多亏了你，我重新开了旅馆。谢谢。";
 		next;
 	} else {
-		mes "[Inn Keeper]";
+		mes "[旅馆老板]";
 		mes "欢迎。";
 		mes "这里是马来港最好的旅馆“城市小屋”。";
 		next;
 	}
-	mes "[Inn Keeper]";
+	mes "[旅馆老板]";
 	mes "来休息吗？住宿费是5,000 Zeny。";
 	next;
-	switch(select("寄存。:住宿。- 5,000z:取消。")) {
+	switch(select("设置储存点。:住宿。- 5,000z:取消。")) {
 	case 1:
-		mes "[Inn Keeper]";
-		mes "寄存成功。下次见。";
+		mes "[旅馆老板]";
+		mes "储存点已设置。下次见。";
 		savepoint "ma_in01",43,98,1,1;
 		close;
 	case 2:
 		if (Zeny < 5000) {
-			mes "[Inn Keeper]";
+			mes "[旅馆老板]";
 			mes "抱歉，你的钱似乎不够。";
 			close;
 		}
-		mes "[Inn Keeper]";
+		mes "[旅馆老板]";
 		mes "希望你住得愉快。";
 		close2;
 		set Zeny, Zeny-5000;
@@ -147,7 +147,7 @@ OnInit:
 	set .@size, getarraysize(.@npc$);
 	set .@rand, rand(.@size);
 	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
-		donpcevent "Unidentified Creature#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
+		donpcevent "未确认的生物#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
 	end;
 OnEnable:
 	enablenpc();
@@ -164,7 +164,7 @@ OnBingx2:
 	set .@size, getarraysize(.@npc$);
 	set .@rand, rand(.@size);
 	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
-		donpcevent "Unidentified Creature#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
+		donpcevent "未确认的生物#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
 	donpcevent strnpcinfo(0)+"::OnDisable";
 	end;
 OnTouch_:
@@ -189,9 +189,9 @@ OnTouch_:
 	mes "未确认的生物看了你一眼就跑开了。";
 	close;
 }
-ma_fild01,74,367,6	duplicate(Unidentified Creature#i)	Unidentified Creature#01	572,2,2
-ma_fild02,282,41,4	duplicate(Unidentified Creature#i)	Unidentified Creature#05	572,2,2
-ma_scene01,195,92,4	duplicate(Unidentified Creature#i)	Unidentified Creature#09	572,2,2
+ma_fild01,74,367,6	duplicate(Unidentified Creature#i)	未确认的生物#01	572,2,2
+ma_fild02,282,41,4	duplicate(Unidentified Creature#i)	未确认的生物#05	572,2,2
+ma_scene01,195,92,4	duplicate(Unidentified Creature#i)	未确认的生物#09	572,2,2
 
 -	script	Unidentified Creature#j	-1,{
 	end;
@@ -215,7 +215,7 @@ OnBingx2:
 	set .@size, getarraysize(.@npc$);
 	set .@rand, rand(.@size);
 	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
-		donpcevent "Unidentified Creature#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
+		donpcevent "未确认的生物#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
 	donpcevent strnpcinfo(0)+"::OnDisable";
 	end;
 OnTouch_:
@@ -262,36 +262,36 @@ OnTouch_:
 	mes "未确认的生物看了你一眼就跑开了。";
 	close;
 }
-ma_fild01,109,116,4	duplicate(Unidentified Creature#j)	Unidentified Creature#02	572,2,2
-ma_fild01,280,150,6	duplicate(Unidentified Creature#j)	Unidentified Creature#03	572,2,2
-ma_fild01,309,221,6	duplicate(Unidentified Creature#j)	Unidentified Creature#04	572,2,2
-ma_fild02,246,324,4	duplicate(Unidentified Creature#j)	Unidentified Creature#06	572,2,2
-ma_fild02,71,296,6	duplicate(Unidentified Creature#j)	Unidentified Creature#07	572,2,2
-ma_fild02,32,263,4	duplicate(Unidentified Creature#j)	Unidentified Creature#08	572,2,2
-ma_scene01,158,139,4	duplicate(Unidentified Creature#j)	Unidentified Creature#10	572,2,2
-ma_scene01,167,112,6	duplicate(Unidentified Creature#j)	Unidentified Creature#11	572,2,2
+ma_fild01,109,116,4	duplicate(Unidentified Creature#j)	未确认的生物#02	572,2,2
+ma_fild01,280,150,6	duplicate(Unidentified Creature#j)	未确认的生物#03	572,2,2
+ma_fild01,309,221,6	duplicate(Unidentified Creature#j)	未确认的生物#04	572,2,2
+ma_fild02,246,324,4	duplicate(Unidentified Creature#j)	未确认的生物#06	572,2,2
+ma_fild02,71,296,6	duplicate(Unidentified Creature#j)	未确认的生物#07	572,2,2
+ma_fild02,32,263,4	duplicate(Unidentified Creature#j)	未确认的生物#08	572,2,2
+ma_scene01,158,139,4	duplicate(Unidentified Creature#j)	未确认的生物#10	572,2,2
+ma_scene01,167,112,6	duplicate(Unidentified Creature#j)	未确认的生物#11	572,2,2
 
-malaya,227,311,4	script	Grandma#ma01	575,{
+malaya,227,311,4	script	奶奶#ma01	575,{
 	if (malaya_hi < 10) {
 		mes "[奶奶]";
 		mes "你不是本地人？请照顾好自己。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "我很担心，因为我的儿媳怀孕了。希望一切顺利。";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "我听说有个外乡人在帮助村子。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "那我的儿媳就安全了。";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "听说有个叫"+getd("$ma_name0"+rand(1,6)+"$")+"的人一直跟着米奥嫩叔叔。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "我会为他们的禁忌之爱加油。";
 		close;
 	}
@@ -323,28 +323,28 @@ malaya,227,311,4	script	Grandma#ma01	575,{
 	close;
 }
 
-malaya,189,263,4	script	Drumming Young Man#ma02	578,{
+malaya,189,263,4	script	打鼓的年轻人#ma02	578,{
 	if (malaya_hi < 10) {
 		emotion ET_HUK;
-		mes "[Drumming Young Man]";
+		mes "[打鼓的年轻人]";
 		mes "呃……就像上次一样……";
 		next;
 		emotion ET_HUK;
-		mes "[Drumming Young Man]";
+		mes "[打鼓的年轻人]";
 		mes "月亮被吞掉的时候。啊！";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[Drumming Young Man]";
+		mes "[打鼓的年轻人]";
 		mes "我想村子是被一位无名冒险者拯救的。";
 		next;
 		emotion ET_OHNO;
-		mes "[Drumming Young Man]";
+		mes "[打鼓的年轻人]";
 		mes "呼……我还以为巴科纳瓦又出现了。";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[Drumming Young Man]";
-		mes getd("$ma_name0"+rand(1,6)+"$")+" 据说阻止了巴贡纳瓦吞下月亮。很厉害吧？我松了口气。";
+		mes "[打鼓的年轻人]";
+		mes getd("$ma_name0"+rand(1,6)+"$")+" 据说阻止了巴科纳瓦吞下月亮。很厉害吧？我松了口气。";
 		close;
 	}
 	mes "[打鼓的年轻人]";
@@ -368,15 +368,15 @@ malaya,189,263,4	script	Drumming Young Man#ma02	578,{
 	mes "[打鼓的年轻人]";
 	mes "那就是你的机会！！什么声音都可以！！无论是大锅、铜钹、鼓、锅还是煎锅，只管不停制造噪音。";
 	next;
-	mes "[Drumming Young Man]";
+	mes "[打鼓的年轻人]";
 	mes "这样巴科纳瓦就会受到惊吓，吐出月亮逃走！";
 	next;
-	mes "[Drumming Young Man]";
+	mes "[打鼓的年轻人]";
 	mes "随身带一面鼓吧。你会发现它很方便。";
 	close;
 }
 
-malaya,270,59,4	script	Port Guard#ma03	570,{
+malaya,270,59,4	script	港口卫兵#ma03	570,{
 	if (malaya_hi < 10) {
 		emotion ET_PROFUSELY_SWEAT;
 		mes "[港口卫兵]";
@@ -429,7 +429,7 @@ malaya,270,59,4	script	Port Guard#ma03	570,{
 	}
 }
 
-malaya,88,252,4	script	Little Girl#ma04	576,{
+malaya,88,252,4	script	小女孩#ma04	576,{
 	if (malaya_hi < 10) {
 		mes "[小女孩]";
 		mes "我很害怕，但必须去森林拜访精灵。";
@@ -461,7 +461,7 @@ malaya,88,252,4	script	Little Girl#ma04	576,{
 	close;
 }
 
-malaya,219,92,6	script	Little Kid#ma05	577,{
+malaya,219,92,6	script	小孩子#ma05	577,{
 	if (malaya_hi < 10) {
 		mes "[小孩子]";
 		mes "妈妈说外面很危险，不让我出去玩。为什么？";
@@ -499,7 +499,7 @@ malaya,219,92,6	script	Little Kid#ma05	577,{
 	close;
 }
 
-malaya,363,283,4	script	Local#ma06	582,{
+malaya,363,283,4	script	当地人#ma06	582,{
 	if (malaya_hi < 10) {
 		mes "[当地人]";
 		mes "嗯……该小心女巫的诅咒了吗？";
@@ -562,7 +562,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 	close;
 }
 
-malaya,41,127,6	script	Old Man #ma07	574,{
+malaya,41,127,6	script	老人#ma07	574,{
 	if (malaya_hi < 10) {
 		mes "[老人]";
 		mes "村子像最近这样混乱时，不太欢迎外乡人。";
@@ -602,7 +602,7 @@ malaya,41,127,6	script	Old Man #ma07	574,{
 	close;
 }
 
-malaya,63,185,4	script	Woman#ma08	583,{
+malaya,63,185,4	script	女性村民#ma08	583,{
 	if (malaya_hi < 10) {
 		mes "[女性]";
 		mes "我没什么可以和你分享的。";
@@ -774,161 +774,161 @@ function	script	F_Malaya_Jeepney	{
 	close;
 }
 
-malaya,237,240,4	script	Jeepney Driver#01	582,{
+malaya,237,240,4	script	吉普尼司机#01	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif01",
 		12,
 
 		// Messages for malaya_hi checks.
-		"UUrgghhhh.... I'm scared... so scared... what happened to this place?",
-		"The place is still a mess... I wonder if I can operate a jeepney here...",
-		"Ha ha ha Welcome. I am ^1561EAVol^000000, operating the 12 man Jeepney here.",
+		"呜……好怕……好害怕……这里到底发生了什么？",
+		"这里还是一团糟……不知道能不能在这里经营吉普尼……",
+		"哈哈哈，欢迎。我是^1561EA沃尔^000000，在这里驾驶12人座吉普尼。",
 
 		// Monologues of variable lengths.
-		"Is this your first time in Port Malaya?",
-		"Jeepney drivers here also promote Jeepneys, so let me explain them to you.",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"Since everybody has different tastes, you can see those with cool and elaborate decorations.",
-		"Of course you don't need to drive them yourselves, but you can ride them so please feel free to do so."
+		"你是第一次来马来港吗？",
+		"这里的吉普尼司机也负责宣传吉普尼，就让我为你介绍吧。",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"每个人的品味不同，所以你会看到各种装饰精美、造型酷炫的车辆。",
+		"当然，不需要你亲自驾驶，不过可以乘坐，欢迎随时搭乘。"
 	);
 }
 
-malaya,67,44,4	script	Jeepney Driver#02	582,{
+malaya,67,44,4	script	吉普尼司机#02	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif02",
 		12,
 
-		"Wha... What's... Going on in that hospital...",
-		"I think the moaning coming from the hospital has lessened...",
-		"I'm ^1561EAChui^000000, operating a 12 man Jeepney. Hi there~",
+		"那……那间医院……到底发生了什么……",
+		"医院里传来的呻吟声好像少了些……",
+		"你好～我是^1561EA楚伊^000000，驾驶12人座吉普尼。",
 
-		"Is this your first time in Port Malaya?",
-		"Jeepney drivers here also promote Jeepneys, so let me explain them to you.",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"I modified my Jeepney myself...",
-		"For safety reasons there's a limit to the number of passengers, and it's safe so no worries..."
+		"你是第一次来马来港吗？",
+		"这里的吉普尼司机也负责宣传吉普尼，就让我为你介绍吧。",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"我的吉普尼是自己改装的……",
+		"为了安全，乘客人数有限制。车辆很安全，不必担心……"
 	);
 }
 
-malaya,282,129,4	script	Jeepney Driver#03	582,{
+malaya,282,129,4	script	吉普尼司机#03	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif03",
 		12,
 
-		"It's not good for outsiders to have a chat... Perhaps the Mumbaki Leader may have the solution for this.",
-		"Are you the adventurer who recently met Mumbaki? No wait... Then you shouldn't be here... Yes it's a ghost... Arghhhh...",
-		"The name's ^1561EATop^000000, operating one of the 3 12 man Jeepneys in town.",
+		"外乡人最好别到处闲聊……也许蒙巴基首领有办法解决这件事。",
+		"你就是最近见过蒙巴基的冒险者？不，等等……那你不该在这里……对，是鬼……啊啊啊……",
+		"我叫^1561EA托普^000000，驾驶镇上三辆12人座吉普尼中的一辆。",
 
-		"First time in town?",
-		"Jeepney drivers here also promote Jeepneys, so let me explain them to you.",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"They all look different depending on their drivers...",
-		"Now it is the fame of Port Malaya."
+		"第一次来这座城镇吗？",
+		"这里的吉普尼司机也负责宣传吉普尼，就让我为你介绍吧。",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"车辆的外观各不相同，取决于驾驶它们的司机……",
+		"如今吉普尼已经成为马来港的特色。"
 	);
 }
 
-malaya,134,250,6	script	Jeepney Driver#04	582,{
+malaya,134,250,6	script	吉普尼司机#04	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif04",
 		30,
 
-		"G...Go... Go away...",
-		"Arghh... Scared the devil out of me... Go away... Shoo...",
-		"^1561EABrav^000000, 30 man Jeepney driver at your service, driving as safely as I can since I get scared easily.",
+		"走……走……快走开……",
+		"啊……吓死我了……走开……去去……",
+		"我是^1561EA布拉夫^000000，30人座吉普尼司机，为你服务。我胆子小，所以开车总是尽量小心。",
 
-		"Is this your first time in Port Malaya?",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"The modified cars are decorated by their operators.",
-		"You come to Port Malaya, you must ride a Jeepney.",
-		"Ha ha ha, of course you can't drive it yourself."
+		"你是第一次来马来港吗？",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"改装后的车辆由各自的司机装饰。",
+		"来到马来港，一定要坐一次吉普尼。",
+		"哈哈哈，当然不能让你自己开。"
 	);
 }
 
-malaya,341,153,4	script	Jeepney Driver#05	582,{
+malaya,341,153,4	script	吉普尼司机#05	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif05",
 		30,
 
-		"G... Ghosts in town... Hey... Do you have one on you?",
-		"I think there are fewer ghosts now... The town is slightly quieter...",
-		"Hi I'm ^1561EALivil^000000 operator for the 30 man Jeepney. Safety is my priority.",
+		"鬼……镇上有鬼……喂……你身上也有吗？",
+		"现在鬼好像少了些……镇上也稍微安静了点……",
+		"你好，我是^1561EA利维尔^000000，驾驶30人座吉普尼。我始终把安全放在第一位。",
 
-		"First time in town?",
-		"I'll give you a quick guide as a service.",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"For safety reasons, Jeepneys have a limit on the number of passengers.",
-		"Some carried 180 people, but there aren't any of those in Port Malaya today."
+		"第一次来这座城镇吗？",
+		"我来为你简单介绍一下，算是附赠服务。",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"为了安全，吉普尼有乘客人数限制。",
+		"有些车曾经能载180人，不过现在马来港没有那种车。"
 	);
 }
 
-malaya,293,290,6	script	Jeepney Driver#06	582,{
+malaya,293,290,6	script	吉普尼司机#06	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif06",
 		30,
 
-		"Gu... Guards... What are the guards doing...",
-		"Did the guards finally do something? Phew... What a rush...",
-		"I'm ^1561EAGad^000000, the trustworthy 30 man Jeepney driver.",
+		"卫……卫兵……卫兵们在做什么……",
+		"卫兵们终于采取行动了吗？呼……真是惊险……",
+		"我是^1561EA加德^000000，值得信赖的30人座吉普尼司机。",
 
-		"I see you're new to this town.",
-		"To guide travelers is also my task!! Let me explain.",
-		"Jeepneys were goods transport vehicles, now decorated and modified with Port Malaya's new technology!!",
-		"This Jeepney is my very own handiwork. Ha ha ha... It's cool right? Ha ha ha",
-		"Even though the customer is king, I can't let you drive it... Ha ha ha"
+		"看得出来，你是第一次来这座城镇。",
+		"为旅客提供指引也是我的职责！！让我来介绍一下。",
+		"吉普尼原本是运货车辆，现在运用马来港的新技术进行了装饰和改装！！",
+		"这辆吉普尼是我亲手改装的。哈哈哈……很酷吧？哈哈哈。",
+		"虽然顾客至上，但我也不能让你开车……哈哈哈。"
 	);
 }
 
-malaya,242,221,4	script	Jeepney Driver#07	582,{
+malaya,242,221,4	script	吉普尼司机#07	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif07",
 		60,
 
-		"Oh no... I think the whole village is bewitched by ghosts... Maybe... I should give the Mumbaki Leader a visit...",
-		"Ghost... I'm sure the Mumbaki Leader knows how to get rid of these ghosts...",
-		"^1561EAHott^000000, at your service, the safest 60 man Jeepney Operator.",
+		"不好……我觉得整个村子都被鬼迷住了……也许……我该去拜访蒙巴基首领……",
+		"鬼……蒙巴基首领一定知道怎么驱除这些鬼……",
+		"我是^1561EA霍特^000000，最安全的60人座吉普尼司机，为你服务。",
 
-		"Jeepney is the public transportation of Port Malaya.",
-		"Therefore they are everywhere. And it's free! I know they all have different passenger limits, but that's no problem because they're everywhere."
+		"吉普尼是马来港的公共交通工具。",
+		"所以到处都能看到，而且免费！虽然每辆车的载客人数限制不同，但到处都有车，不用担心。"
 	);
 }
 
-malaya,62,245,6	script	Jeepney Driver#08	582,{
+malaya,62,245,6	script	吉普尼司机#08	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif08",
 		60,
 
-		"Shoo~ Be gone if you're a ghost, and go away even if you're human~ Shoo~",
-		"Hey... You... Are human right? Right? Huh? Say you are... Please...",
-		"Hullo, I'm ^1561EAMuyan^000000, operator of this 60 man Jeepney. Nice to meet you.",
+		"去去～是鬼就快消失，是人也快走开～去去～",
+		"喂……你……是人类吧？对吧？嗯？快说你是……求你了……",
+		"你好，我是^1561EA穆扬^000000，这辆60人座吉普尼的司机。很高兴认识你。",
 
-		"Jeepneys are public transport, so safety is our priority.",
-		"My Jeepney received the best class of Port Malaya, a '60 man Jeepney' certificate.",
-		"Meaning!! That it is perfectly safe!! Don't you worry about the ride."
+		"吉普尼是公共交通工具，所以安全最重要。",
+		"我的吉普尼获得了马来港最高级别的“60人座吉普尼”认证。",
+		"这意味着！！它非常安全！！放心乘坐吧。"
 	);
 }
 
-malaya,257,58,6	script	Jeepney Driver#09	582,{
+malaya,257,58,6	script	吉普尼司机#09	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif09",
 		60,
 
-		"...You're an outsider... Don't go touching anything and be careful in town...",
-		"The town is still quite dangerous. Best not touch anything until it is safe.",
-		"Hi there. I'm ^1561EAGramma^000000, Operator of the 60 man Jeepney of Port Malaya.",
+		"……你是外乡人……别乱碰东西，在镇上要小心……",
+		"镇上仍然很危险。在恢复安全之前，最好别乱碰任何东西。",
+		"你好，我是^1561EA格拉玛^000000，马来港60人座吉普尼的司机。",
 
-		"Is this your first time in Port Malaya?",
-		"We Jeepney drivers here also promote Jeepneys, so let me explain them to you.",
-		"Jeepneys were first developed to transport goods quickly, but are now used as public transport.",
-		"Since everybody have different tastes, you can see those with cool and elaborate decorations.",
-		"Of course you don't need to drive them yourselves, but you can ride them so please feel free to do so."
+		"你是第一次来马来港吗？",
+		"我们这些吉普尼司机也负责宣传吉普尼，就让我为你介绍吧。",
+		"吉普尼最初是为了快速运送货物而开发的，现在用作公共交通工具。",
+		"每个人的品味不同，所以你会看到各种装饰精美、造型酷炫的车辆。",
+		"当然，不需要你亲自驾驶，不过可以乘坐，欢迎随时搭乘。"
 	);
 }

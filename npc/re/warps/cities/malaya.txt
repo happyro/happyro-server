@@ -38,7 +38,7 @@ malaya,178,211,0	script	malaya_inn	45,1,1,{
 	end;
 OnTouch:
 	if (malaya_hi < 10) {
-		mes "Door is closed. It seems to be keeping its eyes on you.";
+		mes "门紧闭着，仿佛正警惕地注视着你。";
 		close;
 	}
 	warp "ma_in01",24,80;
@@ -49,7 +49,7 @@ malaya,112,212,0	script	malaya_ws	45,1,1,{
 	end;
 OnTouch:
 	if (malaya_hi < 20) {
-		mes "Door is closed. It seems to be keeping its eyes on you.";
+		mes "门紧闭着，仿佛正警惕地注视着你。";
 		close;
 	}
 	warp "ma_in01",83,16;
@@ -60,7 +60,7 @@ malaya,299,167,0	script	malaya_ts	45,1,1,{
 	end;
 OnTouch:
 	if (malaya_hi < 20) {
-		mes "Door is closed. It seems to be keeping its eyes on you.";
+		mes "门紧闭着，仿佛正警惕地注视着你。";
 		close;
 	}
 	warp "ma_in01",12,24;
@@ -71,7 +71,7 @@ malaya,261,240,0	script	malaya_shop	45,1,1,{
 	end;
 OnTouch:
 	if (malaya_hi < 20) {
-		mes "Door is closed. It seems to be keeping its eyes on you.";
+		mes "门紧闭着，仿佛正警惕地注视着你。";
 		close;
 	}
 	warp "ma_in01",126,20;
@@ -82,7 +82,7 @@ malaya,300,211,0	script	malaya_house01	45,1,1,{
 	end;
 OnTouch:
 	if (malaya_hi < 10) {
-		mes "Door is closed. It seems to be keeping its eyes on you.";
+		mes "门紧闭着，仿佛正警惕地注视着你。";
 		close;
 	}
 	warp "ma_in01",36,152;
@@ -92,9 +92,9 @@ OnTouch:
 // Jeepney Warps
 //============================================================
 function	script	F_Malaya_Warp	{
-	mes "Where would you like to go?";
+	mes "你想去哪里？";
 	next;
-	set .@i$, getarg(select("Back outside",getarg(1)+" Jeepney",getarg(2)+" Jeepney") - 1);
+	set .@i$, getarg(select("回到车外",callsub(L_DestinationName,getarg(1))+"吉普尼",callsub(L_DestinationName,getarg(2))+"吉普尼") - 1);
 	close2;
 	switch(getarg(3)) {
 	case 1: // 12 passenger
@@ -123,6 +123,13 @@ function	script	F_Malaya_Warp	{
 		break;
 	}
 	end;
+
+L_DestinationName:
+	if (getarg(0) == "Center") return "中心区";
+	if (getarg(0) == "Southwest") return "西南区";
+	if (getarg(0) == "Southeast") return "东南区";
+	if (getarg(0) == "Northwest") return "西北区";
+	if (getarg(0) == "Northeast") return "东北区";
 }
 
 ma_zif01,30,22,0	script	Town Warp#zif01	45,1,1,{ callfunc "F_Malaya_Warp","Center","Southwest","Southeast",1; }

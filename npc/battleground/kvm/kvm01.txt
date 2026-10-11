@@ -16,7 +16,7 @@
 
 // Waiting Room NPCs
 //============================================================
-bat_room,169,226,5	script	KVM Waiting Room#a::KvM01R_Guillaume	418,{
+bat_room,169,226,5	script	KVM等候室#a::KvM01R_Guillaume	418,{
 	end;
 OnInit:
 	waitingroom "战斗站（5人）",6,"KvM01_BG_Out::OnGuillaumeJoin",1;
@@ -26,7 +26,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,169,205,3	script	KVM Waiting Room#b::KvM01R_Croix	414,{
+bat_room,169,205,3	script	KVM等候室#b::KvM01R_Croix	414,{
 	end;
 
 OnInit:
@@ -118,8 +118,8 @@ OnInit:
 	setwall "bat_c01",55,122,5,7,0,"batc01wall_b";
 	setwall "bat_c01",140,56,6,7,0,"batc01wall_c";
 	setwall "bat_c01",140,57,5,7,0,"batc01wall_d";
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "KVM军官#KVM01A";
+	disablenpc "KVM军官#KVM01B";
 	end;
 
 OnGuillaumeQuit:
@@ -167,8 +167,8 @@ OnCroixActive:
 	end;
 
 OnStart:
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "KVM军官#KVM01A";
+	disablenpc "KVM军官#KVM01B";
 	set $@KvM01BG_Victory, 0;
 	// Warp Teams
 	bg_warp $@KvM01BG_id1,"bat_c01",53,128;
@@ -298,8 +298,8 @@ OnCroixWin:
 
 OnStop:
 	stopnpctimer;
-	enablenpc "KVM Officer#KVM01A";
-	enablenpc "KVM Officer#KVM01B";
+	enablenpc "KVM军官#KVM01A";
+	enablenpc "KVM军官#KVM01B";
 	// Warp Teams
 	bg_warp $@KvM01BG_id1,"bat_c01",53,128;
 	bg_warp $@KvM01BG_id2,"bat_c01",146,55;
@@ -346,8 +346,8 @@ OnTimer60000:
 	if( $@KvM01BG_id2 ) { bg_destroy $@KvM01BG_id2; set $@KvM01BG_id2, 0; }
 	if (getbattleflag("feature.bgqueue"))
 		bg_unbook "bat_c01";
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "KVM军官#KVM01A";
+	disablenpc "KVM军官#KVM01B";
 	set $@KvM01BG, 0;
 	end;
 
@@ -370,9 +370,9 @@ OnCroixJoin:
 
 // Battleground rewards
 //============================================================
-bat_c01,51,130,5	script	KVM Officer#KVM01A	419,{
+bat_c01,51,130,5	script	KVM军官#KVM01A	419,{
 	if( $@KvM01BG_Victory ) {
-		mes "[KVM Officer]";
+		mes "[KVM军官]";
 		if( $@KvM01BG_Victory == Bat_Team ) {
 			mes "打得漂亮。";
 			mes "愿 KVM 的荣耀与你同在。";
@@ -394,7 +394,7 @@ bat_c01,51,130,5	script	KVM Officer#KVM01A	419,{
 	}
 	end;
 }
-bat_c01,148,53,1	duplicate(KVM Officer#KVM01A)	KVM Officer#KVM01B	415
+bat_c01,148,53,1	duplicate(KVM军官#KVM01A)	KVM军官#KVM01B	415
 
 // BG Queue makes these scripts useless
 -	script	BGQueueInit#kvm01	-1,{

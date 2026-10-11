@@ -10,26 +10,26 @@
 
 moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 	disable_items;
-	mes "[Hero Token Exchanger]";
+	mes "[英雄代币兑换员]";
 	mes "如果您与梦罗克战斗过并收集了英雄徽章，我可以为您兑换一枚特殊戒指。";
 	mes "想看看我的戒指吗？";
 	while(true) {
 		next;
 		if (checkweight(2163,2) == 0) {
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "您的背包里有太多物品，整理后再回来吧！";
 			close;
 		}
 		switch( select( "戒指说明", "兑换戒指。", "结束对话。" ) ) {
 		case 1:
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "这枚英雄戒指看起来也许并不起眼。";
 			next;
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "但把它带给附魔专家 伯恩斯，他可以为 4 个插槽附魔，唤醒它潜藏的能力。";
 			mes "";
 			next;
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "英雄戒指可以帮助您征讨梦罗克。";
 			mes "还有其他问题吗？";
 			continue;
@@ -40,30 +40,30 @@ moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 			mes "^006400重量：20 / 需求等级：160^000000";
 			mes "^006400插槽：0 / 适用职业：所有职业^000000";
 			next;
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "兑换英雄戒指需要 30 个英雄徽章。";
 			mes "要兑换吗？";
 			next;
-			if (select( "返回上级菜单。", "兑换 30 个英雄徽章。" ) == 1) {
-			mes "[Hero Token Exchanger]";
+			if (select( "返回上级菜单。", "用 30 个英雄徽章兑换戒指。" ) == 1) {
+			mes "[英雄代币兑换员]";
 				mes "请再考虑一下。";
 				continue;
 				}
 			if (countitem(6684) < 30) {
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 				mes "^006400英雄徽章^000000";
 				mes "英雄徽章会赠予勇敢对抗梦罗克的人。";
 				mes "您的英雄徽章不足。需要 ^00640030 个英雄徽章^000000才能兑换。";
 				continue;
 				}
-			mes "[Hero Token Exchanger]";
+			mes "[英雄代币兑换员]";
 			mes "我会用 ^00640030 个英雄徽章^000000为您兑换 1 枚 ^006400英雄戒指^000000。";
 			mes "还需要别的吗？";
 			delitem 6684,30;	// TokenOfHero
 			getitem 2981,1;		// RingOfHero
 			continue;
 			case 3:
-		mes "[Hero Token Exchanger]";
+		mes "[英雄代币兑换员]";
 			mes "总有一天您会发现自己需要英雄戒指。";
 			close;
 			}
@@ -109,19 +109,19 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 			close;
 		}
 		if (.@card[3] == 0) {
-			setarray .@enchant_list$[0], "DEF", "MDEF";
+			setarray .@enchant_list$[0], "物理防御", "魔法防御";
 			.@slot = 4;
 		}
 		else if (.@card[2] == 0) {
-			setarray .@enchant_list$[0], "Max HP", "Max SP";
+			setarray .@enchant_list$[0], "最大 HP", "最大 SP";
 			.@slot = 3;
 		}
 		else if (.@card[1] == 0) {
-			setarray .@enchant_list$[0], "Atk", "MAtk";
+			setarray .@enchant_list$[0], "物理攻击", "魔法攻击";
 			.@slot = 2;
 		}
 		else {
-			setarray .@enchant_list$[0], "STR", "INT", "AGI", "VIT", "DEX", "LUK";
+			setarray .@enchant_list$[0], "力量", "智力", "敏捷", "体力", "灵巧", "幸运";
 			.@slot = 1;
 		}
 		mes "[伯恩斯]";

@@ -20,7 +20,7 @@
 
 // Waiting Room NPCs
 //============================================================
-bat_room,142,227,4	script	Lieutenant Huvas	418,{
+bat_room,142,227,4	script	胡瓦斯中尉	418,{
 	end;
 OnInit:
 	waitingroom "战斗站",11,"start#bat_b02::OnReadyCheck",1,0,80;
@@ -30,7 +30,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,142,204,0	script	Lieutenant Yukon	414,{
+bat_room,142,204,0	script	育空中尉	414,{
 	end;
 OnInit:
 	waitingroom "战斗站",11,"start#bat_b02::OnReadyCheck",1,0,80;
@@ -88,8 +88,8 @@ OnReadyCheck:
 	if( $@FlaviusBG2 )
 		end;
 	if (!getbattleflag("feature.bgqueue")) {
-		set .@Guillaume, getwaitingroomstate(0,"Lieutenant Huvas");
-		set .@Croix, getwaitingroomstate(0,"Lieutenant Yukon");
+		set .@Guillaume, getwaitingroomstate(0,"胡瓦斯中尉");
+		set .@Croix, getwaitingroomstate(0,"育空中尉");
 		if( !.@Guillaume && !.@Croix ) {
 			donpcevent "#bat_b02_timer::OnStop";
 			end;
@@ -104,8 +104,8 @@ OnReadyCheck:
 	bg_updatescore "bat_b02",$@Guill_ScoreBG2,$@Croix_ScoreBG2;
 
 	if (!getbattleflag("feature.bgqueue")) {
-		donpcevent "Lieutenant Huvas::OnEnterBG";
-		donpcevent "Lieutenant Yukon::OnEnterBG";
+		donpcevent "胡瓦斯中尉::OnEnterBG";
+		donpcevent "育空中尉::OnEnterBG";
 	}
 	donpcevent "OBJ#bat_b02_a::OnKill";
 	donpcevent "OBJ#bat_b02_a::OnEnable";
@@ -118,10 +118,10 @@ OnReadyCheck:
 	donpcevent "cell#bat_b02_a::OnRed";
 	donpcevent "cell#bat_b02_b::OnRed";
 	donpcevent "time#bat_b02::OnEnable";
-	disablenpc "Guillaume Vintenar#b02_a";
-	disablenpc "Croix Vintenar#b02_b";
-	disablenpc "Vintenar#bat_b02_aover";
-	disablenpc "Vintenar#bat_b02_bover";
+	disablenpc "吉约姆军官#b02_a";
+	disablenpc "克鲁瓦军官#b02_b";
+	disablenpc "军官#bat_b02_aover";
+	disablenpc "军官#bat_b02_bover";
 	bg_warp $@FlaviusBG2_id1,"bat_b02",87,75;
 	bg_warp $@FlaviusBG2_id2,"bat_b02",311,224;
 	donpcevent "countdown#bat_b02::OnEnable";
@@ -175,12 +175,12 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("bat_b02","OBJ#bat_b02_a::OnMyMobDead") < 1) {
-		mapannounce "bat_b02", "纪尧姆的水晶已被摧毁。",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "吉约姆的水晶已被摧毁。",bc_map,"0xFFCE00";
 		if ($@Croix_ScoreBG2 > 0) {
 			set $@FlaviusBG2_Victory,2;
 			set $@Croix_ScoreBG2,$@Croix_ScoreBG2+1;
-			enablenpc "Guillaume Vintenar#b02_a";
-			enablenpc "Croix Vintenar#b02_b";
+			enablenpc "吉约姆军官#b02_a";
+			enablenpc "克鲁瓦军官#b02_b";
 			donpcevent "time#bat_b02::OnStop";
 			if (getbattleflag("feature.bgqueue"))
 				bg_reserve "bat_b02", true;
@@ -215,8 +215,8 @@ OnMyMobDead:
 		if ($@Guill_ScoreBG2 > 0) {
 			set $@FlaviusBG2_Victory,1;
 			set $@Guill_ScoreBG2,$@Guill_ScoreBG2+1;
-			enablenpc "Guillaume Vintenar#b02_a";
-			enablenpc "Croix Vintenar#b02_b";
+			enablenpc "吉约姆军官#b02_a";
+			enablenpc "克鲁瓦军官#b02_b";
 			donpcevent "time#bat_b02::OnStop";
 			if (getbattleflag("feature.bgqueue"))
 				bg_reserve "bat_b02", true;
@@ -248,7 +248,7 @@ OnKill:
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_a::OnMyMobDead") < 1) {
 		donpcevent "cell#bat_b02_a::OnGreen";
-		mapannounce "bat_b02", "保护纪尧姆水晶的守护者已被击败。",bc_map,"0xFFCE00";
+		mapannounce "bat_b02", "保护吉约姆水晶的守护者已被击败。",bc_map,"0xFFCE00";
 		setunitdata $@FlavBG2_C1_ID,UMOB_DMGIMMUNE,0; // Make Crystal damageable again
 	}
 	end;
@@ -299,19 +299,19 @@ OnGreen:
 
 bat_b02,1,6,1	script	time#bat_b02	844,{
 OnEnable:
-	donpcevent "Battle Therapist#b02_a::OnEnable";
-	donpcevent "Battle Therapist#b02_b::OnEnable";
+	donpcevent "战地治疗师#b02_a::OnEnable";
+	donpcevent "战地治疗师#b02_b::OnEnable";
 	end;
 
 OnStop:
-	donpcevent "Battle Therapist#b02_a::OnStop";
-	donpcevent "Battle Therapist#b02_b::OnStop";
+	donpcevent "战地治疗师#b02_a::OnStop";
+	donpcevent "战地治疗师#b02_b::OnStop";
 	end;
 }
 
-bat_b02,10,294,3	script	Battle Therapist#b02_a	95,{
+bat_b02,10,294,3	script	战地治疗师#b02_a	95,{
 	specialeffect2 EF_HEAL;
-	mes "[Battle Therapist]";
+	mes "[战地治疗师]";
 	mes "闭上眼睛，";
 	mes "深呼吸。";
 	mes "你就能摆脱痛苦。";
@@ -330,17 +330,17 @@ OnTimer25000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Battle Therapist#b02_a::OnEnable";
+	donpcevent "战地治疗师#b02_a::OnEnable";
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc "Battle Therapist#b02_a";
+	enablenpc "战地治疗师#b02_a";
 	end;
 
 OnStop:
 	// disablenpc "bat_b02_rp1_a_warp";
-	disablenpc "Battle Therapist#b02_a";
+	disablenpc "战地治疗师#b02_a";
 	stopnpctimer;
 	end;
 }
@@ -358,9 +358,9 @@ OnTouch:
 }
 */
 
-bat_b02,389,14,3	script	Battle Therapist#b02_b	95,{
+bat_b02,389,14,3	script	战地治疗师#b02_b	95,{
 	specialeffect2 EF_HEAL;
-	mes "[Battle Therapist]";
+	mes "[战地治疗师]";
 	mes "闭上眼睛，";
 	mes "深呼吸。";
 	mes "你就能摆脱痛苦。";
@@ -379,17 +379,17 @@ OnTimer25000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Battle Therapist#b02_b::OnEnable";
+	donpcevent "战地治疗师#b02_b::OnEnable";
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc "Battle Therapist#b02_b";
+	enablenpc "战地治疗师#b02_b";
 	end;
 
 OnStop:
 	// disablenpc "bat_b02_rp1_b_warp";
-	disablenpc "Battle Therapist#b02_b";
+	disablenpc "战地治疗师#b02_b";
 	stopnpctimer;
 	end;
 }
@@ -421,7 +421,7 @@ OnTouch:
 	end;
 }
 
-bat_b02,10,294,3	script	Guillaume Vintenar#b02_a	934,{
+bat_b02,10,294,3	script	吉约姆军官#b02_a	934,{
 	if ($@FlaviusBG2_id1 == getcharid(4)) {
 		if ($@FlaviusBG2_Victory == 1)
 			callfunc "F_BG_Badge",1,"Guillaume","Flavius";
@@ -434,11 +434,11 @@ bat_b02,10,294,3	script	Guillaume Vintenar#b02_a	934,{
 	end;
 
 OnInit:
-	disablenpc "Guillaume Vintenar#b02_a";
+	disablenpc "吉约姆军官#b02_a";
 	end;
 }
 
-bat_b02,389,14,3	script	Croix Vintenar#b02_b	934,{
+bat_b02,389,14,3	script	克鲁瓦军官#b02_b	934,{
 	if ($@FlaviusBG2_id2 == getcharid(4)) {
 		if ($@FlaviusBG2_Victory == 2)
 			callfunc "F_BG_Badge",1,"Croix","Flavius";
@@ -451,7 +451,7 @@ bat_b02,389,14,3	script	Croix Vintenar#b02_b	934,{
 	end;
 
 OnInit:
-	disablenpc "Croix Vintenar#b02_b";
+	disablenpc "克鲁瓦军官#b02_b";
 	end;
 }
 
@@ -470,27 +470,27 @@ OnStop:
 	end;
 
 OnTimer7000:
-	mapannounce "bat_b02", "纪尧姆·温特纳·艾克斯尔·罗斯：进攻，摧毁那块水晶！",bc_map,"0xFF9900";
+	mapannounce "bat_b02", "吉约姆·温特纳·艾克斯尔·罗斯：进攻，摧毁那块水晶！",bc_map,"0xFF9900";
 	end;
 
 OnTimer8000:
-	mapannounce "bat_b02", "克鲁瓦·温特纳·斯旺德里：纪尧姆虽在努力取胜，但胜利属于我们。让他们见识我们的力量。",bc_map,"0xFF99CC";
+	mapannounce "bat_b02", "克鲁瓦·温特纳·斯旺德里：吉约姆虽在努力取胜，但胜利属于我们。让他们见识我们的力量。",bc_map,"0xFF99CC";
 	end;
 
 OnTimer1800000:
-	mapannounce "bat_b02", "马罗洛七世：纪尧姆·马罗洛、克鲁瓦·马罗洛，以及他们的追随者！",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马洛尔七世：吉约姆·马洛尔、克鲁瓦·马洛尔，以及他们的追随者！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1803000:
-	mapannounce "bat_b02", "马罗洛七世：双方势均力敌，很难判断哪支队伍更强。",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马洛尔七世：双方势均力敌，很难判断哪支队伍更强。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1808000:
-	mapannounce "bat_b02", "马罗洛七世：这场弗拉维乌斯战斗真浪费时间。我会根据你们的进展决定胜负。",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马洛尔七世：这场弗拉维乌斯战斗真浪费时间。我会根据你们的进展决定胜负。",bc_map,"0x99CC00";
 	end;
 
 OnTimer1822000:
-	mapannounce "bat_b02", "马罗洛七世：如果无法接受结果，就在另一场山谷战斗中再试一次！",bc_map,"0x99CC00";
+	mapannounce "bat_b02", "马洛尔七世：如果无法接受结果，就在另一场山谷战斗中再试一次！",bc_map,"0x99CC00";
 	end;
 
 OnTimer1825000:
@@ -501,8 +501,8 @@ OnTimer1830000:
 	donpcevent "time#bat_b02::OnStop";
 	bg_warp $@FlaviusBG2_id1,"bat_b02",10,290;
 	bg_warp $@FlaviusBG2_id2,"bat_b02",390,10;
-	enablenpc "Vintenar#bat_b02_aover";
-	enablenpc "Vintenar#bat_b02_bover";
+	enablenpc "军官#bat_b02_aover";
+	enablenpc "军官#bat_b02_bover";
 	if (getbattleflag("feature.bgqueue"))
 		bg_reserve "bat_b02", true;
 	end;
@@ -513,31 +513,31 @@ OnTimer1900000:
 	end;
 }
 
-bat_b02,81,83,3	script	Guillaume Camp#flag32	973,{ end; }
-bat_b02,94,83,3	script	Guillaume Camp#flag33	973,{ end; }
-bat_b02,81,66,3	script	Guillaume Camp#flag34	973,{ end; }
-bat_b02,94,66,3	script	Guillaume Camp#flag35	973,{ end; }
-bat_b02,139,142,3	script	Guillaume Camp#flag36	973,{ end; }
-bat_b02,139,158,3	script	Guillaume Camp#flag37	973,{ end; }
-bat_b02,110,161,3	script	Guillaume Camp#flag38	973,{ end; }
-bat_b02,110,137,3	script	Guillaume Camp#flag39	973,{ end; }
-bat_b02,63,135,3	script	Guillaume Camp#flag40	973,{ end; }
-bat_b02,63,165,3	script	Guillaume Camp#flag41	973,{ end; }
-bat_b02,10,296,3	script	Guillaume Camp#flag42	973,{ end; }
+bat_b02,81,83,3	script	吉约姆营地#flag32	973,{ end; }
+bat_b02,94,83,3	script	吉约姆营地#flag33	973,{ end; }
+bat_b02,81,66,3	script	吉约姆营地#flag34	973,{ end; }
+bat_b02,94,66,3	script	吉约姆营地#flag35	973,{ end; }
+bat_b02,139,142,3	script	吉约姆营地#flag36	973,{ end; }
+bat_b02,139,158,3	script	吉约姆营地#flag37	973,{ end; }
+bat_b02,110,161,3	script	吉约姆营地#flag38	973,{ end; }
+bat_b02,110,137,3	script	吉约姆营地#flag39	973,{ end; }
+bat_b02,63,135,3	script	吉约姆营地#flag40	973,{ end; }
+bat_b02,63,165,3	script	吉约姆营地#flag41	973,{ end; }
+bat_b02,10,296,3	script	吉约姆营地#flag42	973,{ end; }
 
-bat_b02,306,233,3	script	Croix Camp#flag32	974,{ end; }
-bat_b02,317,233,3	script	Croix Camp#flag33	974,{ end; }
-bat_b02,306,216,3	script	Croix Camp#flag34	974,{ end; }
-bat_b02,317,216,3	script	Croix Camp#flag35	974,{ end; }
-bat_b02,257,158,3	script	Croix Camp#flag36	974,{ end; }
-bat_b02,257,141,3	script	Croix Camp#flag37	974,{ end; }
-bat_b02,297,164,3	script	Croix Camp#flag38	974,{ end; }
-bat_b02,297,136,3	script	Croix Camp#flag39	974,{ end; }
-bat_b02,336,161,3	script	Croix Camp#flag40	974,{ end; }
-bat_b02,336,139,3	script	Croix Camp#flag41	974,{ end; }
-bat_b02,389,16,3	script	Croix Camp#flag42	974,{ end; }
+bat_b02,306,233,3	script	克鲁瓦营地#flag32	974,{ end; }
+bat_b02,317,233,3	script	克鲁瓦营地#flag33	974,{ end; }
+bat_b02,306,216,3	script	克鲁瓦营地#flag34	974,{ end; }
+bat_b02,317,216,3	script	克鲁瓦营地#flag35	974,{ end; }
+bat_b02,257,158,3	script	克鲁瓦营地#flag36	974,{ end; }
+bat_b02,257,141,3	script	克鲁瓦营地#flag37	974,{ end; }
+bat_b02,297,164,3	script	克鲁瓦营地#flag38	974,{ end; }
+bat_b02,297,136,3	script	克鲁瓦营地#flag39	974,{ end; }
+bat_b02,336,161,3	script	克鲁瓦营地#flag40	974,{ end; }
+bat_b02,336,139,3	script	克鲁瓦营地#flag41	974,{ end; }
+bat_b02,389,16,3	script	克鲁瓦营地#flag42	974,{ end; }
 
-bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
+bat_b02,10,294,3	script	军官#bat_b02_aover	419,{
 	set .@A_B_gap,$@Guill_ScoreBG2 - $@Croix_ScoreBG2;
 	if ($@FlaviusBG2_id1 == getcharid(4)) {
 		if (.@A_B_gap > 0)
@@ -548,7 +548,7 @@ bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
 			callfunc "F_BG_Badge",0,"Guillaume","Flavius"; //Croix wins
 	}
 	else {
-		mes "[艾克塞尔·罗斯]";
+		mes "[艾克斯尔·罗斯]";
 		mes "克鲁瓦的雇佣兵，你为什么会在这里？面对你这样的蠢货，我必将获胜。哈！";
 		close;
 	}
@@ -558,11 +558,11 @@ bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
 	end;
 
 OnInit:
-	disablenpc "Vintenar#bat_b02_aover";
+	disablenpc "军官#bat_b02_aover";
 	end;
 }
 
-bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
+bat_b02,389,14,3	script	军官#bat_b02_bover	415,{
 	set .@A_B_gap,$@Guill_ScoreBG2 - $@Croix_ScoreBG2;
 	if ($@FlaviusBG2_id2 == getcharid(4)) {
 		if (.@A_B_gap > 0)
@@ -574,7 +574,7 @@ bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
 	}
 	else {
 		mes "[斯旺德里]";
-		mes "身为纪尧姆的人，你为何来到这里？我会把你送回该去的地方！";
+		mes "身为吉约姆的人，你为何来到这里？我会把你送回该去的地方！";
 		close;
 	}
 	bg_leave;
@@ -583,11 +583,11 @@ bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
 	end;
 
 OnInit:
-	disablenpc "Vintenar#bat_b02_bover";
+	disablenpc "军官#bat_b02_bover";
 	end;
 }
 
-bat_b02,1,10,3	script	Release all#b02	81,{
+bat_b02,1,10,3	script	战场遣返员#b02	81,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
 		mes "已取消。";
@@ -616,8 +616,8 @@ bat_b02,1,10,3	script	Release all#b02	81,{
 
 OnInit:
 	if (getbattleflag("feature.bgqueue")) {
-		unloadnpc "Lieutenant Huvas";
-		unloadnpc "Lieutenant Yukon";
+		unloadnpc "胡瓦斯中尉";
+		unloadnpc "育空中尉";
 		unloadnpc "back_bgroomb02a";
 		unloadnpc "back_bgroomb02b";
 		unloadnpc "A_CODE#bat_b02";

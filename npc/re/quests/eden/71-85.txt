@@ -19,8 +19,7 @@
 
 moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-		mes "- 只有伊甸园集团成员 -";
-		mes "- 才能阅读这块公告板。 -";
+		mes "- 只有伊甸园集团成员才能阅读这块公告板。 -";
 		mes "";
 		close;
 	}
@@ -32,17 +31,12 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 			if (checkquest(.@quest) > -1)
 				erasequest .@quest;
 		}
-		mes "- 由于委托人已搬到 -";
-		mes "- 其他地方，-";
-		mes "- 申请表已被移除。 -";
+		mes "- 由于委托人已搬到其他地方，申请表已被移除。 -";
 		next;
 	}
 
 	if (BaseLevel < 71) {
-		mes "- 只有等级合适的成员 -";
-		mes "- 才能阅读这块公告板。 -";
-		mes "- 请寻找 -";
-		mes "- 适合你等级的公告板。 -";
+		mes "- 只有等级合适的成员才能阅读这块公告板。请寻找适合你等级的公告板。 -";
 		mes "";
 		close;
 	} else if (BaseLevel > 85) {
@@ -69,21 +63,14 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 				callsub L_Quest,.@complete[.@i];
 			close;
 		}
-		mes "- 只有等级合适的成员-";
-		mes "- 才能阅读这块-";
-		mes "- 公告板。-";
-		mes "- 请找一块-";
-		mes "- 适合你等级的公告板。-";
+		mes "- 只有等级合适的成员才能阅读这块公告板。请找一块适合你等级的公告板。 -";
 		close;
 	}
-		mes "- 请选择 -";
-		mes "- 想去哪里狩猎。 -";
+		mes "- 请选择想去哪里狩猎。 -";
 	next;
 	switch(select("斯芬克斯地下城:古城:朱诺地区:钟楼:异域岛屿")) {
 	case 1:
-		mes "- 这块任务公告板上有 -";
-		mes "- 几项与斯芬克斯地下城 -";
-		mes "- 相关的委托。 -";
+		mes "- 这块任务公告板上有几项与斯芬克斯地下城相关的委托。 -";
 		next;
 		set .@str1$,"梦罗克村民担心斯芬克斯地下城的怪物越来越多。 ";
 		set .@str2$,"- 来自梦罗克的 梅迪 -";
@@ -93,9 +80,7 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 			case 3: callsub L_Quest,10109,.@str1$+"猎杀 10 只帕莎纳。",.@str2$;
 		}
 	case 2:
-		mes "- 这块任务公告板上有 -";
-		mes "- 几项与古城 -";
-		mes "- 相关的委托。 -";
+		mes "- 这块任务公告板上有几项与古城相关的委托。 -";
 		next;
 		set .@str1$,"我很害怕古城的怪物会攻击我们。 ";
 		set .@str2$,"- 来自吉芬的 安塞莉娅 -";
@@ -106,9 +91,7 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 			case 4: callsub L_Quest,10113,.@str1$+"猎杀 10 只幽灵弓箭手。",.@str2$;
 		}
 	case 3:
-		mes "- 这块任务公告板上有 -";
-		mes "- 几项与朱诺周边地区 -";
-		mes "- 相关的委托。 -";
+		mes "- 这块任务公告板上有几项与朱诺周边地区相关的委托。 -";
 		next;
 		set .@str1$,"像我这样不会战斗的人，因为怪物太多而很难旅行。 ";
 		set .@str2$,"- 旅行者 让白 -";
@@ -119,9 +102,7 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 			case 4: callsub L_Quest,10117,.@str1$+"猎杀 20 只鸟人哈比。",.@str2$;
 		}
 	case 4:
-		mes "- 这块任务公告板上有 -";
-		mes "- 几项与钟楼 -";
-		mes "- 相关的委托。 -";
+		mes "- 这块任务公告板上有几项与钟楼相关的委托。 -";
 		next;
 		set .@str1$,"我曾经喜欢聆听艾尔迪巴兰钟楼的悦耳旋律，但怪物制造的噪音让我什么也听不见。 ";
 		set .@str2$,"- 爱钟社区会长 赖津塞特 -";
@@ -131,9 +112,7 @@ moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 			case 3: callsub L_Quest,10120,.@str1$+"在它损坏之前猎杀 15 只飞行魔书。",.@str2$;
 		}
 	case 5:
-		mes "- 这块任务公告板上有 -";
-		mes "- 几项与异域岛屿 -";
-		mes "- 相关的委托。 -";
+		mes "- 这块任务公告板上有几项与异域岛屿相关的委托。 -";
 		next;
 		set .@str1$,"我想去冒险，但有太多事情要处理。如果我做不到，其他人也做不到！ ";
 		set .@str2$,"- 想去冒险的 芬菲 -";
@@ -177,7 +156,13 @@ L_Quest:
 		mes "‘"+.@name$+"’已完成。要提交并领取奖励吗？";
 		next;
 		if(select("提交任务。:取消。") == 1) {
-			if (.@quest == 5057) delitem 7187,30; //Festival_Mask
+			if (.@quest == 5057) {
+				if (countitem(7187) < 30) {
+					mes "节庆面具数量不足，请带齐 30 个后再提交任务。";
+					close;
+				}
+				delitem 7187,30; //Festival_Mask
+			}
 			erasequest .@quest;
 			getexp .@exp,0;
 			mes "你已获得完成任务的经验值。";
@@ -203,7 +188,13 @@ L_Quest:
 			mes "你已完成任务。";
 			next;
 			if(select("提交任务。:取消。") == 1) {
-				if (.@quest == 5057) delitem 7187,30; //Festival_Mask
+				if (.@quest == 5057) {
+					if (countitem(7187) < 30) {
+						mes "节庆面具数量不足，请带齐 30 个后再提交任务。";
+						close;
+					}
+					delitem 7187,30; //Festival_Mask
+				}
 				erasequest .@quest;
 				getexp .@exp,0;
 				mes "你已获得完成任务的经验值。";

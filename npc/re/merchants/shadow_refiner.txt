@@ -21,7 +21,7 @@
 	.@zeny_cost = 200000; // Zeny cost is 200,000 according to official script [Secret]
 	disable_items;
 	mes "[影子铁匠]";
-	mes "想精炼影子装备吗？选择你的矿石吧！";
+	mes "想精炼影子装备吗？选择要精炼的装备吧！";
 	next;
 	setarray .@indices[1], EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
 	.@indlen = getarraysize(.@indices) - 1;
@@ -38,10 +38,10 @@
 		mes "其他：每成功精炼 +1，HP 增加 10。";
 		next;
 		mes "[影子铁匠]";
-		mes "所有类型的神之金属和铝都可用于精炼影子装备。每次尝试还需支付 20,000 Zeny。";
+		mes "所有类型的神之金属和铝都可用于精炼影子装备。每次尝试还需支付 " + callfunc("F_InsertComma", .@zeny_cost) + " Zeny。";
 		next;
 		mes "[影子铁匠]";
-		mes "HD 矿石可用于至少 +7 的装备，只要持续与我对话，就能防止装备损坏。";
+		mes "高浓缩神之金属或高浓缩铝可用于至少 +7 的装备，当次使用这些矿石精炼失败时，装备不会损坏，但精炼等级会降低。";
 		close;
 	}
 
@@ -66,6 +66,7 @@
 		.@material[1] = getequiprefinecost(.@part, REFINE_COST_ENRICHED, REFINE_MATERIAL_ID);
 		.@material[2] = getequiprefinecost(.@part, REFINE_COST_HD, REFINE_MATERIAL_ID);
 		.@is_enriched = false;
+		.@hoihoi = 0;
 
 		if (countitem(.@material[0]))
 			.@mate$[0] = getitemname(.@material[0]);
@@ -91,7 +92,7 @@
 		case 3:// HD
 			if (.@equip_refine < 7) {
 				mes "[影子铁匠]";
-				mes "HD 矿石只能用于 +7 或更高精炼等级的装备。";
+				mes "高浓缩神之金属或高浓缩铝只能用于 +7 或更高精炼等级的装备。";
 				close;
 			}
 			.@hoihoi = 1;

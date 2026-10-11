@@ -7,8 +7,8 @@
 //= 1.0 Initial release [Everade]
 //============================================================
 
-pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
-	mes "[Marry Jae]";
+pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
+	mes "[玛丽·杰]";
 	if (BaseLevel < 60) {
 		mes "你的基础等级太低了，达到 60 级以上后再回来。";
 		close;
@@ -17,33 +17,33 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 	next;
 	.@day = gettime(DT_DAYOFWEEK);
 	if (.@day != SATURDAY && .@day != SUNDAY) {
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "哦，好奇的旁观者？我是玛丽·杰，负责一周中的周末。";
 		next;
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "什么是周末副本？其实，这是为新手冒险家特别设计的训练空间。";
 		next;
 		mes "^0000FF环顾四周，很明显玛丽·杰是在和你说话。^000000";
 		next;
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "对于周末没有队伍的人来说，这里是孤独冒险家狩猎和获取经验的场所！";
 		next;
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "而且，这里的经验收益非常丰厚。";
 		next;
-		select( "When is the opening time?" );
-		mes "[Marry Jae]";
+		select( "什么时候开放？" );
+		mes "[玛丽·杰]";
 		mes "副本开放时间：";
 		mes "^0000FF周六 00:00 ～ 周日 23:59^000000";
 		next;
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "周末到来时，希望能见到你～";
 		close;
 	}
 	.@md_name$ = "周末地下城";
 
 	if (getcharid(1) < 1) {
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "你需要组成至少一人的队伍。";
 		close;
 	}
@@ -55,7 +55,7 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 		switch( checkquest(12377,PLAYTIME) ) {
 		case -1:
 		case 2:
-			mes "[Marry Jae]";
+			mes "[玛丽·杰]";
 			mes "抱歉，进入 " + .@md_name$ + " 的时间已经结束。";
 			mes "请休息一下，等待副本再次开放。";
 			close;
@@ -67,7 +67,7 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 	case 2:
 		erasequest 12377;
 		erasequest 12378;
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "冷却时间已结束。";
 		mes "你可以再次进入纪念副本。";
 		close;
@@ -76,14 +76,14 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 	if (is_party_leader() == true)
 		.@menu$ = "创建纪念副本";
 
-	mes "[Marry Jae]";
+	mes "[玛丽·杰]";
 	mes "我想你已经准备好了。";
 	mes "现在要进去吗？";
 	next;
 	switch( select( .@menu$, "进入周末地下城", "取消" ) ) {
 	case 1:
 		instance_create(.@md_name$);
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "纪念副本已经创建。";
 		mes "现在可以进入了。";
 		close;
@@ -98,9 +98,9 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 			mes "发生了未知错误。";
 			close;
 		case IE_OK:
-			mes "[Marry Jae]";
+			mes "[玛丽·杰]";
 			mes "出发吧！";
-			mapannounce "pay_arche", "" + strcharinfo(0) + " of the party, " + getpartyname( getcharid(1) ) + ", is entering the " + .@md_name$ + ".", bc_map, 0xFF99;
+			mapannounce "pay_arche", "" + strcharinfo(0) + "，所属队伍：" + getpartyname( getcharid(1) ) + "，正在进入" + .@md_name$ + ".", bc_map, 0xFF99;
 			if (isbegin_quest(12377) == 0)
 				setquest 12377;
 			if (isbegin_quest(12378) == 0)
@@ -109,7 +109,7 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 		}
 		end;
 	case 3:
-		mes "[Marry Jae]";
+		mes "[玛丽·杰]";
 		mes "你还没准备好吗？";
 		mes "那也没办法了。";
 		close;
@@ -117,7 +117,7 @@ pay_arche,44,124,5	script	Marry Jae	4_F_JOB_BLACKSMITH,{
 }
 
 //Merchant
-pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
+pay_arche,44,121,5	script	礼品用品职员	4_F_02,{
 	.@zeny = 60000;
 	mes "[礼品用品职员]";
 	mes "我为想把珍贵礼物送给重要之人的人提供包装服务。";
@@ -126,7 +126,7 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 	mes "如果你有 5 个 <ITEM>" + getitemname(23143) + "<INFO>23143</INFO></ITEM> 或 <ITEM>" + getitemname(23142) + "<INFO>23142</INFO></ITEM>，我只需 ^FF0000" + F_InsertComma(.@zeny) + "^000000 Zeny 就能帮你包装！";
 	mes "现在要包装吗？";
 	next;
-	switch( select( "Cancel", "Growth Elixir Packing", "Job Elixir Packing" ) ) {
+	switch( select( "取消", "包装成长灵药", "包装职业灵药" ) ) {
 	case 1:
 		mes "[礼品用品职员]";
 		mes "需要包装服务时随时回来！";
@@ -140,7 +140,7 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 		.@box = 23145;
 		break;
 	}
-	mes "[Gift Supplies Clerk]";
+	mes "[礼品用品职员]";
 	if (countitem(.@item) < 5) {
 		mes "材料足够后再回来。";
 		close;
@@ -160,7 +160,7 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 	}
 	mes "确定花费 " + F_InsertComma(.@zeny) + " Zeny，将 5 个 <ITEM>" + getitemname(.@item) + "<INFO>" + .@item + "</INFO></ITEM> 包装成 <ITEM>" + getitemname(.@box) + "<INFO>" + .@box + "</INFO></ITEM> 吗？";
 	next;
-	if (select( "Yes", "No" ) == 2) {
+	if (select( "是", "否" ) == 2) {
 		mes "[礼品用品职员]";
 		mes "需要包装服务时随时回来！";
 		close;
@@ -172,14 +172,14 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 }
 
 //Instance
-1@md_pay,239,30,6	script	Marry Jae#0_1	4_F_JOB_BLACKSMITH,{
+1@md_pay,239,30,6	script	玛丽·杰#0_1	4_F_JOB_BLACKSMITH,{
 	if (is_party_leader() == false)
 		end;
-	mes "[Marry Jae]";
+	mes "[玛丽·杰]";
 	mes "在开始布置这里的环境前，我们会让你选择合适的难度。";
 	mes "我可以替你决定，但每个人应根据自己的能力做出不同选择。";
 	next;
-	switch( select( "Cancel", "Lv60 ~ 79", "Lv80 ~ 99", "Lv100 ~ 119", "Lv120 ~ 139", "Lv140 ~ 159", "Lv160 ~ " ) ) {
+	switch( select( "取消", "Lv60 ~ 79", "Lv80 ~ 99", "Lv100 ~ 119", "Lv120 ~ 139", "Lv140 ~ 159", "Lv160 ~ " ) ) {
 	case 1:
 		end;
 	//Familiar, Skeleton, Zombie
@@ -208,7 +208,7 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 		setarray 'mob[0],3648,3642,3654;
 		break;
 	}
-	mes "[Marry Jae]";
+	mes "[玛丽·杰]";
 	if (BaseLevel < .@min_level) {
 		mes "你的基础等级太低，无法选择此难度，需要达到 " + .@min_level + " 级以上。";
 		close;
@@ -224,121 +224,121 @@ pay_arche,44,121,5	script	Gift Supplies Clerk	4_F_02,{
 	end;
 OnStart:
 	sleep 2500;
-	disablenpc instance_npcname("Marry Jae#0_1");
+	disablenpc instance_npcname("玛丽·杰#0_1");
 
 	.@event$ = instance_npcname("map_md_pay_spawn") + "::OnFarmiliarDead";
 	killmonster 'map_md_pay$, .@event$;
-	monster 'map_md_pay$,252,54,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,260,40,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,249,93,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,224,38,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,255,125,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,264,132,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,255,165,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,265,181,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,225,165,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,235,115,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,205,145,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,190,180,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,213,250,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,90,263,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,135,200,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,175,155,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,165,145,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,180,117,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,175,115,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,185,66,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,155,55,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,165,45,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,124,57,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,54,45,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,53,48,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,55,65,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,51,66,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,42,84,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,41,152,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,46,171,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,45,185,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,64,172,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,75,181,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,50,202,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,55,205,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,75,245,"Familiar",'mob[0],1,.@event$;
-	monster 'map_md_pay$,90,263,"Familiar",'mob[0],1,.@event$;
+	monster 'map_md_pay$,252,54,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,260,40,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,249,93,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,224,38,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,255,125,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,264,132,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,255,165,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,265,181,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,225,165,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,235,115,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,205,145,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,190,180,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,213,250,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,90,263,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,135,200,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,175,155,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,165,145,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,180,117,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,175,115,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,185,66,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,155,55,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,165,45,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,124,57,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,54,45,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,53,48,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,55,65,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,51,66,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,42,84,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,41,152,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,46,171,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,45,185,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,64,172,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,75,181,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,50,202,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,55,205,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,75,245,"吸血蝙蝠",'mob[0],1,.@event$;
+	monster 'map_md_pay$,90,263,"吸血蝙蝠",'mob[0],1,.@event$;
 
 	.@event$ = instance_npcname("map_md_pay_spawn") + "::OnSkelDead";
 	killmonster 'map_md_pay$, .@event$;
-	monster 'map_md_pay$,245,55,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,243,63,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,259,98,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,258,204,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,239,122,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,189,190,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,239,231,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,205,225,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,172,207,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,166,234,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,171,236,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,126,180,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,150,150,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,155,135,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,174,75,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,186,67,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,95,65,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,55,85,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,37,92,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,34,90,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,27,99,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,57,76,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,62,93,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,33,97,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,60,45,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,48,60,"Skeleton",'mob[1],1,.@event$;
-	monster 'map_md_pay$,73,51,"Skeleton",'mob[1],1,.@event$;
+	monster 'map_md_pay$,245,55,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,243,63,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,259,98,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,258,204,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,239,122,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,189,190,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,239,231,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,205,225,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,172,207,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,166,234,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,171,236,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,126,180,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,150,150,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,155,135,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,174,75,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,186,67,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,95,65,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,55,85,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,37,92,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,34,90,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,27,99,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,57,76,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,62,93,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,33,97,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,60,45,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,48,60,"邪骸战士",'mob[1],1,.@event$;
+	monster 'map_md_pay$,73,51,"邪骸战士",'mob[1],1,.@event$;
 
 	.@event$ = instance_npcname("map_md_pay_spawn") + "::OnZombieDead";
 	killmonster 'map_md_pay$, .@event$;
-	monster 'map_md_pay$,245,65,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,218,61,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,255,171,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,215,165,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,237,127,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,215,105,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,198,168,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,243,267,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,165,207,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,157,236,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,113,259,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,105,255,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,117,238,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,164,194,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,159,172,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,175,155,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,146,131,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,152,126,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,181,85,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,165,81,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,157,74,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,175,45,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,49,48,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,65,175,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,78,180,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,33,207,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,49,227,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,55,235,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,60,240,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,70,237,"Zombie",'mob[2],1,.@event$;
-	monster 'map_md_pay$,65,265,"Zombie",'mob[2],1,.@event$;
+	monster 'map_md_pay$,245,65,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,218,61,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,255,171,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,215,165,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,237,127,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,215,105,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,198,168,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,243,267,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,165,207,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,157,236,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,113,259,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,105,255,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,117,238,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,164,194,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,159,172,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,175,155,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,146,131,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,152,126,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,181,85,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,165,81,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,157,74,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,175,45,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,49,48,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,65,175,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,78,180,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,33,207,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,49,227,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,55,235,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,60,240,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,70,237,"腐尸",'mob[2],1,.@event$;
+	monster 'map_md_pay$,65,265,"腐尸",'mob[2],1,.@event$;
 
 	'rand_chest = rand(1,4);
 	end;
 
 OnFarmiliarDead:
-	callsub( S_Mob, 'mob[0], "Familiar", "OnFarmiliarDead" );
+	callsub( S_Mob, 'mob[0], "吸血蝙蝠", "OnFarmiliarDead" );
 OnSkelDead:
-	callsub( S_Mob, 'mob[1], "Skeleton", "OnSkelDead" );
+	callsub( S_Mob, 'mob[1], "邪骸战士", "OnSkelDead" );
 OnZombieDead:
-	callsub( S_Mob, 'mob[2], "Zombie", "OnZombieDead" );
+	callsub( S_Mob, 'mob[2], "腐尸", "OnZombieDead" );
 
 S_Mob:
 	if (rand(100) == 0) {
@@ -391,7 +391,7 @@ OnInstanceInit:
 
 OnStart:
 	enablenpc();
-	instance_announce -1, "A treasure chest appeared somewhere in the dungeon. It'll disappear after a while, so let's find it.", bc_map, "0xff5500";
+	instance_announce -1, "地下城的某处出现了宝箱。过一会儿就会消失，快去寻找吧。", bc_map, "0xff5500";
 	initnpctimer;
 	end;
 OnTimer180000:	//3min before chest disappears

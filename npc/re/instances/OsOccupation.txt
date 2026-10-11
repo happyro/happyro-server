@@ -16,15 +16,15 @@ OnInstanceInit:
 	'map$ = instance_mapname("1@os_a");
 	for (.@i = 1; .@i < 26; .@i++)
 		disablenpc instance_npcname("#ocp_rebel_" + .@i);
-	hideonnpc instance_npcname("Est#171_ocp_0");
+	hideonnpc instance_npcname("埃斯特#171_ocp_0");
 	disablenpc instance_npcname("#171_ocp_dev_0");
 	disablenpc instance_npcname("#171_ocp_dev_1");
 	disablenpc instance_npcname("#171_ocp_wrp_0");
 	disablenpc instance_npcname("#171_ocp_wrp_1");
 	disablenpc instance_npcname("#171_ocp_wrp_2");
 	disablenpc instance_npcname("#171_ocp_miguel");
-	disablenpc instance_npcname("Est#171_ocp_1");
-	disablenpc instance_npcname("Operation Officer#171_osd");
+	disablenpc instance_npcname("埃斯特#171_ocp_1");
+	disablenpc instance_npcname("行动军官#171_osd");
 	end;
 
 OnStory01:
@@ -33,14 +33,14 @@ OnStory01:
 		enablenpc instance_npcname("#ocp_rebel_" + .@i);
 	enablenpc instance_npcname("#171_ocp_dev_0");
 	sleep2 1000;
-	hideoffnpc instance_npcname("Est#171_ocp_0");
-	doevent instance_npcname("Est#171_ocp_0") + "::OnEvent";
+	hideoffnpc instance_npcname("埃斯特#171_ocp_0");
+	doevent instance_npcname("埃斯特#171_ocp_0") + "::OnEvent";
 	end;
 
 OnStory02:
 	for (.@i = 1; .@i < 26; .@i++)
 		hideonnpc instance_npcname("#ocp_rebel_" + .@i);
-	disablenpc instance_npcname("Est#171_ocp_0");
+	disablenpc instance_npcname("埃斯特#171_ocp_0");
 	sleep2 3000;
 	donpcevent instance_npcname("#171_ocp_mob") + "::OnSummonStory01";
 	doevent instance_npcname("#171_ocp_dev_0") + "::OnEvent01";
@@ -80,37 +80,37 @@ OnTouch:
 	disablenpc();
 	disablenpc instance_npcname("#os_occupation_ev_0");
 	doevent instance_npcname("#os_occupation_control") + "::OnDaily01";
-	disablenpc instance_npcname("Est#171_ocp_0");
+	disablenpc instance_npcname("埃斯特#171_ocp_0");
 	end;
 }
 
-1@os_a,30,360,3	script	Est#171_ocp_0	4_F_ESTLOVELOY,{
+1@os_a,30,360,3	script	埃斯特#171_ocp_0	4_F_ESTLOVELOY,{
 	cutin "ep162_est01",2;
-	mes "[Est]";
+	mes "[埃斯特]";
 	mes "集中注意听简报。";
 	close3;
 
 OnEvent:
 	sleep2 3000;
-	npctalk "Est：我确认前方正在扩散沼气，目前正在处理。";
+	npctalk "埃斯特：我确认前方正在扩散沼气，目前正在处理。";
 	sleep2 5000;
-	npctalk "Est：靠得太近会立即死亡，所以处理完成前不要移动……";
+	npctalk "埃斯特：靠得太近会立即死亡，所以处理完成前不要移动……";
 	sleep2 5000;
-	npctalk "Est：首先要在这里建立基地。我们不知道周围潜伏着多少敌人。";
+	npctalk "埃斯特：首先要在这里建立基地。我们不知道周围潜伏着多少敌人。";
 	sleep2 5000;
-	npctalk "Est：我们掌握的信息不多，所以必须自己收集。从现在起分成 3 组，压制这个区域。";
+	npctalk "埃斯特：我们掌握的信息不多，所以必须自己收集。从现在起分成 3 组，压制这个区域。";
 	sleep2 5000;
-	npctalk "Est：阿尔法队，开始搜索南侧水道。";
+	npctalk "埃斯特：阿尔法队，开始搜索南侧水道。";
 	sleep2 5000;
-	npctalk "Est：布拉沃队，和我一起清扫东侧边界前的区域。";
+	npctalk "埃斯特：布拉沃队，和我一起清扫东侧边界前的区域。";
 	sleep2 5000;
-	npctalk "Est：回声队由 " + strcharinfo(0) + " 指挥，负责支援。你们要封锁这里，防止敌人外逃。";
+	npctalk "埃斯特：回声队由 " + strcharinfo(0) + " 指挥，负责支援。你们要封锁这里，防止敌人外逃。";
 	sleep2 5000;
-	npctalk "Est：我们不希望需要支援，但如果发生这种情况，就呼叫回声队。";
+	npctalk "埃斯特：我们不希望需要支援，但如果发生这种情况，就呼叫回声队。";
 	sleep2 5000;
-	mapannounce 'map$,"Chemical Treatment Unit : The biogas facilities locked has been completed. The residual gas will continue for the next few minutes.",bc_map,0xFFCC00;
+	mapannounce 'map$,"化学处理小队：沼气设施已关闭，残余气体还需几分钟才能消散。",bc_map,0xFFCC00;
 	sleep2 5000;
-	npctalk "Est：时间到了，开始行动。" + strcharinfo(0) + " 的小队负责支援，留在这里回应联络。";
+	npctalk "埃斯特：时间到了，开始行动。" + strcharinfo(0) + " 的小队负责支援，留在这里回应联络。";
 	sleep2 5000;
 	doevent instance_npcname("#os_occupation_control") + "::OnStory02";
 	end;
@@ -128,7 +128,7 @@ OnEvent:
 		mes "## 输入消息 ##";
 		next;
 		setarray .@input$,
-		"Engaging with mutants on north.","Engaging with small mutants.","Ah~! I want to go home!";
+		"正在与北面的变异体交战。","正在与小型变异体交战。","啊～！我想回家！";
 		.@menu$ = implode(.@input$,":");
 		.@s = select(.@menu$) - 1;
 		'ocp = 2;
@@ -139,7 +139,7 @@ OnEvent:
 		mes "## 输入消息 ##";
 		next;
 		setarray .@input$,
-		"Echo is fighting too. Requesting for support.","There was an engagement, but it's over.","Save me!";
+		"回声队也在交战，请求支援。","刚才发生了战斗，现在已经结束。","救命！";
 		.@menu$ = implode(.@input$,":");
 		.@s = select(.@menu$) - 1;
 		'ocp = 4;
@@ -153,52 +153,52 @@ OnEvent:
 	end;
 
 OnEvent01:
-	mapannounce 'map$,"Alpha : Alpha is approaching south. We found a number of mutants heading north towards Echo.",bc_map,0xCCCC00;
+	mapannounce 'map$,"阿尔法队：我们正向南推进，发现多只变异体向北朝回声队移动。",bc_map,0xCCCC00;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Reception sensitivity is good, Echo prepare for response, and report when anything occurs.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：通信正常，回声队准备应对，有情况立即报告。",bc_map,0x00EEEE;
 	sleep2 6000;
-	mapannounce 'map$,"Alpha : Alpha found a number of mutants on southern drainage. We're going to engage in battle.",bc_map,0xCCCC00;
+	mapannounce 'map$,"阿尔法队：南侧排水道发现多只变异体，准备交战。",bc_map,0xCCCC00;
 	sleep2 9000;
-	mapannounce 'map$,"Est : ---Roger.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：——收到。",bc_map,0x00EEEE;
 	sleep2 3000;
-	mapannounce 'map$,"Est : Alpha, send a transmission after you're done with the engagement.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：阿尔法队，战斗结束后立即报告。",bc_map,0x00EEEE;
 	sleep2 6000;
-	mapannounce 'map$,"Alpha : The drainage channel is now clear of mutants. Residual biological experiments were confirmed. We are preparing for the second engagement.",bc_map,0xCCCC00;
+	mapannounce 'map$,"阿尔法队：排水道内的变异体已清除，确认仍有实验体残留，准备再次交战。",bc_map,0xCCCC00;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Alpha, roger. Echo, status report.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：阿尔法队，收到。回声队，报告情况。",bc_map,0x00EEEE;
 	sleep2 3000;
-	mapannounce 'map$,"Est : " + strcharinfo(0) + "!! Response your current situation!!",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "！！报告当前情况！！",bc_map,0x00EEEE;
 	'ocp = 1;
 	specialeffect EF_BIG_PORTAL;
 	end;
 
 OnEvent02:
 	sleep2 3000;
-	mapannounce 'map$,"Est : Echo's reception is not smooth. Re-transmit the message.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：回声队的信号不清楚，请重新发送。",bc_map,0x00EEEE;
 	sleep2 10000;
-	mapannounce 'map$,"Alpha : It's an ambush! Current coordinates are are Oscar Sierra 9...@$%**!",bc_map,0xCCCC00;
+	mapannounce 'map$,"阿尔法队：有埋伏！当前坐标是 OS 9……@$%**！",bc_map,0xCCCC00;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Alpha retransmit your coordinates. Alpha!!! Please respond!!.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：阿尔法队，重新报告坐标。阿尔法队！！！请回答！！",bc_map,0x00EEEE;
 	sleep2 6000;
-	mapannounce 'map$,"Alpha : ---- Tchhhhhhh ----",bc_map,0xCCCC00;
+	mapannounce 'map$,"阿尔法队：——滋滋滋——",bc_map,0xCCCC00;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Damn!... Echo, check if you can get support to Alpha's coordinates.",bc_map,0xCCCC00;
+	mapannounce 'map$,"埃斯特：该死！……回声队，确认能否前往阿尔法队所在坐标支援。",bc_map,0xCCCC00;
 	sleep2 3000;
-	mapannounce 'map$,"Est : " + strcharinfo(0) + "! Check Alpha's coordinates if it's available!",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "！如果可以，去阿尔法队所在的坐标确认情况！",bc_map,0x00EEEE;
 	'ocp = 3;
 	specialeffect EF_BIG_PORTAL;
 	end;
 
 OnEvent03:
 	sleep2 6000;
-	mapannounce 'map$,"?????? : This is Foxtrot. Ground artillery support has been prepared. Please send the coordinates that needs support.",bc_map,0x00FF44;
+	mapannounce 'map$,"？？？：这里是狐步队，地面炮火支援已就绪，请发送需要支援的坐标。",bc_map,0x00FF44;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Alpha is unresponsive. " + strcharinfo(0) + " please support them. The coordinates are Oscar Sierra 32 356",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：阿尔法队没有回应。" + strcharinfo(0) + "，请支援他们。坐标是 OS 32 356。",bc_map,0x00EEEE;
 	sleep2 6000;
 	specialeffect EF_CLOUD4,AREA,instance_npcname("#ocp_rebel_5");
-	mapannounce 'map$,"?????? : Foxtrot reporting, coordinates received. Please be careful to hit only the mutants.",bc_map,0x00FF44;
+	mapannounce 'map$,"？？？：狐步队报告，已收到坐标。注意，只攻击变异体。",bc_map,0x00FF44;
 	sleep2 6000;
-	mapannounce 'map$,"?????? : In 3 seconds, the mutant only ground artillery will be sent on the side of Echo.",bc_map,0x00FF44;
+	mapannounce 'map$,"？？？：3 秒后将对回声队附近的变异体实施定向炮击。",bc_map,0x00FF44;
 	sleep2 3000;
 	for (.@i = 1; .@i < 26; .@i++) {
 		specialeffect EF_METEORSTORM,AREA,instance_npcname("#ocp_rebel_" + .@i);
@@ -207,11 +207,11 @@ OnEvent03:
 	}
 	killmonster 'map$,instance_npcname("#171_ocp_mob")+"::OnPoisonKill";
 	sleep2 1000;
-	mapannounce 'map$,"?????? : Echo-coordinates mutant artillery support is complete.",bc_map,0x00FF44;
+	mapannounce 'map$,"？？？：回声队所在坐标的变异体炮击支援已完成。",bc_map,0x00FF44;
 	sleep2 6000;
-	mapannounce 'map$,"Est : Engagement on our side has ended.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：我们这边的战斗已经结束。",bc_map,0x00EEEE;
 	sleep2 6000;
-	mapannounce 'map$,"Est : I will send the estimated coordinates of their last contact point using the radio. Please send support after getting the information on the radio.",bc_map,0x00EEEE;
+	mapannounce 'map$,"埃斯特：我会通过无线电发送他们最后联络位置的估计坐标。收到后请前往支援。",bc_map,0x00EEEE;
 	sleep2 3000;
 	'ocp = 5;
 	specialeffect EF_BIG_PORTAL;
@@ -223,18 +223,18 @@ OnEvent03:
 	if ('ocp == 5) {
 		mes "## 发送消息 ##";
 		next;
-		select("There is no trace of alpha. Only the radio.");
+		select("没有发现阿尔法队的踪迹，只有无线电。");
 		'ocp = 6;
-		mapannounce 'map$,strcharinfo(0) + " : There is no trace of alpha. Only the radio is here.",bc_map,0xEE66EE;
+		mapannounce 'map$,strcharinfo(0) + "：没有发现阿尔法队的踪迹，这里只有无线电。",bc_map,0xEE66EE;
 		sleep2 4000;
-		mapannounce 'map$,"Est : " + strcharinfo(0) + ". Please look around if there are any traces left.",bc_map,0x00EEEE;
+		mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "，请检查周围是否留下了线索。",bc_map,0x00EEEE;
 		sleep2 3000;
-		select("Nothing in particular.");
-		mapannounce 'map$,strcharinfo(0) + " : Nothing in particular.",bc_map,0xEE66EE;
+		select("没发现特别的东西。");
+		mapannounce 'map$,strcharinfo(0) + " : 没发现特别的东西。",bc_map,0xEE66EE;
 		sleep2 3000;
-		mapannounce 'map$,"Est : Bravo has completed the search on the east side.",bc_map,0x00EEEE;
+		mapannounce 'map$,"埃斯特：布拉沃队已完成东侧搜索。",bc_map,0x00EEEE;
 		sleep2 4000;
-		mapannounce 'map$,"Est : We are going to move south. I'll transmit the new coordinates. Please prepare yourselves for an engagement.",bc_map,0x00EEEE;
+		mapannounce 'map$,"埃斯特：我们准备向南移动。我会发送新坐标，请做好战斗准备。",bc_map,0x00EEEE;
 		mes "## 收到坐标 ##";
 		enablenpc instance_npcname("#171_ocp_wrp_0");
 		hideonnpc instance_npcname("#171_ocp_wrp_0");
@@ -246,7 +246,7 @@ OnEvent03:
 
 OnTouch:
 	if ('ocp == 5)
-		npctalk "Est：" + strcharinfo(0) + "，能听到吗？如果能，请回应。";
+		npctalk "埃斯特：" + strcharinfo(0) + "，能听到吗？如果能，请回应。";
 	end;
 }
 
@@ -268,33 +268,33 @@ OnTouch:
 		case 0:
 			monster 'map$,144,275,"",2536,1,instance_npcname("#171_ocp_mob") + "::OnPoisonKill";
 			navigateto("1@os_a",163,266);
-			mapannounce 'map$,"Est : " + strcharinfo(0) + ", can you hear me?",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "，能听到吗？",bc_map,0x00EEEE;
 			sleep2 3000;
-			mapannounce 'map$,"Est : I transmitted the second search coordinates. Be careful not to lose your records.",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：第二处搜索坐标已发送，注意保存记录。",bc_map,0x00EEEE;
 			sleep2 6000;
-			mapannounce 'map$,"Est : " + strcharinfo(0) + ", check if there are any traces around there.",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "，检查附近有没有线索。",bc_map,0x00EEEE;
 			initnpctimer instance_npcname("#171_ocp_wrp_1");
 			sleep2 3000;
-			mapannounce 'map$,strcharinfo(0) + " : I have found a troop of mutants along the route.",bc_map,0xEE66EE;
+			mapannounce 'map$,strcharinfo(0) + "：沿途发现了一群变异体。",bc_map,0xEE66EE;
 			sleep2 3000;
-			mapannounce 'map$,"Est : If you see a mutant who can communicate, immediately capture it. Other than that... You can subdue them all.",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：如果发现能交流的变异体，立即活捉。其他的……全部消灭。",bc_map,0x00EEEE;
 			break;
 		case 1:
 			navigateto("1@os_a",138,174);
 			initnpctimer instance_npcname("#171_ocp_wrp_2");
-			mapannounce 'map$,"Est : " + strcharinfo(0) + ", are you still alive?",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：" + strcharinfo(0) + "，你还活着吗？",bc_map,0x00EEEE;
 			sleep2 3000;
-			mapannounce 'map$,strcharinfo(0) + " : Team Echo is still alive. We are moving towards the southern point.",bc_map,0xEE66EE;
+			mapannounce 'map$,strcharinfo(0) + "：回声队仍然存活，正在向南侧目标点移动。",bc_map,0xEE66EE;
 			sleep2 3000;
-			mapannounce 'map$,"Est : Bravo is also moving towards there, we're skipping the eastern point.",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：布拉沃队也在前往那里，我们会跳过东侧目标点。",bc_map,0x00EEEE;
 			sleep2 3000;
-			mapannounce 'map$,strcharinfo(0) + " : I hope that Bravo arrive safely.",bc_map,0xEE66EE;
+			mapannounce 'map$,strcharinfo(0) + "：希望布拉沃队平安抵达。",bc_map,0xEE66EE;
 			sleep2 3000;
-			mapannounce 'map$,"Est : I wish the same for Team Echo.",bc_map,0x00EEEE;
+			mapannounce 'map$,"埃斯特：也祝回声队平安。",bc_map,0x00EEEE;
 			break;
 		case 2:
 			navigateto("1@os_a",161,178);
-			mapannounce 'map$,"???? : Grrr...",bc_map,0xFF9999;
+			mapannounce 'map$,"？？？：呃啊……",bc_map,0xFF9999;
 		}
 	}
 	end;
@@ -303,7 +303,7 @@ OnMobSpawn:
 	.@event$ = instance_npcname(strnpcinfo(0)) + "::OnMobKill";
 	setarray .@xy,63,214,20349,63,230,20349,63,218,20350,63,222,20350,63,226,20350,63,234,20350,63,238,20350,63,242,20350;
 	for (.@i = 0; .@i < getarraysize(.@xy); .@i += 3)
-		monster 'map$,.@xy[.@i],.@xy[.@i+1],"Incomplete " + getmonsterinfo(.@xy[.@i+2],MOB_NAME),.@xy[.@i+2],1,.@event$;
+		monster 'map$,.@xy[.@i],.@xy[.@i+1],"未完成的" + getmonsterinfo(.@xy[.@i+2],MOB_NAME),.@xy[.@i+2],1,.@event$;
 	end;
 
 OnSummon:
@@ -314,7 +314,7 @@ OnSummon:
 		case 2: setarray .@xy,151,243,20348,144,216,20349,141,213,20349,137,210,20349,132,207,20349,139,200,20349,146,199,20349,139,196,20349,146,216,20350,141,213,20350,135,213,20350,137,212,20350,143,203,20350,139,209,20350,134,199,20350;
 	}
 	for (.@i = 0; .@i < getarraysize(.@xy); .@i += 3)
-		monster 'map$,.@xy[.@i],.@xy[.@i+1],"Incomplete " + getmonsterinfo(.@xy[.@i+2],MOB_NAME),.@xy[.@i+2],1,.@event$;
+		monster 'map$,.@xy[.@i],.@xy[.@i+1],"未完成的" + getmonsterinfo(.@xy[.@i+2],MOB_NAME),.@xy[.@i+2],1,.@event$;
 	end;
 
 OnMobKill:
@@ -336,10 +336,10 @@ OnTimer10000:
 	.@id = atoi(replacestr(strnpcinfo(2),"171_ocp_wrp_",""));
 	.@count = mobcount('map$,.@event$);
 	if (.@count) {
-		mapannounce 'map$,"Remaining Mutant Survivor - " + .@count,bc_map,0xFFFF00;
+		mapannounce 'map$,"剩余变异体：" + .@count,bc_map,0xFFFF00;
 		initnpctimer;
 	} else {
-		mapannounce 'map$,"Intermediate point secured.",bc_map,0xFFFF00;
+		mapannounce 'map$,"中间据点已控制。",bc_map,0xFFFF00;
 		setd("'" + strnpcinfo(2),1);
 		hideoffnpc();
 	}
@@ -363,32 +363,32 @@ OnTimer10000:
 	close;
 }
 
-1@os_a,165,176,3	script	Est#171_ocp_1	4_F_ESTLOVELOY,{
+1@os_a,165,176,3	script	埃斯特#171_ocp_1	4_F_ESTLOVELOY,{
 	if (isbegin_quest(12452) == 1) {
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes strcharinfo(0) + "，没想到我还能活着再见到你。你挺厉害的。";
 		next;
-		select("Ask about the fallen mutant.");
-		mes "[Est]";
+		select("询问倒下的变异体。");
+		mes "[埃斯特]";
 		mes "这个嘛，就算你问我……这还是我第一次和变异体交谈。";
 		emotion ET_SCRATCH;
 		next;
 		cutin "ep171_miguel03",0;
 		mes "[???]";
-		mes "……Est？";
+		mes "……埃斯特？";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "你怎么知道我的名字？你是谁！老实回答，我会让你无痛结束。";
 		emotion ET_SURPRISE;
 		next;
 		cutin "ep171_miguel03",0;
 		mes "[???]";
-		mes "Est……叛乱幽灵小队……你还记得米格尔叔叔吗？";
+		mes "埃斯特……叛乱幽灵小队……你还记得米格尔叔叔吗？";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "你怎么会知道那个名字……";
 		next;
 		cutin "ep171_miguel03",0;
@@ -397,51 +397,51 @@ OnTimer10000:
 		next;
 		mes "^0000FF变异体脖子上的身份牌格外显眼。^000000";
 		next;
-		select("Get the identification tag and hand it to Est.");
+		select("取下身份牌，交给埃斯特。");
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "米……格尔……？";
 		next;
 		cutin "ep171_miguel03",0;
-		mes "[Miguel]";
-		mes "……Est，我最后看到的……是你的脸……这让我很安心。";
+		mes "[米格尔]";
+		mes "……埃斯特，我最后看到的……是你的脸……这让我很安心。";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "米格尔叔叔！？怎么会这样！";
 		next;
 		cutin "ep171_miguel03",0;
-		mes "[Miguel]";
+		mes "[米格尔]";
 		mes "在我死前……我一直想见见老同事……你实现了我的愿望。";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "叔叔！这是怎么回事！你发生了什么？";
 		next;
 		cutin "ep171_miguel01",0;
-		mes "[Miguel]";
-		mes "呃……我时间不多了……仔细听，Est。";
+		mes "[米格尔]";
+		mes "呃……我时间不多了……仔细听，埃斯特。";
 		next;
-		mes "[Miguel]";
+		mes "[米格尔]";
 		mes "这里的某处……能找到雷根施姆疯狂研究的成果……就在这里某处。";
 		next;
-		mes "[Miguel]";
+		mes "[米格尔]";
 		mes "找到一切……你就会知道我遭遇了什么……也会看到无法解释的事情。";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "叔叔！醒醒！！我们出去吧。只要出去就能救你！";
 		next;
 		cutin "ep171_miguel02",0;
-		mes "[Miguel]";
-		mes  "Est……你还是有一颗宽厚的心……这种感情……在战场上……是我教给你的……";
+		mes "[米格尔]";
+		mes  "埃斯特……你还是有一颗宽厚的心……这种感情……在战场上……是我教给你的……";
 		next;
 		cutin "ep162_est01",2;
-		mes "[Est]";
+		mes "[埃斯特]";
 		mes "叔叔！叔叔！！";
 		next;
 		cutin "",255;
-		mes "[Miguel]";
+		mes "[米格尔]";
 		mes "...";
 		if (isbegin_quest(12452) == 1)
 			completequest 12452;
@@ -450,27 +450,27 @@ OnTimer10000:
 		getexp 300000,300000;
 		close;
 	}
-	select("Ask about Miguel");
+	select("询问米格尔的事。");
 	cutin "ep162_est01",2;
-	mes "[Est]";
+	mes "[埃斯特]";
 	mes strcharinfo(0) +"，抱歉，我现在不想谈他。";
 	next;
-	select("Ask about the records.");
-	mes "[Est]";
+	select("询问研究记录。");
+	mes "[埃斯特]";
 	mes "我检查了东北区域，看到铁路上方似乎有一处研究设施。";
 	next;
-	mes "[Est]";
+	mes "[埃斯特]";
 	mes "也许米格尔所说的研究就在里面某处……我必须马上开始另一项行动。";
 	next;
-	mes "[Est]";
+	mes "[埃斯特]";
 	mes "我想这里没有其他事情要做了。";
 	next;
-	select("I want to go back.");
+	select("我想回去。");
 	warp "sp_cor",162,63;
 	end;
 }
 
-1@os_a,187,195,5	script	Operation Officer#171_osd	4_M_ILYA,{
+1@os_a,187,195,5	script	行动军官#171_osd	4_M_ILYA,{
 	if (isbegin_quest(12454) == 1) {
 		mes "[行动军官]";
 		mes "你独自解决了 CP7 变异体……战斗还顺利吗？";
@@ -489,7 +489,7 @@ OnTimer10000:
 	mes "[行动军官]";
 	mes "现在出去吧。我们需要尽快准备修复工作。";
 	next;
-	if (select("Look around more.:Go Out") == 1) {
+	if (select("再四处看看。:出去。") == 1) {
 		mes "[行动军官]";
 		mes "是吗？不要拖得太久。";
 		close;
@@ -505,7 +505,7 @@ OnSummonStory01:
 	setarray .@mob,20348,20349,20350;
 	for (.@i = 0; .@i < 12; .@i++) { //Summons max 12 mobs randomly
 		.@id = .@mob[rand(3)];
-		areamonster 'map$,26,349,37,357,"Incomplete " + getmonsterinfo(.@id,MOB_NAME),.@id,1,instance_npcname(strnpcinfo(0))+"::OnStoryKill";
+		areamonster 'map$,26,349,37,357,"未完成的" + getmonsterinfo(.@id,MOB_NAME),.@id,1,instance_npcname(strnpcinfo(0))+"::OnStoryKill";
 		sleep 10000;
 	}
 	end;
@@ -543,10 +543,10 @@ OnTimer10000:
 	.@event$ = instance_npcname(strnpcinfo(0)) + "::OnMobKill";
 	.@count = mobcount('map$,.@event$);
 	if (.@count) {
-		mapannounce 'map$,"Remaining Mutant Survivor - " + .@count,bc_map,0xFFFF00;
+		mapannounce 'map$,"剩余变异体：" + .@count,bc_map,0xFFFF00;
 		initnpctimer;
 	} else {
-		mapannounce 'map$,"Sector " + ('osd - 1) + " secured.",bc_map,0x00FF00;
+		mapannounce 'map$,"第 " + ('osd - 1) + " 区域已控制。",bc_map,0x00FF00;
 		.@id = 'osd + 1;
 		'osd = .@id;
 		if (.@id == 5)
@@ -556,66 +556,66 @@ OnTimer10000:
 	end;
 
 OnEvent01:
-	mapannounce 'map$,"Operation Officer : The Alpha team should be prepare to fight the moment you felt a Mutant's reaction near you.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：阿尔法队，一旦察觉附近有变异体反应，立即准备战斗。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : There are no civilian in the main search area, so you can safely subdue any moving creatures.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：主要搜索区域内没有平民，可以消灭所有活动的生物。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : Charlie, and Delta Team, if there is an engagement situation, immediately go into battle without reporting.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：查理队、德尔塔队，遭遇敌人后立即交战，无需报告。",bc_map,0x00EEEE;
 	initnpctimer;
 	end;
 
 OnEvent03:
-	mapannounce 'map$,"Operation Officer : We received a precaution within this area.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：收到本区域的警戒情报。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : A mutant labeled with A013 is a independent mutant unrelated to its base.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：标记为 A013 的变异体是独立个体，与所在区域的其他变异体无关。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : It is said that it's combat ability is stronger than of ordinary mutants, avoid combat unless you are willing to fight.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：据说它比普通变异体更强，未做好准备就不要与它交战。",bc_map,0x00EEEE;
 	initnpctimer;
 	end;
 
 OnEvent04:
-	mapannounce 'map$,"Operation Officer : Be careful when dealing with CP4 or higher grade mutants.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：对付 CP4 及以上等级的变异体时务必小心。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : They are the same type as CP1, but their destructive power increases with their grade. Be careful not to be surrounded.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：它们与 CP1 属于同类，但等级越高，破坏力越强。小心别被包围。",bc_map,0x00EEEE;
 	initnpctimer;
 	end;
 
 OnEvent05:
-	mapannounce 'map$,"Operation Officer : Sector 4 is said to be a confidential documents storage room.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：据说第 4 区域是机密文件储藏室。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : The advanced team already searched the area, but there was nothing special, so focus on the battle and be careful to not get surrounded.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：先遣队已搜索过该区域，没有特别发现。集中精力战斗，小心别被包围。",bc_map,0x00EEEE;
 	initnpctimer;
 	end;
 
 OnEvent06:
-	mapannounce 'map$,"Operation Officer : Bravo Team. Is engaged with CP6 Mutants. Their offense is very powerful.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：布拉沃队正在与 CP6 变异体交战，它们的攻击力非常强。",bc_map,0x00EEEE;
 	sleep 6000;
-	mapannounce 'map$,"Operation Officer : Alpha, Charlie, Delta team should also be careful. Don't get surrounded by CP6 Grade mutants!",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：阿尔法队、查理队、德尔塔队也要小心，别被 CP6 变异体包围！",bc_map,0x00EEEE;
 	initnpctimer;
 	end;
 
 OnSummonBoss:
 	sleep 3000;
-	mapannounce 'map$,"Operation Officer : To all team. If you find an S-Class mutant, please engage in the battle immediately.",bc_map,0x00EEEE;
+	mapannounce 'map$,"行动军官：通知各小队，发现 S 级变异体后立即交战。",bc_map,0x00EEEE;
 	sleep 3000;
-	mapannounce 'map$,"???? : Grrr...",bc_map,0xFF9999;
+	mapannounce 'map$,"？？？：呃啊……",bc_map,0xFF9999;
 	sleep 3000;
-	mapannounce 'map$,"Operation Officer : Be careful, it's difficult to deal with mutants with high CP grade!",bc_map,0x00EEEE;
-	monster 'map$,205,188,"CP7 Miguel",20346,1,instance_npcname(strnpcinfo(0)) + "::OnBossKill";
+	mapannounce 'map$,"行动军官：小心！高 CP 等级的变异体很难对付！",bc_map,0x00EEEE;
+	monster 'map$,205,188,"CP7 米格尔",20346,1,instance_npcname(strnpcinfo(0)) + "::OnBossKill";
 	'boss_gid = $@mobid[0];
 	donpcevent instance_npcname(strnpcinfo(0)) + "::OnBossSkill";
 	end;
 
 OnBossKillStory:
 	enablenpc instance_npcname("#171_ocp_miguel");
-	enablenpc instance_npcname("Est#171_ocp_1");
+	enablenpc instance_npcname("埃斯特#171_ocp_1");
 	end;
 
 OnBossKill:
 	.@event$ = instance_npcname(strnpcinfo(0)) + "::OnSummonKill";
 	killmonster 'map$,.@event$;
-	mapannounce 'map$,"Operation Officer : Guess I'm a little late!",bc_map,0x00EEEE;
-	enablenpc instance_npcname("Operation Officer#171_osd");
+	mapannounce 'map$,"行动军官：看来我来晚了一点！",bc_map,0x00EEEE;
+	enablenpc instance_npcname("行动军官#171_osd");
 	end;
 
 OnBossSkill:

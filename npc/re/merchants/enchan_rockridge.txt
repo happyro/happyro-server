@@ -18,27 +18,27 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 		close;
 	}
 	disable_items;
-	mes "[Contraband Processor]";
+	mes "[违禁品处理员]";
 	mes "你试过用岩脊硬币购买违禁品吗？我可以让违禁品变得更好。";
 	next;
 	.@reset = select( "让它们变好？怎么做？", "附魔违禁品。", "重置违禁品附魔等级。" ) - 2;
 	if (.@reset == -1) {
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "啊，我们以前见过吗？我每天遇到太多人，记不住所有人的脸。让我向你说明一下。";
 		next;
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "我可以为用岩脊硬币购买的装备附魔：防具和服装最多 3 个插槽，饰品最多 2 个。";
 		next;
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "附魔和重置每个插槽收费 2 枚岩脊硬币。";
 		next;
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "哦，还要注意，这些违禁品容易损坏，尤其是重置时。";
 		close;
 	}
 	switch( select( "取消", "防具", "服装", "饰品（右侧栏）" ) ) {
 	case 1:
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "你真傻。";
 		close;
 	case 2:
@@ -67,11 +67,11 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 	case 28442:	// Hippie_Feather
 		break;
 	case -1:
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "你为什么浪费我的时间？先装备好物品。";
 		close;
 	default:
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "我不处理这种物品。";
 		close;
 	}
@@ -79,21 +79,21 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
 	copyarray .@tmp_card[0], .@card[0], 4;
 	if ((.@card[1] && getiteminfo(.@card[1], ITEMINFO_SUBTYPE) == CARD_NORMAL) || (.@card[2] && getiteminfo(.@card[2], ITEMINFO_SUBTYPE) == CARD_NORMAL) || (.@card[3] && getiteminfo(.@card[3], ITEMINFO_SUBTYPE) == CARD_NORMAL)) {// armor enchant system custom check
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "出了问题。";
 		close;
 	}
 	switch( .@reset ) {
 	case TRUE:
 		if (.@card[3] == 0) {
-			mes "[Contraband Processor]";
+			mes "[违禁品处理员]";
 			mes "它没有附魔。你要我重置什么？";
 			close;
 		}
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "哦，你真的要重置吗？正如我之前说的，违禁的义勇军徽章很容易损坏。";
 		if (select( "我稍后再来。", "开始吧。" ) == 1) {
-			mes "[Contraband Processor]";
+			mes "[违禁品处理员]";
 			mes "好，改变主意后再回来。";
 			close;
 		}
@@ -108,7 +108,7 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 		case EQI_ARMOR:
 		case EQI_GARMENT:
 			if (.@card[1] > 0) {
-				mes "[Contraband Processor]";
+				mes "[违禁品处理员]";
 				mes "这件装备已达到附魔上限。也许你该重置。";
 				close;
 			}
@@ -171,7 +171,7 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 			break;
 		case EQI_ACC_R:
 			if (.@card[2] > 0) {
-				mes "[Contraband Processor]";
+				mes "[违禁品处理员]";
 				mes "这件装备已达到附魔上限。也许你该重置。";
 				close;
 			}
@@ -204,34 +204,33 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 			else .@card[.@enchant_slot] = getiteminfo("Atk_Speed1", ITEMINFO_ID);
 			break;
 		default:
-			mes "[Contraband Processor]";
+			mes "[违禁品处理员]";
 			mes "你刚才是想切换装备吗？";
 			close;
 		}
 		break;
 	}
 	if (countitem(25250) < 2) {
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "这项服务收费 2 枚岩脊硬币。把它们带来。";
 		close;
 	}
-	delitem 25250,2;// Rock_Ridge_Coin
-
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipRefineHack", .@part, .@refine) || callfunc("F_IsEquipCardHack", .@part, .@tmp_card[0], .@tmp_card[1], .@tmp_card[2], .@tmp_card[3]))
 		close;
+	delitem 25250,2;// Rock_Ridge_Coin
 
 	delequip .@part;
 	if (rand(100) < .@chance_of_breaking_on_reset) {
 		specialeffect2 EF_LORD;
-		mes "[Contraband Processor]";
+		mes "[违禁品处理员]";
 		mes "啊，结果不太好。";
 		mes "唉，真是倒霉。";
 		close;
 	}
 	specialeffect2 EF_REPAIRWEAPON;
 	getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
-	mes "[Contraband Processor]";
+	mes "[违禁品处理员]";
 	mes "完成了。检查一下。";
 	close;
 }
@@ -239,88 +238,88 @@ har_in01,17,74,7	script	Contraband Processor#pa	4_DR_SOLDIER,{
 
 har_in01,24,69,3	script	Affable Lady#rockridge0	1_F_MERCHANT_02,{
 	if (checkweight(1301,3) == 0) {
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "你一定很强，才能携带这么多东西。";
 		next;
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "如果想减轻包裹，警长办公室方向有卡普拉员工。";
 		close;
 	}
-	mes "[Affable Lady]";
+	mes "[亲切的女士]";
 	mes "你是冒险者。我喜欢你这样有热情的人。";
 	mes "那么，你是因为^0000CD它^000000来的吗？";
 	next;
 	if (select( "因为什么？", "是的。" ) == 1) {
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "哼，别装作不知道。我说的是可以在岩脊购买的特殊装备。";
 		next;
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "防具商每周五进新货，每次几乎一到货就卖光。";
 		close;
 	}
-	mes "[Affable Lady]";
+	mes "[亲切的女士]";
 	mes "*轻笑* 你想要哪一种：给^0000CD肩膀^000000、^0000CD颈部还是胸部^000000的？";
 	next;
 	switch( select( "呃，随便。", "肩部", "颈部或胸部" ) ) {
 	case 1:
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "*轻笑* 当然，年轻人穿什么都好看。";
 		mes "但如果你想要特别的东西，就去看看防具店。";
 		close;
 	case 2:
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "选一个喜欢的，我来介绍。";
 		mes "所有装备不论类型，价格都是^0000CD3,000,000 Zeny^000000。";
 		next;
 		.@cost = 3000000;
 		setarray .@item_id[0],20820,20821,20822;
-		setarray .@item_name$[0], "Elemental Cape", "Golden Scarf", "Mine Worker Backpack";
+		setarray .@item_name$[0], "元素披风", "黄金围巾", "矿工背包";
 		.@s = select( "元素斗篷", "黄金围巾", "矿工背包", "我完全听不懂你在说什么。" ) - 1;
 		break;
 	case 3:
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "选一个喜欢的，我来介绍。";
 		mes "所有装备不论类型，价格都是^0000CD1,500,000 Zeny^000000。";
 		next;
 		.@cost = 1500000;
 		setarray .@item_id[0],28441,28442;
-		setarray .@item_name$[0], "Vigilante Badge", "Hippie Feather";
+		setarray .@item_name$[0], "义警徽章", "嬉皮士羽毛";
 		.@s = select( "义勇军徽章", "嬉皮羽毛", "我完全听不懂你在说什么。" ) - 1;
 		break;
 	}
 	if (.@item_id[.@s] == 0) {
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "哎呀，我想你太单纯了，不该听到我刚才说的话。";
 		mes "为了你好，还是忘了吧。";
 		close;
 	}
-	mes "[Affable Lady]";
+	mes "[亲切的女士]";
 	mes "啊，你对这个感兴趣：";
 	mes "[" + mesitemlink( .@item_id[.@s], false, .@item_name$[.@s] ) + "].";
 	mes "点击名称查看详细说明。";
 	mes "正如我所说，价格是^0000CD"+callfunc("F_InsertComma",.@cost)+" Zeny^000000。你想买吗？";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "嗯。看来我是在对不想购买的人白费口舌。";
 		mes "每件装备都有自己的故事，如果你不带走它，它可能会记恨你。";
 		next;
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "我建议你不要告诉其他人，答应我你会回来。我会替你保管装备。";
 		close;
 	}
 	if (Zeny < .@cost) {
-		mes "[Affable Lady]";
+		mes "[亲切的女士]";
 		mes "糟糕，你的钱不够买这个。";
 		mes "为什么不晚点再来？我一直都会在这里。";
 		close;
 	}
-	mes "[Affable Lady]";
+	mes "[亲切的女士]";
 	mes "好的。这是你的" + .@item_name$[.@s] + "。";
 	Zeny = Zeny - .@cost;
 	getitem .@item_id[.@s],1;
 	next;
-	mes "[Affable Lady]";
+	mes "[亲切的女士]";
 	mes "人们常常被先入为主的观念蒙蔽。大多数人想不到像我这样的老太太会卖这么特别的东西。";
 	mes "想要更多装备就再来吧。我一直都会在这里。*轻笑*";
 	close;
@@ -328,63 +327,67 @@ har_in01,24,69,3	script	Affable Lady#rockridge0	1_F_MERCHANT_02,{
 
 har_in01,34,81,5	script	Howard#rr	4_M_TATIO,{
 	if (checkweight(1301,1) == 0) {
-		mes "[Howard]";
+		mes "[霍华德]";
 		mes "呃，你带了很多东西。";
 		mes "为什么不先减轻包裹负重？";
 		close;
 	}
-	mes "[Howard]";
+	mes "[霍华德]";
 	mes "你好。今天我能为你做什么？";
 	next;
 	if (countitem(25250) < 1) {
-		mes "[Howard]";
+		mes "[霍华德]";
 		mes "嗯，你没有硬币。";
 		mes "为什么不先收集它们？";
 		close;
 	}
-	mes "[Howard]";
+	mes "[霍华德]";
 	mes "啊，你带来了硬币。";
 	mes "感谢你帮助岩脊。";
 	mes "四处看看有没有想要的东西。";
 	next;
-	mes "[Howard]";
+	mes "[霍华德]";
 	mes "你想要什么？";
 	next;
 	setarray .@data$[0],
-		 24, 15176, "Vigilante Suit",	// <cost>, <item ID>, <item name>
-		 24, 15177, "Elemental Robe",
-		 24, 15178, "Golden Ninja Suit",
-		 24, 15179, "Mine Worker Vest",
-		 24, 15180, "Hippie Clothes",
-		150, 20834, "Drifter's Cape",
-		150, 22131, "Spurred Boots",
-		180, 16060, "Liquor Bottle",
-		300, 26107, "Elder Staff",
-		100, 31140, "Costume Black Cowboy Hat",
-		100, 31141, "Costume Cactus Flower Corsage";
+		 24, 15176, "治安官战衣",	// <cost>, <item ID>, <item name>
+		 24, 15177, "元素长袍",
+		 24, 15178, "黄金忍者服",
+		 24, 15179, "矿工背心",
+		 24, 15180, "嬉皮布衣",
+		150, 20834, "漂泊者斗篷",
+		150, 22131, "带刺长靴",
+		180, 16060, "酒瓶",
+		300, 26107, "长老之杖",
+		100, 31140, "时装黑色牛仔帽",
+		100, 31141, "时装仙人掌花胸针";
 
 	.@size = getarraysize(.@data$);
 	for ( .@i = 0; .@i < .@size; .@i += 3 )
 		.@menu$ += .@data$[.@i+2] + ":";
 	.@s = ( select(.@menu$) - 1 ) * 3;
 
-	mes "[Howard]";
+	mes "[霍华德]";
 	mes mesitemlink( atoi( .@data$[.@s+1] ), false, .@data$[.@s+2] ) + "，明白了。";
 	mes "这需要" + .@data$[.@s] + "枚岩脊硬币。";
 	mes "你确定要这件物品吗？";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[Howard]";
+		mes "[霍华德]";
 		mes "如果你决定好了，请再来找我。";
 		close;
 	}
 	if (countitem(25250) < atoi(.@data$[.@s])) {
-		mes "[Howard]";
+		mes "[霍华德]";
 		mes "你的硬币不够。";
 		mes "请带更多来。";
 		close;
 	}
-	mes "[Howard]";
+	mes "[霍华德]";
+	if (!checkweight(atoi(.@data$[.@s+1]),1)) {
+		mes "请先为兑换装备预留足够的负重和物品栏空间。";
+		close;
+	}
 	mes "给你。请享用！";
 	delitem 25250, atoi(.@data$[.@s]);// Rock Ridge Coin
 	getitem atoi(.@data$[.@s+1]),1;
@@ -397,46 +400,46 @@ har_in01,34,81,5	script	Howard#rr	4_M_TATIO,{
 
 har_in01,19,86,4	script	Weapon Dealer#rockridge01	1_F_02,{
 	if (checkweight(1301,3) == 0) {
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "你带的东西太多，无法购买武器。";
 		mes "请先减轻包裹负重。";
 		close;
 	}
-	mes "[Weapon Dealer]";
+	mes "[武器商人]";
 	mes "我出售霰弹枪、左轮手枪和子弹。";
 	mes "告诉我你想要哪类物品，我给你看清单。";
 	next;
 	switch( select( "霰弹枪", "左轮手枪", "子弹", "出售物品。", "取消。" ) ) {
 	case 1:
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "你想看看霰弹枪？明白了。";
 		mes "我给你看看几款好型号。";
 		close2;
 		callshop "shotguns_rockridge", 1;
 		end;
 	case 2:
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "你想看看左轮手枪？明白了。";
 		mes "我刚进了几款好型号。";
 		close2;
 		callshop "revolvers_rockridge", 1;
 		end;
 	case 3:
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "你想要子弹，明白了。";
 		mes "我的子弹全是最高品质。";
 		close2;
 		callshop "bullets_rockridge", 1;
 		end;
 	case 4:
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "当然可以，只要你有我能卖的东西。";
 		mes "让我看看你有什么。";
 		close2;
 		callshop "bullets_rockridge", 2;
 		end;
 	case 5:
-		mes "[Weapon Dealer]";
+		mes "[武器商人]";
 		mes "欢迎再来。";
 		close;
 	}
@@ -449,42 +452,42 @@ har_in01,19,86,4	script	Weapon Dealer#rockridge01	1_F_02,{
 
 har_in01,16,86,4	script	Armor Dealer#rockridge02	1_M_04,{
 	if (checkweight(1301,3) == 0) {
-		mes "[Armor Dealer]";
+		mes "[防具商人]";
 		mes "你带的东西太多，无法购买任何物品。";
 		mes "请先减轻包裹负重。";
 		close;
 	}
 	.@day = gettime(DT_DAYOFWEEK);
 	if (.@day == SUNDAY) {
-		mes "[Armor Dealer]";
+		mes "[防具商人]";
 		mes "我今天关店。";
 		mes "每周我会关店一天，感谢自己拥有的一切。";
 		next;
-		mes "[Armor Dealer]";
+		mes "[防具商人]";
 		mes "……而且今天也不会有货送来。";
 		close;
 	}
 	if (.@day == MONDAY)
-		.@string$ = "Romantic Gents, Western Graces, and Feather Bonnet";
+		.@string$ = "老派浪漫、西部优雅和羽毛小帽";
 	else if (.@day == TUESDAY)
-		.@string$ = "Sombreros, Indian Headbands, and Cowboy Hats";
+		.@string$ = "墨西哥帽、印第安头带和牛仔帽";
 	else if (.@day == WEDNESDAY)
-		.@string$ = "Cigarettes, Pipes, and Grampa Beards";
+		.@string$ = "香烟、烟斗和爷爷胡须";
 	else if (.@day == THURSDAY)
-		.@string$ = "Romantic Gents, Western Graces, and Feather Bonnet";
+		.@string$ = "老派浪漫、西部优雅和羽毛小帽";
 	else if (.@day == FRIDAY)
 		.@string$ = "宽边帽、印度头巾、牛仔帽和印度羽毛头带，这些稀有服装每周限量供应，";
 	else
-		.@string$ = "Cigarettes, Pipes, and Grampa Beards";
-	mes "[Armor Dealer]";
+		.@string$ = "香烟、烟斗和爷爷胡须";
+	mes "[防具商人]";
 	mes "你好。欢迎来到岩脊防具店。";
 	mes "今天有" +.@string$ + "现货。";
 	next;
-	mes "[Armor Dealer]";
+	mes "[防具商人]";
 	mes "防具比武器占地方，所以我每周只能进货固定数量。";
 	mes "我给你看可购买物品的清单。^0000CD如果是空白，就说明全部售罄了^000000。";
 	next;
-	mes "[Armor Dealer]";
+	mes "[防具商人]";
 	mes "同样因为这个原因，我无法提供^0000CD特别折扣^000000。";
 	mes "但^0000CD我的商品在其他地方很难找到^000000。要不要看看？";
 	close2;

@@ -113,8 +113,10 @@ alberta,196,133,4	script	Bard#job_min	486,{
 			}
 			mes "["+strcharinfo(0)+"]";
 			mes "好，我会帮忙。";
-			set job_min,1;
-			setquest 11135;
+			if (job_min == 0) {
+				set job_min,1;
+				setquest 11135;
+			}
 			next;
 			mes "[卡里安]";
 			mes "独自旅行很好，但有时也会想身边有朋友。";
@@ -353,7 +355,7 @@ hu_in01,267,5,3	script	Karian#job_min2	486,{
 		mes "["+strcharinfo(0)+"]";
 		mes "你不用告诉我所有事情，我能自己处理。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "...";
 		set job_min,7;
 		changequest 11140,11141;
@@ -500,35 +502,33 @@ hu_in01,361,103,3	script	Tone-deaf person	995,{
 //
 		mes "哼唱～？";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "啦啦啦～";
 		mes "噜噜啦～";
 		next;
 		mes "- 很难听清。 -";
-		mes "- 你开始怀疑 -";
-		mes "- 这样的声音 -";
-		mes "- 真的是人类发出的吗。 -";
+		mes "- 你开始怀疑，这样的声音真的是人类发出的吗？ -";
 		next;
-		if(select("You move to other side.:Keep listening.") == 1)
+		if(select("走到另一边。:继续听。") == 1)
 			close;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "嘟噜嘟噜～";
 		mes "哒哒哒～";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "舒巴舒巴～沙啊～";
 		mes "啦啦啦～";
 		mes "啦啦啦……";
 		mes "……！！";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "嗯！！嘿，你刚才在听我的歌。";
 		mes "你看起来像个"+((Class == Job_Clown)?"小丑":"诗人")+"，作为回报，也为我唱一首吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "什么？！";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "为我唱歌。";
 		mes "来吧～";
 		next;
@@ -541,123 +541,120 @@ hu_in01,361,103,3	script	Tone-deaf person	995,{
 		mes "你把天界的果实交给我～";
 		mes "你受到每一位神的爱～";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "哦～你唱得很好。听到^f57d7d‘伊登的苹果’^000000时，我感觉好多了～";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "如你所见！";
 		mes "我是个懂得欣赏歌曲的人！";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "我觉得没什么值得骄傲的。但我很擅长唱歌。";
 		mes "年轻时我想成为诗人，但不得不继承家业。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "我失去梦想很久了，现在已经老了。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "我有需要我保护的家人。";
 		mes "但总有一天我相信梦想会实现！";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "闲暇时，我在酒吧听游客讲故事。";
 		mes "离开那里时，我不想成为笑柄。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "我可以把自己的歌展示给懂歌的人。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "他们听到歌曲时通常很惊讶。";
 		mes "他们会对我的技巧感到惊讶。";
 		mes "呼呼。";
 		next;
-		mes "[Tone-deaf person]";
-		mes "但^f57d7d‘Maestro Song’^000000没有被我的歌打击。";
+		mes "[音痴的人]";
+		mes "但^f57d7d‘歌之大师’^000000没有被我的歌打击。";
 		mes "当然，他还不如我。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "你见过^f57d7d‘Maestro Song’^000000吗？";
+		mes "你见过^f57d7d‘歌之大师’^000000吗？";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "嗯？你见过他？";
 		mes "见过，几年前。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "他听到我的歌后说，再也没在其他地方听过这样的歌。";
 		next;
-		mes "[Tone-deaf person]";
-		mes "我曾有机会在Hugel为他唱歌。";
+		mes "[音痴的人]";
+		mes "我曾有机会在胡格尔为他唱歌。";
 		mes "没有人拥有那样的技巧。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "他离开前，给了我一首让我想起他的歌。";
 		next;
-		mes "[Tone-deaf person]";
-		mes "他说他要去Thanatos。";
+		mes "[音痴的人]";
+		mes "他说他要去塔纳托斯塔。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "你得到了一首歌？";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "是的！";
 		mes "他认可了我的能力！";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "我能听听这首歌吗？";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "嗯……";
 		mes "等等。";
 		mes "我得找一张纸。";
 		mes "我把它放在背心里。";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "翻找翻找。";
 		mes "浏览浏览。";
 		set job_min,8;
 		close;
 	} else if (job_min == 8) {
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "找到了。";
 		mes "嗯！";
 		mes "仔细听！";
 		mes "^f57d7d‘金属之声！！’^000000";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "$$$$$$@@@@@!!!!";
 		mes "&&$%&@@@$#$~~";
 		mes "$#^#$####$$!!!@@#!!!!!";
 		percentheal -30,-30;
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "!@@@$$%^@@#%^%!!!!!!";
 		mes "!!!!!!!##$$^^^#^!!!";
 		mes "&$$%@@@%@##%~~~";
 		percentheal -30,-30;
 		next;
 		mes "-你失去了意识。-";
-		mes "-这个声音一定拥有-";
-		mes "-巨大的破坏-";
-		mes "-力量。-";
+		mes "-这个声音一定拥有巨大的破坏力。-";
 		percentheal -30,-30;
 		next;
-		mes "-而且你记不起-";
-		mes "-这首歌的结尾。-";
+		mes "-而且你记不起这首歌的结尾。-";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "嘿～";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "睁开眼睛～";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "拍手";
 		mes "嘿～";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "呃呃呃……";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "我认为你合格了，但似乎还需要更多训练。";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -670,7 +667,7 @@ hu_in01,361,103,3	script	Tone-deaf person	995,{
 		mes "谢谢你的歌。";
 		mes "我得回去了……";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "啊？";
 		mes "好，之后见。";
 		mes "想听我的歌就来找我。";
@@ -683,34 +680,31 @@ hu_in01,361,103,3	script	Tone-deaf person	995,{
 		mes "......";
 		next;
 		mes "-我筋疲力尽。-";
-		mes "-你得到了情报-";
-		mes "-所以回酒店吧。-";
+		mes "-你得到了情报，所以回酒店吧。-";
 		close;
 	} else if (job_min == 10) {
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "你要走了吗？？";
 		mes "想听我的歌就来找我。";
 		mes "哈哈哈";
 		close;
 	} else if (job_min == 100) {
-		mes "[Tone-deaf person]";
+		mes "[音痴的人]";
 		mes "哦！！";
 		mes "你看起来很强！";
 		mes "你的能力不比我差。";
 		close;
 	}
-	mes "[Tone-deaf person]";
+	mes "[音痴的人]";
 	mes "啦啦～啦啦啦～";
 	mes "噜噜～？";
 	next;
-	mes "[Tone-deaf person]";
+	mes "[音痴的人]";
 	mes "啦啦啦啦～";
 	mes "噜噜噜噜～";
 	next;
-	mes "-It's very hard to hear.-";
-	mes "- 你开始怀疑-";
-	mes "- 这样的声音是否会-";
-	mes "-coming out a human.-";
+	mes "- 这歌声实在难以入耳。-";
+	mes "- 你开始怀疑，这样的声音真的是人类发出的吗？ -";
 	close;
 }
 
@@ -722,34 +716,44 @@ OnTouch:
 		mes "["+strcharinfo(0)+"]";
 		mes "这是什么？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "上面写了什么？";
-		donpcevent "Karian#cmd1::OnEnable";
+		cloakoffnpc "Karian#cmd1",getcharid(0);
 		next;
 		mes "===================";
 		mes "==照片交换==";
 		mes "======收据======";
 		mes "===================";
-		mes "姓名：Maestro Song";
+		mes "姓名：歌之大师";
 		next;
 		mes "- 带着这张收据进行交换";
-		mes "- Juno商店经理：Click先生。";
+		mes "- 朱诺商店经理：克里克先生。";
 		next;
-		mes "- 地点：Juno广场附近。";
-		getitem 6271,1; //Mins_Receipt
+		mes "- 地点：朱诺广场附近。";
+		if (job_min != 10 && (job_min != 11 || countitem(6271) != 0)) {
+			mes "你已取得收据，或当前不在寻找收据的阶段。";
+			close;
+		}
+		if (countitem(6271) == 0) {
+			if (!checkweight(6271,1)) {
+				mes "请先为收据预留足够的负重和物品栏空间。";
+				close;
+			}
+			getitem 6271,1; //Mins_Receipt
+		}
+		if (job_min == 10) {
+			set job_min,11;
+			changequest 11143,11144;
+		}
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "照片交换收据？";
 		mes "他怎么会把它弄掉……";
 		next;
-		mes "[Karian]";
-		mes "Juno的商店……";
-		mes "我们去Juno吧……";
-		if (job_min == 10) {
-			set job_min,11;
-			changequest 11143,11144;
-		}
-		donpcevent "Karian#cmd1::OnDisable";
+		mes "[卡里安]";
+		mes "朱诺的商店……";
+		mes "我们去朱诺吧……";
+		cloakonnpc "Karian#cmd1",getcharid(0);
 		close;
 	}
 	end;
@@ -758,76 +762,28 @@ OnTouch:
 tha_scene01,139,204,6	script	Karian#cmd1	486,{
 	end;
 OnInit:
-	disablenpc "Karian#cmd1";
-	end;
-OnEnable:
-	enablenpc "Karian#cmd1";
-	initnpctimer;
-	end;
-OnDisable:
-	disablenpc "Karian#cmd1";
-	stopnpctimer;
-	end;
-OnTimer15000:
-	donpcevent "Karian#cmd1::OnDisable";
-	stopnpctimer;
+	cloakonnpc();
 	end;
 }
 
 ve_fild07,129,132,5	script	Karian#cmd5	486,{
 	end;
 OnInit:
-	disablenpc "Karian#cmd5";
-	end;
-OnEnable:
-	enablenpc "Karian#cmd5";
-	initnpctimer;
-	end;
-OnDisable:
-	disablenpc "Karian#cmd5";
-	stopnpctimer;
-	end;
-OnTimer30000:
-	donpcevent "Karian#cmd5::OnDisable";
-	stopnpctimer;
+	cloakonnpc();
 	end;
 }
 
 prontera,155,49,4	script	Karian#cmd9	486,{
 	end;
 OnInit:
-	disablenpc "Karian#cmd9";
-	end;
-OnEnable:
-	enablenpc "Karian#cmd9";
-	initnpctimer;
-	end;
-OnDisable:
-	disablenpc "Karian#cmd9";
-	stopnpctimer;
-	end;
-OnTimer300000:
-	donpcevent "Karian#cmd9::OnDisable";
-	stopnpctimer;
+	cloakonnpc();
 	end;
 }
 
 yuno,146,168,0	script	Karian#cmd2	486,{
 	end;
 OnInit:
-	disablenpc();
-	end;
-OnEnable:
-	enablenpc();
-	initnpctimer;
-	end;
-OnDisable:
-	disablenpc();
-	stopnpctimer;
-	end;
-OnTimer100000:
-	donpcevent strnpcinfo(0)+"::OnDisable";
-	stopnpctimer;
+	cloakonnpc();
 	end;
 }
 lighthalzen,160,124,6	duplicate(Karian#cmd2)	Karian#cmd3	486
@@ -837,7 +793,7 @@ moc_fild16,204,231,0	duplicate(Karian#cmd2)	Karian#cmd7	486
 aldebaran,142,128,2	duplicate(Karian#cmd2)	Karian#cmd8	486
 
 yuno,143,170,6	script	Mr. Click#job_min	748,{
-	mes "[Mr. Click]";
+	mes "[克里克先生]";
 	if (job_min == 11) {
 		mes "你好～欢迎～";
 		mes "我可以帮你拍照。";
@@ -847,93 +803,101 @@ yuno,143,170,6	script	Mr. Click#job_min	748,{
 		mes "不用……";
 		mes "你记得这张收据吗？";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "让我看看～";
 		mes "嗯……";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "是的……";
 		mes "看起来很旧。";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "没关系。";
 		mes "游客通常不会回来取照片。";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "所以我一直保管着很多照片。";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "我很容易就能找到。";
 		mes "我保留了很多旧东西。";
 		mes "没问题。";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "翻找～";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "翻找～";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "我想我找到了！";
 		mes "照片掉下来了，不过没事。";
 		mes "没问题。";
 		next;
-		mes "[Mr. Click]";
+		mes "[克里克先生]";
 		mes "来，看看吧。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "照片！";
 		mes "让我看看！";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "快点。";
-		donpcevent "Karian#cmd2::OnEnable";
+		cloakoffnpc "Karian#cmd2",getcharid(0);
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "...";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "哦～照片不错吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "我以为能看到‘Maestro Song’的脸，但他戴着面具……";
+		mes "我以为能看到‘歌之大师’的脸，但他戴着面具……";
 		mes "他戴着面具？！";
 		mes "我们就是为了这个来的吗？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "啊！看看这个！";
 		mes "照片背面有东西。";
 		next;
 		mes "-我想要一只泰迪熊。我需要33个吗？";
-		mes "-In front of Thanatos tower.";
-		mes "-Maestro Song.";
+		mes "- 在塔纳托斯塔前。";
+		mes "-歌之大师.";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "这是什么意思？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "嗯……";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "嗯……泰迪熊……";
-		mes "艾音布罗克和拉赫之间有泰迪熊居住的区域。";
+		mes "艾音布罗克周边原野有玩偶熊，北边的原野就能找到。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "也许能在那里找到什么。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "那他为什么需要33个？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "嗯……去那里也许能查到什么。";
 		next;
-		mes "[Karian]";
-		mes "嗯……那我经过艾音布罗克去拉赫。你去泰迪熊所在的地方吧？";
+		mes "[卡里安]";
+		mes "嗯……那我经过艾音布罗克去里希塔乐镇。你先去寻找玩偶熊吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "好。那我们在拉赫的旅馆见。";
-		mes "我去拿33个泰迪熊。";
-		donpcevent "Karian#cmd2::OnDisable";
+		mes "好。击败玩偶熊后，我们在里希塔乐镇中央广场附近见。";
+		mes "我先去击败 33 只玩偶熊，再到里希塔乐镇找找线索。";
+		cloakonnpc "Karian#cmd2",getcharid(0);
+		if (job_min != 11) {
+			mes "当前不在领取照片的阶段。";
+			close;
+		}
+		if (!checkweight(6270,1)) {
+			mes "请先为照片预留足够的负重和物品栏空间。";
+			close;
+		}
 		set job_min,12;
 		getitem 6270,1; //Mins_Picture
 		changequest 11144,11145;
@@ -941,17 +905,17 @@ yuno,143,170,6	script	Mr. Click#job_min	748,{
 	} else if (job_min == 12) {
 		mes "那请保重。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我们去那里吧！";
-		donpcevent "Karian#cmd2::OnEnable";
+		cloakoffnpc "Karian#cmd2",getcharid(0);
 		next;
-		mes "[Karian]";
-		mes "那我经过艾音布罗克去拉赫。你去泰迪熊所在的地方吧？";
+		mes "[卡里安]";
+		mes "那我经过艾音布罗克去里希塔乐镇。你先去寻找玩偶熊吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "那我们在拉赫的旅馆见。";
-		mes "我去拿33个泰迪熊。";
-		donpcevent "Karian#cmd2::OnDisable";
+		mes "击败玩偶熊后，我们在里希塔乐镇中央广场附近见。";
+		mes "我先去击败 33 只玩偶熊，再到里希塔乐镇找找线索。";
+		cloakonnpc "Karian#cmd2",getcharid(0);
 		close;
 	}
 	mes "你好～欢迎～";
@@ -962,72 +926,72 @@ yuno,143,170,6	script	Mr. Click#job_min	748,{
 
 lighthalzen,155,119,3	script	Little girl#job_min	891,3,3,{
 OnTouch:
-	if (checkquest(11145,HUNTING) == 2) {
+	if (checkquest(11145,HUNTING) == 2 || job_min >= 13) {
 		if (job_min == 12) {
-			mes "[Little Girl]";
+			mes "[小女孩]";
 			mes "啊！！！！";
 			mes "泰迪熊！！！";
 			next;
-			mes "[Little Girl]";
+			mes "[小女孩]";
 			mes "你为什么有这么多泰迪熊？";
 			mes "老爷爷，你从哪里得到的？";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "嘿，我不是老爷爷。";
 			next;
-			mes "[Little Girl]";
+			mes "[小女孩]";
 			mes "我的名字也不是‘嘿’！";
-			mes "我叫‘Rion’！";
+			mes "我叫‘莉昂’！";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "抱歉～抱歉～";
 			mes "给你一个泰迪熊怎么样？";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "啊！";
 			mes "真的吗？";
 			mes "太好了！！！";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "我以前见过一个男人，他明明有很多泰迪熊，却不给我！";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "他就是照片里的男人吗？";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "我记不太清了。";
 			mes "但我觉得就是他。";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "我妈妈说，他在堆满泰迪熊的房间里打滚。";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "他还穿着泰迪熊服装，去^f57d7d冰洞^000000。";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "我妈妈在这里工作。";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "冰洞？";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "妈妈说那里冷得要命。";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "嘿～"+strcharinfo(0)+"～";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "啊，Karian。你刚到吗？";
+			mes "啊，卡里安。你刚到吗？";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "是的。";
 			mes "比我预想的远多了。";
-			donpcevent "Karian#cmd3::OnEnable";
+			cloakoffnpc "Karian#cmd3",getcharid(0);
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "你……走过来的？";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "...";
 			mes "我不想再坐飞艇了……";
 			next;
@@ -1035,20 +999,20 @@ OnTouch:
 			mes "哦……明白了。";
 			mes "那你在艾音布罗克有什么发现？";
 			next;
-			mes "[Karian]";
-			mes "我想‘Maestro Song’去了艾音布罗克，但因为空气问题很快离开了。";
+			mes "[卡里安]";
+			mes "我想‘歌之大师’去了艾音布罗克，但因为空气问题很快离开了。";
 			mes "你呢？找到关于泰迪熊的线索了吗？";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "'Maestro Song' might be in an Ice Cave.";
+			mes "歌之大师可能在冰洞里。";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "可能吧？";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "这个小家伙……啊……Rion 看到了他。";
+			mes "这个小家伙……啊……莉昂 看到了他。";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "那该去冰洞了？";
 			mes "呼……腿好疼。";
 			mes "好，我们走吧。";
@@ -1057,34 +1021,38 @@ OnTouch:
 			mes "好。";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "谢谢你，Rion。";
+			mes "谢谢你，莉昂。";
 			mes "我会把所有泰迪熊都给你。";
 			next;
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "真的？！";
 			mes "哇啊啊啊！！！！！！";
 			mes "我好开心！！！";
 			mes "谢谢你，"+strcharinfo(0)+"。";
+			if (job_min != 12 || checkquest(11145,HUNTING) != 2) {
+				mes "请先完成击败 33 只玩偶熊的任务，再来找我。";
+				close;
+			}
 			set job_min,13;
 			changequest 11145,11146;
-			donpcevent "Karian#cmd3::OnDisable";
+			cloakonnpc "Karian#cmd3",getcharid(0);
 			close;
 		} else if (job_min == 13) {
-			mes "[Rion]";
-			mes "我去冰洞时听到了‘Maestro Song’。";
+			mes "[莉昂]";
+			mes "我去冰洞时听到了‘歌之大师’。";
 			mes "谢谢你的泰迪熊！";
 			close;
 		} else if (job_min > 13) {
-			mes "[Rion]";
+			mes "[莉昂]";
 			mes "我和泰迪熊玩得很开心！";
 			close;
 		} else {
-			mes "[Little Girl]";
+			mes "[小女孩]";
 			mes "我和泰迪熊玩得很开心！";
 			close;
 		}
 	}
-	mes "[Little Girl]";
+	mes "[小女孩]";
 	mes "你喜欢泰迪熊吗？";
 	mes "我爱死它们了！！！！！";
 	close;
@@ -1093,7 +1061,7 @@ OnTouch:
 ice_dun01,157,15,0	script	#Minsicecave1	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-A long time ago-";
+		mes "- 很久以前 -";
 		close2;
 		warp "ice_dun01",157,23;
 		end;
@@ -1104,7 +1072,7 @@ OnTouch_:
 ice_dun01,157,23,0	script	#Minsicecave2	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-The giant born to ice-";
+		mes "- 诞生于冰中的巨人 -";
 		close2;
 		warp "ice_dun01",141,41;
 		end;
@@ -1115,7 +1083,7 @@ OnTouch_:
 ice_dun01,141,41,0	script	#Minsicecave3	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-died-";
+		mes "- 死去了 -";
 		close2;
 		warp "ice_dun01",120,35;
 		end;
@@ -1126,7 +1094,7 @@ OnTouch_:
 ice_dun01,120,35,0	script	#Minsicecave4	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His body became the ground-";
+		mes "- 他的身体化作大地 -";
 		close2;
 		warp "ice_dun01",104,30;
 		end;
@@ -1137,7 +1105,7 @@ OnTouch_:
 ice_dun01,104,30,0	script	#Minsicecave5	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His bones became a mountain-";
+		mes "- 他的骨骼化作山峦 -";
 		close2;
 		warp "ice_dun01",86,23;
 		end;
@@ -1148,7 +1116,7 @@ OnTouch_:
 ice_dun01,86,23,0	script	#Minsicecave6	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His skin became soil-";
+		mes "- 他的皮肤化作泥土 -";
 		close2;
 		warp "ice_dun01",75,19;
 		end;
@@ -1159,7 +1127,7 @@ OnTouch_:
 ice_dun01,75,19,0	script	#Minsicecave7	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His blood became a river-";
+		mes "- 他的鲜血化作河流 -";
 		close2;
 		warp "ice_dun01",56,12;
 		end;
@@ -1170,7 +1138,7 @@ OnTouch_:
 ice_dun01,56,12,0	script	#Minsicecave8	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His hair became a plant-";
+		mes "- 他的毛发化作草木 -";
 		close2;
 		warp "ice_dun01",29,26;
 		end;
@@ -1181,7 +1149,7 @@ OnTouch_:
 ice_dun01,29,26,0	script	#Minsicecave9	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His head became the sky-";
+		mes "- 他的头颅化作天空 -";
 		close2;
 		warp "ice_dun01",25,46;
 		end;
@@ -1192,7 +1160,7 @@ OnTouch_:
 ice_dun01,25,46,0	script	#Minsicecave10	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-His tears from his-";
+		mes "- 从他眼中流下的 -";
 		close2;
 		warp "ice_dun01",20,66;
 		end;
@@ -1203,7 +1171,7 @@ OnTouch_:
 ice_dun01,20,66,0	script	#Minsicecave11	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-eyes became dew-";
+		mes "- 泪水化作露珠 -";
 		close2;
 		warp "ice_dun01",22,85;
 		end;
@@ -1214,7 +1182,7 @@ OnTouch_:
 ice_dun01,22,85,0	script	#Minsicecave12	139,2,2,{
 OnTouch_:
 	if (job_min == 13) {
-		mes "-on the leaves-";
+		mes "- 凝结在叶片上 -";
 		percentheal -90,0;
 		set job_min,14;
 		changequest 11146,11147;
@@ -1228,7 +1196,7 @@ OnTouch_:
 ra_in01,361,129,0	script	#jmRachelHotel	139,2,2,{
 OnTouch:
 	if (job_min == 14) {
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "呼！！";
 		mes "醒醒！";
 		next;
@@ -1241,7 +1209,7 @@ OnTouch:
 }
 
 ra_in01,358,130,4	script	Old Woman#job_min	979,{
-	mes "[Old Woman]";
+	mes "[老妇人]";
 	if (job_min == 14) {
 		mes "呼！！";
 		mes "醒醒！";
@@ -1254,13 +1222,13 @@ ra_in01,358,130,4	script	Old Woman#job_min	979,{
 		mes "你在拉赫。";
 		mes "你真奇怪。想进冰洞就该穿暖和点。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "你很幸运，我丈夫及时发现了你。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "对不起。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "总之！！小心！";
 		mes "别以为年轻就能保护你。";
 		next;
@@ -1270,69 +1238,69 @@ ra_in01,358,130,4	script	Old Woman#job_min	979,{
 		mes "["+strcharinfo(0)+"]";
 		mes "你知道冰洞墙上写的那首歌吗？";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "你去那里看过吗？";
 		mes "几年前，一个戴面具的人把它刻在冰洞里。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "因为面具，我看不到他的脸，";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "但他感冒了，感觉非常痛苦。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "后来他决定去海底洞穴。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "海底洞穴？";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "是的，听说海底洞穴很有趣，我想死前去一次。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "想去那里就得先乘飞艇前往卢恩-米德加尔特王国。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "那可不容易。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "什么？！飞艇？！";
 		mes "呜，我不想再坐飞艇了！";
-		donpcevent "Karian#cmd4::OnEnable";
+		cloakoffnpc "Karian#cmd4",getcharid(0);
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "别激动……";
 		mes "还有别的办法去那里吗？";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "不坐飞艇？";
 		mes "可以走路……";
 		mes "但要花很长时间……";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "啊！南边维因斯附近就是海底洞穴。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "我们没有合适的船。";
 		mes "维因斯南边有个港口，幸运的话可以乘船……";
-		donpcevent "Karian#cmd4::OnDisable";
+		cloakonnpc "Karian#cmd4",getcharid(0);
 		set job_min,16;
 		changequest 11147,11148;
 		close;
 	} else if (job_min == 16) {
 		mes "啊！南边维因斯附近就是海底洞穴。";
 		next;
-		mes "[Old Woman]";
+		mes "[老妇人]";
 		mes "我们没有合适的船。";
 		mes "维因斯南边有个港口，幸运的话可以乘船……";
 		close;
 	}
 	mes "听说海底洞穴很有趣，我想死前去一次。";
 	next;
-	mes "[Old Woman]";
+	mes "[老妇人]";
 	mes "想去那里就得先乘飞艇前往卢恩-米德加尔特王国。";
 	next;
-	mes "[Old Woman]";
+	mes "[老妇人]";
 	mes "这是最快的方法。";
 	close;
 }
@@ -1341,61 +1309,57 @@ ve_fild07,131,132,5	script	=Notice=#job_min	837,{
 function Choice;
 	if (job_min == 16) {
 		mes "===通知===";
-		mes "Maestro Song，乘船前往海底洞穴！";
+		mes "歌之大师，乘船前往海底洞穴！";
 		mes "要有雄心壮志！";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "这样真的没问题吗……";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "别担心，相信我！！";
-		donpcevent "Karian#cmd5::OnEnable";
+		cloakoffnpc "Karian#cmd5",getcharid(0);
 		next;
 		mes "-相信她可不容易-";
 		next;
 		if(select("我不喜欢这样。:乘独木舟。") == 1) {
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "我才不要坐飞艇……";
-			donpcevent "Karian#cmd5::OnDisable";
+			cloakonnpc "Karian#cmd5",getcharid(0);
 			close;
 		}
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "好，那我们走！！！！";
 		next;
 		mes "-乘上小船-";
 		mes "-向前航行-";
 		mes "-前往海底洞穴-";
-		mes "-你应该会看到-";
-		mes "-其他小船。-";
+		mes "-你应该会看到其他小船。-";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "嗯……";
 		mes "我没想到会有人乘船横渡这片海。";
 		mes "你确定我能看到其他船？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "它们会驶向另一个方向。";
-		donpcevent "Karian#cmd5::OnDisable";
+		cloakonnpc "Karian#cmd5",getcharid(0);
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "你要去哪里？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "嗯？我以前没听过那个地方的名字。";
 		mes "听说那里就叫‘岛’。";
 		next;
 		mes "-沉默持续了一会儿-";
-		mes "-Karian 开始-";
-		mes "-一边划船一边哼歌。-";
+		mes "-卡里安开始一边划船一边哼歌。-";
 		next;
-		mes "-听着 Karian 哼歌-";
-		mes "-你突然感觉-";
-		mes "-自己坐在水里。-";
+		mes "-听着卡里安哼歌，你突然感觉自己坐在水里。-";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "嘿！漏水了！！";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "啊啊啊！！！！！！";
 		next;
 		switch(rand(3)) {
@@ -1419,9 +1383,9 @@ function Choice;
 			case 2: Choice("划船。","把水舀出去。","喝点水。"); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("喊‘Viva’。","划船。","把水舀出去。"); break;
-			case 1: Choice("把水舀出去。","划船。","喊‘Viva’。"); break;
-			case 2: Choice("划船。","把水舀出去。","喊‘Viva’。"); break;
+			case 0: Choice("高呼万岁。","划船。","把水舀出去。"); break;
+			case 1: Choice("把水舀出去。","划船。","高呼万岁。"); break;
+			case 2: Choice("划船。","把水舀出去。","高呼万岁。"); break;
 		}
 		switch(rand(3)) {
 			case 0: Choice("去钓鱼。","划船。","把水舀出去。"); break;
@@ -1448,9 +1412,7 @@ function Choice;
 			case 1: Choice("把水舀出去。","划船。","放弃。"); break;
 			case 2: Choice("划船。","把水舀出去。","放弃。"); break;
 		}
-		mes "-我已经从死亡-";
-		mes "-的痛苦中-";
-		mes "-无数次逃脱。-";
+		mes "-我已经无数次从死亡的痛苦中逃脱。-";
 		set job_min,17;
 		changequest 11148,11149;
 		close2;
@@ -1458,13 +1420,13 @@ function Choice;
 		end;
 	}
 	mes "===通知===";
-	mes "Maestro Song，乘船前往海底洞穴！";
+	mes "歌之大师，乘船前往海底洞穴！";
 	mes "要有雄心壮志！";
 	close;
 
 	function Choice {
 		set .@i$, getarg(select(getarg(0),getarg(1),getarg(2))-1);
-		mes "[Karian]";
+		mes "[卡里安]";
 		if (.@i$ == "把水舀出去。") {
 			mes "我来划船，你只管把水舀出去！！";
 			next;
@@ -1482,9 +1444,9 @@ OnTouch:
 		mes "["+strcharinfo(0)+"]";
 		mes "我……我还活着～";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "真是千钧一发。";
-		donpcevent "Karian#cmd6::OnEnable";
+		cloakoffnpc "Karian#cmd6",getcharid(0);
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "是你坚持要坐那条船，我们才会落得这个下场！";
@@ -1492,23 +1454,23 @@ OnTouch:
 		mes "["+strcharinfo(0)+"]";
 		mes "要是坐飞艇，就不会受这种罪了。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "但我告诉过你，我不坐飞艇！";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "真不敢相信！";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "好，忘掉过去吧！";
 		mes "既然我们在科莫多，就好好玩吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "那找“吟游诗人之歌”怎么办？？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "哦，对了……";
 		mes "我们问问村民吧？";
-		donpcevent "Karian#cmd6::OnDisable";
+		cloakonnpc "Karian#cmd6",getcharid(0);
 		set job_min,18;
 		changequest 11149,11150;
 		close;
@@ -1517,17 +1479,17 @@ OnTouch:
 }
 
 comodo,192,119,0	script	Kayak Master#job_min	98,{
-	mes "[Kayak Master]";
+	mes "[独木舟高手]";
 	if (job_min == 18) {
 		mes "什么？";
 		mes "吟游诗人之歌？";
 		mes "我不知道~";
 		next;
-		mes "[Kayak Master]";
+		mes "[独木舟高手]";
 		mes "去科莫多北部的餐馆。";
 		mes "如果他来这个城镇，可能会先去那里。";
 		next;
-		mes "[Kayak Master]";
+		mes "[独木舟高手]";
 		mes "女主人很擅长记住客人的脸。";
 		mes "这对生意很有好处，你知道吗？";
 		set job_min,19;
@@ -1536,35 +1498,35 @@ comodo,192,119,0	script	Kayak Master#job_min	98,{
 	}
 	mes "大海是男人的梦想。";
 	next;
-	mes "[Kayak Master]";
+	mes "[独木舟高手]";
 	mes "我希望有一天能横渡大海去到胡格尔！";
 	close;
 }
 
 comodo,159,316,4	script	Woman Roasting Meat	701,{
-	mes "[Woman Roasting Meat]";
+	mes "[烤肉的女人]";
 	if (job_min == 19) {
 		mes "吟游诗人之歌？";
 		mes "是的，我记得那张脸，因为他几年前来过。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "他一个人吃了一整盘小排骨……";
 		mes "我怎么会忘记他的脸？";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "当时闹得很大。";
 		mes "因为他那里挤满了人。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "最后他累了，想去安静的地方。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "我告诉他摩洛克附近有个安静的地方，他就离开了。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "我很后悔。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "他在这里时大幅提高了我们的收入……";
 		set job_min,20;
 		changequest 11151,11152;
@@ -1573,14 +1535,14 @@ comodo,159,316,4	script	Woman Roasting Meat	701,{
 		mes "安静的地方在哪里？";
 		mes "我不确定，但摩洛克东南部有一座神秘建筑。";
 		next;
-		mes "[Woman Roasting Meat]";
+		mes "[烤肉的女人]";
 		mes "我听说一些神秘的人在那里聚集。";
 		mes "我想他们属于某个叫灰……还是刺……的秘密公会……啊，我忘了……";
 		close;
 	}
 	mes "他一个人吃了一整盘小排骨。";
 	next;
-	mes "[Woman Roasting Meat]";
+	mes "[烤肉的女人]";
 	mes "我永远不会忘记他。";
 	close;
 }
@@ -1596,9 +1558,9 @@ OnTouch:
 		mes "啊，就是它！！";
 		mes "我想是“吟游诗人之歌”掉的！";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "什么？！你怎么知道？";
-		donpcevent "Karian#cmd7::OnEnable";
+		cloakoffnpc "Karian#cmd7",getcharid(0);
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "收据上有我在胡格尔遇到的人的歌词……";
@@ -1607,7 +1569,7 @@ OnTouch:
 		mes "还有写在纸上的诗。";
 		mes "书法风格一样。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我想去看钟楼……";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -1615,7 +1577,7 @@ OnTouch:
 		mes "...";
 		mes "什么？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "......";
 		mes "我想去看钟楼。";
 		next;
@@ -1623,37 +1585,37 @@ OnTouch:
 		mes "钟楼？";
 		mes "你突然说这个干什么？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "就是……艾尔帕兰的巨大钟楼。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "我知道，但是……";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "你愿意和我一起吗？";
 		next;
 		switch(select("拒绝。:接受。")) {
 		case 1:
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "来嘛~来嘛~";
 			mes "来嘛~来嘛~";
 			mes "来嘛～～～～～～～～～";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "我们没有其他线索了。";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			break;
 		case 2:
 			mes "["+strcharinfo(0)+"]";
 			mes "好，这个主意不坏……";
 			next;
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "好！！！";
 			break;
 		}
 		mes "嘿！我们走~~";
-		donpcevent "Karian#cmd7::OnDisable";
+		cloakonnpc "Karian#cmd7",getcharid(0);
 		set job_min,21;
 		changequest 11152,11153;
 		close;
@@ -1667,34 +1629,34 @@ OnTouch:
 		mes "["+strcharinfo(0)+"]";
 		mes "话说你为什么想来这里？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "......";
-		donpcevent "Karian#cmd8::OnEnable";
+		cloakoffnpc "Karian#cmd8",getcharid(0);
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "这是我朋友最喜欢的地方。";
 		mes "我们累了时就会看那座塔。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "让我回到故乡吧。";
 		mes "那里有许多美丽的花。";
 		mes "鸟儿为我歌唱。";
 		mes "这就是那座古老的城镇。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我为教会";
 		mes "收获作物。";
 		mes "没有比我成长的地方";
 		mes "更加温暖的地方。";
 		mes "那就是我的故乡。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "让我回到故乡吧。";
 		mes "让我在湖中玩耍，直到生命终结。";
 		mes "在生命的尽头，";
 		mes "我会好好休息。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "米莎和玛莎在哪里？";
 		mes "她们已经去了那座耀眼的山，";
 		mes "那里充满自由与快乐。";
@@ -1702,24 +1664,24 @@ OnTouch:
 		mes "很快就去。";
 		mes "一定会去。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "这是我朋友总为我唱的歌。";
 		mes "我已经很久没有唱过它了……";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我们回普隆德拉吧？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我无法忘记进入普隆德拉城门时留下的深刻记忆。";
 		set job_min,22;
 		changequest 11153,11154;
-		donpcevent "Karian#cmd8::OnDisable";
+		cloakonnpc "Karian#cmd8",getcharid(0);
 		close;
 	} else if (job_min == 22) {
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "回普隆德拉吧？";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我无法忘记进入普隆德拉城门时留下的深刻记忆。";
 		close;
 	}
@@ -1729,12 +1691,12 @@ OnTouch:
 prontera,155,40,0	script	#jmprt1	139,2,2,{
 OnTouch:
 	if (job_min == 22) {
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我终于回来了。";
 		mes "回到了普隆德拉……";
-		donpcevent "Karian#cmd9::OnEnable";
+		cloakoffnpc "Karian#cmd9",getcharid(0);
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我好累。";
 		mes "我想休息一下～";
 		mes "过来吧，"+strcharinfo(0)+"。";
@@ -1786,27 +1748,24 @@ OnTouch:
 		mes "-这就是那座古老的城镇。-";
 		next;
 		if (SkillPoint != 0) {
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "嘿……你不知道怎么使用技能点吗？";
 			mes "你应该把它们用掉。";
 			close;
 		}
 		if (checkweight(1201,1) == 0 || MaxWeight - Weight < 3500) {
-			mes "^3355FF等一下！你现在";
-			mes "携带了太多物品，";
-			mes "请把多余物品存入";
-			mes "卡普拉仓库后再回来。^000000";
+			mes "^3355FF等一下！你现在携带了太多物品，请把多余物品存入卡普拉仓库后再回来。^000000";
 			mes "请不要忘记。";
 			close;
 		}
 		if (BaseLevel < 99 || JobLevel < 50) {
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "嘿……你的等级怎么这么低？";
 			mes "你是怎么掉级的？";
 			close;
 		}
 		if (BaseJob != Job_Bard) {
-			mes "[Karian]";
+			mes "[卡里安]";
 			mes "嘿……你换了服装？";
 			mes "你是怎么做到的？";
 			close;
@@ -1815,14 +1774,13 @@ OnTouch:
 		mes "-这是你在沙漠捡到的诗。-";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "-卡里安怎么知道-";
-		mes "-那首歌不是诗？-";
+		mes "-卡里安怎么知道那首歌不是诗？-";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "你为什么看着我？";
 		mes "怎么样？玩得开心吗？";
 		set job_min,27;
-		donpcevent "Karian#cmd9::OnDisable";
+		cloakonnpc "Karian#cmd9",getcharid(0);
 		close2;
 		warp "prt_in",101,174;
 		end;
@@ -1836,7 +1794,7 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 			mes "旅行途中会获得很多物品。请减轻负重。";
 			close;
 		}
-		mes "[Karian]";
+		mes "[卡里安]";
 		if (SkillPoint != 0) {
 			mes "啊～！你知道自己还有技能点吗？";
 			mes "快去处理一下。";
@@ -1858,11 +1816,11 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 		mes "很抱歉骗了你。";
 		mes "写在这张纸上的歌……";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我真的很想找到朋友留下的文章。";
 		mes "但我一个人找不到。";
 		next;
-		mes "[Karian]";
+		mes "[卡里安]";
 		mes "我把它交给了朋友，但他一直珍藏着……";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -1870,18 +1828,26 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 		mes "等一下！";
 		mes "你究竟是谁？";
 		next;
-		mes "[Maestro Song]";
+		mes "[歌之大师]";
 		mes "没错！我就是“歌之大师”！";
 		mes "很惊讶吗！？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "......";
 		next;
-		mes "[Maestro Song]";
+		mes "[歌之大师]";
 		mes "这是我送给你的礼物。";
 		next;
-		mes "[Maestro Song]";
+		mes "[歌之大师]";
 		mes "你也是我的朋友。";
+		if (job_min != 27 || BaseJob != Job_Bard || BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0 || ismounting()) {
+			mes "请确认转职进度、职业等级、剩余技能点及坐骑状态后再来。";
+			close;
+		}
+		if (!checkweight(5751,1,2795,1)) {
+			mes "请先为两件转职奖励预留足够的负重和物品栏空间。";
+			close;
+		}
 		set job_min,100;
 		jobchange roclass(eaclass()|EAJL_THIRD);
 		completequest 11154;
@@ -1891,28 +1857,28 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 	} else if (job_min > 99) {
 		switch(select("交谈。:离开。")) {
 		case 1:
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "“卡里安”这个名字？";
 			mes "是他给我的。";
 			next;
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "他说听到我的歌时，心里会感到温暖。";
 			mes "“卡里安加”意味着热空气。";
 			next;
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "他喜欢唱歌……";
 			next;
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "而且他确实很擅长歌唱？";
 			next;
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "啊！如果你不介意，我想在朱诺和你合影，可以吗？";
 			next;
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "我想留下一件能让我记住你的东西。";
 			close;
 		case 2:
-			mes "[Maestro Song]";
+			mes "[歌之大师]";
 			mes "回头见。";
 			mes "真的很开心。";
 			close2;
@@ -1920,7 +1886,7 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 			end;
 		}
 	}
-	mes "[Karian]";
+	mes "[卡里安]";
 	mes "你是怎么进来的？";
 	close;
 }

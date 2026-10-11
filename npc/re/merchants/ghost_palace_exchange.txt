@@ -12,11 +12,11 @@ dali02,51,130,4	script	Dimension Traveler	4_F_SHABBY,{
 		close;
 	}
 	.@item_name_req$ = getitemname(6672);// Gray_Shard
-	mes "[Dimension Traveler]";
+	mes "[次元旅行者]";
 	mes "冒险家朋友，我需要" + mesitemlink( 6672 ) + "。要不要用它交换我这里的物品？";
 	next;
 	.@type = select( "让我看看武器。", "让我看看防具。", "有什么特别的吗？", "我不需要。" ) - 1;
-	mes "[Dimension Traveler]";
+	mes "[次元旅行者]";
 	switch(.@type) {
 	case 0:
 		mes "哦！您对武器感兴趣吗？我们有从幽灵宫殿获得的各种武器。选一件吧？";
@@ -32,7 +32,7 @@ dali02,51,130,4	script	Dimension Traveler	4_F_SHABBY,{
 		close;
 	}
 	next;
-	mes "[Dimension Traveler]";
+	mes "[次元旅行者]";
 	mes "啊！您需要收集写在" + mesitemlink( 6672 ) + "旁边的数量。";
 	mes "请记住这一点。";
 
@@ -78,7 +78,7 @@ dali02,51,130,4	script	Dimension Traveler	4_F_SHABBY,{
 	while(true) {
 		next;
 		.@s = (select(.@menu$) - 1) * 2;
-		mes "[Dimension Traveler]";
+		mes "[次元旅行者]";
 		if (.@type != 1)	// armor type doesn't display item info
 			mes "您是指" + mesitemlink( .@items[.@s] ) + "吗？";
 		mes "兑换需要 " + .@items[.@s+1] + " 个^006400" + .@item_name_req$ + "^000000。";
@@ -87,7 +87,7 @@ dali02,51,130,4	script	Dimension Traveler	4_F_SHABBY,{
 		case 1:
 			break;
 		case 2:
-			mes "[Dimension Traveler]";
+			mes "[次元旅行者]";
 			switch(.@type) {
 			case 0:
 				mes "我的武器已经足够多了。";
@@ -101,18 +101,22 @@ dali02,51,130,4	script	Dimension Traveler	4_F_SHABBY,{
 			}
 			continue;
 		case 3:
-			mes "[Dimension Traveler]";
+			mes "[次元旅行者]";
 			mes "保重，朋友～下次见！";
 			close;
 		}
 		if (countitem(6672) < .@items[.@s+1]) {
-			mes "[Dimension Traveler]";
+			mes "[次元旅行者]";
 			mes "朋友，您让我很为难。";
 			mes "我需要" + .@item_name_req$ + "。请提供 ^006400" + .@items[.@s+1] + " 个" + .@item_name_req$ + "^000000 来交换。";
 			close;
 		}
-		mes "[Dimension Traveler]";
+		mes "[次元旅行者]";
 		mes "谢谢。如果还需要其他东西，请再回来。";
+		if (!checkweight(.@items[.@s],1)) {
+			mes "请先为所选物品预留足够的负重和物品栏空间，再来兑换。";
+			close;
+		}
 		delitem 6672, .@items[.@s+1];
 		getitem .@items[.@s], 1;
 		close;

@@ -7,8 +7,8 @@
 //============================================================
 
 // Storage
-tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIER,{
-	mes "[Training Ground Warehouse Soldier]";
+tra_fild01,204,110,2	script	训练场仓库士兵#fild01_1	8W_SOLDIER,{
+	mes "[训练场仓库士兵]";
 	mes "要使用仓库吗？训练场仓库需要1000 Zeny。请选择要使用的仓库。";
 	next;
 	// switch( select( "¢º Storage 1", "¢º Storage 2", "¢º Storage 3", "¢º Guild Storage", "¢º Cancel" ) ) {
@@ -27,26 +27,26 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 		.@guildid = getcharid( 2 );
 
 		if( .@guildid == 0 ){
-			mes "[Training Ground Warehouse Soldier]";
+			mes "[训练场仓库士兵]";
 			mes "公会仓库仅供公会成员使用。";
 			close;
 		}
 
 		if( getgdskilllv( .@guildid, "GD_GUILD_STORAGE" ) == 0 || !guild_has_permission( GUILD_PERM_STORAGE ) ){
-			mes "[Training Ground Warehouse Soldier]";
+			mes "[训练场仓库士兵]";
 			mes "你的公会似乎还不能使用公会仓库，或者你没有仓库权限。";
 			mes "请确认公会技能和仓库权限后再回来。";
 			close;
 		}
 
 		if( Zeny < 1000 ){
-			mes "[Training Ground Warehouse Soldier]";
+			mes "[训练场仓库士兵]";
 			mes "恐怕你的钱不够支付费用。";
 			mes "费用是1000 Zeny。";
 			close;
 		}
 
-		mes "[Training Ground Warehouse Soldier]";
+		mes "[训练场仓库士兵]";
 		mes "那我为你打开公会仓库。祝你留下难忘回忆！";
 		close2;
 
@@ -59,7 +59,7 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 			Zeny -= 1000;
 			end;
 		}else{
-			mes "[Training Ground Warehouse Soldier]";
+			mes "[训练场仓库士兵]";
 			mes "恐怕现在有人正在使用仓库。";
 			mes "过一会儿再试。";
 			close;
@@ -69,18 +69,15 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 	}
 	// TODO (custom text)
 	if (!callfunc("F_CanOpenStorage")) {
-		mes "[Training Ground Warehouse Soldier]";
-		mes "抱歉，你需要";
-		mes "新手的";
-		mes "基础技能达到6级，才能";
-		mes "使用仓库服务。";
+		mes "[训练场仓库士兵]";
+		mes "抱歉，你需要将初心者的基本技能提升到6级，才能使用仓库服务。";
 		close2;
 		cutin "",255;
 		end;
 	}
 
 	if (Zeny < 1000) {
-		mes "[Training Ground Warehouse Soldier]";
+		mes "[训练场仓库士兵]";
 		mes "^4d4dff使用训练场仓库需要1000 Zeny。^000000";
 		close;
 	}
@@ -88,25 +85,25 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 	openstorage; // TODO: open correct storage 1-3
 	end;
 }
-tra_fild01,15,110,6	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild01_2	8W_SOLDIER
-tra_fild01,113,32,0	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild01_3	8W_SOLDIER
-tra_fild01,111,100,4	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild01_4	8W_SOLDIER
+tra_fild01,15,110,6	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild01_2	8W_SOLDIER
+tra_fild01,113,32,0	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild01_3	8W_SOLDIER
+tra_fild01,111,100,4	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild01_4	8W_SOLDIER
 
-tra_fild02,204,110,2	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild02_1	8W_SOLDIER
-tra_fild02,15,110,6	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild02_2	8W_SOLDIER
-tra_fild02,113,32,0	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild02_3	8W_SOLDIER
-tra_fild02,111,100,4	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild02_4	8W_SOLDIER
+tra_fild02,204,110,2	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild02_1	8W_SOLDIER
+tra_fild02,15,110,6	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild02_2	8W_SOLDIER
+tra_fild02,113,32,0	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild02_3	8W_SOLDIER
+tra_fild02,111,100,4	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild02_4	8W_SOLDIER
 
-tra_fild03,204,110,2	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild03_1	8W_SOLDIER
-tra_fild03,15,110,6	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild03_2	8W_SOLDIER
-tra_fild03,113,32,0	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild03_3	8W_SOLDIER
-tra_fild03,111,100,4	duplicate(Training Ground Warehouse Soldier#fild01_1)	Training Ground Warehouse Soldier#fild03_4	8W_SOLDIER
+tra_fild03,204,110,2	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild03_1	8W_SOLDIER
+tra_fild03,15,110,6	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild03_2	8W_SOLDIER
+tra_fild03,113,32,0	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild03_3	8W_SOLDIER
+tra_fild03,111,100,4	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild03_4	8W_SOLDIER
 
 
 // Misc NPCs
 
 // Cleaner
-tra_fild01,142,113,6	script	Cleaning Robot#fild01	EP17_2_OMEGA_CLEANER,{
+tra_fild01,142,113,6	script	清扫机器人#fild01	EP17_2_OMEGA_CLEANER,{
 OnStart:
 	.@num = atoi( charat(strnpcinfo(2), 5) );
 
@@ -164,117 +161,117 @@ OnInit:
 	initnpctimer;
 	end;
 }
-tra_fild02,53,113,2	duplicate(Cleaning Robot#fild01)	Cleaning Robot#fild02	EP17_2_OMEGA_CLEANER
-tra_fild03,110,57,4	duplicate(Cleaning Robot#fild01)	Cleaning Robot#fild03	EP17_2_OMEGA_CLEANER
+tra_fild02,53,113,2	duplicate(清扫机器人#fild01)	清扫机器人#fild02	EP17_2_OMEGA_CLEANER
+tra_fild03,110,57,4	duplicate(清扫机器人#fild01)	清扫机器人#fild03	EP17_2_OMEGA_CLEANER
 
 
 // Chitchat
-tra_fild01,122,75,6	script	Neighborhood Grandmother#npc02	4_F_JPNOBA,{
-	mes "[Neighborhood Grandmother]";
+tra_fild01,122,75,6	script	邻家老奶奶#npc02	4_F_JPNOBA,{
+	mes "[邻家老奶奶]";
 	mes "呵呵呵——看到年轻人挥汗努力，我也觉得精神起来了。";
 	next;
-	mes "[Neighborhood Grandmother]";
+	mes "[邻家老奶奶]";
 	mes "哦，对了。你知道吗？";
 	next;
-	mes "[Neighborhood Grandmother]";
+	mes "[邻家老奶奶]";
 	mes "训练场中抗物理攻击的假人头上有剑图标，抗魔法攻击的假人头上有法杖图标。";
 	next;
-	mes "[Neighborhood Grandmother]";
+	mes "[邻家老奶奶]";
 	mes "知道这一点，就能更有效地攻击它们，对吧？";
 	close;
 }
 
-tra_fild01,34,102,3	script	Cat#npc03	4_CAT_REST,{
-	npctalk "Meow-", "", bc_self;
+tra_fild01,34,102,3	script	猫#npc03	4_CAT_REST,{
+	npctalk "喵——", "", bc_self;
 	end;
 }
 
-tra_fild01,34,120,3	script	Fress#npc05	4_M_SITDOWN,{
-	mes "[Fress]";
+tra_fild01,34,120,3	script	弗雷斯#npc05	4_M_SITDOWN,{
+	mes "[弗雷斯]";
 	mes "想去普隆德拉的话，可以从各处的卫兵那里离开，或使用3点和9点方向的传送门。真的。";
 	close;
 }
 
-tra_fild01,128,142,7	script	Nine Oranges#npc04	4_F_ROGUE,{
-	mes "[Nine Oranges]";
+tra_fild01,128,142,7	script	九个橘子#npc04	4_F_ROGUE,{
+	mes "[九个橘子]";
 	mes "记住！名字一旦选定就很难更改，所以要慎重选择。";
 	next;
-	mes "[Nine Oranges]";
+	mes "[九个橘子]";
 	mes "对了，不死假人在哪里？";
 	next;
-	mes "[Nine Oranges]";
+	mes "[九个橘子]";
 	mes "朋友说它头上有骨头图标……？你得先见到它。";
 	close;
 }
 
-tra_fild01,97,64,3	script	Village#npc01	4_M_CHN8GUEK,{
-	mes "[Village ]";
+tra_fild01,97,64,3	script	村民#npc01	4_M_CHN8GUEK,{
+	mes "[村民]";
 	mes "你好！天气真好，不是吗？我来看看新的训练场。";
 	next;
-	mes "[Village ]";
+	mes "[村民]";
 	mes "旧训练场不坏，但其实租用了初学者长期使用的场地，所以有些不便。";
 	next;
-	mes "[Village ]";
+	mes "[村民]";
 	mes "不过他们建造了宽敞漂亮的新训练场。看来最近资金很充足！";
 	close;
 }
 
-tra_fild02,101,90,5	script	Jar Cat#npc09	4_CAT_SAILOR5,{
-	mes "[Jar Cat]";
+tra_fild02,101,90,5	script	罐子猫#npc09	4_CAT_SAILOR5,{
+	mes "[罐子猫]";
 	mes "你第一次来训练场吗？让我这个老手给你讲讲。";
 	next;
-	mes "[Jar Cat]";
+	mes "[罐子猫]";
 	mes "训练场有三个：基础训练场、1/10训练场和1/100训练场。它们的区别就留给你自己发现。";
 	next;
-	mes "[Jar Cat]";
+	mes "[罐子猫]";
 	mes "哦，对了！要前往其他训练场，可以使用3点和9点方向的传送门。记住！";
 	close;
 }
 
-tra_fild02,166,46,3	script	Little One#npc06	4_M_KID2,{
-	mes "[Little One]";
+tra_fild02,166,46,3	script	小家伙#npc06	4_M_KID2,{
+	mes "[小家伙]";
 	mes "爸爸告诉我！头上有法杖图标的假人抗魔法！";
 	next;
-	mes "[Little One]";
+	mes "[小家伙]";
 	mes "所以……如果你能用魔法打败那些假人，就真的很强，对吧？！";
 	close;
 }
 
-tra_fild02,129,93,6	script	Kekekekereurur#npc10	4_GEFFEN_02,{
-	mes "[Kekekekereurur]";
+tra_fild02,129,93,6	script	可可可鲁鲁#npc10	4_GEFFEN_02,{
+	mes "[可可可鲁鲁]";
 	mes "听说和头上有猫图标的假人训练，能帮助你在PvP中对抗杜兰族。";
 	next;
-	mes "[Kekekekereurur]";
+	mes "[可可可鲁鲁]";
 	mes "我才不是被路过的杜兰族打败后才来这里练习的。记住！";
 	close;
 }
 
-tra_fild03,98,46,7	script	Lumberjack#npc13	4_M_NOV_HUNT,{
-	mes "[Lumberjack]";
+tra_fild03,98,46,7	script	伐木工#npc13	4_M_NOV_HUNT,{
+	mes "[伐木工]";
 	mes "呼——嚓呼——嚓——";
 	close;
 }
 
-tra_fild03,53,140,5	script	Dong#npc15	4_M_CACTUSMAN1,{
-	mes "[Dong]";
+tra_fild03,53,140,5	script	东东#npc15	4_M_CACTUSMAN1,{
+	mes "[东东]";
 	mes "啊啊啊——住手！住手！我不是怪物。别攻击我。";
 	next;
-	mes "[Dong]";
-	mes "呼——谢谢。有些人常把我误认成怪物Mooka，但我是来自岩脊的仙人掌。";
+	mes "[东东]";
+	mes "呼——谢谢。有些人常把我误认成怪物摩卡，但我是来自岩脊的仙人掌。";
 	next;
-	mes "[Dong]";
+	mes "[东东]";
 	mes "如果你去岩脊，就能见到我们会呼吸的仙人掌。欢迎来访。哈哈哈。";
 	close;
 }
 
-tra_fild03,92,108,7	script	Cat#npc12	4_CAT_REST,{
-	npctalk "Gororong-", "", bc_self;
+tra_fild03,92,108,7	script	猫#npc12	4_CAT_REST,{
+	npctalk "呼噜噜——", "", bc_self;
 	end;
 }
 
-tra_fild03,180,102,4	script	Coco#npc14	4_COCO,{
+tra_fild03,180,102,4	script	松鼠#npc14	4_COCO,{
 	emotion ET_QUESTION;
-	mes "[Coco]";
+	mes "[松鼠]";
 	mes "?";
 	close;
 }

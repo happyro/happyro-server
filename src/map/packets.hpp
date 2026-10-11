@@ -1583,6 +1583,16 @@ struct PACKET_ZC_HAPPYRO_NAVIGATION_CONTROL {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NAVIGATION_CONTROL, 0xd02);
 
+// Complete NPC display name, independent of the legacy 24-byte name field.
+struct PACKET_ZC_HAPPYRO_NPC_NAME {
+	int16 packetType;
+	int16 packetLength;
+	uint32 npcId;
+	char name[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_NAME, 0xd04);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_NPC_NAME) == 8, "NPC name header wire layout");
+
 struct PACKET_CZ_HAPPYRO_STOP_MOVE {
 	int16 packetType;
 } __attribute__((packed));

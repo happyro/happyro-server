@@ -42,128 +42,108 @@
 
 // Lost Child Quest (Prerequisite to High Priest quest) :: rachel_wonjumin
 //============================================================ 
-ra_in01,384,246,3	script	Vincent#ra_in01	47,{
+ra_in01,384,246,3	script	文森特#ra_in01	47,{
 	if (BaseLevel < 60) {
-		mes "[Vincent]";
-		mes "你在 Zhed 爵士的宅邸里找新员工，但我不认为勇敢的冒险者适合这种家务工作。";
+		mes "[文森特]";
+		mes "你在 泽德 爵士的宅邸里找新员工，但我不认为勇敢的冒险者适合这种家务工作。";
 		close;
 	}
 	if (lost_boy < 1) {
-		mes "[Vincent]";
-		mes "我是 Vincert，这座宅邸的管家，也是主人 Zhed 爵士的忠诚仆人。他是整个 Arunafeltz 最有权势的人。";
+		mes "[文森特]";
+		mes "我是 文森特，这座宅邸的管家，也是主人 泽德 爵士的忠诚仆人。他是整个 阿鲁纳佩尔兹 最有权势的人。";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "主人目前去参加高级神官会议，已经离开几天了。我想请你代他帮忙解决一个问题。";
 		next;
 		switch(select("我太忙了。:好啊，为什么不？")) {
 		case 1:
-			mes "[Vincent]";
+			mes "[文森特]";
 			mes "我明白。很抱歉你现在太忙……如果之后有空，我想再次请求你的帮助。";
 			close;
 		case 2:
-			mes "[Vincent]";
-			mes "谢谢。教皇因 Zhed 爵士对 Arunafeltz 的巨大贡献，奖给他一颗珍贵宝石。然而宝石失踪了，我需要你帮忙找回。";
+			mes "[文森特]";
+			mes "谢谢。教皇因 泽德 爵士对 阿鲁纳佩尔兹 的巨大贡献，奖给他一颗珍贵宝石。然而宝石失踪了，我需要你帮忙找回。";
 			next;
-			mes "[Vincent]";
-			mes "我没有证据，但怀疑是仆人 Phobe 偷的。他在宝石失踪的同时也消失了。";
+			mes "[文森特]";
+			mes "我没有证据，但怀疑是仆人 福布 偷的。他在宝石失踪的同时也消失了。";
 			next;
-			mes "[Vincent]";
-			mes "请在 Zhed 爵士回来发现真相前找回宝石并查明窃贼。如果你能保守秘密，我将非常感激。";
+			mes "[文森特]";
+			mes "请在 泽德 爵士回来发现真相前找回宝石并查明窃贼。如果你能保守秘密，我将非常感激。";
 			next;
-			mes "[Vincent]";
-			mes "我相信你想审问 Phobe，但他逃到某处去了。你可以询问其他仆人他的下落。再次感谢你的帮助。";
+			mes "[文森特]";
+			mes "我相信你想审问 福布，但他逃到某处去了。你可以询问其他仆人他的下落。再次感谢你的帮助。";
 			set lost_boy,1;
 			setquest 8089;
 			close;
 		}
 	}
 	else if ((lost_boy >= 1) && (lost_boy < 4)) {
-		mes "[Vincent]";
-		mes "我建议在宅邸里找找，并询问仆人关于 Phobe 当前下落的线索。";
+		mes "[文森特]";
+		mes "我建议在宅邸里找找，并询问仆人关于 福布 当前下落的线索。";
 		close;
 	}
 	else if ((lost_boy >= 4) && (lost_boy < 7)) {
-		mes "[Vincent]";
-		mes "时间不多了……请尽快找到宝石和 Phobe。";
+		mes "[文森特]";
+		mes "时间不多了……请尽快找到宝石和 福布。";
 		close;
 	}
 	else if (lost_boy == 7) {
-		mes "[Vincent]";
-		mes "啊……！你、你好！你还好吗，呃……你脸上的表情是怎么回事？找到 Logan 了吗？";
+		mes "[文森特]";
+		mes "啊……！你、你好！你还好吗，呃……你脸上的表情是怎么回事？找到 洛根 了吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "没有！我被 Mogan 刺伤了，之后我们谈了谈。你到底想干什么？我来帮你，你却想让我被杀！我要解释！";
+		mes "没有！我被 莫根 刺伤了，之后我们谈了谈。你到底想干什么？我来帮你，你却想让我被杀！我要解释！";
 		next;
-		mes "[Vincent]";
-		mes "我……是的，在我试图对你做那种事之后，你值得知道真相。首先，Phobe 是我的儿子，但请别告诉任何人！";
+		mes "[文森特]";
+		mes "我……是的，在我试图对你做那种事之后，你值得知道真相。首先，福布 是我的儿子，但请别告诉任何人！";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "什么？这有什么大不了？";
 		next;
-		mes "[Vincent]";
-		mes "Arunafeltz 存在某种阶级制度。没人谈论，但移民来此建城的人是统治阶级。";
+		mes "[文森特]";
+		mes "阿鲁纳佩尔兹 存在某种阶级制度。没人谈论，但移民来此建城的人是统治阶级。";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "原住民是二等公民，被开发这座城市的移民后裔鄙视。这是悲哀且无法否认的事实。";
 		next;
-		mes "[Vincent]";
-		mes "原住民通常处于低阶层，在城里做艰苦的蓝领工作。Phobe 的母亲 Jenny 就是其中之一。";
+		mes "[文森特]";
+		mes "原住民通常处于低阶层，在城里做艰苦的蓝领工作。福布 的母亲 珍妮 就是其中之一。";
 		next;
-		mes "[Vincent]";
-		mes "我爱她是禁忌，尤其是 Zhed 爵士一直照顾我，像父亲一样。";
+		mes "[文森特]";
+		mes "我爱她是禁忌，尤其是 泽德 爵士一直照顾我，像父亲一样。";
 		mes "如果我娶她，会严重损害他的声誉。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		next;
-		mes "[Vincent]";
-		mes "我试图控制感情，但是……Phobe 出生了。现在已经无法回头。";
+		mes "[文森特]";
+		mes "我试图控制感情，但是……福布 出生了。现在已经无法回头。";
 		mes "不过我们确实秘密结婚了，我不后悔。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		next;
-		mes "[Vincent]";
-		mes "Phobe 一定怨恨我……";
+		mes "[文森特]";
+		mes "福布 一定怨恨我……";
 		mes "我不得不在别人面前把他和他母亲当作奴隶对待。";
 		mes "我知道这很可怕……对所爱之人如此冷漠。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Vincent]";
-		mes "他带着宝石逃跑时，我其实更担心 Phobe，而不是主人的宝物。";
+		mes "[文森特]";
+		mes "他带着宝石逃跑时，我其实更担心 福布，而不是主人的宝物。";
 		mes "所以我尽力想把他带回来：我雇用了你。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		next;
-		mes "[Vincent]";
-		mes "然而，一旦你找到 Phobe，我就打算杀死你，把盗窃罪名推给你。";
+		mes "[文森特]";
+		mes "然而，一旦你找到 福布，我就打算杀死你，把盗窃罪名推给你。";
 		mes "对不起，我知道这样不对，但我太担心我的孩子了！";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "希望你能原谅我……";
 		mes "我会做一开始就该做的事……";
-		mes "我会为宝石失窃承担全部责任，Zhed 爵士想怎么处置我都可以。";
+		mes "我会为宝石失窃承担全部责任，泽德 爵士想怎么处置我都可以。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "宝石非常特殊……教皇命令主人妥善保管，";
-		mes "因为它在关键时刻能拯救 Arunafeltz 和 Rachel。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
+		mes "因为它在关键时刻能拯救 阿鲁纳佩尔兹 和 拉赫。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "宝石真的那么重要吗？好吧，你差点害死我，";
@@ -173,13 +153,13 @@ ra_in01,384,246,3	script	Vincent#ra_in01	47,{
 		mes "";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "只要我在 Zhed 爵士回来前找到宝石和 Phobe，你就不会有麻烦。";
+		mes "只要我在 泽德 爵士回来前找到宝石和 福布，你就不会有麻烦。";
 		mes "我会尽快替你找到他们。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "你愿意为我这么做？^333333*抽泣*^000000";
 		mes "即使我让你经历了这些？^333333*抽鼻子*^000000";
 		mes "";
@@ -188,125 +168,125 @@ ra_in01,384,246,3	script	Vincent#ra_in01	47,{
 		mes "["+strcharinfo(0)+"]";
 		mes "唉，我已经经历了这么多麻烦，";
 		mes "所以";
-		mes "我还是把工作完成吧。而且 Phobe 只是个孩子，可能藏在城里的某处。";
+		mes "我还是把工作完成吧。而且 福布 只是个孩子，可能藏在城里的某处。";
 		set lost_boy,8;
 		changequest 8094,8095;
 		close;
 	}
 	else if (lost_boy == 8) {
-		mes "[Vincent]";
-		mes "宝石非常特殊……教皇命令主人妥善保管，因为它在关键时刻能拯救 Arunafeltz 和 Rachel。";
+		mes "[文森特]";
+		mes "宝石非常特殊……教皇命令主人妥善保管，因为它在关键时刻能拯救 阿鲁纳佩尔兹 和 拉赫。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "宝石真的那么重要吗？好吧，你差点害死我，但既然我还活着，就可以原谅你。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "只要我在 Zhed 爵士回来前找到宝石和 Phobe，你就不会有麻烦，所以我会尽快替你找到他们。";
+		mes "只要我在 泽德 爵士回来前找到宝石和 福布，你就不会有麻烦，所以我会尽快替你找到他们。";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "你愿意为我做这些？^333333*抽泣*^000000即使我让你经历了这些？^333333*抽鼻子*^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "呃，我已经经历了这么多麻烦，干脆把工作完成。而且 Phobe 只是个孩子，可能藏在城里的某处……";
+		mes "呃，我已经经历了这么多麻烦，干脆把工作完成。而且 福布 只是个孩子，可能藏在城里的某处……";
 		close;
 	}
 	else if (lost_boy == 9) {
-		mes "[Vincent]";
-		mes "你回来了！找到 Phobe 了吗？！他、他怎么样？没事吧？";
+		mes "[文森特]";
+		mes "你回来了！找到 福布 了吗？！他、他怎么样？没事吧？";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "嗯？哦，他很好。我在 Freya 喷泉附近找到 Phobe。呃，他还不愿回家，但把偷走的宝石给了我。";
+		mes "嗯？哦，他很好。我在 芙蕾雅 喷泉附近找到 福布。呃，他还不愿回家，但把偷走的宝石给了我。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "所以……我现在能得到奖励了，对吧？没人需要死了？";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "是的，是的，太感谢了！我永远不会忘记你为我做的一切。哦，我的儿子没事！";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "喂、喂！呃，拿着这颗宝石！你得把它送回该去的地方，对吧？";
 		next;
-		mes "[Vincent]";
-		mes "哦，是的，我最好这么做。我归还宝石时，你能告诉我妻子 Jenny 我们的儿子没事吗？她一直很担心，所以……";
+		mes "[文森特]";
+		mes "哦，是的，我最好这么做。我归还宝石时，你能告诉我妻子 珍妮 我们的儿子没事吗？她一直很担心，所以……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "你要我告诉 Jenny 关于 Phobe 的事？好，好，我会的。";
+		mes "你要我告诉 珍妮 关于 福布 的事？好，好，我会的。";
 		set lost_boy,10;
 		changequest 8096,8097;
 		close;
 	}
 	else if (lost_boy == 10) {
-		mes "[Vincent]";
-		mes "哦！我归还宝石时，你能告诉我妻子 Jenny 我们的儿子没事吗？她一直很担心，所以……";
+		mes "[文森特]";
+		mes "哦！我归还宝石时，你能告诉我妻子 珍妮 我们的儿子没事吗？她一直很担心，所以……";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "你要我告诉 Jenny 关于 Phobe 的事？好，好，我会的。";
+		mes "你要我告诉 珍妮 关于 福布 的事？好，好，我会的。";
 		close;
 	}
 	else if (lost_boy == 11) {
 		mes "["+strcharinfo(0)+"]";
-		mes "我告诉 Jenny Phobe 的事，也说宝石已经归还……她似乎松了口气……";
+		mes "我告诉 珍妮 福布 的事，也说宝石已经归还……她似乎松了口气……";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "太谢谢你了，冒险者。她是善良而充满爱心的女人，我不忍看她承受这些痛苦。我配不上这么美丽的女人……";
 		next;
-		mes "[Vincent]";
-		mes "你来拯救我们真是幸运……下次来到 Rachel 时请再来，我会尽力帮助你。";
+		mes "[文森特]";
+		mes "你来拯救我们真是幸运……下次来到 拉赫 时请再来，我会尽力帮助你。";
 		next;
-		mes "[Vincent]";
-		mes "啊，其实我还有最后一个请求。请把这张纸条和包裹交给我的主人。他应该还";
-		mes "现在应该在神殿里。";
+		mes "[文森特]";
+		mes "啊，其实我还有最后一个请求。";
+		mes "请把这张纸条和包裹交给我的主人。";
+		mes "他现在应该还在神殿里。";
 		next;
-		mes "[Vincent]";
-		mes "如果你找高级神官 Zhed，并提到是我派你去的，他会见你。";
+		mes "[文森特]";
+		mes "如果你找高级神官 泽德，并提到是我派你去的，他会见你。";
 		next;
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "现在该给你奖励了。怎么样？我不知道里面是什么，但这些东西现在很值钱……";
 		set lost_boy,12;
 		changequest 8098,8099;
 		getitem 617,1; //Old_Violet_Box
 		next;
-		mes "[Vincent]";
-		mes "哦，这张纸条是我为你写的推荐信。请尽快交给 Zhed 爵士。再见，感谢你所做的一切。";
+		mes "[文森特]";
+		mes "哦，这张纸条是我为你写的推荐信。请尽快交给 泽德 爵士。再见，感谢你所做的一切。";
 		next;
-		mes "^3355FFYou received a letter";
-		mes "来自 Vincent 的推荐信。^000000";
+		mes "^3355FF你收到了文森特的推荐信。^000000";
 		close;
 	}
 	else {
-		mes "[Vincent]";
+		mes "[文森特]";
 		mes "谢谢你为我和家人所做的一切。需要帮助时，别犹豫，尽管来找我，好吗？";
 		close;
 	}
 }
 
-rachel,114,232,3	script	Logan#ra_in01	869,{
+rachel,114,232,3	script	洛根#ra_in01	869,{
 	if ((lost_boy < 1) || (lost_boy >= 3)) {
-		mes "[Logan]";
-		mes "我只是 Logan，是在 Zhed 爵士宏伟宅邸工作的众多仆人之一。我有很多工作要做，请别打扰我。";
+		mes "[洛根]";
+		mes "我只是 洛根，是在 泽德 爵士宏伟宅邸工作的众多仆人之一。我有很多工作要做，请别打扰我。";
 		close;
 	}
 	else if (lost_boy == 1) {
 		mes "["+strcharinfo(0)+"]";
-		mes "打扰一下，你认识一个叫 Phobe 的人吗？我听说他以前在这里工作。";
+		mes "打扰一下，你认识一个叫 福布 的人吗？我听说他以前在这里工作。";
 		next;
-		mes "[Logan]";
+		mes "[洛根]";
 		mes "呃，我能问问你是谁吗？为什么找他？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "我刚受雇寻找他，有人告诉我询问这里的仆人是很好的起点。";
 		next;
-		mes "[Logan]";
-		mes "哦，好。是的，Phobe 几天前去市场买东西后就失踪了。希望那孩子没事。";
+		mes "[洛根]";
+		mes "哦，好。是的，福布 几天前去市场买东西后就失踪了。希望那孩子没事。";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "呃，孩子？Phobe 多大？";
+		mes "呃，孩子？福布 多大？";
 		next;
-		mes "[Logan]";
+		mes "[洛根]";
 		mes "他刚满十五岁。我只知道这些。说实话，我刚开始在这里工作，了解不多。你为什么不问问资深员工？";
 		next;
-		mes "[Logan]";
-		mes "让我想想……你可以问宅邸里的 Manson 先生。他在这里工作了一段时间。";
+		mes "[洛根]";
+		mes "让我想想……你可以问宅邸里的 曼森 先生。他在这里工作了一段时间。";
 		set lost_boy,2;
 		changequest 8089,8090;
 		close;
@@ -323,7 +303,7 @@ rachel,114,232,3	script	Logan#ra_in01	869,{
 	}
 }
 
-ra_in01,372,200,3	script	Manson#ra_in01	929,{
+ra_in01,372,200,3	script	曼森#ra_in01	929,{
 	if (lost_boy < 1) {
 		mes "[曼森]";
 		mes "我是曼森，是在泽德爵士";
@@ -424,10 +404,10 @@ ra_in01,372,200,3	script	Manson#ra_in01	929,{
 		}
 		}
 		
-		rachel,48,237,3	script	Jenny#ra_in01	894,{
+		rachel,48,237,3	script	珍妮#ra_in01	894,{
 		if (lost_boy < 3) {
-		mes "[Jenny]";
-	mes "这片土地属于 Zhed 爵士，";
+		mes "[珍妮]";
+	mes "这片土地属于 泽德 爵士，";
 mes "被视为私人财产。";
 mes "如果没有受到邀请，";
 mes "请立即离开！";
@@ -440,7 +420,7 @@ mes "请立即离开！";
 		mes "福布，就来和你谈谈。";
 		mes "文森特雇我来找他。";
 	next;
-	mes "[Jenny]";
+	mes "[珍妮]";
 		mes "哦！那真是个好消息！";
 		mes "是、是的，我是珍妮。";
 		mes "你想知道什么？";
@@ -451,19 +431,19 @@ mes "请立即离开！";
 		mes "比如他喜欢去哪里，";
 		mes "也许会有助于调查。";
 		next;
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "福布是个好孩子。";
 		mes "我不知道他这次惹了什么麻烦，";
 		mes "但只要给他机会，";
 		mes "他真的是很棒的孩子。";
 		next;
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "哦……文森特一定也……";
 		mes "我、我很高兴他雇了你。";
 		mes "至于可能找到他的地方，";
 		mes "我不确定自己是否知道。";
 		next;
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "你去过市场吗？";
 		mes "他最后就是在那里被看到的，对吧？";
 		mes "也许那里的人知道";
@@ -478,7 +458,7 @@ mes "请立即离开！";
 		close;
 		}
 		else if ((lost_boy >= 3) && (lost_boy < 6)) {
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "请找到福布，";
 		mes "尽快把他安全带回来！";
 		mes "你知道，我忍不住担心那个孩子。";
@@ -490,14 +470,14 @@ mes "请立即离开！";
 		close;
 		}
 		else if (lost_boy == 6) {
-		mes "[Jenny]";
+		mes "[珍妮]";
 	mes "请找到福布，";
 	mes "尽快把他安全带回来！";
 		mes "你知道，我忍不住担心那个孩子。";
 		close;
 		}
 		else if ((lost_boy > 6) && (lost_boy < 11)) {
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "哦！你回来了！";
 		mes "找到福布了吗？";
 		next;
@@ -535,20 +515,20 @@ mes "请立即离开！";
 			mes "你知道，你、他和福布";
 			mes "彼此有关，所以……";
 			next;
-		mes "[Jenny]";
+		mes "[珍妮]";
 		mes "哦！哦，我明白了。他把";
 			mes "我们的秘密告诉你了？好吧，";
 			mes "我想我们可以信任你。";
 			mes "主要是我很欣慰儿子没事，";
 			mes "也不会惹上麻烦。";
 			next;
-			mes "[Jenny]";
+			mes "[珍妮]";
 			mes "总之，虽然福布很固执，";
 		mes "但我相信他很快会回来。";
 		mes "随着长大，我想他会";
 			mes "更理解父亲的立场。";
 			next;
-			mes "[Jenny]";
+			mes "[珍妮]";
 			mes "我希望如此。虽然";
 			mes "我们三个人这样生活";
 			mes "非常困难，";
@@ -560,7 +540,7 @@ mes "请立即离开！";
 			close;
 			}
 			else if ((lost_boy > 10) && (lost_boy < 13)) {
-			mes "[Jenny]";
+			mes "[珍妮]";
 			mes "非常感谢你找到我的儿子。";
 			mes "如果有什么我能为你做的，";
 			mes "请告诉我。作为母亲，";
@@ -570,9 +550,9 @@ mes "请立即离开！";
 			end;
 			}
 			
-			rachel,138,73,5	script	Idle Merchant#ra_in01	85,{
+			rachel,138,73,5	script	闲散商人#ra_in01	85,{
 			if ((lost_boy < 4) || (lost_boy >= 6)) {
-			mes "[Idle Merchant]";
+			mes "[闲散商人]";
 			mes "天啊！现在生意";
 			mes "太冷清了！";
 			mes "继续站在这个破地方";
@@ -585,7 +565,7 @@ mes "请立即离开！";
 			mes "打扰一下？";
 			mes "你好？先生？";
 			next;
-			mes "[Idle Merchant]";
+			mes "[闲散商人]";
 		mes "终于！来客人了！";
 		mes "我就知道最终会有人来！";
 	mes "那么你想买什么？";
@@ -597,7 +577,7 @@ mes "请立即离开！";
 		mes "一个大约十五岁的男孩。";
 		mes "据说他离家出走了。";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 	mes "十五岁？我自己的儿子也是";
 	mes "这个年纪……抱歉，";
 mes "我这几天没见过附近";
@@ -607,7 +587,7 @@ mes "不过你可以问问其他商人。";
 		mes "["+strcharinfo(0)+"]";
 		mes "好的。非常感谢。";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "好吧！";
 		mes "祝你顺利把那个男孩带回家！";
 		mes "哦，你确定不想四处看看吗？";
@@ -617,12 +597,12 @@ mes "不过你可以问问其他商人。";
 		mes "我认不出你卖的";
 		mes "这些商品。";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "你知道有些餐厅会提供";
 		mes "用蔬菜、小麦面筋之类";
 		mes "制作的仿肉料理，对吧？";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "听好了：用纯肉制作的";
 		mes "仿蔬菜！这不是两全其美吗？";
 		mes "对吧？来，";
@@ -634,7 +614,7 @@ mes "不过你可以问问其他商人。";
 		mes "放进嘴里！那到底";
 		mes "是什么？";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "这是世界上第一根";
 		mes "西葫芦……";
 		mes "完全用 A 级西冷牛排";
@@ -657,9 +637,9 @@ mes "不过你可以问问其他商人。";
 		}
 		}
 		
-		rachel,120,47,3	script	Idle Merchant#ra_in01_2	85,{
+		rachel,120,47,3	script	闲散商人#ra_in01_2	85,{
 		if ((lost_boy < 5) || (lost_boy > 6)) {
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "我在考虑退出这个生意……";
 		mes "没人想要我卖的东西！";
 		mes "这样下去我肯定";
@@ -671,7 +651,7 @@ mes "不过你可以问问其他商人。";
 		mes "打扰一下，";
 		mes "呃……你好？";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "哦！欢迎来到我的店！";
 		mes "今天我能帮你什么？";
 		next;
@@ -681,7 +661,7 @@ mes "不过你可以问问其他商人。";
 		mes "几天前他还在这里。";
 		mes "你见过他吗？";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "哦！对，昨晚有人让我";
 		mes "把消息告诉寻找福布的人。";
 		mes "基本上，他想让你";
@@ -693,13 +673,13 @@ mes "不过你可以问问其他商人。";
 		mes "他知道福布在哪里吗？";
 	mes "福、福布还好吗？";
 	next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "不知道。我把知道的都告诉你了。";
-		mes "让我想想，他的名字是……Nogan？";
-		mes "Rogan？类似这样的名字。";
+		mes "让我想想，他的名字是……诺根？";
+		mes "罗根？类似这样的名字。";
 		mes "真的，我只知道这些。";
 		next;
-		mes "[Idle Merchant]";
+		mes "[闲散商人]";
 		mes "所以那孩子失踪了，";
 	mes "嗯？祝你找到他。";
 mes "哦，在冰洞里要小心。";
@@ -709,13 +689,9 @@ set lost_boy,6;
 		close;
 		}
 		else if (lost_boy == 6) {
-		mes "[Idle Merchant]";
-		mes "So yeah, last night,";
-		mes "有人让我把消息告诉";
-		mes "所有寻找这个叫福布的";
-	mes "男孩的人，";
-	mes "一条消息。简单来说，他希望";
-		mes "让你去‘冰洞’。";
+		mes "[闲散商人]";
+		mes "是啊，昨晚有人让我给寻找福布的人带个口信。";
+		mes "简单来说，他希望你去“冰洞”。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "谁让你告诉我的？他怎么知道";
@@ -723,25 +699,21 @@ set lost_boy,6;
 		mes "他知道福布在哪里吗？";
 		mes "福、福布还好吗？";
 		next;
-		mes "[Idle Merchant]";
-		mes "No clue. I told you all";
-		mes "I know. Let's see, his";
-		mes "名字是……Nogan？";
-		mes "Rogan？类似这样的名字。";
-		mes "真的，我只知道这些。";
+		mes "[闲散商人]";
+		mes "不知道。我把知道的都告诉你了。";
+		mes "让我想想，他的名字是……诺根？";
+		mes "罗根？类似这样的名字。真的，我只知道这些。";
 		next;
-		mes "[Idle Merchant]";
-		mes "So the kid's missing,";
-		mes "嗯？祝你找到他。";
-		mes "哦，在冰洞里要小心，";
-		mes "那地方非常危险。";
+		mes "[闲散商人]";
+		mes "所以那孩子失踪了，嗯？祝你找到他。";
+		mes "哦，在冰洞里要小心，那地方非常危险。";
 		close;
 		}
 		}
 		
-		ra_fild01,245,325,3	script	Suspicious Man#ra_in01	934,{
+		ra_fild01,245,325,3	script	可疑男子#ra_in01	934,{
 		if ((lost_boy < 6) || (lost_boy > 7)) {
-		mes "[Suspicious Man]";
+		mes "[可疑男子]";
 		mes "这、这里空气不够，";
 		mes "太闷了！";
 		mes "嘿，走开！你在浪费我";
@@ -750,69 +722,8 @@ set lost_boy,6;
 		}
 		if (lost_boy == 6) {
 		mes "["+strcharinfo(0)+"]";
-		mes "打扰一下，你知道";
-		mes "一个叫";
-		mes "";
-		mes "";
-		mes "";
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-
-
-
-	
-		
-		
-		
-		
-		
-		
-		
-	
-	
-		
-		
-	mes "罗根？我来这里是为了——";
+		mes "打扰一下，你认识一个叫罗根的人吗？";
+		mes "我来这里是为了——";
 		next;
 	mes "[可疑男子]";
 	mes "哈！没想到这么简单！";
@@ -834,11 +745,11 @@ set lost_boy,6;
 		next;
 		mes "["+strcharinfo(0)+"]";
 	mes "喂，你到底是谁？！你是罗根吗？";
-	mes "你就是绑架菲比的人吗？";
+	mes "你就是绑架福布的人吗？";
 		next;
 		mes "[可疑男子]";
 		mes "什么——？我没有绑架任何人！";
-		mes "我根本不认识菲比！";
+		mes "我根本不认识福布！";
 		mes "我只是受雇杀你，";
 		mes "把你的尸体带给客户。";
 		mes "事情和我想的不一样。";
@@ -880,7 +791,7 @@ set lost_boy,6;
 	}
 }
 
-rachel,263,32,3	script	Kid#ra_in01	931,{
+rachel,263,32,3	script	孩子#ra_in01	931,{
 	if (lost_boy < 7) {
 		mes "[孩子]";
 		mes "别烦我！";
@@ -892,7 +803,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "喂，你。";
-		mes "你一定是菲比，对吧？";
+		mes "你一定是福布，对吧？";
 		next;
 		mes "[孩子]";
 		mes "嗯？";
@@ -901,7 +812,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "["+strcharinfo(0)+"]";
 		mes "你父亲派我来找你。";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "不！别碰我！";
 		mes "我没有父亲！";
 		mes "他对我来说已经死了！";
@@ -911,7 +822,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "我知道它真正属于泽德先生。";
 		mes "如果不拿回去，你父亲会有麻烦。";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "哈！你是说‘文森特先生’！";
 		mes "我才不在乎！这正是我拿走它的原因！";
 		next;
@@ -919,15 +830,15 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "哦，是吗？你觉得珍妮女士会怎么想？";
 		mes "你觉得她听到这些会高兴吗？";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "……………………………………";
 		mes "……所以你知道我们的家庭秘密了？";
 		mes "好吧，我把它给你。但我是为了妈妈，不是为了他！";
 		next;
-		mes "^3355FF菲比小心地从口袋里取出闪亮的红宝石，";
+		mes "^3355FF福布小心地从口袋里取出闪亮的红宝石，";
 		mes "不情愿地把它交给你。^000000";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "先说好，我没打算回家！";
 		mes "至少现在不回去。";
 		mes "但请告诉妈妈我没事，让她别担心。";
@@ -937,21 +848,21 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "但你应该尽快回到他们身边。";
 		mes "你父亲为了替你隐瞒，承担了很大风险。";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "哼！我……我才不在乎！";
 		next;
-		mes "^3355FF看来你暂时无法强迫菲比回家，";
+		mes "^3355FF看来你暂时无法强迫福布回家，";
 		mes "所以你应该把这颗红宝石带回给文森特。^000000";
 		set lost_boy,9;
 		changequest 8095,8096;
 		close;
 	}
 	else if (lost_boy == 9) {
-		mes "[菲比]";
+		mes "[福布]";
 		mes "我……我还没准备好回家。";
 		mes "告诉文森特先生，我不为自己的行为道歉，明白吗？！";
 		next;
-		mes "^3355FF看来你暂时无法强迫菲比回家，";
+		mes "^3355FF看来你暂时无法强迫福布回家，";
 		mes "所以你应该把这颗红宝石带回给文森特。^000000";
 		close;
 	}
@@ -959,7 +870,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "["+strcharinfo(0)+"]";
 		mes "你应该别再惹麻烦，听父母的话。";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "你又不是我的老板！管好你自己！真是的！";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -967,7 +878,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 		mes "我就不能只管自己的事！";
 		mes "你得更负责任一些！";
 		next;
-		mes "[菲比]";
+		mes "[福布]";
 		mes "嗯呜……";
 		mes "天啊……好吧。";
 		close;
@@ -976,7 +887,7 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 
 // Bruspetti Quest (Perequisite: Lighthalzen "Friendship" quest) :: rachel_ryu
 //============================================================ 
-ra_in01,235,194,5	script	Katinshuell	931,{
+ra_in01,235,194,5	script	卡廷舒尔	931,{
 	if (rach_vice > 21) {
 		mes "[卡廷舒尔]";
 		mes "如果我当初自首……";
@@ -1074,8 +985,8 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		close;
 	}
 	else if (rach_vice == 21) {
-		mes "[Katinshuell]";
-		mes "^333333*Pant pant*^000000";
+		mes "[卡廷舒尔]";
+		mes "^333333*喘气*^000000";
 		mes "这么多年……我以为";
 		mes "自己可以逃走……";
 		mes "但那些声音仍然";
@@ -1101,7 +1012,7 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		mes "她得知了关于你的可怕事情，";
 		mes "而且涉及一把刀……就像这把。";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes ".........!";
 		mes ".............";
 		mes "不——！对不起，这都是我的错！我当时走投无路！";
@@ -1137,192 +1048,49 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		mes "这篇记录很有意思。";
 		mes "内容全都和卡廷舒尔有关。";
 		next;
-		mes "- Date: OOXX -";
+		mes "- 日期： OOXX -";
 		mes "我非常爱他，但每当我问起他的过去，";
 		mes "他总是转移话题。";
 		mes "难道他在对我隐瞒什么？";
 		next;
-		mes "- Date: OOXX -";
+		mes "- 日期： OOXX -";
 		mes "是另一个女人吗？我忍不住感到嫉妒！";
 		mes "我一定要弄清楚。";
 		mes "所以我决定去里希塔乐看看能查到什么。";
 		next;
-		mes "- Date: OOXO -";
+		mes "- 日期： OOXO -";
 		mes "亲爱的日记，";
 		mes "今天我刚得知可怕的真相……";
 		mes "我必须让他向我承认。";
 		mes "希望这一切之后我们仍能在一起……";
 		next;
-		mes "- Date: OOXO -";
+		mes "- 日期： OOXO -";
 		mes "但我不知道自己能否承受！";
 		mes "我爱的男人……我无法想象他竟会";
 		mes "用刀……我只是想吐。";
 		next;
-		mes "- Date: OOXO -";
+		mes "- 日期： OOXO -";
 		mes "我计划明天在芙蕾雅之泉见他。";
 		mes "现在我忍不住用不同的眼光看他，但不管怎样……";
 		mes "他仍是我真正爱着的男人。";
 		next;
-		mes "- Date: OOXO -";
+		mes "- 日期： OOXO -";
 		mes "希望下次写日记时能带来好消息……";
 		mes "就这样祈祷吧。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "嗯，原来是这样";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-		mes "最后一页……布鲁斯佩蒂在芙蕾雅之泉与你对峙时发生了什么？";
+		mes "嗯，那就是最后一页了……";
+		mes "布鲁斯佩蒂在芙蕾雅之泉与你对峙时发生了什么？";
 		set rach_vice,19;
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes ".........";
 		mes "我……我……";
 		mes ".........";
 		close;
 	}
 	else if (rach_vice == 17) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "该死！我不想再想她了！离我远点，把布鲁斯佩蒂的日记带走！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1331,13 +1099,13 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		close;
 	}
 	else if (rach_vice == 16) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "哈哈哈……这是审问吗？我、我什么都没做错！尽管问吧！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "好吧，那你解释一下这个？";
 		next;
-		switch(select("申达先生的家:莱布尔伦:芙蕾雅之泉:布鲁斯佩蒂")) {
+		switch(select("申达先生的家:里希塔乐:芙蕾雅之泉:布鲁斯佩蒂")) {
 		case 1:
 			mes "[" + strcharinfo(0) + "]";
 			mes "申达先生是布鲁斯佩蒂的父亲，他说有人不知为何一直潜入他家。你为什么这么做？";
@@ -1345,30 +1113,30 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 			mes "["+ strcharinfo(0) +"]";
 			mes "你很快就认出了布鲁斯佩蒂的日记……而且你提过自己在找它。";
 			next;
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "哼！别、别胡说！我不知道你在说什么！";
 			close;
 		case 2:
 			mes "[" + strcharinfo(0) + "]";
-			mes "我发现布鲁斯佩蒂计划去莱布尔伦。看来她需要在那里了解非常重要的事……";
+			mes "我发现布鲁斯佩蒂计划去里希塔乐。看来她需要在那里了解非常重要的事……";
 			next;
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "不……！她不可能……！";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 		mes "好了，装作不认识她没用。你是她的男朋友，对吧？";
-			mes "她想在莱布尔伦寻找什么？";
+			mes "她想在里希塔乐寻找什么？";
 			next;
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "不！不不不！闭嘴！闭嘴！求你，让我一个人静静！现在就离我远点！";
 			next;
 			switch(select("申达先生的家:芙蕾雅之泉:最近分手")) {
 			case 1:
 				mes "[" + strcharinfo(0) + "]";
-				mes "所以她在莱布尔伦时，你潜入申达先生家里，然后——";
+				mes "所以她在里希塔乐时，你潜入申达先生家里，然后——";
 				next;
-				mes "[Katinshuell]";
-				mes "是、是的！没错！因为我太担心她了！我不知道她竟然去了莱布尔伦！哈哈！哈哈！";
+				mes "[卡廷舒尔]";
+				mes "是、是的！没错！因为我太担心她了！我不知道她竟然去了里希塔乐！哈哈！哈哈！";
 				next;
 				mes "[" + strcharinfo(0) + "]";
 				mes "...............................";
@@ -1376,9 +1144,9 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 				close;
 			case 2:
 				mes "[" + strcharinfo(0) + "]";
-				mes "所以她在莱布尔伦时，你独自去了芙蕾雅之泉，对吧？！";
+				mes "所以她在里希塔乐时，你独自去了芙蕾雅之泉，对吧？！";
 				next;
-				mes "[Katinshuell]";
+				mes "[卡廷舒尔]";
 				mes "......";
 				mes ".........";
 				mes "嗯？……是的。";
@@ -1389,9 +1157,9 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 				close;
 			case 3:
 				mes "[" + strcharinfo(0) + "]";
-				mes "等等！你们分手，以及布鲁斯佩蒂突然要调查莱布尔伦的事……它们有关联，对吧？";
+				mes "等等！你们分手，以及布鲁斯佩蒂突然要调查里希塔乐的事……它们有关联，对吧？";
 				next;
-				mes "[Katinshuell]";
+				mes "[卡廷舒尔]";
 				mes "......";
 				mes ".........";
 				mes "不！不是这样的！";
@@ -1401,10 +1169,10 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 					switch(select("申达先生的家:芙蕾雅之泉")) {
 				case 1:
 					mes "[" + strcharinfo(0) + "]";
-					mes "所以她在莱布尔伦时，你潜入申达先生家里，然后——";
+					mes "所以她在里希塔乐时，你潜入申达先生家里，然后——";
 					next;
-					mes "[Katinshuell]";
-					mes "是、是的！没错！因为我太担心她了！我不知道她竟然去了莱布尔伦！哈哈！哈哈！";
+					mes "[卡廷舒尔]";
+					mes "是、是的！没错！因为我太担心她了！我不知道她竟然去了里希塔乐！哈哈！哈哈！";
 					next;
 					mes "[" + strcharinfo(0) + "]";
 					mes "...............................";
@@ -1414,14 +1182,14 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 					mes "[" + strcharinfo(0) + "]";
 					mes "嗯……你为什么总是独自在芙蕾雅之泉逗留？布鲁斯佩蒂为什么还没回家？";
 					next;
-					mes "[Katinshuell]";
+					mes "[卡廷舒尔]";
 					mes "……你能别胡说了吗？你有什么证据指控我？我不想再听你说了。";
 					next;
 					mes "[" + strcharinfo(0) + "]";
 					mes "即使杀了布鲁斯佩蒂，你仍担心另一种可能。所以你也在策划消除这个可能。";
 					next;
 					set rach_vice,17;
-					mes "[Katinshuell]";
+					mes "[卡廷舒尔]";
 					mes "不！住手！住手！你是在暗示我杀了她？！不是我！别再胡说，否则我真的会生气！";
 					close;
 				}
@@ -1430,7 +1198,7 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 			mes "[" + strcharinfo(0) + "]";
 			mes "芙蕾雅之泉。你为什么总是独自待在那里？";
 			next;
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "...............................";
 			mes "因为我很想念前女友。";
 			next;
@@ -1441,7 +1209,7 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 			mes "[" + strcharinfo(0) + "]";
 			mes "如果布鲁斯佩蒂不是你女朋友，那……是谁？！回答我！";
 			next;
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "...............................";
 			mes "好吧，好吧。你赢了。她是我的前女友。我只是不喜欢谈布鲁斯佩蒂，仅此而已。现在你能让我一个人静静吗？";
 			next;
@@ -1451,27 +1219,27 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		}
 	}
 	else if ((rach_vice == 15) && (countitem(7571))) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "哦，又是你。现在想要什么？我刚说过不想和任何人说话。我还在应对和女友分手的痛苦。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "卡廷休尔……我觉得你在隐瞒什么。布鲁斯佩蒂曾是你的女友吗？";
+		mes "卡廷舒尔……我觉得你在隐瞒什么。布鲁斯佩蒂曾是你的女友吗？";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "咦？！呃，什、什么？你为什么这么想？这不关你的事！再说，她那样的女孩怎么会适合我这种人？！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我没有真正怀疑你的理由，但直觉和你的反应并不让人安心。好吧，我可以翻翻这本书……";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "嘿！那是……那是布鲁斯佩蒂的日记！我、我一直在找——呃……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "嘿！你怎么知道？！告诉我真相！其实，这样吧？我们一起看看真相，怎么样？";
 		next;
-		mes "^3355FF你若无其事地把日记扔到卡廷休尔脚边，日记翻到中间的一页。^000000";
+		mes "^3355FF你若无其事地把日记扔到卡廷舒尔脚边，日记翻到中间的一页。^000000";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "......!";
 		delitem 7571,1; //Diary_Of_Blue
 		set rach_vice,16;
@@ -1479,27 +1247,27 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		close;
 	}
 	else if ((rach_vice == 10) || (rach_vice == 11)) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "啊！我太沮丧了。老实说，我只想长时间一个人静静。你到底想问什么？";
 		next;
 		input .@input$;
-		if (.@input$ == "Lighthalzen") {
-			mes "[Katinshuell]";
-			mes "莱布尔伦……？那是施瓦尔兹共和国的一座城市，也是个很难生活的地方。我只知道这些……";
+		if (.@input$ == "里希塔乐") {
+			mes "[卡廷舒尔]";
+			mes "里希塔乐……？那是施瓦尔兹共和国的一座城市，也是个很难生活的地方。我只知道这些……";
 			next;
 		}
-		else if (.@input$ == "Bruspetti") {
-			mes "[Katinshuell]";
+		else if (.@input$ == "布鲁斯佩蒂") {
+			mes "[卡廷舒尔]";
 			mes "……我有段时间没听到这个名字了。布鲁斯佩蒂……她在镇上很受欢迎……大家都喜欢她。你只想知道这些吗？";
 			next;
 		}
-		else if (.@input$ == "Freya's Spring") {
-			mes "[Katinshuell]";
+		else if (.@input$ == "芙蕾雅之泉") {
+			mes "[卡廷舒尔]";
 			mes "芙蕾雅之泉……那只是老人和情侣休息的公园。我不喜欢去那里，你也不该去。";
 			next;
 		}
 		else {
-			mes "[Katinshuell]";
+			mes "[卡廷舒尔]";
 			mes "..." + .@input$ + "?";
 			mes "什么？我听不懂你说的……";
 			close;
@@ -1508,80 +1276,80 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 			set rach_vice,11;
 			changequest 8114,8115;
 		}
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "现在满意了吗？别再打探我的私事，好好游览小镇。你来这里不就是为了这个吗？";
 		close;
 	}
 	else if (rach_vice == 4) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "呃……我刚说过和女友分手了。我想一个人静静。走开……";
 		close;
 	}
 	else if (rach_vice == 3) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "咦？哦，原来是你们这些爱行善的冒险者。你一定没别的事做……不然为什么来找我？";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "天啊……我知道你们到处解决问题，但这件事你们管不了。我和女友已经结束了。我们之间完了。";
 		set rach_vice,4;
 		changequest 8107,8108;
 		close;
 	}
 	else if (rach_vice == 2) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "你是冒险者，所以我不认为你能理解过安静和平生活有多难。经历过某些事情后，真的很艰难。";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "忙碌时可以分心。但即使独自一人，这些想法也永远纠缠着我……";
 		close;
 	}
 	else if (rach_vice == 1) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "你是冒险者，所以我不认为你能理解过安静和平生活有多难。经历过某些事情后，真的很艰难。";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "忙碌时可以分心。但即使独自一人，这些想法也永远纠缠着我……";
 		close;
 	}
 	else if (rach_vice == 0) {
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "你是冒险者，所以我不认为你能理解过安静和平生活有多难。经历过某些事情后，真的很艰难。";
 		next;
-		mes "[Katinshuell]";
+		mes "[卡廷舒尔]";
 		mes "我的生活不需要更多刺激。我只想远离人群安静生活，独自寻得些许平静。";
 		if (friendship > 10) set rach_vice,1;
 		close;
 	}
-	mes "[Katinshuell]";
+	mes "[卡廷舒尔]";
 	mes "你相信因果报应吗？我相信……无论做了什么，即使没被抓住，报应终会追上你。";
 	next;
-	mes "[Katinshuell]";
+	mes "[卡廷舒尔]";
 	mes "你是否曾因某事感到内疚，却逃避真相？那一定很痛苦。能坦白时最好坦白。";
 	close;
 }
 
-ra_in01,250,19,3	script	Mr. Shendar	929,{
+ra_in01,250,19,3	script	申达先生	929,{
 	if (rach_vice > 21) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "我珍爱的女儿布鲁斯佩蒂什么时候回家？我相信她能照顾自己，但父亲总会担心得要命。";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "如果你旅途中遇到我女儿，请告诉她爸爸在等她回家。谢谢你，冒险者。";
 		close;
 	}
 	else if (rach_vice == 14) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "所以你大概知道是谁在偷偷潜入我家了？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "我怀疑一个叫卡廷休尔的人，因为他可能是布鲁斯佩蒂的男友，行为也很奇怪。不过我没有确凿证据。";
+		mes "我怀疑一个叫卡廷舒尔的人，因为他可能是布鲁斯佩蒂的男友，行为也很奇怪。不过我没有确凿证据。";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "布鲁斯佩蒂的男友？！哼！我已经不喜欢那小子了。虽然还没见过，但作为父亲，我有责任讨厌并不信任他！";
 		close;
 	}
 	else if (rach_vice == 13) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "嘿！嘿！你就是那个潜入我家、想对我女儿图谋不轨的变态？！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1813,40 +1581,40 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 	//
 	//
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 	mes "还活着，嗯？哼！我来解决你！我……呃，嗯？！等等，我认识你。你就是之前来过的冒险者，对吧？";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 	mes "哦……我好像弄错了。我以为你是一直在我家附近徘徊的人。我不知道他是谁，但肯定不是你……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-	mes "等等，等等……有人一直在这里鬼鬼祟祟？真奇怪。等等，那个可能是 Bruspetti 男朋友的家伙……";
+	mes "等等，等等……有人一直在这里鬼鬼祟祟？真奇怪。等等，那个可能是 布鲁斯佩蒂 男朋友的家伙……";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-	mes "对，他叫 Katinshuell。那家伙最近行为很奇怪。也许就是他在这里鬼鬼祟祟？我最好去问问……";
+	mes "对，他叫 卡廷舒尔。那家伙最近行为很奇怪。也许就是他在这里鬼鬼祟祟？我最好去问问……";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 	mes "等等，你要去哪？我……我很抱歉打了你。";
 		next;
-		mes "[Mr. Shendar]";
-	mes "可恶！如果那家伙是我女儿的男朋友，还擅闯我家，那他可能非常危险。遗憾的是，我不能向 Bruspetti 问关于他的事……";
+		mes "[申达先生]";
+	mes "可恶！如果那家伙是我女儿的男朋友，还擅闯我家，那他可能非常危险。遗憾的是，我不能向 布鲁斯佩蒂 问关于他的事……";
 		next;
-		mes "[Mr. Shendar]";
-	mes "嗯……好吧，冒险者。如果你能找到它，我允许你拿走并阅读女儿的日记。我们需要更多了解 Katinshuell。如果他很危险……";
+		mes "[申达先生]";
+	mes "嗯……好吧，冒险者。如果你能找到它，我允许你拿走并阅读女儿的日记。我们需要更多了解 卡廷舒尔。如果他很危险……";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 	mes "抱歉……我在请求你的帮助……但作为父亲，我别无选择。而且，像你这样的冒险者能给她最好的保护……";
 		set rach_vice,14;
 		changequest 8117,8118;
 		close;
 	}
 	else if (rach_vice == 9) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 	mes "可恶！我不该向你这样的冒险者提起女儿的日记！我知道你们天生好奇……！";
 		close;
 	}
 	else if (rach_vice == 8) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "什么？我女儿去了里希塔乐镇？";
 		mes "她在那里不认识任何人。嗯，也许";
 		mes "那里就是她打算去了解";
@@ -1854,7 +1622,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "是的，她说得很含糊：";
 		mes "‘爸爸，我需要去一个地方。’";
 		mes "还有‘有件事我必须确认。’";
@@ -1862,7 +1630,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "怎么能让疼爱女儿的父亲安心！";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "谢谢你告诉我她可能在哪里。";
 		mes "现在我真希望知道她打算做什么。";
 		mes "也许她在日记里写了什么？";
@@ -1870,7 +1638,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "不！我不能这么做！";
 		mes "作为深爱女儿的父亲，我不能侵犯";
 		mes "宝贝女儿的隐私。";
@@ -1878,24 +1646,24 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "唉，父亲真是操心。";
-		mes "我可爱的 Bruspetti 会没事吗？";
+		mes "我可爱的 布鲁斯佩蒂 会没事吗？";
 		mes "";
 		set rach_vice,9;
 		changequest 8112,8113;
 		close;
 	}
 	else if ((rach_vice == 4) || (rach_vice == 5)) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "我想念女儿。是的，没有她在，";
 		mes "家里的气味都不一样了。";
 		mes "谈这个有点奇怪，";
-		mes "但 Bruspetti 身上总是香香的，";
+		mes "但 布鲁斯佩蒂 身上总是香香的，";
 		mes "和她母亲一样。";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "即使她们不使用香水，";
 		mes "身上也有独特的宜人气味。";
 		mes "我猜那一定是信息素吧？";
@@ -1908,7 +1676,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		close;
 	}
 	else if (rach_vice == 2) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "听我的建议：千万别生女儿！";
 		mes "你会为她们担心太多，";
 		mes "而她们长大后就会忽视父母！";
@@ -1916,7 +1684,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "可恶……！";
 		mes "不管那家伙是谁，";
 		mes "他最好别耍什么花招！";
@@ -1926,7 +1694,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		close;
 	}
 	else if (rach_vice == 1) {
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "我刚发现我宝贝女儿";
 		mes "正在和某个人交往。";
 		mes "她为了那个男孩去了别的城镇，";
@@ -1934,7 +1702,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "听我的建议：千万别生女儿！";
 		mes "你会为她们担心太多，";
 		mes "而她们长大后就会忽视父母！";
@@ -1942,7 +1710,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "";
 		mes "";
 		next;
-		mes "[Mr. Shendar]";
+		mes "[申达先生]";
 		mes "她大概和那个男孩去甜蜜旅行了。";
 		mes "她离开很久了，但她已经成年。";
 		mes "我……我想她应该没事。";
@@ -1953,7 +1721,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		setquest 8106;
 		close;
 	}
-	mes "[Mr. Shendar]";
+	mes "[申达先生]";
 	mes "我刚发现我宝贝女儿";
 	mes "正在和某个人交往。";
 	mes "她为了见那个男孩去了别的城镇，";
@@ -1961,7 +1729,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 	mes "";
 	mes "";
 	next;
-	mes "[Mr. Shendar]";
+	mes "[申达先生]";
 	mes "听我的建议：千万别生女儿！";
 	mes "你会为她们担心太多，";
 	mes "而她们长大后就会忽视父母！";
@@ -1971,10 +1739,10 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 	close;
 }
 
-rachel,73,244,3	script	Lachellen	919,{
+rachel,73,244,3	script	拉谢伦	919,{
 	if (rach_vice > 21) {
-		mes "[Lachellen]";
-		mes "如果你碰巧见到 Bruspetti，";
+		mes "[拉谢伦]";
+		mes "如果你碰巧见到 布鲁斯佩蒂，";
 		mes "告诉她来和我聊聊。";
 		mes "我想知道自己有没有猜出她男朋友是谁！";
 		mes "我等不及要见她了～";
@@ -1983,43 +1751,43 @@ rachel,73,244,3	script	Lachellen	919,{
 		close;
 	}
 	else if ((rach_vice == 11) || (rach_vice == 12)) {
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "哦，又见面了～";
 		mes "这次有什么我能帮忙的吗？";
-		mes "我知道你在找 Bruspetti，";
+		mes "我知道你在找 布鲁斯佩蒂，";
 		mes "如果你有问题，我会帮你的～";
 		mes "";
 		mes "";
 		next;
 		input .@input$;
-		if (.@input$ == "Lighthalzen") {
-			mes "[Lachellen]";
+		if (.@input$ == "里希塔乐") {
+			mes "[拉谢伦]";
 			mes "里希塔乐镇？哦，对了！";
-			mes "Bruspetti 前阵子确实问过我。";
+			mes "布鲁斯佩蒂 前阵子确实问过我。";
 			mes "是的，她最近似乎很想了解那个地方。";
 			mes "";
 			mes "";
 			mes "";
 			next;
 		}
-		else if (.@input$ == "Freya's Spring") {
-			mes "[Lachellen]";
+		else if (.@input$ == "芙蕾雅之泉") {
+			mes "[拉谢伦]";
 			mes "芙蕾雅之泉？";
 			mes "哦，我喜欢那个地方！";
-			mes "说起来，我认识一个叫 Katinshuell 的人，";
+			mes "说起来，我认识一个叫 卡廷舒尔 的人，";
 			mes "他经常去那里。";
 			mes "通常男人不会独自前往……";
 			mes "";
 			next;
-			mes "[Lachellen]";
+			mes "[拉谢伦]";
 			mes "等等，那就是我告诉你的地方，";
-			mes "Bruspetti 和她男朋友通常在那里见面。";
-			mes "你觉得她和 Katinshuell……？";
+			mes "布鲁斯佩蒂 和她男朋友通常在那里见面。";
+			mes "你觉得她和 卡廷舒尔……？";
 			mes "哦，我可能猜到了！";
 			mes "";
 			mes "";
 			next;
-			mes "[Lachellen]";
+			mes "[拉谢伦]";
 			mes "不过，那里通常都是情侣，";
 			mes "所以你一个人去会像个大傻瓜。";
 			mes "这就是我现在想找男朋友的原因……";
@@ -2030,31 +1798,27 @@ rachel,73,244,3	script	Lachellen	919,{
 			next;
 		}
 		else {
-			mes "[Lachellen]";
+			mes "[拉谢伦]";
 			mes "哦，抱歉……";
 			mes "我对"+.@input$+"一无所知。";
 			mes "";
 			close;
 		}
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "嗯，我不知道你是否从我这里学到了重要信息，";
 		mes "但希望我多少帮到了你。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		close;
 	}
 	else if (rach_vice == 7) {
-		mes "[Lachellen]";
-		mes "让我想想……Bruspetti 和她男朋友通常";
+		mes "[拉谢伦]";
+		mes "让我想想……布鲁斯佩蒂 和她男朋友通常";
 		mes "会在……嗯，我凭感觉知道在哪里，";
 		mes "但没法给你准确的路线。呃，抱歉！";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "幸运的是，这座城不大，";
 		mes "只要继续找，你一定能发现什么。";
 		mes "哦，如果你找到她，";
@@ -2064,15 +1828,15 @@ rachel,73,244,3	script	Lachellen	919,{
 		close;
 	}
 	else if (rach_vice == 6) {
-		mes "[Lachellen]";
-		mes "哦，Bruspetti 的父亲说她闻起来很香？";
+		mes "[拉谢伦]";
+		mes "哦，布鲁斯佩蒂 的父亲说她闻起来很香？";
 		mes "是的，她在这附近因此很有名，";
 		mes "所以他并不奇怪或变态。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "我明白了，你觉得在别的城镇发现了她的踪迹。";
 		mes "是的，我听说她去旅行学习，";
 		mes "到现在还没回来。";
@@ -2080,15 +1844,15 @@ rachel,73,244,3	script	Lachellen	919,{
 		mes "";
 		mes "";
 		next;
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "哦，你知道吗？如果她在里希塔乐镇，";
 		mes "她大概是去那里了解更多关于男朋友的事。";
-		mes "我上次见 Bruspetti 时，她提到过这件事。";
+		mes "我上次见 布鲁斯佩蒂 时，她提到过这件事。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "其他的我就不知道了。";
 		mes "嗯，也许你去看看她和男朋友";
 		mes "通常约会的地方，";
@@ -2100,15 +1864,15 @@ rachel,73,244,3	script	Lachellen	919,{
 		close;
 	}
 	else if ((rach_vice == 2) || (rach_vice == 3)) {
-		mes "[Lachellen]";
-		mes "哦，我真嫉妒 Bruspetti！";
+		mes "[拉谢伦]";
+		mes "哦，我真嫉妒 布鲁斯佩蒂！";
 		mes "她最近一直和新男友待在一起……";
 		mes "但她还是不肯告诉我他的名字。";
 		mes "";
 		mes "";
 		mes "";
 		next;
-		mes "[Lachellen]";
+		mes "[拉谢伦]";
 		mes "她告诉我自己很认真，";
 		mes "但也承认";
 		mes "她对他了解不多。让我想想……他在拉赫长大？她只知道这些。";
@@ -2116,70 +1880,70 @@ rachel,73,244,3	script	Lachellen	919,{
 		changequest 8106,8107;
 		close;
 	}
-	mes "[Lachellen]";
-	mes "我的朋友 Bruspetti 是个很好的女孩～大家都喜欢她，而且她超级漂亮。所有男孩都嫉妒她的新男友！";
+	mes "[拉谢伦]";
+	mes "我的朋友 布鲁斯佩蒂 是个很好的女孩～大家都喜欢她，而且她超级漂亮。所有男孩都嫉妒她的新男友！";
 	next;
-	mes "[Lachellen]";
+	mes "[拉谢伦]";
 	mes "不过她很害羞，不肯告诉我他是谁。我对他了解不多，但我相信他们在一起很幸福。";
 	close;
 }
 
-rachel,196,77,3	script	Kid#1rachel	921,{
-	mes "[Kid]";
-	mes "嘿，你见过 Bruspetti 吗？她人很好，总给我买好多好多饼干！";
+rachel,196,77,3	script	孩子#1rachel	921,{
+	mes "[孩子]";
+	mes "嘿，你见过 布鲁斯佩蒂 吗？她人很好，总给我买好多好多饼干！";
 	next;
-	mes "[Kid]";
+	mes "[孩子]";
 	mes "嗯，不过我有一阵子没见她了。我听说她去旅行了。你觉得她会离开多久？";
 	close;
 }
 
-rachel,151,155,3	script	Kid#2rachel	921,{
-	mes "[Kid]";
+rachel,151,155,3	script	孩子#2rachel	921,{
+	mes "[孩子]";
 	mes "哇！我长大后想成为像你一样的冒险者！去各种地方，拜访不同城镇。听起来真有趣！";
 	next;
-	mes "[Kid]";
-	mes "也许找到一个真正美好的地方后，我会留下来搬去那里。";
-	mes "这里有个人做过那件事，从拉赫搬到了这里~";
+	mes "[孩子]";
+	mes "也许找到一个真正美好的地方后，我会留下来定居。";
+	mes "这里有个人就这么做了，从里希塔乐搬到了这里～";
 	next;
-	mes "[Kid]";
+	mes "[孩子]";
 	mes "是啊，一有机会我就要离开这座城，尽可能看看世界！我得快点长大！";
 	close;
 }
 
-rachel,266,35,3	script	Grandma#rachel	918,{
+rachel,266,35,3	script	奶奶#rachel	918,{
 	if (rach_vice > 21) {
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "等你到了我这个年纪，会珍惜所有回忆，即使当时的经历很痛苦。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "回忆是你的一部分，也是你独特的原因。我能珍惜现在的生活，即使它并不特别。";
 		close;
 	}
 	else if (rach_vice == 13) {
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "等你到了我这个年纪，会更珍惜生命，也更容易放下遗憾。我年轻时本可以放松，却浪费许多时间无谓担忧。";
 		close;
 	}
 	else if (rach_vice == 12) {
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "哦，又来了？看来你也很喜欢这里。嗯，这让我想起……";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "看见泉水边了吗？同一个年轻人经常来到那里，凝视水面，满脸悲伤。如此年轻不该有这种感受。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "你应该来这里放松、享受周围的美景，而不是沉溺悲伤。我想那个男孩不同意。";
 		next;
-		mes "[Grandma]";
+		mes "[奶奶]";
 		mes "你应该放下烦恼，享受当下的生活。";
 		set rach_vice,13;
 		changequest 8116,8117;
 		close;
 	}
-	mes "[Grandma]";
+	mes "[奶奶]";
 	mes "我喜欢这里、美丽的景色和宁静的氛围。这里平静得像天堂。";
 	next;
-	mes "[Grandma]";
+	mes "[奶奶]";
 	mes "看到年轻情侣来这里一起放松，我心中充满喜悦。爱情不是很伟大吗？";
 	close;
 }
@@ -2191,7 +1955,7 @@ OnTouch_:
 		mes "这……这个气味……真好闻！像玫瑰花瓣乘着微风……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "等等，这会不会就是 Bruspetti 父亲之前提到的气味？";
+		mes "等等，这会不会就是 布鲁斯佩蒂 父亲之前提到的气味？";
 		set rach_vice,6;
 		changequest 8109,8110;
 		close;
@@ -2213,7 +1977,7 @@ OnTouch_:
 		mes "["+ strcharinfo(0) +"]";
 		mes "水不算";
 		mes "冷，也不深……";
-		mes "卡廷修尔提到";
+		mes "卡廷舒尔提到";
 		mes "她的身体变得无力……";
 		mes "但她还在看着他。";
 		mes "真令人难忘……";
@@ -2223,7 +1987,7 @@ OnTouch_:
 		mes "她爱他，却无法";
 		mes "承受他的秘密。";
 		mes "最后，一切都很悲惨。";
-		mes "卡廷修尔并不是坏人……";
+		mes "卡廷舒尔并不是坏人……";
 		mes "";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -2246,11 +2010,8 @@ OnTouch_:
 			else getexp 450000,0;
 		}
 		mes "[" + strcharinfo(0) + "]";
-		mes "不知为何，我希望";
-		mes "卡廷修尔有勇气面对内疚，";
-		mes "面对内疚的勇气，";
-		mes "然后";
-		mes "";
+		mes "不知为何，我希望卡廷舒尔有勇气面对内疚，";
+		mes "然后原谅自己。";
 		close;
 	}
 	else if (rach_vice == 22) {
@@ -2299,7 +2060,7 @@ OnTouch_:
 		mes "要是滑倒了怎么办？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "Huh?";
+		mes "嗯？";
 		next;
 		mes "[奶奶]";
 		mes "哦，抱歉吓到你了，";
@@ -2315,11 +2076,11 @@ OnTouch_:
 	end;
 }
 
-ra_in01,255,25,0	script	Book#ra_in	111,{
+ra_in01,255,25,0	script	书籍#ra_in	111,{
 	if (rach_vice == 15) {
 		mes "^3355FF这里就是你找到";
 		mes "布鲁斯佩蒂日记的地方。";
-		mes "下次和卡廷修尔交谈时，";
+		mes "下次和卡廷舒尔交谈时，";
 		mes "也许你应该把它带上。^000000";
 		close;
 	}
@@ -2329,7 +2090,7 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 		getitem 7571,1; //Diary_Of_Blue
 		mes "^3355FF这一定是布鲁斯佩蒂的";
 		mes "日记！现在你可以把它带走，";
-		mes "以便查明她和卡廷修尔";
+		mes "以便查明她和卡廷舒尔";
 		mes "之间是否有关联……^000000";
 		close;
 	}
@@ -2352,8 +2113,8 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 //line below (npc header), and comment the line
 //under it, and then uncomment the cutin lines.
 
-//rachel,157,183,3	script	Sincere Follower Urstia	917,{
-rachel,157,183,3	script	Sincere Follower Urstia	916,{
+//rachel,157,183,3	script	虔诚信徒乌斯蒂娅	917,{
+rachel,157,183,3	script	虔诚信徒乌斯蒂娅	916,{
 	cutin "ra_usti1",2;
 	if (checkweight(908,200) == 0) {
 		mes "^3355FF等一下！";
@@ -2528,7 +2289,7 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 	end;
 }
 
-ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
+ice_dun02,120,105,3	script	困在冰里的男人#cave	924,5,5,{
 	if (checkweight(908,200) == 0) {
 		mes "^3355FF等一下！";
 		mes "你现在携带的物品太多了。";
@@ -2632,74 +2393,6 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "[马赫奥]";
 		mes "你知道陨石术吗？";
 		mes "我还知道另一个类似的法术……";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
 		mes "……但它的威力是那个的两百倍！没错……";
 		mes "它拥有一百万颗爆炸太阳的力量！不过后来……";
 		next;
@@ -2812,7 +2505,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "^3355FF*滋滋滋*";
 		mes "*哐！*^000000";
 		next;
-		setnpcdisplay "Man Stuck in Ice#cave",937;
+		setnpcdisplay "困在冰里的男人#cave",937;
 		emotion ET_SURPRISE;
 		mes "[马赫奥]";
 		mes "终于……！";
@@ -2825,12 +2518,12 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "我要复仇，让那些野兽承受";
 		mes "它们施加给我的双倍痛苦！";
 		next;
-		monster "ice_dun02",108,109,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
-		monster "ice_dun02",114,112,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
-		monster "ice_dun02",126,105,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
-		monster "ice_dun02",121,99,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
+		monster "ice_dun02",108,109,"雪兽",1775,1,"困在冰里的男人#cave::OnMyMobDead";
+		monster "ice_dun02",114,112,"雪兽",1775,1,"困在冰里的男人#cave::OnMyMobDead";
+		monster "ice_dun02",126,105,"雪兽",1775,1,"困在冰里的男人#cave::OnMyMobDead";
+		monster "ice_dun02",121,99,"雪兽",1775,1,"困在冰里的男人#cave::OnMyMobDead";
 		specialeffect EF_LORD;
-		killmonster "ice_dun02","Man Stuck in Ice#cave::OnMyMobDead";
+		killmonster "ice_dun02","困在冰里的男人#cave::OnMyMobDead";
 		mes "[马赫奥]";
 		mes "哇哈哈哈哈哈哈哈！";
 		next;
@@ -2865,7 +2558,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		getitem 7574,4; //Ice_Particle
 		close2;
 		cutin "",255;
-		setnpcdisplay "Man Stuck in Ice#cave",924;
+		setnpcdisplay "困在冰里的男人#cave",924;
 		end;
 	}
 
@@ -2987,7 +2680,7 @@ OnTimer10800000:
 	end;
 }
 
-rachel,265,98,3	script	Hamion#aru	930,{
+rachel,265,98,3	script	哈米恩#aru	930,{
 	if (checkweight(908,200) == 0) {
 		mes "^3355FF等等！";
 		mes "你现在携带的物品太多了。";
@@ -3068,10 +2761,8 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		}
 		mes "[哈米恩]";
 		mes "太好了，你带来了我需要的一切！";
-		mes "不过首先，请确认你只携带";
-		mes "你的库存里有 1 把锤子吗？";
-		mes "如果你带了不止一把，";
-		mes "我可能会拿错锤子。";
+		mes "不过首先，请确认物品栏里只有 1 把锤子。";
+		mes "如果你带了不止一把，我可能会拿错锤子。";
 		next;
 		if (select("让我检查一下。:不用担心，我已经检查过了。") == 1) {
 			mes "[哈米恩]";
@@ -3114,13 +2805,13 @@ rachel,265,98,3	script	Hamion#aru	930,{
 	}
 }
 
-rachel,113,97,5	script	Mohadian	929,10,10,{
+rachel,113,97,5	script	莫哈迪安	929,10,10,{
 	if (ice_necklace_q == 6) {
 		mes "[莫哈迪安]";
 		mes "我在附近的酒吧工作，";
 		mes "听说过不少关于你的好事。";
 		mes "有些客人说你曾进入危险的冰洞，";
-		mes "帮助过乌斯蒂拉。";
+		mes "帮助过乌斯蒂娅。";
 		next;
 		mes "[莫哈迪安]";
 		mes "那么，你真的能定期打败";
@@ -3201,7 +2892,7 @@ OnTouch_:
 	end;
 }
 
-ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
+ice_dun03,126,126,3	script	熊熊火焰#ice1	802,{
 	mes "^3355FF火焰屏障中的火焰闪烁着魔力。普通方法无法将其熄灭。^000000";
 	if (ice_necklace_q > 4) {
 		if ($@ktullanux_summon < 4) {
@@ -3210,7 +2901,7 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
 				select("使用冰冻雪粉。");
 				mes "^3355FF你将冰冻雪粉撒在火焰上。火焰闪烁后熄灭。^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				hideonnpc "Blazing Fire#ice1";
+				hideonnpc "熊熊火焰#ice1";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
@@ -3219,7 +2910,7 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
 				select("使用冰鳞。");
 				mes "^3355FF你将冰鳞投入火焰，火焰噼啪作响后熄灭。^000000";
 				delitem 7562,1; //Ice Scale
-				hideonnpc "Blazing Fire#ice1";
+				hideonnpc "熊熊火焰#ice1";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
@@ -3230,7 +2921,7 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
 }
 
 
-ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
+ice_dun03,172,126,0	script	熊熊火焰#ice2	802,{
 	mes "^3355FF火焰屏障中的火焰闪烁着魔力。普通方法无法将其熄灭。^000000";
 	if (ice_necklace_q > 4) {
 		if ($@ktullanux_summon < 4) {
@@ -3239,7 +2930,7 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
 				select("使用冰冻雪粉。");
 				mes "^3355FF你将冰冻雪粉撒在火焰上。火焰闪烁后熄灭。^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				hideonnpc "Blazing Fire#ice2";
+				hideonnpc "熊熊火焰#ice2";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
@@ -3248,7 +2939,7 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
 				select("使用冰鳞。");
 				mes "^3355FF你将冰鳞投入火焰，火焰噼啪作响后熄灭。^000000";
 				delitem 7562,1; //Ice Scale
-				hideonnpc "Blazing Fire#ice2";
+				hideonnpc "熊熊火焰#ice2";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
@@ -3258,7 +2949,7 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
 	close;
 }
 
-ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
+ice_dun03,172,172,0	script	熊熊火焰#ice3	802,{
 	mes "^3355FF火焰屏障中的火焰闪烁着魔力。普通方法无法将其熄灭。^000000";
 	if (ice_necklace_q > 4) {
 		if ($@ktullanux_summon < 4) {
@@ -3267,7 +2958,7 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
 				select("使用冰冻雪粉。");
 				mes "^3355FF你将冰冻雪粉撒在火焰上。火焰闪烁后熄灭。^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				hideonnpc "Blazing Fire#ice3";
+				hideonnpc "熊熊火焰#ice3";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
@@ -3276,7 +2967,7 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
 				select("使用冰鳞。");
 				mes "^3355FF你将冰鳞投入火焰，火焰噼啪作响后熄灭。^000000";
 				delitem 7562,1; //Ice Scale
-				hideonnpc "Blazing Fire#ice3";
+				hideonnpc "熊熊火焰#ice3";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
@@ -3286,7 +2977,7 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
 	close;
 }
 
-ice_dun03,127,172,0	script	Blazing Fire#ice4	802,{
+ice_dun03,127,172,0	script	熊熊火焰#ice4	802,{
 	mes "^3355FF火焰屏障中的火焰闪烁着魔力。普通方法无法将其熄灭。^000000";
 	if (ice_necklace_q > 4) {
 		if ($@ktullanux_summon < 4) {
@@ -3295,7 +2986,7 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	802,{
 				select("使用冰冻雪粉。");
 				mes "^3355FF你将冰冻雪粉撒在火焰上。火焰闪烁后熄灭。^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				hideonnpc "Blazing Fire#ice4";
+				hideonnpc "熊熊火焰#ice4";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
@@ -3304,7 +2995,7 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	802,{
 				select("使用冰鳞。");
 				mes "^3355FF你将冰鳞投入火焰，火焰噼啪作响后熄灭。^000000";
 				delitem 7562,1; //Ice Scale
-				hideonnpc "Blazing Fire#ice4";
+				hideonnpc "熊熊火焰#ice4";
 				set $@ktullanux_summon,$@ktullanux_summon+1;
 				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
@@ -3324,27 +3015,27 @@ OnStart:
 	end;
 
 OnTimer2000:
-	mapannounce "ice_dun03","Someone has put out Thor's flames... Infidel!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","有人熄灭了托尔的火焰……异教徒！",bc_map,0xFF6633;
 	end;
 
 OnTimer8000:
-	mapannounce "ice_dun03","I, Ktullanux, must protect and preserve Thor's fierce flames...",bc_map,0xFF6633;
+	mapannounce "ice_dun03","我，寒冰龙，必须守护托尔的烈焰，使其永不熄灭……",bc_map,0xFF6633;
 	end;
 
 OnTimer10000:
-	mapannounce "ice_dun03","As the master of this cave, I vow vengeance!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","身为这座洞穴的主人，我发誓要复仇！",bc_map,0xFF6633;
 	end;
 
 OnTimer13000:
-	mapannounce "ice_dun03","Only a human would be so foolhardy....",bc_map,0xFF6633;
+	mapannounce "ice_dun03","只有人类才会如此鲁莽……",bc_map,0xFF6633;
 	end;
 
 OnTimer16000:
-	mapannounce "ice_dun03","Your curiosity will cost you, human.",bc_map,0xFF6633;
+	mapannounce "ice_dun03","人类，你将为自己的好奇心付出代价。",bc_map,0xFF6633;
 	end;
 
 OnTimer19000:
-	mapannounce "ice_dun03","Prepare yourself for a freezing realm of pain which you cannot possibly imagine!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","准备承受你无法想象的冰寒痛苦吧！",bc_map,0xFF6633;
 	end;
 
 OnTimer21000:
@@ -3355,7 +3046,7 @@ OnTimer21000:
 
 ice_dun03,1,174,3	script	ice_boss#on	-1,{
 OnStart:
-	monster "ice_dun03",150,135,"Ktullanux",1779,1,"ice_boss#on::OnMyMobDead";
+	monster "ice_dun03",150,135,"寒冰龙",1779,1,"ice_boss#on::OnMyMobDead";
 	end;
 
 OnStartTimer:
@@ -3367,8 +3058,8 @@ OnStopTimer:
 	end;
 
 OnMyMobDead:
-	mapannounce "ice_dun03","Oh, Odin! Please protect this place from Thor's fierce fire!",bc_map,0xFF6633;
-	mapannounce "ice_dun03","Pzzzzz...Pzzzz...",bc_map,0x33FFFF;
+	mapannounce "ice_dun03","哦，奥丁！请保护这个地方，免遭托尔烈焰的侵袭！",bc_map,0xFF6633;
+	mapannounce "ice_dun03","滋滋滋……滋滋……",bc_map,0x33FFFF;
 	donpcevent "ice_boss#on::OnStartTimer";
 	donpcevent "#ice_sec::OnStart";
 	end;
@@ -3376,10 +3067,10 @@ OnMyMobDead:
 OnTimer7200000:
 	stopnpctimer;
 	set $@ktullanux_summon,0;
-	hideoffnpc "Blazing Fire#ice1";
-	hideoffnpc "Blazing Fire#ice2";
-	hideoffnpc "Blazing Fire#ice3";
-	hideoffnpc "Blazing Fire#ice4";
+	hideoffnpc "熊熊火焰#ice1";
+	hideoffnpc "熊熊火焰#ice2";
+	hideoffnpc "熊熊火焰#ice3";
+	hideoffnpc "熊熊火焰#ice4";
 	end;
 }
 	
@@ -3456,8 +3147,8 @@ OnTouch:
 		mes "^3355FF神殿入口锁着。^000000";
 			next;
 		select("踢门。:用武器砸门。");
-			emotion ET_HUK, getnpcid(0, "Nemma#ra_temple");
-			mes "[Priestess Nemma]";
+			emotion ET_HUK, getnpcid(0, "内玛#ra_temple");
+			mes "[内玛女祭司]";
 		mes "请不要这样做！";
 			close;
 		}
@@ -3466,48 +3157,48 @@ OnTouch:
 	end;
 }
 
-ra_temple,116,174,3	script	Nemma#ra_temple	920,{
+ra_temple,116,174,3	script	内玛#ra_temple	920,{
 	cutin "ra_nemma02",2;
 	if ($rachel_donate < 10000) {
 		if (ra_have_donated == 0) {
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 		mes "你好，冒险者。请问你今天为何来到神殿？";
 			next;
 			if (select("只是观光。:我是来祈祷的。") == 1) {
 				cutin "ra_nemma01",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "我想大多数外国人不熟悉我们的信仰，所以不会来这里祈祷……希望你在这里过得愉快，冒险者。";
 				close3;
 			}
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "哦！很高兴看到其他国家也信仰我们的精神。切斯赫鲁姆尼尔神殿将举办节日。";
 			next;
 			cutin "ra_nemma01",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "我们正在为节日接受捐赠，如果你愿意捐助我们将非常感激。无论如何，欢迎和我们一起庆祝女神的恩典。";
 			emotion ET_DELIGHT;
 			next;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "有位大祭司反对向神殿信徒收钱，但是否捐赠由你决定。捐赠还有机会赢得奖品！";
 			next;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "你可以用彩票从神殿仓库赢取好东西。每张彩票需捐赠 50,000 Zeny，这也是最低捐款金额。";
 			next;
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "给捐赠者的奖品也是随机选择的，所以我无法告诉你会得到什么。你有兴趣捐赠吗？";
 			next;
 			if (select("不用了，谢谢。:当然。") == 1) {
 				cutin "ra_nemma01",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 			mes "我明白了。也许下次吧。愿芙蕾雅保佑你的旅程，愿女神恩典永远支持我们所做的一切~";
 				close3;
 			}
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "太好了！你想捐多少？我们只能接受 50,000 Zeny 的倍数，单次最多 150,000 Zeny。有点复杂，我知道……";
 			next;
-			switch(select("50,000z - 1 Lottery Ticket:100,000z - 2 Lottery Ticket:150,000z - 3 Lottery Ticket:Cancel")) {
+			switch(select("50,000z - 1 张彩票:100,000z - 2 张彩票:150,000z - 3 张彩票:取消")) {
 			case 1:
 				callsub S_Donate,1,"50,000";
 				break;
@@ -3519,7 +3210,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 				break;
 			case 4:
 				cutin "ra_nemma02",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 			mes "我明白捐出 50,000 Zeny 需要考虑。不过无论你去哪里，芙蕾雅总会保护你~";
 				break;
 			}
@@ -3527,15 +3218,15 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 		}
 		else {
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "哦，是" + strcharinfo(0) + "！欢迎回来！我记得你刚才捐过款。今天怎么又来神殿了，嗯？";
 			next;
 			switch(select("我来再次捐赠。:只是观光。:我是来参加仪式的。:我只是想再见你。")) {
 			case 1:
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "你又来捐赠？太好了！这次想捐多少？记住，我们只接受 50,000 Zeny 的倍数，最多 150,000 Zeny。";
 				next;
-				switch(select("50,000z - 1 Lottery Ticket:100,000z - 2 Lottery Ticket:150,000z - 3 Lottery Ticket:Cancel")) {
+				switch(select("50,000z - 1 张彩票:100,000z - 2 张彩票:150,000z - 3 张彩票:取消")) {
 				case 1:
 					callsub S_Donate,1,"50,000";
 					break;
@@ -3547,24 +3238,24 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 					break;
 				case 4:
 					cutin "ra_nemma02",2;
-					mes "[Priestess Nemma]";
+					mes "[内玛女祭司]";
 					mes "我明白捐出 50,000 Zeny 需要考虑。不过无论你去哪里，芙蕾雅总会保护你~";
 					break;
 				}
 				close3;
 			case 2:
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "哦！如果想了解神殿信息，为什么不去里面的帮助台问帕诺祭司？";
 				next;
-				mes "[Priestess Nemma]";
-				mes "佩诺也会把彩票兑换成奖品，虽然她似乎不喜欢那份工作。总之，她会帮助你。回头见！";
+				mes "[内玛女祭司]";
+				mes "帕诺也会把彩票兑换成奖品，虽然她似乎不喜欢那份工作。总之，她会帮助你。回头见！";
 				break;
 			case 3:
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "你是来参加仪式的？太好了~希望你能从芙蕾雅女神那里找到平静~";
 				break;
 			case 4:
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "哦，你真贴心~";
 				break;
 			}
@@ -3574,190 +3265,81 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 	else {
 		if (MISC_QUEST & 8192) {
 			cutin "ra_nemma01",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 		mes "欢迎来到我们的神殿！";
 			close3;
 		}
 		if (ra_tem_q < 1) {
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 		mes "你好！";
 			mes "...............................";
 		mes "嗯，不知为何神殿大门还没打开。不过现在应该开了。这种事偶尔会发生……";
 			next;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "你看，神殿建造时大门安装了自动锁定系统，但现在它更像是麻烦而非安全措施。";
 			next;
-			mes "[Priestess Nemma]";
-			mes "每次有人弄坏锁，或锁自行故障，我们都必须等它自动……";
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-			mes "它要先自动重置才能再次运作。没人能很快修好，你知道的……";
+			mes "[内玛女祭司]";
+			mes "每次有人弄坏锁，或锁自行故障，";
+			mes "我们都必须等它自动重置后才能再次运作。";
+			mes "没人能很快修好，你知道的……";
 			next;
-			mes "[Priestess Nemma]";
-			mes "^333333*Sniff*^000000 What should I do?";
-			mes "自动重置从没花这么久，我真的需要进去。^333333*抽泣*^000000 P-Panno！Panno，我需要帮助~！";
+			mes "[内玛女祭司]";
+			mes "^333333*抽鼻子*^000000 我该怎么办？";
+			mes "自动重置从没花这么久，我真的需要进去。";
+			mes "^333333*抽泣*^000000 帕、帕诺！帕诺，我需要帮助～！";
 			set ra_tem_q,1;
 			close3;
 		}
 		else if ((ra_tem_q >= 1) && (ra_tem_q < 10)) {
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "如果大门锁了，我只能找到秘密入口。据说有些孩子用它进入神殿恶作剧，但我不知道他们是谁……";
 			next;
-			mes "[Priestess Nemma]";
-			mes "Panno 应该知道怎么办……我想。哦，Panno，帮帮我！";
+			mes "[内玛女祭司]";
+			mes "帕诺 应该知道怎么办……我想。哦，帕诺，帮帮我！";
 			close3;
 		}
 		else if (ra_tem_q == 10) {
 			cutin "ra_nemma04",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "哦，"+strcharinfo(0)+"！大门刚打开，我能进神殿了！^333333*呼*^000000我刚才真的很担心。";
 			next;
-			mes "[Priestess Nemma]";
-			mes "自从 Panno 被安排在神殿值守以来，这是大门第一次锁住。我以为发生了什么，她遇到麻烦了。";
+			mes "[内玛女祭司]";
+			mes "自从 帕诺 被安排在神殿值守以来，这是大门第一次锁住。我以为发生了什么，她遇到麻烦了。";
 			next;
 			cutin "ra_nemma02",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "等等，等等……我还在外面。要是大门又锁了怎么办？哦，我该怎么办？！";
 			close3;
 		}
 		else if (ra_tem_q == 11) {
 			emotion ET_DELIGHT;
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "嘿，"+strcharinfo(0)+"~！我们达成目标了！很棒吧？我们不再募集捐款，但你仍可以在里面兑换彩票，好吗？";
 			close3;
 		}
 		else if (ra_tem_q == 12) {
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "嗯……我知道能做什么！我可以要爆竹！对，节日会很有趣。嘿，你知道哪里卖吗？";
 			next;
 			cutin "ra_nemma01",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "我、呃，没什么可给你的……但如果你带些爆竹给我，我会为你的好运祈祷。抱歉，这就是我能提供的全部。";
 			next;
 			cutin "ra_nemma04",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "嘿，带很多爆竹给我，比如 ^FF000020 个^000000！谢谢谢谢谢谢！";
 			set ra_tem_q,13;
 			close3;
 		}
 		else if (ra_tem_q == 13) {
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "嘿，你带爆竹给我了吗？";
-			mes "^FF000020 Firecrackers^000000? Mmm?";
+			mes "^FF000020 个爆竹^000000？嗯？";
 			next;
 			if(select("是。:还没有。") == 1) {
 				cutin "ra_nemma01",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "让我看看……";
 				next;
 				if (countitem(12018) >= 20) {
@@ -3765,19 +3347,19 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 					delitem 12018,20; //Fire_Cracker
 					getexp (checkre(3))?50000:200000,0;
 					set ra_tem_q,14;
-					mes "[Priestess Nemma]";
+					mes "[内玛女祭司]";
 					mes "耶！";
 					mes "烟花！";
 					mes "让我为你的好运祈祷！";
 					mes "";
 					next;
-					mes "^3355FFNemma 修女为你的好运虔诚祈祷。";
+					mes "^3355FF内玛 修女为你的好运虔诚祈祷。";
 					mes "感觉真的起作用了……^000000";
 					mes "";
 					mes "";
 					next;
 					cutin "ra_nemma04",2;
-					mes "[Priestess Nemma]";
+					mes "[内玛女祭司]";
 					mes "完成了！";
 					mes "现在是玩的时候了！";
 					mes "嗯，也许我们的教皇也想看看？";
@@ -3786,7 +3368,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 					close3;
 				}
 				cutin "ra_nemma02",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 				mes "哎呀……";
 				mes "这些烟花不够。";
 				mes "我知道这就像捐赠，";
@@ -3796,7 +3378,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 			}
 			else {
 				cutin "ra_nemma01",2;
-				mes "[Priestess Nemma]";
+				mes "[内玛女祭司]";
 			mes "哎呀……";
 			mes "反正我也没什么东西可以回报你～";
 			mes "";
@@ -3806,7 +3388,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 		}
 		else {
 			cutin "ra_nemma01",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 		mes "欢迎来到我们的神殿！";
 		}
 		close3;
@@ -3816,18 +3398,18 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 S_Donate:
 	.@num = getarg(0);
 	cutin "ra_nemma01",2;
-	mes "[Priestess Nemma]";
-	mes "So, " + strcharinfo(0) + "...";
+	mes "[内玛女祭司]";
+	mes "那么，" + strcharinfo(0) + "...";
 	mes "我只是想确认一下：";
 	mes "你想捐赠 "+getarg(1)+" Zeny，领取 "+ .@num +" 张彩票，";
 		if (.@num == 1) mes "对吗？";
 		else mes "对吗？";
 	next;
 	if (select("否:是") == 1) {
-		mes "[Priestess Nemma]";
+		mes "[内玛女祭司]";
 		mes "哦，我明白了。如果你身上没有足够的 Zeny，";
 		mes "之后再回来捐赠就行。";
-		mes "我们的女神 Freya 会向慷慨者微笑，奖励有耐心的人！";
+		mes "我们的女神 芙蕾雅 会向慷慨者微笑，奖励有耐心的人！";
 		mes "";
 		mes "";
 		mes "";
@@ -3836,7 +3418,7 @@ S_Donate:
 	if (Zeny >= .@num*50000) {
 		if (!checkweight(7570,.@num)) {
 			cutin "ra_nemma02",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "我简直不敢相信……";
 			mes "你携带了太多东西，连一张彩票的空间都没有。";
 			mes "最好把一些物品存入仓库，好吗？";
@@ -3845,7 +3427,7 @@ S_Donate:
 			mes "";
 			next;
 			cutin "ra_nemma01",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "别担心，等你腾出物品栏空间后我还会在这里。";
 			mes "快回来，能捐赠的话就捐一点，好吗？";
 			mes "";
@@ -3859,10 +3441,10 @@ S_Donate:
 		set ra_have_donated,1;
 		if ($rachel_donate > 9999) {
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "给你～";
 			mes "非常感谢你的捐赠！";
-			mes "我相信 Freya 正在向你微笑，";
+			mes "我相信 芙蕾雅 正在向你微笑，";
 			mes "并会奖励你的慷慨～";
 			mes "";
 			mes "";
@@ -3871,7 +3453,7 @@ S_Donate:
 		else {
 			set .@Remaining,10000-$rachel_donate;
 			cutin "ra_nemma03",2;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "非常感谢！我们会继续接受捐赠，直到达到目标。";
 			mes "再收到 "+.@Remaining+" 笔每笔 50,000 Zeny 的捐赠，募捐就会结束。";
 			mes "";
@@ -3879,9 +3461,9 @@ S_Donate:
 			mes "";
 			mes "";
 			next;
-			mes "[Priestess Nemma]";
+			mes "[内玛女祭司]";
 			mes "如果你愿意，稍后再回来捐赠吧。";
-			mes "再次感谢你，愿 Freya 永远守护你。";
+			mes "再次感谢你，愿 芙蕾雅 永远守护你。";
 			mes "";
 			mes "";
 			mes "";
@@ -3889,7 +3471,7 @@ S_Donate:
 		}
 	}
 	else {
-		mes "[Priestess Nemma]";
+		mes "[内玛女祭司]";
 		mes "抱歉，你的 Zeny 少于 "+ (.@num *50000) +"……";
 		mes "我知道要求很多，但这是我必须遵守的规则……";
 		mes "嗯，也许下次再来，好吗？";
@@ -3900,44 +3482,44 @@ S_Donate:
 	}
 }
 
-rachel,243,37,3	script	Kid#Candy Addict	921,{
+rachel,243,37,3	script	孩子#Candy Addict	921,{
 	if ((ra_tem_q < 2) || (ra_tem_q > 9) || (MISC_QUEST & 8192)) {
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "嘿！你笑什么？";
 		mes "你不是要来摸我的头吧？";
 		mes "不要！我讨厌那样！";
 		mes "";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "别过来！";
 		mes "我不想让你摸我的头！吼……";
 		mes "我、我警告你！";
 		mes "";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "嘿，看看你的衣服！";
 		mes "你从哪里来，嗯？";
 		mes "";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "你来自其他国家吗？";
 		mes "";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "嗯，嗯？";
 		mes "你来自哪个国家？";
 		next;
-		mes "[Kid]";
-		mes "Eh, whatever.";
+		mes "[孩子]";
+		mes "呃，随便吧。";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "哦，对了，你喜欢糖果吗？";
 		mes "";
 		if (ra_tem_q == 1) {
 			next;
 			switch(select("一点也不喜欢。:喜欢。:当然，我最喜欢了～:不太喜欢。")) {
 			case 1:
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哼！好吧。";
 				close;
 			case 2:
@@ -3945,65 +3527,65 @@ rachel,243,37,3	script	Kid#Candy Addict	921,{
 			case 3:
 				break;
 			case 4:
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哦，因为你是大人。";
 				mes "不过你为什么不喜欢糖果？";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "为什么，嗯？";
 				mes "告诉我，告诉我，为什么？";
 				close;
 			}
 			if (rand(1,2) != 2) {
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哦，是吗……？";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "但你是大人，对吧？嘿嘿嘿！";
 				mes "";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "糖果只属于孩子！哈哈哈哈！";
 				mes "";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "我骗到你了！";
 				mes "你这个大笨蛋！";
 			}
 			else {
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哦，你喜欢？";
 				mes "那你身上有糖果吗？";
 				mes "";
 				mes "";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "我想要一颗！";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "快给我一颗！";
 				mes "给我给我～！";
 				next;
 				if (countitem(529) > 0) {
-					mes "[Kid]";
-					mes "Mmm...";
+					mes "[孩子]";
+					mes "嗯……";
 					mes "如果你给我一些糖果，";
 					mes "我就告诉你一件很酷的事，好吗？";
 					mes "";
 					mes "";
 					next;
 					if (select("好啊。:不要。") == 1) {
-						mes "[Kid]";
-						mes "Yay~";
+						mes "[孩子]";
+						mes "耶～";
 						next;
-						mes "[Kid]";
+						mes "[孩子]";
 						mes "哈！骗到你了！";
 						mes "我其实根本不想要糖果！哼！";
 						mes "不过我喜欢你，所以可以告诉你一个秘密！";
 						mes "";
 						mes "";
 						next;
-						mes "[Kid]";
+						mes "[孩子]";
 						mes "你知道吗？他们总会留着一扇神殿窗户不锁。";
 						mes "你可以偷看里面的神官。";
 						mes "他们总是在吵架！这不是很糟糕吗？";
@@ -4011,63 +3593,63 @@ rachel,243,37,3	script	Kid#Candy Addict	921,{
 						mes "";
 						mes "";
 						next;
-						mes "[Kid]";
+						mes "[孩子]";
 						mes "算了，他们是大人，";
 						mes "所以我也不知道。也许他们……";
 						mes "嗯，我记得打架应该是不好的。";
 						mes "";
 						next;
-						mes "[Kid]";
+						mes "[孩子]";
 					mes "啊，糟糕！我刚想起来！你的糖果一定来自其他国家！我早该拿走的。可恶！";
 						next;
-						mes "[Kid]";
+						mes "[孩子]";
 					mes "哦，我现在讨厌你！别烦我！";
 						set ra_tem_q,2;
 						close;
 					}
-					mes "[Kid]";
+					mes "[孩子]";
 				mes "你不想分享糖果？哼！看来你真的很喜欢。";
-					mes "...You big greedy.";
+					mes "……你这个大贪心鬼。";
 					close;
 				}
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "等等，你没有糖果？你身上没有，怎么能说喜欢糖果？看！我的口袋装满了糖果！";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "看？看看这些糖果！";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "对，你至少要有这么多糖果，才能说喜欢它们。嘻嘻嘻嘻！";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哦，嘿……想吃糖果吗？";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哈哈！我骗到你了！我才不会和你分享这些糖果！全都是我的！";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "...............................";
 				mes "呃……你生气了吗？";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "哦……你在生我的气，对吧？";
 				next;
-				mes "[Kid]";
+				mes "[孩子]";
 				mes "好吧，好吧。我告诉你一个很酷的秘密，答应我别再生气。";
 				next;
 				switch(select("不用了，谢谢。:什么秘密？")) {
 				case 1:
-					mes "[Kid]";
+					mes "[孩子]";
 					mes "拜托~";
 					break;
 				case 2:
-					mes "[Kid]";
+					mes "[孩子]";
 					mes "你知道吗，他们总会留一扇神殿窗户不锁？你可以偷看里面的神官。他们总是在争吵！不是很糟吗？";
 					next;
-					mes "[Kid]";
+					mes "[孩子]";
 					mes "算了，他们是大人，我也不知道。也许他们……嗯，我记得争吵应该是不好的……";
 					next;
-					mes "[Kid]";
+					mes "[孩子]";
 					mes "现在，希望你别再生我的气……如果你还生气，我就要更生你的气！";
 					set ra_tem_q,2;
 					break;
@@ -4077,16 +3659,16 @@ rachel,243,37,3	script	Kid#Candy Addict	921,{
 		close;
 	}
 	else if (ra_tem_q == 2) {
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "你要走了？不想看我玩石头、剪刀、布吗？";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "嘿！我不喜欢你看我的方式。我不喜欢你那样盯着我！你为什么不走？";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "天啊，我说了，走开！";
 		next;
-		mes "[Kid]";
+		mes "[孩子]";
 		mes "你这么无聊的话，为什么不从神殿窗户偷看？天啊，真是的！";
 		close;
 	}
@@ -4095,8 +3677,8 @@ rachel,243,37,3	script	Kid#Candy Addict	921,{
 ra_temple,67,209,0	script	zawa00	-1,3,3,{
 OnTouch:
 	if (ra_tem_q == 2) {
-		mes "^3355FFYou notice a slightly";
-				mes "一扇敞开的窗户，你可以轻松进入。^000000";
+		mes "^3355FF你发现一扇微微敞开的窗户，";
+		mes "从那里很容易就能进去。^000000";
 		next;
 		if(select("留下:从窗户进入") == 2) {
 			mes "^3355FF你拉开窗户，";
@@ -4132,7 +3714,7 @@ OnTouch:
 	end;
 }
 
-que_rachel,63,82,0	script	Window#ra_temple	111,{
+que_rachel,63,82,0	script	窗户#ra_temple	111,{
 	mes "^3355FF这扇窗户是开着的。^000000";
 	next;
 	if(select("留下:从窗户离开") == 2) {
@@ -4337,7 +3919,7 @@ que_rachel,169,18,0	script	Quest Temple Exit#ra_tem	45,2,2,{
 	close;
 }
 
-ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
+ra_temin,277,159,3	script	大祭司泽德#rachel	932,{
 	if ((ra_tem_q > 14) || (MISC_QUEST&8192)) set lost_boy,14;
 	if (checkweight(908,200) == 0) {
 		mes "^3355FF等一下！";
@@ -4377,7 +3959,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "[主教泽德]";
 		mes "...............................";
 		mes "……嗯。文森特。现在我明白了。";
-		mes "原来他故意对珍妮和菲比冷淡，";
+		mes "原来他故意对珍妮和福布冷淡，";
 		mes "这样其他人就不会起疑……";
 		next;
 		cutin "ra_gman",2;
@@ -4477,7 +4059,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "但她很难获得这类知识。";
 		next;
 		mes "[主教泽德]";
-		mes "首先，她不能离开拉赫尔，";
+		mes "首先，她不能离开拉赫，";
 		mes "那里是芙蕾雅女神的灵魂居住之处。";
 		mes "其次，为了维护圣洁，";
 		mes "所有市民和神父都不得离开城市。";
@@ -4518,91 +4100,25 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		next;
 		mes "[主教泽德]";
 		mes "我会替你写好，所以不用担心。";
-		mes "接下来，你需要收集^FF000040个冰心^000000，";
+		mes "接下来，你需要收集^FF000040个冰晶之心^000000，";
 		mes "作为力量与纯洁的象征证明。";
 		next;
 		mes "[主教泽德]";
 		mes "我写推荐信时，先告诉你收集完";
-		mes "40个冰心后如何前往教皇办公室。";
+		mes "40个冰晶之心后如何前往教皇办公室。";
 		next;
 		mes "[主教泽德]";
 		mes "从神殿中央的礼拜堂向西走，";
 		mes "进入由两名士兵守卫的门。";
-		mes "向他们出示推荐信和冰心，";
+		mes "向他们出示推荐信和冰晶之心，";
 		mes "他们就会让你通过。";
 		next;
 		mes "[主教泽德]";
 		mes "啊，你来了。";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-	mes "我已经写好了";
-	mes "你的推荐信。";
-	mes "那么，完成这项任务后";
-	mes "我们再见。";
+		mes "我已经写好了";
+		mes "你的推荐信。";
+		mes "那么，完成这项任务后";
+		mes "我们再见。";
 		next;
 	mes "^3355FF你收到了大主教的推荐信。^000000";
 		close2;
@@ -4613,8 +4129,8 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		end;
 	}
 	else if ((ra_tem_q == 15) || (ra_tem_q == 16)) {
-		mes "[泽德大主教]";
-		mes "收集到^FF000040 40 个冰冻之心^000000后，";
+		mes "[大祭司泽德]";
+		mes "收集到^FF000040 个冰晶之心^000000后，";
 		mes "把它们和我为你写的推荐信";
 		mes "一起交给守卫教皇办公室的士兵。";
 		next;
@@ -4690,18 +4206,18 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		select("询问贝肯托");
 		cutin "ra_gman2",2;
 		mes "[泽德大主教]";
-		mes "贝肯托？啊，你一定和妮伦大主教谈过了。";
+		mes "贝肯托？啊，你一定和尼伦大主教谈过了。";
 		mes "只有她会这样称呼我。";
 		mes "你看，我的全名是泽德·贝肯托。";
 		next;
 		cutin "ra_gman",2;
 		mes "[泽德大主教]";
 		mes "说到这个……";
-		mes "妮伦有没有问你什么，";
+		mes "尼伦有没有问你什么，";
 		mes "或告诉你什么不同寻常的事情？";
 		next;
 		mes "^3355FF你犹豫了一会儿，";
-		mes "把和妮伦大主教的谈话告诉了泽德。^000000";
+		mes "把和尼伦大主教的谈话告诉了泽德。^000000";
 		next;
 		mes "[泽德大主教]";
 		mes "嗯，我明白了。";
@@ -4754,7 +4270,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		next;
 		cutin "ra_gman",2;
 		mes "[泽德大主教]";
-		mes "啊，也请不要责怪妮伦。";
+		mes "啊，也请不要责怪尼伦。";
 		mes "她的行为一定有自己的理由。";
 		mes "她改变了很多，但我认为我们最终仍是朋友。";
 		next;
@@ -4806,7 +4322,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "不是吗？你看起来不错，";
 				mes "我也一切安好。今天我能为你做什么，"+strcharinfo(0)+"？";
 				next;
-				switch(select("我只是想来打个招呼。:询问维纳斯事故")) {
+				switch(select("我只是想来打个招呼。:询问维恩斯事故")) {
 				case 1:
 					mes "[泽德大主教]";
 					mes "如你所知，我只是名义上的大主教，";
@@ -4818,29 +4334,29 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					break;
 				case 2:
 					mes "[泽德大主教]";
-					mes "维纳斯事故？";
+					mes "维恩斯事故？";
 					mes "我没听说过……如果你详细说说，";
 					mes "也许我能多了解一些。";
 					next;
-					mes "^3355FF你把维纳斯逮捕走私犯的事情告诉了泽德大主教。^000000";
+					mes "^3355FF你把维恩斯逮捕走私犯的事情告诉了泽德大主教。^000000";
 					next;
 					mes "[泽德大主教]";
 					mes "哦，我之前好像听说过这件事。";
-					mes "让我想想……对了，妮伦提到过他们的奇怪之处……";
+					mes "让我想想……对了，尼伦提到过他们的奇怪之处……";
 					next;
 					mes "[泽德大主教]";
 					mes "走私犯和一名卢恩·米德加尔特王国的高官在一起，";
-					mes "所以妮伦一度不敢对他们采取行动。";
+					mes "所以尼伦一度不敢对他们采取行动。";
 					next;
 					mes "[泽德大主教]";
 					mes "我当时忙于其他事情，没有太在意。";
-					mes "你为什么不去和妮伦谈谈？";
+					mes "你为什么不去和尼伦谈谈？";
 					mes "我相信她能告诉你更多情况。";
 					set aru_monas,12;
 					changequest 17007,17008;
 					next;
 					mes "[泽德大主教]";
-					mes "如果你决定去见妮伦，请代我向她问好。";
+					mes "如果你决定去见尼伦，请代我向她问好。";
 					break;
 				}
 			}
@@ -4863,7 +4379,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				next;
 				select("火山中的神秘建筑");
 				mes "["+strcharinfo(0)+"]";
-				mes "其实，我想问问你是否知道维纳斯附近托尔火山内部的这座设施。";
+				mes "其实，我想问问你是否知道维恩斯附近托尔火山内部的这座设施。";
 				mes "那里似乎正在发生大事。";
 				next;
 				mes "^3131FF你把托尔火山中被锁住的孩子，以及隐藏建筑的事情告诉了泽德大主教。";
@@ -4914,7 +4430,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				input .@input$;
 				mes "^3131FF"+.@input$+"^000000?";
 				next;
-				if (.@input$ == "Varmunt") {
+				if (.@input$ == "瓦尔蒙特") {
 					mes "[泽德大主教]";
 					mes "哦，你听说过他？";
 					mes "是的，他叫瓦尔蒙特。";
@@ -4935,200 +4451,40 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "我只知道施瓦尔茨瓦德共和国发生了严重事件，";
 				mes "而他在那场混乱中消失了。真奇怪……";
 				next;
-				mes "[泽德大主教]";
-			mes "虽然能够正常运作的尤弥尔之心仿制品";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-				mes "瓦尔蒙特创造的成果被拆分后，其他科学家用不稳定的尤弥尔之心基本复现了他的研究。";
+				mes "[大祭司泽德]";
+				mes "虽然瓦尔蒙特创造的、能够正常运作的";
+				mes "尤弥尔之心仿制品已被摧毁成碎片，";
+				mes "其他科学家还是基本重现了他的研究成果，";
+				mes "只是做出的尤弥尔之心不稳定。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "由于温和派只能提供不稳定的尤弥尔之心仿制品，强硬派很快在民众眼中获得了比我们更高的声望。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "尽管我们拥有先进武器和盔甲，但阿鲁纳佩尔兹并不像我希望的那样文明和平，强硬派现在控制着政府。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "虽然强硬派允许我们继续忠实复现尤弥尔之心的研究，但他们一直在毫无阻碍地发展军事力量。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "总之，温和派正在圣地和施瓦尔兹共和国的研究中心尝试重现尤弥尔之心。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "强硬派在托尔火山营地训练士兵，储备军需和武器。不过我不知道更多细节。";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "情况不妙。如果他们准备强行夺取尤弥尔之心碎片，就会与施瓦尔兹共和国和卢恩-米德加尔特王国开战！";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "我是温和派成员，最近又被降职，所以接触不到强硬派的多少信息。不过也许还有希望……";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "战争对所有相关方都不利。因此我想请你潜入托尔火山营地，维护国际和平。";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "我很想知道他们的计划，但那里戒备森严！我要怎么潜入？";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "你说得对。我们得想个好办法让你潜入那里。嗯……";
 				set aru_vol,1;
 				setquest 2114;
@@ -5137,42 +4493,43 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				end;
 			}
 			else if ((aru_vol > 0) && (aru_vol < 5)) {
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "嗯……";
 				next;
 			switch(select("如何潜入营地:温和派:强硬派")) {
 				case 1:
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "我还没有潜入托尔火山营地的主意。再给我一点时间，希望我们能一起想出办法。";
 					break;
 				case 2:
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "我们温和派祭司反对战争，所以长期尝试制作尤弥尔之心仿制品。遗憾的是至今没有成功。";
 					next;
-					mes "[High Priest Zhed]";
-				mes "强硬派其实反对我们的努力，但他们允许我们继续，因为他们认为最终可以利用尤弥尔之心仿制品来……";
-				mes "军事用途。";
+					mes "[大祭司泽德]";
+					mes "强硬派其实反对我们的努力，";
+					mes "但他们允许我们继续研究，";
+					mes "因为他们认为最终可以把尤弥尔之心仿制品用于军事。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "尤弥尔之心复现项目让世界上最聪明的人都感到挫败，一些科学家甚至开始使用禁忌方法。真令人遗憾。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "瓦尔蒙特曾成功重现尤弥尔之心，但随后将其摧毁并失踪了。他这样做是为了阻止战争，但我们现在真的需要他的帮助。";
 					break;
 				case 3:
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "强硬派尤其狂热地信仰芙蕾雅，会不择手段推进他们认为的女神意志。他们甚至愿为信仰发动战争。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "他们甚至在托尔火山建造军事营地，这让我非常不安。他们几乎肯定打算向拥有尤弥尔之心碎片的国家开战。";
 					next;
 					mes "["+strcharinfo(0)+"]";
 				mes "谁负责托尔火山的营地？";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "维尔特大祭司。他负责阿鲁纳佩尔兹所有重要建筑。他的房间在建筑另一侧，但那里一直戒备森严。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "维尔特是强硬派祭司中职位最高的成员之一。他很少愿意见他认为地位低于自己的人。";
 					break;
 				}
@@ -5184,40 +4541,40 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				cutin "ra_gman",2;
 				if (countitem(7342) > 0) {
 					mes "["+strcharinfo(0)+"]";
-				mes "哲德大祭司，你能看看这份文件吗？";
+				mes "泽德大祭司，你能看看这份文件吗？";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "当然。让我看看文件夹里有什么？";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes ".............";
 					mes ".................";
 					mes "....................!";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "这是托尔火山的地质报告？啊，我明白了。他们一定定期派人检查是否会喷发。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "虽然在那里建军事营地相当危险，但有些武器材料只能利用托尔火山的热量锻造。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "是的，我也认为火山上可能有只能在那里找到的特殊武器金属和材料。这样就说得通了。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "虽然火山现在休眠，但报告声称它要么安全，要么随时可能喷发。这里的数据毫无道理。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "嗯，这只是直觉，但看到报告中的矛盾，我觉得这位地质学家对托尔火山营地另有企图。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 				mes "如果是真的，他也许能帮你潜入营地。你不觉得值得调查一下吗？";
 					next;
 				if (select("是:否") == 2) {
-						mes "[High Priest Zhed]";
+						mes "[大祭司泽德]";
 					mes "不问怎么知道？而且我不知道还有没有别的办法潜入托尔火山营地……";
 						next;
 					}
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "希望你去和地质学家谈谈。他应该在拉赫南方的沙漠城市维恩斯。他是你不引起怀疑进入托尔火山营地的最佳机会。";
 					delitem 7342,1; //File01
 					set aru_vol,6;
@@ -5230,7 +4587,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			}
 			else if (aru_vol == 6) {
 				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "希望你去和地质学家谈谈。他应该在拉赫的南方沙漠城市维恩斯。找他是你不引起怀疑进入托尔火山营地的最佳机会。";
 				close2;
 				cutin "",255;
@@ -5238,7 +4595,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			}
 			else if ((aru_vol > 6) && (aru_vol < 26)) {
 				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "希望你去和地质学家谈谈。他应该在拉赫南方的沙漠城市维恩斯。他是你不引起怀疑进入托尔火山营地的最佳机会。";
 				close2;
 				cutin "",255;
@@ -5246,19 +4603,19 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			}
 			else if (aru_vol == 26) {
 				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "哦！你回来了！那位地质学家帮你潜入托尔火山营地了吗？";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "不止如此。我们让营地相信火山即将爆发，所以他们正在慌忙撤离。那边已经乱成一团了！";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "哈哈哈！太好了！即使他们发现自己被骗了，在那片混乱中也需要一段时间才能反应过来。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "是的，现在也许还不是击垮强硬派的最佳时机，但机会很快就会出现。谢谢你提供的一切帮助。";
 				next;
-				mes "[High Priest Zhed]";
+				mes "[大祭司泽德]";
 				mes "请先休息一阵，剩下的交给我。时机成熟时我会再次联系你。我们可以共同维护两国之间的和平。";
 				set aru_vol,27;
 				completequest 60213;
@@ -5270,7 +4627,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			else if (aru_vol > 26) {
 				// Start Peace to Arunafeltz addition
 				if (aru_em < 7) {
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "时机成熟时，我一定会再次联系你，请你提供帮助。我想现在还有其他人需要你的援助……";
 				}
 				else if (aru_em == 8){
@@ -5279,27 +4636,27 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					mes "欢迎，冒险者。很高兴看到你来到这里。我想……我想出现了一个需要你专业援助的机会。";
 					next;
 					cutin "ra_gman2",2;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "不过，我担心自己可能做出了错误的决定。毕竟，我在其他祭司中的影响力已经不大了……我忍不住觉得自己错了。";
 					next;
 					mes "["+strcharinfo(0)+"]";
-					mes "别灰心，大祭司哲德。我……我相信你！";
+					mes "别灰心，大祭司泽德。我……我相信你！";
 					next;
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "你说得对。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "如你所知，阿鲁纳佩尔兹的最高权威是教皇，她是我们女神芙蕾雅的转世。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "遗憾的是，她太年轻而天真，还没有足够经验掌控局面，平息祭司之间的内斗与腐败。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "在这绝望的时代，我们需要有人为阿鲁纳佩尔兹的人民提供坚定而自信的领导，否则一切都会葬送在战争与暴力之中。";
 					next;
-					mes "[High Priest Zhed]";
-					mes "^333333*Sigh...*^000000";
+					mes "[大祭司泽德]";
+					mes "^333333*叹气……*^000000";
 					mes "我知道这样也许不对，但必须有人在其他大祭司毁掉国家之前采取行动。";
 					next;
 					emotion ET_HUK, playerattached();
@@ -5308,20 +4665,20 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					next;
 					cutin "ra_gman2",2;
 					emotion ET_SWEAT;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "什么？不，不！别妄下结论！别误会我的意思：我忠于我们的教皇。";
 					next;
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "我其实想与教皇密切合作，结合我的经验和她的智慧，实质上与她共同治理。这很有野心，但我还能怎么办？";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "你还记得自己如何阻止强硬派祭司在托尔火山营地执行战争计划吗？那只能暂时阻止他们。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "他们最终还是会再次准备诉诸暴力。我们需要永久的解决方案，确保这种事情不再发生。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "我们必须说服教皇采取行动，全力支持我的和平政策。你愿意帮我吗？";
 					next;
 					if (select("是:否") == 2) {
@@ -5331,118 +4688,118 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 						mes "["+strcharinfo(0)+"]";
 						mes ""+.@input$+"?";
 						next;
-						mes "[High Priest Zhed]";
+						mes "[大祭司泽德]";
 						mes "嗯，我不知道。这个主意不错，但恐怕只能短期有效。我们为什么不先试试我提议的办法？";
 						next;
 					}
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "嗯，现在该如何说服教皇支持我们？即使她是芙蕾雅的转世……她也只是个小女孩，可能根本不了解政治。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "最好把正在发生的一切如实告诉她，告诉她完整的真相。我心里知道这样最好。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "但是……也许稍微美化一下会更好。如果完全吓到她，她可能不会接受我们。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "嗯……你觉得呢？我们应该坚持真相，还是稍微委婉一些更好？";
 					mes "在我们觉得有必要时夸大……甚至撒谎吗？";
 					next;
 					switch(select("真相:谎言")) {
 					case 1:
-						mes "[High Priest Zhed]";
+						mes "[大祭司泽德]";
 						mes "我也这么想。虽然担心教皇对我们消息的反应，但我应该有信仰。我应该相信。";
 						next;
 						break;
 					case 2:
-						mes "[High Priest Zhed]";
+						mes "[大祭司泽德]";
 					mes "我想你说得有道理。让她完全面对丑陋真相可能不是好主意。我会尽可能诚实……";
 						next;
 						break;
 					}
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "不能浪费时间。光靠我们两个可能无法说服教皇采取和平行动。我已经想到一个可能帮助我们的人。";
 					next;
 					emotion ET_SPARK, playerattached();
 					mes "["+strcharinfo(0)+"]";
 					mes "听起来不错。他是谁？";
 					next;
-					mes "[High Priest Zhed]";
-					mes "我的老朋友，高级神官 Niren。我不确定经历了这些事后她是否会帮我。她甚至可能认为我应该被逐出教会……";
+					mes "[大祭司泽德]";
+					mes "我的老朋友，高级神官 尼伦。我不确定经历了这些事后她是否会帮我。她甚至可能认为我应该被逐出教会……";
 					next;
 					emotion ET_BEST, playerattached();
 					mes "["+strcharinfo(0)+"]";
-					mes "试试又不会有损失！而且 Niren 不是坏人。也许你解释后，她会理解你的看法？";
+					mes "试试又不会有损失！而且 尼伦 不是坏人。也许你解释后，她会理解你的看法？";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "当然，你说得对。我只是在抓最后一根稻草，但她和我都曾相信和平可能实现。不知道她为什么加入强硬派……";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes ""+strcharinfo(0)+"...";
 					mes "请和她谈谈，看看她过得如何？不过，也许现在不适合立刻提我们的计划……";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "如果你觉得有机会说服她，就尽管提出我的建议。她的办公室就在对面，但她总是很忙……";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "她很可能因公务去了某处。你知道，她深受人民爱戴。";
 					set aru_em,9;
 					changequest 2131,2132;  // unconfirmed
 				}
 				else if ((aru_em == 9) || (aru_em == 10)) {
-					mes "[High Priest Zhed]";
-					mes "请和 Niren 谈谈，看看她是否愿意帮助我们说服教皇，让国家实现和平。";
+					mes "[大祭司泽德]";
+					mes "请和 尼伦 谈谈，看看她是否愿意帮助我们说服教皇，让国家实现和平。";
 				}
 				else if (aru_em == 11) {
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
-					mes "欢迎回来。你有机会和 Niren 谈谈吗？她对我的建议有什么反应？";
+					mes "[大祭司泽德]";
+					mes "欢迎回来。你有机会和 尼伦 谈谈吗？她对我的建议有什么反应？";
 					next;
-			mes "^3355FF你解释了 Niren 的理由，";
-					mes "她对温和派神官感到失望，并告诉 Zhed 她打算执行战争计划。";
+			mes "^3355FF你解释了 尼伦 的理由，";
+					mes "她对温和派神官感到失望，并告诉 泽德 她打算执行战争计划。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "....................";
 					mes "....................";
 					mes "....................";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "嗯……这解释了她和其他高级神官为何开始离开办公室。许多人被邀请前往施瓦茨瓦尔德共和国……";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "无论如何，我确定战争从来不是解决办法，只会带来死亡与毁灭。";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "给我一点时间。我要写";
-			mes "一封我想让你交给 Niren 的信。";
+			mes "一封我想让你交给 尼伦 的信。";
 			mes "";
 					set aru_em,12;
 				}
 				else if(aru_em == 12) {
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
-			mes "请把这封信交给 Niren。";
+					mes "[大祭司泽德]";
+			mes "请把这封信交给 尼伦。";
 			mes "希望我的话能让她理解";
 			mes "我对战争计划的感受。";
 			mes "";
 			mes "";
 					next;
-			mes "^3355FF你收到了高级神官 Zhed 写给 Niren 的信。^000000";
+			mes "^3355FF你收到了高级神官 泽德 写给 尼伦 的信。^000000";
 			mes "";
 					set aru_em,13;
 					changequest 2133,2134;
 				}
 				else if((aru_em == 13) || (aru_em == 14)) {
-					mes "[High Priest Zhed]";
-			mes "请尽快把我的信交给 Niren。";
+					mes "[大祭司泽德]";
+			mes "请尽快把我的信交给 尼伦。";
 			mes "非常感谢你帮我做这件事。";
 			mes "";
 			mes "";
 			mes "";
 				}
 				else if ((aru_em > 14) && (aru_em < 20)) {
-					mes "[High Priest Zhed]";
-			mes "好消息！Niren 刚刚给我回信了。";
+					mes "[大祭司泽德]";
+			mes "好消息！尼伦 刚刚给我回信了。";
 			mes "我不敢相信她愿意帮我！";
 			mes "今后她有需要时，请你也帮助她，好吗？";
 			mes "";
@@ -5451,30 +4808,30 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				}
 				else if(aru_em == 20) {
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "啊，我一直在等你。";
 			mes "";
 					next;
 					mes "["+strcharinfo(0)+"]";
-			mes "高级神官 Zhed，一切都准备好了！";
-			mes "高级神官 Niren 已经把教皇附近的信徒全部支开。";
+			mes "高级神官 泽德，一切都准备好了！";
+			mes "高级神官 尼伦 已经把教皇附近的信徒全部支开。";
 			mes "不会有人打扰你们。";
 			mes "";
 			mes "";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "希望我们能让教皇理解国家的处境。";
 			mes "我只是……";
-			mes "哦，Freya 保佑我们……";
+			mes "哦，芙蕾雅 保佑我们……";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "..............";
 					mes "..............";
 					mes "..............";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "好，我准备好了。";
 			mes "我们去觐见教皇吧？";
 			mes "";
@@ -5482,22 +4839,22 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					set aru_em,21;
 				}
 				else if(aru_em == 21) {
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "要这样直率地和教皇谈话，我有点紧张，";
 			mes "但我已经准备好去见她了。";
 			mes "";
 			mes "";
 				}
 				else if (aru_em == 22) {
-					mes "[High Priest Zhed]";
-			mes "我相信 Niren 有重要的事要告诉你。";
+					mes "[大祭司泽德]";
+			mes "我相信 尼伦 有重要的事要告诉你。";
 			mes "你不如先和她谈谈，再回来找我？";
 			mes "";
 			mes "";
 				}
 				else if (aru_em == 23) {
 					cutin "ra_gman",2;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "我很高兴一切顺利。你的帮助真是祝福。";
 			mes "虽然施瓦茨瓦尔德会继续他们的计划，";
 			mes "但我们已经拖慢了他们的脚步。";
@@ -5505,42 +4862,42 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			mes "";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "是的，没有我们的支持，";
 			mes "施瓦茨瓦尔德至少暂时没有借口";
 			mes "继续他们危险的研究。";
 			mes "";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
-			mes "Thor 火山营地很快就该关闭了，";
+					mes "[大祭司泽德]";
+			mes "托尔 火山营地很快就该关闭了，";
 			mes "既然我们已经不再需要它。";
 			mes "";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 			mes "我也低估了我们的教皇。";
 			mes "她比我想象的更有尊严、更坚定。";
 			mes "我应该向她道歉。";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
-			mes "我们不会放弃让女神 Freya 复苏，";
+					mes "[大祭司泽德]";
+			mes "我们不会放弃让女神 芙蕾雅 复苏，";
 			mes "但会通过外交而不是暴力";
-			mes "取回 Ymir 的心脏。";
+			mes "取回 尤弥尔 的心脏。";
 			mes "这不会容易……";
 			mes "";
 			mes "";
 					next;
-					mes "[High Priest Zhed]";
-					mes "你为恢复 Arunafeltz 的和平发挥了关键作用。";
+					mes "[大祭司泽德]";
+					mes "你为恢复 阿鲁纳佩尔兹 的和平发挥了关键作用。";
 					mes "我甚至已经复职，今后会和教皇密切合作，";
 					mes "一定会非常忙……";
 					mes "";
 					mes "";
 					mes "";
 					next;
-					mes "[High Priest Zhed]";
+					mes "[大祭司泽德]";
 					mes "我知道冒险生活在召唤你。";
 					mes "她一定想在你离开前见你，";
 					mes "但那场令人疲惫的演讲后，她睡得很沉……";
@@ -5548,8 +4905,8 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					mes "";
 					mes "";
 					next;
-					mes "[High Priest Zhed]";
-					mes "我谨代表教皇和 Arunafeltz 的所有居民，";
+					mes "[大祭司泽德]";
+					mes "我谨代表教皇和 阿鲁纳佩尔兹 的所有居民，";
 					mes "感谢你的英勇。";
 					mes "我相信你在英灵殿的位置已经确定了。";
 					mes "";
@@ -5560,8 +4917,8 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					getexp (checkre(3))?150000:1500000,0;
 				}
 				else {
-					mes "[High Priest Zhed]";
-					mes "愿 Freya 在你所有旅途中保佑你，我的朋友。";
+					mes "[大祭司泽德]";
+					mes "愿 芙蕾雅 在你所有旅途中保佑你，我的朋友。";
 					mes "";
 					mes "";
 				}
@@ -5569,15 +4926,15 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			}
 			else {
 				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
-				mes "Ugh...!";
+				mes "[大祭司泽德]";
+				mes "呃……！";
 				mes "我的头痛得厉害！";
 				mes "";
 			}
 		}
 		else {
 			cutin "ra_gman",2;
-			mes "[High Priest Zhed]";
+			mes "[大祭司泽德]";
 			mes "我现在应该休息。";
 			mes "请一路平安。";
 		}
@@ -5585,19 +4942,19 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 	}
 	else {
 		cutin "ra_gman",2;
-		mes "[High Priest Zhed]";
-		mes "愿 Freya 与你同在。";
+		mes "[大祭司泽德]";
+		mes "愿 芙蕾雅 与你同在。";
 	}
 	close2;
 	cutin "",255;
 	end;
 }
 
-ra_temin,170,46,3	script	Panno#rachel	920,{
+ra_temin,170,46,3	script	帕诺#rachel	920,{
 	cutin "ra_fano03",2;
 	if (ra_tem_q >= 12 || (MISC_QUEST & 8192)) {
 		cutin "ra_fano03",2;
-		mes "[Priestess Panno]";
+		mes "[帕诺女祭司]";
 		mes "你好。";
 		mes "你是来";
 		mes "兑换彩票？";
@@ -5605,37 +4962,37 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 		if (select("是:否") == 1) goto L_Lottery;
 		if (ra_tem_q == 12) {
 			cutin "ra_fano01",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "我已经把知道的一切告诉你了。记住，别泄露我说的话。";
 			close3;
 		}
 	}
 	else if (ra_tem_q < 2) {
-		mes "[Priestess Panno]";
-		mes "你好。愿 Freya 让你的日子充满喜悦、笑声与繁荣。";
+		mes "[帕诺女祭司]";
+		mes "你好。愿 芙蕾雅 让你的日子充满喜悦、笑声与繁荣。";
 		next;
 		switch(select("兑换彩票:神殿信息:嘿，发生什么了？")) {
 		case 1:
 			cutin "ra_fano03",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "好吧，你真的要兑换彩票？我得确认一下，万一你因为奇怪理由留着它们呢。";
 			next;
 			if (select("是:否") == 1) goto L_Lottery;
 			cutin "ra_fano03",2;
-			mes "[Priestess Panno]";
-			mes "你随时可以兑换彩票，有空就来找我。愿 Freya 与你同在。";
+			mes "[帕诺女祭司]";
+			mes "你随时可以兑换彩票，有空就来找我。愿 芙蕾雅 与你同在。";
 			close3;
 
 		case 2:
 			cutin "ra_fano01",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "小教堂就在我身后的墙后。教皇办公室和寝室在楼上，只有获得特别许可才能进入。";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "......";
 			mes ".........";
 			next;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "............";
 			mes ".........";
 			mes "......";
@@ -5644,24 +5001,24 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 			mes "...?";
 			next;
 			cutin "ra_fano02",2;
-			mes "[Priestess Panno]";
-		mes "你来到神殿";
-			mes "来神殿是为了祈祷，不是四处张望，也不是和我这样的女神官闲聊。别忘了。";
+			mes "[帕诺女祭司]";
+			mes "来神殿是为了祈祷，不是四处张望，";
+			mes "也不是和我这样的女祭司闲聊。别忘了。";
 			next;
 			cutin "ra_fano03",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "高级神官的办公室在走廊两侧。不过，只有事先获准才能进入。";
 			close3;
 
 		case 3:
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "......................";
 		mes "神殿内禁止闲聊。";
 			close3;
 		}
 	}
 	else if (ra_tem_q == 10) {
-		mes "[Priestess Panno]";
+		mes "[帕诺女祭司]";
 	mes "你好。";
 		next;
 
@@ -5669,27 +5026,27 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 
 		case 1:
 			cutin "ra_fano01",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "你……还留着节日捐款获得的彩票？去词典里查查‘守时’这个词吧，可能对你有帮助。";
 			next;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "好吧，你真的要兑换彩票？我得确认一下，万一你因为奇怪理由留着它们呢。";
 			next;
 		if (select("是:否") == 1) goto L_Lottery;
-			mes "[Priestess Panno]";
-		mes "你随时可以兑换彩票，有空就来找我。愿 Freya 与你同在。";
+			mes "[帕诺女祭司]";
+		mes "你随时可以兑换彩票，有空就来找我。愿 芙蕾雅 与你同在。";
 			close3;
 
 		case 2:
 			cutin "ra_fano01",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "小教堂就在我身后的墙后。教皇办公室和寝室在楼上，只有获得特别许可才能进入。";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "......";
 			mes ".........";
 			next;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 			mes "............";
 			mes ".........";
 			mes "......";
@@ -5698,33 +5055,31 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 			mes "...?";
 			next;
 			cutin "ra_fano02",2;
-			mes "[Priestess Panno]";
-			mes "你来到神殿";
-		mes "来神殿是为了祈祷，不是四处张望，也不是和我这样的女神官闲聊。别忘了。";
+			mes "[帕诺女祭司]";
+			mes "来神殿是为了祈祷，不是四处张望，";
+			mes "也不是和我这样的女祭司闲聊。别忘了。";
 			next;
 			cutin "ra_fano02",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "高级神官的办公室在走廊两侧。不过，只有事先获准才能进入。";
 			close3;
 
 		case 3:
 			cutin "ra_fano02",2;
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "大门……？";
 			next;
 		select("神殿那扇锁着的大门！");
-			mes "[Priestess Panno]";
+			mes "[帕诺女祭司]";
 		mes "我不知道你是什么意思。";
 			next;
 		select("解释");
 			mes "["+strcharinfo(0)+"]";
-		mes "我想女神官 Nemma 一直担心大门损坏，不过自从你在神殿任职以来，大门就没再出问题。";
+		mes "我想女神官 内玛 一直担心大门损坏，不过自从你在神殿任职以来，大门就没再出问题。";
 			next;
-			mes "[Priestess Panno]";
-		mes "担心……？是的，我的双胞胎姐姐";
-			mes "她一直很有名";
-			mes "经常这样做，还会哭着";
-			mes "向我求助。对吧？";
+			mes "[帕诺女祭司]";
+			mes "担心……？是的，我的双胞胎姐姐";
+			mes "经常这样，还会哭着向我求助。对吧？";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "很奇怪";
@@ -5934,11 +5289,11 @@ L_End:
 	end;
 }
 
-ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
+ra_temin,134,128,3	script	教皇办公室守卫#rac::raofficeguard	926,{
 	if ((ra_tem_q == 15) && (countitem(7561) > 39)) {
 		mes "[教皇办公室守卫]";
 		mes "嗯？你带了什么？哦，你收集了";
-		mes "40个冰心，还带来了大祭司的推荐信？";
+		mes "40个冰晶之心，还带来了大祭司的推荐信？";
 		mes "真令人佩服。";
 		next;
 		mes "[教皇办公室守卫]";
@@ -5959,7 +5314,7 @@ ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
 	}
 	else if (MISC_QUEST & 8192) {
 		if ((aru_em == 15) || (aru_em == 21)) {
-			mes "- 内伦让我去教皇办公室拜访教皇…… -";
+			mes "- 尼伦让我去教皇办公室拜访教皇…… -";
 			close;
 		}
 		else {
@@ -5978,7 +5333,7 @@ ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
 	}
 }
 
-ra_temin,134,134,3	duplicate(raofficeguard)	Pope's Office Guard#2ra	926
+ra_temin,134,134,3	duplicate(raofficeguard)	教皇办公室守卫#2ra	926
 
 ra_temin,134,131,0	script	gyoin1#rachel	45,1,1,{
 OnTouch:
@@ -6011,37 +5366,37 @@ OnTouch_:
 	end;
 }
 
-ra_temsky,95,99,6	script	Priest#1rachel	935,{
+ra_temsky,95,99,6	script	神父#1rachel	935,{
 	mes "[神父]";
 	mes "愿芙蕾雅与你同在。";
 	close;
 }
 
-ra_temsky,93,97,6	script	Male Follower#1rachel::ramale	926,{
+ra_temsky,93,97,6	script	男性信徒#1rachel::ramale	926,{
 	mes "[男性信徒]";
 	mes "愿芙蕾雅与你同在。";
 	close;
 }
 
-ra_temsky,90,95,6	duplicate(ramale)	Male Follower#2rachel	926
-ra_temsky,98,59,6	duplicate(ramale)	Male Follower#3rachel	926
+ra_temsky,90,95,6	duplicate(ramale)	男性信徒#2rachel	926
+ra_temsky,98,59,6	duplicate(ramale)	男性信徒#3rachel	926
 
-ra_temsky,104,99,4	script	Priestess#1rachel	920,{
+ra_temsky,104,99,4	script	女祭司#1rachel	920,{
 	mes "[女祭司]";
 	mes "愿芙蕾雅与你同在。";
 	close;
 }
 
-ra_temsky,106,97,4	script	Female Follower#1rachel::rafemale	916,{
+ra_temsky,106,97,4	script	女性信徒#1rachel::rafemale	916,{
 	mes "[女性信徒]";
 	mes "愿芙蕾雅与你同在。";
 	close;
 }
 
-ra_temsky,108,95,4	duplicate(rafemale)	Female Follower#2rachel	916
-ra_temsky,101,59,4	duplicate(rafemale)	Female Follower#3rachel	916
+ra_temsky,108,95,4	duplicate(rafemale)	女性信徒#2rachel	916
+ra_temsky,101,59,4	duplicate(rafemale)	女性信徒#3rachel	916
 
-ra_temsky,99,99,5	script	Pope#rachel	936,{
+ra_temsky,99,99,5	script	教皇#rachel	936,{
 	if (ra_tem_q == 16) {
 		cutin "ra_bishop",2;
 		mes "^3355FF这、这个小女孩";
@@ -6049,7 +5404,7 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 		next;
 		mes "[教皇]";
 		mes "...............................";
-		mes "..........................Um...";
+		mes "..........................嗯……";
 		mes "欢、欢迎。有什么不对吗？";
 		mes "哦，我知道了，是我的眼睛。";
 		mes "如果吓到你，我很抱歉。";
@@ -6076,7 +5431,7 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 		mes "[教皇]";
 		mes @input$ +"...?";
 		mes "哇，听起来真不一般。哦，哦！";
-		mes "告诉我，你是怎么来到拉赫尔的？";
+		mes "告诉我，你是怎么来到拉赫的？";
 		mes "我想进一步了解你～";
 		next;
 		mes "^3355FF你和教皇继续舒适地交谈。";
@@ -6115,7 +5470,7 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 		mes "[教皇]";
 		mes "已经到了？！哼……";
 		mes "哦，差点忘了告诉你，";
-		mes "大祭司 Zhed 想和你谈谈，"+strcharinfo(0)+"。";
+		mes "大祭司 泽德 想和你谈谈，"+strcharinfo(0)+"。";
 		next;
 		mes "[教皇]";
 		mes "真的很感谢你来和我交谈。";
@@ -6132,7 +5487,7 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 		if (aru_em < 15) {
 			mes "[教皇]";
 			mes "哦，对了……";
-			mes "Zhed……呃，大祭司 Zhed 想和你谈谈！";
+			mes "泽德……呃，大祭司 泽德 想和你谈谈！";
 			close2;
 			cutin "",255;
 			end;
@@ -6156,73 +5511,7 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 			switch(select("你不孤独吗？:你有休息时间吗？")) {
 			case 1:
 				mes "[教皇]";
-			mes "嗯，总会有一些";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-		mes "";
-				mes "总有几位神父陪着我。";
+				mes "嗯，总有几位神父陪着我。";
 				mes "他们有时甚至会看着我睡觉。";
 				mes "所以我其实没有时间感到孤独。";
 				next;
@@ -6265,11 +5554,11 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 	end;
 }
 
-ra_temin,294,149,0	script	High Priestess Niren#ra	915,{
+ra_temin,294,149,0	script	大祭司尼伦#ra	915,{
 	end;
 
 OnInit:
-	hideonnpc "High Priestess Niren#ra";
+	hideonnpc "大祭司尼伦#ra";
 	end;
 
 OnEnable:
@@ -6278,7 +5567,7 @@ OnEnable:
 
 OnTimer120000:
 	stopnpctimer;
-	hideonnpc "High Priestess Niren#ra";
+	hideonnpc "大祭司尼伦#ra";
 	end;
 }
 
@@ -6343,40 +5632,40 @@ OnTouch:
 		mes "^3355FF有人来了！";
 		mes "你最好离开墙边，尽量装作什么也不知道！^000000";
 		next;
-		hideoffnpc "High Priestess Niren#ra";
+		hideoffnpc "大祭司尼伦#ra";
 		cutin "ra_gwoman",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "哦！你一定就是大祭司贝——呃，泽德告诉我的那个人。";
-		mes "很高兴见到你。我是妮伦大祭司，随时为你效劳。";
+		mes "很高兴见到你。我是尼伦大祭司，随时为你效劳。";
 		next;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "听说你有幸与我们的教皇交谈，";
 		mes "她也度过了愉快的时光。";
 		mes "你觉得她怎么样，嗯？";
 		next;
 		select("她和我想象的不一样……");
 		cutin "ra_gwoman2",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "啊，我明白你的意思了……";
 		mes "通常外来者都会告诉我，";
 		mes "他们以为我们的教皇是白发苍苍的老人。";
 		mes "但阿鲁纳佩尔兹并不是这样。";
 		next;
 		cutin "ra_gwoman",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "通常，我们会根据她与女神芙蕾雅的相似程度选择教皇。";
 		mes "她必须拥有银色金发、雪白的皮肤，";
 		mes "以及神圣色彩的眼睛。你看到了，对吧？";
 		next;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "我很好奇：你和教皇谈了些什么？";
 		mes "如你所知，我们神职人员禁止离开阿鲁纳佩尔兹，所以……";
 		next;
-		mes "^3355FF你向她讲述了";
-		mes "你可以谈谈与教皇的对话，";
-		mes "但别提圣地的任何事情，这是泽德大祭司的要求。^000000";
+		mes "^3355FF你向她讲述了与教皇交谈的内容，";
+		mes "但按照大祭司泽德的要求，";
+		mes "你没有提及任何与圣地有关的事情。^000000";
 		next;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "啊，你的国家真有意思。";
 		mes "告诉我，你是怎么认识贝肯托，呃，我是说泽德大祭司的？";
 		next;
@@ -6385,21 +5674,21 @@ OnTouch:
 		next;
 		select("说明你如何认识泽德大祭司");
 		cutin "ra_gwoman2",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes ".........................";
 		mes "就这些？嗯？真有趣。^333333*叹气*^000000";
 		mes "我觉得他太容易相信别人了……";
 		mes "不过这只是我的看法。";
 		next;
 		cutin "ra_gwoman",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "如果你不介意……";
 		mes "我想给你一点建议。别和泽德大祭司走得太近。";
 		mes "否则你可能会给自己惹上麻烦。";
 		next;
 		cutin "",255;
-		hideonnpc "High Priestess Niren#ra";
-		mes "^3355FF妮伦大祭司离开了。";
+		hideonnpc "大祭司尼伦#ra";
+		mes "^3355FF尼伦大祭司离开了。";
 		mes "她说完这些话后，你感到疑惑。";
 		mes "她到底是什么意思？";
 		mes "现在，你最好去和泽德大祭司谈谈。^000000";
@@ -6416,8 +5705,7 @@ OnTouch:
 ra_temin,272,143,0	script	key1#rachel	-1,3,3,{
 OnTouch:
 	if (ra_tem_q == 20) {
-		mes "^3355FF你发现一个小小的";
-		mes "一个闪亮的物体落在地板上。^000000";
+		mes "^3355FF你发现地板上有一个小小的闪亮物体。^000000";
 		next;
 		if (select("忽略:捡起来") == 1) {
 			mes "^3355FF你决定忽略";
@@ -6443,8 +5731,7 @@ OnTouch:
 		mes "圣地的入口。可是挡在你面前的门锁着。^000000";
 		next;
 		if (select("放弃:使用小钥匙") == 2) {
-			mes "^3355FF你插入小钥匙，";
-			mes "你在泽德大祭司房间找到的钥匙，";
+			mes "^3355FF你插入在大祭司泽德房间找到的小钥匙，";
 			mes "发现它可以打开这扇门。^000000";
 			close2;
 			warp "ra_san01",140,135;
@@ -6459,12 +5746,10 @@ OnTouch:
 que_san04,119,115,0	script	imir1#rachel	-1,2,2,{
 OnTouch:
 	if (ra_tem_q == 21) {
-		mes "^3355FF这片宽阔区域看起来";
-		mes "这里像是因为某种原因被人为建造的，";
+		mes "^3355FF这片宽阔区域看起来是为某种目的而人工建造的，";
 		mes "不像是自然被魔物侵占的区域。^000000";
 		next;
-		mes "^3355FF也许探索这里";
-		mes "在这个地方，你应该能找到有趣的东西。^000000";
+		mes "^3355FF也许探索这个地方，就能找到有趣的东西。^000000";
 		close;
 	}
 	end;
@@ -6483,51 +5768,48 @@ OnTouch:
 que_san04,119,203,0	script	imir3#rachel	-1,7,7,{
 OnTouch:
 	if (ra_tem_q == 21) {
-		mes "^3355FF难怪这个物体";
-		mes "水里的东西看起来很熟悉：";
-		mes "那是伊米尔之心碎片！";
+		mes "^3355FF难怪水里的东西看起来很熟悉：";
+		mes "那是尤弥尔之心碎片！";
 		mes "事实上，这里到处都散落着几十块。^000000";
 		next;
-		mes "^3355FF为什么这里会有这么多";
-		mes "圣地里怎么会有这么强大的神器？";
+		mes "^3355FF圣地里为什么会有这么多强大的神器？";
 		mes "也许这就是神职人员试图保守的秘密。^000000";
 		next;
-		hideoffnpc "High Priestess Niren#r2";
+		hideoffnpc "大祭司尼伦#r2";
 		cutin "ra_gwoman",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "你竟敢闯入圣地！";
 		mes "报上名来！我要把你交给审判！";
 		next;
 		cutin "ra_gwoman2",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "哦——哦！原来是你，贝肯托推荐的冒险者。";
 		mes "嗯，抱歉刚才对你那么粗鲁。";
 		mes "你不知道这里不允许任何人进入吗？";
 		next;
 		cutin "ra_gwoman",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "嗯。你们卢恩·米德加尔特的冒险者";
 		mes "以技巧和能力闻名，但这次真出乎意料。";
 		mes "我们明明确保了这里绝对安全。";
 		next;
 		cutin "ra_gwoman2",2;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "事已至此……";
 		mes "我警告过贝肯托，他可能会给你带来麻烦，";
 		mes "但看来反而是你给他带来了麻烦。";
 		next;
-		mes "[妮伦大祭司]";
+		mes "[尼伦大祭司]";
 		mes "听清楚：大多数入侵者都会受到严惩，";
 		mes "但看在我和贝肯托的交情上，";
 		mes "这次我从轻处理。记住这一点。";
 		next;
 		sc_start SC_Blind,600000,0;
-		mes "^3355FF妮伦开始吟唱";
-		mes "低声说道。你的眼皮越来越沉，";
-		mes "渐渐感到困倦，最终睡着了……^000000";
+		mes "^3355FF尼伦开始低声吟唱。";
+		mes "你的眼皮越来越沉，渐渐感到困倦……^000000";
 		close2;
 		cutin "",255;
-		hideonnpc "High Priestess Niren#r2";
+		hideonnpc "大祭司尼伦#r2";
 		set ra_tem_q,22;
 		changequest 8104,8105;
 		warp "rachel",163,152;
@@ -6536,11 +5818,11 @@ OnTouch:
 	end;
 }
 
-que_san04,122,200,4	script	High Priestess Niren#r2	915,{
+que_san04,122,200,4	script	大祭司尼伦#r2	915,{
 	end;
 
 OnInit:
-	hideonnpc "High Priestess Niren#r2";
+	hideonnpc "大祭司尼伦#r2";
 	end;
 
 OnEnable:
@@ -6549,16 +5831,15 @@ OnEnable:
 
 OnTimer120000:
 	stopnpctimer;
-	hideonnpc "High Priestess Niren#r2";
+	hideonnpc "大祭司尼伦#r2";
 	end;
 }
 
 rachel,163,152,0	script	imir3#rachel2	-1,3,3,{
 OnTouch:
 	if (ra_tem_q == 22) {
-		mes "^3355FF你感到一阵轻微的头痛";
-		mes "恢复意识后，你发现自己回到了拉赫城。";
-		mes "你昏迷了多久？^000000";
+		mes "^3355FF恢复意识后，你感到一阵轻微的头痛，";
+		mes "并发现自己回到了拉赫城。你昏迷了多久？^000000";
 		next;
 		sc_end SC_Blind;
 		mes "^3355FF最好";
@@ -6569,7 +5850,7 @@ OnTouch:
 	end;
 }
 
-rachel,142,167,5	script	Seeking Follower#rachel	916,6,6,{
+rachel,142,167,5	script	寻找冒险者的信徒#rachel	916,6,6,{
 	if ((lost_boy == 13) && (ra_tem_q == 20)) {
 		L_Mes:
 		mes "[阿鲁纳佩尔兹信徒]";

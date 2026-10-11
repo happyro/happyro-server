@@ -16,11 +16,10 @@
 
 // Instance Creation :: buwaya_dun
 //============================================================
-ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
+ma_fild02,312,317,5	script	守卫::Guard#buwaya_cave	570,{
 	if (BaseLevel < 130) {
-		mes "[Guard]";
-		mes "低于 ^ff0000 130 级^000000 的人";
-		mes "不能进入这里。";
+		mes "[守卫]";
+		mes "低于 ^ff0000 130 级^000000 的人不能进入这里。";
 		mes "这里很危险，请回去吧。";
 		close;
 	}
@@ -29,35 +28,29 @@ ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 	set .@md_name$,"布瓦亚洞窟";
 
 	if (!.@party_id) {
-		mes "[Guard]";
-		mes "Buwaya 很危险。";
-		mes "请和其他人组成队伍后";
-		mes "再回来吧。";
+		mes "[守卫]";
+		mes "布瓦亚很危险。";
+		mes "请和其他人组成队伍后再回来吧。";
 		close;
 	}
 	if (is_party_leader() == true) {
-		mes "[Guard]";
+		mes "[守卫]";
 		mes "这里很危险，请回去吧。";
 		mes "如果你没什么事要办，请回去。";
 		next;
 		while(1) {
-				switch(select("为什么这么危险？:我来这里猎杀 Buwaya。:结束对话。")) {
+				switch(select("为什么这么危险？:我来这里猎杀布瓦亚。:结束对话。")) {
 			case 1:
-				mes "[Guard]";
+				mes "[守卫]";
 				mes "最近发生了村民失踪的事件。";
-				mes "调查踪迹后，";
-				mes "我们发现罪魁祸首是";
-				mes "巨大的怪物 Buwaya。";
+				mes "调查踪迹后，我们发现罪魁祸首是巨大的怪物布瓦亚。";
 				next;
-				mes "[Guard]";
-				mes "我们派出了士兵和佣兵";
-				mes "去猎杀 Buwaya，但始终";
-				mes "没有完全成功。";
+				mes "[守卫]";
+				mes "我们派出了士兵和佣兵去猎杀布瓦亚，但始终没有成功。";
 				next;
-				mes "[Guard]";
-				mes "直到今天，Buwaya 仍在绑架";
-				mes "村民。";
-				mes "请召集一些人消灭 Buwaya。";
+				mes "[守卫]";
+				mes "直到今天，布瓦亚仍在绑架村民。";
+				mes "请召集一些人消灭布瓦亚。";
 				next;
 				break;
 			case 2:
@@ -65,9 +58,9 @@ ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 				if (.@playtime == -1) {
 					// fall through
 				} else if (.@playtime == 0 || .@playtime == 1) {
-					mes "[Guard]";
-					mes "Buwaya 还在躲藏。";
-					mes "即使现在进去，Buwaya 也不会出来。";
+					mes "[守卫]";
+					mes "布瓦亚还在躲藏。";
+					mes "即使现在进去，布瓦亚也不会出来。";
 					mes "请稍后再回来。";
 					close;
 				} else {
@@ -75,38 +68,37 @@ ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 					// fall through
 				}
 				if (instance_create(.@md_name$) < 0) {
-					mes "[Guard]";
+					mes "[守卫]";
 					mes "队伍名称是……"+getpartyname(.@party_id)+"。";
 					mes "队长是……"+strcharinfo(0);
 					mes "^0000ff"+.@md_name$+"^000000 目前无法开启。";
 					mes "请稍后再试。";
 					close;
 				}
-				mes "[Guard]";
+				mes "[守卫]";
 				mes "我会打开通往 ^0000ff"+.@md_name$+"^000000 的通道。";
 				mes "祝你好运。";
 				close;
 			case 3:
-				mes "[Guard]";
+				mes "[守卫]";
 			mes "这里很危险，你不能进入。";
 				close;
 			}
 		}
 	} else {
-		mes "[Guard]";
+		mes "[守卫]";
 		mes "让我和队长谈谈。";
 		mes "请让队长过来。";
 		close;
 	}
 }
 
-ma_fild02,315,323,0	script	Cave Entrance#buwaya	45,2,2,{
+ma_fild02,315,323,0	script	洞窟入口::Cave Entrance#buwaya	45,2,2,{
 	end;
 OnTouch:
 	if (BaseLevel < 130) {
-		mes "[Guard]";
-		mes "低于 ^ff0000 130 级^000000 的人";
-		mes "不能进入这里。";
+		mes "[守卫]";
+		mes "低于 ^ff0000 130 级^000000 的人不能进入这里。";
 		mes "这里很危险，请回去吧。";
 		close;
 	}
@@ -114,9 +106,9 @@ OnTouch:
 	if (.@playtime == -1) {
 		// fall through
 	} else if (.@playtime == 0 || .@playtime == 1) {
-		mes "[Guard]";
-		mes "Buwaya 还在躲藏。";
-		mes "即使现在进去，Buwaya 也不会出来。";
+		mes "[守卫]";
+		mes "布瓦亚还在躲藏。";
+		mes "即使现在进去，布瓦亚也不会出来。";
 		mes "请稍后再回来。";
 		close;
 	} else {
@@ -127,17 +119,17 @@ OnTouch:
 	case 1:
 		switch(instance_enter("布瓦亚洞窟")) {
 		case IE_OTHER:
-			mes "[Guard]";
+			mes "[守卫]";
 			mes "哦，现在不是好时机。";
 			mes "请稍后再试。";
 			close;
 		case IE_NOINSTANCE:
 		case IE_NOMEMBER:
-			mes "[Guard]";
+			mes "[守卫]";
 			mes "这里很危险，请不要进入。";
 			close;
 		case IE_OK:
-		mapannounce "ma_fild02",getpartyname(getcharid(1))+" 队伍的成员 "+strcharinfo(0)+" 开始在 Buwaya 洞穴猎杀 Buwaya。",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+		mapannounce "ma_fild02",getpartyname(getcharid(1))+" 队伍的成员 "+strcharinfo(0)+" 开始在布瓦亚洞穴猎杀布瓦亚。",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 			setquest 4229;
 			//warp "1@ma_c",35,57;
 			end;
@@ -146,7 +138,7 @@ OnTouch:
 			close;
 		}
 	case 2:
-		mes "[Guard]";
+		mes "[守卫]";
 	mes "你必须珍惜自己的生命。";
 	mes "行动前最好仔细考虑。";
 		close;
@@ -177,24 +169,23 @@ OnTouch:
 	end;
 }
 
-1@ma_c,29,110,5	script	Kidnapped People#1	575,{
-	mes "[Kidnapped Residents]";
-	mes "Buwaya 到处乱跑，";
-	mes "又有人被抓住了。";
+1@ma_c,29,110,5	script	被绑架的村民::Kidnapped People#1	575,{
+	mes "[被绑架的村民]";
+	mes "布瓦亚到处乱跑，又有人被抓住了。";
 	mes "我们会被困在这里度过余生。";
 	next;
 	switch(select("带我离开这里！！:难……难道逃不出去？")) {
 	case 1:
-		mes "[Kidnapped Residents]";
-		mes "我们没有足够的力量消灭它，但 Buwaya 有弱点。";
+		mes "[被绑架的村民]";
+		mes "我们没有足够的力量消灭它，但布瓦亚有弱点。";
 		mes "看看那边的墙。";
-		mes "如果敲击那里，Buwaya 会感到疼痛并把你吐出来。";
+		mes "如果敲击那里，布瓦亚会感到疼痛并把你吐出来。";
 		donpcevent instance_npcname("#box_mob_call")+"::OnEnable";
 		close2;
 		disablenpc instance_npcname("Kidnapped People#1");
 		end;
 	case 2:
-		mes "[Kidnapped People]";
+		mes "[被绑架的村民]";
 		mes "这里有些不对劲……";
 		mes "你以前经历过这种事吗？";
 		close;
@@ -209,29 +200,28 @@ OnEnable:
 	end;
 }
 
-1@ma_c,36,110,5	script	Kidnapped People#2	574,{
-	mes "[Kidnapped Residents]";
+1@ma_c,36,110,5	script	被绑架的村民::Kidnapped People#2	574,{
+	mes "[被绑架的村民]";
 	mes "啊哈！真希望我再强一点……";
 	mes "我知道它的弱点……";
 	next;
 	switch(select("告诉我。:你真的知道吗？")) {
 	case 1:
-		mes "[Kidnapped Residents]";
+		mes "[被绑架的村民]";
 		mes "你确定能做到吗……？";
 		mes "好，仔细听，";
 		mes "它的弱点是……";
 		next;
-		mes "[Kidnapped Residents]";
+		mes "[被绑架的村民]";
 		mes "……就在我们身后的墙上。";
 		sc_start SC_ATKPOTION,60000,45;
 		sc_start SC_MATKPOTION,60000,45;
 		disablenpc instance_npcname("Kidnapped People#2");
 		close;
 	case 2:
-		mes "[Kidnapped Residents]";
+		mes "[被绑架的村民]";
 		mes "什么？！";
-		mes "你是在无视我吗，";
-		mes "就因为我被困在这里？";
+		mes "就因为我被困在这里，你就不把我当回事吗？";
 		close;
 	}
 	end;
@@ -253,8 +243,8 @@ OnEnable:
 	enablenpc instance_npcname("#box_mob_call");
 	set .@label$, instance_npcname("#box_mob_call")+"::OnMyMobDead";
 	set .@map$, instance_mapname("1@ma_c");
-	monster .@map$,30,118,"Buwaya's Weakness",2333,1,.@label$;
-	monster .@map$,35,118,"Buwaya's Weakness",2333,1,.@label$;
+	monster .@map$,30,118,"布瓦亚的弱点",2333,1,.@label$;
+	monster .@map$,35,118,"布瓦亚的弱点",2333,1,.@label$;
 	end;
 OnDisable:
 	killmonster instance_mapname("1@ma_c"),instance_npcname("#box_mob_call")+"::OnMyMobDead";
@@ -288,7 +278,7 @@ OnInstanceInit:
 	initnpctimer;
 	end;
 OnTimer30000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：我要把你放进我的宝箱！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：我要把你放进我的宝箱！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	// Should execute OnTimer33000, but client doesn't render the effect fast enough.
 	for(set .@i,1; .@i<=9; set .@i,.@i+1)
 		donpcevent instance_npcname("#yunobi"+.@i)+"::OnEnable";
@@ -341,30 +331,30 @@ OnInstanceInit:
 	initnpctimer;
 	end;
 OnTimer58000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：我受够了，让我们战斗到底！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：我受够了，让我们战斗到底！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer61000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：这就是！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：这就是！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer62000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：这就是……我的！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：这就是……我的！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer63000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：这就是……我的……致命！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：这就是……我的……致命！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer64000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：这就是……我的……致命……攻击！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：这就是……我的……致命……攻击！",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer65000:
 	set .@label$, instance_npcname("#bunshin")+"::OnMyMobDead";
 	set .@map$, instance_mapname("1@ma_c");
-	areamonster .@map$,112,89,122,99,"Buwaya",2332,1,.@label$;
-	areamonster .@map$,112,49,122,59,"Buwaya",2332,1,.@label$;
-	areamonster .@map$,72,49,82,59,"Buwaya",2332,1,.@label$;
-	areamonster .@map$,72,89,82,99,"Buwaya",2332,1,.@label$;
+	areamonster .@map$,112,89,122,99,"布瓦亚",2332,1,.@label$;
+	areamonster .@map$,112,49,122,59,"布瓦亚",2332,1,.@label$;
+	areamonster .@map$,72,49,82,59,"布瓦亚",2332,1,.@label$;
+	areamonster .@map$,72,89,82,99,"布瓦亚",2332,1,.@label$;
 	end;
 OnTimer66000:
-	mapannounce instance_mapname("1@ma_c"),"Buwaya：你害怕了吗？",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	mapannounce instance_mapname("1@ma_c"),"布瓦亚：你害怕了吗？",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 	end;
 OnTimer105000:
 	killmonster instance_mapname("1@ma_c"),instance_npcname("#bunshin")+"::OnMyMobDead";
@@ -387,7 +377,7 @@ OnDisable:
 1@ma_c,2,2,0	script	#buwaya_con	139,{
 	end;
 OnInstanceInit:
-	areamonster instance_mapname("1@ma_c"),90,67,104,81,"Buwaya",2319,1,instance_npcname("#buwaya_con")+"::OnMyMobDead";
+	areamonster instance_mapname("1@ma_c"),90,67,104,81,"布瓦亚",2319,1,instance_npcname("#buwaya_con")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
 	set .@map$, instance_mapname("1@ma_c");
@@ -413,8 +403,8 @@ OnTimer60000:
 		set .@amount,10;
 	else
 		set .@amount,1;
-	areamonster .@map$,43,58,47,60,"Water Plant",2331,.@amount,.@label$;
-	areamonster .@map$,43,58,47,60,"Egg",2329,.@amount,.@label$;
+	areamonster .@map$,43,58,47,60,"水草",2331,.@amount,.@label$;
+	areamonster .@map$,43,58,47,60,"布瓦亚的卵",2329,.@amount,.@label$;
 	stopnpctimer;
 	initnpctimer;
 	end;
@@ -445,20 +435,20 @@ OnTouch:
 1@ma_c,1,1,0	script	#buwaya_spawn_mobs	-1,{
 OnInstanceInit:
 	set .@map$, instance_mapname("1@ma_c");
-	areamonster .@map$,73,81,93,101,"Seaweed",2331,18;
-	areamonster .@map$,110,97,116,103,"Seaweed",2331,8;
-	areamonster .@map$,59,63,63,67,"Seaweed",2331,8;
-	areamonster .@map$,73,55,77,59,"Seaweed",2331,4;
-	areamonster .@map$,103,69,107,73,"Seaweed",2331,4;
-	areamonster .@map$,108,45,122,63,"Seaweed",2331,15;
-	areamonster .@map$,73,81,93,101,"Buwaya's Egg",2329,10;
-	areamonster .@map$,110,97,116,103,"Buwaya's Egg",2329,8;
-	areamonster .@map$,59,63,63,67,"Buwaya's Egg",2329,4;
-	areamonster .@map$,73,55,77,59,"Buwaya's Egg",2329,3;
-	areamonster .@map$,103,69,107,73,"Buwaya's Egg",2329,3;
-	areamonster .@map$,108,45,122,63,"Buwaya's Egg",2329,15;
-	monster .@map$,0,0,"Seaweed",2331,5;
-	monster .@map$,0,0,"Buwaya's Slave",2330,5;
+	areamonster .@map$,73,81,93,101,"水草",2331,18;
+	areamonster .@map$,110,97,116,103,"水草",2331,8;
+	areamonster .@map$,59,63,63,67,"水草",2331,8;
+	areamonster .@map$,73,55,77,59,"水草",2331,4;
+	areamonster .@map$,103,69,107,73,"水草",2331,4;
+	areamonster .@map$,108,45,122,63,"水草",2331,15;
+	areamonster .@map$,73,81,93,101,"布瓦亚的卵",2329,10;
+	areamonster .@map$,110,97,116,103,"布瓦亚的卵",2329,8;
+	areamonster .@map$,59,63,63,67,"布瓦亚的卵",2329,4;
+	areamonster .@map$,73,55,77,59,"布瓦亚的卵",2329,3;
+	areamonster .@map$,103,69,107,73,"布瓦亚的卵",2329,3;
+	areamonster .@map$,108,45,122,63,"布瓦亚的卵",2329,15;
+	monster .@map$,0,0,"水草",2331,5;
+	monster .@map$,0,0,"布瓦亚的仆从",2330,5;
 	end;
 }
 // 切片行数保留

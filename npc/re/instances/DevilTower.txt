@@ -7,7 +7,7 @@
 //= 1.0 First version. [Capuche]
 //============================================================
 
-dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
+dali02,134,119,5	script	历史学家谢普::Historian Shep#tnm01	4_F_NOVICE,{
 	if (BaseLevel < 130) {
 		mes "[谢普]";
 		mes "你愿意自愿探索恶魔之塔吗？";
@@ -28,7 +28,7 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		mes "你的身体需要从时空旅行中恢复。";
 		next;
 		mes "[谢普]";
-		mes "休息一天，明天再来吧！";
+		mes "探索资格会在每日凌晨 4 点重置，之后再来吧！";
 		mes "明白了吗？";
 		close;
 	case 2:
@@ -61,7 +61,7 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		getexp 450000,450000;
 		devil_tower_can_reenter = 0;
 		devil_tower_enter = 0;
-		mes "请明天再来！";
+		mes "请在下次凌晨 4 点重置后再来！";
 		close;
 	}
 	if (isbegin_quest(7574) > 0) {// failed after seal
@@ -80,7 +80,7 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		getexp 300000,300000;
 		devil_tower_can_reenter = 0;
 		devil_tower_enter = 0;
-		mes "请明天再来！";
+		mes "请在下次凌晨 4 点重置后再来！";
 		close;
 	}
 	if (isbegin_quest(7571) > 0) {// failed at stair 2 tnm1
@@ -100,7 +100,7 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		getexp 200000,200000;
 		devil_tower_can_reenter = 0;
 		devil_tower_enter = 0;
-		mes "请明天再来！";
+		mes "请在下次凌晨 4 点重置后再来！";
 		close;
 	}
 	switch( checkquest(7568,PLAYTIME) ) {// entrance timer - 1h30 to enter
@@ -114,10 +114,10 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		next;
 		mes "[谢普]";
 		mes "请把你在塔里发现的一切报告给我。";
-		mes "情报越有价值，我支付给你的 Zeny 就越多！";
+		mes "情报越有价值，你获得的经验奖励就越多！";
 		next;
 		mes "[谢普]";
-		mes "那边的拉斐尔学者会用这个时空装置打开次元裂缝。";
+		mes "那边的魔法学者阿尔蒂会用这个时空装置打开次元裂缝。";
 		mes "裂缝仍然不稳定，所以你的探索时间会受到限制。";
 		next;
 		mes "[谢普]";
@@ -168,14 +168,14 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 	}
 		mes "[谢普]";
 	mes "首先，你需要在入口处预约队列。";
-	mes "拉斐尔学者阿蒂会替你预约。";
+	mes "魔法学者阿尔蒂会替你预约。";
 	next;
 		mes "[谢普]";
 	mes "由于次元裂缝仍然不稳定，时间有限。";
 	mes "请简短高效地完成探索。";
 	next;
 		mes "[谢普]";
-	mes "奖励会根据你花费的时间而不同。";
+	mes "奖励会根据你的探索进度而不同。";
 	mes "祝你好运！";
 	next;
 	if (select( "相信我！", "取消预约" ) == 1) {
@@ -187,17 +187,17 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 	if (devil_tower_enter == 1) {
 		mes "[谢普]";
 		mes "你似乎已经厌倦探索了。";
-		mes "^4d4dff如果现在取消，你需要一天后才能再次挑战。^000000";
+		mes "^4d4dff如果现在取消，你需要等到下次凌晨 4 点重置后才能再次挑战。^000000";
 		mes "这样可以吗？";
 		next;
 		if (select( "是的，取消。", "等等，别取消！" ) == 2) {
-			mes "[Shep]";
+			mes "[谢普]";
 		mes "好，那我不取消。";
 			close;
 		}
 		mes "[谢普]";
 		mes "真的。";
-		mes "那就明天再来吧。";
+		mes "那就等到下次凌晨 4 点重置后再来吧。";
 		setquest 7577;// Space distortion
 		erasequest 7568;
 		if (isbegin_quest(7569)) erasequest 7569;// Treat the injured
@@ -206,14 +206,14 @@ dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
 		devil_tower_can_reenter = 0;
 		close;
 	}
-	mes "[Shep]";
+	mes "[谢普]";
 	mes "真的吗？";
 	mes "听完这些说明之后还要取消吗？";
 	erasequest 7568;// Explore the tower
 	close;
 }
 
-dali02,137,121,3	script	Magic Scholar Artie#tnm	4_M_FAIRYKID6,{
+dali02,137,121,3	script	魔法学者阿尔蒂::Magic Scholar Artie#tnm	4_M_FAIRYKID6,{
 	.@party_id = getcharid(1);
 	if (.@party_id == 0) {
 		mes "[阿尔蒂]";
@@ -264,7 +264,7 @@ dali02,137,121,3	script	Magic Scholar Artie#tnm	4_M_FAIRYKID6,{
 		mes "你还在等什么？";
 		close;
 	}
-	mes "[Artie]";
+	mes "[阿尔蒂]";
 	mes "次元装置已启动。";
 	mes "如果你足够幸运，就能很快完成这次探索。";
 	mes "期待听到你的好消息。";
@@ -272,7 +272,7 @@ dali02,137,121,3	script	Magic Scholar Artie#tnm	4_M_FAIRYKID6,{
 	close;
 }
 
-dali02,141,120,3	script	Dimensional Device#tnm0	PORTAL,{
+dali02,141,120,3	script	次元装置::Dimensional Device#tnm0	PORTAL,{
 	if (devil_tower_can_reenter == 1) {// can't re-enter
 		mes "[阿尔蒂]";
 		mes "喂，喂。";
@@ -290,12 +290,12 @@ dali02,141,120,3	script	Dimensional Device#tnm0	PORTAL,{
 		mes "听我说，很抱歉，除了允许的时间外不能进入；恶魔之塔很危险。";
 		close;
 	}
-	mes "[Artie]";
+	mes "[阿尔蒂]";
 	mes "没错，这就是次元装置。";
 	mes "它可以用来进行时空旅行。";
 	mes "离开后再想进入会很困难。";
 	next;
-	mes "[Artie]";
+	mes "[阿尔蒂]";
 	mes "不过别担心，我可是天才学者~";
 	mes "总之，准备好进入了吗？";
 	next;
@@ -316,7 +316,7 @@ dali02,141,120,3	script	Dimensional Device#tnm0	PORTAL,{
 		mes "它似乎还没有启动。";
 		next;
 		mes "[谢普]";
-		mes "请与魔法学者阿蒂交谈，取得启动装置的许可。";
+		mes "请与魔法学者阿尔蒂交谈，取得启动装置的许可。";
 		close;
 	case IE_NOMEMBER:
 		mes "[阿尔蒂]";
@@ -419,10 +419,10 @@ OnTimer12000:
 	emotion ET_THINK, getnpcid(0, instance_npcname("An aide#tnm02"));
 	end;
 OnTimer16000:
-	npctalk "助手：没有足够的人可以召集……", instance_npcname("An aide#tnm02");
+	npctalk "副官：没有足够的人可以召集……", instance_npcname("An aide#tnm02");
 	end;
 OnTimer17000:
-	npctalk "助手：好消息是恶魔停止攻击了。", instance_npcname("An aide#tnm02");
+	npctalk "副官：好消息是恶魔停止攻击了。", instance_npcname("An aide#tnm02");
 	end;
 OnTimer21000:
 	npctalk "海姆军官：我们不能一直困在这里，必须继续前进。恶魔为什么停止攻击？", instance_npcname("Officer Heim#heim0");
@@ -438,9 +438,9 @@ OnTimer26000:
 	end;
 }
 
-1@tnm1,57,112,5	script	Officer Heim#heim0	4_TOWER_05,{ end; }
+1@tnm1,57,112,5	script	海姆军官::Officer Heim#heim0	4_TOWER_05,{ end; }
 
-1@tnm1,56,110,3	script	Officer Heim#heim	4_TOWER_05,{
+1@tnm1,56,110,3	script	海姆军官::Officer Heim#heim	4_TOWER_05,{
 	if (is_party_leader() == false) {
 		mes "[海姆军官]";
 		mes "是谁把你们带到这里的？";
@@ -488,7 +488,7 @@ OnTimer26000:
 	}
 }
 
-1@tnm1,47,109,3	script	Healer Fama#feima	4_TOWER_10,{
+1@tnm1,47,109,3	script	法玛治疗师::Healer Fama#feima	4_TOWER_10,{
 	if ('devil_tower == 1) {
 		if (countitem(7641) < 1) {
 			mes "[法玛治疗师]";
@@ -502,18 +502,18 @@ OnTimer26000:
 				getitem 7641,1;// Medical_Cure_Box
 			close;
 		}
-		mes "[Healer Fama]";
+		mes "[法玛治疗师]";
 		mes "抱歉……现在物资供应不足，我一次只能提供一个急救包。";
 		mes "用完后请再来申请。";
 		close;
 	}
-	mes "[Healer Fama]";
+	mes "[法玛治疗师]";
 	mes "嗯……好吧，我们现在可以休息了。";
 	mes "非常感谢！";
 	close;
 }
 
-1@tnm1,39,114,3	script	Injured Soldier#1_1	4_TOWER_01,3,3,{
+1@tnm1,39,114,3	script	受伤士兵#1_1::Injured Soldier#1_1	4_TOWER_01,3,3,{
 	if ('devil_tower != 1)
 		end;
 	if (countitem(7641) < 1) {
@@ -523,7 +523,7 @@ OnTimer26000:
 	mes "这名士兵失去了意识，正在呻吟。";
 	mes "要使用急救包吗？";
 	next;
-	if (select( "Use first-aid kit.", "Observe condition." ) == 2) {
+	if (select( "使用急救包。", "观察伤势。" ) == 2) {
 		mes "你决定继续观察受伤士兵的状况。";
 		close;
 	}
@@ -535,13 +535,13 @@ OnTimer26000:
 		delitem 7641,1;
 		specialeffect EF_ENTRY;
 		disablenpc();
-		enablenpc instance_npcname( strnpcinfo(1) + "#" + replacestr( strnpcinfo(2), "_1", "" ) );
-		specialeffect EF_ENTRY,AREA, instance_npcname( strnpcinfo(1) + "#" + replacestr( strnpcinfo(2), "_1", "" ) );
+		enablenpc instance_npcname( "Injured Soldier#" + replacestr( strnpcinfo(2), "_1", "" ) );
+		specialeffect EF_ENTRY,AREA, instance_npcname( "Injured Soldier#" + replacestr( strnpcinfo(2), "_1", "" ) );
 		mes "成功了。";
 		'heal_count++;
 		if ('heal_count == 7) {
 			'devil_tower = 2;
-			npctalk "治疗师Fama：刺客？！", instance_npcname("Healer Fama#feima");
+			npctalk "法玛治疗师：刺客？！", instance_npcname("Healer Fama#feima");
 			enablenpc instance_npcname("Lucile#tnm01");
 			enablenpc instance_npcname("Magic Swordman#tnm01");
 			enablenpc instance_npcname("Assassin Huey#tnm01");
@@ -569,80 +569,80 @@ OnTouch:
 	end;
 }
 
-1@tnm1,30,120,3	duplicate(Injured Soldier#1_1)	Injured Soldier#2_1	4_TOWER_03,3,3
-1@tnm1,25,117,5	duplicate(Injured Soldier#1_1)	Injured Soldier#3_1	4_TOWER_06,3,3
-1@tnm1,19,118,4	duplicate(Injured Soldier#1_1)	Injured Soldier#4_1	4_TOWER_08,3,3
-1@tnm1,18,110,4	duplicate(Injured Soldier#1_1)	Injured Soldier#5_1	4_TOWER_11,3,3
-1@tnm1,24,104,7	duplicate(Injured Soldier#1_1)	Injured Soldier#6_1	4_TOWER_13,3,3
-1@tnm1,31,110,3	duplicate(Injured Soldier#1_1)	Injured Soldier#7_1	4_TOWER_03,3,3
+1@tnm1,30,120,3	duplicate(Injured Soldier#1_1)	受伤士兵#2_1::Injured Soldier#2_1	4_TOWER_03,3,3
+1@tnm1,25,117,5	duplicate(Injured Soldier#1_1)	受伤士兵#3_1::Injured Soldier#3_1	4_TOWER_06,3,3
+1@tnm1,19,118,4	duplicate(Injured Soldier#1_1)	受伤士兵#4_1::Injured Soldier#4_1	4_TOWER_08,3,3
+1@tnm1,18,110,4	duplicate(Injured Soldier#1_1)	受伤士兵#5_1::Injured Soldier#5_1	4_TOWER_11,3,3
+1@tnm1,24,104,7	duplicate(Injured Soldier#1_1)	受伤士兵#6_1::Injured Soldier#6_1	4_TOWER_13,3,3
+1@tnm1,31,110,3	duplicate(Injured Soldier#1_1)	受伤士兵#7_1::Injured Soldier#7_1	4_TOWER_03,3,3
 
-1@tnm1,39,114,3	script	Injured Soldier#1	4_TOWER_02,{
-	mes "[Injured soldiers]";
+1@tnm1,39,114,3	script	受伤士兵#1::Injured Soldier#1	4_TOWER_02,{
+	mes "[受伤士兵]";
 	mes "呼……现在好像没事了。";
 	mes "谢谢。";
 	close;
 }
 
-1@tnm1,30,120,3	script	Injured Soldier#2	4_TOWER_04,{
-	mes "[Injured soldiers]";
+1@tnm1,30,120,3	script	受伤士兵#2::Injured Soldier#2	4_TOWER_04,{
+	mes "[受伤士兵]";
 	mes "呻吟……让我死吧。";
 	mes "不，太痛了。";
 	close;
 }
 
-1@tnm1,25,117,5	script	Injured Soldier#3	4_TOWER_07,{
-	mes "[Injured soldiers]";
+1@tnm1,25,117,5	script	受伤士兵#3::Injured Soldier#3	4_TOWER_07,{
+	mes "[受伤士兵]";
 	mes "他的意识似乎仍然很模糊。";
 	mes "让他休息一下吧。";
 	close;
 }
 
-1@tnm1,19,118,4	script	Injured Soldier#4	4_TOWER_09,{
-	mes "[Injured soldiers]";
+1@tnm1,19,118,4	script	受伤士兵#4::Injured Soldier#4	4_TOWER_09,{
+	mes "[受伤士兵]";
 	mes "我以为自己要死了。";
 	mes "但我还活着！";
 	close;
 }
 
-1@tnm1,18,110,4	script	Injured Soldier#5	4_TOWER_12,{
-	mes "[Injured soldiers]";
+1@tnm1,18,110,4	script	受伤士兵#5::Injured Soldier#5	4_TOWER_12,{
+	mes "[受伤士兵]";
 	mes "我不能死在这里。回家后我还要向心爱的人求婚。";
 	mes "我们一定会幸福的，对吧？";
 	close;
 }
 
-1@tnm1,24,104,7	script	Injured Soldier#6	4_TOWER_14,{
-	mes "[Injured soldiers]";
+1@tnm1,24,104,7	script	受伤士兵#6::Injured Soldier#6	4_TOWER_14,{
+	mes "[受伤士兵]";
 	mes "我感觉好多了，但还是不能动。";
 	mes "不过能活着真幸运。";
 	close;
 }
 
-1@tnm1,31,110,3	script	Injured Soldier#7	4_TOWER_04,{
-	mes "[Injured soldiers]";
+1@tnm1,31,110,3	script	受伤士兵#7::Injured Soldier#7	4_TOWER_04,{
+	mes "[受伤士兵]";
 	mes "谢谢……谢谢……";
 	close;
 }
 
-1@tnm1,61,110,3	script	An aide#tnm02	4_M_MOCASS2,{
-	mes "[An aide]";
+1@tnm1,61,110,3	script	副官::An aide#tnm02	4_M_MOCASS2,{
+	mes "[副官]";
 	mes "数百年前发生的灾难不会再次发生，对吧？";
 	mes "恶魔为什么又突然出现了？";
 	close;
 }
 
-1@tnm1,61,113,3	script	A tirailleur#tnm01	4_M_MOCASS1,{
-	mes "[A tirailleur]";
+1@tnm1,61,113,3	script	散兵::A tirailleur#tnm01	4_M_MOCASS1,{
+	mes "[散兵]";
 	mes "你是支援队成员吗？";
 	mes "太好了，这里的情况越来越糟。";
 	mes "很高兴你们来帮忙。";
 	close;
 }
 
-1@tnm1,46,105,5	script	Lucile#tnm01	4_F_LUCILE,{
+1@tnm1,46,105,5	script	露西尔::Lucile#tnm01	4_F_LUCILE,{
 	if (is_party_leader() == false) {
 		cutin "tnm_lucile01.bmp",2;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "谁负责带领支援队？";
 		close3;
 	}
@@ -653,24 +653,24 @@ OnTouch:
 		setpcblock PCBLOCK_NPC, true;
 		cutin "tnm_lucile01.bmp",2;
 		sleep2 1500;
-		 npctalk "Lucile：我是刺客公会的Lucile。", .@lucile$;
+		 npctalk "露西尔：我是刺客公会的露西尔。", .@lucile$;
 		sleep2 2000;
-		npctalk "Heim军官：我们的支援来自刺客公会？谢谢你们及时赶到。", .@heim$;
+		npctalk "海姆军官：我们的支援来自刺客公会？谢谢你们及时赶到。", .@heim$;
 		sleep2 3000;
-		npctalk "Lucile：情况似乎不太妙。", .@lucile$;
+		npctalk "露西尔：情况似乎不太妙。", .@lucile$;
 		sleep2 3000;
-		npctalk "Lucile：普隆德拉的勇敢骑士们怎么了？", .@lucile$;
+		npctalk "露西尔：普隆德拉的勇敢骑士们怎么了？", .@lucile$;
 		sleep2 3000;
-		npctalk "Heim军官：你是在嘲笑我吗？", .@heim$;
+		npctalk "海姆军官：你是在嘲笑我吗？", .@heim$;
 		sleep2 3000;
-		npctalk "Lucile：完全不是。我是真的想知道。楼上发生了什么？", .@lucile$;
+		npctalk "露西尔：完全不是。我是真的想知道。楼上发生了什么？", .@lucile$;
 		sleep2 2500;
 		emotion ET_OHNO, getnpcid(0, .@heim$);
 		sleep2 1000;
-		npctalk "Heim军官：你怎么知道？没错，恶魔已经停止从楼上发动攻击了。", .@heim$;
+		npctalk "海姆军官：你怎么知道？没错，恶魔已经停止从楼上发动攻击了。", .@heim$;
 		sleep2 3000;
 		emotion ET_SMILE, getnpcid(0, .@lucile$);
-		npctalk "Lucile：你怎么看这个情况，魔剑士？", .@lucile$;
+		npctalk "露西尔：你怎么看这个情况，魔剑士？", .@lucile$;
 		cutin "tnm_lucile01.bmp",0;
 		sleep2 3000;
 		npctalk "魔剑士：嗯，我去调查。", instance_npcname("Magic Swordman#tnm01");
@@ -679,18 +679,18 @@ OnTouch:
 		cutin "",255;
 		disablenpc instance_npcname("Magic Swordman#tnm01");
 		sleep2 1000;
-		npctalk "Lucile：你怎么这么快？", .@lucile$;
+		npctalk "露西尔：你怎么这么快？", .@lucile$;
 		cutin "tnm_lucile01.bmp",2;
 		sleep2 2000;
-		npctalk "Heim军官：你在做什么？独自去会被杀的！", .@heim$;
+		npctalk "海姆军官：你在做什么？独自去会被杀的！", .@heim$;
 		sleep2 3000;
-		npctalk "Lucile：我不会独自行动，还有一些没有受伤的士兵！", .@lucile$;
+		npctalk "露西尔：我不会独自行动，还有一些没有受伤的士兵！", .@lucile$;
 		sleep2 2500;
-		npctalk "Lucile：好吧，我要请你做我的支援。哈哈哈，对吧Dewey？", .@lucile$;
+		npctalk "露西尔：好吧，我要请你做我的支援。哈哈哈，对吧杜威？", .@lucile$;
 		sleep2 500;
 		enablenpc instance_npcname("Assassin Dewey#tnm01");
 		enablenpc instance_npcname("#tnm1stepmob");
-		npctalk "Dewey：好的，我会的。", instance_npcname("Assassin Dewey#tnm01");
+		npctalk "杜威：好的，我会的。", instance_npcname("Assassin Dewey#tnm01");
 		'devil_tower = 4;
 		sleep2 500;
 		cutin "",255;
@@ -698,35 +698,35 @@ OnTouch:
 		disablenpc instance_npcname("Assassin Huey#tnm01");
 		disablenpc instance_npcname("Assassin Louie#tnm01");
 		sleep2 2000;
-		npctalk "Heim军官：他们真是难以预测。你知道发生了什么，对吧？支援他们……", .@heim$;
+		npctalk "海姆军官：他们真是难以预测。你知道发生了什么，对吧？支援他们……", .@heim$;
 		sleep2 2500;
-		npctalk "Heim军官：帮我们处理从楼上下来的恶魔。", .@heim$;
+		npctalk "海姆军官：帮我们处理从楼上下来的恶魔。", .@heim$;
 		setpcblock PCBLOCK_NPC, false;
 		end;
 	}
 }
 
-1@tnm1,52,104,2	duplicate(Officer Heim#heim0)	Magic Swordman#tnm01	4_M_ROKI
-1@tnm1,42,104,4	duplicate(Officer Heim#heim0)	Assassin Huey#tnm01	4_TOWER_15
-1@tnm1,44,101,5	duplicate(Officer Heim#heim0)	Assassin Louie#tnm01	4_M_ACROSS
+1@tnm1,52,104,2	duplicate(Officer Heim#heim0)	魔剑士::Magic Swordman#tnm01	4_M_ROKI
+1@tnm1,42,104,4	duplicate(Officer Heim#heim0)	刺客休伊::Assassin Huey#tnm01	4_TOWER_15
+1@tnm1,44,101,5	duplicate(Officer Heim#heim0)	刺客路易::Assassin Louie#tnm01	4_M_ACROSS
 
-1@tnm1,70,108,3	script	Assassin Dewey#tnm01	4_M_ACROSS,{
+1@tnm1,70,108,3	script	刺客杜威::Assassin Dewey#tnm01	4_M_ACROSS,{
 	if ('devil_tower < 4)
 		end;
 	if (isbegin_quest(7569) == 0)
 		setquest 7569;// Treat the injured
 	if (isbegin_quest(7570) == 0)
 		setquest 7570;// Destroy the demons
-	mes "[Dewey]";
+	mes "[杜威]";
 	mes "我会带你去上一层。";
 	mes "别忘了消灭路上遇到的恶魔。";
 	next;
-	if (select( "Move now", "I need more time to prepare." ) == 2) {
-		mes "[Dewey]";
+	if (select( "现在出发。", "我还需要时间准备。" ) == 2) {
+		mes "[杜威]";
 		mes "做好应对一切的准备。";
 		close;
 	}
-	mes "[Dewey]";
+	mes "[杜威]";
 	mes "小心前进。";
 	close2;
 	warp 'map_tnm1$,91,23;
@@ -745,7 +745,7 @@ OnTouch:
 	enablenpc instance_npcname("Assassin Louie#tnm02");
 	enablenpc instance_npcname("Lucile#tnm02");
 	initnpctimer;
-	monster 'map_tnm1$,99,24,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,99,24,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
 	'mob_id = $@mobid[0];
 	end;
 OnTimer2000:
@@ -753,69 +753,69 @@ OnTimer2000:
 		unittalk 'mob_id, "这是什么？人类？他们真是疯了，竟敢来这里！";
 	end;
 OnTimer5000:
-	monster 'map_tnm1$,103,21,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,103,21,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
 		unittalk $@mobid[0], "你下定决心了吗？";
-	monster 'map_tnm1$,103,26,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,103,26,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
 		unittalk $@mobid[0], "哈哈哈哈……来战斗吧！！！";
 	end;
 OnTimer11000:
-	monster 'map_tnm1$,106,25,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,106,27,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,110,20,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,112,24,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,107,22,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,114,24,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,106,25,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,106,27,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,110,20,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,112,24,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,107,22,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,114,24,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
 	end;
 OnTimer17000:
-	monster 'map_tnm1$,120,20,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,122,23,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,120,20,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,122,23,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
 	end;
 OnTimer23000:
-	monster 'map_tnm1$,116,25,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,116,21,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,116,25,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,116,21,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
 	end;
 OnTimer29000:
-	monster 'map_tnm1$,134,21,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,130,25,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,129,27,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,120,27,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,118,22,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,134,21,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,130,25,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,129,27,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,120,27,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,118,22,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
 	end;
 OnTimer35000:
-	monster 'map_tnm1$,138,27,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,144,23,"Evil Shadow",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,129,20,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,138,27,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,144,23,"魔神的影子",2939,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,129,20,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
 	end;
 OnTimer41000:
-	monster 'map_tnm1$,140,24,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,144,20,"Evil Shadow",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,130,27,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,127,24,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,142,27,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,140,22,"Evil Shadow",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,140,24,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,144,20,"魔神的影子",2940,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,130,27,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,127,24,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,142,27,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,140,22,"魔神的影子",2941,1, instance_npcname("#tnm1stepmob") + "::OnMobDead";	// MM_EVIL_SHADOW3
 	stopnpctimer;
 	end;
 OnMobDead:
 	end;
 }
 
-1@tnm1,158,24,3	script	Assassin Louie#tnm02	4_M_ACROSS,{
+1@tnm1,158,24,3	script	刺客路易::Assassin Louie#tnm02	4_M_ACROSS,{
 	if ('devil_tower < 4)
 		end;
 	if (checkquest(7570,HUNTING) != 2) {
-		mes "[Louie]";
+		mes "[路易]";
 		mes "队长说我们必须消灭所有恶魔……";
 		mes "最好赶快行动。";
 		close;
 	}
-	mes "[Louie]";
+	mes "[路易]";
 	mes "许多士兵在攻击中幸存下来。";
 	mes "他们消灭了所有恶魔。";
 	next;
-	mes "[Louie]";
+	mes "[路易]";
 	mes "我一直在确认没有人上楼，因为担心会再次发生意外。";
 	next;
-	mes "[Louie]";
+	mes "[路易]";
 	mes "希望你能帮我。";
 	mes "我来带路。";
 	if (isbegin_quest(7571) == 0) {
@@ -831,7 +831,7 @@ OnMobDead:
 }
 
 // Stairs 2 tnm1
-1@tnm1,138,96,3	script	Lucile#tnm02	4_F_LUCILE,{
+1@tnm1,138,96,3	script	露西尔::Lucile#tnm02	4_F_LUCILE,{
 	if (isbegin_quest(7571) == 0)
 		end;
 	if (is_party_leader() == false) {
@@ -842,24 +842,24 @@ OnMobDead:
 		end;
 	if ('devil_tower < 6) {
 		if ('devil_tower == 4) {
-			mes "[Lucile]";
+			mes "[露西尔]";
 			mes "如果我的态度不好，请原谅，但我动不了。";
-			npctalk "Lucile：如果我的态度不好，请原谅，但我动不了。";
+			npctalk "露西尔：如果我的态度不好，请原谅，但我动不了。";
 			cutin "tnm_lucile02.bmp",2;
 			next;
-			select("Can I help?");
-			mes "[Lucile]";
+			select("我能帮忙吗？");
+			mes "[露西尔]";
 			mes "我可以自我修复，但没有时间。";
 			mes "能和我分享你的力量吗？";
-			npctalk "Lucile：我可以自我修复，但没有时间。能和我分享你的力量吗？";
+			npctalk "露西尔：我可以自我修复，但没有时间。能和我分享你的力量吗？";
 			next;
-			mes "[Lucile]";
+			mes "[露西尔]";
 			mes "我需要你的帮助来启动修复系统。";
 			mes "请坚持住。";
-			npctalk "Lucile：我需要你的帮助来启动修复系统。";
+			npctalk "露西尔：我需要你的帮助来启动修复系统。";
 			next;
 			sleep2 750;
-			npctalk "Lucile：请坚持住。";
+			npctalk "露西尔：请坚持住。";
 			if (is_party_leader() == true && 'devil_tower == 4) {
 				donpcevent instance_npcname("Huey#hui02") + "::OnEnable";
 				'devil_tower = 5;
@@ -867,7 +867,7 @@ OnMobDead:
 			percentheal -30,0;
 		}
 		cutin "tnm_lucile03.bmp",2;
-		mes "Lucile似乎是一台机器。";
+		mes "露西尔似乎是一台机器。";
 		mes "突然间我听到了机械声。";
 		specialeffect EF_LEVEL99_3;
 		progressbar "000000",40;
@@ -878,18 +878,18 @@ OnMobDead:
 		}
 		mes "系统已修复。";
 		next;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "哇！你修得比我想象中快。";
 		mes "是不是吓到你了？";
 		mes "我偶尔需要修理，因为我没有普通的身体。";
 		cutin "tnm_lucile02.bmp",2;
 		next;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "这具身体是神赐予我的礼物。";
 		mes "你看到中间的门了吗？";
 		cutin "tnm_lucile01.bmp",2;
 		next;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "快点，否则这个世界会陷入危险。";
 		close2;
 		cutin "",255;
@@ -897,9 +897,9 @@ OnMobDead:
 	}
 	if ('devil_tower == 6) {
 		sleep 1500;
-		npctalk "Lucile：恕我先行，如果你想拯救世界，就跟上我。";
+		npctalk "露西尔：恕我先行，如果你想拯救世界，就跟上我。";
 		sleep 2000;
-		npctalk "Huey：姐姐……", instance_npcname("Huey#hui02");
+		npctalk "休伊：姐姐……", instance_npcname("Huey#hui02");
 		if ('devil_tower == 6) {
 			disablenpc instance_npcname("Lucile#tnm02");
 			enablenpc instance_npcname("Lucile#tnm03");
@@ -911,36 +911,36 @@ OnMobDead:
 	end;
 }
 	
-1@tnm1,135,99,5	script	Huey#hui02	4_TOWER_15,{
+1@tnm1,135,99,5	script	休伊::Huey#hui02	4_TOWER_15,{
 	if ('devil_tower < 5)
 		end;
 	if ('devil_tower == 5 || 'devil_tower == 6) {
-		mes "[Huey]";
+		mes "[休伊]";
 	mes "我很担心她。";
 	mes "她受伤时总会这样。";
 	mes "因为她大部分是机器……";
 		close;
 	}
 	if ('mob_count > 0) {
-		mes "[Huey]";
+		mes "[休伊]";
 	mes "我知道上楼的路……";
 	mes "首先，我们必须消灭这些恶魔！";
 		close;
 	}
-	mes "[Huey]";
+	mes "[休伊]";
 	mes "不知道其他人怎么样了……";
-	mes "只有Thanatos和Lucile进入过上一层……";
+	mes "只有塔纳托斯和露西尔进入过上一层……";
 	next;
-	mes "[Huey]";
+	mes "[休伊]";
 	mes "如果你想帮助他们，就必须快点。";
 	mes "我来为你带路。";
 	next;
-	if (select( "Move immediately.", "Do not follow." ) == 2) {
-		mes "[Huey]";
+	if (select( "立即出发。", "暂时不去。" ) == 2) {
+		mes "[休伊]";
 		mes "……我明白了。";
 		close;
 	}
-	mes "[Huey]";
+	mes "[休伊]";
 	mes "这边。";
 	mes "小心。";
 	close2;
@@ -952,65 +952,65 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer3000:
-	npctalk "Huey：不好，姐姐小心！恶魔突然出现了！";
+	npctalk "休伊：不好，姐姐小心！恶魔突然出现了！";
 	'mob_count = 16;
-	monster 'map_tnm1$,142,90,"Evil Shadow",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,139,91,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,130,86,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,143,95,"Evil Shadow",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW3
-	monster 'map_tnm1$,134,90,"Evil Shadow",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,142,90,"魔神的影子",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,139,91,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,130,86,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,143,95,"魔神的影子",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,134,90,"魔神的影子",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";
 	end;
 OnTimer6000:
-	npctalk "Huey：它们从哪里来的？又是恶魔……";
+	npctalk "休伊：它们从哪里来的？又是恶魔……";
 	end;
 OnTimer8000:
-	monster 'map_tnm1$,137,103,"Evil Shadow",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,140,102,"Evil Shadow",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,132,103,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,146,100,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,142,105,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,135,107,"Evil Shadow",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,137,103,"魔神的影子",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,140,102,"魔神的影子",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,132,103,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,146,100,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,142,105,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,135,107,"魔神的影子",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW3
 	end;
 OnTimer11000:
-	npctalk "Huey：哦，不……";
+	npctalk "休伊：哦，不……";
 	end;
 OnTimer12000:
-	monster 'map_tnm1$,135,107,"Evil Shadow",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
-	monster 'map_tnm1$,146,100,"Evil Shadow",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,130,86,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";		// MM_EVIL_SHADOW2
-	monster 'map_tnm1$,137,103,"Evil Shadow",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
-	monster 'map_tnm1$,143,95,"Evil Shadow",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";		// MM_EVIL_SHADOW3
+	monster 'map_tnm1$,135,107,"魔神的影子",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";	// MM_EVIL_SHADOW1
+	monster 'map_tnm1$,146,100,"魔神的影子",2939,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,130,86,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";		// MM_EVIL_SHADOW2
+	monster 'map_tnm1$,137,103,"魔神的影子",2940,1, instance_npcname("Huey#hui02") + "::OnMobDead";
+	monster 'map_tnm1$,143,95,"魔神的影子",2941,1, instance_npcname("Huey#hui02") + "::OnMobDead";		// MM_EVIL_SHADOW3
 	stopnpctimer;
 	end;
 OnMobDead:
 	'mob_count--;
 	if ('mob_count == 0)
-		npctalk "Huey：这边，这边……我们可以利用恶魔出现的缺口上楼！";
+		npctalk "休伊：这边，这边……我们可以利用恶魔出现的缺口上楼！";
 	end;
 }
 
 // Morocc - Thanatos Battle
-1@tnm2,136,139,3	script	Magic Swordman#tnm02	THANATOS_KEEP,{
-	mes "[Magic Swordman Thanatos]";
+1@tnm2,136,139,3	script	魔剑士::Magic Swordman#tnm02	THANATOS_KEEP,{
+	mes "[魔剑士塔纳托斯]";
 	mes "抱歉，我经历了一段艰难的时期……";
 	close;
 }
 
-1@tnm2,133,139,5	duplicate(Officer Heim#heim0)	Demon Morocc#tnm01	1916
-1@tnm2,144,137,3	script	Lucile#tnm03	4_F_LUCILE,{
+1@tnm2,133,139,5	duplicate(Officer Heim#heim0)	魔王梦罗克::Demon Morocc#tnm01	1916
+1@tnm2,144,137,3	script	露西尔::Lucile#tnm03	4_F_LUCILE,{
 	if (is_party_leader() == false) {
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "我正在和你的队长交谈，请暂时退后。";
 		cutin "tnm_lucile01.bmp",2;
 		close3;
 	}
 	if ('devil_tower == 7) {
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "哦，你来得正好。";
 		mes "要去那边看看吗？";
 		cutin "tnm_lucile01.bmp",2;
 		next;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "我们必须阻止恶魔……";
 		mes "你能做到吗？";
 		npctalk "露西尔：我们必须阻止恶魔……你能做到吗？";
@@ -1024,16 +1024,16 @@ OnMobDead:
 		}
 		close3;
 	}
-	mes "[Lucile]";
+	mes "[露西尔]";
 	mes "在魔剑士设置陷阱前，我们必须守住这里。";
 	cutin "tnm_lucile01.bmp",2;
 	close3;
 
 OnTimer2000:
-	npctalk "恶魔摩洛克：愚蠢的人类，你以为能束缚我多久！", 'demon$;
+	npctalk "魔王梦罗克：愚蠢的人类，你以为能束缚我多久！", 'demon$;
 	end;
 OnTimer5000:
-	npctalk "恶魔摩洛克：影子们！出来杀光黑暗的敌人！", 'demon$;
+	npctalk "魔王梦罗克：影子们！出来杀光黑暗的敌人！", 'demon$;
 	end;
 OnTimer6000:
 	donpcevent instance_npcname("#devil_seal_timer") + "::OnStart";
@@ -1045,7 +1045,7 @@ OnTimer11500:
 	npctalk "露西尔：塔纳托斯大人，你这样虚张声势好吗？";
 	end;
 OnTimer12000:
-	npctalk "恶魔摩洛克：害怕吧，释放后我会带来毁灭！", 'demon$;
+	npctalk "魔王梦罗克：害怕吧，释放后我会带来毁灭！", 'demon$;
 	end;
 OnTimer15000:
 	npctalk "塔纳托斯：闭嘴！除非我杀了你，否则你永远别想离开！", 'thanatos$;
@@ -1065,8 +1065,8 @@ OnTimer22500:
 1@tnm2,1,1,0	script	#devil_flamecross	HIDDEN_WARP_NPC,{
 	end;
 OnStart:
-	npctalk "恶魔摩洛克：休想！！捣乱的家伙！", 'demon$;
-	mapannounce 'map_tnm2$, "恶魔摩洛克：休想！！捣乱的家伙！", bc_map,0xFF0000;
+	npctalk "魔王梦罗克：休想！！捣乱的家伙！", 'demon$;
+	mapannounce 'map_tnm2$, "魔王梦罗克：休想！！捣乱的家伙！", bc_map,0xFF0000;
 	initnpctimer;
 	end;
 OnTimer1000:
@@ -1116,36 +1116,36 @@ OnStart:
 	initnpctimer;
 	end;
 OnTimer5000:
-	mapannounce 'map_tnm2$, "塔的东南方向刚刚出现了魔法封印。", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "高塔周围五个方向出现了魔法封印。", bc_map,0xFFFFFF;
 	donpcevent instance_npcname("#devil_seal_spawn_global") + "::OnFirstSpawn";
 	end;
 OnTimer10000:
 	donpcevent instance_npcname("#devil_flamecross") + "::OnStart";
 	end;
 OnTimer25000:
-	mapannounce 'map_tnm2$, "Lucile: We should stop before Magic Seal has just started to move again.", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：趁魔法封印还没再次移动，快阻止它！", bc_map,0xFFFFFF;
 	end;
 OnTimer65000:
-	mapannounce 'map_tnm2$, "Lucile: We should stop before Magic Seal reaches the center.", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：必须在魔法封印抵达中央前阻止它！", bc_map,0xFFFFFF;
 	end;
 OnTimer95000:
-	mapannounce 'map_tnm2$, "Lucile: The Magic Seal has just started to move again.", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：魔法封印又开始移动了！", bc_map,0xFFFFFF;
 	end;
 OnTimer125000:
-	mapannounce 'map_tnm2$, "Lucile: It is coming closer... No... It's too dangerous.", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：它越来越近了……不行……太危险了！", bc_map,0xFFFFFF;
 	end;
 OnTimer155000:
-	mapannounce 'map_tnm2$, "Lucile: The Magic Seal is almost approaching the center!!", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：魔法封印快要抵达中央了！！", bc_map,0xFFFFFF;
 	end;
 OnTimer180000:
 	donpcevent instance_npcname("#devil_flamecross") + "::OnStop";
 	end;
 OnTimer185000:
-	mapannounce 'map_tnm2$, "Lucile: We should stop it now!", bc_map,0xFFFFFF;
+	mapannounce 'map_tnm2$, "露西尔：必须马上阻止它！", bc_map,0xFFFFFF;
 	end;
 OnTimer191000:
 	npctalk "塔纳托斯：你们在做什么！！！现在是在玩游戏吗？！", 'thanatos$;
-	mapannounce 'map_tnm2$, "Thanatos: What are you doing!!! Are you playing a game now?!", bc_map,0xFF00;
+	mapannounce 'map_tnm2$, "塔纳托斯：你们在做什么！！！现在是在玩游戏吗？！", bc_map,0xFF00;
 	end;
 OnTimer193000:
 	specialeffect EF_MAGNUMBREAK,AREA, 'thanatos$;
@@ -1155,12 +1155,12 @@ OnTimer193000:
 		donpcevent instance_npcname("devil_seal_spawn#" + .@direction$[.@i]) + "::OnStop";
 	end;
 OnTimer195000:
-	npctalk "恶魔摩洛克：你们还要继续打扰我吗！！！", 'demon$;
-	mapannounce 'map_tnm2$, "Demon Morocc: Are you going to keep disturbing me!!!", bc_map,0xFF0000;
+	npctalk "魔王梦罗克：你们还要继续打扰我吗！！！", 'demon$;
+	mapannounce 'map_tnm2$, "魔王梦罗克：你们还要继续打扰我吗！！！", bc_map,0xFF0000;
 	end;
 OnTimer198000:
-	npctalk "恶魔摩洛克：好，那就看看谁会赢！！！出来吧！", 'demon$;
-	mapannounce 'map_tnm2$, "Demon Morocc: Okay, Let's see who is going to win!!! Come out!", bc_map,0xFF0000;
+	npctalk "魔王梦罗克：好，那就看看谁会赢！！！出来吧！", 'demon$;
+	mapannounce 'map_tnm2$, "魔王梦罗克：好，那就看看谁会赢！！！出来吧！", bc_map,0xFF0000;
 	end;
 OnTimer201000:
 	npctalk "塔纳托斯：不管尝试多少次都一样！放弃，回魔界去！！", 'thanatos$;
@@ -1239,7 +1239,7 @@ OnTimer5000:
 		.@x = getd( "'coord_seal_" + .@direction$ + "[" + .@index + "]" );
 		.@y = getd( "'coord_seal_" + .@direction$ + "[" + (.@index+1) + "]" );
 
-		monster 'map_tnm2$,.@x,.@y,"Magic Seal",2938,1, instance_npcname("#devil_seal_dead") + "::OnSeal_" + .@direction$;	// MM_MAGIC_SEAL
+		monster 'map_tnm2$,.@x,.@y,"魔法封印",2938,1, instance_npcname("#devil_seal_dead") + "::OnSeal_" + .@direction$;	// MM_MAGIC_SEAL
 		'seal_id[.@num] = $@mobid[0];
 		if (.@index == 0)
 			setunitdata 'seal_id[.@num], UMOB_HP, 3000000;
@@ -1261,8 +1261,8 @@ OnTimer7000:
 		.@index = ('round[.@num] - 1) * 2;
 		.@x = getd( "'coord_seal_" + .@direction$ + "[" + .@index + "]" );
 		.@y = getd( "'coord_seal_" + .@direction$ + "[" + (.@index+1) + "]" );
-		areamonster 'map_tnm2$,(.@x-1),(.@y-1),(.@x+1),(.@y+1),"Evil Shadow",2939,2, instance_npcname(strnpcinfo(0)) + "::OnMobDead";	// MM_EVIL_SHADOW1
-		areamonster 'map_tnm2$,(.@x-1),(.@y-1),(.@x+1),(.@y+1),"Evil Shadow",2940,2, instance_npcname(strnpcinfo(0)) + "::OnMobDead";	// MM_EVIL_SHADOW2
+		areamonster 'map_tnm2$,(.@x-1),(.@y-1),(.@x+1),(.@y+1),"魔神的影子",2939,2, instance_npcname(strnpcinfo(0)) + "::OnMobDead";	// MM_EVIL_SHADOW1
+		areamonster 'map_tnm2$,(.@x-1),(.@y-1),(.@x+1),(.@y+1),"魔神的影子",2940,2, instance_npcname(strnpcinfo(0)) + "::OnMobDead";	// MM_EVIL_SHADOW2
 		if ('round[.@num] == 7)
 			stopnpctimer;
 	}
@@ -1297,8 +1297,8 @@ OnStart:
 	initnpctimer;
 	end;
 OnTimer2000:
-	npctalk "恶魔摩洛克：库哈哈哈哈，我的力量碎片！再次聚集到这里！！！", 'demon$;
-	mapannounce 'map_tnm2$, "恶魔摩洛克：库哈哈哈哈，我的力量碎片！再次聚集到这里！！！", bc_map,0xFF0000;
+	npctalk "魔王梦罗克：库哈哈哈哈，我的力量碎片！再次聚集到这里！！！", 'demon$;
+	mapannounce 'map_tnm2$, "魔王梦罗克：库哈哈哈哈，我的力量碎片！再次聚集到这里！！！", bc_map,0xFF0000;
 	end;
 OnTimer4000:
 	npctalk "塔纳托斯：阻止他！别让他靠近！！！", 'thanatos$;
@@ -1338,8 +1338,8 @@ S_Sealdead:
 		donpcevent instance_npcname("devil_seal_spawn#DIR_SOUTHEAST") + "::OnDisable";
 		donpcevent instance_npcname("devil_seal_spawn#DIR_NORTHEAST") + "::OnDisable";
 		donpcevent instance_npcname("devil_seal_spawn#DIR_NORTH") + "::OnDisable";
-		mapannounce 'map_tnm2$, "恶魔摩洛克：不……不可能……你到底……是谁！", bc_map,0xFF0000;
-		npctalk "恶魔摩洛克：不……不可能……你到底……是谁！", 'demon$;
+		mapannounce 'map_tnm2$, "魔王梦罗克：不……不可能……你到底……是谁！", bc_map,0xFF0000;
+		npctalk "魔王梦罗克：不……不可能……你到底……是谁！", 'demon$;
 		initnpctimer;
 	}
 	end;
@@ -1373,7 +1373,7 @@ OnTimer7000:
 	end;
 }
 
-1@tnm2,144,137,3	script	Lucile#tnm04	4_F_LUCILE,{
+1@tnm2,144,137,3	script	露西尔::Lucile#tnm04	4_F_LUCILE,{
 	if ('devil_tower < 9)
 		end;
 	if (isbegin_quest(7574) == 0) {
@@ -1382,27 +1382,27 @@ OnTimer7000:
 		if (isbegin_quest(7573) == 1)	// leader
 			erasequest 7573;// Magic Swordman Thanatos
 		setquest 7574;// Thanatos Tower
-		mes "[Lucile]";
-		mes "恶魔摩洛克打破封印护盾的力量，似乎与塔纳托斯碰撞了。";
+		mes "[露西尔]";
+		mes "魔王梦罗克打破封印护盾的力量，似乎与塔纳托斯碰撞了。";
 		cutin "tnm_lucile01.bmp",2;
 		next;
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "它在南方某处造成了严重影响。";
 		mes "你要去那里吗？";
 	}
 	else {
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "那两股力量的碰撞太强了。";
 		mes "可能影响了卢恩-米德加尔兹南部。";
 	}
 	next;
 	if (select( "跟随。", "停止。" ) == 2) {
-		mes "[Lucile]";
+		mes "[露西尔]";
 		mes "……看来这就是你的极限了？";
 		cutin "tnm_lucile02.bmp",2;
 		close3;
 	}
-	mes "[Lucile]";
+	mes "[露西尔]";
 	mes "祝你好运。";
 	close2;
 	warp 'map_tnm3$,21,171;
@@ -1425,73 +1425,72 @@ OnTouch:
 	setpcblock PCBLOCK_NPC, false;
 	end;
 OnTimer1000:
-	monster 'map_tnm3$,33,171,"Evil Shadow",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
+	monster 'map_tnm3$,33,171,"魔神的影子",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
 	end;
 OnTimer2000:
-	monster 'map_tnm3$,39,172,"Evil Shadow",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
+	monster 'map_tnm3$,39,172,"魔神的影子",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
 	end;
 OnTimer3000:
-	monster 'map_tnm3$,34,177,"Evil Shadow",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
+	monster 'map_tnm3$,34,177,"魔神的影子",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
 	end;
 OnTimer4000:
-	monster 'map_tnm3$,36,176,"Evil Shadow",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
+	monster 'map_tnm3$,36,176,"魔神的影子",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
 	end;
 OnTimer5000:
-	monster 'map_tnm3$,37,175,"Evil Shadow",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
+	monster 'map_tnm3$,37,175,"魔神的影子",2940,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW2
 	end;
 OnTimer6000:
-	monster 'map_tnm3$,37,173,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
-	monster 'map_tnm3$,36,172,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,37,173,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,36,172,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
 	end;
 OnTimer7000:
-	monster 'map_tnm3$,29,178,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
-	monster 'map_tnm3$,35,172,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,29,178,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,35,172,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
 	end;
 OnTimer8000:
-	monster 'map_tnm3$,34,173,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
-	monster 'map_tnm3$,35,172,"Evil Shadow",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
+	monster 'map_tnm3$,34,173,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,35,172,"魔神的影子",2939,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW1
 	end;
 OnTimer9000:
-	monster 'map_tnm3$,34,173,"Evil Shadow",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,34,173,"魔神的影子",2941,1, instance_npcname("Young Girl#tnm01") + "::OnMobDead";// MM_EVIL_SHADOW3
 	stopnpctimer;
 	end;
 }
 
-1@tnm3,43,175,3	script	Young Girl#tnm01	4_F_DST_CHILD,{
+1@tnm3,43,175,3	script	小女孩::Young Girl#tnm01	4_F_DST_CHILD,{
 	if ('devil_tower < 9)
 		end;
 	if ('devil_tower == 9) {
-		mes "[Young Girl]";
+		mes "[小女孩]";
 		mes "城堡里为什么有恶魔？！";
 		mes "救救我！";
 		close;
 	}
 	if ('devil_tower == 10) {
 		if (is_party_leader() == false) {
-			mes "[Young Girl]";
+			mes "[小女孩]";
 			mes "*哭泣* 恶魔太可怕了。";
 			close;
 		}
-		mes "[Young Girl]";
-		mes "恶魔为什么突然出现，";
-		mes "好多守卫都受伤了。";
+		mes "[小女孩]";
+		mes "恶魔为什么突然出现？好多守卫都受伤了。";
 		npctalk "小女孩：恶魔为什么突然出现，好多守卫都受伤了。";
 		next;
 		select("他们在哪里？");
 		unittalk getcharid(3), "" + strcharinfo(0) + "：他们在哪里？";
-		mes "[Young Girl]";
-		mes "他们在摩洛克城堡。我父亲是骑士。";
-		npctalk "他们在摩洛克城堡。我父亲是骑士。";
+		mes "[小女孩]";
+		mes "他们在梦罗克城堡。我父亲是骑士。";
+		npctalk "他们在梦罗克城堡。我父亲是骑士。";
 		next;
-		mes "[Young Girl]";
+		mes "[小女孩]";
 		mes "好像发生了什么事，我听到楼下有奇怪的声音。";
 		npctalk "小女孩：好像发生了什么事，我听到楼下有奇怪的声音。";
 		next;
-		mes "[Young Girl]";
+		mes "[小女孩]";
 		mes "我看见几个黑衣人进去了。城堡里究竟发生了什么？";
 		npctalk "小女孩：我看见几个黑衣人进去了。城堡里究竟发生了什么？";
 		next;
-		mes "[Young Girl]";
+		mes "[小女孩]";
 		mes "爸爸……爸爸请你平安。*抽泣*";
 		mes "请跟我从那个架子后面的通道走！";
 		npctalk "小女孩：请跟我从那个架子后面的通道走！";
@@ -1536,38 +1535,38 @@ OnTouch:
 	end;
 OnTimer1000:
 	.@label$ = instance_npcname("Young Girl#tnm02") + "::OnMobDead";
-	monster 'map_tnm3$,97,174,"Evil Shadow",2939,1, .@label$;
-	monster 'map_tnm3$,98,175,"Evil Shadow",2939,1, .@label$;
-	monster 'map_tnm3$,100,166,"Evil Shadow",2939,1, .@label$;
-	monster 'map_tnm3$,108,171,"Evil Shadow",2940,1, .@label$;
-	monster 'map_tnm3$,104,172,"Evil Shadow",2940,1, .@label$;
+	monster 'map_tnm3$,97,174,"魔神的影子",2939,1, .@label$;
+	monster 'map_tnm3$,98,175,"魔神的影子",2939,1, .@label$;
+	monster 'map_tnm3$,100,166,"魔神的影子",2939,1, .@label$;
+	monster 'map_tnm3$,108,171,"魔神的影子",2940,1, .@label$;
+	monster 'map_tnm3$,104,172,"魔神的影子",2940,1, .@label$;
 	end;
 OnTimer3000:
 	.@label$ = instance_npcname("Young Girl#tnm02") + "::OnMobDead";
-	monster 'map_tnm3$,109,169,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,111,173,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,113,167,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,101,176,"Evil Shadow",2939,1, .@label$;
-	monster 'map_tnm3$,116,170,"Evil Shadow",2941,1, .@label$;
+	monster 'map_tnm3$,109,169,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,111,173,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,113,167,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,101,176,"魔神的影子",2939,1, .@label$;
+	monster 'map_tnm3$,116,170,"魔神的影子",2941,1, .@label$;
 	end;
 OnTimer5000:
 	.@label$ = instance_npcname("Young Girl#tnm02") + "::OnMobDead";
-	monster 'map_tnm3$,107,175,"Evil Shadow",2940,1, .@label$;
-	monster 'map_tnm3$,106,174,"Evil Shadow",2940,1, .@label$;
-	monster 'map_tnm3$,106,169,"Evil Shadow",2939,1, .@label$;
-	monster 'map_tnm3$,103,177,"Evil Shadow",2940,1, .@label$;
+	monster 'map_tnm3$,107,175,"魔神的影子",2940,1, .@label$;
+	monster 'map_tnm3$,106,174,"魔神的影子",2940,1, .@label$;
+	monster 'map_tnm3$,106,169,"魔神的影子",2939,1, .@label$;
+	monster 'map_tnm3$,103,177,"魔神的影子",2940,1, .@label$;
 	end;
 OnTimer7000:
 	stopnpctimer;
 	.@label$ = instance_npcname("Young Girl#tnm02") + "::OnMobDead";
-	monster 'map_tnm3$,121,171,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,119,173,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,127,166,"Evil Shadow",2941,1, .@label$;
-	monster 'map_tnm3$,125,166,"Evil Shadow",2941,1, .@label$;
+	monster 'map_tnm3$,121,171,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,119,173,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,127,166,"魔神的影子",2941,1, .@label$;
+	monster 'map_tnm3$,125,166,"魔神的影子",2941,1, .@label$;
 	end;
 }
 
-1@tnm3,89,179,4	script	Young Girl#tnm02	4_F_DST_CHILD,{
+1@tnm3,89,179,4	script	小女孩::Young Girl#tnm02	4_F_DST_CHILD,{
 	end;
 OnMobDead:
 	'mob_count--;
@@ -1582,7 +1581,7 @@ OnMobDead:
 	end;
 }
 
-1@tnm3,128,164,3	script	Young Girl#tnm03	4_F_DST_CHILD,{
+1@tnm3,128,164,3	script	小女孩::Young Girl#tnm03	4_F_DST_CHILD,{
 	mes "[小女孩]";
 	mes "从这里……我不太清楚……";
 	mes "我看到好多楼梯……";
@@ -1594,18 +1593,18 @@ OnMobDead:
 1@tnm3,134,156,0	warp	#tnm3gate02	1,1,1@tnm3,169,165
 
 // tnm3 Stairs 3
-1@tnm3,179,172,3	script	Evil Shadow#tnm3mob01	2941,4,4,{
+1@tnm3,179,172,3	script	魔神的影子::Evil Shadow#tnm3mob01	2941,4,4,{
 	end;
 OnTouch_:
 	if ('devil_tower == 11) {
 		'devil_tower = 12;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 1000;
-		npctalk "邪恶阴影：我就觉得闻到了老鼠偷偷溜进来的味道。果然没错！！";
+		npctalk "魔神的影子：我就觉得闻到了老鼠偷偷溜进来的味道。果然没错！！";
 		sleep2 3000;
-		npctalk "邪恶阴影：你会后悔自己的好奇和干涉。开饭时间到了！";
+		npctalk "魔神的影子：你会后悔自己的好奇和干涉。开饭时间到了！";
 		sleep2 3000;
-		npctalk "邪恶阴影：我召唤黑暗！！";
+		npctalk "魔神的影子：我召唤黑暗！！";
 		disablenpc instance_npcname("Evil Shadow#tnm3mob01");
 		donpcevent instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnSummon";
 		setpcblock PCBLOCK_NPC, false;
@@ -1619,15 +1618,15 @@ OnSummon:
 	enablenpc instance_npcname("Evil Shadow kill#tnm3mob01");
 	'mob_count = 5;
 	initnpctimer;
-	monster 'map_tnm3$,179,172, "Evil Shadow",2941,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW3
+	monster 'map_tnm3$,179,172, "魔神的影子",2941,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW3
 	end;
 OnTimer1000:
-	monster 'map_tnm3$,181,172, "Evil Shadow",2940,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW2
-	monster 'map_tnm3$,178,172, "Evil Shadow",2940,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";
+	monster 'map_tnm3$,181,172, "魔神的影子",2940,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW2
+	monster 'map_tnm3$,178,172, "魔神的影子",2940,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";
 	end;
 OnTimer2000:
-	monster 'map_tnm3$,179,172, "Evil Shadow",2939,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW1
-	monster 'map_tnm3$,176,173, "Evil Shadow",2939,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";
+	monster 'map_tnm3$,179,172, "魔神的影子",2939,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";// MM_EVIL_SHADOW1
+	monster 'map_tnm3$,176,173, "魔神的影子",2939,1, instance_npcname("Evil Shadow kill#tnm3mob01") + "::OnMobDead";
 	stopnpctimer;
 	end;
 OnMobDead:
@@ -1644,7 +1643,7 @@ OnMobDead:
 1@tnm3,183,177,0	warp	#tnm3gate03	1,1,1@tnm3,97,6
 
 // Demonic Shade (Boss room)
-1@tnm3,97,18,3	script	Demonic Shade#mobmaster	2939,5,5,{
+1@tnm3,97,18,3	script	恶魔之影::Demonic Shade#mobmaster	2939,5,5,{
 	end;
 OnTouch_:// possibility to skip this step
 	if ('devil_tower < 12)
@@ -1653,7 +1652,7 @@ OnTouch_:// possibility to skip this step
 		'shade = 1;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 1000;
-		npctalk "恶魔阴影：原来你们就是捣乱者！";
+		npctalk "恶魔之影：原来你们就是捣乱者！";
 		sleep2 2000;
 		npctalk "恶魔之影：啧，你们连保护都做不到……算了……你们都会死在这里。";
 		sleep2 3000;
@@ -1670,67 +1669,67 @@ OnTouch_:// possibility to skip this step
 OnSummon:
 	enablenpc instance_npcname("#mobmaster_kill");
 	initnpctimer;
-	monster 'map_tnm3$,97,18, "Demonic Shade",2939,1, instance_npcname("#mobmaster_kill") + "::OnMobDead";
+	monster 'map_tnm3$,97,18, "恶魔之影",2939,1, instance_npcname("#mobmaster_kill") + "::OnMobDead";
 	end;
 OnTimer1000:
 	.@label$ = instance_npcname("#mobmaster_kill") + "::OnMobDead";
 	stopnpctimer;
-	monster 'map_tnm3$,94,18, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,96,18, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,113,18, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,119,22, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,116,18, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,116,18, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,114,12, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,116,21, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,74,18, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,75,12, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,76,21, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,69,16, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,57,43, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,58,44, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,59,46, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,60,48, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,56,45, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,57,44, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,80,71, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,59,77, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,77,73, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,77,72, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,59,70, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,81,66, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,60,69, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,57,73, "Demonic Shade",2940,1, .@label$;
-	monster 'map_tnm3$,62,74, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,78,67, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,75,22, "Demonic Shade",2941,1, .@label$;
-	monster 'map_tnm3$,81,69, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,77,11, "Demonic Shade",2939,1, .@label$;
-	monster 'map_tnm3$,58,74, "Demonic Shade",2941,1, .@label$;
+	monster 'map_tnm3$,94,18, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,96,18, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,113,18, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,119,22, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,116,18, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,116,18, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,114,12, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,116,21, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,74,18, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,75,12, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,76,21, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,69,16, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,57,43, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,58,44, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,59,46, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,60,48, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,56,45, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,57,44, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,80,71, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,59,77, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,77,73, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,77,72, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,59,70, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,81,66, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,60,69, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,57,73, "恶魔之影",2940,1, .@label$;
+	monster 'map_tnm3$,62,74, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,78,67, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,75,22, "恶魔之影",2941,1, .@label$;
+	monster 'map_tnm3$,81,69, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,77,11, "恶魔之影",2939,1, .@label$;
+	monster 'map_tnm3$,58,74, "恶魔之影",2941,1, .@label$;
 	end;
 
 OnMobDead:
 	end;
 }
 
-1@tnm3,93,52,4	script	Morocc Lord Knight#mocl	1_M_MOC_LORD,{
-	mes "[Morocc Lord Knight]";
+1@tnm3,93,52,4	script	梦罗克领主骑士::Morocc Lord Knight#mocl	1_M_MOC_LORD,{
+	mes "[梦罗克领主骑士]";
 	mes "你们就是偷偷摸摸潜入这里的老鼠！";
 	close;
 }
 
-1@tnm3,97,48,3	script	Loki#tnmloki01	4_M_ROKI2,{
+1@tnm3,97,48,3	script	洛基::Loki#tnmloki01	4_M_ROKI2,{
 	if ('devil_tower == 12) {
 		'devil_tower = 13;
 		donpcevent instance_npcname("#morocc_lord_talk") + "::OnStart";
 		end;
 	}
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "你们在这里没有力量。";
 	close;
 }
 
-1@tnm3,94,51,4	duplicate(Officer Heim#heim0)	Young Girl#tnm04	4_F_DST_CHILD
+1@tnm3,94,51,4	duplicate(Officer Heim#heim0)	小女孩::Young Girl#tnm04	4_F_DST_CHILD
 
 1@tnm2,1,1,0	script	#morocc_lord_talk	HIDDEN_WARP_NPC,{
 	end;
@@ -1738,7 +1737,7 @@ OnStart:
 	enablenpc instance_npcname("#morocc_lord_talk");
 	'Morocc$ = instance_npcname("Morocc Lord Knight#mocl");
 	'loki$ = instance_npcname("Loki#tnmloki01");
-	npctalk "摩洛克领主骑士：所以……那只老鼠是刺客？你来这里送死？", 'Morocc$;
+	npctalk "梦罗克领主骑士：所以……那只老鼠是刺客？你来这里送死？", 'Morocc$;
 	initnpctimer;
 	end;
 OnTimer3000:
@@ -1827,40 +1826,40 @@ OnTimer55500:
 	end;
 }
 
-1@tnm3,137,65,3	script	Loki#tnmloki02	4_M_ROKI2,{
+1@tnm3,137,65,3	script	洛基::Loki#tnmloki02	4_M_ROKI2,{
 	if ('devil_tower != 13)
 		end;
 	if (is_party_leader() == false) {
-		mes "[Loki]";
-		mes "我是在和你的老板说话。";
+		mes "[洛基]";
+		mes "我是在和你的队长说话。";
 		close;
 	}
 	if (getmercinfo(0) > 0) {
-		mes "[Loki]";
-		mes "...embarrassing.";
+		mes "[洛基]";
+		mes "……真麻烦。";
 		mes "如果你想帮我完成任务，就应该^4d4dff终止佣兵契约^000000。";
 		close;
 	}
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "你从哪里来的？";
 	mes "我可能需要帮助。";
 	npctalk "洛基：你从哪里来的？我可能需要帮助。", instance_npcname("Loki#tnmloki02");
 	next;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "领主骑士已经不是人类。我要让这个追随恶魔的家伙归于永恒。";
 	npctalk "洛基：领主骑士已经不再是人类。我必须送他走向永恒。", instance_npcname("Loki#tnmloki02");
 	next;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "^4d4dff受恶魔地狱祝福者刀枪不入。我们可以用心灵爆破切断祝福。^000000";
 	npctalk "洛基：受到恶魔地狱祝福的人是无敌的。我们可以用心灵爆破切断这份祝福。", instance_npcname("Loki#tnmloki02");
 	next;
-	mes "[Loki]";
+	mes "[洛基]";
 	mes "你负责启动心灵爆破。";
 	npctalk "洛基：你负责启动心灵爆破。", instance_npcname("Loki#tnmloki02");
 	next;
 	if (is_party_leader() == true && 'devil_tower == 13) {
 		disablenpc instance_npcname("Loki#tnmloki02");
-		mes "^4d4dffLoki, Guillotine Cross of the Assassin Guild, has joined your party.";
+		mes "^4d4dff刺客公会的十字切割者洛基加入了你的队伍。";
 		mes "我们必须用洛基的技能施放心灵爆破，消灭恶魔化的领主骑士。^000000";
 		'devil_tower = 14;
 		mercenary_create 2937,1800000;// M_LOKI
@@ -1870,7 +1869,7 @@ OnTimer55500:
 	close;
 OnTimer500:
 	enablenpc instance_npcname("#boss_skills_timer");
-	monster 'map_tnm3$,93,52,"Evil Believer",2942,1, instance_npcname("#boss_skills_timer") + "::OnBossDead";// MM_EVIL_FANATICS
+	monster 'map_tnm3$,93,52,"恶魔崇拜者",2942,1, instance_npcname("#boss_skills_timer") + "::OnBossDead";// MM_EVIL_FANATICS
 	'boss_id = $@mobid[0];
 	end;
 OnTimer2000:
@@ -2013,7 +2012,7 @@ OnBossDead:
 	end;
 }
 
-1@tnm3,69,70,3	script	box#tnmbosang	4_TREASURE_BOX,{
+1@tnm3,69,70,3	script	宝箱::box#tnmbosang	4_TREASURE_BOX,{
 	if ('devil_tower != 15)
 		end;
 	specialeffect EF_COIN;
@@ -2082,7 +2081,7 @@ OnBossDead:
 }
 
 //1@tnm3,69,72,3	script	Loki#tnmloki03	4_M_ROKI2,5,5,{
-1@tnm3,69,72,3	script	Loki#tnmloki03	4_M_ROKI2,{
+1@tnm3,69,72,3	script	洛基::Loki#tnmloki03	4_M_ROKI2,{
 	if ('devil_tower != 15)
 		end;
 	if (isbegin_quest(7576) == 0) {
@@ -2095,8 +2094,7 @@ OnBossDead:
 		mes "我在探索高塔时获得了意外的信息。";
 		next;
 		mes "[洛基]";
-		mes "我还会与自己的良知分离一段时间，";
-		mes "总有一天我会再次感受情感，而今天会一直占据我的思绪……";
+		mes "我还会与自己的良知分离一段时间。总有一天我会再次感受情感，而今天会一直占据我的思绪……";
 		close;
 	}
 	mes "[洛基]";
@@ -2109,7 +2107,7 @@ OnBossDead:
 	mes "还要继续留在这里吗？";
 	mes "我可以把你送回属于你的地点和时间。";
 	next;
-	if (select( "Get out of here.", "Take a look around." ) == 2) {
+	if (select( "离开这里。", "再四处看看。" ) == 2) {
 		mes "[洛基]";
 		mes "在时间扭曲的地方逗留并不明智。";
 		close;

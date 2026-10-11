@@ -24,7 +24,7 @@
 	while(1) {
 		switch(select("查看可兑换物品","兑换投资证明","兑换良药","兑换礼物","卡西尔之戒","离开")) {
 			case 1:
-				mes "[ClickClick MeowMeow-GX]";
+				mes "[喵喵兑换机 GX]";
 				mes "感谢选择喵喵喵-GX！";
 				mes "以下是可用攻城纪念公会硬币购买的物品。";
 				next;
@@ -38,7 +38,7 @@
 				mes "^4d4dff消耗300 SP，但10秒内受到敌方玩家的伤害降低50%。";
 				mes "需求等级：80级以上^000000";
 				next;
-				setarray .@status$, "Stun", "Petrify", "Frozen", "Sleep", "Curse", "Silence", "Blind";
+				setarray .@status$, "昏迷", "石化", "冰冻", "睡眠", "诅咒", "沉默", "失明";
 				.@size = getarraysize(.@status$);
 				for(.@i = 0; .@i < .@size; ++.@i) {
 					mes "= 仙女之泪（" + .@status$[.@i] + "）=";
@@ -49,7 +49,7 @@
 				mes "= 羽毛贝雷帽[1] =";
 				mes "饰有羽毛的舒适天蓝色帽子。";
 				mes "^4d4dffMDEF +1，受到敌方玩家的伤害降低10%。";
-				mes "卡槽[1]，除初学者外所有职业均可使用。";
+				mes "卡槽[1]，除初学者外所有职业均可使用。^000000";
 				next;
 				mes "= 羽毛贝雷帽（时装）=";
 				mes "饰有羽毛的舒适天蓝色帽子。";
@@ -59,15 +59,19 @@
 				break;
 
 			case 2:
-				mes "[ClickClick MeowMeow-GX]";
-				mes "我们可以用猫爪商团的^4d4dff1张投资证明^000000兑换^4d4dff10枚纪念硬币！^000000";
+				mes "[喵喵兑换机 GX]";
+				mes "我们可以用^4d4dff10枚纪念硬币^000000兑换猫爪商团的^4d4dff1张投资证明！^000000";
 				mes "要兑换吗？";
 				next;
 				switch(select("是。","查看其他物品。")) {
 					case 1:
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						if (countitem(6615) > 9) {
 							mes "感谢使用我们的服务，喵！";
+							if (!checkweight(6489,1)) {
+								mes "请先为兑换物品预留足够的负重和物品栏空间。";
+								close;
+							}
 							delitem 6615,10; // Siege_Guild_Coin
 							getitem 6489,1; // Cats_Invest_Certif
 						} else {
@@ -77,44 +81,44 @@
 						break;
 
 					case 2:
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "你决定查看其他物品。";
 						break;
 				}
 				break;
 
 			case 3:
-				mes "[ClickClick MeowMeow-GX]";
+				mes "[喵喵兑换机 GX]";
 				mes "你选择了良药列表！";
 				mes "下面列出的每件物品都价值^4d4dff300枚硬币^000000，喵！";
 				next;
 				switch(select("冰霜巨人的血", "魔像核心", "仙女之泪（昏迷）", "仙女之泪（冰冻）", "仙女之泪（睡眠）", "仙女之泪（诅咒）", "仙女之泪（石化）", "仙女之泪（沉默）", "仙女之泪（失明）", "查看其他物品。")) {
 					case 1:
-						callsub S_PurchaseMedicine, "Blood of Frost Giant", 12874;
+						callsub S_PurchaseMedicine, "冰霜巨人的血", 12874;
 						break;
 					case 2:
-						callsub S_PurchaseMedicine, "Core of Golem", 12875;
+						callsub S_PurchaseMedicine, "魔像核心", 12875;
 						break;
 					case 3:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Stun)", 12876;
+						callsub S_PurchaseMedicine, "仙女之泪（昏迷）", 12876;
 						break;
 					case 4:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Frozen)", 12878;
+						callsub S_PurchaseMedicine, "仙女之泪（冰冻）", 12878;
 						break;
 					case 5:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Sleep)", 12879;
+						callsub S_PurchaseMedicine, "仙女之泪（睡眠）", 12879;
 						break;
 					case 6:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Curse)", 12880;
+						callsub S_PurchaseMedicine, "仙女之泪（诅咒）", 12880;
 						break;
 					case 7:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Petrify)", 12877;
+						callsub S_PurchaseMedicine, "仙女之泪（石化）", 12877;
 						break;
 					case 8:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Silence)", 12881;
+						callsub S_PurchaseMedicine, "仙女之泪（沉默）", 12881;
 						break;
 					case 9:
-						callsub S_PurchaseMedicine, "Fairy's Tear(Blind)", 12882;
+						callsub S_PurchaseMedicine, "仙女之泪（失明）", 12882;
 						break;
 					case 10:
 						mes "你决定查看其他物品。";
@@ -123,42 +127,46 @@
 				break;
 
 			case 4:
-				mes "[ClickClick MeowMeow-GX]";
+				mes "[喵喵兑换机 GX]";
 				mes "你选择了礼物列表！";
 				mes "每件物品的价格各不相同，喵！";
 				next;
 				switch(select("旧卡册 -500硬币", "旧紫箱 -300硬币", "旧蓝箱 -100硬币", "珠宝盒 -500硬币", "包装面具 -500硬币", "羽毛贝雷帽","离开")) {
 					case 1:
-						callsub S_PurchaseGift, "Old Card Album", 616, 500;
+						callsub S_PurchaseGift, "旧卡册", 616, 500;
 						break;
 					case 2:
-						callsub S_PurchaseGift, "Old Purple box", 617, 300;
+						callsub S_PurchaseGift, "旧紫箱", 617, 300;
 						break;
 					case 3:
-						callsub S_PurchaseGift, "Old Blue Box", 603, 100;
+						callsub S_PurchaseGift, "旧蓝箱", 603, 100;
 						break;
 					case 4:
-						callsub S_PurchaseGift, "Jewelry Box", 12106, 500;
+						callsub S_PurchaseGift, "珠宝盒", 12106, 500;
 						break;
 					case 5:
-						callsub S_PurchaseGift, "Wrapped Mask", 12107, 500;
+						callsub S_PurchaseGift, "包装面具", 12107, 500;
 						break;
 					case 6:
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "你选择了漂亮的羽毛贝雷帽！";
 						mes "我们有可以插卡的羽毛贝雷帽和羽毛贝雷帽时装，喵！";
 						next;
 						switch(select("羽毛贝雷帽[1] -1500硬币","羽毛贝雷帽时装 -800硬币","购买贝雷帽","查看其他物品。")) {
 							case 1:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								mes "这是可以插卡的羽毛贝雷帽！";
 								mes "价值1500枚纪念硬币。要购买吗？";
 								next;
 								switch(select("是！","不！")) {
 									case 1:
-										mes "[ClickClick MeowMeow-GX]";
+										mes "[喵喵兑换机 GX]";
 										if (countitem(6615) > 1499) {
 											mes "感谢使用我们的服务，喵！";
+											if (!checkweight(18755,1)) {
+												mes "请先为兑换物品预留足够的负重和物品栏空间。";
+												close;
+											}
 											delitem 6615,1500; // Siege_Guild_Coin
 											getitem 18755,1; // Feather_Beret_
 										} else {
@@ -168,22 +176,26 @@
 										break;
 
 									case 2:
-										mes "[ClickClick MeowMeow-GX]";
+										mes "[喵喵兑换机 GX]";
 										mes "你决定查看其他物品。";
 										break;
 								}
 								break;
 
 							case 2:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								mes "这是羽毛贝雷帽时装！";
 								mes "价值800枚纪念硬币。要购买吗？";
 								next;
 						switch(select("是！","不！")) {
 									case 1:
-										mes "[ClickClick MeowMeow-GX]";
+										mes "[喵喵兑换机 GX]";
 										if (countitem(6615) > 799) {
 										mes "感谢使用我们的服务，喵！";
+											if (!checkweight(19585,1)) {
+												mes "请先为兑换物品预留足够的负重和物品栏空间。";
+												close;
+											}
 											delitem 6615,800; // Siege_Guild_Coin
 											getitem 19585,1; // C_Feather_Beret
 										} else {
@@ -193,35 +205,35 @@
 										break;
 
 									case 2:
-										mes "[ClickClick MeowMeow-GX]";
-										mes "You've decided to view other items.";
+										mes "[喵喵兑换机 GX]";
+										mes "你决定查看其他物品。";
 										break;
 								}
 								break;
 
 							case 3:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								mes "羽毛贝雷帽时装的换色准备正在进行。";
 								mes "请稍后再来！";
 								mes "我给你看看其他物品！";
 								break;
 
 							case 4:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								mes "你决定查看其他物品。";
 								break;
 						}
 						break;
 
 					case 7:
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "请勿使用兑换机器。";
 						break;
 				}
 				break;
 
 			case 5:
-				mes "[ClickClick MeowMeow-GX]";
+				mes "[喵喵兑换机 GX]";
 				mes "这里是卡西尔之戒分类。";
 				mes "你可以查看每枚戒指的说明并在这里购买。";
 				next;
@@ -229,21 +241,25 @@
 					case 1:
 						mes "= 卡西尔之戒（蓝）=";
 						mes "据说充满贤神卡西尔力量的戒指。";
-						mes "^4d4dffMSP + 30. 'Snow Flip' 1Lv available^000000";
+						mes "^4d4dff最大 SP +30，可使用 1 级雪花翻转^000000";
 						mes "饰品。所有职业均可使用。需求等级：1。";
 						next;
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "卡西尔之戒（蓝）可用^4d4dff20个冰霜巨人的血和20个魔像核心^000000购买，也可以用^4d4dff1枚其他颜色的卡西尔之戒和10枚纪念硬币^000000兑换！";
 						mes "要购买吗？";
 						next;
 						switch(select("用血与核心支付","用卡西尔之戒（红）支付","用卡西尔之戒（绿）支付","用卡西尔之戒（棕）支付","离开")) {
 							case 1:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								if ((countitem(12874) > 19) & (countitem(12875) > 19)) {
-									mes "已购买卡西尔之戒（蓝）。";
+									if (!checkweight(2951,1)) {
+										mes "请先为兑换物品预留足够的负重和物品栏空间。";
+										close;
+									}
 									delitem 12874,20; // Frost_Giant_Blood
 									delitem 12875,20; // Golem_Stone
 									getitem 2951,1; // Kvasir_Ring_Blue
+									mes "已购买卡西尔之戒（蓝）。";
 								} else {
 									mes "卡西尔之戒（蓝）需要^4d4dff20个冰霜巨人的血和20个魔像核心^000000。";
 									mes "你的物品不足，无法完成购买。请查看其他物品。";
@@ -263,8 +279,8 @@
 								break;
 
 							case 5:
-								mes "[ClickClick MeowMeow-GX]";
-								mes "You've decided to view other items.";
+								mes "[喵喵兑换机 GX]";
+								mes "你决定查看其他物品。";
 								break;
 						}
 					break;
@@ -272,10 +288,10 @@
 					case 2:
 						mes "= 卡西尔之戒（红）=";
 						mes "据说充满贤神卡西尔力量的戒指。";
-						mes "^4d4dffMSP + 30. 'Peony Mamy' 1Lv available^000000";
+						mes "^4d4dff最大 SP +30，可使用 1 级牡丹妈咪^000000";
 						mes "饰品。所有职业均可使用。需求等级：1。";
 						next;
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "卡西尔之戒（红）可用^4d4dff1枚卡西尔之戒和10枚纪念硬币^000000购买。";
 						mes "你想用以下哪枚戒指兑换卡西尔之戒（红）？";
 						next;
@@ -293,8 +309,8 @@
 								break;
 
 							case 4:
-								mes "[ClickClick MeowMeow-GX]";
-								mes "You've decided to view other items.";
+								mes "[喵喵兑换机 GX]";
+								mes "你决定查看其他物品。";
 								break;
 						}
 						break;
@@ -302,12 +318,12 @@
 					case 3:
 						mes "= 卡西尔之戒（绿）=";
 						mes "据说充满贤神卡西尔力量的戒指。";
-						mes "^4d4dffMSP + 100. 'Sada Ear' 1Lv available^000000";
+						mes "^4d4dff最大 HP +100，可使用 1 级萨达吉^000000";
 						mes "饰品。所有职业均可使用。需求等级：1。";
 						next;
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 		mes "卡西尔之戒（绿色）可以用 ^4d4dff1 枚 卡西尔之戒和 10 枚纪念硬币购买。^000000";
-		mes "你想用以下哪件物品兑换 卡西尔之戒（红色）？";
+		mes "你想用以下哪件物品兑换卡西尔之戒（绿色）？";
 						next;
 					switch(select("卡西尔之戒（蓝色）","卡西尔之戒（红色）","卡西尔之戒（棕色）","离开")) {
 							case 1:
@@ -323,8 +339,8 @@
 								break;
 
 							case 4:
-								mes "[ClickClick MeowMeow-GX]";
-								mes "You've decided to view other items.";
+								mes "[喵喵兑换机 GX]";
+								mes "你决定查看其他物品。";
 								break;
 						}
 						break;
@@ -332,10 +348,10 @@
 					case 4:
 						mes "= 卡西尔之戒（棕）=";
 						mes "据说充满贤神卡西尔力量的戒指。";
-						mes "^4d4dffMSP +100，可使用1级‘银河尘埃’^000000";
+						mes "^4d4dff最大 HP +100，可使用1级‘银河尘埃’^000000";
 						mes "饰品。所有职业均可使用。需求等级：1。";
 						next;
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "卡西尔之戒（棕）可用^4d4dff1枚卡西尔之戒和10枚纪念硬币^000000购买。";
 						mes "你想用以下哪枚戒指兑换卡西尔之戒（棕）？";
 						next;
@@ -353,37 +369,42 @@
 								break;
 
 							case 4:
-								mes "[ClickClick MeowMeow-GX]";
+								mes "[喵喵兑换机 GX]";
 								mes "你决定查看其他物品。";
 								break;
 						}
 						break;
 
 					case 5:
-						mes "[ClickClick MeowMeow-GX]";
+						mes "[喵喵兑换机 GX]";
 						mes "你决定查看其他物品。";
 						break;
 				}
 				break;
 
 			case 6:
-				mes "[ClickClick MeowMeow-GX]";
-				mes "请勿使用兑换机器。";
-				break;
+				mes "[喵喵兑换机 GX]";
+				mes "感谢使用兑换机器，欢迎再来。";
+				close;
 		}
+		next;
 	}
 	close;
 
 S_PurchaseMedicine:
-	mes "[ClickClick MeowMeow-GX]";
+	mes "[喵喵兑换机 GX]";
 	mes "你要购买1个" + getarg(0) + "，喵！";
 	mes "确定吗？";
 	next;
 	switch(select("是！","不！")) {
 		case 1:
-			mes "[ClickClick MeowMeow-GX]";
+			mes "[喵喵兑换机 GX]";
 			if (countitem(6615) > 299) {
 				mes "感谢使用我们的服务，喵！";
+				if (!checkweight(getarg(1),1)) {
+					mes "请先为兑换物品预留足够的负重和物品栏空间。";
+					close;
+				}
 				delitem 6615,300; // Siege_Guild_Coin
 				getitem getarg(1),1;
 			} else
@@ -391,7 +412,7 @@ S_PurchaseMedicine:
 			break;
 
 		case 2:
-			mes "[ClickClick MeowMeow-GX]";
+			mes "[喵喵兑换机 GX]";
 			mes "你决定查看其他物品。";
 			break;
 	}
@@ -400,15 +421,19 @@ S_PurchaseMedicine:
 S_PurchaseGift:
 	.@itemid = getarg(1);
 	.@price = getarg(2);
-	mes "[ClickClick MeowMeow-GX]";
+	mes "[喵喵兑换机 GX]";
 	mes "你要购买1个" + getarg(0) + "，喵！";
 	mes "确定吗？";
 	next;
 	switch(select("是！","不！")) {
 		case 1:
-			mes "[ClickClick MeowMeow-GX]";
+			mes "[喵喵兑换机 GX]";
 			if (countitem(6615) >= .@price) {
 				mes "感谢使用我们的服务，喵！";
+				if (!checkweight(.@itemid,1)) {
+					mes "请先为兑换物品预留足够的负重和物品栏空间。";
+					close;
+				}
 				delitem 6615,.@price; // Siege_Guild_Coin
 				getitem .@itemid,1;
 			} else {
@@ -418,7 +443,7 @@ S_PurchaseGift:
 			break;
 
 		case 2:
-			mes "[ClickClick MeowMeow-GX]";
+			mes "[喵喵兑换机 GX]";
 			mes "你决定查看其他物品。";
 			break;
 	}
@@ -426,25 +451,29 @@ S_PurchaseGift:
 
 S_Kvasir:
 	.@fromid = getarg(1);
-	.@fromname$ = getarg(2);
+	.@fromname$ = getarg(0);
 	.@toid = getarg(3);
-	.@toname$ = getarg(4);
+	.@toname$ = getarg(2);
 	
-	mes "[ClickClick MeowMeow-GX]";
+	mes "[喵喵兑换机 GX]";
 	// One of Kvasir's Rings and 10 Siege_Guild_Coin
 	if( countitem( .@fromid ) > 0 && countitem( 6615 ) > 9 ){
 		mes "你拥有" + .@fromname$ + "。";
 		mes "要将其兑换为" + .@toname$ + "吗？";
 		next;
-		mes "[ClickClick MeowMeow-GX]";
+		mes "[喵喵兑换机 GX]";
 		switch( select( "是！:离开" ) ){
 			case 1:
 				// Recheck the items once more
 				if( countitem( .@fromid ) > 0 && countitem( 6615 ) > 9 ){
-					mes "你已将" + .@fromname$ + "兑换为" + .@toname$ + "。";
+					if (!checkweight(.@toid,1)) {
+						mes "请先为兑换物品预留足够的负重和物品栏空间。";
+						close;
+					}
 					delitem .@fromid, 1;
 					delitem 6615, 10; // Siege_Guild_Coin
 					getitem .@toid, 1;
+					mes "你已将" + .@fromname$ + "兑换为" + .@toname$ + "。";
 					close;
 				}
 				break;

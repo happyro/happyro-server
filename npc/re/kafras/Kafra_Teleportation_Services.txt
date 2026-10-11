@@ -10,7 +10,7 @@ function	script	F_KafTeleDoram	{
 	.@menu_choice = getarg(0);
 
 	cutin "kafra_do01", 2;
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes "欢迎。";
 	mes "卡普拉服务永远站在你这边。";
 	mes "请选择目的地。";
@@ -161,7 +161,7 @@ function	script	F_KafTeleDoram	{
 		switch( select( "托尔火山东部原野", "维因斯南部原野", "取消。") ) {
 		case 1:
 			callsub( S_Zone, "托尔火山东部原野", 400,20 );
-			warp "ra_fild04",198,174;
+			warp "ve_fild04",198,174;
 			end;
 		case 2:
 			callsub( S_Zone, "维因斯南部原野", 200,10 );
@@ -197,7 +197,7 @@ S_Zone:
 	.@zeny_req = getarg(1);
 	.@item_req = getarg(2);
 
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes getarg(0) + "需要 ^ff0000" + .@zeny_req + " Zeny^000000 或 ^ff0000" + .@item_req + " 个玛岚岛罐头^000000。";
 	next;
 	switch( select( .@zeny_req + " Zeny", .@item_req + " 个玛岚岛罐头", "取消" ) ) {
@@ -212,11 +212,11 @@ S_Zone:
 		delitem 12636,.@item_req; // Malang_Sp_Can
 		return;
 	case 3:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "能告诉我其他服务地点吗？";
 		close3;
 	}
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes "先生！你没有足够的费用。";
 	mes "请准备好后再来。";
 	close3;
@@ -224,25 +224,25 @@ S_Zone:
 
 moc_para01,35,23,3	script	Kafra Teleportation#eden	4_F_DRKAFRA01,{
 	cutin "kafra_do01", 2;
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes "欢迎。";
 	mes "卡普拉服务永远站在你这边。";
 	next;
-	mes "[Kafra Employee]";
-	mes "为了回馈冒险者的支持，卡普拉公司与伊甸园集团合作，为^ff0000等级 39 以下的初心者冒险者^000000提供免费服务。";
+	mes "[卡普拉员工]";
+	mes "为了回馈冒险者的支持，卡普拉公司与伊甸园集团合作，为^ff0000等级不超过 40 的冒险者^000000提供免费服务。";
 	next;
 	if (BaseLevel > 40) {
-		mes "[Kafra Employee]";
-		mes "我们不为^ff0000等级 40 以上^000000的冒险者提供免费传送服务。";
+		mes "[卡普拉员工]";
+		mes "我们不为^ff0000等级超过 40^000000的冒险者提供免费传送服务。";
 		mes "请在城镇中寻找卡普拉传送服务。";
 		close3;
 	}
-	mes "[Kafra Employee]";
+	mes "[卡普拉员工]";
 	mes "请选择目的地。";
 	next;
 	switch( select( "普隆德拉西部原野", "普隆德拉西南原野", "普隆德拉湖畔原野", "斐扬地下城入口", "伊兹鲁德西南原野", "取消。") ) {
 	case 1:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "普隆德拉原野：";
 		mes "普隆德拉西部原野是山地原野，也可以从那里进入^ff0000普隆德拉下水道^000000。";
 		mes "那里有^ff0000大黄蜂^000000，初心者冒险者要小心！";
@@ -251,7 +251,7 @@ moc_para01,35,23,3	script	Kafra Teleportation#eden	4_F_DRKAFRA01,{
 		warp "prt_fild05",276,241;
 		end;
 	case 2:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "普隆德拉原野：";
 		mes "普隆德拉西南原野是^ff0000摇滚蝗虫^000000居住的地方。";
 		next;
@@ -259,7 +259,7 @@ moc_para01,35,23,3	script	Kafra Teleportation#eden	4_F_DRKAFRA01,{
 		warp "prt_fild07",250,257;
 		end;
 	case 3:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "普隆德拉原野：";
 		mes "普隆德拉湖畔原野是^ff0000琥珀虫^000000居住的地方。";
 		next;
@@ -267,7 +267,7 @@ moc_para01,35,23,3	script	Kafra Teleportation#eden	4_F_DRKAFRA01,{
 		warp "prt_fild04",204,109;
 		end;
 	case 4:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "弓箭手村：";
 		mes "斐扬洞窟很可怕，里面有许多^ff0000僵尸^000000和^ff0000骷髅^000000。";
 		next;
@@ -275,7 +275,7 @@ moc_para01,35,23,3	script	Kafra Teleportation#eden	4_F_DRKAFRA01,{
 		warp "pay_arche",69,130;
 		end;
 	case 5:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "苏格拉特沙漠：";
 		mes "这里位于普隆德拉西南和伊兹鲁德西南，遍布^ff0000穆卡^000000和^ff0000大嘴鸟^000000。";
 		next;
@@ -290,7 +290,7 @@ S_Zone:
 	case 1:
 		return;
 	case 2:
-		mes "[Kafra Employee]";
+		mes "[卡普拉员工]";
 		mes "想看看我们的其他服务吗？";
 		close3;
 	}	

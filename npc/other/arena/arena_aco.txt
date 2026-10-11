@@ -29,11 +29,11 @@ OnTouch_:
 	}
 }
 
-arena_room,136,138,3	script	Acolyte Waiting Room	124,{
+arena_room,136,138,3	script	服事职业等候室	124,{
 	end;
 
 OnInit:
-	waitingroom "Personal Force, Acolyte Class",50,"Acolyte Waiting Room::OnStartArena",1,1000,10;
+	waitingroom "个人挑战－服事职业",50,"服事职业等候室::OnStartArena",1,1000,10;
 	enablewaitingroomevent;
 	end;
 
@@ -209,11 +209,11 @@ OnFailClearStage:
 	mapwarp "force_5-1","prt_are_in",177,86;
 	donpcevent "Trocco#aco1::OnTimerOff";
 	//donpcevent "arena_aco1::OnReset";
-	donpcevent "Acolyte Waiting Room::OnStart";
+	donpcevent "服事职业等候室::OnStart";
 	end;
 
 On01_Start:
-	mapannounce "force_5-1","目标：摧毁所有红色植物！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：摧毁所有红草！",bc_map|bc_npc;
 	end;
 
 On01_End:
@@ -221,7 +221,7 @@ On01_End:
 	end;
 
 On02_Start:
-	mapannounce "force_5-1","Objective: Kill at least 10 Drops!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：击败至少10只土波利！",bc_map|bc_npc;
 	end;
 
 On02_End:
@@ -229,7 +229,7 @@ On02_End:
 	end;
 
 On03_Start:
-	mapannounce "force_5-1","Objective: Terminate all Zombies!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：消灭所有腐尸！",bc_map|bc_npc;
 	end;
 
 On03_End:
@@ -237,11 +237,11 @@ On03_End:
 	end;
 
 On04_Start:
-	mapannounce "force_5-1","As a courtesy, we'll restore some of your HP and SP. Now, head to the next room! Go go go!!",bc_map|bc_npc;
+	mapannounce "force_5-1","为你恢复部分 HP 和 SP。现在向下一个房间前进吧！加油！",bc_map|bc_npc;
 	end;
 
 On05_Start:
-	mapannounce "force_5-1","Objective: Obliterate all Orc Zombies!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：消灭所有兽人腐尸！",bc_map|bc_npc;
 	end;
 
 On05_End:
@@ -249,11 +249,11 @@ On05_End:
 	end;
 
 On06_Start:
-	mapannounce "force_5-1","Objective: Reach the South Exit while dodging Hydras!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：避开海葵，抵达南侧出口！",bc_map|bc_npc;
 	end;
 
 On07_Start:
-	mapannounce "force_5-1","Objective: Kill all Archer Skeletons and Firelock Soldiers!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：消灭所有邪骸弓箭手和武士火枪兵！",bc_map|bc_npc;
 	end;
 
 On07_End:
@@ -261,15 +261,15 @@ On07_End:
 	end;
 
 On08_Start:
-	mapannounce "force_5-1","Objective: Boss Battle. Please proceed to the room to the north!",bc_map|bc_npc;
+	mapannounce "force_5-1","首领战即将开始，请进入北侧房间！",bc_map|bc_npc;
 	end;
 
 On09_Start:
-	mapannounce "force_5-1","Objective: Kill Zombie Prisoners, Skel Prisoners and Zombie Troops!",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：消灭腐尸战俘、邪骸战俘和腐尸！",bc_map|bc_npc;
 	end;
 
 On09_End:
-	mapannounce "force_5-1","Boss Defeated! The North Exit has opened. Thank you.",bc_map|bc_npc;
+	mapannounce "force_5-1","首领已击败！北侧出口已打开，谢谢。",bc_map|bc_npc;
 	end;
 }
 
@@ -283,11 +283,11 @@ OnTouch_:
 -	script	force_01mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On01_Start";
-	monster "force_5-1",22,29,"Red Plant",1078,1,"force_01mob#aco::OnMyMobDead";
-	monster "force_5-1",29,29,"Red Plant",1078,1,"force_01mob#aco::OnMyMobDead";
-	monster "force_5-1",29,22,"Red Plant",1078,1,"force_01mob#aco::OnMyMobDead";
-	monster "force_5-1",22,22,"Red Plant",1078,1,"force_01mob#aco::OnMyMobDead";
-	monster "force_5-1",25,25,"Red Plant",1078,1,"force_01mob#aco::OnMyMobDead";
+	monster "force_5-1",22,29,"红草",1078,1,"force_01mob#aco::OnMyMobDead";
+	monster "force_5-1",29,29,"红草",1078,1,"force_01mob#aco::OnMyMobDead";
+	monster "force_5-1",29,22,"红草",1078,1,"force_01mob#aco::OnMyMobDead";
+	monster "force_5-1",22,22,"红草",1078,1,"force_01mob#aco::OnMyMobDead";
+	monster "force_5-1",25,25,"红草",1078,1,"force_01mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -313,7 +313,7 @@ OnTouch_:
 -	script	force_02mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On02_Start";
-	areamonster "force_5-1",22,69,29,130,"Drops",1572,20,"force_02mob#aco::OnMyMobDead";
+	areamonster "force_5-1",22,69,29,130,"土波利",1572,20,"force_02mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -338,7 +338,7 @@ OnTouch_:
 -	script	force_03mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On03_Start";
-	areamonster "force_5-1",9,157,41,190,"Zombie",1394,10,"force_03mob#aco::OnMyMobDead";
+	areamonster "force_5-1",9,157,41,190,"腐尸",1394,10,"force_03mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -372,7 +372,7 @@ OnTouch_:
 -	script	force_05mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On05_Start";
-	areamonster "force_5-1",159,157,187,190,"Orc Zombie",1463,8,"force_05mob#aco::OnMyMobDead";
+	areamonster "force_5-1",159,157,187,190,"兽人腐尸",1463,8,"force_05mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -398,23 +398,23 @@ OnTouch_:
 -	script	force_06mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On06_Start";
-	monster "force_5-1",170,124,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",170,121,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",173,116,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",175,113,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",175,110,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",170,106,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",173,106,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",176,106,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",179,106,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",174,100,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",174,96,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",174,92,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",174,88,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",170,80,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",173,80,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",176,80,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
-	monster "force_5-1",179,80,"Hydra",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",170,124,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",170,121,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",173,116,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",175,113,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",175,110,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",170,106,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",173,106,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",176,106,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",179,106,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",174,100,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",174,96,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",174,92,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",174,88,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",170,80,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",173,80,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",176,80,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
+	monster "force_5-1",179,80,"海葵",1579,1,"force_06mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -434,11 +434,11 @@ OnTouch_:
 -	script	force_07mob#aco	-1,{
 OnEnable:
 	donpcevent "Trocco#aco1::On07_Start";
-	monster "force_5-1",170,32,"Archer Skeleton",1420,1,"force_07mob#aco::OnMyMobDead";
-	monster "force_5-1",184,23,"Archer Skeleton",1420,1,"force_07mob#aco::OnMyMobDead";
-	monster "force_5-1",165,9,"Archer Skeleton",1420,1,"force_07mob#aco::OnMyMobDead";
-	monster "force_5-1",184,15,"Firelock Soldier",1523,1,"force_07mob#aco::OnMyMobDead";
-	monster "force_5-1",189,23,"Firelock Soldier",1523,1,"force_07mob#aco::OnMyMobDead";
+	monster "force_5-1",170,32,"邪骸弓箭手",1420,1,"force_07mob#aco::OnMyMobDead";
+	monster "force_5-1",184,23,"邪骸弓箭手",1420,1,"force_07mob#aco::OnMyMobDead";
+	monster "force_5-1",165,9,"邪骸弓箭手",1420,1,"force_07mob#aco::OnMyMobDead";
+	monster "force_5-1",184,15,"武士火枪兵",1523,1,"force_07mob#aco::OnMyMobDead";
+	monster "force_5-1",189,23,"武士火枪兵",1523,1,"force_07mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -472,9 +472,9 @@ OnTouch_:
 
 -	script	force_09mob#aco	-1,{
 OnEnable:
-	monster "force_5-1",rand(88,111),rand(89,110),"Zombie Prisoner",1480,1,"force_09mob#aco::OnMyMobDead";
-	monster "force_5-1",rand(88,111),rand(89,110),"Skel Prisoner",1479,1,"force_09mob#aco::OnMyMobDead";
-	areamonster "force_5-1",88,89,111,110,"Zombie",1394,4,"force_09mob#aco::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"腐尸战俘",1480,1,"force_09mob#aco::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"邪骸战俘",1479,1,"force_09mob#aco::OnMyMobDead";
+	areamonster "force_5-1",88,89,111,110,"腐尸",1394,4,"force_09mob#aco::OnMyMobDead";
 	end;
 
 OnReset:
@@ -637,11 +637,11 @@ OnFailClearStage:
 	mapwarp "force_5-1","prt_are_in",177,86;
 	donpcevent "Trocco#aco2::OnTimerOff";
 	//donpcevent "arena_aco2::OnReset";
-	donpcevent "Acolyte Waiting Room::OnStart";
+	donpcevent "服事职业等候室::OnStart";
 	end;
 
 On01_Start:
-	mapannounce "force_5-1","目标：击杀所有僵尸！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：击杀所有腐尸！",bc_map|bc_npc;
 	end;
 
 On01_End:
@@ -657,7 +657,7 @@ On02_End:
 	end;
 
 On03_Start:
-	mapannounce "force_5-1","目标：摧毁所有红色植物！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：摧毁所有红草！",bc_map|bc_npc;
 	end;
 
 On03_End:
@@ -673,7 +673,7 @@ On04_End:
 	end;
 
 On05_Start:
-	mapannounce "force_5-1","目标：击败石像鬼！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：击败蝙蝠弓箭手！",bc_map|bc_npc;
 	end;
 
 On05_End:
@@ -681,7 +681,7 @@ On05_End:
 	end;
 
 On06_Start:
-	mapannounce "force_5-1","目标：击杀所有卡利茨堡！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：击杀所有卡利斯格！",bc_map|bc_npc;
 	end;
 
 On06_End:
@@ -689,7 +689,7 @@ On06_End:
 	end;
 
 On07_Start:
-	mapannounce "force_5-1","目标：击杀1只远古木乃伊！",bc_map|bc_npc;
+	mapannounce "force_5-1","目标：击杀1只狂暴木乃伊！",bc_map|bc_npc;
 	end;
 
 On07_End:
@@ -719,7 +719,7 @@ OnTouch_:
 -	script	force_01mob#pri	-1,{
 OnEnable:
 	donpcevent "Trocco#aco2::On01_Start";
-	areamonster "force_5-1",13,9,38,41,"Zombie",1394,10,"force_01mob#pri::OnMyMobDead";
+	areamonster "force_5-1",13,9,38,41,"腐尸",1394,10,"force_01mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -749,12 +749,12 @@ OnTouch_:
 -	script	force_02mob#pri	-1,{
 OnOn1:
 	donpcevent "Trocco#aco2::On02_Start";
-	areamonster "force_5-1",22,69,29,130,"Orc Skeleton",1462,5,"force_02mob#pri::OnMyMobDead";
+	areamonster "force_5-1",22,69,29,130,"邪骸兽人",1462,5,"force_02mob#pri::OnMyMobDead";
 	end;
 
 OnOn2:
 	donpcevent "Trocco#aco2::On02_Start";
-	areamonster "force_5-1",22,69,29,130,"Ghoul",1423,5,"force_02mob#pri::OnMyMobDead";
+	areamonster "force_5-1",22,69,29,130,"绿腐尸",1423,5,"force_02mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -779,7 +779,7 @@ OnTouch_:
 -	script	force_03mob#pri	-1,{
 OnEnable:
 	donpcevent "Trocco#aco2::On03_Start";
-	areamonster "force_5-1",14,163,37,185,"Red Plant",1078,5,"force_03mob#pri::OnMyMobDead";
+	areamonster "force_5-1",14,163,37,185,"红草",1078,5,"force_03mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -809,18 +809,18 @@ OnTouch_:
 -	script	force_04mob#pri	-1,{
 OnOn1:
 	donpcevent "Trocco#aco2::On04_Start";
-	monster "force_5-1",rand(71,130),rand(170,178),"Evil Druid",1435,1,"force_04mob#pri::OnMyMobDead";
-	monster "force_5-1",rand(71,130),rand(170,178),"Wrath",1475,1,"force_04mob#pri::OnMyMobDead";
-	monster "force_5-1",rand(71,130),rand(170,178),"Zombie Prisoner",1480,1,"force_04mob#pri::OnMyMobDead";
-	monster "force_5-1",rand(71,130),rand(170,178),"Skel Prisoner",1479,1,"force_04mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(71,130),rand(170,178),"暗神官",1435,1,"force_04mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(71,130),rand(170,178),"恶灵",1475,1,"force_04mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(71,130),rand(170,178),"腐尸战俘",1480,1,"force_04mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(71,130),rand(170,178),"邪骸战俘",1479,1,"force_04mob#pri::OnMyMobDead";
 	end;
 
 OnOn2:
 	donpcevent "Trocco#aco2::On04_Start";
-	areamonster "force_5-1",71,170,130,178,"Evil Druid",1435,2,"force_04mob#pri::OnMyMobDead";
-	areamonster "force_5-1",71,170,130,178,"Wrath",1475,2,"force_04mob#pri::OnMyMobDead";
-	areamonster "force_5-1",71,170,130,178,"Zombie Prisoner",1480,2,"force_04mob#pri::OnMyMobDead";
-	monster "force_5-1",rand(71,130),rand(170,178),"Skel Prisoner",1479,1,"force_04mob#pri::OnMyMobDead";
+	areamonster "force_5-1",71,170,130,178,"暗神官",1435,2,"force_04mob#pri::OnMyMobDead";
+	areamonster "force_5-1",71,170,130,178,"恶灵",1475,2,"force_04mob#pri::OnMyMobDead";
+	areamonster "force_5-1",71,170,130,178,"腐尸战俘",1480,2,"force_04mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(71,130),rand(170,178),"邪骸战俘",1479,1,"force_04mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -850,11 +850,11 @@ OnTouch_:
 
 -	script	force_05ex#pri	-1,{
 OnOn1:
-	areamonster "force_5-1",161,159,187,190,"Hydra",1579,10,"force_05ex#pri::OnMyMobDead";
+	areamonster "force_5-1",161,159,187,190,"海葵",1579,10,"force_05ex#pri::OnMyMobDead";
 	end;
 
 OnOn2:
-	areamonster "force_5-1",161,159,187,190,"Penomena",1441,10,"force_05ex#pri::OnMyMobDead";
+	areamonster "force_5-1",161,159,187,190,"梅纳海葵",1441,10,"force_05ex#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -868,7 +868,7 @@ OnMyMobDead:
 -	script	force_05mob#pri	-1,{
 OnEnable:
 	donpcevent "Trocco#aco2::On05_Start";
-	areamonster "force_5-1",161,159,187,190,"Gargoyle",1597,4,"force_05mob#pri::OnMyMobDead";
+	areamonster "force_5-1",161,159,187,190,"蝙蝠弓箭手",1597,4,"force_05mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -902,7 +902,7 @@ OnTouch_:
 
 -	script	force_06ex#pri	-1,{
 OnEnable:
-	areamonster "force_5-1",170,67,178,131,"Permeter",1314,5,"force_06ex#pri::OnMyMobDead";
+	areamonster "force_5-1",170,67,178,131,"果树龟",1314,5,"force_06ex#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -916,17 +916,17 @@ OnMyMobDead:
 -	script	force_06mob#pri	-1,{
 OnOn1:
 	donpcevent "Trocco#aco2::On06_Start";
-	monster "force_5-1",rand(170,178),rand(67,131),"Khalitzburg",1438,1,"force_06mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(170,178),rand(67,131),"卡利斯格",1438,1,"force_06mob#pri::OnMyMobDead";
 	end;
 
 OnOn2:
 	donpcevent "Trocco#aco2::On06_Start";
-	areamonster "force_5-1",170,67,178,131,"Khalitzburg",1438,2,"force_06mob#pri::OnMyMobDead";
+	areamonster "force_5-1",170,67,178,131,"卡利斯格",1438,2,"force_06mob#pri::OnMyMobDead";
 	end;
 
 OnOn3:
 	donpcevent "Trocco#aco2::On06_Start";
-	areamonster "force_5-1",170,67,178,131,"Khalitzburg",1438,4,"force_06mob#pri::OnMyMobDead";
+	areamonster "force_5-1",170,67,178,131,"卡利斯格",1438,4,"force_06mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -952,7 +952,7 @@ OnTouch_:
 -	script	force_07mob#pri	-1,{
 OnEnable:
 	donpcevent "Trocco#aco2::On07_Start";
-	monster "force_5-1",rand(160,188),rand(9,42),"Ancient Mummy",1522,1,"force_07mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(160,188),rand(9,42),"狂暴木乃伊",1522,1,"force_07mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -996,21 +996,21 @@ OnTouch_:
 
 -	script	force_09mob#pri	-1,{
 OnOn1:
-	monster "force_5-1",rand(88,111),rand(89,110),"Mimic",1474,1,"force_09mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"邪恶箱",1474,1,"force_09mob#pri::OnMyMobDead";
 	end;
 
 OnOn2:
-	monster "force_5-1",rand(88,111),rand(89,110),"Wrath Dead",1566,1,"force_09mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"狂暴恶灵",1566,1,"force_09mob#pri::OnMyMobDead";
 	end;
 
 OnOn3:
-	monster "force_5-1",rand(88,111),rand(89,110),"Dark Illusion",1605,1,"force_09mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"迷幻之王",1605,1,"force_09mob#pri::OnMyMobDead";
 	end;
 
 OnOn4:
-	monster "force_5-1",rand(88,111),rand(89,110),"Zombie Prisoner",1480,1,"force_09mob#pri::OnMyMobDead";
-	monster "force_5-1",rand(88,111),rand(89,110),"Skel Prisoner",1479,1,"force_09mob#pri::OnMyMobDead";
-	areamonster "force_5-1",88,89,111,110,"Zombie",1394,4,"force_09mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"腐尸战俘",1480,1,"force_09mob#pri::OnMyMobDead";
+	monster "force_5-1",rand(88,111),rand(89,110),"邪骸战俘",1479,1,"force_09mob#pri::OnMyMobDead";
+	areamonster "force_5-1",88,89,111,110,"腐尸",1394,4,"force_09mob#pri::OnMyMobDead";
 	end;
 
 OnReset:
@@ -1041,102 +1041,67 @@ OnTouch_:
 force_5-1,99,124,0	script	force_exit#aco	45,1,1,{
 OnTouch_:
 	donpcevent "Trocco#aco1::OnTimerOff";
+	donpcevent "Trocco#aco2::OnTimerOff";
 	donpcevent "#arn_timer_aco::OnEnable";
 	mapwarp "force_5-1","prt_are_in",21,35;
 	end;
 }
 
-prt_are_in,181,83,3	script	Staff#aco-1	67,{
-	mes "等等，抱歉，你的竞技场点数太多了。";
-	mes "Nice work!";
-	mes "You might have failed";
-	mes "the Time Attack battle,";
-	mes "but you still earned a";
-	mes "small Arena Point reward~";
+prt_are_in,181,83,3	script	工作人员#aco-1	67,{
+	mes "[工作人员]";
+	mes "干得好！虽然你没能完成限时挑战，仍可获得少量竞技场点数。";
 	next;
 	if (arena_point == 30000) {
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "Wait, I'm sorry, but you";
-		mes "have too many Arena Points.";
-		mes "Since you've reached the point";
-		mes "limitation, I can't give you any point rewards until you spend";
-		mes "干得好！";
+		mes "[工作人员]";
+		mes "抱歉，你的竞技场点数已达上限。";
+		mes "请先花掉一些点数，我才能继续发放奖励。";
 		next;
 	}
 	else {
 		set arena_point,arena_point+1;
 	}
-	mes "等等，抱歉，你的竞技场点数太多了。";
-	mes "达到上限后，必须先花掉一些点数，";
-	mes "我才能继续发放奖励。";
-	mes "I hope you enjoyed";
-	mes "your battle in the area~";
+	mes "[工作人员]";
+	mes "希望你在竞技场玩得开心！现在送你回大厅。";
 	close2;
 	specialeffect2 EF_EXIT;
 	warp "arena_room",100,75;
 	end;
 }
 
-prt_are_in,25,31,3	script	Staff#aco-2	67,{
-	set .@start_timeaco, $@arn_1;
-	set .@hour_startaco, .@start_timeaco / 10000;
-	set .@min_startaco, ((.@start_timeaco % 10000) / 100);
-	set .@sec_startaco, .@start_timeaco % 100;
-	set .@end_timeaco, $@arn_2;
-	set .@hour_endaco, .@end_timeaco / 10000;
-	set .@min_endaco, ((.@end_timeaco % 10000) / 100);
-	set .@sec_endaco, .@end_timeaco % 100;
-	if ((.@hour_startaco == 23) && (.@hour_endaco == 0)) {
-		set .@hour_endaco,24;
-	}
-	set .@st_to_secaco, ((.@hour_startaco * 3600) + (.@min_startaco * 60) + (.@sec_startaco));
-	set .@et_to_secaco, ((.@hour_endaco * 3600) + (.@min_endaco * 60) + (.@sec_endaco));
-	set .@record_timeaco, (.@et_to_secaco - .@st_to_secaco);
+prt_are_in,25,31,3	script	工作人员#aco-2	67,{
+	set .@record_timeaco, $@arn_2 - $@arn_1;
 	set .@record_houraco, .@record_timeaco / 3600;
 	set .@record_minaco, ((.@record_timeaco % 3600) / 60);
 	set .@record_secaco, .@record_timeaco % 60;
 	if ((.@record_timeaco < 0 ) || (.@record_houraco < 0) || (.@record_minaco < 0 ) || (.@record_secaco < 0)) {
 		emotion ET_HUK;
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "How did you...?";
-		mes "According to these re-";
-		mes "Uh oh. These records";
-		mes "got messed up somehow.";
-		mes "Th-This isn't good at all!";
-		mes "Now what am I gonna do?";
+		mes "[工作人员]";
+		mes "你是怎么……根据这些记……";
+		mes "糟糕，记录不知怎么弄乱了。这、这可怎么办？";
 		next;
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "糟糕，记录不知怎么弄乱了。";
-		mes "这、这太糟了！我该怎么办？";
-		mes "assume you completed the";
-		mes "arena battle under the time";
+		mes "[工作人员]";
 		mes "好吧，我姑且相信你在时限内完成了竞技场战斗。";
-		mes "我给你标准竞技场点数奖励。";
+		mes "我会给你标准的竞技场点数奖励。";
 		next;
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "真的很抱歉，";
-		mes "尤其是如果你打破了记录，";
-		mes "但我能做的只有为你恢复";
-		mes "all I can do is restore your";
-		mes "HP and SP for you, "+strcharinfo(0)+".";
+		mes "[工作人员]";
+		mes "真的很抱歉，尤其是如果你打破了记录……";
+		mes "我能做的只有为你恢复 HP 和 SP，"+strcharinfo(0)+"。";
 		percentheal 100,100;
 		next;
-		mes "等等，抱歉，你的竞技场点数太多了。";
+		mes "[工作人员]";
 		emotion ET_FLAG;
-		mes "希望你享受";
-		mes "在竞技场的时光～";
-		mes "your time in the Arena~";
+		mes "希望你在竞技场玩得开心！";
 		close2;
 		if (arena_point < 29981) {
 			set arena_point,arena_point+20;
 			warp "arena_room",100,75;
 			donpcevent "#arn_timer_aco::OnStop";
-			donpcevent "Acolyte Waiting Room::OnStart";
+			donpcevent "服事职业等候室::OnStart";
 		}
 		else {
 			warp "arena_room",100,75;
 			donpcevent "#arn_timer_aco::OnStop";
-			donpcevent "Acolyte Waiting Room::OnStart";
+			donpcevent "服事职业等候室::OnStart";
 		}
 		end;
 	}
@@ -1166,41 +1131,29 @@ prt_are_in,25,31,3	script	Staff#aco-2	67,{
 		set .@topbunaco, ((.@acotop_t % 3600) / 60);
 		set .@topchoaco, .@acotop_t % 60;
 		set .@gapaco, .@acotop_t - .@record_timeaco;
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "^3131FF"+strcharinfo(0)+"^000000, right?";
-		mes "你在这场竞技场战斗中";
-		mes "completed this Arena Battle";
-		mes "in "+.@record_minaco+" min and "+.@record_secaco+" seconds!";
+		mes "[工作人员]";
+		mes "你是^3131FF"+strcharinfo(0)+"^000000，对吧？";
+		mes "你完成本次竞技场战斗的用时是 "+.@record_minaco+" 分 "+.@record_secaco+" 秒！";
 		next;
-		mes "等等，抱歉，你的竞技场点数太多了。";
-		mes "Currently, ^3131FF"+.@acotop_n$+"^000000";
-		mes "is the top player, with a record";
-		mes "of ^3131FF"+.@topbunaco+"^000000 minutes, ^3131FF"+.@topchoaco+"^000000 seconds, of the Acolyte Class Time Force Battle.";
+		mes "[工作人员]";
+		mes "本组目前的纪录保持者是^3131FF"+.@acotop_n$+"^000000。";
+		mes "纪录为^3131FF"+.@topbunaco+"^000000分^3131FF"+.@topchoaco+"^000000秒。";
 		next;
 		if ((.@acotop_t < 0) || (.@topbunaco < 0 ) || (.@topchoaco < 0)) {
 			emotion ET_HUK;
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "你的时间比那个更好。";
-			mes "那么，现在该对记录";
-			mes "做一点修正了。";
-			mes "It's time I made a little";
-			mes "correction to the records.";
+			mes "[工作人员]";
+			mes "你的成绩比那更好，看来我得修正一下记录了。";
 			next;
 			emotion ET_BEST;
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "Wow! A new record!";
-			mes "Excellent!";
+			mes "[工作人员]";
+			mes "哇，新纪录！太棒了！";
 			next;
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "时空战竞技场";
-			mes "服事职业记录中！";
-			mes "name will now be listed";
-			mes "under the Time Force Battle";
-			mes "Arena - Acolyte Class Record!";
+			mes "[工作人员]";
+			mes "你的名字将登上服事职业时空战竞技场的纪录榜！";
 			if (BaseJob == Job_Acolyte) {
 				set $arn_acotop,.@record_timeaco;
 				set $arn_acotopn$, strcharinfo(0);
-				donpcevent "Vendigos::OnLineRec_aco";
+				donpcevent "文迪戈斯::OnLineRec_aco";
 			}
 			else {
 				if (BaseLevel < 70) {
@@ -1219,56 +1172,35 @@ prt_are_in,25,31,3	script	Staff#aco-2	67,{
 					set $arn_pritop90,.@record_timeaco;
 					set $arn_pritopn90$, strcharinfo(0);
 				}
-				donpcevent "Vendigos::OnLineRec_pri";
+				donpcevent "文迪戈斯::OnLineRec_pri";
 			}
 			next;
 			if (arena_point == 30000) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "你必须先花掉一些，才能获得更多点数。";
-				mes "这次你创造了新纪录，";
-				mes "所以会得到更多点数。请在大厅";
-				mes "无论如何，你可以和竞技场大厅的";
-				mes "Vendigos 交谈，查看当前竞技场点数总额。";
+				mes "[工作人员]";
+				mes "你的竞技场点数已达上限，请先花掉一些，才能获得更多点数。";
+				mes "你可以向大厅的文迪戈斯查询当前点数。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "with Vendigos. Well, I hope";
-				mes "让我奖励你一些竞技场点数。";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 			}
 			else if (arena_point > 29950) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "to check your new point total.";
+				mes "[工作人员]";
+				mes "恭喜你创造新纪录！现在为你发放竞技场点数奖励。";
+				mes "请向大厅的文迪戈斯查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,30000;
 			}
 			else {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "to check your new point total.";
+				mes "[工作人员]";
+				mes "恭喜你创造新纪录！现在为你发放竞技场点数奖励。";
+				mes "请向大厅的文迪戈斯查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,arena_point+50;
 			}
@@ -1276,63 +1208,39 @@ prt_are_in,25,31,3	script	Staff#aco-2	67,{
 			warp "arena_room",100,75;
 			donpcevent "#arn_timer_aco::OnStop";
 			donpcevent "allkill#aco::OnEnable";
-			donpcevent "Acolyte Waiting Room::OnStart";
+			donpcevent "服事职业等候室::OnStart";
 			end;
 		}
-		if (gapaco < 0) {
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "抱歉，你必须先花掉一些，";
-			mes "才能获得更多点数。";
-			mes "but you still gave an awesome";
-			mes "performance. Excellent work!";
+		if (.@gapaco < 0) {
+			mes "[工作人员]";
+			mes "虽然你没有打破纪录，但表现依然出色。干得好！";
 			next;
 			if (arena_point == 30000) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "你必须先花掉一些，才能获得更多点数。";
-				mes "这次你创造了新纪录，";
-				mes "所以会得到更多点数。请在大厅";
-				mes "无论如何，你可以和竞技场大厅的";
-				mes "Vendigos 交谈，查看当前竞技场点数总额。";
+				mes "[工作人员]";
+				mes "你的竞技场点数已达上限，请先花掉一些，才能获得更多点数。";
+				mes "你可以向大厅的文迪戈斯查询当前点数。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "with Vendigos. Well, I hope";
-				mes "让我奖励你一些竞技场点数。";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 			}
 			else if (arena_point > 29980) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "Let me reward you";
-				mes "with some Arena Points.";
-				mes "Please check your new";
-				mes "Arena Point total in the";
-				mes "让我奖励你一些竞技场点数。";
-				mes "请和友善的^3131FFVendigos^000000交谈，";
+				mes "[工作人员]";
+				mes "现在为你发放竞技场点数奖励。";
+				mes "请向大厅的^3131FF文迪戈斯^000000查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,30000;
 			}
 			else {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "Let me reward you";
-				mes "with some Arena Points.";
-				mes "Please check your new";
-				mes "Arena Point total in the";
-				mes "让我奖励你一些竞技场点数。";
-				mes "请和友善的^3131FFVendigos^000000交谈，";
+				mes "[工作人员]";
+				mes "现在为你发放竞技场点数奖励。";
+				mes "请向大厅的^3131FF文迪戈斯^000000查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,arena_point+20;
 			}
@@ -1340,97 +1248,71 @@ prt_are_in,25,31,3	script	Staff#aco-2	67,{
 			warp "arena_room",100,75;
 			donpcevent "#arn_timer_aco::OnStop";
 			donpcevent "allkill#aco::OnEnable";
-			donpcevent "Acolyte Waiting Room::OnStart";
+			donpcevent "服事职业等候室::OnStart";
 			end;
 		}
 		else {
 			emotion ET_HUK;
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "Wow! A new record!";
-			mes "This is awsome!";
+			mes "[工作人员]";
+			mes "哇，新纪录！太厉害了！";
 			next;
-			mes "等等，抱歉，你的竞技场点数太多了。";
-			mes "Oooh... A brand new";
-			mes "record. ^3131FF"+ strcharinfo(0)+"^000000, your";
-			mes "name will now be listed in";
-			mes "the Time Force Battle Arena";
-			mes "Acolyte Class Records.";
-			mes "Congratulations~";
+			mes "[工作人员]";
+			mes "^3131FF"+strcharinfo(0)+"^000000，你创造了新纪录！";
+			mes "你的名字将登上服事职业时空战竞技场的纪录榜，恭喜！";
 			if (BaseJob == Job_Acolyte) {
 				set $arn_acotop,.@record_timeaco;
 				set $arn_acotopn$, strcharinfo(0);
-				donpcevent "#Vendigos::OnLineRec_aco";
+				donpcevent "#文迪戈斯::OnLineRec_aco";
 			}
 			else {
 				if (BaseLevel < 70) {
 					set $arn_pritop60,.@record_timeaco;
 					set $arn_pritopn60$, strcharinfo(0);
-					donpcevent "#Vendigos::OnLineRec_pri60";
+					donpcevent "#文迪戈斯::OnLineRec_pri60";
 				}
 				else if (BaseLevel < 80) {
 					set $arn_pritop70,.@record_timeaco;
 					set $arn_pritopn70$, strcharinfo(0);
-					donpcevent "#Vendigos::OnLineRec_pri70";
+					donpcevent "#文迪戈斯::OnLineRec_pri70";
 				}
 				else if (BaseLevel < 90) {
 					set $arn_pritop80,.@record_timeaco;
 					set $arn_pritopn80$, strcharinfo(0);
-					donpcevent "#Vendigos::OnLineRec_pri80";
+					donpcevent "#文迪戈斯::OnLineRec_pri80";
 				}
 				else {
 					set $arn_pritop90,.@record_timeaco;
 					set $arn_pritopn90$, strcharinfo(0);
-					donpcevent "#Vendigos::OnLineRec_pri90";
+					donpcevent "#文迪戈斯::OnLineRec_pri90";
 				}
 			}
 			next;
 			if (arena_point == 30000) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "你必须先花掉一些，才能获得更多点数。";
-				mes "这次你创造了新纪录，";
-				mes "所以会得到更多点数。请在大厅";
-				mes "无论如何，你可以和竞技场大厅的";
-				mes "Vendigos 交谈，查看当前竞技场点数总额。";
+				mes "[工作人员]";
+				mes "你的竞技场点数已达上限，请先花掉一些，才能获得更多点数。";
+				mes "你可以向大厅的文迪戈斯查询当前点数。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "with Vendigos. Well, I hope";
-				mes "让我奖励你一些竞技场点数。";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 			}
 			else if (arena_point > 29980) {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "to check your new point total.";
+				mes "[工作人员]";
+				mes "恭喜你创造新纪录！现在为你发放竞技场点数奖励。";
+				mes "请向大厅的文迪戈斯查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,30000;
 			}
 			else {
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "希望你享受了这场战斗。";
-				mes "现在让我带你";
-				mes "回到竞技场大厅……";
-				mes "to check your new point total.";
+				mes "[工作人员]";
+				mes "恭喜你创造新纪录！现在为你发放竞技场点数奖励。";
+				mes "请向大厅的文迪戈斯查询点数总额。";
 				next;
-				mes "等等，抱歉，你的竞技场点数太多了。";
-				mes "回到竞技场大厅……";
-				mes "enjoyed your battle.";
-				mes "让我奖励你一些竞技场点数。";
-				mes "这次你创造了新纪录，";
+				mes "[工作人员]";
+				mes "希望你享受了这场战斗。现在让我送你回竞技场大厅。";
 				close2;
 				set arena_point,arena_point+20;
 			}
@@ -1438,7 +1320,7 @@ prt_are_in,25,31,3	script	Staff#aco-2	67,{
 			warp "arena_room",100,75;
 			donpcevent "#arn_timer_aco::OnStop";
 			donpcevent "allkill#aco::OnEnable";
-			donpcevent "Acolyte Waiting Room::OnStart";
+			donpcevent "服事职业等候室::OnStart";
 		}
 		end;
 	}
@@ -1450,22 +1332,22 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "prt_are_in","This broadcast is to inform you about the Acolyte Class Arena.",bc_map,"0xFFCE00";
+	mapannounce "prt_are_in","这里是服事职业竞技场的通知。",bc_map,"0xFFCE00";
 	end;
 
 OnTimer3000:
-	mapannounce "prt_are_in","For smoother game play, the Warp Portal in the Final Waiting Room will activate in 1 minute.",bc_map,"0xFFCE00";
+	mapannounce "prt_are_in","为确保挑战顺利进行，最终等候室的传送门将在1分钟后开启。",bc_map,"0xFFCE00";
 	end;
 
 OnTimer4000:
-	mapannounce "prt_are_in","Thank you.",bc_map,"0xFFCE00";
+	mapannounce "prt_are_in","谢谢。",bc_map,"0xFFCE00";
 	end;
 
 OnTimer60000:
 	donpcevent "arn_warp_aco::OnOut";
 	donpcevent "#arn_timer_aco::OnStop";
 	//donpcevent "alloff#aco::OnEnable";
-	donpcevent "Acolyte Waiting Room::OnStart";
+	donpcevent "服事职业等候室::OnStart";
 	end;
 
 OnStop:
@@ -1554,35 +1436,23 @@ OnEnable:
 	end;
 }
 
-arena_room,94,82,7	script	Arena Record Staff#aco	79,{
-	mes "[Mathea]";
-	mes "Hello, I'm in charge of";
-	mes "the Acolyte Class Records";
-	mes "in the Arena. If you'd like to";
-	mes "view the other records, please";
-	mes "talk to the Arena Record Staff,";
-	mes "Owen Kheuv, and he'll help you.";
+arena_room,94,82,7	script	竞技场记录员#aco	79,{
+	mes "[玛蒂娅]";
+	mes "你好，我负责竞技场的服事职业纪录。";
+	mes "若想查看其他纪录，请找竞技场记录员欧文·丘夫，他会帮助你。";
 	next;
-	mes "[Mathea]";
-	mes "Would you like to";
-	mes "see who are the top";
-	mes "你好，我负责竞技场服事者职业记录。";
-	mes "如果想查看其他记录，请找竞技场记录员 Owen Kheuv，他会帮助你。";
-	mes "Please choose from the menu.";
+	mes "[玛蒂娅]";
+	mes "想看看各组的纪录保持者吗？请从菜单中选择。";
 	next;
-	switch(select("Acolyte Mode:Priest - Level 70 or lower:Priest - Level 80 or lower:Priest - Level 90 or lower:Priest - Level 91 ~ "+(checkre(0)?"160":"99"))) {
+	switch(select("服事模式:牧师模式－70级以下:牧师模式－70至79级:牧师模式－80至89级:牧师模式－90级以上，最高"+(checkre(0)?"160":"99"))) {
 	case 1:
 		set .@acotop_t,$arn_acotop;
 		set .@acotop_n$,$arn_acotopn$;
 		set .@acotopbun, ((.@acotop_t % 3600) / 60 );
 		set .@acotopcho, (.@acotop_t % 60);
-		mes "[Mathea]";
-		mes "^3131FF"+.@acotop_n$+"^000000";
-		mes "is the top player of the";
-		mes "Acolyte Mode, finishing";
-		mes "with a time of ^3131FF"+.@acotopbun+"^000000 minutes";
-		mes "and ^3131FF"+.@acotopcho+"^000000 seconds. Thank you";
-		mes "参加竞技场。";
+		mes "[玛蒂娅]";
+		mes "服事模式的纪录保持者是^3131FF"+.@acotop_n$+"^000000。";
+		mes "用时为^3131FF"+.@acotopbun+"^000000分^3131FF"+.@acotopcho+"^000000秒。感谢你参加竞技场。";
 		close;
 	case 2:
 		set .@pritop_t,$arn_pritop60;
@@ -1603,13 +1473,9 @@ arena_room,94,82,7	script	Arena Record Staff#aco	79,{
 	}
 	set .@pritopbun, ((.@pritop_t % 3600) / 60 );
 	set .@pritopcho, (.@pritop_t % 60);
-	mes "[Mathea]";
-	mes "^3131FF"+.@pritop_n$+"^000000";
-	mes "is the top player of this";
-	mes "是牧师模式的第一名，完成时间为";
-	mes "完成时间为 ^3131FF"+.@pritopbun+" 分钟";
-	mes "^3131FF"+.@pritopcho+" 秒。谢谢你";
-	mes "参加竞技场。";
+	mes "[玛蒂娅]";
+	mes "本组牧师模式的纪录保持者是^3131FF"+.@pritop_n$+"^000000。";
+	mes "用时为^3131FF"+.@pritopbun+"^000000分^3131FF"+.@pritopcho+"^000000秒。感谢你参加竞技场。";
 	close;
 
 OnInit:
@@ -1619,94 +1485,65 @@ OnInit:
 		set $arn_pritop80, 480;
 		set $arn_pritop90, 480;
 		set $arn_acotop, 480;
-		set $arn_pritopn60$, "Default";
-		set $arn_pritopn70$, "Default";
-		set $arn_pritopn80$, "Default";
-		set $arn_pritopn90$, "Default";
-		set $arn_acotopn$, "Default";
+		set $arn_pritopn60$, "默认纪录";
+		set $arn_pritopn70$, "默认纪录";
+		set $arn_pritopn80$, "默认纪录";
+		set $arn_pritopn90$, "默认纪录";
+		set $arn_acotopn$, "默认纪录";
 	}
 	end;
 }
 
--	script	#Vendigos	-1,{
+-	script	#文迪戈斯	-1,{
 OnLineRec_aco:
-	mapannounce "arena_room","Vendigos: "+$arn_acotopn$+" has made a new record in the Arena Time Force Battle - Acolyte Mode. Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","文迪戈斯："+$arn_acotopn$+"创造了服事模式时空战竞技场的新纪录，恭喜！",bc_map,"0xFFFF00";
 	end;
 
 OnLineRec_pri60:
-	mapannounce "arena_room","Vendigos: "+$arn_pritopn60$+" has made a new record in the Arena Time Force Battle - Priest: Level 70 or lower. Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","文迪戈斯："+$arn_pritopn60$+"创造了牧师模式70级以下组的新纪录，恭喜！",bc_map,"0xFFFF00";
 	end;
 
 OnLineRec_pri70:
-	mapannounce "arena_room","Vendigos: "+$arn_pritopn70$+" has made a new record in the Arena Time Force Battle - Priest: Level 80 or lower. Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","文迪戈斯："+$arn_pritopn70$+"创造了牧师模式70至79级组的新纪录，恭喜！",bc_map,"0xFFFF00";
 	end;
 
 OnLineRec_pri80:
-	mapannounce "arena_room","Vendigos: "+$arn_pritopn80$+" has made a new record in the Arena Time Force Battle - Priest: Level 90 or lower. Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","文迪戈斯："+$arn_pritopn80$+"创造了牧师模式80至89级组的新纪录，恭喜！",bc_map,"0xFFFF00";
 	end;
 
 OnLineRec_pri90:
-	mapannounce "arena_room","Vendigos: "+$arn_pritopn90$+" has made a new record in the Arena Time Force Battle - Priest: Level 91~"+(checkre(0)?"160":"99")+". Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","文迪戈斯："+$arn_pritopn90$+"创造了牧师模式90级以上组的新纪录！本组最高等级为"+(checkre(0)?"160":"99")+"级，恭喜！",bc_map,"0xFFFF00";
 	end;
 }
 
-arena_room,140,136,3	script	Guide Alias	729,{
-	mes "[Alias]";
-	mes "Hello there, I'm here";
-	mes "你好，我来这里是为了";
-	mes "向你介绍";
-	mes "伊兹鲁德竞技场的";
-	mes "服事职业模式。";
-	mes "我叫 Alias，";
+arena_room,140,136,3	script	向导阿利亚斯	729,{
+	mes "[阿利亚斯]";
+	mes "你好，我叫阿利亚斯，负责介绍依斯鲁得竞技场的服事职业模式。";
 	next;
-	mes "[Alias]";
-	mes "Now, there are two modes";
-	mes "服事职业模式下有两种模式：";
-	mes "^3131FF服事者模式^000000和";
-	mes "^3131FF牧师模式^000000。无论哪种模式，";
-	mes "你都需要在^3131FF服事职业等候室^000000内等待。";
+	mes "[阿利亚斯]";
+	mes "这里分为^3131FF服事模式^000000和^3131FF牧师模式^000000。";
+	mes "无论参加哪种模式，都需要在^3131FF服事职业等候室^000000等待。";
 	next;
-	mes "[Alias]";
-	mes "Once it's your turn,";
-	mes "轮到你时，";
-	mes "你会被送出等候室，";
-	mes "并被引导到竞技场。哦，";
+	mes "[阿利亚斯]";
+	mes "轮到你时，你会从等候室被传送到竞技场。";
 	mes "入场费是 1,000 Zeny。";
 	next;
-	mes "[Alias]";
-	mes "It'll be handy to know";
-	mes "你最好知道，服事职业模式中的";
-	mes "红色植物和佩米特会掉落物品";
-	mes "并提供经验值。";
-	mes "不过其他魔物不会。";
-	mes "monsters, however, won't.";
+	mes "[阿利亚斯]";
+	mes "服事职业模式中的红草和果树龟会掉落物品，并提供经验值。其他魔物则不会。";
 	next;
-	mes "[Alias]";
-	mes "Once you've been guided";
-	mes "被引导到真正的竞技场后，";
-	mes "听取 ^3131FFTrocco^000000 说明任务目标，";
-	mes "你必须在^3131FF 8 分钟^000000内完成。别忘了～";
-	mes "of ^3131FF8 minutes^000000. Don't forget~";
+	mes "[阿利亚斯]";
+	mes "进入竞技场后，请听取^3131FF特罗科^000000说明任务目标。";
+	mes "你必须在^3131FF8 分钟^000000内完成，别忘了！";
 	next;
-	mes "[Alias]";
-	mes "Upon completing the";
-	mes "完成整个阶段后，你会被传送到";
-	mes "^3131DD决赛等候室^000000，";
-	mes "在那里领取竞技场点数奖励。";
-	mes "但必须在 1 分钟内领取点数。";
+	mes "[阿利亚斯]";
+	mes "完成全部阶段后，你会被传送到^3131DD最终等候室^000000，领取竞技场点数奖励。";
+	mes "必须在 1 分钟内领取。";
 	next;
-	mes "[Alias]";
-	mes "Once you're automatically";
-	mes "你被自动送出决赛等候室后，";
-	mes "如果没有在那里领取竞技场点数，";
-	mes "就没有机会再领取了，";
-	mes "所以要小心～";
-	mes "there, so be careful~";
+	mes "[阿利亚斯]";
+	mes "被自动送出最终等候室后，就无法再领取这次的点数奖励了，请务必留意。";
 	next;
-	mes "[Alias]";
-	mes "Well, I hope you enjoy";
-	mes "希望你享受服事者模式竞技场！";
-	mes "祝你好运，战斗愉快！";
+	mes "[阿利亚斯]";
+	mes "希望你在服事职业竞技场玩得开心！祝你好运，战斗愉快！";
 	close;
 }
 
@@ -1718,36 +1555,32 @@ arena_room,195,5,3	script	log-on-aco#arena	802,{
 	} else if (.@i == 0) {
 		end;
 	} else {
-		mes "[!!CAUTION!!]";
-		mes "^3355FF以下菜单用于查看";
-		mes "竞技场服事职业模式中";
-		mes "指定模式的记录。^000000";
-		mes "Arena Acolyte Class Mode.^000000";
+		mes "[注意]";
+		mes "^3355FF以下菜单会重置服事职业竞技场中指定组别的纪录。^000000";
 		next;
-		switch(select("Cancel:Acolyte:~level 70:~level 80:~level 90:~level "+(checkre(0)?"160":"99"))) {
+		switch(select("取消:服事:牧师－70级以下:牧师－70至79级:牧师－80至89级:牧师－90级以上，最高"+(checkre(0)?"160":"99"))) {
 		case 1:
-			mes "^3355FF命令已";
-			mes "取消。^000000";
+			mes "^3355FF命令已取消。^000000";
 			close;
 		case 2:
 			set $arn_acotop, 480;
-			set $arn_acotopn$, "Default";
+			set $arn_acotopn$, "默认纪录";
 			break;
 		case 3:
 			set $arn_pritop60, 480;
-			set $arn_pritopn60$, "Default";
+			set $arn_pritopn60$, "默认纪录";
 			break;
 		case 4:
 			set $arn_pritop70, 480;
-			set $arn_pritopn70$, "Default";
+			set $arn_pritopn70$, "默认纪录";
 			break;
 		case 5:
 			set $arn_pritop80, 480;
-			set $arn_pritopn80$, "Default";
+			set $arn_pritopn80$, "默认纪录";
 			break;
 		case 6:
 			set $arn_pritop90, 480;
-			set $arn_pritopn90$, "Default";
+			set $arn_pritopn90$, "默认纪录";
 			break;
 		}
 		close;
@@ -1757,32 +1590,25 @@ arena_room,195,5,3	script	log-on-aco#arena	802,{
 arena_room,195,10,3	script	acolink#arena	802,{
 	set .@i, callfunc("F_GM_NPC",1357,0);
 	if (.@i == -1) {
-		mes "命令已";
-		mes "取消。";
+		mes "密码错误。";
 		close;
 	} else if (.@i == 0) {
 		end;
 	} else {
-		mes "这个 NPC 负责开启和关闭";
-		mes "竞技场服事职业模式的传送门。";
-		mes "请从菜单中选择";
-		mes "一个选项。";
-		mes "an option from the menu.";
+		mes "这个 NPC 负责开启和关闭服事职业竞技场的传送门。";
+		mes "请从菜单中选择一个选项。";
 		next;
 		switch(select("取消:开启传送:关闭传送")) {
 		case 1:
-			mes "命令已";
-			mes "取消。";
+			mes "命令已取消。";
 			close;
 		case 2:
 			enablenpc "onlyaco#arena";
-			mes "传送门";
-			mes "即将开启。";
+			mes "传送门即将开启。";
 			close;
 		case 3:
 			disablenpc "onlyaco#arena";
-			mes "传送门";
-			mes "即将关闭。";
+			mes "传送门即将关闭。";
 			close;
 		}
 	}

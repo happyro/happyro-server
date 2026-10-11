@@ -6,7 +6,7 @@
 //= 1.0 First Version. [Nova]
 //============================================================
 
-mid_camp,207,290,6	script	Expedition Guide#01	4_M_EIN_SOLDIER,{
+mid_camp,207,290,6	script	远征队向导#01	4_M_EIN_SOLDIER,{
 	mes "[远征队向导]";
 	mes "你要进入^0000FF次元裂隙^000000吗？请使用这里的传送装置。";
 	next;
@@ -34,20 +34,20 @@ mid_camp,207,290,6	script	Expedition Guide#01	4_M_EIN_SOLDIER,{
 	}
 }
 
-mid_camp,212,290,4	script	Expedition Guide#02	4_M_EIN_SOLDIER,{
+mid_camp,212,290,4	script	远征队向导#02	4_M_EIN_SOLDIER,{
 	mes "[远征队向导]";
 	mes "如果想穿过次元裂缝，请使用^0000FF传送装置^000000。内部尚未完全探索，请务必小心。";
 	close;
 }
 
-moc_fild22b,225,198,6	duplicate(Expedition Guide#01)	Expedition Guide#03	4_M_MOC_SOLDIER
-moc_fild22b,223,203,4	duplicate(Expedition Guide#02)	Expedition Guide#04	4_M_MOC_SOLDIER
-bif_fild01,314,155,6	duplicate(Expedition Guide#01)	Expedition Guide#05	4_M_EIN_SOLDIER
-bif_fild01,320,154,4	duplicate(Expedition Guide#02)	Expedition Guide#06	4_M_EIN_SOLDIER
-dic_fild02,236,33,6	duplicate(Expedition Guide#01)	Expedition Guide#07	4_M_EIN_SOLDIER
-dic_fild02,239,36,4	duplicate(Expedition Guide#02)	Expedition Guide#08	4_M_EIN_SOLDIER
+moc_fild22b,225,198,6	duplicate(远征队向导#01)	远征队向导#03	4_M_MOC_SOLDIER
+moc_fild22b,223,203,4	duplicate(远征队向导#02)	远征队向导#04	4_M_MOC_SOLDIER
+bif_fild01,314,155,6	duplicate(远征队向导#01)	远征队向导#05	4_M_EIN_SOLDIER
+bif_fild01,320,154,4	duplicate(远征队向导#02)	远征队向导#06	4_M_EIN_SOLDIER
+dic_fild02,236,33,6	duplicate(远征队向导#01)	远征队向导#07	4_M_EIN_SOLDIER
+dic_fild02,239,36,4	duplicate(远征队向导#02)	远征队向导#08	4_M_EIN_SOLDIER
 
-dali,137,87,4	script	Allied Forces Soldier	4_M_MOCASS1,{
+dali,137,87,4	script	联盟军士兵	4_M_MOCASS1,{
 	mes "[联盟军士兵]";
 	mes "这条次元裂缝连接着尤通海姆的联盟军^0000FF远征营地^000000。";
 	next;
@@ -56,7 +56,7 @@ dali,137,87,4	script	Allied Forces Soldier	4_M_MOCASS1,{
 	close;
 }
 
-dali,122,60,4	script	Morocc Soldier	4_M_MOC_SOLDIER,{
+dali,122,60,4	script	梦罗克士兵	4_M_MOC_SOLDIER,{
 	mes "[梦罗克士兵]";
 	mes "这条次元裂缝连接着米德加尔特的^0000FF梦罗克^000000。";
 	next;
@@ -65,7 +65,7 @@ dali,122,60,4	script	Morocc Soldier	4_M_MOC_SOLDIER,{
 	close;
 }
 
-dali,51,104,6	script	Spledide Soldier	4_M_FAIRYSOLDIER2,{
+dali,51,104,6	script	斯普兰迪士兵	4_M_FAIRYSOLDIER2,{
 	mes "[斯普兰迪士兵]";
 	mes "这条次元裂缝连接着^0000FF彩虹桥^000000南部，可以快速前往斯普兰迪前线。";
 	next;
@@ -77,7 +77,7 @@ dali,51,104,6	script	Spledide Soldier	4_M_FAIRYSOLDIER2,{
 	close;
 }
 
-dali,56,126,4	script	Dispatched Sapha	4_MAN_BENKUNI,{
+dali,56,126,4	script	派遣的萨帕	4_MAN_BENKUNI,{
 	mes "[派遣的萨帕]";
 	mes "这条次元裂缝连接着艾尔迪卡斯特^0000FF卡米达尔山脉^000000南部。我只是来这里做研究，但一切都令人难以置信。";
 	next;
@@ -86,9 +86,9 @@ dali,56,126,4	script	Dispatched Sapha	4_MAN_BENKUNI,{
 	close;
 }
 
-dali,109,94,4	shop	Sundries Merchant	4_M_MERCAT2,611:-1,1750:-1,1065:-1
+dali,109,94,4	shop	杂货商人	4_M_MERCAT2,611:-1,1750:-1,1065:-1
 
-dali,112,95,4	script	Logistics Manager	4_M_MERCAT2,{
+dali,112,95,4	script	后勤管理员	4_M_MERCAT2,{
 	mes "[后勤管理员]";
 	mes "欢迎。我负责在这个奇怪的地方处理物品。你需要使用仓库吗？";
 	next;
@@ -116,9 +116,9 @@ dali,112,95,4	script	Logistics Manager	4_M_MERCAT2,{
 	close;
 }
 
-dali,115,85,5	script	Party Leader#dali	2_M_SWORDMASTER,{
-	hideonnpc "Party Leader#dali";
-	hideoffnpc "Party Leader#dali2";
+dali,115,85,5	script	队长#dali	2_M_SWORDMASTER,{
+	hideonnpc "队长#dali";
+	hideoffnpc "队长#dali2";
 	donpcevent "#dalichat::OnEnable";
 	end;
 }
@@ -126,7 +126,7 @@ dali,115,85,5	script	Party Leader#dali	2_M_SWORDMASTER,{
 dali,115,85,0	script	#dalichat	-1,{
 	end;
 OnInit:
-	hideonnpc "Party Leader#dali2";
+	hideonnpc "队长#dali2";
 	disablenpc "#dalichat";
 	end;
 OnEnable:
@@ -134,166 +134,164 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer1000:
-	npctalk "注意！！！", "Party Leader#dali2";
+	npctalk "注意！！！", "队长#dali2";
 	end;
 OnTimer2000:
-	npctalk "这里，这里。大家安静，排好队！", "Party Leader#dali2";
+	npctalk "这里，这里。大家安静，排好队！", "队长#dali2";
 	end;
 OnTimer3000:
-	npctalk "我们已经进入次元裂缝内部了。首先该去哪里？", "Party Leader#dali2";
+	npctalk "我们已经进入次元裂缝内部了。首先该去哪里？", "队长#dali2";
 	end;
 OnTimer4000:
-	npctalk "有人有意见吗？", "Party Leader#dali2";
+	npctalk "有人有意见吗？", "队长#dali2";
 	end;
 OnTimer6000:
-	npctalk "我听说这里有位魔法剑士。我们去找他吧。", "Party Member#MONK";
+	npctalk "我听说这里有位魔法剑士。我们去找他吧。", "队员#MONK";
 	end;
 OnTimer7500:
-	npctalk "我们听说这里正在举办魔法比赛！", "Party Member#WANDERER";
+	npctalk "我们听说这里正在举办魔法比赛！", "队员#WANDERER";
 	end;
 OnTimer9000:
-	npctalk "在哪里？！", "Party Member#MONK";
+	npctalk "在哪里？！", "队员#MONK";
 	end;
 OnTimer10500:
-	npctalk "呃，我有点饿了……不知道有没有人卖热乎乎的烤地瓜或者饺子……", "Party Member#CRU";
+	npctalk "呃，我有点饿了……不知道有没有人卖热乎乎的烤地瓜或者饺子……", "队员#CRU";
 	end;
 OnTimer12000:
-	npctalk "你又想吃东西？", "Party Member#GUILL";
+	npctalk "你又想吃东西？", "队员#GUILL";
 	end;
 OnTimer13500:
-	npctalk "我只是对比赛有点好奇……", "Party Member#WANDERER";
+	npctalk "我只是对比赛有点好奇……", "队员#WANDERER";
 	end;
 OnTimer15000:
-	npctalk "做任何事之前我得先吃点东西。", "Party Member#CRU";
+	npctalk "做任何事之前我得先吃点东西。", "队员#CRU";
 	end;
 OnTimer16500:
-	npctalk "对了，我还听说过一个叫恶魔之塔的地方。", "Party Member#MONK";
+	npctalk "对了，我还听说过一个叫恶魔之塔的地方。", "队员#MONK";
 	end;
 OnTimer18000:
-	npctalk "我刚看到一个街头商人经过……他在哪里？", "Party Member#GUILL";
+	npctalk "我刚看到一个街头商人经过……他在哪里？", "队员#GUILL";
 	end;
 OnTimer19500:
-	emotion ET_SLEEPY, getnpcid(0, "Party Member#SURA");
-	npctalk "咦？这是怎么回事？你还没进来吗？", "Party Member#SURA";
+	emotion ET_SLEEPY, getnpcid(0, "队员#SURA");
+	npctalk "咦？这是怎么回事？你还没进来吗？", "队员#SURA";
 	end;
 OnTimer20000:
-	npctalk "我很好奇从拉菲内那里听说的脸虫。", "Party Member#MONK";
+	npctalk "我很好奇从拉菲内那里听说的脸虫。", "队员#MONK";
 	end;
 OnTimer21000:
-	npctalk "我吃完饭后可以回来吗？", "Party Member#CRU";
+	npctalk "我吃完饭后可以回来吗？", "队员#CRU";
 	end;
 OnTimer22500:
-	npctalk "你真的能抓到那个吗？", "Party Member#WANDERER";
-	npctalk "你醒着吗？", "Party Member#SHADOW";
+	npctalk "你真的能抓到那个吗？", "队员#WANDERER";
+	npctalk "你醒着吗？", "队员#SHADOW";
 	end;
 OnTimer24000:
-	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
-	npctalk "你为什么还在这里？", "Party Member#SURA";
+	emotion ET_FRET, getnpcid(0, "队员#SURA");
+	npctalk "你为什么还在这里？", "队员#SURA";
 	end;
 OnTimer24500:
-	npctalk "等一会儿。商人很快就会经过。", "Party Member#GUILL";
+	npctalk "等一会儿。商人很快就会经过。", "队员#GUILL";
 	end;
 OnTimer25500:
-	npctalk "那是你的愿望……", "Party Member#MONK";
+	npctalk "那是你的愿望……", "队员#MONK";
 	end;
 OnTimer27000:
-	npctalk "我想买冰葡萄汁～", "Party Member#CRU";
+	npctalk "我想买冰葡萄汁～", "队员#CRU";
 	end;
 OnTimer28500:
-	npctalk "我不知道。前面可能发生了事故。", "Party Member#SHADOW";
+	npctalk "我不知道。前面可能发生了事故。", "队员#SHADOW";
 	end;
 OnTimer30000:
-	npctalk "什么？你怎么敢？！", "Party Member#WANDERER";
+	npctalk "什么？你怎么敢？！", "队员#WANDERER";
 	end;
 OnTimer31500:
-	npctalk "给我喝一口果汁。", "Party Member#GUILL";
+	npctalk "给我喝一口果汁。", "队员#GUILL";
 	end;
 OnTimer32000:
-	npctalk "咳～咳～", "Party Member#EINOLD";
+	npctalk "咳～咳～", "队员#EINOLD";
 	end;
 OnTimer33000:
-	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
+	emotion ET_FRET, getnpcid(0, "队员#SURA");
 	end;
 OnTimer34000:
-	npctalk "可恶！我气死了！我听说只有组队才能进来，所以才到这里！", "Party Member#SURA";
+	npctalk "可恶！我气死了！我听说只有组队才能进来，所以才到这里！", "队员#SURA";
 	end;
 OnTimer36000:
-	npctalk "你要打我吗？来啊！", "Party Member#MONK";
-	emotion ET_ANGER, getnpcid(0, "Party Member#MONK");
-	npctalk "吃东西要付钱。", "Party Member#CRU";
+	npctalk "你要打我吗？来啊！", "队员#MONK";
+	emotion ET_ANGER, getnpcid(0, "队员#MONK");
+	npctalk "吃东西要付钱。", "队员#CRU";
 	end;
 OnTimer37500:
-	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
+	emotion ET_FRET, getnpcid(0, "队员#SURA");
 	end;
 OnTimer39000:
-	npctalk "随便，我不吃了。", "Party Member#WANDERER";
-	npctalk "真过分……那我也不吃了。", "Party Member#GUILL";
-	npctalk "没错……我应该和另一队一起进来！", "Party Member#SHADOW";
+	npctalk "随便，我不吃了。", "队员#WANDERER";
+	npctalk "真过分……那我也不吃了。", "队员#GUILL";
+	npctalk "没错……我应该和另一队一起进来！", "队员#SHADOW";
 	end;
 OnTimer40500:
-	emotion ET_KIK, getnpcid(0, "Party Member#CRU");
-	npctalk "嘿，你生气了吗？", "Party Member#CRU";
+	emotion ET_KIK, getnpcid(0, "队员#CRU");
+	npctalk "嘿，你生气了吗？", "队员#CRU";
 	end;
 OnTimer42000:
-	npctalk "完全没有。", "Party Member#GUILL";
+	npctalk "完全没有。", "队员#GUILL";
 	end;
 OnTimer43500:
-	emotion ET_KIK, getnpcid(0, "Party Member#MONK");
-	npctalk "看他睡得多香。呵呵。", "Party Member#MONK";
+	emotion ET_KIK, getnpcid(0, "队员#MONK");
+	npctalk "看他睡得多香。呵呵。", "队员#MONK";
 	end;
 OnTimer45000:
-	emotion ET_SLEEPY, getnpcid(0, "Party Member#SURA");
+	emotion ET_SLEEPY, getnpcid(0, "队员#SURA");
 	npctalk "哼，我不在乎。我要睡一会儿，准备好时叫醒我。";
 	end;
 OnTimer46500:
-	emotion ET_KIK, getnpcid(0, "Party Member#CRU");
-	npctalk "你在生气！！", "Party Member#CRU";
-	npctalk "我能在死之前回去吗……", "Party Member#WANDERER";
-	npctalk "什么？你，我们得谈谈！我对你太好了！", "Party Member#EINOLD";
+	emotion ET_KIK, getnpcid(0, "队员#CRU");
+	npctalk "你在生气！！", "队员#CRU";
+	npctalk "我能在死之前回去吗……", "队员#WANDERER";
+	npctalk "什么？你，我们得谈谈！我对你太好了！", "队员#EINOLD";
 	end;
 OnTimer48000:
-	npctalk "打扰一下……大家……？", "Party Leader#dali2";
+	npctalk "打扰一下……大家……？", "队长#dali2";
 	end;
 OnTimer49500:
-	emotion ET_ANGER, getnpcid(0, "Party Member#GUILL");
-	npctalk "不！！！！！！！！！", "Party Member#GUILL";
-	npctalk "随便～", "Party Member#MONK";
+	emotion ET_ANGER, getnpcid(0, "队员#GUILL");
+	npctalk "不！！！！！！！！！", "队员#GUILL";
+	npctalk "随便～", "队员#MONK";
 	end;
 OnTimer51000:
-	emotion ET_CRY, getnpcid(0, "Party Leader#dali2");
-	npctalk "请听我说……", "Party Leader#dali2";
-	npctalk "他确实生气了……", "Party Member#WANDERER";
-	npctalk "睡一会儿吧。我也困了，我们轮流值班。", "Party Member#SHADOW";
+	emotion ET_CRY, getnpcid(0, "队长#dali2");
+	npctalk "请听我说……", "队长#dali2";
+	npctalk "他确实生气了……", "队员#WANDERER";
+	npctalk "睡一会儿吧。我也困了，我们轮流值班。", "队员#SHADOW";
 	end;
 OnTimer52500:
-	hideonnpc "Party Leader#dali2";
-	hideoffnpc "Party Leader#dali";
+	hideonnpc "队长#dali2";
+	hideoffnpc "队长#dali";
 	stopnpctimer;
 	disablenpc "#dalichat";
 	end;
 }
 
-dali,115,85,3	script	Party Leader#dali2	2_M_SWORDMASTER,{}
-dali,117,81,7	script	Party Member#WANDERER	4_F_WANDERER,{}
-dali,117,79,5	script	Party Member#CRU	4_F_CRU,{}
-dali,118,83,3	script	Party Member#MONK	4_F_MONK,{}
-dali,119,76,7	script	Party Member#SHADOW	4_F_SHADOWCHASER,{}
-dali,119,78,2	script	Party Member#GUILL	4_M_JPNOJI,{}
-dali,120,77,4	script	Party Member#SURA	4_F_SURA,{}
-dali,120,81,3	script	Party Member#EINOLD	4_M_EINOLD,{}
+dali,115,85,3	script	队长#dali2	2_M_SWORDMASTER,{}
+dali,117,81,7	script	队员#WANDERER	4_F_WANDERER,{}
+dali,117,79,5	script	队员#CRU	4_F_CRU,{}
+dali,118,83,3	script	队员#MONK	4_F_MONK,{}
+dali,119,76,7	script	队员#SHADOW	4_F_SHADOWCHASER,{}
+dali,119,78,2	script	队员#GUILL	4_M_JPNOJI,{}
+dali,120,77,4	script	队员#SURA	4_F_SURA,{}
+dali,120,81,3	script	队员#EINOLD	4_M_EINOLD,{}
 
-dali,102,83,5	script	Merchant Prince#HUMERC	4_M_HUMERCHANT,2,2,{
+dali,102,83,5	script	凯内特王子#HUMERC	4_M_HUMERCHANT,2,2,{
 	mes "[凯内特王子]";
 	mes "你是谁？";
 	next;
 	mes "[凯内特王子]";
 	mes "你想要什么？";
-	mes "你在找什么";
-	mes "特别的东西吗？";
+	mes "你在找什么特别的东西吗？";
 	next;
 	mes "[凯内特王子]";
-	mes "最近一些执法者";
-	mes "一直在打击商人。";
+	mes "最近一些执法者一直在打击商人。";
 	mes "我什么也卖不了。";
 	next;
 	mes "[凯内特王子]";
@@ -301,10 +299,9 @@ dali,102,83,5	script	Merchant Prince#HUMERC	4_M_HUMERCHANT,2,2,{
 	next;
 	mes "[急躁的骑士]";
 	mes "我就知道你会在这里！！";
-	mes "这里不允许";
-	mes "进行非法交易！";
+	mes "这里不允许进行非法交易！";
 	mes "你不知道吗？";
-	hideoffnpc "Jumpy Knight#JP_RUN";
+	hideoffnpc "急躁的骑士#JP_RUN";
 	next;
 	mes "[凯内特王子]";
 	mes "谁说的？";
@@ -317,17 +314,16 @@ dali,102,83,5	script	Merchant Prince#HUMERC	4_M_HUMERCHANT,2,2,{
 	mes "这里没人管！";
 	next;
 	mes "[凯内特王子]";
-	mes "你！需要什么就来找";
-	mes "我，知道吗？";
+	mes "你！需要什么就来找我，知道吗？";
 	next;
 	mes "[急躁的骑士]";
 	mes "我会抓住你！";
-	hideonnpc "Merchant Prince#HUMERC";
+	hideonnpc "凯内特王子#HUMERC";
 	close2;
-	hideonnpc "Jumpy Knight#JP_RUN";
-	enablenpc "Merchant Prince#HUMERC2";
-	hideoffnpc "Merchant Prince#HUMERC2";
-	disablenpc "Merchant Prince#HUMERC";
+	hideonnpc "急躁的骑士#JP_RUN";
+	enablenpc "凯内特王子#HUMERC2";
+	hideoffnpc "凯内特王子#HUMERC2";
+	disablenpc "凯内特王子#HUMERC";
 	end;
 OnTouch:
 	mes "[凯内特王子]";
@@ -341,14 +337,14 @@ OnTouch:
 	close;
 }
 
-dali,105,82,1	script	Jumpy Knight#JP_RUN	4_M_JP_RUN,{
+dali,105,82,1	script	急躁的骑士#JP_RUN	4_M_JP_RUN,{
 	end;
 OnInit:
-	hideonnpc "Jumpy Knight#JP_RUN";
+	hideonnpc "急躁的骑士#JP_RUN";
 	end;
 }
 
-dali,63,112,7	script	Merchant Prince#HUMERC2	4_M_HUMERCHANT,2,2,{
+dali,63,112,7	script	凯内特王子#HUMERC2	4_M_HUMERCHANT,2,2,{
 	mes "[凯内特王子]";
 	mes "从这里通过需要缴纳通行费。";
 	next;
@@ -362,7 +358,7 @@ dali,63,112,7	script	Merchant Prince#HUMERC2	4_M_HUMERCHANT,2,2,{
 			mes "[急躁的骑士]";
 			mes "那边的你！";
 			mes "站住！";
-			hideoffnpc "Jumpy Knight#JP_RUN2";
+			hideoffnpc "急躁的骑士#JP_RUN2";
 			next;
 			mes "[凯内特王子]";
 			mes "呃！你怎么总能跟着我？";
@@ -377,15 +373,15 @@ dali,63,112,7	script	Merchant Prince#HUMERC2	4_M_HUMERCHANT,2,2,{
 			next;
 			mes "[急躁的骑士]";
 			mes "继续跑啊，你这个卑鄙的胆小鬼！";
-			hideonnpc "Merchant Prince#HUMERC2";
+			hideonnpc "凯内特王子#HUMERC2";
 			close2;
-			hideonnpc "Jumpy Knight#JP_RUN2";
-			hideoffnpc "Merchant Prince#HUMERC3";
-			disablenpc "Merchant Prince#HUMERC2";
+			hideonnpc "急躁的骑士#JP_RUN2";
+			hideoffnpc "凯内特王子#HUMERC3";
+			disablenpc "凯内特王子#HUMERC2";
 			end;
 	}
 OnInit:
-	disablenpc "Merchant Prince#HUMERC2";
+	disablenpc "凯内特王子#HUMERC2";
 	end;
 OnTouch:
 	mes "[凯内特王子]";
@@ -393,29 +389,24 @@ OnTouch:
 	close;
 }
 
-dali,67,113,3	script	Jumpy Knight#JP_RUN2	4_M_JP_RUN,{
+dali,67,113,3	script	急躁的骑士#JP_RUN2	4_M_JP_RUN,{
 	end;
 OnInit:
-	hideonnpc "Jumpy Knight#JP_RUN2";
+	hideonnpc "急躁的骑士#JP_RUN2";
 	end;
 }
 
-dali,89,97,3	script	Merchant Prince#HUMERC3	4_M_HUMERCHANT,{
+dali,89,97,3	script	凯内特王子#HUMERC3	4_M_HUMERCHANT,{
 	mes "[凯内特王子]";
-	mes "你很幸运能遇到";
-	mes "我。";
+	mes "你很幸运能遇到我。";
 	mes "我是谁？";
-	mes "我要在这里成为";
-	mes "商人之王。";
+	mes "我要在这里成为商人之王。";
 	next;
 	mes "[凯内特王子]";
-	mes "我现在可能只是在摆街边摊，";
-	mes "但总有一天我会拥有真正的店铺";
-	mes "。";
+	mes "我现在可能只是在摆街边摊，但总有一天我会拥有真正的店铺。";
 	next;
 	mes "[凯内特王子]";
-	mes "今天是第一天，所以我要办一场";
-	mes "大促销。";
+	mes "今天是第一天，所以我要办一场大促销。";
 	next;
 	mes "[凯内特王子]";
 	mes "让我看看，我有……";
@@ -425,7 +416,7 @@ dali,89,97,3	script	Merchant Prince#HUMERC3	4_M_HUMERCHANT,{
 	next;
 	mes "[凯内特王子]";
 	mes "需要什么就告诉我，";
-	hideoffnpc "Jumpy Knight#JP_RUN3";
+	hideoffnpc "急躁的骑士#JP_RUN3";
 	next;
 	mes "[凯内特王子]";
 	mes "你在这里做什么？";
@@ -438,40 +429,36 @@ dali,89,97,3	script	Merchant Prince#HUMERC3	4_M_HUMERCHANT,{
 	next;
 	mes "[凯内特王子]";
 	mes "我在发抖……";
-	hideonnpc "Merchant Prince#HUMERC3";
+	hideonnpc "凯内特王子#HUMERC3";
 	close2;
-	hideonnpc "Jumpy Knight#JP_RUN3";
-	enablenpc "Merchant Prince#HUMERC";
-	hideoffnpc "Merchant Prince#HUMERC";
+	hideonnpc "急躁的骑士#JP_RUN3";
+	enablenpc "凯内特王子#HUMERC";
+	hideoffnpc "凯内特王子#HUMERC";
 	end;
 OnInit:
-	hideonnpc "Merchant Prince#HUMERC3";
+	hideonnpc "凯内特王子#HUMERC3";
 	end;
 }
 
-dali,89,94,7	script	Jumpy Knight#JP_RUN3	4_M_JP_RUN,{
+dali,89,94,7	script	急躁的骑士#JP_RUN3	4_M_JP_RUN,{
 	end;
 OnInit:
-	hideonnpc "Jumpy Knight#JP_RUN3";
+	hideonnpc "急躁的骑士#JP_RUN3";
 	end;
 }
 
 
-dali02,58,123,3	script	Curious Knight#KY_KNT	4_M_KY_KNT,{
+dali02,58,123,3	script	好奇的骑士#KY_KNT	4_M_KY_KNT,{
 	mes "[好奇的骑士]";
-	mes "这里的皇家卫士";
-	mes "急需帮助。";
-	mes "我们通过宫殿里的秘密地点";
-	mes "进入了这里。";
+	mes "这里的皇家卫士急需帮助。";
+	mes "我们通过宫殿里的秘密地点进入了这里。";
 	next;
 	mes "[好奇的骑士]";
 	mes "我们被带到了这里……";
-	mes "虽然不知道这里是哪里，但我必须";
-	mes "在这里为骑士团";
-	mes "建立基地。";
+	mes "虽然不知道这里是哪里，但我必须在这里为骑士团建立基地。";
 	close;
 }
-dali02,51,112,5	script	Confused Thief#DST_SOL	4_DST_SOLDIER,{
+dali02,51,112,5	script	困惑的盗贼#DST_SOL	4_DST_SOLDIER,{
 	mes "[困惑的盗贼]";
 	mes "刚才我还在酒吧……";
 	mes "下一刻就到了这里……";
@@ -479,14 +466,12 @@ dali02,51,112,5	script	Confused Thief#DST_SOL	4_DST_SOLDIER,{
 	next;
 	mes "[困惑的盗贼]";
 	mes "这里没有黑夜或白昼。";
-	mes "嗯，这里一定有";
-	mes "有价值的东西……";
+	mes "嗯，这里一定有有价值的东西……";
 	close;
 }
-dali02,65,115,5	script	Adventurous Rafflesia#ra	4_M_RAFLE_GR,{
+dali02,65,115,5	script	冒险的拉斐勒西亚#ra	4_M_RAFLE_GR,{
 	mes "[冒险的拉斐勒西亚]";
-	mes "不，不对，这里一定是塔纳托斯";
-	mes "之塔……";
+	mes "不，不对，这里一定是达纳托斯之塔……";
 	mes "我感受到这里有黑暗魔法。";
 	next;
 	mes "[向导]";
@@ -504,7 +489,7 @@ dali02,65,115,5	script	Adventurous Rafflesia#ra	4_M_RAFLE_GR,{
 	close;
 }
 
-dali02,68,117,5	script	Guide#ra	4_M_RAFLE_GR,{
+dali02,68,117,5	script	向导#ra	4_M_RAFLE_GR,{
 	mes "[向导]";
 	mes "哦，我们又回到这里了。";
 	mes "我找不到出口！";
@@ -514,55 +499,52 @@ dali02,68,117,5	script	Guide#ra	4_M_RAFLE_GR,{
 	mes "这里是著名的普隆德拉吗？";
 	mes "和大城市一样黑暗！";
 	next;
-	mes "[Traveller]";
+	mes "[旅行者]";
 	mes "我听到时钟滴答声。";
 	mes "这里一定是吉芬！";
 	next;
-	mes "[冒险的拉佛勒斯]";
-	mes "不，这一定是塔纳托斯";
-	mes "塔……";
+	mes "[冒险的拉斐勒西亚]";
+	mes "不，这一定是达纳托斯塔……";
 	mes "我感觉到这里有黑暗魔法。";
 	close;
 }
 
-dali02,65,119,5	script	Tourist#ra	4_M_RAFLE_GR,{
-	mes "[Tourist]";
+dali02,65,119,5	script	游客#ra	4_M_RAFLE_GR,{
+	mes "[游客]";
 	mes "这里是著名的普隆德拉吗？";
 	mes "和大城市一样黑暗！";
 	next;
-	mes "[Adventurous Rafflesia]";
-	mes "不，这一定是塔纳托斯";
-	mes "塔……";
+	mes "[冒险的拉斐勒西亚]";
+	mes "不，这一定是达纳托斯塔……";
 	mes "我感觉到这里有黑暗魔法。";
 	next;
-	mes "[Guide]";
+	mes "[向导]";
 	mes "哦，我们又回到这里了。";
 	mes "我找不到出口！";
 	mes "我们被困在迷宫里了！";
 	next;
-	mes "[Traveller]";
+	mes "[旅行者]";
 	mes "我听到时钟滴答声。";
 	mes "这里一定是吉芬！";
 	close;
 }
 
-dali02,69,122,5	script	Traveller#ra	4_M_RAFLE_GR,{
-	mes "[Traveller]";
+dali02,69,122,5	script	旅行者#ra	4_M_RAFLE_GR,{
+	mes "[旅行者]";
 	mes "我听到时钟滴答声。";
 	mes "这里一定是吉芬！";
 	next;
-	mes "[Guide]";
+	mes "[向导]";
 	mes "哦，我们又回到这里了。";
 	mes "我找不到出口！";
 	mes "我们被困在迷宫里了！";
 	next;
-	mes "[Tourist]";
+	mes "[游客]";
 	mes "这里是著名的普隆德拉吗？";
 	mes "和大城市一样黑暗！";
 	next;
-	mes "[Adventurous Rafflesia]";
-	mes "不，这一定是塔纳托斯";
-	mes "塔……";
+	mes "[冒险的拉斐勒西亚]";
+	mes "不，这一定是达纳托斯塔……";
 	mes "我感觉到这里有黑暗魔法。";
 	close;
 }

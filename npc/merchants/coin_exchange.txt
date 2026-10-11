@@ -18,7 +18,7 @@
 // Manuk & Splendide
 //============================================================
 -	script	::merchant_13_2	-1,{
-	set .@n$, "["+strnpcinfo(1)+"]";
+	set .@n$, strnpcinfo(1) == "Merchant of Manuk" ? "[马努克商人]" : "[斯普朗迪商人]";
 	mes .@n$;
 	if (isequipped(2782) && ep13_2_rhea == 100) {
 		if (!checkweight(1201,1)) {
@@ -33,13 +33,13 @@
 			setarray .@Items[2],12342,12343,12348;
 			set .@Book,11019; //Manuk_Selling_Item
 			set .@Coin,6080; //Manuk_Coin
-			set .@i, select("查看物品说明:曼格的机会:曼格的勇气:曼格的信仰:取消");
+			set .@i, select("查看物品说明:马努克的机遇:马努克的勇气:马努克的信仰:取消");
 		}
 		else {
 			setarray .@Items[2],12344,12345,12349;
 			set .@Book,11018; //Splendide_Selling_Item
 			set .@Coin,6081; //Splendide_Coin
-			set .@i, select("查看物品说明:购买食人花果酱:购买荧光花蜂蜜酱:购买独角兽之泪:什么也不做");
+			set .@i, select("查看物品说明:购买捕虫草果酱:购买萤火虫蜂蜜果酱:购买科努斯之泪:什么也不做");
 		}
 		mes .@n$;
 		if (.@i == 1) {
@@ -49,13 +49,17 @@
 			end;
 		}
 		else if (.@i < 5) {
-			mes "我可以用"+getitemname(.@Items[.@i])+"^3131FF1枚硬币^000000卖给你 3 个。";
+			mes "这种"+getitemname(.@Items[.@i])+"，支付^3131FF1枚硬币^000000就能买到 3 个。";
 			next;
 			switch(select("购买:不购买")) {
 			case 1:
 				if (countitem(.@Coin)) {
 					mes .@n$;
 					mes "感谢光临。";
+					if (!checkweight(.@Items[.@i],3)) {
+						mes "请先为兑换物品预留足够的负重和物品栏空间。";
+						close;
+					}
 					delitem .@Coin,1; 
 					getitem .@Items[.@i],3;
 					close;

@@ -29,29 +29,29 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 		mes "物品太重，无法继续。减轻重量后再试。";
 		close;
 	}
-	mes "[Mayomayo]";
-	mes "哇，欢迎。这里是新的 Mayomayo 精炼店~我为包括 4 级武器在内的高级武器附魔。";
+	mes "[玛约玛约]";
+	mes "哇，欢迎。这里是全新的玛约玛约附魔店~我为包括 4 级武器在内的高级武器附魔。";
 	next;
-	switch( select( "商店政策有变化吗？", "附魔高级武器", "初始化附魔（需要银色葡萄）" ) ) {
+	switch( select( "商店政策有变化吗？", "附魔高级武器", "重置附魔（需要银藤果）" ) ) {
 	case 1:
-		mes "[Mayomayo]";
-		mes "我给武器附魔时，插槽卡片或精炼等级有时会消失。我讨厌这样。不过有一天，我找到了不会造成任何损失的方法。";
+		mes "[玛约玛约]";
+		mes "以前我给武器附魔时，插入的卡片或精炼等级有时会消失。我讨厌这样。不过有一天，我找到了不会造成任何损失的方法。";
 		next;
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "你见过强化能力协会的大楼吗？";
 		next;
 		if (select( "我以前见过。", "我以前没见过。" ) == 2) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "那座建筑在我所在位置的东南方。要不要去那里参观？";
 			close;
 		}
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "去那里后，有人会为大天使之翼附魔。当时太惊人了，因为凭我的技能根本做不到。";
 		next;
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "每天晚上我都当他的管家，做各种杂活。就是这样学会附魔的。";
 		next;
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "规则有些变化。你最好亲自体验。";
 		close;
 	case 2:
@@ -63,7 +63,7 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 	}
 
 	if (!getequipisequiped(EQI_HAND_R)) {
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "你脱下装备了吗？";
 		@mal_enchant_select = 0;
 		close;
@@ -333,11 +333,11 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 		// }
 		break;
 	}
-	mes "[Mayomayo]";
+	mes "[玛约玛约]";
 	if (@mal_enchant_select == 1)
 		mes "这件装备不适合附魔。别忘了，我们只处理高级武器，包括 4 级武器～";
 	else
-		mes "这件装备无法初始化。别忘了，我们只处理部分高级武器，包括 4 级武器～";
+		mes "这件装备无法重置。别忘了，我们只处理部分高级武器，包括 4 级武器～";
 	@mal_equip_id = 0;
 	@mal_enchant_select = 0;
 	close;
@@ -352,7 +352,7 @@ L_Socket:
 	@mal_enchant_select = 0;
 
 	if (.@select == 1) {
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "^0000ff" + .@equip_name$ + "^000000！要给这件装备附魔吗？你打算如何支付？";
 		next;
 
@@ -373,11 +373,11 @@ L_Socket:
 		}
 		.@coin_select = select(.@menu$) - 2;
 		if (.@coin_select == -1) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "改变主意后再回来。";
 			close;
 		} else if (.@count[.@coin_select] < .@total[.@coin_select]) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "你的硬币不够。要再检查一次吗？";
 			close;
 		}
@@ -396,12 +396,12 @@ L_Socket:
 			break;
 		case 4:	// Agrade_Coin
 		case 5:	// Anger_Seagod
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "使用" + getitemname(.@coin[.@coin_select]) + "时，你可以选择附魔类型。";
 			next;
 			switch( select( "停止", "近距离类型", "远距离类型", "施法者类型") ) {
 			case 1:
-				mes "[Mayomayo]";
+				mes "[玛约玛约]";
 				mes "好的。如果你改变主意，请告诉我。";
 				close;
 			case 2:
@@ -418,20 +418,20 @@ L_Socket:
 		}
 		if (.@equip_card[3] == 0 && .@enclimit < 4) {
 			.@socket = 4;
-			.@str$ = "1st";
+			.@str$ = "第 1 次";
 		} else if (.@equip_card[2] == 0 && .@enclimit < 3) {
 			.@socket = 3;
-			.@str$ = "2nd";
+			.@str$ = "第 2 次";
 		} else {
-			mes "[Mayomayo]";
-		mes "这件装备已经完成附魔。请先初始化附魔，之后就能再次附魔；或者带来另一件武器。";
+			mes "[玛约玛约]";
+		mes "这件装备已经完成附魔。请先重置附魔，之后就能再次附魔；或者带来另一件武器。";
 			close;
 		}
-		mes "[Mayomayo]";
+		mes "[玛约玛约]";
 		mes "我要进行" + .@str$ + "附魔。^ff0000不会影响之前的精炼和卡片，装备也不会被破坏。^000000可以继续吗？";
 		next;
 		if (select( "我稍后再来。", "请继续。" ) == 1) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "好的。如果你改变主意，欢迎再来。";
 			close;
 		}
@@ -597,7 +597,7 @@ L_Socket:
 			else .@enchant = 9;
 			break;
 		default:
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "出了问题。请再试一次。";
 			close;
 		}
@@ -612,16 +612,16 @@ L_Socket:
 		else if (.@equip_card[1] == 0 && .@enclimit < 2) .@equip_card[1] = .@enchant;
 		else if (.@equip_card[0] == 0 && .@enclimit < 1) .@equip_card[0] = .@enchant;
 		else {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "这件装备已达到附魔上限。我最多提供两次附魔。";
 			next;
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "当然，我不会附魔卡槽，因此有 3 个插槽的武器只能附魔 1 次。别忘了~";
 			close;
 		}
 		if (.@enchant == 9) {	//  Should never happen.
 			specialeffect2 EF_SUI_EXPLOSION;
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "天哪！";
 			mes "这件装备因无法承受强大能力而损毁。非常抱歉。";
 			delitem .@coin[.@coin_select],.@total[.@coin_select];
@@ -629,8 +629,8 @@ L_Socket:
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[Mayomayo]";
-	mes "我已附魔^990000插槽 " + .@socket + "^000000。";
+		mes "[玛约玛约]";
+	mes "我已完成^990000插槽 " + .@socket + "^000000的附魔。";
 		delitem .@coin[.@coin_select], .@total[.@coin_select];
 		delequip EQI_HAND_R;
 
@@ -639,38 +639,38 @@ L_Socket:
 
 		close;
 	} else if (.@select == 2) {
-		mes "[Mayomayo]";
-		mes "我只会初始化附魔效果，不会影响之前的精炼等级和卡片。";
+		mes "[玛约玛约]";
+		mes "我只会重置附魔效果，不会影响之前的精炼等级和卡片。";
 		next;
 		if (select( "停止", "继续" ) == 1) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "改变主意后随时回来。";
 			close;
 		}
 		if (countitem(6417) == 0) {
-			mes "[Mayomayo]";
-			mes "抱歉。你没有银色葡萄。请再检查物品栏？";
+			mes "[玛约玛约]";
+			mes "抱歉，你没有银藤果。请再检查一下背包。";
 			close;
 		}
 		if (!getequipisequiped(EQI_HAND_R)) {
-			mes "[Mayomayo]";
+			mes "[玛约玛约]";
 			mes "你脱下装备了吗？";
 			close;
 		}
 		if (.@equip_card[3] == 0) {
-			mes "[Mayomayo]";
-			mes "这件装备没有可初始化的效果。请再检查。";
+			mes "[玛约玛约]";
+			mes "这件装备没有可重置的附魔效果。请再检查。";
 			close;
 		}
-		specialeffect2 EF_REPAIRWEAPON;
-		mes "[Mayomayo]";
-		mes "初始化装备上的附魔效果。";
-		delitem 6417,1;	// Silvervine
-
 		// anti-hack
 		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
 		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
 			close;
+
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[玛约玛约]";
+		mes "已重置装备上的附魔效果。";
+		delitem 6417,1;	// Silvervine
 
 		delequip EQI_HAND_R;
 

@@ -35,10 +35,10 @@ prt_in,253,168,4	script	Alora	862,{
 // Magestic Goats - Normal, Evolved
 	setarray .@hg_7[1], 2256, 5217;
 
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "你好，只要你带来神秘染料，我就能改变头饰的颜色。";
 	next;
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "你有想染色的头饰吗？";
 	next;
 	for(set .@i,1; .@i < getarraysize(.@hgn$); set .@i,.@i+1) {
@@ -48,12 +48,12 @@ prt_in,253,168,4	script	Alora	862,{
 	set .@menu$, .@menu$ +":取消";
 	set .@t, select(.@menu$);
 	if(.@t == getarraysize(.@hgn$)) {
-		mes "[Alora]";
+		mes "[阿洛拉]";
 		mes "旅途愉快，冒险者！";
 		mes "如果你想给卡普拉头饰或冒险中找到的头饰尝试新颜色，请来找我！";
 		close;
 	}
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "好的，你想把它换成什么颜色？";
 	next;
 	for(set .@i,1; .@i < getarraysize(getd(".@hg_"+.@t+"")); set .@i,.@i+1) {
@@ -69,23 +69,23 @@ prt_in,253,168,4	script	Alora	862,{
 	set .@menu$, .@menu$ +":取消";
 	set .@c, select(.@menu$);
 	if(.@c == getarraysize(getd(".@hg_"+.@t+""))) {
-		mes "[Alora]";
+		mes "[阿洛拉]";
 		mes "哦，好的，没问题！";
 		close;
 	}
 	set .@dyHG, getd(".@hg_"+.@t+"["+.@c+"]");
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "哦，我真兴奋，你不也是吗？";
 	mes "确认一下，你想让我使用的"+ .@hgn$[.@t] +"是什么颜色？";
 	next;
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "请注意，我会使用你物品栏中该颜色的第一件^FF0000"+ .@hgn$[.@t] +"！^000000";
 	next;
-	mes "[Alora]";
+	mes "[阿洛拉]";
 	mes "神秘染料会溶解所有精炼和卡片，所以请确认你接受一件没有卡片的^0000FF+0"+ getitemname(.@dyHG) +"。^000000";
 	next;
 	mes "["+ strcharinfo(0) +"]";
-	mes "好的，谢谢提醒。我想把我的";
+	mes "好的，谢谢提醒。我想给下面这件头饰染色：";
 	next;
 	set .@menu$, "算了";
 	for(set .@i,1; .@i < getarraysize(getd(".@hg_"+.@t+"")); set .@i,.@i+1) {
@@ -94,22 +94,26 @@ prt_in,253,168,4	script	Alora	862,{
 	}
 	set .@mine, select(.@menu$) - 1;
 	if(!.@mine) {
-		mes "[Alora]";
+		mes "[阿洛拉]";
 		mes "最好确认清楚，祝你旅途平安。";
 		close;
 	}
 	set .@myHG, getd(".@hg_"+.@t+"["+.@mine+"]");
 	if(.@dyHG == .@myHG) {
-		mes "[Alora]";
+		mes "[阿洛拉]";
 		mes "哇，发生什么了？";
 		close;
 	}
 	if(!countitem(.@dyeID) || !countitem(.@myHG)) {
-		mes "[Alora]";
+		mes "[阿洛拉]";
 		mes "天啊，你好像缺少某样东西。";
 		close;
 	}
-	mes "[Alora]";
+	mes "[阿洛拉]";
+	if (!checkweight(.@dyHG,1)) {
+		mes "请先为染色后的头饰预留足够的负重和物品栏空间。";
+		close;
+	}
 	mes "看起来很棒，对吧？！";
 	mes "希望你再来给更多漂亮头饰染色！";
 	delitem .@dyeID,1; // Dyestuff

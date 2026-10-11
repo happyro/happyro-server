@@ -37,10 +37,8 @@
 mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 	if (checkweight(1301,1) == 0) {
 		mes "-请停一下！！-";
-		mes "-你携带的物品太多，-";
-		mes "-因此无法再领取物品，-";
-		mes "-请减轻负重，-";
-		mes "-之后再回来！-";
+		mes "-你携带的物品太多，无法再领取物品。-";
+		mes "-请减轻负重后再回来！-";
 		close;
 	}
 	disable_items;
@@ -449,6 +447,10 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 					if (countitem(.@id) < 1)
 						mes "哦～有什么东西突然消失了……";
 					else {
+						if (!checkweight(.@box_list[.@i],1)) {
+							mes "请先为附魔箱预留足够的负重和物品栏空间。";
+							close;
+						}
 						mes "兑换完成。";
 						delitem .@id, 1;
 						getitem .@box_list[.@i], 1;
@@ -502,7 +504,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		mes "我讨厌鼓鼓的包！";
 		mes "无论你的服装多酷，你那个肥包都是时尚灾难！";
 		next;
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "看来你身上物品太多。";
 		mes "清理物品栏空间后再回来。";
 		close;
@@ -512,7 +514,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
 
 	if (.@eq_top == -1 && .@eq_mid == -1 && .@eq_low == -1) {
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "你必须穿上想附魔的服装。";
 		mes "这样我才能帮助你。";
 		close;
@@ -533,6 +535,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	switch(.@part) {
 	case EQI_COSTUME_HEAD_TOP:
 		switch(.@equip_id) {
+		case 31183:	// C_Fallen_Angel_Blessing
 			// top
 		case 18740:	// C_Hair_Of_The_Strong
 		case 18741:	// C_Will_O_Wisp
@@ -777,7 +780,6 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31451:	// C_Blue_Frill_Ribbon
 		case 31456:	// C_Baby_Leopard_Cat
 		case 20227:	// C_Husky_Hat
-		case 31474:	// C_Straight_Long_BL
 		case 31475:	// C_Black_Fox_Ear_Ribbon
 		case 31481:	// C_CatCoffeeCup_TW
 		case 31489:	// C_Bouquet_Hat
@@ -810,7 +812,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31409:	// C_Barrel_Helm
 			break;
 		default:
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -864,7 +866,6 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31047:	// C_First_Love_Cheek
 		case 31167:	// C_Lunatic_Ear_Black
 		case 31168:	// C_Mouton_Life_BL
-		case 31183:	// C_Fallen_Angel_Blessing
 		case 31186:	// C_Black_Cat
 		case 31299:	// C_White_Rabbit
 		case 31302:	// C_Black_Magenta_Ribbon
@@ -877,7 +878,6 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31483:	// C_CatEarRibbon_TW
 		case 31488:	// C_Mvp
 		case 31512:	// C_Panda_Rabbit
-		case 31567:	// C_Sheep_Horn
 		case 31568:	// C_Floating_Ball_TW
 		case 31574:	// C_Cyber_Income
 		case 31600:	// C_Kishu_Inu
@@ -904,7 +904,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31505:	// C_Falcon_Mask
 			break;
 		default:
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -913,6 +913,8 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 
 	case EQI_COSTUME_HEAD_LOW:
 		switch(.@equip_id) {
+		case 31567:	// C_Sheep_Horn
+		case 31474:	// C_Straight_Long_BL
 		case 19513:	// Chicken_Beak
 		case 19514:	// Charlie_Beard
 		case 19528:	// C_Iron_Cane
@@ -1028,7 +1030,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31698:	// C_Pigtail_Red_Hood
 			break;
 		default:
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -1044,7 +1046,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@equip_refine = getequiprefinerycnt(.@part);
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
-	mes "[Aver De Dosh]";
+	mes "[艾弗·德·多什]";
 	mes "哇~这件^0000FF" + getitemname(.@equip_id) + "^000000！！！你穿起来真好看！！";
 	mes "你想用哪种石头升级？";
 	next;
@@ -1058,7 +1060,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	switch(.@slot) {
 	case 0:
 		if (!(.@location & EQP_COSTUME_HEAD_TOP)) {
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1116,7 +1118,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		break;
 	case 1:
 		if (!(.@location & EQP_COSTUME_HEAD_MID)) {
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1178,7 +1180,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		break;
 	case 2:
 		if (!(.@location & EQP_COSTUME_HEAD_LOW)) {
-			mes "[Aver De Dosh]";
+			mes "[艾弗·德·多什]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1242,7 +1244,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 			1000307, 310268;	// WanderMinsStone_Bottom2	WandMinst_Bot2
 		break;
 	default:
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "请看看我们的其他升级服务~";
 		close;
 	}
@@ -1252,11 +1254,11 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 
 	do {
 		.@menu$ = "";
-		.@offset += .@i;
+		.@offset = .@i;
 
 		for ( .@i = .@offset; .@i < .@size; .@i += 2 ) {
-			.@str$ = sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
-			if ((getstrlen(.@menu$ + .@str$) + 4) >= .@max_menu_size) {
+			.@str$ = sprintf( "%d. %s [剩余 %d]:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+			if ((getstrlen(.@menu$ + .@str$) + getstrlen("^0000ff下一页^000000:")) >= .@max_menu_size) {
 				.@menu$ += "^0000ff下一页^000000:";
 				break;
 			}
@@ -1264,7 +1266,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		}
 		.@s = (select(.@menu$) - 1) * 2;
 	}
-	while(.@i < .@size && .@i == .@s);
+	while(.@i < .@size && .@i == .@offset + .@s);
 
 	.@s += .@offset;
 
@@ -1272,36 +1274,35 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@enchant = .@stone_id[.@s+1];
 
 	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "嗯？你缺少材料。";
 		mes "升级需要服装和附魔石两者。";
 		close;
 	}
 	mes "^FF0000   ！！！注意！！！^000000";
 	mes "^ff0000升级可能失败。^000000";
-	mes "^ff0000如果物品已有附魔，附魔会被重置，只有服装会返还。^000000";
+	mes "^ff0000本次操作会替换所选槽位原有的附魔；失败时该槽位的附魔会消失，但时装会保留。^000000";
 	mes "^FF0000确定要升级这件物品吗？^000000";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "请看看我们的其他升级服务~";
 		close;
 	}
-	delitem .@stone, 1;
-
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
 		close;
 
+	delitem .@stone, 1;
 	delequip .@part;
 	if (rand(1,100) < 51) {
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "哇……优雅！！";
 		mes "太完美了……哇！";
 		.@card[.@slot] = .@enchant;
 	}
 	else {
-		mes "[Aver De Dosh]";
+		mes "[艾弗·德·多什]";
 		mes "历史以失败闻名……";
 		mes "就像时尚的历史一样……";
 		mes "抱歉让你失望了~哈哈。";
@@ -1314,21 +1315,21 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 // Costume enchant (garment)
 mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	disable_items;
-	mes "[Lace La Zard]";
+	mes "[蕾丝·拉扎德]";
 	mes "欢迎来到时尚之石！！";
-	mes "我叫蕾丝·拉·扎德，会让你的‘力量护肩’梦想成真。";
+	mes "我叫蕾丝·拉扎德，会让你的‘力量护肩’梦想成真。";
 	next;
-	mes "[Lace La Zard]";
-	mes "带来你的^ff0000服装披风^000000和^ff0000披风精炼石^000000，我会为你完成完美升级！";
-	mes "我是在进行自身身体升级时发现这个配方的！";
+	mes "[蕾丝·拉扎德]";
+	mes "带来你的^ff0000服装披风^000000和^ff0000披风附魔石^000000，我会为你完成完美升级！";
+	mes "我是在强化自己身体时发现这个配方的！";
 	next;
 	if (select( "应用附魔。", "结束对话。" ) == 2) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	if (checkweight(1119,3) == 0) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "嗯……你的沉重护肩似乎无法升级……！";
 		mes "别对你的护肩这么残忍！";
 		next;
@@ -1339,7 +1340,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@part = EQI_COSTUME_GARMENT;
 	.@equip_id = getequipid(.@part);
 	if (.@equip_id == -1) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "把披风装备在肩上。";
 		mes "我得先看看，才能判断它是否值得升级……";
 		close;
@@ -1365,7 +1366,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	case 20765:	// C_Archangel_Wing
 		break;
 	default:
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "我得先看看，才能确认是否可以升级……";// custom
 		close;
 	}
@@ -1373,49 +1374,49 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@equip_refine = getequiprefinerycnt(.@part);
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
-	mes "[Lace La Zard]";
+	mes "[蕾丝·拉扎德]";
 	mes "哇，^0000FF" + getitemname(.@equip_id) + "^000000！！！你的品味真不错，对吧？";
 	mes "太棒了！！我已经完全准备好进行升级了！！";
 	next;
 	setarray .@data$[0],
-		6908, 4807, "ASPD +1",	// ASPDStone_Robe	Atk_Speed1
-		6963, 4992, "1% chance to absorb 1% physical damage into HP.",	// HPdrainStone_Robe	HPdrain1
-		6964, 4993, "1% chance to absorb 1% physical damage into SP.",	// SPdrainStone_Robe	SPdrain1
-		25067, 29056, "Decreases Fixed Casting Time of all skills by 0.5 seconds.",	// CastingStone_Robe	FixedCasting05
-		25170, 29154, "Decreases Fixed Casting Time of all skills by 0.3 seconds.",	// MinorCastingStone_Robe	FixedCasting03
-		25302, 29362, "Enables the use of Level 3 Double Attack.",	// DoubleAttack_Stone	DoubleAttack
-		25303, 29361, "Increases Critical Damage by 20%.",	// Critical_Stone_Robe	Fatal_Robe
-		25306, 29358, "Decreases Variable Casting Time by 10%.",	// CastStone_Robe	Casting_Robe
-		25412, 29426, "Increases damage of Rampage Blaster by 15%.",	// SuraStone_Robe	SuraStone_Robe_
-		25416, 29431, "Increases damage of Arrow Storm by 10%.",	// RangerStone_Robe	RangerStone_Robe_
-		25420, 29435, "Increases damage of Psychic Wave by 10%.",	// SorcererStone_Robe	SorcererStone_Robe_
-		25448, 29463, "Increases damage of Dragon Breath - Water by 10%.",	// RuneknightStone_Robe	RuneknightStone_Robe_
-		25449, 29467, "Increases damage of Cart Cannon by 10%.",	// GeneticStone_Robe	GeneticStone_Robe_
-		25456, 29471, "Increases damage of Crimson Rock by 10%.",	// WarlockStone_Robe	WarlockStone_Robe_
-		25493, 29480, "Increases damage of Triangle Shot by 15%.",	// ShadowchaserStone_Robe	ShadowchaserStone_Robe_
-		25497, 29484, "Increases damage of Axe Tornado by 15%.",	// MechanicStone_Robe	MechanicStone_Robe_
-		25501, 29488, "Increases damage of Severe Rainstorm by 15%.",	// WanderMinstrelStone_Robe	WanderMinstrelStone_Robe_
-		25709, 29516, "Increases damage of Adoramus by 15%.",	// ArchbishopStone_Robe	ArchbishopStone_Robe_
-		25713, 29520, "Increases damage of Banishing Point by 15%.",	// RoyalguardStone_Robe	RoyalguardStone_Robe_
-		25717, 29524, "Increases damage of Rolling Cutter by 15%.",	// GuillcrossStone_Robe	GuillcrossStone_Robe_
-		25797, 29427, "Increases damage of Knuckle Arrow by 15%.",	// SuraStone_Robe2	SuraStone_Robe2_
-		25801, 29614, "Increases damage of Diamond Dust by 15%.",	// SorcererStone_Robe2	SorcererStone_Robe2_
-		25805, 29618, "Increases damage of Fatal Menace by 15%.",	// ShadowchaserStone_Robe2	ShadowchaserStone_Robe2_
-		25842, 29654, "Increases damage of Eswhoo by 20%.",	// SoulReaperStone_Robe	Soulreaper_Robe
-		25849, 29658, "Increases damage of Falling Star, Solar Burst and Full Moon Kick by 20%.",	// StarEmperorStone_Garment	Staremperor_Robe
-		25853, 29662, "Increases damage of Swirling Petal by 25%.",	// KagerouStone_Robe	KagerouStone_Robe_
-		25854, 29663, "Increases damage of Flaming Petals by 20%.",	// OboroStone_Robe	OboroStone_Robe_
-		25858, 29667, "Increases damage of Hammer of God and Round Trip by 20%.",	// GunslingerStone_Robe	Rebellion_Robe
-		25862, 29671, "Increases damage of Picky Peck and Catnip Meteor by 20%.",	// DoramStone_Robe	DoramStone_Robe_
-		1000011, 310003, "Increases damage of Aimed Bolt by 15%.",	// RangerStone_II_Garment	Ranger_Robe2
-		1000015, 310007, "Increases damage of Arms Cannon by 15%.",	// MechanicStone_II_Garment	Mechanic_Robe2
-		1000019, 310011, "Increases damage of Judex by 15%.",	// ArchbishopStone_II_Garment	Archbishop_Robe2
-		1000213, 310180, "Increases damage of Comet by 15%.",	// WarlockStone_Robe2	Warlock_Robe2
-		1000217, 310184, "Increases damage of Ray of Genesis by 15%.",	// RoyalGuardStone_Robe2	RoyalGuard_Robe2
-		1000221, 310188, "Increases Critical Damage by 15%. Enables Double Attack Level 3 if you have learned Katar Mastery Level 10",	// GuillotineCrossStone_Robe2	GuillotineCross_Robe2
-		1000296, 310257, "Increases damage of Ignition Break by 15%.",	// RuneknightStone_Robe2	Runeknight_Robe2
-		1000300, 310261, "Increases damage of Crazy Weed by 20%.",	// GeneticStone_Robe2	Genetic_Robe2
-		1000304, 310265, "Increases damage of Reverberation by 15%.";	// WanderMinsStone_Robe2	WandMinst_Robe2
+		6908, 4807, "攻击速度（ASPD）+1。",	// ASPDStone_Robe	Atk_Speed1
+		6963, 4992, "有 1% 概率将造成的物理伤害的 1% 转化为 HP。",	// HPdrainStone_Robe	HPdrain1
+		6964, 4993, "有 1% 概率将造成的物理伤害的 1% 转化为 SP。",	// SPdrainStone_Robe	SPdrain1
+		25067, 29056, "所有技能的固定咏唱时间减少 0.5 秒。",	// CastingStone_Robe	FixedCasting05
+		25170, 29154, "所有技能的固定咏唱时间减少 0.3 秒。",	// MinorCastingStone_Robe	FixedCasting03
+		25302, 29362, "可使用 3 级二刀连击。",	// DoubleAttack_Stone	DoubleAttack
+		25303, 29361, "暴击伤害增加 20%。",	// Critical_Stone_Robe	Fatal_Robe
+		25306, 29358, "可变咏唱时间减少 10%。",	// CastStone_Robe	Casting_Robe
+		25412, 29426, "狂暴爆破的伤害增加 15%。",	// SuraStone_Robe	SuraStone_Robe_
+		25416, 29431, "箭雨风暴的伤害增加 10%。",	// RangerStone_Robe	RangerStone_Robe_
+		25420, 29435, "念力波的伤害增加 10%。",	// SorcererStone_Robe	SorcererStone_Robe_
+		25448, 29463, "龙息·水的伤害增加 10%。",	// RuneknightStone_Robe	RuneknightStone_Robe_
+		25449, 29467, "手推车加农炮的伤害增加 10%。",	// GeneticStone_Robe	GeneticStone_Robe_
+		25456, 29471, "绯红陨石的伤害增加 10%。",	// WarlockStone_Robe	WarlockStone_Robe_
+		25493, 29480, "三角射击的伤害增加 15%。",	// ShadowchaserStone_Robe	ShadowchaserStone_Robe_
+		25497, 29484, "斧旋风的伤害增加 15%。",	// MechanicStone_Robe	MechanicStone_Robe_
+		25501, 29488, "暴雨的伤害增加 15%。",	// WanderMinstrelStone_Robe	WanderMinstrelStone_Robe_
+		25709, 29516, "阿多拉穆斯的伤害增加 15%。",	// ArchbishopStone_Robe	ArchbishopStone_Robe_
+		25713, 29520, "驱逐点的伤害增加 15%。",	// RoyalguardStone_Robe	RoyalguardStone_Robe_
+		25717, 29524, "滚动切割的伤害增加 15%。",	// GuillcrossStone_Robe	GuillcrossStone_Robe_
+		25797, 29427, "拳套箭的伤害增加 15%。",	// SuraStone_Robe2	SuraStone_Robe2_
+		25801, 29614, "钻石星尘的伤害增加 15%。",	// SorcererStone_Robe2	SorcererStone_Robe2_
+		25805, 29618, "致命威胁的伤害增加 15%。",	// ShadowchaserStone_Robe2	ShadowchaserStone_Robe2_
+		25842, 29654, "艾斯伍的伤害增加 20%。",	// SoulReaperStone_Robe	Soulreaper_Robe
+		25849, 29658, "坠星、太阳爆发和满月踢的伤害增加 20%。",	// StarEmperorStone_Garment	Staremperor_Robe
+		25853, 29662, "风魔手里剑·乱华的伤害增加 25%。",	// KagerouStone_Robe	KagerouStone_Robe_
+		25854, 29663, "猩红火花的伤害增加 20%。",	// OboroStone_Robe	OboroStone_Robe_
+		25858, 29667, "神之锤和回旋射击的伤害增加 20%。",	// GunslingerStone_Robe	Rebellion_Robe
+		25862, 29671, "挑剔啄击和猫薄荷陨石的伤害增加 20%。",	// DoramStone_Robe	DoramStone_Robe_
+		1000011, 310003, "瞄准射击的伤害增加 15%。",	// RangerStone_II_Garment	Ranger_Robe2
+		1000015, 310007, "手臂加农炮的伤害增加 15%。",	// MechanicStone_II_Garment	Mechanic_Robe2
+		1000019, 310011, "朱迪克斯的伤害增加 15%。",	// ArchbishopStone_II_Garment	Archbishop_Robe2
+		1000213, 310180, "彗星的伤害增加 15%。",	// WarlockStone_Robe2	Warlock_Robe2
+		1000217, 310184, "创世之光的伤害增加 15%。",	// RoyalGuardStone_Robe2	RoyalGuard_Robe2
+		1000221, 310188, "暴击伤害增加 15%；习得 10 级拳刃修炼后，可使用 3 级二刀连击。",	// GuillotineCrossStone_Robe2	GuillotineCross_Robe2
+		1000296, 310257, "点火破坏的伤害增加 15%。",	// RuneknightStone_Robe2	Runeknight_Robe2
+		1000300, 310261, "狂野杂草的伤害增加 20%。",	// GeneticStone_Robe2	Genetic_Robe2
+		1000304, 310265, "回响的伤害增加 15%。";	// WanderMinsStone_Robe2	WandMinst_Robe2
 	.@size = getarraysize(.@data$);
 	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
 		.@id = atoi(.@data$[.@i]);
@@ -1425,24 +1426,24 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@menu$ += "结束对话。";
 	.@s = (select(.@menu$) - 1) * 3;
 	if (.@s == .@size) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	.@id = atoi(.@data$[.@s]);
 	.@enchant = atoi(.@data$[.@s+1]);
 	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "升级需要服装和附魔石两者。";
 		close;
 	}
 	mes "^FF0000   ！！！注意！！！^000000";
 	mes "^ff0000升级可能失败。^000000";
-	mes "^ff0000如果物品已有附魔，附魔会被重置，只有" + .@data$[.@s+2] + "会返还。^000000";
+	mes "^ff0000本次操作会替换该槽位原有的附魔。成功后的效果为：" + .@data$[.@s+2] + "失败时该槽位的附魔会消失，但时装会保留。^000000";
 	mes "^ff0000确定要升级这件物品吗？^000000";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
@@ -1454,13 +1455,13 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	delitem .@id, 1;
 	delequip .@part;
 	if (rand(100) < 50) {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "真美！！";
 		mes "这真的是我亲手做的吗？！！！";
 		.@card[0] = .@enchant;
 	}
 	else {
-		mes "[Lace La Zard]";
+		mes "[蕾丝·拉扎德]";
 		mes "糟糕！";
 		mes "哐！！！！我不能让世人看到这次失败！！！";
 		.@card[0] = 0;

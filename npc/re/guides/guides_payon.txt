@@ -8,7 +8,7 @@
 //= 1.2 Navigation system update. [Euphy]
 //============================================================
 
-payon,160,67,3	script	Guide#01payon::GuidePayon	708,{
+payon,160,67,3	script	向导#01payon::GuidePayon	708,{
 	cutin "pay_soldier",2;
 	mes "[斐扬向导]";
 	mes "欢迎来到山村^8B4513斐扬^000000。";
@@ -30,32 +30,32 @@ payon,160,67,3	script	Guide#01payon::GuidePayon	708,{
 					next;
 					break;
 				case 2:
-					callsub L_Mark, F_Navi("Tool Shop","payon,144,85","^0000FF");
+					callsub L_Mark, F_Navi("工具店","payon,144,85","^0000FF");
 					viewpoint 1,144,85,1,0x0A82FF;
 					next;
 					break;
 				case 3:
-					callsub L_Mark, F_Navi("Weapon & Armor Shop","payon,139,159","^FF5400");
+					callsub L_Mark, F_Navi("武器和防具店","payon,139,159","^FF5400");
 					viewpoint 1,139,159,2,0xFFB400;
 					next;
 					break;
 				case 4:
-					callsub L_Mark, F_Navi("Inn & Tavern","payon,220,117","^006400");
+					callsub L_Mark, F_Navi("旅馆和酒馆","payon,220,117","^006400");
 					viewpoint 1,220,117,3,0xAAFF00;
 					next;
 					break;
 				case 5:
-					callsub L_Mark, F_Navi("Central Palace","payon,155,245","^7F3300");
+					callsub L_Mark, F_Navi("中央宫殿","payon,155,245","^7F3300");
 					viewpoint 1,155,245,4,0xD2691E;
 					next;
 					break;
 				case 6:
-					callsub L_Mark, F_Navi("Palace Court","payon,107,325","^800080");
+					callsub L_Mark, F_Navi("宫殿庭院","payon,107,325","^800080");
 					viewpoint 1,107,325,5,0xDA70D6;
 					next;
 					break;
 				case 7:
-					callsub L_Mark, F_Navi("Royal Kitchen","payon,154,325","^B9062F");
+					callsub L_Mark, F_Navi("皇家厨房","payon,154,325","^B9062F");
 					viewpoint 1,154,325,6,0xFF0000;
 					next;
 					break;
@@ -70,28 +70,28 @@ payon,160,67,3	script	Guide#01payon::GuidePayon	708,{
 			while (.@loop) {
 				switch(select("[ 伊甸园传送人员 ]:[ 卡普拉商店 ]:[ 修理/武器工匠 ]:[ 卡普拉员工 ]:[ 陷阱专家 ]:[ 塞雅布雷姆 ]:[ 利布雷姆 ]:[ 杰德 ]:[ 宠物美容师 ]:[ 厨师助手 ]:上一级菜单")) {
 				case 1:
-					callsub L_Mark, F_Navi("Eden Teleport Officer","payon,177,111","^0000FF");
+					callsub L_Mark, F_Navi("伊甸园传送人员","payon,177,111","^0000FF");
 					viewpoint 1,177,111,7,0x0A82FF;
 					next;
 					break;
 				case 2:
-					callsub L_Mark, F_Navi("Kafra Shop Girls","payon,164,157","^FF5400");
+					callsub L_Mark, F_Navi("卡普拉商店店员","payon,164,157","^FF5400");
 					viewpoint 1,164,157,8,0xFFB400;
 					next;
 					break;
 				case 3:
-					callsub L_Mark, F_Navi("Repairman & Armsmith","payon,144,170","^006400");
+					callsub L_Mark, F_Navi("修理工和武器工匠","payon,144,170","^006400");
 					viewpoint 1,144,170,9,0xAAFF00;
 					next;
 					break;
 				case 4:
-					callsub L_Mark, "^7F3300Kafra Employees^000000";
+					callsub L_Mark, "^7F3300卡普拉员工^000000";
 					viewpoint 1,181,104,10,0xD2691E;
 					viewpoint 1,175,226,11,0xD2691E;
 					next;
 					break;
 				case 5:
-					callsub L_Mark, F_Navi("Trap Specialist","payon,123,109","^800080");
+					callsub L_Mark, F_Navi("陷阱专家","payon,123,109","^800080");
 					viewpoint 1,123,109,12,0xDA70D6;
 					next;
 					break;
@@ -117,12 +117,12 @@ payon,160,67,3	script	Guide#01payon::GuidePayon	708,{
 					next;
 					break;
 				case 9:
-					callsub L_Mark, F_Navi("Pet Groomer","payon,177,131","^006400");
+					callsub L_Mark, F_Navi("宠物美容师","payon,177,131","^006400");
 					viewpoint 1,177,131,16,0xAAFF00;
 					next;
 					break;
 				case 10:
-					callsub L_Mark, F_Navi("Chef Assistant","payon,206,119","^7F3300");
+					callsub L_Mark, F_Navi("厨师助手","payon,206,119","^7F3300");
 					viewpoint 1,206,119,17,0xD2691E;
 					next;
 					break;
@@ -167,18 +167,16 @@ payon,160,67,3	script	Guide#01payon::GuidePayon	708,{
 	end;
 L_Mark:
 	mes "[斐扬向导]";
-	mes "让我标记";
-	mes getarg(0);
-	mes "在你的小地图上。";
+	mes "让我在你的小地图上标记" + getarg(0) + "的位置。";
 	mes "还要查看其他地点吗？";
 	return;
 }
 
-payon,151,182,6	duplicate(GuidePayon)	Guide#02payon	708
-payon,221,85,6	duplicate(GuidePayon)	Guide#03payon	708
-payon,233,324,4	duplicate(GuidePayon)	Guide#04payon	708
+payon,151,182,6	duplicate(GuidePayon)	向导#02payon	708
+payon,221,85,6	duplicate(GuidePayon)	向导#03payon	708
+payon,233,324,4	duplicate(GuidePayon)	向导#04payon	708
 
-pay_arche,86,33,4	script	Guide#05payon	708,{
+pay_arche,86,33,4	script	向导#05payon	708,{
 	cutin "pay_soldier",2;
 	mes "[斐扬向导]";
 	mes "欢迎来到^8B4513弓箭手村^000000，斐扬的附属村落。";
@@ -225,7 +223,7 @@ pay_arche,86,33,4	script	Guide#05payon	708,{
 			break;
 		case 6:
 			mes "[斐扬向导]";
-			mes "让我在你的小地图上标记" + F_Navi("炼金术士公会成员","pay_arche,126,113,","^800080") + "的位置。";
+			mes "让我在你的小地图上标记" + F_Navi("炼金术士公会成员","pay_arche,126,113","^800080") + "的位置。";
 			mes .@str$;
 			viewpoint 1,127,113,5,0xDA70D6;
 			next;

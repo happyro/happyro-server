@@ -360,6 +360,7 @@ end;
 					//else {
 					if ($DTS_Result == 0) {
 					if (lhz_vote <= $DTS_VoteCount) {
+						.@vote_round = $DTS_VoteCount;
 					mes "[卡普拉投票人员]";
 					mes "卡普拉公司计划提供前往以下地下城的传送服务……";
 					next;
@@ -388,6 +389,12 @@ end;
 					mes "我明白。但如果你改变主意，欢迎随时回来。感谢你，祝你今天愉快，冒险者。";
 						break;
 						case 2:
+						if ((($DTS_Result != 0) && ($DTS_Result != 3)) || .@vote_round != $DTS_VoteCount || lhz_vote > $DTS_VoteCount) {
+							mes "本轮投票已结束或你已经投过票，请重新与投票员对话。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_KafraVotes,$DTS_KafraVotes+1;
 						mes "[卡普拉投票人员]";
@@ -404,6 +411,7 @@ end;
 					}
 					else if ($DTS_Result == 3) {
 					if (lhz_vote <= $DTS_VoteCount) {
+						.@vote_round = $DTS_VoteCount;
 					mes "[卡普拉投票人员]";
 					mes "统计上次选举的票数后，我们得出结论：";
 					mes "投票人数未达到最低要求。";
@@ -436,6 +444,12 @@ end;
 						mes "我明白。但如果你改变主意，欢迎随时回来。感谢你，祝你今天愉快，冒险者。";
 						break;
 						case 2:
+						if ((($DTS_Result != 0) && ($DTS_Result != 3)) || .@vote_round != $DTS_VoteCount || lhz_vote > $DTS_VoteCount) {
+							mes "本轮投票已结束或你已经投过票，请重新与投票员对话。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_KafraVotes,$DTS_KafraVotes+1;
 						mes "[卡普拉投票人员]";
@@ -637,7 +651,7 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 		mes "不过请注意，必须符合资格才能投票。";
 		next;
 		mes "[酷酷活动公司投票员]";
-		mes "关于投票资格的详情，请访问位于施瓦茨瓦尔德共和国拉赫的总部。";
+		mes "关于投票资格的详情，请访问位于施瓦茨瓦尔德共和国里希塔乐的总部。";
 		mes "感谢你的时间。";
 		break;
 	case 2:
@@ -655,6 +669,7 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 		//else {
 			if ($DTS_Result == 0) {
 				if (lhz_vote <= $DTS_VoteCount) {
+					.@vote_round = $DTS_VoteCount;
 					mes "[酷酷活动公司投票员]";
 					mes "酷酷活动公司若被选中提供地下城传送服务，将把冒险者传送到以下地下城……";
 					next;
@@ -683,6 +698,12 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 						mes "啊，我明白了……如果你改变主意，欢迎回来投票给酷酷活动公司，好吗？祝你今天愉快~";
 						break;
 					case 2:
+						if ((($DTS_Result != 0) && ($DTS_Result != 3)) || .@vote_round != $DTS_VoteCount || lhz_vote > $DTS_VoteCount) {
+							mes "本轮投票已结束或你已经投过票，请重新与投票员对话。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_JondaVotes,$DTS_JondaVotes+1;
 						mes "[酷酷活动公司投票员]";
@@ -699,6 +720,7 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 			}
 			else if ($DTS_Result == 3) {
 				if (lhz_vote <= $DTS_VoteCount) {
+					.@vote_round = $DTS_VoteCount;
 					mes "[酷酷活动公司投票员]";
 					mes "很遗憾，上次选举的投票人数不足，所以我们再次举行选举，以决定哪家公司提供地下城传送服务。";
 					next;
@@ -730,6 +752,12 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 						mes "啊，我明白了……如果你改变主意，欢迎回来投票给酷酷活动公司，好吗？祝你今天愉快~";
 						break;
 					case 2:
+						if ((($DTS_Result != 0) && ($DTS_Result != 3)) || .@vote_round != $DTS_VoteCount || lhz_vote > $DTS_VoteCount) {
+							mes "本轮投票已结束或你已经投过票，请重新与投票员对话。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_JondaVotes,$DTS_JondaVotes+1;
 						mes "[酷酷活动公司投票员]";
@@ -859,7 +887,7 @@ lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
 				mes "[酷酷活动公司投票人员]";
 				mes "请记住，我们不接受免费传送券也不发放特殊储备点作为此服务奖励。现在请选择目的地。";
 				next;
-				switch(select("海洞地牢 3 层 -> 4,000 Zeny:钟楼 3 楼 -> 4,000 Zeny:古城入口 -> 4,000 Zeny:取消")) {
+				switch(select("海底洞窟 3 层 -> 4,000 Zeny:钟楼 3 层 -> 4,000 Zeny:古城入口 -> 4,000 Zeny:取消")) {
 				case 1:
 					if (Zeny >= 4000) {
 						set Zeny, Zeny-4000;

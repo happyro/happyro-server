@@ -28,22 +28,22 @@ OnRecvCastle2:
 	if (!getcastledata(strnpcinfo(2),CD_GUILD_ID)) {
 		donpcevent strnpcinfo(0)+"::OnStart";
 		// Monster spawns are identical for all castles.
-		monster strnpcinfo(2),0,0,"Evil Druid",1117,10;
-		monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
-		monster strnpcinfo(2),0,0,"Abysmal Knight",1219,3;
-		monster strnpcinfo(2),0,0,"Executioner",1205,1;
-		monster strnpcinfo(2),0,0,"Penomena",1216,10;
-		monster strnpcinfo(2),0,0,"Alarm",1193,18;
-		monster strnpcinfo(2),0,0,"Clock",1269,9;
-		monster strnpcinfo(2),0,0,"Raydric Archer",1276,12;
-		monster strnpcinfo(2),0,0,"Wanderer",1208,3;
-		monster strnpcinfo(2),0,0,"Alice",1275,1;
-		monster strnpcinfo(2),0,0,"Bloody Knight",1268,2;
-		monster strnpcinfo(2),0,0,"Dark Lord",1272,2;
-		monster strnpcinfo(2),0,0,"Tower Keeper",1270,4;
+		monster strnpcinfo(2),0,0,"暗神官",1117,10;
+		monster strnpcinfo(2),0,0,"卡利斯格",1132,4;
+		monster strnpcinfo(2),0,0,"深渊骑士",1219,3;
+		monster strnpcinfo(2),0,0,"行刑者",1205,1;
+		monster strnpcinfo(2),0,0,"梅纳海葵",1216,10;
+		monster strnpcinfo(2),0,0,"钟怪",1193,18;
+		monster strnpcinfo(2),0,0,"古钟魔",1269,9;
+		monster strnpcinfo(2),0,0,"幽灵弓箭手",1276,12;
+		monster strnpcinfo(2),0,0,"邪骸浪人",1208,3;
+		monster strnpcinfo(2),0,0,"爱丽丝女仆",1275,1;
+		monster strnpcinfo(2),0,0,"血腥骑士",1268,2;
+		monster strnpcinfo(2),0,0,"黑暗之王",1272,2;
+		monster strnpcinfo(2),0,0,"钟塔守护者",1270,4;
 	}
 	if (getcastledata(strnpcinfo(2),CD_ENABLED_KAFRA) < 1)
-		disablenpc "Kafra Employee#"+substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
+		disablenpc "卡普拉员工#"+substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
 	end;
 
 OnAgitStart2:
@@ -62,9 +62,9 @@ OnAgitEnd2:
 	gvgoff strnpcinfo(2);
 	if (getcastledata(strnpcinfo(2),CD_GUILD_ID)) {
 		set .@str$,substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
-		killmonster strnpcinfo(2),"Steward#"+.@str$+"::OnStartArena";
+		killmonster strnpcinfo(2),"管家#"+.@str$+"::OnStartArena";
 		donpcevent strnpcinfo(0)+"::OnReset";
-		donpcevent "Steward#"+.@str$+"::OnStop";
+		donpcevent "管家#"+.@str$+"::OnStop";
 	}
 	end;
 
@@ -72,10 +72,10 @@ OnGuildBreak:
 	if (strnpcinfo(2) == "template") end;
 	killmonster strnpcinfo(2),"gard1#"+strnpcinfo(2)+"::OnGuardianDied";
 	killmonster strnpcinfo(2),"gard2#"+strnpcinfo(2)+"::OnGuardianDied";
-	disablenpc "Kafra Employee#"+substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
+	disablenpc "卡普拉员工#"+substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
 	setcastledata strnpcinfo(2),CD_GUILD_ID,0;
 	sleep 7000;
-	announce "Guild Base ["+getcastlename(strnpcinfo(2))+"] has been abandoned.",0;
+	announce "公会据点 ["+getcastlename(strnpcinfo(2))+"] 已被放弃。",0;
 	donpcevent strnpcinfo(0)+"::OnRecvCastle2";
 	end;
 
@@ -94,7 +94,7 @@ OnStart:
 
 OnEmpSpawn:
 	set .@str$, substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
-	if (mobcount(strnpcinfo(2),"Steward#"+.@str$+"::OnStartArena")) end;
+	if (mobcount(strnpcinfo(2),"管家#"+.@str$+"::OnStartArena")) end;
 	if (compare(strnpcinfo(2),"arug")) {
 		if (strnpcinfo(2) == "arug_cas01") setarray .@i[0],87,219;
 		else if (strnpcinfo(2) == "arug_cas02") setarray .@i[0],89,256;
@@ -105,7 +105,7 @@ OnEmpSpawn:
 		else if (strnpcinfo(2) == "schg_cas03") setarray .@i[0],338,202;
 		else setarray .@i[0],120,272;	// Castles 1,4,5 are identical.
 	}
-	monster strnpcinfo(2),.@i[0],.@i[1],"Emperium",1288,1,"Steward#"+.@str$+"::OnStartArena";
+	monster strnpcinfo(2),.@i[0],.@i[1],"华丽金属",1288,1,"管家#"+.@str$+"::OnStartArena";
 	end;
 
 OnReset:
@@ -114,10 +114,10 @@ OnReset:
 	donpcevent "df2#"+strnpcinfo(2)+"::OnDisable";
 	donpcevent "gard1#"+strnpcinfo(2)+"::OnReset";
 	donpcevent "gard2#"+strnpcinfo(2)+"::OnReset";
-	donpcevent "1st Guardian Stone#"+.@str$+"::OnDisable";
-	donpcevent "2nd Guardian Stone#"+.@str$+"::OnDisable";
+	donpcevent "1号守护石#"+.@str$+"::OnDisable";
+	donpcevent "2号守护石#"+.@str$+"::OnDisable";
 	for(set .@i,1; .@i<4; set .@i,.@i+1)
-		donpcevent "Control Device0"+.@i+"#"+.@str$+"::OnDisable";
+		donpcevent "控制装置0"+.@i+"#"+.@str$+"::OnDisable";
 	for(set .@i,0; .@i<4; set .@i,.@i+1)
 		donpcevent "RL"+.@i+"#"+strnpcinfo(2)+"::OnDisable";
 	if (agitcheck2())
@@ -128,9 +128,9 @@ OnChange:
 	set .@str$, substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
 	setarray getd("$agit_"+.@str$+"[0]"),2,2,1,1,2,0;
 	donpcevent strnpcinfo(0)+"::OnEmpSpawn";
-	donpcevent "Control Device03#"+.@str$+"::OnEnable";
-	donpcevent "1st Guardian Stone#"+.@str$+"::OnEnable";
-	donpcevent "2nd Guardian Stone#"+.@str$+"::OnEnable";
+	donpcevent "控制装置03#"+.@str$+"::OnEnable";
+	donpcevent "1号守护石#"+.@str$+"::OnEnable";
+	donpcevent "2号守护石#"+.@str$+"::OnEnable";
 	end;
 
 OnClock0001:
@@ -190,10 +190,10 @@ OnClock0001:
 		}
 	}
 	for(set .@i,0; .@i<4; set .@i,.@i+1)
-		monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",(.@i%2)?.@treasurebox:1324,1,strnpcinfo(0)+"::OnTreasureDied";
+		monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"宝箱",(.@i%2)?.@treasurebox:1324,1,strnpcinfo(0)+"::OnTreasureDied";
 	for(set .@i,4; .@i<24; set .@i,.@i+1) {
 		if (.@Treasure < .@i+1) break;
-		monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",(.@i%2)?.@treasurebox:1324,1,strnpcinfo(0)+"::OnTreasureDied";
+		monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"宝箱",(.@i%2)?.@treasurebox:1324,1,strnpcinfo(0)+"::OnTreasureDied";
 	}
 	freeloop(0);
 	end;
@@ -360,7 +360,7 @@ OnTreasureDied:
 		if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)) set .@def_invest,.@def_invest*4;
 		mes "[管家]";
 		mes "投资要塞防御将增强";
-		mes "守卫和霸邪之碑的耐久度。";
+		mes "守卫和城堡核心的耐久度。";
 		mes "为了保护自己免受敌人侵袭，";
 		mes "我们需要每一点优势。";
 		next;
@@ -387,7 +387,7 @@ OnTreasureDied:
 			mes "^FF0000"+.@def_invest+"^000000 Zeny。";
 		mes "现在要投资吗？";
 		mes "防御越高，守卫越可靠。";
-		mes "霸邪之碑也会更加坚固。";
+		mes "城堡核心也会更加坚固。";
 		mes "敌人将更难攻破要塞。";
 		mes "投资需要公会共同承担。";
 		mes "请先确认资金充足。";
@@ -406,24 +406,24 @@ OnTreasureDied:
 		switch(select("投资防御:取消")) {
 		case 1:
 			if (getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE) >= 2) {
-				mes "[ Steward ]";
+				mes "[管家]";
 				mes "主人，您今天已经投资防御两次。";
 				mes "如果还想提高防御，必须等到明天。";
 				close;
 			}
 			if (Zeny < .@def_invest) {
-				mes "[ Steward ]";
+				mes "[管家]";
 				mes "抱歉，主人，";
 				mes "你没有足够的";
-			mes "Zeny 才能进行投资。";
-				mes "供公会今天使用。";
+			mes "Zeny 来进行今天的";
+				mes "公会防御投资。";
 				close;
 			}
 			set Zeny, Zeny-.@def_invest;
 			setcastledata strnpcinfo(4),CD_INVESTED_DEFENSE,getcastledata(strnpcinfo(4),CD_INVESTED_DEFENSE)+1;
 			mes "[管家]";
 			mes "明智地使用公会资金，主人。";
-			mes "提高公会获取宝藏的频率";
+			mes "提高要塞的防御力";
 			mes "一定会帮助我们所有人。";
 			close;
 		case 2:
@@ -469,7 +469,7 @@ OnTreasureDied:
 				mes "符合大家的最佳利益。";
 				close;
 			}
-			disablenpc "Kafra Employee#"+strnpcinfo(2);
+			disablenpc "卡普拉员工#"+strnpcinfo(2);
 			setcastledata strnpcinfo(4),CD_ENABLED_KAFRA,0;
 			mes "[管家]";
 			mes "那名卡普拉职员已经被解雇。";
@@ -487,17 +487,7 @@ OnTreasureDied:
 			case 1:
 				if (getgdskilllv(.@GID,10001) == 0) {
 					mes "[管家]";
-			mes "主人，我们无法雇用一名";
-			mes "目前的公会技能等级不够。";
-			mes "请先提升相关技能。";
-			mes "之后再来雇用职员。";
-			mes "卡普拉职员会协助管理仓库。";
-			mes "她们的服务十分可靠。";
-			mes "请不要忘记支付费用。";
-			mes "雇用后可以随时解雇。";
-			mes "决定权在您手中。";
-			mes "我会执行您的命令。";
-			mes "以上就是雇用说明。";
+					mes "主人，我们无法雇用一名";
 					mes "卡普拉职员，因为";
 					mes "你还没有获得";
 					mes "^FF0000卡普拉契约^000000";
@@ -505,7 +495,7 @@ OnTreasureDied:
 					close;
 				}
 				if (Zeny < 10000) {
-					mes "[ Steward ]";
+					mes "[管家]";
 					mes "主人，我们无法雇用";
 					mes "卡普拉职员，因为";
 					mes "我们没有足够";
@@ -513,9 +503,9 @@ OnTreasureDied:
 					close;
 				}
 				set Zeny, Zeny-10000;
-				enablenpc "Kafra Employee#"+strnpcinfo(2);
+				enablenpc "卡普拉员工#"+strnpcinfo(2);
 				setcastledata strnpcinfo(4),CD_ENABLED_KAFRA,1;
-				mes "[ Steward ]";
+				mes "[管家]";
 				mes "很好。我们已经签订";
 				mes "卡普拉契约，";
 				mes "并从总部雇用了一名";
@@ -523,7 +513,7 @@ OnTreasureDied:
 				mes "要塞服务。她来了~";
 				next;
 				cutin "kafra_01",2;
-				mes "[ Hired Kafra Employee ]";
+				mes "[雇用的卡普拉职员]";
 				mes "你好。我已经";
 				mes "由卡普拉总部派遣，";
 				mes "前来";
@@ -532,7 +522,7 @@ OnTreasureDied:
 				mes "你的每个命令，主人。";
 				next;
 				cutin "kafra_01",255;
-				mes "[ Steward ]";
+				mes "[管家]";
 				mes "我们的契约将在";
 				mes "一个月后到期，因此必须";
 				mes "支付额外费用，让";
@@ -540,7 +530,7 @@ OnTreasureDied:
 				mes "为公会服务。";
 				close;
 			case 2:
-				mes "[ Steward ]";
+				mes "[管家]";
 				mes "遵命，主人。";
 				mes "不过我建议尽快雇用";
 				mes "卡普拉职员，因为";
@@ -551,13 +541,13 @@ OnTreasureDied:
 			}
 		}
 	case 5:
-		mes "[ Steward ]";
+		mes "[管家]";
 		mes "你要进入";
 		mes "公会宝物库吗？";
 		mes "只有你，公会会长，";
 		mes "获准进入。";
 		next;
-		mes "[ Steward ]";
+		mes "[管家]";
 		mes "请记得打开";
 		mes "宝箱的时间要适当。";
 		mes "否则，宝物可能";
@@ -566,7 +556,7 @@ OnTreasureDied:
 		next;
 		switch(select("前往宝物库:取消")) {
 		case 1:
-			mes "[ Steward ]";
+			mes "[管家]";
 			mes "让我带你";
 			mes "沿秘密通道前往";
 			mes "宝物库。";
@@ -586,7 +576,7 @@ OnTreasureDied:
 			warp strnpcinfo(4),.@i[0],.@i[1];
 			end;
 		case 2:
-			mes "[ Steward ]";
+			mes "[管家]";
 			mes "宝物库中的物品";
 			mes "每天生成一次。";
 			mes "因此，你必须每天获得";
@@ -603,7 +593,7 @@ OnStop:
 
 OnStartArena:
 	set .@GID,getcharid(2);
-	set .@region$, (compare(strnpcinfo(4),"arug"))?"Valfreyja":"Nithafjoll";
+	set .@region$, (compare(strnpcinfo(4),"arug"))?"瓦尔弗雷雅":"尼德霍格";
 	// Lower castle Economy
 	set .@Economy,getcastledata(strnpcinfo(4),CD_CURRENT_ECONOMY)-5;
 	if (.@Economy < 0) set .@Economy, 0;
@@ -618,10 +608,10 @@ OnStartArena:
 	for(set .@i,CD_INVESTED_ECONOMY; .@i<CD_ENABLED_GUARDIAN00; set .@i,.@i+1)
 		setcastledata strnpcinfo(4),.@i,0;
 	// Disable Kafra
-	disablenpc "Kafra Employee#"+strnpcinfo(2);
+	disablenpc "卡普拉员工#"+strnpcinfo(2);
 
-	announce "The ["+getguildname(.@GID)+"] guild conquered the ["+.@region$+" "+charat(strnpcinfo(2),3)+"] stronghold of "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
-	mapannounce strnpcinfo(4),"琥珀已被击碎！",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+	announce "公会 ["+getguildname(.@GID)+"] 占领了 ["+.@region$+" "+charat(strnpcinfo(2),3)+"] 的要塞 "+getcastlename(strnpcinfo(4))+"！",bc_all|bc_woe;
+	mapannounce strnpcinfo(4),"城堡核心已被击碎！",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnReset";
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),CD_GUILD_ID),2;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnRecvCastle2";
@@ -643,7 +633,7 @@ OnStartArena:
 		mes .@n$;
 		mes "做得好。现在你只需";
 		mes "摧毁这个";
-		mes "琥珀即可获得";
+		mes "城堡核心即可获得";
 		mes "这座要塞的所有权。";
 		close;
 	}
@@ -672,7 +662,7 @@ OnStartArena:
 					switch(select("守护石:要塞大门:连接旗帜:战斗策略:取消")) {
 					case 1:
 						mes .@n$;
-						mes "每座要塞有一个琥珀";
+						mes "每座要塞有一个城堡核心";
 						mes "和两块守护石。";
 						mes "这些石头是每座要塞";
 						mes "的第一道防线，";
@@ -683,7 +673,7 @@ OnStartArena:
 						mes "守护石位于";
 						mes "^4D4DFF大门房屋^000000，必须保护";
 						mes "它们以防敌人";
-						mes "到达琥珀。";
+						mes "到达城堡核心。";
 						mes "守护石可以^4D4DFF召回";
 						mes "你的守护者^000000进行防护。";
 						next;
@@ -733,7 +723,7 @@ OnStartArena:
 						next;
 						mes .@n$;
 						mes "许多旗帜直接连接到";
-						mes "琥珀附近的旗帜。";
+						mes "城堡核心附近的旗帜。";
 						mes "最后编号的旗帜";
 						mes "连接到要塞所有者的";
 						mes "便利设施。";
@@ -777,7 +767,7 @@ OnStartArena:
 							mes "还不足以召唤守护者。";
 							mes "我们需要积累更多知识，";
 							mes "才能召唤守护者。";
-							mes "请继续提升防御。";
+							mes "请先学习公会技能“守护者研究”。";
 							mes "还需要更多力量。";
 							close;
 						}
@@ -806,7 +796,7 @@ OnStartArena:
 				case 2:
 					mes .@n$;
 					mes "我们的防御状态是……";
-					setarray .@status$[0],"^4D4DFFOperational","^FF0000Destroyed","^008000Repairing";
+					setarray .@status$[0],"^4D4DFF正常运行","^FF0000已摧毁","^008000修复中";
 					mes "第1守护石："+.@status$[getd("$agit_"+strnpcinfo(2)+"[0]")]+"^000000";
 					mes "第2守护石："+.@status$[getd("$agit_"+strnpcinfo(2)+"[1]")]+"^000000";
 					mes "第1要塞大门："+.@status$[getd("$agit_"+strnpcinfo(2)+"[2]")]+"^000000";
@@ -840,7 +830,7 @@ OnInit:
 	cutin "kafra_01",2;
 	set .@GID, getcastledata(strnpcinfo(4),CD_GUILD_ID);
 	if (getcharid(2) == .@GID && getgdskilllv(.@GID,10001)) {
-		mes "[Kafra Employee]";
+		mes "[卡普拉职员]";
 		mes "欢迎，尊贵的";
 		mes "^FF0000"+GetGuildName(.@GID)+"^000000公会成员！";
 		mes "卡普拉公司随时准备";
@@ -849,7 +839,7 @@ OnInit:
 		switch(select("使用仓库:使用传送服务:租用手推车:取消")) {
 		case 1:
 			if(!callfunc("F_CanOpenStorage")){
-				mes "[Kafra Employee]";
+				mes "[卡普拉职员]";
 				mes "非常抱歉，你必须拥有";
 				mes "至少6级初心者技能，";
 				mes "才能使用仓库。";
@@ -857,14 +847,14 @@ OnInit:
 			else openstorage;
 			break;
 		case 2:
-			mes "[Kafra Employee]";
+			mes "[卡普拉职员]";
 			mes "请告诉我你的";
 			mes "传送目的地。";
 			next;
 			switch(select("拉赫 - 200 Zeny:取消")) {
 			case 1:
 				if (Zeny < 200) {
-					mes "[Kafra Employee]";
+					mes "[卡普拉职员]";
 					mes "抱歉，你没有足够的Zeny";
 					mes "支付传送费用。";
 					mes "请再次检查你的资金。";
@@ -883,19 +873,19 @@ OnInit:
 			break;
 		case 3:
 			if (BaseClass != Job_Merchant) {
-				mes "[Kafra Employee]";
+				mes "[卡普拉职员]";
 				mes "抱歉，手推车租用服务";
 				mes "只能由商人、铁匠";
 				mes "和炼金术士职业角色使用。";
 				mes "请更换职业。";
 			}
 			else if (checkcart() == 1) {
-				mes "[Kafra Employee]";
+				mes "[卡普拉职员]";
 				mes "嗯？你已经";
 				mes "租用了一辆手推车。";
 			}
 			else {
-				mes "[Kafra Employee]";
+				mes "[卡普拉职员]";
 				mes "手推车租金是800 Zeny。";
 				mes "要租用一辆手推车吗？";
 				mes "请确认。";
@@ -903,7 +893,7 @@ OnInit:
 				switch(select("租用手推车:取消")) {
 				case 1:
 					if (Zeny < 800) {
-						mes "[Kafra Employee]";
+						mes "[卡普拉职员]";
 						mes "抱歉，你没有足够Zeny";
 						mes "租用我们的手推车。";
 						mes "请准备800 Zeny。";
@@ -920,7 +910,7 @@ OnInit:
 			}
 			break;
 		case 4:
-			mes "[Kafra Employee]";
+			mes "[卡普拉职员]";
 			mes "感谢你使用卡普拉服务。";
 			mes "无论你去哪里，";
 			mes "卡普拉都会";
@@ -934,11 +924,11 @@ OnInit:
 		end;
 	}
 	else {
-		mes "[Kafra Employee]";
+		mes "[卡普拉职员]";
 		mes "抱歉，我已专门签约";
 		mes "为";
 		mes "以下公会成员服务：";
-		mes "^FF0000"+getguildname(.@GID)+"^000000 Guild.";
+		mes "^FF0000"+getguildname(.@GID)+"^000000 公会。";
 		mes "请找其他卡普拉职员";
 		mes "帮助你……";
 		close2;
@@ -959,7 +949,7 @@ OnInit:
 		mes "守护石。^000000";
 		mes "请准备齐全。";
 		next;
-		mes "1个皓思";
+		mes "1个神之金属";
 		mes "1个铝";
 		mes "30块石头";
 		mes "5颗蓝色宝石";
@@ -974,37 +964,37 @@ OnInit:
 		}
 		if ((countitem(984) > 0) && (countitem(985) > 0) && (countitem(7049) > 29) && (countitem(717) > 4) && (countitem(715) > 4) && (countitem(716) > 4)) {
 			mes "^3355FF按顺序将石头、铝和";
-			mes "皓思放在中央。然后排列";
+			mes "神之金属放在中央。然后排列";
 			mes "附魔宝石以重建守护石。^000000";
 			mes "请仔细操作。";
 			mes "完成后即可重建。";
 			next;
-			setarray .@stone$[0],"Elunium","Oridecon","Stones";
-			set .@i, select("铝:皓思:石头")-1;
+			setarray .@stone$[0],"铝","神之金属","石头";
+			set .@i, select("铝:神之金属:石头")-1;
 			if (.@i == 2) set .@nice,.@nice+10;
 			mes "^3355FF"+.@stone$[.@i]+"已被";
 			mes "放置在中央。^000000";
 			next;
-			set .@i, select("铝:皓思:石头")-1;
+			set .@i, select("铝:神之金属:石头")-1;
 			if (.@i == 0) set .@nice,.@nice+10;
 			mes "^3355FF你已用一些";
 			mes ""+.@stone$[.@i]+"排列中央";
 			mes "外围。^000000";
 			next;
-			set .@i, select("铝:皓思:石头")-1;
+			set .@i, select("铝:神之金属:石头")-1;
 			if (.@i == 1) set .@nice,.@nice+10;
 			mes "^3355FF你已用一些";
 			mes ""+.@stone$[.@i]+"覆盖其余";
 			mes "材料。^000000";
 			next;
 			mes "^3355FF现在需要排列";
-			mes "附魔宝石";
-			mes "。你可以根据";
+			mes "附魔宝石。";
+			mes "你可以根据";
 			mes "施法效果来识别它们的";
 			mes "魔法属性。^000000";
 			next;
 			setarray .@effect[0],EF_BEGINSPELL4,EF_BEGINSPELL2,EF_VOLCANO;
-			setarray .@color$[0],"Red","Yellow","Blue";
+			setarray .@color$[0],"红色","黄色","蓝色";
 			while(1) {
 				if (.@roof0 > 7) break;
 				set .@i, rand(getarraysize(.@effect));
@@ -1039,7 +1029,7 @@ OnInit:
 						mes "^3355FF无法";
 						mes "重建守护石，";
 						mes "因为";
-						mes "皇帝石并不存在。^000000";
+						mes "城堡核心并不存在。^000000";
 						close;
 					}
 					else {
@@ -1105,7 +1095,7 @@ OnEnable:
 //============================================================
 -	script	Control#template	-1,{
 	set .@GID, getcastledata(strnpcinfo(4),CD_GUILD_ID);
-	set .@num, atoi(charat(strnpcinfo(1),15));
+	set .@num, atoi(replacestr(strnpcinfo(1),"控制装置",""));
 	set .@var$,"$agit_"+strnpcinfo(2);
 	if (getcharid(2) == .@GID) {
 		if (is_guild_leader() == true) {
@@ -1116,17 +1106,17 @@ OnEnable:
 				mes "以下材料。^000000";
 				next;
 				mes "^4D4DFF10个钢铁^000000,";
-				mes "^4D4DFF30个树枝^000000,";
-				mes "^4D4DFF5个奥利代根^000000，和";
-				mes "^4D4DFF10 强化武器金属-级数二^000000.";
+				mes "^4D4DFF30个树干^000000,";
+				mes "^4D4DFF5个神之金属^000000，和";
+				mes "^4D4DFF10个强化武器金属-级数二^000000.";
 				next;
 				select("继续");
 				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
-					mes "^3355FF你需要树枝来";
+					mes "^3355FF你需要树干来";
 					mes "修复支撑框架，";
-					mes "奥利代根增强";
+					mes "神之金属增强";
 					mes "城门耐久度，";
-					mes "艾贝勒塔康用于";
+					mes "强化武器金属-级数二用于";
 					mes "将一切固定在一起。^000000";
 					next;
 					set .@ro_of01,rand(10,15);
@@ -1140,7 +1130,7 @@ OnEnable:
 								mes "修复这部分";
 								mes "是首要任务。^000000";
 								next;
-								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
+								switch(select("树干:钢铁:强化武器金属-级数二:神之金属")) {
 								case 1:
 									mes "^3355FF框架已经用木材";
 									mes "加固。^000000";
@@ -1156,13 +1146,13 @@ OnEnable:
 									mes "其他材料。^000000";
 									close;
 								case 3:
-									mes "^3355FF你尝试使用艾贝勒塔康";
+									mes "^3355FF你尝试使用强化武器金属-级数二";
 									mes "加固城门，但";
 									mes "效果完全不好。";
 									mes "你必须重新开始。^000000";
 									close;
 								case 4:
-									mes "^3355FF你尝试使用奥利代根，";
+									mes "^3355FF你尝试使用神之金属，";
 									mes "但效果不太好。";
 									mes "你必须尝试";
 									mes "其他材料。^000000";
@@ -1174,7 +1164,7 @@ OnEnable:
 								mes "整体耐久度需要";
 								mes "用某种东西加固。^000000";
 								next;
-								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
+								switch(select("树干:钢铁:强化武器金属-级数二:神之金属")) {
 								case 1:
 									mes "^3355FF你尝试使用木材";
 									mes "加固城门。^000000";
@@ -1182,20 +1172,20 @@ OnEnable:
 									next;
 									break;
 								case 2:
-									mes "^3355FFYou tried using steel";
+									mes "^3355FF你尝试使用钢铁";
 									mes "来加固城门，但";
 									mes "效果完全不好。";
 									mes "你必须重新开始。^000000";
 									close;
 								case 3:
-									mes "^3355FF你尝试使用艾贝勒塔康";
+									mes "^3355FF你尝试使用强化武器金属-级数二";
 									mes "加固城门，但";
 									mes "效果完全不好。";
 									mes "你必须重新开始。^000000";
 									close;
 								case 4:
 									mes "^3355FF你用锤子敲打了";
-									mes "奥利代根：看起来";
+									mes "神之金属：看起来";
 									mes "这样就能奏效。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
@@ -1209,7 +1199,7 @@ OnEnable:
 								mes "造成了这些裂缝。你必须";
 								mes "想办法把它们焊牢。^000000";
 								next;
-								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
+								switch(select("树干:钢铁:强化武器金属-级数二:神之金属")) {
 								case 1:
 								mes "^3355FF你尝试使用木材修复";
 									mes "这个问题，但似乎";
@@ -1226,13 +1216,13 @@ OnEnable:
 									next;
 									break;
 									case 3:
-								mes "^3355FF你尝试使用艾贝勒塔康";
+								mes "^3355FF你尝试使用强化武器金属-级数二";
 									mes "加固城门，但";
 									mes "效果完全不好。";
 									mes "你必须重新开始。^000000";
 									close;
 									case 4:
-								mes "^3355FF你尝试使用奥利代根，";
+								mes "^3355FF你尝试使用神之金属，";
 									mes "但效果不太好。";
 									mes "你必须尝试";
 									mes "其他材料。^000000";
@@ -1240,11 +1230,11 @@ OnEnable:
 									}
 								break;
 								case 4:
-							mes "^3355FF现在你需要让";
-								mes "确保城门被";
+							mes "^3355FF现在你需要";
+								mes "确保城门";
 								mes "牢牢固定在一起。^000000";
 								next;
-								switch(select("树枝:钢铁:艾贝勒塔康:奥利代根")) {
+								switch(select("树干:钢铁:强化武器金属-级数二:神之金属")) {
 								case 1:
 								mes "^3355FF你尝试使用木材修复";
 									mes "这个问题，但似乎";
@@ -1259,7 +1249,7 @@ OnEnable:
 									close;
 									case 3:
 								mes "^3355FF你成功使用了";
-									mes "艾贝勒塔康来修复";
+									mes "强化武器金属-级数二来修复";
 									mes "城门的大部分损坏。^000000";
 									set .@rp_temp,.@rp_temp+1;
 									set .@ro_of02,.@ro_of02+1;
@@ -1267,7 +1257,7 @@ OnEnable:
 									next;
 									break;
 									case 4:
-								mes "^3355FF你尝试使用奥利代根，";
+								mes "^3355FF你尝试使用神之金属，";
 									mes "但效果不太好。";
 									mes "你必须尝试";
 									mes "其他材料。^000000";
@@ -1276,19 +1266,19 @@ OnEnable:
 								}
 							}
 						}
-					mes "^3355FFWell, it looks like";
+					mes "^3355FF嗯，看来";
 					mes "你就快完成";
 					mes "城门修复了。^000000";
 					next;
 					if (!agitcheck2()) {
 					mes "^3355FF遗憾的是，要塞";
 						mes "无法重建城门：";
-						mes "皇帝石已不在这里。^000000";
+						mes "城堡核心已不在这里。^000000";
 						close;
 						}
 					else {
 					if (.@rp_temp == .@ro_of01) {
-						mes "^3355FFThe Fortress Gate has";
+						mes "^3355FF要塞城门";
 							mes "已成功修复！^000000";
 							delitem 1019,30; //Wooden_Block
 							delitem 999,10; //Steel
@@ -1297,14 +1287,14 @@ OnEnable:
 							close2;
 							donpcevent "RL"+.@num+"#"+strnpcinfo(4)+"::OnEnable";
 							disablenpc();
-							if (.@num == 1) set .@str$,"1st";
-							else if (.@num == 2) set .@str$,"2nd";
-							else if (.@num == 3) set .@str$,"3rd";
+							if (.@num == 1) set .@str$,"第1";
+							else if (.@num == 2) set .@str$,"第2";
+							else if (.@num == 3) set .@str$,"第3";
 							mapannounce strnpcinfo(4),.@str$+"要塞城门已经重建！",bc_map,"0x00ff00";
 							if (.@num == 1) setd .@var$+"[2]",0;
 							else {
 							setarray getd(.@var$+"["+.@num+"]"),2,0;
-								donpcevent "Control Device0"+(.@num-1)+"#"+strnpcinfo(2)+"::OnEnable";
+								donpcevent "控制装置0"+(.@num-1)+"#"+strnpcinfo(2)+"::OnEnable";
 								}
 							end;
 							}
@@ -1387,23 +1377,23 @@ OnEnable:
 	if (charat(strnpcinfo(1),4) == "2") set .@z,11;
 	freeloop(1);
 	set .@defence,getcastledata(strnpcinfo(2),CD_CURRENT_DEFENSE);
+	copyarray getd(".x_"+strnpcinfo(2)+"[0]"),.@x[0],22;
+	copyarray getd(".y_"+strnpcinfo(2)+"[0]"),.@y[0],22;
 	callsub OnSummon,.@z;
 	if (.@defence > 70) set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),5;
 	else if (.@defence > 50) set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),4;
 	else if (.@defence > 30) set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),3;
 	else if (.@defence > 10) set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),2;
 	if (.@w[4] && .@z)
-		guardian strnpcinfo(2),.@w[4],.@w[5],"Guardian Soldier",1899,strnpcinfo(0)+"::OnGuardianDied";
+		guardian strnpcinfo(2),.@w[4],.@w[5],"守护士兵",1899,strnpcinfo(0)+"::OnGuardianDied";
 	else if (.@defence < 11) {
 		set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),2;
 		set .@i,(.@z)?2:0;
-		guardian strnpcinfo(2),.@w[.@i],.@w[.@i+1],"Guardian Soldier",1899,strnpcinfo(0)+"::OnGuardianDied";
+		guardian strnpcinfo(2),.@w[.@i],.@w[.@i+1],"守护士兵",1899,strnpcinfo(0)+"::OnGuardianDied";
 	}
 	else for(set .@i,1; .@i<getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)); set .@i,.@i+1)
 		callsub OnSummon,.@i+.@z;
 	freeloop(0);
-	copyarray getd(".x_"+strnpcinfo(2)+"[0]"),.@x[0],22;
-	copyarray getd(".y_"+strnpcinfo(2)+"[0]"),.@y[0],22;
 	setd ".timer_"+charat(strnpcinfo(1),4)+strnpcinfo(2),4+.@z;
 	setarray .count$[5],"1st","2nd","3rd","4th","5th";
 	initnpctimer;
@@ -1444,7 +1434,7 @@ OnTimer3900000:
 	end;
 
 OnSummon:
-	guardian strnpcinfo(2),getd(".x_"+strnpcinfo(2)+"["+getarg(0)+"]"),getd(".y_"+strnpcinfo(2)+"["+getarg(0)+"]"),"Guardian Soldier",1899,strnpcinfo(0)+"::OnGuardianDied";
+	guardian strnpcinfo(2),getd(".x_"+strnpcinfo(2)+"["+getarg(0)+"]"),getd(".y_"+strnpcinfo(2)+"["+getarg(0)+"]"),"守护士兵",1899,strnpcinfo(0)+"::OnGuardianDied";
 	return;
 
 OnGuardianDied:
@@ -1480,7 +1470,7 @@ OnEnable:
 	}
 	set .@num, atoi(charat(strnpcinfo(1),2));
 	set .@j,(.@num == 1)?0:2;
-	guardian strnpcinfo(2),.@i[.@j],.@i[.@j+1],((.@num == 1)?"1st":"2nd")+" Guardian Stone",1906+.@num,strnpcinfo(0)+"::OnGuardianStoneDied";
+	guardian strnpcinfo(2),.@i[.@j],.@i[.@j+1],((.@num == 1)?"第1":"第2")+"守护石",1906+.@num,strnpcinfo(0)+"::OnGuardianStoneDied";
 	end;
 
 OnDisable:
@@ -1499,7 +1489,7 @@ OnGuardianStoneDied:
 		mapannounce strnpcinfo(2),"所有守护石都被摧毁了！",bc_map,"0x00ff00";
 		donpcevent "RL0#"+strnpcinfo(2)+"::OnDisable";
 	}
-	else mapannounce strnpcinfo(2),"The "+((.@num == 1)?"1st":"2nd")+" Guardian Stone has been destroyed!",bc_map,"0x00ff00";
+	else mapannounce strnpcinfo(2),((.@num == 1)?"第1":"第2")+"守护石已被摧毁！",bc_map,"0x00ff00";
 	donpcevent "gard"+.@num+"#"+strnpcinfo(2)+"::OnReset";
 	initnpctimer;
 	end;
@@ -1507,7 +1497,7 @@ OnGuardianStoneDied:
 OnTimer300000:
 	set .@num, atoi(charat(strnpcinfo(1),2));
 	set .@str$,substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
-	donpcevent ((.@num == 1)?"1st":"2nd")+" Guardian Stone#"+.@str$+"::OnEnable";
+	donpcevent ((.@num == 1)?"1":"2")+"号守护石#"+.@str$+"::OnEnable";
 	setd "$agit_"+.@str$+"["+(atoi(charat(strnpcinfo(1),2))-1)+"]",2;
 	stopnpctimer;
 	end;
@@ -1693,8 +1683,8 @@ OnBarrierDestroyed:
 	if (getd(".MyMobCount_"+.@num+strnpcinfo(2)) == 0) {
 		set .@var$,substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
 		setd "$agit_"+.@var$+"["+(.@num+1)+"]",1;
-		setarray .@count$[0],"1st","2nd","3rd";
-		mapannounce strnpcinfo(2),"The "+.@count$[.@num-1]+" Fortress Gate is destroyed.",bc_map,"0x00ff00";
+		setarray .@count$[0],"第1","第2","第3";
+		mapannounce strnpcinfo(2),.@count$[.@num-1]+"要塞大门已被摧毁。",bc_map,"0x00ff00";
 		delwall .@var$+"_"+strnpcinfo(1);
 	}
 	end;
@@ -1721,7 +1711,7 @@ function	script	LinkFlag	{
 	}
 	if (getarg(0) == "Emperium Center") {
 		mes "^3355FF这里是要塞传送服务。";
-		mes "要传送到霸邪之碑中心吗？^000000";
+		mes "要传送到城堡核心中心吗？^000000";
 		if(select("传送:取消") == 1)
 			warp strnpcinfo(4),getarg(1),getarg(2);
 		close;
@@ -1742,13 +1732,13 @@ function	script	LinkFlag	{
 //============================================================
 function	script	ReturnFlag	{
 	.@map$ = getarg(0);
-	set .@str$, (compare(strnpcinfo(4),"aru"))?"Arunafeltz":"Schwarzwald";
+	set .@str$, (compare(strnpcinfo(4),"aru"))?"阿鲁纳佩尔兹":"施瓦茨瓦尔德";
 	.@GID =  getcastledata(.@map$,CD_GUILD_ID);
 	if (!.@GID) {
 		mes "[ "+.@str$+"王国告示 ]";
 		mes "神圣的"+.@str$+"王国宣布，";
 		mes "这座要塞尚未有领主。";
-		mes "击破霸邪之碑的人";
+		mes "击破城堡核心的人";
 		mes "将被认可为新的所有者。";
 		close;
 	}

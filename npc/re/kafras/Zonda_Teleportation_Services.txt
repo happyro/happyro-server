@@ -8,7 +8,7 @@
 
 -	script	ZondaTeleportationServices	HIDDEN_NPC,{
 	cutin "zonda_do01", 2;
-	mes "[Zonda 员工]";
+	mes "[准他员工]";
 	mes "欢迎。";
 	mes "我们的团队始终努力提升服务质量，超越你的期待。";
 	mes "请选择目的地。";
@@ -39,7 +39,7 @@
 		warp "dic_fild01",188,187;
 		end;
 	case 7:
-		mes "[Zonda 员工]";
+		mes "[准他员工]";
 		mes "我们始终努力为客户提供最优质的服务。";
 		mes "感谢你使用我们的服务。";
 		close3;
@@ -51,12 +51,12 @@ S_Zone:
 	.@quest_req = getarg(3);
 	
 	if (isbegin_quest(.@quest_req) == 0) {
-		mes "[Zonda 员工]";
+		mes "[准他员工]";
 		//mes getarg(0);
 		mes "使用我们的传送服务前，你必须完成前往" + getarg(0) + "的进入任务。";
 		close3;
 	}
-	mes "[Zonda 员工]";
+	mes "[准他员工]";
 	mes getarg(0) + "可使用 ^ff0000" + .@zeny_req + " Zeny^000000 或 ^ff0000" + .@item_req + " 份马兰岛罐装特产^000000。";
 	next;
 	switch( select( .@zeny_req + " Zeny", .@item_req + " 份马兰岛罐装特产", "取消" ) ) {
@@ -71,12 +71,12 @@ S_Zone:
 		delitem 12636,.@item_req; // Malang_Sp_Can
 		return;
 	case 3:
-		mes "[Zonda 员工]";
-		mes "能告诉你其他服务区域吗？";
+		mes "[准他员工]";
+		mes "要了解其他服务区域吗？";
 		close3;
 	}
-	mes "[Zonda 员工]";
-	mes "先生！你没有足够的所需费用或物品。";
+	mes "[准他员工]";
+	mes "您的金钱或所需物品不足。";
 	mes "请下次再来。";
 	close3;
 }

@@ -27,7 +27,7 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 		mes "您携带的物品太重，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[Coin Exchanger CX-1]";
+	mes "[硬币兑换机 CX-1]";
 	mes "欢迎来到 CX-1。您可以将硬币兑换为高级或低级硬币。";
 	next;
 	setarray .@coins[1],
@@ -47,7 +47,7 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	.@i = select(.@menu$);
 	switch(.@i) {
 	case 1:
-		mes "[Coin Exchanger CX-1]";
+		mes "[硬币兑换机 CX-1]";
 		mes "感谢您的光临。";
 		close;
 	default:
@@ -56,19 +56,19 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 		break;
 	}
 	if (countitem(.@coin) == 0) {
-		mes "[Coin Exchanger CX-1]";
+		mes "[硬币兑换机 CX-1]";
 		mes "您选择了没有持有的硬币。";
 		mes "感谢您的光临。";
 		close;
 	}
-	mes "[Coin Exchanger CX-1]";
+	mes "[硬币兑换机 CX-1]";
 	mes "----兑换比率----";
 	mes "高级兑换 - 30 换 10";
 	mes "低级兑换 - 10 换 30";
 	mes "------------------------";
 	mes "^ff3333兑换时会根据当前市场价格收取手续费。^000000";
 	next;
-	setarray .@exchange_name$[0],"higher","lower";
+	setarray .@exchange_name$[0],"高级","低级";
 	setarray .@exchange_rate[0],30,10;
 	setarray .@exchange_loss[0],rand(1,4),rand(1,2); // Amount deducted per exchange.
 	setarray .@exchange_id[0],.@coins[.@coin_select-1],.@coins[.@coin_select+1];
@@ -84,26 +84,30 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
-		mes "[Coin Exchanger CX-1]";
+		mes "[硬币兑换机 CX-1]";
 		mes "感谢您的光临。";
 		close;
 	}
 	if (.@exchange_id[.@i] == 0) {
-		mes "[Coin Exchanger CX-1]";
+		mes "[硬币兑换机 CX-1]";
 		mes "这种硬币无法兑换为"+.@exchange_name$[.@i]+"硬币。";
 		mes "感谢您的光临。";
 		close;
 	}
 	if (countitem(.@coin) < .@exchange_rate[.@i]) {
-		mes "[Coin Exchanger CX-1]";
+		mes "[硬币兑换机 CX-1]";
 		mes "您的硬币不足，无法兑换为"+.@exchange_name$[.@i]+"硬币。";
 		mes "感谢您的光临。";
 		close;
 	}
 	.@exchange_total = .@exchange_rate[(!.@i)] - .@exchange_loss[(!.@i)];
+	if (!checkweight(.@exchange_id[.@i], .@exchange_total)) {
+		mes "请先为兑换物品预留足够的负重和物品栏空间。";
+		close;
+	}
 	delitem .@coin, .@exchange_rate[.@i];
 	getitem .@exchange_id[.@i], .@exchange_total;
-	mes "[Coin Exchanger CX-1]";
+	mes "[硬币兑换机 CX-1]";
 	mes "已收取 ^003399"+.@exchange_rate[.@i]+"^000000 个 ^003399"+getitemname(.@coin)+"^000000。";
 	mes "兑换为 ^003399"+.@exchange_name$[.@i]+"硬币^000000，扣除 ^003399"+.@exchange_loss[(!.@i)]+"^000000 个后，剩余 ^003399"+.@exchange_total+"^000000 个。";
 	close;
@@ -118,8 +122,8 @@ malangdo,218,165,5	script	Special Vending Machine	562,{
 		mes "您携带的物品太重，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[Special Vending Machine]";
-	mes "欢迎来到 CX-82。您有银藤果，可以购买拥有特殊能力的马郎多特产。";
+	mes "[特殊自动售货机]";
+	mes "欢迎来到 CX-82。您可以使用银藤果购买拥有特殊能力的马郎多特产。";
 	next;
 	callsub L_AddItem, //DisplayName,ItemID,Cost
 		"海神的保护 [23 小时]",16740,4,
@@ -137,41 +141,45 @@ L_AddItem:
 		.@menu$ = .@menu$ + getarg(.@i)+":";
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
-		mes "[Special Vending Machine]";
+		mes "[特殊自动售货机]";
 		mes "海神的保护是在特定期间进入下水道纪念副本所需的物品。";
 		next;
-		mes "[Special Vending Machine]";
+		mes "[特殊自动售货机]";
 		mes "章鱼狩猎棒是在特定期间进入下水道纪念副本所需的物品。";
 		next;
-		mes "[Special Vending Machine]";
-		mes "高级和普通润滑剂用于分离装备与卡片。带着任一物品去找专家 Jeremy，他会说明效果详情。";
+		mes "[特殊自动售货机]";
+		mes "高级和普通润滑剂用于分离装备与卡片。带着任一物品去找专家杰里米，他会说明效果详情。";
 		next;
-		mes "[Special Vending Machine]";
-		mes "Sillit Pong 是用于分离带 MVP 卡片插槽的特殊物品。高级和普通润滑剂无法分离 MVP 卡片。";
+		mes "[特殊自动售货机]";
+		mes "Sillit Pong 瓶是用于从装备上分离 MVP 卡片的特殊物品。高级和普通润滑剂无法分离 MVP 卡片。";
 		close;
 	}
 	.@cost = getarg(.@i*3+2);
-	mes "[Special Vending Machine]";
+	mes "[特殊自动售货机]";
 	mes "您选择了 ^005500"+getarg(.@i*3)+"^000000。购买需要 ^005500"+.@cost+"^000000 个银藤果。";
 	next;
 	if (countitem(6417) < .@cost)
-		.@ven_menu$ = "^999999木天蓼果实（缺少 "+(.@cost - countitem(6417))+"）^000000";
+		.@ven_menu$ = "^999999银藤果（缺少 "+(.@cost - countitem(6417))+"）^000000";
 	else
-		.@ven_menu$ = "购买木天蓼果实（持有 "+countitem(6417)+"）";
+		.@ven_menu$ = "使用银藤果购买（持有 "+countitem(6417)+"）";
 	switch(select("停止:"+.@ven_menu$)) {
 	case 1:
-		mes "[Special Vending Machine]";
+		mes "[特殊自动售货机]";
 		mes "感谢您的光临。";
 		close;
 	case 2:
 		if (countitem(6417) < .@cost) {
-			mes "[Special Vending Machine]";
+			mes "[特殊自动售货机]";
 			mes "银藤果不足。";
 			mes "交易结束。";
 			mes "感谢您的光临。";
 			close;
 		}
-		mes "[Special Vending Machine]";
+		mes "[特殊自动售货机]";
+		if (!checkweight(getarg(.@i*3+1),1)) {
+			mes "请先为兑换物品预留足够的负重和物品栏空间。";
+			close;
+		}
 		mes "交易完成。感谢您的光临。";
 		delitem 6417,.@cost; //Silvervine
 		getitem getarg(.@i*3+1),1;
@@ -188,7 +196,7 @@ malangdo,236,179,5	script	Dark Merchant K	554,{
 		mes "您的背包现在太重了。清理一些物品后再回来。";
 		close;
 	}
-	mes "[Merchant K]";
+	mes "[暗黑商人 K]";
 	mes "感谢您的交易。";
 	mes "我们将 ^ff000010 枚 C 级硬币^000000兑换为 ^3333ff1 枚莫拉硬币^000000。现在开始吗？";
 	next;
@@ -203,22 +211,26 @@ malangdo,236,179,5	script	Dark Merchant K	554,{
 		}
 		.@i = select(.@menu$+"退出")-1;
 		if (.@i == getarraysize(.@coin_amount)) {
-			mes "[Merchant K]";
+			mes "[暗黑商人 K]";
 			mes "下次再兑换吧。";
 			close;
 		}
 		if (countitem(6420) < .@coin_amount[.@i]) {
-			mes "[Merchant K]";
+			mes "[暗黑商人 K]";
 			mes "兑换需要 ^ff0000"+.@coin_amount[.@i]+"^000000 枚 C 级硬币，但您现在似乎不够。";
+			close;
+		}
+		if (!checkweight(6380,.@coin_amount[.@i]/10)) {
+			mes "请先为兑换物品预留足够的负重和物品栏空间。";
 			close;
 		}
 		delitem 6420,.@coin_amount[.@i]; //Cgrade_Coin
 		getitem 6380,.@coin_amount[.@i]/10; //Mora_Coin
-		mes "[Merchant K]";
+		mes "[暗黑商人 K]";
 		mes "已收到 ^003399"+.@coin_amount[.@i]+"^000000 枚 C 级硬币。"; //FIXME: Dialogue.
 		mes "已兑换为 ^003399"+(.@coin_amount[.@i]/10)+"^000000 枚莫拉硬币。";
 		next;
-		mes "[Merchant K]";
+		mes "[暗黑商人 K]";
 		mes "要继续吗？";
 		next;
 	}
@@ -233,10 +245,10 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 		mes "您的背包现在太重了。清理一些物品后再回来。";
 		close;
 	}
-	mes "[Dark Machine TX100]";
+	mes "[暗黑机器 TX100]";
 	mes "感谢您访问 TX100。您可以将硬币兑换为更高或更低等级的硬币。";
 	next;
-	mes "[Dark Machine TX100]";
+	mes "[暗黑机器 TX100]";
 	mes "低等级硬币每次最多可兑换 500 枚，高等级硬币每次最多可兑换 99 枚。";
 	next;
 	setarray .@coins[1],
@@ -255,27 +267,27 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 	}
 	.@i = select(.@menu$)-1;
 	if (.@i == 0) {
-		mes "[Dark Machine TX100]";
+		mes "[暗黑机器 TX100]";
 		mes "感谢您的光临。";
 		close;
 	}
 	.@coin = .@coins[.@i];
-	setarray .@exchange_name$[0],"higher","lower";
+	setarray .@exchange_name$[0],"高级","低级";
 	setarray .@exchange_id[0],.@coins[.@i-1],.@coins[.@i+1];
 	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // Cannot exchange for Silvervine.
 	if (.@i > getarraysize(.@coins)) {
-		mes "[Dark Machine TX100]";
+		mes "[暗黑机器 TX100]";
 		mes "您选择了无效菜单。";
 		mes "操作中止。感谢您的光临。";
 		close;
 	}
 	if (countitem(.@coin) == 0) {
-		mes "[Dark Machine TX100]";
+		mes "[暗黑机器 TX100]";
 		mes "您选择了没有持有的硬币。";
 		mes "操作中止。感谢您的光临。";
 		close;
 	}
-	mes "[Dark Machine TX100]";
+	mes "[暗黑机器 TX100]";
 	mes "----兑换比率----";
 	mes "高级硬币 - 3 换 1";
 	mes "低级硬币 - 1 换 3";
@@ -297,51 +309,59 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 		if (countitem(.@coin) > 500)
 			.@menu$ = .@menu$ + "将 500 枚"+getitemname(.@coin)+"兑换为低级币:";
 		else if (countitem(.@coin))
-			.@menu$ = .@menu$ + "兑换 "+countitem(.@coin)+" "+getitemname(.@coin)+"兑换为低级币:";
+			.@menu$ = .@menu$ + "将 "+countitem(.@coin)+" 枚"+getitemname(.@coin)+"兑换为低级币:";
 		else
 			.@menu$ = .@menu$ + "^aaaaaa兑换为低级币（数量不足）^000000:";
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
-		mes "[Dark Machine TX100]";
+		mes "[暗黑机器 TX100]";
 		mes "感谢您的光临。";
 		close;
 	}
 	if (.@exchange_id[.@i] == 0) {
-		mes "[Dark Machine TX100]";
-		mes "这种硬币无法兑换为"+.@exchange_name$[.@i]+"等级硬币。";
+		mes "[暗黑机器 TX100]";
+		mes "这种硬币无法兑换为"+.@exchange_name$[.@i]+"硬币。";
 		mes "操作中止。感谢您的光临。";
 		close;
 	}
-	if ((.@i == 0 && countitem(.@coin) < 100) || (.@i == 1 && countitem(.@coin) == 0)) {
-		mes "[Dark Machine TX100]";
-		mes "您的硬币不足，无法兑换为"+.@exchange_name$[.@i]+"等级硬币。";
+	if ((.@i == 0 && countitem(.@coin) < 99) || (.@i == 1 && countitem(.@coin) == 0)) {
+		mes "[暗黑机器 TX100]";
+		mes "您的硬币不足，无法兑换为"+.@exchange_name$[.@i]+"硬币。";
 		mes "操作中止。感谢您的光临。";
 		close;
 	}
 	if (countitem(.@exchange_id[.@i]) > 28000) {
-		mes "[Dark Machine TX100]";
-		mes "您持有的"+.@exchange_name$[.@i]+"等级硬币太多。减少后再回来。";
+		mes "[暗黑机器 TX100]";
+		mes "您持有的"+.@exchange_name$[.@i]+"硬币太多。减少后再回来。";
 		close;
 	}
 	switch(.@i) {
 	case 0:
 		.@payment_amount = 99;
 		.@reward_amount = .@payment_amount/3;
-		.@coin_text$ = "High";
+		.@coin_text$ = "高级";
 		break;
 	case 1:
 		.@payment_amount = (((countitem(.@coin) > 500))?500:countitem(.@coin));
 		.@reward_amount = .@payment_amount*3;
-		.@coin_text$ = "Low";
+		.@coin_text$ = "低级";
 		break;
 	}
 	.@fee = rand(1,3);
+	if (.@reward_amount <= .@fee) {
+		mes "扣除本次手续费后没有可领取的硬币，本次兑换已取消，未扣除您的硬币。";
+		close;
+	}
+	if (!checkweight(.@exchange_id[.@i], .@reward_amount - .@fee)) {
+		mes "请先为兑换的硬币预留足够的负重和物品栏空间。";
+		close;
+	}
 	delitem .@coin, .@payment_amount;
 	getitem .@exchange_id[.@i], .@reward_amount - .@fee;
-	mes "[Dark Machine TX100]";
+	mes "[暗黑机器 TX100]";
 	mes "收到 ^003399"+getitemname(.@coin)+"^000000 共 ^003399"+.@payment_amount+"^000000 枚。";
-	mes "已兑换为 ^003399"+(.@reward_amount-.@fee)+"^000000 枚 ^003399"+.@coin_text$+"等级硬币^000000，并扣除 ^003399"+.@fee+"^000000 枚手续费。";
+	mes "已兑换为 ^003399"+(.@reward_amount-.@fee)+"^000000 枚 ^003399"+.@coin_text$+"硬币^000000，并扣除 ^003399"+.@fee+"^000000 枚手续费。";
 	close;
 }
 
@@ -354,41 +374,41 @@ malangdo,175,145,4	script	Can Agency Guard	549,{
 		mes "您携带的物品太重，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[Can Agency Guard]";
+	mes "[罐头机构警卫]";
 	mes "嘿，您……见过附近的^0000ff马郎多猫罐头^000000吗？";
 	next;
 	switch(select("您为什么问？:哦，您是指这些吗？")) {
 	case 1:
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "嗯。";
 		mes "罐头机构最近收到了一些关于它们的可疑情报……";
 		next;
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "马郎多特产罐头生产线上出现了大量次品。这些本应丢弃的产品似乎流入了零售商手中。";
 		next;
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "它们其实很难与普通产品区分，但外包装上明显写着^0000ff马郎多猫罐头^000000。";
 		next;
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "次品正在市场上流通，我们的职责是回收它们。您见过有人持有我描述的东西吗？";
 		next;
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "如果发现有人出售这些产品，请来告诉我。";
 		close;
 	case 2:
 		if (countitem(12633) == 0) {
-			mes "[Can Agency Guard]";
+			mes "[罐头机构警卫]";
 			mes "嗯？我没看到您有^0000ff马郎多猫罐头^000000。找到后别忘了带给我……";
 			close;
 		}
 		break;
 	}
-	mes "[Can Agency Guard]";
+	mes "[罐头机构警卫]";
 	mes "马郎多猫罐头是次品。让我把它兑换成 3 枚 E 级硬币，怎么样？";
 	next;
 	switch(select("我不兑换:^0000ff1^000000 罐头 -> ^0000ff3^000000 枚 E 级硬币:^0000ff10^000000 罐头 -> ^0000ff30^000000 枚 E 级硬币:^0000ff100^000000 罐头 -> ^0000ff300^000000 枚 E 级硬币:兑换我拥有的全部")) {
 	case 1:
-		mes "[Can Agency Guard]";
+		mes "[罐头机构警卫]";
 		mes "嗯，我不会永远待在这里。想兑换的话趁我还在时来找我。";
 		close;
 	case 2:
@@ -410,19 +430,23 @@ malangdo,175,145,4	script	Can Agency Guard	549,{
 	}
 	if (countitem(12633) < .@check) {
 		if (.@check == 1) {
-			mes "[Can Agency Guard]";
+			mes "[罐头机构警卫]";
 			mes "嗯？我没看到您有^0000ff马郎多猫罐头^000000。找到后别忘了带给我……";
 			close;
 		} else {
-			mes "[Can Agency Guard]";
+			mes "[罐头机构警卫]";
 			mes "嗯？您的数量似乎不足，无法兑换……确定数量后再来找我。";
 			close;
 		}
 	}
 	//
+	if (!checkweight(6422,.@count*3)) {
+		mes "请先为兑换的 E 级硬币预留足够的负重和物品栏空间，或选择较少的兑换数量。";
+		close;
+	}
 	delitem 12633,.@count; //Malang_Cat_Can
 	getitem 6422,.@count*3; //Egrade_Coin
-	mes "[Can Agency Guard]";
+	mes "[罐头机构警卫]";
 	mes "已将 "+.@count+" 个马郎多猫罐头兑换为 "+(.@count*3)+" 枚 E 级硬币。请查收。";
 close;
 }
@@ -451,7 +475,7 @@ function	script	F_mal_coin	{
 		next;
 		switch(getarg(2)) {
 			case 1:
-			mes "[Wandering Merchant]";
+			mes "[流浪商人]";
 			mes "哦～";
 			mes "这些是租赁物品，请确认您要的是 ^0000FF1 小时^000000 还是 ^0000FF7 天^000000 版本。";
 			next;
@@ -459,8 +483,8 @@ function	script	F_mal_coin	{
 			case 2:
 		break;
 			case 3:
-			mes "[Roving Merchant]";
-			mes "顺便告诉您，母猪虫、海星、鱿鱼干和飞鱼都是可使用 1 小时的物品。";
+			mes "[游荡商人]";
+			mes "顺便告诉您，鼠妇、海星、鱿鱼干和飞鱼都是可使用 1 小时的物品。";
 			next;
 		break;
 		}
@@ -513,8 +537,7 @@ function	script	F_mal_coin	{
 		next;
 		mes .@npc_name$;
 		if (.@type == 1) {
-			mes "要用 E 级硬币购买";
-			mes "^0000FF["+getarg(2)+"]^000000吗？";
+			mes "要用 E 级硬币购买^0000FF["+getarg(2)+"]^000000吗？";
 		} else {
 			mes "要购买^0000FF["+getarg(2)+"]^000000吗？";
 		}
@@ -545,7 +568,7 @@ function	script	F_mal_coin	{
 				mes "抱歉，你还需要更多"+.@str$+"。";
 				close;
 			}
-			if (MaxWeight - Weight < getiteminfo(getarg(3), ITEMINFO_WEIGHT)) {
+			if (!checkweight(getarg(3),1)) {
 				mes .@npc_name$;
 				mes "抱歉，你购买的数量太多了。";
 				mes "请清理库存腾出空间，稍后再来。";
@@ -798,8 +821,7 @@ ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 		mes "- 到此为止！！ -";
 		mes "- 你携带的物品太多了。 -";
 		mes "- 你无法再携带更多物品。 -";
-		mes "- 请减轻负重后 -";
-		mes "- 再试一次。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	mes "[护甲商人]";
@@ -849,7 +871,7 @@ ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 	mes "^3131FF需求等级：100^000000";
 	mes "^3131FF插槽：0^000000";
 	mes "^3131FF重量：10^000000";
-	mes "是它的特性选项。";
+	mes "以上就是它的属性。";
 	next;
 	mes "[护甲商人]";
 	mes "需要 10 个斯普兰迪德硬币。";
@@ -859,6 +881,10 @@ ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 		if (countitem(6081) < 10) {
 			mes "[护甲商人]";
 			mes "你的硬币似乎不够。";
+			close;
+		}
+		if (!checkweight((.@choice+2917),1)) {
+			mes "请先为本次物品预留足够的负重和物品栏空间，再来办理。";
 			close;
 		}
 		delitem 6081,10; //Splendide_Coin
@@ -910,6 +936,10 @@ ecl_in01,64,97,5	script	Slot Expert Nattuer#ecl	436,{
 		mes "你的硬币不够。确定之后再来找我吧。";
 		close;
 	}
+	if (!checkweight((.@choice+6),1)) {
+		mes "请先为本次物品预留足够的负重和物品栏空间，再来办理。";
+		close;
+	}
 	progressbar "0xFFFF00",3;
 	mes "[插槽专家]";
 	delitem 6081,5; //Splendide_Coin
@@ -934,8 +964,7 @@ ecl_in01,33,98,5	script	Herb Merchant Plafina#a	443,{
 		mes "- 到此为止！！ -";
 		mes "- 你携带的物品太多了。 -";
 		mes "- 你无法再携带更多物品。 -";
-		mes "- 请减轻负重后 -";
-		mes "- 再试一次。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	mes "[药草商人]";
@@ -947,7 +976,7 @@ ecl_in01,33,98,5	script	Herb Merchant Plafina#a	443,{
 		mes "欢迎随时再来。";
 		close;
 	}
-	mes "[Herb Merchant]";
+	mes "[药草商人]";
 	switch (.@item){
 	case 0:
 		mes "雪花草对^3131FF灼烧、出血、深度睡眠、睡眠^000000有特殊效果。";
@@ -987,19 +1016,23 @@ ecl_in01,33,98,5	script	Herb Merchant Plafina#a	443,{
 	if (.@buy == 2){
 		.@buy = 10;
 	}
-	mes "[Herb Merchant]";
+	mes "[药草商人]";
 	mes "要购买 "+ .@buy +" 个"+ getitemname(.items[.@item]) +"吗？";
 	next;
 	if (select("购买。:不买。") == 2){
 		close;
 	}
 	if (countitem(6081) < (.cost[.@item]*.@buy) ) {
-		mes "[Herb Merchant]";
+		mes "[药草商人]";
 		mes "你的硬币不够。";
 		close;
 	}
-	mes "[Herb Merchant]";
+	mes "[药草商人]";
 	mes "感谢你的惠顾。";
+	if (!checkweight(.items[.@item],.@buy)) {
+		mes "请先为本次物品预留足够的负重和物品栏空间，再来办理。";
+		close;
+	}
 	delitem 6081,.cost[.@item]*.@buy; //Splendide_Coin
 	getitem .items[.@item],.@buy;
 	close;
@@ -1016,70 +1049,70 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 		close;
 	}
 	emotion ET_THROB;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "呜呼——你好。你在找什么？这里有很多商品。";
 	next;
 	switch (select("不用了，谢谢。:复制？:我知道你有很多本事！")) {
 	case 1:
 		emotion ET_FRET;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "真的吗？嗯？";
 		close;
 	case 2:
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "可以说，在利用魔法抗性方面，埃克拉珠没人比我更厉害。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "无论是什么我都会给你优惠价。相信我就好。";
 		next;
 		select("你能帮我做件事吗？");
 		emotion ET_BEST;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "嘿，我喜欢你的态度。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "啊——你知道自己戴的帽子吗？";
 		next;
 		emotion ET_QUESTION;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "你仓库里是不是有一些结实却丑得没法戴的帽子？有吧？";
 		next;
 		select("……");
 		emotion ET_THINK, playerattached();
 		emotion ET_SMILE;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "看吧！我就知道。我第一眼就知道了。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "如果你带来 ^ff0000 50 枚斯普兰迪德硬币和材料^000000，我会制作同样形状、但作为^ff0000时装^000000穿戴的新帽子。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "嗯，叫什么来着……？";
 		mes "我想你们冒险者称它们为^0571B0时装^000000，对吧？";
 		next;
 		select("是的~ 你需要什么？");
-		mes "[Paltu]";
-		mes "我需要 1 顶^0571B0要复制的帽子^000000，以及用于魔法抗性的 ^E1281E4 面晶镜^000000、作为催化剂的 ^E1281E1 份妖精魔粉^000000，还有用于增强魔力的 ^E1281E祖母绿、红宝石、蓝宝石、黄玉和锆石各 10 个^000000。";
+		mes "[帕尔图]";
+		mes "我需要 1 顶^0571B0要复制的帽子^000000，以及用于魔法抗性的 ^E1281E4 面水晶镜^000000、作为催化剂的 ^E1281E1 份天使魔法粉^000000，还有用于增强魔力的 ^E1281E绿宝石、红宝石、蓝宝石、黄玉和锆石各 10 个^000000。";
 		next;
 		emotion ET_STARE_ABOUT;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "材料很多，对吧？不过我也没办法。处理魔力可不是开玩笑。";
 		next;
 		select("哪些帽子可以复制？");
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "哦！你真敏锐！";
 		mes "我差点忘了最重要的事。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "我可以复制的帽子有：";
-		mes "^0571B0Frog Hat, Romantic Flower, Magestic Goat, Blush, Valkyrie Helm, Deviruchi Hat, Assassin Mask, Elven Ears, Hahoe Mask, and Boys Cap^000000 a total of 10 types.";
+		mes "^0571B0青蛙帽、花瓣、威严山羊头盔、腮红、女武神头盔、小恶魔帽、刺客面具、精灵耳朵、河回面具和男孩帽^000000，共 10 种。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "怎么样？只要材料和报酬齐全，我就能做到。";
 		next;
 		if (select("我以后再做。:让我看看你有什么！") == 1) {
 			emotion ET_THINK;
-			mes "[Paltu]";
+			mes "[帕尔图]";
 			mes "什么？你在开玩笑吧？请告诉我是！";
 			close;
 		}
@@ -1087,14 +1120,14 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	}
 	disable_items;
 	emotion ET_BIGTHROB;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "哦，哇。";
 	mes "你做了正确的选择。我还以为拉菲内对漂亮帽子没兴趣，我要饿死了。";
 	next;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "我会给你很划算的价格。你应该知道我是在给你优惠。";
 	next;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "你有什么想要的吗？不妨看看。";
 	next;
 	setarray .@items[0], 5447, 2269, 2256, 5040, 5171, 5038, 5096, 2286, 5176, 5016;
@@ -1108,62 +1141,61 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 			.@menu$ = .@menu$+getitemname(.@items[.@i])+"（^777777材料不足^000000）:";
 	}
 	.@i = select(.@menu$)-1;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "^0571B0"+getitemname(.@items[.@i])+"^000000 是你想要的吗？";
 	next;
 	if (.@item_check == 0 || countitem(.@items[.@i]) == 0) {
 		emotion ET_CRY;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "哎呀……赊账对我来说很难。";
 		next;
-		mes "[Paltu]";
-		mes "^0571B0"+getitemname(.@items[.@i])+"^000000以及";
-		mes "^E1281E50 枚斯普兰迪德硬币、4 面晶镜、1 份妖精魔粉、祖母绿、红宝石、蓝宝石、黄玉和锆石各 10 个^000000都是必需品。";
+		mes "[帕尔图]";
+		mes "^0571B0"+getitemname(.@items[.@i])+"^000000以及^E1281E50 枚斯普兰迪德硬币、4 面水晶镜、1 份天使魔法粉、绿宝石、红宝石、蓝宝石、黄玉和锆石各 10 个^000000都是必需品。";
 		next;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "我自己也很困难。请考虑一下我的处境。";
 		close;
 	}
 	emotion ET_QUESTION;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "是的，这些完全够了。现在制作吗？";
 	next;
 	if (select("请现在制作。:糟糕，我还有事要处理……") == 2) {
 		emotion ET_HUK;
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "嘿……嘿！嘿！你要去哪？";
 		close;
 	}
 	emotion ET_HUK;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "明白了。哦对！我差点又忘了。";
 	next;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "^FF0000复制过程中，魔力干涉现象会使帽子失去所有精炼、卡片和隐藏附魔。^000000";
 	next;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "^FF0000如果你拥有多顶同类型帽子，不想要的那顶可能会被用于复制，请务必确认。^000000";
 	next;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "这样有什么问题吗？";
 	next;
 	if (select("让我去确认一下。:开始复制过程。") == 1) {
-		mes "[Paltu]";
+		mes "[帕尔图]";
 		mes "好的，请务必确认！";
 		close;
 	}
 	emotion ET_KIK;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "呜呼——明白了。";
 	mes "终于又到了施展技能的时候。";
 	next;
 	emotion ET_PROFUSELY_SWEAT;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "这里做这个，那里做那个，然后再回这里做这个……";
 	next;
 	emotion ET_THINK;
 	emotion ET_PROFUSELY_SWEAT;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "... .. ...";
 	specialeffect EF_BEGINSPELL;
 	progressbar "0xFFFF00",1;
@@ -1175,6 +1207,10 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	progressbar "0xFFFF00",1;
 	specialeffect EF_MVP;
 	next;
+	if (!checkweight(.@costumes[.@i],1)) {
+		mes "请先为本次物品预留足够的负重和物品栏空间，再来办理。";
+		close;
+	}
 	delitem 6081,50; //Splendide_Coin
 	delitem 747,4; //Crystal_Mirror
 	delitem 6395,1; //Angel_Magic_Power
@@ -1185,7 +1221,7 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	delitem 729,10; //Bluish_Green_Jewel
 	delitem .@items[.@i],1;
 	getitem .@costumes[.@i],1;
-	mes "[Paltu]";
+	mes "[帕尔图]";
 	mes "很好。这是令人满意的结果。";
 	mes "下次我会做得更好。请把我的手艺告诉别人。祝你今天愉快~";
 	close;

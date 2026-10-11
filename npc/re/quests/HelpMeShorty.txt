@@ -9,7 +9,7 @@
 //============================================================
 
 // Starter
-izlude,173,210,3	script	Black Shadow#fgtg01	4_CENERE,5,5,{
+izlude,173,210,3	script	黑影#fgtg01	4_CENERE,5,5,{
 	if (isbegin_quest(14688) == 0 && BaseLevel < 31) {
 		mes "[黑影]";
 		mes "带我走！你和我对视了，就必须对我负责！";
@@ -27,7 +27,7 @@ izlude,173,210,3	script	Black Shadow#fgtg01	4_CENERE,5,5,{
 		mes "^EE0000达到 31 级后，可以接取前往 肖蒂 身边的任务。完成任务后，肖蒂 会离开，同时你会获得奖励。";
 		next;
 		mes "[肖蒂提示]";
-		mes "^EE0000在达到 31 级前，可以随时通过^0000cd<分手吧>^EE0000菜单让 肖蒂 离开，但之后将再也无法让 肖蒂 成为伙伴。";
+		mes "^EE0000在达到 31 级前，可以随时通过^0000cd<现在分手。>^EE0000菜单让 肖蒂 离开，但之后将再也无法让 肖蒂 成为伙伴。";
 		next;
 		if (select( "好吧，我们一起走。", "我不想一起走。" ) == 2) {
 			mes "[黑影]";
@@ -41,7 +41,7 @@ izlude,173,210,3	script	Black Shadow#fgtg01	4_CENERE,5,5,{
 		mes "顺便问一下，你那是什么眼神……？你害怕我吗？我只是想引人注意，等一下……";
 		next;
 		cloakonnpcself();
-		cloakoffnpcself("Mysterious Creature#fgtg01" );
+		cloakoffnpcself("神秘生物#fgtg01" );
 		mes "[黑影]";
 		mes "这样够了吗？";
 		next;
@@ -77,7 +77,7 @@ izlude,173,210,3	script	Black Shadow#fgtg01	4_CENERE,5,5,{
 		setquest 14688;
 		completequest 14688;
 		getitem 23278,1;	// HelpmeShorty
-		cloakonnpcself("Mysterious Creature#fgtg01" );
+		cloakonnpcself("神秘生物#fgtg01" );
 		close;
 	}
 	end;
@@ -93,14 +93,14 @@ OnInit:
 	end;
 }
 
-//izlude,173,210,3	script	Mysterious Creature#fgtg01	4_GALAPAGO,5,5,{	// unknown OnTouch effect
-izlude,173,210,3	duplicate(dummy_cloaked_npc)	Mysterious Creature#fgtg01	4_GALAPAGO
+//izlude,173,210,3	script	神秘生物#fgtg01	4_GALAPAGO,5,5,{	// unknown OnTouch effect
+izlude,173,210,3	duplicate(dummy_cloaked_npc)	神秘生物#fgtg01	4_GALAPAGO
 
 izlude,161,199,0	script	#fgtg01	HIDDEN_WARP_NPC,3,5,{
 	end;
 OnTouch:
 	if (isbegin_quest(14688) == 0 && BaseLevel < 31)
-		cloakoffnpcself( "Black Shadow#fgtg01" );
+		cloakoffnpcself( "黑影#fgtg01" );
 	end;
 }
 izlude,194,209,0	duplicate(#fgtg01)	#fgtg02	HIDDEN_WARP_NPC,3,5
@@ -108,9 +108,9 @@ izlude,173,210,0	duplicate(#fgtg01)	#fgtg03	HIDDEN_WARP_NPC,3,5
 
 
 // Exchange npc. Step 1 of 2
-payon_in01,193,23,3	script	Chanmo#fgtg01	1_F_ORIENT_01,{
+payon_in01,193,23,3	script	灿模#fgtg01	1_F_ORIENT_01,{
 	if (isbegin_quest(14693) == 1) {
-		cloakoffnpcself( "Shorty#fgtg004" );
+		cloakoffnpcself( "肖蒂#fgtg004" );
 		mes "[肖蒂]";
 		mes "萨尔蒂！萨尔蒂～我来了～你等我了吗？等了很久吗？";
 		next;
@@ -158,7 +158,7 @@ payon_in01,193,23,3	script	Chanmo#fgtg01	1_F_ORIENT_01,{
 		select("好吧。");
 		mes "[肖蒂]";
 		mes "那么，出发吧！！！";
-		cloakonnpcself("Shorty#fgtg004");
+		cloakonnpcself("肖蒂#fgtg004");
 		completequest 14693;
 		setquest 14694;
 		close;
@@ -168,7 +168,7 @@ payon_in01,193,23,3	script	Chanmo#fgtg01	1_F_ORIENT_01,{
 	close;
 }
 
-payon_in01,190,24,5	duplicate(dummy_cloaked_npc)	Shorty#fgtg004	4_GALAPAGO
+payon_in01,190,24,5	duplicate(dummy_cloaked_npc)	肖蒂#fgtg004	4_GALAPAGO
 
 
 // Exchange npc. Step 2 of 2
@@ -176,7 +176,7 @@ prt_fild10,318,191,0	script	#salt01	HIDDEN_WARP_NPC,3,5,{
 	end;
 OnTouch:
 	if (isbegin_quest(14694) == 1)
-		cloakoffnpcself( "Salty#fgtg01" );
+		cloakoffnpcself( "萨尔蒂#fgtg01" );
 	end;
 }
 prt_fild10,262,39,0	duplicate(#salt01)	#salt02	HIDDEN_WARP_NPC,3,5
@@ -188,12 +188,12 @@ prt_fild10,311,167,0	duplicate(#salt01)	#salt07	HIDDEN_WARP_NPC,3,5
 prt_fild10,298,212,0	duplicate(#salt01)	#salt08	HIDDEN_WARP_NPC,3,5
 
 
-prt_fild10,318,191,3	script	Salty#fgtg01	4_F_ALCHE_A,{
+prt_fild10,318,191,3	script	萨尔蒂#fgtg01	4_F_ALCHE_A,{
 	if (isbegin_quest(14694) == 1) {
 		mes "[萨尔蒂]";
 		mes "啊！橡子！嗯嗯，橡子果冻！橡子能做什么？当然是吃橡子果冻～";
 		next;
-		cloakoffnpcself( "Shorty#fgtg005" );
+		cloakoffnpcself( "肖蒂#fgtg005" );
 		mes "[肖蒂]";
 		mes "你看起来很兴奋，萨尔蒂。没有我你过得开心吗？";
 		next;
@@ -254,8 +254,8 @@ prt_fild10,318,191,3	script	Salty#fgtg01	4_F_ALCHE_A,{
 		cloakonnpcself();
 		mes "[肖蒂]";
 		mes "主人，即使时间过去很久，也别忘了我，成为在大陆上扬名的伟大冒险者！";
-		specialeffect EF_TELEPORTATION2, AREA, "Shorty#fgtg005";
-		cloakonnpcself( "Shorty#fgtg005" );
+		specialeffect EF_TELEPORTATION2, AREA, "肖蒂#fgtg005";
+		cloakonnpcself( "肖蒂#fgtg005" );
 		erasequest 14694;
 		if (isbegin_quest(14695) > 0)
 			erasequest 14695;
@@ -272,11 +272,11 @@ OnInit:
 	end;
 }
 
-prt_fild10,315,189,7	duplicate(dummy_cloaked_npc)	Shorty#fgtg005	4_GALAPAGO
+prt_fild10,315,189,7	duplicate(dummy_cloaked_npc)	肖蒂#fgtg005	4_GALAPAGO
 
 
 // Base for the dynamic npc
-izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
+izlude,1,1,0	script	肖蒂#fgtg01	4_GALAPAGO,{
 	if (isbegin_quest(14689) == 0) {
 		mes "[肖蒂]";
 		mes "做得好。如果以后需要我的帮助，可以这样叫我。";
@@ -289,7 +289,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 		mes "我还会提供各种有用的^0000cd服务^000000来帮助你狩猎。";
 		next;
 		mes "[肖蒂]";
-		mes "我能做的只有用^0000cd速度激发^000000让你快速移动，用^0000cd天使之赐福^000000提升力量、敏捷和智力，但肯定会有帮助，对吧？";
+		mes "我能做的只有用^0000cd敏捷提升^000000让你快速移动，用^0000cd天使之赐福^000000提升力量、灵巧和智力，但肯定会有帮助，对吧？";
 		next;
 		mes "[肖蒂]";
 		mes "是的！如果你叫我出来后一分钟没有说话，我就会回到包里。";
@@ -400,7 +400,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 			next;
 			select( "怎么去那里？" );
 			mes "[肖蒂]";
-			mes "和^0000cd天堂走廊^000000的 帕拉市场 风之人交谈，他会送你过去。";
+			mes "和^0000cd乐园走廊^000000的 帕拉市场 风之人交谈，他会送你过去。";
 			break;
 		case 3:
 			mes "[肖蒂]";
@@ -408,7 +408,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 			next;
 			select( "没错。我甚至没法看完所有摊位。" );
 			mes "[肖蒂]";
-			mes "那样的话可以使用^0000cd目录^000000。现在据说^0000cd天堂或艾尔贝塔商人的自动售货机^000000正在出售。";
+			mes "那样的话可以使用^0000cd目录^000000。现在据说^0000cd乐园或艾尔贝塔商人的自动售货机^000000正在出售。";
 			next;
 			mes "[肖蒂]";
 			mes "我今天也想去购物。";
@@ -425,7 +425,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 		switch( checkquest(14695,PLAYTIME) ) {
 		case -1:
 			mes "[肖蒂]";
-			mes "主人，我会提供之前答应你的帮助：速度激发和天使之赐福。";
+			mes "主人，我会提供之前答应你的帮助：敏捷提升和天使之赐福。";
 			next;
 			mes "[肖蒂]";
 			mes "但这是我偷学来的，使用后灵魂会疲惫，所以不能无限提供。大约需要半小时才能恢复。";
@@ -491,7 +491,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 			mes "主人，你无聊吗？那就和周围的人聊聊天吧。";
 			next;
 			mes "[肖蒂]";
-			mes "除此之外，也可以试试^0000cd天堂的任务^000000。想去天堂吗？听说去了就会获得武器。";
+			mes "除此之外，也可以试试^0000cd乐园的任务^000000。想去乐园吗？听说去了就会获得武器。";
 			next;
 			mes "[肖蒂]";
 			mes "你想去哪里？在聊天窗口输入^0000cd/place^000000，或按^0000cdCtrl+` 键^000000查看地图，对比当前位置。";
@@ -521,7 +521,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 				break;
 			case 5:
 				mes "[肖蒂]";
-				mes "点击<NAVI>[阿尔伯特]<INFO>alberta,124,67,0,101,0</INFO></NAVI>寻找它。";
+				mes "点击<NAVI>[艾尔贝塔]<INFO>alberta,124,67,0,101,0</INFO></NAVI>寻找它。";
 				break;
 			case 6:
 				mes "[肖蒂]";
@@ -547,7 +547,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 		mes "[肖蒂]";
 		mes "你想去哪里？在聊天窗口输入 /place，再按^0000cdCtrl+`^000000键查看地图，与当前位置对照。哪里最近？";
 		next;
-		switch( select( "普隆德拉", "吉芬", "斐扬", "摩洛克", "阿尔伯特", "完成" ) ) {
+		switch( select( "普隆德拉", "吉芬", "斐扬", "摩洛克", "艾尔贝塔", "完成" ) ) {
 		case 1:
 			mes "[肖蒂]";
 			mes "点击<NAVI>[普隆德拉]<INFO>prontera,124,76,0,101,0</INFO></NAVI>寻找它。";
@@ -572,7 +572,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 			break;
 		case 5:
 			mes "[肖蒂]";
-			mes "点击<NAVI>[阿尔伯特]<INFO>alberta,124,67,0,101,0</INFO></NAVI>寻找它。";
+			mes "点击<NAVI>[艾尔贝塔]<INFO>alberta,124,67,0,101,0</INFO></NAVI>寻找它。";
 			break;
 		case 6:
 			mes "[肖蒂]";
@@ -784,23 +784,23 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 		mes "主人不想成功吗？萨尔蒂 说她正在努力训练，因为她想成功。";
 		next;
 		mes "[肖蒂]";
-		mes "传统是^0000cd在英灵殿重生并回到初心者阶段^000000。不过这不是普通初心者，而是高阶初心者。";
+		mes "转生是^0000cd在英灵殿重生并回到初心者阶段^000000。不过这不是普通初心者，而是高阶初心者。";
 		next;
 		mes "[肖蒂]";
 		mes "换句话说，这是进化。前人说再次获得过去的职业有许多好处。";
 		next;
 		mes "[肖蒂]";
-		mes "状态很多，最重要的是，拥有二转职业后可以将^0000cd职业等级提升到 70^000000，从而使用更多技能。";
+		mes "属性点会增加，最重要的是，成为进阶二转职业后可以将^0000cd职业等级提升到 70^000000，从而使用更多技能。";
 		next;
 		mes "[肖蒂]";
 		mes "如果想要成功，就去找一个名叫";
 		mes "<NAVI>[梅泰乌斯·希尔夫]<INFO>yuno_in02,88,164,0,101,0</INFO></NAVI> 位于朱诺的^0000cd贤者学院^000000，他会为你指路。";
 		next;
 		mes "[肖蒂]";
-		mes "如果对超越不感兴趣，也可以直接转职。不过他说，考虑未来的话，还是超越更好。";
+		mes "如果对转生不感兴趣，也可以直接转职。不过他说，考虑未来的话，还是转生更好。";
 		next;
 		mes "[肖蒂]";
-		mes "如果对转职或超越都不感兴趣……";
+		mes "如果对转职或转生都不感兴趣……";
 		next;
 		mes "[肖蒂]";
 		mes "大陆全年都有节庆活动。主人有空时去参加怎么样？";
@@ -841,7 +841,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 					mes "^0000cd卢恩·米德加尔特^000000。由七个王族统治，魔法力量盛行的王国。";
 					next;
 					mes "[肖蒂]";
-					mes "首都是普隆德拉，此外还有卫星城伊兹鲁德、魔法师聚集的吉芬、东边的斐扬、可以前往各地区的艾尔帕兰、拥有钟楼的艾尔迪巴兰，以及摩洛克。";
+					mes "首都是普隆德拉，此外还有卫星城伊兹鲁德、魔法师聚集的吉芬、东边的斐扬、可以前往各地区的艾尔贝塔、拥有钟楼的艾尔迪巴兰，以及摩洛克。";
 					next;
 					mes "[肖蒂]";
 					mes "我们在卢恩·米德加尔特王国的伊兹鲁德相遇。记得吗？还有和 萨尔蒂 一起去过的斐扬，以及我离开的帕罗斯。它们都在卢恩·米德加尔特。";
@@ -889,7 +889,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 					break;
 				case 4:
 					mes "[肖蒂]";
-					mes "想感受异国氛围，就应该去^0000cd地区^000000。^0000cd前往艾尔帕兰码头^000000，便能见到把人送往各地区的水手。";
+					mes "想感受异国氛围，就应该去^0000cd地区^000000。^0000cd前往艾尔贝塔码头^000000，便能见到把人送往各地区的水手。";
 					next;
 					mes "[肖蒂]";
 					mes "天津、昆仑、莫斯科比亚、巴西利斯、阿尤塔雅、德瓦塔、马来港、岩岭等地。未知世界在等待你。";
@@ -1041,7 +1041,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 				mes "那么，你想了解哪些基础信息？";
 				mes "基础信息请参阅 <URL>[指南]<INFO>http://ro.gnjoy.com/guide/systeminfo/,1024,768</INFO></URL>。";
 				next;
-				switch( select( "队伍", "公会与氏族", "冶炼", "附魔", "家庭", "聊天" ) ) {
+				switch( select( "队伍", "公会与氏族", "精炼", "附魔", "家庭", "聊天" ) ) {
 				case 1:
 					mes "[肖蒂]";
 					mes "有时你会想和朋友一起行动：一起在地下城战斗、享受冒险，或者只是坐下来聊天。";
@@ -1063,7 +1063,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 					mes "公会最大的特色是争夺据点，也被称为攻城战。";
 					next;
 					mes "[肖蒂]";
-					mes "你可以接受邀请加入已经成立的公会，也可以购买公会办公室出售的城堡核心来创建公会。";
+					mes "你可以接受邀请加入已经成立的公会，也可以购买公会办公室出售的华丽金属来创建公会。";
 					next;
 					mes "[肖蒂]";
 					mes "除了归属感，公会还拥有公会专属技能、专用仓库等各种福利。";
@@ -1099,7 +1099,7 @@ izlude,1,1,0	script	Shorty#fgtg01	4_GALAPAGO,{
 					mes "如果想让装备更强，或赋予它特殊能力，不妨试试 ^0000cd附魔^000000。";
 					next;
 					mes "[肖蒂]";
-					mes "主要负责附魔的地方有 ^0000cd<马来岛>、<商城>^000000，和主要城镇中的 ^0000cd<赛亚布雷姆>、<雷亚布雷姆>^000000。";
+					mes "主要负责附魔的地方有 ^0000cd<马兰岛>、<商城>^000000，和主要城镇中的 ^0000cd<赛亚布雷姆>、<雷亚布雷姆>^000000。";
 					next;
 					mes "[肖蒂]";
 					mes "从特定地下城或区域获得的装备，只能在该区域进行 ^0000cd附魔^000000。";

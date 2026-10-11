@@ -126,81 +126,81 @@ S_Coord:
 
 -	script	Training_Instructor_TE	-1,{
 	if (checkweight(1201,5) == 0) {
-		mes "You have too many items to proceed with the quest.";
-		mes "Please lighten your load and try again.";
+		mes "你携带的物品过多，无法继续任务。";
+		mes "请减轻负重后再试。";
 		close;
 	}
 	.@map$ = strnpcinfo(4);
 	if (.@map$ == "te_alde_gld") {
-		.@npc_name$ = "Mana";
-		.@fortress$ = "Kafragarten";
+		.@npc_name$ = "玛娜";
+		.@fortress$ = "卡普拉花园";
 		.@menu$ = callsub( S_Menu, .@quest_id,
-			7510,"1 Suspicious Poring",
-			7511,"10 Suspicious Poring",
-			7512,"30 Suspicious Poring",
-			7504,"Destroy 1 Emperium",
-			7505,"Destroy 3 Emperiums",
-			7506,"Destroy 5 Emperiums",
-			7513,"10 Kafra's Paychecks",
-			7514,"20 Kafra's Paychecks",
-			7515,"30 Kafra's Paychecks" );
+			7510,"1 只可疑的波利",
+			7511,"10 只可疑的波利",
+			7512,"30 只可疑的波利",
+			7504,"摧毁 1 个城堡核心",
+			7505,"摧毁 3 个城堡核心",
+			7506,"摧毁 5 个城堡核心",
+			7513,"10 张卡普拉薪资单",
+			7514,"20 张卡普拉薪资单",
+			7515,"30 张卡普拉薪资单" );
 	}
 	else {
-		.@npc_name$ = "Rune";
-		.@fortress$ = "Gloria";
+		.@npc_name$ = "鲁恩";
+		.@fortress$ = "格洛丽亚";
 		.@menu$ = callsub( S_Menu, .@quest_id,
-			7501,"1 Suspicious Babee",
-			7502,"10 Suspicious Babee",
-			7503,"30 Suspicious Babee",
-			7504,"Destroy 1 Emperium",
-			7505,"Destroy 3 Emperiums",
-			7506,"Destroy 5 Emperiums",
-			7507,"10 Small Wooden Boxes",
-			7508,"20 Small Wooden Boxes",
-			7509,"30 Small Wooden Boxes" );
+			7501,"1 只可疑的兽人婴儿",
+			7502,"10 只可疑的兽人婴儿",
+			7503,"30 只可疑的兽人婴儿",
+			7504,"摧毁 1 个城堡核心",
+			7505,"摧毁 3 个城堡核心",
+			7506,"摧毁 5 个城堡核心",
+			7507,"10 个小木箱",
+			7508,"20 个小木箱",
+			7509,"30 个小木箱" );
 	}
 	mes "["+ .@npc_name$ +"]";
 	if (jobcanentermap("te_prtcas01") == 0) {
-		mes "Ah... you...";
-		mes "based on TE rules, I won't be ordering you or asking you favors unfortunately.";
+		mes "啊……你……";
+		mes "根据 TE 的规则，很遗憾，我不能向你发布任务或请求帮助。";
 		next;
 		mes "["+ .@npc_name$ +"]";
-		mes "Hey now, since this place is just for primary and secondary job classes as well as users without expanded levels, could you leave if you got nothing else to do here?";
+		mes "这里仅对符合 TE 职业及等级限制的冒险者开放。如果没有其他事情，请先离开吧。";
 		close;
 	}
-	mes "There are missions you can complete in TE region.";
-	mes "Let's see, what do you want?";
+	mes "TE 区域里有一些任务可以交给你完成。";
+	mes "让我看看，你想做什么？";
 	next;
-	switch( select( "Accept/Conform Missions", "What do you mean a mission?", "I don't have any." ) ) {
+	switch( select( "接受或确认任务", "是什么样的任务？", "我没什么事。" ) ) {
 	case 1:
 		mes "["+ .@npc_name$ +"]";
 		if (BaseLevel < 70) {
-			mes "Mm, I'm sorry but missions are for users with ^4d4dff70 level^000000 or higher.";
-			mes "Honestly, it's hard to complete a mission if your level is too low.";
+			mes "嗯，抱歉，任务只对达到 ^4d4dff70 级^000000的冒险者开放。";
+			mes "说实话，等级太低很难完成任务。";
 			close;
 		}
 		.@time_check = WoeTETimeStart(3600);
 		.@siege_check = agitcheck3();
-		mes "You already know that you have to accept a mission in a certain period of time, right?";
+		mes "你已经知道，只有在规定时间内才能接受任务，对吧？";
 		if (.@time_check == 1 || .@siege_check == 1)
-			mes "Moreover, you have to keep in mind that you can't accept both high-level and low-level missions simultaneously if they are of the same content.";
+			mes "另外要记住，不能同时接受内容相同的高级和低级任务。";
 		else {
-			mes "Unfortunately, you can't accept missions right now.";
+			mes "很遗憾，现在不能接受任务。";
 			next;
 			mes "["+ .@npc_name$ +"]";
 			.@playtime_check2 = checkquest(7516,PLAYTIME);// A Break for Commercial Development
 			if (.@playtime_check2 == 2) {
 				erasequest 7516;
-				mes "Mm, you were taking a break?";
-				mes "Well, it doesn't matter anymore.";
+				mes "嗯，你之前在休息吗？";
+				mes "现在已经没关系了。";
 			}
-			mes "You can only check the results of the missions you've already accepted.";
+			mes "你现在只能确认已经接受的任务结果。";
 		}
 		next;
 		.@s = select( .@menu$ + "取消" ) -1;
 		mes "["+ .@npc_name$ +"]";
 		if (.@s == 9) {
-			mes "See you later then.";
+			mes "那就下次再见。";
 			close;
 		}
 
@@ -216,9 +216,9 @@ S_Coord:
 
 		if (.@s == 0 || .@s == 1 || .@s == 2) {// Hunting suspicious quest
 			if (.@map$ == "te_alde_gld")
-				setarray .@mob_name$[0],"Porings","suspicious Porings";
+				setarray .@mob_name$[0],"波利","可疑的波利";
 			else
-				setarray .@mob_name$[0],"Orc Babies","suspicious creatures";
+				setarray .@mob_name$[0],"兽人婴儿","可疑的生物";
 
 			if (.@s == 0)
 				.@num_kill = 1;
@@ -238,9 +238,9 @@ S_Coord:
 			if (.@mission01 == 1) {
 				if (.@playtime_check == 0) {
 					if (.@hunting_check == 2) {
-						mes "You did it in time.";
-						mes "I don't understand why "+ .@mob_name$[0] +" appear at that time of the day.";
-						mes "Anyway, good job.";
+						mes "你及时完成了。";
+						mes "我不明白为什么"+ .@mob_name$[0] +"会在那个时间出现。";
+						mes "总之，干得不错。";
 						if (.@num_tool_box == 0) {
 							erasequest .@main_quest;
 							getitem 11558,5;// TE_White_Slim_Potion
@@ -249,46 +249,46 @@ S_Coord:
 						}
 						next;
 						mes "["+ .@npc_name$ +"]";
-						mes "Since you've done a good job, I'll let you open my tool box " + .@num_tool_box + " times.";
-						mes "Although you won't find anything mostly...";
-						mes "It's a bonus, so don't complaint even if you don't find anything.";
+						mes "你做得很好，我就让你打开我的工具箱" + .@num_tool_box + "次。";
+						mes "不过，大多数时候你什么也找不到……";
+						mes "这只是额外奖励，什么也没找到可别抱怨。";
 						next;
-						mes "Just like "+ .@npc_name$ +" said, you went through the box in front, and...";
+						mes "正如"+ .@npc_name$ +"所说，你翻找了面前的箱子，然后……";
 						erasequest .@main_quest;
 						getitem .@reward[0],.@reward[1];
 						getexp .@exp[0],.@exp[1];
 						callsub( S_Rentbox, .@num_tool_box );
 					}
-					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "This mission is to eliminate "+ .@mob_name$[1] +" that secretly appear at the fortress in "+ .@fortress$ +"." );
+					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "这项任务需要消灭"+ .@mob_name$[1] +"，它们偷偷出现在以下地区的要塞里："+ .@fortress$ +"." );
 				}
-				mes "Time's up.";
-				mes "Unfortunately, mission failed!";
-				mes "Maybe next time!";
+				mes "时间到了。";
+				mes "很遗憾，任务失败了！";
+				mes "下次再努力吧！";
 				erasequest .@main_quest;
 				close;
 			}
 			if (.@time_check != 1 && .@siege_check != 1) {
-				mes "You're not on this mission currently.";
-				mes "Could you check again?";
+				mes "你目前没有接受这项任务。";
+				mes "请再确认一下。";
 				close;
 			}
 			if (.@mission02 == 1 || .@mission03 == 1) {
 				if (.@num_tool_box == 0) {
-					mes "You are already on a high-level mission!";
-					mes "You cannot accept a low-level mission if you're already on a high-level mission of the same content!";
+					mes "你已经接受了高级任务！";
+					mes "已经接受高级任务时，不能再接受内容相同的低级任务！";
 				}
 				else {
-					mes "You're already on a elimination mission!";
-					mes "I would like you to take care of what you already have unless you want to cancel it.";
+					mes "你已经接受了讨伐任务！";
+					mes "除非你打算取消当前任务，否则请先把它完成。";
 				}
 				next;
 				mes "["+ .@npc_name$ +"]";
-				mes "It only makes sense that way, doesn't it?";
-				mes "Don't you think so?";
+				mes "这样才合理，不是吗？";
+				mes "你不这么认为吗？";
 				close;
 			}
-			mes "I've been told that "+ .@mob_name$[1] +" appear during the busy siege hours at the fortress in "+ .@fortress$ +".";
-			mes "I would like you to ^4d4dffeliminate "+ .@num_kill +" or more of "+ .@mob_name$[1] +"^000000.";
+			mes "听说"+ .@mob_name$[1] +"会在攻城战期间出现在以下地区的要塞里："+ .@fortress$ +".";
+			mes "请你^4d4dff消灭至少"+ .@num_kill +"个"+ .@mob_name$[1] +"。^000000";
 			callsub( S_Acceptquest, .@main_quest, .@npc_name$ );
 		}
 		else if (.@s == 3 || .@s == 4 || .@s == 5) {// Breaking Emperiums
@@ -313,81 +313,81 @@ S_Coord:
 			if (.@mission01 == 1) {
 				if (.@playtime_check == 0) {
 					if (.@hunting_check == 2) {
-						mes "Incredible!";
-						mes "Breaking Emperiums is definitely not an easy job.";
-						mes "You must be contributing a lot to your guild. Good job!";
+						mes "真了不起！";
+						mes "摧毁城堡核心可不是件容易的事。";
+						mes "你一定为公会作出了很大贡献。干得好！";
 						next;
 						mes "["+ .@npc_name$ +"]";
-						mes "Since you've done a good job, I'll let you open my tool box "+ .@num_tool_box +" times.";
-						mes "Although you won't find anything mostly...";
-						mes "It's a bonus, so don't complaint even if you don't find anything.";
+						mes "你做得很好，我就让你打开我的工具箱"+ .@num_tool_box +"次。";
+						mes "不过，大多数时候你什么也找不到……";
+						mes "这只是额外奖励，什么也没找到可别抱怨。";
 						next;
-						mes "Just like "+ .@npc_name$ +" said, you went through the box in front, and...";
+						mes "正如"+ .@npc_name$ +"所说，你翻找了面前的箱子，然后……";
 						erasequest .@main_quest;
 						setquest 7516;
 						getitem .@reward[0],.@reward[1];
 						getexp .@exp[0],.@exp[1];
 						callsub( S_Rentbox, .@num_tool_box );
 					}
-					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "This mission is to ^4d4dff destroy Emperiums that exist all over Gloria and Kafragarten regions.^000000" );
+					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "这项任务需要^4d4dff摧毁 Gloria 和 Kafragarten 各处的城堡核心。^000000" );
 				}
-				mes "Time's up.";
-				mes "Unfortunately, mission failed!";
-				mes "Maybe next time!";
+				mes "时间到了。";
+				mes "很遗憾，任务失败了！";
+				mes "下次再努力吧！";
 				erasequest .@main_quest;
 				close;
 			}
 			if (.@time_check != 1 && .@siege_check != 1) {
-				mes "You're not on this mission currently.";
-				mes "Could you check again?";
+				mes "你目前没有接受这项任务。";
+				mes "请再确认一下。";
 				close;
 			}
 			if (.@mission02 == 1 || .@mission03 == 1) {
-				mes "You're already on a mission of the same content,";
-				mes "the level is different though";
-				mes "I would like you to take care of what you already have unless you want to cancel it.";
+				mes "你已经接受了内容相同的任务，";
+				mes "虽然难度不同。";
+				mes "除非你打算取消当前任务，否则请先把它完成。";
 				next;
 				mes "["+ .@npc_name$ +"]";
-				mes "It only makes sense that way, doesn't it?";
-				mes "Don't you think so?";
+				mes "这样才合理，不是吗？";
+				mes "你不这么认为吗？";
 				close;
 			}
 			.@playtime_check2 = checkquest(7516,PLAYTIME);
 			if (.@playtime_check2 == 0) {
-				mes "There is something called 'commercial development level' in each fortress.";
-				mes "It increases as much as each guild invests.";
+				mes "每座要塞都有所谓的“商业发展等级”。";
+				mes "它会随着公会的投资而提高。";
 				next;
 				mes "["+ .@npc_name$ +"]";
-				mes "However, this is closely related to Emperiums.";
-				mes "Destroying Emperiums repeatedly staggers commercial development level.";
+				mes "不过，它与城堡核心密切相关。";
+				mes "反复摧毁城堡核心会降低商业发展等级。";
 				next;
 				mes "["+ .@npc_name$ +"]";
-				mes "So, now we take a break in order to prevent an excessive decrease in commercial development level.";
-				mes "See you in a bit.";
+				mes "所以，为避免商业发展等级下降过多，现在需要休息一段时间。";
+				mes "过一会儿再见。";
 				close;
 			}
 			else if (.@playtime_check2 == 2) {
 				erasequest 7516;
-				mes "The break for commercial development of the fortress is over now.";
-				mes "Good. Think about what kind of missions you want and come back again.";
+				mes "要塞商业发展的休整期已经结束。";
+				mes "好好想想你想做哪种任务，再回来找我吧。";
 				close;
 			}
-			mes "What is the most important thing in siege battles?";
-			mes "It's destroying Emperiums! Let me give you that exact mission of destroying Emperiums!";
+			mes "攻城战中最重要的是什么？";
+			mes "当然是摧毁城堡核心！我就把这项任务交给你！";
 			next;
 			mes "["+ .@npc_name$ +"]";
-			mes "Gloria or Kafragarten, wherever it is! Right now, at this very hour, ^4d4dffdestroy Emperiums!^000000";
-			mes "^4d4dffTarget number is "+ .@num_kill +" or more!^000000";
+			mes "无论在 Gloria 还是 Kafragarten！现在就去^4d4dff摧毁城堡核心！^000000";
+			mes "^4d4dff目标数量至少为"+ .@num_kill +"个！^000000";
 			callsub( S_Acceptquest, .@main_quest, .@npc_name$ );
 		}
 		else if (.@s == 6 || .@s == 7 || .@s == 8) {
 			if (.@map$ == "te_alde_gld") {
 				.@item_quest = 7056;// Payroll_Of_Kafra
-				setarray .@string$[0], "paychecks", "I don't understand why Porings would steal Kafra's Paychecks", "Kafra's stolen paychecks";
+				setarray .@string$[0], "薪资单", "我不明白波利为什么要偷卡普拉的薪资单。", "失窃的卡普拉薪资单";
 			}
 			else {
 				.@item_quest = 6592;// Small_Wooden_Chest
-				setarray .@string$[0], "wooden boxes", "So, those Orc Babies were after this, huh?", "wooden boxes";
+				setarray .@string$[0], "小木箱", "原来那些兽人婴儿想要的是这个啊？", "小木箱";
 			}
 			if (.@s == 6) {
 				.@num_tool_box = 1;
@@ -410,93 +410,93 @@ S_Coord:
 
 			if (.@mission01 == 1) {
 				if (.@playtime_check == 0) {
-					if (countitem(.@item_quest) > 9) {
-						mes .@num_items +" or more of "+ .@string$[0] +" let's see you've done it right.";
+					if (countitem(.@item_quest) >= .@num_items) {
+						mes .@num_items +"个"+ .@string$[0] +"，让我确认一下你是否完成了。";
 						mes .@string$[1];
-						mes "Anyway, good job.";
+						mes "总之，干得不错。";
 						next;
 						mes "["+ .@npc_name$ +"]";
-						mes "Let me take the rest of the "+ .@string$[0] +".";
-						mes "I'll return it to its original owner.";
+						mes "剩下的也交给我吧："+ .@string$[0] +".";
+						mes "我会把它们归还给原主。";
 						next;
 						mes "["+ .@npc_name$ +"]";
-						mes "Since you've done a good job, I'll let you open my tool box "+ .@num_tool_box +" times.";
-						mes "Although you won't find anything mostly...";
-						mes "It's a bonus, so don't complaint even if you don't find anything.";
+						mes "你做得很好，我就让你打开我的工具箱"+ .@num_tool_box +"次。";
+						mes "不过，大多数时候你什么也找不到……";
+						mes "这只是额外奖励，什么也没找到可别抱怨。";
 						next;
-						mes "Just like "+ .@npc_name$ +" said, you went through the box in front, and...";
+						mes "正如"+ .@npc_name$ +"所说，你翻找了面前的箱子，然后……";
 						delitem .@item_quest, countitem(.@item_quest);
 						erasequest .@main_quest;
 						getitem .@reward[0],.@reward[1];
 						getexp .@exp[0],.@exp[1];
 						callsub( S_Rentbox, .@num_tool_box );
 					}
-					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "This mission is to ^4d4dffcollect "+ .@string$[2] +"^000000 at the fortress in "+ .@fortress$ +"." );
+					callsub( S_Cancelquest, .@main_quest, .@npc_name$, "这项任务需要^4d4dff收集"+ .@string$[2] +"^000000，地点是以下地区的要塞："+ .@fortress$ +"." );
 				}
-				mes "Time's up.";
-				mes "Unfortunately, mission failed!";
-				mes "Maybe next time!";
+				mes "时间到了。";
+				mes "很遗憾，任务失败了！";
+				mes "下次再努力吧！";
 				erasequest .@main_quest;
 				close;
 			}
 			if (.@time_check != 1 && .@siege_check != 1) {
-				mes "You're not on this mission currently.";
-				mes "Could you check again?";
+				mes "你目前没有接受这项任务。";
+				mes "请再确认一下。";
 				close;
 			}
 			if (.@mission02 == 1 || .@mission03 == 1) {
-				mes "You're already on a mission of the same content,";
-				mes "the level is different though";
-				mes "I would like you to take care of what you already have unless you want to cancel it.";
+				mes "你已经接受了内容相同的任务，";
+				mes "虽然难度不同。";
+				mes "除非你打算取消当前任务，否则请先把它完成。";
 				next;
 				mes "["+ .@npc_name$ +"]";
-				mes "It only makes sense that way, doesn't it?";
-				mes "Don't you think so?";
+				mes "这样才合理，不是吗？";
+				mes "你不这么认为吗？";
 				close;
 			}
-			mes "Hmm you wouldn't believe it, but this mission is related to a theft.";
-			mes "They told me a bunch of "+ .@string$[2] +" is missing from the fortress in "+ .@fortress$ +".";
+			mes "嗯，你可能不相信，这项任务与一宗盗窃案有关。";
+			mes "他们说有一批"+ .@string$[2] +"从以下地区的要塞里失窃了："+ .@fortress$ +".";
 			next;
 			mes "["+ .@npc_name$ +"]";
-			mes "The thief probably took advantage of the siege hours.";
-			mes "It's a request to find ^4d4dff"+ .@num_items +" or more of "+ .@string$[2] +"^000000.";
+			mes "小偷大概趁攻城战混乱时下手了。";
+			mes "这项委托需要找回至少 ^4d4dff"+ .@num_items +"个"+ .@string$[2] +"。^000000";
 			callsub( S_Acceptquest, .@main_quest, .@npc_name$ );
 		}
 	case 2:
 		mes "["+ .@npc_name$ +"]";
-		mes "Since TE Region has more of a casual atmosphere,";
-		mes "it's not fun doing just siege battles, right?";
-		mes "So, I brought ^4d4dffsome works you can do during the siege hours^000000~";
+		mes "TE 区域的气氛比较轻松，";
+		mes "光打攻城战也不够有趣，对吧？";
+		mes "所以，我准备了^4d4dff一些可以在攻城战期间完成的工作^000000～";
 		next;
 		mes "["+ .@npc_name$ +"]";
-		mes "You can accept missions ^4d4dffstarting from 1 hour before the beginning of the siege and until the end of the siege battle TE^000000,";
-		mes "and every mission has ^4d4dffa 4-hour time limit^000000 for completion.";
+		mes "你可以在^4d4dffTE 攻城战开始前一小时至结束期间^000000接受任务，";
+		mes "每项任务都必须在 ^4d4dff4 小时内^000000完成。";
 		next;
 		mes "["+ .@npc_name$ +"]";
-		mes "Simply put, you accept a mission from me during the siege hours and";
-		mes "^4d4dffcome back to give me a report within the time limit^000000.";
+		mes "简单来说，就是在规定的攻城时段向我接受任务，";
+		mes "然后^4d4dff在时限内回来向我报告^000000。";
 		next;
 		mes "["+ .@npc_name$ +"]";
-		mes "Try it for fun.";
+		mes "就当来玩玩吧。";
 		close;
 	case 3:
 		mes "["+ .@npc_name$ +"]";
-		mes "I see.";
-		mes "Come back anytime if you change your mind.";
-		mes "I might not be available, though. Hehehe.";
+		mes "我明白了。";
+		mes "改变主意的话，随时回来。";
+		mes "不过，我可不一定有空。嘿嘿。";
 		close;
 	}
 
 S_Cancelquest:
 	.@npc_name$ = getarg(1);
 	if (WoeTETimeStart(3600) == 1 || agitcheck3()) {
-		mes "It seems like you haven't accomplished the mission yet?";
+		mes "看来你还没完成任务？";
 		mes getarg(2);
 		next;
 		mes "["+ .@npc_name$ +"]";
-		mes "Do you want to cancel by any chance?";
+		mes "你想取消任务吗？";
 		next;
-		switch( select( "No.","Yes." ) ) {
+		switch( select( "不。","是。" ) ) {
 		case 1:
 			mes "["+ .@npc_name$ +"]";
 			mes "祝你好运！";

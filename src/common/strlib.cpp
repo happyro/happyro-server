@@ -267,6 +267,24 @@ char* safestrncpy(char* dst, const char* src, size_t n)
 	return dst;
 }
 
+// Copy UTF-8 text into a fixed C-string field without splitting a code point.
+char* safestrncpy_utf8(char* dst, const char* src, size_t n)
+{
+	if (n == 0) return dst;
+	size_t len = safestrnlen(src, n - 1);
+	if (len > 0 && len == n - 1) {
+		size_t start = len - 1;
+		while (start > 0 && (static_cast<unsigned char>(src[start]) & 0xc0) == 0x80)
+			--start;
+		const unsigned char lead = static_cast<unsigned char>(src[start]);
+		const size_t width = lead < 0x80 ? 1 : lead < 0xe0 ? 2 : lead < 0xf0 ? 3 : 4;
+		if (start + width > len) len = start;
+	}
+	memcpy(dst, src, len);
+	memset(dst + len, 0, n - len);
+	return dst;
+}
+
 /// doesn't crash on null pointer
 size_t safestrnlen(const char* string, size_t maxlen)
 {

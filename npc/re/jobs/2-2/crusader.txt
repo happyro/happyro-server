@@ -9,15 +9,15 @@
 
 // Senior Crusader: 1st Collect Items Test
 //============================================================
-prt_cas,251,75,1	duplicate(Senior Crusader_)	Senior Crusader	4_M_CRU_OLD
+prt_cas,251,75,1	duplicate(Senior Crusader_)	高级十字军	4_M_CRU_OLD
 
 // Suffering Man: 2nd Endurance Test
 //============================================================
-prt_cas,238,94,5	duplicate(Man in Anguish_)	Man in Anguish	4_M_JOB_KNIGHT1
+prt_cas,238,94,5	duplicate(Man in Anguish_)	受苦之人	4_M_JOB_KNIGHT1
 
 // Crusader: 4th Purification Test
 //============================================================
-prt_cas,261,101,3	duplicate(Patron Knight_)	Patron Knight	4_M_CRU
+prt_cas,261,101,3	duplicate(Patron Knight_)	守护骑士	4_M_CRU
 
 // Actual tests
 //============================================================
@@ -28,6 +28,7 @@ prt_cas,261,101,3	duplicate(Patron Knight_)	Patron Knight	4_M_CRU
 job_cru,98,105,4	script	 Summoner#cr5	WARPNPC,3,3,{
 	end;
 OnTouch_:
+	if (CRUS_Q != 5) end;
 	set CRUS_Q,6;
 	changequest 3010,3011;
 	warp "prt_cas",238,94;	// inaccurate location
@@ -44,15 +45,9 @@ OnInit:
 	end;
 
 OnTouch_:
-	warp "prt_cas",238,94;	// inaccurate location
+	if (!getvariableofnpc(.Active,"Monster Summon#cr0") || getvariableofnpc(.Owner,"Monster Summon#cr0") != getcharid(0) || CRUS_Q != 10) end;
+	warp "prt_cas",238,94;
 	donpcevent "Monster Summon#cr0::OnReset";
-	donpcevent "Monster Summon#cr4::OnReset";
-	donpcevent "Monster Summon#cr0::OnEnd";
-	donpcevent "Monster Summon#cr4::OnEnd";
-	donpcevent "Monster Summon#cr5::OnEnd";
-	donpcevent "Monster Summon#cr6::OnStop";
-	donpcevent "Monster Summon#cr6::OnEnd";
-	donpcevent "Waiting Room#cr1::OnStart";
 	end;
 
 OnStart:

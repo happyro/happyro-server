@@ -20,10 +20,7 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 	if (checkweight(1201,1) == 0) {
 		mes "^FF0000-警告信息-";
 		mes "- 请稍等！！-";
-		mes "- 你携带的物品太多-";
-		mes "- 无法接收物品。-";
-		mes "- 请减轻负重-";
-		mes "- 请再试一次。-^000000";
+		mes "- 你携带的物品太多，无法接收物品。请减轻负重后再试。-^000000";
 		close2;
 		cutin "",255;
 		end;
@@ -132,6 +129,18 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 				next;
 				mes "[盖尔卡]";
 				mes strcharinfo(0) +"，师父会为你准备委托列表，现在去和他谈谈，向他表达敬意吧。";
+				if (countitem(7054) < 50) {
+					mes "布里甘数量不足，请带齐 50 个后再来。";
+					close2;
+					cutin "",255;
+					end;
+				}
+				if (!checkweight(6549,1)) {
+					mes "请先为善意通行证预留背包空间。";
+					close2;
+					cutin "",255;
+					end;
+				}
 				delitem 7054,50;// Brigan
 				completequest 13002;// Brigan collecting
 				para_100lv01 = 2;
@@ -655,6 +664,12 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 						next;
 						mes "[盖尔卡]";
 						mes "糟糕，我全吃完了？好吧，只剩一个。稍后再来吧！";
+						if (!checkweight(608,1)) {
+							mes "请先为奖励物品预留足够的负重和背包空间。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						para_100lv01 = 4;
 						getitem 608,1;// Seed_Of_Yggdrasil
 					}
@@ -665,6 +680,12 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 						mes "打起精神！"+ strcharinfo(0) +"，我不确定他是否把你当作徒弟。他实在太乱来了。";
 					else {
 						mes "高效完成委托时会收到很多礼物。来，把这个当奖励。";
+						if (!checkweight(607,1)) {
+							mes "请先为奖励物品预留足够的负重和背包空间。";
+							close2;
+							cutin "",255;
+							end;
+						}
 						para_100lv01 = 5;
 						getitem 607,1;// Yggdrasilberry
 					}
@@ -790,6 +811,18 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 									else
 										setarray .@item[0],547,60;	// White_Slim_Potion
 								}
+								if (countitem(6549) < .@amount) {
+									mes "善意通行证数量不足，请带齐后再来兑换。";
+									close2;
+									cutin "",255;
+									end;
+								}
+								if (!checkweight(.@item[0],.@item[1])) {
+									mes "请先为兑换物品预留足够的负重和背包空间。";
+									close2;
+									cutin "",255;
+									end;
+								}
 								delitem 6549,.@amount;// Courtesy_Ticket
 								getitem .@item[0], .@item[1];
 								mes "你把手伸进袋子，抓到^0000FF"+ .@item[1] +" "+ getitemname(.@item[0]) +"^000000。";
@@ -838,8 +871,14 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 									}
 									if (JobLevel < 6)
 										.@jexp = 106000;
-									getexp .@exp,.@jexp;
+									if (countitem(6549) < 10) {
+										mes "善意通行证数量不足，无法领取经验奖励。";
+										close2;
+										cutin "",255;
+										end;
+									}
 									delitem 6549,10;
+									getexp .@exp,.@jexp;
 									para_100lv02 += 1;
 								}
 								break;
@@ -874,8 +913,14 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 									}
 									if (JobLevel < 6)
 										.@jexp = 206000;
-									getexp .@exp, .@jexp;
+									if (countitem(6549) < 20) {
+										mes "善意通行证数量不足，无法领取经验奖励。";
+										close2;
+										cutin "",255;
+										end;
+									}
 									delitem 6549,20;
+									getexp .@exp, .@jexp;
 									para_100lv02 += 1;
 								}
 								break;
@@ -893,7 +938,8 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 										next;
 										mes "[盖尔卡]";
 										mes "我想那天之后他再也没见过那位会长。";
-										getexp 650000,488000;
+										.@exp = 650000;
+										.@jexp = 488000;
 									}
 									else {
 										cutin "gelca03",2;
@@ -902,9 +948,17 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 										next;
 										mes "[盖尔卡]";
 										mes "但他好胜的性格也让他被视为麻烦制造者，所以离开了。";
-										getexp 700000,430000;
+										.@exp = 700000;
+										.@jexp = 430000;
+									}
+									if (countitem(6549) < 30) {
+										mes "善意通行证数量不足，无法领取经验奖励。";
+										close2;
+										cutin "",255;
+										end;
 									}
 									delitem 6549,30;
+									getexp .@exp,.@jexp;
 									para_100lv02 += 1;
 								}
 								break;
@@ -940,7 +994,7 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 		callsub S_Hunting,13040,112000,186500,"银月魔女";
 		callsub S_Hunting,13042,106000,148000,"米杜沙";
 		callsub S_Hunting,13044,112000,186500,"安毕斯";
-		setarray .@quest_id[0],13004,13006,13008,130010,13012,13014,13016,13018,13020,13022,13024,13026,13041,13043,13045;
+		setarray .@quest_id[0],13004,13006,13008,13010,13012,13014,13016,13018,13020,13022,13024,13026,13041,13043,13045;
 		for ( .@i = 0; .@i < 15; .@i++ ) {
 			if (checkquest(.@quest_id[.@i],PLAYTIME) == 2) {
 				erasequest .@quest_id[.@i];
@@ -953,12 +1007,18 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 	end;
 S_Quest:
 	if (getarg(2,0)) {
+		if (!checkweight(6549,1)) {
+			mes "请先为善意通行证预留背包空间。";
+			close2;
+			cutin "",255;
+			end;
+		}
 		getitem 6549,1;// Courtesy_Ticket
 		para_100lv02 += 1;
 		if (JobLevel < 6)
-			getexp 550000,getarg(1);
-		else
 			getexp 550000,getarg(2);
+		else
+			getexp 550000,getarg(3);
 	}
 	else {
 		next;
@@ -985,8 +1045,7 @@ S_Hunting:
 	case 2:
 		next;
 		mes "[盖尔卡]";
-		mes "你完成了";
-		mes "^FF0000"+ getarg(3) +"狩猎^000000委托。";
+		mes "你完成了^FF0000"+ getarg(3) +"狩猎^000000委托。";
 		mes "我会记录你已完成此委托。";
 		para_100lv02 += 1;
 		if (JobLevel < 6)

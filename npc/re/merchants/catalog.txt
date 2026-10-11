@@ -24,11 +24,10 @@ moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
 	}
 	set .@ticket_cost, 200;
 	mes "[目录魔法师]";
-	mes "看……格芬的魔法学院现在正在直接出售全新的^007777万能目录银币^000000！";
+	mes "看……吉芬的魔法学院现在正在直接出售全新的^007777万能目录银币^000000！";
 	next;
 	mes "他正看着手上写的文字。";
-	mes "他似乎太忙了，根本没注意到你。";
-	mes "完全没有看你一眼。";
+	mes "他似乎太忙了，根本没注意到你，完全没有看你一眼。";
 	next;
 	mes "[目录魔法师]";
 	mes "全新的目录刚刚上市！";
@@ -55,7 +54,7 @@ moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
 				emotion ET_PROFUSELY_SWEAT, playerattached();
 				close;
 			} else if (.@input < 1 || .@input > 50) {
-				mes "数量应该少于 50 个。";
+				mes "数量应在 1 到 50 个之间。";
 				next;
 			} else
 				break;
@@ -66,6 +65,10 @@ moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
 		if (Zeny < .@sell) {
 			mes "看来你的钱不够。";
 			mes "你可以出售装备来赚更多钱……如果你愿意。";
+			close;
+		}
+		if (!checkweight(12580,.@input)) {
+			mes "请先为购买的目录预留足够的负重和物品栏空间。";
 			close;
 		}
 		mes "好的，给你。";
@@ -82,7 +85,7 @@ moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
 	case 3:
 		mes "[目录魔法师]";
 		mes "我的真正职业是魔法师。";
-		mes "我本来想请商人公会帮忙销售，但他们竟然想把目录作为扫帚销售的附录。";
+		mes "我本来想请商人公会帮忙销售，但他们竟然想把目录作为卖扫帚时的赠品。";
 		mes "所以我只好自己卖。";
 		mes "这真是让人头疼。";
 		next;

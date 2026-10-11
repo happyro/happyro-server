@@ -3681,7 +3681,7 @@ static void npc_parsename(npc_data* nd, const char* name, const char* start, con
 		size_t len = p-name;
 		if( len > NPC_NAME_LENGTH ) {
 			ShowWarning("npc_parsename: Display name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (uint32)len, filepath, strline(buffer,start-buffer), NPC_NAME_LENGTH);
-			safestrncpy(nd->name, name, sizeof(nd->name));
+			safestrncpy_utf8(nd->name, name, sizeof(nd->name));
 		} else {
 			memcpy(nd->name, name, len);
 			memset(nd->name+len, 0, sizeof(nd->name)-len);
@@ -3694,7 +3694,7 @@ static void npc_parsename(npc_data* nd, const char* name, const char* start, con
 		size_t len = strlen(name);
 		if( len > NPC_NAME_LENGTH )
 			ShowWarning("npc_parsename: Name '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (uint32)len, filepath, strline(buffer,start-buffer), NPC_NAME_LENGTH);
-		safestrncpy(nd->name, name, sizeof(nd->name));
+		safestrncpy_utf8(nd->name, name, sizeof(nd->name));
 		safestrncpy(nd->exname, name, sizeof(nd->exname));
 	}
 
@@ -3853,7 +3853,7 @@ npc_data* npc_add_warp(char* name, int16 from_mapid, int16 from_x, int16 from_y,
 
 	for( i = 0; npc_name2id(nd->exname) != nullptr; ++i )
 		snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp%d_%d_%d_%d", i, from_mapid, from_x, from_y);
-	safestrncpy(nd->name, nd->exname, ARRAYLENGTH(nd->name));
+	safestrncpy_utf8(nd->name, nd->exname, ARRAYLENGTH(nd->name));
 
 	if( battle_config.warp_point_debug )
 		nd->class_ = JT_GUILD_FLAG;
@@ -5072,7 +5072,7 @@ void npc_setdisplayname(npc_data* nd, const char* newname)
 	nullpo_retv(nd);
 	struct map_data *mapdata = map_getmapdata(nd->m);
 
-	safestrncpy(nd->name, newname, sizeof(nd->name));
+	safestrncpy_utf8(nd->name, newname, sizeof(nd->name));
 	if( mapdata && mapdata->users )
 		clif_name_area(nd);
 }

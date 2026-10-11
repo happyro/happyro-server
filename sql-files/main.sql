@@ -361,10 +361,10 @@ CREATE TABLE IF NOT EXISTS `clan` (
 -- Records of clan
 -- ----------------------------
 
-INSERT INTO `clan` VALUES ('1', 'Swordman Clan', 'Raffam Oranpere', 'prontera', '500');
-INSERT INTO `clan` VALUES ('2', 'Arcwand Clan', 'Devon Aire', 'geffen', '500');
-INSERT INTO `clan` VALUES ('3', 'Golden Mace Clan', 'Berman Aire', 'prontera', '500');
-INSERT INTO `clan` VALUES ('4', 'Crossbow Clan', 'Shaam Rumi', 'payon', '500');
+INSERT INTO `clan` VALUES ('1', '剑士氏族', '拉法姆·奥兰佩尔', 'prontera', '500');
+INSERT INTO `clan` VALUES ('2', '奥术法杖氏族', '德文·艾尔', 'geffen', '500');
+INSERT INTO `clan` VALUES ('3', '金锤氏族', '伯曼·艾尔', 'prontera', '500');
+INSERT INTO `clan` VALUES ('4', '十字弩氏族', '莎姆·鲁米', 'payon', '500');
 
 --
 -- Table structure for `clan_alliance`
@@ -383,14 +383,14 @@ CREATE TABLE IF NOT EXISTS `clan_alliance` (
 -- Records of clan_alliance
 -- ----------------------------
 
-INSERT INTO `clan_alliance` VALUES ('1', '0', '3', 'Golden Mace Clan');
-INSERT INTO `clan_alliance` VALUES ('2', '0', '3', 'Golden Mace Clan');
-INSERT INTO `clan_alliance` VALUES ('2', '1', '4', 'Crossbow Clan');
-INSERT INTO `clan_alliance` VALUES ('3', '0', '1', 'Swordman Clan');
-INSERT INTO `clan_alliance` VALUES ('3', '0', '2', 'Arcwand Clan');
-INSERT INTO `clan_alliance` VALUES ('3', '0', '4', 'Crossbow Clan');
-INSERT INTO `clan_alliance` VALUES ('4', '0', '3', 'Golden Mace Clan');
-INSERT INTO `clan_alliance` VALUES ('4', '1', '2', 'Arcwand Clan');
+INSERT INTO `clan_alliance` VALUES ('1', '0', '3', '金锤氏族');
+INSERT INTO `clan_alliance` VALUES ('2', '0', '3', '金锤氏族');
+INSERT INTO `clan_alliance` VALUES ('2', '1', '4', '十字弩氏族');
+INSERT INTO `clan_alliance` VALUES ('3', '0', '1', '剑士氏族');
+INSERT INTO `clan_alliance` VALUES ('3', '0', '2', '奥术法杖氏族');
+INSERT INTO `clan_alliance` VALUES ('3', '0', '4', '十字弩氏族');
+INSERT INTO `clan_alliance` VALUES ('4', '0', '3', '金锤氏族');
+INSERT INTO `clan_alliance` VALUES ('4', '1', '2', '奥术法杖氏族');
 
 --
 -- Table structure for table `elemental`

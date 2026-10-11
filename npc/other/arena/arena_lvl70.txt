@@ -15,11 +15,11 @@
 //= 1.3 Script updates. [Euphy]
 //============================================================
 
-arena_room,52,42,7	script	Lv70 Waiting Room	124,{
+arena_room,52,42,7	script	70级等候室	124,{
 	end;
 
 OnInit:
-	waitingroom "Individual; Level 70 to 89",50,"Lv70 Waiting Room::OnStartArena",1,1000,70,89;
+	waitingroom "个人挑战－70至89级",50,"70级等候室::OnStartArena",1,1000,70,89;
 	enablewaitingroomevent;
 	end;
 
@@ -34,7 +34,7 @@ OnStart:
 	end;
 }
 
-force_3-1,99,20,4	script	Cadillac#arena	124,{
+force_3-1,99,20,4	script	凯迪拉克#arena	124,{
 	end;
 
 OnStart:
@@ -44,61 +44,61 @@ OnStart:
 	end;
 
 OnTimer3000:
-	mapannounce "force_3-1","Good day, my name is Cadillac, the guide of Time Force Battle for lvl 70s!",0;
+	mapannounce "force_3-1","大家好，我是凯迪拉克，负责引导70至89级时空战竞技场的挑战！",0;
 	end;
 
 OnTimer4000:
-	mapannounce "force_3-1","Remember your right decision will save a lot of your time!",0;
+	mapannounce "force_3-1","记住，正确的判断能帮你节省大量时间！",0;
 	end;
 
 OnTimer7000:
-	mapannounce "force_3-1","In order to complete this battle course, you must start from the far left of this room to the clock wise direction. Please move to the far left side. You have 7 minutes from now.",0;
+	mapannounce "force_3-1","请从房间最左侧开始，顺时针完成各阶段挑战。现在向最左侧前进，你有7分钟时间！",0;
 	end;
 
 OnTimer60000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 6 minutes ",0;
+	mapannounce "force_3-1","剩余时间：6分钟",0;
 	end;
 
 OnTimer120000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 5 minutes ",0;
+	mapannounce "force_3-1","剩余时间：5分钟",0;
 	end;
 
 OnTimer180000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 4 minutes ",0;
+	mapannounce "force_3-1","剩余时间：4分钟",0;
 	end;
 
 OnTimer240000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 3 minutes ",0;
+	mapannounce "force_3-1","剩余时间：3分钟",0;
 	end;
 
 OnTimer300000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 2 minutes ",0;
+	mapannounce "force_3-1","剩余时间：2分钟",0;
 	end;
 
 OnTimer360000:
 	if (getmapusers("force_3-1") == 0) {
-		donpcevent "Cadillac#arena::OnFailClearStage";
+		donpcevent "凯迪拉克#arena::OnFailClearStage";
 	}
-	mapannounce "force_3-1","Remaining Time : 1 minute ",0;
+	mapannounce "force_3-1","剩余时间：1分钟",0;
 	end;
 
 OnTimer420000:
-	mapannounce "force_3-1","Your time is over. I hope you had a good time~",0;
+	mapannounce "force_3-1","时间到了，希望你玩得开心！",0;
 	end;
 
 OnTimer425000:
@@ -116,7 +116,7 @@ OnTimer434000:
 
 OnTimer435000:
 	mapwarp "force_3-1","prt_are_in",126,87,0,0;
-	donpcevent "Cadillac#arena::OnFailClearStage";
+	donpcevent "凯迪拉克#arena::OnFailClearStage";
 	end;
 
 OnTimerOff:
@@ -126,78 +126,78 @@ OnTimerOff:
 OnFailClearStage:
 	donpcevent "cast#70::OnTimeOver1";
 	mapwarp "force_3-1","prt_are_in",126,87,0,0;
-	donpcevent "Cadillac#arena::OnTimerOff";
+	donpcevent "凯迪拉克#arena::OnTimerOff";
 	donpcevent "arena#70::OnReset_All";
 	donpcevent "alloff#70::OnEnable";
-	donpcevent "Lv70 Waiting Room::OnStart";
+	donpcevent "70级等候室::OnStart";
 	end;
 
 On01_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all Kobolds!",0;
+	mapannounce "force_3-1","目标：击败所有犬妖！",0;
 	end;
 
 On01_End:
-	mapannounce "force_3-1","A door to the north room has opened!",0;
+	mapannounce "force_3-1","北侧房间的门已打开！",0;
 	end;
 
 On02_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all Horongs and escape!",0;
+	mapannounce "force_3-1","目标：击败所有鬼火，然后离开本房间！",0;
 	end;
 
 On02_End:
-	mapannounce "force_3-1","A door to the north room has opened!",0;
+	mapannounce "force_3-1","北侧房间的门已打开！",0;
 	end;
 
 On03_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all monsters except Enchanted Peach Trees!",0;
+	mapannounce "force_3-1","目标：消灭除猴桃木之外的所有魔物！",0;
 	end;
 
 On03_End:
-	mapannounce "force_3-1","Clear! A door to the east room has opened!",0;
+	mapannounce "force_3-1","过关！东侧房间的门已打开！",0;
 	end;
 
 On04_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all Stem Worms while dodging Bathories!",0;
+	mapannounce "force_3-1","目标：避开巫婆，击败所有灰森灵！",0;
 	end;
 
 On04_End:
-	mapannounce "force_3-1","A door to the east room has opened!",0;
+	mapannounce "force_3-1","东侧房间的门已打开！",0;
 	end;
 
 On05_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all Argiopes!",0;
+	mapannounce "force_3-1","目标：击败所有艾吉欧蜈蚣！",0;
 	end;
 
 On05_End:
-	mapannounce "force_3-1","Clear! A door to the south room has opened!",0;
+	mapannounce "force_3-1","过关！南侧房间的门已打开！",0;
 	end;
 
 On06_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill all Hammer Goblins!",0;
+	mapannounce "force_3-1","目标：击败所有榔头哥布灵！",0;
 	end;
 
 On06_End:
-	mapannounce "force_3-1","A door to the south room has opened!",0;
+	mapannounce "force_3-1","南侧房间的门已打开！",0;
 	end;
 
 On07_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill an Alice in the center!",0;
+	mapannounce "force_3-1","目标：击败房间中央的爱丽丝女仆！",0;
 	end;
 
 On07_End:
-	mapannounce "force_3-1","Clear! A door to the west room has opened!",0;
+	mapannounce "force_3-1","过关！西侧房间的门已打开！",0;
 	end;
 
 On08_Start:
-	mapannounce "force_3-1","Please escape to the north exit!",0;
+	mapannounce "force_3-1","请前往北侧出口！",0;
 	end;
 
 On09_Start:
-	mapannounce "force_3-1","In order to clear this battle, you must kill a Kobold Leader and all Kobolds!",0;
+	mapannounce "force_3-1","目标：击败犬妖首领和所有犬妖！",0;
 	end;
 
 On09_End:
-	mapannounce "force_3-1","Boss Clear! - A door at the north has opened. Thank you. ",0;
+	mapannounce "force_3-1","首领已击败！北侧出口已打开，谢谢。",0;
 	end;
 }
 
@@ -263,7 +263,7 @@ OnStart:
 	disablenpc "force_07_08#70";
 	disablenpc "force_08_09#70";
 	disablenpc "force_exit#70";
-	donpcevent "Cadillac#arena::OnTimerOff";
+	donpcevent "凯迪拉克#arena::OnTimerOff";
 	//donpcevent "force_09mob#70::OnTimerOff";
 	donpcevent "force_01mob#70::OnReset";
 	donpcevent "force_02mob#70::OnReset";
@@ -285,7 +285,7 @@ OnStart:
 	donpcevent "force_09ex#70::OnReset";
 	enablenpc "force_08_01#70";
 	donpcevent "force_01start#70::OnEnable";
-	donpcevent "Cadillac#arena::OnStart";
+	donpcevent "凯迪拉克#arena::OnStart";
 	end;
 
 OnReset_All:
@@ -311,56 +311,56 @@ OnReset_All:
 
 force_3-1,62,26,1	script	force_08_01#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On01_Start";
+	donpcevent "凯迪拉克#arena::On01_Start";
 	warp "force_3-1",40,26;
 	end;
 }
 
 force_3-1,25,44,1	script	force_01_02#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On02_Start";
+	donpcevent "凯迪拉克#arena::On02_Start";
 	warp "force_3-1",25,69;
 	end;
 }
 
 force_3-1,25,134,1	script	force_02_03#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On03_Start";
+	donpcevent "凯迪拉克#arena::On03_Start";
 	warp "force_3-1",25,159;
 	end;
 }
 
 force_3-1,44,174,1	script	force_03_04#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On04_Start";
+	donpcevent "凯迪拉克#arena::On04_Start";
 	warp "force_3-1",69,174;
 	end;
 }
 
 force_3-1,134,174,1	script	force_04_05#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On05_Start";
+	donpcevent "凯迪拉克#arena::On05_Start";
 	warp "force_3-1",159,174;
 	end;
 }
 
 force_3-1,174,155,1	script	force_05_06#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On06_Start";
+	donpcevent "凯迪拉克#arena::On06_Start";
 	warp "force_3-1",174,130;
 	end;
 }
 
 force_3-1,174,65,1	script	force_06_07#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On07_Start";
+	donpcevent "凯迪拉克#arena::On07_Start";
 	warp "force_3-1",174,40;
 	end;
 }
 
 force_3-1,155,26,1	script	force_07_08#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On08_Start";
+	donpcevent "凯迪拉克#arena::On08_Start";
 	warp "force_3-1",132,26;
 	enablenpc "force_08_09#70";
 	end;
@@ -368,14 +368,14 @@ OnTouch_:
 
 force_3-1,99,54,1	script	force_08_09#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::On09_Start";
+	donpcevent "凯迪拉克#arena::On09_Start";
 	warp "force_3-1",99,82;
 	end;
 }
 
 force_3-1,99,124,1	script	force_exit#70	45,1,1,{
 OnTouch_:
-	donpcevent "Cadillac#arena::OnTimerOff";
+	donpcevent "凯迪拉克#arena::OnTimerOff";
 	donpcevent "#arn_timer_70::OnEnable";
 	mapwarp "force_3-1","prt_are_in",22,87,0,0;
 	end;
@@ -389,11 +389,11 @@ OnEnable:
 
 -	script	force_01mob#70	-1,{
 OnEnable:
-	monster "force_3-1",25,36,"Kobold",1545,1,"force_01mob#70::OnMyMobDead";
-	monster "force_3-1",20,36,"Kobold",1545,1,"force_01mob#70::OnMyMobDead";
-	monster "force_3-1",25,20,"Kobold",1546,1,"force_01mob#70::OnMyMobDead";
-	monster "force_3-1",30,36,"Kobold",1547,1,"force_01mob#70::OnMyMobDead";
-	monster "force_3-1",28,15,"Kobold",1547,1,"force_01mob#70::OnMyMobDead";
+	monster "force_3-1",25,36,"大斧犬妖",1545,1,"force_01mob#70::OnMyMobDead";
+	monster "force_3-1",20,36,"大斧犬妖",1545,1,"force_01mob#70::OnMyMobDead";
+	monster "force_3-1",25,20,"榔头犬妖",1546,1,"force_01mob#70::OnMyMobDead";
+	monster "force_3-1",30,36,"刺锤犬妖",1547,1,"force_01mob#70::OnMyMobDead";
+	monster "force_3-1",28,15,"刺锤犬妖",1547,1,"force_01mob#70::OnMyMobDead";
 	end;
 
 OnReset:
@@ -402,7 +402,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_01mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On01_End";
+		donpcevent "凯迪拉克#arena::On01_End";
 		donpcevent "arena#70::OnReset_01";
 	}
 	end;
@@ -420,18 +420,18 @@ OnReset:
 	end;
 
 OnSummonMob2:
-	monster "force_3-1",21,78,"Archer Skeleton",1420,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",22,93,"Archer Skeleton",1420,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",29,93,"Archer Skeleton",1420,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",25,101,"Mummy",1393,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",26,101,"Mummy",1393,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",27,101,"Mummy",1393,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",28,101,"Mummy",1393,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",24,104,"Ghoul",1423,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",24,113,"Ghoul",1423,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",29,120,"Ghoul",1423,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",29,126,"Ghoul",1423,1,"force_02ex#70::OnMyMobDead";
-	monster "force_3-1",30,110,"Ghoul",1423,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",21,78,"邪骸弓箭手",1420,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",22,93,"邪骸弓箭手",1420,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",29,93,"邪骸弓箭手",1420,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",25,101,"木乃伊",1393,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",26,101,"木乃伊",1393,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",27,101,"木乃伊",1393,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",28,101,"木乃伊",1393,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",24,104,"绿腐尸",1423,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",24,113,"绿腐尸",1423,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",29,120,"绿腐尸",1423,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",29,126,"绿腐尸",1423,1,"force_02ex#70::OnMyMobDead";
+	monster "force_3-1",30,110,"绿腐尸",1423,1,"force_02ex#70::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -444,14 +444,14 @@ OnReset:
 	end;
 
 OnEnable:
-	monster "force_3-1",25,79,"Horong",1578,1,"force_02mob#70::OnMyMobDead";
-	monster "force_3-1",29,114,"Horong",1578,1,"force_02mob#70::OnMyMobDead";
+	monster "force_3-1",25,79,"鬼火",1578,1,"force_02mob#70::OnMyMobDead";
+	monster "force_3-1",29,114,"鬼火",1578,1,"force_02mob#70::OnMyMobDead";
 	donpcevent "force_02ex#70::OnSummonMob2";
 	end;
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_02mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On02_End";
+		donpcevent "凯迪拉克#arena::On02_End";
 		donpcevent "arena#70::OnReset_02";
 	}
 	end;
@@ -469,8 +469,8 @@ OnReset:
 	end;
 
 OnSummonMob_03:
-	monster "force_3-1",10,170,"Enchanted Peach Tree",1550,1,"force_03ex#70::OnMyMobDead";
-	monster "force_3-1",26,180,"Enchanted Peach Tree",1550,1,"force_03ex#70::OnMyMobDead";
+	monster "force_3-1",10,170,"猴桃木",1550,1,"force_03ex#70::OnMyMobDead";
+	monster "force_3-1",26,180,"猴桃木",1550,1,"force_03ex#70::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -480,9 +480,9 @@ OnMyMobDead:
 -	script	force_03mob#70	-1,{
 OnEnable:
 	donpcevent "force_03ex#70::OnSummonMob_03";
-	monster "force_3-1",23,174,"Parasite",1555,1,"force_03mob#70::OnMyMobDead";
-	monster "force_3-1",33,173,"Parasite",1555,1,"force_03mob#70::OnMyMobDead";
-	monster "force_3-1",26,166,"Blood Butterfly",1526,1,"force_03mob#70::OnMyMobDead";
+	monster "force_3-1",23,174,"苗娃佩瑞丝",1555,1,"force_03mob#70::OnMyMobDead";
+	monster "force_3-1",33,173,"苗娃佩瑞丝",1555,1,"force_03mob#70::OnMyMobDead";
+	monster "force_3-1",26,166,"血蝴蝶",1526,1,"force_03mob#70::OnMyMobDead";
 	end;
 
 OnReset:
@@ -492,7 +492,7 @@ OnReset:
 OnMyMobDead:
 	donpcevent "force_03ex#70::OnSummonMob_03";
 	if (mobcount("force_3-1","force_03mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On03_End";
+		donpcevent "凯迪拉克#arena::On03_End";
 		donpcevent "arena#70::OnReset_03";
 	}
 	end;
@@ -510,12 +510,12 @@ OnReset:
 	end;
 
 OnSummonMob_04:
-	monster "force_3-1",94,179,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
-	monster "force_3-1",110,179,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
-	monster "force_3-1",90,170,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
-	monster "force_3-1",100,170,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
-	monster "force_3-1",125,178,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
-	monster "force_3-1",125,169,"Bathory",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",94,179,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",110,179,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",90,170,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",100,170,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",125,178,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
+	monster "force_3-1",125,169,"巫婆",1525,1,"force_04ex#70::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -525,9 +525,9 @@ OnMyMobDead:
 -	script	force_04mob#70	-1,{
 OnEnable:
 	donpcevent "force_04ex#70::OnSummonMob_04";
-	monster "force_3-1",87,174,"Stem Worm",1440,1,"force_04mob#70::OnMyMobDead";
-	monster "force_3-1",103,174,"Stem Worm",1440,1,"force_04mob#70::OnMyMobDead";
-	monster "force_3-1",96,170,"Stem Worm",1440,1,"force_04mob#70::OnMyMobDead";
+	monster "force_3-1",87,174,"灰森灵",1440,1,"force_04mob#70::OnMyMobDead";
+	monster "force_3-1",103,174,"灰森灵",1440,1,"force_04mob#70::OnMyMobDead";
+	monster "force_3-1",96,170,"灰森灵",1440,1,"force_04mob#70::OnMyMobDead";
 	end;
 OnReset:
 	killmonster "force_3-1","force_04mob#70::OnMyMobDead";
@@ -535,7 +535,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_04mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On04_End";
+		donpcevent "凯迪拉克#arena::On04_End";
 		donpcevent "arena#70::OnReset_04";
 	}
 	end;
@@ -555,10 +555,10 @@ OnReset:
 OnSummonMob_05:
 	switch(rand(1,2)) {
 	case 1:
-		monster "force_3-1",174,174,"Ride Word",1478,1,"force_05ex#70::OnMyMobDead";
+		monster "force_3-1",174,174,"飞行魔书",1478,1,"force_05ex#70::OnMyMobDead";
 		break;
 	case 2:
-		monster "force_3-1",173,173,"Mantis",1457,1,"force_05ex#70::OnMyMobDead";
+		monster "force_3-1",173,173,"螳螂",1457,1,"force_05ex#70::OnMyMobDead";
 		break;
 	}
 	end;
@@ -569,11 +569,11 @@ OnMyMobDead:
 
 -	script	force_05mob#70	-1,{
 OnEnable:
-	monster "force_3-1",164,183,"Argiope",1429,1,"force_05mob#70::OnMyMobDead";
-	monster "force_3-1",168,158,"Argiope",1429,1,"force_05mob#70::OnMyMobDead";
-	monster "force_3-1",175,174,"Argiope",1429,1,"force_05mob#70::OnMyMobDead";
-	monster "force_3-1",176,179,"Argiope",1429,1,"force_05mob#70::OnMyMobDead";
-	monster "force_3-1",183,160,"Argiope",1429,1,"force_05mob#70::OnMyMobDead";
+	monster "force_3-1",164,183,"艾吉欧蜈蚣",1429,1,"force_05mob#70::OnMyMobDead";
+	monster "force_3-1",168,158,"艾吉欧蜈蚣",1429,1,"force_05mob#70::OnMyMobDead";
+	monster "force_3-1",175,174,"艾吉欧蜈蚣",1429,1,"force_05mob#70::OnMyMobDead";
+	monster "force_3-1",176,179,"艾吉欧蜈蚣",1429,1,"force_05mob#70::OnMyMobDead";
+	monster "force_3-1",183,160,"艾吉欧蜈蚣",1429,1,"force_05mob#70::OnMyMobDead";
 	end;
 
 OnReset:
@@ -582,7 +582,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_05mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On05_End";
+		donpcevent "凯迪拉克#arena::On05_End";
 		donpcevent "arena#70::OnReset_05";
 	}
 	else donpcevent "force_05ex#70::OnSummonMob_05";
@@ -601,16 +601,16 @@ OnReset:
 	end;
 
 OnSummonMob_06:
-	monster "force_3-1",176,99,"Goblin",1534,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",170,86,"Goblin",1535,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",176,97,"Goblin",1535,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",170,108,"Goblin",1535,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",176,112,"Goblin",1536,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",173,120,"Goblin",1536,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",177,74,"Goblin",1536,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",173,118,"Goblin",1538,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",171,101,"Goblin",1538,1,"force_06ex#70::OnMyMobDead";
-	monster "force_3-1",174,118,"Goblin",1538,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",176,99,"刺刀哥布灵",1534,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",170,86,"链锤哥布灵",1535,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",176,97,"链锤哥布灵",1535,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",170,108,"链锤哥布灵",1535,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",176,112,"大斧哥布灵",1536,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",173,120,"大斧哥布灵",1536,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",177,74,"大斧哥布灵",1536,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",173,118,"刺锤哥布灵",1538,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",171,101,"刺锤哥布灵",1538,1,"force_06ex#70::OnMyMobDead";
+	monster "force_3-1",174,118,"刺锤哥布灵",1538,1,"force_06ex#70::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -620,11 +620,11 @@ OnMyMobDead:
 -	script	force_06mob#70	-1,{
 OnEnable:
 	donpcevent "force_06ex#70::OnSummonMob_06";
-	monster "force_3-1",173,90,"Goblin",1537,1,"force_06mob#70::OnMyMobDead";
-	monster "force_3-1",173,79,"Goblin",1537,1,"force_06mob#70::OnMyMobDead";
-	monster "force_3-1",172,70,"Goblin",1537,1,"force_06mob#70::OnMyMobDead";
-	monster "force_3-1",175,70,"Goblin",1537,1,"force_06mob#70::OnMyMobDead";
-	monster "force_3-1",171,118,"Goblin",1537,1,"force_06mob#70::OnMyMobDead";
+	monster "force_3-1",173,90,"榔头哥布灵",1537,1,"force_06mob#70::OnMyMobDead";
+	monster "force_3-1",173,79,"榔头哥布灵",1537,1,"force_06mob#70::OnMyMobDead";
+	monster "force_3-1",172,70,"榔头哥布灵",1537,1,"force_06mob#70::OnMyMobDead";
+	monster "force_3-1",175,70,"榔头哥布灵",1537,1,"force_06mob#70::OnMyMobDead";
+	monster "force_3-1",171,118,"榔头哥布灵",1537,1,"force_06mob#70::OnMyMobDead";
 	end;
 
 OnReset:
@@ -633,7 +633,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_06mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On06_End";
+		donpcevent "凯迪拉克#arena::On06_End";
 		donpcevent "arena#70::OnReset_06";
 	}
 	end;
@@ -651,19 +651,19 @@ OnReset:
 	end;
 
 OnSummonMob_07:
-	monster "force_3-1",168,26,"Nightmare",1427,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",186,23,"Nightmare",1427,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",160,23,"Nightmare",1427,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",188,33,"Nightmare",1427,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",174,13,"Raydric",1453,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",163,15,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",164,15,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",163,16,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",164,16,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",187,13,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",187,14,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",186,14,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
-	monster "force_3-1",186,14,"Farmiliar",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",168,26,"梦魇",1427,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",186,23,"梦魇",1427,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",160,23,"梦魇",1427,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",188,33,"梦魇",1427,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",174,13,"幽灵弓箭手",1453,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",163,15,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",164,15,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",163,16,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",164,16,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",187,13,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",187,14,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",186,14,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
+	monster "force_3-1",186,14,"吸血蝙蝠",1419,1,"force_07ex#70::OnMyMobDead";
 	end;
 
 
@@ -674,7 +674,7 @@ OnMyMobDead:
 -	script	force_07mob#70	-1,{
 OnEnable:
 	donpcevent "force_07ex#70::OnSummonMob_07";
-	monster "force_3-1",174,25,"Alice",1521,1,"force_07mob#70::OnMyMobDead";
+	monster "force_3-1",174,25,"爱丽丝女仆",1521,1,"force_07mob#70::OnMyMobDead";
 	end;
 
 OnReset:
@@ -683,7 +683,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_07mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On07_End";
+		donpcevent "凯迪拉克#arena::On07_End";
 		donpcevent "arena#70::OnReset_07";
 	}
 	end;
@@ -713,20 +713,20 @@ OnReset:
 	end;
 
 OnSummonMob_09:
-	monster "force_3-1",93,100,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",94,100,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",93,99,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",87,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",89,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",91,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",93,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",95,114,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,112,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,110,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,108,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,106,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
-	monster "force_3-1",85,104,"Familiar",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",93,100,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",94,100,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",93,99,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",87,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",89,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",91,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",93,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",95,114,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,112,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,110,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,108,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,106,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
+	monster "force_3-1",85,104,"吸血蝙蝠",1419,1,"force_09ex#70::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -735,10 +735,10 @@ OnMyMobDead:
 
 -	script	force_09mob#70	-1,{
 OnEnable:
-	monster "force_3-1",99,99,"Kobold Leader",1548,1,"force_09mob#70::OnMyMobDead";
-	monster "force_3-1",98,99,"Kobold",1545,1,"force_09mob#70::OnMyMobDead";
-	monster "force_3-1",100,99,"Kobold",1546,1,"force_09mob#70::OnMyMobDead";
-	monster "force_3-1",99,98,"Kobold",1547,1,"force_09mob#70::OnMyMobDead";
+	monster "force_3-1",99,99,"犬妖首领",1548,1,"force_09mob#70::OnMyMobDead";
+	monster "force_3-1",98,99,"大斧犬妖",1545,1,"force_09mob#70::OnMyMobDead";
+	monster "force_3-1",100,99,"榔头犬妖",1546,1,"force_09mob#70::OnMyMobDead";
+	monster "force_3-1",99,98,"刺锤犬妖",1547,1,"force_09mob#70::OnMyMobDead";
 	donpcevent "force_09ex#70::OnSummonMob_09";
 	end;
 
@@ -748,7 +748,7 @@ OnReset:
 
 OnMyMobDead:
 	if (mobcount("force_3-1","force_09mob#70::OnMyMobDead") < 1) {
-		donpcevent "Cadillac#arena::On09_End";
+		donpcevent "凯迪拉克#arena::On09_End";
 		donpcevent "arena#70::OnReset_09";
 		donpcevent "arena#70::OnReset_All";
 		set $arena_min70end,gettime(DT_MINUTE);
@@ -757,28 +757,25 @@ OnMyMobDead:
 	end;
 }
 
-prt_are_in,129,83,3	script	Staff#70-1	67,{
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "你做得很好。即使没能通过计时战斗，我也会奖励你少量竞技场积分。";
-	mes "Even if you have failed to clear a time attack battle, I will reward you with a small amount of arena points.";
+prt_are_in,129,83,3	script	工作人员#70-1	67,{
+	mes "[工作人员]";
+	mes "你做得很好。即使没能通过限时挑战，也能获得少量竞技场点数。";
 	next;
 	if (arena_point == 30000) {
-		mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-		mes "Uh huh!";
-		mes "You already have enough arena points.";
-		mes "Please spend some arena points later. When I see you next time, I will make sure to give you some reward.";
+		mes "[工作人员]";
+		mes "你的竞技场点数已达上限，请先花掉一些，才能继续获得奖励。";
 		next;
 	}
 	else set arena_point, arena_point + 1;
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "Let me guide you outside. I hope you had a good time.";
+	mes "[工作人员]";
+	mes "现在送你离开，希望你玩得开心。";
 	close2;
 	specialeffect2 EF_EXIT;
 	warp "arena_room",100,75;
 	end;
 }
 
-prt_are_in,25,84,3	script	Staff#70-2	67,{
+prt_are_in,25,84,3	script	工作人员#70-2	67,{
 	if($arena_min70end < $arena_min70st) {
 		if($arena_sec70end < $arena_sec70st) {
 			set @record_min70,60 - $arena_min70st + $arena_min70end -1;
@@ -797,46 +794,41 @@ prt_are_in,25,84,3	script	Staff#70-2	67,{
 		}
 	}
 	set @gap70,(60 * $top_70min + $top_70sec) - (60 * @record_min70 + @record_sec70);
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "Wow, you did a good job~ ";
-	mes "Your name is...^3131FF" + strcharinfo(0) +"^000000, isn't it?";
-	mes "^3131FF"+ strcharinfo(0) +"^000000, total time you spent to pass the battle..";
+	mes "[工作人员]";
+	mes "哇，干得好！你叫^3131FF"+strcharinfo(0)+"^000000，对吧？";
+	mes "让我看看你的通关用时……";
 	next;
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "is "+@record_min70+"minutes "+@record_sec70+"seconds.";
-	mes "Congratulations!";
+	mes "[工作人员]";
+	mes "一共用了 "+@record_min70+" 分 "+@record_sec70+" 秒，恭喜！";
 	next;
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "The fastest player among people who cleared Lv70 arena time force battle is ^3131FF"+$arena_70topn$+"^000000.";
+	mes "[工作人员]";
+	mes "70至89级时空战竞技场的纪录保持者是^3131FF"+$arena_70topn$+"^000000。";
 	next;
-	mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-	mes "^3131FF"+$arena_70topn$+"^000000's running time was ^3131FF"+$top_70min+"^000000minutes ^3131FF"+$top_70sec+"^000000seconds.";
+	mes "[工作人员]";
+	mes "^3131FF"+$arena_70topn$+"^000000的纪录是^3131FF"+$top_70min+"^000000分^3131FF"+$top_70sec+"^000000秒。";
 	next;
 	if (@gap70 < 0) {
-		mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-		mes "Although you failed to make a new record, I hope you will succeed next time.";
+		mes "[工作人员]";
+		mes "这次没能打破纪录，希望你下次成功！";
 		next;
 		if (arena_point > 29980) {
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我奖励你一些竞技场积分。由于你刷新了纪录，这次还会获得额外积分。";
-			mes "希望你玩得愉快，我带你到竞技场入口。谢谢。";
+			mes "[工作人员]";
+			mes "领取这次奖励会超出竞技场点数上限。请先花掉一些点数，才能获得更多奖励。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我奖励你一些竞技场积分。想查看积分，请到竞技场入口找^3131FF文迪戈斯^000000。";
+			mes "[工作人员]";
+			mes "你可以在竞技场等候室查询当前点数。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我带你到竞技场入口。回头见～";
-			mes "Thank you.";
+			mes "[工作人员]";
+			mes "希望你玩得开心，现在送你回竞技场入口。";
 			close2;
 		} else {
 			set arena_point, arena_point + 20;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "[工作人员]";
+			mes "现在为你发放竞技场点数奖励。";
+			mes "请向竞技场入口的^3131FF文迪戈斯^000000查询点数总额。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "[工作人员]";
+			mes "现在送你回竞技场入口，下次见！";
 			close2;
 		}
 		specialeffect2 EF_EXIT;
@@ -844,46 +836,41 @@ prt_are_in,25,84,3	script	Staff#70-2	67,{
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_70::OnStop";
 		donpcevent "alloff#70::OnEnable";
-		donpcevent "Lv70 Waiting Room::OnStart";
+		donpcevent "70级等候室::OnStart";
 		end;
 	} else {
 		emotion ET_HUK;
-		mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-		mes "Wow! You have renewed the record!";
-		mes "What a great job!";
+		mes "[工作人员]";
+		mes "哇，你刷新了纪录！太棒了！";
 		next;
-		mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-		mes "You have been recorded as the fastest player among people who cleared ^FF0000Arena Time Force Battle lvl 70s^000000, ^3131FF"+strcharinfo(0)+"^000000.";
+		mes "[工作人员]";
+		mes "^3131FF"+strcharinfo(0)+"^000000，你已成为^FF000070至89级时空战竞技场^000000的新纪录保持者！";
 		set $top_70min, @record_min70;
 		set $top_70sec, @record_sec70;
 		set $arena_70topn$,strcharinfo(0);
-		donpcevent "Vendigos::OnLineRec_70";
+		donpcevent "文迪戈斯::OnLineRec_70";
 		next;
 		if (arena_point > 29970) {
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我奖励你一些竞技场积分。由于你刷新了纪录，这次还会获得额外积分。";
-			mes "希望你玩得愉快，我带你到竞技场入口。谢谢。";
+			mes "[工作人员]";
+			mes "领取这次奖励会超出竞技场点数上限。请先花掉一些点数，才能获得更多奖励。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我奖励你一些竞技场积分。想查看积分，请到竞技场入口找^3131FF文迪戈斯^000000。";
+			mes "[工作人员]";
+			mes "你可以在竞技场等候室查询当前点数。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "我带你到竞技场入口。回头见～";
-			mes "Thank you.";
+			mes "[工作人员]";
+			mes "希望你玩得开心，现在送你回竞技场入口。";
 			close2;
 		} else {
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "Let me reward you with some arena points.";
-			mes "At the same time, since you have renewed the record you will receive an extra amount of the points this time.";
+			mes "[工作人员]";
+			mes "现在为你发放竞技场点数奖励。由于你刷新了纪录，这次还能获得额外点数！";
 			next;
 			set arena_point, arena_point + 50;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "[工作人员]";
+			mes "现在为你发放竞技场点数奖励。";
+			mes "请向竞技场入口的^3131FF文迪戈斯^000000查询点数总额。";
 			next;
-			mes "嗯哼！你的竞技场积分已经足够了。请稍后花掉一些积分，下次见面我会给你奖励。";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "[工作人员]";
+			mes "现在送你回竞技场入口，下次见！";
 			close2;
 		}
 		specialeffect2 EF_HIT5;
@@ -891,7 +878,7 @@ prt_are_in,25,84,3	script	Staff#70-2	67,{
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_70::OnStop";
 		donpcevent "alloff#70::OnEnable";
-		donpcevent "Lv70 Waiting Room::OnStart";
+		donpcevent "70级等候室::OnStart";
 		end;
 	}
 }
@@ -902,15 +889,15 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "prt_are_in","This broadcast informs you about the restriction for arena lvl 70s.",0,0xFFCE00;
+	mapannounce "prt_are_in","这里是70至89级竞技场的通知。",0,0xFFCE00;
 	end;
 
 OnTimer3000:
-	mapannounce "prt_are_in","For a smooth game play, exit warp portal will be activated in 1 minute.",0,0xFFCE00;
+	mapannounce "prt_are_in","为确保挑战顺利进行，出口传送门将在1分钟后开启。",0,0xFFCE00;
 	end;
 
 OnTimer4000:
-	mapannounce "prt_are_in","Please proceed your battle quickly as possible in order to avoid disadvantage. Thank you for your cooperation.",0,0xFFCE00;
+	mapannounce "prt_are_in","请尽快领取奖励，以免离场后无法补领。感谢配合。",0,0xFFCE00;
 	end;
 
 OnTimer60000:
@@ -918,7 +905,7 @@ OnTimer60000:
 	donpcevent "arn_warp_70::OnOut";
 	donpcevent "#arn_timer_70::OnStop";
 	donpcevent "alloff#70::OnEnable";
-	donpcevent "Lv70 Waiting Room::OnStart";
+	donpcevent "70级等候室::OnStart";
 	end;
 
 OnStop:
@@ -934,16 +921,16 @@ OnOut:
 
 -	script	cast#70	-1,{
 OnTimeOver1:
-	mapannounce "force_3-1","Arena will be reactivated due to an error occurred during battle.",0,0xFFCE00;
+	mapannounce "force_3-1","战斗已结束，竞技场将重新开放。",0,0xFFCE00;
 	end;
 OnTimeOver2:
-	mapannounce "force_3-1","Arena will be activated due to an error occurred in the waiting room.",0,0xFFCE00;
+	mapannounce "force_3-1","等候时间已结束，竞技场将重新开放。",0,0xFFCE00;
 	end;
 OnNomal1:
-	mapannounce "force_3-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_3-1","竞技场将重新开放。",0,0xFFCE00;
 	end;
 OnNomal2:
-	mapannounce "force_3-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_3-1","竞技场将重新开放。",0,0xFFCE00;
 	end;
 }
 
@@ -968,8 +955,8 @@ OnEnable:
 	donpcevent "force_07ex#70::OnReset";
 	//donpcevent "force_08ex#70::OnReset";
 	donpcevent "force_09ex#70::OnReset";
-	donpcevent "Cadillac#arena::OnTimerOff";
-	disablenpc "Cadillac#arena";
+	donpcevent "凯迪拉克#arena::OnTimerOff";
+	disablenpc "凯迪拉克#arena";
 	disablenpc "force_01_02#70";
 	disablenpc "force_02_03#70";
 	disablenpc "force_03_04#70";
@@ -981,7 +968,7 @@ OnEnable:
 	disablenpc "force_exit#70";
 	disablenpc "arena#70";
 	donpcevent "#arn_timer_70::OnStop";
-	enablenpc "Cadillac#arena";
+	enablenpc "凯迪拉克#arena";
 	enablenpc "arena#70";
 	end;
 

@@ -47,14 +47,14 @@ OnMinute59:
 	.zone = !.zone;
 
 	if (.zone == 0) {	// Zone 2 (for_dun01) -> Zone 1 (for_dun02)
-		mapannounce "t_garden", "In approximately 1 minute, the dimensional contamination in Area 2 will subside and a large-scale dimensional contamination will occur in Area 1.", bc_map, 0xCCFF00;
-		mapannounce "for_dun02", "Large-scale dimensional contamination event will occur in this dungeon in approximately 1 minute.", bc_map, 0xFFDD;
-		mapannounce "for_dun01", "The dimensional contamination phenomenon in this dungeon is expected to subside in about 1 minute.", bc_map, 0xFFDD;
+		mapannounce "t_garden", "约一分钟后，2号区域的次元污染将平息，1号区域将发生大规模次元污染。", bc_map, 0xCCFF00;
+		mapannounce "for_dun02", "约一分钟后，本地下城将发生大规模次元污染。", bc_map, 0xFFDD;
+		mapannounce "for_dun01", "本地下城的次元污染预计将在约一分钟后平息。", bc_map, 0xFFDD;
 	}
 	else {	// Zone 1 (for_dun02) -> Zone 2 (for_dun01)
-		mapannounce "t_garden", "In approximately 1 minute, the dimensional contamination in Area 1 will subside and a large-scale dimensional contamination will occur in Area 2.", bc_map, 0xCCFF00;
-		mapannounce "for_dun02", "The dimensional contamination phenomenon in this dungeon is expected to subside in about 1 minute.", bc_map, 0xFFDD;
-		mapannounce "for_dun01", "Large-scale dimensional contamination event will occur in this dungeon in approximately 1 minute.", bc_map, 0xFFDD;
+		mapannounce "t_garden", "约一分钟后，1号区域的次元污染将平息，2号区域将发生大规模次元污染。", bc_map, 0xCCFF00;
+		mapannounce "for_dun02", "本地下城的次元污染预计将在约一分钟后平息。", bc_map, 0xFFDD;
+		mapannounce "for_dun01", "约一分钟后，本地下城将发生大规模次元污染。", bc_map, 0xFFDD;
 	}
 	initnpctimer;
 	end;
@@ -68,16 +68,16 @@ OnTimer60000:
 		killmonster "for_dun02", "control_t_garden::OnMob" + .@i;
 
 	if (.zone == 0) {	// Zone 2 (for_dun01) -> Zone 1 (for_dun02)
-		mapannounce "t_garden", "Forgotten Memories : The dimensional contamination phenomenon in Area 2 has calmed down, and a large-scale dimensional contamination phenomenon has occurred in Area 1.", bc_map, 0xFFDD;
-		mapannounce "for_dun02", "Large-scale dimensional contamination is occurring in this dungeon...", bc_map, 0xFFDD;
-		mapannounce "for_dun01", "All dimensional contamination that occurred in this dungeon has been calmed down.", bc_map, 0xFFDD;
+		mapannounce "t_garden", "遗忘的记忆：2号区域的次元污染已平息，1号区域发生了大规模次元污染。", bc_map, 0xFFDD;
+		mapannounce "for_dun02", "本地下城正在发生大规模次元污染……", bc_map, 0xFFDD;
+		mapannounce "for_dun01", "本地下城的次元污染已全部平息。", bc_map, 0xFFDD;
 
 		callsub( S_Spawn, "for_dun02", 22232, 22239, 12 );
 	}
 	else {	// Zone 1 (for_dun02) -> Zone 2 (for_dun01)
-		mapannounce "t_garden", "Forgotten Memories : The dimensional contamination phenomenon in Area 1 has calmed down, and a large-scale dimensional contamination phenomenon has occurred in Area 2.", bc_map, 0xFFDD;
-		mapannounce "for_dun02", "All dimensional contamination that occurred in this dungeon has been calmed down.", bc_map, 0xFFDD;
-		mapannounce "for_dun01", "Large-scale dimensional contamination is occurring in this dungeon...", bc_map, 0xFFDD;
+		mapannounce "t_garden", "遗忘的记忆：1号区域的次元污染已平息，2号区域发生了大规模次元污染。", bc_map, 0xFFDD;
+		mapannounce "for_dun02", "本地下城的次元污染已全部平息。", bc_map, 0xFFDD;
+		mapannounce "for_dun01", "本地下城正在发生大规模次元污染……", bc_map, 0xFFDD;
 		
 		callsub( S_Spawn, "for_dun01", 22208, 22215, 6 );
 	}

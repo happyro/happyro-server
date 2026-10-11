@@ -53,7 +53,7 @@ force_1-2,99,63,0	warp	force_03_00	1,1,force_1-2,99,36
 force_1-2,84,78,0	warp	force_03_05	1,1,force_1-2,37,78
 force_1-2,115,78,0	warp	force_03_04	1,1,force_1-2,162,78
 force_1-2,158,77,0	warp	force_04_03	1,1,force_1-2,110,78
-force_1-2,41,77,0	warp	force_05_03	1,1,force_1-2,37,78
+force_1-2,41,77,0	warp	force_05_03	1,1,force_1-2,89,78
 force_1-2,25,93,0	warp	force_05_06	1,1,force_1-2,26,118
 force_1-2,49,130,0	warp	force_06_07	1,1,force_1-2,91,125
 force_1-2,107,145,0	warp	force_07_08	1,1,force_1-2,173,118
@@ -66,28 +66,25 @@ force_1-2,33,178,0	warp	force_10_09	1,1,force_1-2,59,178
 sec_in02,79,180,3	script	#arenacontrol	81,{
 	set .@i, callfunc("F_GM_NPC",1357,0);
 	if (.@i == -1) {
-		mes "Error!";
+		mes "已取消操作。";
 		close;
 	} else if (.@i == 0) {
-		mes "Closing control panel.";
+		mes "密码错误，正在关闭控制面板。";
 		close;
 	} else {
-		mes "Opening Control Panel";
-		mes "' A - R - E - N - A '";
+		mes "正在打开控制面板。";
+		mes "竞技场管理";
 		next;
-		mes "Please select a";
-		mes "state for the arena.";
+		mes "请选择竞技场的开放状态。";
 		next;
-		switch(select("Open.:Closed.")) {
+		switch(select("开放:关闭")) {
 		case 1:
-			mes "Currently";
-			mes "opening arena.";
+			mes "正在开放竞技场。";
 			specialeffect EF_ENHANCE;
 			enablenpc "welcome_arena";
 			close;
 		case 2:
-			mes "Currently";
-			mes "closing arena.";
+			mes "正在关闭竞技场。";
 			specialeffect EF_EXIT;
 			disablenpc "welcome_arena";
 			close;

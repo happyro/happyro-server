@@ -28,10 +28,7 @@
 moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 2000) {
 		mes "- 请稍等！！-";
-		mes "- 你目前携带了-";
-		mes "- 太多物品。-";
-		mes "- 请再试一次-";
-		mes "- 减轻负重后。-";
+		mes "- 你携带的物品太多，请减轻负重后再试。-";
 		close;
 	}
 	if (countitem(6219) > 0) {
@@ -46,6 +43,10 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 		if (select("好的:不用了。") == 2){
 			mes "[莱姆·伊维诺]";
 			mes "你有什么理由……不愿意兑换？";
+			close;
+		}
+		if (!checkweight(22508,1)) {
+			mes "请先为新版徽章预留背包空间，再来兑换。";
 			close;
 		}
 		delitem 6219,1;
@@ -116,6 +117,10 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 					next;
 					mes "[莱姆·伊维诺]";
 					mes "希望你能作为伊甸园成员做出优秀的工作。";
+					if (!checkweight(22508,1)) {
+						mes "请先为入会徽章预留背包空间，再来办理登记。";
+						close;
+					}
 					getitem 22508,1; //Para_Team_Mark_
 					next;
 					break;
@@ -296,7 +301,7 @@ OnTouch:
 		case 15: warp "yuno",158,125; end;
 		case 16: warp "rachel",115,125; end;
 		case 17: warp "comodo",192,145; end;
-		case 18: warp "hugel",88,148; end;
+		case 18: warp "hugel",98,150; end;
 		case 19: warp "veins",216,104; end;
 		case 20: warp "einbroch",246,204; end;
 		case 21: warp "lighthalzen",159,95; end;
@@ -398,8 +403,7 @@ moc_para01,20,35,5	script	Office Assistant Neede	814,{
 	mes "这让我想起每天都像一场战争。";
 	next;
 	mes "[尼迪]";
-	mes "^3131FF右侧餐厅^000000的主管";
-	mes "每次做饭都放太多调味料，气味弥漫整个大厅。我们必须经常开窗，因为实在受不了这味道！";
+	mes "^3131FF右侧餐厅^000000的主管每次做饭都放太多调味料，气味弥漫整个大厅。我们必须经常开窗，因为实在受不了这味道！";
 	next;
 	mes "[尼迪]";
 	mes "你看到^3131FF大厅北侧^000000交叉口的^3131FF健身房^000000了吗？他们锻炼时总是大喊，我在这里都听得到！";

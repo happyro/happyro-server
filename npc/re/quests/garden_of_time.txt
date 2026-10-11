@@ -12,7 +12,7 @@ function	script	F_mesnavi	{
 }
 
 // Warps
-xmas_fild01,158,246,2	script	Dimensional barrier#got1	GATE_SKYBLUE,2,2,{
+xmas_fild01,158,246,2	script	次元屏障#got1	GATE_SKYBLUE,2,2,{
 	// Fallthrough
 OnTouch:
 	warp "t_garden",116,47;
@@ -23,7 +23,7 @@ OnInit:
 	end;
 }
 
-t_garden,111,36,2	script	Dimensional Barrier#got2	GATE_SKYBLUE,2,2,{
+t_garden,111,36,2	script	次元屏障#got2	GATE_SKYBLUE,2,2,{
 	// Fallthrough
 OnTouch:
 	warp "xmas_fild01",150,240;
@@ -68,27 +68,27 @@ OnTouch:
 	if (BaseLevel < 250)
 		end;
 	if (isbegin_quest(12592) == 0) {
-		removespecialeffect 1145, AREA, "Oscar#life";
-		cloakoffnpcself( "Oscar#life" );
-		cloakoffnpcself( "Leticia#life" );
-		cloakoffnpcself( "Rigel#life" );
-		specialeffect 1145, AREA, "Oscar#life";
+		removespecialeffect 1145, AREA, "奥斯卡#life";
+		cloakoffnpcself( "奥斯卡#life" );
+		cloakoffnpcself( "莱蒂西亚#life" );
+		cloakoffnpcself( "里格尔#life" );
+		specialeffect 1145, AREA, "奥斯卡#life";
 		end;
 	}
 	end;
 }
 	
-t_garden,114,49,6	script(CLOAKED)	Leticia#life	4_4JOB_LETICIA,{
+t_garden,114,49,6	script(CLOAKED)	莱蒂西亚#life	4_4JOB_LETICIA,{
 	mes "^0000ff她正在向奥斯卡解释事情，所以没有注意你。^000007";
 	close;
 }
 
-t_garden,118,49,3	script(CLOAKED)	Rigel#life	4_CS_RIGEL,{
+t_garden,118,49,3	script(CLOAKED)	里格尔#life	4_CS_RIGEL,{
 	mes "^0000ff他们似乎正专注于奥斯卡和莱蒂西亚的故事。^000007";
 	close;
 }
 
-t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
+t_garden,119,46,2	script(CLOAKED)	奥斯卡#life	4_ED_OSCAR,{
 	if (BaseLevel < 250)
 		end;
 	if (isbegin_quest(12592) == 0) {
@@ -101,7 +101,7 @@ t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
 		}
 		cutin "OSCAR03.bmp",2;
 		mes "[奥斯卡]";
-		mes "所以，你的意思是我偶然在卢迪附近发现裂缝，进来后找到了这座花园？";
+		mes "所以，你的意思是你偶然在卢迪附近发现裂缝，进来后找到了这座花园？";
 		next;
 		cutin "4job_leticia_01.png",2;
 		mes "[莱蒂西亚]";
@@ -133,7 +133,7 @@ t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
 		next;
 		cutin "OSCAR09.bmp",2;
 		mes "[奥斯卡]";
-		mes "Huh?";
+		mes "嗯？";
 		next;
 		cutin "rigel_halfeyes02.png",2;
 		mes "[里格尔]";
@@ -202,9 +202,9 @@ t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
 		setquest 12618;
 		close2;
 		cutin "",255;
-		cloakonnpcself( "Oscar#life" );
-		cloakonnpcself( "Leticia#life" );
-		cloakonnpcself( "Rigel#life" );
+		cloakonnpcself( "奥斯卡#life" );
+		cloakonnpcself( "莱蒂西亚#life" );
+		cloakonnpcself( "里格尔#life" );
 		end;
 	}
 	end;
@@ -221,13 +221,13 @@ t_garden,118,91,0	script	#wp01_t_garden_1	HIDDEN_WARP_NPC,2,2,{
 	end;
 OnTouch:
 	if (isbegin_quest(12592) == 2) {
-		cloakoffnpcself( "Leticia#life2" );	// note: always uncloaked at this point
+		cloakoffnpcself( "莱蒂西亚#life2" );	// note: always uncloaked at this point
 		end;
 	}
 	end;
 }
 
-t_garden,118,91,6	script(CLOAKED)	Leticia#life2	4_4JOB_LETICIA,{
+t_garden,118,91,6	script(CLOAKED)	莱蒂西亚#life2	4_4JOB_LETICIA,{
 	if (isbegin_quest(12593) == 1) {
 		cutin "4job_leticia_02.png",2;
 		mes "[莱蒂西亚]";
@@ -310,12 +310,12 @@ OnTouch:
 		cutin "",255;
 		specialeffect2 EF_BEGINSPELL_N3;
 		sleep2 2500;
-		specialeffect EF_LORD, AREA, "Passage of Time#1";
+		specialeffect EF_LORD, AREA, "时间通道#1";
 		sleep2 1500;
-		specialeffect EF_BAKU, AREA, "Passage of Time#1";
+		specialeffect EF_BAKU, AREA, "时间通道#1";
 		sleep2 1000;
-		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#1";
-		cloakoffnpcself( "Passage of Time#1" );
+		specialeffect EF_THUNDERSTORM2, AREA, "时间通道#1";
+		cloakoffnpcself( "时间通道#1" );
 		sleep2 1000;
 		setpcblock PCBLOCK_NPC, false;
 		if (isbegin_quest(12596) == 1) {
@@ -345,7 +345,7 @@ OnTouch:
 		completequest 12595;
 		close3;
 	case 2:
-		cloakoffnpcself( "Passage of Time#1" );
+		cloakoffnpcself( "时间通道#1" );
 		end;
 	}
 	end;
@@ -355,8 +355,8 @@ OnInit:
 	end;
 }
 
-// t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
-t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
+// t_garden,78,92,2	script(CLOAKED)	时间通道#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+t_garden,78,92,2	script(CLOAKED)	时间通道#1	GATE_SKYBLUE,{
 	if (isbegin_quest(12595) != 2)
 		end;
 	if (isbegin_quest(12596) != 2) {
@@ -400,12 +400,12 @@ OnTouch:
 		cutin "",255;
 		specialeffect2 EF_BEGINSPELL_N3;
 		sleep2 2000;
-		specialeffect EF_LORD, AREA, "Passage of Time#2";
+		specialeffect EF_LORD, AREA, "时间通道#2";
 		sleep2 2000;
-		specialeffect EF_BAKU, AREA, "Passage of Time#2";
+		specialeffect EF_BAKU, AREA, "时间通道#2";
 		sleep2 1000;
-		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#2";
-		cloakoffnpcself( "Passage of Time#2" );
+		specialeffect EF_THUNDERSTORM2, AREA, "时间通道#2";
+		cloakoffnpcself( "时间通道#2" );
 		sleep2 1000;
 		setpcblock PCBLOCK_NPC, false;
 		if (isbegin_quest(12595) == 1) {
@@ -435,7 +435,7 @@ OnTouch:
 		completequest 12596;
 		close3;
 	case 2:
-		cloakoffnpcself( "Passage of Time#2" );
+		cloakoffnpcself( "时间通道#2" );
 		end;
 	}
 	end;
@@ -445,8 +445,8 @@ OnInit:
 	end;
 }
 
-// t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
-t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
+// t_garden,157,92,2	script(CLOAKED)	时间通道#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+t_garden,157,92,2	script(CLOAKED)	时间通道#2	GATE_SKYBLUE,{
 	if (isbegin_quest(12596) != 2)
 		end;
 	if (isbegin_quest(12595) != 2) {
@@ -470,7 +470,7 @@ t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
 }
 
 
-for_dun01,100,146,2	script	Spatial coordinate probe#1	4_SYSTEM_BOX,{
+for_dun01,100,146,2	script	空间坐标探针#1	4_SYSTEM_BOX,{
 	mes "要回到时间花园吗？";
 	next;
 	if (select( "取消", "返回" ) == 1)
@@ -482,19 +482,19 @@ OnInit:
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12595) == 2" );
 	end;
 }
-for_dun01,128,282,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#2	4_SYSTEM_BOX
-for_dun01,55,142,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#3	4_SYSTEM_BOX
-for_dun01,262,167,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#4	4_SYSTEM_BOX
-for_dun01,204,67,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#5	4_SYSTEM_BOX
-for_dun01,57,270,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#6	4_SYSTEM_BOX
-for_dun01,65,34,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#7	4_SYSTEM_BOX
-for_dun01,146,27,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#8	4_SYSTEM_BOX
-for_dun01,154,139,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#9	4_SYSTEM_BOX
-for_dun01,124,203,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#10	4_SYSTEM_BOX
-for_dun01,267,265,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#11	4_SYSTEM_BOX
+for_dun01,128,282,2	duplicate(空间坐标探针#1)	空间坐标探针#2	4_SYSTEM_BOX
+for_dun01,55,142,2	duplicate(空间坐标探针#1)	空间坐标探针#3	4_SYSTEM_BOX
+for_dun01,262,167,2	duplicate(空间坐标探针#1)	空间坐标探针#4	4_SYSTEM_BOX
+for_dun01,204,67,2	duplicate(空间坐标探针#1)	空间坐标探针#5	4_SYSTEM_BOX
+for_dun01,57,270,2	duplicate(空间坐标探针#1)	空间坐标探针#6	4_SYSTEM_BOX
+for_dun01,65,34,2	duplicate(空间坐标探针#1)	空间坐标探针#7	4_SYSTEM_BOX
+for_dun01,146,27,2	duplicate(空间坐标探针#1)	空间坐标探针#8	4_SYSTEM_BOX
+for_dun01,154,139,2	duplicate(空间坐标探针#1)	空间坐标探针#9	4_SYSTEM_BOX
+for_dun01,124,203,2	duplicate(空间坐标探针#1)	空间坐标探针#10	4_SYSTEM_BOX
+for_dun01,267,265,2	duplicate(空间坐标探针#1)	空间坐标探针#11	4_SYSTEM_BOX
 
 
-for_dun02,190,147,2	script	Spatial coordinate probe#12	4_SYSTEM_BOX,{
+for_dun02,190,147,2	script	空间坐标探针#12	4_SYSTEM_BOX,{
 	mes "要回到时间花园吗？";
 	next;
 	if (select( "取消", "返回" ) == 1)
@@ -506,16 +506,16 @@ OnInit:
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12596) == 2" );
 	end;
 }
-for_dun02,143,149,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#13	4_SYSTEM_BOX
-for_dun02,276,29,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#14	4_SYSTEM_BOX
-for_dun02,106,34,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#15	4_SYSTEM_BOX
-for_dun02,216,271,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#16	4_SYSTEM_BOX
-for_dun02,64,268,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#17	4_SYSTEM_BOX
-for_dun02,18,170,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#18	4_SYSTEM_BOX
-for_dun02,16,92,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#19	4_SYSTEM_BOX
-for_dun02,29,52,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#20	4_SYSTEM_BOX
-for_dun02,276,255,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#21	4_SYSTEM_BOX
-for_dun02,283,197,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#22	4_SYSTEM_BOX
+for_dun02,143,149,2	duplicate(空间坐标探针#12)	空间坐标探针#13	4_SYSTEM_BOX
+for_dun02,276,29,2	duplicate(空间坐标探针#12)	空间坐标探针#14	4_SYSTEM_BOX
+for_dun02,106,34,2	duplicate(空间坐标探针#12)	空间坐标探针#15	4_SYSTEM_BOX
+for_dun02,216,271,2	duplicate(空间坐标探针#12)	空间坐标探针#16	4_SYSTEM_BOX
+for_dun02,64,268,2	duplicate(空间坐标探针#12)	空间坐标探针#17	4_SYSTEM_BOX
+for_dun02,18,170,2	duplicate(空间坐标探针#12)	空间坐标探针#18	4_SYSTEM_BOX
+for_dun02,16,92,2	duplicate(空间坐标探针#12)	空间坐标探针#19	4_SYSTEM_BOX
+for_dun02,29,52,2	duplicate(空间坐标探针#12)	空间坐标探针#20	4_SYSTEM_BOX
+for_dun02,276,255,2	duplicate(空间坐标探针#12)	空间坐标探针#21	4_SYSTEM_BOX
+for_dun02,283,197,2	duplicate(空间坐标探针#12)	空间坐标探针#22	4_SYSTEM_BOX
 
 
 // B. Event with Oscar
@@ -523,14 +523,14 @@ t_garden,118,141,0	script	#life_wp4	HIDDEN_WARP_NPC,3,3,{
 	end;
 OnTouch:
 	if (isbegin_quest(12618) == 1) {
-		cloakoffnpcself( "Oscar#life2" );
+		cloakoffnpcself( "奥斯卡#life2" );
 		end;
 	}
 	end;
 }
 
-// t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
-t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
+// t_garden,118,142,3	script(CLOAKED)	奥斯卡#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
+t_garden,118,142,3	script(CLOAKED)	奥斯卡#life2	4_ED_OSCAR,{
 	if (isbegin_quest(12618) == 1) {
 		cutin "OSCAR01.bmp",2;
 		mes "[奥斯卡]";
@@ -557,13 +557,13 @@ t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
 		select( "也就是说……" );
 		cutin "OSCAR07.bmp",2;
 		mes "[奥斯卡]";
-		mes "这意味着即使你只在宅邸内待几天，外界也可能过去数年甚至数十年。对人类来说可能很难承受，" + strcharinfo(0) + " to endure it";
+		mes "这意味着即使你只在宅邸内待几天，外界也可能过去数年甚至数十年。对你这样的人类来说，这可能很难承受，" + strcharinfo(0) + "。";
 		next;
 		cutin "OSCAR01.bmp",2;
 		mes "[奥斯卡]";
 		mes "清理宅邸内部时，外界很可能已经过去很长时间。必须尽快结束……";
 		next;
-		cloakoffnpcself( "Leticia#life3" );
+		cloakoffnpcself( "莱蒂西亚#life3" );
 		cutin "4job_leticia_01.png",2;
 		mes "[莱蒂西亚]";
 		mes "哦，你现在要进去吗？";
@@ -592,14 +592,14 @@ t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
 		specialeffect EF_BEGINSPELL_N4;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 2000;
-		cloakonnpcself( "Oscar#life2" );
+		cloakonnpcself( "奥斯卡#life2" );
 		setpcblock PCBLOCK_NPC, false;
 		cutin "4job_leticia_02.png",2;
 		mes "[莱蒂西亚]";
 		mes "嗯，我相信奥斯卡会处理好……别傻站着，来帮里格尔和我的工作。";
 		close2;
 		cutin "",255;
-		cloakonnpcself( "Leticia#life3" );
+		cloakonnpcself( "莱蒂西亚#life3" );
 		completequest 12618;
 		end;
 	}
@@ -610,7 +610,7 @@ OnInit:
 	end;
 }
 
-t_garden,115,139,7	duplicate(dummy_cloaked_npc)	Leticia#life3	4_4JOB_LETICIA
+t_garden,115,139,7	duplicate(dummy_cloaked_npc)	莱蒂西亚#life3	4_4JOB_LETICIA
 
 
 // C. Instances
@@ -619,13 +619,13 @@ t_garden,166,217,0	script	#wp11_t_garden	HIDDEN_WARP_NPC,2,2,{
 	end;
 OnTouch:
 	if (isbegin_quest(12594) == 1) {
-		cloakoffnpcself( "Rigel#life2" );
+		cloakoffnpcself( "里格尔#life2" );
 		end;
 	}
 	end;
 }
 
-t_garden,166,217,3	script(CLOAKED)	Rigel#life2	4_CS_RIGEL,{
+t_garden,166,217,3	script(CLOAKED)	里格尔#life2	4_CS_RIGEL,{
 	if (isbegin_quest(12594) == 1) {
 		cutin "rigel01.png",2;
 		mes "[里格尔]";
@@ -682,18 +682,18 @@ OnTouch:
 	case 0:
 		end;
 	case 1:
-		cloakoffnpcself( "Sealing Spirit Stone#life2" );
+		cloakoffnpcself( "封印灵石#life2" );
 		end;
 	case 2:
-		cloakoffnpcself( "Sealing Spirit Stone#life2" );
-		cloakoffnpcself( "Dimensional Prison#1" );
-		cloakoffnpcself( "Dimensional Prison#2" );
+		cloakoffnpcself( "封印灵石#life2" );
+		cloakoffnpcself( "次元监狱#1" );
+		cloakoffnpcself( "次元监狱#2" );
 		end;
 	}
 	end;
 }
 
-t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
+t_garden,166,235,3	script(CLOAKED)	封印灵石#life2	HEROS_OUT_ORB,{
 	switch( isbegin_quest(12597) ) {
 	case 0:
 		end;
@@ -702,7 +702,7 @@ t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 		mes "^ff0000未认证用户。^000000";
 		next;
 		cutin "rigel_halfeyes01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "别发呆，伸出手。";
 		mes "将拇指放在展开灵石的右下方，其余手指放在上方，集中精神。";
 		next;
@@ -711,94 +711,94 @@ t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 		cutin "",255;
 		specialeffect2 EF_BEGINSPELL_N5;
 		sleep2 2000;
-		specialeffect EF_LORD, AREA, "Dimension Prison#1";
+		specialeffect EF_LORD, AREA, "次元监狱#1";
 		sleep2 500;
-		specialeffect EF_LORD, AREA, "Dimension Prison#2";
+		specialeffect EF_LORD, AREA, "次元监狱#2";
 		sleep2 1500;
-		specialeffect EF_BAKU, AREA, "Dimension Prison#1";
+		specialeffect EF_BAKU, AREA, "次元监狱#1";
 		sleep2 500;
-		specialeffect EF_BAKU, AREA, "Dimension Prison#2";
+		specialeffect EF_BAKU, AREA, "次元监狱#2";
 		sleep2 500;
-		specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#1";
+		specialeffect EF_THUNDERSTORM2, AREA, "次元监狱#1";
 		sleep2 500;
 		setpcblock PCBLOCK_NPC, false;
-		specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#2";
-		cloakoffnpcself( "Dimension Prison#1" );
-		cloakoffnpcself( "Dimension Prison#2" );
+		specialeffect EF_THUNDERSTORM2, AREA, "次元监狱#2";
+		cloakoffnpcself( "次元监狱#1" );
+		cloakoffnpcself( "次元监狱#2" );
 		sleep2 1500;
 		cutin "rigel_halfeyes01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "看来登记成功了。现在你已经完成识别监狱、进出监狱的基本准备。还有问题请参考这份指南。";
 		next;
 		select( "你打算把谁关进那座监狱？" );
 		cutin "rigel_annoying01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "^bb0000变身怪。^000000";
 		next;
 		cutin "rigel_halfeyes01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "你可能觉得只是变身怪而已，但你要关押的家伙和你想象中的变身怪完全不是一个层次。";
 		next;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "它不仅模仿目标的能力或外表，还会吞噬目标灵魂并变成目标本身，是最糟糕的存在。";
 		next;
 		select( "它现在变成了谁的样子？" );
 		cutin "rigel_annoying01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "是我。";
 		next;
 		select( "这是什么意思？" );
 		cutin "rigel_halfeyes01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "这个囚犯吞噬了来自第326次元的我——里格尔，变成了自称生命星座的存在。";
 		next;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "当我逃跑自救时已经太晚了。看到那个与我一模一样的昏迷者时，我立刻知道那不是我。";
 		next;
 		cutin "rigel_annoying01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "虽然我们成功封印了那个无法正确使用力量的家伙，但它有一天可能会成功破除封印。";
 		next;
 		select( "你为什么不亲自解决罪犯？" );
 		cutin "rigel01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "我不知道错误在哪里，但世界将它认作另一个生命星座。如果星座攻击同一星座，就会违反次元规则并立即失去力量。";
 		next;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "而且，如果它碰巧夺取了我的存在，就会陷入不可逆的局面。";
 		next;
 		select( "囚犯有可能夺取我们的身体吗？" );
 		cutin "rigel_close02.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "这是我几百年来听过的最有趣笑话之一。";
 		next;
 		cutin "rigel_halfeyes02.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "你会放弃辛苦占据的不朽身体，回到自己的凡人身体吗？";
 		next;
 		select( "也许在生命受到威胁时会。" );
 		cutin "rigel_halfeyes01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "我完全不同意这个看法，但我来消除你的担忧。它被我设置的层层封印包围。";
 		next;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "即使它想夺取你和朋友们的身体，也无法施展那种力量。";
 		next;
 		cutin "rigel_close01.png",2;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "说来话长。监狱入口会单独张贴监狱信息，请定期查看。";
 		next;
-		mes "[Rigel]";
+		mes "[里格尔]";
 		mes "期待看到你和同伴在这里出色完成工作。";
 		close2;
 		cutin "",255;
 		completequest 12597;
-		cloakonnpcself( "Rigel#life2" );
+		cloakonnpcself( "里格尔#life2" );
 		end;
 	case 2:
 		break;
 	}
-	mes "[Sealing Spirit Stone]";
+	mes "[封印灵石]";
 	mes "正确管理监狱的指南。你想查看哪项？";
 	next;
 	while(1) {
@@ -807,20 +807,20 @@ t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 			end;
 		case 2:
 			if (countitem(420231) - isequippedcnt(420231) < 1) {
-				mes "[Sealing Spirit Stone]";
+				mes "[封印灵石]";
 				mes "请再次确认它是否已在^ff0000装备套装设置^000000中登记，以及是否已经安装。";
 				mes " ";
 				mes "即使你拥有两个或更多祝福，冒险者^ff0000灵魂中刻下的记录优先^000000，因此建议你将多余的祝福在商店处理掉。";
 				next;
 				if (select( "取消", "重新发放" ) == 1)
 					continue;
-				mes "[Sealing Spirit Stone]";
+				mes "[封印灵石]";
 				mes "根据刻在冒险者灵魂中的记录";
 				mes "我们重新发放了刻有^0000ff1级屏障^000000的守护。";
 				getitem2 420231,1,1,0,0,0,0,0,312453;	// MD_Hol_Protection
 				close;
 			}
-			mes "[Sealing Spirit Stone]";
+			mes "[封印灵石]";
 			mes "你的物品栏中已有发放的守护。只有物品栏中没有星座守护时才能重新发放。";
 			close;
 		case 3:
@@ -837,7 +837,7 @@ t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 			mes "[囚犯信息指南]";
 			mes "有一点可以确定：次元罪犯劫持了次元生命星座的身体和力量。";
 			mes " ";
-			mes "由于这一连串事件，第326次元不仅缺少生命星座，4只神兽的位置也空缺。因此，管理者必须带着两个主要目标管理这座监狱。";
+			mes "由于这一连串事件，第326次元不仅缺少生命星座，4只神兽的位置也空缺。因此，管理者必须带着三个主要目标管理这座监狱。";
 			next;
 			mes "-第一-";
 			mes "你必须定期攻击次元罪犯，防止它们积蓄力量。";
@@ -858,18 +858,18 @@ t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 			mes "这就是监狱囚犯的信息。还需要其他信息吗？";
 			break;
 		case 4:
-			mes "[Access information information]";
+			mes "[进入信息指南]";
 			mes "监狱分为关押守卫的区域和关押次元罪犯的区域。";
 			mes " ";
 			mes "首先，每天可以进入一次关押守卫的熔岩湖。没有额外封印，只要遵守每天一次的限制，进入没有特别限制。";
 			next;
-			mes "[Access information information]";
+			mes "[进入信息指南]";
 			mes "关押次元罪犯的生命大厅";
-			mes "持有" + mesitemlink(1001415) + ".";
+			mes "进入时必须持有" + mesitemlink(1001415) + "。";
 			mes " ";
 			mes "记住，除了一小时的地下城时间限制外，只要有钥匙，你可以随意进入。";
 			next;
-			mes "[Access information information]";
+			mes "[进入信息指南]";
 			mes "但是，领取一次奖励后，^ff0000一周内^000000无法再次在生命大厅领取奖励。当然，即使如此，进入仍然免费。";
 			mes " ";
 			mes "还需要其他信息吗？";
@@ -978,8 +978,8 @@ OnInit:
 }
 
 
-// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
-t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
+// t_garden,158,235,2	script(CLOAKED)	次元监狱#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,158,235,2	script(CLOAKED)	次元监狱#1	GATE_SKYBLUE,{
 	if (isbegin_quest(12597) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -994,8 +994,8 @@ t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 			end;
 	}
 
-// t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
-t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
+// t_garden,173,235,2	script(CLOAKED)	次元监狱#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,173,235,2	script(CLOAKED)	次元监狱#2	GATE_SKYBLUE,{
 	if (isbegin_quest(12597) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -1016,11 +1016,11 @@ OnTouch:
 	.@state = isbegin_quest(12620);
 	if (.@state == 0)
 		end;
-	cloakoffnpcself( "Ardor#life2" );
-	cloakoffnpcself( "Diluvio#life2" );
-	cloakoffnpcself( "Procella#life2" );
-	cloakoffnpcself( "Terremotus#life2" );
-	cloakoffnpcself( "Serpens#life2" );
+	cloakoffnpcself( "阿尔多#life2" );
+	cloakoffnpcself( "迪卢维奥#life2" );
+	cloakoffnpcself( "普罗切拉#life2" );
+	cloakoffnpcself( "特雷莫图斯#life2" );
+	cloakoffnpcself( "塞彭斯#life2" );
 
 	if (.@state == 1) {
 		mes "[特雷莫图斯]";
@@ -1068,7 +1068,7 @@ OnTouch:
 	end;
 }
 
-t_garden,97,114,5	script(CLOAKED)	Diluvio#life2	4_EM_DILUVIO,{
+t_garden,97,114,5	script(CLOAKED)	迪卢维奥#life2	4_EM_DILUVIO,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {	// Useless check ?
@@ -1080,7 +1080,7 @@ t_garden,97,114,5	script(CLOAKED)	Diluvio#life2	4_EM_DILUVIO,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000Today's request has already been received. You can't receive any more.^000000";
+		mes "^ff0000今天已经接取过委托，不能再接取了。^000000";
 		close;
 	case 2:
 		erasequest 12598;
@@ -1111,7 +1111,7 @@ OnInit:
 	end;
 }
 
-t_garden,100,117,5	script(CLOAKED)	Terremotus#life2	4_EM_TERREMOTUS,{
+t_garden,100,117,5	script(CLOAKED)	特雷莫图斯#life2	4_EM_TERREMOTUS,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -1123,20 +1123,20 @@ t_garden,100,117,5	script(CLOAKED)	Terremotus#life2	4_EM_TERREMOTUS,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000Today's request has already been received. You can't receive any more.^000000";
+		mes "^ff0000今天已经接取过委托，不能再接取了。^000000";
 		close;
 	case 2:
 		erasequest 12599;
 		break;
 	}
 	if (F_queststatus( HAVEQUEST,12621,12622,12623,12624 ) == -1) {
-		mes "^0000ffThere are still uncompleted quests. You cannot receive additional requests or reset until all requests are completed at the " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + ".^000000";
+		mes "^0000ff仍有未完成的任务。请先到" + F_mesnavi("灵魂投诉终端", "t_garden",128,122) + "完成所有委托，才能接取新委托或重置。^000000";
 		close;
 	}
 	mes "[特雷莫图斯]";
 	mes "大地元素必须保持元素状态。如果继续变成元素精灵，最终连一盎司泥土都不会剩下。你愿意帮我吗？";
 	next;
-	if (select( "I will help you next time.", "I will help you" ) == 1)
+	if (select( "下次再帮你。", "我来帮你" ) == 1)
 		end;
 	mes "[特雷莫图斯]";
 	mes "今天只请求你做这些。慢慢来，仔细看看。";
@@ -1154,7 +1154,7 @@ OnInit:
 	end;
 }
 
-t_garden,103,120,5	script(CLOAKED)	Serpens#life2	4_EM_SERPENS,{
+t_garden,103,120,5	script(CLOAKED)	塞彭斯#life2	4_EM_SERPENS,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -1166,20 +1166,20 @@ t_garden,103,120,5	script(CLOAKED)	Serpens#life2	4_EM_SERPENS,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000Today's request has already been received. You can't receive any more.^000000";
+		mes "^ff0000今天已经接取过委托，不能再接取了。^000000";
 		close;
 	case 2:
 		erasequest 12600;
 		break;
 	}
 	if (F_queststatus( HAVEQUEST,12637,12638,12639,12640,12641,12642,12643 ) == -1) {
-		mes "^0000ffThere are still uncompleted quests. You cannot receive additional requests or reset until all requests are completed at the " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + ".^000000";
+		mes "^0000ff仍有未完成的任务。请先到" + F_mesnavi("灵魂投诉终端", "t_garden",128,122) + "完成所有委托，才能接取新委托或重置。^000000";
 		close;
 	}
 	mes "[塞彭斯]";
 	mes "我无法忍受健康元素被腐化，也无法将它们变成灵魂。我需要你的力量阻止它们陷入愤怒、受到污染。";
 	next;
-	if (select( "I will help you next time.", "I will help you" ) == 1)
+	if (select( "下次再帮你。", "我来帮你" ) == 1)
 		end;
 	mes "[塞彭斯]";
 	mes "很抱歉今天又请求你帮忙。非常感谢。";
@@ -1197,7 +1197,7 @@ OnInit:
 	end;
 }
 
-t_garden,106,123,5	script(CLOAKED)	Procella#life2	4_EM_PROCELLA,{
+t_garden,106,123,5	script(CLOAKED)	普罗切拉#life2	4_EM_PROCELLA,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -1209,20 +1209,20 @@ t_garden,106,123,5	script(CLOAKED)	Procella#life2	4_EM_PROCELLA,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000Today's request has already been received. You can't receive any more.^000000";
+		mes "^ff0000今天已经接取过委托，不能再接取了。^000000";
 		close;
 	case 2:
 		erasequest 12601;
 		break;
 	}
 	if (F_queststatus( HAVEQUEST,12629,12630,12631,12632 ) == -1) {
-		mes "^0000ffThere are still uncompleted quests. You cannot receive additional requests or reset until all requests are completed at the " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + ".^000000";
+		mes "^0000ff仍有未完成的任务。请先到" + F_mesnavi("灵魂投诉终端", "t_garden",128,122) + "完成所有委托，才能接取新委托或重置。^000000";
 		close;
 	}
 	mes "[普罗切拉]";
 	mes "风是生命之源，是大气。如果风元素继续变成灵魂，这个维度的所有生物最终都会死亡。我需要帮助。";
 	next;
-	if (select( "I will help you next time.", "I will help you" ) == 1)
+	if (select( "下次再帮你。", "我来帮你" ) == 1)
 		end;
 	mes "[普罗切拉]";
 	mes "很高兴有人能解决这个问题。请好好完成我的请求。";
@@ -1240,7 +1240,7 @@ OnInit:
 	end;
 }
 
-t_garden,109,126,5	script(CLOAKED)	Ardor#life2	4_EM_ARDOR,{
+t_garden,109,126,5	script(CLOAKED)	阿尔多#life2	4_EM_ARDOR,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
@@ -1252,20 +1252,20 @@ t_garden,109,126,5	script(CLOAKED)	Ardor#life2	4_EM_ARDOR,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000Today's request has already been received. You can't receive any more.^000000";
+		mes "^ff0000今天已经接取过委托，不能再接取了。^000000";
 		close;
 	case 2:
 		erasequest 12602;
 		break;
 	}
 	if (F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == -1) {
-		mes "^0000ffThere are still uncompleted quests. You cannot receive additional requests or reset until all requests are completed at the " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + ".^000000";
+		mes "^0000ff仍有未完成的任务。请先到" + F_mesnavi("灵魂投诉终端", "t_garden",128,122) + "完成所有委托，才能接取新委托或重置。^000000";
 		close;
 	}
 	mes "[阿尔多]";
 	mes "变成灵魂、能自行行动和思考的火焰本身就很危险。你不觉得坐视不管太危险了吗？我不求你帮忙，只要按我的指示行动。";
 	next;
-	if (select( "I will help you next time.", "I will help you" ) == 1)
+	if (select( "下次再帮你。", "我来帮你" ) == 1)
 		end;
 	mes "[阿尔多]";
 	mes "这是你必须做的事。最好尽快完成。";
@@ -1290,10 +1290,11 @@ t_garden,126,123,0	script	#v_wp01	HIDDEN_WARP_NPC,3,3,{
 OnTouch:
 	if (isbegin_quest(12620) != 2)
 		end;
-	cloakoffnpcself( "Subspace vending machine#1" );
-	cloakoffnpcself( "Subspace vending machine#2" );
-	cloakoffnpcself( "Subspace vending machine#3" );
-	cloakoffnpcself( "Spirit Complaint Terminal#1" );
+	cloakoffnpcself( "亚空间贩卖机#1" );
+	cloakoffnpcself( "亚空间贩卖机#2" );
+	cloakoffnpcself( "亚空间贩卖机#3" );
+	cloakoffnpcself( "亚空间贩卖机#4" );
+	cloakoffnpcself( "灵魂投诉终端#1" );
 	end;
 }
 t_garden,130,119,0	duplicate(#v_wp01)	#v_wp02	HIDDEN_WARP_NPC,3,3
@@ -1301,15 +1302,15 @@ t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03	HIDDEN_WARP_NPC,4,4
 
 
 // Quest rewards
-t_garden,126,126,2	script(CLOAKED)	Spirit Complaint Terminal#1	4_VENDING_MACHINE2,{
+t_garden,126,126,2	script(CLOAKED)	灵魂投诉终端#1	4_VENDING_MACHINE2,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "由于物品种类或重量过多，我无法与屏障交流。";
+		mes "携带的物品种类或重量过多，请先整理背包。";
 		close;
 	}
 	mes "[灵魂投诉终端]";
-	mes "灵魂与人类对话，无缝沟通。我们会倾听顾客的声音。这是 Kiosk 5000，同时处理灵魂投诉和赔偿的综合信息终端。需要什么帮助？";
+	mes "灵魂与人类对话，无缝沟通。我们会倾听顾客的声音。这是 自助终端5000，同时处理灵魂投诉和赔偿的综合信息终端。需要什么帮助？";
 	next;
 	if (select( "退出菜单", "处理灵魂投诉" ) == 1) {
 		mes "[灵魂投诉终端]";
@@ -1319,50 +1320,50 @@ t_garden,126,126,2	script(CLOAKED)	Spirit Complaint Terminal#1	4_VENDING_MACHINE
 	mes "[灵魂投诉终端]";
 	mes "我们会自动处理你所有已完成的灵魂请求。";
 	next;
-	mes "[Spirit Complaint Terminal]";
+	mes "[灵魂投诉终端]";
 
 	.@count += callsub( S_Hunt,
 		12621,				// Quest ID
-		"Terremotus' Request 1",	// Quest name
+		"特雷莫图斯的委托 1",	// Quest name
 		1001464,			// Reward item ID
 		13890900,			// Base exp
 		0					// Job exp (unknown)
 	);
-	.@count += callsub( S_Hunt, 12622, "Terremotus' Request 2", 1001464, 13890900,0 );	// Energy_Of_Ground
-	.@count += callsub( S_Hunt, 12623, "Terremotus' Request 3", 1001464, 13890900,0 );
-	.@count += callsub( S_Hunt, 12624, "Terremotus' Request 4", 1001464, 13890900,0 );
+	.@count += callsub( S_Hunt, 12622, "特雷莫图斯的委托 2", 1001464, 13890900,0 );	// Energy_Of_Ground
+	.@count += callsub( S_Hunt, 12623, "特雷莫图斯的委托 3", 1001464, 13890900,0 );
+	.@count += callsub( S_Hunt, 12624, "特雷莫图斯的委托 4", 1001464, 13890900,0 );
 
-	.@count += callsub( S_Hunt, 12625, "Ardor's Request 1", 1001461, 13890900,0 );	// Energy_Of_Flame
-	.@count += callsub( S_Hunt, 12626, "Ardor's Request 2", 1001461, 13890900,0 );
-	.@count += callsub( S_Hunt, 12627, "Ardor's Request 3", 1001461, 13890900,0 );
-	.@count += callsub( S_Hunt, 12628, "Ardor's Request 4", 1001461, 13890900,0 );
+	.@count += callsub( S_Hunt, 12625, "阿尔多的委托 1", 1001461, 13890900,0 );	// Energy_Of_Flame
+	.@count += callsub( S_Hunt, 12626, "阿尔多的委托 2", 1001461, 13890900,0 );
+	.@count += callsub( S_Hunt, 12627, "阿尔多的委托 3", 1001461, 13890900,0 );
+	.@count += callsub( S_Hunt, 12628, "阿尔多的委托 4", 1001461, 13890900,0 );
 
-	.@count += callsub( S_Hunt, 12629, "Procella's Request 1", 1001463, 13890900,0 );	// Energy_Of_Wind
-	.@count += callsub( S_Hunt, 12630, "Procella's Request 2", 1001463, 13890900,0 );
-	.@count += callsub( S_Hunt, 12631, "Procella's Request 3", 1001463, 13890900,0 );
-	.@count += callsub( S_Hunt, 12632, "Procella's Request 4", 1001463, 13890900,0 );
+	.@count += callsub( S_Hunt, 12629, "普罗切拉的委托 1", 1001463, 13890900,0 );	// Energy_Of_Wind
+	.@count += callsub( S_Hunt, 12630, "普罗切拉的委托 2", 1001463, 13890900,0 );
+	.@count += callsub( S_Hunt, 12631, "普罗切拉的委托 3", 1001463, 13890900,0 );
+	.@count += callsub( S_Hunt, 12632, "普罗切拉的委托 4", 1001463, 13890900,0 );
 
-	.@count += callsub( S_Hunt, 12633, "Diluvio's Request 1", 1001462, 13890900,0 );	// Energy_Of_Water
-	.@count += callsub( S_Hunt, 12634, "Diluvio's Request 2", 1001462, 13890900,0 );
-	.@count += callsub( S_Hunt, 12635, "Diluvio's Request 3", 1001462, 13890900,0 );
-	.@count += callsub( S_Hunt, 12636, "Diluvio's Request 4", 1001462, 13890900,0 );
+	.@count += callsub( S_Hunt, 12633, "迪卢维奥的委托 1", 1001462, 13890900,0 );	// Energy_Of_Water
+	.@count += callsub( S_Hunt, 12634, "迪卢维奥的委托 2", 1001462, 13890900,0 );
+	.@count += callsub( S_Hunt, 12635, "迪卢维奥的委托 3", 1001462, 13890900,0 );
+	.@count += callsub( S_Hunt, 12636, "迪卢维奥的委托 4", 1001462, 13890900,0 );
 
-	.@count += callsub( S_Hunt, 12637, "Serpens's Request 1", 1001465, 27176580,0 );	// Grace_Of_Spirit
-	.@count += callsub( S_Hunt, 12638, "Serpens's Request 2", 1001465, 27176580,0 );
+	.@count += callsub( S_Hunt, 12637, "塞彭斯的委托 1", 1001465, 27176580,0 );	// Grace_Of_Spirit
+	.@count += callsub( S_Hunt, 12638, "塞彭斯的委托 2", 1001465, 27176580,0 );
 
 	.@count += callsub( S_Gathering,
 		12639,				// Quest ID
-		"Serpens's Request 3",	// Quest name
+		"塞彭斯的委托 3",	// Quest name
 		1001433,			// Required item ID
 		10,					// Required amount
 		1001461,			// Reward item ID
 		27176580,			// Base exp
 		0					// Job exp (unknown)
 	);
-	.@count += callsub( S_Gathering, 12640, "Serpens's Request 4", 1001434,10, 1001462, 27176580,0 );
-	.@count += callsub( S_Gathering, 12641, "Serpens's Request 5", 1001435,10, 1001463, 27176580,0 );
-	.@count += callsub( S_Gathering, 12642, "Serpens's Request 6", 1001436,10, 1001464, 27176580,0 );
-	.@count += callsub( S_Gathering, 12643, "Serpens's Request 7", 1001432,20, 1001465, 27176580,0 );
+	.@count += callsub( S_Gathering, 12640, "塞彭斯的委托 4", 1001434,10, 1001462, 27176580,0 );
+	.@count += callsub( S_Gathering, 12641, "塞彭斯的委托 5", 1001435,10, 1001463, 27176580,0 );
+	.@count += callsub( S_Gathering, 12642, "塞彭斯的委托 6", 1001436,10, 1001464, 27176580,0 );
+	.@count += callsub( S_Gathering, 12643, "塞彭斯的委托 7", 1001432,20, 1001465, 27176580,0 );
 
 	if (.@count == 0) {
 		mes "似乎没有处理任何特殊投诉。如果你处理了与灵魂相关的投诉，随时欢迎回来。谢谢。";
@@ -1384,8 +1385,8 @@ S_Hunt:
 	return 0;
 	
 S_Gathering:
-	if (countitem(getarg(2)) >= getarg(3)) {
-		mes "^0000ff" + getarg(1) + " Completed^000000 - Compensation paid.";
+	if (isbegin_quest(getarg(0)) == 1 && countitem(getarg(2)) >= getarg(3)) {
+		mes "^0000ff" + getarg(1) + " 已完成^000000 - 已发放赔偿。";
 		erasequest getarg(0);
 		delitem getarg(2),getarg(3);
 		getitem getarg(4),1;
@@ -1396,7 +1397,7 @@ S_Gathering:
 	return 0;
 
 OnInit:
-	setunittitle( getnpcid(0), "<Elemental Latest Model>" );
+	setunittitle( getnpcid(0), "<元素最新型号>" );
 
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12621,HUNTING) == 2" );
 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12622,HUNTING) == 2" );
@@ -1427,15 +1428,15 @@ OnInit:
 
 
 // Exchange and enchants
-t_garden,129,123,2	script(CLOAKED)	Subspace vending machine#1	HEROS_IN_ORB_1,{
+t_garden,129,123,2	script(CLOAKED)	亚空间贩卖机#1	HEROS_IN_ORB_1,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "由于物品种类或重量过多，我无法与屏障交流。";
+		mes "携带的物品种类或重量过多，请先整理背包。";
 		close;
 	}
 	npctalk "你想要的一切都在这里。你想要什么交易？", "", bc_self;
-	switch( select( "Cancel", "Energy transaction by attribute", "Energy transaction by season", "Various consumable transaction" ) ) {
+	switch( select( "取消", "按属性兑换能量", "按季节兑换能量", "兑换各类消耗品" ) ) {
 	case 1:
 		end;
 	case 2:
@@ -1451,19 +1452,19 @@ t_garden,129,123,2	script(CLOAKED)	Subspace vending machine#1	HEROS_IN_ORB_1,{
 	end;
 
 OnInit:
-	setunittitle( getnpcid(0), "<Welcome to various goods trading>" );
+	setunittitle( getnpcid(0), "<欢迎交易各类商品>" );
 	end;
 }
 
-t_garden,132,120,2	script(CLOAKED)	Subspace vending machine#2	HEROS_IN_ORB_2,{
+t_garden,132,120,2	script(CLOAKED)	亚空间贩卖机#2	HEROS_IN_ORB_2,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "由于物品种类或重量过多，我无法与屏障交流。";
+		mes "携带的物品种类或重量过多，请先整理背包。";
 		close;
 	}
 	npctalk "这里专营装备。你想要什么交易？", "", bc_self;
-	switch( select( "Cancel", "Purchase Circulation of Life Accessories", "Purchase Divine Beast's Cloak", "Upgrade Divine Beast's Cloak" ) ) {
+	switch( select( "取消", "购买生命之环饰品", "购买神兽斗篷", "升级神兽斗篷" ) ) {
 	case 1:
 		end;
 	case 2:
@@ -1479,19 +1480,19 @@ t_garden,132,120,2	script(CLOAKED)	Subspace vending machine#2	HEROS_IN_ORB_2,{
 	end;
 
 OnInit:
-	setunittitle( getnpcid(0), "<Clothing Upgrade Specialist>" );
+	setunittitle( getnpcid(0), "<装备升级专家>" );
 	end;
 }
 
-t_garden,135,117,2	script(CLOAKED)	Subspace vending machine#3	HEROS_IN_ORB_3,{
+t_garden,135,117,2	script(CLOAKED)	亚空间贩卖机#3	HEROS_IN_ORB_3,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "由于物品种类或重量过多，我无法与屏障交流。";
+		mes "携带的物品种类或重量过多，请先整理背包。";
 		close;
 	}
 	npctalk "我们会仔细为从火焰之湖获得的装备附魔。你想查看哪份菜单？", "", bc_self;
-	switch( select( "Divine Beast's Cloak - Spring", "Divine Beast's Cloak - Summer", "Divine Beast's Cloak - Fall", "Divine Beast's Cloak - Winter" ) ) {
+	switch( select( "神兽斗篷：春", "神兽斗篷：夏", "神兽斗篷：秋", "神兽斗篷：冬" ) ) {
 	case 1:
 		item_enchant(117);
 		break;
@@ -1508,15 +1509,15 @@ t_garden,135,117,2	script(CLOAKED)	Subspace vending machine#3	HEROS_IN_ORB_3,{
 	end;
 
 OnInit:
-	setunittitle( getnpcid(0), "<Divine Cloak Enchantment>" );
+	setunittitle( getnpcid(0), "<神兽斗篷附魔>" );
 	end;
 }
 
-t_garden,138,114,2	script(CLOAKED)	Subspace vending machine#4	HEROS_IN_ORB_4,{
+t_garden,138,114,2	script(CLOAKED)	亚空间贩卖机#4	HEROS_IN_ORB_4,{
 	if (isbegin_quest(12620) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "由于携带的物品种类或重量过多，我无法与屏障交流。";
+		mes "携带的物品种类或重量过多，请先整理背包。";
 		close;
 	}
 	npctalk "我们努力为流通装备附魔。你想选择哪个菜单？", "", bc_self;
@@ -1540,7 +1541,7 @@ t_garden,138,114,2	script(CLOAKED)	Subspace vending machine#4	HEROS_IN_ORB_4,{
 	end;
 
 OnInit:
-	setunittitle( getnpcid(0), "<Circle of Life Ingent>" );
+	setunittitle( getnpcid(0), "<生命之环附魔>" );
 	end;
 }
 
@@ -1548,7 +1549,7 @@ OnInit:
 // Storages
 -	shop	t_garden_shop	-1,501:-1
 
-t_garden,156,222,2	script	Functional Vending Machine#1	4_VENDING_MACHINE2,{
+t_garden,156,222,2	script	多功能贩卖机#1	4_VENDING_MACHINE2,{
 	// switch( select( "Tool Dealer", "Storage 1 (100z)", "Storage 2 (100z)", "Storage 3 (100z)", "Use savepoint service" ) ) {
 	switch( select( "工具商人", "仓库 1（100z）", "", "", "使用存档点服务" ) ) {
 	case 1:
@@ -1575,7 +1576,7 @@ t_garden,156,222,2	script	Functional Vending Machine#1	4_VENDING_MACHINE2,{
 			savepoint "t_garden",90,115;
 		else if (.@num == 4)
 			savepoint "t_garden",137,106;
-		break;
+		end;
 	}
 	if (Zeny < 100) {
 		npctalk "使用仓库请投入 100 Zeny。", "", bc_self;
@@ -1590,6 +1591,6 @@ OnInit:
 	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12592) == 2" );
 	end;
 }
-t_garden,97,138,6	duplicate(Functional Vending Machine#1)	Functional Vending Machine#2	4_VENDING_MACHINE2
-t_garden,91,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#3	4_VENDING_MACHINE2
-t_garden,144,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#4	4_VENDING_MACHINE2
+t_garden,97,138,6	duplicate(多功能贩卖机#1)	多功能贩卖机#2	4_VENDING_MACHINE2
+t_garden,91,116,2	duplicate(多功能贩卖机#1)	多功能贩卖机#3	4_VENDING_MACHINE2
+t_garden,144,116,2	duplicate(多功能贩卖机#1)	多功能贩卖机#4	4_VENDING_MACHINE2

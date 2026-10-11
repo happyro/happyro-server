@@ -16,7 +16,7 @@
 //=     Added GM management function.
 //============================================================
 
-gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
+gld_dun01,28,85,0	script	格伦布尔蒂#1::GodDwarf	826,{
 	mes "[矮人格伦布尔蒂]";
 	mes "人类？！";
 	mes "这片土地到处都是你们这种人。";
@@ -188,7 +188,7 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 					mes "20 个神之金属";
 					mes "5 个铝";
 					mes "40 个黄金";
-					mes "1 把震地锤^000000";
+					mes "1 把眩晕锤^000000";
 					next;
 		mes "[矮人格伦布尔蒂]";
 					mes "封印仍在的话，我连雷神之锤的仿制品都无法制作。在封印解除前，你只能等待。哇哈哈！";
@@ -214,7 +214,7 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 		mes "向人类展示我珍贵的技艺实在令人羞辱……";
 		next;
 		mes "[矮人格伦布尔蒂]";
-		mes "所有封印都已解除，持有 Emperium 的人就是命运选中的人。我不得不尊重你。";
+		mes "所有封印都已解除，持有 华丽金属 的人就是命运选中的人。我不得不尊重你。";
 		next;
 		mes "[矮人格伦布尔蒂]";
 		mes "首先，我要确认你是否带齐了锻造神之物品所需的材料！我讨厌人类毫无目的地来到这里！";
@@ -333,6 +333,7 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 				mes "20 个神之金属";
 				mes "5 个铝";
 				mes "40 个黄金";
+				mes "1 把眩晕锤";
 				next;
 		mes "[矮人格伦布尔蒂]";
 				mes "嗯，不过现在封印已经解除，";
@@ -350,7 +351,7 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 		mes "我在这里没法工作。跟我去^0000FF地下实验室^000000吧，人类。";
 		next;
 		mes "[矮人格伦布尔蒂]";
-		mes "快点！^FF0000所有封印解除后^000000，每种神之物品^0000FF只能交给人类一件^000000！";
+		mes "快点！^FF0000所有封印解除后^000000，神之物品^0000FF只能交给人类一件^000000！";
 		close2;
 		warp "que_god01",214,63;
 		end;
@@ -362,21 +363,21 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 		close;
 	}
 }
-gld_dun02,85,84,0	duplicate(GodDwarf)	Grunburti#2	826
-gld_dun03,92,105,0	duplicate(GodDwarf)	Grunburti#3	826
-gld_dun04,268,230,0	duplicate(GodDwarf)	Grunburti#4	826
+gld_dun02,85,84,0	duplicate(GodDwarf)	格伦布尔蒂#2	826
+gld_dun03,92,105,0	duplicate(GodDwarf)	格伦布尔蒂#3	826
+gld_dun04,268,230,0	duplicate(GodDwarf)	格伦布尔蒂#4	826
 
 que_god01,215,127,0	script	#god_hopewarp1	111,{
 	end;
 
 OnInit:
-	waitingroom "Laboratory Entrance",2,"#god_hopewarp1::OnStartArena",1;
+	waitingroom "实验室入口",2,"#god_hopewarp1::OnStartArena",1;
 	enablewaitingroomevent;
 	end;
 
 OnStartArena:
 	warpwaitingpc "que_god01",155,63;
-	donpcevent "Grunburti#god::OnEnable";
+	donpcevent "格伦布尔蒂#god::OnEnable";
 	disablewaitingroomevent;
 	end;
 
@@ -394,7 +395,7 @@ que_god01,214,128,0	script	 #que_godnpc1::GodEntrance	111,{
 que_god01,215,128,0	duplicate(GodEntrance)	 #que_godnpc2	111
 que_god01,213,128,0	duplicate(GodEntrance)	 #que_godnpc3	111
 
-que_god01,154,112,4	script	Grunburti#god	826,{
+que_god01,154,112,4	script	格伦布尔蒂#god	826,{
 	if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 		mes "[矮人格伦布尔蒂]";
 		mes "一件神之物品已经制作完成，";
@@ -415,17 +416,17 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 		next;
 		mes "[矮人格伦布尔蒂]";
 		mes "你们这些蠢人类是怎么进来的？！";
-		mes "只有持有 Emperium 的人，";
+		mes "只有持有 华丽金属 的人，";
 		mes "才有资格考虑进入这里……！";
 		close;
 	}
 		mes "[矮人格伦布尔蒂]";
 	mes "为人类工作实在令人羞辱。";
-	mes "但既然命运选中了你作为 Emperium 的持有者，我只能满足你的请求。";
+	mes "但既然命运选中了你作为 华丽金属 的持有者，我只能满足你的请求。";
 	next;
 		mes "[矮人格伦布尔蒂]";
 	mes "我们只有^FF000010 分钟^000000来重现一件神之宝物。";
-	mes "之后封印会自行恢复，在再次解除前我将无法制作任何东西……";
+	mes "之后你必须离开实验室，把机会让给其他人……";
 	next;
 		mes "[矮人格伦布尔蒂]";
 	mes "^FF0000别磨蹭^000000，";
@@ -496,7 +497,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				set $God2,0;
 				set $God3,0;
 				set $God4,0;
-				announce "[Brisingamen] 已落入 [" + strcharinfo(0) + "] 手中，他是 [" + getguildname(.@GID) + "] 公会的会长。",bc_all;
+				announce "[布里辛嘉曼] 已落入 [" + strcharinfo(0) + "] 手中，他是 [" + getguildname(.@GID) + "] 公会的会长。",bc_all;
 		mes "[矮人格伦布尔蒂]";
 				mes "啊，看看这耀眼的美丽。没有哪件珠宝像布里希嘉曼一样衬托芙蕾雅。";
 				close;
@@ -547,10 +548,8 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 					mes "[矮人格伦布尔蒂]";
 					mes "但是……";
-					mes "封印";
-					mes "刚刚";
-					mes "恢复。你必须等到它们";
-					mes "再次全部释放……";
+					mes "封印刚刚恢复。";
+					mes "你必须等到它们再次全部解除……";
 					mes "";
 					next;
 					mes "[矮人格伦布尔蒂]";
@@ -570,7 +569,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				set $God2,0;
 				set $God3,0;
 				set $God4,0;
-				announce "[Megingjard] the godly item has been given to [" + strcharinfo(0) + "], the master of the guild [" + getguildname(.@GID) + "].",bc_all;
+				announce "[米迦勒之腰带] 已交给 [" + strcharinfo(0) + "]，其为 [" + getguildname(.@GID) + "] 公会的会长。",bc_all;
 				mes "[矮人格伦布尔蒂]";
 				mes "给你……";
 				mes "小心使用";
@@ -634,10 +633,8 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 					mes "[矮人格伦布尔蒂]";
 					mes "但是……";
-					mes "封印";
-					mes "刚刚";
-					mes "恢复。你必须等到它们";
-					mes "再次全部释放……";
+					mes "封印刚刚恢复。";
+					mes "你必须等到它们再次全部解除……";
 					mes "";
 					next;
 					mes "[矮人格伦布尔蒂]";
@@ -660,7 +657,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				set $God2,0;
 				set $God3,0;
 				set $God4,0;
-				announce "[Sleipnir] the godly item has been given to [" + strcharinfo(0) + "], the master of the guild [" + getguildname(.@GID) + "].",bc_all;
+				announce "[斯雷普尼尔] 已交给 [" + strcharinfo(0) + "]，其为 [" + getguildname(.@GID) + "] 公会的会长。",bc_all;
 				mes "[矮人格伦布尔蒂]";
 				mes "好了……";
 				mes "穿上它们，";
@@ -722,10 +719,8 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 					mes "[矮人格伦布尔蒂]";
 					mes "但是……";
-					mes "封印";
-					mes "刚刚";
-					mes "恢复。你必须等到它们";
-					mes "再次全部释放……";
+					mes "封印刚刚恢复。";
+					mes "你必须等到它们再次全部解除……";
 					mes "";
 					next;
 					mes "[矮人格伦布尔蒂]";
@@ -749,7 +744,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 				set $God2,0;
 				set $God3,0;
 				set $God4,0;
-				announce "[Mjolnir] has been bestowed to [" + strcharinfo(0) + "], the master of the [" + getguildname(.@GID) + "] guild.",bc_all;
+				announce "[雷神之锤] 已交给 [" + strcharinfo(0) + "]，其为 [" + getguildname(.@GID) + "] 公会的会长。",bc_all;
 				mes "[矮人格伦布尔蒂]";
 				mes "完成了。";
 				mes "拿去吧。亲手握住世界上最强大的武器，";
@@ -780,11 +775,11 @@ OnEnable:
 	end;
 
 OnTimer10000:
-	mapannounce "que_god01","Remember that you only have 10 minutes for this! Hurry up!",bc_map;
+	mapannounce "que_god01","记住，你只有10分钟！快点！",bc_map;
 	end;
 
 OnTimer610000:
-	mapannounce "que_god01","You're too slow! I'm going to give another human a chance! Next!",bc_map;
+	mapannounce "que_god01","你太慢了！我要把机会让给另一个人类！下一位！",bc_map;
 	end;
 
 OnTimer612000:
@@ -824,7 +819,7 @@ que_god01,145,118,0	duplicate(god_failwarp#1)	god_failwarp#5	-1,9,9
 que_god01,164,118,0	duplicate(god_failwarp#1)	god_failwarp#6	-1,9,9
 
 // Original name: "Godly Item Quests Related#god"
-que_god01,293,3,0	script	Godly Item Quests#god	90,{
+que_god01,293,3,0	script	神器任务管理#god	90,{
 	callfunc "F_GM_NPC";
 	mes "[紧急情况下使用]";
 	mes "请输入密码。";
@@ -858,7 +853,7 @@ que_god01,293,3,0	script	Godly Item Quests#god	90,{
 			mes "[紧急情况下使用]";
 			mes "按下“下一步”按钮重置计时器。";
 			next;
-			donpcevent "Grunburti#god::OnEnable";
+			donpcevent "格伦布尔蒂#god::OnEnable";
 			mes "[紧急情况下使用]";
 			mes "已成功重置计时器。";
 			close;

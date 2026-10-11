@@ -56,7 +56,7 @@ function calcjobexp;
 	mes "我们提供可以在" + .region$[.@zoneid] + "地区完成的任务和每日任务。";
 	mes "这里既有简单的每日任务，也有只能在攻城时段内完成的任务。请考虑一下吧～";
 	next;
-	switch(select("Conquering " + .region$[.@zoneid], "Guild Dungeon Daily Quests", "About quests", "I don't need it.")){
+	switch(select("征服" + .region$[.@zoneid], "公会地城每日任务", "关于任务", "我不需要。")){
 		case 1: // Conquering.
 			.@gid = getcharid(2);
 			if(.@gid && is_guild_leader() == true){
@@ -77,15 +77,15 @@ function calcjobexp;
 					close;
 				} else {
 					.@siege_check = (.@edition == 1 ? agitcheck() : .@edition == 2 ? agitcheck2() : agitcheck3());
-					.@time = atoi(gettimestr("%H%M",4));
-					.@after_time = ((.weekday[.@zoneid] == gettime(4)) && ((.@time > .start_time[.@zoneid]) && (.@time < .end_time[.@zoneid])));
+					.@time = atoi(gettimestr("%H%M",5));
+					.@after_time = ((.weekday[.@zoneid] == gettime(4)) && ((.@time >= .start_time[.@zoneid]) && (.@time < .end_time[.@zoneid])));
 
 					if(.@siege_check && .@after_time){
 						mes .@npcname$;
 						mes "我会根据^4d4dff你的公会此刻征服的要塞数量^000000发放奖励。";
 						mes "现在要检查吗？你知道^4d4dff这个数量随时可能变化^000000，对吧？";
 						next;
-						if(select("I'll come back later.","Let's check right now!") == 1){
+						if(select("我稍后再来。","现在就检查吧！") == 1){
 							mes .@npcname$;
 							mes "没错。人生就是要把握时机。";
 							mes "在最闪耀的时候回来吧。";
@@ -108,7 +108,7 @@ function calcjobexp;
 								else
 									mes "目前，你的公会征服的要塞总数";
 								for(.@i = 0; .@i < 5; ++.@i){
-									mes getcastlename(.castle$[.@i+.@zoneid*5]) + (.@gid == getcastledata(.castle$[.@i+.@zoneid*5],CD_GUILD_ID) ? ": ^4d4dffOccupied^000000" : "");
+									mes getcastlename(.castle$[.@i+.@zoneid*5]) + (.@gid == getcastledata(.castle$[.@i+.@zoneid*5],CD_GUILD_ID) ? "：^4d4dff已占领^000000" : "");
 								}
 								if(.@total == 5)
 									mes "你的公会征服了" + .region$[.@zoneid] + "！";
@@ -127,7 +127,7 @@ function calcjobexp;
 						}
 					} else {
 						mes .@npcname$;
-						mes "抱歉，这项任务只能在攻城时段内完成。恐怕现在什么也做不了。";
+						mes "领取时间为服务器时间：" + (.@edition == 1 ? "每周六17:00–17:30" : .@edition == 2 ? "每周六22:00–22:30" : "每周日20:30–21:00") + "，且对应攻城战必须正在进行。";
 						close;
 					}
 				}
@@ -178,7 +178,7 @@ function calcjobexp;
 					mes "嗯？看来你还没有完成任务……";
 					mes "出什么问题了吗？";
 					next;
-					if(select("No.","Give up the quest.") == 1){
+					if(select("没有。","放弃任务。") == 1){
 						mes .@npcname$;
 						mes "我不知道你还能使用公会地下城多久，不过祝你好运。";
 						close;
@@ -194,7 +194,7 @@ function calcjobexp;
 			} else {
 				if(.@playtime == 0 || .@playtime == 1){
 					mes .@npcname$;
-					mes "这里的规则是每天只能完成一项任务。";
+					mes "这里的规则是同一项任务每天只能完成一次。";
 					mes "等待时间结束后再回来吧。";
 					close;
 				} else if(.@playtime == 2){
@@ -215,7 +215,7 @@ function calcjobexp;
 					else
 						mes "我会给予你经验值作为回报。";
 					next;
-					if(select("Accept it.","Reject it.") == 1){
+					if(select("接受。","拒绝。") == 1){
 						mes .@npcname$;
 						mes "公会地下城限制进入。不过，也不是完全没有办法进去。";
 						mes "我会祈祷你能成功击败那些魔物。";
@@ -236,7 +236,7 @@ function calcjobexp;
 			mes "^4d4dff奖励的种类和品质取决于我检查时征服的要塞数量。^000000";
 			next;
 			mes .@npcname$;
-			mes "当然，我只会在攻城时段检查。";
+			mes "领取时间为服务器时间：" + (.@edition == 1 ? "每周六17:00–17:30" : .@edition == 2 ? "每周六22:00–22:30" : "每周日20:30–21:00") + "，且对应攻城战必须正在进行。";
 			mes "^4d4dff领取奖励后会有一小时等待时间，所以你最好也把握好时机。^000000";
 			next;
 			mes .@npcname$;
@@ -264,15 +264,15 @@ OnInit:
 		"te_aldecas1","te_aldecas2","te_aldecas3","te_aldecas4","te_aldecas5",
 		"te_prtcas01","te_prtcas02","te_prtcas03","te_prtcas04","te_prtcas05";
 	setarray .npcname$[0],
-		"[Altir]","[Alshine]","[Denev]","[Tarazed]","[Mirah]","[Almark]","[Becrux]","[Acrux]";
+		"[阿尔提尔]","[阿尔夏因]","[德内夫]","[塔拉泽德]","[米拉]","[阿尔马克]","[贝克鲁克斯]","[阿克鲁克斯]";
 	setarray .region$[0],
-		"Valkyrie Realm","Greenwood Lake","Britoria","Luina","Valfreyja","Nidhoggur","Kafragarten","Gloria";
+		"女武神领域","青林湖泊","布里托尼亚","露依娜","维弗雷亚","尼德霍格","卡普拉花园","格洛丽亚";
 	setarray .weekday[0], // Day of the week. 0 = Sunday, 6 = Saturday.
-		0,0,0,0,0,0,6,6;
+		6,6,6,6,6,6,0,0;
 	setarray .start_time[0],
-		2200,2200,2200,2200,2200,2200,2200,2200;
+		1700,1700,1700,1700,2200,2200,2030,2030;
 	setarray .end_time[0],
-		2230,2230,2230,2230,2230,2230,2230,2230;
+		1730,1730,1730,1730,2230,2230,2100,2100;
 	setarray .conquer_delay_questid[0], // Quest ID for cooldowns
 		7517,7520,7519,7518,7522,7521,7524,7523;
 	setarray .level_req[0], // Level requirement for quests. There are 2-3 quests per region
@@ -311,7 +311,7 @@ OnInit:
 		7555,7556,0,	//sch
 		7563,7564,0,	//tealde
 		7559,7560,0;	//teprt
-	setarray .ordinal$[0],"first","second","third";
+	setarray .ordinal$[0],"一","二","三";
 	end;
 
 	function brief {
@@ -332,64 +332,64 @@ OnInit:
 	function mob_brief {
 		switch(getarg(0)){
 			case 7525:
-				mes "你应该猎杀至少50只毛毛虫和奶油恐惧魔物。";
+				mes "你应该分别猎杀50只狂暴绿棉虫和狂暴克瑞米。";
 				break;
 			case 7526:
-				mes "猎杀三种深渊狗头人各30只以上。";
+				mes "猎杀深渊犬妖（大斧）、深渊犬妖（榔头）和深渊犬妖（刺锤）各30只。";
 				break;
 			case 7527:
-				mes "^4d4dff你应该击杀狂暴的‘Pyuriel’和战士‘Lora’。^000000";
+				mes "^4d4dff你应该各击杀1只‘淘汰者傅立叶’和‘女战士劳拉’。^000000";
 				return 1;
 			case 7528:
-				mes "^4d4dff分别猎杀50只以上的巨型黄蜂和远古蠕虫。^000000";
+				mes "^4d4dff分别猎杀50只狂暴蜂兵和狂暴蜈蚣。^000000";
 				break;
 			case 7529:
-				mes "^4d4dff猎杀40只以上的杀人螳螂和50只以上的安格拉螳螂。^000000";
+				mes "^4d4dff猎杀40只狂暴螳螂和50只疯狂螳螂。^000000";
 				break;
 			case 7530:
-				mes "它们是^4d4dff‘Elvira’和‘Gioia’，由英雄之泪形成的奇异机械生物。^000000";
+				mes "它们是^4d4dff‘埃维亚’和‘乔伊亚’，由英雄之泪形成的奇异机械生物。^000000";
 				return 1;
 			case 7531:
-				mes "^4d4dff分别猎杀50只以上的僵尸首领和幽灵亡者。^000000";
+				mes "^4d4dff分别猎杀50只以上的腐尸首领和狂暴恶灵。^000000";
 				break;
 			case 7532:
-				mes "^4d4dff猎杀50只GLD_DARK_SHADOW、20只GLD_DARK_FRAME和20只GLD_DARK_PRIEST魔物。^000000";
+				mes "^4d4dff猎杀50只深渊魔影、20只深渊镜妖和20只深渊暗黑祭司魔物。^000000";
 				break;
 			case 7533:
-				mes "它们是徘徊在亡者之丘的^4d4dff‘Kades’和‘Rudo’。^000000";
+				mes "它们是徘徊在亡者之丘的^4d4dff‘亡灵守卫卡德斯’和‘鲁盗’。^000000";
 				return 1;
 			case 7534:
-				mes "^4d4dff分别猎杀50只以上的Gullinbursti和Leib Olmai。^000000";
+				mes "^4d4dff分别猎杀50只以上的狂暴野猪和狂暴大脚熊。^000000";
 				break;
 			case 7535:
-				mes "^4d4dff分别猎杀45只以上的骷髅将军、20只以上的Am Mut和25只以上的Gajomart。^000000";
+				mes "^4d4dff分别猎杀45只以上的邪骸战士长、20只以上的狂暴小土人和25只以上的狂暴鬼火。^000000";
 				break;
 			case 7536:
-				mes "^4d4dff它们是古代帝国将军‘Daehyon’和卫兵‘Soheon’。^000000";
+				mes "^4d4dff它们是古代帝国的‘将军大贤’和‘卫士小贤’。^000000";
 				return 1;
 			case 7537:
-				mes "^4d4dff分别猎杀50只以上的地狱启示和Zakudam。^000000";
+				mes "^4d4dff分别猎杀50只以上的地狱阿修罗机兵和扎库坦。^000000";
 				break;
 			case 7538:
-				mes "^4d4dff分别猎杀35只以上的重金属和钴矿。^000000";
+				mes "^4d4dff分别猎杀35只以上的矿石波利和钴矿石魔。^000000";
 				break;
 			case 7539:
-				mes "^4d4dff猎杀50只以上的女妖首领和30只观察者首领。^000000";
+				mes "^4d4dff猎杀50只以上的爱尔兰女妖首领和30只眼魔首领。^000000";
 				break;
 			case 7540:
-				mes "^4d4dff猎杀50只Aunoes和20只Fanats。^000000";
+				mes "^4d4dff猎杀50只阿乌奴艾和20只法恩特。^000000";
 				break;
 			case 7541:
-				mes "^4d4dff分别猎杀30名以上的骑士、铁匠和刺客。^000000";
+				mes "^4d4dff分别猎杀30名以上的暗●骑士、暗●铁匠和暗●刺客。^000000";
 				break;
 			case 7542:
-				mes "^4d4dff分别猎杀30名以上的巫师、牧师和猎人。^000000";
+				mes "^4d4dff分别猎杀30名以上的暗●巫师、暗●牧师和暗●猎人。^000000";
 				break;
 			case 7561:
-				mes "^4d4dff分别猎杀30名以上的十字军、盗贼和炼金术士。^000000";
+				mes "^4d4dff分别猎杀30名以上的暗●十字军、暗●流氓和暗●炼金术士。^000000";
 				break;
 			case 7562:
-				mes "^4d4dff分别猎杀30名以上的贤者、武僧和吟游诗人。^000000";
+				mes "^4d4dff分别猎杀30名以上的暗●贤者、暗●武僧和暗●诗人。^000000";
 				break;
 		}
 		return 0;

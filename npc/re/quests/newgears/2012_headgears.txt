@@ -16,7 +16,7 @@
 
 // Main NPC :: 2012_hat_quest
 //============================================================
-moc_para01,41,169,3	script	Reno#2012hat	64,{
+moc_para01,41,169,3	script	雷诺#2012hat	64,{
 
 	// iRO has (very) minor differences in dialogue from the original script.
 	// To use iRO's version, uncomment the line below.
@@ -28,19 +28,19 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		close;
 	}
 
-	setarray .@type$[0],"lower","intermediate","advanced","highest";
-	setarray .@crystal$[0],"Rough","Purified","High";
+	setarray .@type$[0],"低级","中级","高级","最高级";
+	setarray .@crystal$[0],"粗糙","纯化","高纯度";
 
 	// playtime checks
 	setarray .@quests_playtime[0],5161,5169,5174,5225,5226,5227;
 	for (set .@i,0; .@i<6; set .@i,.@i+1) {
 		if (checkquest(.@quests_playtime[.@i],PLAYTIME) == 2) {
 			erasequest .@quests_playtime[.@i];
-			mes "[Reno]";
+			mes "[雷诺]";
 			if (.@i < 3)	// hunting quest wait time
-				mes ".@type$[.@i] 收集委托的等待时间已结束。现在可以接受新委托。";
+				mes .@type$[.@i]+"收集委托的等待时间已结束。现在可以接受新委托。";
 			else        	// buff wait time
-				mes "储存"+.@crystal$[.@i]+"能量水晶的等待时间已结束。现在可以再次储存。";
+				mes "储存"+.@crystal$[.@i-3]+"能量水晶的等待时间已结束。现在可以再次储存。";
 			close;
 		}
 	}
@@ -58,51 +58,51 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			if (isbegin_quest(.@i + 5222)) {
 				set .@item, 6623 + .@i;
 				set .@amount, 2 + rand(3);
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes getitemname(.@item)+"的储存完成。";
 				next;
 				setquest 5225 + .@i;
 				erasequest 5222 + .@i;
 				getitem .@item,.@amount;
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "已提取^0000FF"+.@amount+"个"+getitemname(.@item)+"^000000。";
 				close;
 			}
 		}
 	}
 
-	mes "[Reno]";
+	mes "[雷诺]";
 	mes "你好？我是能量水晶研究协会（ECRA）的雷诺。";
 	next;
 	switch(select("ECRA？:获取能量水晶的委托:能量水晶增益:压缩能量水晶:用水晶兑换头饰:用水晶兑换随机装备" + ((.@features_iRO)?":查看装备列表":""))) {
 	case 1:
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "ECRA研究可作为替代能源的^0000FF能量水晶^000000，卢恩-米德加尔特王国正面临能源短缺。";
 		next;
 		select("为什么要这样做？");
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "在解释原因前，我想说明我们不是要找借口逃避问题。绝对不是！请让我说完。";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "研究团队把他们的研究结果发给了我。";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "能量水晶原来是^0000FF在某些怪物体内生成的^000000。研究表明，越强的怪物体内会生成等级越高的能量水晶。";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "研究团队决定向冒险者发布委托并给予适当奖励，以收集能量水晶。这样能更高效地收集。^FF0000^000000";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "通过我的委托狩猎怪物获得的能量水晶将用于研究。^0000FF其中一部分计划返还给冒险者。^000000";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "冒险者可以通过我使用收集的能量水晶^FF0000强化装备^000000。";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "如果进展顺利，对ECRA和冒险者都有好处。";
 		close;
 	case 2:
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "狩猎委托按怪物等级和难度分级，分为低级、中级和高级，每天只能接受一次。";
 		next;
 
@@ -116,74 +116,74 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		if (.@select < 3) {
 			setarray .@min_level[0],60,80,90,100;
 			if (BaseLevel < .@min_level[.@select]) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "抱歉，"+.@type$[.@select]+"收集委托仅对"+.@min_level[.@select]+"级以上开放。你似乎无法完成该委托。";
 				close;
 			}
 			if (.@quest_status[.@select]) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "你似乎正在执行其他"+.@type$[.@select]+"收集委托。如果太难……要不要^FF0000放弃委托^000000？";
 				close;
 			}
 			set .@playtime, checkquest(.@quest_index[.@select],PLAYTIME);
 			if (.@playtime == 0 || .@playtime == 1) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "正在等待"+.@type$[.@select]+"收集委托。每种收集任务每天只能完成一次。"; //custom translation
 				close;
 			}
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "你选择了狩猎"+.@type$[.@select]+"收集目标。完成狩猎后回来，我会给你"+((.@features_iRO)?"10 ":"")+"个^0000FF"+.@crystal$[.@select]+"能量水晶^000000。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "请从列表中选择你认为容易狩猎的怪物。";
 			next;
 			switch (.@select) {
 			case 0:
 				set .@quest, select(
-					"[Lower class] Requiem",
-					"[Lower class] Bathory",
-					"[Lower class] Spring Rabbit",
-					"[Lower class] Sleeper",
-					"[Lower class] Evil Druid",
-					"[Lower class] Ground Petite",
-					"[Lower class] Clock"
+					"[低级] 诺可伊",
+					"[低级] 巫婆",
+					"[低级] 弹簧兔",
+					"[低级] 沙妖",
+					"[低级] 暗神官",
+					"[低级] 毕帝特地龙",
+					"[低级] 古钟魔"
 				);
 				break;
 			case 1:
 				set .@quest, select(
-					"[Intermediate class] Siroma",
-					"[Intermediate class] Dark Priest",
-					"[Intermediate class] Stapo",
-					"[Intermediate class] Solider"
+					"[中级] 小雪兽",
+					"[中级] 暗黑祭司",
+					"[中级] 石头波利",
+					"[中级] 岩石龟"
 				);
 				break;
 			case 2:
 				set .@quest, select(
-					"[Advanced] Desert Wolf",
-					"[Advanced] Medusa",
-					"[Advanced] Pinguicula",
-					"[Advanced] Majoruros",
-					"[Highest] Raydric",
-					"[Highest] Naga",
-					"[Highest] Ancient Mummy",
-					"[Highest] Ancient Mimic"
+					"[高级] 沙漠之狼",
+					"[高级] 米杜沙",
+					"[高级] 捕虫堇",
+					"[高级] 狂暴米诺斯",
+					"[最高级] 幽灵剑士",
+					"[最高级] 纳迦",
+					"[最高级] 狂暴木乃伊",
+					"[最高级] 狂暴邪恶箱"
 				);
 				if (.@quest > 4 && BaseLevel < .@min_level[3]) {
-					mes "[Reno]";
+					mes "[雷诺]";
 					mes "抱歉，最高级收集委托仅对"+.@min_level[3]+"级以上开放。你似乎无法完成。";
 					close;
 				}
 				break;
 			}
 			setquest .@quest_index[.@select] + .@quest;
-			mes "[Reno]";
-			mes ".@type$[.@select]收集怪物委托已发布。请查看委托文件详情。";
+			mes "[雷诺]";
+			mes .@type$[.@select]+"收集怪物委托已发布。请查看委托文件详情。";
 			close;
 		} else {
 			setarray .@quest_count[0],7,4,8;
 			for (set .@i,0; .@i<3; set .@i,.@i+1) {
 				if (.@quest_status[.@i]) {
-					mes "[Reno]";
+					mes "[雷诺]";
 					mes "你正在执行"+.@type$[.@i]+"收集委托。现在放弃会丢失全部记录。确定放弃吗？";
 					next;
 					set .@erase_quest, select("是:否");
@@ -201,33 +201,33 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			}
 			switch (.@erase_quest) {
 			case 0:
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "你目前没有任何委托。";
 				close;
 			case 1:
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "给你的书面委托已撤回。";
 				close;
 			case 2:
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "请继续努力。";
 				close;
 			}
 		}
 	case 3:
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "要在体内积累能量水晶以获得增益吗？";
 		next;
 		set .@select, select("积累能量水晶？:积累粗糙能量水晶:积累纯化能量水晶:积累高纯度能量水晶");
 		switch (.@select) {
 		case 1:
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "狩猎我们指定的怪物时，能量水晶会在体内积累。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "研究表明，某些方法能让人类以增益形式在体内积累能量水晶。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "花费约3小时即可获得少量能量水晶。要接受增益吗？";
 			close;
 		case 2:
@@ -253,35 +253,35 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			break;
 		}
 		if (.@playtime == 0 || .@playtime == 1) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "成功了吗？储存其他能量水晶不会对身体造成太大影响，但储存同一种可能会伤害身体。"; //custom translation
 			close;
 		}
 		if (BaseLevel < .@min_level) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "以你的身体状况，无法积累"+.@crystal$[.@select-2]+"能量水晶。必须达到"+.@min_level+"级，否则身体会受伤。"; //custom translation
 			close;
 		}
 		if (.@energy_buf00) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "能量水晶积累已经开始。抱歉，不能同时积累两种不同的能量水晶。";
 			close;
 		}
 		if (isbegin_quest(.@quest) > 0) {
 			erasequest .@quest;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "发生错误。给你带来不便，敬请谅解。"; //custom translation
 			close;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "身体需要3小时积累2至4个"+.@crystal$[.@select-2]+"能量水晶。要开始吗？";
 		next;
 		if(select("取消:开始") == 1) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "建议你有时间时再尝试积累能量水晶。";
 			close;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "你可能会感到轻微刺痛。";
 		next;
 		specialeffect2 EF_BASH3D;
@@ -289,27 +289,27 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		//consumeitem ??; //Keep_Connection_[.@rate]
 		sc_start .@buff,10800000,.@rate;	// Atk/Matk + 5*rate (+5, +10, +15)
 		setquest .@quest;
-		mes "[Reno]";
-		mes "- Puck -";
+		mes "[雷诺]";
+		mes "- 砰 -";
 		next;
-		mes "[Reno]";
+		mes "[雷诺]";
 	mes "一切正常。开始积累"+.@crystal$[.@select-2]+"能量水晶吧。记得3小时后回来领取。";
 		close;
 	case 4:
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "要压缩能量水晶吗？";
 		next;
 		switch(select("压缩有什么用？:将粗糙压缩为纯化水晶:将纯化压缩为高纯度水晶")) {
 		case 1:
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "对能量水晶压缩感兴趣吗？我可以将低级能量水晶压缩成高级水晶。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "我能制作以下物品。";
 			mes "^FF000010个粗糙能量水晶^000000 = ^FF00001个纯化能量水晶^000000";
 			mes "^FF00005个纯化能量水晶^000000 = ^FF00001个高纯度能量水晶^000000";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "如果需要更高等级的能量水晶，这是获取它们的好方法，因为低级水晶更容易获得。";
 			close;
 		case 2:
@@ -325,15 +325,15 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		}
 		set .@crystal_count, countitem(.@crystal);
 		set .@crystal_get, .@crystal_count / .@rate;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes sprintf("^FF0000%d %s^000000 = ^FF00001 %s^000000",.@rate,getitemname(.@crystal),getitemname(.@crystal_));
 		next;
-		mes "[Reno]";
-		mes sprintf("%d %ss will be compressed to %d %ss.",.@crystal_count,getitemname(.@crystal),.@crystal_get,getitemname(.@crystal_));
+		mes "[雷诺]";
+		mes sprintf("%d 个%s可压缩为 %d 个%s。",.@crystal_count,getitemname(.@crystal),.@crystal_get,getitemname(.@crystal_));
 		mes "要压缩吗？";
 		next;
 		if(select("压缩:停止") == 2) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "好的，需要时再联系我。";
 			close;
 		}
@@ -343,31 +343,31 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 				getitem .@crystal_,1;
 				set .@crystal_count, countitem(.@crystal);
 				set .@crystal_get, .@crystal_count / .@rate;
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "压缩非常成功。";
 				mes "还剩"+.@crystal_count+"个能量水晶，可压缩为"+.@crystal_get+"个。要继续吗？";
 				next;
 				if(select("压缩:停止") == 2)
 					break;
 			} else {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "你的"+getitemname(.@crystal)+"不足。";
 				next;
 				break;
 			}
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "压缩完成。";
 		close;
 	case 5:
 		disable_items;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "要用能量水晶兑换装备吗？请选择要兑换的能量水晶类型。";
 		next;
 		setarray .@crystals[0], countitem(6623), countitem(6624), countitem(6625);
 		switch(select("查看装备列表:["+.@crystals[0]+"] 粗糙能量水晶:["+.@crystals[1]+"] 纯化能量水晶:["+.@crystals[2]+"] 高纯度能量水晶")) {
 		case 1:
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "这是能量水晶研究协会提供的装备升级手册。请查看。";
 			close2;
 			readbook 11060,1; //Energy_Xtal_Combi_Book
@@ -401,7 +401,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			setarray .@rewards[0],  18765,18768,18766,18767,18767,22014,2957,2958,15068,2183,22015,20710,18776;
 			break;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "请选择要用"+getitemname(.@crystal)+"兑换的装备。";
 		next;
 		set .@crystal_count, countitem(.@crystal);
@@ -420,38 +420,38 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		if (.@material == 2615) {  // Special case: Safety Ring
 			if (countitem(2615) < 1 || countitem(2621) < 1 || countitem(2622) < 1 || countitem(2624) < 1 ||
 			    countitem(2625) < 1 || countitem(2623) < 1 || countitem(2626) < 1 || countitem(.@crystal) < .@cost) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "制作安全戒指[1]的材料不足。请检查背包。";
 				close;
 			}
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "升级安全戒指前，请听取这些^FF0000注意事项^000000。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "^FF0000除了安全戒指，所需材料上的精炼和卡片也会全部消失。^000000";
 			next;
 		} else {
 			if (countitem(.@material) < 1 || countitem(.@crystal) < .@cost) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "材料不足。请检查材料。";
 				close;
 			}
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "升级装备前，请听取这些^FF0000注意事项^000000。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "^FF0000使用能量水晶升级装备时，之前的精炼、附魔和卡片都会丢失。^000000";
 			next;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "你了解这些^FF0000注意事项^000000吗？";
 		next;
 		if(select("了解。:不了解。") == 2) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "好的，那下次再说。";
 			close;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "那么开始升级"+.@item_name$+"。";
 		next;
 		specialeffect2 EF_REPAIRWEAPON;
@@ -467,32 +467,32 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 		}
 		delitem .@crystal,.@cost;
 		getitem .@reward,1;
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "升级成功。你的能量水晶将极大帮助我们的研究。";
 		close;
 	case 6:
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "要捐赠能量水晶换取随机新头饰吗？";
 		next;
 		switch(select("捐赠能量水晶？:捐赠300粗糙能量水晶。:捐赠600纯化能量水晶。:捐赠900高纯度能量水晶。")) {
 		case 1:
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "我们收集能量水晶，以研究更多适合冒险者的头饰组合。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "多亏冒险者的支持，我们才能用这些能量水晶推进研究。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "因此我们至少需要300粗糙、600纯化和900高纯度能量水晶。";
 			if (!.@features_iRO) {
 				next;
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "你可能觉得这是负担，但为了研究，请继续。"; //custom translation
 				close;
 			}
 			mes "作为捐赠回报，我会给你随机新头饰。";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "300个粗糙能量水晶";
 			mes "- 新法师帽";
 			mes "- 新魔术师帽";
@@ -503,7 +503,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			mes "- 新邦古恩帽";
 			mes "- 新幻影歌剧面具";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "600个纯化能量水晶";
 			mes "- 优质望远镜";
 			mes "- 优质鱼鳍头盔";
@@ -515,7 +515,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			mes "- 优质天使开衫";
 			mes "- 优质天使转生";
 			next;
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "900个高能量水晶";
 			mes "- 强化海盗船长帽";
 			mes "- 强化骨制头盔";
@@ -526,7 +526,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			close;
 		case 2:
 			if (countitem(6623) < 300) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "感谢你的支持，但我们需要300个粗糙能量水晶。";
 				close;
 			}
@@ -543,7 +543,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			break;
 		case 3:
 			if (countitem(6624) < 600) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "感谢你的支持，但我们需要600个纯化能量水晶。";
 				close;
 			}
@@ -562,7 +562,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			break;
 		case 4:
 			if (countitem(6625) < 900) {
-				mes "[Reno]";
+				mes "[雷诺]";
 				mes "感谢你的支持，但我们需要900个高能量水晶。";
 				close;
 			}
@@ -576,11 +576,11 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 			else                getitem 2958,1;  //Good_Ring_Of_Resonance
 			break;
 		}
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "非常感谢。你捐赠的能量水晶将极大帮助我们的研究。这是你的捐赠奖励。"; //custom translation
 		close;
 	case 7:  // iRO only
-		mes "[Reno]";
+		mes "[雷诺]";
 		mes "这是能量水晶研究协会提供的装备升级手册，请随意查看。";
 		close2;
 		readbook 11060,1; //Energy_Xtal_Combi_Book
@@ -591,7 +591,7 @@ moc_para01,41,169,3	script	Reno#2012hat	64,{
 L_CheckHunting:
 	for (set .@quest,getarg(0)+1; .@quest<getarg(1)+getarg(2); set .@quest,.@quest+1) {
 		if (checkquest(.@quest,HUNTING) == 2) {
-			mes "[Reno]";
+			mes "[雷诺]";
 			mes "已完成"+getarg(3)+"收集狩猎任务。";
 			next;
 			setquest getarg(0);

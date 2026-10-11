@@ -19,7 +19,7 @@
 
 // Poring War Recruiter
 //============================================================
-prt_fild08,159,371,3	script	Poring War Recruiter#wop	909,{
+prt_fild08,159,371,3	script	波利战争招募员#wop	909,{
 	mes "[波利]";
 	mes "哇！人类，叮~！！";
 	mes "快躲起来，躲起来，对吧~！";
@@ -35,7 +35,7 @@ prt_fild08,159,371,3	script	Poring War Recruiter#wop	909,{
 	mes "我……我有一份有趣的工作……你感兴趣吗？";
 	mes "我……我们波利需要很多勇敢的人类战士，叮~";
 	next;
-	switch(select("Alright, I'm with you!:What's that?:Ignore")) {
+	switch(select("好，我加入！:是什么事？:不理会")) {
 	case 1:
 		if (Zeny > 499) {
 			mes "[波利]";
@@ -67,19 +67,19 @@ prt_fild08,159,371,3	script	Poring War Recruiter#wop	909,{
 
 // Poring Vending Machine
 //============================================================
-poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
+poring_w01,100,97,3	script	波利贩卖机#w	909,{
 	if (checkweight(714,3) == 0) {
 		mes "- 你携带物品太多，无法使用贩卖机。-";
 		close;
 	}
 	mes "这是贩卖机。你可以用波利硬币购买。";
 	next;
-	if(select("Purchase.:Read the descriptions of goods.") == 1) {
+	if(select("购买物品:查看商品说明") == 1) {
 		mes "购买物品需要波利硬币。";
 		mes "不能使用 Zeny。";
-		mes "物品名称 - 价格 波利硬币（P.Co）";
+		mes "物品名称 - 所需波利硬币数量";
 		next;
-		switch(select("Marvelous Medal - 4 P.Co:Union of Tribe - 20 P.Co:Poring Box - 30 P.Co:Next")) {
+		switch(select("奖牌 - 4 枚波利硬币:部族联盟 - 20 枚波利硬币:波利箱 - 30 枚波利硬币:下一页")) {
 		case 1:
 			callsub S_PoringVending,7515,4;
 		case 2:
@@ -88,9 +88,9 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 			callsub S_PoringVending,12109,30;
 		case 4:
 			mes "这是特殊物品。";
-			mes "物品名称 - 波利硬币（P.Co）";
+			mes "物品名称 - 所需波利硬币数量";
 			next;
-			switch(select("Wild Rose - 15 P.Co:Doppelganger - 20 P.Co:Egnigem Cenia - 20 P.Co:Collection Item")) {
+			switch(select("野玫瑰契约 - 15 枚波利硬币:多普勒根召唤书 - 20 枚波利硬币:艾格尼姆·赛妮亚契约 - 20 枚波利硬币:收藏模型")) {
 			case 1:
 				callsub S_PoringVending,12300,15;
 			case 2:
@@ -101,9 +101,9 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 				mes "包含初心者在内的一转职业角色模型终于开售！";
 				mes "除初心者外，其他模型都是 ^4d4dff角色绑定物品^000000。";
 				mes "购买前请注意~";
-				mes "物品名称 - 波利硬币（P.Co）";
+				mes "物品名称 - 所需波利硬币数量";
 				next;
-				switch(select("Novice Figure - 50 P.Co:Swordman Figure - 100 P.Co:Thief Figure - 100 P.Co:Merchant Figure - 100 P.Co:Acolyte Figure - 100 P.Co:Mage Figure - 100 P.Co:Archer Figure - 100 P.Co:Random Draw - 50 P.Co:Cancel")) {
+				switch(select("初学者模型 - 50 枚波利硬币:剑士模型 - 100 枚波利硬币:盗贼模型 - 100 枚波利硬币:商人模型 - 100 枚波利硬币:服事模型 - 100 枚波利硬币:魔法师模型 - 100 枚波利硬币:弓箭手模型 - 100 枚波利硬币:随机抽取 - 50 枚波利硬币:取消")) {
 				case 1:
 					callsub S_PoringVending,2765,50;
 				case 2:
@@ -122,7 +122,7 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 					mes "你选择了随机抽取。";
 					mes "将从 7 种模型中随机选择 1 种。";
 					next;
-					if(select("Draw:Cancel") == 1) {
+					if(select("抽取:取消") == 1) {
 						if (countitem(7539) >= 50) {
 							mes "投入波利硬币并拉下拉杆。";
 							mes "咔哒~物品伴随轰鸣声从波利嘴里出来了。";
@@ -156,19 +156,19 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 		}
 	}
 	mes "出售物品列表";
-	mes "[奇妙奖牌]";
-	mes "：由仅在胡格尔产出的特殊金属制成的奖牌。";
-	mes "[部落联盟]";
+	mes "[奖牌]";
+	mes "：由仅在赫尔产出的特殊金属制成的奖牌。";
+	mes "[部族联盟]";
 	mes "：描绘部落强大联盟的雕像。人们相信观看它能增进部落间的关系。";
-	mes "[波利盒]";
+	mes "[波利箱]";
 	mes "：用波利图案包装纸包裹的盒子，里面似乎有东西。";
-	mes "[野玫瑰]";
+	mes "[野玫瑰契约]";
 	mes "：你的朋友野玫瑰会来帮助你。";
-	mes "[多佩尔先生]";
+	mes "[多普勒根召唤书]";
 	mes "：年轻的二重身会来帮助你。";
-	mes "[伊根·塞尼亚]";
-	mes "：来自生体实验研究所的美丽少女伊根·塞尼亚会来帮助你。";
-	mes "[初心者模型]";
+	mes "[艾格尼姆·赛妮亚契约]";
+	mes "：来自生体实验研究所的美丽少女艾格尼姆·赛妮亚会来帮助你。";
+	mes "[初学者模型]";
 	mes "：精致的初心者模型，可作为‘^4d4dff饰品^000000’装备。";
 	mes "HP + 70，初心者装备时额外增加 HP + 30。";
 	mes "[剑士模型]";
@@ -180,10 +180,10 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 	mes "[盗贼模型]";
 	mes "：精致的盗贼模型，可作为‘^4d4dff饰品^000000’装备。";
 	mes "AGI + 1，盗贼系职业装备时额外增加 ASPD + 3%。";
-	mes "[法师模型]";
+	mes "[魔法师模型]";
 	mes "：精致的法师模型，可作为‘^4d4dff饰品^000000’装备。";
 	mes "INT + 1，法师系职业装备时额外增加 SP 恢复量 5%。";
-	mes "[服事者模型]";
+	mes "[服事模型]";
 	mes "：精致的服事者模型，可作为‘^4d4dff饰品^000000’装备。";
 	mes "INT + 1，服事者系职业装备时额外增加 SP + 50。";
 	mes "[弓箭手模型]";
@@ -205,13 +205,11 @@ S_PoringVending:
 
 // Information
 //============================================================
-poring_w01,96,97,3	script	Sweet Devi#wop	738,{
+poring_w01,96,97,3	script	可爱的小恶魔#wop	738,{
 	if (MaxWeight-Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "- 请稍等！！ -";
-		mes "- 你目前携带的物品 -";
-		mes "- 太多了。 -";
-		mes "- 请减轻负重后 -";
-		mes "- 再试一次。 -";
+		mes "- 你目前携带的物品太多了。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	mes "[恶魔波利]";
@@ -229,7 +227,7 @@ poring_w01,96,97,3	script	Sweet Devi#wop	738,{
 	mes "嘿嘿，我突然有点害羞了。";
 	mes "总之，人类，你想参加我们的波利战争吗？";
 	next;
-	switch(select("Am I qualified to join?:How do I join the war?:Cancel:Let me out of here, please!")) {
+	switch(select("我能参加吗？:如何参加战争？:取消:请送我离开！")) {
 	case 1:
 		mes "[恶魔波利]";
 		mes "我们不歧视种族！只要愿意战斗，任何人都能参加。";
@@ -338,11 +336,11 @@ OnInit:
 
 // Poring Registers
 //============================================================
-poring_w01,91,97,3	script	Poring#wop_door_all	1002,{
+poring_w01,91,97,3	script	波利#wop_door_all	1002,{
 	end;
 	
 OnInit:
-	waitingroom "[招募 10 名参战者]",11,"Poring#wop_door_all::OnStartArena",10,500,9;
+	waitingroom "[招募 10 名参战者]",11,"波利#wop_door_all::OnStartArena",10,500,9;
 	enablewaitingroomevent;
 	end;
 
@@ -361,11 +359,11 @@ OnDisable:
 	end;
 }
 
-poring_w01,91,68,5	script	Poring#wop_door_a	1002,{
+poring_w01,91,68,5	script	波利#wop_door_a	1002,{
 	end;
 
 OnInit:
-	waitingroom "[天使波利队招募员]",6,"Poring#wop_door_a::OnStartArena",5,0,9;
+	waitingroom "[天使波利队招募员]",6,"波利#wop_door_a::OnStartArena",5,0,9;
 	enablewaitingroomevent;
 	end;
 
@@ -374,12 +372,12 @@ OnStartArena:
 	disablewaitingroomevent;
 	if ($@wop_teamcount == 0) {
 		set $@wop_teamcount,1;
-		donpcevent "Poring#wop_door_d::OnDevilingStart";
+		donpcevent "波利#wop_door_d::OnDevilingStart";
 		donpcevent "#wop_warp_rtry::OnStop";
 	}
 	else if ($@wop_teamcount == 1) {
 		donpcevent "#wop_master::OnStart";
-		donpcevent "Poring#wop_door_d::OnStop";
+		donpcevent "波利#wop_door_d::OnStop";
 		stopnpctimer;
 	}
 	end;
@@ -438,9 +436,9 @@ OnTimer55000:
 	end;
 
 OnTimer55100:
-	donpcevent "Poring#wop_door_a::OnDisable";
-	donpcevent "Poring#wop_door_d::OnDisable";
-	donpcevent "Poring#wop_door_all::OnDisable";
+	donpcevent "波利#wop_door_a::OnDisable";
+	donpcevent "波利#wop_door_d::OnDisable";
+	donpcevent "波利#wop_door_all::OnDisable";
 	set $@wop_teamcount,0;
 	donpcevent "#wop_master::OnAngelingEnd";
 	donpcevent "#wop_warp_rtry::OnEnable";
@@ -453,11 +451,11 @@ OnTimer58000:
 	end;
 }
 
-poring_w01,112,68,3	script	Poring#wop_door_d	1002,{
+poring_w01,112,68,3	script	波利#wop_door_d	1002,{
 	end;
 
 OnInit:
-	waitingroom "[恶魔波利队招募员]",6,"Poring#wop_door_d::OnStartArena",5,0,9;
+	waitingroom "[恶魔波利队招募员]",6,"波利#wop_door_d::OnStartArena",5,0,9;
 	enablewaitingroomevent;
 	end;
 
@@ -466,12 +464,12 @@ OnStartArena:
 	disablewaitingroomevent;
 	if ($@wop_teamcount == 0) {
 		set $@wop_teamcount,1;
-		donpcevent "Poring#wop_door_a::OnAngelingStart";
+		donpcevent "波利#wop_door_a::OnAngelingStart";
 		donpcevent "#wop_warp_rtry::OnStop";
 	}
 	else if ($@wop_teamcount == 1) {
 		donpcevent "#wop_master::OnStart";
-		donpcevent "Poring#wop_door_a::OnStop";
+		donpcevent "波利#wop_door_a::OnStop";
 		stopnpctimer;
 	}
 	end;
@@ -493,7 +491,7 @@ OnStop:
 	end;
 
 OnTimer1000:
-	mapannounce "poring_w01","没有更多好人了，天使波利队招募结束，啵！",0,0x33FF66;
+	mapannounce "poring_w01","不能再让天使波利队抢走勇士了，啵！他们已经招募完毕！",0,0x33FF66;
 	end;
 
 OnTimer4000:
@@ -530,9 +528,9 @@ OnTimer55000:
 	end;
 
 OnTimer55100:
-	donpcevent "Poring#wop_door_a::OnDisable";
-	donpcevent "Poring#wop_door_d::OnDisable";
-	donpcevent "Poring#wop_door_all::OnDisable";
+	donpcevent "波利#wop_door_a::OnDisable";
+	donpcevent "波利#wop_door_d::OnDisable";
+	donpcevent "波利#wop_door_all::OnDisable";
 
 	set $@wop_teamcount,0;
 	donpcevent "#wop_master::OnDevilingEnd";
@@ -602,13 +600,11 @@ OnTimer65000:
 
 // Mr. Doppel
 //============================================================
-poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
+poring_w02,26,181,3	script	多佩尔先生#wop_team_a	739,{
 	if (checkweight(714,3) == 0) {
 		mes "- 请稍等！！ -";
-		mes "- 你当前携带了 -";
-		mes "- 太多物品。 -";
-		mes "- 请重试 -";
-		mes "- 减轻负重后。 -";
+		mes "- 你当前携带了太多物品。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	set .@a_tname$,getpartyname($@wop_team_a);
@@ -619,7 +615,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 		mes "队伍名称是……" + .@pname$ + "，对吗？";
 		mes "我会把你传送到战斗准备区。";
 		next;
-		switch(select("No! Wait!:Go to the staging area.")) {
+		switch(select("不！等一下！:前往战斗准备区")) {
 		case 1:
 				mes "[多佩尔先生]";
 			mes "现在又怎么了？";
@@ -634,7 +630,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 				mes "[多佩尔先生]";
 				mes "所以你是队长。前往战场前，应检查所有成员。";
 				next;
-				switch(select("Very well. I'll be the last.:I am the last. Send me to the battlefield.")) {
+				switch(select("好的，我最后再走。:我是最后一个了，送我去战场吧。")) {
 				case 1:
 				mes "[多佩尔先生]";
 					mes "首先确认所有成员都在你的队伍中。";
@@ -670,10 +666,10 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 				mes "先登记队伍名称，然后我们会检查成员。";
 				next;
 				mes "[多佩尔先生]";
-				mes "让我看看……队伍名称是……";
+				mes "让我看看……队伍名称是 ^4d4dff" + .@pname$ + "^000000。";
 				mes "对吗？这就是你想要的名称？";
 				next;
-				switch(select("No! You're wrong.:Yes. I would like to register that name.:Cancel")) {
+				switch(select("不！队名不对。:对，我要登记这个队名。:取消")) {
 				case 1:
 				mes "[多佩尔先生]";
 					mes "嘿，我没有一整天时间！快做决定并登记。";
@@ -700,7 +696,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 				mes "你必须留在已经登记的队伍中！";
 				next;
 				mes "[多佩尔先生]";
-				mes "队伍名称是 ";
+				mes "已登记的队伍名称是 ^4d4dff" + .@a_tname$ + "^000000。";
 				mes "请确认。";
 				close;
 			}
@@ -717,25 +713,23 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 	}
 
 OnInit:
-	disablenpc "Mr. Doppel#wop_team_a";
+	disablenpc "多佩尔先生#wop_team_a";
 	end;
 
 OnEnable:
-	enablenpc "Mr. Doppel#wop_team_a";
+	enablenpc "多佩尔先生#wop_team_a";
 	end;
 
 OnDisable:
-	disablenpc "Mr. Doppel#wop_team_a";
+	disablenpc "多佩尔先生#wop_team_a";
 	end;
 }
 
-poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
+poring_w02,170,181,3	script	多佩尔先生#wop_team_d	739,{
 	if (checkweight(714,3) == 0) {
 		mes "- 请稍等！！ -";
-		mes "- 你当前携带了 -";
-		mes "- 太多物品。 -";
-		mes "- 请重试 -";
-		mes "- 减轻负重后。 -";
+		mes "- 你当前携带了太多物品。 -";
+		mes "- 请减轻负重后再试一次。 -";
 		close;
 	}
 	set .@d_tname$,getpartyname($@wop_team_d);
@@ -746,7 +740,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 		mes "队伍名称是……" + .@pname$ + "，对吗？";
 		mes "我会把你传送到战斗准备区。";
 		next;
-		switch(select("No! Wait!:Go to the staging area.")) {
+		switch(select("不！等一下！:前往战斗准备区")) {
 		case 1:
 				mes "[多佩尔先生]";
 			mes "现在又怎么了？";
@@ -761,7 +755,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 				mes "[多佩尔先生]";
 				mes "所以你是队长。前往战场前，应检查所有成员。";
 				next;
-				switch(select("Very well. I'll be the last.:I am the last. Send me to the battlefield.")) {
+				switch(select("好的，我最后再走。:我是最后一个了，送我去战场吧。")) {
 				case 1:
 				mes "[多佩尔先生]";
 					mes "首先确认所有成员都在你的队伍中。";
@@ -795,10 +789,10 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 				mes "先登记队伍名称，然后我们会检查成员。";
 				next;
 				mes "[多佩尔先生]";
-				mes "让我看看……队伍名称是……";
+				mes "让我看看……队伍名称是 ^4d4dff" + .@pname$ + "^000000。";
 				mes "对吗？这就是你想要的名称？";
 				next;
-				switch(select("No! You're wrong.:Yes. I would like to register that name.:Cancel")) {
+				switch(select("不！队名不对。:对，我要登记这个队名。:取消")) {
 				case 1:
 				mes "[多佩尔先生]";
 					mes "嘿，我没有一整天时间！快做决定并登记。";
@@ -824,7 +818,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 				mes "你必须留在已经登记的队伍中！";
 				next;
 				mes "[多佩尔先生]";
-				mes "队伍名称是 ";
+				mes "已登记的队伍名称是 ^4d4dff" + .@d_tname$ + "^000000。";
 				mes "请确认。";
 				close;
 			}
@@ -840,15 +834,15 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 	}
 
 OnInit:
-	disablenpc "Mr. Doppel#wop_team_d";
+	disablenpc "多佩尔先生#wop_team_d";
 	end;
 
 OnEnable:
-	enablenpc "Mr. Doppel#wop_team_d";
+	enablenpc "多佩尔先生#wop_team_d";
 	end;
 
 OnDisable:
-	disablenpc "Mr. Doppel#wop_team_d";
+	disablenpc "多佩尔先生#wop_team_d";
 	end;
 }
 
@@ -875,9 +869,9 @@ OnReset:
 	donpcevent "#wop_warp_a::OnDisable";
 	donpcevent "#wop_warp_d::OnDisable";
 	donpcevent "#wop_warp_rtry::OnDisable";
-	donpcevent "Poring#wop_door_a::OnEnable";
-	donpcevent "Poring#wop_door_d::OnEnable";
-	donpcevent "Poring#wop_door_all::OnEnable";
+	donpcevent "波利#wop_door_a::OnEnable";
+	donpcevent "波利#wop_door_d::OnEnable";
+	donpcevent "波利#wop_door_all::OnEnable";
 	stopnpctimer;
 	end;
 
@@ -915,8 +909,8 @@ OnDevilingWin:
 	if (.@i)
 		mapannounce "poring_w02","多佩尔先生：队伍 " + getpartyname($@wop_team_a) + " 的天使波利队赢得了战斗！",0,0xf08080;
 	else
-		mapannounce "poring_w02","多佩尔先生：队伍 " + getpartyname($@wop_team_d) + " 的天使波利队赢得了战斗！",0,0xf08080;
-	donpcevent "Deviruchi#wop_endmaster::OnEnable";
+		mapannounce "poring_w02","多佩尔先生：队伍 " + getpartyname($@wop_team_d) + " 的恶魔波利队赢得了战斗！",0,0xf08080;
+	donpcevent "小恶魔#wop_endmaster::OnEnable";
 	stopnpctimer;
 	// Reset Barriers
 	donpcevent "#aroom_ingate_wop::OnDisable";
@@ -927,8 +921,8 @@ OnDevilingWin:
 
 OnTimer5000:
 	mapannounce "poring_w02","多佩尔先生：欢迎所有前来参战的战士。",0,0xf08080;
-	donpcevent "Mr. Doppel#wop_team_a::OnEnable";
-	donpcevent "Mr. Doppel#wop_team_d::OnEnable";
+	donpcevent "多佩尔先生#wop_team_a::OnEnable";
+	donpcevent "多佩尔先生#wop_team_d::OnEnable";
 	end;
 
 OnTimer8000:
@@ -998,7 +992,7 @@ OnTimer700000:
 	end;
 
 OnTimer703000:
-	donpcevent "Deviruchi#wop_endmaster::OnEnable";
+	donpcevent "小恶魔#wop_endmaster::OnEnable";
 	stopnpctimer;
 	end;
 }
@@ -1058,7 +1052,7 @@ OnReset:
 	end;
 
 OnAngelingSpawn:
-	monster "poring_w02",80,82,"Angeling",1766,1,"#wop_angellium1::OnMyMobDead";
+	monster "poring_w02",80,82,"天使波利",1766,1,"#wop_angellium1::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -1092,7 +1086,7 @@ OnReset:
 	end;
 
 OnAngelingSpawn:
-	monster "poring_w02",98,41,"Angeling",1766,1,"#wop_angellium2::OnMyMobDead";
+	monster "poring_w02",98,41,"天使波利",1766,1,"#wop_angellium2::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -1127,7 +1121,7 @@ OnReset:
 	end;
 
 OnDevilingSpawn:
-	monster "poring_w02",116,82,"Deviling",1767,1,"#wop_devillium1::OnMyMobDead";
+	monster "poring_w02",116,82,"恶魔波利",1767,1,"#wop_devillium1::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -1137,8 +1131,8 @@ OnMyMobDead:
 		initnpctimer;
 	}
 	else {
-		donpcevent "#wop_devillium1::OnReset";
-		donpcevent "#wop_devillium2::OnReset";
+		donpcevent "#wop_angellium1::OnReset";
+		donpcevent "#wop_angellium2::OnReset";
 		donpcevent "#wop_devillium1::OnReset";
 		donpcevent "#wop_devillium2::OnReset";
 		donpcevent "#wop_master::OnAngelingWin";
@@ -1162,7 +1156,7 @@ OnReset:
 	end;
 
 OndevilingSpawn:
-	monster "poring_w02",98,124,"Deviling",1767,1,"#wop_devillium2::OnMyMobDead";
+	monster "poring_w02",98,124,"恶魔波利",1767,1,"#wop_devillium2::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -1172,8 +1166,8 @@ OnMyMobDead:
 		initnpctimer;
 	}
 	else {
-		donpcevent "#wop_devillium1::OnReset";
-		donpcevent "#wop_devillium2::OnReset";
+		donpcevent "#wop_angellium1::OnReset";
+		donpcevent "#wop_angellium2::OnReset";
 		donpcevent "#wop_devillium1::OnReset";
 		donpcevent "#wop_devillium2::OnReset";
 		donpcevent "#wop_master::OnAngelingWin";
@@ -1189,13 +1183,11 @@ OnTimer120000:
 
 // Deviruchi
 //============================================================
-poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
+poring_w02,99,201,3	script	小恶魔#wop_endmaster	738,{
 	if (MaxWeight-Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "- 等一下！！-";
-		mes "- 你现在携带的物品 -";
-		mes "- 太多了。-";
-		mes "- 请先减轻负重 -";
-		mes "- 再试一次。-";
+		mes "- 你现在携带的物品太多了。-";
+		mes "- 请先减轻负重后再试一次。-";
 		close;
 	}
 	set .@a_point,$@wop_deadcount_a;
@@ -1348,16 +1340,16 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 		close;
 	}
 OnInit:
-	disablenpc "Deviruchi#wop_endmaster";
+	disablenpc "小恶魔#wop_endmaster";
 	end;
 
 OnEnable:
-	enablenpc "Deviruchi#wop_endmaster";
+	enablenpc "小恶魔#wop_endmaster";
 	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "Deviruchi#wop_endmaster";
+	disablenpc "小恶魔#wop_endmaster";
 	end;
 
 OnTimer3000:
@@ -1391,26 +1383,26 @@ OnTimer68100:
 	set $@wop_doorcount_d,0;
 	donpcevent "#wop_warp_a::OnDisable";
 	donpcevent "#wop_warp_d::OnDisable";
-	donpcevent "Mr. Doppel#wop_team_a::OnDisable";
-	donpcevent "Mr. Doppel#wop_team_d::OnDisable";
+	donpcevent "多佩尔先生#wop_team_a::OnDisable";
+	donpcevent "多佩尔先生#wop_team_d::OnDisable";
 	donpcevent "#wop_warp_rtry::OnDisable";
-	donpcevent "Poring#wop_door_a::OnEnable";
-	donpcevent "Poring#wop_door_d::OnEnable";
-	donpcevent "Poring#wop_door_all::OnEnable";
+	donpcevent "波利#wop_door_a::OnEnable";
+	donpcevent "波利#wop_door_d::OnEnable";
+	donpcevent "波利#wop_door_all::OnEnable";
 	stopnpctimer;
 	end;
 }
 
 // Gate Guardian
 //============================================================
-poring_w02,99,52,0	script	Angeling Guardian#wop_da	111,{
+poring_w02,99,52,0	script	天使波利守卫#wop_da	111,{
 	cutin "wop_emb0" + $@wop_doorcount_a,1;
 	if ($@wop_doorcount_a < 4) {
 		if (wop_team == 2) {
 			mes "这里有一个装备战争徽章的装置。";
 			mes "我能看到用于装备徽章的空槽。";
 			next;
-			switch(select("Equip War Badge.:Cancel.")) {
+			switch(select("安装战争徽章:取消")) {
 			case 1:
 				if (countitem(7773)) {
 					if ($@wop_doorcount_a < 4) {
@@ -1500,14 +1492,14 @@ OnTouch_:
 	end;
 }
 
-poring_w02,98,113,0	script	Deviling Guardian#wop_dd	111,{
+poring_w02,98,113,0	script	恶魔波利守卫#wop_dd	111,{
 	cutin "wop_emb0" + $@wop_doorcount_d,1;
 	if ($@wop_doorcount_d < 4) {
 		if (wop_team == 1) {
 			mes "这里有一台安装战争徽章的装置。";
 			mes "可以看到用于安装徽章的空槽。";
 			next;
-			switch(select("Equip War Badge.:Cancel.")) {
+			switch(select("安装战争徽章:取消")) {
 			case 1:
 				if (countitem(7773)) {
 					if ($@wop_doorcount_d < 4) {
@@ -1599,25 +1591,25 @@ OnTouch_:
 
 // Other NPCs
 //============================================================
--	script	Angeling Side Poring#wpa	-1,{
+-	script	天使阵营波利#wpa	-1,{
 	end;
 }
 
--	script	Deviling Side Marin#wpd	-1,{
+-	script	恶魔阵营冰波利#wpd	-1,{
 	end;
 }
 
-poring_w01,79,102,5	duplicate(Angeling Side Poring#wpa)	Angeling Side Poring#wa1	1002
-poring_w01,80,107,5	duplicate(Angeling Side Poring#wpa)	Angeling Side Poring#wa2	1002
-poring_w01,84,108,5	duplicate(Angeling Side Poring#wpa)	Angeling Side Poring#wa3	1002
-poring_w01,84,112,5	duplicate(Angeling Side Poring#wpa)	Angeling Side Poring#wa4	1002
-poring_w01,88,112,5	duplicate(Angeling Side Poring#wpa)	Angeling Side Poring#wa5	1002
+poring_w01,79,102,5	duplicate(天使阵营波利#wpa)	天使阵营波利#wa1	1002
+poring_w01,80,107,5	duplicate(天使阵营波利#wpa)	天使阵营波利#wa2	1002
+poring_w01,84,108,5	duplicate(天使阵营波利#wpa)	天使阵营波利#wa3	1002
+poring_w01,84,112,5	duplicate(天使阵营波利#wpa)	天使阵营波利#wa4	1002
+poring_w01,88,112,5	duplicate(天使阵营波利#wpa)	天使阵营波利#wa5	1002
 
-poring_w01,114,112,3	duplicate(Deviling Side Marin#wpd)	Deviling Side Marin#wd1	1242
-poring_w01,117,111,3	duplicate(Deviling Side Marin#wpd)	Deviling Side Marin#wd2	1242
-poring_w01,117,108,3	duplicate(Deviling Side Marin#wpd)	Deviling Side Marin#wd3	1242
-poring_w01,122,108,3	duplicate(Deviling Side Marin#wpd)	Deviling Side Marin#wd4	1242
-poring_w01,121,105,3	duplicate(Deviling Side Marin#wpd)	Deviling Side Marin#wd5	1242
+poring_w01,114,112,3	duplicate(恶魔阵营冰波利#wpd)	恶魔阵营冰波利#wd1	1242
+poring_w01,117,111,3	duplicate(恶魔阵营冰波利#wpd)	恶魔阵营冰波利#wd2	1242
+poring_w01,117,108,3	duplicate(恶魔阵营冰波利#wpd)	恶魔阵营冰波利#wd3	1242
+poring_w01,122,108,3	duplicate(恶魔阵营冰波利#wpd)	恶魔阵营冰波利#wd4	1242
+poring_w01,121,105,3	duplicate(恶魔阵营冰波利#wpd)	恶魔阵营冰波利#wd5	1242
 
 poring_w01,84,108,3	script	#wop_ex_1	139,3,3,{
 	end;
@@ -1630,11 +1622,11 @@ OnTouch:
 	next;
 	mes "[波利们]";
 	mes "出发！战斗！胜利、胜利、胜利！！！";
-	emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa1");
-	emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa2");
-	emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa3");
-	emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa4");
-	emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa5");
+	emotion ET_GO, getnpcid(0, "天使阵营波利#wa1");
+	emotion ET_GO, getnpcid(0, "天使阵营波利#wa2");
+	emotion ET_GO, getnpcid(0, "天使阵营波利#wa3");
+	emotion ET_GO, getnpcid(0, "天使阵营波利#wa4");
+	emotion ET_GO, getnpcid(0, "天使阵营波利#wa5");
 	next;
 	if (wop_team == 1) {
 		mes "[波利们]";
@@ -1648,20 +1640,20 @@ OnTouch:
 		mes "等等，你！你不是恶魔波利那边的吗？！";
 		mes "马上出去！离开！！";
 		mes "嘘～～嘘～嘘～～";
-		emotion ET_HUK, getnpcid(0, "Angeling Side Poring#wa1");
-		emotion ET_FRET, getnpcid(0, "Angeling Side Poring#wa2");
-		emotion ET_HUK, getnpcid(0, "Angeling Side Poring#wa3");
-		emotion ET_FRET, getnpcid(0, "Angeling Side Poring#wa4");
-		emotion ET_SURPRISE, getnpcid(0, "Angeling Side Poring#wa5");
+		emotion ET_HUK, getnpcid(0, "天使阵营波利#wa1");
+		emotion ET_FRET, getnpcid(0, "天使阵营波利#wa2");
+		emotion ET_HUK, getnpcid(0, "天使阵营波利#wa3");
+		emotion ET_FRET, getnpcid(0, "天使阵营波利#wa4");
+		emotion ET_SURPRISE, getnpcid(0, "天使阵营波利#wa5");
 	}
 	else {
 		mes "[波利们]";
 		mes "嘿，人类。要不要为圣天使波利一方的我们波利战斗？！";
-		emotion ET_HELP, getnpcid(0, "Angeling Side Poring#wa1");
-		emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa2");
-		emotion ET_HELP, getnpcid(0, "Angeling Side Poring#wa3");
-		emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa4");
-		emotion ET_GO, getnpcid(0, "Angeling Side Poring#wa5");
+		emotion ET_HELP, getnpcid(0, "天使阵营波利#wa1");
+		emotion ET_GO, getnpcid(0, "天使阵营波利#wa2");
+		emotion ET_HELP, getnpcid(0, "天使阵营波利#wa3");
+		emotion ET_GO, getnpcid(0, "天使阵营波利#wa4");
+		emotion ET_GO, getnpcid(0, "天使阵营波利#wa5");
 	}
 	next;
 	mes "[波利们]";
@@ -1683,11 +1675,11 @@ OnTouch:
 	next;
 	mes "[冰波利们]";
 	mes "出发！战斗！为胜利而战！！！！";
-	emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd1");
-	emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd2");
-	emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd3");
-	emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd4");
-	emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd5");
+	emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd1");
+	emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd2");
+	emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd3");
+	emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd4");
+	emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd5");
 	next;
 	if (wop_team == 2) {
 		mes "[冰波利们]";
@@ -1700,20 +1692,20 @@ OnTouch:
 		mes "等等，你！你不是圣天使波利那边的吗？！";
 		mes "马上出去！离开！！";
 		mes "嘘～～嘘～嘘～～";
-		emotion ET_HUK, getnpcid(0, "Deviling Side Marin#wd1");
-		emotion ET_FRET, getnpcid(0, "Deviling Side Marin#wd2");
-		emotion ET_HUK, getnpcid(0, "Deviling Side Marin#wd3");
-		emotion ET_FRET, getnpcid(0, "Deviling Side Marin#wd4");
-		emotion ET_SURPRISE, getnpcid(0, "Deviling Side Marin#wd5");
+		emotion ET_HUK, getnpcid(0, "恶魔阵营冰波利#wd1");
+		emotion ET_FRET, getnpcid(0, "恶魔阵营冰波利#wd2");
+		emotion ET_HUK, getnpcid(0, "恶魔阵营冰波利#wd3");
+		emotion ET_FRET, getnpcid(0, "恶魔阵营冰波利#wd4");
+		emotion ET_SURPRISE, getnpcid(0, "恶魔阵营冰波利#wd5");
 	}
 	else {
 		mes "[冰波利们]";
 		mes "嘿，人类。想不想为黑暗贵族恶魔波利而战？怎么样？！";
-		emotion ET_HELP, getnpcid(0, "Deviling Side Marin#wd1");
-		emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd2");
-		emotion ET_HELP, getnpcid(0, "Deviling Side Marin#wd3");
-		emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd4");
-		emotion ET_GO, getnpcid(0, "Deviling Side Marin#wd5");
+		emotion ET_HELP, getnpcid(0, "恶魔阵营冰波利#wd1");
+		emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd2");
+		emotion ET_HELP, getnpcid(0, "恶魔阵营冰波利#wd3");
+		emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd4");
+		emotion ET_GO, getnpcid(0, "恶魔阵营冰波利#wd5");
 	}
 	next;
 	mes "[冰波利们]";

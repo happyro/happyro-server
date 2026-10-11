@@ -63,7 +63,7 @@ L_Quest:
 		mes "要接受这个任务吗？";
 		next;
 		if(select("接受任务。:不接受任务。") == 1) {
-			if (BaseLevel < 55 || BaseLevel > 70) {
+			if (BaseLevel < 56 || BaseLevel > 70) {
 				mes "这些任务不适合我的等级。我应该找其他任务。";
 				close;
 			}
@@ -80,7 +80,7 @@ L_Quest:
 		else
 			set .@items,2; //complete
 	}
-	if (checkquest(.@quest_id) < 2 && (countitem(getarg(3)) < getarg(4) || .@items == 1)) {
+	if (countitem(getarg(3)) < getarg(4) || .@items == 1) {
 		mes "你有正在进行的任务。要查看详情吗？";
 		next;
 		if(select("查看详情。:取消。") == 1)
@@ -90,6 +90,13 @@ L_Quest:
 		mes "我已经很好地完成任务了。现在要报告吗？";
 		next;
 		if(select("报告任务。:暂时不报告。") == 1) {
+			.@missing = countitem(getarg(3)) < getarg(4);
+			if (getargcount() > 5)
+				.@missing = .@missing || countitem(getarg(5)) < getarg(6);
+			if (.@missing) {
+				mes "所需材料数量不足，请带齐后再来报告任务。";
+				close;
+			}
 			delitem getarg(3),getarg(4);
 			if (.@items)
 				delitem getarg(5),getarg(6);
@@ -109,7 +116,7 @@ L_HuntingQuest:
 		mes "要接受这个任务吗？";
 		next;
 		if(select("接受任务。:不接受任务。") == 1) {
-			if (BaseLevel < 55 || BaseLevel > 70) {
+			if (BaseLevel < 56 || BaseLevel > 70) {
 				mes "这些任务不适合我的等级。我应该找其他任务。";
 				close;
 			}
@@ -136,8 +143,13 @@ L_HuntingQuest:
 		mes "我已经很好地完成任务了。现在要报告吗？";
 		next;
 		if(select("报告任务。:暂时不报告。") == 1) {
-			if (.@items)
+			if (.@items) {
+				if (countitem(getarg(3)) < getarg(4)) {
+					mes "所需材料数量不足，请带齐后再来报告任务。";
+					close;
+				}
 				delitem getarg(3),getarg(4);
+			}
 			getexp getarg(1),getarg(2);
 			erasequest .@quest_id;
 			mes "你完成了任务。领取奖励吧。";

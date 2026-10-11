@@ -27,7 +27,7 @@
 //= 2.1 Fixed prize in dual race and optimization. [Capuche]
 //============================================================
 
-// 怪物赛 - 单人怪物赛
+// 怪物赛 - 单怪物赛跑
 //============================================================
 hugel,51,61,0	script	#race_timer1-1	-1,{
 OnEnable:
@@ -38,21 +38,21 @@ OnInit:
 	end;
 
 OnTimer10000:
-	mapannounce "hugel","单人怪物赛即将开始，欢迎大家踊跃参加！",bc_map,"0x87ceeb";
+	mapannounce "hugel","单怪物赛跑即将开始，欢迎大家踊跃参加！",bc_map,"0x87ceeb";
 	end;
 OnTimer30000:
-	mapannounce "hugel","单人怪物赛场入口已开放。",bc_map,"0x87ceeb";
+	mapannounce "hugel","单怪物赛跑场入口已开放。",bc_map,"0x87ceeb";
 	$@mon_time_1_1 = 1;
 	donpcevent "Race Progress Timer::OnEnable";
 	end;
 OnTimer90000:
-	mapannounce "hugel","单人怪物赛场已开放，请参赛者尽快进入。",bc_map,"0x87ceeb";
+	mapannounce "hugel","单怪物赛跑场已开放，请参赛者尽快进入。",bc_map,"0x87ceeb";
 	end;
 OnTimer210000:
-	mapannounce "hugel","单人怪物赛场入口即将关闭，请参赛者现在入场。",bc_map,"0x87ceeb";
+	mapannounce "hugel","单怪物赛跑场入口即将关闭，请参赛者现在入场。",bc_map,"0x87ceeb";
 	end;
 OnTimer270000:
-	mapannounce "hugel","单人怪物赛场入口即将关闭。",bc_map,"0x87ceeb";
+	mapannounce "hugel","单怪物赛跑场入口即将关闭。",bc_map,"0x87ceeb";
 	end;
 OnTimer272000:
 	mapannounce "hugel","请在入口关闭前进入赛场。",bc_map,"0x87ceeb";
@@ -113,7 +113,7 @@ OnEnable:
 	}
 	end;
 OnTimer1000:
-	enablenpc "Ticket Helper#single";
+	enablenpc "赛票助手#single";
 	end;
 OnTimer7000:
 	mapannounce "p_track01","欢迎来到怪物赛场。",bc_map,"0xffb6c1";
@@ -122,13 +122,13 @@ OnTimer10000:
 	mapannounce "p_track01","如有疑问，欢迎随时向服务台咨询。",bc_map,"0xffb6c1";
 	end;
 OnTimer120000:
-	mapannounce "p_track01","单人怪物赛将在 3 分钟后开始。",bc_map,"0xffb6c1";
+	mapannounce "p_track01","单怪物赛跑将在 3 分钟后开始。",bc_map,"0xffb6c1";
 	end;
 OnTimer123000:
 	mapannounce "p_track01","如需下注，请向售票员咨询。",bc_map,"0xffb6c1";
 	end;
 OnTimer240000:
-	mapannounce "p_track01","单人怪物赛即将开始。",bc_map,"0xffb6c1";
+	mapannounce "p_track01","单怪物赛跑即将开始。",bc_map,"0xffb6c1";
 	end;
 OnTimer243000:
 	mapannounce "p_track01","如需下注，请向售票员咨询。",bc_map,"0xffb6c1";
@@ -136,7 +136,7 @@ OnTimer243000:
 OnTimer300000:
 	mapannounce "p_track01","怪物赛已经开始。祝各位参赛者好运。",bc_map,"0xffb6c1";
 	$@monster_race = 0;
-	disablenpc "Ticket Helper#single";
+	disablenpc "赛票助手#single";
 	for ( .@i = 1; .@i <= 6; .@i++ )
 		donpcevent "Runner No. "+.@i+"#"+.@i+"::OnEnable";
 	stopnpctimer;
@@ -148,60 +148,43 @@ OnInit:
 	end;
 }
 
-p_track01,73,22,1	script	Ticket Helper#single	899,{
+p_track01,73,22,1	script	赛票助手#single	899,{
 	mes "[赛票助手]";
-	mes "欢迎来到";
-	mes "怪物赛 Arena.";
-	mes "如果你想参加";
-	mes "参加 ^3131FF单人怪物赛^000000，";
-	mes "请从列表中选择 1 只";
-	mes "怪物（共 6 只）。";
+	mes "欢迎来到怪物赛场。";
+	mes "如果想参加^3131FF单怪物赛跑^000000，请从 6 只怪物中选择 1 只。";
 	next;
 	if (!checkweight("Spawn",200)) {
 		mes "[赛票助手]";
-		mes "等等……";
-		mes "我现在不能给你";
-		mes "任何东西。";
-		mes "你携带的物品";
-		mes "太多了……";
+		mes "等等……你携带的物品太多了，我现在无法再交给你任何东西。";
 		close;
 	}
-	.@m = select ("Monster Status", "Monster 1", "Monster 2", "Monster 3", "Monster 4", "Monster 5", "Monster 6") - 1;
+	.@m = select ("怪物状态", "1 号怪物", "2 号怪物", "3 号怪物", "4 号怪物", "5 号怪物", "6 号怪物") - 1;
 	if (.@m == 0) {
 		for ( .@i = 1; .@i <= 6; .@i++ )
-			mes "怪物 "+.@i+" [^CC6600幸运^000000：" + getd("$@mr_1_luk"+.@i) + "] [^EE0000HP^000000：" + getd("$@mr_1_tire"+.@i) + "]";
+			mes "怪物 "+.@i+" [^CC6600幸运^000000：" + getd("$@mr_1_luk"+.@i) + "] [^EE0000体力^000000：" + getd("$@mr_1_tire"+.@i) + "]";
 		close;
 	} else {
 		if ($@mon_time_1_1 == 1) {
 			if (monster_race_1) {
 				mes "[赛票助手]";
-				mes "你选择了";
-				mes "怪物 ^FF0000"+ monster_race_1 +"^000000 参加单人怪物赛。";
-				mes "单人怪物赛.";
-				mes "比赛开始时间";
-				mes "很快会公布，";
-				mes "请耐心等待，谢谢。";
+				mes "你选择了 ^FF0000"+monster_race_1+"^000000 号怪物参加单怪物赛跑。";
+				mes "比赛开始时间很快就会公布，请耐心等待。谢谢。";
 				close;
 			}
 			mes "[赛票助手]";
-			mes "你选择了怪物 "+.@m+"吗？";
-			mes "好的，请等待";
-			mes "比赛开始公告。";
-			mes "如果你选择的怪物";
-			mes "获胜，请使用这张券兑换奖励。";
+			mes "你选择了 "+.@m+" 号怪物？";
+			mes "好的，请等待开赛公告。如果你选择的怪物获胜，请用这张赛票兑换奖励。";
 			getitem 7514,1; //Monster_Ticket
 			monster_race_1 = .@m;
 			close;
 		}
 		mes "[赛票助手]";
-		mes "抱歉，怪物赛";
-		mes "正在进行中。";
-		mes "如果你想参加, then please wait 参加 next race.";
+		mes "抱歉，怪物赛跑正在进行中。想参加的话，请等待下一场比赛。";
 		close;
 	}
 
 OnInit:
-	disablenpc "Ticket Helper#single";
+	disablenpc "赛票助手#single";
 	end;
 }
 
@@ -212,7 +195,7 @@ OnEnable:
 	getmapxy(.@m$,.@x,.@y,BL_NPC);
 	setarray .@mob[1], 1725,1726,1727,1728,1730,1729;
 	.@n = atoi( strnpcinfo(2) );
-	monster "p_track01",58,.@y,"The "+ callfunc("F_GetNumSuffix",.@n) +" Racer",.@mob[.@n],1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "p_track01",58,.@y,"第 "+.@n+" 号赛跑怪物",.@mob[.@n],1,strnpcinfo(0)+"::OnMyMobDead";
 	end;
 
 OnDisable:
@@ -253,134 +236,87 @@ p_track01,30,32,0	duplicate(Runner_main)	Runner No. 4#4	-1,1,0
 p_track01,30,30,0	duplicate(Runner_main)	Runner No. 5#5	-1,1,0
 p_track01,30,28,0	duplicate(Runner_main)	Runner No. 6#6	-1,1,0
 
-p_track01,67,45,5	script	Medal Distributor#single	845,{
+p_track01,67,45,5	script	奖牌兑换员#single	845,{
 	if (!checkweight("Spawn",200)) {
 		mes "[奖牌兑换员]";
-		mes "抱歉，我不能";
-		mes "给你奖牌，";
-		mes "请先腾出更多";
-		mes "背包空间。";
+		mes "抱歉，请先腾出一些背包空间，我才能把奖牌交给你。";
 		close;
 	}
 	if (countitem("Monster_Ticket")) {// 7514
 		mes "[奖牌兑换员]";
 		mes "你好～";
-		mes "如果你在最近的比赛中下注了";
-		mes "获胜怪物，";
-		mes "就可以在这里用比赛券兑换";
-		mes "你的比赛券，换取";
-		mes "一些奖牌。";
+		mes "如果你押中了上一场比赛的获胜怪物，就可以在这里用赛票兑换奖牌。";
 		next;
 		mes "[奖牌兑换员]";
-		mes "请记住，你只能";
-		mes "在比赛结束后立即用获胜的";
-		mes "比赛券兑换奖牌只能在比赛";
-		mes "奖牌还可以交给斐扬的 Wayne";
-		mes "兑换物品。";
-		mes "结束后立即进行，奖牌可在斐扬兑换物品。";
+		mes "请记住，只有比赛结束后的一小段时间可以用获胜赛票兑换奖牌。";
+		mes "奖牌可以交给赫尔的韦恩，用来兑换物品。";
 		next; 
 		if ($@monster_race) {
 			if (monster_race_1 == $@monster_race) {
 				mes "[奖牌兑换员]";
-				mes "哦，恭喜你，";
-				mes "你持有获胜的";
-				mes "单人怪物赛券！那么";
-				mes "你想兑换你的";
-				mes "要用赛跑券兑换奖牌吗？";
+				mes "恭喜，你持有单怪物赛跑的获胜赛票！";
+				mes "要用它兑换奖牌吗？";
 				next;
 				if (select("好的，请兑换。:不用了，谢谢。") == 2) {
 					mes "[奖牌兑换员]";
-					mes "嗯，你确定吗？你";
-					mes "只能兑换获胜的";
-					mes "赛跑券兑换奖牌";
-					mes "比赛券，而且时间很短。如果弄错了，";
-					mes "请尽快重新询问我。";
+					mes "你确定吗？比赛结束后，只有很短的时间能兑换获胜赛票。";
+					mes "如果改变主意，请尽快回来找我。";
 					close;
 				}
 				mes "[奖牌兑换员]";
-				mes "让我看看你的赛跑券……";
-				mes "哦！恭喜你，";
-				mes "你赢了！可以告诉我名字吗？";
+				mes "让我看看你的赛票……";
+				mes "恭喜，你赢了！可以告诉我你的名字吗？";
 				next;
 				input .@input$;
 				if (.@input$ == strcharinfo(0)) {
 					.@insa = rand(1,1000);
 					mes "[奖牌兑换员]";
 					mes "啊，"+strcharinfo(0)+"。";
-					mes "你可以用这张";
-					mes "赛跑券兑换奖牌，";
-					mes "现在请输入赛跑券兑换";
-					mes "号码。你的兑换号码是";
-					mes "exchange number is ^FF0000" + .@insa + "^000000.";
+					mes "现在请输入赛票兑换号码。你的号码是 ^FF0000"+.@insa+"^000000。";
 					next;
 					input .@input;
 					if (!.@input) {
 						mes "[奖牌兑换员]";
-						mes "哦？你不想";
-						mes "兑换你的";
-						mes "获胜赛跑券吗？";
+						mes "哦？你不想兑换获胜赛票吗？";
 						close;
 					} else if (.@input == .@insa) {
 						mes "[奖牌兑换员]";
-						mes "谢谢！你输入了";
-						mes "正确的号码……";
-						mes "一切看起来都";
-						mes "没问题。好了！";
+						mes "谢谢！你输入的号码正确，一切都没问题！";
 						next;
 						mes "[奖牌兑换员]";
-						mes "现在请收下你的";
-						mes "奖牌! You can";
-						mes "你可以用它们向";
-						mes "斐扬的 Wayne 兑换一些";
-						mes "兑换有趣的物品。谢谢～";
+						mes "请收下你的奖牌！";
+						mes "你可以找赫尔的韦恩，用奖牌兑换有趣的物品。谢谢～";
 						delitem 7514,1; //Monster_Ticket
 						monster_race_1 = 0;
 						getitem 7515,4; //Marvelous_Medal
 						close;
 					}
 					mes "[奖牌兑换员]";
-					mes "抱歉，看来";
-					mes "你输入了";
-					mes "错误的赛跑券号码。";
-					mes "过一会儿再";
-					mes "回来可以吗？";
+					mes "抱歉，你输入的赛票兑换号码不正确。";
+					mes "请稍后再来试一次。";
 					close;
 				}
 				mes "[奖牌兑换员]";
-				mes "这是什么……？";
-				mes "好像出了问题……";
-				mes "你是不是输入了错误的名字？";
-				mes "请检查你的名字，";
-				mes "然后再试一次。";
+				mes "嗯？好像出了点问题……";
+				mes "你是不是输错了名字？请核对后再试一次。";
 				close;
 			}
 			mes "[奖牌兑换员]";
-			mes "你可能没有下注";
-			mes "上一场比赛的获胜怪物，";
-			mes "但希望你";
-			mes "下次好运～";
+			mes "虽然你没有押中上一场比赛的获胜怪物，但希望你下次好运～";
 			close;
 		}
 	}
 	mes "[奖牌兑换员]";
 	mes "你好～";
-	mes "如果你在最近的比赛中下注了";
-	mes "获胜怪物，";
-	mes "就可以在这里用比赛券兑换";
-	mes "你的比赛券，换取";
-	mes "一些奖牌。";
+	mes "如果你押中了上一场比赛的获胜怪物，就可以在这里用赛票兑换奖牌。";
 	next;
 	mes "[奖牌兑换员]";
-	mes "请记住，你只能";
-	mes "在比赛结束后立即用获胜的";
-	mes "比赛券兑换奖牌只能在比赛";
-	mes "奖牌还可以交给斐扬的 Wayne";
-	mes "兑换物品。";
-	mes "结束后立即进行，奖牌可在斐扬兑换物品。";
+	mes "请记住，只有比赛结束后的一小段时间可以用获胜赛票兑换奖牌。";
+	mes "奖牌可以交给赫尔的韦恩，用来兑换物品。";
 	close;
 
 OnEnable:
-	enablenpc "Medal Distributor#single";
+	enablenpc "奖牌兑换员#single";
 	emotion ET_SURPRISE;
 	initnpctimer;
 	end;
@@ -435,46 +371,30 @@ OnTimer300000:
 OnTimer342000:
 	stopnpctimer;
 OnInit:
-	disablenpc "Medal Distributor#single";
+	disablenpc "奖牌兑换员#single";
 	end;
 }
 
-p_track01,76,36,1	script	Exit Guide#single	798,{
+p_track01,76,36,1	script	离场向导#single	798,{
 	mes "[离场向导]";
-	mes "如果你有获胜的赛跑";
-	mes "券，请务必";
-	mes "你现在兑换奖牌。";
-	mes "下一场比赛开始后所有赛跑券都会";
-	mes "失效。";
+	mes "如果你有获胜赛票，请现在就去兑换奖牌。";
+	mes "下一场比赛开始后，所有旧赛票都会失效。";
 	next;
 	mes "[离场向导]";
-	mes "如果你想离开";
-	mes "赛场，我可以带你";
-	mes "到外面。现在要";
-	mes "离开赛场吗？";
+	mes "如果想离开赛场，我可以送你出去。现在要离开吗？";
 	next;
 	if (select("是:否") == 2) {
 		mes "[离场向导]";
-		mes "好的。";
-		mes "准备好后";
-		mes "告诉我";
-		mes "即可离开。";
+		mes "好的，准备离开时再告诉我。";
 		close;
 	}
 	if (!countitem(7514)) {
 		mes "[离场向导]";
-		mes "感谢你的";
-		mes "光临，希望你";
-		mes "很快再次";
-		mes "来访～";
+		mes "感谢光临，希望你很快再来～";
 	} else {
 		mes "[离场向导]";
-		mes "按照规定，";
-		mes "离开前我必须收走你的";
-		mes "赛跑券 before you leave.";
-		mes "感谢你的 your patronage,";
-		mes "希望你在";
-		mes "在这里的怪物赛场度过愉快时光。";
+		mes "按照规定，离场前我必须收走你的赛票。";
+		mes "感谢光临，希望你在怪物赛场玩得开心。";
 		delitem 7514,1; //Monster_Ticket
 	}
 	monster_race_1 = 0;
@@ -483,113 +403,76 @@ p_track01,76,36,1	script	Exit Guide#single	798,{
 	end;
 }
 
-hugel,58,72,6	script	Eckar Ellebird#single	798,{
+hugel,58,72,6	script	埃卡尔·埃尔伯德#single	798,{
 	mes "[埃卡尔·埃尔伯德]";
-	mes "欢迎来到 biggest";
-	mes "景点——";
-	mes "怪物赛 Arena.";
-	mes "今天我能帮你什么？";
+	mes "欢迎来到赫尔最受欢迎的景点——怪物赛场。";
+	mes "今天有什么能帮你的吗？";
 	next;
-	if (select("怪物赛 Info:Enter 怪物赛") == 1) {
+	if (select("怪物赛跑介绍:进入怪物赛场") == 1) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "怪物赛s originated from";
-		mes "简单的儿童游戏，";
-		mes "可爱的宠物互相赛跑，后来发展成成人";
-		mes "也喜爱的活动，因此我们在斐扬建造了赛场。";
+		mes "怪物赛跑最初只是孩子们让可爱宠物互相赛跑的游戏。";
+		mes "后来连大人也喜欢上了这项活动，于是我们在赫尔建造了赛场。";
 		next;
 		mes "[埃卡尔·埃尔伯德]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "然后是双怪物赛跑，赔率和奖励高于单怪物赛跑：";
-		mes "你必须押两只怪物，并且它们分获第一和第二名才能获胜。";
+		mes "这里举办两种怪物赛跑。";
+		mes "第一种是单怪物赛跑，押中第一名的怪物就能获得奖励。";
 		next;
 		mes "[埃卡尔·埃尔伯德]";
-		mes "虽然需要少量入场费，但我们只用这些钱奖励参赛者、维护竞技场。";
-		mes "所以我们不会从这项事业中牟利。";
-		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
+		mes "另一种是双怪物赛跑，中奖难度和奖励都高于单怪物赛跑。";
+		mes "你必须选择两只怪物，且它们分别获得第一、第二名，才算获胜，顺序不限。";
 		next;
 		mes "[埃卡尔·埃尔伯德]";
-		mes "虽然需要少量入场费，";
-		mes "[埃卡·埃雷尼斯]";
-		mes "进入赛跑竞技场后，你会获得赛跑票。";
-		mes "请注意，获胜赛跑票只能在比赛结束后 5 分钟内兑换奖牌。";
-		mes "我们不会";
-		mes "从这项事业中牟利。";
+		mes "虽然需要支付少量入场费，但这些钱只用于奖励参赛者和维护赛场。";
+		mes "我们不会从中牟利。";
 		next;
 		mes "[埃卡尔·埃尔伯德]";
-		mes "如果想押单怪物赛跑，请找我的兄弟埃勒伯德帮忙。";
-		mes "根据比赛结果";
-		mes "[埃卡·埃雷尼斯]";
-		mes "如果对双怪物赛跑感兴趣，我可以帮你开始。";
-		mes "你想押双怪物赛跑吗？";
-		mes "赌博在这里是违法的……";
+		mes "另外，禁止根据比赛结果，用物品或 Zeny 私下对赌。";
+		mes "这种赌博在这里是不被允许的……";
 		next;
 		mes "[埃卡尔·埃尔伯德]";
-		mes "好吧。希望你在怪物赛跑竞技场玩得开心~";
-		mes "请注意，获胜赛跑票只能在比赛结束后";
-		mes "5 分钟内兑换奖牌。";
+		mes "进入赛场后，请找赛票助手领取赛票。";
+		mes "获胜赛票只能在比赛结束后的 5 分钟内兑换奖牌。";
 		next;
 	}
 	mes "[埃卡尔·埃尔伯德]";
-	mes "在下注前，最好把一些物品存入卡普拉仓库……";
-	mes "in the Monster Race Arena is";
-	mes "2,000 zeny. If you'd like to wager on a Dual Monster Race, then";
-	mes "please ask my brother Erenes,";
-	mes "and he will help you.";
+	mes "参加怪物赛跑的入场费是 2,000 Zeny。";
+	mes "如果想参加双怪物赛跑，请找我的兄弟埃雷尼斯，他会帮你。";
 	next;
 	mes "[埃卡尔·埃尔伯德]";
-	mes "Otherwise, I'll help get you";
-	mes "started if you're interested";
-	mes "in a Single Monster Race.";
-	mes "Would you like wager on";
-	mes "a Single Monster Race?";
+	mes "如果对单怪物赛跑感兴趣，我可以帮你入场。";
+	mes "你想参加单怪物赛跑吗？";
 	next;
-	if (select("好的，请兑换。:不用了，谢谢。") == 2) {
+	if (select("好的，我要参加。:不用了，谢谢。") == 2) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "好了，应该准备就绪了。祝你享受比赛~";
-		mes "现在我带你进入怪物赛跑竞技场。";
+		mes "好的，希望你在怪物赛场玩得开心～";
 		close;
 	}
 	if (!checkweight("Spawn",700)) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "Oh, wow. You're carrying";
-		mes "an awful lot of stuff... Yeah,";
-		mes "you better put some of it away";
-		mes "in Kafra Storage or something.";
+		mes "你带的东西太多了……";
+		mes "请先把部分物品存入卡普拉仓库吧。";
 		close;
 	}
-	if (Zeny < 2000) {
+	if ($@mon_time_1_1 == 1 && Zeny < 2000) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "谢谢，希望你享受这场比赛。";
-		mes "现在我带你去怪物赛跑竞技场。";
-		mes "2,000 zeny entrance fee. ";
+		mes "抱歉，你没有足够的钱支付 2,000 Zeny 的入场费。";
 		close;
 	}
 	if (countitem("Monster_Ticket")) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "Hm? What are you doing";
-		mes "[埃卡·埃雷尼斯]";
-		mes "我们还在为下一场双怪物赛跑做准备，";
-		mes "请再稍等一会儿……";
+		mes "嗯？你怎么还拿着过期的赛票？";
+		mes "我先帮你处理掉，免得和新赛票混在一起。";
 		delitem 7514,1; //Monster_Ticket
 		next;
 		if ($@mon_time_1_1 == 1) {
 			if (Zeny < 2000) {
 				mes "[埃卡尔·埃尔伯德]";
-				mes "[埃卡·埃雷尼斯]";
-				mes "谢谢，希望你享受这场比赛。";
-				mes "现在我带你去怪物赛跑竞技场。";
-				mes "2,000 zeny entrance fee. ";
+				mes "抱歉，你没有足够的钱支付 2,000 Zeny 的入场费。";
 				close;
 			}
 			mes "[埃卡尔·埃尔伯德]";
-			mes "[埃卡·埃雷尼斯]";
-			mes "现在怪物赛跑正在进行。下注已经太晚，";
-			mes "但如果想观看，费用是 500 Zeny。";
-			mes "这是观众费。你想进入怪物赛跑竞技场吗？";
-			mes "the Monster Race Arena now.";
+			mes "好了，一切准备就绪，祝你比赛愉快～";
+			mes "现在我带你进入怪物赛场。";
 			Zeny -= 2000;
 			monster_race_1 = 0;
 			close2;
@@ -598,10 +481,8 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 		}
 	} else if ($@mon_time_1_1 == 1) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "抱歉，你没有足够的钱支付 500 Zeny 观众费。";
-		mes "you enjoy this race.";
-		mes "Let me guide you now";
-		mes "[埃卡·埃雷尼斯]";
+		mes "谢谢，祝你比赛愉快。";
+		mes "现在我带你进入怪物赛场。";
 		Zeny -= 2000;
 		monster_race_1 = 0;
 		close2;
@@ -610,35 +491,23 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 	}
 	if ($@mon_time_1_1 == 2) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "谢谢~";
-		mes "Single Monster Race, so";
-		mes "we ask that you please";
-		mes "wait a little while longer...";
+		mes "我们还在准备下一场单怪物赛跑，请再稍等一会儿……";
 		close;
 	}
 	if ($@monster_race == 0) {
 		mes "[埃卡尔·埃尔伯德]";
-		mes "Right now, a Monster Race";
-		mes "is in progress. It's too late to place a wager, but if you'd like";
-		mes "to watch, the fee is 500 zeny";
-		mes "for spectators. Would you like to enter the Monster Race Arena?";
+		mes "怪物赛跑已经开始，现在无法下注。";
+		mes "如果想观看比赛，观众入场费是 500 Zeny。要进入赛场吗？";
 		next;
-		if (select("Enter:Cancel") == 2) {
+		if (select("进入:取消") == 2) {
 			mes "[埃卡尔·埃尔伯德]";
-			mes "Alright, then. If you'd like";
-			mes "to wager on a monster";
-			mes "race, please wait for the";
-			mes "current race to finish. I hope";
-			mes "that you enjoy your time here";
-			mes "现在我带你进入怪物赛跑竞技场。";
+			mes "好的。如果想下注，请等当前比赛结束。";
+			mes "希望你在怪物赛场玩得开心～";
 			close;
 		}
 		if (Zeny > 499) {
 			mes "[埃卡尔·埃尔伯德]";
-			mes "Thank you~";
-			mes "希望你在这里的";
-			mes "watching this race!";
+			mes "谢谢～祝你观赛愉快！";
 			Zeny -= 500;
 			monster_race_1 = 0;
 			close2;
@@ -646,122 +515,81 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 			end;
 		}
 		mes "[埃卡尔·埃尔伯德]";
-		mes "I'm sorry, but you don't";
-		mes "have enough money to pay";
-		mes "the 500 zeny spectator fee.";
+		mes "抱歉，你没有足够的钱支付 500 Zeny 的观众入场费。";
 		close;
 	}
 	mes "[埃卡尔·埃尔伯德]";
-	mes "I'm sorry, but a monster";
-	mes "race has just ended, so we're";
-	mes "having the 5 minute period in";
-	mes "which the winners can claim";
-	mes "their Prize Medals. The gate";
-	mes "will open soon, so please wait.";
+	mes "抱歉，比赛刚刚结束，现在是获胜者领取奖牌的 5 分钟领奖时间。";
+	mes "入口很快就会重新开放，请稍等。";
 	close;
 OnEnable:
-	enablenpc "Eckar Ellebird#single";
+	enablenpc "埃卡尔·埃尔伯德#single";
 	end;
 OnDisable:
-	disablenpc "Eckar Ellebird#single";
+	disablenpc "埃卡尔·埃尔伯德#single";
 	end;
 }
 
-p_track01,39,49,3	script	Game Guide#single	845,{
+p_track01,39,49,3	script	游戏向导#single	845,{
 	mes "[游戏向导]";
-	mes "欢迎来到";
-	mes "怪物赛 Arena.";
-	mes "我能为你做什么？";
+	mes "欢迎来到怪物赛场。";
+	mes "有什么能帮你的吗？";
 	next;
 	switch(select("怪物赛跑介绍:下注信息:赛票兑换信息")) {
 	case 1:
 		mes "[游戏向导]";
-		mes "怪物赛s originated from";
-		mes "简单的儿童游戏，";
-		mes "可爱的宠物互相赛跑，后来发展成成人";
-		mes "也喜爱的活动，因此我们在斐扬建造了赛场。";
+		mes "怪物赛跑最初只是孩子们让可爱宠物互相赛跑的游戏。";
+		mes "后来连大人也喜欢上了这项活动，于是我们在赫尔建造了赛场。";
 		next;
 		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "然后是双怪物赛跑，赔率和奖励高于单怪物赛跑：";
-		mes "你必须押两只怪物，并且它们分获第一和第二名才能获胜。";
+		mes "这里举办两种怪物赛跑。";
+		mes "第一种是单怪物赛跑，押中第一名的怪物就能获得奖励。";
 		next;
 		mes "[游戏向导]";
-		mes "虽然需要少量入场费，但我们只用这些钱奖励参赛者、维护竞技场。";
-		mes "所以我们不会从这项事业中牟利。";
-		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
+		mes "另一种是双怪物赛跑，中奖难度和奖励都高于单怪物赛跑。";
+		mes "你必须选择两只怪物，且它们分别获得第一、第二名，才算获胜，顺序不限。";
 		next;
 		mes "[游戏向导]";
-		mes "虽然需要少量入场费，";
-		mes "[埃卡·埃雷尼斯]";
-		mes "进入赛跑竞技场后，你会获得赛跑票。";
-		mes "请注意，获胜赛跑票只能在比赛结束后 5 分钟内兑换奖牌。";
-		mes "我们不会";
-		mes "从这项事业中牟利。";
+		mes "虽然需要支付少量入场费，但这些钱只用于奖励参赛者和维护赛场。";
+		mes "我们不会从中牟利。";
 		next;
 		mes "[游戏向导]";
-		mes "如果想押单怪物赛跑，请找我的兄弟埃勒伯德帮忙。";
-		mes "根据比赛结果";
-		mes "[埃卡·埃雷尼斯]";
-		mes "如果对双怪物赛跑感兴趣，我可以帮你开始。";
-		mes "你想押双怪物赛跑吗？";
-		mes "赌博在这里是违法的……";
+		mes "另外，禁止根据比赛结果，用物品或 Zeny 私下对赌。";
+		mes "这种赌博在这里是不被允许的……";
 		next;
 		mes "[游戏向导]";
-		mes "好吧。希望你在怪物赛跑竞技场玩得开心~";
-		mes "请注意，获胜赛跑票只能在比赛结束后";
-		mes "5 分钟内兑换奖牌。";
+		mes "进入赛场后，请找赛票助手领取赛票。";
+		mes "获胜赛票只能在比赛结束后的 5 分钟内兑换奖牌。";
 		next;
 		break;
 	case 2:
 		mes "[游戏向导]";
-		mes "Before placing a wager, you";
-		mes "must get a free Racing Ticket";
-		mes "from the Ticket Helper. There,";
-		mes "I've marked the Ticket Helper";
-		mes "在你的小地图上，";
-		mes "这样就能轻松找到他。";
+		mes "想下注的话，请先找赛票助手领取免费的赛票。";
+		mes "我已经在小地图上标出了他的位置，你可以轻松找到他。";
 		viewpoint 1,73,22,1,0xFF3355;
 		next;
 		break;
 	case 3:
 		mes "[游戏向导]";
-		mes "如果你押中了单人怪物赛的冠军，";
-		mes "或双人怪物赛的第一、第二名，";
-		mes "就可以用赛跑票";
-		mes "兑换奖牌。";
-		mes "you can exchange your Racing";
-		mes "Ticket for Prize Medals.";
+		mes "押中单怪物赛跑的冠军，或同时押中双怪物赛跑的第一、第二名，就能用赛票兑换奖牌。";
 		next;
 		mes "[游戏向导]";
-		mes "不过，你必须在比赛结束后的";
-		mes "5分钟内向奖牌兑换员";
-		mes "^FF0000兑换赛跑票。^FFFFFF ^FF0000超过5分钟后，票券将作废。^000000";
-		mes "5 minute window after the end";
-		mes "of the race. ^FF0000Your ticket becomes^FFFFFF ^FF0000 void after these 5 minutes.^000000";
+		mes "必须在比赛结束后的 5 分钟内，找奖牌兑换员兑换获胜赛票。";
+		mes "^FF0000超过 5 分钟，赛票就会失效。^000000";
 		next;
 		mes "[游戏向导]";
-		mes "5分钟期限结束后，你会被传送到场外，";
-		mes "我们也会立即准备下一场比赛。";
-		mes "下注时请记住这些信息。";
-		mes "information when you wager.";
+		mes "5 分钟结束后，你会被传送到场外，我们也会立即准备下一场比赛。";
+		mes "下注时请记住这些规定。";
 		next;
 		mes "[游戏向导]";
-		mes "如果你还没有领取免费的赛跑票，";
-		mes "请去找票券助手。";
-		mes "我已经在你的小地图上标出了";
-		mes "他的位置。";
-		mes "his location on your Mini-Map.";
+		mes "要兑换获胜赛票，请找奖牌兑换员。";
+		mes "我已经在小地图上标出了他的位置。";
 		viewpoint 1,67,45,2,0xCE6300;
 		next;
 		break;
 	}
 	mes "[游戏向导]";
-	mes "谢谢，";
-	mes "希望你在这里的";
-	mes "怪物赛跑竞技场";
-	mes "玩得开心。";
+	mes "谢谢，希望你在怪物赛场玩得开心。";
 	close;
 }
 
@@ -926,35 +754,35 @@ OnInit:
 	end;
 
 OnTimer10000:
-	mapannounce "hugel","The Dual Monster Race will soon begin. We hope to see many of you participate!",bc_map,"0xffb6c1";
+	mapannounce "hugel","双怪物赛跑即将开始，欢迎大家踊跃参加！",bc_map,"0xffb6c1";
 	end;
 
 OnTimer30000:
-	mapannounce "hugel","The Dual Monster Race Arena has just opened.",bc_map,"0xffb6c1";
+	mapannounce "hugel","双怪物赛场入口已开放。",bc_map,"0xffb6c1";
 	$@mon_time_2_1 = 1;
 	donpcevent "#race_timer2-2::OnEnable";
 	donpcevent "TrapGlobal#race02::OnEnable";
-	enablenpc "Ticket Helper#2";
+	enablenpc "赛票助手#2";
 	end;
 
 OnTimer90000:
-	mapannounce "hugel","The Dual Monster Race arena is now open. Participants should enter the Arena as soon as they can.",bc_map,"0xffb6c1";
+	mapannounce "hugel","双怪物赛场已开放，请参赛者尽快入场。",bc_map,"0xffb6c1";
 	end;
 
 OnTimer210000:
-	mapannounce "hugel","The entrance to the Dual Monster Race Arena will close shortly. Participants, please enter the arena now.",bc_map,"0xffb6c1";
+	mapannounce "hugel","双怪物赛场入口即将关闭，请参赛者现在入场。",bc_map,"0xffb6c1";
 	end;
 
 OnTimer270000:
-	mapannounce "hugel","The Dual Monster Race Arena's entrance will soon close.",bc_map,"0xffb6c1";
+	mapannounce "hugel","双怪物赛场入口即将关闭。",bc_map,"0xffb6c1";
 	end;
 
 OnTimer272000:
-	mapannounce "hugel","Participants, please enter the Arena before the doors close.",bc_map,"0xffb6c1";
+	mapannounce "hugel","请在入口关闭前进入赛场。",bc_map,"0xffb6c1";
 	end;
 
 OnTimer330000:
-	mapannounce "hugel","The race is now starting. If you missed your chance to enter this race, please try again next time~!",bc_map,"0xffb6c1";
+	mapannounce "hugel","比赛现在开始，错过本场的玩家请下次再来～！",bc_map,"0xffb6c1";
 	$@mon_time_2_1 = 0;
 	disablenpc "#race_timer2-1";
 	stopnpctimer;
@@ -969,33 +797,33 @@ OnEnable:
 	end;
 
 OnTimer5000:
-	mapannounce "p_track02","Welcome to the Monster Race Arena.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","欢迎来到怪物赛场。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer7000:
-	mapannounce "p_track02","Feel free to inquire at the help desk whenever you have questions.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","如有疑问，请随时向服务台咨询。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer120000:
-	mapannounce "p_track02","The Dual Monster Race will start in 3 minutes.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","双怪物赛跑将在 3 分钟后开始。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer122000:
-	mapannounce "p_track02","Please ask a Ticket Helper if you wish to wager on the race.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","如需下注，请找赛票助手。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer240000:
-	mapannounce "p_track02","The Dual Monster Race will start shortly.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","双怪物赛跑即将开始。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer242000:
-	mapannounce "p_track02","Please ask a Ticket Helper if you wish to wager on the race.",bc_map,"0x87ceeb";
+	mapannounce "p_track02","如需下注，请找赛票助手。",bc_map,"0x87ceeb";
 	end;
 
 OnTimer300000:
-	mapannounce "p_track02","The Monster Race is starting now. Good luck, everybody!",bc_map,"0x87ceeb";
+	mapannounce "p_track02","怪物赛跑现在开始，祝各位好运！",bc_map,"0x87ceeb";
 	$@mon_time_2_2 = 1;
-	disablenpc "Ticket Helper#2";
+	disablenpc "赛票助手#2";
 	donpcevent "#poring1::OnEnable";
 	donpcevent "#lunatic1::OnEnable";
 	donpcevent "#savagebebe1::OnEnable";
@@ -1019,48 +847,48 @@ OnEnable:
 	end;
 
 OnTimer3000:
-	mapannounce "p_track02","The Monster Race is finished! Congratulations to all the winners!",bc_map,"0xFFFF00";
+	mapannounce "p_track02","怪物赛跑结束！恭喜所有获胜者！",bc_map,"0xFFFF00";
 	end;
 
 OnTimer6000:
-	mapannounce "p_track02","Please give your Racing Ticket to the Medal Distributor if you bet on the winning monster.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","如果你押中了获胜怪物，请把赛票交给奖牌兑换员。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer9000:
-	mapannounce "p_track02","You have 5 minutes to exchange a winning ticket for Prize Medals from the Medal Distributor.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","请在 5 分钟内找奖牌兑换员，用获胜赛票兑换奖牌。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer12000:
-	mapannounce "p_track02","All tickets become void after this 5 minute period, so winners should claim their prize now.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","5 分钟后所有赛票失效，请获胜者立即领奖。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer15000:
-	mapannounce "p_track02","Please leave the Race Arena before this 5 minute period elapses. Thank you.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","请在这 5 分钟内离开赛场，谢谢。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer240000:
-	mapannounce "p_track02","Attention. We will being preparing for the next race shortly...",bc_map,"0xFFFF00";
+	mapannounce "p_track02","注意，我们即将准备下一场比赛……",bc_map,"0xFFFF00";
 	end;
 
 OnTimer243000:
-	mapannounce "p_track02","We will close the Racing Arena in 1 minute to prepare for the next race.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","1 分钟后赛场将关闭，以准备下一场比赛。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer246000:
-	mapannounce "p_track02","Participants in the last race should leave the arena as soon as possible.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","上一场比赛的参赛者请尽快离场。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer249000:
-	mapannounce "p_track02","Thank you for your cooperation.",bc_map,"0xFFFF00";
+	mapannounce "p_track02","感谢配合。",bc_map,"0xFFFF00";
 	end;
 
 OnTimer252000:
-	mapannounce "p_track02","We hope that you enjoyed the Monster Race arena. Come back again soon~",bc_map,"0xFFFF00";
+	mapannounce "p_track02","希望你喜欢怪物赛场，欢迎下次再来～",bc_map,"0xFFFF00";
 	end;
 
 OnTimer300000:
 	mapwarp "p_track02","hugel",63,73;
-	disablenpc "Medal Distributor#medal";
+	disablenpc "奖牌兑换员#medal";
 	donpcevent "#race_timer2-1::OnEnable";
 	stopnpctimer;
 OnInit:
@@ -1069,108 +897,71 @@ OnInit:
 	end;
 }
 
-hugel,62,69,1	script	Eckar Erenes#double	798,{
-	mes "[埃卡·埃雷尼斯]";
-	mes "欢迎来到";
-	mes "这是胡格尔村的骄傲！";
-	mes "我能为你做什么？";
-	mes "the village of Hugel!";
-	mes "How may I help you?";
+hugel,62,69,1	script	埃卡尔·埃雷尼斯#double	798,{
+	mes "[埃卡尔·埃雷尼斯]";
+	mes "欢迎来到怪物赛场，这里是赫尔的骄傲！";
+	mes "有什么能帮你的吗？";
 	next;
-	if (select("怪物赛 Info:Enter 怪物赛") == 1) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "怪物赛s originated from";
-		mes "简单的儿童游戏，";
-		mes "可爱的宠物互相赛跑，后来发展成成人";
-		mes "也喜爱的活动，因此我们在斐扬建造了赛场。";
+	if (select("怪物赛跑介绍:进入怪物赛场") == 1) {
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "怪物赛跑最初只是孩子们让可爱宠物互相赛跑的游戏。";
+		mes "后来连大人也喜欢上了这项活动，于是我们在赫尔建造了赛场。";
 		next;
-		mes "[埃卡·埃雷尼斯]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "然后是双怪物赛跑，赔率和奖励高于单怪物赛跑：";
-		mes "你必须押两只怪物，并且它们分获第一和第二名才能获胜。";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "这里举办两种怪物赛跑。";
+		mes "第一种是单怪物赛跑，押中第一名的怪物就能获得奖励。";
 		next;
-		mes "[埃卡·埃雷尼斯]";
-		mes "虽然需要少量入场费，但我们只用这些钱奖励参赛者、维护竞技场。";
-		mes "所以我们不会从这项事业中牟利。";
-		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "另一种是双怪物赛跑，中奖难度和奖励都高于单怪物赛跑。";
+		mes "你必须选择两只怪物，且它们分别获得第一、第二名，才算获胜，顺序不限。";
 		next;
-		mes "[埃卡·埃雷尼斯]";
-		mes "虽然需要少量入场费，";
-		mes "[埃卡·埃雷尼斯]";
-		mes "进入赛跑竞技场后，你会获得赛跑票。";
-		mes "请注意，获胜赛跑票只能在比赛结束后 5 分钟内兑换奖牌。";
-		mes "我们不会";
-		mes "从这项事业中牟利。";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "虽然需要支付少量入场费，但这些钱只用于奖励参赛者和维护赛场。";
+		mes "我们不会从中牟利。";
 		next;
-		mes "[埃卡·埃雷尼斯]";
-		mes "如果想押单怪物赛跑，请找我的兄弟埃勒伯德帮忙。";
-		mes "根据比赛结果";
-		mes "[埃卡·埃雷尼斯]";
-		mes "如果对双怪物赛跑感兴趣，我可以帮你开始。";
-		mes "你想押双怪物赛跑吗？";
-		mes "赌博在这里是违法的……";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "另外，禁止根据比赛结果，用物品或 Zeny 私下对赌。";
+		mes "这种赌博在这里是不被允许的……";
 		next;
-		mes "[埃卡·埃雷尼斯]";
-		mes "好吧。希望你在怪物赛跑竞技场玩得开心~";
-		mes "请注意，获胜赛跑票只能在比赛结束后";
-		mes "5 分钟内兑换奖牌。";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "进入赛场后，请找赛票助手领取赛票。";
+		mes "获胜赛票只能在比赛结束后的 5 分钟内兑换奖牌。";
 		next;
 	}
-	mes "[埃卡·埃雷尼斯]";
-	mes "在下注前，最好把一些物品存入卡普拉仓库……";
-	mes "in the Monster Race Arena is";
-	mes "2,000 zeny. If you'd like to wager on a Single Monster Race,";
-	mes "then please ask my brother";
-	mes "[埃卡·埃雷尼斯]";
+	mes "[埃卡尔·埃雷尼斯]";
+	mes "参加怪物赛跑的入场费是 2,000 Zeny。";
+	mes "如果想参加单怪物赛跑，请找我的兄弟埃尔伯德，他会帮你。";
 	next;
-	mes "[埃卡·埃雷尼斯]";
-	mes "Otherwise, I'll help get you";
-	mes "started if you're interested";
-	mes "[埃卡·埃雷尼斯]";
-	mes "嗯？你拿着过期的赛跑票做什么？";
-	mes "我最好先替你处理掉它，免得和新赛跑票混在一起。";
+	mes "[埃卡尔·埃雷尼斯]";
+	mes "如果对双怪物赛跑感兴趣，我可以帮你入场。";
+	mes "你想参加双怪物赛跑吗？";
 	next;
-	if (select("好的，请兑换。:不用了，谢谢。") == 2) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "好了，应该准备就绪了。祝你享受比赛~";
-		mes "现在我带你进入怪物赛跑竞技场。";
+	if (select("好的，我要参加。:不用了，谢谢。") == 2) {
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "好的，希望你在怪物赛场玩得开心～";
 		close;
 	}
 	if (!checkweight("Jellopy",700)) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "Hmm... You're toting";
-		mes "too many things with you";
-		mes "right now. You better put";
-		mes "[埃卡·埃雷尼斯]";
-		mes "我们还在为下一场双怪物赛跑做准备，";
-		mes "请再稍等一会儿……";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "你携带的物品太多了。";
+		mes "下注前，请先把部分物品存入卡普拉仓库。";
 		close;
 	}
-	if (Zeny < 2000) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "谢谢，希望你享受这场比赛。";
-		mes "现在我带你去怪物赛跑竞技场。";
-		mes "2,000 zeny entrance fee. ";
+	if ($@mon_time_2_1 == 1 && Zeny < 2000) {
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "抱歉，你没有足够的钱支付 2,000 Zeny 的入场费。";
 		close;
 	}
 	if (countitem(7514)) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "Hm? What are you doing";
-		mes "[埃卡·埃雷尼斯]";
-		mes "我们还在为下一场双怪物赛跑做准备，";
-		mes "请再稍等一会儿……";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "嗯？你怎么还拿着过期的赛票？";
+		mes "我先帮你处理掉，免得和新赛票混在一起。";
 		delitem 7514,1; //Monster_Ticket
 		next;
 		if ($@mon_time_2_1 == 1) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "[埃卡·埃雷尼斯]";
-			mes "现在怪物赛跑正在进行。下注已经太晚，";
-			mes "但如果想观看，费用是 500 Zeny。";
-			mes "这是观众费。你想进入怪物赛跑竞技场吗？";
-			mes "the Monster Race Arena now.";
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "好了，一切准备就绪，祝你比赛愉快～";
+			mes "现在我带你进入怪物赛场。";
 			Zeny -= 2000;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
@@ -1178,132 +969,89 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			end;
 		}
 		else if ($@mon_time_2_1 == 2) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "[埃卡·埃雷尼斯]";
-			mes "谢谢~";
-			mes "希望你喜欢观看这场比赛！";
-			mes "we ask that you please";
-			mes "wait a little while longer...";
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "我们还在准备下一场双怪物赛跑，请再稍等一会儿……";
 			close;
 		}
 	} else {
 		if ($@mon_time_2_1 == 1) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "抱歉，你没有足够的钱支付 500 Zeny 观众费。";
-			mes "you enjoy this race.";
-			mes "Let me guide you now";
-			mes "[埃卡·埃雷尼斯]";
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "谢谢，祝你比赛愉快。";
+			mes "现在我带你进入怪物赛场。";
 			Zeny -= 2000;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
 			warp "p_track02",75,41;
 			end;
 		} else if ($@mon_time_2_1 == 2) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "[埃卡·埃雷尼斯]";
-			mes "谢谢~";
-			mes "希望你喜欢观看这场比赛！";
-			mes "we ask that you please";
-			mes "wait a little while longer...";
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "我们还在准备下一场双怪物赛跑，请再稍等一会儿……";
 			close;
 		}
 	}
 	if ($@mon_time_2_2 == 1) {
-		mes "[埃卡·埃雷尼斯]";
-		mes "Right now, a Monster Race";
-		mes "is in progress. It's too late to place a wager, but if you'd like";
-		mes "to watch, the fee is 500 zeny";
-		mes "for spectators. Would you like to enter the Monster Race Arena?";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "怪物赛跑已经开始，现在无法下注。";
+		mes "如果想观看比赛，观众入场费是 500 Zeny。要进入赛场吗？";
 		next;
-		if (select("Enter:Cancel") == 2) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "Alright, then. If you'd like";
-			mes "to wager on a monster";
-			mes "race, please wait for the";
-			mes "current race to finish. I hope";
-			mes "that you enjoy your time here";
-			mes "现在我带你进入怪物赛跑竞技场。";
+		if (select("进入:取消") == 2) {
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "好的。如果想下注，请等当前比赛结束。";
+			mes "希望你在怪物赛场玩得开心～";
 			close;
 		}
 		if (Zeny > 499) {
-			mes "[埃卡·埃雷尼斯]";
-			mes "Thank you~";
-			mes "希望你在这里的";
-			mes "watching this race!";
+			mes "[埃卡尔·埃雷尼斯]";
+			mes "谢谢～祝你观赛愉快！";
 			Zeny -= 500;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
 			warp "p_track02",75,41;
 			end;
 		}
-		mes "[埃卡·埃雷尼斯]";
-		mes "I'm sorry, but you don't";
-		mes "have enough money to pay";
-		mes "the 500 zeny spectator fee.";
+		mes "[埃卡尔·埃雷尼斯]";
+		mes "抱歉，你没有足够的钱支付 500 Zeny 的观众入场费。";
 		close;
 	}
-	mes "[埃卡·埃雷尼斯]";
-	mes "I'm sorry, but a monster";
-	mes "race has just ended, so we're";
-	mes "having the 5 minute period in";
-	mes "which the winners can claim";
-	mes "their Prize Medals. The gate";
-	mes "will open soon, so please wait.";
+	mes "[埃卡尔·埃雷尼斯]";
+	mes "抱歉，比赛刚刚结束，现在是获胜者领取奖牌的 5 分钟领奖时间。";
+	mes "入口很快就会重新开放，请稍等。";
 	close;
 OnEnable:
-	enablenpc "Eckar Erenes#double";
+	enablenpc "埃卡尔·埃雷尼斯#double";
 	end;
 OnDisable:
-	disablenpc "Eckar Erenes#double";
+	disablenpc "埃卡尔·埃雷尼斯#double";
 	end;
 }
 
-p_track02,73,22,1	script	Ticket Helper#2	899,{
+p_track02,73,22,1	script	赛票助手#2	899,{
 	if (!checkweight("Spawn",200)) {
 		mes "[赛票助手]";
-		mes "欢迎来到";
-		mes "怪物赛 Arena.";
-		mes "如果你想参加";
-		mes "in the ^3131FFDouble Monster Race^000000,";
-		mes "请从列表中选择 1 只";
-		mes "怪物（共 6 只）。";
+		mes "欢迎来到怪物赛场。";
+		mes "参加^3131FF双怪物赛跑^000000时，需要从 6 只怪物中选择两只不同的怪物。";
 		next;
 		mes "[赛票助手]";
-		mes "等等……";
-		mes "我现在不能给你";
-		mes "任何东西。";
-		mes "你携带的物品";
-		mes "太多了……";
+		mes "等等……你携带的物品太多了，我现在无法再交给你任何东西。";
 		close;
 	}
 	if (!monster_race_2_1 && !monster_race_2_2) {
 		mes "[赛票助手]";
-		mes "Hello there!";
-		mes "Interested in wagering on";
-		mes "the Dual Monster Race?";
-		mes "I'm here to help you if you've";
-		mes "got any questions, or if you";
-		mes "want to place your wager.";
+		mes "你好！对双怪物赛跑感兴趣吗？";
+		mes "无论是想了解规则还是下注，我都可以帮你。";
 		next;
-		switch(select("Check Monster Status:Wager on Race:Monster Race?:Cancel")) {
+		switch(select("查看怪物状态:下注:怪物赛跑介绍:取消")) {
 		case 1:
 			for ( .@i = 1; .@i <= 6; .@i++ )
-				mes "Monster "+.@i+" [^CC6600Luck^000000: " + getd("$@mon_r02_Luk"+.@i) + "] [^EE0000HP^000000: " + getd("$@mon_r02_tire"+.@i) + "]";
+				mes "怪物 "+.@i+" [^CC6600幸运^000000：" + getd("$@mon_r02_Luk"+.@i) + "] [^EE0000体力^000000：" + getd("$@mon_r02_tire"+.@i) + "]";
 			close;
 		case 2:
 			mes "[赛票助手]";
-			mes "好，请选择";
-			mes "你认为会获胜的两只怪物。";
-			mes "将获得第一和第二名。";
-			mes "如果两只怪物都进入";
-			mes "第一和第二名（顺序不限），";
-			mes "你就能赢得赌注。";
+			mes "请选择你认为会获得第一、第二名的两只怪物。";
+			mes "只要这两只怪物包揽前两名，无论顺序如何，你都能获胜。";
 			next;
 			mes "[赛票助手]";
-			mes "现在请告诉我";
-			mes "你的第一选择，";
-			mes "参赛怪物中，";
-			mes "你认为会赢得这场比赛的。";
+			mes "请先选择你认为会获得第一或第二名的一只怪物。";
 			next;
 			for ( .@i = 1; .@i <= 6; .@i++ )
 				.@menu$ = .@menu$ + "怪物 "+ .@i +":";
@@ -1316,361 +1064,235 @@ p_track02,73,22,1	script	Ticket Helper#2	899,{
 					case 2: setarray .@string$, "可爱的","疯兔型怪物"; break;
 					case 3: setarray .@string$, "讨人喜欢的","小野猪怪物"; break;
 					case 4: setarray .@string$, "温和的小","沙漠之狼怪物"; break;
-					case 5: setarray .@string$, "小巧却","恶魔般的邪恶使者"; break;
-					case 6: setarray .@string$, "淘气的","巴风特 Jr. 怪物"; break;
+					case 5: setarray .@string$, "小巧却邪恶的","小恶魔"; break;
+					case 6: setarray .@string$, "淘气的","小巴风特"; break;
 				}
 				mes "[赛票助手]";
-				mes "你选择了";
-				mes "^0000FFMonster "+.@m+"^000000, "+.@string$[0];
-				mes .@string$[1]+".";
-				mes "确定要";
-				mes "选择这只怪物吗？";
+				mes "你选择了 ^0000FF"+.@m+" 号怪物^000000："+.@string$[0]+.@string$[1]+"。";
+				mes "确定选择这只怪物吗？";
 				next;
 				if (select("是:否") == 2) {
 					mes "[赛票助手]";
-					mes "你取消了";
-					mes "下注。好吧，";
-					mes "我明白了。也许";
-					mes "先查看怪物会更放心？";
-					mes "先查看怪物？";
+					mes "你取消了下注。好吧，我明白了。";
+					mes "也许先查看怪物的状态，会让你更放心？";
 					close;			
 				}
 				if (.@m1 == 0) {
 					mes "[赛票助手]";
-					mes "现在，请做出";
-					mes "你的第二个选择";
-					mes "选择你认为";
-					mes "会获胜的怪物。";
-					mes "赢得本场比赛的第一名或第二名。";
+					mes "现在请选择另一只你认为会获得第一或第二名的怪物。";
 					next;
 					.@m1 = .@m;
 				} else {
 					if (!$@mon_time_2_2) {
 						mes "[赛票助手]";
-						mes "你已下注";
-						mes "^0000FF怪物 "+.@m1+"^000000 和 ^0000FF怪物 "+.@m+"^000000";
-						mes "赢得比赛。祝你好运！";
-						mes "真心希望赔率";
-						mes "对你有利~";
+						mes "你押了 ^0000FF"+.@m1+" 号怪物^000000和 ^0000FF"+.@m+" 号怪物^000000。";
+						mes "祝你好运！希望你能获胜～";
 						emotion ET_CHUP;
 						monster_race_2_1 = .@m1;
 						monster_race_2_2 = .@m;
 						getitem 7514,1; //Monster_Ticket
 					} else {
 						mes "[赛票助手]";
-						mes "非常抱歉，";
-						mes "怪物赛跑正在进行。";
-						mes "请等待，然后为下一场比赛";
-						mes "下注。";
+						mes "抱歉，怪物赛跑已经开始。";
+						mes "请等下一场比赛再下注。";
 					}
 					close;
 				}
 			}
 		case 3:
 			mes "[赛票助手]";
-			mes "怪物赛s originated from";
-			mes "简单的儿童游戏，";
-			mes "可爱的宠物互相赛跑，后来发展成成人";
-			mes "也喜爱的活动，因此我们在斐扬建造了赛场。";
+			mes "怪物赛跑最初只是孩子们让可爱宠物互相赛跑的游戏。";
+			mes "后来连大人也喜欢上了这项活动，于是我们在赫尔建造了赛场。";
 			next;
 			mes "[赛票助手]";
-			mes "[埃卡·埃雷尼斯]";
-			mes "然后是双怪物赛跑，赔率和奖励高于单怪物赛跑：";
-			mes "你必须押两只怪物，并且它们分获第一和第二名才能获胜。";
-			next;
-			mes "[埃克拉·埃尔比德]";
-			mes "虽然需要少量入场费，但我们只用这些钱奖励参赛者、维护竞技场。";
-			mes "会获得相同奖励。";
-			mes "两只怪物同样会获奖。双赛的";
-			mes "赔率和下注奖励高于单赛。";
+			mes "这里举办两种怪物赛跑。";
+			mes "第一种是单怪物赛跑，押中第一名的怪物就能获得奖励。";
 			next;
 			mes "[赛票助手]";
-			mes "虽然需要少量入场费，";
-			mes "[埃卡·埃雷尼斯]";
-			mes "进入赛跑竞技场后，你会获得赛跑票。";
-			mes "请注意，获胜赛跑票只能在比赛结束后 5 分钟内兑换奖牌。";
-			mes "我们不会";
-			mes "从这项事业中牟利。";
+			mes "双怪物赛跑需要同时押中第一、第二名的怪物，顺序不限。";
+			mes "它的中奖难度和奖励都高于单怪物赛跑。";
 			next;
 			mes "[赛票助手]";
-			mes "如果想押单怪物赛跑，请找我的兄弟埃勒伯德帮忙。";
-			mes "根据比赛结果";
-			mes "[埃卡·埃雷尼斯]";
-			mes "如果对双怪物赛跑感兴趣，我可以帮你开始。";
-			mes "你想押双怪物赛跑吗？";
-			mes "赌博在这里是违法的……";
+			mes "虽然需要支付少量入场费，但这些钱只用于奖励参赛者和维护赛场。";
+			mes "我们不会从中牟利。";
 			next;
 			mes "[赛票助手]";
-			mes "好吧。希望你在怪物赛跑竞技场玩得开心~";
-			mes "请注意，获胜赛跑票只能在比赛结束后";
-			mes "5 分钟内兑换奖牌。";
+			mes "另外，禁止根据比赛结果，用物品或 Zeny 私下对赌。";
+			mes "这种赌博在这里是不被允许的……";
 			next;
 			mes "[赛票助手]";
-			mes "你已经在";
-			mes "怪物赛跑";
-			mes "竞技场内，不妨";
-			mes "试着下注。这比你想象的";
-			mes "更有趣~";
+			mes "进入赛场后，请找赛票助手领取赛票。";
+			mes "获胜赛票只能在比赛结束后的 5 分钟内兑换奖牌。";
+			next;
+			mes "[赛票助手]";
+			mes "既然已经来到怪物赛场，不妨试着下注吧。";
+			mes "这比你想象的更有趣～";
 			close;
 		case 4:
 			mes "[赛票助手]";
-			mes "你取消了";
-			mes "下注。好吧，";
-			mes "我明白了。也许";
-			mes "先查看怪物会更放心？";
-			mes "先查看怪物？";
+			mes "你取消了下注。好吧，我明白了。";
+			mes "也许先查看怪物的状态，会让你更放心？";
 			close;
 		}
 	} else {
 		if (countitem(7514)) {
 			mes "[赛票助手]";
-			mes "你已下注";
-			mes "^0000FF怪物 " + monster_race_2_1 + "^000000 和 ^0000FF怪物 " + monster_race_2_2 + "^000000";
-			mes "参加这场双怪物赛跑。";
+			mes "你已经选择 ^0000FF"+monster_race_2_1+" 号怪物^000000和 ^0000FF"+monster_race_2_2+" 号怪物^000000参加本场双怪物赛跑。";
 			next;
 		} 
 		mes "[赛票助手]";
-		mes "比赛开始将通过广播宣布。";
-		mes "比赛开始会通过广播宣布。";
-		mes "你可以查看小地图";
-		mes "追踪怪物的比赛";
-		mes "位置。谢谢，";
-		mes "祝你玩得开心！";
+		mes "比赛开始时会广播通知。";
+		mes "你可以通过小地图查看怪物的位置。谢谢，祝你玩得开心！";
 		viewpoint 1,43,35,0,0xFF0000;
 		close;	
 	}
 
 OnInit:
-	disablenpc "Ticket Helper#2";
+	disablenpc "赛票助手#2";
 	end;
 }
 
-p_track02,39,49,3	script	Game Guide#double	845,{
+p_track02,39,49,3	script	游戏向导#double	845,{
 	mes "[游戏向导]";
-	mes "欢迎来到";
-	mes "怪物赛 Arena.";
-	mes "我能为你做什么？";
+	mes "欢迎来到怪物赛场。";
+	mes "有什么能帮你的吗？";
 	next;
 	switch(select("怪物赛跑介绍:下注信息:赛票兑换信息")) {
 	case 1:
 		mes "[游戏向导]";
-		mes "怪物赛s originated from";
-		mes "简单的儿童游戏，";
-		mes "可爱的宠物互相赛跑，后来发展成成人";
-		mes "也喜爱的活动，因此我们在斐扬建造了赛场。";
+		mes "怪物赛跑最初只是孩子们让可爱宠物互相赛跑的游戏。";
+		mes "后来连大人也喜欢上了这项活动，于是我们在赫尔建造了赛场。";
 		next;
 		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
-		mes "然后是双怪物赛跑，赔率和奖励高于单怪物赛跑：";
-		mes "你必须押两只怪物，并且它们分获第一和第二名才能获胜。";
+		mes "这里举办两种怪物赛跑。";
+		mes "第一种是单怪物赛跑，押中第一名的怪物就能获得奖励。";
 		next;
 		mes "[游戏向导]";
-		mes "虽然需要少量入场费，但我们只用这些钱奖励参赛者、维护竞技场。";
-		mes "所以我们不会从这项事业中牟利。";
-		mes "[游戏向导]";
-		mes "[埃卡·埃雷尼斯]";
+		mes "另一种是双怪物赛跑，中奖难度和奖励都高于单怪物赛跑。";
+		mes "你必须选择两只怪物，且它们分别获得第一、第二名，才算获胜，顺序不限。";
 		next;
 		mes "[游戏向导]";
-		mes "虽然需要少量入场费，";
-		mes "[埃卡·埃雷尼斯]";
-		mes "进入赛跑竞技场后，你会获得赛跑票。";
-		mes "请注意，获胜赛跑票只能在比赛结束后 5 分钟内兑换奖牌。";
-		mes "我们不会";
-		mes "从这项事业中牟利。";
+		mes "虽然需要支付少量入场费，但这些钱只用于奖励参赛者和维护赛场。";
+		mes "我们不会从中牟利。";
 		next;
 		mes "[游戏向导]";
-		mes "如果想押单怪物赛跑，请找我的兄弟埃勒伯德帮忙。";
-		mes "根据比赛结果";
-		mes "[埃卡·埃雷尼斯]";
-		mes "如果对双怪物赛跑感兴趣，我可以帮你开始。";
-		mes "你想押双怪物赛跑吗？";
-		mes "赌博在这里是违法的……";
+		mes "另外，禁止根据比赛结果，用物品或 Zeny 私下对赌。";
+		mes "这种赌博在这里是不被允许的……";
 		next;
 		mes "[游戏向导]";
-		mes "好吧。希望你在怪物赛跑竞技场玩得开心~";
-		mes "请注意，获胜赛跑票只能在比赛结束后";
-		mes "5 分钟内兑换奖牌。";
+		mes "进入赛场后，请找赛票助手领取赛票。";
+		mes "获胜赛票只能在比赛结束后的 5 分钟内兑换奖牌。";
 		next;
 		break;
 	case 2:
 		mes "[游戏向导]";
-		mes "Before placing a wager, you";
-		mes "must get a free Racing Ticket";
-		mes "from the Ticket Helper. There,";
-		mes "I've marked the Ticket Helper";
-		mes "在你的小地图上，";
-		mes "这样就能轻松找到他。";
+		mes "想下注的话，请先找赛票助手领取免费的赛票。";
+		mes "我已经在小地图上标出了他的位置，你可以轻松找到他。";
 		viewpoint 1,73,22,1,0xFF3355;
 		next;
 		break;
 	case 3:
 		mes "[游戏向导]";
-		mes "如果你押中了单人怪物赛的冠军，";
-		mes "或双人怪物赛的第一、第二名，";
-		mes "就可以用赛跑票";
-		mes "兑换奖牌。";
-		mes "you can exchange your Racing";
-		mes "Ticket for Prize Medals.";
+		mes "押中单怪物赛跑的冠军，或同时押中双怪物赛跑的第一、第二名，就能用赛票兑换奖牌。";
 		next;
 		mes "[游戏向导]";
-		mes "不过，你必须在比赛结束后的";
-		mes "5分钟内向奖牌兑换员";
-		mes "^FF0000兑换赛跑票。^FFFFFF ^FF0000超过5分钟后，票券将作废。^000000";
-		mes "5 minute window after the end";
-		mes "of the race. ^FF0000Your ticket becomes^FFFFFF ^FF0000 void after these 5 minutes.^000000";
+		mes "必须在比赛结束后的 5 分钟内，找奖牌兑换员兑换获胜赛票。";
+		mes "^FF0000超过 5 分钟，赛票就会失效。^000000";
 		next;
 		mes "[游戏向导]";
-		mes "5分钟期限结束后，你会被传送到场外，";
-		mes "我们也会立即准备下一场比赛。";
-		mes "下注时请记住这些信息。";
-		mes "information when you wager.";
+		mes "5 分钟结束后，你会被传送到场外，我们也会立即准备下一场比赛。";
+		mes "下注时请记住这些规定。";
 		next;
 		mes "[游戏向导]";
-		mes "如果你还没有领取免费的赛跑票，";
-		mes "请去找票券助手。";
-		mes "我已经在你的小地图上标出了";
-		mes "他的位置。";
-		mes "his location on your Mini-Map.";
+		mes "要兑换获胜赛票，请找奖牌兑换员。";
+		mes "我已经在小地图上标出了他的位置。";
 		viewpoint 1,67,45,2,0xCE6300;
 		next;
 		break;
 	}
 	mes "[游戏向导]";
-	mes "谢谢，";
-	mes "希望你在这里的";
-	mes "怪物赛跑竞技场";
-	mes "玩得开心。";
+	mes "谢谢，希望你在怪物赛场玩得开心。";
 	close;
 }
 
-p_track02,67,45,5	script	Medal Distributor#medal	845,{
+p_track02,67,45,5	script	奖牌兑换员#medal	845,{
 	if (!checkweight("Jellopy",20)) {
 		mes "[奖牌兑换员]";
-		mes "抱歉，我不能";
-		mes "给你奖牌，";
-		mes "请先腾出更多";
-		mes "背包空间。";
+		mes "抱歉，请先腾出一些背包空间，我才能把奖牌交给你。";
 		close;
 	}
 	mes "[奖牌兑换员]";
 	mes "你好～";
-	mes "如果你在最近的比赛中下注了";
-	mes "获胜怪物，";
-	mes "就可以在这里用比赛券兑换";
-	mes "你的比赛券，换取";
-	mes "一些奖牌。";
+	mes "如果你押中了上一场比赛的获胜怪物，就可以在这里用赛票兑换奖牌。";
 	next;
 	if (!countitem(7514)) {
 		mes "[奖牌兑换员]";
-		mes "请记住，你只能";
-		mes "在比赛结束后立即用获胜的";
-		mes "比赛券兑换奖牌只能在比赛";
-		mes "奖牌还可以交给斐扬的 Wayne";
-		mes "兑换物品。";
-		mes "结束后立即进行，奖牌可在斐扬兑换物品。";
+		mes "请记住，只有比赛结束后的一小段时间可以用获胜赛票兑换奖牌。";
+		mes "奖牌可以交给赫尔的韦恩，用来兑换物品。";
 		close;
 	}
 	mes "[奖牌兑换员]";
-	mes "请记住，你只能";
-	mes "在比赛结束后立即用获胜的";
-	mes "比赛券兑换奖牌只能在比赛";
-	mes "奖牌还可以交给斐扬的 Wayne";
-	mes "兑换物品。";
-	mes "结束后立即进行，奖牌可在斐扬兑换物品。";
+	mes "请记住，只有比赛结束后的一小段时间可以用获胜赛票兑换奖牌。";
+	mes "奖牌可以交给赫尔的韦恩，用来兑换物品。";
 	next;
 	if ((monster_race_2_1 == $@mon_race_2_1 && monster_race_2_2 == $@mon_race_2_2) || (monster_race_2_1 == $@mon_race_2_2 && monster_race_2_2 == $@mon_race_2_1)) {
 		mes "[奖牌兑换员]";
-		mes "恭喜！双人怪物赛的胜者";
-		mes "非常难猜，你一定很幸运！";
-		mes "要用获胜的赛跑票";
-		mes "兑换奖牌吗？";
-		mes "like to exchange your winning";
-		mes "要用赛跑券兑换奖牌吗？";
+		mes "恭喜！双怪物赛跑的前两名很难猜中，你真幸运！";
+		mes "要用获胜赛票兑换奖牌吗？";
 		next;
 		if (select("好的。:不了，谢谢。") == 1) {
 			mes "[奖牌兑换员]";
-			mes "好，一切都没问题，";
-			mes "这是你的奖牌～";
-			mes "如果想用奖牌兑换物品，";
-			mes "请去找朱诺的Wayne。";
-			mes "希望你享受怪物赛跑～";
-			mes "you enjoyed the Monster Race~";
+			mes "好，一切都没问题，请收下奖牌～";
+			mes "想用奖牌兑换物品的话，请找赫尔的韦恩。希望你喜欢怪物赛跑！";
 			monster_race_2_1 = monster_race_2_2 = 7;
 			delitem 7514,1; //Monster_Ticket
 			getitem 7515,15; //Marvelous_Medal
 			close;
 		}
 		mes "[奖牌兑换员]";
-		mes "嗯，你确定吗？你";
-		mes "只能兑换获胜的";
-		mes "赛跑券兑换奖牌";
-		mes "比赛券，而且时间很短。如果弄错了，";
-		mes "请尽快重新询问我。";
+		mes "你确定吗？比赛结束后，只有很短的时间能兑换获胜赛票。";
+		mes "如果改变主意，请尽快回来找我。";
 		close;
 	} else if (!monster_race_2_1 && !monster_race_2_2) {
 		mes "[奖牌兑换员]";
-		mes "嗯，下次好运……";
-		mes "虽然不可能一直幸运，";
-		mes "但给怪物赛跑下注总是很有趣！";
-		mes "wager on the monster races!";
+		mes "祝你下次好运……";
+		mes "虽然不可能一直走运，但参加怪物赛跑总是很有趣！";
 		close;
 	} else if (monster_race_2_1 == 7 && monster_race_2_2 == 7) {
 		mes "[奖牌兑换员]";
-		mes "感谢你来到怪物赛跑竞技场，";
-		mes "希望你在这里玩得开心。";
-		mes "下次再见～";
-		mes "here. I'll see you next time~";
+		mes "感谢光临怪物赛场，希望你玩得开心。下次再见～";
 		close;
 	} else if (monster_race_2_1 != $@mon_race_2_1 || monster_race_2_2 != $@mon_race_2_2) {
 		mes "[奖牌兑换员]";
-		mes "你可能没有下注";
-		mes "上一场比赛的获胜怪物，";
-		mes "但希望你";
-		mes "下次好运～";
+		mes "虽然你没有押中上一场比赛的获胜怪物，但希望你下次好运～";
 		close;
 	}
 
 OnInit:
-	disablenpc "Medal Distributor#medal";
+	disablenpc "奖牌兑换员#medal";
 	end;
 }
 
-p_track02,76,38,1	script	Exit Guide#double	798,{
+p_track02,76,38,1	script	离场向导#double	798,{
 	mes "[离场向导]";
-	mes "如果你有获胜的赛跑";
-	mes "券，请务必";
-	mes "你现在兑换奖牌。";
-	mes "下一场比赛开始后所有赛跑券都会";
-	mes "失效。";
+	mes "如果你有获胜赛票，请现在就去兑换奖牌。";
+	mes "下一场比赛开始后，所有旧赛票都会失效。";
 	next;
 	mes "[离场向导]";
-	mes "如果你想离开";
-	mes "赛场，我可以带你";
-	mes "到外面。现在要";
-	mes "离开赛场吗？";
+	mes "如果想离开赛场，我可以送你出去。现在要离开吗？";
 	next;
 	if (select("是:否") == 2) {
 		mes "[离场向导]";
-		mes "好的。";
-		mes "准备好后";
-		mes "告诉我";
-		mes "即可离开。";
+		mes "好的，准备离开时再告诉我。";
 		close;
 	}
 	if (!countitem(7514)) {
 		mes "[离场向导]";
-		mes "感谢你的";
-		mes "光临，希望你";
-		mes "很快再次";
-		mes "来访～";
+		mes "感谢光临，希望你很快再来～";
 	} else {
 		mes "[离场向导]";
-		mes "按照规定，";
-		mes "离开前我必须收走你的";
-		mes "赛跑券 before you leave.";
-		mes "感谢你的 your patronage,";
-		mes "希望你在";
-		mes "在这里的怪物赛场度过愉快时光。";
+		mes "按照规定，离场前我必须收走你的赛票。";
+		mes "感谢光临，希望你在怪物赛场玩得开心。";
 		delitem 7514,1; //Monster_Ticket
 	}
 	monster_race_2_1 = monster_race_2_2 = 0;
@@ -1694,7 +1316,7 @@ OnEnable:
 	setarray .@n[1], 1725,1726,1727,1728,1730,1729;
 	getmapxy(.@m$,.@x,.@y,BL_NPC);
 	.@i = MN;
-	monster "p_track02",58,.@y,"Monster "+.@i,.@n[.@i],1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "p_track02",58,.@y,"怪物 "+.@i,.@n[.@i],1,strnpcinfo(0)+"::OnMyMobDead";
 	end;
 
 OnTouchNPC:
@@ -1702,7 +1324,7 @@ OnTouchNPC:
 	if (!$@mon_race_2_1) {
 		emotion ET_THROB;
 		specialeffect EF_MVP;
-		mapannounce "p_track02","Monster "+.@i+" has reached the Finish Line!",bc_map,"0x66FFCC";
+		mapannounce "p_track02","怪物 "+.@i+" 已到达终点！",bc_map,"0x66FFCC";
 		$@mon_race_2_1 = .@i;
 		donpcevent strnpcinfo(0)+"::OnDisable";
 	} else {
@@ -1717,7 +1339,7 @@ OnTouchNPC:
 		donpcevent "#deviruchi1::OnDisable";
 		donpcevent "#baphomet1::OnDisable";
 		donpcevent "TrapGlobal#race02::OnDisable";
-		enablenpc "Medal Distributor#medal";
+		enablenpc "奖牌兑换员#medal";
 		donpcevent "#race_timer2-3::OnEnable";
 	}
 OnMyMobDead:
@@ -1910,160 +1532,97 @@ p_track02,47,28,0	duplicate(Tire_1)	Tire#race02_6_6	-1,0,0
 
 // NPCs for Redeeming Prize Medals (Einbroch and Hugel)
 //============================================================
-ein_in01,85,208,5	script	Ei'felle#repay01	854,{
+ein_in01,85,208,5	script	艾菲尔#repay01	854,{
 	if (!ein_medal01) {
 		mes "[艾菲尔]";
-		mes "可恶！我们必须交付";
-		mes "顾客订购的东西，";
-		mes "但我们做出来的全是";
-		mes "粗制滥造的产品！要是有那种金属，";
-		mes "我们就能提升产品质量！";
-		mes "pump up our product quality!";
+		mes "可恶！顾客的订单等着交货，我们却只做出了粗制滥造的产品！";
+		mes "要是有那种金属，就能提升产品质量了！";
 		next;
 		select("你说的是哪种金属？");
 		mes "[艾菲尔]";
-		mes "施瓦茨瓦尔德共和国边境有一个小村庄，";
-		mes "会发放用这种金属制成的特殊奖牌，";
-		mes "正是我们急需的东西……";
-		mes "gives these special medals";
-		mes "that are made of this metal";
-		mes "which we desperately need...";
+		mes "施瓦茨瓦尔德共和国边境有个小村庄，会发放一种特殊奖牌。";
+		mes "奖牌就是用我们急需的那种金属制成的……";
 		next;
 		mes "[艾菲尔]";
-		mes "我们派了一位最优秀的公会成员";
-		mes "去为我们获取奖牌，但他还没有";
-		mes "回来报告。";
-		mes "我越来越焦急了……";
-		mes "I'm getting pretty anxious...";
+		mes "我们派了一位最优秀的公会成员去收集奖牌，但他至今没有回来报告。";
+		mes "我越来越着急了……";
 		next;
 		mes "[艾菲尔]";
-		mes "我的意思是，我们需要大量这种金属";
-		mes "来完成订单和制造研究，";
-		mes "但到目前为止，我们谁都没能";
-		mes "得到任何奖牌……";
-		mes "but so far, none of us have";
-		mes "been able to get any medals...";
+		mes "完成订单和制造研究都需要大量那种金属。";
+		mes "可到现在，我们还没有拿到任何奖牌……";
 		next;
 		if (countitem("Marvelous_Medal")) {//7515
 			mes "["+ strcharinfo(0) +"]";
-			mes "哦！你说的是";
-			mes "怪物赛跑竞技场";
-			mes "发放的奖牌吗？";
+			mes "哦！你说的是怪物赛场发放的奖牌吗？";
 			mes "我有一些。";
-			mes "I have some of those.";
 			next;
 			mes "[艾菲尔]";
-			mes "咦？给我看看……";
-			mes "没错！这正是我们需要的！";
-			mes "你愿意捐出奖牌，";
-			mes "让我们终于能为顾客制作";
-			mes "高质量的产品吗？";
-			mes "products for our customers?";
+			mes "咦？让我看看……";
+			mes "没错！就是我们需要的！你愿意捐出奖牌，让我们能为顾客制造高质量的产品吗？";
 			next;
 			callsub S_Reward;
 			end;
 		}
 		mes "[艾菲尔]";
-		mes "如果你在斐扬的";
-		mes "怪物赛场获得了";
-		mes "奖牌，";
-		mes "请带一些给我。我一定会";
-		mes "报答你的善意……";
-		mes "you for your kindness...";
+		mes "如果你在赫尔的怪物赛场获得奖牌，请带一些给我。";
+		mes "我一定会报答你的好意……";
 		close;
 	} else if (ein_medal01 < 500) {
 		mes "[艾菲尔]";
-		mes "Oh, how have you been?";
-		mes "哦，最近过得怎么样？";
-		mes "非常感谢你捐赠这么多奖牌，";
-		mes "它们对我的研究很有帮助。";
-		mes "不过，我每天仍然需要";
-		mes "越来越多的奖牌……";
+		mes "哦，最近怎么样？非常感谢你捐赠了那么多奖牌，对我的研究很有帮助。";
+		mes "不过，我每天需要的奖牌也越来越多……";
 		next;
 		if (countitem("Marvelous_Medal")) {
 			mes "[艾菲尔]";
-			mes "其他铁匠公会成员";
-			mes "正在努力收集";
-			mes "奖牌，";
-			mes "但他们在斐扬不断失败";
-			mes "没能赢得奖牌！如果你有奖牌，";
-			mes "可以给我一些吗？";
+			mes "其他铁匠公会成员正在赫尔努力收集奖牌，可他们总是赢不了！";
+			mes "如果你有奖牌，能给我一些吗？";
 			next;
 			callsub S_Reward;
 			end;
 		}
 		mes "[艾菲尔]";
-		mes "如果你在斐扬的";
-		mes "怪物赛场获得了";
-		mes "奖牌，";
-		mes "请带一些给我。我一定会";
-		mes "报答你的善意……";
-		mes "you for your kindness...";
+		mes "如果你在赫尔的怪物赛场获得奖牌，请带一些给我。";
+		mes "我一定会报答你的好意……";
 		close;
 	}
 	if (!checkweight("Knife",1)) {//1201
 		mes "[艾菲尔]";
-		mes "天啊，你携带了";
-		mes "太多东西！";
-		mes "你最好把一部分";
-		mes "存入卡普拉仓库";
-		mes "否则会被物品的数量";
-		mes "压垮！";
+		mes "天啊，你带的东西太多了！";
+		mes "请先把部分物品存入卡普拉仓库，别让背包把你压垮了！";
 		close;
 	}
 	if (ein_medal01 > 499 && ein_medal01 < 1500) {
 		if (ein_medal01 < 1000) {
 			mes "[艾菲尔]";
-			mes "啊，欢迎回来！我终于";
-			mes "在金属研究上取得突破！";
-			mes "金属研究！看，我已经";
-			mes "开发出了这件闪亮";
-			mes "外套！它轻便而且";
-			mes "非常耐用，你看！";
+			mes "欢迎回来！我的金属研究终于取得了突破！";
+			mes "看，我做出了这件闪耀夹克，既轻便又耐用！";
 			next;
 			mes "[艾菲尔]";
-			mes "没有你的帮助，我无法";
-			mes "完成它。你愿意";
-			mes "接受这件闪亮外套，";
-			mes "作为我对你的报答吗？";
-			mes "as my way of repaying you?";
+			mes "没有你的帮助，我不可能做出它。";
+			mes "你愿意收下这件闪耀夹克，作为我的回报吗？";
 			next;
-			if (select("Accept:Wait for Further Development") == 1) {
+			if (select("接受:等待进一步研发") == 1) {
 				callsub S_BonusReward,500,2319;//Glittering_Clothes
 				end;
 			}
 			mes "[艾菲尔]";
-			mes "啊，我明白了。你想等到";
-			mes "我们开发出";
-			mes "更合心意的东西。那么";
-			mes "可以请你再捐赠一些";
-			mes "奖牌给我研究吗？";
-			mes "我们总是缺少奖牌……";
+			mes "我明白了，你想等我们开发出更合心意的东西。";
+			mes "那能再捐赠一些奖牌支持研究吗？奖牌总是不够用……";
 			next;
 		} else if (ein_medal01 < 1500) {
 			mes "[艾菲尔]";
-			mes "哦，你回来了！";
-			mes "多亏你捐赠的奖牌，";
-			mes "我现在已经能够制造";
-			mes "一套带插槽的";
-			mes "属性铠甲，";
-			mes "属性可由你选择。";
+			mes "哦，你回来了！多亏你捐赠的奖牌，我已经能制造带插槽的属性铠甲了。";
+			mes "属性可以由你选择。";
 			next;
 			mes "[艾菲尔]";
-			mes "如果你愿意，我现在可以报答你，";
-			mes "为你制作一套带属性插槽铠甲，或者";
-			mes "等你捐赠更多";
-			mes "奖牌，直到我能开发";
-			mes "其他东西。";
+			mes "我现在可以制作一套带插槽的属性铠甲来报答你。";
+			mes "或者，你可以继续捐赠奖牌，等我研发出其他东西。";
 			next;
 			switch(select("接受铠甲:可以给我别的吗？:等待进一步开发")) {
 				case 1:
 					mes "[艾菲尔]";
-					mes "我可以制造一套带插槽的";
-					mes "铠甲，附带";
-					mes "火、地、风或水";
-					mes "属性。你希望铠甲拥有哪种";
-					mes "属性？";
+					mes "我能制作带插槽的火、地、风或水属性铠甲。";
+					mes "你想要哪种属性？";
 					next;
 					switch(select("火属性:地属性:风属性:水属性")) {
 						case 1: callsub S_BonusReward,1000,2345; end;// Flame_Sprits_Armor_
@@ -2073,72 +1632,46 @@ ein_in01,85,208,5	script	Ei'felle#repay01	854,{
 					}
 				case 2:
 					mes "[艾菲尔]";
-					mes "其他东西……？";
-					mes "哦，你一定是指";
-					mes "我之前开发的";
-					mes "闪亮外套。毕竟现在";
-					mes "我没有其他物品";
-					mes "可以提供了……";
+					mes "其他东西……？你是指我之前开发的闪耀夹克吧。";
+					mes "目前除此之外，我还没有其他东西可以给你……";
 					next;
 					callsub S_BonusReward,500,2319;
 					end;
 				case 3:
 					mes "[艾菲尔]";
-					mes "啊，我明白了。你想等到";
-					mes "我们开发出";
-					mes "更合心意的东西。那么";
-					mes "可以请你再捐赠一些";
-					mes "奖牌给我研究吗？";
-					mes "我们总是缺少奖牌……";
+					mes "我明白了，你想等我们开发出更合心意的东西。";
+					mes "那能再捐赠一些奖牌支持研究吗？奖牌总是不够用……";
 					next;
 					break;
 			}
 		}
 		if (countitem("Marvelous_Medal")) {
 			mes "[艾菲尔]";
-			mes "其他铁匠公会成员";
-			mes "正在努力收集";
-			mes "奖牌，";
-			mes "但他们在斐扬不断失败";
-			mes "没能赢得奖牌！如果你有奖牌，";
-			mes "可以给我一些吗？";
+			mes "其他铁匠公会成员正在赫尔努力收集奖牌，可他们总是赢不了！";
+			mes "如果你有奖牌，能给我一些吗？";
 			next;
 			callsub S_Reward;
 			end;
 		}
 		mes "[艾菲尔]";
-		mes "如果你在斐扬的";
-		mes "怪物赛场获得了";
-		mes "奖牌，";
-		mes "请带一些给我。我一定会";
-		mes "报答你的善意……";
-		mes "you for your kindness...";
+		mes "如果你在赫尔的怪物赛场获得奖牌，请带一些给我。";
+		mes "我一定会报答你的好意……";
 		close;
 	} else if (ein_medal01 > 1499) {
 		mes "[艾菲尔]";
-		mes "啊，你回来了！我已经";
-		mes "提取了你给我的奖牌中的金属，";
-		mes "from the medals you've";
-		mes "我想这些金属足够制作";
-		mes "四级武器了。";
+		mes "你回来了！我已经提取了你捐赠的奖牌中的金属，应该足够制作 4 级武器了！";
 		mes "很不可思议吧？";
 		next;
 		mes "[艾菲尔]";
-		mes "如果你愿意，我可以制作";
-		mes "其中一件武器给你，";
-		mes "作为对你帮助的报答。";
+		mes "如果愿意，我可以为你制作一件武器，报答你的帮助。";
 		mes "你觉得怎么样？";
 		next;
-		if (select("Yes, I want a Level 4 Weapon.:Can I have something else?") == 2) {
+		if (select("我想要 4 级武器。:能给我其他东西吗？") == 2) {
 			mes "[艾菲尔]";
-			mes "其他东西？";
-			mes "哦，好吧。那么你想要";
-			mes "闪亮外套，还是一套带插槽的";
-			mes "属性铠甲？请";
-			mes "做出选择吧～";
-			mes "ahead and make your choice~";
+			mes "其他东西？好吧，你想要闪耀夹克，还是带插槽的属性铠甲？";
+			mes "请选择吧～";
 			next;
-			switch (select("Glittering Jacket:Fire Property Armor:Earth Property Armor:Wind Property Armor:Water Property Armor:Cancel")) {
+			switch (select("闪耀夹克:火属性铠甲:地属性铠甲:风属性铠甲:水属性铠甲:取消")) {
 				case 1: callsub S_BonusReward,500,2319; end;
 				case 2: callsub S_BonusReward,1000,2345; end;
 				case 3: callsub S_BonusReward,1000,2351; end;
@@ -2147,68 +1680,66 @@ ein_in01,85,208,5	script	Ei'felle#repay01	854,{
 				case 6: end;
 			}
 		}
-		setarray .@type$, "Dagger","One Handed Sword","Two Handed Sword","Axe","Mace","Bow","Staff","Book","Spear","Katar","Knuckle","Whip","Musical Instrument";
+		setarray .@type$, "短剑","单手剑","双手剑","斧","钝器","弓","法杖","书","长矛","拳刃","拳套","鞭","乐器";
 		.@m = select( implode(.@type$,":") ) - 1;
 		mes "[艾菲尔]";
-		mes "所以你想要";
-		mes .@type$[.@m]+"？请选择";
-		mes "要我制作的四级武器。";
-		mes "that you want me to create.";
+		mes "你想要"+.@type$[.@m]+"？请选择要我制作的 4 级武器。";
 		next;
 		switch(.@m) {
 			case 0:
-				.@weapon$ = "Ginnungagap:Grimtooth:Dragon Killer:Mail Breaker:Bazerald:Sword Breaker:Ice Pick:Sucsamad:Kitchen Knife:Azoth:Exorciser:Assassin Dagger:Moonlight Dagger:Weeder Knife:Cursed Dagger:Dagger of Counter:Combat Knife:Fortune Sword";
+				.@weapon$ = "金伦加:狼牙棒:屠龙者:破甲剑:巴泽拉尔德:破剑者:冰镐:苏克萨玛德:菜刀:阿佐特:驱魔短剑:刺客短剑:月光短剑:除草小刀:诅咒短剑:反击匕首:战斗小刀:幸运之剑";
 				setarray .@weapon_id, 13002,1237,13001,1225,1231,1224,1230,1236,1229,1235,1233,1232,1234,1227,1241,1242,1228,1223;
 				break;
 			case 1:
-				.@weapon$ = "Nagan:Immaterial Sword:Mysteltainn:Byeollungum:Star Dust Blade:Caesar's Sword:Ice Falchion:Excalibur:Edge:Cutlus:Solar Sword:Tirfing:Fireblend";
+				.@weapon$ = "长柄刀:无形剑:神秘短剑:星光剑:星尘之刃:凯撒之剑:冰霜弯刀:王之剑:利刃:卡特勒斯:太阳之剑:提尔锋:火焰之剑";
 				setarray .@weapon_id, 1130,1141,1138,1140,1148,1134,1131,1137,1132,1135,1136,1139,1133;
 				break;
 			case 2:	
-				.@weapon$ = "Dragon Slayer:Masamune:Muramasa:Schweizersabel:Executioner:Zweihander:Katzbalger";
+				.@weapon$ = "屠龙剑:正宗:村正:瑞士军刀剑:行刑者:双手巨剑:卡茨巴尔格";
 				setarray .@weapon_id, 1166,1165,1164,1167,1169,1168,1170;
 				break;
 			case 3:
-				.@weapon$ = "Great Axe:Guillotine:Light Epsilon:Bloody Axe:Sabbath:Slaughter:Cleaver:Tomahawk";
+				.@weapon$ = "巨斧:断头斧:光之伊普西隆:血斧:安息日:屠杀:屠刀:战斧";
 				setarray .@weapon_id, 1364,1369,1366,1363,1365,1367,1305,1368;
 				break;
 			case 4:
-				.@weapon$ = "Golden Mace:Grand Cross:Long Mace:Spike:Slash:Quadrille";
+				.@weapon$ = "黄金钝器:圣十字:长锤:尖刺:斩击锤:四重奏";
 				setarray .@weapon_id, 1524,1528,1525,1523,1526,1527;
 				break;
 			case 5:
-				.@weapon$ = "Roguemaster's Bow:Dragon Wing:Rudra's Bow:Ballista";
+				.@weapon$ = "流氓大师之弓:龙翼:鲁德拉之弓:弩炮";
 				setarray .@weapon_id, 1719,1724,1720,1722;
 				break;
 			case 6:
-				.@weapon$ = "Wing Staff:Wizardry Staff";
+				.@weapon$ = "翼杖:巫术法杖";
 				setarray .@weapon_id, 1616,1473;
+				break;
 			case 7:
-				.@weapon$ = "Legacy of Dragon:Book of the Apocalypse:Girl's Diary:Hardcover Book";
+				.@weapon$ = "龙之遗产:末日之书:少女日记:精装书";
 				setarray .@weapon_id, 1559,1557,1558,1561;
 				break;
 			case 8:
-				.@weapon$ = "Gae Bolg:Gelerdria:Gungnir:Skewer:Longinus's Spear:Brionac:Bill Guisarme:Zephyrus:Crescent Scythe:Tjungkuletti:Hellfire";
+				.@weapon$ = "盖伯尔加之枪:盖勒德里亚:永恒之枪:布洛卡:朗基努斯之枪:布里欧纳克:比尔长矛:西风:新月镰刀:吞克雷蒂:地狱火";
 				setarray .@weapon_id, 1474,1414,1413,1415,1469,1470,1467,1468,1466,1416,1471;
 				break;
 			case 9:
-				.@weapon$ = "Infiltrator:Bloody Roar:Unholy Touch";
+				.@weapon$ = "潜行者:血腥咆哮:邪恶之触";
 				setarray .@weapon_id, 1261,1265,1263;
 				break;
 			case 10:
-				.@weapon$ = "Hatii Claw:Berserk:Kaiser Knuckle";
+				.@weapon$ = "哈提之爪:狂暴:凯撒拳套";
 				setarray .@weapon_id, 1815,1814,1813;
 				break;
 			case 11:
-				.@weapon$ = "Lariat:Rapture Rose:Blade Whip:Chemeti:Queen's Whip";
+				.@weapon$ = "套索鞭:狂喜玫瑰:刃鞭:切梅蒂鞭:女王之鞭";
 				setarray .@weapon_id, 1962,1963,1969,1964,1970;
 				break;
 			case 12:
-				.@weapon$ = "Oriental Lute:Electric Guitar";
+				.@weapon$ = "东方鲁特琴:电吉他";
 				setarray .@weapon_id, 1918,1913;
 				break;		
 		}
-		.@j = select (.@weapon$+":Cancel") - 1;
+		.@j = select (.@weapon$+":取消") - 1;
 		explode(.@weapon$,.@weapon$,":");
 		if (.@j == getarraysize(.@weapon$)) close;
 		callsub S_BonusReward,1500,.@weapon_id[.@j];
@@ -2216,47 +1747,31 @@ ein_in01,85,208,5	script	Ei'felle#repay01	854,{
 	}
 	
 S_Reward:
-	if (select("Sure:No") == 2) {
+	if (select("好的:不了") == 2) {
 		mes "[艾菲尔]";
-		mes "哦，好吧……";
-		mes "不过我确实需要";
-		mes "那些奖牌，如果你改变主意，";
-		mes "请尽快";
-		mes "回来。";
+		mes "哦，好吧……我确实很需要那些奖牌。";
+		mes "如果改变主意，请尽快回来找我。";
 		emotion ET_CRY;
 		close;
 	}
 	mes "[艾菲尔]";
-	mes "哦，非常感谢你！";
-	mes "我可以用那些奖牌中的金属";
-	mes "制作高品质产品。现在我该";
-	mes "quality products. Now, how";
-	mes "如何报答你捐赠";
-	mes "的奖牌呢？";
+	mes "非常感谢！我能用奖牌中的金属制造高质量的产品。";
+	mes "该怎样报答你捐赠奖牌的好意呢？";
 	next;
 	switch(select("基础经验:职业经验:不用，我很高兴能帮忙:你的研究进展如何？")) {
 		case 1:
 			mes "[艾菲尔]";
-			mes "你只是想提升自己，";
-			mes "对吧？我不知道你想";
-			mes "变得更强、";
-			mes "更聪明还是更快，但我可以";
-			mes "教你进行想象训练。现在和我一起放松吧～";
-			mes "促进身体发展。";
+			mes "你想提升自己，对吧？无论是变得更强、更聪明还是更敏捷，我都可以教你做意象训练。";
+			mes "现在和我一起放松，想象自己的身体逐渐变强吧～";
 			next;
 			mes "[艾菲尔]";
 			mes "集中精神……相信自己。";
-			mes "相信你正在成为";
-			mes "你想成为的样子！";
-			mes "相、相信……用";
-			mes "你全部的真心！";
+			mes "相信你正在成为理想中的自己！相、相信……全心全意地相信！";
 			emotion ET_HUK, playerattached();
 			emotion ET_HUK;
 			next;
 			mes "[艾菲尔]";
-			mes "*呼* 怎么样？";
-			mes "现在你看到";
-			mes "希望的力量了吗？";
+			mes "呼……怎么样？现在你看到希望的力量了吗？";
 			delitem 7515,1; //Marvelous_Medal
 			if (checkre(3)) {
 				if (BaseLevel < 21) getexp 110,0;
@@ -2296,29 +1811,18 @@ S_Reward:
 			close;
 		case 2:
 			mes "[艾菲尔]";
-			mes "你想在工作上变得更";
-			mes "能干吗？嗯……";
-			mes "好，我们可以做到。只要";
-			mes "和我一起冥想，然后";
-			mes "一起进行意象训练。";
-			mes "我很擅长这个。";
+			mes "你想更胜任自己的职业？嗯……没问题。";
+			mes "和我一起冥想，做些意象训练吧。我很擅长这个。";
 			next;
 			mes "[艾菲尔]";
-			mes "只、只要……想象";
-			mes "你自己……变得……";
-			mes "超、超……厉害！";
-			mes "你必须看见它，";
-			mes "还要在你的";
-			mes "心里和脑海中感受到它！";
+			mes "想、想象……自己……变得……无、无比出色！";
+			mes "你必须在脑海中看见它，并用心感受它！";
 			emotion ET_HUK, playerattached();
 			emotion ET_HUK;
 			next;
 			mes "[艾菲尔]";
-			mes "没错，无论";
-			mes "是真实还是想象……";
-			mes "你的大脑都会处理";
-			mes "你灌输给它的东西。";
-			mes "安慰剂和心身症状——一切都息息相关。";
+			mes "没错，无论真实还是想象，你的大脑都会处理你灌输给它的内容。";
+			mes "安慰剂和心身症状……这些都是相互关联的。";
 			delitem 7515,1; //Marvelous_Medal
 			if (checkre(3)) {
 				if (Class == Job_Novice) {
@@ -2404,121 +1908,76 @@ S_Reward:
 			close;
 		case 3:
 			mes "[艾菲尔]";
-			mes "什么——？！你确定";
-			mes "什么都不想要吗？";
-			mes "嗯，我觉得如果不回报你";
-			mes "会招来不好的因果，";
-			mes "所以……";
-			mes "快想想要什么。";
+			mes "什么？！你确定什么都不要？";
+			mes "不回报你，我总觉得会招来厄运……快想想你要什么吧。";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "呃，就用奖牌继续";
-			mes "你的制造研究，";
-			mes "之后你可以";
-			mes "开发出新东西后再回报我。";
-			mes "这、嗯，就像";
-			mes "对你工作的投资！";
+			mes "呃，就用奖牌继续你的制造研究吧，等你开发出新东西后再回报我。";
+			mes "这就像是对你研究的投资！";
 			next;
 			mes "[艾菲尔]";
-			mes "嗯……嗯。";
-			mes "好，我明白";
-			mes "你的想法了。";
-			mes "这很聪明。";
-			mes "好，等我们开发出";
-			mes "新东西时我会回报你！";
+			mes "嗯……好，我明白你的意思了，真聪明。";
+			mes "等我们开发出新东西，我就回报你！";
 			next;
 			mes "[艾菲尔]";
-			mes "总之，我需要尽可能多的";
-			mes "奖牌，越快越好。你现在";
-			mes "能给我多少";
-			mes "奖牌？你觉得你";
-			mes "现在能给我多少？";
+			mes "总之，我需要尽快收集尽可能多的奖牌。";
+			mes "你现在能给我多少枚？";
 			next;
 			switch(select("全部拿走。:这么多怎么样？:不，我改变主意了。")) {
 			case 1:
 				mes "[艾菲尔]";
-				mes "谢、谢谢你！";
-				mes "真的非常感谢！";
-				mes "你的帮助会大大";
-				mes "推进我的研究，";
-				mes "我保证会尽快";
-				mes "回报你！";
+				mes "谢、谢谢！真的非常感谢！";
+				mes "你的帮助会大大推动我的研究，我保证尽快回报你！";
 				.@medals = countitem("Marvelous_Medal");
 				delitem 7515, .@medals; //Marvelous_Medal
 				ein_medal01 += .@medals;
 				close;
 			case 2:
 				mes "[艾菲尔]";
-				mes "好，请输入你愿意";
-				mes "给我的奖牌数量。";
-				mes "请输入";
-				mes "不超过 100 的数字。";
-				mes "number greater than 100.";
+				mes "请输入你愿意捐赠的奖牌数量，不要超过 100 枚。";
 				next;
 				while(1) {
 					input .@input;
 					if (!.@input) {
 						mes "[艾菲尔]";
-						mes "啊，你决定取消了吗？";
-						mes "这是你的选择，";
-						mes "但我还是很失望。改变主意后";
-						mes "请再回来吧……";
-						mes "back if you change your mind...";
+						mes "啊，你决定取消了？好吧，这是你的选择，虽然我很失望。";
+						mes "改变主意后再回来吧……";
 						close;
 					} else if (.@input < 1 || .@input > 100) {
 						mes "[艾菲尔]";
-						mes "记住，你只能输入 1 到 100。";
-						mes "如果你想给我更多奖牌，";
-						mes "也许应该全部给我～";
-						mes "medals, then perhaps you";
-						mes "should just give them all to me~";
+						mes "记住，只能输入 1 到 100。";
+						mes "如果想给我更多奖牌，可以选择全部捐赠～";
 						next;
 					} else break;
 				}
 				if (countitem("Marvelous_Medal") < .@input) {
 					mes "[艾菲尔]";
-					mes "抱歉，我不认为你身上有这么多";
-					mes "奖牌。请确认你提供的数量";
-					mes "确实是你拥有的奖牌。";
-					mes "that you offer me an amount of";
-					mes "medals that you actually have.";
+					mes "抱歉，你身上没有那么多奖牌。";
+					mes "请确认捐赠数量不超过你实际拥有的数量。";
 					emotion ET_SMILE;
 					close;
 				} else {
 					mes "[艾菲尔]";
-					mes "谢、谢谢你！";
-					mes "真的非常感谢！";
-					mes "你的帮助会大大";
-					mes "推进我的研究，";
-					mes "我保证会尽快";
-					mes "回报你！";
+					mes "谢、谢谢！真的非常感谢！";
+					mes "你的帮助会大大推动我的研究，我保证尽快回报你！";
 					delitem 7515, .@input; //Marvelous_Medal
 					ein_medal01 += .@input;
 					close;
 				}
 			case 3:
 				mes "[艾菲尔]";
-				mes "哦，好吧……";
-				mes "不过我确实需要";
-				mes "那些奖牌，如果你改变主意，";
-				mes "请尽快";
-				mes "回来。";
+				mes "哦，好吧……我确实很需要那些奖牌。";
+				mes "如果改变主意，请尽快回来找我。";
 				close;
 			}
 		case 4:
 			mes "[艾菲尔]";
-			mes "我已经能够用你带来的奖牌";
-			mes "制作闪光外套了。";
-			mes "但我知道只要你再带一些，";
-			mes "我就能做出更好的东西！";
-			mes "请继续帮助我。";
-			mes "带来的越多越好！";
+			mes "我已经能用你带来的奖牌制作闪耀夹克了。";
+			mes "但我知道，只要有更多奖牌，就能做出更好的东西！";
 			next;
 			mes "[艾菲尔]";
-			mes "目前我拥有你捐赠的奖牌中";
-			mes "^FF0000"+ ein_medal01 +"^000000 枚的金属。";
-			mes "你带来的越多，";
-			mes "我就越接近新的突破！";
+			mes "目前，我还留有你捐赠的 ^FF0000"+ein_medal01+"^000000 枚奖牌中的金属。";
+			mes "你带来的奖牌越多，我就越接近下一次突破！";
 			close;
 	}
 
@@ -2526,140 +1985,87 @@ S_BonusReward:
 	mes "[艾菲尔]";
 	.@arg1 = getarg(1);
 	if (.@arg1 == 2319) {
-		mes "你真的想要";
-		mes "这件 "+getitemname(.@arg1)+" 吗？";
-		mes "也许你可以放弃这份奖励，";
-		mes "以后换取";
-		mes "更好的东西……";
+		mes "你真的想要这件"+getitemname(.@arg1)+"吗？";
+		mes "也许你可以暂时放弃这份奖励，以后换取更好的东西……";
 	} else if (.@arg1 == 2345 || .@arg1 == 2347 || .@arg1 == 2349 || .@arg1 == 2351) {
-		mes "你确定要接受这套带插槽的";
-		mes "属性护甲吗？接受后，";
-		if (.@arg1 == 2345) mes "火属性护甲会被领取。";
-		else if (.@arg1 == 2351) mes "地属性护甲会被领取。";
-		else if (.@arg1 == 2349) mes "风属性护甲会被领取。";
-		else if (.@arg1 == 2347) mes "水属性护甲会被领取。";
-		mes "我还需要更多奖牌";
-		mes "来推进制造研究。";
-		mes "你愿意继续吗？";
+		mes "你确定要接受下面这套带插槽的属性铠甲吗？";
+		if (.@arg1 == 2345) mes "火属性铠甲。";
+		else if (.@arg1 == 2351) mes "地属性铠甲。";
+		else if (.@arg1 == 2349) mes "风属性铠甲。";
+		else if (.@arg1 == 2347) mes "水属性铠甲。";
+		mes "领取后，我还需要更多奖牌，才能继续推进制造研究。";
 	} else {
-		mes "所以你想要";
-		mes getitemname(.@arg1)+"？如果你选择";
-		mes "这件 4 级武器，";
-		mes "我就必须熔化许多你捐赠的";
-		mes "奖牌。要继续吗？";
-		mes "请仔细考虑。";
+		mes "你想要"+getitemname(.@arg1)+"？制作这件 4 级武器，需要熔化许多你捐赠的奖牌。要继续吗？";
 	}
 	next;
 	if (select("拒绝:接受") == 1) {
 		mes "["+ strcharinfo(0) +"]";
 		mes "等、等等，我改变主意了。";
-		mes "我可以请你";
-		mes "以后再给我奖励吗？";
-		mes "请让我稍后决定。";
+		mes "能请你以后再给我奖励吗？";
 		next;
 		mes "[艾菲尔]";
 		if (getiteminfo( .@arg1, ITEMINFO_TYPE ) == IT_ARMOR) {
-			mes "当然，当然。";
-			mes "记住，只要再捐赠更多奖牌，";
-			mes "我就能为你制作";
-			mes "品质更高的物品～";
-			mes "请继续支持我的研究。";
+			mes "当然。只要你捐赠更多奖牌，我就能制作质量更好的物品～";
 		} else {
-			mes "我不认为还能开发出比这些 4 级武器更好的东西，";
-			mes "但投入了这么多之后，";
-			mes "你应该仔细决定想要什么。";
+			mes "我恐怕做不出比这些 4 级武器更好的东西了。";
+			mes "不过，你已经投入了这么多，确实应该仔细考虑想要什么。";
 		}
 		close;
 	}
 	mes "[艾菲尔]";
 	if (.@arg1 == 2319) {
-		mes "给你。我相信这件";
-		mes "this "+getitemname(.@arg1)+" will";
-		mes "谢谢你的帮助，也希望你";
-		mes "继续捐赠奖牌，";
-		mes "支持我的金属研究～";
-		mes "拜托了。";
+		mes "给你，相信这件"+getitemname(.@arg1)+"会很好用。";
+		mes "感谢你的帮助，希望你继续捐赠奖牌，支持我的金属研究～";
 	} else if (.@arg1 == 2345 || .@arg1 == 2347 || .@arg1 == 2349 || .@arg1 == 2351) {
-		mes "选得好！我相信";
-		if (.@arg1 == 2345) mes "这套火属性插槽护甲";
-		else if (.@arg1 == 2351) mes "这套地属性插槽护甲";
-		else if (.@arg1 == 2349) mes "这套风属性插槽护甲";
-		else if (.@arg1 == 2347) mes "这套水属性插槽护甲";
-		mes "一定会很好用。谢谢你的帮助，";
-		mes "如果你得到更多奖牌，";
-		mes "请继续捐给我～";
-		mes "我会继续研究。";
+		mes "选得好！我相信这件装备会很好用。";
+		if (.@arg1 == 2345) mes "请收下这套带插槽的火属性铠甲。";
+		else if (.@arg1 == 2351) mes "请收下这套带插槽的地属性铠甲。";
+		else if (.@arg1 == 2349) mes "请收下这套带插槽的风属性铠甲。";
+		else if (.@arg1 == 2347) mes "请收下这套带插槽的水属性铠甲。";
+		mes "感谢你的帮助。如果得到更多奖牌，请继续捐给我～";
 	} else {
-		mes "再次感谢你提供这么多奖牌。";
-		mes "我想这一定很不容易。";
-		mes "无论如何，";
-		mes "我会感激你继续提供帮助～";
-		mes "拜托你了。";
-		mes "谢谢。";
+		mes "再次感谢你提供了那么多奖牌，我知道这一定很不容易。";
+		mes "希望你今后继续支持我的研究～";
 	}
 	ein_medal01 -= getarg(0);
 	getitem .@arg1,1;
 	close;
 }
 
-hugel,71,83,4	script	Wayne	900,{
+hugel,71,83,4	script	韦恩	900,{
 	if (!checkweight("Knife",1)) {
-		mes "[Wayne]";
-		mes "等一下……";
-		mes "如果你想用奖牌兑换物品，";
-		mes "最好先在背包里腾出空间。";
-		mes "为什么不使用卡普拉仓库呢？";
-		mes "先整理好物品再来吧。";
+		mes "[韦恩]";
+		mes "等等……想用奖牌兑换物品，请先腾出一些背包空间。";
+		mes "不妨使用卡普拉仓库。";
 		close;
 	}
-	mes "[Wayne]";
-	mes "你好！你有没有想过";
-	mes "怪物赛跑竞技场赢来的";
-	mes "奖牌能做什么？你可以在艾音布罗克";
-	mes "把它们捐给铁匠公会……";
-	mes "帮助他们进行研究。";
-	mes "这也是一种选择。";
+	mes "[韦恩]";
+	mes "你好！想过怪物赛场赢来的奖牌有什么用吗？";
+	mes "你可以把它们捐给艾音布罗克的铁匠公会……";
 	next;
-	mes "[Wayne]";
-	mes "……或者现在就来找我兑换物品。";
-	mes "和往常一样，选择权在你手里。";
-	mes "你可以自行决定。";
-	mes "我不会强迫你。";
+	mes "[韦恩]";
+	mes "……也可以现在就找我兑换物品。";
+	mes "选择权在你手里。";
 	next;
 	if (select("奖牌兑换:取消") == 2) {
-		mes "[Wayne]";
-		mes "记住，你随时可以来找我，";
-		mes "用奖牌换取消耗品。";
-		mes "至于艾音布罗克那家伙？";
-		mes "我也不知道他会拿什么交换……";
-		mes "你可以自己去问他。";
-		mes "也许会有惊喜。";
+		mes "[韦恩]";
+		mes "记住，你随时可以找我，用奖牌换取消耗品。";
+		mes "至于艾音布罗克那家伙，我也不知道他会拿什么交换……";
 		next;
-		mes "[Wayne]";
-		mes "我只知道他需要大量奖牌";
-		mes "来完成手头的工作。";
-		mes "不过听说他也许会让你的捐赠";
-		mes "值得你付出的全部努力。";
-		mes "你可以考虑一下。";
-		mes "总之，选择由你决定。";
+		mes "[韦恩]";
+		mes "我只知道他的工作需要大量奖牌。";
+		mes "不过，听说他的回报可能会让你觉得付出的努力很值得。";
 		close;
 	}
 	if (!checkweight("Jellopy",550)) {
-		mes "[Wayne]";
-		mes "等一下……";
-		mes "如果你想用奖牌兑换物品，";
-		mes "最好先在背包里腾出空间。";
-		mes "为什么不使用卡普拉仓库呢？";
-		mes "先整理好物品再来吧。";
+		mes "[韦恩]";
+		mes "等等……想用奖牌兑换物品，请先腾出一些背包空间。";
+		mes "不妨使用卡普拉仓库。";
 		close;
 	} else {
-		mes "[Wayne]";
+		mes "[韦恩]";
 		mes "你想兑换多少枚奖牌？";
-		mes "不难看出，一次兑换的奖牌越多，";
-		mes "就能得到价值更高的物品。";
-		mes "请根据自己的需要选择。";
-		mes "你可以慢慢考虑。";
-		mes "准备好后告诉我。";
+		mes "一次兑换的奖牌越多，能得到的物品价值也越高。";
 		next;
 		setarray .@pm, 1,3,7,8,16,25,42,59;
 		.@total_pm = getarraysize(.@pm);
@@ -2668,15 +2074,15 @@ hugel,71,83,4	script	Wayne	900,{
 		.@m = select(.@menu$) - 1;
 		switch (.@m) {
 			case 0: 
-				.@items$ = "2 赫纳叶:2 芦荟叶:1 马斯特拉果实:5 魔女之砂:4 浓缩红色药水";
+				.@items$ = "2 海涅叶片:2 芦荟叶片:1 马丝黛拉果实:5 巫术星砂:4 浓缩红色药水";
 				setarray .@item_array, 520,2,521,2,522,1,1061,5,545,4;
 				break;
 			case 1:
-				.@items$ = "1 皇家果冻:6 圣水";
+				.@items$ = "1 蜂王浆:6 圣水";
 				setarray .@item_array, 526,1,523,6;
 				break;
 			case 2:
-				.@items$ = "1 饼干袋:1 急救箱";
+				.@items$ = "1 曲奇袋:1 急救箱";
 				setarray .@item_array, 12130,1,12110,1;
 				break;
 			case 3:
@@ -2684,7 +2090,7 @@ hugel,71,83,4	script	Wayne	900,{
 				setarray .@item_array, 644,1;
 				break;
 			case 4:
-				.@items$ = "1 古旧的蓝色箱子";
+				.@items$ = "1 旧蓝色宝箱";
 				setarray .@item_array, 603,1;
 				break;
 			case 5:
@@ -2692,37 +2098,27 @@ hugel,71,83,4	script	Wayne	900,{
 				setarray .@item_array, 12105,1;
 				break;
 			case 6:
-				.@items$ = "1 古旧的紫色箱子";
+				.@items$ = "1 旧紫色宝箱";
 				setarray .@item_array, 617,1;
 				break;
 			case 7:
-				.@items$ = "1 波利箱子";
+				.@items$ = "1 波利箱";
 				setarray .@item_array, 12109,1;
 				break;
 		}
-		mes "[Wayne]";
-		mes "请选择你想获得的物品套装，";
-		mes "which of the following item";
-		mes "请确认你的选择。";
-		mes "in exchange for "+.@pm[.@m]+" Prize Medal."+((getarraysize(.@item_array)<3)?" Well, we have only 1 set, but...":"");
+		mes "[韦恩]";
+		mes "请选择要用 "+.@pm[.@m]+" 枚奖牌兑换的物品。";
+		mes ((getarraysize(.@item_array)<3)?"不过，这档只有一种物品可选……":"请选择你需要的物品。");
 		next;
 		.@m2 = ( select(.@items$) -1 ) *2;
 		if (countitem("Marvelous_Medal") < .@pm[.@m]) {
-			mes "[Wayne]";
-			mes "嘿，你身上没有足够的奖牌。";
-			mes "想和我兑换物品的话，";
-			mes "先去收集更多奖牌吧。";
-			mes "收集好后再回来。";
-			mes "我会为你兑换。";
+			mes "[韦恩]";
+			mes "你身上的奖牌不够。想兑换物品，请再收集一些奖牌。";
 			close;
 		}
-		mes "[Wayne]";
-		mes "给你～";
-		mes "谢谢使用我的服务，";
-		mes "希望你很快再来找我。";
-		mes "祝你享受怪物赛跑，";
-		mes "正直的冒险者～";
-		mes "下次再见！";
+		mes "[韦恩]";
+		mes "给你～谢谢使用我的服务，希望你很快再来。";
+		mes "正直的冒险者，祝你享受怪物赛跑！";
 		delitem 7515,.@pm[.@m];// Marvelous_Medal
 		getitem .@item_array[.@m2], .@item_array[(.@m2+1)];
 		close;		
@@ -2731,246 +2127,164 @@ hugel,71,83,4	script	Wayne	900,{
 
 // Monster Race Affiliated NPCs
 //============================================================
-airplane,246,47,1	script	Eocatt#decoy01	878,{
-	mes "[Eocatt]";
-	mes "施瓦茨瓦尔德共和国边境有一座";
-	mes "古老而朴素的村庄。";
-	mes "在建成怪物赛跑竞技场之前，";
-	mes "它在地图上只是一个小点！";
-	mes "如今这里已经热闹非凡，";
-	mes "因为他们开放了怪物赛跑竞技场！";
+airplane,246,47,1	script	伊欧卡特#decoy01	878,{
+	mes "[伊欧卡特]";
+	mes "施瓦茨瓦尔德共和国边境有一座古老而朴素的村庄。";
+	mes "在建成怪物赛场之前，它在地图上只是个不起眼的小点！";
 	next;
-	mes "[Eocatt]";
-	mes "如果你在怪物赛跑中下注获胜，";
-	mes "就会得到这些奖牌。";
-	mes "奖牌由非常稀有的金属制成，";
-	mes "据说这种金属在艾音布罗克很受欢迎……";
-	mes "你可以把它们带回去。";
+	mes "[伊欧卡特]";
+	mes "如果你在怪物赛跑中押中胜者，就能获得用稀有金属制成的奖牌。";
+	mes "听说艾音布罗克很需要这种金属……";
 	next;
-	mes "[Eocatt]";
-	mes "对，对……";
-	mes "我想起来了，";
-	mes "那座城镇叫做赫尔。";
-	mes "那里一定还有其他有趣的事情，";
-	mes "但赛跑竞技场绝对不能错过！";
+	mes "[伊欧卡特]";
+	mes "对，对……我想起来了，那座小镇叫赫尔。";
+	mes "那里肯定还有其他有趣的事，不过怪物赛场绝对不能错过！";
 	close;
 }
 
-hugel,85,93,5	script	Mudie#dummy01	866,{
-	mes "[Mudie]";
-	mes "怪物赛跑大概是";
-	mes "赫尔这里最大的景点。";
-	mes "除此之外我们没什么";
-	mes "其他活动，真遗憾。";
-	mes "你一定要去看看。";
+hugel,85,93,5	script	穆迪#dummy01	866,{
+	mes "[穆迪]";
+	mes "怪物赛跑大概是赫尔最大的景点。";
+	mes "可惜，这里没有太多其他活动。";
 	next;
-	mes "[Mudie]";
-	mes "如果你想去怪物赛跑竞技场，";
-	mes "只要朝小地图上的";
-	mes "7 点钟方向前进，";
-	mes "寻找被栅栏围住的山丘。";
-	mes "竞技场就在那附近。";
-	mes "沿着道路走就能找到。";
+	mes "[穆迪]";
+	mes "想去怪物赛场的话，就朝小地图的 7 点钟方向走，寻找被栅栏围住的山丘。";
 	next;
-	mes "[Mudie]";
-	mes "你应该能在那一带找到竞技场。";
-	mes "无论是下注还是观看比赛，";
-	mes "都可以去找埃卡尔兄弟中的一人。";
-	mes "希望你喜欢我们的小镇～";
-	mes "祝你玩得开心。";
+	mes "[穆迪]";
+	mes "赛场就在那附近。";
+	mes "不管是下注还是观看，都可以去找埃卡尔兄弟。希望你喜欢我们的小镇～";
 	close;
 }
 
-p_track02,32,45,5	script	Eccentric Scholar#double	755,{
-	mes "[Eccentric Scholar]";
-	mes "让我看看……";
-	mes "1 号怪物的平均速度和运气，";
-	mes "受到风阻和疲劳影响……";
-	mes "大概的获胜概率是多少……？";
-	mes "需要继续计算。";
-	mes "结果马上就出来了。";
+p_track02,32,45,5	script	古怪的学者#double	755,{
+	mes "[古怪的学者]";
+	mes "让我看看……考虑到风阻和疲劳，1 号怪物的平均速度、运气……";
+	mes "获胜概率大约是多少呢……？";
 	next;
-	mes "[Eccentric Scholar]";
-	mes "代入我的算法……";
-	mes "进位……";
-	mes "等等，我应该使用几位";
-	mes "有效数字？";
-	mes "啊，对了，7 位，";
-	mes "代表 x 的数值——";
+	mes "[古怪的学者]";
+	mes "代入我的算法……进位……";
+	mes "等等，该用几位有效数字？对了，是 7 位，用来计算 x，它代表的数值是——";
 	next;
 	mes "["+ strcharinfo(0) +"]";
-	mes "不好意思，";
-	mes "你在做什么？";
+	mes "不好意思，你在做什么？";
 	next;
-	mes "[Eccentric Scholar]";
-	mes "安、安静！";
-	mes "我必须完成";
-	mes "我的计算！";
-	mes "我刚才算到哪里了……？";
+	mes "[古怪的学者]";
+	mes "安、安静！我必须完成计算！";
+	mes "刚才算到哪里了……？";
 	specialeffect EF_CLAYMORE;
 	emotion ET_FRET;
 	close;
 }
 
-p_track02,69,31,1	script	Blacksmith Guildsman#dou	726,{
+p_track02,69,31,1	script	铁匠公会成员#dou	726,{
 	if (!$@mon_time_2_2) {
-		mes "[Blacksmith Guildsman]";
-		mes "我还要在这些比赛上下注多少次？！";
-		mes "我一次都没赢过！";
-		mes "我的下注运气";
-		mes "一定是历史上最差的！";
-		mes "真是太倒霉了！";
+		mes "[铁匠公会成员]";
+		mes "我到底还要下注多少次？！一次都没赢过！";
+		mes "我的运气一定是下注史上最差的！";
 		emotion ET_CRY;
 		next;
-		mes "[Blacksmith Guildsman]";
-		mes "公会派我带回一些";
-		mes "奖牌到艾音布罗克……";
-		mes "据说它们由稀有金属制成，";
-		mes "但……";
-		mes "我实在太难赢到了～！";
-		mes "请给我一点好运吧！";
+		mes "[铁匠公会成员]";
+		mes "公会派我把一些奖牌带回艾音布罗克，据说它们是用稀有金属制成的……";
+		mes "可我实在太难赢到了～！";
 		emotion ET_PROFUSELY_SWEAT;
 		close;
 	} 
-	mes "[Blacksmith Guildsman]";
-	mes "跑啊！快跑快跑！";
-	mes "我必须赢得一些奖牌！";
-	mes "否则我没脸回到";
-	mes "艾音布罗克的家！";
-	mes "快、快一点！";
+	mes "[铁匠公会成员]";
+	mes "跑啊！快跑快跑！我必须赢得一些奖牌！";
+	mes "否则没脸回艾音布罗克了！快、快一点！";
 	emotion ET_FLAG;
 	close;
 }
 
-p_track02,53,45,3	script	Valiant Knight#double	733,{
-	mes "[Valiant Knight]";
-	mes "嘿，你一直在比赛上下注吗？";
-	mes "如果你有可靠的情报，";
-	mes "能和我分享吗？";
-	mes "我赢过几次下注……";
-	mes "但我真的想赢得更多！";
-	mes "拜托了！";
+p_track02,53,45,3	script	英勇的骑士#double	733,{
+	mes "[英勇的骑士]";
+	mes "嘿，你一直在下注吗？有可靠情报的话，能和我分享吗？";
+	mes "我赢过几次……但还想赢更多！";
 	next;
-	mes "[Valiant Knight]";
-	mes "哈哈！就像我告诉那些铁匠的那样！";
-	mes "如果他们不想总是输，";
-	mes "就应该一直押同一只怪物。";
-	mes "至于我？我总是押黑色小恶魔～";
-	mes "它一定会赢！";
+	mes "[英勇的骑士]";
+	mes "哈哈！我对那些铁匠也是这么说的：不想总输，就一直押同一只怪物。";
+	mes "我？我总押黑色的小恶魔～";
 	next;
-	mes "[Valiant Knight]";
-	mes "你也一样……！";
-	mes "永远押注";
-	mes "小恶魔！";
+	mes "[英勇的骑士]";
+	mes "你也一样……！永远押小恶魔！";
 	emotion ET_BEST;
 	close;
 }
 
-p_track01,27,47,5	script	Drunkard#single	853,{
-	mes "[Familiar Drunkard]";
+p_track01,27,47,5	script	醉汉#single	853,{
+	mes "[眼熟的醉汉]";
 	mes "呜……！^333333*打嗝*^000000";
-	mes "我一定要赢下";
-	mes "下一场比赛！必须赢！";
-	mes "嘿，你！你的幸运数字是几号？";
-	mes "嗯？";
+	mes "下一场我一定要赢！必须赢！嘿，你！你的幸运数字是多少？嗯？";
 	next;
 	mes "["+ strcharinfo(0) +"]";
 	mes "我，呃……";
 	next;
-	mes "[Familiar Drunkard]";
-	mes "来吧，我需要你的幸运数字，";
-	mes "因为我的数字用完了！告诉我！";
-	mes "快告诉我！^333333*嗝～*^000000";
-	mes "拜托了！";
+	mes "[眼熟的醉汉]";
+	mes "快说，我需要你的幸运数字，我自己的都用完了！";
+	mes "告诉我！快告诉我！^333333*嗝～*^000000";
 	close;
 }
 
-p_track01,69,31,1	script	Blacksmith Guildsman#sin	107,{
-	mes "[Blacksmith Guildsman]";
-	mes "怎么会这么难？";
-	mes "为什么我连一场比赛";
-	mes "都赢不了？啊！";
-	mes "至少赢得一枚奖牌前，";
-	mes "我绝不能回去！";
+p_track01,69,31,1	script	铁匠公会成员#sin	107,{
+	mes "[铁匠公会成员]";
+	mes "怎么这么难？为什么连一场都赢不了？啊！";
+	mes "至少赢得一枚奖牌之前，我绝不能回去！";
 	next;
-	mes "[Blacksmith Guildsman]";
-	mes "是的，艾音布罗克工厂派我";
-	mes "来收集一些奖牌，";
-	mes "因为它们由稀有金属制成。";
-	mes "但看来他们选错了人……";
-	mes "我根本不擅长下注。";
+	mes "[铁匠公会成员]";
+	mes "艾音布罗克工厂派我来收集奖牌，因为它们含有稀有金属。";
+	mes "看来他们选错人了……";
 	next;
-	mes "[Blacksmith Guildsman]";
-	mes "我的意思是，我已经在这里待了很久，";
-	mes "却什么都没赢到！嘿，帮我个忙，";
-	mes "把你多余的奖牌";
-	mes "交给艾音布罗克工厂，好吗？";
-	mes "他们一定会感谢你的。";
-	mes "拜托了！";
+	mes "[铁匠公会成员]";
+	mes "我在这里待了这么久，什么都没赢到！";
+	mes "嘿，帮个忙，把你多余的奖牌交给艾音布罗克工厂，好吗？";
 	close;
 }
 
-p_track01,45,42,3	script	Absent Minded Man#single	881,{
-	mes "[Absent Minded Man]";
-	mes "你是来给怪物赛跑下注的吗？";
-	mes "我大老远来到这里，";
-	mes "只是因为一个奇怪的人";
-	mes "让我赢得奖牌。";
-	mes "这就是我来到赫尔的唯一原因……";
-	mes "我也不知道该怎么办。";
+p_track01,45,42,3	script	心不在焉的人#single	881,{
+	mes "[心不在焉的人]";
+	mes "你也是来给怪物赛跑下注的吗？";
+	mes "有个怪人让我赢取奖牌，我才大老远来到这里。这就是我来赫尔的唯一原因……";
 	next;
-	mes "[Absent Minded Man]";
-	mes "但我已经下注超过 100 次，";
-	mes "一次都没赢过！我的意思是，";
-	mes "如果我对同一只怪物下注 6 次，";
-	mes "至少应该赢一次，";
-	mes "对吧？到底怎么回事？！";
-	mes "这太奇怪了！";
+	mes "[心不在焉的人]";
+	mes "可我已经下注超过 100 次，一次都没赢！";
+	mes "同一只怪物押 6 次，总该赢一次吧？到底怎么回事？！";
 	close;
 }
 
-hugel,5,5,3	script	Monster Race Manager	868,{
+hugel,5,5,3	script	怪物赛跑管理员	868,{
 	callfunc "F_GM_NPC";
-	mes "[Monster Race Manager]";
-	mes "我可以启用或停用";
-	mes "单人和双人怪物赛跑的";
-	mes "竞技场入口 NPC。";
-	mes "请选择要执行的操作。";
+	mes "[怪物赛跑管理员]";
+	mes "我可以开启或关闭单怪物赛跑和双怪物赛跑的入口 NPC。";
 	next;
-	.@select = select("单人赛入口—开启:双人赛入口—开启:单人赛入口—关闭:双人赛入口—关闭");
-	mes "[Monster Race Manager]";
-	mes "请输入";
-	mes "密码。";
+	.@select = select("单怪物赛入口—开启:双怪物赛入口—开启:单怪物赛入口—关闭:双怪物赛入口—关闭");
+	mes "[怪物赛跑管理员]";
+	mes "请输入密码。";
 	next;
 	.@i = callfunc("F_GM_NPC",1854,0,0,2000);
 	if (.@i == -2) {
-		mes "[Monster Race Manager]";
+		mes "[怪物赛跑管理员]";
 		mes "错误。";
 	} else if (.@i == -1) {
-		mes "[Monster Race Manager]";
+		mes "[怪物赛跑管理员]";
 		mes "密码错误。";
 	} else if (.@i == 1) {
-		mes "[Monster Race Manager]";
+		mes "[怪物赛跑管理员]";
 		switch(.@select) {
 		case 1:
-			mes "单人怪物赛跑";
-			mes "入口 NPC 已开启。";
-			donpcevent "Eckar Ellebird#single::OnEnable";
+			mes "单怪物赛跑入口 NPC 已开启。";
+			donpcevent "埃卡尔·埃尔伯德#single::OnEnable";
 			close;
 		case 2:
-			mes "双人怪物赛跑";
-			mes "入口 NPC 已开启。";
-			donpcevent "Eckar Erenes#double::OnEnable";
+			mes "双怪物赛跑入口 NPC 已开启。";
+			donpcevent "埃卡尔·埃雷尼斯#double::OnEnable";
 			close;
 		case 3:
-			mes "单人怪物赛跑";
-			mes "入口 NPC 已关闭。";
-			donpcevent "Eckar Ellebird#single::OnDisable";
+			mes "单怪物赛跑入口 NPC 已关闭。";
+			donpcevent "埃卡尔·埃尔伯德#single::OnDisable";
 			close;
 		case 4:
-			mes "双人怪物赛跑";
-			mes "入口 NPC 已关闭。";
-			donpcevent "Eckar Erenes#double::OnDisable";
+			mes "双怪物赛跑入口 NPC 已关闭。";
+			donpcevent "埃卡尔·埃雷尼斯#double::OnDisable";
 			close;
 		}
 	}

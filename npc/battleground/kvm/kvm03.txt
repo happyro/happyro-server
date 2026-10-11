@@ -17,7 +17,7 @@
 
 // Waiting Room NPCs
 //============================================================
-bat_room,225,226,5	script	KVM Waiting Room#a3::KvM03R_Guillaume	418,{
+bat_room,225,226,5	script	KVM等候室#a3::KvM03R_Guillaume	418,{
 	end;
 OnInit:
 	waitingroom "5人战斗站",6,"KvM03_BG_Out::OnGuillaumeJoin",1;
@@ -27,7 +27,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,225,205,3	script	KVM Waiting Room#b3::KvM03R_Croix	414,{
+bat_room,225,205,3	script	KVM等候室#b3::KvM03R_Croix	414,{
 	end;
 OnInit:
 	waitingroom "5人战斗站",6,"KvM03_BG_Out::OnCroixJoin",1;
@@ -118,8 +118,8 @@ OnInit:
 	setwall "bat_c03",55,122,5,7,0,"batc03wall_b";
 	setwall "bat_c03",140,56,6,7,0,"batc03wall_c";
 	setwall "bat_c03",140,57,5,7,0,"batc03wall_d";
-	disablenpc "KVM Officer#KVM03A";
-	disablenpc "KVM Officer#KVM03B";
+	disablenpc "KVM军官#KVM03A";
+	disablenpc "KVM军官#KVM03B";
 	end;
 
 OnGuillaumeQuit:
@@ -134,7 +134,7 @@ OnGuillaumeDie:
 		if( .Guillaume_Count < 1 )
 			donpcevent "KvM03_BG::OnCroixWin";
 		else {
-			mapannounce "bat_c03", "纪尧姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
+			mapannounce "bat_c03", "吉约姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
 			mapannounce "bat_c03", "克鲁瓦阵营人数为 "+.Croix_Count+"。",bc_map,"0x00ff00";
 		}
 	}
@@ -152,7 +152,7 @@ OnCroixDie:
 		if( .Croix_Count < 1 )
 			donpcevent "KvM03_BG::OnGuillaumeWin";
 		else {
-			mapannounce "bat_c03", "纪尧姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
+			mapannounce "bat_c03", "吉约姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
 			mapannounce "bat_c03", "克鲁瓦阵营人数为 "+.Croix_Count+"。",bc_map,"0x00ff00";
 		}
 	}
@@ -167,8 +167,8 @@ OnCroixActive:
 	end;
 
 OnStart:
-	disablenpc "KVM Officer#KVM03A";
-	disablenpc "KVM Officer#KVM03B";
+	disablenpc "KVM军官#KVM03A";
+	disablenpc "KVM军官#KVM03B";
 	set $@KvM03BG_Victory, 0;
 	// Warp Teams
 	bg_warp $@KvM03BG_id1,"bat_c03",53,128;
@@ -271,7 +271,7 @@ OnTimer360000:
 	{ // Draw Game
 		set $@KvM03BG, 3;
 		set $@KvM03BG_Victory, 3;
-		mapannounce "bat_c03", "纪尧姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
+		mapannounce "bat_c03", "吉约姆阵营人数为 "+.Guillaume_Count+"。",bc_map,"0x00ff00";
 		mapannounce "bat_c03", "克鲁瓦阵营人数为 "+.Croix_Count+"。",bc_map,"0x00ff00";
 		mapannounce "bat_c03", "本场战斗以平局结束。",bc_map,"0x00ff00";
 		donpcevent "KvM03_BG::OnStop";
@@ -281,8 +281,8 @@ OnTimer360000:
 OnGuillaumeWin:
 	set $@KvM03BG, 3;
 	set $@KvM03BG_Victory, 1;
-	mapannounce "bat_c03", "纪尧姆获胜！",bc_map,"0x00ff00";
-	mapannounce "bat_c03", "恭喜纪尧姆阵营成员。",bc_map,"0x00ff00";
+	mapannounce "bat_c03", "吉约姆获胜！",bc_map,"0x00ff00";
+	mapannounce "bat_c03", "恭喜吉约姆阵营成员。",bc_map,"0x00ff00";
 	mapannounce "bat_c03", "所有人将被传送到起点。",bc_map,"0x00ff00";
 	donpcevent "KvM03_BG::OnStop";
 	end;
@@ -298,8 +298,8 @@ OnCroixWin:
 
 OnStop:
 	stopnpctimer;
-	enablenpc "KVM Officer#KVM03A";
-	enablenpc "KVM Officer#KVM03B";
+	enablenpc "KVM军官#KVM03A";
+	enablenpc "KVM军官#KVM03B";
 	// Warp Teams
 	bg_warp $@KvM03BG_id1,"bat_c03",53,128;
 	bg_warp $@KvM03BG_id2,"bat_c03",146,55;
@@ -346,8 +346,8 @@ OnTimer60000:
 	if( $@KvM03BG_id2 ) { bg_destroy $@KvM03BG_id2; set $@KvM03BG_id2, 0; }
 	if (getbattleflag("feature.bgqueue"))
 		bg_unbook "bat_c03";
-	disablenpc "KVM Officer#KVM03A";
-	disablenpc "KVM Officer#KVM03B";
+	disablenpc "KVM军官#KVM03A";
+	disablenpc "KVM军官#KVM03B";
 	set $@KvM03BG, 0;
 	end;
 
@@ -370,7 +370,7 @@ OnCroixJoin:
 
 // Battleground rewards
 //============================================================
-bat_c03,51,130,5	script	KVM Officer#KVM03A	419,{
+bat_c03,51,130,5	script	KVM军官#KVM03A	419,{
 	if( $@KvM03BG_Victory ) {
 		mes "[KVM军官]";
 		if( $@KvM03BG_Victory == Bat_Team ) {
@@ -394,7 +394,7 @@ bat_c03,51,130,5	script	KVM Officer#KVM03A	419,{
 	}
 	end;
 }
-bat_c03,148,53,1	duplicate(KVM Officer#KVM03A)	KVM Officer#KVM03B	415
+bat_c03,148,53,1	duplicate(KVM军官#KVM03A)	KVM军官#KVM03B	415
 
 // BG Queue makes these scripts useless
 -	script	BGQueueInit#kvm03	-1,{

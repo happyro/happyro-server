@@ -17,14 +17,14 @@
 //============================================================
 -	script	::MightyHammer	-1,{
 	disable_items;
-	mes "[强力铁匠锤]";
+	mes "[强力铁锤]";
 	mes "和其他人不同，我只精炼非常有限的物品。";
 	mes "我只处理 ^CC0000+7 到 +9^000000 的物品。";
 	next;
-	mes "[强力铁匠锤]";
+	mes "[强力铁锤]";
 	mes "我的特长是即使精炼失败，等级只会下降 1 级，装备不会消失。很棒吧？";
 	next;
-	mes "[强力铁匠锤]";
+	mes "[强力铁锤]";
 	mes "那么就全力开始吧，怎么样？你想精炼什么？";
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -32,7 +32,7 @@
 		.@menu$ = .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) + "-[未装备]" ) + ":";
 	.@part = .@indices[ select(.@menu$) ];
 	if (!getequipisequiped(.@part)) {
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		switch(.@part) {
 		case EQI_HEAD_TOP:
 			mes "我是铁匠，不是发型师。";
@@ -64,7 +64,7 @@
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
-		mes "[强力铁匠锤]";
+		mes "[强力铁锤]";
 		mes "这件物品无法精炼。";
 		close;
 	}
@@ -79,7 +79,7 @@
 		.@blacksmith_blessing_count = 4;
 		break;
 	default:
-		mes "[强力铁匠锤]";
+		mes "[强力铁锤]";
 		mes "我只处理精炼等级 +7 到 +9 的物品。";
 		close;
 	}
@@ -91,17 +91,17 @@
 	.@price = getequiprefinecost(.@part, REFINE_COST_HD, REFINE_ZENY_COST);
 	.@material = getequiprefinecost(.@part, REFINE_COST_HD, REFINE_MATERIAL_ID);
 
-	mes "[强力铁匠锤]";
-	mes "精炼所选装备需要 ^ff9999" + getitemname(.@material) + "^000000，费用为 20,000 Zeny。";
+	mes "[强力铁锤]";
+	mes "精炼所选装备需要 ^ff9999" + getitemname(.@material) + "^000000，费用为 " + callfunc("F_InsertComma",.@price) + " Zeny。";
 	mes "你准备好了吗？";
 	next;
 	if (select("是:否") == 2) {
-		mes "[强力铁匠锤]";
+		mes "[强力铁锤]";
 		mes "我会等你准备好。";
 		close;
 	}
 	if (getequippercentrefinery(.@part) < 100) {
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		mes "这件物品看起来很可能精炼失败。";
 		mes "不过即使失败，也只会下降 1 级。";
 		mes "要继续精炼吗？";
@@ -109,15 +109,15 @@
 		if (countitem(6635) < .@blacksmith_blessing_count)
 			setarray .@menu$[0], "", "是", "暂时不了";
 		else {
-			mes "[Blacksmith Mighty Hammer]";
-			mes "啊！是^0000ff铁匠祝福^000000吗？";
-			mes "有了铁匠祝福，精炼失败时装备不会消失！";
+			mes "[强力铁锤]";
+			mes "啊！是^0000ff铁匠的祝福^000000吗？";
+			mes "有了铁匠的祝福，精炼失败时装备的精炼等级不会下降！";
 			next;
-			mes "[Blacksmith Mighty Hammer]";
+			mes "[强力铁锤]";
 			if ( .@itemtype != IT_WEAPON )
-				mes "+" + getequiprefinerycnt(.@part) + " 的装备使用^316AC5 " + .@blacksmith_blessing_count + " 个铁匠祝福^000000可防止装备消失。要使用它精炼吗？";
+				mes "+" + getequiprefinerycnt(.@part) + " 的装备使用^316AC5 " + .@blacksmith_blessing_count + " 个铁匠的祝福^000000可防止精炼失败时等级下降。要使用它精炼吗？";
 			else
-				mes "+" + getequiprefinerycnt(.@part) + " 的武器使用^316AC5 " + .@blacksmith_blessing_count + " 个铁匠祝福^000000可防止装备消失。要使用它精炼吗？";
+				mes "+" + getequiprefinerycnt(.@part) + " 的武器使用^316AC5 " + .@blacksmith_blessing_count + " 个铁匠的祝福^000000可防止精炼失败时等级下降。要使用它精炼吗？";
 			next;
 			setarray .@menu$[0], "使用它精炼", "不使用它直接精炼", "暂时不精炼";
 		}
@@ -128,13 +128,13 @@
 		case 2:
 			break;
 		case 3:
-			mes "[Blacksmith Mighty Hammer]";
-			mes "只有克服失败恐惧的人才能获得杰作。";
+			mes "[强力铁锤]";
+			mes "只有克服对失败的恐惧，才能获得杰作。";
 			close;
 		}
 	}
 	if ((.@bless_who && countitem(6635) < .@blacksmith_blessing_count) || countitem(.@material) == 0 || Zeny < .@price) {
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		mes "你不是说已经准备好一切了吗？";
 		close;
 	}
@@ -146,7 +146,7 @@
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@refineitemid) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) ||
 		callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt)) {
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		emotion ET_FRET;
 		mes "等一下……";
 		mes "你以为我傻吗？！";
@@ -154,13 +154,13 @@
 		close;
 	}
 
-	mes "[Blacksmith Mighty Hammer]";
+	mes "[强力铁锤]";
 	mes "铛！铛！铛！";
 	if (getequippercentrefinery(.@part, true) > rand(100)) {
 		successrefitem .@part;
 		next;
 		emotion ET_BEST;
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		mes "每次听到这个声音都让我精神焕发。";
 		mes "给你。精炼完美成功！";
 		close;
@@ -169,20 +169,20 @@
 		specialeffect EF_HOLYHIT;
 		next;
 		emotion ET_HUK;
-		mes "[Blacksmith Mighty Hammer]";
+		mes "[强力铁锤]";
 		mes "什么？！！";
 		next;
-		mes "[Blacksmith Mighty Hammer]";
-		mes "哎呀！我现在没脸见人了。嗯嗯。";
+		mes "[强力铁锤]";
+		mes "精炼失败了。不过铁匠的祝福保护了装备，精炼等级没有下降。";
 		close;
 	}
 	downrefitem .@part;
 	next;
 	emotion ET_HUK;
-	mes "[Blacksmith Mighty Hammer]";
+	mes "[强力铁锤]";
 	mes "糟糕！！";
 	next;
-	mes "[Blacksmith Mighty Hammer]";
+	mes "[强力铁锤]";
 	mes "我相信像你这样的人不会因等级下降 1 级而责怪我。嗯。";
 	close;
 }
@@ -201,12 +201,12 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 //============================================================
 -	script	::Basta	-1,{
 	disable_items;
-	mes "[Basta]";
+	mes "[巴斯塔]";
 	mes "我是全世界最好的铁匠，巴斯塔。";
 	mes "但我不提供普通精炼服务。";
-	mes "我只精炼^CC0000超过 +10^000000 的装备。";
+	mes "我只精炼^CC0000+10 及以上^000000 的装备。";
 	next;
-	mes "[Basta]";
+	mes "[巴斯塔]";
 	mes "你想精炼哪件装备？";
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -214,7 +214,7 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		.@menu$ = .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) + "-[未装备]" ) + ":";
 	.@part = .@indices[ select(.@menu$) ];
 	if (!getequipisequiped(.@part)) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		switch(.@part) {
 		case EQI_HEAD_TOP:
 			mes "你的头是装备吗？";
@@ -246,13 +246,13 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "连我也无法精炼这件物品。没办法。";
 		close;
 	}
 	.@refine_count = getequiprefinerycnt(.@part);
 	if (.@refine_count < 10) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "我不是说过吗？我只精炼 +10 及以上的装备。";
 		close;
 	}
@@ -261,8 +261,8 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 	else if (.@refine_count == 11)
 		.@blacksmith_blessing_count = 11;
 	else if (.@refine_count == 20) {
-		mes "[Basta]";
-		mes "这把武器已经完美，不需要再精炼了~";
+		mes "[巴斯塔]";
+		mes "这件装备已经完美，不需要再精炼了~";
 		close;
 	}
 	.@refineitemid = getequipid(.@part); // save id of the item
@@ -273,44 +273,44 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 	.@material = getequiprefinecost(.@part, REFINE_COST_HD, REFINE_MATERIAL_ID);
 
 	if ( .@itemtype != IT_WEAPON )
-		.@type$ = "armor";
+		.@type$ = "防具";
 	else
-		.@type$ = "weapon";
-	mes "[Basta]";
+		.@type$ = "武器";
+	mes "[巴斯塔]";
 	mes "嗯……这就是你想精炼的装备吗？";
 	mes "精炼这件装备需要 1 个 ^ff9999" + getitemname(.@material) + "^000000，费用为 " + callfunc("F_InsertComma",.@price) + " Zeny。";
 	mes "真的要精炼吗？";
 	next;
 	if (select("是:否") == 2) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "好的。既然你这么想……";
 		close;
 	}
 	if (getequippercentrefinery(.@part, true) < 100) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "这件" + .@type$ + "已经精炼得很高了。";
 		mes "继续精炼可能会降低等级。";
 		next;
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "我和其他地方的铁匠不同。";
 		mes "等级不可能一下下降 3 或 4 级……听起来很可怕。";
 		mes "在这里最多只会下降 1 级。";
 		next;
 		if (.@blacksmith_blessing_count == 0 || countitem(6635) < .@blacksmith_blessing_count) {
-			mes "[Basta]";
+			mes "[巴斯塔]";
 			mes "与其他铁匠相比，风险更小。";
 			mes "我已经说明所有注意事项。要试试吗？";
 			next;
 			setarray .@menu$[0], "", "是", "否";
 		}
 		else {
-			mes "[Basta]";
-			mes "哇~是^316AC5铁匠祝福^000000吗？很难获得~但你居然有！";
+			mes "[巴斯塔]";
+			mes "哇~是^316AC5铁匠的祝福^000000吗？很难获得~但你居然有！";
 			next;
-			mes "[Basta]";
-			mes "+" + .@refine_count + " 的" + .@type$ + "需要 ^316AC5" + .@blacksmith_blessing_count + " 个铁匠祝福^000000才能防止装备消失。要使用铁匠祝福精炼吗？";
+			mes "[巴斯塔]";
+			mes "+" + .@refine_count + " 的" + .@type$ + "需要 ^316AC5" + .@blacksmith_blessing_count + " 个铁匠的祝福^000000才能防止精炼失败时等级下降。要使用铁匠的祝福精炼吗？";
 			next;
-			setarray .@menu$[0], "使用铁匠祝福精炼", "不使用铁匠祝福精炼", "暂时不精炼";
+			setarray .@menu$[0], "使用铁匠的祝福精炼", "不使用铁匠的祝福精炼", "暂时不精炼";
 		}
 		switch( select(.@menu$[0], .@menu$[1], .@menu$[2]) ) {
 		case 1:
@@ -319,14 +319,14 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		case 2:
 			break;
 		case 3:
-			mes "[Basta]";
+			mes "[巴斯塔]";
 			mes "好吧~";
 			mes "完全不挑战也可以算是人生智慧。";
 			close;
 		}
 	}
 	if ((.@bless_who && countitem(6635) < .@blacksmith_blessing_count) || countitem(.@material) == 0 || Zeny < .@price) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "嗯……你没有带齐所需材料。";
 		mes "全部准备好后再回来。";
 		close;
@@ -339,7 +339,7 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@refineitemid) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) ||
 		callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt)) {
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		emotion ET_FRET;
 		mes "等一下……";
 		mes "你以为我傻吗？！";
@@ -352,7 +352,7 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		successrefitem .@part;
 		next;
 		emotion ET_BEST;
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "太棒了！做得漂亮！！";
 		mes "我真是全世界最好的铁匠！";
 		close;
@@ -361,11 +361,11 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		specialeffect EF_HOLYHIT;
 		next;
 		emotion (!rand(5))?ET_MONEY:ET_HUK;
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "啊啊啊啊啊！！！";
 		next;
-		mes "[Basta]";
-		mes "精炼失败了！";
+		mes "[巴斯塔]";
+		mes "精炼失败了！不过铁匠的祝福保护了装备，精炼等级没有下降。";
 		mes "像我这样的世界第一铁匠……";
 		mes "也不能保证 100% 成功~";
 	}
@@ -373,17 +373,17 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	4_M_DWARF
 		downrefitem .@part;
 		next;
 		emotion (!rand(5))?ET_MONEY:ET_HUK;
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "啊啊啊啊啊！！！";
 		next;
-		mes "[Basta]";
+		mes "[巴斯塔]";
 		mes "可恶！";
 		mes "精炼失败，等级下降了！";
 		mes "即使是世界第一铁匠也不能保证 100% 成功！";
 	}
 	mes "真遗憾。";
 	next;
-	mes "[Basta]";
+	mes "[巴斯塔]";
 	mes "下次我会做得更好！别担心！";
 	close;
 }
