@@ -11885,13 +11885,13 @@ void clif_parse_Emotion(int32 fd, map_session_data *sd){
 
 	if (battle_config.basic_skill_check == 0 || pc_checkskill(sd, NV_BASIC) >= 2 || pc_checkskill(sd, SU_BASIC_SKILL) >= 1) {
 		if (emoticon == ET_CHAT_PROHIBIT) {// prevent use of the mute emote [Valaris]
-			clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 1 );
+			clif_skill_fail( *sd, NV_BASIC, USESKILL_FAIL_TOTARGET, 1 );
 			return;
 		}
 		// fix flood of emotion icon (ro-proxy): flood only the hacker player
 		if (sd->emotionlasttime + 1 >= time(nullptr)) { // not more than 1 per second
 			sd->emotionlasttime = time(nullptr);
-			clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 1 );
+			clif_skill_fail( *sd, NV_BASIC, USESKILL_FAIL_SKILLINTERVAL, 1 );
 			return;
 		}
 		sd->emotionlasttime = time(nullptr);
@@ -11904,7 +11904,7 @@ void clif_parse_Emotion(int32 fd, map_session_data *sd){
 			sd->idletime_mer = last_tick;
 
 		if (sd->state.block_action & PCBLOCK_EMOTION) {
-			clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 1 );
+			clif_skill_fail( *sd, NV_BASIC, USESKILL_FAIL_CONDITION, 1 );
 			return;
 		}
 
