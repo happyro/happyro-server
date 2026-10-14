@@ -225,6 +225,8 @@ struct Battle_Config
 	int32 skillfree;
 	int32 skillup_limit;
 	int32 wp_rate;
+	int32 refine_chance_rate;
+	int32 refine_always_success;
 	int32 pp_rate;
 	int32 monster_active_enable;
 	int32 monster_damage_delay_rate;

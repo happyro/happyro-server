@@ -171,7 +171,7 @@ enum mail_attach_result mail_setitem(map_session_data *sd, int16 idx, uint32 amo
 		if( amount > sd->status.zeny )
 			amount = sd->status.zeny; // TODO: confirm this behavior for old mail system
 #else
-		if( ( amount + battle_config.mail_zeny_fee / 100 * amount ) > sd->status.zeny )
+		if( ( static_cast<int64>(amount) + static_cast<int64>(amount) * battle_config.mail_zeny_fee / 100 ) > sd->status.zeny )
 			return MAIL_ATTACH_ERROR;
 #endif
 
@@ -297,6 +297,15 @@ bool mail_setattachment(map_session_data *sd, struct mail_message *msg)
 
 		amount++;
 
+		if( index < 0 || index >= MAX_INVENTORY || sd->inventory_data[index] == nullptr || sd->mail.item[i].amount < 0 )
+			return false;
+
+		// Every inventory slot must be deducted at most once.
+		for( int32 j = 0; j < i; j++ ){
+			if( msg->item[j].nameid != 0 && sd->mail.item[j].index == index )
+				return false;
+		}
+
 		if( sd->inventory.u.items_inventory[index].nameid != sd->mail.item[i].nameid )
 			return false;
 
@@ -310,21 +319,28 @@ bool mail_setattachment(map_session_data *sd, struct mail_message *msg)
 		msg->item[i].amount = sd->mail.item[i].amount;
 	}
 
-	if( sd->mail.zeny < 0 || ( sd->mail.zeny + sd->mail.zeny * battle_config.mail_zeny_fee / 100 + amount * battle_config.mail_attachment_price ) > sd->status.zeny )
+	// Validate the complete cost before removing any assets. Widen before multiplication.
+	const int64 zeny = sd->mail.zeny;
+	const int64 cost = zeny + zeny * battle_config.mail_zeny_fee / 100
+		+ static_cast<int64>(amount) * battle_config.mail_attachment_price;
+	if( zeny < 0 || cost > sd->status.zeny || cost > MAX_ZENY )
 		return false;
 
-	msg->zeny = sd->mail.zeny;
+	// A failed payment must never result in a funded outgoing mail.
+	if( !mail_removezeny(sd, true) )
+		return false;
+	msg->zeny = static_cast<uint32>(zeny);
 
 	// Removes the attachment from sender
 	for( i = 0; i < MAIL_MAX_ITEM; i++ ){
 		if( sd->mail.item[i].nameid == 0 || sd->mail.item[i].amount == 0 ){
-			// Exit the loop on the first empty entry
-			break;
+			// Skip empty attachment slots.
+			continue;
 		}
 
-		mail_removeitem(sd,1,sd->mail.item[i].index + 2,sd->mail.item[i].amount);
+		if( !mail_removeitem(sd,1,sd->mail.item[i].index + 2,sd->mail.item[i].amount) )
+			return false;
 	}
-	mail_removezeny(sd,true);
 
 	return true;
 }
@@ -332,6 +348,18 @@ bool mail_setattachment(map_session_data *sd, struct mail_message *msg)
 void mail_getattachment(map_session_data* sd, struct mail_message* msg, int32 zeny, struct item* item){
 	int32 i;
 	bool item_received = false;
+
+	// Release the whole reply before delivery, including attachments after a failed item.
+	// Map processing is synchronous: another claim cannot interleave with this delivery.
+	for( i = 0; i < MAIL_MAX_ITEM; i++ ){
+		auto pending = sd->mail.pending_items.find(item[i].nameid);
+		if( pending == sd->mail.pending_items.end() || item[i].amount <= 0 )
+			continue;
+		if( pending->second > static_cast<uint32>(item[i].amount) )
+			pending->second -= item[i].amount;
+		else
+			sd->mail.pending_items.erase(pending);
+	}
 
 	for( i = 0; i < MAIL_MAX_ITEM; i++ ){
 		if( item[i].nameid > 0 && item[i].amount > 0 ){
@@ -467,6 +495,15 @@ void mail_send(map_session_data *sd, const char *dest_name, const char *title, c
 	if( sd->state.trading )
 		return;
 
+	// Validate before consuming attachments, currency, postage, or daily quota.
+	if( title == nullptr || body_msg == nullptr ||
+		strnlen(title, MAIL_TITLE_LENGTH) >= MAIL_TITLE_LENGTH ||
+		strnlen(body_msg, MAIL_BODY_LENGTH) >= MAIL_BODY_LENGTH ||
+		strspn(title, " \t\r\n") == strlen(title) ){
+		clif_Mail_send(sd, WRITE_MAIL_FAILED);
+		return;
+	}
+
 	if( DIFF_TICK(sd->cansendmail_tick, gettick()) > 0 ) {
 		clif_displaymessage(sd->fd,msg_txt(sd,675)); //"Cannot send mails too fast!!."
 		clif_Mail_send(sd, WRITE_MAIL_FAILED); // fail
@@ -506,10 +543,6 @@ void mail_send(map_session_data *sd, const char *dest_name, const char *title, c
 	safestrncpy(msg.dest_name, (char*)dest_name, NAME_LENGTH);
 	safestrncpy(msg.title, (char*)title, MAIL_TITLE_LENGTH);
 	msg.type = MAIL_INBOX_NORMAL;
-
-	if (msg.title[0] == '\0') {
-		return; // Message has no length and somehow client verification was skipped.
-	}
 
 	if (body_len)
 		safestrncpy(msg.body, (char*)body_msg, min(body_len + 1, MAIL_BODY_LENGTH));

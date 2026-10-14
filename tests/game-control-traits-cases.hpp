@@ -1,6 +1,13 @@
 int main() {
     using nlohmann::json;
     map_session_data sd;
+    assert(game_control_allocation_limits(&sd) == json({
+        {"base", {{"str", 32767}, {"agi", 120}, {"vit", 130}, {"int", 140}, {"dex", 150}, {"luk", 160}}},
+        {"traits", {{"pow", 110}, {"sta", 100}, {"wis", 90}, {"spl", 80}, {"con", 70}, {"crt", 60}}}
+    }));
+    sd.maximums[PARAM_POW] = 50;
+    assert(game_control_allocation_limits(&sd)["traits"]["pow"] == 50);
+    assert(game_control_traits_snapshot(&sd)["maximums"]["pow"] == 32767);
     assert(game_control_traits_snapshot(&sd)["maximums"]["pow"] == 32767);
     assert(game_control_traits_update(&sd, {{"pow", 292}, {"spl", 32767}}));
     assert(sd.values[SP_POW] == 292 && sd.values[SP_SPL] == 32767);

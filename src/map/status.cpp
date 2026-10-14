@@ -489,6 +489,16 @@ bool RefineDatabase::calculate_refine_info( const struct item_data& data, e_refi
 
 RefineDatabase refine_db;
 
+int32 status_get_refine_chance(int32 base_chance){
+	if( battle_config.refine_always_success )
+		return 100;
+
+	// Database chances use 1/100 percent; configuration uses 100 = 1x.
+	// Round once to the precision supported by both the UI packet and NPC API.
+	const int64 chance = static_cast<int64>(base_chance) * battle_config.refine_chance_rate / 10000;
+	return static_cast<int32>(cap_value(chance, 0, 100));
+}
+
 const std::string SizeFixDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/size_fix.yml";
 }

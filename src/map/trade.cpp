@@ -387,8 +387,10 @@ void trade_tradeadditem(map_session_data *sd, int16 index, int16 amount)
 		return;
 	}
 
-	if (itemdb_ishatched_egg(item))
+	if (itemdb_ishatched_egg(item)) {
+		clif_tradeitemok(*sd, index, EXITEM_ADD_FAILED_CLOSED);
 		return;
+	}
 
 	if( item->expire_time ) { // Rental System
 		clif_displaymessage (sd->fd, msg_txt(sd,260));

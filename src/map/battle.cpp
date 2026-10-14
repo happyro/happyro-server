@@ -8334,6 +8334,8 @@ static const struct _battle_data {
 	{ "player_skillfree",                   &battle_config.skillfree,                       0,      0,      1,              },
 	{ "player_skillup_limit",               &battle_config.skillup_limit,                   1,      0,      1,              },
 	{ "weapon_produce_rate",                &battle_config.wp_rate,                         100,    0,      INT_MAX,        },
+	{ "refine_chance_rate",                &battle_config.refine_chance_rate,             100,    0,      1000000,        },
+	{ "refine_always_success",             &battle_config.refine_always_success,          0,      0,      1,              },
 	{ "potion_produce_rate",                &battle_config.pp_rate,                         100,    0,      INT_MAX,        },
 	{ "monster_active_enable",              &battle_config.monster_active_enable,           1,      0,      1,              },
 	{ "monster_damage_delay_rate",          &battle_config.monster_damage_delay_rate,       100,    0,      INT_MAX,        },

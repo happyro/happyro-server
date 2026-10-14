@@ -81,6 +81,8 @@ struct GameControlSettingDefinition {
 constexpr GameControlSettingDefinition game_control_settings[] = {
 	{"base_exp_rate", 0, std::numeric_limits<int32>::max()},
 	{"job_exp_rate", 0, std::numeric_limits<int32>::max()},
+	{"refine_chance_rate", 0, 1000000},
+	{"refine_always_success", 0, 1},
 	{"item_rate_common", 0, 1000000},
 	{"item_rate_common_boss", 0, 1000000},
 	{"item_rate_common_mvp", 0, 1000000},
@@ -589,6 +591,7 @@ void game_control_process() {
 					{"hp", sd->battle_status.hp}, {"max_hp", sd->battle_status.max_hp}, {"sp", sd->battle_status.sp},
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"sex", sd->status.sex}, {"traits", game_control_traits_snapshot(sd)},
+					{"allocation_limits", game_control_allocation_limits(sd)},
 					{"min_base_level", minimum_base_level(sd->status.class_)}, {"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
 					{"max_skill_points", INT16_MAX}, {"max_status_points", INT32_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},

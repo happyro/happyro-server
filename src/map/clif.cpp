@@ -3793,7 +3793,7 @@ void clif_updatestatus( map_session_data& sd, enum _sp type ){
 		case SP_UINT:
 		case SP_UDEX:
 		case SP_ULUK:
-			clif_zc_status_change(sd, static_cast<uint16>(type), static_cast<uint8>(pc_need_status_point(&sd, type-SP_USTR+SP_STR, 1)));
+			clif_par_change(sd, static_cast<uint16>(type), pc_need_status_point(&sd, type-SP_USTR+SP_STR, 1));
 			break;
 
 		case SP_ATTACKRANGE:
@@ -4191,6 +4191,10 @@ void clif_initialstatus( map_session_data& sd ) {
 	clif_updatestatus(sd, SP_INT);
 	clif_updatestatus(sd, SP_DEX);
 	clif_updatestatus(sd, SP_LUK);
+
+	// The compact initial status packet cannot represent costs above 255.
+	for (int type = SP_USTR; type <= SP_ULUK; ++type)
+		clif_updatestatus(sd, static_cast<_sp>(type));
 
 	clif_updatestatus(sd, SP_ATTACKRANGE);
 	clif_updatestatus(sd, SP_ASPD);
@@ -16871,6 +16875,7 @@ void clif_parse_Mail_getattach( int32 fd, map_session_data *sd ){
 
 	if( attachment&MAIL_ATT_ITEM ){
 		int32 slots = 0, totalweight = 0;
+		std::unordered_map<t_itemid, uint32> quantities;
 
 		for( i = 0; i < MAIL_MAX_ITEM; i++ ){
 			struct item* item = &msg->item[i];
@@ -16881,7 +16886,16 @@ void clif_parse_Mail_getattach( int32 fd, map_session_data *sd ){
 				if(data == nullptr)
 					continue;
 
-				switch( pc_checkadditem(sd, item->nameid, item->amount) ){
+				// Include earlier attachments in this mail and claims awaiting char-server replies.
+				uint32 amount = item->amount;
+				if( itemdb_isstackable2(data.get()) && !data->flag.guid ){
+					amount = (quantities[item->nameid] += item->amount);
+					auto pending = sd->mail.pending_items.find(item->nameid);
+					if( pending != sd->mail.pending_items.end() )
+						amount += pending->second;
+				}
+
+				switch( pc_checkadditem(sd, item->nameid, amount) ){
 					case CHKADDITEM_NEW:
 						slots += data->inventorySlotNeeded( item->amount );
 						break;
@@ -16901,6 +16915,9 @@ void clif_parse_Mail_getattach( int32 fd, map_session_data *sd ){
 			clif_mail_getattachment(sd, msg, 2, MAIL_ATT_ITEM);
 			return;
 		}
+
+		for( const auto& entry : quantities )
+			sd->mail.pending_items[entry.first] += entry.second;
 
 		// To make sure another request fails
 		memset(msg->item, 0, MAIL_MAX_ITEM*sizeof(struct item));
@@ -17140,8 +17157,19 @@ void clif_parse_Mail_send(int32 fd, map_session_data *sd){
 		return;
 	}
 
-	uint16 realTitleLength = min(titleLength, MAIL_TITLE_LENGTH);
-	uint16 realTextLength = min(textLength, MAIL_BODY_LENGTH);
+	// Reject overlong or malformed fields rather than truncating UTF-8 content.
+	if( titleLength < 2 || titleLength > MAIL_TITLE_LENGTH ||
+		textLength < 1 || textLength > MAIL_BODY_LENGTH ||
+		RFIFOB(fd, headerLength + titleLength - 1) != 0 ||
+		RFIFOB(fd, headerLength + titleLength + textLength - 1) != 0 ||
+		memchr(RFIFOCP(fd, headerLength), 0, titleLength - 1) != nullptr ||
+		memchr(RFIFOCP(fd, headerLength + titleLength), 0, textLength - 1) != nullptr ){
+		clif_Mail_send(sd, WRITE_MAIL_FAILED);
+		return;
+	}
+
+	uint16 realTitleLength = titleLength;
+	uint16 realTextLength = textLength;
 
 	char title[MAIL_TITLE_LENGTH];
 	char text[MAIL_BODY_LENGTH];
@@ -17149,12 +17177,13 @@ void clif_parse_Mail_send(int32 fd, map_session_data *sd){
 	safestrncpy(title, RFIFOCP(fd, headerLength), realTitleLength);
 	safestrncpy(text, RFIFOCP(fd, headerLength + titleLength), realTextLength);
 
-	if( zeny > 0 ){
-		if( mail_setitem(sd,0,(uint32)zeny) != MAIL_ATTACH_SUCCESS ){
-			clif_Mail_send(sd,WRITE_MAIL_FAILED);
-			return;
-		}
+	if( zeny > MAX_ZENY || (zeny > 0 && mail_setitem(sd, 0, static_cast<uint32>(zeny)) != MAIL_ATTACH_SUCCESS) ){
+		clif_Mail_send(sd,WRITE_MAIL_FAILED);
+		return;
 	}
+
+	if( zeny == 0 )
+		sd->mail.zeny = 0;
 
 	mail_send(sd, receiver, title, text, realTextLength);
 #endif
@@ -22875,7 +22904,7 @@ void clif_refineui_info( map_session_data* sd, uint16 index ){
 			PACKET_ZC_REFINING_MATERIAL_LIST_SUB& entry = p->req[count];
 
 			entry.itemId = client_nameid( cost->nameid );
-			entry.chance = static_cast<decltype(entry.chance)>( cost->chance / 100 );
+			entry.chance = static_cast<decltype(entry.chance)>( status_get_refine_chance(cost->chance) );
 			entry.zeny = cost->zeny;
 
 			p->packetLength += static_cast<decltype(p->packetLength)>( sizeof( entry ) );
@@ -23031,7 +23060,7 @@ void clif_parse_refineui_refine( int32 fd, map_session_data* sd ){
 	}
 
 	// Try to refine the item
-	if( cost->chance >= ( rnd() % 10000 ) ){
+	if( status_get_refine_chance(cost->chance) > ( rnd() % 100 ) ){
 		log_pick_pc( sd, LOG_TYPE_OTHER, -1, item );
 		// Success
 		item->refine = cap_value( item->refine + 1, 0, MAX_REFINE );

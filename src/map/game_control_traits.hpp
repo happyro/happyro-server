@@ -5,6 +5,7 @@
 
 struct map_session_data;
 
+nlohmann::json game_control_allocation_limits(const map_session_data* sd);
 nlohmann::json game_control_traits_snapshot(const map_session_data* sd);
 bool game_control_traits_update(map_session_data* sd, const nlohmann::json& payload);
 void game_control_traits_reconcile(map_session_data* sd, bool reset = false);

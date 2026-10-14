@@ -2208,6 +2208,7 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 	sd->mail.pending_weight = 0;
 	sd->mail.pending_zeny = 0;
 	sd->mail.pending_slots = 0;
+	sd->mail.pending_items.clear();
 
 	sd->regs.vars = i64db_alloc(DB_OPT_BASE);
 	sd->regs.arrays = nullptr;

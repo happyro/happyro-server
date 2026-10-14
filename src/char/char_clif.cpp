@@ -1244,6 +1244,36 @@ void chclif_createnewchar( int fd, mmo_charstatus& char_dat ){
 	socket_send( fd, p );
 }
 
+// Validate the fixed-width UTF-8 field before any truncating copy.
+static bool chclif_valid_creation_name(const char* name, size_t capacity){
+	const auto* end = static_cast<const char*>(memchr(name, 0, capacity));
+	if( end == nullptr || end == name )
+		return false;
+	const auto* p = reinterpret_cast<const unsigned char*>(name);
+	const auto* limit = reinterpret_cast<const unsigned char*>(end);
+	while( p < limit ){
+		uint32 code = *p++;
+		if( code < 0x80 )
+			continue;
+		int count;
+		uint32 minimum;
+		if( code >= 0xc2 && code <= 0xdf ){ count = 1; minimum = 0x80; code &= 0x1f; }
+		else if( code >= 0xe0 && code <= 0xef ){ count = 2; minimum = 0x800; code &= 0x0f; }
+		else if( code >= 0xf0 && code <= 0xf4 ){ count = 3; minimum = 0x10000; code &= 0x07; }
+		else return false;
+		if( limit - p < count )
+			return false;
+		while( count-- ){
+			if( (*p & 0xc0) != 0x80 )
+				return false;
+			code = (code << 6) | (*p++ & 0x3f);
+		}
+		if( code < minimum || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff) )
+			return false;
+	}
+	return true;
+}
+
 // S 0970 <name>.24B <slot>.B <hair color>.W <hair style>.W
 // S 0067 <name>.24B <str>.B <agi>.B <vit>.B <int>.B <dex>.B <luk>.B <slot>.B <hair color>.W <hair style>.W
 // S 0a39 <name>.24B <slot>.B <hair color>.W <hair style>.W <starting job ID>.W <Unknown>.(W or 2 B's)??? <sex>.B
@@ -1263,6 +1293,11 @@ bool chclif_parse_createnewchar( int32 fd, struct char_session_data& sd ){
 	int32 sex;
 
 	const PACKET_CH_MAKE_CHAR* p = reinterpret_cast<PACKET_CH_MAKE_CHAR*>( RFIFOP( fd, 0 ) );
+
+	if( !chclif_valid_creation_name(p->name, sizeof(p->name)) ){
+		chclif_createnewchar_refuse(fd, -2);
+		return true;
+	}
 
 	// Sent values
 	safestrncpy( name, p->name, NAME_LENGTH );

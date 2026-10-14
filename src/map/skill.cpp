@@ -10637,6 +10637,8 @@ void skill_weaponrefine( map_session_data& sd, int32 idx ){
 			else
 				per += (((int32)sd.status.job_level)-50)/2; //Updated per the new kro descriptions. [Skotlex]
 
+			per = status_get_refine_chance(per * 100);
+
 			pc_delitem(&sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 			if (per > rnd() % 100) {
 				int32 ep=0;

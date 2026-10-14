@@ -9713,7 +9713,7 @@ BUILDIN_FUNC(getequippercentrefinery)
 			return SCRIPT_CMD_SUCCESS;
 		}
 
-		script_pushint( st, cost->chance / 100 );
+		script_pushint( st, status_get_refine_chance(cost->chance) );
 	}
 	else
 		script_pushint(st,0);

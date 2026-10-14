@@ -73,6 +73,16 @@ void game_control_traits_reconcile(map_session_data* sd, bool reset) {
 	refresh(sd);
 }
 
+nlohmann::json game_control_allocation_limits(const map_session_data* sd) {
+	constexpr std::array<const char*, 6> base_names = {"str", "agi", "vit", "int", "dex", "luk"};
+	nlohmann::json base, traits;
+	for (int i = 0; i < base_names.size(); ++i) {
+		base[base_names[i]] = pc_maxparameter(sd, static_cast<e_params>(PARAM_STR + i));
+		traits[names[i]] = pc_maxparameter(sd, static_cast<e_params>(PARAM_POW + i));
+	}
+	return {{"base", base}, {"traits", traits}};
+}
+
 void game_control_base_stats_reset(map_session_data* sd) {
 	sd->status.status_point = statpoint_db.get_table_point(sd->status.base_level);
 	if ((sd->class_ & JOBL_UPPER) || pc_is_primary_fourth(sd->class_))

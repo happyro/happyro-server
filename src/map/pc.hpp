@@ -800,6 +800,7 @@ public:
 		uint32 pending_weight;
 		uint32 pending_zeny;
 		uint16 pending_slots;
+		std::unordered_map<t_itemid, uint32> pending_items; // Stack quantities reserved by in-flight mail claims.
 		uint32 dest_id;
 	} mail;
 
