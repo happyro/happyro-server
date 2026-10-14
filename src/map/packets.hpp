@@ -1554,6 +1554,22 @@ struct PACKET_ZC_HAPPYRO_NPC_TELEPORT_RESULT {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_TELEPORT_RESULT, 0xcfd);
 
+struct PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW {
+ int16 packetType;
+ uint32 requestId;
+ char map[MAP_NAME_LENGTH_EXT];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_ARRIVAL_PREVIEW, 0xd06);
+struct PACKET_ZC_HAPPYRO_ARRIVAL_PREVIEW {
+ int16 packetType;
+ uint32 requestId;
+ uint16 result;
+ char map[MAP_NAME_LENGTH_EXT];
+ uint16 x;
+ uint16 y;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_ARRIVAL_PREVIEW, 0xd07);
+
 struct PACKET_CZ_HAPPYRO_MAP_TELEPORT {
 	int16 packetType;
 	uint32 requestId;

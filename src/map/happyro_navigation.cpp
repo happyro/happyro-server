@@ -139,7 +139,7 @@ static bool happyro_random_arrival(int16 m, int16& x, int16& y){
 }
 
 // A (0,0) map request asks the server to choose the default arrival.
-static bool happyro_default_arrival(map_session_data* sd, int16 m, const char* map, int16& x, int16& y){
+static bool happyro_default_arrival(map_session_data* sd, int16 m, const char* map, int16& x, int16& y, bool preview = false){
 	for (const auto& entry : happyro_city_arrivals) {
 		if (std::strcmp(map, entry.map) != 0) continue;
 		x = entry.x;
@@ -164,7 +164,7 @@ static bool happyro_default_arrival(map_session_data* sd, int16 m, const char* m
 	if (data == nullptr) return false;
 	x = data->xs / 2;
 	y = data->ys / 2;
-	return happyro_find_safe_arrival(m, x, y, std::max(data->xs, data->ys));
+	return happyro_find_safe_arrival(m, x, y, preview ? 24 : std::max(data->xs, data->ys));
 }
 
 HappyroNavigationResult happyro_npc_teleport(map_session_data* sd, const char* requested_map, uint16 requested_x, uint16 requested_y, int32 npc_class){
@@ -228,7 +228,13 @@ HappyroNavigationResult happyro_npc_teleport(map_session_data* sd, const char* r
 		map_name, static_cast<uint16>(x), static_cast<uint16>(y), static_cast<uint32>(battle_config.navigation_teleport_cooldown)};
 }
 
-HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* requested_map, uint16 requested_x, uint16 requested_y){
+static HappyroNavigationResult happyro_map_destination(map_session_data* sd, const char* requested_map, uint16 requested_x, uint16 requested_y, bool preview){
+	if (preview) {
+		const auto now = gettick();
+		if (sd->navigation_preview_tick != 0 && DIFF_TICK(now, sd->navigation_preview_tick) < 500)
+			return {HAPPYRO_MAP_TELEPORT_COOLDOWN};
+		sd->navigation_preview_tick = now;
+	}
 	if (!happyro_navigation_teleport_allowed(sd)) {
 		return {HAPPYRO_MAP_TELEPORT_DISABLED};
 	}
@@ -259,7 +265,7 @@ HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* r
 
 	const t_tick tick = gettick();
 	const t_tick cooldown = static_cast<t_tick>(battle_config.navigation_teleport_cooldown) * 1000;
-	if (sd->navigation_teleport_tick != 0) {
+	if (!preview && sd->navigation_teleport_tick != 0) {
 		const t_tick elapsed = DIFF_TICK(tick, sd->navigation_teleport_tick);
 		if (elapsed < cooldown) {
 			const uint32 remaining = static_cast<uint32>((cooldown - elapsed + 999) / 1000);
@@ -274,11 +280,12 @@ HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* r
 		if (!happyro_random_arrival(map_id, x, y))
 			return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
 	} else if (x == 0 && y == 0) {
-		if (!happyro_default_arrival(sd, map_id, map_name, x, y))
+		if (!happyro_default_arrival(sd, map_id, map_name, x, y, preview))
 			return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
 	} else if (!happyro_find_safe_arrival(map_id, x, y)) {
 		return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
 	}
+	if (preview) return {HAPPYRO_MAP_TELEPORT_SUCCESS, map_name, static_cast<uint16>(x), static_cast<uint16>(y)};
 	if (pc_setpos(sd, mapindex, x, y, CLR_TELEPORT) != SETPOS_OK) {
 		return {HAPPYRO_MAP_TELEPORT_FAILED};
 	}
@@ -288,4 +295,11 @@ HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* r
 	log_atcommand(sd, command);
 	return {HAPPYRO_MAP_TELEPORT_SUCCESS,
 		map_name, static_cast<uint16>(sd->x), static_cast<uint16>(sd->y), static_cast<uint32>(battle_config.navigation_teleport_cooldown)};
+}
+
+HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* map, uint16 x, uint16 y){
+	return happyro_map_destination(sd, map, x, y, false);
+}
+HappyroNavigationResult happyro_map_arrival_preview(map_session_data* sd, const char* map){
+	return happyro_map_destination(sd, map, 0, 0, true);
 }

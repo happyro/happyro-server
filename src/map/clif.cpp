@@ -80,6 +80,10 @@ static inline int32 client_exp(t_exp exp) {
 /* for clif_clearunit_delayed */
 static struct eri *delay_clearunit_ers;
 
+static_assert(HEADER_CZ_HAPPYRO_ARRIVAL_PREVIEW <= MAX_PACKET_DB, "Arrival preview must fit the incoming packet table");
+static_assert(sizeof(PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW) == 22);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_ARRIVAL_PREVIEW) == 28);
+
 struct s_packet_db packet_db[MAX_PACKET_DB + 1];
 unsigned long color_table[COLOR_MAX];
 
@@ -7138,7 +7142,7 @@ void clif_use_card( const map_session_data* sd,int32 idx)
 		c++;
 	}
 
-	if( !c ) return;	// no item is available for card insertion
+	// Send an empty list as well so the client can explain why no selection opens.
 
 	WFIFOW(fd,2)=4+c*2;
 	WFIFOSET(fd,WFIFOW(fd,2));
@@ -7181,9 +7185,10 @@ void clif_item_identify_list( map_session_data *sd)
 			c++;
 		}
 	}
+	// Empty results also acknowledge the request without entering a selection state.
+	WFIFOW(fd,2)=c*2+4;
+	WFIFOSET(fd,WFIFOW(fd,2));
 	if(c > 0) {
-		WFIFOW(fd,2)=c*2+4;
-		WFIFOSET(fd,WFIFOW(fd,2));
 		sd->menuskill_id = MC_IDENTIFY;
 		sd->menuskill_val = c;
 		sd->state.workinprogress = WIP_DISABLE_ALL;
@@ -10416,6 +10421,23 @@ static void clif_happyro_map_teleport_result( int32 fd, uint32 request_id,
 	WFIFOHEAD(fd, sizeof(packet));
 	memcpy(WFIFOP(fd, 0), &packet, sizeof(packet));
 	WFIFOSET(fd, sizeof(packet));
+}
+
+void clif_parse_happyro_arrival_preview(int32 fd, map_session_data* sd){
+ const auto* request = reinterpret_cast<PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW*>(RFIFOP(fd, 0));
+ char map[MAP_NAME_LENGTH_EXT];
+ safestrncpy(map, request->map, sizeof(map));
+ const auto result = happyro_map_arrival_preview(sd, map);
+ PACKET_ZC_HAPPYRO_ARRIVAL_PREVIEW response{};
+ response.packetType = HEADER_ZC_HAPPYRO_ARRIVAL_PREVIEW;
+ response.requestId = request->requestId;
+ response.result = result.code;
+ safestrncpy(response.map, result.map.c_str(), sizeof(response.map));
+ response.x = result.x;
+ response.y = result.y;
+ WFIFOHEAD(fd, sizeof(response));
+ memcpy(WFIFOP(fd, 0), &response, sizeof(response));
+ WFIFOSET(fd, sizeof(response));
 }
 
 void clif_parse_happyro_map_teleport( int32 fd, map_session_data* sd ){
@@ -24223,18 +24245,21 @@ void clif_parse_enchantgrade_add( int32 fd, map_session_data* sd ){
 	uint16 index = server_index( p->index );
 
 	if( index >= MAX_INVENTORY || sd->inventory_data[index] == nullptr ){
+		clif_enchantgrade_add( *sd );
 		return;
 	}
 
 	std::shared_ptr<s_enchantgrade> enchantgrade = enchantgrade_db.find( sd->inventory_data[index]->type );
 
-	// Unsupported item type - no answer, because client should have actually prevented this request
+	// Unsupported item type
 	if( enchantgrade == nullptr ){
+		clif_enchantgrade_add( *sd );
 		return;
 	}
 
 	// Item can't be enhanced
 	if( !sd->inventory_data[index]->flag.gradable ){
+		clif_enchantgrade_add( *sd );
 		return;
 	}
 
@@ -24256,8 +24281,9 @@ void clif_parse_enchantgrade_add( int32 fd, map_session_data* sd ){
 
 	std::shared_ptr<s_enchantgradelevel> enchantgradelevel = util::map_find( enchantgradelevels->second, (e_enchantgrade)sd->inventory.u.items_inventory[index].enchantgrade );
 
-	// Cannot increase enchantgrade any further - no answer, because client should have actually prevented this request
+	// Cannot increase enchantgrade any further
 	if( enchantgradelevel == nullptr ){
+		clif_enchantgrade_add( *sd );
 		return;
 	}
 

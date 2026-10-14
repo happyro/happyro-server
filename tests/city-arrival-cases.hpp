@@ -1,5 +1,19 @@
 int main(){
  int16 x=20,y=20;
+ // Preview agrees with default selection but cannot scan the entire map.
+ clear_cells(); data.xs=400; data.ys=400;
+ map_session_data preview_sd;
+ assert(happyro_default_arrival(&preview_sd,0,"prt_fild08",x,y,true));
+ assert(x==168 && y==373);
+ occupied[y][x]=true;
+ assert(happyro_default_arrival(&preview_sd,0,"prt_fild08",x,y,true));
+ assert(x!=168 || y!=373);
+ for(auto& row:blocked) for(bool& cell:row) cell=true;
+ blocked[240][240]=false;
+ assert(!happyro_default_arrival(&preview_sd,0,"unlisted",x,y,true));
+ assert(happyro_default_arrival(&preview_sd,0,"unlisted",x,y));
+ assert(x==240 && y==240);
+ clear_cells();data.xs=40;data.ys=40;x=20;y=20;
  assert(happyro_find_safe_arrival(0,x,y) && x==20 && y==20);
  // A rectangular warp: reject its entire area and the two-cell margin.
  for(int cy=19;cy<=21;++cy) for(int cx=17;cx<=23;++cx) touch[cy][cx]=true;

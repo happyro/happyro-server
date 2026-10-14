@@ -42,6 +42,7 @@ bool happyro_navigation_teleport_allowed(const map_session_data* sd);
 npc_data* happyro_navigation_npc(map_session_data* sd, const char* map, uint16 x, uint16 y, int32 npc_class);
 HappyroNavigationResult happyro_npc_teleport(map_session_data* sd, const char* map, uint16 x, uint16 y, int32 npc_class);
 HappyroNavigationResult happyro_map_teleport(map_session_data* sd, const char* map, uint16 x, uint16 y);
+HappyroNavigationResult happyro_map_arrival_preview(map_session_data* sd, const char* map);
 bool happyro_npc_adjacent_cell(const npc_data& npc, int16& x, int16& y);
 
 #endif
