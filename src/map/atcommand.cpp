@@ -7601,11 +7601,11 @@ ACMD_FUNC(pettalk)
 		if( i == ET_DICE1 ) i = rnd_value<int32>(ET_DICE1, ET_DICE6); // randomize /dice
 		if( i < ARRAYLENGTH(emo) )
 		{
-			if (sd->emotionlasttime + 1 >= time(nullptr)) { // not more than 1 per second
-					sd->emotionlasttime = time(nullptr);
-					return 0;
+			const t_tick tick = gettick();
+			if (DIFF_TICK(tick, sd->next_emotion_tick) < 0) {
+				return 0;
 			}
-			sd->emotionlasttime = time(nullptr);
+			sd->next_emotion_tick = tick + 500;
 
 			clif_emotion(*pd, static_cast<emotion_type>(i));
 			return 0;

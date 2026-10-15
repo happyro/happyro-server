@@ -11914,13 +11914,12 @@ void clif_parse_Emotion(int32 fd, map_session_data *sd){
 			clif_skill_fail( *sd, NV_BASIC, USESKILL_FAIL_TOTARGET, 1 );
 			return;
 		}
-		// fix flood of emotion icon (ro-proxy): flood only the hacker player
-		if (sd->emotionlasttime + 1 >= time(nullptr)) { // not more than 1 per second
-			sd->emotionlasttime = time(nullptr);
+		// Rejected attempts must not extend the emotion cooldown.
+		const t_tick tick = gettick();
+		if (DIFF_TICK(tick, sd->next_emotion_tick) < 0) {
 			clif_skill_fail( *sd, NV_BASIC, USESKILL_FAIL_SKILLINTERVAL, 1 );
 			return;
 		}
-		sd->emotionlasttime = time(nullptr);
 
 		if (battle_config.idletime_option&IDLE_EMOTION)
 			sd->idletime = last_tick;
@@ -11938,6 +11937,7 @@ void clif_parse_Emotion(int32 fd, map_session_data *sd){
 			emoticon = static_cast<emotion_type>( rnd()%6+ET_DICE1 );
 		}
 
+		sd->next_emotion_tick = tick + 500;
 		clif_emotion( *sd, emoticon );
 	} else
 		clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 1 );

@@ -35,7 +35,7 @@ nlohmann::json game_control_traits_snapshot(const map_session_data* sd) {
 		maximums[names[i]] = maintenance_trait_max;
 	}
 	return {{"enabled", static_cast<bool>(pc_is_trait_job(sd->class_))}, {"values", values},
-		{"maximums", maximums}, {"points", sd->status.trait_point}, {"budget", budget(sd)}};
+		{"maximums", maximums}, {"points", sd->status.trait_point}, {"max_points", INT32_MAX}, {"budget", budget(sd)}};
 }
 
 bool game_control_traits_update(map_session_data* sd, const nlohmann::json& payload) {

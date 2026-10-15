@@ -524,7 +524,7 @@ public:
 	int32 followtimer; // [MouseJstr]
 	int32 followtarget;
 
-	time_t emotionlasttime; // to limit flood with emotion packets
+	t_tick next_emotion_tick; // Earliest next accepted player or pet emotion (milliseconds).
 
 	int16 skillitem,skillitemlv;
 	bool skillitem_keep_requirement;

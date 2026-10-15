@@ -1,6 +1,7 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 
 #include "game_control.hpp"
+#include "game_control_riding.hpp"
 #include "game_control_item_grant.hpp"
 #include "game_control_traits.hpp"
 #include "game_control_skills.hpp"
@@ -69,7 +70,7 @@ std::deque<std::string> resource_grant_response_order;
 constexpr size_t RESOURCE_GRANT_RESPONSE_CACHE_SIZE = 256;
 
 bool is_resource_grant_command(const std::string& command_type) {
-	return command_type == "character.inventory.item_grant" || command_type == "character.currency.zeny_grant";
+	return command_type == "character.riding.update" || command_type == "character.inventory.item_grant" || command_type == "character.currency.zeny_grant";
 }
 
 struct GameControlSettingDefinition {
@@ -519,8 +520,9 @@ void game_control_process() {
 		result = command.body;
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.points.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.riding.update", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.points.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type != "character.snapshot"
+		&& command_type != "character.riding.update"
 		&& command_type != "character.progression.update"
 		&& command_type != "character.points.update"
 		&& command_type != "character.skill_points.update"
@@ -549,6 +551,10 @@ void game_control_process() {
 		} else if (map_session_data* sd = map_charid2sd(char_id); sd == nullptr) {
 			status = 409;
 			result = {{"error", {{"code", "character_offline"}}}};
+		} else if (command_type == "character.riding.update") {
+			const auto riding = game_control_riding_update(sd, body["payload"]);
+			status = riding.status;
+			result = riding.body;
 		} else if (command_type == "character.navigation.route") {
 			const auto navigation = game_control_route(sd, body["payload"]);
 			status = navigation.status;
@@ -592,6 +598,7 @@ void game_control_process() {
 					{"max_sp", sd->battle_status.max_sp}, {"ap", sd->battle_status.ap}, {"max_ap", sd->battle_status.max_ap},
 					{"sex", sd->status.sex}, {"traits", game_control_traits_snapshot(sd)},
 					{"allocation_limits", game_control_allocation_limits(sd)},
+					{"riding", game_control_riding_snapshot(sd)},
 					{"min_base_level", minimum_base_level(sd->status.class_)}, {"max_base_level", pc_maxbaselv(sd)}, {"max_job_level", pc_maxjoblv(sd)},
 					{"max_skill_points", INT16_MAX}, {"max_status_points", INT32_MAX},
 					{"max_stat", stat_safe_max(sd, PARAM_STR)},
@@ -686,23 +693,27 @@ void game_control_process() {
 			}
 		} else if (command_type == "character.points.update") {
 			const auto& payload = body["payload"];
-			int32 skill_points = 0, status_points = 0;
-			const bool valid = payload_has_only_keys(payload, {"skill_points", "status_points"}) && !payload.empty()
+			int32 skill_points = 0, status_points = 0, trait_points = 0;
+			const bool valid = payload_has_only_keys(payload, {"skill_points", "status_points", "trait_points"}) && !payload.empty()
 				&& (!payload.contains("skill_points") || read_integer(payload["skill_points"], 0, INT16_MAX, skill_points))
-				&& (!payload.contains("status_points") || read_integer(payload["status_points"], 0, INT32_MAX, status_points));
+				&& (!payload.contains("status_points") || read_integer(payload["status_points"], 0, INT32_MAX, status_points))
+				&& (!payload.contains("trait_points") || (pc_is_trait_job(sd->class_)
+					&& read_integer(payload["trait_points"], 0, INT32_MAX, trait_points)));
 			if (!valid) {
 				status = 400;
 				result = {{"error", {{"code", "invalid_parameter"}}}};
 			} else {
-				// Validate both balances before changing either one.
+				// Validate every balance and job eligibility before changing any of them.
 				if (payload.contains("skill_points"))
 					pc_setparam(sd, SP_SKILLPOINT, skill_points);
 				if (payload.contains("status_points"))
 					pc_setparam(sd, SP_STATUSPOINT, status_points);
+				if (payload.contains("trait_points"))
+					pc_setparam(sd, SP_TRAITPOINT, trait_points);
 				chrif_save(sd, CSAVE_NORMAL);
 				status = 200;
 				result = {{"data", {{"result", {{"char_id", sd->status.char_id},
-					{"skill_points", sd->status.skill_point}, {"status_points", sd->status.status_point}}}}}};
+					{"skill_points", sd->status.skill_point}, {"status_points", sd->status.status_point}, {"trait_points", sd->status.trait_point}}}}}};
 			}
 		} else if (command_type == "character.skill_points.update") {
 			const auto& payload = body["payload"];
