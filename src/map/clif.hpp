@@ -891,6 +891,7 @@ void clif_clearflooritem( const flooritem_data& fitem, const map_session_data* t
 void clif_clearunit_single( uint32 GID, clr_type type, const map_session_data& tsd );
 void clif_clearunit_area( const block_list& bl, clr_type type );
 void clif_clearunit_delayed( const block_list* bl, clr_type type, t_tick tick);
+void clif_character_appearance(map_session_data* subject, const block_list* recipient, enum send_target target);
 int32 clif_spawn(const block_list* bl, bool walking = false);	//area
 void clif_walkok( const map_session_data& sd );
 void clif_move( const unit_data& ud ); //area

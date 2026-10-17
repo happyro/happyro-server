@@ -3,11 +3,10 @@
 
 #pragma once
 
-#include "../skill_impl.hpp"
+#include "../acolyte/cursedcircle.hpp"
 
-class SkillNpcCursedCircle : public SkillImpl {
+class SkillNpcCursedCircle : public SkillCursedCircle {
 public:
 	SkillNpcCursedCircle();
 
-	void castendNoDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const override;
 };

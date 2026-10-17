@@ -31,7 +31,7 @@ void SkillTarotCardOfFate::castendNoDamageId(block_list *src, block_list *target
 		return;
 	}
 
-	if (rnd() % 100 > skill_lv * 8 ||
+	if (rnd() % 100 >= skill_lv * 8 ||
 #ifndef RENEWAL
 		(tsc && tsc->getSCE(SC_BASILICA)) ||
 #endif
@@ -161,7 +161,7 @@ int32 skill_tarotcard(block_list* src, block_list *target, uint16 skill_id, uint
 		clif_damage(*src, *target, tick, 0, 0, 6666, 0, DMG_NORMAL, 0, false);
 		sc_start(src, target, SC_INCATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_INCMATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
-		sc_start(src, target, SC_CURSE, skill_lv, 100, skill_get_time2(status_db.getSkill(SC_CURSE), 1));
+		sc_start(src, target, SC_CURSE, 100, skill_lv, skill_get_time2(status_db.getSkill(SC_CURSE), 1));
 		break;
 	}
 	case 12: // THE TOWER - 4444 damage

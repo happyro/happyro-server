@@ -1609,6 +1609,14 @@ struct PACKET_ZC_HAPPYRO_NPC_NAME {
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NPC_NAME, 0xd04);
 static_assert(sizeof(PACKET_ZC_HAPPYRO_NPC_NAME) == 8, "NPC name header wire layout");
 
+struct PACKET_ZC_HAPPYRO_CHARACTER_APPEARANCE {
+ int16 packetType;
+ uint32 actorId;
+ uint16 appearance;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_CHARACTER_APPEARANCE, 0xd08);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_CHARACTER_APPEARANCE) == 8, "Character appearance wire layout");
+
 struct PACKET_CZ_HAPPYRO_STOP_MOVE {
 	int16 packetType;
 } __attribute__((packed));

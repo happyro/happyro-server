@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "pc.hpp"
+#include "game_control_appearance.hpp"
 
 #include <cmath>
 #include <cstdlib>
@@ -2362,6 +2363,8 @@ void pc_reg_received(map_session_data *sd)
 	uint8 i;
 
 	sd->vars_ok = true;
+	// Offline job/sex changes must not leave a dormant invalid saved choice.
+	game_control_character_appearance_reconcile(sd);
 
 	sd->change_level_2nd = static_cast<unsigned char>(pc_readglobalreg(sd, add_str(JOBCHANGE2ND_VAR)));
 	sd->change_level_3rd = static_cast<unsigned char>(pc_readglobalreg(sd, add_str(JOBCHANGE3RD_VAR)));
@@ -9829,10 +9832,10 @@ int32 pc_dead(map_session_data *sd,block_list *src)
 
 	for (k = 0; k < MAX_SERVANT_SIGN; k++) {
 		if (sd->servant_sign[k]) {
-			map_session_data *ssignsd = map_id2sd(sd->servant_sign[k]);
+			block_list *target = map_id2bl(sd->servant_sign[k]);
 
-			if (ssignsd)
-				status_change_end(ssignsd, SC_SERVANT_SIGN);
+			if (target)
+				status_change_end(target, SC_SERVANT_SIGN);
 			sd->servant_sign[k] = 0;
 		}
 	}
@@ -10485,6 +10488,8 @@ bool pc_setparam(map_session_data *sd,int64 type,int64 val_tmp)
 		return true;
 	case SP_SEX:
 		sd->status.sex = val ? SEX_MALE : SEX_FEMALE;
+		game_control_character_appearance_reconcile(sd);
+		clif_character_appearance(sd, sd, AREA);
 		break;
 	case SP_WEIGHT:
 		sd->weight = val;
@@ -11003,7 +11008,9 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 	if (sd->disguise)
 		pc_disguise(sd, 0);
 
+	game_control_character_appearance_reconcile(sd);
 	status_set_viewdata(sd, job);
+	clif_character_appearance(sd, sd, AREA);
 	clif_changelook(sd,LOOK_BASE,sd->vd.look[LOOK_BASE]); // move sprite update to prevent client crashes with incompatible equipment [Valaris]
 #if PACKETVER >= 20151001
 	clif_changelook(sd, LOOK_HAIR, sd->vd.look[LOOK_HAIR]); // Update player's head (only matters when switching to or from Doram)
@@ -11233,8 +11240,10 @@ void pc_setoption(map_session_data *sd,int32 type, int32 subtype)
 
 	if( type&OPTION_MADOGEAR && !(p_type&OPTION_MADOGEAR) ) {
 		sc_start(sd, sd, SC_MADOGEAR, 100, subtype, INFINITE_TICK);
+		status_calc_pc(sd, SCO_NONE);
 	} else if( !(type&OPTION_MADOGEAR) && p_type&OPTION_MADOGEAR ) {
 		status_change_end(sd, SC_MADOGEAR);
+		status_calc_pc(sd, SCO_NONE);
 	}
 
 	if (type&OPTION_FLYING && !(p_type&OPTION_FLYING))

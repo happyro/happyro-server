@@ -15,8 +15,8 @@ SkillServantWeaponDemolition::SkillServantWeaponDemolition() : SkillImplRecursiv
 void SkillServantWeaponDemolition::modifyDamageData(Damage& dmg, const block_list& src, const block_list& target, uint16 skill_lv) const {
 	const map_session_data* sd = BL_CAST(BL_PC, &src);
 
-	if (sd != nullptr && (sd->servantball + sd->servantball_old) < dmg.div_)
-		dmg.div_ = sd->servantball + sd->servantball_old;
+	if (sd != nullptr && sd->servantball_old < dmg.div_)
+		dmg.div_ = sd->servantball_old;
 }
 
 void SkillServantWeaponDemolition::castendNoDamageId(block_list* src, block_list* target, uint16 skill_lv, t_tick tick, int32& flag) const {

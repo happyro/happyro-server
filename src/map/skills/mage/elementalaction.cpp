@@ -27,8 +27,7 @@ void SkillElementalAction::castendNoDamageId(block_list *src, block_list *target
 				duration = 9000;
 				break;
 		}
-		sd->skill_id_old = getSkillId();
-		elemental_action(sd->ed, target, tick);
+		elemental_action(sd->ed, target, tick, true);
 		clif_skill_nodamage(src,*target,getSkillId(),skill_lv);
 		skill_blockpc_start(*sd, getSkillId(), duration);
 	}

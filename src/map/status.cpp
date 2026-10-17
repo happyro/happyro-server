@@ -2935,27 +2935,27 @@ int32 status_calc_mob_(mob_data* md, uint8 opt)
 			md->special_state.ai = AI_NONE;
 		if (ud) { 
 			// Different levels of HP according to skill level
-			if(!ud->skill_id) // !FIXME: We lost the unit data for magic decoy in somewhere before this
-				ud->skill_id = ((TBL_PC*)mbl)->menuskill_id;
-			switch(ud->skill_id) {
+			const uint16 summon_skill_id = md->summon_skill_id ? md->summon_skill_id : ud->skill_id;
+			const uint16 summon_skill_lv = md->summon_skill_id ? md->summon_skill_lv : ud->skill_lv;
+			switch(summon_skill_id) {
 				case AM_SPHEREMINE:
-					status->max_hp = 2000 + 400*ud->skill_lv;
+					status->max_hp = 2000 + 400*summon_skill_lv;
 					break;
 				case KO_ZANZOU:
 					status->max_hp = 3000 + 3000 * ud->skill_lv;
 					break;
 				case AM_CANNIBALIZE:
-					status->max_hp = 1500 + 200*ud->skill_lv + 10*status_get_lv(mbl);
+					status->max_hp = 1500 + 200*summon_skill_lv + 10*status_get_lv(mbl);
 					status->mode = static_cast<e_mode>(status->mode|MD_CANATTACK|MD_AGGRESSIVE);
 					break;
 				case MH_SUMMON_LEGION:
 				{
 					int32 homblvl = status_get_lv(mbl);
 
-					status->max_hp = 10 * (100 * (ud->skill_lv + 2) + homblvl);
-					status->batk = 100 * (ud->skill_lv+5) / 2;
-					status->def = 10 * (100 * (ud->skill_lv+2) + homblvl);
-					// status->aspd_rate = 10 * (2 * (20 - ud->skill_lv) - homblvl/10);
+					status->max_hp = 10 * (100 * (summon_skill_lv + 2) + homblvl);
+					status->batk = 100 * (summon_skill_lv+5) / 2;
+					status->def = 10 * (100 * (summon_skill_lv+2) + homblvl);
+					// status->aspd_rate = 10 * (2 * (20 - summon_skill_lv) - homblvl/10);
 					// status->aspd_rate = max(100,status->aspd_rate);
 					break;
 				}
@@ -2967,8 +2967,8 @@ int32 status_calc_mob_(mob_data* md, uint8 opt)
 					if(!mstatus)
 						break;
 
-					status->max_hp = (1000 * ud->skill_lv) + (mstatus->hp / 3) + (status_get_lv(mbl) * 12);
-					status->batk = 200 * ud->skill_lv;
+					status->max_hp = (1000 * summon_skill_lv) + (mstatus->hp / 3) + (status_get_lv(mbl) * 12);
+					status->batk = 200 * summon_skill_lv;
 					break;
 				}
 				case NC_MAGICDECOY:
@@ -2979,8 +2979,8 @@ int32 status_calc_mob_(mob_data* md, uint8 opt)
 					if(!mstatus)
 						break;
 
-					status->max_hp = (1000 * ((TBL_PC*)mbl)->menuskill_val) + (mstatus->sp * 4) + (status_get_lv(mbl) * 12);
-					status->matk_min = status->matk_max = 250 + 50*((TBL_PC*)mbl)->menuskill_val;
+					status->max_hp = cap_value(1000LL * summon_skill_lv + static_cast<int64>(mstatus->sp) * 4 + status_get_lv(mbl) * 12, 1, UINT_MAX);
+					status->matk_min = status->matk_max = 250 + 50 * summon_skill_lv;
 					break;
 				}
 				case MT_SUMMON_ABR_BATTLE_WARIOR:
@@ -3000,22 +3000,22 @@ int32 status_calc_mob_(mob_data* md, uint8 opt)
 						// Its unknown how the summoner's stats affects the ABR's stats.
 						// I decided to do something similar to elementals for now until I know.
 						// Also added hit increase from ABR-Mastery for balance reasons. [Rytech]
-						status->max_hp = ( 5000 + 40000 * abr_mastery ) * mstatus->vit / 100;
-						status->rhw.atk = ( 2 * mstatus->batk + 200 + 600 * abr_mastery ) * 70 / 100;
-						status->rhw.atk2 = 2 * mstatus->batk + 200 + 600 * abr_mastery;
-						status->def = mstatus->def + 20 * abr_mastery;
-						status->mdef = mstatus->mdef + 4 * abr_mastery;
-						status->hit = mstatus->hit + 5 * abr_mastery / 2;
-						status->flee = mstatus->flee + 10 * abr_mastery;
+						status->max_hp = cap_value((5000 + 40000LL * abr_mastery) * mstatus->vit / 100, 1, UINT_MAX);
+						status->rhw.atk = cap_value((2LL * mstatus->batk + 200 + 600 * abr_mastery) * 70 / 100, 0, USHRT_MAX);
+						status->rhw.atk2 = cap_value(2LL * mstatus->batk + 200 + 600 * abr_mastery, 0, USHRT_MAX);
+						status->def = cap_value(mstatus->def + 20 * abr_mastery, DEFTYPE_MIN, DEFTYPE_MAX);
+						status->mdef = cap_value(mstatus->mdef + 4 * abr_mastery, DEFTYPE_MIN, DEFTYPE_MAX);
+						status->hit = cap_value(mstatus->hit + 5 * abr_mastery / 2, SHRT_MIN, SHRT_MAX);
+						status->flee = cap_value(mstatus->flee + 10 * abr_mastery, SHRT_MIN, SHRT_MAX);
 						status->speed = mstatus->speed;
 
 						// The Infinity ABR appears to have a much higher attack then other
 						// ABR's and im guessing has a much higher MaxHP due to it being a AP
 						// costing summon. [Rytech]
-						if (ud->skill_id == MT_SUMMON_ABR_INFINITY) {
-							status->max_hp += 20000;
-							status->rhw.atk += 1400; // 70% of 2000
-							status->rhw.atk2 += 2000;
+						if (summon_skill_id == MT_SUMMON_ABR_INFINITY) {
+							status->max_hp = cap_value(static_cast<int64>(status->max_hp) + 20000, 1, UINT_MAX);
+							status->rhw.atk = cap_value(status->rhw.atk + 1400, 0, USHRT_MAX); // 70% of 2000
+							status->rhw.atk2 = cap_value(status->rhw.atk2 + 2000, 0, USHRT_MAX);
 						}
 					}
 					break;
@@ -3036,23 +3036,23 @@ int32 status_calc_mob_(mob_data* md, uint8 opt)
 						// Its unknown how the summoner's stats affects the bionic's stats.
 						// I decided to do something similar to elementals for now until I know.
 						// Also added hit increase from Bionic-Mastery for balance reasons. [Rytech]
-						status->max_hp = (5000 + 40000 * bionic_mastery) * mstatus->vit / 100;
+						status->max_hp = cap_value((5000 + 40000LL * bionic_mastery) * mstatus->vit / 100, 1, UINT_MAX);
 						//status->max_sp = (50 + 20 * bionic_mastery) * mstatus->int_ / 100;// Wait what??? Bionic Mastery increases MaxSP? They have SP???
-						status->rhw.atk = (2 * mstatus->batk + 600 * bionic_mastery) * 70 / 100;
-						status->rhw.atk2 = 2 * mstatus->batk + 600 * bionic_mastery;
-						status->def = mstatus->def + 20 * bionic_mastery;
-						status->mdef = mstatus->mdef + 4 * bionic_mastery;
-						status->hit = mstatus->hit + 5 * bionic_mastery / 2;
-						status->flee = mstatus->flee + 10 * bionic_mastery;
+						status->rhw.atk = cap_value((2LL * mstatus->batk + 600 * bionic_mastery) * 70 / 100, 0, USHRT_MAX);
+						status->rhw.atk2 = cap_value(2LL * mstatus->batk + 600 * bionic_mastery, 0, USHRT_MAX);
+						status->def = cap_value(mstatus->def + 20 * bionic_mastery, DEFTYPE_MIN, DEFTYPE_MAX);
+						status->mdef = cap_value(mstatus->mdef + 4 * bionic_mastery, DEFTYPE_MIN, DEFTYPE_MAX);
+						status->hit = cap_value(mstatus->hit + 5 * bionic_mastery / 2, SHRT_MIN, SHRT_MAX);
+						status->flee = cap_value(mstatus->flee + 10 * bionic_mastery, SHRT_MIN, SHRT_MAX);
 						status->speed = mstatus->speed;
 
 						// The Hell Tree bionic appears to have a much higher attack then other
 						// bionic's and im guessing has a much higher MaxHP due to it being a AP
 						// costing summon. [Rytech]
-						if (ud->skill_id == BO_HELLTREE) {
-							status->max_hp += 20000;
-							status->rhw.atk += 1400; // 70% of 2000
-							status->rhw.atk2 += 2000;
+						if (summon_skill_id == BO_HELLTREE) {
+							status->max_hp = cap_value(static_cast<int64>(status->max_hp) + 20000, 1, UINT_MAX);
+							status->rhw.atk = cap_value(status->rhw.atk + 1400, 0, USHRT_MAX); // 70% of 2000
+							status->rhw.atk2 = cap_value(status->rhw.atk2 + 2000, 0, USHRT_MAX);
 						}
 					}
 					break;
@@ -5202,11 +5202,11 @@ int32 status_calc_elemental_(s_elemental_data *ed, uint8 opt)
 		status->max_sp = ele->max_sp;
 		status->hp = ele->hp;
 		status->sp = ele->sp;
-		status->rhw.atk = ele->atk;
-		status->rhw.atk2 = ele->atk2;
-		status->matk_min += ele->matk;
-		status->def += ele->def;
-		status->mdef += ele->mdef;
+		status->rhw.atk = cap_value(ele->atk, 0, USHRT_MAX);
+		status->rhw.atk2 = cap_value(ele->atk2, 0, USHRT_MAX);
+		status->matk_min = cap_value(static_cast<int64>(status->matk_min) + ele->matk, 0, USHRT_MAX);
+		status->def = cap_value(static_cast<int64>(status->def) + ele->def, DEFTYPE_MIN, DEFTYPE_MAX);
+		status->mdef = cap_value(static_cast<int64>(status->mdef) + ele->mdef, DEFTYPE_MIN, DEFTYPE_MAX);
 		status->flee = ele->flee;
 		status->hit = ele->hit;
 
@@ -10924,10 +10924,10 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			break;
 		case SC_KYRIE:
 			if( val4 ) { // Formulas for Praefatio
-				val2 = (status->max_hp * (val1 * 2 + 10) / 100) + val4 * 2; //%Max HP to absorb
+				val2 = (static_cast<int64>(status->max_hp) * (val1 * 2 + 10) / 100) + val4 * 2; //%Max HP to absorb
 				val3 = 6 + val1; //Hits
 			} else { // Formulas for Kyrie Eleison
-				val2 = status->max_hp * (val1 * 2 + 10) / 100;
+				val2 = static_cast<int64>(status->max_hp) * (val1 * 2 + 10) / 100;
 				val3 = (val1 / 2 + 5);
 			}
 			break;
@@ -11162,7 +11162,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		case SC_DPOISON:
 			// Lose 10/15% of your life as long as it doesn't brings life below 25%
 			if (status->hp > status->max_hp / 4) {
-				int32 diff = status->max_hp*(bl->type==BL_PC?10:15)/100;
+				int32 diff = static_cast<int64>(status->max_hp) * (bl->type == BL_PC ? 10 : 15) / 100;
 				if (status->hp - diff < status->max_hp / 4)
 					diff = status->hp - (status->max_hp / 4);
 				status_zap(bl, diff, 0);
@@ -11483,8 +11483,11 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				int32 i = (map_flag_gvg2(bl->m) || map_getmapflag(bl->m, MF_BATTLEGROUND))?2:3;
 				while( i >= 0 ) {
 					enum sc_type type2 = types[i];
-					if( d_sc->getSCE(type2) )
-						status_change_start(d_bl, bl, type2, 10000, d_sc->getSCE(type2)->val1, 0, 0, (type2 == SC_REFLECTSHIELD ? 1 : 0), skill_get_time(status_db.getSkill(type2),d_sc->getSCE(type2)->val1), (type2 == SC_DEFENDER) ? SCSTART_NOAVOID : SCSTART_NOAVOID|SCSTART_NOICON);
+					if (const status_change_entry* inherited = d_sc->getSCE(type2); inherited != nullptr) {
+						// NOAVOID skips Auto Guard/Defender initialization; retain their computed values.
+						const int32 inherited_val4 = type2 == SC_REFLECTSHIELD ? 1 : (type2 == SC_DEFENDER ? inherited->val4 : 0);
+						status_change_start(d_bl, bl, type2, 10000, inherited->val1, inherited->val2, 0, inherited_val4, skill_get_time(status_db.getSkill(type2), inherited->val1), (type2 == SC_DEFENDER) ? SCSTART_NOAVOID : SCSTART_NOAVOID|SCSTART_NOICON);
+					}
 					i--;
 				}
 			}
@@ -11851,7 +11854,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				val1 = sd->status.job_level * pc_checkskill(sd, RK_RUNEMASTERY) / 4; // DEF/MDEF Increase
 			break;
 		case SC_REFRESH:
-			status_heal(bl, status_get_max_hp(bl) * 25 / 100, 0, 1);
+			status_heal(bl, static_cast<int64>(status_get_max_hp(bl)) * 25 / 100, 0, 1);
 			status_change_clear_buffs(bl, SCCB_REFRESH);
 			break;
 		case SC_MILLENNIUMSHIELD:
@@ -12084,7 +12087,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val2 = 50 * val1; // HP recovery rate
 			break;
 		case SC_SONGOFMANA:
-			status_heal(bl, 0, status->max_sp * (val1 <= 2 ? 10 : val1 <= 4 ? 15 : 20) / 100, 1);
+			status_heal(bl, 0, static_cast<int64>(status->max_sp) * (val1 <= 2 ? 10 : val1 <= 4 ? 15 : 20) / 100, 1);
 			val3 = 50 * val1;
 			break;
 		case SC_SATURDAYNIGHTFEVER:
@@ -12312,7 +12315,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val3 = 20; //HP rate bonus
 			break;
 		case SC_TEARGAS:
-			val2 = status_get_max_hp(bl) * 5 / 100; // Drain 5% HP
+			val2 = static_cast<int64>(status_get_max_hp(bl)) * 5 / 100; // Drain 5% HP
 			val4 = tick / 2000;
 			tick_time = 2000;
 			break;
@@ -12834,7 +12837,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			tick = INFINITE_TICK;
 			break;
 		case SC_GUARDIAN_S:
-			val2 = ( status->max_hp * 30 / 100 ) * ( 25 * val1 ) / 100 + 15 * status->sta; // Barrier HP
+			val2 = cap_value((static_cast<int64>(status->max_hp) * 30 / 100) * (25 * val1) / 100 + 15 * status->sta, 0, INT_MAX); // Barrier HP
 			break;
 		case SC_REBOUND_S:
 			val2 = 10 * val1;// Reduced Damage From Devotion
@@ -13265,7 +13268,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				status_heal(bl, status->max_hp, 0, 1); // Do not use percent_heal as this healing must override BERSERK's block.
 				status_set_sp(bl, 0, 0); // Damage all SP
 			}
-			sce->val2 = 5 * status->max_hp / 100;
+			sce->val2 = static_cast<int64>(status->max_hp) * 5 / 100;
 			break;
 		case SC_RUN:
 			{
@@ -13544,9 +13547,8 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 			break;
 		case SC_GRANITIC_ARMOR:
 			{
-				int32 damage = status->max_hp*val3/100;
-				if(status->hp < damage) // to not kill him
-					damage = status->hp-1;
+				int64 damage = static_cast<int64>(status->max_hp) * val3 / 100;
+				damage = min(damage, max(static_cast<int64>(status->hp) - 1, 0)); // Leave at least one HP.
 				status_damage(nullptr,bl,damage,0,0,1,0);
 			}
 			break;
@@ -13678,6 +13680,10 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 				clif_updatestatus(*sd,SP_MANNER);
 			}
 			break;
+		case SC_SHADOW_SCAR:
+			if (unit_data* ud = unit_bl2ud(bl); ud != nullptr)
+				unit_clearshadowscar(*ud);
+			break;
 		case SC_SPLASHER:
 		case SC_ROSEBLOSSOM:
 			{
@@ -13694,7 +13700,7 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 				if (src && sc2 && sc2->getSCE(SC_CLOSECONFINE)) {
 					// If status was already ended, do nothing.
 					// Decrease count
-					if (--(sc2->getSCE(SC_CLOSECONFINE)->val1) <= 0) // No more holds, free him up.
+					if (--(sc2->getSCE(SC_CLOSECONFINE)->val2) <= 0) // No more holds, free him up.
 						status_change_end(src, SC_CLOSECONFINE);
 				}
 			}
@@ -13897,8 +13903,8 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 				block_list *src = map_id2bl(val2);
 				status_change *sc2 = status_get_sc(src);
 
+				clif_bladestop(*bl, val2, false);
 				if( sc2 && sc2->getSCE(SC_CURSEDCIRCLE_ATKER) && --(sc2->getSCE(SC_CURSEDCIRCLE_ATKER)->val2) == 0 ) {
-					clif_bladestop( *bl, val2, false );
 					status_change_end(src, SC_CURSEDCIRCLE_ATKER);
 				}
 			}
@@ -14018,7 +14024,7 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 		case SC_SERVANT_SIGN: {
 				map_session_data *tsd = map_id2sd(val1);
 
-				if( tsd != nullptr )
+				if (tsd != nullptr && tsd->servant_sign[val2] == bl->id)
 					tsd->servant_sign[val2] = 0;
 			}
 			break;
@@ -14259,7 +14265,7 @@ TIMER_FUNC(status_change_timer){
 		if (sce->val4 >= 0 && !sc->getSCE(SC_SLOWPOISON)) {
 			uint32 damage = 0;
 			if (sd)
-				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 50 : 2 + status->max_hp * 3 / 200;
+				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 50 : 2 + static_cast<int64>(status->max_hp) * 3 / 200;
 			else
 				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 100 : 2 + status->max_hp / 200;
 			if (status->hp > umax(status->max_hp / 4, damage)) // Stop damaging after 25% HP left.
@@ -14291,12 +14297,12 @@ TIMER_FUNC(status_change_timer){
 			if (sce->val3 == 1) { // Target
 				freeLock.lock();
 				clif_damage(*bl, *bl, tick, status->amotion, status->dmotion + 500, 1, 1, DMG_NORMAL, 0, false);
-				status_damage(bl, bl, 1, status->max_sp * 3 / 100, status->dmotion + 500, 0, 0);
+				status_damage(bl, bl, 1, static_cast<int64>(status->max_sp) * 3 / 100, status->dmotion + 500, 0, 0);
 			} else { // Caster
 				interval = 1000; // Assign here since status_get_sc_internval() contains the target interval.
 
 				if (status->sp < status->max_sp)
-					status_heal(bl, 0, (int32)status->max_sp * 1 / 100, 1);
+					status_heal(bl, 0, status->max_sp / 100, 1);
 			}
 		}
 		break;
@@ -14304,7 +14310,7 @@ TIMER_FUNC(status_change_timer){
 	case SC_MAGICMUSHROOM:
 		if (sce->val4 >= 0) {
 			bool flag = 0;
-			int64 damage = status->max_hp * 3 / 100;
+			int64 damage = static_cast<int64>(status->max_hp) * 3 / 100;
 			if (status->hp <= damage)
 				damage = status->hp - 1; // Cannot Kill
 
@@ -14357,7 +14363,7 @@ TIMER_FUNC(status_change_timer){
 		
 	case SC_LEECHESEND:
 		if (sce->val4 >= 0) {
-			int64 damage = status->vit * (sce->val1 - 3) + (int32)status->max_hp / 100; // {Target VIT x (New Poison Research Skill Level - 3)} + (Target HP/100)
+			int64 damage = static_cast<int64>(status->vit) * (sce->val1 - 3) + status->max_hp / 100; // {Target VIT x (New Poison Research Skill Level - 3)} + (Target HP/100)
 			freeLock.lock();
 			clif_damage(*bl, *bl, tick, status->amotion, status->dmotion + 500, damage, 1, DMG_NORMAL, 0, false);
 			status_fix_damage(bl, bl, damage, status->dmotion + 500, 0);
@@ -14368,7 +14374,7 @@ TIMER_FUNC(status_change_timer){
 	case SC_DEATHHURT:
 		if (sce->val4 >= 0) {
 			if (status->hp < status->max_hp)
-				status_heal(bl, (int32)status->max_hp * 1 / 100, 0, 1);
+				status_heal(bl, status->max_hp / 100, 0, 1);
 		}
 		break;
 
@@ -14621,7 +14627,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_RENOVATIO:
 		if( --(sce->val4) >= 0 ) {
-			int32 heal = status->max_hp * (sce->val1 + 4) / 100;
+			int32 heal = cap_value(static_cast<int64>(status->max_hp) * (sce->val1 + 4) / 100, 0, INT_MAX);
 			if( sc && sc->getSCE(SC_AKAITSUKI) && heal )
 				heal = ~heal + 1;
 			status_heal(bl, heal, 0, 3);
@@ -14655,7 +14661,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_ELECTRICSHOCKER:
 		if( --(sce->val4) >= 0 ) {
-			status_charge(bl, 0, 5 * sce->val1 * status->max_sp / 100);
+			status_charge(bl, 0, static_cast<int64>(status->max_sp) * 5 * sce->val1 / 100);
 			sc_timer_next(1000 + tick);
 			return 0;
 		}
@@ -14685,7 +14691,7 @@ TIMER_FUNC(status_change_timer){
 		break;
 
 	case SC__INVISIBILITY:
-		if( !status_charge(bl, 0, (12 - 2 * sce->val1) * status->max_sp / 100) ) // 6% - skill_lv.
+		if( !status_charge(bl, 0, static_cast<int64>(status->max_sp) * (12 - 2 * sce->val1) / 100) ) // 6% - skill_lv.
 			break;
 		sc_timer_next(1000 + tick);
 		return 0;
@@ -14704,9 +14710,9 @@ TIMER_FUNC(status_change_timer){
 			status_change *ssc = status_get_sc(map_id2bl(sce->val2));
 
 			if (ssc && ssc->getSCE(SC_HEATER_OPTION))
-				hp = status->max_hp * 3 * sce->val1 / 100;
+				hp = static_cast<int64>(status->max_hp) * 3 * sce->val1 / 100;
 			else
-				hp = status->max_hp * sce->val1 / 100;
+				hp = static_cast<int64>(status->max_hp) * sce->val1 / 100;
 			if (sc && sc->getSCE(SC_AKAITSUKI) && hp)
 				hp = ~hp + 1;
 			if (status->hp != status->max_hp)
@@ -14730,7 +14736,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_DEEPSLEEP:
 		if( --(sce->val4) >= 0 ) { // Recovers 3% HP/SP every 2 seconds.
-			status_heal(bl, status->max_hp * 3 / 100, status->max_sp * 3 / 100, 2);
+			status_heal(bl, static_cast<int64>(status->max_hp) * 3 / 100, static_cast<int64>(status->max_sp) * 3 / 100, 2);
 			sc_timer_next(2000 + tick);
 			return 0;
 		}
@@ -14748,7 +14754,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_CRYSTALIZE:
 		if( --(sce->val4) >= 0 ) { // Drains 2% of HP and 1% of SP every seconds.
-			if (!status_charge(bl, status->max_hp * 2 / 100, status->max_sp / 100))
+			if (!status_charge(bl, static_cast<int64>(status->max_hp) * 2 / 100, status->max_sp / 100))
 				break;
 			sc_timer_next(1000 + tick);
 			return 0;
@@ -14825,7 +14831,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_INSPIRATION:
 		if(--(sce->val4) >= 0) {
-			if (!status_charge(bl, status->max_hp * (35 - 5 * sce->val1) / 1000, status->max_sp * (45 - 5 * sce->val1) / 1000))
+			if (!status_charge(bl, static_cast<int64>(status->max_hp) * (35 - 5 * sce->val1) / 1000, static_cast<int64>(status->max_sp) * (45 - 5 * sce->val1) / 1000))
 				break;
 
 			sc_timer_next(5000+tick);
@@ -14835,13 +14841,13 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_SHIELDSPELL_HP:
 		if( sce->val4 >= 0 && status->hp < status->max_hp ){
-			status_heal( bl, status->max_hp * sce->val2 / 100, 0, 1 );
+			status_heal(bl, cap_value(static_cast<int64>(status->max_hp) * sce->val2 / 100, 0, INT_MAX), 0, 1);
 		}
 		break;
 
 	case SC_SHIELDSPELL_SP:
 		if( sce->val4 >= 0 && status->sp < status->max_sp ){
-			status_heal( bl, 0, status->max_sp * sce->val2 / 100, 1 );
+			status_heal(bl, 0, cap_value(static_cast<int64>(status->max_sp) * sce->val2 / 100, 0, INT_MAX), 1);
 		}
 		break;
 
@@ -14955,8 +14961,8 @@ TIMER_FUNC(status_change_timer){
 		break;
 	case SC_CBC:
 		if(--(sce->val4) >= 0) { // Drain hp/sp
-			int32 hp=0;
-			int32 sp = (status->max_sp * sce->val3) / 100;
+			int64 hp=0;
+			int64 sp = static_cast<int64>(status->max_sp) * sce->val3 / 100;
 			if(bl->type == BL_MOB) hp = sp*10;
 			if( !status_charge(bl,hp,sp) )break;
 			sc_timer_next(1000+tick);
@@ -15003,7 +15009,7 @@ TIMER_FUNC(status_change_timer){
 		break;
 	case SC_STEALTHFIELD_MASTER:
 		if (--(sce->val4) >= 0) {
-			if (!status_charge(bl, 0, status->max_sp * 3 / 100))
+			if (!status_charge(bl, 0, static_cast<int64>(status->max_sp) * 3 / 100))
 				break;
 			sc_timer_next(sce->val3 + tick);
 			return 0;
@@ -15324,7 +15330,6 @@ int32 status_change_timer_sub(block_list* bl, va_list ap)
 		break;
 	case SC_CURSEDCIRCLE_TARGET:
 		if( tsc && tsc->getSCE(SC_CURSEDCIRCLE_TARGET) && tsc->getSCE(SC_CURSEDCIRCLE_TARGET)->val2 == src->id ) {
-			clif_bladestop( *bl, tsc->getSCE(SC_CURSEDCIRCLE_TARGET)->val2, false );
 			status_change_end(bl, type);
 		}
 		break;

@@ -25,8 +25,10 @@ void SkillRelease::castendDamageId(block_list *src, block_list *target, uint16 s
 		skill_toggle_magicpower(src, getSkillId()); // No hit will be amplified
 #endif
 		if (skill_lv == 1) { // SpellBook
-			if (sc->getSCE(SC_FREEZE_SP) == nullptr)
+			if (sc->getSCE(SC_FREEZE_SP) == nullptr) {
+				clif_skill_fail(*sd, getSkillId(), USESKILL_FAIL_SPELLBOOK);
 				return;
+			}
 
 			bool found_spell = false;
 
@@ -37,13 +39,19 @@ void SkillRelease::castendDamageId(block_list *src, block_list *target, uint16 s
 				}
 			}
 
-			if (!found_spell)
+			if (!found_spell) {
+				clif_skill_fail(*sd, getSkillId(), USESKILL_FAIL_SPELLBOOK);
 				return;
+			}
 
 			// Now extract the data from the preserved spell
 			uint16 pres_skill_id = sc->getSCE(i)->val1;
 			uint16 pres_skill_lv = sc->getSCE(i)->val2;
 			uint16 point = sc->getSCE(i)->val3;
+
+			// A failed cast must not consume the preserved spell or its points.
+			if( !skill_check_condition_castbegin(*sd, pres_skill_id, pres_skill_lv) )
+				return;
 
 			status_change_end(src, static_cast<sc_type>(i));
 
@@ -51,9 +59,6 @@ void SkillRelease::castendDamageId(block_list *src, block_list *target, uint16 s
 				sc->getSCE(SC_FREEZE_SP)->val2 -= point;
 			else // Last spell to be released
 				status_change_end(src, SC_FREEZE_SP);
-
-			if( !skill_check_condition_castbegin(*sd, pres_skill_id, pres_skill_lv) )
-				return;
 
 			// Get the requirement for the preserved skill
 			skill_consume_requirement(sd, pres_skill_id, pres_skill_lv, 1);

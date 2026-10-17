@@ -18,6 +18,8 @@ void SkillSummonFlora::castendPos2(block_list* src, int32 x, int32 y, uint16 ski
 	md = mob_once_spawn_sub(src, src->m, x, y, status_get_name(*src), class_, "", SZ_SMALL, ai);
 	if (md) {
 		md->master_id = src->id;
+		md->summon_skill_id = getSkillId();
+		md->summon_skill_lv = skill_lv;
 		md->special_state.ai = ai;
 		if( md->deletetimer != INVALID_TIMER )
 			delete_timer(md->deletetimer, mob_timer_delete);

@@ -23,7 +23,7 @@ void SkillAidCondensedPotion::castendNoDamageId(block_list *src, block_list *tar
 	if (dstmd && (dstmd->mob_id == MOBID_EMPERIUM || status_get_class_(target) == CLASS_BATTLEFIELD))
 		return;
 	if (potion_hp || potion_sp) {
-		int32 hp = potion_hp, sp = potion_sp;
+		int64 hp = potion_hp, sp = potion_sp;
 		hp = hp * (100 + (tstatus->vit * 2))/100;
 		sp = sp * (100 + (tstatus->int_ * 2))/100;
 		if (dstsd) {
@@ -50,6 +50,9 @@ void SkillAidCondensedPotion::castendNoDamageId(block_list *src, block_list *tar
 				sp -= sp * penalty / 100;
 			}
 		}
+		hp = cap_value(hp, 0, INT_MAX);
+		sp = cap_value(sp, 0, INT_MAX);
+
 		if(hp > 0)
 			clif_skill_nodamage(nullptr,*target,AL_HEAL,hp);
 		if(sp > 0)
@@ -83,8 +86,8 @@ void SkillAidCondensedPotion::castendPos2(block_list* src, int32 x, int32 y, uin
 			+ pc_checkskill(sd,AM_LEARNINGPOTION)*5
 			+ pc_skillheal_bonus(sd, getSkillId());
 
-		potion_hp = potion_hp * (100+i_lv)/100;
-		potion_sp = potion_sp * (100+i_lv)/100;
+		potion_hp = cap_value(static_cast<int64>(potion_hp) * (100+i_lv) / 100, 0, INT_MAX);
+		potion_sp = cap_value(static_cast<int64>(potion_sp) * (100+i_lv) / 100, 0, INT_MAX);
 
 		// Final heal increased by HPlus.
 		// Is this the right place for this??? [Rytech]
@@ -92,8 +95,8 @@ void SkillAidCondensedPotion::castendPos2(block_list* src, int32 x, int32 y, uin
 		status_data* sstatus = status_get_status_data(*src);
 
 		if (sstatus && sstatus->hplus > 0) {
-			potion_hp += potion_hp * sstatus->hplus / 100;
-			potion_sp += potion_sp * sstatus->hplus / 100;
+			potion_hp = cap_value(static_cast<int64>(potion_hp) + static_cast<int64>(potion_hp) * sstatus->hplus / 100, 0, INT_MAX);
+			potion_sp = cap_value(static_cast<int64>(potion_sp) + static_cast<int64>(potion_sp) * sstatus->hplus / 100, 0, INT_MAX);
 		}
 
 		if(potion_hp > 0 || potion_sp > 0) {
@@ -112,8 +115,8 @@ void SkillAidCondensedPotion::castendPos2(block_list* src, int32 x, int32 y, uin
 		potion_sp = 0;
 		run_script(item->script,0,src->id,0);
 		potion_flag = 0;
-		potion_hp = potion_hp * (100+id)/100;
-		potion_sp = potion_sp * (100+id)/100;
+		potion_hp = cap_value(static_cast<int64>(potion_hp) * (100+id) / 100, 0, INT_MAX);
+		potion_sp = cap_value(static_cast<int64>(potion_sp) * (100+id) / 100, 0, INT_MAX);
 
 		if(potion_hp > 0 || potion_sp > 0) {
 			id = skill_get_splash(getSkillId(), skill_lv);

@@ -14,6 +14,8 @@ void SkillFawSilverSniper::castendPos2(block_list* src, int32 x, int32 y, uint16
 	mob_data* md = mob_once_spawn_sub(src, src->m, x, y, status_get_name(*src), MOBID_SILVERSNIPER, "", SZ_SMALL, AI_NONE);
 	if (md) {
 		md->master_id = src->id;
+		md->summon_skill_id = getSkillId();
+		md->summon_skill_lv = skill_lv;
 		md->special_state.ai = AI_FAW;
 		if (md->deletetimer != INVALID_TIMER) {
 			delete_timer(md->deletetimer, mob_timer_delete);

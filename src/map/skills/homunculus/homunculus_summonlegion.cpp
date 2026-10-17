@@ -24,10 +24,12 @@ void SkillSummonLegion::castendNoDamageId(block_list *src, block_list *target, u
 		return; //max qty already spawned
 	}
 
-	for (int32 i_slave = 0; i_slave < qty[skill_lv - 1]; i_slave++) { //easy way
+	for (int32 i_slave = 0; i_slave < maxcount - count; i_slave++) {
 		mob_data *sum_md = mob_once_spawn_sub(src, src->m, src->x, src->y, status_get_name(*src), summons[skill_lv - 1], "", SZ_SMALL, AI_ATTACK);
 		if (sum_md) {
 			sum_md->master_id = src->id;
+			sum_md->summon_skill_id = getSkillId();
+			sum_md->summon_skill_lv = skill_lv;
 			sum_md->special_state.ai = AI_LEGION;
 			if (sum_md->deletetimer != INVALID_TIMER) {
 				delete_timer(sum_md->deletetimer, mob_timer_delete);

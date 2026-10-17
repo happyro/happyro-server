@@ -17,7 +17,7 @@ void SkillWindCutter::modifyDamageData(Damage& dmg, const block_list& src, const
 
 	if (sd != nullptr) {
 		if (sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR)
-			dmg.flag |= BF_LONG;
+			dmg.flag = (dmg.flag & ~BF_SHORT) | BF_LONG;
 
 		if (sd->weapontype1 == W_2HSWORD)
 			dmg.div_ = 2;

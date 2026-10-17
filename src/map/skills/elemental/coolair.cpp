@@ -20,8 +20,8 @@ void SkillCoolAir::castendNoDamageId(block_list *src, block_list *target, uint16
 		status_change *esc = status_get_sc(ele);
 
 		if( (esc && esc->getSCE(type2)) || (tsc && tsc->getSCE(type)) ) {
-			status_change_end(src,type);
-			status_change_end(target,type2);
+			status_change_end(src,type2);
+			status_change_end(target,type);
 		} else {
 			clif_skill_nodamage(src,*src,getSkillId(),skill_lv);
 			clif_skill_damage( *src, *target, tick, status_get_amotion(src), 0, DMGVAL_IGNORE, 1, getSkillId(), skill_lv, DMG_SINGLE );

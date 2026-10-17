@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "chrif.hpp"
+#include "game_control_appearance.hpp"
 
 #include <cstdlib>
 #include <cstring>
@@ -1002,6 +1003,7 @@ int32 chrif_changedsex(int32 fd) {
 			//sd->class_ Does not need to be updated as both versions of the job are the same.
 			sd->status.body = sd->status.class_;
 		}
+		game_control_character_appearance_reconcile(sd);
 		// save character
 		sd->login_id1++; // change identify, because if player come back in char within the 5 seconds, he can change its characters
 							  // do same modify in login-server for the account, but no in char-server (it ask again login_id1 to login, and don't remember it)

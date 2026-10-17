@@ -36,6 +36,7 @@ void SkillHighnessHeal::castendNoDamageId(block_list *src, block_list *target, u
 			else {
 				target = src;
 				dstsd = sd;
+				tsc = status_get_sc(target);
 			}
 		}
 		else if (tsc->getSCE(SC_BERSERK) || tsc->getSCE(SC_SATURDAYNIGHTFEVER))

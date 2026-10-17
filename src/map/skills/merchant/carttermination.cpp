@@ -16,7 +16,7 @@ void SkillCartTermination::calculateSkillRatio(const Damage *wd, const block_lis
 	if (i < 1) i = 1;
 	//Preserve damage ratio when max cart weight is changed.
 	if (sd && sd->cart_weight)
-		base_skillratio += sd->cart_weight / i * 80000 / battle_config.max_cart_weight - 100;
+		base_skillratio += static_cast<int64>(sd->cart_weight) / i * 80000 / battle_config.max_cart_weight - 100;
 	else if (!sd)
 		base_skillratio += 80000 / i - 100;
 }

@@ -28,6 +28,13 @@ struct PACKET{
 	int16 packetLength;
 } __attribute__((packed));
 
+struct PACKET_HC_HAPPYRO_CHARACTER_APPEARANCE {
+ int16 packetType;
+ uint32 charId;
+ uint16 appearance;
+} __attribute__((packed));
+static_assert(sizeof(PACKET_HC_HAPPYRO_CHARACTER_APPEARANCE) == 8, "Character appearance wire layout");
+
 struct CHARACTER_INFO{
 	uint32 GID;
 #if PACKETVER >= 20170830

@@ -60,11 +60,11 @@ void SkillResurrection::castendNoDamageId(block_list* src, block_list* target, u
 			t_exp exp = 0,jexp = 0;
 			int32 lv = dstsd->status.base_level - sd->status.base_level, jlv = dstsd->status.job_level - sd->status.job_level;
 			if(lv > 0 && pc_nextbaseexp(dstsd)) {
-				exp = (t_exp)(dstsd->status.base_exp * lv * battle_config.resurrection_exp / 1000000.);
+				exp = (t_exp)(static_cast<double>(dstsd->status.base_exp) * lv * battle_config.resurrection_exp / 1000000.);
 				if (exp < 1) exp = 1;
 			}
 			if(jlv > 0 && pc_nextjobexp(dstsd)) {
-				jexp = (t_exp)(dstsd->status.job_exp * lv * battle_config.resurrection_exp / 1000000.);
+				jexp = (t_exp)(static_cast<double>(dstsd->status.job_exp) * jlv * battle_config.resurrection_exp / 1000000.);
 				if (jexp < 1) jexp = 1;
 			}
 			if(exp > 0 || jexp > 0)

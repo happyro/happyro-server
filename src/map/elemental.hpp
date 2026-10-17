@@ -86,7 +86,8 @@ struct s_elemental_data : public block_list {
 	int32 masterteleport_timer;
 	map_session_data *master;
 	int32 summon_timer;
-	int32 skill_timer;
+	int32 action_target_id = 0;
+	bool action_forced = false;
 
 	t_tick last_thinktime, last_linktime, last_spdrain_time;
 	int16 min_chase;
@@ -126,7 +127,7 @@ int32 elemental_unlocktarget(s_elemental_data *ed);
 bool elemental_skillnotok( uint16 skill_id, s_elemental_data& ed );
 int32 elemental_set_target( map_session_data *sd, const block_list* bl );
 int32 elemental_clean_effect(s_elemental_data *ed);
-int32 elemental_action(s_elemental_data *ed, block_list *bl, t_tick tick);
+int32 elemental_action(s_elemental_data *ed, block_list *bl, t_tick tick, bool forced = false);
 struct s_skill_condition elemental_skill_get_requirements(uint16 skill_id, uint16 skill_lv);
 
 void do_init_elemental(void);

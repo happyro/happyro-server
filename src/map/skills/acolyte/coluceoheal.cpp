@@ -24,7 +24,7 @@ void SkillColuceoHeal::castendNoDamageId(block_list *src, block_list *target, ui
 			int32 i = skill_calc_heal(src, target, AL_HEAL, pc_checkskill(sd, AL_HEAL), true);
 
 			if( partycount > 1 )
-				i += (i / 100) * (partycount * 10) / 4;
+				i = cap_value(static_cast<int64>(i) + (static_cast<int64>(i) / 100) * (partycount * 10) / 4, 0, INT_MAX);
 			if( (dstsd && pc_ismadogear(dstsd)) || status_isimmune(target))
 				i = 0; // Should heal by 0 or won't do anything?? in iRO it breaks the healing to members.. [malufett]
 

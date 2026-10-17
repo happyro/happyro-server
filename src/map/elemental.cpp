@@ -56,25 +56,25 @@ int32 elemental_create(map_session_data *sd, int32 class_, uint32 lifetime) {
 	int32 i = db->status.size+1; // summon level
 
 	//[(Caster's Max HP/ 3 ) + (Caster's INT x 10 )+ (Caster's Job Level x 20 )] x [(Elemental Summon Level + 2) / 3]
-	ele.hp = ele.max_hp = (sd->battle_status.max_hp/3 + sd->battle_status.int_*10 + sd->status.job_level*20) * ((i + 2) / 3);
+	ele.hp = ele.max_hp = cap_value((static_cast<int64>(sd->battle_status.max_hp) / 3 + sd->battle_status.int_ * 10 + sd->status.job_level * 20) * ((i + 2) / 3), 1, INT_MAX);
 	//Caster's Max SP /4
 	ele.sp = ele.max_sp = sd->battle_status.max_sp/4;
 	//Caster's [ Max SP / (18 / Elemental Summon Skill Level) 1- 100 ]
-	ele.atk = (sd->battle_status.max_sp / (18 / i)  * 1 - 100);
+	ele.atk = static_cast<int64>(sd->battle_status.max_sp) / (18 / i) - 100;
 	//Caster's [ Max SP / (18 / Elemental Summon Skill Level) ]
 	ele.atk2 = sd->battle_status.max_sp / (18 / i);
 	//Caster's HIT + (Caster's Base Level)
-	ele.hit = sd->battle_status.hit + sd->status.base_level;
+	ele.hit = cap_value(static_cast<int64>(sd->battle_status.hit) + sd->status.base_level, 0, SHRT_MAX);
 	//[Elemental Summon Skill Level x (Caster's INT / 2 + Caster's DEX / 4)]
 	ele.matk = i * (sd->battle_status.int_ / 2 + sd->battle_status.dex / 4);
 	//150 + [Caster's DEX / 10] + [Elemental Summon Skill Level x 3 ]
 	ele.amotion = 150 + sd->battle_status.dex / 10 + i * 3;
 	//Caster's DEF + (Caster's Base Level / (5 - Elemental Summon Skill Level)
-	ele.def = sd->battle_status.def + sd->status.base_level / (5-i);
+	ele.def = cap_value(static_cast<int64>(sd->battle_status.def) + sd->status.base_level / (5-i), 0, SHRT_MAX);
 	//Caster's MDEF + (Caster's INT / (5 - Elemental Summon Skill Level)
-	ele.mdef = sd->battle_status.mdef + sd->battle_status.int_ / (5-i);
+	ele.mdef = cap_value(static_cast<int64>(sd->battle_status.mdef) + sd->battle_status.int_ / (5-i), 0, SHRT_MAX);
 	//Caster's FLEE + (Caster's Base Level / (5 - Elemental Summon Skill Level)
-	ele.flee = sd->battle_status.flee + sd->status.base_level / (5-i);
+	ele.flee = cap_value(static_cast<int64>(sd->battle_status.flee) + sd->status.base_level / (5-i), 0, SHRT_MAX);
 
 	//per individual bonuses
 	switch(db->class_){
@@ -84,20 +84,20 @@ int32 elemental_create(map_session_data *sd, int32 class_, uint32 lifetime) {
 	case ELEMENTALID_ARDOR://ATK + (Summon Agni Skill Level x 20) / HIT + (Summon Agni Skill Level x 10)
 		ele.atk += i * 20;
 		ele.atk2 += i * 20;
-		ele.hit += i * 10;
+		ele.hit = cap_value(static_cast<int32>(ele.hit) + i * 10, SHRT_MIN, SHRT_MAX);
 		break;
 	case ELEMENTALID_AQUA_S:
 	case ELEMENTALID_AQUA_M:
 	case ELEMENTALID_AQUA_L:
 	case ELEMENTALID_DILUVIO://MDEF + (Summon Aqua Skill Level x 10) / MATK + (Summon Aqua Skill Level x 20)
-		ele.mdef += i * 10;
+		ele.mdef = cap_value(static_cast<int32>(ele.mdef) + i * 10, SHRT_MIN, SHRT_MAX);
 		ele.matk += i * 20;
 		break;
 	case ELEMENTALID_VENTUS_S:
 	case ELEMENTALID_VENTUS_M:
 	case ELEMENTALID_VENTUS_L:
 	case ELEMENTALID_PROCELLA://FLEE + (Summon Ventus Skill Level x 20) / MATK + (Summon Ventus Skill Level x 10)
-		ele.flee += i * 20;
+		ele.flee = cap_value(static_cast<int32>(ele.flee) + i * 20, SHRT_MIN, SHRT_MAX);
 		ele.matk += i * 10;
 		break;
 	case ELEMENTALID_TERA_S:
@@ -105,31 +105,33 @@ int32 elemental_create(map_session_data *sd, int32 class_, uint32 lifetime) {
 	case ELEMENTALID_TERA_L:
 	case ELEMENTALID_TERREMOTUS:
 	case ELEMENTALID_SERPENS://DEF + (Summon Tera Skill Level x 25) / ATK + (Summon Tera Skill Level x 5)
-		ele.def += i * 25;
+		ele.def = cap_value(static_cast<int32>(ele.def) + i * 25, SHRT_MIN, SHRT_MAX);
 		ele.atk += i * 5;
 		ele.atk2 += i * 5;
 		break;
 	}
 
 	if( (i=pc_checkskill(sd,SO_EL_SYMPATHY)) > 0 ){
-		ele.hp = ele.max_hp += ele.max_hp * 5 * i / 100;
-		ele.sp = ele.max_sp += ele.max_sp * 5 * i / 100;
+		ele.hp = ele.max_hp = cap_value(static_cast<int64>(ele.max_hp) + static_cast<int64>(ele.max_hp) * 5 * i / 100, 1, INT_MAX);
+		ele.sp = ele.max_sp = cap_value(static_cast<int64>(ele.max_sp) + static_cast<int64>(ele.max_sp) * 5 * i / 100, 0, INT_MAX);
 		ele.atk += 25 * i;
 		ele.atk2 += 25 * i;
 		ele.matk += 25 * i;
 	}
 
 	if ((i = pc_checkskill(sd, EM_ELEMENTAL_SPIRIT_M)) > 0 && db->class_ >= ELEMENTALID_DILUVIO && db->class_ <= ELEMENTALID_SERPENS) {
-		ele.hp = ele.max_hp += 10000 + 3000 * i;
-		ele.sp = ele.max_sp += 100 * i;
+		ele.hp = ele.max_hp = cap_value(static_cast<int64>(ele.max_hp) + 10000 + 3000 * i, 1, INT_MAX);
+		ele.sp = ele.max_sp = cap_value(static_cast<int64>(ele.max_sp) + 100 * i, 0, INT_MAX);
 		ele.atk += 100 + 20 * i;
 		ele.atk2 += 100 + 20 * i;
 		ele.matk += 20 * i;
-		ele.def += 20 * i;
-		ele.mdef += 4 * i;
-		ele.flee += 10 * i;
+		ele.def = cap_value(static_cast<int32>(ele.def) + 20 * i, SHRT_MIN, SHRT_MAX);
+		ele.mdef = cap_value(static_cast<int32>(ele.mdef) + 4 * i, SHRT_MIN, SHRT_MAX);
+		ele.flee = cap_value(static_cast<int32>(ele.flee) + 10 * i, SHRT_MIN, SHRT_MAX);
 	}
 
+	ele.atk = max(ele.atk, 0);
+	ele.atk2 = max(ele.atk2, 0);
 	ele.life_time = lifetime;
 
 	// Request Char Server to create this elemental
@@ -299,14 +301,14 @@ int32 elemental_clean_effect(s_elemental_data *ed) {
 	return 1;
 }
 
-int32 elemental_action(s_elemental_data *ed, block_list *bl, t_tick tick) {
+int32 elemental_action(s_elemental_data *ed, block_list *bl, t_tick tick, bool forced) {
 	nullpo_ret(ed);
 	nullpo_ret(bl);
 
-	if( !ed->master )
+	if (!ed->master || !ed->prev || !bl->prev || ed->m != bl->m || status_isdead(*ed) || status_isdead(*bl))
 		return 0;
 
-	if( ed->target_id )
+	if( ed->target_id || ed->action_target_id )
 		elemental_unlocktarget(ed);	// Remove previous target.
 
 	std::shared_ptr<s_elemental_skill> skill = util::umap_find(ed->db->skill, EL_SKILLMODE_AGGRESSIVE);	// only one skill per mode is supported
@@ -324,51 +326,56 @@ int32 elemental_action(s_elemental_data *ed, block_list *bl, t_tick tick) {
 	else if( DIFF_TICK(tick, ed->ud.canact_tick) < 0 )
 		return 0;
 
-	ed->target_id = ed->ud.skilltarget = bl->id;	// Set new target
+	s_skill_condition req = elemental_skill_get_requirements(skill_id, skill_lv);
+	if (!forced && (status_get_hp(ed) < req.hp || status_get_sp(ed) < req.sp))
+		return 0;
+
+	if (!status_check_skilluse(ed, bl, skill_id, 0) || battle_check_target(ed, bl, BCT_ENEMY) <= 0)
+		return 0;
+
 	ed->last_thinktime = tick;
-
-	// Not in skill range.
-	if( !battle_check_range(ed,bl,skill_get_range(skill_id,skill_lv)) ) {
-		// Try to walk to the target.
-		if( !unit_walktobl(ed, bl, skill_get_range(skill_id,skill_lv), 2) )
+	if (!battle_check_range(ed, bl, skill_get_range(skill_id, skill_lv))) {
+		if (!unit_walktobl(ed, bl, skill_get_range(skill_id, skill_lv), 2)) {
 			elemental_unlocktarget(ed);
-		else {
-			// Walking, waiting to be in range. Client don't handle it, then we must handle it here.
-			int32 walk_dist = distance_bl(ed,bl) - skill_get_range(skill_id,skill_lv);
-			ed->ud.skill_id = skill_id;
-			ed->ud.skill_lv = skill_lv;
-
-			if( skill_get_inf(skill_id) & INF_GROUND_SKILL )
-				ed->ud.skilltimer = add_timer( tick+(t_tick)status_get_speed(ed)*walk_dist, skill_castend_pos, ed->id, 0 );
-			else
-				ed->ud.skilltimer = add_timer( tick+(t_tick)status_get_speed(ed)*walk_dist, skill_castend_id, ed->id, 0 );
+			return 0;
 		}
+		// The AI resumes through this function once in range, including its resource checks.
+		ed->action_target_id = bl->id;
+		ed->action_forced = forced;
 		return 1;
 	}
 
-	s_skill_condition req = elemental_skill_get_requirements(skill_id, skill_lv);
+	FreeBlockLock freeLock;
+	status_zap(ed, req.hp, req.sp);
+	ed->action_forced = forced;
+	int32 result;
+	if (skill_get_inf(skill_id) & INF_GROUND_SKILL)
+		result = unit_skilluse_pos(ed, bl->x, bl->y, skill_id, skill_lv);
+	else
+		result = unit_skilluse_id(ed, bl->id, skill_id, skill_lv);
+	ed->action_forced = false;
+	ed->target_id = 0;
+	return result;
+}
 
-	if(req.hp || req.sp){
-		map_session_data *sd = BL_CAST(BL_PC, battle_get_master(ed));
-		if( sd ){
-			if( sd->skill_id_old != SO_EL_ACTION && //regardless of remaining HP/SP it can be cast
-				(status_get_hp(ed) < req.hp || status_get_sp(ed) < req.sp) )
-				return 1;
-			else
-				status_zap(ed, req.hp, req.sp);
-		}
+// Return true while a requested attack is being pursued, even if it is cancelled this tick.
+static bool elemental_resume_action(s_elemental_data* ed, t_tick tick) {
+	if (!ed->action_target_id)
+		return false;
+
+	block_list* target = map_id2bl(ed->action_target_id);
+	auto skill = util::umap_find(ed->db->skill, EL_SKILLMODE_AGGRESSIVE);
+	if (!target || !target->prev || target->m != ed->m || status_isdead(*target) || skill == nullptr ||
+		!status_check_skilluse(ed, target, skill->id, 0) || battle_check_target(ed, target, BCT_ENEMY) <= 0) {
+		elemental_unlocktarget(ed);
+		return true;
 	}
 
-	//Otherwise, just cast the skill.
-	if( skill_get_inf(skill_id) & INF_GROUND_SKILL )
-		unit_skilluse_pos(ed, bl->x, bl->y, skill_id, skill_lv);
-	else
-		unit_skilluse_id(ed, bl->id, skill_id, skill_lv);
-
-	// Reset target.
-	ed->target_id = 0;
-
-	return 1;
+	if (ed->ud.walktimer == INVALID_TIMER || battle_check_range(ed, target, skill_get_range(skill->id, skill->lv))) {
+		const bool forced = ed->action_forced;
+		elemental_action(ed, target, tick, forced);
+	}
+	return true;
 }
 
 /*===============================================================
@@ -455,6 +462,8 @@ int32 elemental_unlocktarget(s_elemental_data *ed) {
 	nullpo_ret(ed);
 
 	ed->target_id = 0;
+	ed->action_target_id = 0;
+	ed->action_forced = false;
 	unit_stop_attack( ed );
 	unit_stop_walking( ed, USW_FIXPOS );
 
@@ -601,7 +610,7 @@ static int32 elemental_ai_sub_timer(s_elemental_data *ed, map_session_data *sd, 
 		return 0;
 	} else if( master_dist > MAX_ELEDISTANCE ) {	// Master too far, chase.
 		int16 x = sd->x, y = sd->y;
-		if( ed->target_id )
+		if( ed->target_id || ed->action_target_id )
 			elemental_unlocktarget(ed);
 		if( ed->ud.walktimer != INVALID_TIMER && ed->ud.target == sd->id )
 			return 0; //Already walking to him
@@ -611,6 +620,9 @@ static int32 elemental_ai_sub_timer(s_elemental_data *ed, map_session_data *sd, 
 		   && unit_walktoxy(ed, x, y, 0) )
 			return 0;
 	}
+
+	if (elemental_resume_action(ed, tick))
+		return 1;
 
 	block_list *target = nullptr;
 

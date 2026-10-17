@@ -32,7 +32,6 @@ class SkillImpl;
 extern struct eri* skill_timer_ers;
 extern DBMap* bowling_db;
 
-extern char dir_ka;
 
 #ifndef TIMERSKILL_INTERVAL
 	#define TIMERSKILL_INTERVAL	150
@@ -639,6 +638,7 @@ int32 skill_sit(map_session_data *sd, bool sitting);
 void skill_repairweapon( map_session_data& sd, int32 idx );
 void skill_identify(map_session_data *sd,int32 idx);
 void skill_weaponrefine( map_session_data& sd, int32 idx ); // [Celest]
+std::vector<uint16> skill_get_autospell_skills(uint16 skill_lv);
 int32 skill_autospell(map_session_data *md,uint16 skill_id);
 
 int32 skill_calc_heal(block_list *src, block_list *target, uint16 skill_id, uint16 skill_lv, bool heal);
@@ -688,7 +688,7 @@ TIMER_FUNC(skill_blockmerc_end);
 	((id) >= CG_LONGINGFREEDOM && (id) <= CG_TAROTCARD)     || ((id) >= WA_SWING_DANCE && (id) <= WM_UNLIMITED_HUMMING_VOICE))
 
 // Skill action, (return dmg,heal)
-int64 skill_attack( int32 attack_type, block_list* src, block_list *dsrc,block_list *bl,uint16 skill_id,uint16 skill_lv,t_tick tick,int32 flag );
+int64 skill_attack( int32 attack_type, block_list* src, block_list *dsrc,block_list *bl,uint16 skill_id,uint16 skill_lv,t_tick tick,int32 flag, int8 knockback_direction = -1 );
 int32 skill_attack_area(struct block_list *bl,va_list ap);
 
 void skill_reload(void);

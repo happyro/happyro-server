@@ -35,9 +35,9 @@ void SkillKnuckleArrow::calculateSkillRatio(const Damage *wd, const block_list *
 
 void SkillKnuckleArrow::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
 	// Holds current direction of bl/target to src/attacker before the src is moved to bl location
-	dir_ka = map_calc_dir(target, src->x, src->y);
+	const int8 direction = map_calc_dir(target, src->x, src->y);
 	// Has slide effect
 	if (skill_check_unit_movepos(5, src, target->x, target->y, 1, 1))
-		skill_blown(src, src, 1, (dir_ka + 4) % 8, BLOWN_NONE); // Target position is actually one cell next to the target
-	skill_addtimerskill(src, tick + 300, target->id, 0, 0, getSkillId(), skill_lv, BF_WEAPON, flag|SD_LEVEL|2);
+		skill_blown(src, src, 1, (direction + 4) % 8, BLOWN_NONE); // Target position is actually one cell next to the target
+	skill_addtimerskill(src, tick + 300, target->id, direction, 0, getSkillId(), skill_lv, BF_WEAPON, flag|SD_LEVEL|2);
 }

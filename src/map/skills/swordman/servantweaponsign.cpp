@@ -53,12 +53,12 @@ void SkillServantWeaponSign::castendNoDamageId(block_list* src, block_list* targ
 				return;
 			}
 
-			// Add the ID of the marked target to the player's sign list.
-			sd->servant_sign[i] = target->id;
 		}
 
-		clif_skill_nodamage(src, *target, getSkillId(), skill_lv);
-		sc_start4(src, target, type, 100, src->id, i, skill_lv, 0, skill_get_time(getSkillId(), skill_lv));
+		const bool applied = sc_start4(src, target, type, 100, src->id, i, skill_lv, 0, skill_get_time(getSkillId(), skill_lv));
+		if (applied)
+			sd->servant_sign[i] = target->id;
+		clif_skill_nodamage(src, *target, getSkillId(), skill_lv, applied);
 	} else if (md) // Monster's cant track with this skill. Just give the status.
 		clif_skill_nodamage(src, *target, getSkillId(), skill_lv, sc_start4(src, target, type, 100, 0, 0, skill_lv, 0, skill_get_time(getSkillId(), skill_lv)));
 }

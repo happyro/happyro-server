@@ -14,7 +14,7 @@ void SkillHeal::castendNoDamageId(block_list *src, block_list *bl, uint16 skill_
 {
 	status_change *tsc = status_get_sc(bl);
 	map_session_data *sd = BL_CAST(BL_PC, src);
-	map_session_data *dstsd = nullptr;
+	map_session_data *dstsd = BL_CAST(BL_PC, bl);
 	status_data* sstatus = status_get_status_data(*src);
 	mob_data *dstmd = BL_CAST(BL_MOB, bl);
 
@@ -35,6 +35,7 @@ void SkillHeal::castendNoDamageId(block_list *src, block_list *bl, uint16 skill_
 			{
 				bl = src;
 				dstsd = sd;
+				tsc = status_get_sc(bl);
 			}
 		}
 		else if (tsc->getSCE(SC_BERSERK) || tsc->getSCE(SC_SATURDAYNIGHTFEVER))

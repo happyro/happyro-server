@@ -20,8 +20,8 @@ void SkillSpiritRecovery::castendNoDamageId(block_list *src, block_list *target,
 		if( !ed )
 			return;
 
-		int32 s_hp = sd->battle_status.hp * 10 / 100;
-		int32 s_sp = sd->battle_status.sp * 10 / 100;
+		int32 s_hp = static_cast<int64>(sd->battle_status.hp) * 10 / 100;
+		int32 s_sp = static_cast<int64>(sd->battle_status.sp) * 10 / 100;
 
 		if( !status_charge(sd,s_hp,s_sp) ) {
 			clif_skill_fail( *sd, getSkillId() );

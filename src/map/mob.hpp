@@ -389,6 +389,7 @@ struct mob_data : public block_list {
 
 	int32 deletetimer;
 	int32 master_id,master_dist;
+	uint16 summon_skill_id = 0, summon_skill_lv = 0; // Summoning context, independent of current casting state.
 
 	int8 skill_idx; // Index of last used skill from db->skill[]
 	t_tick skilldelay[MAX_MOBSKILL];

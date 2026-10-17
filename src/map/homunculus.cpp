@@ -1106,6 +1106,18 @@ void hom_init_timers(homun_data * hd)
 	hd->masterteleport_timer = INVALID_TIMER;
 }
 
+static void hom_send_skill_cooldowns(homun_data& hd) {
+	if (!battle_config.display_status_timers || hd.master == nullptr)
+		return;
+
+	const t_tick now = gettick();
+	for (const auto& entry : hd.scd) {
+		const TimerData* timer = get_timer(entry.second);
+		if (timer != nullptr && DIFF_TICK(timer->tick, now) > 0)
+			clif_skill_cooldown(*hd.master, entry.first, DIFF_TICK(timer->tick, now));
+	}
+}
+
 /**
  * Make a player spawn a homonculus (call)
  * @param sd
@@ -1153,10 +1165,7 @@ bool hom_call(map_session_data *sd)
 		//Warp him to master.
 		unit_warp(hd,sd->m, sd->x, sd->y,CLR_OUTSIGHT);
 
-	// Apply any active skill cooldowns.
-	for (const auto &entry : hd->scd) {
-		skill_blockhomun_start(*hd, entry.first, entry.second);
-	}
+	hom_send_skill_cooldowns(*hd);
 
 #ifdef RENEWAL
 	sc_start(sd, sd, SC_HOMUN_TIME, 100, 1, skill_get_time(AM_CALLHOMUN, 1));
@@ -1318,10 +1327,7 @@ int32 hom_ressurect(map_session_data* sd, unsigned char per, int16 x, int16 y)
 
 	hd->ud.state.blockedmove = false;
 
-	// Apply any active skill cooldowns.
-	for (const auto &entry : hd->scd) {
-		skill_blockhomun_start(*hd, entry.first, entry.second);
-	}
+	hom_send_skill_cooldowns(*hd);
 
 #ifdef RENEWAL
 	sc_start(sd, sd, SC_HOMUN_TIME, 100, 1, skill_get_time(AM_CALLHOMUN, 1));

@@ -49,7 +49,6 @@ void SkillRedemptio::castendNoDamageId(block_list* src, block_list* target, uint
 		return;
 	}
 	//Revive
-	skill_area_temp[0]++; //Count it in, then fall-through to the Resurrection code.
 	skill_lv = 3; //Resurrection level 3 is used
 
 	if(sd && (map_flag_gvg2(target->m) || map_getmapflag(target->m, MF_BATTLEGROUND)))
@@ -79,17 +78,18 @@ void SkillRedemptio::castendNoDamageId(block_list* src, block_list* target, uint
 		per = sper = 100;
 	if (status_revive(target, per, sper))
 	{
+		skill_area_temp[0]++; // Only successful revivals count toward the caster penalty.
 		clif_skill_nodamage(src,*target,ALL_RESURRECTION,skill_lv); //Both Redemptio and Res show this skill-animation.
 		if(sd && dstsd && battle_config.resurrection_exp > 0)
 		{
 			t_exp exp = 0,jexp = 0;
 			int32 lv = dstsd->status.base_level - sd->status.base_level, jlv = dstsd->status.job_level - sd->status.job_level;
 			if(lv > 0 && pc_nextbaseexp(dstsd)) {
-				exp = (t_exp)(dstsd->status.base_exp * lv * battle_config.resurrection_exp / 1000000.);
+				exp = (t_exp)(static_cast<double>(dstsd->status.base_exp) * lv * battle_config.resurrection_exp / 1000000.);
 				if (exp < 1) exp = 1;
 			}
 			if(jlv > 0 && pc_nextjobexp(dstsd)) {
-				jexp = (t_exp)(dstsd->status.job_exp * lv * battle_config.resurrection_exp / 1000000.);
+				jexp = (t_exp)(static_cast<double>(dstsd->status.job_exp) * jlv * battle_config.resurrection_exp / 1000000.);
 				if (jexp < 1) jexp = 1;
 			}
 			if(exp > 0 || jexp > 0)

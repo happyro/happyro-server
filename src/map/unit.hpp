@@ -198,6 +198,7 @@ void unit_changetarget_sub(unit_data& ud, block_list& target);
 
 // Shadow Scar
 void unit_addshadowscar(unit_data &ud, int32 interval);
+void unit_clearshadowscar(unit_data& ud);
 
 void do_init_unit(void);
 void do_final_unit(void);

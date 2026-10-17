@@ -31,9 +31,14 @@ void SkillTetraVortex::castendDamageId(block_list *src, block_list *target, uint
 			i++;
 		}
 	} else if (sc) { // No SC? No spheres
-		int32 i, k = 0;
+		int32 i, k = 0, hit = 0, spheres = 0;
 
-		if (sc->getSCE(SC_SPHERE_5)) // If 5 spheres, remove last one (based on reverse order) and only do 4 actions (Official behavior)
+		for (i = SC_SPHERE_1; i <= SC_SPHERE_5; i++) {
+			if (sc->getSCE(static_cast<sc_type>(i)) != nullptr)
+				spheres++;
+		}
+
+		if (spheres == 5) // Discard slot 1 only when all five slots are occupied.
 			status_change_end(src, SC_SPHERE_1);
 
 		for (i = SC_SPHERE_5; i >= SC_SPHERE_1; i--) { // Loop should always be 4 for regular players, but unconditional_skill could be less
@@ -62,12 +67,13 @@ void SkillTetraVortex::castendDamageId(block_list *src, block_list *target, uint
 			}
 
 			if (skill_lv > 5) {
-				skill_area_temp[0] = abs(i - SC_SPHERE_5);
+				skill_area_temp[0] = hit;
 				skill_area_temp[1] = k;
 				map_foreachinallrange(skill_area_sub, target, skill_get_splash(getSkillId(), skill_lv), BL_CHAR, src, subskill, skill_lv, tick, flag | BCT_ENEMY, skill_castend_damage_id);
 			} else
-				skill_addtimerskill(src, tick + abs(i - SC_SPHERE_5) * 200, target->id, k, 0, subskill, skill_lv, abs(i - SC_SPHERE_5), flag);
+				skill_addtimerskill(src, tick + hit * 200, target->id, k, 0, subskill, skill_lv, hit, flag);
 			status_change_end(src, static_cast<sc_type>(i));
+			hit++;
 		}
 	}
 }
@@ -82,7 +88,7 @@ void SkillTetraVortexEarth::calculateSkillRatio(const Damage *wd, const block_li
 }
 
 void SkillTetraVortexEarth::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, 0, flag);
+	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, skill_area_temp[0], flag);
 }
 
 
@@ -95,7 +101,7 @@ void SkillTetraVortexFire::calculateSkillRatio(const Damage *wd, const block_lis
 }
 
 void SkillTetraVortexFire::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, 0, flag);
+	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, skill_area_temp[0], flag);
 }
 
 
@@ -108,7 +114,7 @@ void SkillTetraVortexWater::calculateSkillRatio(const Damage *wd, const block_li
 }
 
 void SkillTetraVortexWater::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, 0, flag);
+	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, skill_area_temp[0], flag);
 }
 
 
@@ -121,5 +127,5 @@ void SkillTetraVortexWind::calculateSkillRatio(const Damage *wd, const block_lis
 }
 
 void SkillTetraVortexWind::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, 0, flag);
+	skill_addtimerskill(src, tick + skill_area_temp[0] * 200, target->id, skill_area_temp[1], 0, getSkillId(), skill_lv, skill_area_temp[0], flag);
 }

@@ -41,11 +41,11 @@ void SkillTigerCannon::castendDamageId(block_list *src, block_list *target, uint
 	} else if (sd) {
 		if (sc && sc->getSCE(SC_COMBO) && sc->getSCE(SC_COMBO)->val1 == SR_FALLENEMPIRE && !sc->getSCE(SC_FLASHCOMBO))
 			flag |= 8; // Only apply Combo bonus when Tiger Cannon is not used through Flash Combo
+		clif_skill_nodamage(src, *src, getSkillId(), skill_lv);
 		map_foreachinrange(skill_area_sub, target, skill_get_splash(getSkillId(), skill_lv), BL_CHAR | BL_SKILL, src, getSkillId(), skill_lv, tick, flag | BCT_ENEMY | SD_SPLASH | 1, skill_castend_damage_id);
 	}
 }
 
 void SkillTigerCannon::castendNoDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	clif_skill_nodamage(src,*target,getSkillId(),skill_lv);
 	skill_castend_damage_id(src, src, getSkillId(), skill_lv, tick, flag);
 }

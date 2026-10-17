@@ -19,10 +19,13 @@ void SkillDrainLife::calculateSkillRatio(const Damage *wd, const block_list *src
 }
 
 void SkillDrainLife::castendDamageId(block_list *src, block_list *target, uint16 skill_lv, t_tick tick, int32& flag) const {
-	int32 heal = (int32)skill_attack(skill_get_type(getSkillId()), src, src, target, getSkillId(), skill_lv, tick, flag);
+	const int64 damage = std::max<int64>(0, skill_attack(skill_get_type(getSkillId()), src, src, target, getSkillId(), skill_lv, tick, flag));
 	int32 rate = 70 + 5 * skill_lv;
 
-	heal = heal * (5 + 5 * skill_lv) / 100;
+	// Keep the damage wide, and divide before multiplying to avoid overflow.
+	// Clamp only the final heal to the status/notification range.
+	const int32 percent = 5 + 5 * skill_lv;
+	int32 heal = static_cast<int32>(std::min<int64>(damage / 100 * percent + damage % 100 * percent / 100, INT_MAX));
 
 	if( target->type == BL_SKILL )
 		heal = 0; // Don't absorb heal from Ice Walls or other skill units.

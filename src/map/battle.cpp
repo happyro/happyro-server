@@ -1414,19 +1414,16 @@ bool battle_status_block_damage(block_list *src, block_list *target, status_chan
 
 	if ((sce = sc->getSCE(SC_GUARDIAN_S)) && damage > 0) {
 		clif_specialeffect(target, EF_GUARD3, AREA);// Not official but we gotta show some way the barrier is working. [Rytech]
-		sce->val2 -= static_cast<int32>(cap_value(damage, INT_MIN, INT_MAX));
-		if (flag & BF_WEAPON) {
-			if (sce->val2 >= 0)
-				damage = 0;
-			else
-				damage = -sce->val2;
-		}
+		const int64 absorbed = min(damage, static_cast<int64>(max(sce->val2, 0)));
+		sce->val2 -= static_cast<int32>(absorbed);
+		if (flag & BF_WEAPON)
+			damage -= absorbed;
 		if (sce->val2 <= 0)
 			status_change_end(target, SC_GUARDIAN_S);
 	}
 
 	// Weapon Blocking can be triggered while the above statuses are active.
-	if ((sce = sc->getSCE(SC_WEAPONBLOCKING)) && flag & (BF_SHORT | BF_WEAPON) && rnd() % 100 < sce->val2) {
+	if ((sce = sc->getSCE(SC_WEAPONBLOCKING)) && (flag & (BF_SHORT | BF_WEAPON)) == (BF_SHORT | BF_WEAPON) && rnd() % 100 < sce->val2) {
 		clif_skill_nodamage(target, *src, GC_WEAPONBLOCKING, sce->val1);
 		sc_start(src, target, SC_WEAPONBLOCK_ON, 100, src->id, skill_get_time2(GC_WEAPONBLOCKING, sce->val1));
 		d->dmg_lv = ATK_BLOCK;
@@ -1885,10 +1882,10 @@ int64 battle_calc_damage(block_list *src,block_list *bl,struct Damage *d,int64 d
 			) )
 		{
 			status_data* status = status_get_status_data(*bl);
-			int32 per = 100*status->sp / status->max_sp -1; //100% should be counted as the 80~99% interval
+			int32 per = static_cast<int32>(100LL * status->sp / status->max_sp) - 1; //100% should be counted as the 80~99% interval
 			per /=20; //Uses 20% SP intervals.
 			//SP Cost: 1% + 0.5% per every 20% SP
-			if (!status_charge(bl, 0, (10+5*per)*status->max_sp/1000))
+			if (!status_charge(bl, 0, (10LL + 5 * per) * status->max_sp / 1000))
 				status_change_end(bl, SC_ENERGYCOAT);
 			damage -= damage * 6 * (1 + per) / 100; //Reduction: 6% + 6% every 20%
 		}
@@ -1901,7 +1898,7 @@ int64 battle_calc_damage(block_list *src,block_list *bl,struct Damage *d,int64 d
 			damage = i64max(damage, 1);
 		}
 
-		if( (sce=tsc->getSCE(SC_MAGMA_FLOW)) && (rnd()%100 <= sce->val2) )
+		if( (sce=tsc->getSCE(SC_MAGMA_FLOW)) && (rnd()%100 < sce->val2) )
 			skill_castend_damage_id(bl,src,MH_MAGMA_FLOW,sce->val1,gettick(),0);
 
 		if( damage > 0 && (sce = tsc->getSCE(SC_STONEHARDSKIN)) ) {
@@ -4078,7 +4075,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, block_list *src,blo
 		case RK_DRAGONBREATH:
 		case RK_DRAGONBREATH_WATER:
 			{
-				int32 damagevalue = (sstatus->hp / 50 + status_get_max_sp(src) / 4) * skill_lv;
+				int64 damagevalue = (static_cast<int64>(sstatus->hp) / 50 + status_get_max_sp(src) / 4) * skill_lv;
 				if(status_get_lv(src) > 100)
 					damagevalue = damagevalue * status_get_lv(src) / 100;
 				if(sd) {
@@ -4098,7 +4095,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, block_list *src,blo
 			}
 			break;
 		case NC_SELFDESTRUCTION: {
-				int32 damagevalue = (skill_lv + 1) * ((sd ? pc_checkskill(sd,NC_MAINFRAME) : 0) + 8) * (status_get_sp(src) + sstatus->vit);
+				int64 damagevalue = static_cast<int64>(skill_lv + 1) * ((sd ? pc_checkskill(sd,NC_MAINFRAME) : 0) + 8) * (static_cast<int64>(status_get_sp(src)) + sstatus->vit);
 
 				if(status_get_lv(src) > 100)
 					damagevalue = damagevalue * status_get_lv(src) / 100;
@@ -5683,13 +5680,13 @@ static struct Damage battle_calc_weapon_attack(block_list *src, block_list *targ
 			break;
 		case SR_GATEOFHELL: {
 			status_data* sstatus = status_get_status_data(*src);
-			double bonus = 1 + skill_lv * 2 / 10;
+			const int32 bonus = 100 + skill_lv * 20;
 
 			ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp);
 			if(sc && sc->getSCE(SC_COMBO) && sc->getSCE(SC_COMBO)->val1 == SR_FALLENEMPIRE) {
-				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->max_sp * bonus) + 40 * status_get_lv(src));
+				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->max_sp) * bonus / 100 + 40 * status_get_lv(src));
 			} else
-				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->sp * bonus) + 10 * status_get_lv(src));
+				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->sp) * bonus / 100 + 10 * status_get_lv(src));
 		}
 			break;
 		case MH_TINDER_BREAKER:
@@ -5902,10 +5899,10 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 				//Undead check is on skill_castend_damageid code.
 #ifdef RENEWAL
 				i = 10 * skill_lv + sstatus->luk + sstatus->int_ + status_get_lv(src)
-				  	+ 300 - 300 * tstatus->hp / tstatus->max_hp;
+					+ 300 - static_cast<int64>(300) * tstatus->hp / tstatus->max_hp;
 #else
 				i = 20 * skill_lv + sstatus->luk + sstatus->int_ + status_get_lv(src)
-				  	+ 200 - 200 * tstatus->hp / tstatus->max_hp;
+					+ 200 - static_cast<int64>(200) * tstatus->hp / tstatus->max_hp;
 #endif
 				if(i > 700)
 					i = 700;
@@ -5928,7 +5925,7 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 				ad.damage = tstatus->hp * (skill_lv <= 5 ? 100 / (2 * (6 - skill_lv)) : 50) / 100;
 				break;
 			case PF_SOULBURN:
-				ad.damage = tstatus->sp * 2;
+				ad.damage = static_cast<int64>(tstatus->sp) * 2;
 				break;
 			case AB_RENOVATIO:
 				ad.damage = status_get_lv(src) * 10 + sstatus->int_;
@@ -6778,7 +6775,7 @@ struct Damage battle_calc_attack(int32 attack_type,block_list *bl,block_list *ta
 		if (tsc != nullptr && tsc->getSCE(SC_WEAPONBLOCKING)) {
 			status_change_entry *tsce = tsc->getSCE(SC_WEAPONBLOCKING);
 
-			if (attack_type == BF_WEAPON && rnd() % 100 < tsce->val2) {
+			if (attack_type == BF_WEAPON && (d.flag & BF_SHORT) && rnd() % 100 < tsce->val2) {
 				clif_skill_nodamage(target, *bl, GC_WEAPONBLOCKING, tsce->val1);
 				sc_start(bl, target, SC_WEAPONBLOCK_ON, 100, bl->id, skill_get_time2(GC_WEAPONBLOCKING, tsce->val1));
 			}
@@ -7298,7 +7295,7 @@ enum damage_lv battle_weapon_attack(block_list* src, block_list* target, t_tick 
 			 */
 			ret_val = (damage_lv)skill_attack(BF_WEAPON,src,src,target,PA_SACRIFICE,skill_lv,tick,0);
 
-			status_zap(src, sstatus->max_hp*9/100, 0);//Damage to self is always 9%
+			status_zap(src, static_cast<int64>(sstatus->max_hp) * 9 / 100, 0);//Damage to self is always 9%
 			if( ret_val == ATK_NONE )
 				return ATK_MISS;
 			return ret_val;

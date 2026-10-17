@@ -2455,11 +2455,8 @@ int32 unit_skilluse_id2(block_list *src, int32 target_id, uint16 skill_id, uint1
 		case EL_WATER_SCREW:
 		case EL_TIDAL_WEAPON:
 			if( src->type == BL_ELEM ) {
-				sd = BL_CAST(BL_PC, battle_get_master(src));
-				if( sd && sd->skill_id_old == SO_EL_ACTION ) {
+				if (static_cast<s_elemental_data*>(src)->action_forced)
 					casttime = -1;
-					sd->skill_id_old = 0;
-				}
 			}
 			break;
 	}
@@ -3789,6 +3786,7 @@ int32 unit_remove_map_(block_list *bl, clr_type clrtype, const char* file, int32
 		}
 		case BL_ELEM: {
 			s_elemental_data *ed = (s_elemental_data *)bl;
+			elemental_unlocktarget(ed);
 
 			ud->canact_tick = ud->canmove_tick;
 
@@ -4244,10 +4242,24 @@ static TIMER_FUNC(unit_shadowscar_timer) {
 		it++;
 	}
 
-	if (ud->shadow_scar_timer.empty())
+	if (ud->shadow_scar_timer.empty()) {
 		status_change_end( bl, SC_SHADOW_SCAR );
+	} else {
+		if (status_change* sc = status_get_sc(bl); sc != nullptr) {
+			if (status_change_entry* sce = sc->getSCE(SC_SHADOW_SCAR); sce != nullptr)
+				sce->val1 = static_cast<int32>(ud->shadow_scar_timer.size());
+		}
+		clif_enchantingshadow_spirit(*ud);
+	}
 
 	return 0;
+}
+
+void unit_clearshadowscar(unit_data& ud) {
+	for (int32 timer : ud.shadow_scar_timer)
+		delete_timer(timer, unit_shadowscar_timer);
+	ud.shadow_scar_timer.clear();
+	clif_enchantingshadow_spirit(ud);
 }
 
 /**
@@ -4256,24 +4268,22 @@ static TIMER_FUNC(unit_shadowscar_timer) {
  * @param interval: Duration
  */
 void unit_addshadowscar(unit_data &ud, int32 interval) {
+	status_change* sc = status_get_sc(ud.bl);
+	if (sc == nullptr)
+		return;
+
 	if (ud.shadow_scar_timer.size() >= MAX_SHADOW_SCAR) {
 		ShowWarning("unit_addshadowscar: Unit %s (%d) has reached the maximum amount of Shadow Scars (%d).\n", status_get_name(*ud.bl), ud.bl->id, MAX_SHADOW_SCAR);
 		return;
 	}
 
+	if (sc->getSCE(SC_SHADOW_SCAR) == nullptr &&
+		!sc_start(ud.bl, ud.bl, SC_SHADOW_SCAR, 100, 1, INFINITE_TICK))
+		return;
+
 	ud.shadow_scar_timer.push_back(add_timer(gettick() + interval, unit_shadowscar_timer, ud.bl->id, 0));
-
-	status_change *sc = status_get_sc(ud.bl);
-
-	if (sc != nullptr) {
-		if (sc->getSCE(SC_SHADOW_SCAR) != nullptr) {
-			sc->getSCE(SC_SHADOW_SCAR)->val1 = static_cast<int32>(ud.shadow_scar_timer.size());
-		} else {
-			sc_start(ud.bl, ud.bl, SC_SHADOW_SCAR, 100, 1, INFINITE_TICK);
-		}
-
-		clif_enchantingshadow_spirit(ud);
-	}
+	sc->getSCE(SC_SHADOW_SCAR)->val1 = static_cast<int32>(ud.shadow_scar_timer.size());
+	clif_enchantingshadow_spirit(ud);
 }
 
 /**

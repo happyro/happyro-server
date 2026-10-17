@@ -17,7 +17,7 @@ void SkillShieldChain::calculateSkillRatio(const Damage *wd, const block_list *s
 #ifdef RENEWAL
 	const map_session_data* sd = BL_CAST( BL_PC, src );
 
-	skillratio = -100 + 300 + 200 * skill_lv;
+	skillratio += -100 + 300 + 200 * skill_lv;
 
 	if( sd != nullptr ){
 		int16 index = sd->equip_index[EQI_HAND_L];

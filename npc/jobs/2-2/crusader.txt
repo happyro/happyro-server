@@ -1196,7 +1196,10 @@ OnStartArena:
 		end;
 	}
 	if (CRUS_Q != 9) {
-		warp "job_cru",24,169;
+		if (CRUS_Q == 10)
+			warp "prt_cas",238,94;
+		else
+			warp "job_cru",24,169;
 		enablewaitingroomevent;
 		end;
 	}
@@ -1393,8 +1396,13 @@ OnTimer241000:
 	stopnpctimer;
 	.@owner = getvariableofnpc(.Owner,"Monster Summon#cr0");
 	.@account = getvariableofnpc(.Account,"Monster Summon#cr0");
-	if (isloggedin(.@account,.@owner) && getmapxy(.@map$,.@x,.@y,BL_PC,.@account) == 0 && .@map$ == "job_cru" && .@x >= 160 && .@x <= 175 && .@y >= 14 && .@y <= 183)
-		warpchar "job_cru",24,169,.@owner;
+	if (isloggedin(.@account,.@owner) && getmapxy(.@map$,.@x,.@y,BL_PC,.@account) == 0 && .@map$ == "job_cru" && .@x >= 160 && .@x <= 175 && .@y >= 14 && .@y <= 183 && attachrid(.@account)) {
+		if (CRUS_Q == 10)
+			warp "prt_cas",238,94;
+		else
+			warp "job_cru",24,169;
+		detachrid;
+	}
 	donpcevent "Monster Summon#cr0::OnReset";
 	end;
 

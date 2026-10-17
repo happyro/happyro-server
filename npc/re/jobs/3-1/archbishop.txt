@@ -923,7 +923,8 @@ job3_arch01,29,34,3	script	Valkyrie#arch	403,{
 		} else if (job_arch == 6 || job_arch == 7) {
 			mes "[女武神安古希尔德]";
 			mes "准备好挑战了吗？请在抵达后用卷轴召唤我的化身。";
-			next;
+			// Finish the client acknowledgement before reserving the trial.
+			close2;
 			if (job_arch < 6 || job_arch > 7 || BaseJob != Job_Priest || BaseLevel != 99 || JobLevel < 50 || SkillPoint || ismounting() || getmercinfo(1) || Hp <= 0) {
 				mes "请确认职业等级、任务进度、技能点、坐骑与佣兵状态后再来。";
 				close;
@@ -945,9 +946,8 @@ job3_arch01,29,34,3	script	Valkyrie#arch	403,{
 			if (countitem(12382)) delitem 12382,countitem(12382);
 			if (job_arch == 6) changequest 2190,2191;
 			set job_arch,7;
-			donpcevent "start#arch::OnEnable";
-			close2;
 			warp "job3_arch02",119,49;
+			donpcevent "start#arch::OnEnable";
 			end;
 		}
 	}

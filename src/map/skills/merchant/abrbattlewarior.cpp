@@ -18,6 +18,8 @@ void SkillAbrBattleWarrior::castendNoDamageId(block_list* src, block_list* targe
 
 	if (md) {
 		md->master_id = src->id;
+		md->summon_skill_id = getSkillId();
+		md->summon_skill_lv = skill_lv;
 		md->special_state.ai = AI_ABR;
 
 		if (md->deletetimer != INVALID_TIMER)

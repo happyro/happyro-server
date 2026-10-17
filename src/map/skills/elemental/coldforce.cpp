@@ -20,8 +20,8 @@ void SkillColdForce::castendNoDamageId(block_list *src, block_list *target, uint
 		status_change *esc = status_get_sc(ele);
 
 		if( (esc && esc->getSCE(type2)) || (tsc && tsc->getSCE(type)) ) {
-			status_change_end(src,type);
-			status_change_end(target,type2);
+			status_change_end(src,type2);
+			status_change_end(target,type);
 		} else {
 			clif_skill_nodamage(src,*src,getSkillId(),skill_lv);
 			sc_start(src,src,type2,100,skill_lv,skill_get_time(getSkillId(),skill_lv));
