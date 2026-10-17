@@ -12,6 +12,8 @@ Game Control 让 Admin 和冒险工具向 map-server 发送已授权命令。web
 
 部署验收见 [deploy/README.md](../deploy/README.md)。产品约束见 Admin `docs/product/game-control.md`。
 
+职业外观是独立命令与快照字段，见[职业外观](character-appearance.md)；没有骑乘能力的职业同样按外观资格展示选项。
+
 ## 骑乘与随行
 
 `character.snapshot` 返回 `riding` 列表，按当前职业列出 `cart`、`peco`、`dragon`、`gryphon`、`mado`，包含 `active`、`fee`、`ticket`、`reason`。`character.riding.update` 接收 `kind`、布尔 `enabled`、整数 `fee` 和布尔 `ticket`，报价必须与当前快照一致。

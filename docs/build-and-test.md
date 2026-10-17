@@ -1,6 +1,6 @@
 # 构建与测试
 
-HappyRO 本机编译使用根仓库：
+以下在 HappyRO 根仓库执行；server-verify 需要已有服务运行：
 
 ```bash
 make build-server
