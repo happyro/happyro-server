@@ -9,7 +9,7 @@
 
 ## 安装前检查
 
-1. 创建专用运行用户和组（示例为 `happyro`），并确保其可以读取仓库、`conf/`、`db/` 和运行时资源。web-server 必须能连接 map-server 的 Socket。后台 Laravel 经 HTTP 调用 web-server；其 `SupplementaryGroups=happyro` 用于共享配置文件的访问与更新，不代表直接调用 Socket。
+1. 创建专用运行用户和组（示例为 `happyro`），并确保其可以读取仓库、`conf/`、`db/` 和运行时资源。web-server 必须能连接 map-server 的 Socket。独立 Go API（happyro-api）经 HTTP 调用 web-server；其 `SupplementaryGroups=happyro` 用于共享配置文件的访问与更新，不代表直接调用 Socket。
 2. 修改模板中的 `User`、`Group`、`WorkingDirectory` 和 `ExecStart` 为实际绝对路径。
 3. 核对 `conf/` 及 `conf/import/` 的最终配置。后读取的同名键会覆盖先读取的值。
 4. Game Control 未启用时保持 `game_control_enabled: no`，并保持 `game_control_socket` 为空；启用时必须同时配置有效的绝对 Socket 路径，否则 web-server 会在启动时拒绝配置。
