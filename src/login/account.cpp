@@ -69,7 +69,7 @@ bool account_db_sql_disable_monitor_vip( AccountDB* self, const uint32 account_i
 #endif
 
 static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 account_id);
-static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, bool is_new, bool refresh_token);
+static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, bool is_new, bool refresh_token, uint32* created_id = nullptr);
 
 static bool account_db_sql_consume_session_ticket(AccountDB* self, uint32 account_id, const char* ticket) {
 	if (strlen(ticket) != 64 || strspn(ticket, "0123456789abcdef") != 64) return false;
@@ -310,46 +310,16 @@ static bool account_db_sql_create(AccountDB* self, struct mmo_account* acc) {
 	AccountDB_SQL* db = (AccountDB_SQL*)self;
 	Sql* sql_handle = db->accounts;
 
-	// decide on the account id to assign
-	uint32 account_id;
-	if( acc->account_id != -1 )
-	{// caller specifies it manually
-		account_id = acc->account_id;
-	}
-	else
-	{// ask the database
-		char* data;
-		size_t len;
-
-		if( SQL_SUCCESS != Sql_Query(sql_handle, "SELECT MAX(`account_id`)+1 FROM `%s`", db->account_db) )
-		{
-			Sql_ShowDebug(sql_handle);
-			return false;
-		}
-		if( SQL_SUCCESS != Sql_NextRow(sql_handle) )
-		{
-			Sql_ShowDebug(sql_handle);
-			Sql_FreeResult(sql_handle);
-			return false;
-		}
-
-		Sql_GetData(sql_handle, 0, &data, &len);
-		account_id = ( data != nullptr ) ? atoi(data) : 0;
-		Sql_FreeResult(sql_handle);
-		account_id = max((uint32_t) START_ACCOUNT_NUM, account_id);
-	}
-
-	// zero value is prohibited
-	if( account_id == 0 )
+	// Let the database allocate IDs, just as the management API does. MAX+1
+	// reuses deleted IDs and can collide with deletion fences and concurrent inserts.
+	if( acc->account_id != -1 && ( acc->account_id <= 0 || acc->account_id > END_ACCOUNT_NUM ) )
 		return false;
 
-	// absolute maximum
-	if( account_id > END_ACCOUNT_NUM )
+	uint32 created_id = 0;
+	if( !mmo_auth_tosql(db, acc, true, false, &created_id) )
 		return false;
-
-	// insert the data into the database
-	acc->account_id = account_id;
-	return mmo_auth_tosql(db, acc, true, false);
+	acc->account_id = created_id;
+	return true;
 }
 
 /**
@@ -579,7 +549,7 @@ static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 
  * @param is_new: if it's a new entry or should we update
  * @return true if successful, false if something has failed
  */
-static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, bool is_new, bool refresh_token) {
+static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, bool is_new, bool refresh_token, uint32* created_id) {
 	Sql* sql_handle = db->accounts;
 	SqlStmt stmt{ *sql_handle };
 	bool result = false;
@@ -603,7 +573,7 @@ static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, boo
 			"INSERT INTO `%s` (`account_id`, `userid`, `user_pass`, `sex`, `email`, `group_id`, `state`, `unban_time`, `expiration_time`, `logincount`, `lastlogin`, `last_ip`, `birthdate`, `character_slots`, `pincode`, `pincode_change`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 #endif
 			db->account_db)
-		||  SQL_SUCCESS != stmt.BindParam( 0, SQLDT_INT32,       (void*)&acc->account_id,      sizeof(acc->account_id))
+		||  SQL_SUCCESS != stmt.BindParam( 0, acc->account_id == -1 ? SQLDT_NULL : SQLDT_INT32, (void*)&acc->account_id,      sizeof(acc->account_id))
 		||  SQL_SUCCESS != stmt.BindParam( 1, SQLDT_STRING,    (void*)acc->userid,           strlen(acc->userid))
 		||  SQL_SUCCESS != stmt.BindParam( 2, SQLDT_STRING,    (void*)acc->pass,             strlen(acc->pass))
 		||  SQL_SUCCESS != stmt.BindParam( 3, SQLDT_ENUM,      (void*)&acc->sex,             sizeof(acc->sex))
@@ -628,6 +598,10 @@ static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, boo
 			SqlStmt_ShowDebug(stmt);
 			break;
 		}
+		const uint64 id = acc->account_id == -1 ? stmt.LastInsertId() : acc->account_id;
+		if( id == 0 || id > END_ACCOUNT_NUM || ( acc->account_id == -1 && id < START_ACCOUNT_NUM ) )
+			break;
+		if( created_id != nullptr ) *created_id = static_cast<uint32>(id);
 	}
 	else
 	{// update account table
