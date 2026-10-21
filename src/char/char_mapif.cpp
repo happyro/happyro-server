@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "char_mapif.hpp"
+#include "admin_delete.hpp"
 
 #include <cstdlib>
 #include <cstring> //memcpy
@@ -425,7 +426,12 @@ int32 chmapif_parse_reqsavechar(int32 fd, int32 id){
 		if( RFIFOB( fd, 12 ) || RFIFOB( fd, 13 ) || ( character != nullptr && character->char_id == cid ) ){
 			struct mmo_charstatus char_dat;
 			memcpy(&char_dat, RFIFOP(fd,13), sizeof(struct mmo_charstatus));
-			char_mmo_char_tosql(cid, &char_dat);
+			if (char_mmo_char_tosql(cid, &char_dat) != 0) {
+				// Keep the map logout node alive so its normal retry can finish the
+				// save. An acknowledgement would also release the deletion fence.
+				RFIFOSKIP(fd, size);
+				return 1;
+			}
 		} else {	//This may be valid on char-server reconnection, when re-sending characters that already logged off.
 			ShowError("parse_from_map (save-char): Received data for non-existant/offline character (%d:%d).\n", aid, cid);
 			char_set_char_online(id, cid, aid);
@@ -1030,7 +1036,8 @@ int32 chmapif_parse_reqauth(int32 fd, int32 id){
 			cd = util::umap_find( char_get_chardb(), char_id );
 		}
 
-		if( global_core->is_running() && autotrade && cd ){
+		const bool deletion_blocked = admin_account_blocked(account_id);
+		if( !deletion_blocked && global_core->is_running() && autotrade && cd ){
 			uint16 mmo_charstatus_len = sizeof(struct mmo_charstatus) + 25;
 
 			WFIFOHEAD(fd,mmo_charstatus_len);
@@ -1046,7 +1053,7 @@ int32 chmapif_parse_reqauth(int32 fd, int32 id){
 			WFIFOSET(fd, WFIFOW(fd,2));
 
 			char_set_char_online(id, char_id, account_id);
-		} else if( global_core->is_running() &&
+		} else if( !deletion_blocked && global_core->is_running() &&
 			cd != nullptr &&
 			node != nullptr &&
 			node->account_id == account_id &&
@@ -1416,6 +1423,7 @@ int32 chmapif_parse(int32 fd){
 	while(RFIFOREST(fd) >= 2){
 		int32 next=1;
 		switch(RFIFOW(fd,0)){
+			case 0x2b2c: next=admin_delete_fence_ack(fd,id); break;
 			case 0x2afa: next=chmapif_parse_getmapname(fd,id); break;
 			case 0x2afc: next=chmapif_parse_askscdata(fd); break;
 			case 0x2afe: next=chmapif_parse_getusercount(fd,id); break; //get nb user
@@ -1536,6 +1544,7 @@ void chmapif_server_reset(int32 id){
  */
 void chmapif_on_disconnect(int32 id){
 	ShowStatus("Map-server #%d has disconnected.\n", id);
+	admin_delete_map_disconnected(id);
 	chmapif_server_reset(id);
 }
 

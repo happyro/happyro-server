@@ -94,9 +94,9 @@ TIMER_FUNC(guild_save_timer){
 int32 inter_guild_removemember_tosql(uint32 char_id)
 {
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE from `%s` where `char_id` = '%d'", schema_config.guild_member_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `guild_id` = '0' WHERE `char_id` = '%d'", schema_config.char_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 	return 0;
 }
 
@@ -1345,8 +1345,8 @@ int32 mapif_parse_GuildLeave(int32 fd, int32 guild_id, uint32 account_id, uint32
 		safestrncpy(g->guild.expulsion[j].mes, mes, 40);
 	}
 
+	if (inter_guild_removemember_tosql(g->guild.member[i].char_id) != 0) return -1;
 	mapif_guild_withdraw(guild_id,account_id,char_id,flag,g->guild.member[i].name,mes);
-	inter_guild_removemember_tosql(g->guild.member[i].char_id);
 
 	memset(&g->guild.member[i],0,sizeof(struct guild_member));
 
@@ -1427,33 +1427,35 @@ int32 mapif_parse_BreakGuild(int32 fd,int32 guild_id)
 
 	// Delete guild from sql
 	//printf("- Delete guild %d from guild\n",guild_id);
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_member_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_castle_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_storage_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d' OR `alliance_id` = '%d'", schema_config.guild_alliance_db, guild_id, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_position_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_skill_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_expulsion_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
+
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '%d'", schema_config.guild_db, guild_id) )
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	//printf("- Update guild %d of char\n",guild_id);
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `guild_id`='0' WHERE `guild_id`='%d'", schema_config.char_db, guild_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 
 	mapif_guild_broken(guild_id,0);
 

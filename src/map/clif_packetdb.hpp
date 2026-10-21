@@ -2053,4 +2053,6 @@
 	parseable_packet( HEADER_CZ_HAPPYRO_MAP_TELEPORT, sizeof( PACKET_CZ_HAPPYRO_MAP_TELEPORT ), clif_parse_happyro_map_teleport, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_STOP_MOVE, sizeof( PACKET_CZ_HAPPYRO_STOP_MOVE ), clif_parse_happyro_stop_move, 0 );
 
+	parseable_packet( 0x0d0a, 2, clif_parse_happyro_friend_details, 0 );
+
 #endif /* CLIF_PACKETDB_HPP */

@@ -2064,6 +2064,29 @@ int32 unit_set_walkdelay(block_list *bl, t_tick tick, t_tick delay, int32 type, 
 	return 1;
 }
 
+/** Resolve Eleanor follow-up skills from the live combo state, never a client target. */
+static int32 unit_homunculus_combo_target(const block_list* src, status_change* sc, uint16 skill_id) {
+	if (src->type != BL_HOM)
+		return -1;
+
+	uint16 previous;
+	switch (skill_id) {
+		case MH_SILVERVEIN_RUSH: previous = MH_SONIC_CRAW; break;
+		case MH_MIDNIGHT_FRENZY: previous = MH_SILVERVEIN_RUSH; break;
+		case MH_CBC: previous = MH_TINDER_BREAKER; break;
+		case MH_EQC: previous = MH_CBC; break;
+		default: return -1;
+	}
+
+	// SC_COMBO exists only for the server-controlled chain window. The regular
+	// target validation below still checks whether this enemy is alive/in range.
+	const auto* combo = sc ? sc->getSCE(SC_COMBO) : nullptr;
+	if (!combo || combo->val1 != previous || combo->val2 <= 0 || combo->val2 == src->id)
+		return 0;
+
+	return combo->val2;
+}
+
 /**
  * Performs checks for a unit using a skill and executes after cast time completion
  * @param src: Object using skill
@@ -2108,8 +2131,16 @@ int32 unit_skilluse_id2(block_list *src, int32 target_id, uint16 skill_id, uint1
 	if (!skill)
 		return 0;
 
-	// temp: used to signal combo-skills right now.
-	if (sc && sc->getSCE(SC_COMBO) &&
+	const int32 homunculus_combo_target = unit_homunculus_combo_target(src, sc, skill_id);
+	if (homunculus_combo_target == 0)
+		return 0;
+
+	// Eleanor's self-targeted follow-ups use the previous hit's enemy. Player
+	// combo eligibility and targeting remain on their existing path below.
+	if (homunculus_combo_target > 0) {
+		target_id = homunculus_combo_target;
+		combo = 1;
+	} else if (sc && sc->getSCE(SC_COMBO) &&
 		skill_is_combo(skill_id) &&
 		(sc->getSCE(SC_COMBO)->val1 == skill_id ||
 		(sd?skill_check_condition_castbegin(*sd,skill_id,skill_lv):0) )) {

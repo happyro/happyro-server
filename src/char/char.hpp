@@ -306,7 +306,7 @@ int32 char_mmo_char_tobuf( CHARACTER_INFO& info, mmo_charstatus& p );
 int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p);
 int32 char_mmo_char_fromsql(uint32 char_id, struct mmo_charstatus* p, bool load_everything);
 int32 char_mmo_chars_fromsql( char_session_data& sd, CHARACTER_INFO chars[], uint8* count = nullptr );
-enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_id);
+enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_id, bool administrative = false);
 int32 char_rename_char_sql(struct char_session_data *sd, uint32 char_id);
 int32 char_divorce_char_sql(int32 partner_id1, int32 partner_id2);
 int32 char_memitemdata_to_sql(const struct item items[], int32 max, int32 id, enum storage_type tableswitch, uint8 stor_id);

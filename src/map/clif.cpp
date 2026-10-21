@@ -81,6 +81,7 @@ static inline int32 client_exp(t_exp exp) {
 /* for clif_clearunit_delayed */
 static struct eri *delay_clearunit_ers;
 
+static_assert(0x0d0a <= MAX_PACKET_DB, "Friend query must fit the incoming packet table");
 static_assert(HEADER_CZ_HAPPYRO_ARRIVAL_PREVIEW <= MAX_PACKET_DB, "Arrival preview must fit the incoming packet table");
 static_assert(sizeof(PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW) == 22);
 static_assert(sizeof(PACKET_ZC_HAPPYRO_ARRIVAL_PREVIEW) == 28);
@@ -7653,7 +7654,7 @@ void clif_openvendingreq( map_session_data& sd, uint16 num ){
 void clif_showvendingboard( map_session_data& sd, enum send_target target, block_list* tbl ){
 	if( tbl == nullptr ){
 		tbl = &sd;
-		target = AREA_WOS;
+		target = AREA;
 	}
 
 	PACKET_ZC_STORE_ENTRY p = {};
@@ -7671,7 +7672,7 @@ void clif_showvendingboard( map_session_data& sd, enum send_target target, block
 void clif_closevendingboard( block_list& bl, send_target target, block_list* tbl ){
 	if( tbl == nullptr ){
 		tbl = &bl;
-		target = AREA_WOS;
+		target = AREA;
 	}
 
 	PACKET_ZC_DISAPPEAR_ENTRY p = {};
@@ -19546,7 +19547,7 @@ void clif_buyingstore_entry( const map_session_data& sd, const block_list* tbl )
 
 	if( tbl == nullptr ){
 		tbl = &sd;
-		target = AREA_WOS;
+		target = AREA;
 	}else{
 		target = SELF;
 	}
@@ -19577,7 +19578,7 @@ void clif_buyingstore_disappear_entry( const map_session_data& sd, const block_l
 
 	if( tbl == nullptr ){
 		tbl = &sd;
-		target = AREA_WOS;
+		target = AREA;
 	}else{
 		target = SELF;
 	}
@@ -26189,4 +26190,23 @@ void do_init_clif(void) {
 
 void do_final_clif(void) {
 	ers_destroy(delay_clearunit_ers);
+}
+
+// Respond only with online characters already in this character's friend list.
+void clif_parse_happyro_friend_details(int32 fd, map_session_data* sd) {
+ if (sd == nullptr || DIFF_TICK(gettick(), sd->happyro_friend_details_tick) < 2000) return;
+ sd->happyro_friend_details_tick = gettick();
+ for (const auto& friend_entry : sd->status.friends) {
+  if (!friend_entry.char_id) continue;
+  PACKET_ZC_HAPPYRO_FRIEND_DETAIL p = {};
+  p.packetType = HEADER_ZC_HAPPYRO_FRIEND_DETAIL;
+  p.accountId = friend_entry.account_id;
+  p.charId = friend_entry.char_id;
+  auto* peer = map_charid2sd(friend_entry.char_id);
+  if (peer != nullptr && peer->status.account_id == friend_entry.account_id) {
+   p.baseLevel = peer->status.base_level;
+   safestrncpy(p.mapName, mapindex_id2name(peer->mapindex), sizeof(p.mapName));
+  }
+  clif_send(&p, sizeof(p), sd, SELF);
+ }
 }

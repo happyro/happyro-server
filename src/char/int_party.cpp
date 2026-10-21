@@ -133,10 +133,11 @@ int32 inter_party_tosql(struct party *p, int32 flag, int32 index)
 	if( flag & PS_BREAK )
 	{// Break the party
 		// we'll skip name-checking and just reset everyone with the same party id [celest]
-		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `party_id`='0' WHERE `party_id`='%d'", schema_config.char_db, party_id) )
-			Sql_ShowDebug(sql_handle);
+
 		if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `party_id`='%d'", schema_config.party_db, party_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
+		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `party_id`='0' WHERE `party_id`='%d'", schema_config.char_db, party_id) )
+			{ Sql_ShowDebug(sql_handle); return 0; }
 		//Remove from memory
 		party_db.erase( party_id );
 		return 1;
@@ -149,7 +150,7 @@ int32 inter_party_tosql(struct party *p, int32 flag, int32 index)
 			"VALUES ('%s', '%d', '%d', '%d', '%d')",
 			schema_config.party_db, esc_name, p->exp, p->item, p->member[index].account_id, p->member[index].char_id) )
 		{
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
 			return 0;
 		}
 		party_id = p->party_id = (int32)Sql_LastInsertId(sql_handle);
@@ -159,28 +160,28 @@ int32 inter_party_tosql(struct party *p, int32 flag, int32 index)
 	{// Update party info.
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `name`='%s', `exp`='%d', `item`='%d' WHERE `party_id`='%d'",
 			schema_config.party_db, esc_name, p->exp, p->item, party_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
 	}
 
 	if( flag & PS_LEADER )
 	{// Update leader
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s`  SET `leader_id`='%d', `leader_char`='%d' WHERE `party_id`='%d'",
 			schema_config.party_db, p->member[index].account_id, p->member[index].char_id, party_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
 	}
 
 	if( flag & PS_ADDMEMBER )
 	{// Add one party member.
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `party_id`='%d' WHERE `account_id`='%d' AND `char_id`='%d'",
 			schema_config.char_db, party_id, p->member[index].account_id, p->member[index].char_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
 	}
 
 	if( flag & PS_DELMEMBER )
 	{// Remove one party member.
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `party_id`='0' WHERE `party_id`='%d' AND `account_id`='%d' AND `char_id`='%d'",
 			schema_config.char_db, party_id, p->member[index].account_id, p->member[index].char_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return 0; }
 	}
 
 	if( charserv_config.save_log )
@@ -640,7 +641,7 @@ int32 mapif_parse_PartyLeave(int32 fd, int32 party_id, uint32 account_id, uint32
 	// Party does not exists?
 	if( p == nullptr ){
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `party_id`='0' WHERE `party_id`='%d'", schema_config.char_db, party_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return -1; }
 		return 0;
 	}
 
@@ -653,9 +654,10 @@ int32 mapif_parse_PartyLeave(int32 fd, int32 party_id, uint32 account_id, uint32
 	if (i >= MAX_PARTY)
 		return 0; //Member not found?
 
-	mapif_party_withdraw(party_id, account_id, char_id, name, type);
 
 	if (p->party.member[i].leader){
+		if (!inter_party_tosql(&p->party,PS_BREAK,0)) return -1;
+		mapif_party_withdraw(party_id,account_id,char_id,name,type);
 		// TODO: Official allow 'leaderless' party
 		p->party.member[i].account_id = 0;
 		for (j = 0; j < MAX_PARTY; j++) {
@@ -664,9 +666,11 @@ int32 mapif_parse_PartyLeave(int32 fd, int32 party_id, uint32 account_id, uint32
 			mapif_party_withdraw(party_id, p->party.member[j].account_id, p->party.member[j].char_id, p->party.member[j].name, type);
 			p->party.member[j].account_id = 0;
 		}
-		//Party gets deleted on the check_empty call below.
+		mapif_party_broken(party_id,0);
+		return 0;
 	} else {
-		inter_party_tosql(&p->party,PS_DELMEMBER,i);
+		if (!inter_party_tosql(&p->party,PS_DELMEMBER,i)) return -1;
+		mapif_party_withdraw(party_id,account_id,char_id,name,type);
 		j = p->party.member[i].lv;
 		if(p->party.member[i].online) p->party.count--;
 		memset(&p->party.member[i], 0, sizeof(struct party_member));

@@ -1,6 +1,7 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 
 #include "game_control.hpp"
+#include "game_control_settings_admission.hpp"
 #include "game_control_riding.hpp"
 #include "game_control_appearance.hpp"
 #include "game_control_item_grant.hpp"
@@ -9,6 +10,9 @@
 #include "game_control_navigation.hpp"
 
 #include <algorithm>
+#include <random>
+#include <sstream>
+#include <iomanip>
 #include <condition_variable>
 #include <deque>
 #include <climits>
@@ -28,6 +32,8 @@
 #include <nlohmann/json.hpp>
 
 #include <common/showmsg.hpp>
+#include <common/game_control_envelope.hpp>
+#include <common/socket.hpp>
 #include <common/strlib.hpp>
 
 #include "map.hpp"
@@ -69,6 +75,16 @@ std::string socket_path;
 std::unordered_map<std::string, std::string> resource_grant_responses;
 std::deque<std::string> resource_grant_response_order;
 constexpr size_t RESOURCE_GRANT_RESPONSE_CACHE_SIZE = 256;
+
+std::string settings_instance_id() {
+ std::random_device random;
+ std::ostringstream value;
+ value << std::hex << std::setfill('0');
+ for (int i = 0; i < 4; ++i) value << std::setw(8) << static_cast<uint32_t>(random());
+ return value.str();
+}
+GameControlSettingsState settings_state(settings_instance_id());
+
 
 bool is_resource_grant_command(const std::string& command_type) {
 	return command_type == "character.appearance.update" || command_type == "character.riding.update" || command_type == "character.inventory.item_grant" || command_type == "character.currency.zeny_grant";
@@ -127,8 +143,8 @@ std::string response(int status, const nlohmann::json& body) {
 	return std::to_string(status) + "\n" + body.dump() + "\n";
 }
 
-bool read_character_id(const nlohmann::json& target, int32& char_id) {
-	if (!target.is_object() || target.value("type", "") != "character" || !target.contains("id"))
+bool read_target_id(const nlohmann::json& target, const char* type, int32& char_id) {
+	if (!target.is_object() || !target.contains("type") || !target["type"].is_string() || target["type"] != type || !target.contains("id"))
 		return false;
 	if (target["id"].is_number_integer()) {
 		const int64 value = target["id"].get<int64>();
@@ -250,14 +266,14 @@ CommandResult process_battle_config_command(const std::string& command_type, con
 		nlohmann::json values = nlohmann::json::object();
 		for (const auto& definition : game_control_settings)
 			values[definition.key] = battle_get_value(definition.key);
-		return {200, nlohmann::json{{"data", {{"result", {{"values", values}}}}}}};
+		return {200, nlohmann::json{{"data", {{"result", {{"values", values}, {"instance_id", settings_state.instance()}, {"revision", settings_state.revision()}, {"last_command_id", settings_state.last_command()}, {"last_status", settings_state.last_status()}}}}}}};
 	}
 
 	const auto& payload = body["payload"];
 	const auto changes = payload.contains("changes") && payload["changes"].is_array()
 		? payload["changes"]
 		: nlohmann::json::array();
-	bool valid = payload_has_only_keys(payload, {"changes"}) && !changes.empty();
+	bool valid = payload_has_only_keys(payload, {"changes", "instance_id", "expected_revision"}) && !changes.empty();
 	std::unordered_set<std::string> keys;
 	for (const auto& change : changes) {
 		if (!change.is_object() || !payload_has_only_keys(change, {"key", "value"})
@@ -500,8 +516,9 @@ void game_control_process() {
 
 	int status = 400;
 	nlohmann::json result = {{"error", {{"code", "invalid_command"}}}};
-	const std::string command_type = body.is_object() ? body.value("type", "") : "";
-	const std::string command_id = body.is_object() ? body.value("id", "") : "";
+	const bool valid_envelope = has_valid_command_envelope(body);
+	const std::string command_type = valid_envelope ? body["type"].get<std::string>() : "";
+	const std::string command_id = valid_envelope ? body["id"].get<std::string>() : "";
 	if (is_resource_grant_command(command_type) && !command_id.empty()) {
 		const auto cached = resource_grant_responses.find(command_id);
 		if (cached != resource_grant_responses.end()) {
@@ -512,16 +529,52 @@ void game_control_process() {
 			return;
 		}
 	}
-	if (!body.is_object() || !body.contains("type") || !body["type"].is_string()
-		|| !body.contains("payload") || !body["payload"].is_object()) {
+	if (!valid_envelope) {
 		// Keep the default invalid-command response.
-	} else if (command_type == "battle_config.read" || command_type == "battle_config.apply") {
-		const CommandResult command = process_battle_config_command(command_type, body);
-		status = command.status;
-		result = command.body;
+	} else if (command_type == "battle_config.read" || command_type == "battle_config.apply" || command_type == "battle_config.fence") {
+		const bool applying = command_type == "battle_config.apply";
+		const bool fencing = command_type == "battle_config.fence";
+		const auto admission = (applying || fencing)
+			? admit_settings_command(settings_state, body["payload"], command_id, fencing)
+			: GameControlSettingsState::Admission::accepted;
+		if (admission != GameControlSettingsState::Admission::accepted) {
+			status = admission == GameControlSettingsState::Admission::invalid_request ? 400 : 409;
+			const char* code = admission == GameControlSettingsState::Admission::wrong_instance
+				? "settings_wrong_instance" : admission == GameControlSettingsState::Admission::stale_revision
+				? "settings_stale_revision" : "invalid_parameter";
+			result = {{"error", {{"code", code}}}};
+		} else {
+			const CommandResult command = process_battle_config_command(fencing ? "battle_config.read" : command_type, body);
+			status = command.status;
+			result = command.body;
+			if (applying)
+				settings_state.complete(status >= 200 && status < 300);
+		}
+	} else if (command_type == "account.disconnect") {
+		int32 account_id = 0;
+		if (!body.contains("target") || !read_target_id(body["target"], "account", account_id)) {
+			status = 400;
+			result = {{"error", {{"code", "invalid_target"}}}};
+		} else if (!body["payload"].empty()) {
+			status = 400;
+			result = {{"error", {{"code", "invalid_parameter"}}}};
+		} else {
+			map_session_data* sd = map_id2sd(account_id);
+			status = 200;
+			result = {{"data", {{"result", {{"account_id", account_id}, {"disconnected", sd != nullptr}}}}}};
+			if (sd != nullptr) {
+				// Administrative disconnect must close offline shops as well. The
+				// normal EOF/map_quit path saves the character and informs char-server.
+				sd->state.keepshop = false;
+				if (session_isActive(sd->fd))
+					clif_authfail_fd(sd->fd, 15);
+				else
+					map_quit(sd);
+			}
+		}
 	} else if (body["type"].get<std::string>() == "capabilities") {
 		status = 200;
-		result = {{"data", {{"protocol_version", "1"}, {"commands", {"character.snapshot", "character.appearance.update", "character.riding.update", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.points.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
+		result = {{"data", {{"protocol_version", "1"}, {"commands", {"account.disconnect", "character.snapshot", "character.appearance.update", "character.riding.update", "character.navigation.teleport", "character.navigation.route", "character.progression.update", "character.points.update", "character.skill_points.update", "character.stats.update", "character.stats.reset", "character.traits.update", "character.traits.reset", "character.skills.reset", "character.skills.learn_all", "character.vitals.restore", "character.inventory.item_grant", "character.currency.zeny_grant", "monster.spawn", "battle_config.apply"}}}}};
 	} else if (command_type != "character.snapshot"
 		&& command_type != "character.appearance.update"
 		&& command_type != "character.riding.update"
@@ -547,12 +600,15 @@ void game_control_process() {
 		result = {{"error", {{"code", "invalid_target"}}}};
 	} else {
 		int32 char_id = 0;
-		if (!read_character_id(body["target"], char_id)) {
+		if (!read_target_id(body["target"], "character", char_id)) {
 			status = 400;
 			result = {{"error", {{"code", "invalid_target"}}}};
 		} else if (map_session_data* sd = map_charid2sd(char_id); sd == nullptr) {
 			status = 409;
 			result = {{"error", {{"code", "character_offline"}}}};
+		} else if (sd->state.admin_delete_pending) {
+			status = 409;
+			result = {{"error", {{"code", "account_deleting"}}}};
 		} else if (command_type == "character.appearance.update") {
 			const auto appearance = game_control_character_appearance_update(sd, body["payload"]);
 			status = appearance.status;

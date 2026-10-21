@@ -58,13 +58,13 @@ bool mercenary_owner_tosql(uint32 char_id, struct mmo_charstatus *status)
 bool mercenary_owner_delete(uint32 char_id)
 {
 	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `mer_id` IN ( SELECT `merc_id` FROM `%s` WHERE `char_id` = '%d' )", schema_config.skillcooldown_mercenary_db, schema_config.mercenary_owner_db, char_id))
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return false; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.mercenary_owner_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return false; }
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.mercenary_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return false; }
 
 	return true;
 }

@@ -217,9 +217,7 @@ static TIMER_FUNC(login_online_data_cleanup){
  * @param last_ip:
  * @return :
  *	-1: success
- *	0: unregistered id (wrong sex fail to create in db);
- *	1: incorrect pass or userid (userid|pass too short or already exist);
- *	3: registration limit exceeded;
+ *	200-207: explicit registration failure (see registration.hpp).
  */
 int32 login_mmo_auth_new(const char* userid, const char* pass, const char sex, const char* last_ip) {
 	static int32 num_regs = 0; // registration counter
@@ -227,25 +225,25 @@ int32 login_mmo_auth_new(const char* userid, const char* pass, const char sex, c
 	t_tick tick = gettick();
 	struct mmo_account acc;
 
-	//Account Registration Flood Protection by [Kevin]
-	if( new_reg_tick == 0 )
-		new_reg_tick = gettick();
-	if( DIFF_TICK(tick, new_reg_tick) < 0 && num_regs >= login_config.allowed_regs ) {
+	// Count successful registrations within the active registration window.
+	if( new_reg_tick != 0 && DIFF_TICK(tick, new_reg_tick) < 0 && num_regs >= login_config.allowed_regs ) {
 		ShowNotice("Account registration denied (registration limit exceeded)\n");
-		return 3;
+		return REGISTRATION_RATE_LIMITED;
 	}
 
-	if( strlen(userid) < login_config.acc_name_min_length || strlen(pass) < login_config.password_min_length)
-		return 1;
+	if( strlen(userid) < login_config.acc_name_min_length )
+		return REGISTRATION_ACCOUNT_TOO_SHORT;
+	if( strlen(pass) < login_config.password_min_length )
+		return REGISTRATION_PASSWORD_TOO_SHORT;
 
 	// check for invalid inputs
 	if( sex != 'M' && sex != 'F' )
-		return 0; // 0 = Unregistered ID
+		return REGISTRATION_INVALID_SEX;
 
 	// check if the account doesn't exist already
 	if( accounts->load_str(accounts, &acc, userid) ) {
 		ShowNotice("Attempt of creation of an already existant account (account: %s, sex: %c)\n", userid, sex);
-		return 1; // 1 = Incorrect Password
+		return REGISTRATION_ACCOUNT_EXISTS;
 	}
 
 	memset(&acc, '\0', sizeof(acc));
@@ -266,11 +264,11 @@ int32 login_mmo_auth_new(const char* userid, const char* pass, const char sex, c
 	acc.old_group = 0;
 #endif
 	if( !accounts->create(accounts, &acc) )
-		return 0;
+		return REGISTRATION_STORAGE_FAILED;
 
 	ShowNotice("Account creation (account %s, id: %d, sex: %c)\n", acc.userid, acc.account_id, acc.sex);
 
-	if( DIFF_TICK(tick, new_reg_tick) > 0 ) {// Update the registration check.
+	if( new_reg_tick == 0 || DIFF_TICK(tick, new_reg_tick) >= 0 ) {
 		num_regs = 0;
 		new_reg_tick = tick + login_config.time_allowed*1000;
 	}
@@ -288,7 +286,8 @@ int32 login_mmo_auth_new(const char* userid, const char* pass, const char sex, c
  *	0: unregistered id;
  *	1: incorrect pass;
  *	2: expired id
- *	3: blacklisted (or registration limit exceeded if new acc);
+ *	3: blacklisted;
+ *	200-207: registration failure;
  *	5: invalid client_version|hash;
  *	6: banned
  *	x: acc state (TODO document me deeper)
@@ -320,26 +319,18 @@ int32 login_mmo_auth(struct login_session_data* sd, bool isServer) {
 
 	size_t len = strnlen(sd->userid, NAME_LENGTH);
 
-	// Account creation with _M/_F
-	if( login_config.new_account_flag ) {
-		if( len > 2 && strnlen(sd->passwd, NAME_LENGTH) > 0 && // valid user and password lengths
-			sd->userid[len-2] == '_' && memchr("FfMm", sd->userid[len-1], 4) ) // _M/_F suffix
-		{
-			// Encoded password
-			if( sd->passwdenc != 0 ){
-				ShowError( "Account '%s' could not be created because client side password encryption is enabled.\n", sd->userid );
-				return 0; // unregistered id
-			}
+	// Recognize registration intent even when registration is disabled or the password is empty.
+	if( !isServer && len >= 2 && sd->userid[len-2] == '_' && memchr("FfMm", sd->userid[len-1], 4) ) {
+		if( !login_config.new_account_flag )
+			return REGISTRATION_DISABLED;
+		if( sd->passwdenc != 0 )
+			return REGISTRATION_ENCRYPTION_UNSUPPORTED;
 
-			int32 result;
-			// remove the _M/_F suffix
-			len -= 2;
-			sd->userid[len] = '\0';
-
-			result = login_mmo_auth_new(sd->userid, sd->passwd, TOUPPER(sd->userid[len+1]), ip);
-			if( result != -1 )
-				return result;// Failed to make account. [Skotlex].
-		}
+		len -= 2;
+		sd->userid[len] = '\0';
+		const int32 result = login_mmo_auth_new(sd->userid, sd->passwd, TOUPPER(sd->userid[len+1]), ip);
+		if( result != -1 )
+			return result;
 	}
 
 	if( !accounts->load_str(accounts, &acc, sd->userid) ) {

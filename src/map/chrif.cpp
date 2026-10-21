@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "chrif.hpp"
+#include "admin_delete.hpp"
 #include "game_control_appearance.hpp"
 
 #include <cstdlib>
@@ -47,7 +48,8 @@ static const int32 packet_len_table[0x3d] = { // U - used, F - free
 	11,10,10, 0,11, -1, 0,10,	// 2b10-2b17: U->2b10, U->2b11, U->2b12, F->2b13, U->2b14, U->2b15, F->2b16, U->2b17
 	 2,10, 2,-1,-1,-1, 2, 7,	// 2b18-2b1f: U->2b18, U->2b19, U->2b1a, U->2b1b, U->2b1c, U->2b1d, U->2b1e, U->2b1f
 	-1,10, 8, 2, 2,14,19,19,	// 2b20-2b27: U->2b20, U->2b21, U->2b22, U->2b23, U->2b24, U->2b25, U->2b26, U->2b27
-	-1, 0, 6,15, 0, 6,-1,-1,	// 2b28-2b2f: U->2b28, F->2b29, U->2b2a, U->2b2b, F->2b2c, U->2b2d, U->2b2e, U->2b2f
+	-1,14, 6,15,14, 6,-1,-1,	// 2b28-2b2f: U->2b28, F->2b29, U->2b2a, U->2b2b, F->2b2c, U->2b2d, U->2b2e, U->2b2f
+	6, // 2b30: deleted parent notification
  };
 
 //Used Packets:
@@ -99,10 +101,10 @@ static const int32 packet_len_table[0x3d] = { // U - used, F - free
 //2b26: Outgoing, chrif_authreq -> 'client authentication request'
 //2b27: Incoming, chrif_authfail -> 'client authentication failed'
 //2b28: Outgoing, chrif_req_charban -> 'ban a specific char '
-//2b29: FREE
+//2b29: Incoming, administrative account deletion fence
 //2b2a: Outgoing, chrif_req_charunban -> 'unban a specific char '
 //2b2b: Incoming, chrif_parse_ack_vipActive -> vip info result
-//2b2c: FREE
+//2b2c: Outgoing, administrative account deletion fence acknowledgement
 //2b2d: Outgoing, chrif_bsdata_request -> request bonus_script for pc_authok'ed char.
 //2b2e: Outgoing, chrif_bsdata_save -> Send bonus_script of player for saving.
 //2b2f: Incoming, chrif_bsdata_received -> received bonus_script of player for loading.
@@ -1058,6 +1060,13 @@ int32 chrif_divorceack(uint32 char_id, int32 partner_id) {
 /*==========================================
  * Removes Baby from parents
  *------------------------------------------*/
+static int32 chrif_parent_removed(map_session_data* sd, va_list args) {
+	const uint32 parent = va_arg(args, uint32);
+	if (sd->status.father == parent) sd->status.father = 0;
+	if (sd->status.mother == parent) sd->status.mother = 0;
+	return 0;
+}
+
 int32 chrif_deadopt(uint32 father_id, uint32 mother_id, uint32 child_id) {
 	map_session_data* sd;
 	uint16 idx = skill_get_index(WE_CALLBABY);
@@ -1791,8 +1800,10 @@ int32 chrif_parse(int32 fd) {
 			case 0x2b24: chrif_keepalive_ack(fd); break;
 			case 0x2b25: chrif_deadopt(RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10)); break;
 			case 0x2b27: chrif_authfail(fd); break;
+			case 0x2b29: admin_delete_fence(fd); break;
 			case 0x2b2b: chrif_parse_ack_vipActive(fd); break;
 			case 0x2b2f: chrif_bsdata_received(fd); break;
+			case 0x2b30: map_foreachpc(chrif_parent_removed, static_cast<uint32>(RFIFOL(fd,2))); break;
 			default:
 				ShowError("chrif_parse : unknown packet (session #%d): 0x%x. Disconnecting.\n", fd, cmd);
 				set_eof(fd);

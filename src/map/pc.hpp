@@ -380,6 +380,7 @@ struct s_qi_display {
 
 class map_session_data : public block_list {
 public:
+	t_tick happyro_friend_details_tick = 0;
 	struct unit_data ud;
 	struct view_data vd;
 	struct status_data base_status, battle_status;
@@ -442,6 +443,7 @@ public:
 		uint32 workinprogress : 2; // See clif.hpp::e_workinprogress
 		bool pc_loaded; // Ensure inventory data and status data is loaded before we calculate player stats
 		bool keepshop; // Whether shop data should be removed when the player disconnects
+		bool admin_delete_pending = false; // Reject queued control commands after the deletion fence
 		bool mail_writing; // Whether the player is currently writing a mail in RODEX or not
 		bool cashshop_open;
 		bool sale_open;

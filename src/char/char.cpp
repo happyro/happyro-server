@@ -3,6 +3,7 @@
 
 #pragma warning(disable:4800)
 #include "char.hpp"
+#include "admin_delete.hpp"
 
 #include <cstdarg>
 #include <cstdio>
@@ -254,6 +255,28 @@ void char_set_all_offline_sql(void){
 		Sql_ShowDebug(sql_handle);
 }
 
+// A save queued before a parent's deletion must not restore a dangling link.
+static bool char_validate_parent_links(struct mmo_charstatus* status) {
+	if (!status->father && !status->mother)
+		return true;
+	if (SQL_ERROR == Sql_Query(sql_handle, "SELECT char_id FROM `%s` WHERE char_id IN ('%u','%u')", schema_config.char_db, status->father, status->mother)) {
+		Sql_ShowDebug(sql_handle);
+		return false;
+	}
+	bool father_exists = false, mother_exists = false;
+	while (Sql_NextRow(sql_handle) == SQL_SUCCESS) {
+		char* value = nullptr;
+		Sql_GetData(sql_handle, 0, &value, nullptr);
+		const uint32 id = static_cast<uint32>(strtoul(value, nullptr, 10));
+		father_exists = father_exists || id == status->father;
+		mother_exists = mother_exists || id == status->mother;
+	}
+	Sql_FreeResult(sql_handle);
+	if (!father_exists) status->father = 0;
+	if (!mother_exists) status->mother = 0;
+	return true;
+}
+
 int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 	int32 i = 0;
 	int32 count = 0;
@@ -262,7 +285,8 @@ int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 	int32 errors = 0; //If there are any errors while saving, "cp" will not be updated at the end.
 	StringBuf buf;
 
-	if (char_id!=p->char_id) return 0;
+	if (char_id!=p->char_id) return 1;
+	if (!char_validate_parent_links(p)) return 1;
 
 	std::shared_ptr<struct mmo_charstatus> cp = util::umap_find( char_get_chardb(), char_id );
 
@@ -526,7 +550,7 @@ int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 		memcpy( cp.get(), p, sizeof( struct mmo_charstatus ) );
 	}
 
-	return 0;
+	return errors;
 }
 
 /// Saves an array of 'item' entries into the specified table.
@@ -1529,9 +1553,9 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 /*----------------------------------------------------------------------------------------------------------*/
 int32 char_divorce_char_sql(int32 partner_id1, int32 partner_id2){
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `partner_id`='0' WHERE `char_id`='%d' OR `char_id`='%d' LIMIT 2", schema_config.char_db, partner_id1, partner_id2) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE (`nameid`='%u' OR `nameid`='%u') AND (`char_id`='%d' OR `char_id`='%d') LIMIT 2", schema_config.inventory_db, WEDDING_RING_M, WEDDING_RING_F, partner_id1, partner_id2) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return -1; }
 	chmapif_send_ackdivorce(partner_id1, partner_id2);
 	return 0;
 }
@@ -1542,8 +1566,8 @@ int32 char_divorce_char_sql(int32 partner_id1, int32 partner_id2){
 /* Returns 0 if successful
  * Returns < 0 for error
  */
-enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_id){
-	char name[NAME_LENGTH];
+enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_id, bool administrative){
+	char name[NAME_LENGTH]{};
 	char esc_name[NAME_LENGTH*2+1]; //Name needs be escaped.
 	uint32 account_id;
 	int32 party_id, guild_id, hom_id, base_level, partner_id, father_id, mother_id, elemental_id;
@@ -1561,7 +1585,7 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 	}
 
 	if (SQL_ERROR == Sql_Query(sql_handle, "SELECT `name`,`account_id`,`party_id`,`guild_id`,`base_level`,`homun_id`,`partner_id`,`father`,`mother`,`elemental_id`,`delete_date` FROM `%s` WHERE `account_id`='%u' AND `char_id`='%u'", schema_config.char_db, sd->account_id, char_id)){
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 		return CHAR_DELETE_DATABASE;
 	}
 
@@ -1588,33 +1612,33 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 	Sql_FreeResult(sql_handle);
 
 	//check for config char del condition [Lupus]
-	if( ( charserv_config.char_config.char_del_level > 0 && base_level >= charserv_config.char_config.char_del_level )
+	if( !administrative && (( charserv_config.char_config.char_del_level > 0 && base_level >= charserv_config.char_config.char_del_level )
 	 || ( charserv_config.char_config.char_del_level < 0 && base_level <= -charserv_config.char_config.char_del_level )
-	) {
+	)) {
 			ShowInfo("Char deletion aborted: %s, BaseLevel: %i\n", name, base_level);
 			return CHAR_DELETE_BASELEVEL;
 	}
 
-	if (charserv_config.char_config.char_del_restriction&CHAR_DEL_RESTRICT_GUILD && guild_id) // character is in guild
+	if (!administrative && charserv_config.char_config.char_del_restriction&CHAR_DEL_RESTRICT_GUILD && guild_id) // character is in guild
 	{
 		ShowInfo("Char deletion aborted: %s, Guild ID: %i\n", name, guild_id);
 		return CHAR_DELETE_GUILD;
 	}
 
-	if (charserv_config.char_config.char_del_restriction&CHAR_DEL_RESTRICT_PARTY && party_id) // character is in party
+	if (!administrative && charserv_config.char_config.char_del_restriction&CHAR_DEL_RESTRICT_PARTY && party_id) // character is in party
 	{
 		ShowInfo("Char deletion aborted: %s, Party ID: %i\n", name, party_id);
 		return CHAR_DELETE_PARTY;
 	}
 
-	if( charserv_config.char_config.char_del_delay > 0 && ( !delete_date || delete_date > time(nullptr) ) ){ // not queued or delay not yet passed
+	if( !administrative && charserv_config.char_config.char_del_delay > 0 && ( !delete_date || delete_date > time(nullptr) ) ){ // not queued or delay not yet passed
 		ShowInfo("Char deletion aborted: %s, Time was not set or has not been reached ye\n", name );
 		return CHAR_DELETE_TIME;
 	}
 
 	/* Divorce [Wizputer] */
-	if( partner_id )
-		char_divorce_char_sql(char_id, partner_id);
+	if( partner_id && char_divorce_char_sql(char_id, partner_id) != 0 )
+		return CHAR_DELETE_DATABASE;
 
 	/* De-addopt [Zephyrus] */
 	if( father_id || mother_id )
@@ -1622,9 +1646,9 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 		unsigned char buf[64];
 
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `child`='0' WHERE `char_id`='%d' OR `char_id`='%d'", schema_config.char_db, father_id, mother_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 		if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `id` = '410' AND (`char_id`='%d' OR `char_id`='%d')", schema_config.skill_db, father_id, mother_id) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 		WBUFW(buf,0) = 0x2b25;
 		WBUFL(buf,2) = father_id;
@@ -1634,117 +1658,150 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 	}
 
 	//Make the character leave the party [Skotlex]
-	if (party_id)
-		inter_party_leave(party_id, account_id, char_id, name);
+	if (party_id && inter_party_leave(party_id, account_id, char_id, name) != 0)
+		return CHAR_DELETE_DATABASE;
 
 	/* delete char's pet */
 	//Delete the hatched pet if you have one...
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d' AND `incubate` = '0'", schema_config.pet_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	//Delete all pets that are stored in eggs (inventory + cart)
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` USING `%s` JOIN `%s` ON `pet_id` = `card1`|`card2`<<16 WHERE `%s`.char_id = '%d' AND card0 = 256", schema_config.pet_db, schema_config.pet_db, schema_config.inventory_db, schema_config.inventory_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` USING `%s` JOIN `%s` ON `pet_id` = `card1`|`card2`<<16 WHERE `%s`.char_id = '%d' AND card0 = 256", schema_config.pet_db, schema_config.pet_db, schema_config.cart_db, schema_config.cart_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* remove homunculus */
-	if( hom_id )
-		mapif_homunculus_delete(hom_id);
+	if( hom_id && !mapif_homunculus_delete(hom_id) )
+		return CHAR_DELETE_DATABASE;
 
 	/* remove elemental */
-	if (elemental_id)
-		mapif_elemental_delete(elemental_id);
+	if (elemental_id && !mapif_elemental_delete(elemental_id))
+		return CHAR_DELETE_DATABASE;
 
 	/* remove mercenary data */
-	mercenary_owner_delete(char_id);
+	if (!mercenary_owner_delete(char_id))
+		return CHAR_DELETE_DATABASE;
 
 	/* delete char's friends list */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.friend_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* delete char from other's friend list */
 	//NOTE: Won't this cause problems for people who are already online? [Skotlex]
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `friend_id` = '%d'", schema_config.friend_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 #ifdef HOTKEY_SAVING
 	/* delete hotkeys */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.hotkey_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 #endif
 
 	/* delete inventory */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.inventory_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* delete cart inventory */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.cart_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* delete memo areas */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.memo_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* delete character registry */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.char_reg_str_table, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.char_reg_num_table, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* delete skills */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.skill_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 	
+	// Eggs in received mail disappear with their attachments. Remove their pets
+	// first so interrupted cleanup can still locate them on the next attempt.
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE p FROM `%s` p JOIN `%s` a ON p.pet_id=(a.card1 | (a.card2 << 16)) JOIN `%s` m ON m.id=a.id WHERE m.dest_id='%u' AND a.card0=256", schema_config.pet_db, schema_config.mail_attachment_db, schema_config.mail_db, char_id))
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
+
 	/* delete mails and attachments, where the receiver was the deleted character */
 	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `dest_id`='%d'", schema_config.mail_db, char_id))
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* mark mails as sent from server, where the sender was the deleted character */
 	if (SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `send_id`='0' WHERE `send_id`='%d'", schema_config.mail_db, char_id))
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 #ifdef ENABLE_SC_SAVING
 	/* status changes */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = '%d' AND `char_id`='%d'", schema_config.scdata_db, account_id, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 #endif
 
 	/* bonus_scripts */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.bonus_script_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* Quest Data */
 	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.quest_db, char_id))
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	/* Achievement Data */
 	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.achievement_table, char_id))
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 
 	if (charserv_config.log_char) {
 		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`char_msg`,`name`) VALUES (NOW(), '%d', '%d', 'Deleted char (CID %d)', '%s')",
 			schema_config.charlog_db, account_id, 0, char_id, esc_name) )
-			Sql_ShowDebug(sql_handle);
+			{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 	}
 
-	/* delete character */
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.char_db, char_id) )
-		Sql_ShowDebug(sql_handle);
 
 	/* No need as we used inter_guild_leave [Skotlex]
 	// Also delete info from guildtables.
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", guild_member_db, char_id) )
-		Sql_ShowDebug(sql_handle);
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
 	*/
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `guild_id` FROM `%s` WHERE `char_id` = '%d'", schema_config.guild_db, char_id) )
-		Sql_ShowDebug(sql_handle);
-	else if( Sql_NumRows(sql_handle) > 0 )
-		mapif_parse_BreakGuild(0,guild_id);
-	else if( guild_id )
-		inter_guild_leave(guild_id, account_id, char_id);// Leave your guild.
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
+	else if( Sql_NumRows(sql_handle) > 0 ) {
+		if (Sql_NextRow(sql_handle) != SQL_SUCCESS) return CHAR_DELETE_DATABASE;
+		char* guild_data = nullptr;
+		Sql_GetData(sql_handle, 0, &guild_data, nullptr);
+		const int32 owned_guild = atoi(guild_data);
+		Sql_FreeResult(sql_handle);
+		if (mapif_parse_BreakGuild(0,owned_guild) != 0) return CHAR_DELETE_DATABASE;
+	} else if( guild_id && inter_guild_leave(guild_id, account_id, char_id) != 0 )
+		return CHAR_DELETE_DATABASE;
 
+	if (administrative && !admin_delete_character_auxiliary(char_id))
+		return CHAR_DELETE_DATABASE;
+
+	// Remove only the deleted parent; the surviving parent and baby class/skills
+	// remain unchanged. The save validator also rejects delayed stale links.
+	if (SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET father=IF(father='%u',0,father),mother=IF(mother='%u',0,mother) WHERE father='%u' OR mother='%u'", schema_config.char_db, char_id, char_id, char_id, char_id)) {
+		Sql_ShowDebug(sql_handle);
+		return CHAR_DELETE_DATABASE;
+	}
+	for (auto& entry : char_get_chardb()) {
+		if (entry.second->father == char_id) entry.second->father = 0;
+		if (entry.second->mother == char_id) entry.second->mother = 0;
+	}
+	unsigned char parent_removed[6];
+	WBUFW(parent_removed,0) = 0x2b30;
+	WBUFL(parent_removed,2) = char_id;
+	chmapif_sendall(parent_removed,6);
+
+
+	/* delete character */
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", schema_config.char_db, char_id) )
+		{ Sql_ShowDebug(sql_handle); return CHAR_DELETE_DATABASE; }
+
+
+	char_get_chardb().erase(char_id);
 	// refresh character list cache
 	sd->found_char[i] = -1;
 
@@ -1974,6 +2031,11 @@ void char_set_session_flag_(int32 account_id, int32 val, bool set) {
 }
 
 void char_auth_ok(int32 fd, struct char_session_data *sd) {
+	if (admin_account_blocked(sd->account_id)) {
+		chclif_send_auth_result(fd, 2);
+		set_eof(fd);
+		return;
+	}
 	std::shared_ptr<struct online_char_data> character = util::umap_find( char_get_onlinedb(), sd->account_id );
 
 	// Check if character is not online already. [Skotlex]
@@ -3211,6 +3273,7 @@ bool CharacterServer::initialize( int32 argc, char *argv[] ){
 	inter_init_sql(INTER_CONF_NAME); // inter server configuration
 
 	char_mmo_sql_init();
+	if (!admin_delete_init()) return false;
 	char_read_fame_list(); //Read fame lists.
 
 	if ((naddr_ != 0) && (!charserv_config.login_ip_str[0] || !(charserv_config.char_ip) ))

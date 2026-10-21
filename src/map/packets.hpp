@@ -1600,6 +1600,17 @@ struct PACKET_ZC_HAPPYRO_NAVIGATION_CONTROL {
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NAVIGATION_CONTROL, 0xd02);
 
 // Complete NPC display name, independent of the legacy 24-byte name field.
+// Friend details are restricted to the requesting character's own friend list.
+struct PACKET_ZC_HAPPYRO_FRIEND_DETAIL {
+ int16 packetType;
+ uint32 accountId;
+ uint32 charId;
+ uint16 baseLevel;
+ char mapName[MAP_NAME_LENGTH_EXT];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_FRIEND_DETAIL, 0x0d0b);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_FRIEND_DETAIL) == 28, "Friend detail wire layout");
+
 struct PACKET_ZC_HAPPYRO_NPC_NAME {
 	int16 packetType;
 	int16 packetLength;

@@ -998,12 +998,16 @@ int32 hom_change_name(map_session_data *sd,char *name)
 	hd = sd->hd;
 	if (!hom_is_active(hd))
 		return 1;
-	if (hd->homunculus.rename_flag && !battle_config.hom_rename)
+	if (hd->homunculus.rename_flag && !battle_config.hom_rename) {
+		clif_hominfo(sd, hd, 0);
 		return 1;
+	}
 
 	for (i = 0; i < NAME_LENGTH && name[i];i++) {
-		if (!(name[i]&0xe0) || name[i] == 0x7f)
+		if (!(name[i]&0xe0) || name[i] == 0x7f) {
+			clif_hominfo(sd, hd, 0);
 			return 1;
+		}
 	}
 
 	return intif_rename_hom(sd, name);
@@ -1025,6 +1029,7 @@ void hom_change_name_ack(map_session_data *sd, char* name, int32 flag)
 
 	if (!flag || name[0] == '\0') {
 		clif_displaymessage(sd->fd, msg_txt(sd,280)); // You cannot use this name
+		clif_hominfo(sd, hd, 0); // Resolve the client's pending rename with authoritative state.
 		return;
 	}
 	safestrncpy(hd->homunculus.name,name,NAME_LENGTH);

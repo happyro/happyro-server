@@ -216,7 +216,9 @@ static void logclif_auth_failed(struct login_session_data* sd, int32 result) {
 
 	if (login_config.log_login)
 	{
-		if(result >= 0 && result <= 15)
+		if (const char* reason = registration_error_message(result))
+		    login_log(ip, sd->userid, result, reason);
+		else if(result >= 0 && result <= 15)
 		    login_log(ip, sd->userid, result, msg_txt(result));
 		else if(result >= 99 && result <= 104)
 		    login_log(ip, sd->userid, result, msg_txt(result-83)); //-83 offset

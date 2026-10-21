@@ -5130,6 +5130,22 @@ int32 status_calc_homunculus_(homun_data *hd, uint8 opt)
 	if((skill_lv = hom_checkskill(hd, HLIF_BRAIN)) > 0)
 		status->max_sp += skill_lv * status->max_sp / 100;
 
+
+	if (opt&SCO_FIRST) {
+		hd->battle_status.hp = hom.hp;
+		hd->battle_status.sp = hom.sp;
+		if(hom.class_ == 6052) // Eleanor
+			sc_start(hd, hd, SC_STYLE_CHANGE, 100, MH_MD_FIGHTING, INFINITE_TICK);
+	}
+
+#ifndef RENEWAL
+	status->rhw.atk = status->dex;
+	status->rhw.atk2 = status->str + hom.level;
+#endif
+
+	status_calc_misc(hd, status, hom.level);
+
+	// Flat S-homunculus bonuses must follow the base attack recalculation.
 	if((skill_lv = hom_checkskill(hd, MH_CLASSY_FLUTTER)) > 0) {
 		status->matk_min += 100 + 60* skill_lv;
 		status->matk_max += 100 + 60* skill_lv;
@@ -5155,19 +5171,6 @@ int32 status_calc_homunculus_(homun_data *hd, uint8 opt)
 		status->batk += 100 + 60* skill_lv;
 	}
 
-	if (opt&SCO_FIRST) {
-		hd->battle_status.hp = hom.hp;
-		hd->battle_status.sp = hom.sp;
-		if(hom.class_ == 6052) // Eleanor
-			sc_start(hd, hd, SC_STYLE_CHANGE, 100, MH_MD_FIGHTING, INFINITE_TICK);
-	}
-
-#ifndef RENEWAL
-	status->rhw.atk = status->dex;
-	status->rhw.atk2 = status->str + hom.level;
-#endif
-
-	status_calc_misc(hd, status, hom.level);
 
 	status_cpy(&hd->battle_status, status);
 	return 1;
@@ -6004,6 +6007,11 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 			}
 		}
 #else
+		// Mercenary damage and its status packet use the right-hand attack range.
+		if (bl.type == BL_MER) {
+			status->rhw.atk = status_calc_watk(&bl, sc, b_status->rhw.atk);
+			status->rhw.atk2 = status_calc_watk(&bl, sc, b_status->rhw.atk2);
+		}
 		if(!b_status->watk) { // We only have left-hand weapon
 			status->watk = 0;
 			status->watk2 = status_calc_watk(&bl, sc, b_status->watk2);
@@ -6297,6 +6305,12 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 		// StatusMATK
 		int32 matk_min = status_base_matk_min(&bl, status, lv);
 		int32 matk_max = status_base_matk_max(&bl, status, lv);
+
+		if (bl.type == BL_HOM) {
+			// Preserve flat learned-skill bonuses while recalculating current base MATK.
+			matk_min += b_status->matk_min - status_base_matk_min(&bl, b_status, lv);
+			matk_max += b_status->matk_max - status_base_matk_max(&bl, b_status, lv);
+		}
 
 		if (sd != nullptr) {
 			// Soul energy spheres increase MATK (not displayed in status window).

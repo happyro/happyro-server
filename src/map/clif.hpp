@@ -59,7 +59,7 @@ enum e_searchstore_failure : uint16;
 
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
-	MAX_PACKET_DB  = 0xD06,
+	MAX_PACKET_DB  = 0xD0A,
 #if !defined(MAX_PACKET_POS)
 	MAX_PACKET_POS = 20,
 #endif
@@ -1531,5 +1531,7 @@ void clif_set_npc_window_pos_percent( const map_session_data& sd, int32 x, int32
 void clif_noask_sub( const map_session_data& sd, const map_session_data& tsd, int32 type );
 
 void clif_specialpopup(const map_session_data& sd, int32 id);
+
+void clif_parse_happyro_friend_details(int32 fd, map_session_data* sd);
 
 #endif /* CLIF_HPP */

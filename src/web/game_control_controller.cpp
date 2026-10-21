@@ -9,6 +9,7 @@
 #include <nlohmann/json.hpp>
 
 #include <common/showmsg.hpp>
+#include <common/game_control_envelope.hpp>
 
 #include "web.hpp"
 
@@ -54,16 +55,6 @@ bool is_authorized(const Request& request) {
 	}
 
 	return constant_time_equals(web_config.game_control_secret, authorization.substr(prefix.size()));
-}
-
-bool has_valid_command_envelope(const nlohmann::json& body) {
-	if (!body.is_object() || !body.contains("id") || !body.contains("type") || !body.contains("payload")) {
-		return false;
-	}
-
-	return body["id"].is_string() && body["id"].get_ref<const std::string&>().size() <= 64
-		&& body["type"].is_string() && body["type"].get_ref<const std::string&>().size() <= 64
-		&& body["payload"].is_object();
 }
 
 bool forward_to_map_server(const std::string& request_body, int& status, std::string& response_body) {
