@@ -82,6 +82,7 @@ static inline int32 client_exp(t_exp exp) {
 static struct eri *delay_clearunit_ers;
 
 static_assert(0x0d0a <= MAX_PACKET_DB, "Friend query must fit the incoming packet table");
+static_assert(HEADER_CZ_HAPPYRO_MAP_LOAD_RECOVER <= MAX_PACKET_DB, "Map recovery request must fit the incoming packet table");
 static_assert(HEADER_CZ_HAPPYRO_ARRIVAL_PREVIEW <= MAX_PACKET_DB, "Arrival preview must fit the incoming packet table");
 static_assert(sizeof(PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW) == 22);
 static_assert(sizeof(PACKET_ZC_HAPPYRO_ARRIVAL_PREVIEW) == 28);
@@ -759,8 +760,10 @@ int32 clif_send(const void* buf, int32 len, const block_list* bl, enum send_targ
 /// 0073 <start time>.L <position>.3B <x size>.B <y size>.B (ZC_ACCEPT_ENTER)
 /// 02eb <start time>.L <position>.3B <x size>.B <y size>.B <font>.W (ZC_ACCEPT_ENTER2)
 /// 0a18 <start time>.L <position>.3B <x size>.B <y size>.B <font>.W <sex>.B (ZC_ACCEPT_ENTER3)
-void clif_authok( const map_session_data* sd )
+void clif_authok( map_session_data* sd )
 {
+	sd->ud.dir = DIR_SOUTH;
+	pc_happyro_map_load_begin(*sd);
 	PACKET_ZC_ACCEPT_ENTER packet{};
 
 	packet.packetType = HEADER_ZC_ACCEPT_ENTER;
@@ -2177,7 +2180,9 @@ void clif_quitsave(int32 fd,map_session_data *sd) {
 
 /// Notifies the client of a position change to coordinates on given map (ZC_NPCACK_MAPMOVE).
 /// 0091 <map name>.16B <x>.W <y>.W
-void clif_changemap( const map_session_data& sd, int16 m, uint16 x, uint16 y ){
+void clif_changemap( map_session_data& sd, int16 m, uint16 x, uint16 y ){
+	sd.ud.dir = DIR_SOUTH;
+	pc_happyro_map_load_begin(sd);
 	PACKET_ZC_NPCACK_MAPMOVE packet{};
 
 	packet.packetType = HEADER_ZC_NPCACK_MAPMOVE;
@@ -10969,14 +10974,42 @@ void clif_parse_WantToConnection(int32 fd, map_session_data* sd)
 }
 
 
+void clif_happyro_map_load_context(const map_session_data& sd) {
+ const auto& load = sd.happyro_map_load;
+ PACKET_ZC_HAPPYRO_MAP_LOAD_CONTEXT packet{};
+ packet.packetType = HEADER_ZC_HAPPYRO_MAP_LOAD_CONTEXT;
+ packet.generation = load.generation;
+ packet.attempt = load.attempt;
+ packet.pending = load.pending ? 1 : 0;
+ clif_send(&packet, sizeof(packet), &sd, SELF);
+}
+
+void clif_happyro_map_load_result(const map_session_data& sd, uint32 generation, uint8 status, uint8 destination) {
+ PACKET_ZC_HAPPYRO_MAP_LOAD_RESULT packet{};
+ packet.packetType = HEADER_ZC_HAPPYRO_MAP_LOAD_RESULT;
+ packet.generation = generation;
+ packet.status = status;
+ packet.destination = destination;
+ clif_send(&packet, sizeof(packet), &sd, SELF);
+}
+
+void clif_parse_happyro_map_load_recover(int32 fd, map_session_data* sd) {
+ if (!sd) return;
+ const auto* packet = reinterpret_cast<PACKET_CZ_HAPPYRO_MAP_LOAD_RECOVER*>(RFIFOP(fd, 0));
+ pc_happyro_map_load_recover(*sd, packet->generation, packet->action);
+}
+
 /// Notification from the client, that it has finished map loading and is about to display player's character (CZ_NOTIFY_ACTORINIT).
 /// 007d
 void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 {
 	bool guild_notice = false;
 
-	if(sd->prev != nullptr)
+	if(sd->prev != nullptr) {
+		// A screen refresh reloads the scene without removing the server actor.
+		if (sd->happyro_map_load.pending) pc_happyro_map_load_confirm(*sd);
 		return;
+	}
 
 	// Autotraders should ignore this entirely, clif_parse_LoadEndAck is always invoked manually for them
 	if (!sd->state.active || (!sd->state.autotrade && !sd->state.pc_loaded)) { //Character loading is not complete yet!
@@ -11040,6 +11073,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 
 	if(map_addblock(sd))
 		return;
+	pc_happyro_map_load_confirm(*sd);
 	clif_spawn(sd);
 
 	// Party
@@ -11209,9 +11243,8 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 			npc_script_event( *sd, NPCE_LOGIN );
 		}
 
-		// Set facing direction before check below to update client
-		if (battle_config.spawn_direction)
-			unit_setdir(sd, sd->status.body_direction, false);
+		// Map entry always faces the player; normal movement can turn afterwards.
+		unit_setdir(sd, DIR_SOUTH, false);
 	} else {
 		//For some reason the client "loses" these on warp/map-change.
 		clif_updatestatus(*sd,SP_STR);
@@ -26084,7 +26117,7 @@ static int32 clif_parse(int32 fd)
 		if( !sd && packet_db[cmd].func != clif_parse_WantToConnection )
 			; //Only valid packet when there is no session
 		else
-		if( sd && sd->prev == nullptr && packet_db[cmd].func != clif_parse_LoadEndAck )
+		if( sd && sd->prev == nullptr && packet_db[cmd].func != clif_parse_LoadEndAck && packet_db[cmd].func != clif_parse_happyro_map_load_recover )
 			; //Only valid packet when player is not on a map
 		else
 			packet_db[cmd].func(fd, sd);

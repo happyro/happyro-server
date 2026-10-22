@@ -2051,6 +2051,7 @@
 	parseable_packet( HEADER_CZ_HAPPYRO_NPC_TELEPORT, sizeof( PACKET_CZ_HAPPYRO_NPC_TELEPORT ), clif_parse_happyro_npc_teleport, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_ARRIVAL_PREVIEW, sizeof(PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW), clif_parse_happyro_arrival_preview, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_MAP_TELEPORT, sizeof( PACKET_CZ_HAPPYRO_MAP_TELEPORT ), clif_parse_happyro_map_teleport, 0 );
+	parseable_packet( HEADER_CZ_HAPPYRO_MAP_LOAD_RECOVER, sizeof(PACKET_CZ_HAPPYRO_MAP_LOAD_RECOVER), clif_parse_happyro_map_load_recover, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_STOP_MOVE, sizeof( PACKET_CZ_HAPPYRO_STOP_MOVE ), clif_parse_happyro_stop_move, 0 );
 
 	parseable_packet( 0x0d0a, 2, clif_parse_happyro_friend_details, 0 );

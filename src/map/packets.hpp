@@ -1628,6 +1628,32 @@ struct PACKET_ZC_HAPPYRO_CHARACTER_APPEARANCE {
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_CHARACTER_APPEARANCE, 0xd08);
 static_assert(sizeof(PACKET_ZC_HAPPYRO_CHARACTER_APPEARANCE) == 8, "Character appearance wire layout");
 
+struct PACKET_CZ_HAPPYRO_MAP_LOAD_RECOVER {
+ int16 packetType;
+ uint32 generation;
+ uint8 action;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_MAP_LOAD_RECOVER, 0xd0c);
+static_assert(sizeof(PACKET_CZ_HAPPYRO_MAP_LOAD_RECOVER) == 7, "Map recovery request wire layout");
+
+struct PACKET_ZC_HAPPYRO_MAP_LOAD_CONTEXT {
+ int16 packetType;
+ uint32 generation;
+ uint8 attempt;
+ uint8 pending;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_MAP_LOAD_CONTEXT, 0xd0d);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_MAP_LOAD_CONTEXT) == 8, "Map load context wire layout");
+
+struct PACKET_ZC_HAPPYRO_MAP_LOAD_RESULT {
+ int16 packetType;
+ uint32 generation;
+ uint8 status;
+ uint8 destination;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_MAP_LOAD_RESULT, 0xd0e);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_MAP_LOAD_RESULT) == 8, "Map recovery result wire layout");
+
 struct PACKET_CZ_HAPPYRO_STOP_MOVE {
 	int16 packetType;
 } __attribute__((packed));

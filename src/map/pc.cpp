@@ -4,6 +4,8 @@
 #include "pc.hpp"
 #include "game_control_appearance.hpp"
 
+static void happyro_map_load_restore(map_session_data& sd);
+
 #include <cmath>
 #include <cstdlib>
 #include <map>
@@ -2363,6 +2365,7 @@ void pc_reg_received(map_session_data *sd)
 	uint8 i;
 
 	sd->vars_ok = true;
+	happyro_map_load_restore(*sd);
 	// Offline job/sex changes must not leave a dormant invalid saved choice.
 	game_control_character_appearance_reconcile(sd);
 
@@ -6936,6 +6939,137 @@ bool pc_steal_item(map_session_data *sd,block_list *bl, uint16 skill_lv)
  *			SETPOS_NO_MAPSERVER	Map not in this map-server, and failed to locate alternate map-server.
  *			SETPOS_AUTOTRADE	Player is in autotrade state
  *------------------------------------------*/
+// The recovery checkpoint and attempt budget are current character state. They
+// survive logout/map-server handoff; no client-supplied map or coordinates exist.
+static void happyro_map_load_persist(map_session_data& sd) {
+ if (!sd.vars_ok || !sd.happyro_map_load.ready) return;
+ const auto& load = sd.happyro_map_load;
+ pc_setglobalreg_str(&sd, add_str("HappyroLoadSafeMap$"), load.safe_map.c_str());
+ pc_setglobalreg(&sd, add_str("HappyroLoadSafeX"), load.safe_x);
+ pc_setglobalreg(&sd, add_str("HappyroLoadSafeY"), load.safe_y);
+ pc_setglobalreg(&sd, add_str("HappyroLoadPending"), load.pending ? 1 : 0);
+ pc_setglobalreg(&sd, add_str("HappyroLoadAttempt"), load.attempt);
+ intif_saveregistry(&sd);
+}
+
+static void happyro_map_load_restore(map_session_data& sd) {
+ auto& load = sd.happyro_map_load;
+ const char* map = pc_readglobalreg_str(&sd, add_str("HappyroLoadSafeMap$"));
+ load.safe_map = map ? map : "";
+ load.safe_x = static_cast<uint16>(pc_readglobalreg(&sd, add_str("HappyroLoadSafeX")));
+ load.safe_y = static_cast<uint16>(pc_readglobalreg(&sd, add_str("HappyroLoadSafeY")));
+ load.restore(pc_readglobalreg(&sd, add_str("HappyroLoadPending")) != 0,
+  static_cast<uint8>(pc_readglobalreg(&sd, add_str("HappyroLoadAttempt"))));
+ // ACCEPT_ENTER may already be in flight; update metadata for its same token.
+ if (load.generation != 0) clif_happyro_map_load_context(sd);
+ happyro_map_load_persist(sd);
+}
+
+static void happyro_map_load_capture(map_session_data& sd) {
+ auto& load = sd.happyro_map_load;
+ if (!load.ready || load.pending || sd.prev == nullptr) return;
+ load.safe_map = mapindex_id2name(sd.mapindex);
+ load.safe_x = sd.x;
+ load.safe_y = sd.y;
+ happyro_map_load_persist(sd);
+}
+
+void pc_happyro_map_load_begin(map_session_data& sd) {
+ if (sd.state.autotrade) return;
+ happyro_map_load_capture(sd);
+ // Tokens are connection-bound; an older generation is invalid immediately.
+ static uint32 next_token = static_cast<uint32>(rnd()) + 1;
+ if (++next_token == 0) ++next_token;
+ sd.happyro_map_load.begin(next_token);
+ happyro_map_load_persist(sd);
+ clif_happyro_map_load_context(sd);
+}
+
+void pc_happyro_map_load_confirm(map_session_data& sd) {
+ if (sd.state.autotrade || !sd.happyro_map_load.ready) return;
+ auto& load = sd.happyro_map_load;
+ load.confirm();
+ load.safe_map = mapindex_id2name(sd.mapindex);
+ load.safe_x = sd.x;
+ load.safe_y = sd.y;
+ happyro_map_load_persist(sd);
+ clif_happyro_map_load_context(sd);
+}
+
+struct HappyroRecoveryPoint { uint16 map; int16 x; int16 y; };
+static bool happyro_recovery_point(const char* name, int16 x, int16 y, HappyroRecoveryPoint& point) {
+ const uint16 index = mapindex_name2id(name);
+ if (!index) return false;
+ const int16 m = map_mapindex2mapid(index);
+ if (m < 0) {
+  uint32 ip; uint16 port;
+  if (map_mapname2ipport(index, &ip, &port) != 0) return false;
+  // The coordinates were confirmed by that map server, or are the fixed Kafra point.
+  point = {index, x, y};
+  return true;
+ }
+ const auto* mapdata = map_getmapdata(m);
+ // Deterministic nearby walkable landing, never a portal cell or random map.
+ for (int16 radius = 0; radius <= 6; ++radius) {
+  for (int16 dx = -radius; dx <= radius; ++dx) {
+   for (int16 dy = -radius; dy <= radius; ++dy) {
+    const int16 px = x + dx, py = y + dy;
+    if (px < 1 || py < 1 || px >= mapdata->xs - 1 || py >= mapdata->ys - 1) continue;
+    if (map_getcell(m, px, py, CELL_CHKNOPASS) || map_getcell(m, px, py, CELL_CHKNPC) || npc_check_areanpc(1, m, px, py, 1)) continue;
+    // CELL_CHKNPC marks touch areas only; ordinary shops and Kafras need an
+    // explicit position check too, so recovery lands beside them, not on them.
+    bool occupied_by_npc = false;
+    for (int32 i = 0; i < mapdata->npc_num; ++i) {
+     const auto* npc = mapdata->npc[i];
+     if (npc && npc->x == px && npc->y == py) { occupied_by_npc = true; break; }
+    }
+    if (occupied_by_npc) continue;
+    point = {index, px, py};
+    return true;
+   }
+  }
+ }
+ return false;
+}
+
+void pc_happyro_map_load_recover(map_session_data& sd, uint32 generation, uint8 action) {
+ auto& load = sd.happyro_map_load;
+ HappyroRecoveryPoint previous{}, target{};
+ const bool has_previous = !load.safe_map.empty() && happyro_recovery_point(load.safe_map.c_str(), load.safe_x, load.safe_y, previous);
+ auto decision = load.request(generation, action, has_previous);
+ if (decision.status == 0 && (!sd.state.active || !sd.state.pc_loaded)) decision.status = 4;
+ if (decision.status != 0) {
+  clif_happyro_map_load_result(sd, generation, decision.status, decision.destination);
+  return;
+ }
+ if (decision.destination == 0) target = previous;
+ else if (!happyro_recovery_point(MAP_PRONTERA, 148, 87, target)) {
+  clif_happyro_map_load_result(sd, generation, 3, 1);
+  return;
+ }
+ const bool local = map_mapindex2mapid(target.map) >= 0;
+ const bool was_spawned = sd.prev != nullptr;
+ load.attempt = decision.attempt;
+ load.pending = false; // Consume the token before any warp or reentrant script.
+ happyro_map_load_persist(sd);
+ clif_happyro_map_load_result(sd, generation, 0, decision.destination);
+ const auto result = pc_setpos(&sd, target.map, target.x, target.y, CLR_TELEPORT);
+ // A successful cross-map-server handoff frees this session; do not access it.
+ if (!local && result == SETPOS_OK) return;
+ if (result != SETPOS_OK) {
+  load.pending = true;
+  happyro_map_load_persist(sd);
+  clif_happyro_map_load_result(sd, generation, 3, decision.destination);
+  return;
+ }
+ // Ordinary pc_setpos queues a rewarp until LoadEndAck for an unspawned player.
+ // A failed client cannot send that ACK, so send its replacement load now.
+ if (!was_spawned) {
+  sd.state.rewarp = 0;
+  clif_changemap(sd, sd.m, sd.x, sd.y);
+ }
+}
+
 enum e_setpos pc_setpos(map_session_data* sd, uint16 mapindex, int32 x, int32 y, clr_type clrtype)
 {
 	nullpo_retr(SETPOS_OK,sd);
@@ -7072,6 +7206,8 @@ enum e_setpos pc_setpos(map_session_data* sd, uint16 mapindex, int32 x, int32 y,
 
 		npc_script_event( *sd, NPCE_LOGOUT );
 
+		happyro_map_load_capture(*sd);
+		pc_happyro_map_load_begin(*sd);
 		//remove from map, THEN change x/y coordinates
 		unit_remove_map_pc(sd,clrtype);
 		sd->mapindex = mapindex;
@@ -7122,6 +7258,7 @@ enum e_setpos pc_setpos(map_session_data* sd, uint16 mapindex, int32 x, int32 y,
 		buyingstore_close(sd);
 	}
 
+	happyro_map_load_capture(*sd);
 	if(sd->prev != nullptr){
 		unit_remove_map_pc(sd,clrtype);
 		clif_changemap( *sd, m, x, y );

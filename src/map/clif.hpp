@@ -59,7 +59,7 @@ enum e_searchstore_failure : uint16;
 
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
-	MAX_PACKET_DB  = 0xD0A,
+	MAX_PACKET_DB  = 0xD0C,
 #if !defined(MAX_PACKET_POS)
 	MAX_PACKET_POS = 20,
 #endif
@@ -881,7 +881,7 @@ uint32 clif_getip(void);
 uint32 clif_refresh_ip(void);
 uint16 clif_getport(void);
 
-void clif_authok( const map_session_data* sd);
+void clif_authok( map_session_data* sd);
 void clif_authrefuse(int32 fd, uint8 error_code);
 void clif_authfail_fd(int32 fd, int32 type);
 void clif_charselectok(int32 id, uint8 ok);
@@ -895,7 +895,7 @@ void clif_character_appearance(map_session_data* subject, const block_list* reci
 int32 clif_spawn(const block_list* bl, bool walking = false);	//area
 void clif_walkok( const map_session_data& sd );
 void clif_move( const unit_data& ud ); //area
-void clif_changemap( const map_session_data& sd, int16 m, uint16 x, uint16 y );
+void clif_changemap( map_session_data& sd, int16 m, uint16 x, uint16 y );
 void clif_changemapserver( const map_session_data& sd, const char* map, uint16 x, uint16 y, uint32 ip, uint16 port );
 void clif_blown( const block_list* bl ); // area
 void clif_slide( const block_list& bl, int32 x, int32 y ); // area
@@ -960,6 +960,9 @@ void clif_callpartner( const map_session_data& sd );
 void clif_playBGM( const map_session_data& sd, const char* name );
 void clif_soundeffect( const block_list& bl, const char* name, int32 type, enum send_target target );
 void clif_parse_ActionRequest_sub( map_session_data& sd, uint8 action_type, int32 target_id, t_tick tick );
+void clif_happyro_map_load_context(const map_session_data& sd);
+void clif_happyro_map_load_result(const map_session_data& sd, uint32 generation, uint8 status, uint8 destination);
+void clif_parse_happyro_map_load_recover(int32 fd, map_session_data* sd);
 void clif_parse_LoadEndAck( int32 fd,map_session_data* sd );
 void clif_hotkeys_send( const map_session_data* sd, int32 tab );
 

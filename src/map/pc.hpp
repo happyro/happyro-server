@@ -14,6 +14,7 @@
 #include <common/strlib.hpp>// StringBuf
 #include <common/timer.hpp>
 
+#include "happyro_map_load_recovery.hpp"
 #include "battleground.hpp"
 #include "buyingstore.hpp" // struct s_buyingstore
 #include "clif.hpp" //e_wip_block
@@ -380,6 +381,7 @@ struct s_qi_display {
 
 class map_session_data : public block_list {
 public:
+	HappyroMapLoadRecovery happyro_map_load;
 	t_tick happyro_friend_details_tick = 0;
 	struct unit_data ud;
 	struct view_data vd;
@@ -1435,6 +1437,10 @@ enum e_setpos{
 	SETPOS_NO_MAPSERVER = 2,
 	SETPOS_AUTOTRADE = 3
 };
+
+void pc_happyro_map_load_begin(map_session_data& sd);
+void pc_happyro_map_load_confirm(map_session_data& sd);
+void pc_happyro_map_load_recover(map_session_data& sd, uint32 generation, uint8 action);
 
 enum e_setpos pc_setpos(map_session_data* sd, uint16 mapindex, int32 x, int32 y, clr_type clrtype);
 enum e_setpos pc_setpos_savepoint( map_session_data& sd, clr_type clrtype = CLR_TELEPORT );
