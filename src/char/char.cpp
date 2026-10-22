@@ -3,6 +3,8 @@
 
 #pragma warning(disable:4800)
 #include "char.hpp"
+#include "new_player_start.hpp"
+#include <cstdlib>
 #include "admin_delete.hpp"
 
 #include <cstdarg>
@@ -3066,12 +3068,10 @@ bool char_config_read(const char* cfgName, bool normal){
 				charserv_config.autosave_interval = DEFAULT_AUTOSAVE_INTERVAL;
 		} else if (strcmpi(w1, "save_log") == 0) {
 			charserv_config.save_log = config_switch(w2);
-#ifdef RENEWAL
-		} else if (strcmpi(w1, "start_point") == 0) {
-#else
+#ifndef RENEWAL
 		} else if (strcmpi(w1, "start_point_pre") == 0) {
-#endif
 			char_config_split_startpoint(w1, w2, charserv_config.start_point, &charserv_config.start_point_count);
+#endif
 #if PACKETVER >= 20151001
 		} else if (strcmpi(w1, "start_point_doram") == 0) {
 			char_config_split_startpoint(w1, w2, charserv_config.start_point_doram, &charserv_config.start_point_count_doram);
@@ -3256,6 +3256,18 @@ bool CharacterServer::initialize( int32 argc, char *argv[] ){
 
 	char_set_defaults();
 	char_config_read(CHAR_CONF_NAME, true);
+#ifdef RENEWAL
+	const auto new_player_start = happyro_new_player_start(std::getenv("HAPPYRO_NEW_PLAYER_START"));
+	if (!new_player_start) {
+		ShowError("HAPPYRO_NEW_PLAYER_START must be ship or classic.\n");
+		return false;
+	}
+	charserv_config.start_point_count = 1;
+	safestrncpy(charserv_config.start_point[0].map, new_player_start->map, sizeof(charserv_config.start_point[0].map));
+	charserv_config.start_point[0].x = new_player_start->x;
+	charserv_config.start_point[0].y = new_player_start->y;
+	ShowInfo("New human characters: %s (%s,%u,%u).\n", new_player_start->mode, new_player_start->map, new_player_start->x, new_player_start->y);
+#endif
 	char_config_adjust();
 	char_lan_config_read(LAN_CONF_NAME);
 	char_set_default_sql();

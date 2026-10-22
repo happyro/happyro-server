@@ -93,6 +93,14 @@ int32 Sql_Connect(Sql* self, const char* user, const char* passwd, const char* h
 	}
 #endif
 
+	// Re-applied by the client library after reconnect as well as initial connect.
+	// DATETIME written with NOW()/CURRENT_TIMESTAMP has a stable UTC meaning.
+	if( mysql_options(&self->handle, MYSQL_INIT_COMMAND, "SET time_zone = '+00:00'") != 0 )
+	{
+		ShowSQL("Failed to configure UTC database session: %s\n", mysql_error(&self->handle));
+		return SQL_ERROR;
+	}
+
 	if( !mysql_real_connect(&self->handle, host, user, passwd, db, (uint32)port, nullptr/*unix_socket*/, 0/*clientflag*/) )
 	{
 		ShowSQL("%s\n", mysql_error(&self->handle));

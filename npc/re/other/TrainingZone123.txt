@@ -11,18 +11,10 @@ tra_fild01,204,110,2	script	训练场仓库士兵#fild01_1	8W_SOLDIER,{
 	mes "[训练场仓库士兵]";
 	mes "要使用仓库吗？训练场仓库需要1000 Zeny。请选择要使用的仓库。";
 	next;
-	// switch( select( "¢º Storage 1", "¢º Storage 2", "¢º Storage 3", "¢º Guild Storage", "¢º Cancel" ) ) {
-	switch( select( "仓库1", "", "", "公会仓库", "取消" ) ) {
+	switch( select( "个人仓库", "公会仓库", "取消" ) ) {
 	case 1:
-		.@storage_num = 1;
 		break;
 	case 2:
-		.@storage_num = 2;
-		break;
-	case 3:
-		.@storage_num = 3;
-		break;
-	case 4:
 		// copied from npc/re/merchants/guild_warehouse.txt
 		.@guildid = getcharid( 2 );
 
@@ -64,10 +56,9 @@ tra_fild01,204,110,2	script	训练场仓库士兵#fild01_1	8W_SOLDIER,{
 			mes "过一会儿再试。";
 			close;
 		}
-	case 5:
+	case 3:
 		end;
 	}
-	// TODO (custom text)
 	if (!callfunc("F_CanOpenStorage")) {
 		mes "[训练场仓库士兵]";
 		mes "抱歉，你需要将初心者的基本技能提升到6级，才能使用仓库服务。";
@@ -82,7 +73,8 @@ tra_fild01,204,110,2	script	训练场仓库士兵#fild01_1	8W_SOLDIER,{
 		close;
 	}
 	Zeny -= 1000;
-	openstorage; // TODO: open correct storage 1-3
+	close2;
+	openstorage;
 	end;
 }
 tra_fild01,15,110,6	duplicate(训练场仓库士兵#fild01_1)	训练场仓库士兵#fild01_2	8W_SOLDIER

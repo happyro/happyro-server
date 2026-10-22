@@ -413,7 +413,9 @@ int32 login_mmo_auth(struct login_session_data* sd, bool isServer) {
 	sd->group_id = acc.group_id;
 
 	// update account data
-	timestamp2string(acc.lastlogin, sizeof(acc.lastlogin), time(nullptr), "%Y-%m-%d %H:%M:%S");
+	// Persist UTC independently of the host/game calendar timezone.
+	const time_t login_time = time(nullptr);
+	strftime(acc.lastlogin, sizeof(acc.lastlogin), "%Y-%m-%d %H:%M:%S", gmtime(&login_time));
 	safestrncpy(acc.last_ip, ip, sizeof(acc.last_ip));
 	acc.unban_time = 0;
 	acc.logincount++;
