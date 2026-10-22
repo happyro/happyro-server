@@ -806,6 +806,7 @@ extern int32 battle_config_read(const char *cfgName);
 extern void battle_set_defaults(void);
 int32 battle_set_value(const char* w1, const char* w2);
 int32 battle_get_value(const char* w1);
+const char* battle_environment_override(const char* key);
 
 //
 block_list* battle_getenemyarea(block_list *src, int32 x, int32 y, int32 range, int32 type, int32 ignore_id);

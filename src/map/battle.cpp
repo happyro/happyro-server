@@ -3,6 +3,8 @@
 
 #include "battle.hpp"
 
+#include <cerrno>
+#include <cstring>
 #include <cmath>
 #include <cstdlib>
 
@@ -8560,7 +8562,7 @@ static const struct _battle_data {
 	{ "pet_hair_style",                     &battle_config.pet_hair_style,                  100,    0,      INT_MAX,        },
 	{ "castrate_dex_scale",                 &battle_config.castrate_dex_scale,              150,    1,      INT_MAX,        },
 	{ "vcast_stat_scale",                   &battle_config.vcast_stat_scale,                530,    1,      INT_MAX,        },
-	{ "area_size",                          &battle_config.area_size,                       14,     0,      INT_MAX,        },
+	{ "area_size",                          &battle_config.area_size,                       18,     0,      INT_MAX,        },
 	{ "zeny_from_mobs",                     &battle_config.zeny_from_mobs,                  0,      0,      1,              },
 	{ "mobs_level_up",                      &battle_config.mobs_level_up,                   0,      0,      1,              },
 	{ "mobs_level_up_exp_rate",             &battle_config.mobs_level_up_exp_rate,          1,      1,      INT_MAX,        },
@@ -9162,6 +9164,59 @@ void battle_adjust_conf()
 #endif
 }
 
+// Deployment overrides are applied once, after all battle configuration imports.
+static const struct {
+	const char* name;
+	const char* key;
+	int32* value;
+	long minimum;
+	long maximum;
+} battle_environment_settings[] = {
+	{ "HAPPYRO_AREA_SIZE", "area_size", &battle_config.area_size, 5, 50 },
+	{ "HAPPYRO_MAX_WALK_PATH", "max_walk_path", &battle_config.max_walk_path, 1, MAX_WALKPATH },
+	{ "HAPPYRO_NAVIGATION_TELEPORT_POLICY", "navigation_teleport_policy", &battle_config.navigation_teleport_policy, 0, 2 },
+	{ "HAPPYRO_NAVIGATION_TELEPORT_CROSS_MAP", "navigation_teleport_cross_map", &battle_config.navigation_teleport_cross_map, 0, 1 },
+	{ "HAPPYRO_NAVIGATION_TELEPORT_COOLDOWN", "navigation_teleport_cooldown", &battle_config.navigation_teleport_cooldown, 0, 3600 },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_POLICY", "game_tools_monster_spawn_policy", &battle_config.game_tools_monster_spawn_policy, 0, 2 },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_COOLDOWN", "game_tools_monster_spawn_cooldown", &battle_config.game_tools_monster_spawn_cooldown, 0, 3600 },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_DURATION", "game_tools_monster_spawn_duration", &battle_config.game_tools_monster_spawn_duration, 1, 3600 },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_ALLOW_BOSS", "game_tools_monster_spawn_allow_boss", &battle_config.game_tools_monster_spawn_allow_boss, 0, 1 },
+	{ "HAPPYRO_GAME_TOOLS_CHARACTER_MAINTENANCE_POLICY", "game_tools_character_maintenance_policy", &battle_config.game_tools_character_maintenance_policy, 1, 2 },
+	{ "HAPPYRO_GAME_TOOLS_GAME_SETTINGS_POLICY", "game_tools_game_settings_policy", &battle_config.game_tools_game_settings_policy, 1, 2 },
+	{ "HAPPYRO_GAME_TOOLS_ITEM_GRANT_POLICY", "game_tools_item_grant_policy", &battle_config.game_tools_item_grant_policy, 1, 2 },
+};
+
+const char* battle_environment_override(const char* key)
+{
+	for (const auto& setting : battle_environment_settings) {
+		const char* raw = std::getenv(setting.name);
+		if (std::strcmp(setting.key, key) == 0 && raw != nullptr && *raw != '\0')
+			return setting.name;
+	}
+	return nullptr;
+}
+
+static void battle_apply_environment()
+{
+	for (const auto& setting : battle_environment_settings) {
+		const char* raw = std::getenv(setting.name);
+		if (raw == nullptr || *raw == '\0')
+			continue;
+		errno = 0;
+		char* end = nullptr;
+		const long value = std::strtol(raw, &end, 10);
+		if (errno == ERANGE || *end != '\0' ||
+			std::strspn(raw, "0123456789") != std::strlen(raw) ||
+			value < setting.minimum || value > setting.maximum) {
+			ShowError("%s must be a decimal integer in [%ld, %ld].\n",
+				setting.name, setting.minimum, setting.maximum);
+			std::exit(EXIT_FAILURE);
+		}
+		*setting.value = static_cast<int32>(value);
+		ShowInfo("Environment override: %s=%ld\n", setting.name, value);
+	}
+}
+
 /*=====================================
  * Read battle.conf settings from file
  *-------------------------------------*/
@@ -9215,8 +9270,10 @@ int32 battle_config_read(const char* cfgName)
 
 	count--;
 
-	if (count == 0)
+	if (count == 0) {
+		battle_apply_environment();
 		battle_adjust_conf();
+	}
 
 	return 0;
 }

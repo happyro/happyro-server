@@ -264,9 +264,13 @@ void reset_job_change_levels(map_session_data* sd) {
 CommandResult process_battle_config_command(const std::string& command_type, const nlohmann::json& body) {
 	if (command_type == "battle_config.read") {
 		nlohmann::json values = nlohmann::json::object();
-		for (const auto& definition : game_control_settings)
+		nlohmann::json overrides = nlohmann::json::object();
+		for (const auto& definition : game_control_settings) {
 			values[definition.key] = battle_get_value(definition.key);
-		return {200, nlohmann::json{{"data", {{"result", {{"values", values}, {"instance_id", settings_state.instance()}, {"revision", settings_state.revision()}, {"last_command_id", settings_state.last_command()}, {"last_status", settings_state.last_status()}}}}}}};
+			if (const char* name = battle_environment_override(definition.key))
+				overrides[definition.key] = name;
+		}
+		return {200, nlohmann::json{{"data", {{"result", {{"values", values}, {"environment_overrides", overrides}, {"instance_id", settings_state.instance()}, {"revision", settings_state.revision()}, {"last_command_id", settings_state.last_command()}, {"last_status", settings_state.last_status()}}}}}}};
 	}
 
 	const auto& payload = body["payload"];
@@ -292,6 +296,12 @@ CommandResult process_battle_config_command(const std::string& command_type, con
 	}
 	if (!valid)
 		return {400, {{"error", {{"code", "invalid_parameter"}}}}};
+
+	// Reject the whole batch before mutating any setting.
+	for (const auto& key : keys) {
+		if (const char* name = battle_environment_override(key.c_str()))
+			return {409, {{"error", {{"code", "configuration_conflict"}, {"message", std::string("Setting is controlled by environment: ") + name}}}}};
+	}
 
 	nlohmann::json applied = nlohmann::json::array();
 	std::vector<std::pair<std::string, int32>> previous_values;
