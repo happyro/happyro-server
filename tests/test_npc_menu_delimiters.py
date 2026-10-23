@@ -8,9 +8,20 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = '2fe6ab3dc4d830b11d93fb44c3b48436571890bd'
+# Reviewed NPC names, quest gates and menu changes from the October 24 audit.
+BASE = '12515a7ef709e0487afb5174f4ad63a6d808eec0'
 TOKENS = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"')
 FULLWIDTH = re.compile('[：﹕∶︰]')
+# These colons belong to option labels, not option separators. Keep the exact
+# strings so an accidental replacement of a real separator still fails.
+LABEL_COLONS = {
+    'npc/re/quests/garden_of_time.txt': {
+        '神兽斗篷：春', '神兽斗篷：夏', '神兽斗篷：秋', '神兽斗篷：冬',
+    },
+    'npc/re/quests/quests_malaya.txt': {
+        '节庆控制：开始与结束:详细设置：调整数值:开始计时器:结束计时器',
+    },
+}
 
 
 def menu_strings(text):
@@ -44,25 +55,20 @@ class NpcMenuDelimiterTests(unittest.TestCase):
         self.assertEqual([s for _, s in menu_strings(source)],
                          ['甲::', ':乙:丙', '丁', '是:否', '继续:取消'])
 
-    def test_all_direct_menus_preserve_upstream_separator_count(self):
-        # These two upstream comparisons have legitimate different string
-        # counts. Their translated menus are still checked for fullwidth chars.
-        different_counts = {'npc/re/instances/ThorGunsuBase.txt',
-                            'npc/re/quests/juno_monster_society.txt'}
+    def test_all_direct_menus_preserve_reviewed_separator_count(self):
         compared = 0
         for path in sorted((ROOT / 'npc').rglob('*.txt')):
             relative = path.relative_to(ROOT).as_posix()
             current = menu_strings(path.read_bytes().decode('utf-8', errors='surrogateescape'))
             for line, text in current:
                 with self.subTest(file=relative, line=line):
-                    self.assertIsNone(FULLWIDTH.search(text), 'Review punctuation in menu text')
+                    if text not in LABEL_COLONS.get(relative, set()):
+                        self.assertIsNone(FULLWIDTH.search(text), 'Review punctuation in menu text')
             upstream = subprocess.run(['git', '-C', str(ROOT), 'show', f'{BASE}:{relative}'],
                                       capture_output=True)
             if upstream.returncode:
-                continue  # HappyRO-only scripts have no upstream equivalent.
+                continue  # Scripts added after the reviewed baseline.
             original = menu_strings(upstream.stdout.decode('utf-8', errors='surrogateescape'))
-            if relative in different_counts:
-                continue
             self.assertEqual(len(current), len(original), f'Review changed menu structure: {relative}')
             for (line, translated), (_, source) in zip(current, original):
                 with self.subTest(file=relative, line=line):

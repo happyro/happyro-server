@@ -50,6 +50,7 @@ int main(){
  tree(MAPID_KNIGHT,{KN_RIDING});tree(MAPID_LORD_KNIGHT,{KN_RIDING});tree(MAPID_RUNE_KNIGHT,{RK_DRAGONTRAINING,KN_RIDING});tree(MAPID_ROYAL_GUARD,{KN_RIDING});
  tree(MAPID_HUNTER,{HT_FALCON});tree(MAPID_WINDHAWK,{WH_HAWK_M,HT_FALCON,RA_WUGMASTERY,RA_WUGRIDER});tree(MAPID_RANGER,{RA_WUGMASTERY,RA_WUGRIDER,HT_FALCON});
  tree(MAPID_MERCHANT,{MC_PUSHCART});tree(MAPID_MECHANIC,{MC_PUSHCART});
+ for(int job:{MAPID_SUPER_NOVICE,MAPID_SUPER_BABY,MAPID_SUPER_NOVICE_E,MAPID_SUPER_BABY_E,MAPID_HYPER_NOVICE})tree(job,{MC_PUSHCART});
  // Old or GM-granted skills do not grant the new class a mount or follower.
  for(int option:{OPTION_RIDING,OPTION_DRAGON1,OPTION_DRAGON5,OPTION_FALCON,OPTION_WUG,OPTION_WUGRIDER,OPTION_MADOGEAR}){
   auto p=player(MAPID_ACOLYTE,option|OPTION_INVISIBLE,{KN_RIDING,RK_DRAGONTRAINING,HT_FALCON,RA_WUGMASTERY,RA_WUGRIDER,MC_PUSHCART,AM_CALLHOMUN});p.sc.cart=true;p.hd=true;p.sc.mado=true;
@@ -63,6 +64,11 @@ int main(){
  auto hawk=player(MAPID_WINDHAWK,OPTION_FALCON,{WH_HAWK_M});cleanup(&hawk);assert(hawk.sc.option==OPTION_FALCON);
  auto missing=player(MAPID_WINDHAWK,OPTION_FALCON,{HT_FALCON});cleanup(&missing);assert(!missing.sc.option);
  auto cart=player(MAPID_MECHANIC,OPTION_MADOGEAR,{MC_PUSHCART});cart.sc.cart=true;cart.sc.mado=true;cleanup(&cart);assert(cart.sc.cart&&!cart.sc.mado&&cart.cart_items==4);
+ // Super novices also learn Push Cart; advancement must retain a valid cart.
+ for(int job:{MAPID_SUPER_NOVICE,MAPID_SUPER_BABY,MAPID_SUPER_NOVICE_E,MAPID_SUPER_BABY_E,MAPID_HYPER_NOVICE}){
+  auto p=player(job,0,{MC_PUSHCART});p.sc.cart=true;cleanup(&p);assert(p.sc.cart&&p.cart_items==4);
+  auto missing=player(job,0,{});missing.sc.cart=true;cleanup(&missing);assert(!missing.sc.cart&&missing.cart_items==4);
+ }
  // Dismount notifications must survive removal of the prerequisite skill.
  for(int option:{OPTION_RIDING,OPTION_DRAGON1,OPTION_DRAGON5,OPTION_FALCON,OPTION_WUGRIDER}){
   auto p=player(MAPID_ACOLYTE,option,{});cleanup(&p);assert(!p.sc.option);

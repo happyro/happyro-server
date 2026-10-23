@@ -11193,7 +11193,8 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 		i &= ~OPTION_WUG;
 	// Keep the existing rule: job changes always leave the Mado Gear.
 	i &= ~OPTION_MADOGEAR;
-	const bool keep_cart = (sd->class_ & MAPID_FIRSTMASK) == MAPID_MERCHANT && has_job_skill(MC_PUSHCART);
+	// Super novice classes also learn Push Cart, including inherited trees.
+	const bool keep_cart = has_job_skill(MC_PUSHCART);
 #ifndef NEW_CARTS
 	if (!keep_cart)
 		i &= ~OPTION_CART;

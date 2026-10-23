@@ -144,7 +144,7 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		end;
 	}
 	mes "[反叛军]";
-	mes "你带来损坏的武器了吗？想见那个科学罪犯吗？他就在里面。要我叫他出来吗？";
+	mes "你带来武器残骸了吗？想见那个科学罪犯吗？他就在里面。要我叫他出来吗？";
 	mes "还是你有事找我？我可以交换武器改造装置和防具改造模块。";
 	cloakoffnpcself( "埃尔尤米娜#rm171_4" );
 	npctalk "反叛军：嘿，罪犯。有人找你。", "Rebellion#rm171_7", bc_self;
@@ -181,10 +181,10 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		mes "我可以随机给你" + mesitemlink( .@ids[0] ) + "、";
 		mes mesitemlink( .@ids[1] ) + "、";
 		mes "或" + mesitemlink( .@ids[2] ) + "。";
-		mes "你有哪一种材料，5 个科尔核心还是 1,000,000 Zeny？";
+		mes "你有哪一种材料，5 个核心元件还是 1,000,000 Zeny？";
 		next;
 		disable_items;
-		.@payment = select("5 个科尔核心", "1,000,000 Zeny");
+		.@payment = select("5 个核心元件", "1,000,000 Zeny");
 		switch (.@payment) {
 		case 1:
 			if (checkweight(1201,3) == 0) {
@@ -194,7 +194,7 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 			}
 			if (countitem(25723) < 5) {
 				mes "[反叛军]";
-				mes "科尔核心不足。请重新检查背包。";
+				mes "核心元件不足。请重新检查背包。";
 				close;
 			}
 			break;
@@ -243,7 +243,7 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		disable_items;
 		if (countitem(25669) < 30 || countitem(25723) < 5) {
 			mes "[反叛军]";
-			mes "每个模块需要 30 个神秘组件和 5 个科尔核心。你没有带齐，请检查。";
+			mes "每个模块需要 30 个神秘零件和 5 个核心元件。你没有带齐，请检查。";
 			close;
 		}
 		if (checkweight(1201,3) == 0) {
@@ -277,7 +277,7 @@ sp_cor,111,130,3	script	埃尔尤米娜#rm171_4	4_EP17_ELYUMINA,{
 	if (isbegin_quest(16360) < 2) {
 		cutin "ep171_elyumina02",0;
 		mes "[埃尔尤米娜]";
-		mes "啊！我正要专心研究，你为什么一直叫我？我很忙，好吗？无聊的话就去带更多损坏的武器来！";
+		mes "啊！我正要专心研究，你为什么一直叫我？我很忙，好吗？无聊的话就去带更多武器残骸来！";
 		close2;
 		cloakonnpcself( "埃尔尤米娜#rm171_4" );
 		cutin "",255;
@@ -331,7 +331,7 @@ sp_cor,111,130,3	script	埃尔尤米娜#rm171_4	4_EP17_ELYUMINA,{
 		if (countitem(25668) < 1 || countitem(25669) < 50) {
 			cutin "ep171_elyumina03",0;
 			mes "[埃尔尤米娜]";
-			mes "我说过，带来 1 件损坏的武器和 50 个神秘组件。别人说话时要听。";
+			mes "我说过，带来 1 件武器残骸和 50 个神秘零件。别人说话时要听。";
 			close3;
 		}
 		if (checkweight(28136,2) == 0) {
@@ -343,7 +343,7 @@ sp_cor,111,130,3	script	埃尔尤米娜#rm171_4	4_EP17_ELYUMINA,{
 		}
 		cutin "ep171_elyumina04",0;
 		mes "[埃尔尤米娜]";
-		mes "好了。想要另一个就带更多损坏的武器和神秘组件来。";
+		mes "好了。想要另一个就带更多武器残骸和神秘零件来。";
 		mes "都是因为你，我才被关在这里修玩具。你能处理好吧？";
 		delitem 25668,1;	// EP17_1_EVT01
 		delitem 25669,50;	// EP17_1_EVT02
@@ -384,7 +384,7 @@ sp_cor,111,130,3	script	埃尔尤米娜#rm171_4	4_EP17_ELYUMINA,{
 		.@id = .@item[ select( getitemname(.@item[0]), getitemname(.@item[1]) ) -1 ];
 		cutin "ep171_elyumina04",0;
 		mes "[埃尔尤米娜]";
-		mes "好，是" + getitemname(.@id) + "，对吧？真的要用它交换 50 个科尔核心吗？";
+		mes "好，是" + getitemname(.@id) + "，对吧？真的要用它交换 50 个核心元件吗？";
 		next;
 		cutin "",255;
 		if (select( "交换。", "不交换。" ) == 2) {
@@ -397,7 +397,7 @@ sp_cor,111,130,3	script	埃尔尤米娜#rm171_4	4_EP17_ELYUMINA,{
 		if (countitem(25723) < 50) {
 			cutin "ep171_elyumina02",0;
 			mes "[埃尔尤米娜]";
-			mes "嘿，你在开玩笑吗？你的科尔核心不够！我可是好心帮忙！";
+			mes "嘿，你在开玩笑吗？你的核心元件不够！我可是好心帮忙！";
 			enable_items;
 			close3;
 		}

@@ -149,7 +149,7 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 		mes "欢迎，机甲神匠。";
 		mes "要租手推车，还是骑魔导机甲？";
 		next;
-		switch(select("租手推车:骑魔导机甲:购买紧急魔导机甲:升级冷却装置:取消")) {
+		switch(select("租手推车:骑魔导机甲:购买应急用魔导机甲(机甲兵):升级冷却装置:取消")) {
 		case 1:
 			if (checkcart()) {
 				mes "[魔导机甲装甲师]";
@@ -182,7 +182,7 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 			close;
 		case 3:
 			mes "[魔导机甲装甲师]";
-			mes "紧急魔导机甲在紧急情况下非常有用，售价 1,000,000 Zeny。";
+			mes "应急用魔导机甲(机甲兵)在紧急情况下非常有用，售价 1,000,000 Zeny。";
 			next;
 			if (select("购买:取消") == 2) {
 				mes "[魔导机甲装甲师]";
@@ -191,12 +191,12 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 			}
 			if (countitem(23277) > 0) {
 				mes "[魔导机甲装甲师]";
-				mes "抱歉，你已经有紧急魔导机甲了。";
+				mes "抱歉，你已经有应急用魔导机甲(机甲兵)了。";
 				close;
 			}
 			if (Zeny < 1000000) {
 				mes "[魔导机甲装甲师]";
-				mes "抱歉，你没有足够的 Zeny 购买紧急魔导机甲。";
+				mes "抱歉，你没有足够的 Zeny 购买应急用魔导机甲(机甲兵)。";
 				close;
 			}
 			Zeny -= 1000000;
@@ -210,13 +210,13 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 			next;
 			if (select("冷却装置:高级冷却器") == 1) {
 				mes "[魔导机甲装甲师]";
-				mes "将冷却装置升级为高级冷却器需要 1 个冷却装置和 2,000,000 Zeny。";
+				mes "将冷却装置升级为高级冷却装置需要 1 个冷却装置和 2,000,000 Zeny。";
 				next;
 				.@itemid = 2804;
 				.@cost = 2000000;
 			} else {
 				mes "[魔导机甲装甲师]";
-				mes "将高级冷却器升级为特制冷却器需要 1 个高级冷却器和 4,000,000 Zeny。";
+				mes "将高级冷却装置升级为特殊冷却装置需要 1 个高级冷却装置和 4,000,000 Zeny。";
 				next;
 				.@itemid = 2809;
 				.@cost = 4000000;

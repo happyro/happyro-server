@@ -114,10 +114,10 @@ function	script	F_Invest_Status	{
 //callfunc "F_Invest_Abyss","<variable>","<NPC name>"{,"<addon message>"};
 function	script	F_Invest_Abyss	{
 	.@npc_name$ = getarg(1);
-	mes "投资有两种方式：使用 Zeny，或使用猫手商会发放的猫咪投资证书。";
+	mes "投资有两种方式：使用 Zeny，或使用猫手商会发放的猫咪手商队投资证明。";
 	mes "你想用哪种方式投资？";
 	next;
-	switch(select("使用 Zeny 投资。:使用猫咪投资证书投资。:取消")) {
+	switch(select("使用 Zeny 投资。:使用猫咪手商队投资证明投资。:取消")) {
 	case 1:
 		mes .@npc_name$;
 		mes "你决定使用 Zeny 投资。";
@@ -172,10 +172,10 @@ function	script	F_Invest_Abyss	{
 		close;
 	case 2:
 		mes .@npc_name$;
-		mes "哇，你带来了猫咪投资证书。";
+		mes "哇，你带来了猫咪手商队投资证明。";
 		mes "要提交多少张凭证？";
 		next;
-		switch(select("1张猫咪投资证书:5张猫咪投资证书:其他数量:取消")) {
+		switch(select("1张猫咪手商队投资证明:5张猫咪手商队投资证明:其他数量:取消")) {
 		case 1:
 			set .@tickets,1;
 			break;
@@ -184,7 +184,7 @@ function	script	F_Invest_Abyss	{
 			break;
 		case 3:
 			mes .@npc_name$;
-			mes "请输入想提交的猫咪投资证书数量。";
+			mes "请输入想提交的猫咪手商队投资证明数量。";
 			mes "请选择1到20之间的数量。";
 			mes "输入0取消。";
 			next;
@@ -207,12 +207,12 @@ function	script	F_Invest_Abyss	{
 		}
 		if (countitem(6489) < .@tickets) {
 			mes .@npc_name$;
-			mes "你的猫咪投资证书似乎少于想提交的数量。";
+			mes "你的猫咪手商队投资证明似乎少于想提交的数量。";
 			close;
 		}
 		set .@units, .@tickets * 10;
 		mes .@npc_name$;
-		mes .@tickets+"张猫咪投资证书相当于"+.@units+"单位投资（"+((.@units < 100)?.@units:insertchar(""+.@units,",",1))+"0,000z）"+getarg(2,"")+"。";
+		mes .@tickets+"张猫咪手商队投资证明相当于"+.@units+"单位投资（"+((.@units < 100)?.@units:insertchar(""+.@units,",",1))+"0,000z）"+getarg(2,"")+"。";
 		mes "礼物不多，但请收下。可以在绵绵岛兑换物品。";
 		delitem 6489,.@tickets; //Cats_Invest_Certif
 		setd getarg(0), getd(getarg(0)) + .@units;
@@ -1265,7 +1265,7 @@ malangdo,218,126,4	script	猫爪商人公告	857,{
 		mes "猫爪商人的顾客们，大家好！在大家的支持下，猫爪商人每天都在成长。全体管理人员和员工承诺会继续努力拓展事业、推动发展。";
 		next;
 		mes "- 活动公告！-";
-		mes "‘^C379CE用闲置物品换奖品！^000000’活动正在进行，可以用仓库里的闲置物品兑换猫咪投资证书。";
+		mes "‘^C379CE用闲置物品换奖品！^000000’活动正在进行，可以用仓库里的闲置物品兑换猫咪手商队投资证明。";
 		next;
 		mes "可兑换物品会在单独的清单中公布。感谢你的时间。";
 		mes "- 猫爪商人全体员工敬上 -";
@@ -1312,7 +1312,7 @@ malangdo,218,126,4	script	猫爪商人公告	857,{
 				case 21: set .@str$,"2 个盲者的愚行"; break;
 			}
 			mes "["+.@event1$[.@i-1]+"]";
-			mes .@str$+"可兑换一张猫咪投资证书。";
+			mes .@str$+"可兑换一张猫咪手商队投资证明。";
 			next;
 		}
 	case 3:
@@ -1349,7 +1349,7 @@ malangdo,218,123,1	script	纳米斯#invest	545,4,4,{
 		mes "我们猫爪商人为你这样的忠诚员工策划了活动。";
 		next;
 		mes "[纳米斯]";
-		mes "去仓库把腐朽的古董带回来，我们会用它们交换珍贵的‘猫咪投资证书’。";
+		mes "去仓库把腐朽的古董带回来，我们会用它们交换珍贵的‘猫咪手商队投资证明’。";
 		next;
 		mes "[纳米斯]";
 		mes "这么做对你很明智，因为猫爪商人是在亏本进行这项活动！";
@@ -1427,7 +1427,7 @@ L_Check:
 	if (countitem(getarg(1)) < getarg(2) || .@items == 1) {
 		mes "[纳米斯]";
 		mes "没有物品吗？";
-		mes getarg(0)+"可兑换一张猫咪投资证书。";
+		mes getarg(0)+"可兑换一张猫咪手商队投资证明。";
 		next;
 		mes "[纳米斯]";
 		mes "别来烦我，去看那边公告板上的详情！";
@@ -1471,7 +1471,7 @@ malangdo,215,119,4	script	感谢券兑换机	564,{
 	}
 	mes "[贩卖机公告]";
 	mes "^6815EA1. 请不要踢机器。@_@";
-	mes "2. 只能投入感谢投资券。";
+	mes "2. 只能投入投资感谢券。";
 	mes "3. 关于果冻箱，打开后会获得随机物品。";
 	mes "4. 祝你开心~^000000";
 	mes "- 猫先生，机器所有者 -";
@@ -1482,7 +1482,7 @@ malangdo,215,119,4	script	感谢券兑换机	564,{
 	case 2:
 		mes "贩卖机出售以下列表中的物品。";
 		next;
-		switch(select("结束:1 个攻城箭袋 A（2 张券）:1 个攻城箭袋 S（2 张券）:30 个白色药水（12 张券）:30 个浓缩白色药水（14 张券）:10 个诅咒之水（20 张券）:20 个城战用紫色药水（30 张券）:10 个防寒药水（30 张券）:10 个防雷药水（30 张券）:10 个防土药水（30 张券）:10 个防火药水（30 张券）:10 个元素转换器【火】（30 张券）:10 个元素转换器【水】（30 张券）:10 个元素转换器【风】（30 张券）:10 个元素转换器【地】（30 张券）")) {
+		switch(select("结束:1 个攻城箭袋 A（2 张券）:1 个攻城箭袋 S（2 张券）:30 个白色药水（12 张券）:30 个浓缩白色药水（14 张券）:10 个暗水（20 张券）:20 个城战紫色药水（30 张券）:10 个水属性抵抗药水（30 张券）:10 个风属性抵抗药水（30 张券）:10 个地属性抵抗药水（30 张券）:10 个火属性抵抗药水（30 张券）:10 个元素转换器【火】（30 张券）:10 个元素转换器【水】（30 张券）:10 个元素转换器【风】（30 张券）:10 个元素转换器【地】（30 张券）")) {
 			case 1: close;
 			case 2: callsub L_Purchase,2,12678,1; //Siege_Arrow_Quiver_A
 			case 3: callsub L_Purchase,2,12677,1; //Siege_Arrow_Quiver_S
@@ -1501,10 +1501,10 @@ malangdo,215,119,4	script	感谢券兑换机	564,{
 		}
 		end;
 	case 3:
-		mes "已选择红爪果冻袋按钮。需要投入 5 张^FF0000感谢投资券^000000，随机物品就会出现。";
+		mes "已选择红爪果冻袋按钮。需要投入 5 张^FF0000投资感谢券^000000，随机物品就会出现。";
 		next;
 		if (countitem(6488) < 5) {
-			mes "你没有足够的^FF0000感谢投资券^000000，无法继续。";
+			mes "你没有足够的^FF0000投资感谢券^000000，无法继续。";
 			close;
 		}
 		delitem 6488,5; //Thanks_Invest_Ticket
@@ -1570,10 +1570,10 @@ malangdo,215,119,4	script	感谢券兑换机	564,{
 		else callsub L_Bag,12016,10; //Speed_Up_Potion
 		end;
 	case 4:
-		mes "已选择黑爪果冻袋按钮。需要投入 50 张^FF0000感谢投资券^000000，随机物品就会出现。";
+		mes "已选择黑爪果冻袋按钮。需要投入 50 张^FF0000投资感谢券^000000，随机物品就会出现。";
 		next;
 		if (countitem(6488) < 50) {
-			mes "你没有足够的^FF0000感谢投资券^000000，无法继续。";
+			mes "你没有足够的^FF0000投资感谢券^000000，无法继续。";
 			close;
 		}
 		delitem 6488,50; //Thanks_Invest_Ticket
@@ -1652,7 +1652,7 @@ malangdo,215,119,4	script	感谢券兑换机	564,{
 //callsub L_Purchase,<ticket cost>,<reward ID>,<reward amount>{,<reward name>};
 L_Purchase:
 	if (countitem(6488) < getarg(0)) {
-		mes "你没有足够的^FF0000感谢投资券^000000，无法继续。";
+		mes "你没有足够的^FF0000投资感谢券^000000，无法继续。";
 		close;
 	}
 	delitem 6488,getarg(0); //Thanks_Invest_Ticket

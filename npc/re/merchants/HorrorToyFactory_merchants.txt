@@ -42,7 +42,7 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 	}
 	if (countitem(7642) >= .@xm_item[.@s+1]) {
 		mes "[金手比利]";
-		mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚血腥硬币。要购买吗？";
+		mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚沾血硬币。要购买吗？";
 		next;
 		if (select( "取消", "购买" ) == 1) {
 			mes "[金手比利]";
@@ -62,7 +62,7 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 		}
 	}
 	mes "[金手比利]";
-	mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚血腥硬币。您的数量不足。";
+	mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚沾血硬币。您的数量不足。";
 	close;
 }
 
@@ -80,7 +80,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[流浪者凯恩]";
 	mes "哦，我知道您不喜欢普通东西才来这里。告诉我吧，只要费用和材料合适，我什么都能制作。";
 	next;
-	.@s = select( "没有想要的。", "我想要 塞琳娜的丝带。", "我在寻找 高贵十字架。", "我想要 恶灵丝线手套。" );
+	.@s = select( "没有想要的。", "我想要 席琳的蝴蝶结。", "我在寻找 荣耀十架。", "我想要 邪灵手套。" );
 	switch(.@s) {
 	case 1:
 		mes "[流浪者凯恩]";
@@ -135,7 +135,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		else if (getequiprefinerycnt(EQI_HEAD_TOP) < 9)
 			mes "您佩戴的帽子精炼等级未达到 +9，无法用它兑换。";
 		else if (countitem(7642) < 1000)
-			mes "您的血腥硬币不足。需要准确收集 1000 枚，少于这个数量就没办法了。";
+			mes "您的沾血硬币不足。需要准确收集 1000 枚，少于这个数量就没办法了。";
 		else {
 			if (!checkweight(18849,1)) {
 				mes "请先为兑换物品预留足够的负重和物品栏空间。";
@@ -152,7 +152,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		if (getequipid(EQI_HAND_R) != 1540)// Grand_Cross_
 			mes "您右手装备的不是 圣十字[1]。带来我说的正确物品，呵呵。";
 		else if (countitem(7642) < 2000)
-			mes "您的血腥硬币不足。需要准确收集 2000 枚，少于这个数量就没办法了。";
+			mes "您的沾血硬币不足。需要准确收集 2000 枚，少于这个数量就没办法了。";
 		else {
 			if (!checkweight(16029,1)) {
 				mes "请先为兑换物品预留足够的负重和物品栏空间。";
@@ -182,7 +182,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 			mes "您的材料不足。";
 			next;
 			mes "[流浪者凯恩]";
-			mes "请准备 ^0000ff1000 枚血腥硬币^000000，以及各 1 个 ^0000ff受伤的心、温柔的心 和 红色提灯^000000来兑换 ^0000ff恶灵丝线手套^000000。";
+			mes "请准备 ^0000ff1000 枚沾血硬币^000000，以及各 1 个 ^0000ff受伤的心、宅心仁厚 和 红色手提灯^000000来兑换 ^0000ff邪灵手套^000000。";
 		}
 		close;
 	}
@@ -204,10 +204,10 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	switch( select( "您能为我做什么？", "为玩具工厂饰品附魔", "为玩具工厂武器附魔", "为玩具工厂头具附魔", "为玩具工厂鞋子附魔" ) ) {
 	case 1:
 		mes "[黑胡子乔]";
-		mes "很简单。您只需带来血腥硬币，我就能为您的饰品附魔。";
+		mes "很简单。您只需带来沾血硬币，我就能为您的饰品附魔。";
 		next;
 		mes "[黑胡子乔]";
-		mes "每次尝试收取 15 枚血腥硬币，每 15 枚可附魔一个插槽，最多 3 个。";
+		mes "每次尝试收取 15 枚沾血硬币，每 15 枚可附魔一个插槽，最多 3 个。";
 		next;
 		mes "[黑胡子乔]";
 		mes "饰品附魔次数越多，损坏风险越高。我建议您最多尝试一两次，嘻嘻。";
@@ -250,7 +250,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		break;
 	case 16029:	// Noble_Cross
 		mes "[黑胡子乔]";// custom
-		mes "哦，您装备了 ^0000ff高贵十字架^000000！这件物品需要找其他人附魔。";
+		mes "哦，您装备了 ^0000ff荣耀十架^000000！这件物品需要找其他人附魔。";
 		next;
 		mes "[黑胡子乔]";
 		mes "我已经试过几次，但都没有成功。";
@@ -264,7 +264,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	switch(.@eq_num) {
 	case EQI_ACC_R:
 		mes "[黑胡子乔]";
-		mes "您可以选择两种类型之一，每次尝试收费 15 枚血腥硬币。我会在附魔前收取。";
+		mes "您可以选择两种类型之一，每次尝试收费 15 枚沾血硬币。我会在附魔前收取。";
 		next;
 		.@enchant_type = select( "退出", "STR/AGI/DEX 中的随机属性", "INT/VIT/DEX 中的随机属性" ) - 1;// enchant_type [1-2]
 		mes "[黑胡子乔]";
@@ -491,6 +491,6 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		specialeffect2 EF_REPAIRWEAPON;
 		close;
 	}
-	mes "嗯……顺便说一句，您需要准备更多血腥硬币，连费用都付不起。";
+	mes "嗯……顺便说一句，您需要准备更多沾血硬币，连费用都付不起。";
 	close;
 }

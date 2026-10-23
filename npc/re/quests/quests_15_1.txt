@@ -1315,8 +1315,8 @@ verus04,144,193,3	script	伊恩·阿特纳德#ep152	4_M_IAN,{
 		mes "有一种让机器运转的关键装置。";
 		next;
 		mes "[伊恩·阿特纳德]";
-		mes "目前由于还在调查，我们暂时称它为^4d4dff操作控制装置^000000。";
-		mes "调查机器并收集 20 个操作控制装置。";
+		mes "目前由于还在调查，我们暂时称它为^4d4dff启动控制装置^000000。";
+		mes "调查机器并收集 20 个启动控制装置。";
 		next;
 		mes "[伊恩·阿特纳德]";
 		mes "我会看看你的工作表现。";
@@ -1326,7 +1326,7 @@ verus04,144,193,3	script	伊恩·阿特纳德#ep152	4_M_IAN,{
 	case 7:
 		if (countitem(6749) < 20) {// Power_Control_Device
 			cutin "verus_ian01.bmp",2;
-			mes "20个操作控制装置。";
+			mes "20个启动控制装置。";
 			mes "对那个所谓伟大人物推荐的人来说，应该不成问题吧？";
 			mes "嗯。";
 			close3;
@@ -1461,14 +1461,14 @@ verus04,144,193,3	script	伊恩·阿特纳德#ep152	4_M_IAN,{
 			mes "但是，你必须离开这支挖掘队。";
 			next;
 			cutin "",255;
-			mes "我必须去找丢失的牛肉吐司。";
+			mes "我必须去找丢失的双层牛肉堡。";
 			close;
 		}
 		mes "嗯……是这个吗？";
 		mes "……我真的可以在工作时不用餐具就方便地吃这个。";
 		mes "……有刚烹好的肉香。";
 		next;
-		mes "伊恩 擦了擦手，慢慢开始吃牛肉吐司。";
+		mes "伊恩 擦了擦手，慢慢开始吃双层牛肉堡。";
 		next;
 		cutin "verus_ian03.bmp",2;
 		mes "[伊恩·阿特纳德]";
@@ -1969,7 +1969,7 @@ verus04,144,193,3	script	伊恩·阿特纳德#ep152	4_M_IAN,{
 S_Daily:
 	mes "[伊恩·阿特纳德]";
 	mes "挖掘项目？";
-	mes "……你是指操作控制装置？";
+	mes "……你是指启动控制装置？";
 	next;
 	mes "[伊恩·阿特纳德]";
 	switch( checkquest(7616,PLAYTIME) ) {// Core Collection - Down
@@ -1977,19 +1977,19 @@ S_Daily:
 		if (isbegin_quest(7615) == 0) {// Core Collection
 			cutin "verus_ian01.bmp",2;
 			mes "你是在说今天的工作吗？";
-			mes "虽然显而易见，但就是寻找操作控制装置。";
+			mes "虽然显而易见，但就是寻找启动控制装置。";
 			mes "...";
 			mes "……如果不想做，也不必勉强。";
 			next;
-			if (select( "我会寻找操作控制装置。", "太难了。" ) == 1) {
+			if (select( "我会寻找启动控制装置。", "太难了。" ) == 1) {
 				mes "[伊恩·阿特纳德]";
 				mes "你？你确定要自己寻找吗？";
 				mes "我没有理由拒绝这个提议。";
 				mes "既然你说要自己做。";
 				next;
 				mes "[伊恩·阿特纳德]";
-				mes "这次也收集 20 个操作控制装置。";
-				mes "如果能解开操作控制装置的秘密……";
+				mes "这次也收集 20 个启动控制装置。";
+				mes "如果能解开启动控制装置的秘密……";
 				mes "我们应该就能修好损坏的装置并自行使用，对吧？";
 				mes "会很有趣。";
 				next;
@@ -2006,7 +2006,7 @@ S_Daily:
 		}
 		if (countitem(6749) < 20) {// Power_Control_Device
 			mes "总是这样。";
-			mes "是^4d4dff 20 个操作控制装置^000000。";
+			mes "是^4d4dff 20 个启动控制装置^000000。";
 			mes "既然我们已经走到这一步，我想把事情做好，所以尽量别搞砸。";
 			return;
 		}
@@ -2031,7 +2031,7 @@ S_Daily:
 		return;
 	case 2:
 		erasequest 7616;// Core Collection - Down
-		mes "我们以前回收的操作控制装置全都坏了。";
+		mes "我们以前回收的启动控制装置全都坏了。";
 		mes "它们无法承受这些实验。";
 		mes "现在这些也是一样。";
 		next;
@@ -2450,7 +2450,7 @@ if (checkweight(1301,1) == 0) {
 	if (countitem(6753) < 1)// Sign_Of_Destruction
 	.@menu$[0] = "在幻影废墟需要注意什么";
 		else
-	.@menu$[1] = "我带来了毁灭证明。";
+	.@menu$[1] = "我带来了灭亡信物。";
 		switch( select( "幻影废墟警察局？", "有什么我能帮忙的吗？", .@menu$[0], .@menu$[1], "没什么。" ) ) {
 	case 1:
 	emotion ET_SCRATCH;
@@ -2587,19 +2587,19 @@ if (checkweight(1301,1) == 0) {
 	case 4:
 		if (isbegin_quest(5304) == 2) {
 			mes "[凯斯勒警长]";
-			mes "哦，你之前不是带来过一些毁灭证明吗？";
+			mes "哦，你之前不是带来过一些灭亡信物吗？";
 			next;
 			mes "[凯斯勒警长]";
 			mes "我猜你还没离开？你一定喜欢待在这里。我也是。哈哈哈哈！";
 			while(1) {
 				next;
-				switch( select( "毁灭证明可以兑换什么", "交出毁灭证明。", "没什么。" ) ) {
+				switch( select( "灭亡信物可以兑换什么", "交出灭亡信物。", "没什么。" ) ) {
 				case 1:
 					mes "[凯斯勒警长]";
-					mes "你第一次带来毁灭证明时我就告诉过你，不过没关系，我不介意再说一遍。";
+					mes "你第一次带来灭亡信物时我就告诉过你，不过没关系，我不介意再说一遍。";
 					next;
 					mes "[凯斯勒警长]";
-					mes "毁灭证明可以兑换挖掘现场常见的密封信封。";
+					mes "灭亡信物可以兑换挖掘现场常见的神秘袋装物。";
 					next;
 					mes "[凯斯勒警长]";
 					mes "学者发现，打开信封会触发各种效果。";
@@ -2614,7 +2614,7 @@ if (checkweight(1301,1) == 0) {
 					delitem 6753, .@amount;
 					getitem 22611, .@reward_amount;// Packed_Envelope
 					mes "[凯斯勒警长]";
-					mes "你带来了" + .@amount + "枚毁灭证明。我可以给你" + .@reward_amount + "个密封信封。";
+					mes "你带来了" + .@amount + "枚灭亡信物。我可以给你" + .@reward_amount + "个神秘袋装物。";
 					next;
 					mes "[凯斯勒警长]";
 					mes "谢谢，继续努力。";
@@ -2622,14 +2622,14 @@ if (checkweight(1301,1) == 0) {
 				case 3:
 					emotion ET_SCRATCH;
 					mes "[凯斯勒警长]";
-					mes "嗯，你不是说有毁灭证明吗？";
+					mes "嗯，你不是说有灭亡信物吗？";
 					close;
 				}
 			}
 		}
 		emotion ET_HUK;
 		mes "[凯斯勒警长]";
-		mes "哦，末日祷告团携带这种^F8081E毁灭证明^000000。";
+		mes "哦，末日祷告团携带这种^F8081E灭亡信物^000000。";
 		next;
 		mes "[凯斯勒警长]";
 		mes "你在哪里找到的？";
@@ -2647,9 +2647,9 @@ if (checkweight(1301,1) == 0) {
 		next;
 		emotion ET_SURPRISE;
 		mes "[凯斯勒警长]";
-		mes "哦，我有主意了！带来^F8081E毁灭证明^000000，我会兑换成^4E9867密封信封^000000。";
+		mes "哦，我有主意了！带来^F8081E灭亡信物^000000，我会兑换成^4E9867神秘袋装物^000000。";
 		next;
-		select("密封信封？");
+		select("神秘袋装物？");
 		mes "[凯斯勒警长]";
 		mes "这是挖掘现场经常发现的信封。";
 		next;
@@ -2657,18 +2657,18 @@ if (checkweight(1301,1) == 0) {
 				mes "学者发现，打开信封会触发各种效果。";
 		next;
 		mes "[凯斯勒警长]";
-		mes "现在要把毁灭证明兑换成密封信封吗？也可以以后再换。";
+		mes "现在要把灭亡信物兑换成神秘袋装物吗？也可以以后再换。";
 		next;
 		if (select( "现在兑换。", "以后再做。" ) == 2) {
 			mes "[凯斯勒警长]";
-			mes "当然，没问题。毁灭证明又不会过期。";
+			mes "当然，没问题。灭亡信物又不会过期。";
 		}
 		else {
 			.@amount = countitem(6753);// Sign_Of_Destruction
 			delitem 6753, .@amount;
 			getitem 22611, .@amount;// Packing_Envelope
 			mes "[凯斯勒警长]";
-			mes "用你的" + .@amount + "枚毁灭证明，我给你" + .@amount + "个密封信封。";
+			mes "用你的" + .@amount + "枚灭亡信物，我给你" + .@amount + "个神秘袋装物。";
 		}
 		setquest 5304;// Police Chief Kesler
 		completequest 5304;
@@ -3519,7 +3519,7 @@ verus04,202,258,4	script	皮夫斯警员#EP15_1	4_M_SAGE_C,{
 			if (countitem(6754)) {
 				delitem 6754, countitem(6754);// Collected_Medicinal_Herbs
 				mes "[皮夫斯警员]";
-				mes "我收下你采集的药草了。既然有急事，你就先走吧！";
+				mes "我收下你神奇药草了。既然有急事，你就先走吧！";
 				close;
 			}
 		mes "[皮夫斯警员]";
@@ -3628,7 +3628,7 @@ verus03,107,177,3	script	卢克·拉佩兹#atnd09	4_M_EDEN_GUARDER,{
 		cutin "looke_rapez04.bmp",0;
 		mes "[卢克]";
 		mes "那么，材料要由你来找：";
-		mes "2 个肉、1 个莫拉柑橘和 1 根香蕉。你能找到吗？";
+		mes "2 个肉、1 个穆拉柑橘和 1 根香蕉。你能找到吗？";
 		next;
 		cutin "looke_rapez02.bmp",0;
 		mes "[卢克]";
@@ -3643,7 +3643,7 @@ verus03,107,177,3	script	卢克·拉佩兹#atnd09	4_M_EDEN_GUARDER,{
 		if (countitem(517) < 2 || countitem(11520) < 1 || countitem(513) < 1) {
 			cutin "looke_rapez04.bmp",0;
 			mes "你忘了材料吗？";
-			mes "2 个肉、1 个莫拉柑橘和 1 根香蕉。";
+			mes "2 个肉、1 个穆拉柑橘和 1 根香蕉。";
 			next;
 			mes "[卢克]";
 			mes "一些水果生长在^4d4dff迷雾森林迷宫^000000附近。";
@@ -3659,7 +3659,7 @@ verus03,107,177,3	script	卢克·拉佩兹#atnd09	4_M_EDEN_GUARDER,{
 		mes "这食物应该符合你说的所有条件。";
 		next;
 		cutin "",255;
-		mes "卢克 给了你摩拉特产食物牛肉吐司。";
+		mes "卢克 给了你摩拉特产食物双层牛肉堡。";
 		mes "这完全符合 伊恩 说他想要的东西。";
 		delitem 517,2;	// Meat
 		delitem 11520,1;// Mora_Mandarin
@@ -3772,7 +3772,7 @@ verus03,103,177,5	script	机械师劳埃德#atnd09	4_M_BOSSCAT,{
 		mes "我们直入主题。";
 		mes "嘿，人类，帮个忙。";
 		mes "拿 10 个空玻璃瓶，";
-		mes "收集机器人残骸周围的凝聚能量。";
+		mes "收集机器人残骸周围的凝聚的能量。";
 		next;
 		mes "[劳埃德]";
 		mes "这里到处都是损坏的机器人和机器。";
@@ -3833,7 +3833,7 @@ verus03,103,177,5	script	机械师劳埃德#atnd09	4_M_BOSSCAT,{
 	switch( checkquest(7629,PLAYTIME) ) {
 	case -1:
 		if (isbegin_quest(7628) == 0) {
-			mes "你知道该怎么做：收集凝聚能量。";
+			mes "你知道该怎么做：收集凝聚的能量。";
 			mes "你会帮我做的，对吧？";
 			next;
 			if (select( "当然。","拒绝。" ) == 2) {
@@ -3903,9 +3903,9 @@ verus03,127,145,0	script	机械残骸#atnd01	4_ENERGY_RED,3,3,{
 		close;
 	}
 	if (countitem(6756) > 9)// Condensed_Energy
-		mes "你已经有足够的^4d4dff凝聚能量^000000。";
+		mes "你已经有足够的^4d4dff凝聚的能量^000000。";
 	else if (countitem(713) < 1)
-		mes "收集凝聚能量需要^4d4dff空瓶^000000。";
+		mes "收集凝聚的能量需要^4d4dff空瓶^000000。";
 	else {
 		mes "破碎金属之间可以看到浓厚的能量云。";
 		mes "将空瓶靠近能量云波动的边缘来收集能量。";
@@ -3913,7 +3913,7 @@ verus03,127,145,0	script	机械残骸#atnd01	4_ENERGY_RED,3,3,{
 		progressbar "00ff00",3;
 		delitem 713,1;// Empty Bottle
 		getitem 6756,1;// Condensed_Energy
-		mes "已收集凝聚能量！";
+		mes "已收集凝聚的能量！";
 		initnpctimer;
 		disablenpc();
 	}
@@ -5179,7 +5179,7 @@ verus04,119,220,3	script	向导斯卡蕾特#ep15_1bs	4_M_TELEPORTER,{
 		next;
 		mes "[斯卡蕾特]";
 		mes "我们没时间等技术员！";
-		mes "我们只需要朱彼洛斯的 迪靡克 掉落的^FF000030 个旧铁板^000000！";
+		mes "我们只需要朱彼洛斯的 迪靡克 掉落的^FF000030 个老旧的铁板^000000！";
 		next;
 		mes "[斯卡蕾特]";
 		mes "请帮帮我们！";
@@ -5216,14 +5216,14 @@ verus04,119,220,3	script	向导斯卡蕾特#ep15_1bs	4_M_TELEPORTER,{
 			next;
 			mes "[斯卡蕾特]";
 			mes "我们没时间等技术员！";
-			mes "我们只需要朱彼洛斯的 迪靡克 掉落的^FF000030 个旧铁板^000000！";
+			mes "我们只需要朱彼洛斯的 迪靡克 掉落的^FF000030 个老旧的铁板^000000！";
 			next;
 			mes "[斯卡蕾特]";
 			mes "请帮帮我们！";
 			close;
 		}
 		mes "[斯卡蕾特]";
-		mes "你带来旧铁板了吗？";
+		mes "你带来老旧的铁板了吗？";
 		mes "请小心地一块一块推到这里。";
 		delitem 7319,30;// Old_Steel_Plate
 		ep15_1_elb = 5;
@@ -5232,7 +5232,7 @@ verus04,119,220,3	script	向导斯卡蕾特#ep15_1bs	4_M_TELEPORTER,{
 		mes "[斯卡蕾特]";
 		mes "它们可能撑不了多久，但应该足够让我们逃出去。";
 		next;
-		select("推入旧铁板。");
+		select("推入老旧的铁板。");
 		mes "[斯卡蕾特]";
 		mes "现在，下来！";
 		mes "铁板撑不了多久！";

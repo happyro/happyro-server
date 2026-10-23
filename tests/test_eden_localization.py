@@ -42,6 +42,8 @@ class EdenLocalizationTests(unittest.TestCase):
                     continue
                 plain = re.sub(r'\^[0-9a-fA-F]{6}', '', value)
                 plain = re.sub(r'%[ds]', '', plain)
+                # Commands are literal client input, not untranslated prose.
+                plain = re.sub(r'/(?:guild|leave|invite|organize)\b', '', plain)
                 words = set(re.findall(r'[A-Za-z]+[0-9]*', plain))
                 line = source.count('\n', 0, token.start()) + 1
                 with self.subTest(file=file.name, line=line, text=value):

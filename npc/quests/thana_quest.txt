@@ -656,8 +656,8 @@ tha_t02,231,161,5	script	入口导游	874,{
 			mes "[伯雷德]";
 			mes "有新的进展吗？";
 			next;
-			select("我找到了瓦尔蒙特的笔记……");
-			mes "—你把瓦尔蒙特的笔记给他看。";
+			select("我找到了巴尔蒙德的手册……");
+			mes "—你把巴尔蒙德的手册给他看。";
 			mes "伯雷德阅读了日志。—";
 			next;
 			mes "[伯雷德]";
@@ -705,9 +705,9 @@ tha_t02,231,161,5	script	入口导游	874,{
 			mes "[伯雷德]";
 			mes "希望这些东西对你有用，"+strcharinfo(0)+"。";
 			next;
-			mes "—伯雷德把笔记和一个旧紫色宝箱交给你。—";
+			mes "—伯雷德把笔记和一个神秘紫箱交给你。—";
 			mes " ";
-			mes "^4d4dff你获得一个旧紫色宝箱，";
+			mes "^4d4dff你获得一个神秘紫箱，";
 			mes "以及少量经验值。^000000";
 			set thana_tower, 10;
 			completequest 7053;
@@ -831,7 +831,7 @@ L_Key:
 	mes "打破装置后，外壳碎裂。";
 	mes "能量场开始消失，你看到内部的红色物体正是魔力来源。";
 	next;
-	mes "—你获得了强力的红钥匙。—";
+	mes "—你获得了强力的红色钥匙。—";
 	getitem 7421,1; //Key_Red
 	if (thana_tower != 4) close;
 	mes "^4d4dff拿起钥匙后，一阵震撼的感觉穿过你的脑海。";
@@ -952,7 +952,7 @@ L_Key:
 //
 //
 		next;
-		mes "就这些。文字化作红钥匙飞走了……";
+		mes "就这些。文字化作红色钥匙飞走了……";
 		set thana_tower, 5;
 		changequest 7048,7049;
 		specialeffect2 EF_COMBOATTACK1;
@@ -1013,7 +1013,7 @@ tha_t04,195,195,0	script	符文装置#tt2	111,3,3,{
 				next;
 				mes "^3355FF屏幕显示访问授权通知后，魔力凝聚并出现在表面。一个物体形成了……^000000";
 				next;
-				mes "^4d4dff强大的黄钥匙出现了。^000000";
+				mes "^4d4dff强大的黄色钥匙出现了。^000000";
 				getitem 7422,1; //Key_Yellow
 				if (thana_tower != 5) close;
 				mes "^4d4dff强烈的感觉穿过你的头脑。你看见光的幻象，就像获得第一把钥匙时一样。^000000";
@@ -1088,7 +1088,7 @@ tha_t05,62,179,0	script	闪耀的雕像#tt3	111,3,3,{
 			mes "我先试试左翼。应该插入哪把钥匙？";
 			next;
 			input .@inputstr$;
-			if (.@inputstr$ != "红钥匙") {
+			if (.@inputstr$ != getitemname(7421)) {
 				mes "它无法插入裂缝。";
 				close;
 			}
@@ -1098,14 +1098,14 @@ tha_t05,62,179,0	script	闪耀的雕像#tt3	111,3,3,{
 			mes "现在是右边……";
 			next;
 			input .@inputstr$;
-			if (.@inputstr$ != "黄钥匙") {
+			if (.@inputstr$ != getitemname(7422)) {
 				mes "它无法插入裂缝。";
 				close;
 			}
 			mes "钥匙正好插入并发出咔嗒声。";
 			mes "鸟嘴突然张开，强光从中射出。里面有一个钥匙形状的物体……";
 			next;
-			mes "^4d4dff强大的蓝钥匙出现了。^000000";
+			mes "^4d4dff强大的蓝色钥匙出现了。^000000";
 			getitem 7423,1; //Key_Blue
 			if (thana_tower != 6) close;
 			mes "^4d4dff你拿起钥匙后，一阵震撼的感觉穿过头脑。你看见光的幻象……^000000";
@@ -1314,7 +1314,7 @@ tha_t06,226,230,0	script	闪耀的雕像#tt4	111,3,3,{
 				specialeffect EF_DISPELL;
 				specialeffect EF_POTION6;
 				next;
-				mes "^4d4dff突然，绿钥匙出现了，你能感受到其中强大的力量。^000000";
+				mes "^4d4dff突然，绿色钥匙出现了，你能感受到其中强大的力量。^000000";
 				getitem 7424,1; //Key_Green
 				if (thana_tower != 7) close;
 				mes "^4d4dff你拿起钥匙时，身体因未知力量而颤抖，看见带有文字的幻象。^000000";
@@ -1409,7 +1409,7 @@ tha_t06,204,181,0	script	华丽的宝剑#tt5	111,3,3,{
 					mes "烟雾慢慢散去，你看见一个特定形状的物体……";
 					specialeffect EF_CHANGEDARK;
 					next;
-					mes "^4d4dff突然，一把黑钥匙从烟雾中出现，你感到其中强大的诅咒力量。^000000";
+					mes "^4d4dff突然，一把黑色钥匙从烟雾中出现，你感到其中强大的诅咒力量。^000000";
 					getitem 7425,1; //Key_Black
 					if (thana_tower != 8) close;
 					next;
@@ -1420,7 +1420,7 @@ tha_t06,204,181,0	script	华丽的宝剑#tt5	111,3,3,{
 					mes "也许这就是雷根贝勒不惜牺牲也想找到的笔记本。";
 					next;
 					mes "^4d4dff你决定把笔记本和钥匙交给伯雷德。";
-					mes "你获得了瓦尔蒙特的笔记。^000000";
+					mes "你获得了巴尔蒙德的手册。^000000";
 					set thana_tower, 9;
 					changequest 7052,7053;
 					getitem 11011,1; //Barmund_Note
@@ -1509,13 +1509,13 @@ tha_t08,90,153,0	script	闪耀的水晶#tt_r1	844,{
 		mes "水晶球旁的地面上有褪色的图案。";
 		mes "看起来像某种需要插入物品的锁孔……";
 		next;
-		mes "靠近锁孔后，红钥匙突然产生反应。";
+		mes "靠近锁孔后，红色钥匙突然产生反应。";
 		mes "你将钥匙插入锁孔，结果它变成了一颗小宝石。";
 		next;
 		mes "触摸耀眼的红色宝石时……";
 		mes "你内心深处感到孤独和悲伤……";
 		next;
-		mes "^4d4dff你找到了一块凝聚残酷命运与深沉黑暗的红色护符石。^000000";
+		mes "^4d4dff你找到了一块凝聚残酷命运与深沉黑暗的魔力红宝石。^000000";
 		delitem 7421,1; //Key_Red
 		getitem 7426,1; //Magic_Gem_Red
 		close;
@@ -1543,13 +1543,13 @@ tha_t08,49,153,0	script	闪耀的水晶#tt_y1	844,{
 		mes "水晶球旁的地面上有褪色的图案。";
 		mes "看起来像某种需要插入物品的锁孔……";
 		next;
-		mes "靠近锁孔后，黄钥匙突然产生反应。";
+		mes "靠近锁孔后，黄色钥匙突然产生反应。";
 		mes "你将钥匙插入锁孔，结果它变成了一颗小宝石。";
 		next;
 		mes "触摸耀眼的黄色宝石时……";
 		mes "你的心开始抽痛，仿佛遭受了心碎。";
 		next;
-		mes "^4d4dff你找到了一块凝聚悲伤与神秘力量的黄色护符石。^000000";
+		mes "^4d4dff你找到了一块凝聚悲伤与神秘力量的魔力黄宝石。^000000";
 		delitem 7422,1; //Key_Yellow
 		getitem 7427,1; //Magic_Gem_Yellow
 		close;
@@ -1577,13 +1577,13 @@ tha_t08,49,65,0	script	闪耀的水晶#tt_b1	844,{
 		mes "水晶球旁的地面上有褪色的图案。";
 		mes "看起来像某种需要插入物品的锁孔……";
 		next;
-		mes "靠近锁孔后，蓝钥匙突然产生反应。";
+		mes "靠近锁孔后，蓝色钥匙突然产生反应。";
 		mes "你将钥匙插入锁孔，结果它变成了一颗小宝石。";
 		next;
 		mes "触摸耀眼的蓝色宝石时……";
 		mes "你听见有人哭泣，风中传来血腥味，突然变得愤怒。";
 		next;
-		mes "^4d4dff你找到了一块凝聚怨恨与神秘力量的蓝色护符石。^000000";
+		mes "^4d4dff你找到了一块凝聚怨恨与神秘力量的魔力蓝宝石。^000000";
 		delitem 7423,1; //Key_Blue
 		getitem 7428,1; //Magic_Gem_Blue
 		close;
@@ -1611,13 +1611,13 @@ tha_t08,90,65,0	script	闪耀的水晶#tt_g1	844,{
 		mes "水晶球旁的地面上有褪色的图案。";
 		mes "看起来像某种需要插入物品的锁孔……";
 		next;
-		mes "靠近锁孔后，绿钥匙突然产生反应。";
+		mes "靠近锁孔后，绿色钥匙突然产生反应。";
 		mes "你将钥匙插入锁孔，结果它变成了一颗小宝石。";
 		next;
 		mes "触摸耀眼的绿色宝石时……";
 		mes "你的头开始疼痛，并对某事感到担忧和焦虑。";
 		next;
-		mes "^4d4dff你找到了一块凝聚深沉痛苦的绿色护符石。^000000";
+		mes "^4d4dff你找到了一块凝聚深沉痛苦的魔力绿宝石。^000000";
 		delitem 7424,1; //Key_Green
 		getitem 7429,1; //Magic_Gem_Green
 		close;
@@ -1643,13 +1643,13 @@ tha_t12,161,57,0	script	金色宗教雕像#tt	111,{
 		if (countitem(7427) > 0) {
 			mes "这是一座散发金色光芒的雕像。";
 			mes "剑上似乎缺少宝石。";
-			mes "靠近雕像时，黄色护符石发出耀眼光芒。";
+			mes "靠近雕像时，魔力黄宝石发出耀眼光芒。";
 			specialeffect EF_BEGINSPELL5;
 			specialeffect2 EF_BEGINSPELL5;
 			next;
-			if(select("插入黄色护符石。:逃跑。") == 2) close;
+			if(select("插入魔力黄宝石。:逃跑。") == 2) close;
 			if ($@thana_summon == 0) {
-				mes "将黄色护符石插入剑后，雕像开始产生反应。";
+				mes "将魔力黄宝石插入剑后，雕像开始产生反应。";
 				specialeffect EF_BEGINSPELL5;
 				delitem 7427,1; //Magic_Gem_Yellow
 				set $@thana_summon, 1;
@@ -1673,13 +1673,13 @@ tha_t12,154,17,0	script	绿色贤者雕像#tt	111,{
 		if (countitem(7429) > 0) {
 			mes "一座雕像散发绿色光芒。";
 			mes "贤者之杖似乎缺少宝石。";
-			mes "靠近雕像时，绿色护符石发出耀眼光芒。";
+			mes "靠近雕像时，魔力绿宝石发出耀眼光芒。";
 			specialeffect EF_BEGINSPELL4;
 			specialeffect2 EF_BEGINSPELL4;
 			next;
-			if(select("插入绿色护符石。:逃跑。") == 2) close;
+			if(select("插入魔力绿宝石。:逃跑。") == 2) close;
 			if ($@thana_summon == 1) {
-				mes "将绿色护符石插入法杖后，雕像开始产生反应。";
+				mes "将魔力绿宝石插入法杖后，雕像开始产生反应。";
 				specialeffect EF_BEGINSPELL4;
 				delitem 7429,1; //Magic_Gem_Green
 				set $@thana_summon, 2;
@@ -1703,13 +1703,13 @@ tha_t12,103,17,0	script	蓝色天使雕像#tt	111,{
 		if (countitem(7428) > 0) {
 			mes "天使雕像被蓝光笼罩。";
 			mes "雕像腰带上似乎缺少宝石。";
-			mes "靠近雕像时，蓝色护符石发出耀眼光芒。";
+			mes "靠近雕像时，魔力蓝宝石发出耀眼光芒。";
 			specialeffect EF_BEGINSPELL2;
 			specialeffect2 EF_BEGINSPELL2;
 			next;
-			if(select("插入蓝色护符石。:逃跑。") == 2) close;
+			if(select("插入魔力蓝宝石。:逃跑。") == 2) close;
 			if ($@thana_summon == 2) {
-				mes "将蓝色护符石插入腰带后，雕像开始产生反应。";
+				mes "将魔力蓝宝石插入腰带后，雕像开始产生反应。";
 				specialeffect EF_BEGINSPELL2;
 				delitem 7428,1; //Magic_Gem_Blue
 				set $@thana_summon, 3;
@@ -1733,13 +1733,13 @@ tha_t12,96,57,0	script	血色骑士雕像#tt	111,{
 		if (countitem(7426) > 0) {
 			mes "一座雕像闪耀着血色光芒。";
 			mes "它的铠甲心口处似乎缺少宝石。";
-			mes "靠近雕像时，红色护符石发出耀眼光芒。";
+			mes "靠近雕像时，魔力红宝石发出耀眼光芒。";
 			specialeffect EF_BEGINSPELL3;
 			specialeffect2 EF_BEGINSPELL3;
 			next;
-			if(select("插入红色护符石。:逃跑。") == 2) close;
+			if(select("插入魔力红宝石。:逃跑。") == 2) close;
 			if ($@thana_summon == 3) {
-				mes "将红色护符石插入铠甲后，雕像开始产生反应。";
+				mes "将魔力红宝石插入铠甲后，雕像开始产生反应。";
 				specialeffect EF_BEGINSPELL3;
 				delitem 7426,1; //Magic_Gem_Red
 				set $@thana_summon, 4;
@@ -1763,13 +1763,13 @@ tha_t12,129,86,0	script	黑暗恶魔雕像#tt	111,{
 		if (countitem(7430) > 0) {
 			mes "恶魔雕像散发黑暗光芒。";
 			mes "右眼似乎缺少宝石。";
-			mes "靠近雕像时，黑色护符石发出耀眼光芒。";
+			mes "靠近雕像时，魔力黑宝石发出耀眼光芒。";
 			specialeffect EF_BEGINSPELL7;
 			specialeffect2 EF_BEGINSPELL7;
 			next;
-			if(select("插入黑色护符石。:逃跑。") == 2) close;
+			if(select("插入魔力黑宝石。:逃跑。") == 2) close;
 			if ($@thana_summon == 4) {
-				mes "将黑色护符石插入眼窝后，雕像开始产生反应。";
+				mes "将魔力黑宝石插入眼窝后，雕像开始产生反应。";
 				specialeffect EF_BEGINSPELL7;
 				delitem 7430,1; //Magic_Gem_Black
 				set $@thana_summon, 5;
@@ -1778,7 +1778,7 @@ tha_t12,129,86,0	script	黑暗恶魔雕像#tt	111,{
 				donpcevent "#tteffect02::OnStop";
 				donpcevent "#tteffect03::OnStop";
 				donpcevent "#tteffect04::OnStop";
-				mapannounce "tha_t12","黑色护符石的魔力释放了最后一道封印。",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
+				mapannounce "tha_t12","魔力黑宝石的魔力释放了最后一道封印。",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
 				close;
 			}
 			mes "有人已经将护符石插入这座雕像。";
@@ -2139,10 +2139,10 @@ tha_t06,119,120,0	script	七楼入口	45,1,1,{
 OnTouch:
 	if ((eaclass()&(EAJL_2|EAJL_UPPER)) || (eaclass()&EAJL_THIRD) || ((Class == Job_Super_Novice || Class == Job_Taekwon || Class == Job_Star_Gladiator || Class == Job_Soul_Linker || BaseClass == Job_Ninja || Class == Job_Gunslinger || Class == Job_Summoner) && BaseLevel > 94)) {
 		if (countitem(7425) > 0) {
-			mes "黑钥匙的影子在传送门中央闪耀。";
+			mes "黑色钥匙的影子在传送门中央闪耀。";
 			mes "看来要通过这里，我需要某件东西。";
 			next;
-			mes "黑钥匙对传送门产生反应，漂浮在空中。";
+			mes "黑色钥匙对传送门产生反应，漂浮在空中。";
 			next;
 			mes "钥匙似乎分裂成许多粒子，突然凝聚成一个球。";
 			mes "屏障被新形成的黑色魔法宝石的力量移除了。";
@@ -2152,7 +2152,7 @@ OnTouch:
 			warp "thana_step",69,369;
 			end;
 		}
-		mes "黑钥匙的影子在传送门中央闪耀。";
+		mes "黑色钥匙的影子在传送门中央闪耀。";
 		mes "看来要通过这里，我需要某件东西。";
 		close;
 	}

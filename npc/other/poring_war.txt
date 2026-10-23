@@ -72,14 +72,14 @@ poring_w01,100,97,3	script	波利贩卖机#w	909,{
 		mes "- 你携带物品太多，无法使用贩卖机。-";
 		close;
 	}
-	mes "这是贩卖机。你可以用波利硬币购买。";
+	mes "这是贩卖机。你可以用波利代币购买。";
 	next;
 	if(select("购买物品:查看商品说明") == 1) {
-		mes "购买物品需要波利硬币。";
+		mes "购买物品需要波利代币。";
 		mes "不能使用 Zeny。";
-		mes "物品名称 - 所需波利硬币数量";
+		mes "物品名称 - 所需波利代币数量";
 		next;
-		switch(select("奖牌 - 4 枚波利硬币:部族联盟 - 20 枚波利硬币:波利箱 - 30 枚波利硬币:下一页")) {
+		switch(select("奖牌 - 4 枚波利代币:部族联盟 - 20 枚波利代币:波利箱 - 30 枚波利代币:下一页")) {
 		case 1:
 			callsub S_PoringVending,7515,4;
 		case 2:
@@ -88,9 +88,9 @@ poring_w01,100,97,3	script	波利贩卖机#w	909,{
 			callsub S_PoringVending,12109,30;
 		case 4:
 			mes "这是特殊物品。";
-			mes "物品名称 - 所需波利硬币数量";
+			mes "物品名称 - 所需波利代币数量";
 			next;
-			switch(select("野玫瑰契约 - 15 枚波利硬币:多普勒根召唤书 - 20 枚波利硬币:艾格尼姆·赛妮亚契约 - 20 枚波利硬币:收藏模型")) {
+			switch(select("野玫瑰契约 - 15 枚波利代币:多普勒根召唤书 - 20 枚波利代币:艾格尼姆·赛妮亚契约 - 20 枚波利代币:收藏模型")) {
 			case 1:
 				callsub S_PoringVending,12300,15;
 			case 2:
@@ -101,9 +101,9 @@ poring_w01,100,97,3	script	波利贩卖机#w	909,{
 				mes "包含初心者在内的一转职业角色模型终于开售！";
 				mes "除初心者外，其他模型都是 ^4d4dff角色绑定物品^000000。";
 				mes "购买前请注意~";
-				mes "物品名称 - 所需波利硬币数量";
+				mes "物品名称 - 所需波利代币数量";
 				next;
-				switch(select("初学者模型 - 50 枚波利硬币:剑士模型 - 100 枚波利硬币:盗贼模型 - 100 枚波利硬币:商人模型 - 100 枚波利硬币:服事模型 - 100 枚波利硬币:魔法师模型 - 100 枚波利硬币:弓箭手模型 - 100 枚波利硬币:随机抽取 - 50 枚波利硬币:取消")) {
+				switch(select("初学者模型 - 50 枚波利代币:剑士模型 - 100 枚波利代币:盗贼模型 - 100 枚波利代币:商人模型 - 100 枚波利代币:服事模型 - 100 枚波利代币:魔法师模型 - 100 枚波利代币:弓箭手模型 - 100 枚波利代币:随机抽取 - 50 枚波利代币:取消")) {
 				case 1:
 					callsub S_PoringVending,2765,50;
 				case 2:
@@ -124,7 +124,7 @@ poring_w01,100,97,3	script	波利贩卖机#w	909,{
 					next;
 					if(select("抽取:取消") == 1) {
 						if (countitem(7539) >= 50) {
-							mes "投入波利硬币并拉下拉杆。";
+							mes "投入波利代币并拉下拉杆。";
 							mes "咔哒~物品伴随轰鸣声从波利嘴里出来了。";
 							mes "会是什么呢？";
 							next;
@@ -966,7 +966,7 @@ OnTimer95000:
 	end;
 
 OnTimer100000:
-	mapannounce "poring_w02","多佩尔先生：在某些区域，你需要击败敌方队员取得战争徽章。好了，开始吧！",0,0xf08080;
+	mapannounce "poring_w02","多佩尔先生：在某些区域，你需要击败敌方队员取得战斗徽章。好了，开始吧！",0,0xf08080;
 	setmapflag "poring_w02",mf_partylock;
 	setmapflag "poring_w02",mf_pvp;
 	setmapflag "poring_w02",mf_pvp_noguild;
@@ -1196,7 +1196,7 @@ poring_w02,99,201,3	script	小恶魔#wop_endmaster	738,{
 		if (.@a_point < .@d_point) {
 			mes "干得好！";
 			mes "多亏了你，我们提高了获胜机会。";
-			mes "请收下这些波利硬币，以表达我们的感谢。";
+			mes "请收下这些波利代币，以表达我们的感谢。";
 			next;
 			if (wop_team == 1) {
 				mes "再见，我的人类朋友。";
@@ -1219,7 +1219,7 @@ poring_w02,99,201,3	script	小恶魔#wop_endmaster	738,{
 		else if (.@a_point == .@d_point) {
 			mes "你已经尽力了。";
 			mes "真遗憾，战斗打成了平局……";
-			mes "即便如此，还是感谢你为我们而战。请收下这枚波利硬币。";
+			mes "即便如此，还是感谢你为我们而战。请收下这枚波利代币。";
 			next;
 			if (wop_team == 1) {
 				mes "再见，我的人类朋友。";
@@ -1267,7 +1267,7 @@ poring_w02,99,201,3	script	小恶魔#wop_endmaster	738,{
 		if (.@a_point > .@d_point) {
 			mes "干得好！";
 			mes "多亏了你，我们提高了获胜机会。";
-			mes "请收下这些波利硬币，以表达我们的感谢。";
+			mes "请收下这些波利代币，以表达我们的感谢。";
 			next;
 			if (wop_team == 2) {
 				mes "再见，我的人类朋友。";
@@ -1290,7 +1290,7 @@ poring_w02,99,201,3	script	小恶魔#wop_endmaster	738,{
 		else if (.@a_point == .@d_point) {
 			mes "你已经尽力了。";
 			mes "真遗憾，战斗打成了平局……";
-			mes "即便如此，还是感谢你为我们而战。请收下这枚波利硬币。";
+			mes "即便如此，还是感谢你为我们而战。请收下这枚波利代币。";
 			next;
 			if (wop_team == 2) {
 				mes "再见，我的人类朋友。";
@@ -1399,14 +1399,14 @@ poring_w02,99,52,0	script	天使波利守卫#wop_da	111,{
 	cutin "wop_emb0" + $@wop_doorcount_a,1;
 	if ($@wop_doorcount_a < 4) {
 		if (wop_team == 2) {
-			mes "这里有一个装备战争徽章的装置。";
+			mes "这里有一个装备战斗徽章的装置。";
 			mes "我能看到用于装备徽章的空槽。";
 			next;
-			switch(select("安装战争徽章:取消")) {
+			switch(select("安装战斗徽章:取消")) {
 			case 1:
 				if (countitem(7773)) {
 					if ($@wop_doorcount_a < 4) {
-						mes "战争徽章已装备。";
+						mes "战斗徽章已装备。";
 						delitem 7773,1; // War_Badge
 						set $@wop_doorcount_a,$@wop_doorcount_a + 1;
 						cutin "wop_emb0" + $@wop_doorcount_a,1;
@@ -1419,13 +1419,13 @@ poring_w02,99,52,0	script	天使波利守卫#wop_da	111,{
 						close2;
 					}
 					else {
-						mes "所有战争徽章都已装备。";
+						mes "所有战斗徽章都已装备。";
 						mes "不需要再装备了。";
 						close2;
 					}
 				}
 				else {
-					mes "^4d4dff - 缺少战争徽章。击败敌方队员即可获得战争徽章。- ^000000";
+					mes "^4d4dff - 缺少战斗徽章。击败敌方队员即可获得战斗徽章。- ^000000";
 					close2;
 				}
 				break;
@@ -1435,13 +1435,13 @@ poring_w02,99,52,0	script	天使波利守卫#wop_da	111,{
 			}
 		}
 		else {
-			mes "这里有一个装备战争徽章的装置。";
-			mes "小心不要让敌人夺走并在这里装备你的战争徽章。";
+			mes "这里有一个装备战斗徽章的装置。";
+			mes "小心不要让敌人夺走并在这里装备你的战斗徽章。";
 			close2;
 		}
 	}
 	else {
-		mes "所有战争徽章都已装备。";
+		mes "所有战斗徽章都已装备。";
 		close2;
 	}
 	cutin "",255;
@@ -1496,14 +1496,14 @@ poring_w02,98,113,0	script	恶魔波利守卫#wop_dd	111,{
 	cutin "wop_emb0" + $@wop_doorcount_d,1;
 	if ($@wop_doorcount_d < 4) {
 		if (wop_team == 1) {
-			mes "这里有一台安装战争徽章的装置。";
+			mes "这里有一台安装战斗徽章的装置。";
 			mes "可以看到用于安装徽章的空槽。";
 			next;
-			switch(select("安装战争徽章:取消")) {
+			switch(select("安装战斗徽章:取消")) {
 			case 1:
 				if (countitem(7773)) {
 					if ($@wop_doorcount_d < 4) {
-						mes "战争徽章已安装。";
+						mes "战斗徽章已安装。";
 						delitem 7773,1; // War_Badge
 						set $@wop_doorcount_d,$@wop_doorcount_d + 1;
 						cutin "wop_emb0" + $@wop_doorcount_d,1;
@@ -1516,13 +1516,13 @@ poring_w02,98,113,0	script	恶魔波利守卫#wop_dd	111,{
 						close2;
 					}
 					else {
-						mes "所有战争徽章均已安装。";
+						mes "所有战斗徽章均已安装。";
 						mes "无需继续安装。";
 						close2;
 					}
 				}
 				else {
-					mes "^4d4dff-缺少战争徽章。击杀对方队伍成员可以获得战争徽章。-^000000";
+					mes "^4d4dff-缺少战斗徽章。击杀对方队伍成员可以获得战斗徽章。-^000000";
 					close2;
 				}
 				break;
@@ -1532,13 +1532,13 @@ poring_w02,98,113,0	script	恶魔波利守卫#wop_dd	111,{
 			}
 		}
 		else {
-			mes "这里有一台安装战争徽章的装置。";
-			mes "小心别让敌人夺走战争徽章并安装在这里。";
+			mes "这里有一台安装战斗徽章的装置。";
+			mes "小心别让敌人夺走战斗徽章并安装在这里。";
 			close2;
 		}
 	}
 	else {
-		mes "所有战争徽章均已安装。";
+		mes "所有战斗徽章均已安装。";
 		close2;
 	}
 	cutin "",255;

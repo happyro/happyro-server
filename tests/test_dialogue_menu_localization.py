@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'e950e202c41ef9acf5f0439023301e089c1fc996'
+# Reviewed NPC names, quest gates and menu changes from the October 24 audit.
+BASE = '12515a7ef709e0487afb5174f4ad63a6d808eec0'
 LITERAL = re.compile(rb'"(?:\\.|[^"\\])*"')
 SAMPLES = (
     'npc/re/quests/HelpMeShorty.txt',

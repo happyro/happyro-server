@@ -296,7 +296,7 @@ yuno_in01,35,179,4	script	酒馆老板#kh	46,5,5,{
 				switch(select("好的，我来做:等等，让我考虑一下……")) {
 				case 1:
 					mes "[范特]";
-					mes "很高兴听到你这么说。请把这瓶料理酒带给基尔·海勒学院的^ff0000莱科兰夫人^000000。";
+					mes "很高兴听到你这么说。请把这瓶酒店的酒带给基尔·海勒学院的^ff0000莱科兰夫人^000000。";
 					mes "完成后我会付给你报酬，好吗？";
 					getitem 7487,1; //Tavern_Wine
 					set KielHyreQuest,2;
@@ -532,7 +532,7 @@ yuno_fild08,158,194,6	script	保安#1::KHAGuard	852,{
 				close;
 			}
 			input .@KHDelivery$ ;
-			if (.@KHDelivery$ != "料理酒") {
+			if (.@KHDelivery$ != getitemname(7487)) {
 				mes "[保安]";
 				mes "你是给莱科兰夫人送货的？带来的是什么物品？";
 				mes "你带来的是^3355FF"+.@KHDelivery$+"^000000吗？";
@@ -729,7 +729,7 @@ kh_school,179,39,0	script	可爱学生#kh	895,{
 			mes "好，我得冷静下来。有你帮忙，我想一定能行。能请你帮个大忙，把这些材料都带来吗？";
 			next;
 			mes "[艾莉]";
-			mes "^3355FF1 瓶料理酒^000000，";
+			mes "^3355FF1 瓶酒店的酒^000000，";
 			mes "^3355FF7 份牛奶^000000，";
 			mes "^3355FF5 份可可^000000，";
 			mes "^3355FF2 份奶酪^000000，";
@@ -737,7 +737,7 @@ kh_school,179,39,0	script	可爱学生#kh	895,{
 			mes "^3355FF1 袋面粉^000000。";
 			next;
 			mes "[艾莉]";
-			mes "料理酒可以去朱诺的酒馆取，可可可以从溜溜猴身上获得。面粉和鸡蛋则可以找朱诺经营吐司摊的女孩。";
+			mes "酒店的酒可以去朱诺的酒馆取，可可可以从溜溜猴身上获得。面粉和鸡蛋则可以找朱诺经营吐司摊的女孩。";
 			next;
 			mes "[艾莉]";
 			mes "祝你顺利找齐材料！请尽快把烤饼干的材料带回来，好吗？";
@@ -755,7 +755,7 @@ kh_school,179,39,0	script	可爱学生#kh	895,{
 			mes "需要我再说一遍材料清单吗？请尽快把这些东西带来，我就能开始烤饼干了～";
 			next;
 			mes "[艾莉]";
-			mes "^3355FF1 瓶料理酒^000000，";
+			mes "^3355FF1 瓶酒店的酒^000000，";
 			mes "^3355FF7 份牛奶^000000，";
 			mes "^3355FF5 份可可^000000，";
 			mes "^3355FF2 份奶酪^000000，";
@@ -764,7 +764,7 @@ kh_school,179,39,0	script	可爱学生#kh	895,{
 			next;
 			cutin "kh_elly01",2;
 			mes "[艾莉]";
-			mes "料理酒可以去朱诺的酒馆取，可可可以从溜溜猴身上获得。面粉和鸡蛋则可以找朱诺经营吐司摊的女孩。";
+			mes "酒店的酒可以去朱诺的酒馆取，可可可以从溜溜猴身上获得。面粉和鸡蛋则可以找朱诺经营吐司摊的女孩。";
 		}
 		else {
 			cutin "kh_elly02",2;
@@ -846,7 +846,7 @@ kh_school,179,39,0	script	可爱学生#kh	895,{
 		next;
 		cutin "kh_elly04",2;
 		mes "[艾莉]";
-		mes "你能再去一次小屋吗？给你，用这把小屋钥匙就能直接进去找他了～";
+		mes "你能再去一次小屋吗？给你，用这把别墅的辅助钥匙就能直接进去找他了～";
 		getitem 7489,1; //Villa_Spare_Key
 		set KielHyreQuest,16;
 	}
@@ -1100,7 +1100,7 @@ kh_school,178,180,4	script	艾莉	895,{
 			mes "你在基尔·海勒小屋里找到的灰色箱子。^000000";
 			next;
 			mes "^3355FF你用金钥匙打开灰色箱子，";
-			mes "在里面找到一张蓝色钥匙卡和一张折叠的纸条。";
+			mes "在里面找到一张蓝色钥匙卡片和一张折叠的纸条。";
 			mes "你迅速读起纸条上的内容……^000000";
 			next;
 			mes "亲爱的艾莉：";
@@ -1256,8 +1256,8 @@ yuno_fild08,71,170,0	script	坟墓#kh	111,{
 			mes "^3355FF该把什么插进插槽呢？^000000";
 			next;
 			input .@KHInput$;
-			if (.@KHInput$ == "黄色钥匙卡") {
-				mes "^3355FF插入黄色钥匙卡后，响起了电子确认声，";
+			if (.@KHInput$ == getitemname(7492)) {
+				mes "^3355FF插入黄色钥匙卡片后，响起了电子确认声，";
 				mes "随后传来一段自动语音：^000000";
 				next;
 				mes "[安全系统]";
@@ -1311,9 +1311,9 @@ yuno_fild08,71,170,0	script	坟墓#kh	111,{
 		else {
 			mes "你一靠近坟墓，它就开始闪光。^000000";
 			next;
-			switch(select("使用 ^0000FF华丽钥匙卡^000000:忽略")) {
+			switch(select("使用 ^0000FF华丽的钥匙卡片^000000:忽略")) {
 			case 1:
-				mes "使用华丽钥匙卡后，一条秘密通道打开了。^000000";
+				mes "使用华丽的钥匙卡片后，一条秘密通道打开了。^000000";
 				next;
 				switch(select("进入:取消")) {
 				case 1:
@@ -1838,7 +1838,7 @@ kh_vila,115,186,0	script	抽屉#khp1	111,{
 		next;
 		switch(select("打开抽屉:忽略")) {
 		case 1:
-			mes "^3355FF你从抽屉里取出一张黄色钥匙卡。";
+			mes "^3355FF你从抽屉里取出一张黄色钥匙卡片。";
 			mes "看来打开这个抽屉还是值得的。^000000";
 			getitem 7492,1; //Yellow_Key_Card
 			close;
@@ -1849,7 +1849,7 @@ kh_vila,115,186,0	script	抽屉#khp1	111,{
 		}
 	}
 	else {
-		mes "^3355FF你在这里找到了黄色钥匙卡。";
+		mes "^3355FF你在这里找到了黄色钥匙卡片。";
 		mes "抽屉现在已经空了。^000000";
 		close;
 	}
@@ -1872,7 +1872,7 @@ kh_vila,107,126,0	script	箱子#khp2	111,{
 		switch(select("使用旧青铜钥匙:不，这不可能管用。")) {
 		case 1:
 			mes "^3355FF你的直觉没错，旧青铜钥匙真的打开了锁！";
-			mes "你打开里面的小箱子，取出一张绿色钥匙卡。^000000";
+			mes "你打开里面的小箱子，取出一张绿色的钥匙卡片。^000000";
 			getitem 7516,1; //Green_Key_Card
 			delitem 7329,1; //Old_Bronze_Key
 			close;
@@ -1883,7 +1883,7 @@ kh_vila,107,126,0	script	箱子#khp2	111,{
 		}
 	}
 	else {
-		mes "^3355FF你就是从这个箱子里取出绿色钥匙卡的。^000000";
+		mes "^3355FF你就是从这个箱子里取出绿色的钥匙卡片的。^000000";
 		close;
 	}
 }
@@ -1911,13 +1911,13 @@ kh_vila,181,138,0	script	书架#khp1	111,{
 					mes "^3355FF要把哪把钥匙插入第一个钥匙孔？^000000";
 					next;
 					if (countitem(7329) >= 1) {
-						select("旧青铜钥匙:小屋钥匙");
+						select("旧青铜钥匙:别墅的辅助钥匙");
 						mes "^3355FF要把哪把钥匙插入第二个钥匙孔？^000000";
 						next;
-						select("旧青铜钥匙:小屋钥匙");
+						select("旧青铜钥匙:别墅的辅助钥匙");
 					}
 					else if (countitem(7516) >= 1) {
-						switch(select("绿色钥匙卡:小屋钥匙")) {
+						switch(select("绿色的钥匙卡片:别墅的辅助钥匙")) {
 						case 1:
 							set .@KHFirstKeyhole,1;
 							break;
@@ -1927,7 +1927,7 @@ kh_vila,181,138,0	script	书架#khp1	111,{
 						}
 						mes "^3355FF要把哪把钥匙插入第二个钥匙孔？^000000";
 						next;
-						switch(select("绿色钥匙卡:小屋钥匙")) {
+						switch(select("绿色的钥匙卡片:别墅的辅助钥匙")) {
 						case 1:
 							set .@KHSecondKeyhole,1;
 							break;
@@ -2292,7 +2292,7 @@ kh_dun01,235,48,0	script	沉重的门#kh1::HeavyDoorKHQ1	111,{
 		switch(select("开门:取消")) {
 		case 1:
 			input .@KHInput$;
-			if (.@KHInput$ == "蓝色钥匙卡") {
+			if (.@KHInput$ == getitemname(7495)) {
 				mes "^3355FF你成功打开了门。^000000";
 				close2;
 				warp "kh_school",119,144;
@@ -2366,7 +2366,7 @@ kh_school,119,149,4	script	美丽的女子#kh1::BeatifulLadyKHQ1	894,{
 		mes "只有证明你是她的朋友，我才能让你进去。";
 		mes "你有什么东西可以作为证明吗？";
 		next;
-		switch(select("黄色钥匙卡:蓝色钥匙卡:金钥匙:雕花纽扣:……？")) {
+		switch(select("黄色钥匙卡片:蓝色钥匙卡片:金钥匙:雕花纽扣:……？")) {
 		default:
 			break;
 		case 3:
@@ -2497,7 +2497,7 @@ kh_school,122,186,4	script	美丽的女子#kh6	894,{
 		mes "你已经找到基尔·海勒了吗？";
 		next;
 		mes "^3355FF你告诉艾莉西亚基尔·海勒被关在哪里，";
-		mes "并把他交给你的金属碎片递给她。";
+		mes "并把他交给你的金属破片递给她。";
 		mes "她接过碎片，戴在手腕上。^000000";
 		next;
 		mes "[艾莉西亚]";
@@ -2570,8 +2570,8 @@ kh_dun01,166,223,0	script	机械装置#kh::KHKeyardReader	111,{
 		mes "似乎只要将正确的钥匙卡插入插槽，就能启动它。^000000";
 		next;
 		input .@KHInput$;
-		if (.@KHInput$ == "红色钥匙卡") {
-			mes "^3355FF插入红色钥匙卡后，门打开了。^000000";
+		if (.@KHInput$ == getitemname(7496)) {
+			mes "^3355FF插入红色钥匙卡片后，门打开了。^000000";
 			close2;
 			warp "kh_dun01",170,227;
 			end;
@@ -2640,7 +2640,7 @@ OnTouch:
 		mes "如果你真心想帮助我们，她也会给你一些指示。^000000";
 		next;
 		mes "^3355FF基尔·海勒从门与地板之间的缝隙中，";
-		mes "递出一块奇怪的金属碎片。^000000";
+		mes "递出一块奇怪的金属破片。^000000";
 		getitem 7497,1; //Steel_Piece
 		set KielHyreQuest,42;
 		close;
@@ -2667,8 +2667,8 @@ kh_dun01,44,203,0	script	入口装置#khd2::KHAccess	111,{
 		mes "似乎只要将正确的钥匙卡插入插槽，就能启动它。^000000";
 		next;
 		input .@KHInput$;
-		if (.@KHInput$ == "华丽钥匙卡") {
-			mes "^3355FF你将华丽钥匙卡插入插槽后，门打开了，";
+		if (.@KHInput$ == getitemname(7509)) {
+			mes "^3355FF你将华丽的钥匙卡片插入插槽后，门打开了，";
 			mes "露出一段通向下方的长长阶梯。^000000";
 			next;
 			switch(select("下楼梯:取消")) {
@@ -3005,7 +3005,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "[基尔·海勒]";
 		mes "什么？！";
 		next;
-		select("出示詹姆斯的便条");
+		select("出示詹姆士的纸条");
 		mes "[基尔·海勒]";
 		mes "这能证明什么？它并不能证明詹姆斯没有背叛艾莉西亚。";
 		mes "这又能改变什么？她已经死了，";
@@ -3181,10 +3181,10 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "他已经不再信任任何人了……";
 		next;
 		mes "[基尔·海勒]";
-		mes "找到他后，请从他心脏里取出艾莉西亚的戒指。";
+		mes "找到他后，请从他心脏里取出爱丽丝亚的戒指。";
 		mes "取出戒指，应该就能阻止他继续发狂。";
 		next;
-		select("艾莉西亚的戒指？");
+		select("爱丽丝亚的戒指？");
 		mes "[基尔·海勒]";
 		mes "是的……她的戒指是一切的开始。";
 		mes "我把它放进他的心脏，";
@@ -3228,12 +3228,12 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 	else if ((KielHyreQuest >= 74) && (KielHyreQuest <= 106)) {
 		cutin "kh_kyel01",2;
 		mes "[基尔·海勒]";
-		mes "你回来了……！从基尔心脏里取出艾莉西亚的戒指了吗？";
+		mes "你回来了……！从基尔心脏里取出爱丽丝亚的戒指了吗？";
 		next;
 		if (countitem(7508) < 1) {
 			mes "[基尔·海勒]";
 			mes "你是说……没拿到？";
-			mes "请从基尔心脏里取回艾莉西亚的戒指！";
+			mes "请从基尔心脏里取回爱丽丝亚的戒指！";
 			next;
 			enablenpc "Kiehl_Room_Warp";
 			donpcevent "Kiehl_Room_Warp::OnEnable";
@@ -3871,7 +3871,7 @@ kh_rossi,92,40,0	script	架子#khr	111,{
 				next;
 				switch(select("第一个箱子:第二个箱子")) {
 				case 1:
-					mes "^3355FF你用万能钥匙打开箱子，取出一幅女人的肖像。";
+					mes "^3355FF你用万能钥匙打开箱子，取出一幅女人的肖像画。";
 					mes "她看起来和基尔·海勒的助手艾莉西亚一模一样。^000000";
 					next;
 					cutin "kh_ellisia_port",2;
@@ -3890,12 +3890,12 @@ kh_rossi,92,40,0	script	架子#khr	111,{
 			}
 		}
 		else {
-			mes "^3355FF你从书架上的一个箱子里找到了一幅女人的肖像。^000000";
+			mes "^3355FF你从书架上的一个箱子里找到了一幅女人的肖像画。^000000";
 			close;
 		}
 	}
 	else {
-		mes "^3355FF你从书架上的一个箱子里找到了一幅女人的肖像。";
+		mes "^3355FF你从书架上的一个箱子里找到了一幅女人的肖像画。";
 		mes "箱子现在已经空了。^000000";
 		close;
 	}
@@ -4255,9 +4255,9 @@ kh_kiehl01,44,33,0	script	大门#BigDoorKHQ1	111,{
 		mes "^3355FF门锁着，把手旁边有一个狭窄的插槽。^000000";
 		next;
 		input .@KHInput$;
-		if (.@KHInput$ == "黑色钥匙卡") {
+		if (.@KHInput$ == getitemname(7506)) {
 			if (countitem(7506) >= 1) {
-				mes "^3355FF你将黑色钥匙卡插入插槽，成功打开了门锁。^000000";
+				mes "^3355FF你将黑色钥匙卡片插入插槽，成功打开了门锁。^000000";
 				delitem 7506,1; //Black_Key_Card
 				donpcevent "Big_Door_1_Warp::OnEnable";
 				enablenpc "Big_Door_1_Warp";
@@ -4363,9 +4363,9 @@ kh_kiehl01,77,108,0	script	大门#BigDoorKHQ3	111,{
 		mes "^3355FF门锁着，把手旁边有一个狭窄的插槽。^000000";
 		next;
 		input .@KHInput$;
-		if (.@KHInput$ == "黑色钥匙卡") {
+		if (.@KHInput$ == getitemname(7506)) {
 			if (countitem(7506) >= 1) {
-				mes "^3355FF你将黑色钥匙卡插入插槽，成功打开了门锁。^000000";
+				mes "^3355FF你将黑色钥匙卡片插入插槽，成功打开了门锁。^000000";
 				delitem 7506,1; //Black_Key_Card
 				donpcevent "Big_Door_3_Warp::OnEnable";
 				enablenpc "Big_Door_3_Warp";
@@ -4418,9 +4418,9 @@ kh_kiehl01,42,177,0	script	大门#BigDoorKHQ4	111,{
 		mes "^3355FF门锁着，把手旁边有一个狭窄的插槽。^000000";
 		next;
 		input .@KHInput$;
-		if (.@KHInput$ == "黑色钥匙卡") {
+		if (.@KHInput$ == getitemname(7506)) {
 			if (countitem(7506) >= 2) {
-				mes "^3355FF你将黑色钥匙卡插入插槽，成功打开了门锁。^000000";
+				mes "^3355FF你将黑色钥匙卡片插入插槽，成功打开了门锁。^000000";
 				delitem 7506,2; //Black_Key_Card
 				donpcevent "Big_Door_4_Warp::OnEnable";
 				enablenpc "Big_Door_4_Warp";
@@ -4530,7 +4530,7 @@ kh_kiehl01,166,187,0	script	大门#BigDoorKHQ5	111,{
 			mes "^3355FF如果能把什么东西塞进门和门框之间的缝隙，";
 			mes "借力一撬，应该就能打开了。^000000";
 			next;
-			switch(select("钢铁:生锈铁片:坚硬铁片:铁片:螺丝:取消")) {
+			switch(select("钢铁:生锈铁片:坚固的铁片:铁片:螺丝:取消")) {
 			case 1:
 				set .@KHPryingItem$,"钢铁";
 				break;
@@ -4540,14 +4540,14 @@ kh_kiehl01,166,187,0	script	大门#BigDoorKHQ5	111,{
 			case 3:
 				if (countitem(7507) >= 1) {
 					if (KielHyreQuest < 92) {
-						mes "^3355FF你将一块坚硬铁片的一端插进门缝，用力撬动。";
+						mes "^3355FF你将一块坚固的铁片的一端插进门缝，用力撬动。";
 						mes "缝隙稍微扩大了，但铁片也折断了。^000000";
 						delitem 7507,1; //Hard_Piece_of_Steel
 						set KielHyreQuest,KielHyreQuest+2;
 						close;
 					}
 					else if (KielHyreQuest == 92) {
-						mes "^3355FF你把坚硬铁片插入门框，使劲一撬，大门终于敞开。";
+						mes "^3355FF你把坚固的铁片插入门框，使劲一撬，大门终于敞开。";
 						mes "铁片承受不住这股力量，碎成了粉末。^000000";
 						delitem 7507,1; //Hard_Piece_of_Steel
 						set KielHyreQuest,94;
@@ -4555,7 +4555,7 @@ kh_kiehl01,166,187,0	script	大门#BigDoorKHQ5	111,{
 					}
 				}
 				else {
-					mes "^3355FF要是有坚硬铁片，就能用它撬开这扇门了。^000000";
+					mes "^3355FF要是有坚固的铁片，就能用它撬开这扇门了。^000000";
 					close;
 				}
 			case 4:
