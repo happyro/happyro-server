@@ -111,17 +111,17 @@ sp_cor,136,156,3	script	Grace Operator#ext162	4_M_REPAIR,{
 // Enchanting Supply Exchange NPC - Official iRO Conversion
 sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 	if (isbegin_quest(17019) == 0) {
-		mes "[叛乱者]";
-		mes "叛乱者目前正在使用这栋建筑。";
+		mes "[反叛军]";
+		mes "反叛军目前正在使用这栋建筑。";
 		mes "还有周围的几栋建筑。";
 		next;
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "我们已经很久没有这么忙了。";
 		mes "虽然我不喜欢和总统及公司合作，但忙于某件事的感觉仍然不错。";
 		close;
 	}
 	if (isbegin_quest(16353) < 2) {
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "所以你收到了消息。队长们正在里面开会。应该是埃琳娜·沃尔科娃队长叫你来的。";
 		mes "……我正准备叫她，但她已经来了。";
 		cloakoffnpcself( "埃琳娜·沃尔科娃#rm171_0" );
@@ -131,11 +131,11 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		close;
 	}
 	if (isbegin_quest(16360) < 2) {
-		mes "[叛乱者]";
-		mes "叛乱者目前正在使用这栋建筑。";
+		mes "[反叛军]";
+		mes "反叛军目前正在使用这栋建筑。";
 		mes "还有周围的几栋建筑。";
 		next;
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "我们已经很久没有这么忙了。";
 		mes "虽然我不喜欢和总统及公司合作，但忙于某件事的感觉仍然不错。";
 		close2;
@@ -143,28 +143,28 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 			erasequest 16352;
 		end;
 	}
-	mes "[叛乱者]";
+	mes "[反叛军]";
 	mes "你带来损坏的武器了吗？想见那个科学罪犯吗？他就在里面。要我叫他出来吗？";
 	mes "还是你有事找我？我可以交换武器改造装置和防具改造模块。";
 	cloakoffnpcself( "埃尔尤米娜#rm171_4" );
-	npctalk "叛乱者：嘿，罪犯。有人找你。", "Rebellion#rm171_7", bc_self;
+	npctalk "反叛军：嘿，罪犯。有人找你。", "Rebellion#rm171_7", bc_self;
 	npctalk "埃尔尤米娜：好了好了！我来了！你们真可悲，没有我只能拿豆袋战斗。", "埃尔尤米娜#rm171_4", bc_self;
 	next;
 	switch (select("见埃尔尤米娜。", "申请武器改造装置。", "申请防具改造模块。")) {
 	case 1:
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "好好聊吧。";
 		mes "我们花了很久才说服他，但他最终同意改造武器和防具。他很擅长这件事，每天都在工作。";
 		close;
 	case 2:
 		npctalk "埃尔尤米娜：什么？如果只是让我像雕像一样站在这里，你们干嘛叫我？你们这些混蛋！", "埃尔尤米娜#rm171_4", bc_self;
 		if (checkweight(1201,3) == 0) {
-			mes "[叛乱者]";
+			mes "[反叛军]";
 			mes "要武器改造装置吗？需要 5 个" + mesitemlink( 25723 ) + "或 1,000,000 Zeny。";
 			mes "你的背包满了。请先腾出空间。";
 			close;
 		}
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "要武器改造装置吗？需要 5 个" + mesitemlink( 25723 ) + "或 1,000,000 Zeny。";
 		mes "想要武器的话，可以和埃尔尤米娜谈。";
 		next;
@@ -177,7 +177,7 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 			.@group = IG_EP17_1_SPC03;	// EP17_1_SPC03
 			setarray .@ids[0],23779,23780,23781;
 		}
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "我可以随机给你" + mesitemlink( .@ids[0] ) + "、";
 		mes mesitemlink( .@ids[1] ) + "、";
 		mes "或" + mesitemlink( .@ids[2] ) + "。";
@@ -188,24 +188,24 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		switch (.@payment) {
 		case 1:
 			if (checkweight(1201,3) == 0) {
-				mes "[叛乱者]";
+				mes "[反叛军]";
 				mes "好像出了问题。请确认背包有足够空间，并且带齐交换材料。";
 				close;
 			}
 			if (countitem(25723) < 5) {
-				mes "[叛乱者]";
+				mes "[反叛军]";
 				mes "科尔核心不足。请重新检查背包。";
 				close;
 			}
 			break;
 		case 2:
 			if (checkweight(1201,3) == 0) {
-				mes "[叛乱者]";
+				mes "[反叛军]";
 				mes "好像出了问题。请确认背包有足够空间，并且带齐交换材料。";
 				close;
 			}
 			if (Zeny < 1000000) {
-				mes "[叛乱者]";
+				mes "[反叛军]";
 				mes "Zeny 不足。请重新检查钱包。";
 				close;
 			}
@@ -221,13 +221,13 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 			Zeny -= 1000000;
 		// consumeitem .@item_id;
 		getitem .@reward,1;
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "我把手头最好的给你了。";
 		mes "想精炼的话，旁边的 <NAVI>[铁罐]<INFO>sp_cor,106,136,0,101,0</INFO></NAVI> 可以帮助你。";
 		close;
 	case 3:
 		npctalk "埃尔尤米娜：什么？如果只是让我像雕像一样站在这里，你们干嘛叫我？你们这些野蛮人！", "埃尔尤米娜#rm171_4", bc_self;
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "要防具改造模块吗？需要 30 个" + mesitemlink( 25669 ) + "和 5 个" + mesitemlink( 25723 ) + "。";
 		if (checkweight(1201,3) == 0) {
 			mes "你的背包满了。请先腾出空间。";
@@ -236,22 +236,22 @@ sp_cor,108,130,5	script	Rebellion#rm171_7	4_F_REBELLION3,{
 		mes "获得的种类会随机决定。";
 		next;
 		if (select("申请防具改造模块。", "取消。") == 2) {
-			mes "[叛乱者]";
+			mes "[反叛军]";
 			mes "想要防具改造模块时随时来找我。";
 			close;
 		}
 		disable_items;
 		if (countitem(25669) < 30 || countitem(25723) < 5) {
-			mes "[叛乱者]";
+			mes "[反叛军]";
 			mes "每个模块需要 30 个神秘组件和 5 个科尔核心。你没有带齐，请检查。";
 			close;
 		}
 		if (checkweight(1201,3) == 0) {
-			mes "[叛乱者]";
+			mes "[反叛军]";
 			mes "好像出了问题。请确认背包有足够空间，并且带齐交换材料。";
 			close;
 		}
-		mes "[叛乱者]";
+		mes "[反叛军]";
 		mes "我给你一个防具改造模块。";
 		mes "想精炼的话，旁边的 <NAVI>[铁罐]<INFO>sp_cor,106,136,0,101,0</INFO></NAVI> 可以帮助你。";
 		.@reward = groupranditem(IG_EP17_1_SPC04,6);
@@ -434,7 +434,7 @@ sp_cor,106,136,3	script	RS26#illusion_enchant	4_SYS_MSG,{
 		next;
 		mes "[RS26]";
 		mes "我的技术只能在未来城市找到。我是 RS26，一台雷根贝勒机器人。";
-		npctalk "叛乱者：哦，没有模块那台机器毫无用处。","Rebellion#rm171_7",bc_self;
+		npctalk "反叛军：哦，没有模块那台机器毫无用处。","Rebellion#rm171_7",bc_self;
 		next;
 		mes "[RS26]";
 		mes "带来装有强化模块的幻影装备，我就能按你的要求升级。";

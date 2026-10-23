@@ -20,10 +20,10 @@ moc_para01,26,95,5	script	罗尔#sara	4_M_ROEL,{
 		switch( isbegin_quest(13181) ) {// Nightmarish Jitterbug
 		case 0:
 			mes "[罗尔]";
-			mes "我是 罗尔，白翼公会的新成员。罗特尔 让我四处寻找 纽沃兹，我找到了一些关于他下落的线索。";
+			mes "我是 罗尔，白翼公会的新成员。罗特尔 让我四处寻找 纽奥兹，我找到了一些关于他下落的线索。";
 			next;
 			mes "[罗尔]";
-			mes "招募公会新人！加入我们寻找前任会长 纽沃兹 的行动！感兴趣吗？";
+			mes "招募公会新人！加入我们寻找前任会长 纽奥兹 的行动！感兴趣吗？";
 			next;
 			if (select( "是。", "不。" ) == 1) {
 				cutin "roel02",0;
@@ -35,13 +35,13 @@ moc_para01,26,95,5	script	罗尔#sara	4_M_ROEL,{
 				mes "我试着寻找他的踪迹，但毫无结果。";
 				next;
 				mes "[罗尔]";
-				mes "纽沃兹 是个热衷冒险的家伙，从不在一个地方久留；很多人声称见过他，却没人记得他去了哪里。";
+				mes "纽奥兹 是个热衷冒险的家伙，从不在一个地方久留；很多人声称见过他，却没人记得他去了哪里。";
 				next;
 				mes "[罗尔]";
 				mes "过了一阵子，我只好放弃追踪他。那只是在浪费时间。";
 				next;
 				mes "[罗尔]";
-				mes "我把目光转向异世界，在那里遇到了一些目击者。他们带我去了最后一次见到 纽沃兹 的地方。";
+				mes "我把目光转向异世界，在那里遇到了一些目击者。他们带我去了最后一次见到 纽奥兹 的地方。";
 				next;
 				mes "[罗尔]";
 				mes "整个过程非常痛苦。要不是 露安娜，我们不可能记住他最后出现的位置，也不可能从那里出来。";
@@ -229,10 +229,10 @@ OnTouch_:
 
 
 // Room 1 : Entrance
-1@jtb,28,30,5	script	纽沃兹#01	4_M_NEWOZ,{
+1@jtb,28,30,5	script	纽奥兹#01::纽沃兹#01	4_M_NEWOZ,{
 	if ('room != 1 || is_party_leader() == false) {
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我们的冒险还没开始，我已经饿了。";
 		close3;
 	}
@@ -266,15 +266,15 @@ OnTouch_:
 	.@roter$ = instance_npcname("罗特尔#01");
 
 	cutin "nines02",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "看来大家都到了。";
-	npctalk "纽沃兹: 看来大家都到了。";
+	npctalk "纽奥兹: 看来大家都到了。";
 	emotion ET_DELIGHT;
 	next;
 	cutin "rote03",0;
 	mes "[罗特尔]";
-	mes "我说过了，纽沃兹。我们不能就这样算了。";
-	npctalk "罗特尔：我说过了，纽沃兹。我们不能就这样算了。", .@roter$;
+	mes "我说过了，纽奥兹。我们不能就这样算了。";
+	npctalk "罗特尔：我说过了，纽奥兹。我们不能就这样算了。", .@roter$;
 	emotion ET_FRET, getnpcid(0,.@roter$);
 	next;
 	if ('room == 1 && is_party_leader() == true)
@@ -286,19 +286,19 @@ OnTouch_:
 	next;
 	cutin "nines04",0;
 	emotion ET_DELIGHT;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我会解释一切。别再提毒蘑菇了，我根本不能吃蘑菇。";
-	npctalk "纽沃兹: 我会解释一切。别再提毒蘑菇了，我根本不能吃蘑菇。";
+	npctalk "纽奥兹: 我会解释一切。别再提毒蘑菇了，我根本不能吃蘑菇。";
 	next;
 	cutin "igu05",2;
 	mes "[艾古]";
-	mes "纽沃兹，你除了肉什么都不能吃。唉，看到你平安真好。";
-	npctalk "艾古：纽沃兹，你除了肉什么都不能吃。唉，看到你平安真好。", .@aigu$;
+	mes "纽奥兹，你除了肉什么都不能吃。唉，看到你平安真好。";
+	npctalk "艾古：纽奥兹，你除了肉什么都不能吃。唉，看到你平安真好。", .@aigu$;
 	next;
 	cutin "gelca03",0;
-	mes "[格尔卡]";
-	mes "你就是大名鼎鼎的 纽沃兹！很高兴认识你。我师父告诉过我许多你的伟大事迹……";
-	npctalk "格尔卡：你就是大名鼎鼎的 纽沃兹！很高兴认识你。我师父告诉过我许多你的伟大事迹……", .@gelka$;
+	mes "[盖尔卡]";
+	mes "你就是大名鼎鼎的 纽奥兹！很高兴认识你。我师父告诉过我许多你的伟大事迹……";
+	npctalk "盖尔卡：你就是大名鼎鼎的 纽奥兹！很高兴认识你。我师父告诉过我许多你的伟大事迹……", .@gelka$;
 	next;
 	cutin "rote03",0;
 	mes "[罗特尔]";
@@ -307,23 +307,23 @@ OnTouch_:
 	next;
 	cutin "arang02",2;
 	mes "[阿朗]";
-	mes "哇，纽沃兹！你的眼睛看起来比以前更肿了。";
-	npctalk "阿朗：哇，纽沃兹！你的眼睛看起来比以前更肿了。", .@arang$;
+	mes "哇，纽奥兹！你的眼睛看起来比以前更肿了。";
+	npctalk "阿朗：哇，纽奥兹！你的眼睛看起来比以前更肿了。", .@arang$;
 	next;
 	cutin "nines02",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你好，阿朗。阿里郎 怎么样？嘿。你怎么会来这里？";
-	npctalk "纽沃兹：你好，阿朗。阿里郎 怎么样？嘿。你怎么会来这里？";
+	npctalk "纽奥兹：你好，阿朗。阿里郎 怎么样？嘿。你怎么会来这里？";
 	next;
 	cutin "rote03",0;
 	mes "[罗特尔]";
-	mes "纽沃兹，你知道自己失踪多久了吗？我们甚至招募了新的公会成员来找你，而且……";
-	npctalk "罗特尔：纽沃兹，你知道自己失踪多久了吗？我们甚至招募了新的公会成员来找你，而且……", .@roter$;
+	mes "纽奥兹，你知道自己失踪多久了吗？我们甚至招募了新的公会成员来找你，而且……";
+	npctalk "罗特尔：纽奥兹，你知道自己失踪多久了吗？我们甚至招募了新的公会成员来找你，而且……", .@roter$;
 	next;
 	cutin "lunain01",0;
 	mes "[露安娜]";
-	mes "嗨，很高兴认识你。能亲自见到著名的 纽沃兹 是我的荣幸。";
-	npctalk "露安娜: 嗨，很高兴认识你。能亲自见到著名的 纽沃兹 是我的荣幸。", .@runane$;
+	mes "嗨，很高兴认识你。能亲自见到著名的 纽奥兹 是我的荣幸。";
+	npctalk "露安娜: 嗨，很高兴认识你。能亲自见到著名的 纽奥兹 是我的荣幸。", .@runane$;
 	next;
 	cutin "roel01",2;
 	mes "[罗尔]";
@@ -336,9 +336,9 @@ OnTouch_:
 	npctalk "罗特尔: 根据公会条例第 8 条，我现在是公会会长，而你只是成员。", .@roter$;
 	next;
 	cutin "nines02",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "哦，恭喜，会长。";
-	npctalk "纽沃兹: 哦，恭喜，会长。";
+	npctalk "纽奥兹: 哦，恭喜，会长。";
 	next;
 	cutin "rote01",0;
 	emotion ET_THINK, getnpcid(0,.@roter$);
@@ -353,9 +353,9 @@ OnTouch_:
 	npctalk "旋律·杰克：你期待什么？他脑子里只有冒险、魔物和宝藏。", .@melody$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "啊，这里有鬼吗？还是我听错了？";
-	npctalk "纽沃兹：啊，这里有鬼吗？还是我听错了？";
+	npctalk "纽奥兹：啊，这里有鬼吗？还是我听错了？";
 	next;
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	cutin "",255;
@@ -364,9 +364,9 @@ OnTouch_:
 	npctalk "旋律·杰克: ...", .@melody$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "呼，是你啊 杰克。好久不见，各位。";
-	npctalk "纽沃兹：呼，是你啊 杰克。好久不见，各位。";
+	npctalk "纽奥兹：呼，是你啊 杰克。好久不见，各位。";
 	next;
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	cutin "",255;
@@ -400,9 +400,9 @@ OnTouch_:
 	npctalk "拉吉：难道是超自然现象？", .@lagi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "或者是异世界现象。";
-	npctalk "纽沃兹：或者是异世界现象。";
+	npctalk "纽奥兹：或者是异世界现象。";
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -410,14 +410,14 @@ OnTouch_:
 	npctalk "明敏: ...", .@mingmin$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你就是 拉吉，对吧？我喜欢你的思考方式。以后真想和你合作一次。";
-	npctalk "纽沃兹：你就是 拉吉，对吧？我喜欢你的思考方式。以后真想和你合作一次。";
+	npctalk "纽奥兹：你就是 拉吉，对吧？我喜欢你的思考方式。以后真想和你合作一次。";
 	next;
 	cutin "lunain02",0;
 	mes "[露安娜]";
-	mes "我加入这个公会就是为了见你，纽沃兹。你有女朋友吗？";
-	npctalk "露安娜：我加入这个公会就是为了见你，纽沃兹。你有女朋友吗？", .@runane$;
+	mes "我加入这个公会就是为了见你，纽奥兹。你有女朋友吗？";
+	npctalk "露安娜：我加入这个公会就是为了见你，纽奥兹。你有女朋友吗？", .@runane$;
 	next;
 	cutin "igu05",2;
 	mes "[艾古]";
@@ -426,8 +426,8 @@ OnTouch_:
 	next;
 	cutin "lunain03",0;
 	mes "[露安娜]";
-	mes "我觉得他不知道这件事。对吧，纽沃兹？";
-	npctalk "露安娜：我觉得他不知道这件事。对吧，纽沃兹？", .@runane$;
+	mes "我觉得他不知道这件事。对吧，纽奥兹？";
+	npctalk "露安娜：我觉得他不知道这件事。对吧，纽奥兹？", .@runane$;
 	next;
 	cutin "igu04",2;
 	mes "[艾古]";
@@ -440,9 +440,9 @@ OnTouch_:
 	npctalk "露安娜：*哼* 那他就是公平竞争对象了！", .@runane$;
 	next;
 	cutin "gelca02",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "呃，话题好像已经变成……";
-	npctalk "格尔卡：呃，话题好像已经变成……", .@gelka$;
+	npctalk "盖尔卡：呃，话题好像已经变成……", .@gelka$;
 	next;
 	cutin "ragi03",2;
 	mes "[拉吉]";
@@ -451,8 +451,8 @@ OnTouch_:
 	next;
 	cutin "arang02",0;
 	mes "[阿朗]";
-	mes "她们是在争夺 纽沃兹 吗？我也要参加！";
-	npctalk "阿朗：她们是在争夺 纽沃兹 吗？我也要参加！", .@arang$;
+	mes "她们是在争夺 纽奥兹 吗？我也要参加！";
+	npctalk "阿朗：她们是在争夺 纽奥兹 吗？我也要参加！", .@arang$;
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -483,13 +483,13 @@ OnTouch_:
 	disablenpc .@runane$;
 	cutin "rote01",0;
 	mes "[罗特尔]";
-	mes "纽沃兹，你就像疯狂的磁铁。";
-	npctalk "罗特尔：纽沃兹，你就像疯狂的磁铁。", .@roter$;
+	mes "纽奥兹，你就像疯狂的磁铁。";
+	npctalk "罗特尔：纽奥兹，你就像疯狂的磁铁。", .@roter$;
 	next;
 	cutin "gelca02",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "我能看出是什么让你变得如此暴躁，师父。";
-	npctalk "格尔卡：我能看出是什么让你变得如此暴躁，师父。", .@gelka$;
+	npctalk "盖尔卡：我能看出是什么让你变得如此暴躁，师父。", .@gelka$;
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -507,14 +507,14 @@ OnTouch_:
 	npctalk "罗特尔: 哦，你们两个都闭嘴！", .@roter$;
 	next;
 	cutin "nines03",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "这让我想起罗特尔年轻的时候……";
-	npctalk "纽沃兹: 这让我想起罗特尔年轻的时候……";
+	npctalk "纽奥兹: 这让我想起罗特尔年轻的时候……";
 	next;
 	cutin "gelca04",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "罗特？这是你的昵称吗，师父？你们是朋友吗？";
-	npctalk "格尔卡: 罗特？这是你的昵称吗，师父？你们是朋友吗？", .@gelka$;
+	npctalk "盖尔卡: 罗特？这是你的昵称吗，师父？你们是朋友吗？", .@gelka$;
 	next;
 	cutin "rote01",0;
 	mes "[罗特尔]";
@@ -532,9 +532,9 @@ OnTouch_:
 	npctalk "罗特尔: 别装作关心我！我能照顾好自己！", .@roter$;
 	next;
 	cutin "gelca04",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "师父，跟我来！";
-	npctalk "格尔卡: 师父，跟我来！", .@gelka$;
+	npctalk "盖尔卡: 师父，跟我来！", .@gelka$;
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -554,9 +554,9 @@ OnTouch_:
 	npctalk "罗尔: 走吧。", .@roel$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "阿朗，走吧。冒险时间到了！";
-	npctalk "纽沃兹: 阿朗，走吧。冒险时间到了！";
+	npctalk "纽奥兹: 阿朗，走吧。冒险时间到了！";
 	next;
 	disablenpc .@lagi$;
 	disablenpc .@roel$;
@@ -639,13 +639,13 @@ OnTouch_:
 
 1@jtb,23,22,5	script	露安娜#01	4_F_RUNAIN,{
 	mes "[露安娜]";
-	mes "哦，他就是传说中的纽沃兹吗？";
+	mes "哦，他就是传说中的纽奥兹吗？";
 	close;
 }
 
-1@jtb,23,26,5	script	格尔卡#01	4_F_GELKA,{
+1@jtb,23,26,5	script	盖尔卡#01::格尔卡#01	4_F_GELKA,{
 	cutin "gelca01",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "这个地方让我毛骨悚然。";
 	close3;
 }
@@ -653,7 +653,7 @@ OnTouch_:
 1@jtb,25,28,5	script	罗特尔#01	4_M_ROTERT,{
 	cutin "rote01",0;
 	mes "[罗特尔]";
-	mes "……我们终于见面了，纽沃兹！";
+	mes "……我们终于见面了，纽奥兹！";
 	close3;
 }
 
@@ -749,8 +749,8 @@ OnTouch_:
 	next;
 	cutin "lunain01",2;
 	mes "[露安娜]";
-	mes "你认识纽沃兹吗？我们把他带离这里。";
-	npctalk "露安娜: 你认识纽沃兹吗？我们把他带离这里。";
+	mes "你认识纽奥兹吗？我们把他带离这里。";
+	npctalk "露安娜: 你认识纽奥兹吗？我们把他带离这里。";
 	next;
 	cutin "igu03",0;
 	mes "[艾古]";
@@ -807,9 +807,9 @@ OnTouch_:
 	else {
 		.@gelka$ = instance_npcname("格尔卡#03");
 		cutin "gelca01",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "我检测到前方有电磁波。至少是 E 级怪物。";
-		npctalk "格尔卡: 我检测到前方有电磁波。至少是 E 级怪物。", .@gelka$;
+		npctalk "盖尔卡: 我检测到前方有电磁波。至少是 E 级怪物。", .@gelka$;
 		next;
 		emotion ET_SWEAT;
 		cutin "rote01",0;
@@ -818,9 +818,9 @@ OnTouch_:
 		npctalk "罗特尔: 嘿，你最近在读什么？";
 		next;
 		cutin "gelca03",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "嘿，科幻小说。有一种机械工具可以……";
-		npctalk "格尔卡: 嘿，科幻小说。有一种机械工具可以……", .@gelka$;
+		npctalk "盖尔卡: 嘿，科幻小说。有一种机械工具可以……", .@gelka$;
 		next;
 		emotion ET_OHNO;
 		cutin "rote01",0;
@@ -829,24 +829,24 @@ OnTouch_:
 		npctalk "罗特尔: 别说了，准备练习你们的特殊技能。";
 		next;
 		cutin "gelca03",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "哦，这就像重现书中怪物肆虐的场景。";
-		npctalk "格尔卡: 哦，这就像重现书中怪物肆虐的场景。", .@gelka$;
+		npctalk "盖尔卡: 哦，这就像重现书中怪物肆虐的场景。", .@gelka$;
 		next;
 		cutin "rote01",0;
 		mes "[罗特尔]";
-		mes "格尔卡，超特殊技能 8 号：狂野之舞！";
-		npctalk "罗特尔: 格尔卡，超特殊技能 8 号：狂野之舞！";
+		mes "盖尔卡，超特殊技能 8 号：狂野之舞！";
+		npctalk "罗特尔: 盖尔卡，超特殊技能 8 号：狂野之舞！";
 		next;
 		emotion ET_SURPRISE, getnpcid(0,.@gelka$);
 		cutin "gelca01",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "!!";
-		npctalk "格尔卡: !!", .@gelka$;
+		npctalk "盖尔卡: !!", .@gelka$;
 		next;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "来了！";
-		npctalk "格尔卡: 来了！", .@gelka$;
+		npctalk "盖尔卡: 来了！", .@gelka$;
 		next;
 		cutin "rote01",0;
 		mes "[罗特尔]";
@@ -857,26 +857,26 @@ OnTouch_:
 		specialeffect EF_SIGNUM;
 		next;
 		cutin "gelca01",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "毁灭十二天网！";
-		npctalk "格尔卡: 毁灭十二天网！";
+		npctalk "盖尔卡: 毁灭十二天网！";
 		specialeffect EF_HITLINE,AREA, .@gelka$;
 		specialeffect EF_BASH3D2,AREA, .@gelka$;
 		specialeffect EF_GUMGANG,AREA, .@gelka$;
 		next;
 		emotion ET_SPARK;
 		emotion ET_SPARK, getnpcid(0,.@gelka$);
-		mes "[格尔卡/罗特尔]";
+		mes "[盖尔卡/罗特尔]";
 		mes "交叉！！！";
 		npctalk "罗特尔: 交叉！！！";
-		npctalk "格尔卡: 交叉！！！", .@gelka$;
+		npctalk "盖尔卡: 交叉！！！", .@gelka$;
 		specialeffect EF_GRANDCROSS;
 		specialeffect EF_GRANDCROSS,AREA, .@gelka$;
 		next;
 		cutin "rote01",0;
-		mes "[格尔卡/罗特尔]";
+		mes "[盖尔卡/罗特尔]";
 		mes "散射——千重闪光！";
-		npctalk "格尔卡: 散射——千重闪光！", .@gelka$;
+		npctalk "盖尔卡: 散射——千重闪光！", .@gelka$;
 		npctalk "罗特尔: 散射——千重闪光！";
 		specialeffect EF_LEXAETERNA;
 		specialeffect EF_LEXAETERNA,AREA, .@gelka$;
@@ -892,19 +892,19 @@ OnTouch_:
 		specialeffect EF_BEGINASURA,AREA, .@gelka$;
 		next;
 		cutin "gelca01",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "……呼。";
-		npctalk "格尔卡: ……呼。", .@gelka$;
+		npctalk "盖尔卡: ……呼。", .@gelka$;
 		next;
 		cutin "rote01",0;
 		mes "[罗特尔]";
-		mes "嗯，还不够好，格尔卡。别让公会事务分散你训练的注意力。";
-		npctalk "罗特尔: 嗯，还不够好，格尔卡。别让公会事务分散你训练的注意力。";
+		mes "嗯，还不够好，盖尔卡。别让公会事务分散你训练的注意力。";
+		npctalk "罗特尔: 嗯，还不够好，盖尔卡。别让公会事务分散你训练的注意力。";
 		next;
 		cutin "gelca03",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "是，师父！";
-		npctalk "格尔卡: 是，师父！", .@gelka$;
+		npctalk "盖尔卡: 是，师父！", .@gelka$;
 		next;
 		cutin "rote01",0;
 		mes "[罗特尔]";
@@ -916,9 +916,9 @@ OnTouch_:
 	close3;
 }
 
-1@jtb,205,31,4	script	格尔卡#03	4_F_GELKA,{
+1@jtb,205,31,4	script	盖尔卡#03::格尔卡#03	4_F_GELKA,{
 	cutin "gelca04",2;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "可能会有东西袭击我们！";
 	close3;
 }
@@ -989,10 +989,10 @@ OnTouch_:
 // Room 5 (final room)
 
 // Room 6
-1@jtb,20,108,5	script	纽沃兹#06	4_M_NEWOZ,{
+1@jtb,20,108,5	script	纽奥兹#06::纽沃兹#06	4_M_NEWOZ,{
 	if ('room != 6 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我之后再唱。";
 		close3;
 	}
@@ -1005,14 +1005,14 @@ OnTouch_:
 
 		cutin "igu05",2;
 		mes "[艾古]";
-	mes "纽沃兹！你这次跑到哪里去了？";
-	npctalk "艾古：纽沃兹！你这次跑到哪里去了？", .@aigu$;
+	mes "纽奥兹！你这次跑到哪里去了？";
+	npctalk "艾古：纽奥兹！你这次跑到哪里去了？", .@aigu$;
 		next;
 		cutin "nines04",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 	mes "抱歉。";
 	mes "这里像迷宫一样，岔路和空地太多，我都数不清了。";
-	npctalk "纽沃兹：抱歉。这里像迷宫一样，岔路和空地太多，我都数不清了。";
+	npctalk "纽奥兹：抱歉。这里像迷宫一样，岔路和空地太多，我都数不清了。";
 		next;
 		cutin "arang01",2;
 		mes "[阿朗]";
@@ -1030,9 +1030,9 @@ OnTouch_:
 	npctalk "？？？：有歌声的男人。", .@shaloshi$;
 		next;
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 	mes "哦，你好。请问你是谁，小姑娘？";
-	npctalk "纽沃兹：哦，你好。请问你是谁，小姑娘？";
+	npctalk "纽奥兹：哦，你好。请问你是谁，小姑娘？";
 		next;
 		cutin "shaloshi01",2;
 		mes "[莎洛希]";
@@ -1040,9 +1040,9 @@ OnTouch_:
 	npctalk "莎洛希：我是莎洛希。为我唱歌。", .@shaloshi$;
 		next;
 		cutin "nines03",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 	mes "哈哈，你真可爱。我之后为你唱。";
-	npctalk "纽沃兹：哈哈，你真可爱。我之后为你唱。";
+	npctalk "纽奥兹：哈哈，你真可爱。我之后为你唱。";
 		next;
 		cutin "shaloshi01",2;
 		mes "[莎洛希]";
@@ -1060,14 +1060,14 @@ OnTouch_:
 	npctalk "阿朗：只要和我们待在一起，你就没事，艾古……嗯，大家去哪了？", .@arang$;
 		next;
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 	mes "哈哈，别担心，小姑娘们。我会保护你们。";
-	npctalk "纽沃兹：哈哈，别担心，小姑娘们。我会保护你们。";
+	npctalk "纽奥兹：哈哈，别担心，小姑娘们。我会保护你们。";
 		next;
 		cutin "arang03",2;
 		mes "[阿朗]";
-	mes "纽沃兹，我爱你！";
-	npctalk "阿朗：纽沃兹，我爱你！", .@arang$;
+	mes "纽奥兹，我爱你！";
+	npctalk "阿朗：纽奥兹，我爱你！", .@arang$;
 		next;
 		cutin "shaloshi01",2;
 		mes "[莎洛希]";
@@ -1142,8 +1142,8 @@ OnTouch_:
 		next;
 		cutin "igu01",2;
 		mes "[艾古]";
-	mes "真奇怪。她一开始就告诉纽沃兹了。";
-	npctalk "艾古：真奇怪。她一开始就告诉纽沃兹了。", .@aigu$;
+	mes "真奇怪。她一开始就告诉纽奥兹了。";
+	npctalk "艾古：真奇怪。她一开始就告诉纽奥兹了。", .@aigu$;
 		next;
 		cutin "lunain04",2;
 		mes "[露安娜]";
@@ -1162,8 +1162,8 @@ OnTouch_:
 		next;
 		cutin "lunain03",2;
 		mes "[露安娜]";
-	mes "别太相信这个孩子。我最好去找纽沃兹。";
-	npctalk "露安娜：别太相信这个孩子。我最好去找纽沃兹。", .@runane$;
+	mes "别太相信这个孩子。我最好去找纽奥兹。";
+	npctalk "露安娜：别太相信这个孩子。我最好去找纽奥兹。", .@runane$;
 		next;
 		cutin "roel01",0;
 		mes "[罗尔]";
@@ -1183,14 +1183,14 @@ OnTouch_:
 1@jtb,116,117,4	script	露安娜#07	4_F_RUNAIN,{
 	cutin "lunain01",2;
 	mes "[露安娜]";
-	mes "你觉得纽沃兹这次在哪里？";
+	mes "你觉得纽奥兹这次在哪里？";
 	close3;
 }
 
 1@jtb,115,113,4	script	艾古#07	4_F_IU,{
 	cutin "igu01",0;
 	mes "[艾古]";
-	mes "我感觉很棒——自从负责照顾其他冒险者后，这是我很久以来第一次冒险。而且我还遇到了偶像纽沃兹！";
+	mes "我感觉很棒——自从负责照顾其他冒险者后，这是我很久以来第一次冒险。而且我还遇到了偶像纽奥兹！";
 	close3;
 }
 
@@ -1219,13 +1219,13 @@ OnTouch_:
 
 	cutin "min02",2;
 	mes "[明敏]";
-	mes "纽沃兹！";
-	npctalk "明敏：纽沃兹！";
+	mes "纽奥兹！";
+	npctalk "明敏：纽奥兹！";
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "嗯，怎么了？";
-	npctalk "纽沃兹：嗯，怎么了？", .@newoz$;
+	npctalk "纽奥兹：嗯，怎么了？", .@newoz$;
 	next;
 	if ('room == 8 && is_party_leader() == true)
 		donpcevent 'jitterbug_main$ + "::OnNextIs9";
@@ -1237,9 +1237,9 @@ OnTouch_:
 	next;
 	cutin "nines04",0;
 	emotion ET_HUK, getnpcid(0,.@newoz$);
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "什、什么……？！别胡说，我刚刚才找到她。";
-	npctalk "纽沃兹：什、什么……？！别胡说，我刚刚才找到她。", .@newoz$;
+	npctalk "纽奥兹：什、什么……？！别胡说，我刚刚才找到她。", .@newoz$;
 	next;
 	cutin "min02",2;
 	mes "[明敏]";
@@ -1265,9 +1265,9 @@ OnTouch_:
 	npctalk "莎洛希：它们来了……", .@shaloshi$;
 	next;
 	cutin "nines04",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "这些魔物没完没了地出现。但那些巨大、稀有又美丽的在哪里？";
-	npctalk "纽沃兹：这些魔物没完没了地出现。但那些巨大、稀有又美丽的在哪里？", .@newoz$;
+	npctalk "纽奥兹：这些魔物没完没了地出现。但那些巨大、稀有又美丽的在哪里？", .@newoz$;
 	next;
 	cutin "min02",2;
 	mes "[明敏]";
@@ -1289,23 +1289,23 @@ OnTouch_:
 1@jtb,206,114,5	script	莎洛希#08	4_F_SHALOSH,{
 	cutin "shaloshi01",0;
 	mes "[莎洛希]";
-	mes "纽沃兹的手……好热。";
+	mes "纽奥兹的手……好热。";
 	close3;
 }
 
-1@jtb,203,112,5	script	纽沃兹#08	4_M_NEWOZ,{
+1@jtb,203,112,5	script	纽奥兹#08::纽沃兹#08	4_M_NEWOZ,{
 	cutin "nines03",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "不知道通道尽头有什么在等我们。期待得让我坐立不安！";
 	close3;
 }
 
 
 // Room 9 (menu affects the boss encounter in the next room)
-1@jtb,285,114,5	script	纽沃兹#09	4_M_NEWOZ,{
+1@jtb,285,114,5	script	纽奥兹#09::纽沃兹#09	4_M_NEWOZ,{
 	if ('room != 9 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 	mes "我一直喜欢唱歌。";
 		close3;
 	}
@@ -1325,9 +1325,9 @@ OnTouch_:
 	.@lagi$ = instance_npcname("拉吉#09");
 
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我总是把其他人弄丢。他们明明就在我面前。";
-	npctalk "纽沃兹：我总是把其他人弄丢。他们明明就在我面前。";
+	npctalk "纽奥兹：我总是把其他人弄丢。他们明明就在我面前。";
 	next;
 	cutin "ragi01",0;
 	mes "[拉吉]";
@@ -1335,17 +1335,17 @@ OnTouch_:
 	npctalk "拉吉：我们又见面了。", .@lagi$;
 	next;
 	cutin "nines03",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你很有品味。这首歌刚好浮现在我的脑海里。听听吧。";
-	npctalk "纽沃兹：你很有品味。这首歌刚好浮现在我的脑海里。听听吧。";
+	npctalk "纽奥兹：你很有品味。这首歌刚好浮现在我的脑海里。听听吧。";
 	next;
 	if ('room == 9 && is_party_leader() == true)
 		donpcevent 'jitterbug_main$ + "::OnNextIs10";
 	cutin "nines02",0;
 	emotion ET_DELIGHT;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "季节又一次变换～可我还没有机会用凤仙花染指甲～";
-	npctalk "纽沃兹：季节又一次变换～可我还没有机会用凤仙花染指甲～";
+	npctalk "纽奥兹：季节又一次变换～可我还没有机会用凤仙花染指甲～";
 	next;
 	cutin "ragi02",0;
 	emotion ET_DELIGHT, getnpcid(0,.@lagi$);
@@ -1355,9 +1355,9 @@ OnTouch_:
 	next;
 	cutin "nines01",0;
 	emotion ET_BEST;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你很棒。你会成为优秀的舞娘和吟游诗人。";
-	npctalk "纽沃兹：你很棒。你会成为优秀的舞娘和吟游诗人。";
+	npctalk "纽奥兹：你很棒。你会成为优秀的舞娘和吟游诗人。";
 	next;
 	cutin "ragi01",0;
 	mes "[拉吉]";
@@ -1365,9 +1365,9 @@ OnTouch_:
 	npctalk "拉吉：我想暂时继续当吟游诗人。", .@lagi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "只要会唱歌和演奏，职业其实无所谓，对吧？";
-	npctalk "纽沃兹：只要会唱歌和演奏，职业其实无所谓，对吧？";
+	npctalk "纽奥兹：只要会唱歌和演奏，职业其实无所谓，对吧？";
 	next;
 	cutin "shaloshi01",0;
 	mes "[莎洛希]";
@@ -1375,9 +1375,9 @@ OnTouch_:
 	npctalk "莎洛希：喜欢你的歌。", .@shaloshi$;
 	next;
 	cutin "nines02",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "莎洛希，你有喜欢的歌吗？";
-	npctalk "纽沃兹：莎洛希，你有喜欢的歌吗？";
+	npctalk "纽奥兹：莎洛希，你有喜欢的歌吗？";
 	next;
 	cutin "shaloshi01",0;
 	emotion ET_DELIGHT, getnpcid(0,.@shaloshi$);
@@ -1394,36 +1394,36 @@ OnTouch_:
 	npctalk "拉吉：嗯，你是在尝试吹口哨吗？", .@lagi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "哈哈，之后我教你怎么吹，莎洛希。";
-	npctalk "纽沃兹：哈哈，之后我教你怎么吹，莎洛希。";
+	npctalk "纽奥兹：哈哈，之后我教你怎么吹，莎洛希。";
 	next;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "" + strcharinfo(0) + "，你有喜欢的歌吗？";
-	npctalk "纽沃兹：" + strcharinfo(0) + "，你有喜欢的歌吗？";
+	npctalk "纽奥兹：" + strcharinfo(0) + "，你有喜欢的歌吗？";
 	next;
-	switch( select("艾古 的出道曲《迷路波利》", "艾古 的单曲《只有我不知道卡片专辑的事》", "纽沃兹 的《红色药水》（与 摩卡 合作）", "拉吉 的自创曲《意外月光》" ) ) {
+	switch( select("艾古 的出道曲《迷路波利》", "艾古 的单曲《只有我不知道卡片专辑的事》", "纽奥兹 的《红色药水》（与 摩卡 合作）", "拉吉 的自创曲《意外月光》" ) ) {
 	case 1:
 		jitterbug_options &= ~1;
 		unittalk getcharid(3), "" + strcharinfo(0) + "：我喜欢艾古的出道曲《迷路波利》。";
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "你知道她的出道曲。你是她的粉丝吧？";
-		npctalk "纽沃兹：你知道她的出道曲。你是她的粉丝吧？";
+		npctalk "纽奥兹：你知道她的出道曲。你是她的粉丝吧？";
 		break;
 	case 2:
 		jitterbug_options &= ~1;
 		unittalk getcharid(3), "" + strcharinfo(0) + "：我喜欢艾古的单曲《只有我不知道卡片专辑的事》。";
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "艾古现在是卢恩-米德加尔兹最火的歌手！";
-		npctalk "纽沃兹：艾古现在是卢恩-米德加尔兹最火的歌手！";
+		npctalk "纽奥兹：艾古现在是卢恩-米德加尔兹最火的歌手！";
 		break;
 	case 3:
 		jitterbug_options |= 1;
 		areamonster 'map_jtb$,351,131,389,96, "--ja--", 3108,1;	// no label
 		unittalk getcharid(3), "" + strcharinfo(0) + "：我喜欢你的《红色药水》（与摩卡合作）。";
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "哈哈，真让人不好意思，不过谢谢你。";
-		npctalk "纽沃兹：哈哈，真让人不好意思，不过谢谢你。";
+		npctalk "纽奥兹：哈哈，真让人不好意思，不过谢谢你。";
 		break;
 	case 4:
 		jitterbug_options &= ~1;
@@ -1435,9 +1435,9 @@ OnTouch_:
 	}
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "嗯，各有所好。";
-	npctalk "纽沃兹：嗯，各有所好。";
+	npctalk "纽奥兹：嗯，各有所好。";
 	next;
 	cutin "ragi01",0;
 	emotion ET_SURPRISE, getnpcid(0,.@lagi$);
@@ -1446,9 +1446,9 @@ OnTouch_:
 	npctalk "拉吉：又有别的东西出现了。", .@lagi$;
 	next;
 	cutin "nines04",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "啊，我饿了。别管那些魔物了。莎洛希，我们走！";
-	npctalk "纽沃兹：啊，我饿了。别管那些魔物了。莎洛希，我们走！";
+	npctalk "纽奥兹：啊，我饿了。别管那些魔物了。莎洛希，我们走！";
 	next;
 	cutin "shaloshi01",0;
 	mes "[莎洛希]";
@@ -1481,10 +1481,10 @@ OnTouch_:
 }
 
 // Room 10
-1@jtb,375,117,4	script	纽沃兹#10	4_M_NEWOZ,{
+1@jtb,375,117,4	script	纽奥兹#10::纽沃兹#10	4_M_NEWOZ,{
 	if ('room != 10 || is_party_leader() == false) {
 		cutin "nines01",2;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "这些家伙不一样。他们似乎理解音乐……也可能不是。";
 		close3;
 	}
@@ -1497,9 +1497,9 @@ OnTouch_:
 
 		emotion ET_DELIGHT;
 		cutin "nines01",2;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "你已经处理好了吗？我也想参加！";
-		npctalk "纽沃兹：你已经处理好了吗？我也想参加！";
+		npctalk "纽奥兹：你已经处理好了吗？我也想参加！";
 		next;
 		cutin "roel01",0;
 		mes "[罗尔]";
@@ -1839,16 +1839,16 @@ OnTouch_:
 }
 
 // Room 13
-1@jtb,195,206,4	script	纽沃兹#13	4_M_NEWOZ,{
+1@jtb,195,206,4	script	纽奥兹#13::纽沃兹#13	4_M_NEWOZ,{
 	if (is_party_leader() == false) {
 		cutin "nines01",2;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我突然想吃肉。早知道就带一整盒了！";
 		close3;
 	}
 	if ('room != 13) {
 		cutin "nines01",2;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "你说得太复杂了，其实直接说‘互相给予’就好。";
 		close3;
 	}
@@ -1860,20 +1860,20 @@ OnTouch_:
 	}
 	.@melody$ = instance_npcname("Melody-Jack#13");
 	cutin "nines04",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "嗯，我怎么又把其他人弄丢了？";
-	npctalk "纽沃兹：嗯，我怎么又把其他人弄丢了？";
+	npctalk "纽奥兹：嗯，我怎么又把其他人弄丢了？";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	mes "[旋律·杰克]";
-	mes "纽沃兹。";
-	npctalk "旋律·杰克：纽沃兹。", .@melody$;
+	mes "纽奥兹。";
+	npctalk "旋律·杰克：纽奥兹。", .@melody$;
 	next;
 	cutin "nines01",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "哇！天啊！";
-	npctalk "纽沃兹：哇！天啊！";
+	npctalk "纽奥兹：哇！天啊！";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
@@ -1882,9 +1882,9 @@ OnTouch_:
 	npctalk "旋律·杰克：我还以为你已经习惯我隐身在身边了。", .@melody$;
 	next;
 	cutin "nines01",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我们还处于危险中吗？";
-	npctalk "纽沃兹：我们还处于危险中吗？";
+	npctalk "纽奥兹：我们还处于危险中吗？";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
@@ -1893,9 +1893,9 @@ OnTouch_:
 	npctalk "旋律·杰克：应该吧。顺便说，我们一直在同一个地方绕圈。", .@melody$;
 	next;
 	cutin "nines04",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "所以我说这里像迷宫是对的。呃，我又饿了。";
-	npctalk "纽沃兹：所以我说这里像迷宫是对的。呃，我又饿了。";
+	npctalk "纽奥兹：所以我说这里像迷宫是对的。呃，我又饿了。";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
@@ -1904,13 +1904,13 @@ OnTouch_:
 	npctalk "旋律·杰克：我一直等你，因为想和你谈谈。", .@melody$;
 	next;
 	mes "[旋律·杰克]";
-	mes "纽沃兹，你回到公会时合同已经到期了。";
-	npctalk "旋律·杰克：纽沃兹，你回到公会时合同已经到期了。", .@melody$;
+	mes "纽奥兹，你回到公会时合同已经到期了。";
+	npctalk "旋律·杰克：纽奥兹，你回到公会时合同已经到期了。", .@melody$;
 	next;
 	cutin "nines01",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "哦，对了。既然我不再是主人，合同自然到期了。";
-	npctalk "纽沃兹：哦，对了。既然我不再是主人，合同自然到期了。";
+	npctalk "纽奥兹：哦，对了。既然我不再是主人，合同自然到期了。";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
@@ -1919,9 +1919,9 @@ OnTouch_:
 	npctalk "旋律·杰克：但鉴于现在的情况，我对你的承诺仍然有效。", .@melody$;
 	next;
 	cutin "nines01",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "谢谢。我很高兴备用计划仍然有效。";
-	npctalk "纽沃兹：谢谢。我很高兴备用计划仍然有效。";
+	npctalk "纽奥兹：谢谢。我很高兴备用计划仍然有效。";
 	next;
 	cutin "",255;
 	emotion ET_THINK, getnpcid(0,.@melody$);
@@ -1930,9 +1930,9 @@ OnTouch_:
 	npctalk "旋律·杰克：哼，我遵守承诺只是因为你拥有我想要的东西。", .@melody$;
 	next;
 	cutin "nines02",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "哦，你是说这把尤克里里？";
-	npctalk "纽沃兹：哦，你是说这把尤克里里？";
+	npctalk "纽奥兹：哦，你是说这把尤克里里？";
 	next;
 	cutin "",255;
 	emotion ET_MERONG, getnpcid(0,.@melody$);
@@ -1941,9 +1941,9 @@ OnTouch_:
 	npctalk "旋律·杰克：你这个笨蛋，那一文不值。你的合同虽已到期，但承诺就是承诺，我会遵守。", .@melody$;
 	next;
 	cutin "nines01",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "谢谢。";
-	npctalk "纽沃兹：谢谢。";
+	npctalk "纽奥兹：谢谢。";
 	close2;
 	cutin "",255;
 	if ('room == 13 && is_party_leader() == true)
@@ -1959,10 +1959,10 @@ OnTouch_:
 
 
 // Room 14 (menu affects the boss encounter in the next room)
-1@jtb,282,194,5	script	纽沃兹#14	4_M_NEWOZ,{
+1@jtb,282,194,5	script	纽奥兹#14::纽沃兹#14	4_M_NEWOZ,{
 	if ('room != 14 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "这里可能还有其他人。";
 		close3;
 	}
@@ -1999,22 +1999,22 @@ OnTouch_:
 	next;
 	cutin "nines03",0;
 	emotion ET_DELIGHT;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "对，她就是这么说的。";
-	npctalk "纽沃兹: 对，她就是这么说的。";
+	npctalk "纽奥兹: 对，她就是这么说的。";
 	next;
 	cutin "ragi01",2;
 	emotion ET_SURPRISE;
 	emotion ET_SURPRISE, getnpcid(0,.@lagi$);
-	mes "[拉吉与纽沃兹]";
+	mes "[拉吉与纽奥兹]";
 	mes "!!!";
-	npctalk "纽沃兹: !!!";
+	npctalk "纽奥兹: !!!";
 	npctalk "拉吉: !!!", .@lagi$;
 	next;
 	cutin "nines01",0;
-	mes "[拉吉与纽沃兹]";
+	mes "[拉吉与纽奥兹]";
 	mes "击掌！";
-	npctalk "纽沃兹: 击掌！";
+	npctalk "纽奥兹: 击掌！";
 	npctalk "拉吉: 击掌！", .@lagi$;
 	next;
 	cutin "",255;
@@ -2039,8 +2039,8 @@ OnTouch_:
 	npctalk "莎洛希: 在漆黑中，我听到一个声音。声音很低，却回荡了很久。", .@shaloshi$;
 	next;
 	mes "[莎洛希]";
-	mes "后来我听到 纽沃兹 等朋友时唱歌。他的声音温暖了我。";
-	npctalk "莎洛希: 后来我听到 纽沃兹 等朋友时唱歌。他的声音温暖了我。", .@shaloshi$;
+	mes "后来我听到 纽奥兹 等朋友时唱歌。他的声音温暖了我。";
+	npctalk "莎洛希: 后来我听到 纽奥兹 等朋友时唱歌。他的声音温暖了我。", .@shaloshi$;
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -2067,9 +2067,9 @@ OnTouch_:
 	next;
 	cutin "nines01",0;
 	emotion ET_QUESTION;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "漆黑……你不记得其他事了吗？";
-	npctalk "纽沃兹: 漆黑……你不记得其他事了吗？";
+	npctalk "纽奥兹: 漆黑……你不记得其他事了吗？";
 	next;
 	cutin "shaloshi01",0;
 	mes "[莎洛希]";
@@ -2082,9 +2082,9 @@ OnTouch_:
 	npctalk "罗尔: 她可能闭着眼睛。也许她睡着了。", .@roel$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "漆黑……洞穴里除了雾气外一直很明亮。";
-	npctalk "纽沃兹: 漆黑……洞穴里除了雾气外一直很明亮。";
+	npctalk "纽奥兹: 漆黑……洞穴里除了雾气外一直很明亮。";
 	next;
 	if ('room == 14 && is_party_leader() == true)
 		donpcevent 'jitterbug_main$ + "::OnNextIs15";
@@ -2113,9 +2113,9 @@ OnTouch_:
 	npctalk "艾古: 她可能还没全部想起来，但这是进步。等她准备好再继续说吧。", .@aigu$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "在我唱歌前还有一个声音。这里可能还有别人。";
-	npctalk "纽沃兹: 在我唱歌前还有一个声音。这里可能还有别人。";
+	npctalk "纽奥兹: 在我唱歌前还有一个声音。这里可能还有别人。";
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -2161,16 +2161,16 @@ OnTouch_:
 
 
 // Room 15
-1@jtb,380,219,5	script	纽沃兹#15	4_M_NEWOZ,{
+1@jtb,380,219,5	script	纽奥兹#15::纽沃兹#15	4_M_NEWOZ,{
 	if (is_party_leader() == false) {
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我想念那种牛肉与橡果的美味组合——彩虹桥烤牛肉。";
 		close3;
 	}
 	if ('room != 15) {
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "别担心。孩子们会在战斗中成长。";
 		close3;
 	}
@@ -2186,9 +2186,9 @@ OnTouch_:
 		.@arang$ = instance_npcname("阿朗#15");
 
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "阿朗！莎洛希！";
-		npctalk "纽沃兹：阿朗！莎洛希！";
+		npctalk "纽奥兹：阿朗！莎洛希！";
 		next;
 		cutin "arang01",2;
 		mes "[阿朗]";
@@ -2196,9 +2196,9 @@ OnTouch_:
 		npctalk "阿朗: 什么？", .@arang$;
 		next;
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "你不是遇到危险了吗？";
-		npctalk "纽沃兹: 你不是遇到危险了吗？";
+		npctalk "纽奥兹: 你不是遇到危险了吗？";
 		next;
 		cutin "arang02",2;
 		mes "[阿朗]";
@@ -2206,14 +2206,14 @@ OnTouch_:
 		npctalk "阿朗: 你去哪了？刚才这里有个厉害的怪物！", .@arang$;
 		next;
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "嘿，我的直觉告诉我前方有危险，要放慢脚步。";
-		npctalk "纽沃兹: 嘿，我的直觉告诉我前方有危险，要放慢脚步。";
+		npctalk "纽奥兹: 嘿，我的直觉告诉我前方有危险，要放慢脚步。";
 		next;
 		cutin "gelca01",0;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "哦，伟大冒险者的直觉！";
-		npctalk "格尔卡: 哦，伟大冒险者的直觉！", .@gelka$;
+		npctalk "盖尔卡: 哦，伟大冒险者的直觉！", .@gelka$;
 		next;
 		cutin "arang01",2;
 		mes "[阿朗]";
@@ -2227,12 +2227,12 @@ OnTouch_:
 		next;
 		cutin "shaloshi01",2;
 		mes "[莎洛希]";
-		mes "我的直觉告诉我 纽沃兹 不强。";
-		npctalk "莎洛希: 我的直觉告诉我 纽沃兹 不强。", .@shaloshi$;
+		mes "我的直觉告诉我 纽奥兹 不强。";
+		npctalk "莎洛希: 我的直觉告诉我 纽奥兹 不强。", .@shaloshi$;
 		next;
 		mes "[莎洛希]";
-		mes "纽沃兹，你刚才是不是觉得除了 罗特 之外的所有人都很平庸？";
-		npctalk "莎洛希：纽沃兹，你刚才是不是觉得除了 罗特 之外的所有人都很平庸？", .@shaloshi$;
+		mes "纽奥兹，你刚才是不是觉得除了 罗特 之外的所有人都很平庸？";
+		npctalk "莎洛希：纽奥兹，你刚才是不是觉得除了 罗特 之外的所有人都很平庸？", .@shaloshi$;
 		next;
 		cutin "min02",2;
 		mes "[明敏]";
@@ -2241,8 +2241,8 @@ OnTouch_:
 		next;
 		cutin "lunain04",2;
 		mes "[露安娜]";
-		mes "够了！别再对 纽沃兹 无礼！";
-		npctalk "露安娜: 够了！别再对 纽沃兹 无礼！", .@runane$;
+		mes "够了！别再对 纽奥兹 无礼！";
+		npctalk "露安娜: 够了！别再对 纽奥兹 无礼！", .@runane$;
 		next;
 		cutin "roel01",0;
 		mes "[罗尔]";
@@ -2282,9 +2282,9 @@ OnTouch_:
 	close3;
 }
 
-1@jtb,378,211,5	script	格尔卡#15	4_F_GELKA,{
+1@jtb,378,211,5	script	盖尔卡#15::格尔卡#15	4_F_GELKA,{
 	cutin "gelca01",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "我从不放松训练。";
 	close3;
 }
@@ -2326,10 +2326,10 @@ OnTouch_:
 
 
 // Room 16
-1@jtb,25,280,5	script	纽沃兹#16	4_M_NEWOZ,{
+1@jtb,25,280,5	script	纽奥兹#16::纽沃兹#16	4_M_NEWOZ,{
 	if ('room != 16 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "等等，我收集了一些秋叶和蓝色卡片，想送给其他朋友作纪念。它们在哪里？";
 		close3;
 	}
@@ -2341,9 +2341,9 @@ OnTouch_:
 
 		cutin "nines02",0;
 		emotion ET_DELIGHT;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "和你们两个在一起，让我想起了许多往事。";
-		npctalk "纽沃兹：和你们两个在一起，让我想起了许多往事。";
+		npctalk "纽奥兹：和你们两个在一起，让我想起了许多往事。";
 		next;
 		cutin "rote01",2;
 		mes "[罗特尔]";
@@ -2363,9 +2363,9 @@ OnTouch_:
 		next;
 		cutin "nines03",0;
 		emotion ET_DELIGHT;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "哦，我想起来了！那段时光真美好！";
-		npctalk "纽沃兹：哦，我想起来了！那段时光真美好！";
+		npctalk "纽奥兹：哦，我想起来了！那段时光真美好！";
 		next;
 		cutin "rote01",0;
 		emotion ET_THINK, getnpcid(0,.@roter$);
@@ -2387,9 +2387,9 @@ OnTouch_:
 		next;
 		cutin "nines02",2;
 		emotion ET_OK;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我有！明敏 喝了我在街上捡到的毒药瓶，然后死了；我告诉过你那很贵，可没说它对健康有益。";
-		npctalk "纽沃兹：我有！明敏 喝了我在街上捡到的毒药瓶，然后死了；我告诉过你那很贵，可没说它对健康有益。";
+		npctalk "纽奥兹：我有！明敏 喝了我在街上捡到的毒药瓶，然后死了；我告诉过你那很贵，可没说它对健康有益。";
 		next;
 		cutin "min03",0;
 		emotion ET_SMILE, getnpcid(0,.@mingmin$);
@@ -2445,8 +2445,8 @@ OnTouch_:
 
 	cutin "lunain02",2;
 	mes "[露安娜]";
-	mes "也许 纽沃兹 对约会没兴趣。";
-	npctalk "露安娜：也许 纽沃兹 对约会没兴趣。", .@runane$;
+	mes "也许 纽奥兹 对约会没兴趣。";
+	npctalk "露安娜：也许 纽奥兹 对约会没兴趣。", .@runane$;
 	next;
 	cutin "igu05",0;
 	mes "[艾古]";
@@ -2529,8 +2529,8 @@ OnTouch_:
 	next;
 	cutin "",255;
 	mes "[露安娜]";
-	mes "暂时休战吧。但别误会，只要纽沃兹露出破绽，他就是我的。";
-	npctalk "露安娜: 暂时休战吧。但别误会，只要纽沃兹露出破绽，他就是我的。", .@runane$;
+	mes "暂时休战吧。但别误会，只要纽奥兹露出破绽，他就是我的。";
+	npctalk "露安娜: 暂时休战吧。但别误会，只要纽奥兹露出破绽，他就是我的。", .@runane$;
 	next;
 	cutin "shaloshi03",0;
 	mes "[莎洛希]";
@@ -2547,7 +2547,7 @@ OnTouch_:
 1@jtb,113,285,4	script	露安娜#17	4_F_RUNAIN,{
 	cutin "lunain01",2;
 	mes "[露安娜]";
-	mes "暂时休战吧。但别误会，只要纽沃兹露出破绽，他就是我的。";
+	mes "暂时休战吧。但别误会，只要纽奥兹露出破绽，他就是我的。";
 	close3;
 }
 
@@ -2702,10 +2702,10 @@ OnTouch_:
 
 
 // Room 19
-1@jtb,28,377,5	script	纽沃兹#19	4_M_NEWOZ,{
+1@jtb,28,377,5	script	纽奥兹#19::纽沃兹#19	4_M_NEWOZ,{
 	if ('room != 19 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我们应该找到她。";
 		close3;
 	}
@@ -2720,9 +2720,9 @@ OnTouch_:
 
 		cutin "nines01",0;
 		emotion ET_THINK;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "奇怪……气氛变了。";
-		npctalk "纽沃兹: 奇怪……气氛变了。";
+		npctalk "纽奥兹: 奇怪……气氛变了。";
 		next;
 		cutin "min02",0;
 		mes "[明敏]";
@@ -2746,9 +2746,9 @@ OnTouch_:
 		npctalk "明敏: 我同意。而且这片空地既不狭窄，也不宽敞。", .@mingmin$;
 		next;
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "你觉得继续深入没有意义吗？";
-		npctalk "纽沃兹: 你觉得继续深入没有意义吗？";
+		npctalk "纽奥兹: 你觉得继续深入没有意义吗？";
 		next;
 		cutin "min02",0;
 		mes "[明敏]";
@@ -2787,9 +2787,9 @@ OnTouch_:
 		npctalk "拉吉: 我就先让你们继续……", instance_npcname("拉吉#19");
 		next;
 		cutin "nines02",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "怪物？";
-		npctalk "纽沃兹: 怪物？";
+		npctalk "纽奥兹: 怪物？";
 		next;
 		cutin "rote01",2;
 		mes "[罗特尔]";
@@ -2797,9 +2797,9 @@ OnTouch_:
 		npctalk "罗特尔: 在怪物出现前，我会先杀了你们两个。", .@roter$;
 		next;
 		cutin "gelca04",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "师父，求你了！";
-		npctalk "格尔卡: 师父，求你了！", instance_npcname("格尔卡#19");
+		npctalk "盖尔卡: 师父，求你了！", instance_npcname("格尔卡#19");
 		next;
 		cutin "arang02",0;
 		mes "[阿朗]";
@@ -2823,9 +2823,9 @@ OnTouch_:
 		npctalk "旋律·杰克: ...", .@melody$;
 		next;
 		cutin "nines03",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我们应该找到她。";
-		npctalk "纽沃兹: 我们应该找到她。";
+		npctalk "纽奥兹: 我们应该找到她。";
 	}
 	if ('room == 19 && is_party_leader() == true)
 		donpcevent 'jitterbug_main$ + "::OnNextIs20";
@@ -2834,14 +2834,14 @@ OnTouch_:
 
 1@jtb,30,377,5	script	Melody-Jack#19	CLEAR_NPC,{
 	mes "[旋律·杰克]";
-	mes "纽沃兹从来不懂得委婉。";
+	mes "纽奥兹从来不懂得委婉。";
 	close;
 }
 
 1@jtb,30,373,4	script	罗特尔#19	4_M_ROTERT,{
 	cutin "rote01",0;
 	mes "[罗特尔]";
-	mes "我感觉纽沃兹没在做什么好事。";
+	mes "我感觉纽奥兹没在做什么好事。";
 	close3;
 }
 
@@ -2855,7 +2855,7 @@ OnTouch_:
 1@jtb,24,376,5	script	艾古#19	4_F_IU,{
 	cutin "igu05",0;
 	mes "[艾古]";
-	mes "纽沃兹对冒险的热情又过头了。不过我不能说我讨厌这一点。";
+	mes "纽奥兹对冒险的热情又过头了。不过我不能说我讨厌这一点。";
 	close3;
 }
 
@@ -2873,9 +2873,9 @@ OnTouch_:
 	close3;
 }
 
-1@jtb,33,376,4	script	格尔卡#19	4_F_GELKA,{
+1@jtb,33,376,4	script	盖尔卡#19::格尔卡#19	4_F_GELKA,{
 	cutin "gelca01",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "我努力练习，这样在危险时刻才能大放异彩。";
 	close3;
 }
@@ -2907,21 +2907,21 @@ OnTouch_:
 	}
 	.@gelka$ = instance_npcname("格尔卡#20");
 	cutin "gelca01",2;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "场景 8：英雄被敌人包围。罗尔，我们来编排今天练习的动作，好吗？";
-	npctalk "格尔卡: 场景 8：英雄被敌人包围。罗尔，我们来编排今天练习的动作，好吗？", .@gelka$;
+	npctalk "盖尔卡: 场景 8：英雄被敌人包围。罗尔，我们来编排今天练习的动作，好吗？", .@gelka$;
 	next;
 	cutin "roel01",0;
 	emotion ET_SURPRISE;
 	mes "[罗尔]";
-	mes "格尔卡，准备好！";
-	npctalk "罗尔: 格尔卡，准备好！";
+	mes "盖尔卡，准备好！";
+	npctalk "罗尔: 盖尔卡，准备好！";
 	next;
 	emotion ET_COMEON, getnpcid(0,.@gelka$);
 	cutin "gelca01",2;
-	mes "[格尔卡]";
-	mes "格尔卡式精神力量！钢铁体魄！";
-	npctalk "格尔卡: 格尔卡式精神力量！钢铁体魄！", .@gelka$;
+	mes "[盖尔卡]";
+	mes "盖尔卡式精神力量！钢铁体魄！";
+	npctalk "盖尔卡: 盖尔卡式精神力量！钢铁体魄！", .@gelka$;
 	specialeffect EF_GUMGANG,AREA, .@gelka$;
 	next;
 	emotion ET_COMEON;
@@ -2932,18 +2932,18 @@ OnTouch_:
 	specialeffect EF_KEEPING;
 	next;
 	cutin "gelca01",2;
-	mes "[罗尔与格尔卡]";
+	mes "[罗尔与盖尔卡]";
 	mes "交叉！！！";
-	npctalk "格尔卡: 交叉！！！", .@gelka$;
+	npctalk "盖尔卡: 交叉！！！", .@gelka$;
 	npctalk "罗尔: 交叉！！！";
 	specialeffect EF_POTION_BERSERK;
 	specialeffect EF_POTION_BERSERK,AREA, .@gelka$;
 	next;
 	cutin "roel03",0;
-	mes "[罗尔与格尔卡]";
+	mes "[罗尔与盖尔卡]";
 	mes "最后堡垒！";
 	npctalk "罗尔: 最后堡垒！";
-	npctalk "格尔卡: 最后堡垒！", .@gelka$;
+	npctalk "盖尔卡: 最后堡垒！", .@gelka$;
 	specialeffect EF_SHIELDBOOMERANG;
 	specialeffect EF_BOTTOM_BASILICA,AREA, .@gelka$;
 	specialeffect EF_SHIELDCHARGE;
@@ -2955,8 +2955,8 @@ OnTouch_:
 	next;
 	cutin "roel03",0;
 	mes "[罗尔]";
-	mes "天啊，格尔卡，你太棒了！";
-	npctalk "罗尔: 天啊，格尔卡，你太棒了！";
+	mes "天啊，盖尔卡，你太棒了！";
+	npctalk "罗尔: 天啊，盖尔卡，你太棒了！";
 	if ('room == 20 && is_party_leader() == true)
 		donpcevent 'jitterbug_main$ + "::OnNextIs21";
 	next;
@@ -2965,9 +2965,9 @@ OnTouch_:
 		jitterbug_options &= ~8;
 		unittalk getcharid(3), "" + strcharinfo(0) + "：确实很棒！";
 		cutin "gelca03",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "我向最优秀的人学到了东西。";
-		npctalk "格尔卡: 我向最优秀的人学到了东西。", .@gelka$;
+		npctalk "盖尔卡: 我向最优秀的人学到了东西。", .@gelka$;
 		next;
 		cutin "roel02",0;
 		mes "[罗尔]";
@@ -2975,18 +2975,18 @@ OnTouch_:
 		npctalk "罗尔: 希望你也能教教我，罗特尔。";
 		next;
 		cutin "gelca01",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "特殊技能的关键就在名字。喊出威风的名字就足以震慑敌人。";
-		npctalk "格尔卡: 特殊技能的关键就在名字。喊出威风的名字就足以震慑敌人。", .@gelka$;
+		npctalk "盖尔卡: 特殊技能的关键就在名字。喊出威风的名字就足以震慑敌人。", .@gelka$;
 	}
 	else {
 		jitterbug_options |= 8;
 		areamonster 'map_jtb$,182,387,219,354, "--ja--", 3108,1;	// no label
 		unittalk getcharid(3), "" + strcharinfo(0) + "：你只是为了耍帅才编出这些话的！";
 		cutin "gelca02",2;
-		mes "[格尔卡]";
+		mes "[盖尔卡]";
 		mes "你真是个扫兴的人，知道吗？";
-		npctalk "格尔卡: 你真是个扫兴的人，知道吗？", .@gelka$;
+		npctalk "盖尔卡: 你真是个扫兴的人，知道吗？", .@gelka$;
 		next;
 		cutin "roel04",0;
 		mes "[罗尔]";
@@ -3000,18 +3000,18 @@ OnTouch_:
 	close3;
 }
 
-1@jtb,110,377,4	script	格尔卡#20	4_F_GELKA,{
+1@jtb,110,377,4	script	盖尔卡#20::格尔卡#20	4_F_GELKA,{
 	cutin "gelca01",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "战斗是冒险者训练的关键。分而治之！";
 	close3;
 }
 
 
 // Room 21 (menu affects the boss encounter in the next room)
-1@jtb,198,369,5	script	纽沃兹#21	4_M_NEWOZ,{
+1@jtb,198,369,5	script	纽奥兹#21::纽沃兹#21	4_M_NEWOZ,{
 	if ('room != 21 || is_party_leader() == false) {
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "莎洛希……";
 		close;
 	}
@@ -3106,9 +3106,9 @@ OnTouch_:
 	specialeffect EF_PORTAL2,AREA, .@shaloshi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "！！！";
-	npctalk "纽沃兹：！！！";
+	npctalk "纽奥兹：！！！";
 	next;
 	disablenpc .@shaloshi$;
 	disablenpc instance_npcname("费雷#21");
@@ -3119,20 +3119,20 @@ OnTouch_:
 	npctalk "罗特尔：我们要被埋在这里了。找出口吧。", .@roter$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我们必须找到莎洛希！";
-	npctalk "纽沃兹：我们必须找到莎洛希！";
+	npctalk "纽奥兹：我们必须找到莎洛希！";
 	next;
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	cutin "",255;
 	mes "[旋律·杰克]";
-	mes "纽沃兹，我知道你脑子有点奇怪，但她……";
-	npctalk "旋律·杰克：纽沃兹，我知道你脑子有点奇怪，但她……", .@melody$;
+	mes "纽奥兹，我知道你脑子有点奇怪，但她……";
+	npctalk "旋律·杰克：纽奥兹，我知道你脑子有点奇怪，但她……", .@melody$;
 	next;
 	cutin "nines04",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我知道。你不用提醒我。";
-	npctalk "纽沃兹：我知道。你不用提醒我。";
+	npctalk "纽奥兹：我知道。你不用提醒我。";
 	next;
 	cutin "min02",2;
 	mes "[明敏]";
@@ -3140,19 +3140,19 @@ OnTouch_:
 	npctalk "明敏：那我们离开这里吧。我们现在正处于严重危险中。", .@mingmin$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我必须找到她。我必须和她谈谈。";
-	npctalk "纽沃兹：我必须找到她。我必须和她谈谈。";
+	npctalk "纽奥兹：我必须找到她。我必须和她谈谈。";
 	next;
 	cutin "rote01",2;
 	mes "[罗特尔]";
-	mes "纽沃兹！";
-	npctalk "罗特尔：纽沃兹！", .@roter$;
+	mes "纽奥兹！";
+	npctalk "罗特尔：纽奥兹！", .@roter$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我已经不是你的主人了。你不用跟着我。";
-	npctalk "纽沃兹：我已经不是你的主人了。你不用跟着我。";
+	npctalk "纽奥兹：我已经不是你的主人了。你不用跟着我。";
 	next;
 	cutin "lunain01",0;
 	mes "[露安娜]";
@@ -3162,8 +3162,8 @@ OnTouch_:
 	disablenpc instance_npcname("纽沃兹#21");
 	cutin "igu05",0;
 	mes "[艾古]";
-	mes "纽沃兹，我和你一起去！";
-	npctalk "艾古：纽沃兹，我和你一起去！", .@aigu$;
+	mes "纽奥兹，我和你一起去！";
+	npctalk "艾古：纽奥兹，我和你一起去！", .@aigu$;
 	next;
 	cutin "min02",0;
 	mes "[明敏]";
@@ -3172,9 +3172,9 @@ OnTouch_:
 	next;
 	disablenpc .@aigu$;
 	cutin "gelca04",2;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "主人！";
-	npctalk "格尔卡：主人！", instance_npcname("格尔卡#21");
+	npctalk "盖尔卡：主人！", instance_npcname("格尔卡#21");
 	next;
 	cutin "rote01",2;
 	mes "[罗特尔]";
@@ -3183,13 +3183,13 @@ OnTouch_:
 	next;
 	cutin "rote01",2;
 	mes "[罗特尔]";
-	mes "我们会找到纽沃兹和莎洛希。找到后我要杀了他们两个。";
-	npctalk "罗特尔：我们会找到纽沃兹和莎洛希。找到后我要杀了他们两个。", .@roter$;
+	mes "我们会找到纽奥兹和莎洛希。找到后我要杀了他们两个。";
+	npctalk "罗特尔：我们会找到纽奥兹和莎洛希。找到后我要杀了他们两个。", .@roter$;
 	next;
 	cutin "roel04",0;
 	mes "[罗尔]";
-	mes "纽沃兹，你知道会发生这种事吗？你真幸运，有这么好的朋友。";
-	npctalk "罗尔：纽沃兹，你知道会发生这种事吗？你真幸运，有这么好的朋友。", instance_npcname("罗尔#21");
+	mes "纽奥兹，你知道会发生这种事吗？你真幸运，有这么好的朋友。";
+	npctalk "罗尔：纽奥兹，你知道会发生这种事吗？你真幸运，有这么好的朋友。", instance_npcname("罗尔#21");
 	next;
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	cutin "",255;
@@ -3207,7 +3207,7 @@ OnTouch_:
 	mes "我们分成两队。小心别在迷宫般的岔路里迷路。";
 	npctalk "罗特尔：我们分成两队。小心别在迷宫般的岔路里迷路。", .@roter$;
 	next;
-	if (select( "跟着 罗特尔 和 格尔卡。", "独自寻找。" ) == 1)
+	if (select( "跟着 罗特尔 和 盖尔卡。", "独自寻找。" ) == 1)
 		jitterbug_options &= ~16;
 	else
 		jitterbug_options |= 16;
@@ -3231,9 +3231,9 @@ OnTouch_:
 	close3;
 }
 
-1@jtb,201,365,4	script	格尔卡#21	4_F_GELKA,{
+1@jtb,201,365,4	script	盖尔卡#21::格尔卡#21	4_F_GELKA,{
 	cutin "gelca04",2;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "我相信你，主人！";
 	close3;
 }
@@ -3248,7 +3248,7 @@ OnTouch_:
 1@jtb,195,365,5	script	露安娜#21	4_F_RUNAIN,{
 	cutin "lunain01",0;
 	mes "[露安娜]";
-	mes "我们应该先找到纽沃兹和莎洛希。";
+	mes "我们应该先找到纽奥兹和莎洛希。";
 	close3;
 }
 
@@ -3269,7 +3269,7 @@ OnTouch_:
 1@jtb,195,368,5	script	艾古#21	4_F_IU,{
 	cutin "igu05",0;
 	mes "[艾古]";
-	mes "我正在跟着纽沃兹。";
+	mes "我正在跟着纽奥兹。";
 	close3;
 }
 
@@ -3290,10 +3290,10 @@ OnTouch_:
 
 
 // Room 23 (Boss Room entrance)
-1@jtb,320,323,5	script	纽沃兹#23	4_M_NEWOZ,{
+1@jtb,320,323,5	script	纽奥兹#23::纽沃兹#23	4_M_NEWOZ,{
 	if ('room != 23 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "*喘气*很高兴你没有走太远。";
 		close3;
 	}
@@ -3301,19 +3301,19 @@ OnTouch_:
 	.@ferre_23$ = instance_npcname("费雷#23");
 	.@ferre_24$ = instance_npcname("费雷#24");
 	cutin "nines04",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "*喘气*我找到你了，莎洛希。";
-	npctalk "纽沃兹：*喘气*我找到你了，莎洛希。";
+	npctalk "纽奥兹：*喘气*我找到你了，莎洛希。";
 	next;
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
-	mes "纽沃兹……";
-	npctalk "莎洛希：纽沃兹……", .@shaloshi$;
+	mes "纽奥兹……";
+	npctalk "莎洛希：纽奥兹……", .@shaloshi$;
 	next;
 	cutin "nines04",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "*喘气*很高兴你没有走太远。";
-	npctalk "纽沃兹：*喘气*很高兴你没有走太远。";
+	npctalk "纽奥兹：*喘气*很高兴你没有走太远。";
 	next;
 	cutin "",255;
 	mes "[费雷]";
@@ -3326,9 +3326,9 @@ OnTouch_:
 	npctalk "莎洛希：费雷生气了。", .@shaloshi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你不用生气。我不是来带走你朋友的。我只是想……";
-	npctalk "纽沃兹：你不用生气。我不是来带走你朋友的。我只是想……";
+	npctalk "纽奥兹：你不用生气。我不是来带走你朋友的。我只是想……";
 	next;
 	cutin "",255;
 	mes "[费雷]";
@@ -3341,9 +3341,9 @@ OnTouch_:
 	npctalk "莎洛希：费雷真的生气了。", .@shaloshi$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "是啊，你不用告诉我。";
-	npctalk "纽沃兹：是啊，你不用告诉我。";
+	npctalk "纽奥兹：是啊，你不用告诉我。";
 	next;
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
@@ -3396,13 +3396,13 @@ OnTouch_:
 	npctalk "莎洛希：费雷，你不用这样做！", .@shaloshi$;
 	next;
 	cutin "nines03",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "好吧，既然说服不了他，那我们只能打一架了。";
-	npctalk "纽沃兹：好吧，既然说服不了他，那我们只能打一架了。";
+	npctalk "纽奥兹：好吧，既然说服不了他，那我们只能打一架了。";
 	next;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "其他人在哪里？嘿，新来的，帮我一下。那个费雷看起来很能打。";
-	npctalk "纽沃兹：其他人在哪里？嘿，新来的，帮我一下。那个费雷看起来很能打。";
+	npctalk "纽奥兹：其他人在哪里？嘿，新来的，帮我一下。那个费雷看起来很能打。";
 	next;
 	cutin "",255;
 	mes "[费雷]";
@@ -3410,9 +3410,9 @@ OnTouch_:
 	npctalk "费雷：费雷，费雷，费雷——！", .@ferre_24$;
 	next;
 	cutin "nines02",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "开始吧！";
-	npctalk "纽沃兹：开始吧！";
+	npctalk "纽奥兹：开始吧！";
 	close2;
 	cutin "",255;
 	if ('room == 23 && is_party_leader() == true) {
@@ -3430,25 +3430,25 @@ OnTouch_:
 
 // 1@jtb,323,337,5	script	Boss#23	HIDDEN_WARP_NPC
 
-1@jtb,320,323,5	script	纽沃兹#boss	4_M_NEWOZ,{
+1@jtb,320,323,5	script	纽奥兹#boss::纽沃兹#boss	4_M_NEWOZ,{
 	end;
 OnStart:
 	enablenpc instance_npcname("纽沃兹#boss");
-	npctalk "纽沃兹：别担心。我会帮助你！";
+	npctalk "纽奥兹：别担心。我会帮助你！";
 	initnpctimer;
 	end;
 OnTimer30000:
 	.@r = rand(5);
 	if (.@r == 0)
-		npctalk "纽沃兹：爱管闲事的辣椒会做什么？插手墨西哥辣椒的事！";
+		npctalk "纽奥兹：爱管闲事的辣椒会做什么？插手墨西哥辣椒的事！";
 	else if (.@r == 1)
-		npctalk "纽沃兹：香蕉为什么要涂防晒霜？因为它们会剥皮！";
+		npctalk "纽奥兹：香蕉为什么要涂防晒霜？因为它们会剥皮！";
 	else if (.@r == 2)
 		npctalk "鱼音乐家叫什么？钢琴金枪鱼。";
 	else if (.@r == 3)
 		npctalk "嗯，等一下。尤克里里的一根弦断了。我来唱歌怎么样？";
 	else
-		npctalk "纽沃兹：农夫对绿色南瓜说了什么？你为什么不橙色啊？";
+		npctalk "纽奥兹：农夫对绿色南瓜说了什么？你为什么不橙色啊？";
 	emotion ET_DELIGHT;
 	initnpctimer;
 	if ('boss_id) {
@@ -3474,10 +3474,10 @@ OnStop:
 }
 
 // Room 23 - After Boss dead
-1@jtb,320,323,5	script	纽沃兹#24	4_M_NEWOZ,{
+1@jtb,320,323,5	script	纽奥兹#24::纽沃兹#24	4_M_NEWOZ,{
 	if ('room != 24 || is_party_leader() == false) {
 		cutin "nines01",0;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "莎洛希……";
 		close3;
 	}
@@ -3492,9 +3492,9 @@ OnStop:
 	.@shaloshi$ = instance_npcname("莎洛希#24");
 
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我喜欢他的精神，不过看得出他已经累了。";
-	npctalk "纽沃兹：我喜欢他的精神，不过看得出他已经累了。";
+	npctalk "纽奥兹：我喜欢他的精神，不过看得出他已经累了。";
 	next;
 	cutin "",255;
 	mes "[费雷]";
@@ -3505,20 +3505,20 @@ OnStop:
 	enablenpc instance_npcname("格尔卡#24");
 	cutin "rote01",2;
 	mes "[罗特尔]";
-	mes "纽沃兹，你还活着！很好，因为我要杀……";
-	npctalk "罗特：纽沃兹，你还活着！很好，因为我要杀……", .@roter$;
+	mes "纽奥兹，你还活着！很好，因为我要杀……";
+	npctalk "罗特：纽奥兹，你还活着！很好，因为我要杀……", .@roter$;
 	next;
 	enablenpc .@aigu$;
 	enablenpc instance_npcname("拉吉#24");
 	cutin "igu05",0;
 	mes "[艾古]";
-	mes "纽沃兹，你还好吗？";
-	npctalk "艾古：纽沃兹，你还好吗？", .@aigu$;
+	mes "纽奥兹，你还好吗？";
+	npctalk "艾古：纽奥兹，你还好吗？", .@aigu$;
 	next;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "我没事。罗特，你担心我吗？";
-	npctalk "纽沃兹：我没事。罗特，你担心我吗？";
+	npctalk "纽奥兹：我没事。罗特，你担心我吗？";
 	next;
 	enablenpc .@melody$;
 	enablenpc .@mingmin$;
@@ -3530,8 +3530,8 @@ OnStop:
 	emotion ET_THINK, getnpcid(0,.@melody$);
 	cutin "",255;
 	mes "[旋律·杰克]";
-	mes "哇，这地方撑不了多久——看地面震得多厉害！纽沃兹，我们得赶紧离开。";
-	npctalk "旋律·杰克：哇，这地方撑不了多久——看地面震得多厉害！纽沃兹，我们得赶紧离开。", .@melody$;
+	mes "哇，这地方撑不了多久——看地面震得多厉害！纽奥兹，我们得赶紧离开。";
+	npctalk "旋律·杰克：哇，这地方撑不了多久——看地面震得多厉害！纽奥兹，我们得赶紧离开。", .@melody$;
 	next;
 	mes "[费雷]";
 	mes "费雷……";
@@ -3563,7 +3563,7 @@ OnStop:
 	npctalk "明敏：你除外，对吧。", .@mingmin$;
 	next;
 	emotion ET_DELIGHT, getnpcid(0,instance_npcname("纽沃兹#24"));
-	npctalk "纽沃兹：农夫对绿色南瓜说什么？你为什么橙了？", instance_npcname("纽沃兹#24");
+	npctalk "纽奥兹：农夫对绿色南瓜说什么？你为什么橙了？", instance_npcname("纽沃兹#24");
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
 	mes "...";
@@ -3591,9 +3591,9 @@ OnStop:
 	npctalk "莎洛希：我不该把你们带来，但我真的想要朋友。", .@shaloshi$;
 	next;
 	cutin "nines03",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "你已经有了。我们就是。";
-	npctalk "纽沃兹：你已经有了。我们就是。";
+	npctalk "纽奥兹：你已经有了。我们就是。";
 	next;
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
@@ -3623,9 +3623,9 @@ OnStop:
 	npctalk "莎洛希：我很享受和你们相处。如果再见……我们会成为敌人吗？", .@shaloshi$;
 	next;
 	cutin "nines03",0;
-	mes "[纽沃兹]";
-	mes "不，莎洛希。从今天起，你就是纽沃兹白翼公会的新成员。";
-	npctalk "纽沃兹：不，莎洛希。从今天起，你就是纽沃兹白翼公会的新成员。";
+	mes "[纽奥兹]";
+	mes "不，莎洛希。从今天起，你就是纽奥兹白翼公会的新成员。";
+	npctalk "纽奥兹：不，莎洛希。从今天起，你就是纽奥兹白翼公会的新成员。";
 	next;
 	cutin "rote01",2;
 	mes "[罗特尔]";
@@ -3639,8 +3639,8 @@ OnStop:
 	next;
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
-	mes "……谢谢你，冒险者 纽沃兹。如果我找到有趣的地方，可以邀请你来吗？";
-	npctalk "莎洛希：……谢谢你，冒险者纽沃兹。如果找到有趣的地方，我可以邀请你来吗？", .@shaloshi$;
+	mes "……谢谢你，冒险者 纽奥兹。如果我找到有趣的地方，可以邀请你来吗？";
+	npctalk "莎洛希：……谢谢你，冒险者纽奥兹。如果找到有趣的地方，我可以邀请你来吗？", .@shaloshi$;
 	next;
 	mes "[莎洛希]";
 	mes "我想无论去哪，我都有带人同行的能力。不然你们也不会跟我到这里。";
@@ -3648,8 +3648,8 @@ OnStop:
 	next;
 	cutin "lunain04",0;
 	mes "[露安娜]";
-	mes "你敢把我的纽沃兹带走！";
-	npctalk "露安娜：你敢把我的纽沃兹带走！", .@runane$;
+	mes "你敢把我的纽奥兹带走！";
+	npctalk "露安娜：你敢把我的纽奥兹带走！", .@runane$;
 	next;
 	cutin "shaloshi01",2;
 	mes "[莎洛希]";
@@ -3686,9 +3686,9 @@ OnStop:
 	disablenpc .@shaloshi$;
 	disablenpc .@ferre$;
 	cutin "nines01",0;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "再见。";
-	npctalk "纽沃兹：再见。";
+	npctalk "纽奥兹：再见。";
 	next;
 	cutin "rote01",2;
 	mes "[罗特尔]";
@@ -3705,7 +3705,7 @@ OnStop:
 1@jtb,324,327,4	duplicate(???#02)	费雷#25	4_F_PERE01
 
 1@jtb,328,326,4	duplicate(???#02)	罗特尔#24	4_M_ROTERT
-1@jtb,330,328,4	duplicate(???#02)	格尔卡#24	4_F_GELKA
+1@jtb,330,328,4	duplicate(???#02)	盖尔卡#24::格尔卡#24	4_F_GELKA
 1@jtb,328,324,4	duplicate(???#02)	明敏#24	4_F_GENETIC
 1@jtb,317,325,5	duplicate(???#02)	艾古#24	4_F_IU
 1@jtb,316,322,5	duplicate(???#02)	拉吉#24	4_M_RAGI
@@ -3716,10 +3716,10 @@ OnStop:
 
 
 // Room 5 (Exit)
-1@jtb,379,31,4	script	纽沃兹#05	4_M_NEWOZ,{
+1@jtb,379,31,4	script	纽奥兹#05::纽沃兹#05	4_M_NEWOZ,{
 	if ('room != 25 || is_party_leader() == false) {
 		cutin "nines01",2;
-		mes "[纽沃兹]";
+		mes "[纽奥兹]";
 		mes "我已经很久没这么开心了。";
 		if ('room >= 25 && isbegin_quest(13181) == 1)	// officially, complete the quest for members
 			completequest 13181;
@@ -3733,20 +3733,20 @@ OnStop:
 
 	cutin "nines02",2;
 	emotion ET_DELIGHT;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "这是我很久以来第一次和老朋友冒险。希望我们很快再来一次。";
-	npctalk "纽沃兹：这是我很久以来第一次和老朋友冒险。希望我们很快再来一次。";
+	npctalk "纽奥兹：这是我很久以来第一次和老朋友冒险。希望我们很快再来一次。";
 	next;
 	cutin "rote01",0;
 	emotion ET_STARE, getnpcid(0,.@roter$);
 	mes "[罗特尔]";
-	mes "纽沃兹。需要我提醒你，这个公会已经不叫纽沃兹白翼了吗？";
-	npctalk "罗特：纽沃兹。需要我提醒你，这个公会已经不叫纽沃兹白翼了吗？", .@roter$;
+	mes "纽奥兹。需要我提醒你，这个公会已经不叫纽奥兹白翼了吗？";
+	npctalk "罗特：纽奥兹。需要我提醒你，这个公会已经不叫纽奥兹白翼了吗？", .@roter$;
 	next;
 	cutin "nines04",2;
-	mes "[纽沃兹]";
+	mes "[纽奥兹]";
 	mes "什么？你改了公会名字？";
-	npctalk "纽沃兹：什么？你改了公会名字？";
+	npctalk "纽奥兹：什么？你改了公会名字？";
 	next;
 	cutin "rote01",0;
 	emotion ET_HNG, getnpcid(0,.@roter$);
@@ -3824,8 +3824,8 @@ OnStop:
 	next;
 	cutin "igu02",2;
 	mes "[艾古]";
-	mes "我不在乎。我会和纽沃兹一起。";
-	npctalk "艾古：我不在乎。我会和纽沃兹一起。", .@aigu$;
+	mes "我不在乎。我会和纽奥兹一起。";
+	npctalk "艾古：我不在乎。我会和纽奥兹一起。", .@aigu$;
 	emotion ET_BIGTHROB, getnpcid(0,.@aigu$);
 	next;
 	cutin "lunain04",0;
@@ -3851,9 +3851,9 @@ OnStop:
 	close;
 }
 
-1@jtb,358,25,5	script	格尔卡#05	4_F_GELKA,{
+1@jtb,358,25,5	script	盖尔卡#05::格尔卡#05	4_F_GELKA,{
 	cutin "gelca01",0;
-	mes "[格尔卡]";
+	mes "[盖尔卡]";
 	mes "我会的！我也会更加努力练习！";
 	close3;
 }
@@ -3875,7 +3875,7 @@ OnStop:
 1@jtb,380,28,4	script	艾古#05	4_F_IU,{
 	cutin "igu03",2;
 	mes "[艾古]";
-	mes "纽沃兹，我再也不会放你走了！";
+	mes "纽奥兹，我再也不会放你走了！";
 	close3;
 }
 
@@ -3962,7 +3962,7 @@ OnStop:
 		mes "你有梦魇跳虫的牙齿吗？";
 		next;
 		mes "[明敏]";
-		mes "现在还不能告诉你，但它们对我有用。带给我，我会把纽沃兹囤积的战利品分给你。";
+		mes "现在还不能告诉你，但它们对我有用。带给我，我会把纽奥兹囤积的战利品分给你。";
 		next;
 		mes "[明敏]";
 		mes "具体是什么？巨大弓、风暴弓，以及^FF0000在这个空间找到的其他珍贵物品。^000000想要的话，至少带来 50 颗梦魇跳虫牙齿。";

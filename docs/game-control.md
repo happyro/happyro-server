@@ -22,6 +22,10 @@ Game Control 让 Admin 和冒险工具向 map-server 发送已授权命令。web
 
 租金以普隆德拉 NPC 为准：商人系手推车 800 Zeny（可消耗物品 7061 免费券，正常支付时增加 48 卡普拉积分），机匠系手推车免费；骑士系大嘴鸟 2,500 Zeny、十字军系 3,500 Zeny；龙、狮鹫、机甲免费。规则来源为 `npc/kafras/{kafras,functions_kafras}.txt`、`npc/merchants/renters.txt`、`npc/re/merchants/renters.txt`，变更这些租用规则时须同步核对 `game_control_riding.cpp`。
 
+转职统一经 `pc_jobchange` 清理不适用的职业坐骑与随行状态，同时检查新职业资格、技能树和已学技能；额外授予的旧技能不构成保留资格。生命体在失去职业召唤资格时休眠，手推车卸下后物品保留，魔导机甲沿用转职即解除规则。解除龙骑乘时，无论是否仍有龙训练技能，都发送骑乘图标移除通知。
+
+回归检查：`node tests/job-change-riding.test.mjs <artifact-path> --no-color`，编译执行实际转职清理与状态通知代码。
+
 ## 配置环境覆盖
 
 `battle_config.read` 的结果包含实际 `values` 和 `environment_overrides`（配置键到环境变量名的映射）。`battle_config.apply` 在修改任何值之前检查整批请求；含非空环境变量受控项时返回 configuration_conflict，不产生部分赋值。API 也会在发布配置文件前拒绝，变量和优先级见[地图服环境变量](battle-environment.md)。

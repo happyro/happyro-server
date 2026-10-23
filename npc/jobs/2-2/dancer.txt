@@ -260,7 +260,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		}
 		next;
 		mes "[艾尔]";
-		mes "收集齐所需物品后再回来，我们就可以开始上课了，好吗？";
+		mes "请把所需物品带在身上供我检查；只收取 10,000 Zeny 学费，不会拿走这些物品。准备好后再来上课。";
 		close2;
 		cutin "",255;
 		end;
@@ -393,7 +393,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 }
 
-job_duncer,95,93,4	script	Bijou#da	101,{
+job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 	if (SkillPoint) {
 		mes "[比茹]";
 		mes "你还有技能点没用完，不能转职。";
@@ -498,9 +498,9 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			if (select("海滨城市。:舞者转职。:总是像夜晚一样黑暗。:三个方向都有地牢。:大量盗贼。") == 5)
 				set .@da_score,.@da_score+10;
 			mes "[比茹]";
-			mes "5. 在克魔岛之前，法老灯塔岛东北方区域的名称是什么？";
+			mes "5. 克魔岛周边的原野 02 和原野 04，地图名称中的海滩叫什么？";
 			next;
-			if (select("埃尔梅斯高原:科穆科海滩:克魔岛海滩:吉奈沼泽") == 3)
+			if (select("埃尔梅斯高原:苏克拉特沙漠:可可莫海滩:真海沼泽") == 3)
 				set .@da_score,.@da_score+10;
 			mes "[比茹]";
 			mes "6. 谁是最美丽的舞者？";
@@ -597,7 +597,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			mes "[比茹]";
 			mes "8. 克魔岛卡普拉的准确名称是什么？";
 			next;
-			if (select("卡普拉总部:卡普拉西部总部:卡普拉服务处:卡普拉总部（西部支部）") == 4)
+			if (select("卡普拉总部:卡普拉西部总部:卡普拉服务处:卡普拉员工") == 4)
 				set .@da_score,.@da_score+10;
 			mes "[……]";
 			mes "9. 我的名字是什么？";
@@ -729,7 +729,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			mes "首先，每人有 ^CD6889约 1 分半钟^000000 测试时间，并且 ^CD6889一次一人^000000 跳舞。没跳过舞也不用担心~";
 			next;
 			mes "[比茹]";
-			mes "进入测试区后会看到舞台。首先 ^CD6889将镜头调整为正面^000000。^CD6889双击鼠标右键^000000 应该就能做到。";
+			mes "进入测试区后，先把镜头恢复为默认朝向。桌面端可双击鼠标右键；手机端打开“镜头”，点击“重置镜头”。";
 			next;
 	mes "[比茹]";
 			mes "不调整镜头的话，可能会混淆 ^CD6889上、下、左、右^000000 指令。";
@@ -782,8 +782,8 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 		mes "[比茹]";
 		mes "在女神祝福下，你将重生为舞者。从今以后，没人会在没有微笑的情况下离开你身边~";
 		next;
-		if (SkillPoint) {
-			mes "请先分配完剩余技能点，再来完成转职。";
+		if (BaseJob != Job_Archer || Upper == 1 || Sex != SEX_FEMALE || JobLevel < 40 || SkillPoint) {
+			mes "请以职业等级至少 40 的女性弓箭手身份完成转职，并先分配完技能点；进阶职业请前往对应的转职导师处。";
 			close;
 		}
 		.@reward = (JobLevel == 50) ? 1953 : 1950;
@@ -792,8 +792,8 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			close;
 		}
 		mes "[比茹]";
-		completequest 7006;
 		callfunc "Job_Change",Job_Dancer;
+		completequest 7006;
 		callfunc "F_ClearJobVar";
 		getitem .@reward,1;
 		mes "哦……！";
@@ -810,7 +810,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 
 // Waiting Room
 //============================================================ 
-job_duncer,32,154,1	script	Waiting Room#dance	66,{
+job_duncer,32,154,1	script	等候室#dance::Waiting Room#dance	66,{
 	end;
 
 OnInit:
@@ -964,7 +964,6 @@ OnTimer15000:
 	enablenpc "dance#cen";
 	if (!getvariableofnpc(.Active,"Waiting Room#dance") || .@round != getvariableofnpc(.Round,"Waiting Room#dance")) end;
 	end;
-// 行数补齐
 OnTimer16000:
 	.@round = getvariableofnpc(.Round,"Waiting Room#dance");
 	donpcevent "Backdancer#1::OnSmile";

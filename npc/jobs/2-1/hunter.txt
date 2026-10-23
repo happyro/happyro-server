@@ -90,7 +90,7 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 		//
 		//
 		
-		pay_fild10,148,252,3	duplicate(HntNotice)	Job Change Location#hu	857
+		pay_fild10,148,252,3	duplicate(HntNotice)	转职地点#hu::Job Change Location#hu	857
 		
 		// Actual Job quest start
 		//============================================================
@@ -185,8 +185,8 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 			mes "[猎人谢琳]";
 			mes "那么，现在就把你的职业改为猎人～";
 			next;
-				if (SkillPoint || countitem(1007) < 1) {
-					mes "请先用完技能点，并带上通过测试的慧眼。";
+				if (BaseJob != Job_Archer || Upper == 1 || JobLevel < 40 || SkillPoint || countitem(1007) < 1) {
+					mes "请以职业等级至少40的非进阶弓箭手身份、用完技能点并带上通过测试的慧眼后办理转职。";
 					close;
 				}
 				.@reward = (JobLevel > 49) ? 1718 : 1710;
@@ -198,8 +198,8 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 			mes "[猎人谢琳]";
 		mes "锵锵～恭喜！";
 		mes "你当猎人的样子真棒！！";
-				completequest 4013;
 				callfunc "Job_Change",Job_Hunter;
+				completequest 4013;
 				callfunc "F_ClearJobVar";		// clears all job variables for the current player
 				getitem .@reward,1;
 				next;
@@ -906,7 +906,7 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 			next;
 		}
 		mes "[猎人公会长]";
-		mes "咦？为什么不给你银箭？你连材料都没带，就别指望得到任何东西。";
+		mes "首次入场时已经给过你银箭，重试不会再次补给。请自行备足箭矢。";
 		next;
 		mes "[猎人公会长]";
 		mes "嗯……";
@@ -969,16 +969,16 @@ OnTouch_:
 		mes "你好。欢迎来到猎人测试场地。进入下一个房间后测试开始。";
 		next;
 		mes "[向导]";
-		mes "如前所述，猎杀 4 只或更多名为 ^3355FF转职怪物^000000 的怪物。完成后地图中央会出现开关。";
+		mes "请击杀 4 只名称恰好为 ^3355FF转职怪物^000000 的怪物。打错目标会失败，建议先关闭自动战斗。完成后地图中央会出现逃脱开关。";
 		next;
 		mes "[向导]";
-		mes "破坏开关后，出口会出现在地图 12 点钟方向。请在规定时间内完成一切并逃出。";
+		mes "靠近地图中央的逃脱开关，在对话中选择“逃脱”，再从地图 12 点钟方向的出口离开。请在规定时间内完成全部步骤。";
 		next;
 		mes "[向导]";
 		mes "如果中途昏倒、掉入陷阱或超过时间限制，就会失败，必须重新参加测试。";
 		next;
 		mes "[向导]";
-		mes "我们会提供箭，只要带上弓即可。准备好后请进入。";
+		mes "首次入场前，公会长会提供 200 支银箭；重试不会再次补给。请装备弓和箭，确认箭矢足够后再进入。";
 		savepoint "job_hunte",176,22,1,1;
 		close;
 	}
@@ -1020,7 +1020,7 @@ OnTouch_:
 	// 翻译切片边界保留
 	// 翻译切片边界保留
 	// 翻译切片边界保留
-job_hunte,178,38,1	script	Waiting Room#hnt	66,{
+job_hunte,178,38,1	script	等候室#hnt::Waiting Room#hnt	66,{
 	end;
 
 OnInit:
@@ -1039,7 +1039,7 @@ OnStart:
 	end;
 }
 
-job_hunte,1,1,1	script	Manager#hnt	66,{
+job_hunte,1,1,1	script	考试管理员#hnt::Manager#hnt	66,{
 OnInit:
 	disablenpc "Manager#hnt";
 	end;
@@ -1202,7 +1202,7 @@ OnTimer197000:
 	end;
 }
 
-job_hunte,93,101,1	script	Switch#hnt	723,1,1,{
+job_hunte,93,101,1	script	逃脱开关#hnt::Switch#hnt	723,1,1,{
 OnTouch_:
 	if (!getvariableofnpc(.Active,"Manager#hnt")) end;
 	.@round = getvariableofnpc(.Round,"Manager#hnt");

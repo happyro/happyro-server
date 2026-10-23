@@ -58,6 +58,7 @@ OnTouch:
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
 		set job_kagero,0;
+		job_kagero_prototype = 0;
 	}
 	end;
 }
@@ -98,24 +99,22 @@ que_ng,21,76,0	script	Wall with a Drawing#ko	844,{
 }
 
 job_ko,25,115,4	script	Old Man#ko	588,{
-	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
-		mes "[库加·盖伊]";
-		mes "你不需要携带这么多东西。"; //custom translation
-		close;
-	}
+
 	if (BaseJob != Job_Ninja) {
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
 		set job_kagero,0;
-		mes "[库加·盖伊]";
+		job_kagero_prototype = 0;
+		mes "[老人]";
 		mes "你不属于忍者一族。";
 		close2;
+		cutin "",255;
 		warp "amatsu",147,136;
 		end;
 	}
 	if (job_kagero == 1) {
 		cutin "job_ko03",2;
-		mes "^1A95E6一位精神矍铄的老人坐在那里，茫然地凝视着远方。^1A95E6";
+		mes "^1A95E6一位精神矍铄的老人坐在那里，茫然地凝视着远方。^000000";
 		next;
 		if(select("无视。:和他交谈。") == 1) {
 			close2;
@@ -125,14 +124,14 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "["+strcharinfo(0)+"]";
 		mes "打扰了……";
 		next;
-		mes "^1A95E6你试着和老人交谈，但没有得到回应。正当你准备转身时……^1A95E6";
+		mes "^1A95E6你试着和老人交谈，但没有得到回应。正当你准备转身时……^000000";
 		next;
 		mes "[老人]";
 		mes "终于有客人了！嗯……而且还是活的！";
 		next;
 		select("打扰了……这里是哪里？");
 		mes "[老人]";
-		mes "^1A95E6他继续自言自语，没有停下来回答你的问题。^1A95E6";
+		mes "^1A95E6他继续自言自语，没有停下来回答你的问题。^000000";
 		next;
 		mes "[老人]";
 		mes "古代天津町曾有一个安静的家族，但历史书和故事中从未提及他们。";
@@ -153,7 +152,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "……一个正直的家族……";
 		next;
 		select("他们后来怎么样了？");
-		mes "^1A95E6老人带着忧郁的表情看着你。^1A95E6";
+		mes "^1A95E6老人带着忧郁的表情看着你。^000000";
 		next;
 		mes "[老人]";
 		mes "为什么会对一个被领主抛弃、从历史中消失的家族感兴趣？";
@@ -162,6 +161,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 			mes "[老人]";
 			mes "很高兴见到你。";
 			close2;
+			cutin "",255;
 			warp "amatsu",147,136;
 			end;
 		}
@@ -179,7 +179,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		end;
 	} else if (job_kagero == 2) {
 		cutin "job_ko01",2;
-		mes "^1A95E6老人用非常舒缓的语调开始讲故事，仿佛在给孙辈讲故事。^1A95E6";
+		mes "^1A95E6老人用非常舒缓的语调开始讲故事，仿佛在给孙辈讲故事。^000000";
 		next;
 		mes "[老人]";
 		mes "这要追溯到远古时代，天津町已经没有人记得这件事了。";
@@ -217,7 +217,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		erasequest 5132;
 		setquest 5133;
 		set job_kagero,3;
-		mes "^1A95E6老人看起来更加哀伤。^1A95E6";
+		mes "^1A95E6老人看起来更加哀伤。^000000";
 		close2;
 		cutin "",255;
 		end;
@@ -243,6 +243,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 			mes "砰！！";
 			mes "^1A95E6巨大的冲击让你失去了意识。^000000";
 			close2;
+			cutin "",255;
 			warp "amatsu",147,136;
 			end;
 		}
@@ -258,22 +259,23 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "抱歉，我不是老师。但是！";
 		next;
 		mes "[吉恩首领]";
-		mes "我可以在你选择的^33CC71"+((Sex == SEX_MALE)?"影狼":"朧")+"^000000道路上帮助你。";
+		mes "我可以在你选择的^33CC71"+((Sex == SEX_MALE)?"影狼":"胧")+"^000000道路上帮助你。";
 		next;
-		mes "^1A95E6你离开时，隐约听见吉恩首领的声音。^1A95E6";
+		mes "^1A95E6你离开时，隐约听见吉恩首领的声音。^000000";
 		next;
 		erasequest 5133;
 		setquest 5134;
 		set job_kagero,4;
 		mes "[吉恩首领]";
-		mes "如果你准备沿着"+((Sex == SEX_MALE)?"影狼":"朧")+"道路跟随我，吉恩首领，我们还会再见。";
+		mes "如果你准备沿着"+((Sex == SEX_MALE)?"影狼":"胧")+"道路跟随我，吉恩首领，我们还会再见。";
 		close2;
+		cutin "",255;
 		warp "amatsu",147,136;
 		end;
 	} else if (job_kagero == 4) {
 		cutin "job_ko02",2;
 		mes "[吉恩首领]";
-		mes "我以为你害怕^33CC71"+((Sex == SEX_MALE)?"影狼":"朧")+"的道路^33CC71，不会再回来了。";
+		mes "我以为你害怕^33CC71"+((Sex == SEX_MALE)?"影狼":"胧")+"的道路^33CC71，不会再回来了。";
 		next;
 		mes "[吉恩首领]";
 		mes "但从你的眼神来看，看来是我误判了你。";
@@ -410,7 +412,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "影狼，像太阳舞动的火焰一样的战士。";
 			next;
 			mes "[吉恩首领]";
-		mes "朧，像朦胧月光一样的战士。";
+		mes "胧，像朦胧光一样的战士。";
 			next;
 			mes "[吉恩首领]";
 		mes "太阳与月亮。";
@@ -466,7 +468,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "影狼，像太阳舞动的火焰一样的战士。";
 			next;
 			mes "[吉恩首领]";
-		mes "朧，像朦胧月光一样的战士。";
+		mes "胧，像朦胧光一样的战士。";
 			next;
 			mes "[吉恩首领]";
 		mes "两位战士一开始并不亲近，因为性格和其他一切都完全相反。";
@@ -519,7 +521,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "影狼，如太阳舞动的火焰般的战士。";
 			next;
 			mes "[吉恩首领]";
-		mes "胧，如朦胧月光般的战士。";
+		mes "胧，如朦胧光般的战士。";
 			next;
 			mes "[吉恩首领]";
 		mes "我讲到两位战士在战场上作为敌人相遇。";
@@ -562,7 +564,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "影狼，如太阳舞动的火焰般的战士。";
 			next;
 			mes "[吉恩首领]";
-		mes "胧，如朦胧月光般的战士。";
+		mes "胧，如朦胧光般的战士。";
 			next;
 			mes "[吉恩首领]";
 		mes "据说赢得两位战士忠诚的男人是个幽默的人。";
@@ -618,6 +620,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 				mes "[吉恩首领]";
 				mes "" + .@test_ko$ + "测试地点在这里。"; //custom translation(?)
 				close2;
+				cutin "",255;
 				if (.@ko_test_01 == 1)
 					warp "job_ko",72,128;
 				else if (.@ko_test_02 == 1)
@@ -629,6 +632,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 				mes "[吉恩首领]";
 				mes "村庄在这里。";
 				close2;
+				cutin "",255;
 				warp "amatsu",147,136;
 				end;
 			}
@@ -670,6 +674,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "[吉恩首领]";
 		mes "那么我们去战斗测试场吧。";
 		close2;
+		cutin "",255;
 		switch(rand(3)) {
 			case 0: warp "job_ko",142,20; break;
 			case 1: warp "job_ko",141,80; break;
@@ -686,6 +691,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 			mes "[吉恩首领]";
 			mes "测试地点在这里。"; //custom translation(?)
 			close2;
+			cutin "",255;
 			switch(rand(3)) {
 				case 0: warp "job_ko",142,20; break;
 				case 1: warp "job_ko",141,80; break;
@@ -705,6 +711,7 @@ job_ko,25,115,4	script	Old Man#ko	588,{
 		mes "[吉恩首领]";
 		mes "你不该在这里。离开！";
 		close2;
+		cutin "",255;
 		warp "amatsu",147,136;
 		end;
 	}
@@ -727,6 +734,7 @@ L_StartTest:
 		mes "[吉恩首领]";
 		mes "哈哈哈。到了那里你就知道了。知识测试在这里进行。";
 		close2;
+		cutin "",255;
 		warp "job_ko",72,128;
 		end;
 	case 2:
@@ -736,6 +744,7 @@ L_StartTest:
 		mes "[吉恩首领]";
 		mes "但我相信你能应付。生存测试在这里进行。";
 		close2;
+		cutin "",255;
 		warp "job_ko",62,16;
 		end;
 	case 3:
@@ -743,7 +752,9 @@ L_StartTest:
 		next;
 		if (!checkweight(1002,5,1010,1)) {
 			mes "请先为铁矿石和强化金属预留足够的负重及物品栏空间。";
-			close;
+			close2;
+			cutin "",255;
+			end;
 		}
 		setquest 5138;
 		getitem 1002,5; //Iron_Ore
@@ -753,6 +764,7 @@ L_StartTest:
 		mes "[吉恩首领]";
 		mes "这些会派上用场。武器测试在这里进行。";
 		close2;
+		cutin "",255;
 		warp "job_ko",121,129;
 		end;
 	}
@@ -765,7 +777,8 @@ job_ko,81,124,4	script	Kuuga Gai#ko	730,{
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
 		set job_kagero,0;
-		mes "[库加·盖伊]";
+		job_kagero_prototype = 0;
+		mes "[空牙凯]";
 		mes "抱歉，你的流派和我们不同，是哪里出了问题吗？";
 		close2;
 		warp "amatsu",147,136;
@@ -774,62 +787,58 @@ job_ko,81,124,4	script	Kuuga Gai#ko	730,{
 	if (job_kagero != 5) {
 		goto L_Kick;
 	}
-	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
-		mes "[库加·盖伊]";
-		mes "这是知识测试，你为什么带这么多东西？"; //custom translation
-		close;
-	}
+
 	set .@ko_test_01, isbegin_quest(5136);
 	set .@ko_test_01_1, isbegin_quest(5139);
 	if (.@ko_test_01 == 1 && .@ko_test_01_1 == 0) {
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "好久不见。";
 		next;
 		select("你不是……");
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "我记得你以前曾寻找忍者之道。";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "你已经变得这么强了吗？";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "哈哈哈——";
 		mes "真是个意志坚定的年轻人！我喜欢。";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "很好！你即将参加的是^339CCC知识测试^000000。";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "在专注变强的同时，希望你没有偷懒学习吧？";
 		next;
 		switch(select("是:不是")) {
 		case 1:
 			setquest 5139;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "那就放心了。准备开始测试时告诉我。";
 			close;
 		case 2:
 			setquest 5139;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "原来你只是说说而已？准备好后告诉我吧。";
 			close;
 		}
 	} else if (.@ko_test_01 == 1 && .@ko_test_01_1 == 1) {
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "我这边准备好了。你准备好测试了吗？";
 		next;
 		if(select("是:不是") == 2) {
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "好吧，除了等你，我还能怎么办呢。";
 			close;
 		}
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "这不是你的第一次测试，对吧？";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "你只需要选择我问题的正确答案。";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "开始吧。";
 		next;
 
@@ -851,102 +860,102 @@ job_ko,81,124,4	script	Kuuga Gai#ko	730,{
 
 		set @job_ko_Kuuga,0;
 		for (set .@i,1; .@i<=.@questions; set .@i,.@i+1) {
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes (.@i < .@questions)?"第 "+.@i+":":"最后一题：";
 			switch (.@n[.@i-1]) {
 				case 1: callsub L_Question,"忍者达到职业等级 70 时，职业加成中的 DEX 与 LUK 合计是多少？",2,"8:10:12:14"; break;
 				case 2: callsub L_Question,"忍者的最高职业等级是多少？",1,"70:50:99:100"; break;
-				case 3: callsub L_Question,"从零开始，将投掷硬币学满并满足所有前置技能，至少需要多少技能点？",3,"25:30:35:37"; break;
+				case 3: callsub L_Question,"从零开始，将投掷 Zeny学满并满足所有前置技能，至少需要多少技能点？",3,"25:30:35:37"; break;
 				case 4: callsub L_Question,"十级幻影分身的正确闪避次数和效果持续时间是多少？",4,"最多7次、200秒:最多5次、220秒:最多6次、240秒:最多5次、240秒"; break;
 				case 5: callsub L_Question,"金蝉脱壳的最高技能等级是多少？",1,"5:3:1:4"; break;
-				case 6: callsub L_Question,"飞刀投掷练习达到7级时，手里剑攻击增加多少ATK？",2,"18:21:27:30"; break;
+				case 6: callsub L_Question,"飞刀修炼达到7级时，手里剑攻击增加多少ATK？",2,"18:21:27:30"; break;
 				case 7: callsub L_Question,"投掷手里剑的基本攻击范围是多少？",3,"7格:8格:9格:10格"; break;
-				case 8: callsub L_Question,"影子跳跃的最大移动范围是多少？",4,"6格:7格:8格:10格"; break;
-				case 9: callsub L_Question,"Zeny 充足时，对普通非首领魔物使用六级投掷硬币会消耗多少 Zeny？",4,"2000-8000:1000-6000:3000-8000:3000-6000"; break;
-				case 10: callsub L_Question,"其他条件相同时，致命一击的伤害随哪项数值提高而增加？",2,"VIT:当前HP:INT:最大SP"; break;
+				case 8: callsub L_Question,"暗影跳跃的最大移动范围是多少？",4,"6格:7格:8格:10格"; break;
+				case 9: callsub L_Question,"Zeny 充足时，对普通非首领魔物使用六级投掷 Zeny会消耗多少 Zeny？",4,"2000-8000:1000-6000:3000-8000:3000-6000"; break;
+				case 10: callsub L_Question,"其他条件相同时，一闪的伤害随哪项数值提高而增加？",2,"VIT:当前HP:INT:最大SP"; break;
 				case 11: callsub L_Question,"提高 STR 属性不会直接带来以下哪种效果？",3,"近距离攻击增加:负重上限增加:魔法攻击增加:武器攻击增加"; break;
 				case 12: callsub L_Question,"提高 INT 属性不会直接带来以下哪种效果？",4,"最大SP增加:MATK增加:魔法伤害增加:法杖的物理攻击增加"; break;
 				case 13: callsub L_Question,"提高 DEX 属性不会直接带来以下哪种效果？",2,"吟唱时间减少:闪避增加:命中增加:远距离攻击增加"; break;
 				case 14: callsub L_Question,"提高 AGI 属性不会直接带来以下哪种效果？",1,"命中增加:FLEE增加:攻击速度增加:攻击后延迟减少"; break;
 				case 15: callsub L_Question,"提高 VIT 属性不会直接带来以下哪种效果？",4,"素质物理防御增加:最大HP增加:素质魔法防御增加:攻击增加"; break;
 				case 16: callsub L_Question,"提高 LUK 属性不会直接带来以下哪种效果？",3,"命中增加:完全回避增加:魔法伤害减少:暴击率增加"; break;
-				case 17: callsub L_Question,"以下哪张鞋子卡片能增加 10% 最大 HP 和 1 点 AGI？",2,"黄金阿奇德斯卡片:玛塔卡片:达纳托斯的怨恨卡片:虎王卡片"; break;
-				case 18: callsub L_Question,"使用忍者技能需要催化剂。以下哪项技能不需要催化剂？",3,"烈火之盾:水遁:火焰花瓣:雪花飘落"; break;
-				case 19: callsub L_Question,"使用五级忍者灵气时STR/INT增加多少？",2,"4:5:6:7"; break;
-				case 20: callsub L_Question,"以下哪种苦无为火属性，可克制地属性的兽人战士？",1,"热浪苦无:冰柱苦无:猛毒苦无:强风苦无"; break;
-				case 21: callsub L_Question,"忍者公会位于哪个村庄？",2,"姜饼城:天津町:德瓦他:科莫多"; break;
+				case 17: callsub L_Question,"以下哪张鞋子卡片能增加 10% 最大 HP 和 1 点 AGI？",2,"俄希托斯(黄)卡片:黑狐卡片:达纳托斯的憎恨卡片:虎王卡片"; break;
+				case 18: callsub L_Question,"使用忍者技能需要催化剂。以下哪项技能不需要催化剂？",3,"猩红火阵:水遁:猩红火花:冰晶落"; break;
+				case 19: callsub L_Question,"使用五级念时STR/INT增加多少？",2,"4:5:6:7"; break;
+				case 20: callsub L_Question,"以下哪种苦无为火属性，可克制地属性的兽人战士？",1,"爆炎苦无:冰柱苦无:猛毒苦无:疾风苦无"; break;
+				case 21: callsub L_Question,"忍者公会位于哪个村庄？",2,"姜饼城:天津町:德瓦他:克魔岛"; break;
 				case 22: callsub L_Question,"忍者可通过以下哪位 NPC 转生为进阶职业？",3,"瓦尔琪薇:兰特克莉丝:没有:女武神"; break;
 				case 23: callsub L_Question,"你第一次见我时，我旁边是什么？",4,"坐垫:屏风:花盆:火盆"; break;
-				case 24: callsub L_Question,"学习致命一击技能需要将飞刀投掷练习提升到几级？",1,"7:5:6:8"; break;
+				case 24: callsub L_Question,"学习一闪技能需要将飞刀修炼提升到几级？",1,"7:5:6:8"; break;
 				case 25: callsub L_Question,"投掷苦无会对魔物造成几次攻击？",2,"2:3:4:5"; break;
-				case 26: callsub L_Question,"不计额外加成时，四级初风的基础魔法倍率与施放距离是多少？",3,"400%、8格:500%、7格:500%、8格:400%、7格"; break;
-				case 27: callsub L_Question,"飞刀投掷练习7级时无法学习以下哪项技能？",4,"投掷苦无:投掷风魔手里剑:致命一击:投掷硬币"; break;
-				case 28: callsub L_Question,"学习投掷硬币技能需要飞刀投掷练习达到几级？",4,"4:6:8:10"; break;
-				case 29: callsub L_Question,"爆炸龙的攻击范围是多少？",3,"3*3:4*4:5*5:6*6"; break;
+				case 26: callsub L_Question,"不计额外加成时，四级朔风的基础魔法倍率与施放距离是多少？",3,"400%、8格:500%、7格:500%、8格:400%、7格"; break;
+				case 27: callsub L_Question,"飞刀修炼7级时无法学习以下哪项技能？",4,"投掷苦无:投掷风魔手里剑:一闪:投掷 Zeny"; break;
+				case 28: callsub L_Question,"学习投掷 Zeny技能需要飞刀修炼达到几级？",4,"4:6:8:10"; break;
+				case 29: callsub L_Question,"狂怒火龙的攻击范围是多少？",3,"3*3:4*4:5*5:6*6"; break;
 				case 30: callsub L_Question,"七级水遁技能的效果持续多久？",2,"40秒:45秒:50秒:55秒"; break;
 				case 31: callsub L_Question,"四级霞斩的基础攻击倍率是多少？",1,"180%:150%:160%:170%"; break;
-				case 32: callsub L_Question,"风魔烈火手里剑可自动施放几级火球术，并使 DEX 减少多少？",1,"火球5、DEX-2:火球5、DEX-3:火球4、DEX-2:火球4、DEX-3"; break;
+				case 32: callsub L_Question,"风魔烈焰手里剑可自动施放几级火球术，并使 DEX 减少多少？",1,"火球5、DEX-2:火球5、DEX-3:火球4、DEX-2:火球4、DEX-3"; break;
 				case 33: callsub L_Question,"村雨对人形目标提供哪项额外效果？",2,"对人攻击10%:对人暴击+10:对恶魔攻击10%:对恶魔暴击+10"; break;
-				case 34: callsub L_Question,"十级烈火之盾最多攻击几次？",3,"7:8:9:10"; break;
-				case 35: callsub L_Question,"雷击的属性是什么？",4,"火:水:地:风"; break;
-				case 36: callsub L_Question,"你要制作攻击小型魔物的武器，最好使用哪张卡片？",4,"海葵卡片:米诺斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
-				case 37: callsub L_Question,"你要制作攻击中型魔物的武器，最好使用哪张卡片？",3,"海葵卡片:米诺斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
-				case 38: callsub L_Question,"你要制作攻击大型魔物的武器，最好使用哪张卡片？",2,"海葵卡片:米诺斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
+				case 34: callsub L_Question,"十级猩红火阵的每个火焰单元最多攻击几次？",3,"7:8:9:10"; break;
+				case 35: callsub L_Question,"雷击碎的属性是什么？",4,"火:水:地:风"; break;
+				case 36: callsub L_Question,"你要制作攻击小型魔物的武器，最好使用哪张卡片？",4,"海葵卡片:米洛斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
+				case 37: callsub L_Question,"你要制作攻击中型魔物的武器，最好使用哪张卡片？",3,"海葵卡片:米洛斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
+				case 38: callsub L_Question,"你要制作攻击大型魔物的武器，最好使用哪张卡片？",2,"海葵卡片:米洛斯卡片:邪骸矿工卡片:沙漠之狼卡片"; break;
 				case 39: callsub L_Question,"符合转生条件的普通二转职业，应找哪位 NPC 完成转生？",1,"女武神:瓦尔琪薇:巴尔普希莉:大象"; break;
-				case 40: callsub L_Question,"使用烈火之盾需要哪种催化剂？",2,"冰石:火石:风石:地石"; break;
+				case 40: callsub L_Question,"使用猩红火阵需要哪种催化剂？",2,"冰闪石:烈火石:风灵石:幻球"; break;
 				case 41: callsub L_Question,"以下哪项不是水遁技能的效果？",4,"移动速度降低:可使用水球:可制作圣水:VIT降低"; break;
-				case 42: callsub L_Question,"以下哪项技能与属性的配对不正确？",3,"火焰花瓣-火:雪花飘落-水:冰冻之枪-地:雷击-风"; break;
-				case 43: callsub L_Question,"只比较属性克制时，以下哪项技能对地属性敌人最有利？",2,"初风:爆炸龙:雪花飘落:风刃"; break;
-				case 44: callsub L_Question,"学习爆炸龙技能需要忍术修炼达到几级？",1,"10:9:8:1"; break;
-				case 45: callsub L_Question,"五级翻榻榻米沿上下左右各最多延伸几格？",3,"5:7:3:1"; break;
-				case 46: callsub L_Question,"铁匠凯巴拉不能制作以下哪种武器？",4,"弯刀:村雨:白刃:风魔翼手里剑"; break;
-				case 47: callsub L_Question,"以下哪项正确列出了制作冰柱苦无所需的材料？",2,"4个云朵手里剑、2个冰石:8个云朵手里剑、2个冰石:2个云朵手里剑、1个冰石:1个云朵手里剑、2个冰石"; break;
-				case 48: callsub L_Question,"只比较属性克制时，以下哪种苦无对地属性的三叶铁甲虫最有利？",1,"热浪苦无:冰柱苦无:猛毒苦无:强风苦无"; break;
+				case 42: callsub L_Question,"以下哪项技能与属性的配对不正确？",3,"猩红火花-火:冰晶落-水:冰之长矛-地:雷击碎-风"; break;
+				case 43: callsub L_Question,"只比较属性克制时，以下哪项技能对地属性敌人最有利？",2,"朔风:狂怒火龙:冰晶落:风刃"; break;
+				case 44: callsub L_Question,"学习狂怒火龙技能需要忍术修炼达到几级？",1,"10:9:8:1"; break;
+				case 45: callsub L_Question,"五级榻榻米翻转沿上下左右各最多延伸几格？",3,"5:7:3:1"; break;
+				case 46: callsub L_Question,"铁匠凯巴拉不能制作以下哪种武器？",4,"黑龙剑:村雨:白刃:风魔翼手里剑"; break;
+				case 47: callsub L_Question,"以下哪项正确列出了兑换 10 个冰柱苦无所需的材料？",2,"4个雨云手里剑、2个冰闪石:8个雨云手里剑、2个冰闪石:2个雨云手里剑、1个冰闪石:1个雨云手里剑、2个冰闪石"; break;
+				case 48: callsub L_Question,"只比较属性克制时，以下哪种苦无对地属性的三叶铁甲虫最有利？",1,"爆炎苦无:冰柱苦无:猛毒苦无:疾风苦无"; break;
 				case 49: callsub L_Question,"以下哪位铁匠不制作忍者物品？",2,"凯巴拉:艾库:铁:东修"; break;
-				case 50: callsub L_Question,"忍者转职任务中会遇到的可疑男子叫什么？",3,"红豹杰克:黑豹杰克:红豹乔:黑豹乔"; break;
+				case 50: callsub L_Question,"忍者转职任务中会遇到的可疑男子叫什么？",3,"红豹杰克:黑豹杰克:赤豹乔:黑豹乔"; break;
 				default:
-					mes "[库加·盖伊]";
+					mes "[空牙凯]";
 					mes "发生了未知错误。";
 					mes "请联系客服。";
 					close;
 			}
 		}
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "你答完了全部10道题。没那么难吧！重要的部分现在才开始。";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "... ... ...";
 		next;
 		if (@job_ko_Kuuga < 90) {
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "你这个笨蛋！！";
 			mes "连这些题都答不出来吗？";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "真不敢相信，走上新道路的人竟然这么可悲。";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "我再给你一次机会。";
 			mes "你将用新题目重新测试。这次最好通过。";
 		} else {
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "嗯，" + (@job_ko_Kuuga) + "分？";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "看来你没有在学习上偷懒。";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "什么？答对这些题就自满了吗？";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "你还有很长的路要走，而这只是其中很小的一部分。";
 			next;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "嗯……我很好奇你的坚强意志能带你通过其他测试走多远。";
 			next;
 			completequest 5136;
 			erasequest 5139;
-			mes "[库加·盖伊]";
+			mes "[空牙凯]";
 			mes "现在放你离开，带着结果回去向吉恩首领报告吧。";
 			close2;
 			warp "job_ko",16,113;
@@ -955,17 +964,17 @@ job_ko,81,124,4	script	Kuuga Gai#ko	730,{
 		set @job_ko_Kuuga,0;
 		close;
 	} else if (.@ko_test_01 == 2 && .@ko_test_01_1 == 0) {
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "现在放你离开，带着结果回去向吉恩首领报告吧。";
 		close2;
 		warp "job_ko",16,113;
 		end;
 	} else {  //custom translation
 	L_Kick:
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "你是怎么来到这里的？";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "消灭你是我的职责。";
 		mes "^000099（这是个矮小而沉默的男人。）^000000";
 		mes "这一击会把你击退！";
@@ -1752,6 +1761,11 @@ OnTouch:
 	next;
 	switch(select("支付 LP。:逐格向前移动。")) {
 	case 1:
+		if (job_kagero_lp < 1) {
+			mes "LP 已耗尽，无法支付。按关闭键返回起点。";
+			callfunc "F_KO_Survival_warp",0;
+			end;
+		}
 		set .@sell_p, job_kagero_lp - 1;
 		set job_kagero_lp,1;
 		mes "< 已使用 " + .@sell_p + " 点 LP >";
@@ -1848,6 +1862,11 @@ OnTouch:
 		next;
 		switch(select("设置陷阱。:不设置。")) {
 		case 1:
+			if (job_kagero_lp < 1) {
+				mes "LP 已耗尽，无法支付。按关闭键返回起点。";
+				callfunc "F_KO_Survival_warp",0;
+				end;
+			}
 			set .@reset_p, job_kagero_lp - 1;
 			set job_kagero_lp,1;
 			set $20110808_vko04,1;
@@ -1931,23 +1950,20 @@ OnTouch:
 // Test of Weaponry
 //============================================================
 job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
-	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
-		mes "[红豹乔]";
-		mes "减轻你的负重！否则这个测试会很困难……";  //custom translation
-		close;
-	}
+
 	if (BaseJob != Job_Ninja) {
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
 		set job_kagero,0;
-		mes "[红豹乔]";
+		job_kagero_prototype = 0;
+		mes "[赤豹乔]";
 		mes "抱歉，你的氏族和我们不同，是出了什么问题吗？";
 		close2;
 		warp "amatsu",147,136;
 		end;
 	}
 	if (job_kagero != 5) {  //custom translation
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "你不该来这里……";
 		mes "消除你的存在是我的职责，";
 		mes "所以现在就送你回去！";
@@ -1961,53 +1977,53 @@ job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
 	set .@ko_test_03_4, isbegin_quest(5144);
 	set .@ko_test_03_5, isbegin_quest(5145);
 	if (.@ko_test_03_1 == 1 && .@ko_test_03_2 == 0 && .@ko_test_03_3 == 0 && .@ko_test_03_4 == 0 && .@ko_test_03_5 == 0) {
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "好久不见！";
 		next;
 		select("确实好久不见，乔。");
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "你看到我在这里并不惊讶。来这里之前见过^0237FD空牙凯^000000吗？";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "虽然你不是先来拜访我的让我有点不高兴，但那不重要。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "好吧，" + strcharinfo(0) + "！";
 		mes "欢迎来到为氏族制造武器的工坊。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "自古以来，我们氏族一直在制造和使用独特武器，执行秘密任务。";
 		next;
-		select("真的吗？在艾因布洛克？");
-		mes "[红豹乔]";
+		select("真的吗？在艾音布罗克？");
+		mes "[赤豹乔]";
 		mes "嗯？你没有我想的那么迟钝！";
 		next;
-		mes "[红豹乔]";
-		mes "没错。艾因布洛克是著名的工业城市，伟大的铁匠们在那里创造新技术。";
+		mes "[赤豹乔]";
+		mes "没错。艾音布罗克是著名的工业城市，伟大的铁匠们在那里创造新技术。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我的任务是分析他们的技术并向氏族汇报。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我说得有点多了。";
 		next;
-		mes "[红豹乔]";
-		mes "你带来了足够的^6848B7铁矿石、铁、钢铁、强化武器金属-级数一、埃姆贝塔康、粗糙的神之金属和粗糙的铝^000000吗？";
+		mes "[赤豹乔]";
+		mes "你带来了足够的^6848B7铁矿石、铁、钢铁、强化武器金属-级数一、强化武器金属-级数二、神之金属原石和铝原石^000000吗？";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "现在来制造一件新的原型武器吧。";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_01";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "尽管使用这里的工具，还有……";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_02";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "……在那里……";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_03";
 		setquest 5142;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "……还有其他地方。现在开始吧！！";
 		close;
 	} else if (.@ko_test_03_1 == 1 && .@ko_test_03_2 == 1 && .@ko_test_03_3 == 0 && .@ko_test_03_4 == 0 && .@ko_test_03_5 == 0) {
@@ -2016,96 +2032,96 @@ job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
 	} else if (.@ko_test_03_1 == 1 && .@ko_test_03_2 == 0 && (.@ko_test_03_3 == 1 || .@ko_test_03_4 == 1) && .@ko_test_03_5 == 0) {
 		callsub L_Weapon,":是的，做好了。";
 		if (countitem(13074)) {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "嗯……有意思……这是苦无形状的短剑吗？";
 			next;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		} else if (countitem(13312)) {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "嗯……这是普通风魔手里剑吗？";
 			next;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "啊，不是普通风魔手里剑。";
 		} else {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "啊，怎么会这样？你没有武器？难道你已经装备上了？";
 			close;
 		}
 	mes "很有创意。虽然还有改进空间，但稍微打磨一下，这件武器本身或许会很有用。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "很好。我想你准备好了。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "现在该升级了吧？";
 	mes "我两侧有强化工具。用它们强化武器后再回来。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "这些强化工具是我费了很大力气亲自制作的，你使用时不会有问题。";
 		next;
 		setquest 5145;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "啊……不过以防万一，";
 	mes "^FF0000小心别把这些工具展示给外面的铁匠，以免惹出麻烦。^000000";
 		close;
 	} else if (.@ko_test_03_1 == 1 && .@ko_test_03_2 == 0 && (.@ko_test_03_3 == 1 || .@ko_test_03_4 == 1) && .@ko_test_03_5 == 1) {
 		disable_items;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "结果成功了吗？";
 		next;
 	switch(select("还没有。:在这里。:其实……")) {
 		case 1:
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "一开始要得到满意的结果并不容易。";
 			close;
 		case 2:
 			break;
 		case 3:
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "我都提醒过你了，你还是把武器弄丢了。";
 			next;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "没有别的办法了。等等！";
 			next;
-	mes "红豹乔低声念叨了几句，所有武器突然都被卸下了。";
+	mes "赤豹乔低声念叨了几句，所有武器突然都被卸下了。";
 			next;
 			nude;
 			if (countitem(13074) || countitem(13312)) {
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "这是什么？你还留着原型。别闹了。";
 				close;
 			}
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "哦！你真的把它弄丢了。";
 			next;
 			setquest 5142;
 			if (isbegin_quest(5143)) erasequest 5143;
 			if (isbegin_quest(5144)) erasequest 5144;
 			erasequest 5145;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "好吧！我们再做一次吧！";
 			close;
 		}
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "看来你有些成果了。";
 		next;
 		set .@part, EQI_HAND_R;
 		if (!getequipisequiped(.@part)) {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "啊！你没有装备任何武器！";
 			close;
 		} else {
 			set .@equip_id, getequipid(.@part);
 			set .@equip_refine, getequiprefinerycnt(.@part);
 			if (.@equip_id == 13074 || .@equip_id == 13312) {
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "那件武器是你的吗？让我看看。";
 				next;
 			} else {  //custom translation
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "你确定是那件武器吗？";
 				next;
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "你想用那个骗我吗？再来一次！！";
 				close;
 			}
@@ -2113,45 +2129,45 @@ job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
 	mes "乔仔细检查了封印。";
 		next;
 		if (.@equip_refine < 7) {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "你只有这种程度吗？";
 		mes "一定是我看错你了。你也许已经满足，但我还不满意。再来一次！！";
 			close;
 		} else if (.@equip_refine > 6 && .@equip_refine < 9) {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "嗯……这就是你的极限吗？";
 		mes "你刚才差一点就通过了。我再问一次，你满意了吗？";
 			next;
 		if(select("是:否") == 2) {
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "你还在这里。为什么？";
 				close;
 			}
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "你的能力足够了。";
 			next;
 		} else if (.@equip_refine > 8 && .@equip_refine < 13) {  //custom translation(?)
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "啊，和我预想的一样。";
 		mes "我相信你不会止步于此。";
 			next;
 		if(select("我想停下。:我想继续。") == 2) {
-				mes "[红豹乔]";
+				mes "[赤豹乔]";
 			mes "我期待你的成果。";
 				close;
 			}
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "你的能力足够了。";
 			next;
 		} else {  //custom translation(?)
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "比预想的更好。";
 			next;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 		mes "对初学者来说相当不错。这个测试对你也许不算什么，但你的能力已经足够了。";
 			next;
 		}
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "我能感觉到。";
 	mes "我会拿这件武器再做最后的处理。";
 		next;
@@ -2165,19 +2181,19 @@ job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
 		completequest 5138;
 		if (isbegin_quest(5143) == 1) completequest 5143;
 		if (isbegin_quest(5144) == 1) completequest 5144;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "'" + strcharinfo(0) + "'";
 	mes "武器测试通过！！";
 		close;
 	} else if (.@ko_test_03_1 == 2 && .@ko_test_03_2 == 0 && (.@ko_test_03_3 == 2 || .@ko_test_03_4 == 2) && .@ko_test_03_5 == 0) {
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "哦，我差点忘了。";
-	mes "去把测试结果报告给吉翁！";
+	mes "去把测试结果报告给吉恩首领！";
 		close2;
 		warp "job_ko",26,104;
 		end;
 	} else {  //custom translation
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "你不该来这里……";
 	mes "消灭你是我的职责。";
 	mes "这一击会把你击退！";
@@ -2188,48 +2204,48 @@ job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
 	end;
 
 L_Weapon:
-	mes "[红豹乔]";
+	mes "[赤豹乔]";
 	mes "你已经做好新武器的原型了吗？";
 	next;
 	switch(select("制作工具？:我没有足够的材料。:你希望我怎么制作武器？" + getarg(0))) {
 	case 1:
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_01";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "尽管使用这里的工具，还有……";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_02";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "……在那里……";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Crafting Tools#ko_03";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "……还有其他地方。";
 		close;
 	case 2:
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "你带来的材料不够吗？";
 		next;
 		specialeffect EF_GUIDEDATTACK,AREA,"Drawer#ko";
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "那我们得去一趟村子。试试那边的^FF0000抽屉^000000，它会把你送到村子。";
 		close;
 	case 3:
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "嗯……看来我期望太高了？让我解释一下。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "首先要熔化用于制作武器的矿石。获得高纯度金属的最佳方法，是熔化同类材料。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "例如铁矿石、铁和钢的性质相近，可以从它们中得到高纯度金属。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "熔化高纯度金属后，把它倒入模具塑造武器形状，再通过研磨和淬火使其坚固。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "顺便说一下，充分旋转、研磨和淬火才能得到最佳结果。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我想这些足够你入门了，对吧？现在去制作那个原型吧！！";
 		close;
 	case 4:
@@ -2250,15 +2266,17 @@ job_ko,117,128,0	script	Drawer#ko	844,{
 }
 
 job_ko,131,124,0	script	Crafting Tools#ko_01	844,{
-	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
-		mes "太重了！请减轻负重。";  //custom translation
-		close;
-	}
 	if (isbegin_quest(5138) == 1 && isbegin_quest(5142) == 1 && isbegin_quest(5143) == 0 && isbegin_quest(5144) == 0 && isbegin_quest(5145) == 0) {
 		// fall through
 	} else {
 	mes "制作工具。";
 	mes "现在还不太需要。";
+		close;
+	}
+	if (job_kagero_prototype)
+		callsub L_ClaimPrototype;
+	if (!checkweight(13074,1) || !checkweight(13312,1)) {
+		mes "请先为短剑或风魔手里剑原型预留足够的负重和物品栏空间，再开始熔化材料。";
 		close;
 	}
 	mes "用于制作武器的工具。";
@@ -2270,7 +2288,7 @@ job_ko,131,124,0	script	Crafting Tools#ko_01	844,{
 	next;
 	callsub L_CheckMaterials;
 	while(1) {
-		switch(select("熔化铁矿石。:熔化铁。:熔化钢。:熔化强化武器金属-级数一。:熔化埃姆维洛泰康。:熔化粗糙的神之金属。:熔化粗糙的铝。:停止。")) {
+		switch(select("熔化铁矿石。:熔化铁。:熔化钢。:熔化强化武器金属-级数一。:熔化强化武器金属-级数二。:熔化神之金属原石。:熔化铝原石。:停止。")) {
 			case 1: set .@item,1002; setarray .@val[0],1,0,0; break;  //Iron_Ore
 			case 2: set .@item, 998; setarray .@val[0],2,0,0; break;  //Iron
 			case 3: set .@item, 999; setarray .@val[0],3,0,0; break;  //Steel
@@ -2357,19 +2375,9 @@ job_ko,131,124,0	script	Crafting Tools#ko_01	844,{
 		if (.@success_pp != 44) set .@success,1;
 	}
 	if (.@success) {
+		job_kagero_prototype = (.@weapon_who == 0) ? 13074 : 13312;
 		specialeffect2 EF_PERFECTION;
-		erasequest 5142;
-		if (.@weapon_who == 0) {
-			setquest 5143;
-			getitem 13074,1; //Ninja_Cutter
-		} else {
-			setquest 5144;
-			getitem 13312,1; //Huuma_Job_Test
-		}
-	mes "武器制作成功。";
-		next;
-	mes "把它带给红豹乔吧。";
-		close;
+		callsub L_ClaimPrototype;
 	} else {
 		specialeffect2 EF_SUI_EXPLOSION;
 	mes "进行最后处理时，武器损坏了。";
@@ -2378,6 +2386,20 @@ job_ko,131,124,0	script	Crafting Tools#ko_01	844,{
 		close;
 	}
 	end;
+
+L_ClaimPrototype:
+	if (!checkweight(job_kagero_prototype,1)) {
+		mes "原型已制作成功，但背包容量不足。";
+		mes "请腾出足够的负重和物品栏空间，再使用制作工具领取；不需要重新制作。";
+		close;
+	}
+	getitem job_kagero_prototype,1;
+	erasequest 5142;
+	setquest (job_kagero_prototype == 13074) ? 5143 : 5144;
+	job_kagero_prototype = 0;
+	mes "你领取了制作成功的武器原型。";
+	mes "把它带给赤豹乔吧。";
+	close;
 
 L_CheckMaterials:
 	if (!countitem(1002) && !countitem(998) && !countitem(999) && !countitem(1010) && !countitem(1011) && !countitem(756) && !countitem(757)) {
@@ -2432,7 +2454,7 @@ job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
 	mes "嘶滋。";
 	mes "工具发出了警告声。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "没有装备需要强化的物品时，这台设备无法工作。";
 		close;
 	} else {
@@ -2443,10 +2465,10 @@ job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
 	mes "正在分析武器。";
 			next;
 		} else {
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 	mes "等等……这不是定制武器。";
 			next;
-			mes "[红豹乔]";
+			mes "[赤豹乔]";
 	mes "为什么不去找外面那些暴躁的铁匠强化它？";
 			close;
 		}
@@ -2455,7 +2477,7 @@ job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
 	mes "嘶滋。";
 	mes "工具发出了警告声。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "那件武器无法强化。你从哪里得到的？";  //custom translation
 		close;
 	}
@@ -2463,7 +2485,7 @@ job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
 	mes "嘶滋。";
 	mes "工具发出了警告声。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 	mes "这件装备已经强化到完美了。留着自己用吧！";  //custom translation
 		close;
 	}
@@ -2519,11 +2541,7 @@ job_ko,127,121,0	duplicate(Refinement Tools#ko_01)	Refinement Tools#ko_02	844
 // Test of Battle
 //============================================================
 job_ko,148,46,4	script	Leader Gion#ko2	588,{
-	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
-		mes "[吉恩首领]";
-		mes "你现在不需要带这么多东西！"; //custom translation
-		close;
-	}
+
 	if (job_kagero == 7) {
 		cutin "job_ko01",2;
 		mes "[吉恩首领]";
@@ -2538,6 +2556,8 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		cutin "",255;
 		end;
 	} else if (job_kagero == 8) {
+		.@item = (isbegin_quest(5143) == 2) ? 13075 : 13311;
+		callsub L_CheckJobReward;
 		cutin "job_ko02",2;
 		mes "[吉恩首领]";
 		mes "看来你已经处理了目标。嗯。";
@@ -2571,9 +2591,9 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		mes "[吉恩首领]";
 		mes "战斗测试暂时延期。别担心，这不会影响其他测试。";
 		next;
-		mapannounce "job_ko","[吉恩] 我的朋友" + strcharinfo(0) + "踏上了" + ((Sex == SEX_MALE)?"影狼":"胧月") + "之路。恭喜！！",bc_map;
+		mapannounce "job_ko","[吉恩] 我的朋友" + strcharinfo(0) + "踏上了" + ((Sex == SEX_MALE)?"影狼":"胧") + "之路。恭喜！！",bc_map;
 		mes "[吉恩首领]";
-		mes "我的朋友" + strcharinfo(0) + "踏上了" + ((Sex == SEX_MALE)?"影狼":"胧月") + "之路。恭喜！！";
+		mes "我的朋友" + strcharinfo(0) + "踏上了" + ((Sex == SEX_MALE)?"影狼":"胧") + "之路。恭喜！！";
 		next;
 		cutin "job_ko02",2;
 		mes "[吉恩首领]";
@@ -2589,19 +2609,19 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		mes "抱歉，差点忘了你们。有什么要和" + strcharinfo(0) + "分享的吗？";
 		next;
 		cutin "",255;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes "嗯……突然让我发言……真尴尬……";
 		next;
-		mes "[库加·盖伊]";
+		mes "[空牙凯]";
 		mes strcharinfo(0) + "，你现在是我们宗族值得骄傲的一员。永远抬头挺胸……";
 		next;
-		mes "[库加·盖伊]";
-		mes "^777777（盖伊的声音渐渐低了下去。）^000000";
+		mes "[空牙凯]";
+		mes "^777777（空牙凯的声音渐渐低了下去。）^000000";
 		mes "很抱歉初次见面时掐了你。";
 		next;
 		donpcevent "Kuuga Gai#ko2::OnDisable";
-		mes "[红豹乔]";
-		mes "噗哈哈哈！盖伊只会说。我知道自己比盖伊更有价值。";
+		mes "[赤豹乔]";
+		mes "噗哈哈哈！空牙凯只会说。我知道自己比空牙凯更有价值。";
 		next;
 		if (isbegin_quest(5143) == 2) {
 			set .@item,13075; //Kurenai
@@ -2610,22 +2630,22 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 			set .@item,13311; //Huuma_Shadow
 			set .@weapon$,"手里剑";
 		}
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我改良了你制作的原型" + .@weapon$ + "。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我完成最后加工后，" + getitemname(.@item) + "闪耀着美丽的猩红光芒。";
 		next;
-		mes "[红豹乔]";
+		mes "[赤豹乔]";
 		mes "我擅自给你的武器取了名字，相信你会喜欢。";
 		next;
-		mes "[红豹乔]";
-	mes "吉恩 队长，请继续。";
+		mes "[赤豹乔]";
+	mes "吉恩首领，请继续。";
 		next;
 		cutin "job_ko01",2;
 		donpcevent "Red Leopard Joe#ko2::OnDisable";
 		mes "[吉恩首领]";
-		mes "盖伊和乔已经说完了，我没什么补充。";
+		mes "空牙凯和乔已经说完了，我没什么补充。";
 		next;
 		mes "[吉恩首领]";
 		mes "只是很遗憾，这些测试的环境本可以为后代做得更好。";
@@ -2633,22 +2653,25 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		mes "[吉恩首领]";
 		mes "你只需向前看，永远不要回头。";
 		next;
+		callsub L_CheckJobReward;
+		jobchange (Sex == SEX_MALE)?Job_Kagerou:Job_Oboro;
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
 		set job_kagero,9;
 		getnameditem .@item,strcharinfo(0);
-		jobchange (Sex == SEX_MALE)?Job_Kagerou:Job_Oboro;
 		donpcevent "Summon Target#ko::OnEnable";
 		mes "[吉恩首领]";
-		mes "愿舞动的太阳影狼与朦胧月光胧月的祝福伴你前行。";
+		mes "愿舞动的太阳影狼与朦胧光胧的祝福伴你前行。";
 		close2;
+		cutin "",255;
 		warp "que_ng",21,71;
 		end;
 	} else if (job_kagero == 9) {
 		cutin "job_ko01",2;
 		mes "[吉恩首领]";
-		mes "愿舞动的太阳影狼与朦胧月光胧月的祝福伴你前行。";
+		mes "愿舞动的太阳影狼与朦胧光胧的祝福伴你前行。";
 		close2;
+		cutin "",255;
 		warp "que_ng",21,71;
 		end;
 	} else {
@@ -2656,13 +2679,33 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		mes "[吉恩首领]";
 		mes "你不该来这里。请离开！"; //custom translation
 		close2;
+		cutin "",255;
 		warp "amatsu",147,136;
 		end;
 	}
+	end;
+
+L_CheckJobReward:
+	if (Class != Job_Ninja || BaseLevel < 99 || JobLevel < 70 || SkillPoint || ismounting()) {
+		mes "[吉恩首领]";
+		mes "请确认当前职业为忍者、基础等级达到 99、职业等级达到 70，分配完技能点并解除坐骑后再来。";
+		close2;
+		cutin "",255;
+		end;
+	}
+	if (!checkweight(.@item,1)) {
+		mes "[吉恩首领]";
+		mes "请先为转职赠送的武器预留足够的负重和物品栏空间。";
+		close2;
+		cutin "",255;
+		end;
+	}
+	return;
+
 }
 
 job_ko,151,47,4	script	Kuuga Gai#ko2	730,{
-	mes "[库加·盖伊]";
+	mes "[空牙凯]";
 	mes "恭喜你选择了成长之路！";
 	close;
 OnInit:
@@ -2675,7 +2718,7 @@ OnEnable:
 }
 
 job_ko,145,47,6	script	Red Leopard Joe#ko2	730,{
-	mes "[红豹乔]";
+	mes "[赤豹乔]";
 	mes "你还没找到目标？继续寻找。";
 	close;
 OnInit:
@@ -2695,6 +2738,8 @@ OnTimer180000:
 	end;
 OnEnable:
 	stopnpctimer;
+	if (mobcount("job_ko","Summon Target#ko::OnMyMobDead") > 0)
+		end;
 	switch (rand(1,7)) {
 		case 1: set .@mob,1002; break;
 		case 2: set .@mob,1031; break;
@@ -2797,7 +2842,7 @@ job_ko,3,1,4	script	Battle Test Control#ko	588,{
 job_ko,4,1,4	script	Guide#ko_helper	588,{
 	callfunc "F_GM_NPC";
 	if (callfunc("F_GM_NPC",1854,0) == 1) {
-		mes "这是影狼和胧月转职助手 NPC。";
+		mes "这是影狼和胧转职助手 NPC。";
 		next;
 	} else {
 		mes "密码错误。";
@@ -2878,6 +2923,7 @@ job_ko,4,1,4	script	Guide#ko_helper	588,{
 		close;
 	case 4:
 		set job_kagero,0;
+		job_kagero_prototype = 0;
 		set job_kagero_lp,0;
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;

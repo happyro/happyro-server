@@ -9,7 +9,7 @@ constexpr int SP_BASELEVEL=1, SP_JOBLEVEL=2, SP_HP=3, SP_SP=4, SP_STATUSPOINT=5,
 struct map_session_data {
  struct { int class_=1, base_level=99, job_level=1, sex=0, char_id=42; uint32 status_point=1000,skill_point=0; } status;
  struct { int max_hp=100,max_sp=50,max_ap=200,ap=30; } battle_status;
- int saves=0,writes=0;
+ int saves=0,writes=0,npc_id=0;
 };
 uint64 pc_jobid2mapid(int job){return job;}
 int pc_mapid2jobid(uint64 job,int){return job;}

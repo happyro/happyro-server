@@ -50,6 +50,11 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		mes "^3355FF你回头看，但……那里什么也没有。";
 		mes "这里一定有古怪！^000000";
 		next;
+		if (BaseJob != Job_Novice || Upper == 1 || BaseLevel < 45 || !callfunc("F_CanChangeJob")) {
+			mes "[特泽罗]";
+			mes "只有达到 45 级并掌握基础技能的普通或宝宝初心者才能完成这项转职。";
+			close;
+		}
 		if (countitem(938) < 30 || countitem(907) < 30) {
 			mes "材料不足，请带齐 30 个黏稠液体和 30 个古树树脂后再来。";
 			close;
@@ -60,11 +65,11 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		}
 		delitem 938,30; //Sticky_Mucus
 		delitem 907,30; //Resin
+		if (Upper==0) jobchange Job_Super_Novice;
+		if (Upper==2) jobchange Job_Super_Baby;
 		completequest 6010;
 		callfunc "F_ClearJobVar";
 		getitem 2339,1; //G_Strings
-		if (Upper==0) jobchange Job_Super_Novice;
-		if (Upper==2) jobchange Job_Super_Baby;
 		mes "[特泽罗]";
 		mes "哇哈！骗到你了！";
 		mes "怎么样……喜欢我的玩笑吗？";
@@ -298,10 +303,15 @@ aldebaran,54,238,5	script	Kafra Employee#sn	117,{
 					mes "哦，你已经装备手推车了。";
 					close;
 				}
+				if (!getskilllv("MC_PUSHCART")) {
+					mes "[卡普拉员工]";
+					mes "请先学会“手推车”技能，再来租用手推车。本次不会收取费用。";
+					close;
+				}
 				if (Zeny >= 1900) {
 					set RESRVPTS, RESRVPTS + 190;
 					set Zeny, Zeny-1900;
-					if (getskilllv("MC_PUSHCART") > 0) setcart;
+					setcart;
 					mes "[卡普拉员工]";
 					mes "感谢使用我的服务。";
 					mes "虽然我这样做可能对其他卡普拉员工来说不合规，但我坚信这是为顾客做正确的事。";

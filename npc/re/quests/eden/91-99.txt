@@ -75,7 +75,7 @@ moc_para01,48,177,3	script	91-99 Mission Board	857,{
 		}
 		close;
 	}
-	mes "[91-99 级任务板]";
+	mes "[91～99级任务公告板]";
 	mes "这块任务板上有多个委托。";
 	next;
 	switch(select("^8B4513龟岛^000000:^8B4513古城^000000:^8B4513拉赫 / 维因斯^000000:^8B4513扩展城市^000000:^8B4513其他地区^000000")) {
@@ -135,17 +135,17 @@ L_Quest:
 	.@cutin$ = getarg(3);
 	set .@playtime, checkquest(.@quest2,PLAYTIME);
 	if (.@playtime == 0 || .@playtime == 1) {
-		mes "[91-99 级任务板]";
+		mes "[91～99级任务公告板]";
 		mes "再次接受该任务前需要等待 3 小时。";
 		close;
 	}
 	set .@hunting, checkquest(.@quest1,HUNTING);
 	if (.@hunting == 0 || .@hunting == 1) {
-		mes "[91-99 级任务板]";
+		mes "[91～99级任务公告板]";
 		mes "你已经猎杀完全部 30 只"+getarg(1)+getarg(5,"")+"了吗？";
 		close;
 	} else if (.@hunting == 2) {
-		mes "[91-99 级任务板]";
+		mes "[91～99级任务公告板]";
 		mes "你完成了狩猎。";
 		mes "请收下这份奖励。";
 		erasequest .@quest1;
@@ -168,16 +168,16 @@ L_Quest:
 		mes "你重新接受了"+getarg(1)+"狩猎任务。";
 		close;
 	}*/ else {
-		mes "[91-99 级任务板]";
+		mes "[91～99级任务公告板]";
 		mes getarg(4);
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,3;
-		mes "[91-99 级任务板]";
+		mes "[91～99级任务公告板]";
 		mes "在那里猎杀 30 只"+getarg(1)+"怪物，并在这块告示牌上报告成功。";
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,255;
 		if(select("我去狩猎。:不用，谢谢。") == 1) {
-			mes "[91-99 级任务板]";
+			mes "[91～99级任务公告板]";
 			mes "完成任务后，在任务板登记并领取奖励。";
 			if (.@playtime > -1) erasequest .@quest2;
 			setquest .@quest1;

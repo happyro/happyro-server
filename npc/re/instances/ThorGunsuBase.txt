@@ -8,22 +8,22 @@
 //============================================================
 
 // Main Quest: Step 47.
-que_thr,133,53,5	script	玛拉姆#Armybase1	4_EP18_MARAM,{
+que_thr,133,53,5	script	马拉姆#Armybase1::玛拉姆#Armybase1	4_EP18_MARAM,{
 	if (ep18_main < 45 || ep18_main > 46)
 		end;
 	if (ep18_main == 45) {
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "你到了，冒险者！";
 		mes "谢谢你一路赶来。";
 		next;
 		cutin "ep18_maram_03.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "看来这里确实是真正的军事基地。这里的警戒与之前不同……";
 		mes "小心别被守卫发现，探索内部吧。";
 		next;
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "尽量避开守卫的视线。";
 		mes "被发现可能会遭到攻击，如果无法突破，就回到这里见。";
 		erasequest 16577;
@@ -33,7 +33,7 @@ que_thr,133,53,5	script	玛拉姆#Armybase1	4_EP18_MARAM,{
 	}
 	else if (ep18_main == 46) {
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "尽量避开警戒塔进去吧。";
 		next;
 	}
@@ -50,7 +50,7 @@ que_thr,133,53,5	script	玛拉姆#Armybase1	4_EP18_MARAM,{
 	switch( select( .@create$, "进入" + .@md_name$ ) ) {
 	case 1:
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "申请完成后，再和我交谈并选择^0000CD" + .@md_name$ + "入口^000000。";
 		if (instance_create(.@md_name$) < 0) {
 			mes "队伍：" + getpartyname(getcharid(1)) + "";
@@ -63,16 +63,16 @@ que_thr,133,53,5	script	玛拉姆#Armybase1	4_EP18_MARAM,{
 		// Note: instance not forced solo
 		switch( instance_enter(.@md_name$) ) {
 		case IE_OTHER:
-			mes "[玛拉姆]";
+			mes "[马拉姆]";
 			mes "^ff0000发生未知错误。^000000";
 			close;
 		case IE_NOINSTANCE:
 			cutin "ep18_maram_01.png",2;
-			mes "[玛拉姆]";
+			mes "[马拉姆]";
 			mes "你似乎还没有创建副本。请稍后再确认。";
 			close3;
 		case IE_NOMEMBER:
-			mes "[玛拉姆]";
+			mes "[马拉姆]";
 			mes "^ff0000只有队伍成员才能进入纪念副本。^000000";
 			close;
 		case IE_OK:
@@ -88,12 +88,12 @@ OnInit:
 	end;
 }
 
-1@tcamp,106,237,3	script	玛拉姆#Base1	4_EP18_MARAM,{
-	mes "[玛拉姆]";
+1@tcamp,106,237,3	script	马拉姆#Base1::玛拉姆#Base1	4_EP18_MARAM,{
+	mes "[马拉姆]";
 	mes "小心探索内部。";
 	mes "听蒲公英之前说，里面人不多，但各处都有监视大片区域的警戒塔。";
 	next;
-	mes "[玛拉姆]";
+	mes "[马拉姆]";
 	mes "被警戒塔发现会出现士兵，小心别被发现。";
 	mes "如果发现什么，请联系我！";
 	close;
@@ -163,9 +163,9 @@ OnInstanceInit:
 1@tcamp,138,216,3	script	锁定装置#1-1	4_ROPEPILE,{
 	.@maram$ = instance_npcname("玛拉姆#Lock Device1");
 	enablenpc .@maram$;
-	npctalk "玛拉姆：请稍等。我知道怎么打开它。", .@maram$;
+	npctalk "马拉姆：请稍等。我知道怎么打开它。", .@maram$;
 	progressbar_npc "3131FF",10;
-	npctalk "玛拉姆：好了，现在可以通过了！", .@maram$;
+	npctalk "马拉姆：好了，现在可以通过了！", .@maram$;
 	disablenpc instance_npcname("锁定装置#1-1");
 	disablenpc instance_npcname("锁定装置#1-2");
 	disablenpc .@maram$;
@@ -173,7 +173,7 @@ OnInstanceInit:
 	end;
 }
 1@tcamp,141,216,3	duplicate(锁定装置#1-1)	锁定装置#1-2	4_ROPEPILE
-1@tcamp,140,218,3	duplicate(dummy_disabled_npc)	玛拉姆#Lock Device1	4_EP18_MARAM
+1@tcamp,140,218,3	duplicate(dummy_disabled_npc)	马拉姆#Lock Device1::玛拉姆#Lock Device1	4_EP18_MARAM
 
 1@tcamp,136,145,3	script	锁定装置#2-1	4_ROPEPILE,{
 	.@maram$ = instance_npcname("玛拉姆#Lock Device2");
@@ -191,14 +191,14 @@ OnInstanceInit:
 1@tcamp,138,145,3	duplicate(锁定装置#2-1)	锁定装置#2-2	4_ROPEPILE
 1@tcamp,141,145,3	duplicate(锁定装置#2-1)	锁定装置#2-3	4_ROPEPILE
 1@tcamp,143,145,3	duplicate(锁定装置#2-1)	锁定装置#2-4	4_ROPEPILE
-1@tcamp,142,147,3	duplicate(dummy_disabled_npc)	玛拉姆#Lock Device2	4_EP18_MARAM
+1@tcamp,142,147,3	duplicate(dummy_disabled_npc)	马拉姆#Lock Device2::玛拉姆#Lock Device2	4_EP18_MARAM
 
 1@tcamp,223,109,3	script	锁定装置#3-1	4_ROPEPILE,{
 	.@maram$ = instance_npcname("玛拉姆#Lock Device3");
 	enablenpc .@maram$;
-	npctalk "玛拉姆：这栋建筑很可疑，对吧？里面肯定也有监控系统。", .@maram$;
+	npctalk "马拉姆：这栋建筑很可疑，对吧？里面肯定也有监控系统。", .@maram$;
 	progressbar_npc "3131FF",10;
-	npctalk "玛拉姆：这次仔细探索，别被发现。", .@maram$;
+	npctalk "马拉姆：这次仔细探索，别被发现。", .@maram$;
 	disablenpc instance_npcname("锁定装置#3-1");
 	disablenpc instance_npcname("锁定装置#3-2");
 	disablenpc .@maram$;
@@ -206,14 +206,14 @@ OnInstanceInit:
 	end;
 }
 1@tcamp,223,106,3	duplicate(锁定装置#3-1)	锁定装置#3-2	4_ROPEPILE
-1@tcamp,226,114,3	duplicate(dummy_disabled_npc)	玛拉姆#Lock Device3	4_EP18_MARAM
+1@tcamp,226,114,3	duplicate(dummy_disabled_npc)	马拉姆#Lock Device3::玛拉姆#Lock Device3	4_EP18_MARAM
 
 1@tcamp,80,99,3	script	锁定装置#4-1	4_ROPEPILE,{
 	.@maram$ = instance_npcname("玛拉姆#Lock Device4");
 	enablenpc .@maram$;
-	npctalk "玛拉姆：看来我们深入很远了。应该能安全找到所需东西。", .@maram$;
+	npctalk "马拉姆：看来我们深入很远了。应该能安全找到所需东西。", .@maram$;
 	progressbar_npc "3131FF",10;
-	npctalk "玛拉姆：祝你好运吧？", .@maram$;
+	npctalk "马拉姆：祝你好运吧？", .@maram$;
 	disablenpc instance_npcname("锁定装置#4-1");
 	disablenpc instance_npcname("锁定装置#4-2");
 	disablenpc instance_npcname("锁定装置#4-3");
@@ -233,7 +233,7 @@ OnInstanceInit:
 }
 1@tcamp,80,97,3	duplicate(锁定装置#4-1)	锁定装置#4-2	4_ROPEPILE
 1@tcamp,80,95,3	duplicate(锁定装置#4-1)	锁定装置#4-3	4_ROPEPILE
-1@tcamp,82,100,3	duplicate(dummy_disabled_npc)	玛拉姆#Lock Device4	4_EP18_MARAM
+1@tcamp,82,100,3	duplicate(dummy_disabled_npc)	马拉姆#Lock Device4::玛拉姆#Lock Device4	4_EP18_MARAM
 
 
 //-------------------------------------------------------------------
@@ -326,7 +326,7 @@ OnInstanceInit:
 			cutin "ep18_miriam_02.png",2;
 			mes "[米丽娅姆]";
 			mes "不愧是你，冒险者。我的人脉全用上了才找到地点。";
-			mes "看来你马上就找到了冒险者和玛拉姆。";
+			mes "看来你马上就找到了冒险者和马拉姆。";
 			next;
 			mes "[米丽娅姆]";
 			mes "请阅读这些文件。里面有我们寻找的东西。";
@@ -342,7 +342,7 @@ OnInstanceInit:
 		mes ".......";
 		next;
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "不，米丽娅姆！你怎么在这里？";
 		mes "他们说会进行单独调查！";
 		next;
@@ -352,7 +352,7 @@ OnInstanceInit:
 		mes "不愧是你，技术真好。我动用所有人脉才找到地点，你却马上找到了。";
 		next;
 		cutin "ep18_maram_02.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "我们想办法解决吧，冒险者？";
 		mes "总之，你得到了什么情报？";
 		next;
@@ -371,15 +371,15 @@ OnInstanceInit:
 		mes "武器若不妥善维护，可能无法正常使用。";
 		next;
 		cutin "ep18_maram_03.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "从后门流出的所有武器质量都一样。";
 		mes "……不过现在看来确实如此。";
 		next;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "一年的有效期不算长，但也不至于太紧。";
 		mes "为什么偏偏在我们准备抗议时大量流出？";
 		next;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "本来没必要立刻处理掉。";
 		next;
 		cutin "ep18_miriam_02.png",2;
@@ -406,7 +406,7 @@ OnInstanceInit:
 		}
 		close2;
 		cutin "",255;
-		npctalk "玛拉姆：哈，这真的很有趣。", instance_npcname("玛拉姆#Base5");
+		npctalk "马拉姆：哈，这真的很有趣。", instance_npcname("玛拉姆#Base5");
 		end;
 	}
 	if ('step == 2) {
@@ -419,7 +419,7 @@ OnInstanceInit:
 
 OnTouch:
 	if (countitem(1000409) < 5)
-		npctalk "米丽娅姆：哦，冒险者？玛拉姆，你也在！？";
+		npctalk "米丽娅姆：哦，冒险者？马拉姆，你也在！？";
 	end;
 
 OnInstanceInit:
@@ -427,15 +427,15 @@ OnInstanceInit:
 	end;
 }
 
-1@tcamp,32,102,3	script(DISABLED)	玛拉姆#Base5	4_EP18_MARAM,{
+1@tcamp,32,102,3	script(DISABLED)	马拉姆#Base5::玛拉姆#Base5	4_EP18_MARAM,{
 	if ('step == 1) {
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "没想到米丽娅姆会在这里。对吧，冒险者？";
 		close3;
 	}
 	if ('step == 2) {
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "他们分头行动，最后却到了同一个地方。";
 		mes "不过过程中获得的东西不同，所以还是有意义的。";
 		next;
@@ -448,12 +448,12 @@ OnInstanceInit:
 		mes "如果是孤立的腐败事件，养父可能还不知道。";
 		next;
 		cutin "ep18_maram_03.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "这真的是孤立的腐败事件吗？这让我很在意。";
 		mes "我也有东西要送到拉赫，米丽娅姆，我们一起走。";
 		next;
 		cutin "ep18_maram_01.png",2;
-		mes "[玛拉姆]";
+		mes "[马拉姆]";
 		mes "我会告诉你出去的捷径。冒险者，请把这里的发现告诉苏阿德。";
 		mes "我们很快就跟上，请先去通知。";
 		if (ep18_main == 46) {

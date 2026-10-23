@@ -8,16 +8,16 @@
 //============================================================
 
 // Main Quest: Step 61.
-oz_dun01,219,117,5	script(CLOAKED)	伊拉#c12_01	4_M_BRZ_JACI,{
+oz_dun01,219,117,5	script(CLOAKED)	艾拉#c12_01::伊拉#c12_01	4_M_BRZ_JACI,{
 	if (ep18_main == 54) {
 		.@md_name$ = "大主教别墅";
 
-		mes "[伊拉]";
+		mes "[艾拉]";
 		mes "别墅的入口？钥匙就在入口处。";
 		mes "那里施加了某种传送魔法。";
 		mes "准备好了吗？要我带你去别墅吗？";
 		next;
-		mes "[伊拉]";
+		mes "[艾拉]";
 		mes "还有……我们不知道里面会发生什么。";
 		mes "如果你有同伴，建议一起前往。";
 		next;
@@ -28,7 +28,7 @@ oz_dun01,219,117,5	script(CLOAKED)	伊拉#c12_01	4_M_BRZ_JACI,{
 				mes "必须由队长申请纪念副本。^000000";
 				close;
 			}
-			mes "[伊拉]";
+			mes "[艾拉]";
 			mes "那么让我护送你。";
 			if (instance_create(.@md_name$) < 0) {
 				mes "队伍：" + getpartyname(getcharid(1)) + "";
@@ -40,15 +40,15 @@ oz_dun01,219,117,5	script(CLOAKED)	伊拉#c12_01	4_M_BRZ_JACI,{
 		case 2:
 			switch( instance_enter(.@md_name$) ) {
 			case IE_OTHER:
-				mes "[伊拉]";
+				mes "[艾拉]";
 				mes "^ff0000发生未知错误。^000000";
 				close;
 			case IE_NOINSTANCE:
-				mes "[伊拉]";
+				mes "[艾拉]";
 				mes "嗯？请确认队长是否申请了进入别墅？";
 				close;
 			case IE_NOMEMBER:
-				mes "[伊拉]";
+				mes "[艾拉]";
 				mes "^ff0000只有队伍成员可以进入纪念副本。^000000";
 				close;
 			case IE_OK:
@@ -72,7 +72,7 @@ oz_dun01,219,117,5	script(CLOAKED)	伊拉#c12_01	4_M_BRZ_JACI,{
 1@adv,123,312,0	warp(DISABLED)	#boss_out	1,1,oz_dun01,220,112
 
 
-1@adv,122,20,5	script	伊拉#aira01	4_M_BRZ_JACI,{
+1@adv,122,20,5	script	艾拉#aira01::伊拉#aira01	4_M_BRZ_JACI,{
 	npctalk "别担心我。我会待在门附近，危险时立即离开。", "伊拉#aira01";
 	end;
 
@@ -100,21 +100,21 @@ OnInstanceInit:
 		.@ira$ = instance_npcname("伊拉#aira01");
 
 		sleep 2500;
-		npctalk "伊拉：就是这里。因为只有佣人会去一楼，应该没问题。", .@ira$;
+		npctalk "艾拉：就是这里。因为只有佣人会去一楼，应该没问题。", .@ira$;
 		sleep 2500;
 		npctalk "米丽娅姆: 二楼呢？";
 		sleep 2500;
-		npctalk "伊拉: 那里住着一群牧师。我不知道他们是不是真牧师。", .@ira$;
+		npctalk "艾拉: 那里住着一群牧师。我不知道他们是不是真牧师。", .@ira$;
 		sleep 2500;
-		npctalk "伊拉: 他们似乎携带武器。", .@ira$;
+		npctalk "艾拉: 他们似乎携带武器。", .@ira$;
 		sleep 2500;
 		npctalk "米丽娅姆: 好，谢谢指引。我们会搜索内部。";
 		sleep 2500;
-		npctalk "伊拉：不用担心我。你们两个小心。", .@ira$;
+		npctalk "艾拉：不用担心我。你们两个小心。", .@ira$;
 		sleep 2500;
 		npctalk "米丽娅姆: 那我们小心上去。";
 		sleep 2500;
-		npctalk "伊拉: 找到二楼宴会厅的钥匙。那后面一定有什么！", .@ira$;
+		npctalk "艾拉: 找到二楼宴会厅的钥匙。那后面一定有什么！", .@ira$;
 		sleep 2500;
 		npctalk "米丽娅姆：冒险者，我们分配一下任务吧？";
 		'adv_step = 2;
@@ -184,13 +184,13 @@ OnInstanceInit:
 		sleep 1000;
 		mapannounce 'map_adv$, "啊啊啊啊——！", bc_map, 0xFF99;
 		sleep 1000;
-		npctalk "米丽娅姆：伊拉！！", instance_npcname("米丽娅姆#miriam01");
+		npctalk "米丽娅姆：艾拉！！", instance_npcname("米丽娅姆#miriam01");
 		sleep 2500;
-		npctalk "米丽娅姆：看来发生了什么。我们去找 伊拉。", instance_npcname("米丽娅姆#miriam01");
+		npctalk "米丽娅姆：看来发生了什么。我们去找 艾拉。", instance_npcname("米丽娅姆#miriam01");
 		sleep 2500;
 		npctalk "汉斯：小姐！请带我一起走！", .@extra02$;
 		sleep 2500;
-		npctalk "米丽娅姆：那我去看看 伊拉 和其他人是否安全。", instance_npcname("米丽娅姆#miriam01");
+		npctalk "米丽娅姆：那我去看看 艾拉 和其他人是否安全。", instance_npcname("米丽娅姆#miriam01");
 		sleep 2500;
 		npctalk "米丽娅姆：冒险者，请先进去。汉斯 先生，我们一起走。", instance_npcname("米丽娅姆#miriam01");
 		sleep 2500;
@@ -407,7 +407,7 @@ OnMobDead:
 1@adv,114,14,5	duplicate(dummy_disabled_npc)	心脏猎人#rh03	EP18_MD_HEARTHUNTER_R,3,5
 1@adv,133,14,3	duplicate(dummy_disabled_npc)	心脏猎人#rh07	EP18_MD_HEARTHUNTER_R,2,5
 
-1@adv,122,14,7	duplicate(dummy_disabled_npc)	伊拉#aira02	4_M_BRZ_JACI
+1@adv,122,14,7	duplicate(dummy_disabled_npc)	艾拉#aira02::伊拉#aira02	4_M_BRZ_JACI
 1@adv,124,14,6	duplicate(dummy_disabled_npc)	安娜#anna01	4_F_SHABBY
 1@adv,126,14,1	duplicate(dummy_disabled_npc)	汉斯#hans01	4_M_MIDDLE
 

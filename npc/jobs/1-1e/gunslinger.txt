@@ -138,6 +138,16 @@ que_ng,152,167,3	script	米勒大师::Master Miller	901,{
 				mes "请先为转职奖励预留足够的负重和物品栏空间。";
 				close;
 			}
+			if (Class != Job_Novice || Upper == 2 || !callfunc("F_CanChangeJob")) {
+				mes "[米勒大师]";
+				mes "你当前的职业或基础技能不符合转职条件，请确认后再来。";
+				close;
+			}
+			if (SkillPoint != 0) {
+				mes "[米勒大师]";
+				mes "请先分配完所有技能点，再来完成转职。";
+				close;
+			}
 			callfunc "Job_Change",Job_Gunslinger;
 			set GUNS_Q,6;
 			completequest 6024;

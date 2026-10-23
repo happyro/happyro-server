@@ -107,7 +107,7 @@ job_gun,78,33,3	script	Suspicious Gunslinger	4_M_JOB_BLACKSMITH,{
 	mes "[可疑的神枪手]";
 	mes "...";
 	next;
-	mes "[沉默的神枪手]";
+	mes "[可疑的神枪手]";
 	mes "别说我看起来像铁匠。";
 	close;
 }
@@ -269,9 +269,9 @@ job_gun,19,24,3	script	Elwin Conick#1	4_F_REBELLION,{
 		warp "job_gun",117,41;
 		end;
 	}
-	if (isbegin_quest(12343) == 1) {
+	if (isbegin_quest(12343) == 1 || (isbegin_quest(12342) == 2 && isbegin_quest(12343) == 0)) {
 		mes "[埃尔温·科尼克]";
-		mes "伊万的射击测试还没完成，要再试一次吗？";
+		mes "伊万的射击测试还没完成，要去参加测试吗？";
 		next;
 		if (select("我放弃。:开始吧。") == 1) {
 			mes "[埃尔温·科尼克]";
@@ -335,13 +335,13 @@ job_gun,117,46,3	script	Elwin Conick#2	4_F_REBELLION,{
 	if (.@quest_12341 == 1 || .@quest_12342 == 1) {
 		if (countitem(6746)) {
 			mes "[埃尔温·科尼克]";
-			mes "测试结束后必须归还所有剩余的钢铁材料。";
+			mes "测试结束后必须归还所有剩余的铁制加工品。";
 			delitem 6746,countitem(6746);// Steel_Article
 			close;
 		}
 		if (countitem(6747)) {
 			mes "[埃尔温·科尼克]";
-			mes "测试结束后必须归还所有剩余的钢铁材料。";
+			mes "测试结束后必须归还所有剩余的铁制加工品。";
 			delitem 6747,countitem(6747);// Steel_Article_
 			close;
 		}
@@ -364,13 +364,13 @@ job_gun,117,46,3	script	Elwin Conick#2	4_F_REBELLION,{
 		select( .@menu$ );
 		mes "[埃尔温·科尼克]";
 		if (.@quest_12341 == 1) {
-			mes "这里是铸造枪械模具的地方。你看到的钢铁材料都在这里生产。";
+			mes "这里是铸造枪械模具的地方。你看到的铁制加工品都在这里生产。";
 			next;
 			mes "[埃尔温·科尼克]";
 			mes "我们反叛者本质上都是武器专家。在这里你会学习制作和组装枪械。";
 			next;
 			mes "[埃尔温·科尼克]";
-			mes "你需要操作入口附近的熔炉控制器，并选择5个标准钢铁材料。";
+			mes "你需要操作入口附近的熔炉控制器，并选择 5 个符合规格的铁制加工品。";
 			next;
 			mes "[埃尔温·科尼克]";
 			mes "然后把它们带到下一个装配室，组装成枪械。你有3分钟完成全部工作。最好快而专注，否则会测试失败。";
@@ -379,7 +379,7 @@ job_gun,117,46,3	script	Elwin Conick#2	4_F_REBELLION,{
 			mes "我会在下一个房间等你带来完整枪械。为了检查经过的时间，你会变成另一种职业。^0000ff如果超过3分钟并恢复正常，就回来重新开始测试。^000000";
 		}
 		else {
-			mes "你需要操作机器上的开关，并选择5个标准钢铁材料。";
+			mes "你需要操作机器上的开关，并选择 5 个符合规格的铁制加工品。";
 			next;
 			mes "[埃尔温·科尼克]";
 			mes "然后把它们带到下一个装配室，组装成完整枪械。你有3分钟完成。^0000ff为了检查经过的时间，你会变成另一种职业^000000。";
@@ -416,15 +416,14 @@ job_gun,198,39,3	script	Elwin Conick#3	4_F_REBELLION,{
 			mes "[埃尔温·科尼克]";
 		mes "虽然粗糙，但考虑到时间还不错。你通过了。";
 			delitem 13118,1;// Tiny_Flame
-			next;
 			mes "[埃尔温·科尼克]";
 		mes "把剩余的测试材料都交给我。";
 			delitem 6746,countitem(6746);// Iron_Artifact
 			delitem 6747,countitem(6747);// Steel_Artifact
+			completequest 12342;
 			next;
 			mes "[埃尔温·科尼克]";
 		mes "现在你可以进入下一课程。伊万·西多连科会负责你的测试。";
-			completequest 12342;
 			close2;
 			warp "job_gun",120,133;
 			end;
@@ -499,14 +498,18 @@ job_gun,214,36,0	script	Auto Anvil#1	CLEAR_NPC,{
 	}
 	if (getstatus(SC_MONSTER_TRANSFORM,1) == 3169) {
 		if (countitem(6747) < 5) {// Steel_Article_
-			mes "你没有标准钢制工件。";
+			mes "你没有符合规格的铁制加工品。";
 			close;
 		}
 		if (isbegin_quest(12342) == 1) {
-			mes "要使用自动铁砧，将标准钢制工件制成枪械吗？";
+			mes "要使用自动铁砧，将符合规格的铁制加工品制成枪械吗？";
 			next;
 			if (select("退出。:开始。") == 1) {
 				mes "为了安全，请远离自动铁砧。";
+				close;
+			}
+			if (getstatus(SC_MONSTER_TRANSFORM,1) != 3169 || countitem(6747) < 5) {
+				mes "测试时间已结束或材料不足。请在有效测试时间内带齐 5 个符合规格的铁制加工品。";
 				close;
 			}
 			if (!checkweight(13118,1)) {
@@ -647,7 +650,7 @@ job_gun,120,138,3	script	Ivan Sidorenko#1	4_M_REBELLION,{
 		}
 		else if (.@j_r_c == 5) {
 			mes "[伊万·西多连科]";
-			mes "你的准确度够高，但花的时间太多。迟钝的叛乱者活不长。";
+			mes "你的准确度够高，但花的时间太多。迟钝的反叛者活不长。";
 		}
 		else if (.@j_r_c < 5) {
 			mes "[伊万·西多连科]";
@@ -726,14 +729,6 @@ OnMyMobDead:
 }
 
 job_gun,220,132,3	script	Ivan Sidorenko#2	10062,{
-	if (!checkweight(1201,1)) {
-		mes "你携带的物品太多，请减少后再继续。";
-		close;
-	}
-	if ((MaxWeight - Weight) < 1000) {
-		mes "背包里的物品太重了。请先减轻负重。";
-		close;
-	}
 	if (isbegin_quest(12345) == 0) {
 		mes "[伊万·西多连科]";
 		mes "一定是出了差错。你不该留在这里。";
@@ -753,7 +748,7 @@ job_gun,220,132,3	script	Ivan Sidorenko#2	10062,{
 			close;
 		}
 		mes "[伊万·西多连科]";
-		mes "库尔贝蒂诺夫、埃尔文和我已经评估了你的叛乱者测试结果。";
+		mes "库尔贝蒂诺夫、埃尔温·科尼克和我已经评估了你的反叛者测试结果。";
 		next;
 		mes "[伊万·西多连科]";
 		mes "还有……";
@@ -762,13 +757,22 @@ job_gun,220,132,3	script	Ivan Sidorenko#2	10062,{
 		mes "你的态度和测试表现都符合我们的全部要求。";
 		next;
 		mes "[伊万·西多连科]";
-		mes "没错，你现在是叛乱者的一员了。准备好大吃一惊吧。";
-		next;
-		mes "[伊万·西多连科]";
-		mes "埃尔文希望你收下这个。好好保管，这是她为你制作的。";
+		if (Class != Job_Gunslinger || BaseLevel < 99 || JobLevel < 70 || SkillPoint) {
+			mes "请确认当前职业为神枪手、基础等级达到 99、职业等级达到 70，并用完剩余技能点后再来。";
+			close;
+		}
+		if (!checkweight(13119,1)) {
+			mes "请先为转职礼物自由之火预留足够的负重和物品栏空间。";
+			close;
+		}
 		jobchange Job_Rebellion;
 		completequest 12345;
 		getitem 13119,1;// Freedom_Flame
+		mes "没错，你现在是反叛者的一员了。准备好大吃一惊吧。";
+		next;
+		mes "[伊万·西多连科]";
+		mes "埃尔温·科尼克希望你收下这个。好好保管，这是她为你制作的。";
+
 		next;
 		mes "[伊万·西多连科]";
 		mes "回头见。";
@@ -781,7 +785,7 @@ job_gun,220,132,3	script	Ivan Sidorenko#2	10062,{
 		mes "生活应该有趣，而不是无聊。";
 		next;
 		mes "[伊万·西多连科]";
-		mes "成为叛乱者后，你的生活应该更精彩。所以去创造伟大的旅程，让我们为你骄傲吧！";
+		mes "成为反叛者后，你的生活应该更精彩。所以去创造伟大的旅程，让我们为你骄傲吧！";
 		close2;
 		warp "job_gun",81,29;
 		end;

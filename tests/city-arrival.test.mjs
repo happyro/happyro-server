@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { inflateSync } from 'node:zlib';
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -25,7 +26,28 @@ if (!options.length || options[0] === '--help') {
     .map(([, map, x, y]) => ({ map, x: Number(x), y: Number(y) }));
   const batches = ['quick-pass', 'expanded-pass', 'dungeon-pass', 'full-pass'].map(name =>
     JSON.parse(readFileSync(resolve(root, `docs/navigation-arrivals-${name}.json`), 'utf8')));
-  const expected = batches.flatMap(batch => batch.new_entrance_maps.map(({ map, x, y }) => ({ map, x, y })));
+  const birth = JSON.parse(readFileSync(resolve(root, 'docs/navigation-arrivals-birth-pass.json'), 'utf8'));
+  // Validate tutorial anchors against the actual Renewal terrain, including imports.
+  const terrain = new Map();
+  for (const file of ['db/map_cache.dat', 'db/re/map_cache.dat', 'db/import-tmpl/map_cache.dat']) {
+    const buffer = readFileSync(resolve(root, file));
+    let offset = 8;
+    for (let i = 0; i < buffer.readUInt16LE(4); i++) {
+      const map = buffer.subarray(offset, offset + 12).toString().replace(/\0.*$/, '');
+      const width = buffer.readInt16LE(offset + 12), height = buffer.readInt16LE(offset + 14);
+      const length = buffer.readInt32LE(offset + 16);
+      offset += 20;
+      terrain.set(map, {width, height, cells: inflateSync(buffer.subarray(offset, offset + length))});
+      offset += length;
+    }
+  }
+  for (const {map, x, y} of birth.new_entrance_maps) {
+    const grid = terrain.get(map);
+    assert.ok(grid, `${map}: missing terrain`);
+    assert.ok(x > 0 && y > 0 && x < grid.width - 1 && y < grid.height - 1, `${map}: outside map`);
+    assert.ok([0, 2, 3, 4, 6].includes(grid.cells[y * grid.width + x]), `${map}: impassable anchor`);
+  }
+  const expected = [...batches, birth].flatMap(batch => batch.new_entrance_maps.map(({ map, x, y }) => ({ map, x, y })));
   assert.deepEqual(actual, expected, 'Runtime entrance coordinates must match reviewed manifests');
   assert.equal(new Set(actual.map(row => row.map)).size, actual.length);
   const expanded = batches.at(-1);
@@ -36,7 +58,7 @@ if (!options.length || options[0] === '--help') {
   const reviewed = [...expanded.new_entrance_maps, ...expanded.new_service_maps, ...expanded.deferred];
   assert.equal(new Set(reviewed.map(row => row.map)).size, reviewed.length);
   assert.deepEqual(reviewed.map(row => row.map).sort(), previous.deferred.map(row => row.map).sort());
-  const approved = new Set([...actual, ...services].map(row => row.map));
+  const approved = new Set([...actual.filter(row => !birth.new_entrance_maps.some(entry => entry.map === row.map)), ...services].map(row => row.map));
   assert.ok(expanded.deferred.every(row => !approved.has(row.map)));
   const code = readFileSync(resolve(root, 'tests/city-arrival-stubs.hpp'), 'utf8')
     + readFileSync(resolve(root, 'src/map/happyro_default_arrivals.hpp'), 'utf8')

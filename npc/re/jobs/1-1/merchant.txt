@@ -87,14 +87,16 @@ alberta_in,53,43,6	script	曼苏::Merchant#mer	86,{
 			mes "现在我允许您成为商人。";
 			next;
 			mes "[曼苏]";
-			mes "恭喜您成为商人！";
-			mes "再次恭喜您成为商人公会成员和我们的同事。期待您今后的积极参与！";
 			if (!checkweight(1381,1)) {
 				mes "请先为转职赠送的装备和物品预留足够的负重及背包空间，再来办理转职。";
 				close;
 			}
 			callfunc "Job_Change",Job_Merchant;
+			if (isbegin_quest(12307) == 1)
+				completequest 12307;
 			getitem 1381,1;	// N_Battle_Axe
+			mes "恭喜您成为商人！";
+			mes "再次恭喜您成为商人公会成员和我们的同事。期待您今后的积极参与！";
 			next;
 			mes "[曼苏]";
 			mes "当然，我们需要有热情的年轻人，帮助实现占据全球货币流通量 20% 的伟大目标。明白了吗？";

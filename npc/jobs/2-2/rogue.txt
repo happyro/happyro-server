@@ -158,8 +158,8 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					mes "恭喜！";
 					mes "你一直做得很棒~";
 				}
-				if (SkillPoint) {
-					mes "请先用完剩余技能点，再来办理转职。";
+				if (BaseJob != Job_Thief || Upper == 1 || JobLevel < 40 || SkillPoint) {
+					mes "请确认你是职业等级至少40的非进阶盗贼，并用完剩余技能点后再来办理转职。";
 					close;
 				}
 				.@reward = (JobLevel == 50) ? 1220 : 1219;
@@ -167,8 +167,8 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					mes "请先为转职奖励预留足够的负重和物品栏空间。";
 					close;
 				}
-				changequest 2026,2027;
 				callfunc "Job_Change",Job_Rogue;
+				changequest 2026,2027;
 				callfunc "F_ClearJobVar";
 				getitem .@reward,1;
 				completequest 2027;
@@ -215,7 +215,7 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
-				mes "4. 激活^880000流氓天国^000000技能需要多少名流氓？";
+				mes "4. 在技能范围内坐下，且都学会了^880000流氓天国^000000时，以下哪组可以激活效果？";
 				next;
 				if (select("1名流氓+2名刺客:1名盗贼+2名流氓:4名盗贼:2名流氓") == 4)
 					set .@assassin_t,.@assassin_t+10;
@@ -251,16 +251,16 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
-				mes "10. 选择在海底洞窟使用最有效的短剑。";
+				mes "10. 对海底洞窟中的水母、螃蟹等水属性魔物，以下哪种属性的短剑更有效？";
 				next;
-				if (select("风属性曼戈什:冰属性曼戈什:地属性曼戈什:火属性曼戈什") == 1)
+				if (select("风属性曼戈什:水属性曼戈什:地属性曼戈什:火属性曼戈什") == 1)
 					set .@assassin_t,.@assassin_t+10;
 				break;
 			case 2:
 				mes "[马克]";
 				mes "1. 哪种怪物会掉落带洞格拉迪乌斯？";
 				next;
-				if (select("盗虫:大嘴鸟:沙漠之狼:犬妖") == 4)
+				if (select("盗虫:大嘴鸟:沙漠之狼:大斧犬妖") == 4)
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
@@ -302,7 +302,7 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 				mes "[马克]";
 				mes "8. 选择没有公会城堡的城镇。";
 				next;
-				if (select("普隆德拉:艾尔迪巴兰:艾尔贝塔:斐扬") == 3)
+				if (select("普隆德拉:艾尔帕兰:艾尔贝塔:斐扬") == 3)
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
@@ -340,13 +340,13 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 				mes "[马克]";
 				mes "3. 选择盗贼可以转职为流氓的地点。";
 				next;
-				if (select("克魔岛:可可海滩:帕罗斯灯塔:梦罗克") == 3)
+				if (select("科莫多:可可莫海滩:帕罗斯灯塔:梦罗克") == 3)
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
 				mes "4. 初心者可以在哪个城镇转职为盗贼？";
 				next;
-				if (select("克魔岛:卢蒂耶:艾尔贝塔:梦罗克") == 4)
+				if (select("科莫多:鲁蒂耶:艾尔贝塔:梦罗克") == 4)
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
@@ -381,18 +381,13 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					set .@assassin_t,.@assassin_t+10;
 
 				mes "[马克]";
-				mes "9. 旧式盗贼转职试炼曾要求采集蘑菇。以下哪种物品可以交付？";
+				mes "9. 现在申请成为盗贼，由接待员受理后，应找哪位公会成员办理转职？";
 				next;
-				switch(select(getitemname(1070) + ":" + getitemname(507) + ":" + getitemname(1069) + ":" + getitemname(508))) {
-				default:
-					break;
-				case 1:
-				case 3:
+				if (select("布拉德:休伊:凯:托马斯") == 1)
 					set .@assassin_t,.@assassin_t+10;
-					break;
-				}
+
 				mes "[马克]";
-				mes "10. 选择对流氓职业帮助最小的卡片。";
+				mes "10. 选择能增加 INT 2 点的卡片。";
 				next;
 				if (select("白幽灵卡片:长老树精卡片:杰洛米卡片:黑狐卡片") == 2)
 					set .@assassin_t,.@assassin_t+10;
@@ -428,10 +423,10 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 				mes "你本该趁机会多学习。谢谢你浪费我的时间。";
 				next;
 				mes "[马克]";
-				mes "*叹气……* 我给你一点提示，好吗？按规定，我得告诉你一个叫^990000iro.ragnarokonline.com^000000的地方，帮助你学习需要掌握的知识。";
+				mes "*叹气……* 给你一点提示：先看看当前的技能说明和物品、魔物图鉴，核对技能效果、卡片属性与掉落信息。";
 				next;
 				mes "[马克]";
-				mes "当然，我也不知道这到底是什么意思，但如果你理解了，应该会很有帮助。";
+				mes "准备好后可以回来重考。每套十题，至少答对九题才能通过。";
 				close;
 			}
 		}
@@ -1351,7 +1346,7 @@ OnTouch_:
 	end;
 }
 
-in_rogue,244,39,1	script	Aragham Junior#rg	99,{
+in_rogue,244,39,1	script	小阿拉甘#rg::Aragham Junior#rg	99,{
 	if (ROGUE_Q == 9) {
 		mes "[小阿拉甘]";
 		mes "哦，你一定来自流氓公会……";
@@ -1429,7 +1424,7 @@ in_rogue,244,39,1	script	Aragham Junior#rg	99,{
 	}
 }
 
-in_rogue,160,34,1	script	Hollgrehenn junior#rg	85,{
+in_rogue,160,34,1	script	小霍尔格伦#rg::Hollgrehenn junior#rg	85,{
 	if (ROGUE_Q == 11) {
 		mes "[小霍尔格伦]";
 		mes "嗯……";
@@ -1507,7 +1502,7 @@ in_rogue,160,34,1	script	Hollgrehenn junior#rg	85,{
 	}
 }
 
-in_rogue,177,109,1	script	Antonio junior#rg	88,{
+in_rogue,177,109,1	script	小安东尼奥#rg::Antonio junior#rg	88,{
 	if (ROGUE_Q == 10) {
 		mes "[小安东尼奥]";
 		mes "你是流氓公会的人？";
@@ -1936,7 +1931,7 @@ OnInit:
 	end;
 }
 
-in_rogue,399,286,1	script	switch#rogreset	88,{
+in_rogue,399,286,1	script	流氓试炼重置员#rogreset::switch#rogreset	88,{
 	mes "^F08080锵锵~";
 	mes "流氓转职测试用怪物已重置^000000。";
 	donpcevent "mob_rogue#1::OnDisable";

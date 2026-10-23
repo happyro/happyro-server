@@ -12,7 +12,7 @@
 1@exsh,90,25,0	script	#outexsh	WARPNPC,4,4,{
 	end;
 OnTouch:
-	if (select( "离开深邃森林。", "留下。" ) == 1) {
+	if (select( "离开深林。", "留下。" ) == 1) {
 		warp "pay_fild09",114,343;
 		end;
 	}
@@ -198,13 +198,13 @@ OnStart:
 	.@event$ = instance_npcname("doram_job_change_mob_2") + "::OnMobDead";
 	.@mode = ( MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_TELEPORTBLOCK | MD_DETECTOR );
 
-	monster 'map_1exsh$,87,77,"深邃森林守卫","G_RAKE_SCARABA",1, .@event$;
+	monster 'map_1exsh$,87,77,"深林守卫","G_RAKE_SCARABA",1, .@event$;
 	setunitdata( $@mobid[0], UMOB_MODE, .@mode );
-	monster 'map_1exsh$,87,75,"深邃森林守卫","G_RAKE_SCARABA",1, .@event$;
+	monster 'map_1exsh$,87,75,"深林守卫","G_RAKE_SCARABA",1, .@event$;
 	setunitdata( $@mobid[0], UMOB_MODE, .@mode );
-	monster 'map_1exsh$,92,77,"深邃森林守卫","G_RAKE_SCARABA",1, .@event$;
+	monster 'map_1exsh$,92,77,"深林守卫","G_RAKE_SCARABA",1, .@event$;
 	setunitdata( $@mobid[0], UMOB_MODE, .@mode );
-	monster 'map_1exsh$,92,75,"深邃森林守卫","G_RAKE_SCARABA",1, .@event$;
+	monster 'map_1exsh$,92,75,"深林守卫","G_RAKE_SCARABA",1, .@event$;
 	setunitdata( $@mobid[0], UMOB_MODE, .@mode );
 	end;
 OnMobDead:
@@ -221,7 +221,7 @@ OnMobDead:
 	cutin "ex_sh_chulho02.png",2;
 	sleep2 2000;
 	npctalk "哲浩：我以为我要死了……", .@npc_b$;
-	emotion ET_CRY;
+	emotion ET_CRY, getnpcid(0,.@npc_b$);
 	sleep2 2000;
 	npctalk "基苏尔：你这样慌张真是难得……", .@npc_a$;
 	cutin "ex_sh_kisul01.png",2;
@@ -372,9 +372,9 @@ OnMobDead:
 		sleep2 2000;
 		npctalk "光生：我终于找到了！！！", .@npc_d$;
 		sleep2 2000;
-		npctalk "光生：无人能够进入的深邃森林中的神秘野兽！！！！", .@npc_d$;
+		npctalk "光生：无人能够进入的深林中的神秘野兽！！！！", .@npc_d$;
 		sleep2 2000;
-		npctalk "光生：能在我眼前永垂不朽的传说动物，只要切下并加工那些角！！！！", .@npc_d$;
+		npctalk "光生：传说中的神兽就在眼前！只要切下那些角制成药，就能长生不老！！！！", .@npc_d$;
 		emotion ET_SEXY, getnpcid(0,.@npc_d$);
 		sleep2 2000;
 		npctalk "贤禄：退后！！！你竟敢！";
@@ -446,7 +446,11 @@ OnMobDead:
 
 // Step 6
 1@exsh,90,148,3	script(CLOAKED)	贤禄::Hyunrok#sh2	4_EXJOB_HYUN_ROK,{
-	if ('step >= 8) {	// custom (debug)
+	if ('step >= 8) {
+		if (isbegin_quest(11782) == 1) {
+			erasequest 11782;
+			setquest 11769;
+		}
 		warp "pay_fild09",113,343;
 		end;
 	}

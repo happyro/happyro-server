@@ -643,7 +643,7 @@ L_Start:
 		}
 		if (countitem(12258)) {
 			mes "[测试教官·泪滴]";
-			mes "什、什么？这是炸弹胶囊。";
+			mes "什、什么？这是炸弹波利胶囊。";
 			mes "你不该带这么危险的东西！";
 			delitem 12258,countitem(12258); //Bombring_Box
 			next;
@@ -651,7 +651,7 @@ L_Start:
 		if (countitem(6156)) {
 			mes "[测试教官·泪滴]";
 			mes "什、什么？这些文件是什么？";
-			mes "我想起来了。你要把它送给考迪恩，对吧？";
+			mes "我想起来了。你要把它送给卡申，对吧？";
 			next;
 			mes "[测试教官·泪滴]";
 			mes "带着这种东西会影响实战测试，我先替你保管。";
@@ -782,13 +782,13 @@ job3_rang01,30,44,3	script	Test Waiting Room#jr_03	88,{
 			mes "第二项测试考验任务执行能力和陷阱的有效使用。";
 			next;
 			mes "[工作人员·迪提斯]";
-			mes "考生会得到 10 个‘炸弹胶囊’。使用后附近会召唤炸弹怪，经过一段时间后炸弹怪会爆炸。";
+			mes "考生会得到 10 个‘炸弹波利胶囊’。使用后附近会召唤炸弹怪，经过一段时间后炸弹怪会爆炸。";
 			next;
 			mes "[工作人员·迪提斯]";
-			mes "^0000ff炸弹怪爆炸会伤害你，请小心别被波及。你必须使用炸弹胶囊消灭怪物、完成任务并活着出来。^000000";
+			mes "^0000ff炸弹怪爆炸会伤害你，请小心别被波及。你必须使用炸弹波利胶囊消灭怪物、完成任务并活着出来。^000000";
 			next;
 			mes "[工作人员·迪提斯]";
-			mes "第二项测试约持续 3 分钟。用完所有炸弹胶囊，将拉斯特交给你的文件送到卡申手中，就能进入第三项测试。";
+			mes "第二项测试约持续 3 分钟。用完所有炸弹波利胶囊，将拉斯特交给你的文件送到卡申手中，就能进入第三项测试。";
 			next;
 			break;
 		case 3:
@@ -802,7 +802,7 @@ job3_rang01,30,44,3	script	Test Waiting Room#jr_03	88,{
 			mes "^0000ff测试期间考生不能移动，只能使用狼，在规定时间内快速准确地清除炸弹才算完成测试。^000000";
 			next;
 			mes "[工作人员·迪提斯]";
-			mes "第三项测试约持续 3 分钟，20 个目标中获得 10 分以上即可完成全部实战测试。";
+			mes "第三项测试约持续 2 分钟，20 个目标中获得 10 分以上即可完成全部实战测试。";
 			next;
 			break;
 		case 4:
@@ -941,16 +941,16 @@ OnTimer143000:
 OnTimer146000:
 	if ($@job_rang_point01 < 1)
 		set $@job_rang_point01,0;
-	mapannounce "job3_rang02","测试监督员通知：现在公布测试结果。你在 20 只波利中击杀了……" + $@job_rang_point01 + "只！",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
+	mapannounce "job3_rang02","测试监督员通知：现在公布测试结果。你在 20 个目标中的最终得分为……" + $@job_rang_point01 + " 分！",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer149000:
 	if ($@job_rang_point01 > 14) {
-		mapannounce "job3_rang02","测试监督员通知：恭喜！你在 20 只波利中击杀了 " + $@job_rang_point01 + " 只，通过第一项测试。我会把你送到第二项测试场。",bc_map,"0xffb6c1"; //FW_NORMAL 12 0 0
+		mapannounce "job3_rang02","测试监督员通知：恭喜！你在第一项测试中获得了 " + $@job_rang_point01 + " 分，通过第一项测试。我会把你送到第二项测试场。",bc_map,"0xffb6c1"; //FW_NORMAL 12 0 0
 		mapwarp "job3_rang02","job3_rang02",113,58;
 		donpcevent "Second Test Timer#jr_08::OnEnable";
 		stopnpctimer;
 	} else
-		mapannounce "job3_rang02","测试监督员通知：你没能在 20 只波利中击杀至少 15 只，因此第一项测试失败……很遗憾，请再试一次。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
+		mapannounce "job3_rang02","测试监督员通知：你的最终得分未达到 15 分，因此第一项测试失败……很遗憾，请再试一次。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer151000:
 	mapannounce "job3_rang02","测试监督员通知：冒险者的第一项测试现在结束。请提升能力。再见。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
@@ -1115,10 +1115,10 @@ OnTimer6000:
 	mapannounce "job3_rang02","测试监督员卡申：第二次测试考验实战能力和陷阱的有效使用。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer9000:
-	mapannounce "job3_rang02","测试监督员卡申：测试开始后，你会从附近的工作人员那里获得‘波利炸弹胶囊’，用它消灭路上的怪物。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
+	mapannounce "job3_rang02","测试监督员卡申：测试开始后，你会从附近的工作人员那里获得‘炸弹波利胶囊’，用它消灭路上的怪物。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer11000:
-	mapannounce "job3_rang02","测试监督员卡申：使用‘波利炸弹胶囊’后，会在你附近召唤一只波利炸弹，3 秒后爆炸。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
+	mapannounce "job3_rang02","测试监督员卡申：使用‘炸弹波利胶囊’后，会在你附近召唤一只波利炸弹，3 秒后爆炸。",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer14000:
 	mapannounce "job3_rang02","测试监督员卡申：波利炸弹会炸到自身周围 5 格内的目标；使用后立刻远离炸弹，至少拉开 6 格距离！",bc_map,"0xffb6c1"; //FW_NORMAL 12 0 0
@@ -1127,7 +1127,7 @@ OnTimer17000:
 	mapannounce "job3_rang02","测试监督员卡申：进行测试时，完成工作人员交给你的任务后回来找我，就能通过第二次实战测试！",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
 	end;
 OnTimer20000:
-	mapannounce "job3_rang02","测试监督员卡申：哦！回来找我时，必须用完所有‘波利炸弹胶囊’。",bc_map,"0xffb6c1"; //FW_NORMAL 12 0 0
+	mapannounce "job3_rang02","测试监督员卡申：哦！回来找我时，必须用完所有‘炸弹波利胶囊’。",bc_map,"0xffb6c1"; //FW_NORMAL 12 0 0
 	end;
 OnTimer23000:
 	mapannounce "job3_rang02","测试监督员卡申：测试总时长为 3 分钟！在 3 分钟内完成任务并活下来，然后来找我！",bc_map,"0x87ceeb"; //FW_NORMAL 12 0 0
@@ -1202,11 +1202,11 @@ job3_rang02,111,56,3	script	Staff Rust#jr_09	89,{
 			percentheal 100,0;
 			specialeffect2 EF_ABSORBSPIRITS;
 			mes "[工作人员·拉斯特]";
-			mes "我会给你“爆弹胶囊”。";
-			mes "只有用完“爆弹胶囊”的人才能再次领取，请记住。";
+			mes "我会给你“炸弹波利胶囊”。";
+			mes "只有用完“炸弹波利胶囊”的人才能再次领取，请记住。";
 			if (countitem(6156)) {
 				if (!checkweight(12258,5)) {
-					mes "请先为 5 个爆弹胶囊预留足够的负重和物品栏空间。";
+					mes "请先为 5 个炸弹波利胶囊预留足够的负重和物品栏空间。";
 					close;
 				}
 				getitem 12258,5; //Bombring_Box
@@ -1226,7 +1226,7 @@ job3_rang02,111,56,3	script	Staff Rust#jr_09	89,{
 				close;
 			}
 			if (!checkweight(6156,.@reports,12258,10,569,100)) {
-				mes "请先为文件、10 个爆弹胶囊和 100 瓶初学者药水预留足够的负重和物品栏空间。";
+				mes "请先为文件、10 个炸弹波利胶囊和 100 瓶初学者药水预留足够的负重和物品栏空间。";
 				close;
 			}
 			if (checkquest(8260) == -1) setquest 8260;
@@ -1236,7 +1236,7 @@ job3_rang02,111,56,3	script	Staff Rust#jr_09	89,{
 			close;
 		}
 		mes "[工作人员·拉斯特]";
-		mes "抱歉，你已经有“爆弹胶囊”，所以我不能再给你。";
+		mes "抱歉，你已经有“炸弹波利胶囊”，所以我不能再给你。";
 		close;
 	}
 	mes "[工作人员·拉斯特]";
@@ -1307,7 +1307,7 @@ OnMyMobDead:
 	end;
 }
 
-job3_rang02,180,78,3	script	Test Supervisor#jr_11	882,1,1,{
+job3_rang02,180,78,3	script	测试监督员·卡申#jr_11::Test Supervisor#jr_11	882,1,1,{
 	mes "[测试监督员·卡申]";
 	mes "来，靠近，再近一点！！";
 	close;
@@ -1326,7 +1326,7 @@ OnTouch_:
 		if (countitem(12258)) {
 			mes "[测试监督员·卡申]";
 			mes "不，不！";
-			mes "你需要用完所有“爆弹胶囊”？！";
+			mes "你需要用完所有“炸弹波利胶囊”？！";
 			next;
 			mes "[测试监督员·卡申]";
 			mes "全部用完再回来！";
@@ -1508,7 +1508,7 @@ OnTimer130000:
 	end;
 }
 
-job3_rang02,251,49,3	script	Test Supervisor#jr_13	732,{
+job3_rang02,251,49,3	script	测试监督员·弗莉兹#jr_13::Test Supervisor#jr_13	732,{
 	mes "[测试监督员·弗莉兹]";
 	if (job_ranger01 == 6) {
 		if (checkquest(8261) == -1) {
@@ -1528,7 +1528,7 @@ job3_rang02,251,49,3	script	Test Supervisor#jr_13	732,{
 			mes "^0000ff选中炸弹再按一次，狼就会开始攻击！^000000";
 			next;
 			mes "[测试监督员·弗莉兹]";
-			mes "第三项测试限时约 3 分钟，20 分中获得 10 分以上即可通过实战测试！";
+			mes "第三项测试限时约 2 分钟，20 分中获得 10 分以上即可通过实战测试！";
 			next;
 			mes "[测试监督员·弗莉兹]";
 			mes "那么先拿上狼笛，召唤狼后再和我谈话！";
@@ -1708,12 +1708,12 @@ job3_rang02,254,52,0	duplicate(Egg Bomb#0)	Egg Bomb#27	139
 job3_rang02,247,42,0	duplicate(Egg Bomb#0)	Egg Bomb#28	139
 
 job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
-	mes "[游侠大师永不再来]";
+	mes "[游侠大师·永不再见]";
 	if (job_ranger01 < 7) {
 		mes "……嗯？";
 		mes "真奇怪……你是怎么到这里的？";
 		next;
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "你似乎不该来这里……";
 		next;
 		mes "[游侠大师·永不再见]";
@@ -1727,8 +1727,8 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 			mes "不行。";
 			mes "一看就知道你经验不足。";
 			next;
-			mes "[游侠大师永不再来]";
-			mes "对自己的职业更有自信，积累更多经验。等你作为猎人或狙击手成长后，能独自制造光环时再回来。";
+			mes "[游侠大师·永不再见]";
+			mes "对自己的职业更有自信，积累更多经验。等你作为猎人或神射手成长后，能独自制造光环时再回来。";
 			close2;
 			warp "alberta",117,57;
 			end;
@@ -1736,22 +1736,22 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 		mes "恭喜！";
 		mes "你完成了所有基础实战测试！";
 		next;
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "很好，你已经积累了足够经验，我就不多说了。";
 		next;
 		mes "[游侠大师·永不再见]";
 		mes "转职前请^0000ff解散猎鹰^000000，并确认是否用完所有^0000ff技能点^000000。";
 		next;
 		if(select("等一下:我准备好了") == 1) {
-			mes "[游侠大师永不再来]";
+			mes "[游侠大师·永不再见]";
 			mes "我不会逃跑，你慢慢来。";
 			close;
 		}
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		if (checkfalcon()) {
 			mes "你不是还没解散猎鹰吗？";
 			next;
-			mes "[游侠大师永不再来]";
+			mes "[游侠大师·永不再见]";
 			mes "请解散猎鹰后再回来找我。";
 			close;
 		}
@@ -1764,7 +1764,7 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 		}
 		mes "很好。没有猎鹰，而且你已经用完所有技能点。";
 		next;
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "好，在正式转职为游侠前，我再问你一次。";
 		mes "你真的想成为游侠吗？";
 		next;
@@ -1776,7 +1776,7 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 			mes "通过所有基础实战测试后，你却不想成为游侠……你确定吗？";
 			close;
 		}
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		if (ismounting()) {
 			mes "你正在骑乘坐骑，所以无法转职。";
 			mes "请卸下坐骑后再试一次！";
@@ -1784,7 +1784,7 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 		}
 		if (BaseJob != Job_Hunter) {
 			mes "等等，你是谁？";
-			mes "你不是猎人或狙击手？！";
+			mes "你不是猎人或神射手？！";
 			next;
 			mes "[游侠大师·永不再见]";
 			mes "你在这里做什么？";
@@ -1800,13 +1800,13 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 		next;
 		nude;
 		if (countitem(1703) < 1) {
-			mes "[游侠大师永不再来]";
+			mes "[游侠大师·永不再见]";
 			mes "嗯？";
 			mes "你需要归还借来的物品。";
 			mes "转职测试时交给你的弓在哪里？";
 			close;
 		}
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "今后作为出色的游侠活跃起来吧！";
 		mes "祝你未来好运！";
 		if (job_ranger01 != 7 || BaseJob != Job_Hunter || BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0 || checkfalcon() || ismounting() || countitem(1703) < 1) {
@@ -1831,15 +1831,15 @@ job3_rang01,90,43,3	script	Ranger Master#jr_29	832,{
 	next;
 	switch(select("我只是路过:请让我离开")) {
 	case 1:
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "这里没什么可看的，你却来了。";
 		next;
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "想休息多久都行。";
 		mes "这里很适合喝茶。";
 		close;
 	case 2:
-		mes "[游侠大师永不再来]";
+		mes "[游侠大师·永不再见]";
 		mes "见到你很高兴。";
 		mes "无论走到哪里，都不要失去游侠的尊严。";
 		close2;

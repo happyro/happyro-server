@@ -322,16 +322,16 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 		next;
 		mes "你也许没有完美完成所有测试，但你具备成为骑士所需的全部品质。";
 		next;
-		if (SkillPoint) {
-			mes "请先用完剩余技能点，再回来完成转职。";
+		if (BaseJob != Job_Swordman || Upper == 1 || JobLevel < 40 || SkillPoint) {
+			mes "请确认你仍是职业等级至少40的非进阶剑士，并用完剩余技能点，再回来完成转职。";
 			close;
 		}
 		if (!checkweight(656,7)) {
 			mes "请先为转职礼物预留足够的负重和物品栏空间。";
 			close;
 		}
-		completequest 9012;
 		callfunc "Job_Change",Job_Knight;
+		completequest 9012;
 		callfunc "F_ClearJobVar"; // Clears all job variables for the current player
 		getitem 656,7; //Awakening_Potion
 		mes "我现在宣布你成为普隆德拉骑士团的一员。";
@@ -515,7 +515,7 @@ prt_in,75,107,4	script	Sir Andrew#knt	65,{
 	}
 }
 
-prt_in,71,91,0	script	Sir Siracuse#knt	65,{
+prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
 	mes "[西拉库斯爵士]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
@@ -647,7 +647,7 @@ prt_in,71,91,0	script	Sir Siracuse#knt	65,{
 		}
 		mes "很好，现在问你一些技能知识。学习怪物互击不需要以下哪项技能？";
 		next;
-		if (select("双手剑使用熟练度 Lv.5:怒爆 Lv.3:挑衅 Lv.10:狂击 Lv.10") != 3) {
+		if (select("双手剑修炼 Lv.5:怒爆 Lv.3:挑衅 Lv.10:狂击 Lv.10") != 3) {
 			set KNIGHT_Q,5;
 			mes "错了！";
 			mes "学习怪物互击需要那项技能！申请转职前，你应该更多了解骑士职业！";
@@ -663,11 +663,11 @@ prt_in,71,91,0	script	Sir Siracuse#knt	65,{
 			mes "了解更多骑士知识后再回来。";
 			close;
 		}
-		mes "有些长矛也具备像法术一样的魔法属性。以下哪种可以攻击具有幽灵属性的梦魇？";
+		mes "梦魇是念属性魔物。以下哪把长矛自身带有风属性，不需要额外的属性赋予？";
 		next;
-		if (select("风灵之矛:骑士长矛:长柄短刃斧:新月镰刀") != 1) {
+		if (select("泽费洛斯:骑士长枪:弯刃矛:新月镰") != 1) {
 			set KNIGHT_Q,5;
-			mes "错了！那种长矛完全无法造成伤害！了解更多骑士知识后再回来！";
+			mes "错了！那把长矛自身并不带有风属性。了解更多骑士知识后再回来！";
 			next;
 			mes "有问题就向城里的任何骑士请教。这对我们来说是基础知识！";
 			close;
@@ -1352,7 +1352,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "这时恰好有一名牧师经过。";
 		mes "你会如何向牧师请求治疗？";
 		next;
-		if (select("可以请你治疗我吗？:能帮我治疗吗？:快治疗我！！") == 1)
+		if (select("可以请你治疗我吗？:喂，过来给我治疗！:快治疗我！！") == 1)
 			set .@knight_t,.@knight_t+10;
 		mes "[艾米女士]";
 		mes "你现在非常疲惫，是时候回城了。";
@@ -1497,6 +1497,7 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 			mes "[埃德蒙爵士]";
 			mes "那么，我们开始测试。";
 			mes "请记住敬意的品质。";
+			mes "请先关闭自动战斗，在场内安静等待，不要击杀任何魔物。";
 			close2;
 			set KNIGHT_Q,11;
 			changequest 9009,9010;
@@ -1521,6 +1522,7 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 			mes "[埃德蒙爵士]";
 			mes "测试现在开始。";
 			mes "让我看看你的耐心……";
+			mes "请先关闭自动战斗，在场内安静等待，不要击杀任何魔物。";
 			close2;
 			warp "job_knt",143,57;
 			end;

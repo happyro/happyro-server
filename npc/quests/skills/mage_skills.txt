@@ -47,10 +47,10 @@ geffen_in,151,119,4	script	Great Wizard	64,{
 		mes "如果你想学习这个技能，首先要准备一些过程中使用的物品。";
 		next;
 		mes "[布利扎德里斯]";
-		mes "三个 ^3355FF玻璃珠^000000、";
+		mes "三个 ^3355FF玻璃球^000000、";
 		mes "一颗 ^3355FF1克拉钻石^000000、";
-		mes "五个 ^3355FF贝壳^000000、";
-		mes "一个 ^3355FF坚硬外壳^000000。";
+		mes "五个 ^3355FF坚硬外壳^000000、";
+		mes "一个 ^3355FF非常坚硬的外壳^000000。";
 		mes "把这些物品带给我。";
 		next;
 		mes "[布利扎德里斯]";
@@ -94,6 +94,11 @@ geffen_in,151,119,4	script	Great Wizard	64,{
 			mes ". . . . . . . . . . . .";
 			mes "能量外套！！！";
 			next;
+			if (countitem(746) < 3 || countitem(730) < 1 || countitem(935) < 5 || countitem(943) < 1) {
+				mes "[布利扎德里斯]";
+				mes "材料不足，请带齐 3 个玻璃球、1 个1克拉钻石、5 个坚硬外壳和 1 个非常坚硬的外壳后再来。";
+				close;
+			}
 			delitem 746,3; //Glass_Bead
 			delitem 730,1; //Crystal_Jewel
 			delitem 935,5; //Shell

@@ -29,7 +29,7 @@
 //= 3.3 Fixed waitingroom bug. [Euphy]
 //============================================================ 
 
-gef_tower,111,37,4	script	Wizard Guildsman	70,{
+gef_tower,111,37,4	script	巫师公会职员::Wizard Guildsman	70,{
 	if (Upper == 1) {
 		mes "[凯瑟琳]";
 		mes "？打扰一下，我们以前见过吗……？";
@@ -323,9 +323,9 @@ gef_tower,111,37,4	script	Wizard Guildsman	70,{
 				mes "我听说有个很棒的地方可以查阅资料，而且整理得很好。";
 				next;
 				mes "[凯瑟琳]";
-				mes "你只要施放那个法术，你知道的……看起来像粗大的*e*符号。";
-				mes "咒语是……iro.ragnarokonline.com~据说如此！";
-				mes "奇怪的咒语，对吧？我自己也不知道怎么让它生效。";
+				mes "你可以打开技能说明，查看技能效果和学习条件。";
+				mes "物品和魔物图鉴也能帮你核对装备、属性和掉落资料。";
+				mes "先弄清这些知识，再来考试会更有把握。";
 				next;
 				mes "[凯瑟琳]";
 				mes "至于怪物问题。";
@@ -425,16 +425,16 @@ gef_tower,111,37,4	script	Wizard Guildsman	70,{
 		mes "[凯瑟琳]";
 		mes "不用再等了，我祝贺你。现在我宣布你成为巫师。";
 		next;
-		if (SkillPoint) {
-			mes "请先用完技能点，再回来完成转职。";
+		if (BaseJob != Job_Mage || Upper == 1 || JobLevel < 40 || SkillPoint) {
+			mes "请确认你仍是职业等级至少40的非进阶魔法师，并用完技能点，再回来完成转职。";
 			close;
 		}
 		if (!checkweight(505,6)) {
 			mes "请先为转职奖励预留足够的负重和物品栏空间。";
 			close;
 		}
-		completequest 9018;
 		callfunc "Job_Change",Job_Wizard;
+		completequest 9018;
 		callfunc "F_ClearJobVar";		// clears all job variables for the current player
 		getitem 505,6; //Blue_Potion
 		mes "[凯瑟琳]";
@@ -559,7 +559,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			next;
 			mes "[劳雷尔]";
 			mes "*喷嚏* 那么开始测试！";
-			mes "答错任何一道题就会失败。哈哈哈哈哈哈哈哈～";
+			mes "首次考试至少答对9题才能通过。哈哈哈哈哈哈哈哈～";
 			next;
 			mes "[劳雷尔]";
 			mes "我会问你10道题，请给出正确答案。";
@@ -579,7 +579,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			mes "既然你不想安稳平静地生活，我再给你一次机会……";
 			next;
 			mes "[劳雷尔]";
-			mes "只要错一道题就放弃吧。你根本没有成为巫师的才能！～哈哈哈哈哈";
+			mes "这次重考至少答对8题才算通过。可别再让我失望！～哈哈哈哈哈";
 			next;
 			if (select("都是因为你，我现在想作为普通魔法师生活。:我想继续测试。") == 1) {
 				mes "[劳雷尔]";
@@ -607,7 +607,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("火箭术 Lv 4:火球术 Lv 5:火狩 Lv 1:心灵爆破 Lv 4") == 4)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "2. 无论魔物原本是什么属性，对它施放冰冻术后会变成什么属性？";
+			mes "2. 魔物成功进入冰冻状态后，防御属性会变成什么？";
 			next;
 			if (select("水:地:火:风") == 1)
 				set .@wizard_t,.@wizard_t+10;
@@ -637,7 +637,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("伤害 18%，SP 1.5%:伤害 18%，SP 2%:伤害 24%，SP 1.5%:伤害 24%，SP 2%") == 2)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "8. 使用暗之壁 Lv 6 时消耗多少 SP，可以抵挡几次攻击？";
+			mes "8. 暗之壁 Lv 6 消耗多少 SP？在耐久未耗尽时，最多抵挡几次近距离物理攻击？";
 			next;
 			if (select("SP 40，6 次:SP 35，6 次:SP 40，7 次:SP 35，7 次") == 4)
 				set .@wizard_t,.@wizard_t+10;
@@ -647,7 +647,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("84:74:64:54") == 2)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "10. 在海底洞窟练级时哪项技能最有用？";
+			mes "10. 对付海底洞窟的水母、螃蟹等水属性魔物时，以下哪项攻击技能最合适？";
 			next;
 			if (select("雷击术:火箭术:冰箭术:火狩") == 1)
 				set .@wizard_t,.@wizard_t+10;
@@ -659,7 +659,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("盗虫:大嘴鸟:虫蛹:榔头犬妖") == 3)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "2. 以下哪种魔物最适合低等级魔法师狩猎？";
+			mes "2. 以下哪种魔物属于植物种族？";
 			next;
 			if (select("噬人花:基尔瑟:巨石怪:麦斯特") == 1)
 				set .@wizard_t,.@wizard_t+10;
@@ -674,9 +674,9 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("125%:150%:175%:200%") == 4)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "5. 小沙漠狼和吸血蝙蝠战斗，谁会获胜？";
+			mes "5. 沙漠幼狼和吸血蝙蝠中，哪种普通魔物的等级较低？";
 			next;
-			if (select("小沙漠狼:吸血蝙蝠:都不会:我不知道") == 1)
+			if (select("沙漠幼狼:吸血蝙蝠:等级相同:无法区分") == 1)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
 			mes "6. 以下哪种不能成为可爱宠物？";
@@ -686,7 +686,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			mes "[劳雷尔]";
 			mes "7. 选择一种弱于火属性攻击的魔物。";
 			next;
-			if (select("短剑哥布灵:钉锤哥布灵:流星锤哥布灵:铁锤哥布灵") == 4)
+			if (select("刺刀哥布灵:刺锤哥布灵:链锤哥布灵:榔头哥布灵") == 4)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
 			mes "8. 以下哪种魔物的防御力最高？";
@@ -726,7 +726,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("普隆德拉:梦罗克:艾尔贝塔:吉芬") == 4)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "5. 以下哪张卡片与 INT 毫无关系？";
+			mes "5. 以下哪张卡片的效果是 ATK +20？";
 			next;
 			if (select("白蚁幼虫卡片:白蚁卡片:沙漠幼狼卡片:长老树精卡片") == 2)
 				set .@wizard_t,.@wizard_t+10;
@@ -741,19 +741,19 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			if (select("8:7:6:5") == 4)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "8. 魔法师不能装备以下哪件道具？";
+			mes "8. 仅考虑职业限制，魔法师不能装备以下哪件道具？";
 			next;
-			if (select("小刀:护目镜:凉鞋:杜拉罕的眼睛") == 2)
+			if (select("小刀:护目镜:凉鞋:杜拉汉之眼") == 2)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "9. 制作魔法师考试溶液 3 时，以下哪项是催化剂？";
+			mes "9. 当前普通初心者申请转职为魔法师，需要通过哪项检查？";
 			next;
-			if (select("蓝色宝石:红色宝石:黄色宝石:红色血液") == 1)
+			if (select("基础技能要求:收集三种宝石:制作考试溶液3:击杀三只魔物") == 1)
 				set .@wizard_t,.@wizard_t+10;
 			mes "[劳雷尔]";
-			mes "10. 哪张卡片与魔法无关？";
+			mes "10. 以下哪张卡片能让物理攻击有几率使目标陷入诅咒？";
 			next;
-			if (select("马尔杜克卡片:魔锅蛋卡片:树精卡片:蚁后卡片") == 2)
+			if (select("马尔杜克卡片:魔锅蛋卡片:树精卡片:蜂后卡片") == 2)
 				set .@wizard_t,.@wizard_t+10;
 		}
 		mes "[劳雷尔]";
@@ -872,8 +872,8 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 		mes "进去后你就会知道有哪些魔物。只要使用正确属性的攻击，*喷嚏*应该不会太难。哈哈哈～";
 		next;
 		mes "[劳雷尔]";
-		mes "在任一房间于规定时间内击败所有魔物后……";
-		mes "你就会被送到下一个房间。";
+		mes "每个房间分两轮：先在3分钟内击败第一批魔物，再击败随后出现的守卫。";
+		mes "水、土房间的守卫限时1分钟，火房间限时2分钟。击败守卫后才会进入下一阶段。";
 		next;
 		mes "[劳雷尔]";
 		mes "清除这三个房间后，测试就结束了。";
@@ -909,7 +909,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 			next;
 			mes "[劳雷尔]";
 			mes "好吧，我给你个提议。你大概已经筋疲力尽，而我能清楚看到你眼中对高级魔法的渴望……";
-			mes "哈哈哈哈哈～没错！带一份 ^3355FF破旧卷轴^000000 给我。";
+			mes "哈哈哈哈哈～没错！带一份 ^3355FF旧卷轴^000000 给我。";
 			next;
 			set WIZ_Q2,WIZ_Q2+1;
 			mes "[劳雷尔]";
@@ -922,9 +922,9 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 		else if (WIZ_Q2 > 6) {
 			mes "[劳雷尔]";
 			mes "哦！你回来了？哈哈哈哈哈～";
-			mes "*咳嗽* *咳嗽* 你想再参加测试吗？还是带来了 ^3355FF破旧卷轴^000000？";
+			mes "*咳嗽* *咳嗽* 你想再参加测试吗？还是带来了 ^3355FF旧卷轴^000000？";
 			next;
-			if (select("继续测试。:破旧卷轴……") == 1) {
+			if (select("继续测试。:旧卷轴……") == 1) {
 				savepoint "geffen",120,107,1,1;
 				mes "[劳雷尔]";
 				mes "哈哈哈～好吧，至少你还有点精神。";
@@ -1031,8 +1031,8 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 		mes "使用合适的法术对付它们，就不会太难。哈哈哈哈哈哈~";
 		next;
 		mes "[劳雷尔]";
-		mes "在规定时间内，如果你击败所有怪物……";
-		mes "你会被送往下一个房间。";
+		mes "每个房间先在3分钟内击败第一批怪物，再击败随后出现的守卫。";
+		mes "水、土房间守卫限时1分钟，火房间守卫限时2分钟。全部击败后才会进入下一阶段。";
 		next;
 		mes "[劳雷尔]";
 		mes "之后测试就结束了。";
@@ -1061,7 +1061,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 	else if (WIZ_Q == 7) {
 		mes "[劳雷尔]";
 		mes "在我看来，你不该再来找我。";
-		mes "不过既然你如此执着，我就让你再考一次。哈哈哈哈~";
+		mes "你已经获得认可，不需要再考了。回去找凯瑟琳完成转职吧。哈哈哈哈~";
 		next;
 		mes "[劳雷尔]";
 		mes "去吧！成为你真正想成为的巫师。";
@@ -1080,7 +1080,7 @@ job_wiz,50,165,4	script	Arena Assistant	700,{
 	mes "所有测试状态都会广播，前一位测试者完成后测试就会开始。";
 	next;
 	mes "[竞技场助手]";
-	mes "每人测试大约需要 5 到 10 分钟。";
+	mes "三个房间各有两轮，完整测试的限时合计约13分钟；提前清完魔物就能提前通过。";
 	mes "想离开竞技场，随时可以登出。";
 	close;
 
@@ -1317,7 +1317,7 @@ OnMyMobDead:
 	end;
 
 OnTimer1000:
-	mapannounce "job_wiz","大地之室；转职考试现在开始。",bc_map;
+	mapannounce "job_wiz","土之房间；转职考试现在开始。",bc_map;
 	end;
 
 OnTimer2000:
@@ -1798,7 +1798,7 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 			next;
 			mes "[玛丽亚]";
 			mes "题目涉及魔法、魔物和魔法师。";
-			mes "十道题必须全部答对，否则他不会让你通过。换句话说，你会失败……";
+			mes "首次笔试至少答对9题；失败后重考至少答对8题即可通过。";
 			next;
 			mes "[玛丽亚]";
 			mes "奇怪的是，第三项测试也由他负责。";
@@ -1812,10 +1812,9 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 			mes "好了，我能说的就这些。现在去申请吧。";
 			next;
 			mes "[玛丽亚]";
-			mes "与其听我的说明，不如亲自试试。";
+			mes "现在去找旁边的凯瑟琳申请吧。";
 			close2;
 			cutin "job_wizard_maria01",255;
-			warp "gef_dun00",116,102;
 			end;
 		case 2:
 			mes "[玛丽亚]";
@@ -1852,18 +1851,18 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 		next;
 		mes "[玛丽亚]";
 		mes "首先，要获得红色宝石，去普隆德拉下水道。";
-		mes "那里有很多盗虫和盗虫卵，可以从它们身上获得。";
+		mes "那里的盗虫卵有机会掉落红色宝石。普通盗虫不掉落，别找错目标。";
 		next;
 		mes "[玛丽亚]";
-		mes "黄色宝石在沙漠中很容易找到。";
-		mes "秃鹰、小鸡，有时巨石怪之类的魔物会掉落。";
+		mes "黄色宝石可以通过狩猎获得，但并非每次都会掉落。";
+		mes "小鸡和巨石怪有机会掉落黄色宝石。";
 		next;
 		mes "[玛丽亚]";
-		mes "还有……*汪* 要获得蓝色宝石，可以去海底洞窟。";
-		mes "卡那多斯、螃蟹以及乌贼之类的魔物会掉落。";
+		mes "还有……*汪* 蓝色宝石可以直接向吉芬的魔法用品商人购买。";
+		mes "商人在 geffen_in 的 77,173。别把海底魔物掉落的水晶蓝和蓝色宝石混淆了。";
 		next;
 		mes "[玛丽亚]";
-		mes "当然，也可以在城里的魔法商店买到蓝色宝石……";
+		mes "打开物品图鉴也能核对宝石的来源……";
 		mes "不过亲自寻找更有成就感，也会对之后的测试有所帮助。";
 		next;
 		mes "[玛丽亚]";
@@ -1889,7 +1888,7 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 		next;
 		mes "[玛丽亚]";
 		mes "你可以在海底洞窟找到水晶蓝。";
-		mes "卡那多斯、库克雷、水母、螃蟹……这些魔物经常掉落。";
+		mes "卡那多斯、库克雷、水母、螃蟹都有机会掉落水晶蓝。";
 		next;
 		mes "[玛丽亚]";
 		mes "昆虫型魔物会掉落绿色活力。";
@@ -1897,11 +1896,11 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 		next;
 		mes "[玛丽亚]";
 		mes "还有，*汪* 红色血液。据说可以从……";
-		mes "沙漠里的长老树精、重金属蝗虫或蝎子身上大量获得。";
+		mes "长老树精、重金属蝗虫或蝎子身上获得，但需要耐心寻找。";
 		next;
 		mes "[玛丽亚]";
 		mes "至于风之微风，可以找蜂兵、瓢虫或绿苍蝇。";
-		mes "稍微努力一下就能很容易获得。";
+		mes "这些材料不一定每次都会掉落，出发前可以先查看魔物图鉴。";
 		next;
 		mes "[玛丽亚]";
 		mes "总之，永远尽力而为。";
@@ -1968,7 +1967,7 @@ gef_tower,107,36,4	script	White Dog#wiz	81,{
 		cutin "job_wizard_maria01",2;
 		mes "[玛丽亚]";
 		mes "果然如此，我就知道你能做到，我闻得出来！*汪*";
-		mes "现在我可以称你为巫师了。";
+		mes "你已经通过考验了。再找凯瑟琳完成最后的转职手续，就能成为巫师。";
 		next;
 		mes "[玛丽亚]";
 		mes "恭喜你。无论如何，做任何事都要全力以赴。";

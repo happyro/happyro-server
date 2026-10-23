@@ -80,30 +80,30 @@ function	script	F_Kafra	{
 	// Display Kafra Welcome Message
 	switch(.@welcome) {
 	default:// Default message (obsolete)
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "欢迎来到卡普拉公司。";
 		mes "卡普拉服务永远站在你这边。";
 		mes "我能为你做什么？";
 		break;
 	case 1:// Niflheim specific message
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "^666666欢、欢、欢迎";
 		mes "来、来到卡、卡普拉";
 		mes "公、公司……^000000";
 		break;
 	case 2:// Guild Castle Kafra message
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "欢迎，^ff0000" + getguildname( getcharid(2) ) + "^000000成员。";
 		mes "无论你去哪里，卡普拉公司都会陪伴你。";
 		break;
 	case 3:// Amatsu specific message (obsolete)
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "你是从远方来研究我们的文化，还是来观光？";
 		mes "不管怎样，何不留一会儿？";
 		mes "空气中永远弥漫着野花的怡人香气。";
 		break;
 	case 4:// Luoyang and Ayothaya specific message (obsolete)
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "卡普拉服务地点众多，无论走到哪里，都不会离家太远。";
 		break;
 	case 5:// NPC has it's own welcome message. (Display nothing)
@@ -153,10 +153,10 @@ function	script	F_Kafra	{
 			if (.@menu_num != 4)// Display Einbroch "No Teleport Service" notice.
 				callfunc "F_KafTele",.@welcome;
 			else {
-				mes "[卡普拉服务人员]";
+				mes "[卡普拉员工]";
 				mes "由于^FF0000有限运输协定^000000，卡普拉公司无法在施瓦尔茨瓦尔德共和国提供传送服务。";
 				next;
-				mes "[卡普拉服务人员]";
+				mes "[卡普拉员工]";
 				mes "请改用飞艇服务。";
 				mes "感谢你的理解与配合。";
 			}
@@ -191,7 +191,7 @@ function	script	F_KafStor	{
 	// Unable to access Guild Storage (Busy)
 	if (.@type == 1) {
 		if (guildopenstorage()) {
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			mes "抱歉，另一名公会成员正在使用公会仓库。";
 			mes "请等对方使用完毕。";
 			close3;
@@ -201,7 +201,7 @@ function	script	F_KafStor	{
 	}
 	// Unable to access Normal Storage (Insufficient Basic Skills)
 	if (!callfunc("F_CanOpenStorage")) {
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		// Niflheim Specific Message
 		if (getarg(2) == 1) {
 		mes "^666666对、对、对不起，";
@@ -220,7 +220,7 @@ function	script	F_KafStor	{
 			delitem 7059,1;
 		else {
 			if (Zeny < .@fee) {
-				mes "[卡普拉服务人员]";
+				mes "[卡普拉员工]";
 				// Niflheim Specific Message
 				if (getarg(2) == 1) {
 					percentheal -50,-50;
@@ -245,13 +245,13 @@ function	script	F_KafStor	{
 		// Niflheim specific Message
 		if (getarg(2) == 1) {
 			percentheal 0,-10;
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			for ( .@i = 0; .@i < 5; .@i++ )
 				mes "^666666感、感谢……使用……^000000";
 		}
 		// Normal message
 		else {
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			mes "来，我为你打开仓库。";
 			mes "感谢使用卡普拉服务。";
 		}
@@ -267,7 +267,7 @@ function	script	F_KafStor	{
 // Teleport Function
 //===================================================
 function	script	F_KafTele	{
-	mes "[卡普拉服务人员]";
+	mes "[卡普拉员工]";
 	mes "请选择目的地。";
 	next;
 	.@j = select( implode(@wrpC$,":") ) - 1;
@@ -279,7 +279,7 @@ function	script	F_KafTele	{
 		delitem 7060,1;
 	else {
 		if (Zeny < @wrpP[.@j]) {
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			mes "抱歉，你没有足够的 Zeny 使用传送服务。";
 			mes "前往" + @wrpN$[.@j] + "的传送费用为 " + @wrpP[.@j] + " Zeny。";
 			close3;
@@ -316,7 +316,7 @@ function	script	F_KafTele	{
 function	script	F_KafCart	{
 	// Ensure that the class wanting to rent a pushcart is a merchant
 	if (BaseClass != Job_Merchant) {
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		if (checkre(0) == true)
 			mes "抱歉，手推车租赁服务仅对商人系职业开放。";
 		else {
@@ -326,14 +326,14 @@ function	script	F_KafCart	{
 	}
 	// Make sure the invoking character does not have a cart already
 	else if (checkcart() == true) {
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "你已经装备了手推车。";
 		mes "很遗憾，每位顾客一次只能租用一辆手推车。";
 		return 1;
 	}
 	// Check if the player has the Pushcart skill
 	else if (getskilllv("MC_PUSHCART") == 0) {
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "学习手推车技能后才能租赁手推车。";
 		return 1;
 	}
@@ -343,13 +343,13 @@ function	script	F_KafCart	{
 		delitem 7061,1;
 	else {
 		.@rental_fee = getarg(1);
-		mes "[卡普拉服务人员]";
+		mes "[卡普拉员工]";
 		mes "手推车租赁费用为 " + .@rental_fee + " Zeny。要租赁手推车吗？";
 		next;
 		if (select("租赁手推车。:取消") == 2)
 			return 0;
 		if (Zeny < .@rental_fee) {
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			mes "抱歉，你没有足够的 Zeny 支付 " + .@rental_fee + " Zeny 的手推车租赁费。";
 			return 1;
 		}
@@ -377,12 +377,12 @@ function	script	F_KafInfo	{
 		.@j = select(.@menu_list$) - 1;
 		switch(.@j) {
 		case 0:// Check Special Reserve Points.
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 			mes "让我看看……";
 			mes "" + strcharinfo(0) + "...";
 		mes "啊，你总共有 " + RESRVPTS + " 点特别储备积分。";
 			next;
-			mes "[卡普拉服务人员]";
+			mes "[卡普拉员工]";
 		mes "你可以在艾尔迪巴兰卡普拉总部用特别储备积分兑换奖励。";
 		mes "请使用我们的便捷服务，了解奖励计划的好处。";
 			if (getarg(0) == 1)
@@ -390,7 +390,7 @@ function	script	F_KafInfo	{
 			next;
 			break;
 		case 1:// Storage Password Service
-			callfunc("F_SetKafCode","[卡普拉服务人员]","卡普拉服务");
+			callfunc("F_SetKafCode","[卡普拉员工]","卡普拉服务");
 		case 2:// Kafra Employee Locations
 			for ( .@i = 0; .@i <= 3; .@i++ )
 				viewpoint 1,@viewpX[.@i],@viewpY[.@i],(.@i+1),0xFF00FF;
@@ -411,7 +411,7 @@ function	script	F_KafInfo	{
 //===================================================================
 function	script	F_KafEnd	{
 	.@type = getarg(0);
-	mes "[卡普拉服务人员]";
+	mes "[卡普拉员工]";
 	if (getarg(1) == true) {// Save
 		mes "你的重生点已保存至：" + getarg(2) + "。";
 		mes "感谢使用卡普拉服务。";

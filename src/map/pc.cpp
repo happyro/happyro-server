@@ -11168,31 +11168,43 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 
 	map_foreachinmap(jobchange_cleanup_summon, sd->m, BL_MOB, sd->id);
 
-	//Remove peco/cart/falcon
+	// Cross-tree changes may retain granted skills. Require both current job
+	// eligibility and the learned skill before keeping a mount or follower.
+	const auto current_tree = skill_tree_db.find(sd->status.class_);
+	const auto has_job_skill = [&](uint16 skill) {
+		return current_tree && current_tree->skills.count(skill) && pc_checkskill(sd, skill);
+	};
 	i = sd->sc.option;
-	if( i&OPTION_RIDING && !pc_checkskill(sd, KN_RIDING) )
-		i&=~OPTION_RIDING;
-	if( i&OPTION_FALCON && !pc_checkskill(sd, HT_FALCON) )
-		i&=~OPTION_FALCON;
-	if( i&OPTION_DRAGON && !pc_checkskill(sd,RK_DRAGONTRAINING) )
-		i&=~OPTION_DRAGON;
-	if( i&OPTION_WUGRIDER && !pc_checkskill(sd,RA_WUGMASTERY) )
-		i&=~OPTION_WUGRIDER;
-	if( i&OPTION_WUG && !pc_checkskill(sd,RA_WUGMASTERY) )
-		i&=~OPTION_WUG;
-	if( i&OPTION_MADOGEAR ) //You do not need a skill for this.
-		i&=~OPTION_MADOGEAR;
+	const auto riding_job = sd->class_ & MAPID_THIRDMASK;
+	const bool windhawk = (sd->class_ & MAPID_FOURTHMASK) == MAPID_WINDHAWK;
+	if ((i & OPTION_RIDING) &&
+		(!(riding_job == MAPID_KNIGHT || riding_job == MAPID_CRUSADER || riding_job == MAPID_ROYAL_GUARD)
+		 || !has_job_skill(KN_RIDING)))
+		i &= ~OPTION_RIDING;
+	if ((i & OPTION_FALCON) &&
+		((windhawk && !has_job_skill(WH_HAWK_M)) ||
+		 (!windhawk && ((sd->class_ & MAPID_SECONDMASK) != MAPID_HUNTER || !has_job_skill(HT_FALCON)))))
+		i &= ~OPTION_FALCON;
+	if ((i & OPTION_DRAGON) && (riding_job != MAPID_RUNE_KNIGHT || !has_job_skill(RK_DRAGONTRAINING)))
+		i &= ~OPTION_DRAGON;
+	if ((i & OPTION_WUGRIDER) && (riding_job != MAPID_RANGER || !has_job_skill(RA_WUGMASTERY) || !has_job_skill(RA_WUGRIDER)))
+		i &= ~OPTION_WUGRIDER;
+	if ((i & OPTION_WUG) && (riding_job != MAPID_RANGER || !has_job_skill(RA_WUGMASTERY)))
+		i &= ~OPTION_WUG;
+	// Keep the existing rule: job changes always leave the Mado Gear.
+	i &= ~OPTION_MADOGEAR;
+	const bool keep_cart = (sd->class_ & MAPID_FIRSTMASK) == MAPID_MERCHANT && has_job_skill(MC_PUSHCART);
 #ifndef NEW_CARTS
-	if( i&OPTION_CART && !pc_checkskill(sd, MC_PUSHCART) )
-		i&=~OPTION_CART;
+	if (!keep_cart)
+		i &= ~OPTION_CART;
 #else
-	if( sd->sc.getSCE(SC_PUSH_CART) && !pc_checkskill(sd, MC_PUSHCART) )
+	if (sd->sc.getSCE(SC_PUSH_CART) && !keep_cart)
 		pc_setcart(sd, 0);
 #endif
-	if(i != sd->sc.option)
+	if (i != sd->sc.option)
 		pc_setoption(sd, i);
 
-	if(hom_is_active(sd->hd) && !pc_checkskill(sd, AM_CALLHOMUN))
+	if(hom_is_active(sd->hd) && !has_job_skill(AM_CALLHOMUN))
 		hom_vaporize(sd, HOM_ST_ACTIVE);
 
 	if (sd->sc.getSCE(SC_SPRITEMABLE) && !pc_checkskill(sd, SU_SPRITEMABLE))
@@ -11343,7 +11355,7 @@ void pc_setoption(map_session_data *sd,int32 type, int32 subtype)
 		clif_status_load(sd,EFST_RIDING,1);
 		status_calc_pc(sd,SCO_NONE);
 	}
-	else if( (!(type&OPTION_RIDING) && p_type&OPTION_RIDING) || (!(type&OPTION_DRAGON) && p_type&OPTION_DRAGON && pc_checkskill(sd,RK_DRAGONTRAINING) > 0) )
+	else if( (!(type&OPTION_RIDING) && p_type&OPTION_RIDING) || (!(type&OPTION_DRAGON) && p_type&OPTION_DRAGON) )
 	{ // Dismount
 		clif_status_load(sd,EFST_RIDING,0);
 		status_calc_pc(sd,SCO_NONE);

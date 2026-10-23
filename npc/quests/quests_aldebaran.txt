@@ -29,27 +29,32 @@ aldeba_in,152,166,4	script	商人#01	86,{
 	mes "我为何收集并交易世界各地的帽子？选一顶帽子，揭开谜团的答案就更近一步……";
 	next;
 	mes "（1）^3355FF医生发带^000000：";
-	mes "1 个头巾 + 50 个铁矿石 + 1 个裂纹钻石 + 3500 Zeny";
-	mes "（2）^3355FF羽毛小帽^000000：";
+	mes "1 个头巾 + 50 个铁 + 1 个损坏的钻石 + 3500 Zeny";
+	mes "（2）^3355FF羽毛帽^000000：";
 	mes "1 个老派浪漫 + 300 个鸟羽毛 + 500 Zeny";
 	mes "（3）^3355FF歌剧面具^000000：";
-	mes "20 个铁矿石 + 1 个歌唱植物 + 5000 Zeny";
-	mes "（4）^3355FF笠帽^000000：";
-	mes "120 个树干 + 10000 Zeny";
+	mes "20 个铁 + 1 个歌唱的草 + 5000 Zeny";
+	mes "（4）^3355FF斗笠^000000：";
+	mes "120 个木片 + 10000 Zeny";
 	next;
-	switch(select(" 医生发带:羽毛小帽:歌剧面具:笠帽 ")) {
+	switch(select(" 医生发带:羽毛帽:歌剧面具:斗笠 ")) {
 	case 1:
 		if ((countitem(2275) > 0) && (countitem(998) > 49) && (countitem(733) > 0) && (Zeny > 3499)) {
+			if (!checkweight(2273,1)) {
+				mes "[商人]";
+				mes "请先为要兑换的帽子预留足够的负重和物品栏空间。";
+				close;
+			}
 			delitem 2275,1; //Red_Bandana
 			delitem 998,50; //Iron
 			delitem 733,1; //Crystal_Jewel___
 			set Zeny, Zeny-3500;
+			getitem 2273,1; //Doctor_Cap
 			mes "[商人]";
 			mes "嗯！你没有行医执照吧？没关系，我听说过一位无证游医创造了医学奇迹！不过……那可能只是漫画。";
 			next;
 			mes "[商人]";
 			mes "算了，别被抓住就行。";
-			getitem 2273,1; //Doctor_Cap
 			close;
 		}
 		else {
@@ -61,12 +66,17 @@ aldeba_in,152,166,4	script	商人#01	86,{
 		}
 	case 2:
 		if ((countitem(2247) > 0) && (countitem(916) > 299) && (Zeny > 499)) {
+			if (!checkweight(5018,1)) {
+				mes "[商人]";
+				mes "请先为要兑换的帽子预留足够的负重和物品栏空间。";
+				close;
+			}
 			delitem 2247,1; //Oldman's_Romance
 			delitem 916,300; //Feather_Of_Birds
 			set Zeny, Zeny-500;
+			getitem 5018,1; //Feather_Bonnet
 			mes "[商人]";
 			mes "哦~！你的时尚品味不错。我知道收集这些东西很辛苦，但这顶帽子值得。拿去吧。现在只差一件皮草外套和一根手杖了！";
-			getitem 5018,1; //Feather_Bonnet
 			close;
 		}
 		else {
@@ -77,12 +87,17 @@ aldeba_in,152,166,4	script	商人#01	86,{
 		}
 	case 3:
 		if ((countitem(998) > 19) && (countitem(707) > 0) && (Zeny > 4999)){ //Iron Singing_Plant 
+			if (!checkweight(2281,1)) {
+				mes "[商人]";
+				mes "请先为要兑换的帽子预留足够的负重和物品栏空间。";
+				close;
+			}
 			delitem 998,20; //Iron
 			delitem 707,1; //Singing_Plant
 			set Zeny, Zeny-5000;
+			getitem 2281,1; //Phantom_Of_Opera
 			mes "[商人]";
 			mes "这个？有点吓人，但也有某种浪漫气质。你觉得呢？喜欢吗？好吧，拿去，它是你的！";
-			getitem 2281,1; //Phantom_Of_Opera
 			close;
 		}
 		else {
@@ -92,14 +107,19 @@ aldeba_in,152,166,4	script	商人#01	86,{
 		}
 	case 4:
 		if ((countitem(1019) > 119) && (Zeny > 9999)){ //Wooden_Block 
+			if (!checkweight(2280,1)) {
+				mes "[商人]";
+				mes "请先为要兑换的帽子预留足够的负重和物品栏空间。";
+				close;
+			}
 			delitem 1019,120; //Wooden_Block
 			set Zeny, Zeny-10000;
+			getitem 2280,1; //Sahkkat
 			mes "[商人]";
-			mes "如果有机会去斐扬的山民村，请去见笠帽工匠。";
+			mes "如果有机会去斐扬的山民村，请去见斗笠工匠。";
 			next;
 			mes "[商人]";
-			mes "除了我，他从未把笠帽卖给其他商人，因为只有我能辨别它的品质。由于稀有，笠帽成了非常独特的商品。好了！拿去，它是你的！";
-			getitem 2280,1; //Sahkkat
+			mes "除了我，他从未把斗笠卖给其他商人，因为只有我能辨别它的品质。由于稀有，斗笠成了非常独特的商品。好了！拿去，它是你的！";
 			close;
 		}
 		else {

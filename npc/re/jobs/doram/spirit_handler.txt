@@ -3,7 +3,7 @@
 //===== Description: =========================================
 //- [Walkthrough conversion]
 //- The translation is not from iRO.
-//- Step 14 takes place in an instance (npc/re/instance/DeepForest.txt)
+//- Step 14 takes place in an instance (npc/re/instances/DeepForest.txt)
 //- Total : 15 steps.
 //===== Changelogs: ==========================================
 //= 1.0 First version. [Atemo]
@@ -54,13 +54,13 @@ payon,165,116,5	script	Request Board#JQ_SH	4_BOARD3,{
 		mes "仍然带有狼或鹰等肉食动物气味的人，无法完成这项任务。";
 		next;
 		mes "[紧急柴薪请求]";
-		mes "其他详情请联系柴薪工厂附近的<NAVI>[木匠]<INFO>payon,252,297,0,101,0</INFO></NAVI>。";
+		mes "其他详情请联系柴薪工厂附近的<NAVI>[木工]<INFO>payon,252,297,0,101,0</INFO></NAVI>。";
 		setquest 11770;
 		navigateto("payon",252,297);
 		close;
 	case 1:
 		mes "[紧急柴薪请求]";
-		mes "其他详情请联系柴薪工厂附近的<NAVI>[木匠]<INFO>payon,252,297,0,101,0</INFO></NAVI>。";
+		mes "其他详情请联系柴薪工厂附近的<NAVI>[木工]<INFO>payon,252,297,0,101,0</INFO></NAVI>。";
 		navigateto("payon",252,297);
 		close;
 	case 2:
@@ -70,7 +70,7 @@ payon,165,116,5	script	Request Board#JQ_SH	4_BOARD3,{
 	end;
 
 OnInit:
-	questinfo( QTYPE_JOBQUEST, QMARK_YELLOW, "Class == JOB_SUMMONER && BaseLevel == 200 && JobLevel == 60 && isbegin_quest(11770) == 0" );
+	questinfo( QTYPE_JOBQUEST, QMARK_YELLOW, "Class == JOB_SUMMONER && BaseLevel >= 200 && JobLevel >= 60 && isbegin_quest(11770) == 0" );
 	end;
 }
 
@@ -502,7 +502,7 @@ pay_fild08,155,128,3	script	Broken Tools#JQ_SH	4_BRICKPILE,{
 		cloakonnpcself( "Chulho#JQ_SH_1" );
 		cloakoffnpcself( "Chulho#JQ_SH_1_1" );
 		npctalk "好吃！太好吃了！！！！", "Chulho#JQ_SH_1_1", bc_self;
-		emotion ET_BIGTHROB, getnpcid(0,"Chulho#JQ_SH_1");
+		emotion ET_BIGTHROB, getnpcid(0,"Chulho#JQ_SH_1_1");
 		delitem 578,1;	// Strawberry
 		erasequest 11779;
 		setquest 11780;
@@ -705,7 +705,7 @@ pay_fild09,31,87,3	script	Clutter Traces#JQ_SH5	4_SOIL,{
 		next;
 		select( "谁在说话？" );
 		mes "[哲浩]";
-		mes "<font style='font-size:14px'>我是哲鲁。</FONT>";
+		mes "<font style='font-size:14px'>我是哲浩。</FONT>";
 		mes "<font style='font-size:14px'>我~~我是森林里的精灵。</FONT>";
 		npctalk "咳！", "???#JQ_SH_3", bc_self;
 		cutin "ex_sh_chulho00.png",2;
@@ -824,7 +824,7 @@ OnTouch:
 		cutin "ex_sh_spirit02.png",2;
 		next;
 		mes "[哲浩]";
-		mes "<font style='font-size:14px'>奇修尔真好！</FONT>";
+		mes "<font style='font-size:14px'>基苏尔真好！</FONT>";
 		mes "<font style='font-size:14px'>你是在担心肚子疼吗？</FONT>";
 		cutin "ex_sh_chulho03.png",2;
 		next;
@@ -971,7 +971,7 @@ OnTouch:
 		next;
 		mes "[哲浩]";
 		mes "哦！";
-		mes "你不打算阻止我吗？";
+		mes "你不打算阻止贤禄吗？";
 		cutin "ex_sh_chulho01.png",2;
 		emotion ET_HUK, getnpcid(0,"Chulho#JQ_SH_2");
 		next;
@@ -995,8 +995,8 @@ OnTouch:
 		npctalk "太疯狂了！！！", "Chulho#JQ_SH_2", bc_self;
 		next;
 		mes "[哲浩]";
-		mes "<font style='font-size:14px'>要是贤禄发现自己给朋友奇怪的药，还在森林里挖东西制作怪物，他就麻烦大了！！</FONT>";
-		npctalk "如果你不阻止我，我就毁掉一切！", "Chulho#JQ_SH_2", bc_self;
+		mes "<font style='font-size:14px'>要是贤禄发现有人给森林里的伙伴下了奇怪的药，还在森林里乱挖乱建，那就麻烦大了！！</FONT>";
+		npctalk "不阻止贤禄的话，他会毁掉一切！", "Chulho#JQ_SH_2", bc_self;
 		cutin "ex_sh_chulho01.png",2;
 		next;
 		mes "[哲浩]";
@@ -1023,7 +1023,7 @@ OnTouch:
 		next;
 		mes "[哲浩]";
 		mes "哦！";
-		mes "你不打算阻止我吗？";
+		mes "你不打算阻止贤禄吗？";
 		cutin "ex_sh_chulho01.png",2;
 		emotion ET_HUK, getnpcid(0,"Chulho#JQ_SH_2");
 		next;
@@ -1047,8 +1047,8 @@ OnTouch:
 		npctalk "疯了！！！", "Chulho#JQ_SH_2", bc_self;
 		next;
 		mes "[哲浩]";
-		mes "<font style='font-size:14px'>如果贤禄发现他给朋友们吃了奇怪的药，还挖遍森林制作奇怪的东西，一定会遇到大麻烦！！</FONT>";
-		npctalk "如果你不阻止我，我就毁掉一切！", "Chulho#JQ_SH_2", bc_self;
+		mes "<font style='font-size:14px'>要是贤禄发现有人给森林里的伙伴下了奇怪的药，还在森林里乱挖乱建，那就麻烦大了！！</FONT>";
+		npctalk "不阻止贤禄的话，他会毁掉一切！", "Chulho#JQ_SH_2", bc_self;
 		cutin "ex_sh_chulho01.png",2;
 		next;
 		mes "[哲浩]";
@@ -1100,10 +1100,12 @@ pay_fild09,108,346,3	script	Suspicious Light#JQ_SH	4_ENERGY_WHITE,{
 
 		mes "- 哲浩消失的地方出现了可疑的涟漪。-";
 		next;
-		if (is_party_leader() == true) {	// !TODO: confirm if it's solo party
-			.@menu$[0] = "打开门。";
-			.@menu$[1] = "进入。";
+		if (!is_party_leader()) {
+			mes "请先创建队伍并担任队长，再来打开深林入口。";
+			close;
 		}
+		.@menu$[0] = "打开门。";
+		.@menu$[1] = "进入。";
 		switch( select( .@menu$[0], .@menu$[1], "退出。" ) ) {
 		case 1:
 			if (is_party_leader() == true)
@@ -1135,20 +1137,7 @@ pay_fild09,108,346,3	script	Suspicious Light#JQ_SH	4_ENERGY_WHITE,{
 		end;
 	}
 	if (isbegin_quest(11769) == 1) {
-		if (checkweight(490087,1) == 0) {
-			// !TODO: unknown dialog
-			mes "- 请稍等！！-";
-			mes "- 你携带的物品太多。-";
-			mes "- 因此无法再获得物品。-";
-			mes "- 请腾出空间后再试一次。-";
-			close;
-		}
-		if (SkillPoint > 0) {
-			// !TODO: unknown dialog
-			mes "[哲浩]";
-			mes "请用完所有技能点后再继续。";
-			close3;
-		}
+		callsub S_CheckAdvancement;
 		mes "[哲浩]";
 		mes "<font style='font-size:14px'>我等你很久了！</FONT>";
 		mes "<font style='font-size:14px'>现在很难来到深林，不过仔细想想，我只要出来玩就行！</FONT>";
@@ -1201,8 +1190,9 @@ pay_fild09,108,346,3	script	Suspicious Light#JQ_SH	4_ENERGY_WHITE,{
 		mes "<font style='font-size:14px'>还有这个也拿去！</FONT>";
 		mes "<font style='font-size:14px'>因为是有趣的物品，我一直保存着，但现在送给你！</FONT>";
 		cutin "ex_sh_chulho02.png",2;
-		completequest 11769;
+		callsub S_CheckAdvancement;
 		jobchange JOB_SPIRIT_HANDLER;
+		completequest 11769;
 		getitem 490087,1;	// 4th_Q_Necklace
 		close2;
 		cutin "",255;
@@ -1225,6 +1215,27 @@ pay_fild09,108,346,3	script	Suspicious Light#JQ_SH	4_ENERGY_WHITE,{
 		end;
 	}
 	end;
+
+
+S_CheckAdvancement:
+	.@reason$ = "";
+	if (Class != JOB_SUMMONER)
+		.@reason$ = "只有尚未转职的召唤师可以在这里完成转职。";
+	else if (BaseLevel < 200 || JobLevel < 60)
+		.@reason$ = "请达到基础等级 200、职业等级 60 后再来。";
+	else if (SkillPoint > 0)
+		.@reason$ = "请先分配完所有技能点，再来完成转职。";
+	else if (!checkweight(490087,1))
+		.@reason$ = "请先整理背包，留出领取转职奖励的空间和负重。";
+	if (.@reason$ != "") {
+		mes "[哲浩]";
+		mes .@reason$;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "Chulho#JQ_SH_door" );
+		end;
+	}
+	return;
 
 OnInit:
 	// Step 13

@@ -24,9 +24,9 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 		if (STGL_Q == 0) {
 			mes "[武贤]";
 			if (Sex == SEX_MALE)
-				mes "嘿，跆拳男孩！";
+				mes "嘿，跆拳少年！";
 			else
-				mes "嘿，跆拳女孩！";
+				mes "嘿，跆拳少女！";
 			mes "过来一下。";
 			mes "如果你愿意听，我有个提议给你！";
 			next;
@@ -258,9 +258,9 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 					mes "[武刚]";
 					mes "嗯？你还有尚未分配的技能点。";
 					if (Sex == SEX_FEMALE)
-						mes "先使用技能点，学习并提升你的跆拳女孩技能，完成后回来接受训练。";
+						mes "先使用技能点，学习并提升你的跆拳少女技能，完成后回来接受训练。";
 					else
-						mes "先使用技能点，学习并提升你的跆拳男孩技能，完成后回来接受训练。";
+						mes "先使用技能点，学习并提升你的跆拳少年技能，完成后回来接受训练。";
 					close;
 				}
 				mes "[武刚]";
@@ -440,16 +440,16 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "请谨记平衡。";
 			next;
 			mes "[武刚]";
+			if (Class != Job_Taekwon || JobLevel < 40 || SkillPoint) {
+				mes "请确认当前职业为跆拳少年、职业等级达到 40，并用完剩余技能点，再回来完成转职。";
+				close;
+			}
+			callfunc "Job_Change",Job_Star_Gladiator;
+			completequest 7011;
+			callfunc "F_ClearJobVar";		//clears all job variables for the current player
 			mes "我没有更多要求了。你已经是太阳、月亮和星星的战士。欢迎朋友，加入我们的武术之道。";
 			mes "愿你继续前进。";
 			mes "祝你好运。";
-			if (SkillPoint) {
-				mes "请先用完剩余技能点，再回来完成转职。";
-				close;
-			}
-			completequest 7011;
-			callfunc "Job_Change",Job_Star_Gladiator;
-			callfunc "F_ClearJobVar";		//clears all job variables for the current player
 			next;
 			mes "[武刚]";
 			mes "从现在起，请非常谨慎地做决定。你的决定会决定整个人生的道路。还有，永远不要忘记这首歌……";
@@ -459,7 +459,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "[武刚]";
 			mes "''^4D4DFF太阳在偶数日照耀。";
 			mes "月亮在奇数日闪耀。";
-			mes "星星每逢第五天";
+			mes "星星每逢五的倍数日";
 			mes "必定闪烁。^000000''";
 			next;
 			mes "[武刚]";
@@ -609,7 +609,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			mes "有一首歌这样唱，";
 			mes "''^4D4DFF太阳在偶数日照耀。";
 			mes "月亮在奇数日闪耀。";
-			mes "星星每逢第五天";
+			mes "星星每逢五的倍数日";
 			mes "必定闪烁。^000000''";
 			next;
 			mes "''^4D4DFF沙漠是日之地，";
@@ -801,7 +801,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			next;
 			mes "''^4D4DFF太阳在偶数日照耀。";
 			mes "月亮在奇数日闪耀。";
-			mes "星星每逢第五天";
+			mes "星星每逢五的倍数日";
 			mes "必定闪烁。^000000''";
 			next;
 			mes "''^4D4DFF沙漠是日之地，";
@@ -965,7 +965,7 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 			next;
 			mes "''^4D4DFF太阳在偶数日照耀。";
 			mes "月亮在奇数日闪耀。";
-			mes "星星每逢第五天";
+			mes "星星每逢五的倍数日";
 			mes "必定闪烁。^000000''";
 			next;
 			mes "''^4D4DFF沙漠是日之地，";

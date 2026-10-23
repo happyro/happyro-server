@@ -45,6 +45,11 @@ prontera,153,193,6	script	四转职业导师	123,{
 	next;
 	if (select("确认四转:暂不转职") == 2)
 		close;
+	if (eaclass() != .@eac || BaseLevel < 200 || JobLevel < .@job_level || SkillPoint) {
+		mes "[四转职业导师]";
+		mes "当前职业、等级或技能点已不符合本次转职条件，请确认后重新办理。";
+		close;
+	}
 	jobchange .@target;
 	mes "[四转职业导师]";
 	if (Class == .@target)

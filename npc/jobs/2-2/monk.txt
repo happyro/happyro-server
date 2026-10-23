@@ -306,7 +306,7 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 	next;
 	if (SkillPoint) {
 		mes "[师范穆海]";
-		mes "如果你有未分配的技能点，转职时会失去它们。";
+		mes "还有未分配的技能点时，不能办理转职。";
 		mes "请务必使用所有技能点。";
 		close;
 	}
@@ -810,8 +810,8 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 			mes "[师范穆海]";
 			mes "……以武僧的目光看待人生。";
 			next;
-			if (SkillPoint) {
-				mes "请先分配完剩余技能点，再来完成转职。";
+			if (BaseJob != Job_Acolyte || Upper == 1 || JobLevel < 40 || SkillPoint || countitem(506) > 0) {
+				mes "请确认你是职业等级至少40的非进阶服事，分配完剩余技能点，并喝完身上的绿色药水后再来。";
 				close;
 			}
 			.@reward = (JobLevel == 50) ? 1804 : 1801;
@@ -819,8 +819,8 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 				mes "请先为转职礼物预留足够的负重和物品栏空间。";
 				close;
 			}
-			completequest 3032;
 			callfunc "Job_Change",Job_Monk;
+			completequest 3032;
 			callfunc "F_ClearJobVar";
 			getitem .@reward,1;
 			mes "[师范穆海]";
@@ -876,7 +876,7 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 	}
 }
 
-prt_monk,251,255,1	script	Touha#mk	79,{
+prt_monk,251,255,1	script	图哈#mk::Touha#mk	79,{
 	if (MONK_Q >= 10 && MONK_Q < 14) {
 		.@first_prayer = (MONK_Q == 10);
 		if (MONK_Q == 10) {
@@ -1843,7 +1843,7 @@ mes "[门卫乔里普]";
 		}
 		}
 		
-		monk_test,329,61,3	script	Bashu#mk	753,{
+		monk_test,329,61,3	script	巴修#mk::Bashu#mk	753,{
 	if (MONK_Q > 14 && MONK_Q < 25) {
 	if (MONK_Q == 15) {
 		mes "[巴修]";
@@ -1906,7 +1906,7 @@ mes "好吧，这是你的选择。";
 		}
 		}
 		
-		monk_test,386,388,4	script	Apprentice Monk#mk	110,{
+		monk_test,386,388,4	script	武僧学徒#mk::Apprentice Monk#mk	110,{
 		if (MONK_Q < 16 || MONK_Q > 24) end;
 		mes "[武僧学徒]";
 		mes "欢……欢迎！";
@@ -2055,7 +2055,7 @@ job_monk,225,180,1	script	Hyunmoo#mk	89,{
 		next;
 		mes "[玄武]";
 		mes "作为训练的一部分，我们要求你清除这些蘑菇。";
-		mes "去帮助其他人尽可能多地清除蘑菇，再带回足够的^FF0000朱红毛网纹蘑菇^000000和^FF0000朱红毛黏蘑菇^000000作为证明。";
+		mes "收集^FF0000朱红毛网纹蘑菇^000000或^FF0000朱红毛黏蘑菇^000000，任意一种达到30个即可。交付时会收走你身上的这两种蘑菇。";
 		next;
 		mes "[玄武]";
 		mes "现在，去找些蘑菇吧。";
@@ -2165,10 +2165,10 @@ monk_test,319,139,1	script	Tomoon#mk	52,{
 		next;
 		mes "[图门]";
 		mes "现在你不需要更多指导了：";
-		mes "^990000消灭挡在你路上的一切活物！^000000就是这样！";
+		mes "^990000穿过迷宫，到达另一端的出口！^000000就是这样！";
 		next;
 		mes "[图门]";
-		mes "在迷宫中游荡时，遇到任何邪恶生物就杀掉它们！解放它们受折磨的灵魂！！";
+		mes "迷宫中的魔物会阻碍你前进，必要时击败它们。到达出口即可通过，不必清空整个迷宫。";
 		next;
 		mes "[图门]";
 		mes "别把我们和软弱的牧师相提并论！我们是武僧，永远都是最强的！！";
@@ -2191,7 +2191,7 @@ monk_test,319,139,1	script	Tomoon#mk	52,{
 		mes "[图门]";
 		mes "嗯……你失败了？";
 		mes "振作起来！失败只是通往成功的过程！";
-		mes "去吧！重新开始！把它们全都杀掉！！";
+		mes "去吧！重新开始！穿过迷宫，到达出口！";
 		close2;
 		warp "monk_test",88,74;
 		end;
@@ -2260,7 +2260,7 @@ monk_test,82,85,1	script	Proctor#mk	95,{
 		mes "如果想离开测试大厅，你必须前往位于起点对面的传送门。";
 		next;
 		mes "[考官]";
-		mes "……对了，迷宫里还有怪物游荡，请把它们清除。";
+		mes "……对了，迷宫里还有怪物游荡，小心应对；到达出口即可通过。";
 		mes "祝你好运。";
 		close;
 	}
@@ -2389,7 +2389,7 @@ monk_test,88,91,1	script	Proctor#mk2	52,{
 		mes "如果想离开测试大厅，你必须前往位于起点对面的传送门。";
 		next;
 		mes "[考官]";
-		mes "……对了，迷宫里还有怪物游荡，请把它们清除。";
+		mes "……对了，迷宫里还有怪物游荡，小心应对；到达出口即可通过。";
 		mes "祝你好运。";
 		close;
 	}
@@ -2518,7 +2518,7 @@ monk_test,95,85,1	script	Proctor#btl#3	79,{
 		mes "如果想离开测试大厅，你必须前往位于起点对面的传送门。";
 		next;
 		mes "[考官]";
-		mes "……对了，迷宫里还有怪物游荡，请把它们清除。";
+		mes "……对了，迷宫里还有怪物游荡，小心应对；到达出口即可通过。";
 		mes "祝你好运。";
 		close;
 	}
@@ -2647,7 +2647,7 @@ OnEnable:
 	end;
 }
 
-monk_test,137,338,1	script	switchreset#monkmonk	79,{
+monk_test,137,338,1	script	武僧试炼重置员#monkmonk::switchreset#monkmonk	79,{
 	mes "咕噜噜……";
 	mes "武僧转职场地的所有怪物都已重置。";
 	mes "计时器已启动。";

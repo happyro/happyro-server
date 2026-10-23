@@ -97,18 +97,24 @@ geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
 			mes "很好！坚持基础最重要！我马上为你转职。";
 			next;
 			mes "[魔法师公会职员]";
+			if (BaseJob != Job_Novice || Upper == 1 || !callfunc("F_CanChangeJob")) {
+				mes "请以满足基础技能要求的初心者身份办理转职。";
+				close;
+			}
+			if (!checkweight(1639,1)) {
+				mes "请先为转职赠送的装备和物品预留足够的负重及背包空间，再来办理转职。";
+				close;
+			}
+			callfunc "Job_Change",Job_Mage;
+			if (isbegin_quest(9266) == 1)
+				completequest 9266;
+			getitem 1639,1;	// N_Rod
 			mes "哈……！你现在是魔法师了，我们的同伴！";
 			mes "欢迎加入魔法师公会，新朋友！";
 			next;
 			mes "[魔法师公会职员]";
 			mes "“欢迎加入魔法师公会～”";
 			mes "恭喜你成为魔法师公会成员！加油！";
-			if (!checkweight(1639,1)) {
-				mes "请先为转职赠送的装备和物品预留足够的负重及背包空间，再来办理转职。";
-				close;
-			}
-			callfunc "Job_Change",Job_Mage;
-			getitem 1639,1;	// N_Rod
 			close;
 		case 2:
 			mes "[魔法师公会职员]";

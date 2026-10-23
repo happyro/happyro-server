@@ -76,7 +76,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 				mes "希望你能在第二项测试——精神训练中帮助你的服事朋友。";
 				next;
 				mes "[保罗主教]";
-				mes "你需要带来 ^0000FF1 串念珠^000000，才能陪同服事进行精神训练。如果你有念珠，我现在就能送你去测试区域。";
+				mes "你需要带来 ^0000FF1 串玫瑰念珠（无插槽）^000000，才能陪同服事进行精神训练。如果你有无插槽的玫瑰念珠，我现在就能送你去测试区域。";
 				next;
 				mes "[保罗主教]";
 				mes "你愿意在精神训练期间帮助他吗？";
@@ -88,16 +88,20 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 						next;
 						mes "[保罗主教]";
 						mes "希望你能帮助这位服事成为牧师。";
+						if (countitem(2608) < 1) {
+							mes "请携带一串无插槽的玫瑰念珠后再来。";
+							close;
+						}
 						close2;
 						warp "job_prist",26,178;
 						end;
 					}
 					mes "[保罗主教]";
-				mes "遗憾的是你没有带 ^0000FF念珠^000000。要进入测试区域，你必须带一串念珠。";
+				mes "遗憾的是你没有带 ^0000FF玫瑰念珠（无插槽）^000000。要进入测试区域，你必须带一串无插槽的玫瑰念珠。";
 					close;
 				}
 				mes "[保罗主教]";
-				mes "我明白了，不用着急。别忘了带 ^0000FF念珠^000000……";
+				mes "我明白了，不用着急。别忘了带 ^0000FF玫瑰念珠（无插槽）^000000……";
 				close;
 			case 3:
 				mes "[保罗主教]";
@@ -480,7 +484,6 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		next;
 		mes "[保罗主教]";
 		mes "上帝，请将你的力量赐予站在你面前的仆人。";
-		changequest 8015,8016;
 		if (Sex == SEX_MALE)
 			mes "让他将你的福音传遍大地。";
 		else
@@ -489,8 +492,8 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		mes "[保罗主教]";
 		mes "让这位仆人成为你施展奇迹的器具……";
 		next;
-		if (SkillPoint) {
-			mes "请先用完技能点，再回来完成转职。";
+		if (BaseJob != Job_Acolyte || Upper == 1 || JobLevel < 40 || SkillPoint) {
+			mes "只有职业等级达到 40、已用完技能点的非进阶服事才能在这里转职。";
 			close;
 		}
 		set .@joblvl,JobLevel;
@@ -499,8 +502,9 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 			mes "请先为转职奖励预留足够的负重和物品栏空间。";
 			close;
 		}
-		completequest 8016;
 		callfunc "Job_Change",Job_Priest;
+		changequest 8015,8016;
+		completequest 8016;
 		callfunc "F_ClearJobVar";		// clears all job variables for the current player
 		getitem .@reward,1;
 		mes "[保罗主教]";
@@ -846,7 +850,7 @@ job_prist,24,187,4	script	Peter S. Alberto	110,{
 		mes "记住，无论多想帮助这位服事者，这不是你的任务。";
 		next;
 		mes "[彼得神父]";
-		mes "你可以协助并减轻朋友的负担，但要为自己承担这项任务。";
+		mes "你可以协助并减轻朋友的负担，但这项任务仍须由服事本人完成。";
 		next;
 		mes "[彼得神父]";
 		mes "那么……";
@@ -925,11 +929,11 @@ job_prist,24,187,4	script	Peter S. Alberto	110,{
 			mes "[彼得神父]";
 			mes "现在……";
 			mes "加油！";
-			close2;
 			if (getvariableofnpc(.Busy,"Zombie_Generator#prst")) {
 				mes "训练场已被另一名考生使用，请稍后再来。";
 				close;
 			}
+			close2;
 			set getvariableofnpc(.Busy,"Zombie_Generator#prst"),true;
 			if(checkquest(8012) == -1)
 				changequest 8011,8012;
@@ -972,11 +976,11 @@ job_prist,24,187,4	script	Peter S. Alberto	110,{
 			mes "[彼得神父]";
 			mes "去吧……";
 			mes "杀死那些邪恶生物！";
-			close2;
 			if (getvariableofnpc(.Busy,"Zombie_Generator#prst")) {
 				mes "训练场已被另一名考生使用，请稍后再来。";
 				close;
 			}
+			close2;
 			set getvariableofnpc(.Busy,"Zombie_Generator#prst"),true;
 			if(checkquest(8012) == -1) {
 				changequest 8011,8012;
@@ -1160,10 +1164,10 @@ OnTouch_:
 	}
 	else if (BaseJob == Job_Acolyte){
 		mes "[彼得神父]";
-		mes "我只给你 5 分钟！慢慢前进，消灭僵尸。";
+		mes "我只给你 5 分钟！慢慢前进，消灭腐尸。";
 		next;
 		mes "[彼得神父]";
-		mes "杀死所有僵尸，再通过走廊尽头的传送点。确保一个不留。";
+		mes "杀死所有腐尸，再通过走廊尽头的传送点。确保一个不留。";
 		close;
 	}
 	end;
@@ -1379,7 +1383,7 @@ OnTouch_:
 	end;
 }
 
-job_prist,168,80,4	script	Doppelganger#prst	1046,8,1,{
+job_prist,168,80,4	script	死灵#prst::Doppelganger#prst	1046,8,1,{
 OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[死灵]";
@@ -1440,7 +1444,7 @@ OnTouch_:
 	}
 }
 
-job_prist,168,115,4	script	Dark Lord#prst	1272,8,1,{
+job_prist,168,115,4	script	黑暗之王#prst::Dark Lord#prst	1272,8,1,{
 OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[黑暗之王]";
@@ -1692,7 +1696,7 @@ function	script	F_FatherRub	{
 			mes "啊，你就是想成为牧师的年轻服事者。";
 			next;
 			mes "[鲁巴卡巴拉神父]";
-			mes "我收到了保罗主教的消息。既然你完成了朝圣，希望你能实现成为牧师的目标。";
+			mes "我收到了保罗主教的消息。你已完成朝圣的第一站，希望你继续完成后面的修行。";
 			next;
 			mes "[鲁巴卡巴拉神父]";
 			mes "另外，有机会请再来这座修道院。这是我们教会的圣地。";

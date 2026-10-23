@@ -8,7 +8,6 @@
 //============================================================
 
 alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
-	.@max_skill_lvl = 1;
 	if (cart_remodel == 0) {
 		mes "[杰森]";
 		mes "原本的手推车真漂亮！";
@@ -19,7 +18,7 @@ alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
 		mes "[杰森]";
 		mes "我可以把它改造成可爱的全新设计。";
 		next;
-		switch( select( "什么是手推车装饰？", "学习手推车装饰", "结束对话" ) ) {
+		switch( select( "什么是装饰手推车？", "学习装饰手推车", "结束对话" ) ) {
 		case 1:
 			mes "[杰森]";
 			mes "我想彻底改造这辆可怜的手推车。";
@@ -36,19 +35,19 @@ alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
 		case 2:
 			if (BaseClass != Job_Merchant) {
 				mes "[杰森]";
-				mes "你为什么想学手推车装饰？别打扰我！";
+				mes "你为什么想学装饰手推车？别打扰我！";
 				close;
 			}
 			if (countitem(6606) == 0) {
 				mes "[杰森]";
-				mes "学习手推车装饰很困难。";
+				mes "学习装饰手推车很困难。";
 				next;
 				mes "[杰森]";
 				mes "带来^3131FF可爱手推车改造券^000000我就教你。";
 				close;
 			}
 			mes "[杰森]";
-			mes "你带来了可爱手推车改造券。确定要学习手推车装饰吗？";
+			mes "你带来了可爱手推车改造券。确定要学习装饰手推车吗？";
 			next;
 			if (select("是", "否") == 2) {
 				mes "[杰森]";
@@ -67,17 +66,22 @@ alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
 			mes "……";
 			next;
 			mes "[杰森]";
+			if (BaseClass != Job_Merchant || cart_remodel != 0 || countitem(6606) < 1) {
+				mes "学习需要商人系职业和 1 张可爱手推车改造券，请确认后再来。";
+				close;
+			}
+			delitem 6606,1; // P_Cart_C
+			cart_remodel = 1;
+			skill "MC_CARTDECORATE",1,SKILL_PERM;
 			mes "你真是天才！已经学会了！";
 			next;
 			mes "[杰森]";
 			mes "现在轮到你试试了。";
-			mes "按 Alt+S 改变你的手推车！";
+			mes "装备手推车后，打开技能窗口，使用装饰手推车选择新外观。";
+			mes "桌面端可按 Alt+S 打开技能窗口；手机端请使用界面的技能入口。";
 			next;
 			mes "[杰森]";
 			mes "这就是可爱的新设计手推车。你现在是我们的一员了……！";
-			delitem 6606,1;	// P_Cart_C
-			cart_remodel = 1;
-			skill "MC_CARTDECORATE",1,SKILL_PERM;
 			close;
 		case 3:
 			close;
@@ -88,43 +92,8 @@ alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
 	next;
 	switch( select( "还有更多内容可学吗？", "我忘了如何装饰手推车" ) ) {
 	case 1:
-		if (cart_remodel == .@max_skill_lvl) {
-			mes "[杰森]";
-			mes "没有。我还在探索新设计，学会后会教你。";
-			close;
-		}
 		mes "[杰森]";
-		mes "我有东西要教，你想学吗？";
-		next;
-		mes "[杰森]";
-		mes "我需要一张^3131FF可爱手推车改造券^000000。";
-		next;
-		if (select("我想学", "不") == 2) {
-			mes "[杰森]";
-			mes "你随时都可以回来。";
-			close;
-		}
-		if (countitem(6606) < 0) {
-			mes "[杰森]";
-			mes "你没有可爱手推车改造券吗？";
-			close;
-		}
-		mes "[杰森]";
-		mes "好，开始吧！";
-		next;
-		mes "[杰森]";
-		mes "这样做更好。";
-		mes "那也这样做……";
-		next;
-		mes "[杰森]";
-		mes "....";
-		mes "开始吧！";
-		next;
-		mes "[杰森]";
-		mes "我已经教会你这个技能了，现在可以试试。";
-		delitem 6606,1;	// P_Cart_C
-		cart_remodel++;
-		skill "MC_CARTDECORATE", cart_remodel ,SKILL_PERM;
+		mes "没有。我还在探索新设计，学会后会教你。";
 		close;
 	case 2:
 		mes "[杰森]";
@@ -144,6 +113,10 @@ alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
 		mes "现在来回忆一下！";
 		next;
 		mes "[杰森]";
+		if (BaseClass != Job_Merchant) {
+			mes "会使用手推车后再来吧！";
+			close;
+		}
 		mes "仔细想想，你会再次记起来的。";
 		skill "MC_CARTDECORATE",1,SKILL_PERM;
 		close;

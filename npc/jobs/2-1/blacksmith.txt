@@ -251,12 +251,12 @@ ein_in01,18,28,4	script	Guildsman#BLS	731,{
 				changequest 2015,2016;
 			}
 			next;
-			if (SkillPoint || ismounting()) {
-				mes "请先用完技能点并解除坐骑，再回来完成转职。";
+			if (BaseJob != Job_Merchant || Upper == 1 || JobLevel < 40 || SkillPoint || ismounting()) {
+				mes "请以职业等级至少 40 的非进阶商人身份完成转职，并先用完技能点、解除坐骑。";
 				close;
 			}
 			if (countitem(1005) < 1) {
-				mes "请带上铁匠之锤，再回来完成转职。";
+				mes "请带上铁匠的锤子，再回来完成转职。";
 				close;
 			}
 			.@steel_amount = (JobLevel > 48) ? 30 : 5;
@@ -319,7 +319,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 				if (rand(2)) {
 						mes "1. 以下哪个地区与其特色商品不匹配？";
 					next;
-					if (select("梦罗克 - 盗贼之衣:艾尔贝塔 - 双手斧:克魔岛 - 狂暴药水:艾尔贝塔 - 剑锤") == 4)
+					if (select("梦罗克 - 盗贼服:艾尔贝塔 - 双手斧:克魔岛 - 狂暴药水:艾尔贝塔 - 剑锤") == 4)
 						set .@black_q,.@black_q+10;
 						mes "2. ^8E6B23铁锤落击^000000技能会造成哪种状态？";
 					next;
@@ -327,7 +327,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 						set .@black_q,.@black_q+10;
 						mes "3. 商人无法使用以下哪项技能？";
 					next;
-					if (select("露天商店:低价买进:高价卖出:加速术") == 4)
+					if (select("摆摊:折扣:高价卖出:加速术") == 4)
 						set .@black_q,.@black_q+10;
 						mes "4. 你可以在哪里找到出售蓝色宝石的商店？";
 					next;
@@ -341,7 +341,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					next;
 					if (select("短剑:环首刀:锁链:圣经") == 4)
 						set .@black_q,.@black_q+10;
-						mes "7. 以下哪件装备拥有最高防御力？";
+						mes "7. 不计精炼、卡片和附魔，以下哪件装备的基础防御力最高？";
 					next;
 					if (select("三角裤:貂皮大衣:木铠甲:丝绸长袍") == 2)
 						set .@black_q,.@black_q+10;
@@ -349,7 +349,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					next;
 					if (select("最高 + 3:最高 + 4:最高 + 5:最高 + 6") == 3)
 						set .@black_q,.@black_q+10;
-						mes "9. 使用 ^8E6B23树枝^000000 可以制作以下哪件物品？";
+						mes "9. 使用 ^8E6B23木片^000000 可以制作以下哪件物品？";
 					next;
 					if (select("斗笠:亡者头巾:山羊头盔:鹿角") == 1)
 						set .@black_q,.@black_q+10;
@@ -361,15 +361,15 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 				else {
 						mes "1. 以下城市中，哪个与其特色不匹配？";
 					next;
-					if (select("艾尔帕兰 - 天地树叶子:艾尔贝塔 - 铁锤:克魔岛 - 狂暴药水:艾尔帕兰 - 铁锤") == 4)
+					if (select("艾尔帕兰 - 天地树叶子:艾尔贝塔 - 战锤:克魔岛 - 狂暴药水:艾尔帕兰 - 战锤") == 4)
 						set .@black_q,.@black_q+10;
-						mes "2. 一个杰勒比结晶值多少 Zeny？";
+						mes "2. 不计高价卖出等加成，将 1 个杰勒比结晶卖给 NPC 商店可获得多少 Zeny？";
 					next;
 					if (select("1 Zeny:2 Zeny:3 Zeny:4 Zeny") == 3)
 						set .@black_q,.@black_q+10;
-						mes "3. 商人使用^8E6B23露天商店^000000技能需要什么？";
+						mes "3. 商人使用^8E6B23摆摊^000000技能时，必须使用哪种载货工具？";
 					next;
-					if (select("必须有手推车。:必须有可出售物品。:必须装备武器。:必须穿着防具。") == 1)
+					if (select("手推车:背包:仓库:邮件") == 1)
 						set .@black_q,.@black_q+10;
 						mes "4. 你可以在哪里转职成为商人？";
 					next;
@@ -383,7 +383,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					next;
 					if (select("曼戈什:克雷莫亚:锁链:双手斧") == 2)
 						set .@black_q,.@black_q+10;
-						mes "7. 以下哪件装备拥有最高防御力？";
+						mes "7. 不计精炼、卡片和附魔，以下哪件装备的基础防御力最高？";
 					next;
 					if (select("三角裤:貂皮大衣:木铠甲:丝绸长袍") == 2)
 						set .@black_q,.@black_q+10;
@@ -393,7 +393,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 						set .@black_q,.@black_q+10;
 						mes "9. 哪种怪物不会掉落铁矿石？";
 					next;
-					if (select("苍蝇:绿苍蝇:杰洛米:虎蜥人") == 4)
+					if (select("苍蝇:虫蛹:杰洛米:虎蜥人") == 4)
 						set .@black_q,.@black_q+10;
 						mes "10. 对商人来说最重要的是什么？";
 					next;
@@ -522,10 +522,10 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 			if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5] && countitem(.@items[6]) >= .@items[7]) {
 				mes "[盖休庞兹特]";
 				mes "等等……";
-				mes "我不是说过要3 个钢铁吗？";
+				mes "清单上的数量……我是不是记错了？";
 				next;
 				mes "[盖休庞兹特]";
-				mes "哦，看来其实是两个。让我看看……";
+				mes "让我再对照一下材料清单……";
 				mes "没错，你都带来了！";
 				mes "现在等我一下。";
 				next;
@@ -637,7 +637,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 			mes "总之，把这个交给卢恩·米德加尔兹王国斐扬的^8E6B23塔尔皮兹^000000，";
 					break;
 				case 13:
-					mes "好了，把这个交给休尔格尔的^8E6B23比斯马克^000000，再把收据带回来。";
+					mes "好了，把这个交给休尔格尔的^8E6B23俾斯麦^000000，再把收据带回来。";
 					getitem 1122,1; //Ring_Pommel_Saber
 					if (checkquest(2007) != -1) {
 						changequest 2007,2012;
@@ -655,7 +655,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					mes "这把剑注入了青草的力量，非常有用！用它迅速刺伤中毒者，就能救他免于慢慢死去！";
 					next;
 					mes "[盖休庞兹特]";
-					mes "总之，把这个交给休尔格尔的^8E6B23比斯马克^000000，";
+					mes "总之，把这个交给休尔格尔的^8E6B23俾斯麦^000000，";
 				}
 				mes "别忘了收据！";
 				close;
@@ -697,7 +697,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 				mes "在斐扬城中心 5 点钟方向找到^8E6B23塔尔皮兹^000000。别忘了收据。";
 			}
 			else {
-				mes "在休尔格尔城中心 1 点钟方向的飞艇附近找到^8E6B23比斯马克^000000。别忘了收据。";
+				mes "在休尔格尔城中心 1 点钟方向的飞艇附近找到^8E6B23俾斯麦^000000。别忘了收据。";
 			}
 			close;
 		}
@@ -733,7 +733,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					next;
 					mes "[盖休庞兹特]";
 					mes "干得好！";
-					mes "回到艾因布罗克找^8E6B23奥尔蒂雷根^000000，就是你申请铁匠职业时遇到的人。";
+					mes "回到艾音布罗克找^8E6B23奥尔蒂雷根^000000，就是你申请铁匠职业时遇到的人。";
 					next;
 					mes "[盖休庞兹特]";
 					mes "我相信你会成为优秀的铁匠！";
@@ -765,7 +765,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 		else if (BSMITH_Q == 15) {
 		mes "[盖休庞兹特]";
 		mes "非常感谢你的帮助。";
-		mes "回到艾因布罗克去见^8E6B23奥尔蒂雷根^000000！";
+		mes "回到艾音布罗克去见^8E6B23奥尔蒂雷根^000000！";
 			close;
 		}
 		mes "[盖休庞兹特]";
@@ -845,7 +845,7 @@ geffen,46,164,1	script	Baisulist#BLS	69,{
 	}
 }
 
-morocc,27,112,4	script	Wickebine#BLS	725,{
+morocc,27,112,4	script	维克贝因#BLS::Wickebine#BLS	725,{
 	if (BSMITH_Q == 10 && countitem(1219) > 0) {
 		cutin "Job_Black_hucke01",2;
 		mes "在这里！";
@@ -886,7 +886,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 		getitem 1073,1; //Merchant_Voucher_1
 		set BSMITH_Q,14;
 		cutin "Job_Black_hucke01",2;
-		mes "你是艾因布罗克铁匠公会的人吗？";
+		mes "你是艾音布罗克铁匠公会的人吗？";
 		mes "把这句话转告给盖休庞兹特！";
 		next;
 		cutin "Job_Black_hucke03",2;
@@ -938,7 +938,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 	}
 }
 
-lighthalzen,209,80,4	script	Krongast#BLS	734,{
+lighthalzen,209,80,4	script	克隆加斯特#BLS::Krongast#BLS	734,{
 	if (BSMITH_Q == 11 && countitem(1119) > 0) {
 		mes "哦哦哦~";
 		mes "到了吗？";
@@ -1099,7 +1099,7 @@ hugel,168,183,1	script	Bismarc#BLS	118,{
 		delitem 1122,1; //Ring_Pommel_Saber
 		getitem 1073,1; //Merchant_Voucher_1
 		set BSMITH_Q,14;
-		mes "^3355FF比斯马克反复用被赋予绿草力量的环首刀刺向自己。^000000";
+		mes "^3355FF俾斯麦反复用被赋予绿草力量的环首刀刺向自己。^000000";
 		next;
 		mes "^666666*咳咳*^000000";
 		mes "*喘气*";
@@ -1211,10 +1211,10 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 				next;
 				if (select("火属性:水属性:地属性:风属性") == 2)
 					set .@blackss_te,.@blackss_te+20;
-				mes "5. 制作1个钢铁需要多少铁矿石？";
+				mes "5. 使用钢铁锻造制作 1 个钢铁，除了 1 个煤炭，还需要多少个铁？";
 				mes "请作答。";
 				next;
-				if (select("5个铁矿石:4个铁矿石:3个铁矿石:6个铁矿石") == 1)
+				if (select("5个铁:4个铁:3个铁:6个铁") == 1)
 					set .@blackss_te,.@blackss_te+20;
 				break;
 			case 3:
@@ -1232,15 +1232,15 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 				next;
 				if (select("艾尔帕兰:艾尔贝塔:梦罗克:伊兹鲁德") == 2)
 					set .@blackss_te,.@blackss_te+20;
-				mes "从艾因布罗克市中心看，铁匠公会位于哪个方向？";
+				mes "从艾音布罗克市中心看，铁匠公会位于哪个方向？";
 				next;
 				if (select("十一点钟:五点钟:七点钟:十二点钟") == 2)
 					set .@blackss_te,.@blackss_te+20;
 				mes "哪个城镇能找到最多的铁匠？";
 				next;
-				if (select("普隆德拉:梦罗克:艾尔贝塔:艾因布罗克") == 4)
+				if (select("普隆德拉:梦罗克:艾尔贝塔:艾音布罗克") == 4)
 					set .@blackss_te,.@blackss_te+20;
-				mes "以下哪些属性会影响铁匠技能？";
+				mes "以下哪项属性会提高铁匠锻造武器的成功率？";
 				next;
 				if (select("力量:灵巧:敏捷:体力") == 2)
 					set .@blackss_te,.@blackss_te+20;
@@ -1255,16 +1255,16 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 				mes "恭喜！";
 				mes "你通过了！";
 				next;
-				mes "不过别因早期成功而自满。铁匠生活并不轻松。作为通过测试的证明，给你这把铁匠之锤。";
+				mes "不过别因早期成功而自满。铁匠生活并不轻松。作为通过测试的证明，给你这把铁匠的锤子。";
 				if (!checkweight(1005,1)) {
-					mes "请先为铁匠之锤预留足够的负重和物品栏空间。";
+					mes "请先为铁匠的锤子预留足够的负重和物品栏空间。";
 					close;
 				}
 				getitem 1005,1; //Hammer_Of_Blacksmith
 				set BSMITH_Q,17;
 				changequest 2014,2015;
 				next;
-				mes "带着这把铁匠之锤回去找 奥尔蒂雷根。祝你好运！";
+				mes "带着这把铁匠的锤子回去找 奥尔蒂雷根。祝你好运！";
 				close;
 			}
 			mes "你失败了！好好学习后再回来。";
@@ -1281,14 +1281,14 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 		next;
 		mes "回去找 奥尔蒂雷根 先生吧。";
 		next;
-		mes "别忘了带上铁匠之锤！";
+		mes "别忘了带上铁匠的锤子！";
 		next;
 		mes "哦，转职前确保没有剩余技能点～";
 		close;
 	}
 	else {
 		emotion ET_SCRATCH;
-		mes "我在梦罗克时要忍受高温，现在又要忍受艾因布罗克的烟雾！";
+		mes "我在梦罗克时要忍受高温，现在又要忍受艾音布罗克的烟雾！";
 		next;
 		mes "但我得承认这里很适合铁匠，因为有丰富的制作材料和高度发达的设备。";
 		next;
@@ -1302,13 +1302,13 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 geffen_in,109,170,3	script	Blacksmith Guildsman#gef	726,{
 	mes "你好，你是来参观铁匠公会的吗？";
 	next;
-	mes "感谢你远道来访。不过很遗憾，铁匠公会已经迁往^3131FF施瓦尔兹瓦德共和国的‘艾因布罗克’^000000。";
+	mes "感谢你远道来访。不过很遗憾，铁匠公会已经迁往^3131FF施瓦尔兹瓦德共和国的‘艾音布罗克’^000000。";
 	next;
 	mes "你可以乘坐飞空艇前往施瓦尔兹瓦德共和国。";
 	mes "我可以把你传送到伊兹鲁德，在那里可以乘坐飞空艇。";
-	mes "要立即前往伊兹鲁德吗？";
+	mes "传送费用为 600 Zeny。要立即前往伊兹鲁德吗？";
 	next;
-	switch(select("如何前往艾因布罗克？:是的！:不了，谢谢。")) {
+	switch(select("如何前往艾音布罗克？:是的！:不了，谢谢。")) {
 	case 1:
 		mes "咦，你还没乘坐过飞空艇吗？";
 		next;
@@ -1316,7 +1316,7 @@ geffen_in,109,170,3	script	Blacksmith Guildsman#gef	726,{
 		next;
 		mes "在^3131FF‘伊兹鲁德’^000000可以搭乘往返于^3131FF伊兹鲁德与施瓦尔兹瓦德共和国朱诺^000000之间的^3131FF国际飞空艇^000000。";
 		next;
-		mes "乘飞空艇抵达朱诺后，再从朱诺换乘^3131FF国内飞空艇^000000前往艾因布罗克。";
+		mes "乘飞空艇抵达朱诺后，再从朱诺换乘^3131FF国内飞空艇^000000前往艾音布罗克。";
 		mes "请记住，从国际航线转乘国内航线时，^3131FF不需要走出机场^000000。";
 		next;
 		mes "听起来可能有些复杂，到了机场自然就会明白。";

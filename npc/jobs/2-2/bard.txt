@@ -260,6 +260,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "哦！是歌唱的花！";
 			mes "它充满我的回忆……";
 			next;
+			callsub S_CheckFlower,629;
 			delitem 629,1; //Singing Flower
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -272,6 +273,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "啊……可爱的希娜蕾……";
 			mes "它没有香味，但确实是朵可爱温和的花。";
 			next;
+			callsub S_CheckFlower,703;
 			delitem 703,1; //Hinalle
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -284,6 +286,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "芦荟……这是稀有的花。";
 			mes "你怎么得到的？挺有本事嘛？";
 			next;
+			callsub S_CheckFlower,704;
 			delitem 704,1; //Aloe
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -296,6 +299,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "薄荷……有了它就能忘记所有辛劳。";
 			mes "这么久后再次见到它真好！";
 			next;
+			callsub S_CheckFlower,708;
 			delitem 708,1; //Ment
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -308,6 +312,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "哦，这不是伊西多尔吗？";
 			mes "这是危险却美丽的花……";
 			next;
+			callsub S_CheckFlower,709;
 			delitem 709,1; //Izidor
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -320,6 +325,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "哦，永不凋谢的玫瑰，不会枯萎的坚强花朵。";
 			mes "送给女朋友很不错。";
 			next;
+			callsub S_CheckFlower,748;
 			delitem 748,1; //Witherless_Rose
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -331,6 +337,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 		else if(countitem(749) > 0 ) {
 			mes "冰玫瑰……其实不能称为花，但它仍然很美……透明的玫瑰。";
 			next;
+			callsub S_CheckFlower,749;
 			delitem 749,1; //Frozen_Rose
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -343,6 +350,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			mes "哦，这不是幻想之花吗？！";
 			mes "哇，你怎么得到这么稀有的花！！";
 			next;
+			callsub S_CheckFlower,710;
 			delitem 710,1; //Illusion_Flower
 			set BARD_Q,3;
 			changequest 3001,3002;
@@ -405,7 +413,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			next;
 			mes "[拉洛]";
 			mes "如果你想逗我笑，做得不错……";
-			mes "但现在带一朵普通的花来。";
+			mes "但现在带一朵我喜欢的花来。";
 			close2;
 			cutin "job_bard_aiolo02",255;
 			end;
@@ -498,6 +506,8 @@ comodo,226,123,5	script	Wandering Bard	741,{
 			next;
 		}
 		if (BARD_Q != 5) {
+			mes "请依次输入本页最后一行蓝色歌词，文字和标点都要一致。";
+			next;
 			set .@bard_s, rand(1,5);
 			if (.@bard_s == 1) {
 				mes "^3377FF曾有一位男子^000000";
@@ -874,7 +884,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 				next;
 				mes "[拉洛]";
 				mes "我要送你一份小礼物……";
-				mes "带些树枝来吧。种类不限，但必须是同一种 60 根……";
+				mes "带来木片、干燥的木片、坚硬的木片或纹理细致的木片中的同一种 60 个吧……";
 				close2;
 				cutin "job_bard_aiolo01",255;
 				end;
@@ -891,23 +901,18 @@ comodo,226,123,5	script	Wandering Bard	741,{
 					}
 					cutin "job_bard_aiolo01",2;
 					mes "[拉洛]";
-					mes "嗯？看来你还没准备好所有树枝？";
+					mes "嗯？看来你还没准备好同一种木片 60 个？";
 					mes "你还是想直接转职吗？";
 					next;
-					if (select("是的，直接帮我转职吧。:不，我去准备树枝。") == 2)
+					if (select("是的，直接帮我转职吧。:不，我去准备木片。") == 2)
 						break;
 				default:
-					if (SkillPoint) {
-						mes "请先分配完剩余技能点，再来完成转职。";
-						close2;
-						cutin "job_bard_aiolo01",255;
-						end;
-					}
+					callsub S_CheckJob;
+					callfunc "Job_Change",Job_Bard;
 					if (isbegin_quest(3004))
 						completequest 3004;
 					else
 						completequest 3003;
-					callfunc "Job_Change",Job_Bard;
 					callfunc "F_ClearJobVar";		//clears all job variables for the current player
 					mes "[拉洛]";
 					mes "很好！希望你唱出快乐动听的歌曲。";
@@ -923,8 +928,8 @@ comodo,226,123,5	script	Wandering Bard	741,{
 		}
 		if (!isbegin_quest(3004)) changequest 3003,3004;
 		mes "[拉洛]";
-		mes "嗯……很好，请带些树枝来。";
-		mes "种类不限，但必须是同一种 60 根……";
+		mes "嗯……很好，请带些木片来。";
+		mes "木片、干燥的木片、坚硬的木片或纹理细致的木片，任选同一种 60 个……";
 		next;
 		mes "[拉洛]";
 		mes "带来后我会送你一份礼物。";
@@ -940,9 +945,28 @@ comodo,226,123,5	script	Wandering Bard	741,{
 	cutin "job_bard_aiolo01",255;
 	end;
 
+S_CheckJob:
+	if (BaseJob != Job_Archer || Upper == 1 || Sex != SEX_MALE || JobLevel < 40 || SkillPoint) {
+		mes "请以职业等级至少 40 的男性弓箭手身份完成转职，并先分配完技能点；进阶职业请前往对应的转职导师处。";
+		close2;
+		cutin "job_bard_aiolo01",255;
+		end;
+	}
+	return;
+
+S_CheckFlower:
+	if (countitem(getarg(0)) < 1) {
+		mes "请带上刚才选中的花，再来交给我。";
+		close2;
+		cutin "job_bard_aiolo01",255;
+		end;
+	}
+	return;
+
 S_ChangeJob:
-	if (SkillPoint || countitem(getarg(0)) < 60) {
-		mes "请先分配完剩余技能点，并带齐同一种树枝 60 根。";
+	callsub S_CheckJob;
+	if (countitem(getarg(0)) < 60) {
+		mes "请带齐同一种木片 60 个。";
 		close2;
 		cutin "job_bard_aiolo01",255;
 		end;
@@ -954,11 +978,11 @@ S_ChangeJob:
 		end;
 	}
 	delitem getarg(0),60;
+	callfunc "Job_Change",Job_Bard;
 	if (isbegin_quest(3004))
 		completequest 3004;
 	else
 		completequest 3003;
-	callfunc "Job_Change",Job_Bard;
 	callfunc "F_ClearJobVar";
 	getitem getarg(1),1;
 	mes "[拉洛]";

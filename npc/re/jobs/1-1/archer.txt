@@ -84,17 +84,19 @@ payon_in02,64,71,4	script	弓箭手公会职员::Archer Guildsman#archer	85,{
 			mes "……嗯～你已经准备好成为弓箭手了。我马上为你办理转职。";
 			next;
 			mes "[弓箭手公会职员]";
-			mes "恭喜你！你现在是弓箭手了！我们也希望你积极参加复兴弓箭手公会的各项活动。";
-			mes "啊，生产部门送来的物品到了。来，收下吧！这些都是你的！";
 			if (!checkweight(1742,1,12004,1,12009,1,12008,1)) {
 				mes "请先为转职赠送的装备和物品预留足够的负重及背包空间，再来办理转职。";
 				close;
 			}
 			callfunc "Job_Change",Job_Archer;
+			if (isbegin_quest(14142) == 1)
+				completequest 14142;
 			getitem 1742,1;	// N_Composite_Bow
 			getitem 12004,1;	// Arrow_Container
 			getitem 12009,1;	// Silver_Arrow_Container
 			getitem 12008,1;	// Fire_Arrow_Container
+			mes "恭喜你！你现在是弓箭手了！我们也希望你积极参加复兴弓箭手公会的各项活动。";
+			mes "啊，生产部门送来的物品到了。来，收下吧！这些都是你的！";
 			next;
 			mes "[弓箭手公会职员]";
 			mes "有了弓和箭，你现在是真正的弓箭手了。";

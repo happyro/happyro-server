@@ -186,8 +186,20 @@
 				mes "请先为转职奖励预留足够的负重和物品栏空间。";
 				close;
 			}
-			completequest 6002;
+			if (Class != Job_Novice || Upper == 2 || !callfunc("F_CanChangeJob")) {
+				mes "[菲尼克斯]";
+				mes "你当前的职业或基础技能不符合转职条件，请确认后再来。";
+				close;
+			}
+			if (SkillPoint != 0) {
+				mes "[菲尼克斯]";
+				mes "请先分配完所有技能点，再来完成转职。";
+				close;
+			}
 			callfunc "Job_Change",Job_Taekwon;
+			if (isbegin_quest(13101) == 1)
+				completequest 13101;
+			completequest 6002;
 			callfunc "F_ClearJobVar";
 			getitem 2101,1; // Guard[0]
 			mes "[菲尼克斯]";

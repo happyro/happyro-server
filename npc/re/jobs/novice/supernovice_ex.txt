@@ -76,7 +76,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "你……是谁？";
 		mes "为什么打扰我钓鱼？";
 		next;
-		select("埃瑟雷让我送东西来……");
+		select("埃瑟雷让我来找你……");
 		emotion ET_SCRATCH;
 		mes "[钓鱼初心者]";
 		mes "什么？埃瑟雷？埃瑟雷？";
@@ -91,7 +91,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "[钓鱼初心者]";
 		mes "啊啊啊——！！----- 啊啊啊——！！";
 		mes "想起来了！——想起来了！";
-		mes "^0000FF艾尔迪巴兰初心者协会的成员。^000000";
+		mes "^0000FF艾尔帕兰初心者协会的成员。^000000";
 		mes "埃瑟雷，对吗？还是不对？";
 		next;
 		if(select("不是他:对，没错") == 2) {
@@ -468,10 +468,15 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "-----呜哈哈哈-----！！";
 		mes "------------耶--！！";
 		next;
-		erasequest 5100;
+		if ((Class != Job_Super_Novice && Class != Job_Super_Baby) || BaseLevel < 99 || JobLevel < 99 || SkillPoint) {
+			mes "[诺多尔]";
+			mes "请确认你仍是超级初心者或超级宝宝，基础等级和职业等级均达到 99，并分配完技能点后再来。";
+			close;
+		}
 		nude;
-		callfunc "F_ClearJobVar"; // -- Clears all job variables for the current player
 		jobchange roclass(eaclass()|EAJL_THIRD);
+		erasequest 5100;
+		callfunc "F_ClearJobVar"; // -- Clears all job variables for the current player
 		set EXSUPNOV_Q,5;	
 		emotion ET_SMILE;
 		mes "[诺多尔]";

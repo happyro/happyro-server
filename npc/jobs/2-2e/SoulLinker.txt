@@ -308,8 +308,12 @@ OnTouch_:
 				mes "^0000ff你还有未使用的技能点。请用完所有技能点后再试！^000000";
 				close;
 			}
-			completequest 6008;
+			if (Class != Job_Taekwon || JobLevel < 40 || ismounting()) {
+				mes "请确认你仍是职业等级至少 40 的跆拳修炼者，并解除坐骑状态后再试。";
+				close;
+			}
 			callfunc "Job_Change",Job_Soul_Linker;
+			completequest 6008;
 			callfunc "F_ClearJobVar";	// clears all job variables for the current player
 			set SOUL_Q,0;
 			mes "[玛雅]";
@@ -413,28 +417,28 @@ job_soul,30,25,7	script	Sage Spirit#link5	754,{
 
 job_soul,25,30,5	script	Alchemist Spirit#link7	744,{
 	if (SOUL_Q == 2) {
-		mes "[炼金术士灵魂]";
+		mes "[炼金术师灵魂]";
 		mes "哦！我很想和你说话，但我要说的话不会有意义，除非你先和玛雅谈谈。但我确实需要你的帮助。";
 		close;
 	}
 	else if (SOUL_Q > 2) {
-		mes "[炼金术士灵魂]";
-		mes "毫不夸张地说，我是那个时代最快的炼金术士。";
-		mes "事实上，我可能是有史以来最快的炼金术士。";
+		mes "[炼金术师灵魂]";
+		mes "毫不夸张地说，我是那个时代最快的炼金术师。";
+		mes "事实上，我可能是有史以来最快的炼金术师。";
 		mes "但后来我变得傲慢，在事故中丧生。";
 		next;
-		mes "[炼金术士灵魂]";
+		mes "[炼金术师灵魂]";
 		mes "但死亡无法压制我的技能。事实上，我死后技艺甚至有所精进。在传下技艺之前，我无法前往来世……";
 		set SOUL_Q,4;
 		if(checkquest(6008) == -1) {
 			changequest 6007,6008;
 		}
 		next;
-		mes "[炼金术士灵魂]";
-		mes "作为灵魂我无能为力，但借助你的帮助，我可以影响当今炼金术士，帮助他们提升技能。我恳求你，请给我这个机会……";
+		mes "[炼金术师灵魂]";
+		mes "作为灵魂我无能为力，但借助你的帮助，我可以影响当今炼金术师，帮助他们提升技能。我恳求你，请给我这个机会……";
 		close;
 	}
-	mes "[炼金术士灵魂]";
+	mes "[炼金术师灵魂]";
 	mes "...";
 	close;
 }
@@ -471,7 +475,7 @@ OnTimer183000:
 	stopnpctimer;
 }
 
-sec_in02,35,153,0	script	Soul Linker Var	871,{
+sec_in02,35,153,0	script	灵魂链接者任务管理::Soul Linker Var	871,{
 	callfunc "F_GM_NPC";
 	mes "[灵魂链接者任务管理]";
 	mes "如果灵魂链接者候选人在转职任务末尾遇到问题，我可以重置灵魂链接者 NPC。若玩家仍在任务地图中，请不要使用此功能。";
@@ -506,13 +510,3 @@ sec_in02,35,153,0	script	Soul Linker Var	871,{
 			//= 1.0 Optimized and updated [Lupus]
 		//= 1.1 Fixed NPC names according to iRO [Lupus]
 	//============================================================
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
-// 行数补齐
