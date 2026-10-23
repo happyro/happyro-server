@@ -14729,10 +14729,7 @@ BUILDIN_FUNC(getitemname)
 		return SCRIPT_CMD_SUCCESS;
 	}
 
-	char* item_name = (char *)aMalloc( ITEM_NAME_LENGTH * sizeof( char ) );
-
-	safestrncpy(item_name, i_data->ename.c_str(), ITEM_NAME_LENGTH);
-	script_pushstr(st,item_name);
+	script_pushstrcopy(st, i_data->ename.c_str());
 
 	return SCRIPT_CMD_SUCCESS;
 }

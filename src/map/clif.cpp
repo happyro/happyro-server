@@ -17462,7 +17462,7 @@ void clif_parse_Auction_register( int32 fd, map_session_data* sd ){
 		return;
 	}
 
-	safestrncpy(auction.item_name, id->ename.c_str(), sizeof(auction.item_name));
+	safestrncpy_utf8(auction.item_name, id->ename.c_str(), sizeof(auction.item_name));
 	auction.type = id->type;
 	memcpy(&auction.item, &sd->inventory.u.items_inventory[sd->auction.index], sizeof(struct item));
 	auction.item.amount = 1;
@@ -22038,7 +22038,9 @@ void clif_sale_search_reply( map_session_data* sd, std::shared_ptr<s_cash_item> 
 /// 09ac <length>.W <account id>.L <item name>.?B (CZ_REQ_CASH_BARGAIN_SALE_ITEM_INFO)
 void clif_parse_sale_search( int32 fd, map_session_data* sd ){
 #if PACKETVER_SUPPORTS_SALES
-	char item_name[ITEM_NAME_LENGTH];
+	const size_t packet_length = RFIFOW(fd, 2);
+	if (packet_length < 8 || packet_length > RFIFOREST(fd))
+		return;
 
 	nullpo_retv(sd);
 
@@ -22050,9 +22052,9 @@ void clif_parse_sale_search( int32 fd, map_session_data* sd ){
 		return;
 	}
 
-	safestrncpy( item_name, RFIFOCP(fd, 8), min(RFIFOW(fd, 2) - 7, ITEM_NAME_LENGTH) );
+	const std::string item_name(RFIFOCP(fd, 8), safestrnlen(RFIFOCP(fd, 8), packet_length - 8));
 
-	std::shared_ptr<item_data> id = item_db.searchname( item_name );
+	std::shared_ptr<item_data> id = item_db.searchname( item_name.c_str() );
 
 	// not found
 	if( id == nullptr ){

@@ -107,10 +107,6 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asString(node, "Name", name))
 			return 0;
 
-		if (name.length() > ITEM_NAME_LENGTH) {
-			this->invalidWarning(node["Name"], "Name \"%s\" exceeds maximum of %d characters, capping...\n", name.c_str(), ITEM_NAME_LENGTH - 1);
-		}
-
 		if( exists ){
 			// Create a copy
 			std::string ename = item->ename;
@@ -120,8 +116,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			this->nameToItemDataMap.erase( ename );
 		}
 
-		item->ename.resize(ITEM_NAME_LENGTH);
-		item->ename = name.c_str();
+		// Display names are UTF-8 strings; fixed wire fields are bounded at serialization.
+		item->ename = name;
 
 		// Create a copy
 		std::string ename = name;

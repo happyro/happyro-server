@@ -20,6 +20,8 @@ if (!options.length || options[0] === '--help') {
   }
   const code = '#include <cassert>\n#include <cstring>\n#include <string>\n#include <iostream>\nsize_t safestrnlen(const char* s, size_t n) { return strnlen(s,n); }\n'
     + extract('src/common/strlib.cpp', 'char* safestrncpy_utf8(', "/// doesn't crash on null pointer")
+    + readFileSync(resolve(root, 'tests/item-name-script-stubs.hpp'), 'utf8')
+    + extract('src/map/script.cpp', 'BUILDIN_FUNC(getitemname)\n', '/*==========================================')
     + readFileSync(resolve(root, 'tests/utf8-name-cases.hpp'), 'utf8');
   const output = resolve(options[0]);
   const build = spawnSync('c++', ['-std=c++17', '-O1', '-fsanitize=address,undefined', '-x', 'c++', '-', '-o', output], { input: code, stdio: ['pipe', 'inherit', 'inherit'] });

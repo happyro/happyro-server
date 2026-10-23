@@ -217,7 +217,7 @@ void inter_auctions_fromsql(void)
 
 		item = &auction->item;
 		Sql_GetData(sql_handle, 9, &data, nullptr); item->nameid = strtoul(data, nullptr, 10);
-		Sql_GetData(sql_handle,10, &data, nullptr); safestrncpy(auction->item_name, data, ITEM_NAME_LENGTH);
+		Sql_GetData(sql_handle,10, &data, nullptr); safestrncpy_utf8(auction->item_name, data, ITEM_NAME_LENGTH);
 		Sql_GetData(sql_handle,11, &data, nullptr); auction->type = atoi(data);
 
 		Sql_GetData(sql_handle,12, &data, nullptr); item->refine = atoi(data);
