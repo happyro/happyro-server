@@ -50,6 +50,15 @@ int main() {
     feed(s, combined, offset, end); offset = end;
   }
   assert(delivered.size() == 100);
+  // Before LoadEndAck, ordinary gameplay is ignored but recovery must be dispatched.
+  player.prev = nullptr;
+  TestSession loading; loading.session_data = &player; session[0] = &loading;
+  delivered.clear(); load_recovery_calls = 0;
+  feed(loading, {0x23, 1, 2, 3, 4, 5}, 0, 6);
+  assert(delivered.empty());
+  packet_db[0x124] = {6, clif_parse_happyro_map_load_recover};
+  feed(loading, {0x24, 1, 2, 3, 4, 5}, 0, 6);
+  assert(load_recovery_calls == 1 && loading.bytes.empty());
   for (size_t length : {size_t(0), size_t(3), size_t(32769), size_t(65535)}) {
     TestSession invalid; session[0] = &invalid; invalid.bytes = {0xfa, 0x0c, uint8_t(length), uint8_t(length >> 8)};
     clif_parse(0); assert(invalid.flag.eof);
