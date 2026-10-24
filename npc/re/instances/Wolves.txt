@@ -9,7 +9,7 @@
 //============================================================
 
 // Main Quest: Step 54. (entrance npc is a part of the instance Wolves Gathering Place)
-rachel,167,244,5	duplicate(dummy_cloaked_npc)	苏阿德#sms03	4_EP18_SUAD
+rachel,167,244,5	duplicate(dummy_cloaked_npc)	苏亚德#sms03	4_EP18_SUAD
 rachel,167,242,7	duplicate(dummy_cloaked_npc)	米丽娅姆#sms03	4_EP18_MIRIAM
 
 rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
@@ -31,8 +31,8 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 			mes "该区域正在维护，禁止进入。";
 			next;
 			cutin "ep18_suad_01.png",2;
-			cloakoffnpcself( "苏阿德#sms03" );
-			mes "[苏阿德]";
+			cloakoffnpcself( "苏亚德#sms03" );
+			mes "[苏亚德]";
 			mes "不用警惕。这位冒险者和我们一起。";
 			next;
 			cutin "ep18_miriam_01.png",0;
@@ -41,7 +41,7 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 			mes "大家都到齐了吗？";
 			next;
 			cutin "ep18_suad_01.png",2;
-			mes "[苏阿德]";
+			mes "[苏亚德]";
 			mes "是的，大家都准备好了。只需向分散各处的同伴发信号，然后进入神殿。";
 			next;
 			cutin "ep18_miriam_01.png",0;
@@ -50,7 +50,7 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 			next;
 		}
 		cutin "ep18_suad_01.png",2;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "从这里进入后可以前往神殿侧门。向那边发送信号并收到回应后就能进入。冒险者，你能发送信号吗？";
 		next;
 
@@ -66,7 +66,7 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 			mes "哔——";
 			next;
 			instance_create(.@md_name$);
-			mes "[苏阿德]";
+			mes "[苏亚德]";
 			mes "既然已经发送信号，紧急通道很快会打开。准备好后告诉我们，我们会立即进入。";
 			if (ep18_main == 50) {
 				changequest 17519,17520;
@@ -76,19 +76,19 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 		case 2:
 			switch( instance_enter(.@md_name$) ) {
 			case IE_OTHER:
-				mes "[苏阿德]";
+				mes "[苏亚德]";
 				mes "^ff0000发生未知错误。^000000";
 				close3;
 			case IE_NOINSTANCE:
-				mes "[苏阿德]";
+				mes "[苏亚德]";
 				mes "我们还没发送信号。大家准备好后会立即发送。";
 				close3;
 			case IE_NOMEMBER:
-				mes "[苏阿德]";
+				mes "[苏亚德]";
 				mes "^ff0000只有队伍成员才能进入纪念副本。^000000";
 				close3;
 			case IE_OK:
-				mes "[苏阿德]";
+				mes "[苏亚德]";
 				mes "信号来了，我们行动吧。马上进入。";
 				if (ep18_main == 50) {	// debug
 					changequest 17519,17520;
@@ -101,7 +101,7 @@ rachel,169,245,3	script	普通人#sms04	4_EP18_GW_WOMAN01,{
 			}
 			end;
 		case 3:
-			mes "[苏阿德]";
+			mes "[苏亚德]";
 			mes "没错。冒险者也是重要力量，我们等他们准备好吧。";
 			close3;
 		}
@@ -318,7 +318,7 @@ OnInstanceInit:
 	else {	// Sanctuary Purification instance : disable the stater NPCs of Wolves Gathering Place
 		// Step 1 - Wolves Gathering Place
 		disablenpc instance_npcname("米丽娅姆#dms101");
-		disablenpc instance_npcname("苏阿德#dms101");
+		disablenpc instance_npcname("苏亚德#dms101");
 		disablenpc instance_npcname("拉马库斯#dms102");
 		disablenpc instance_npcname("坤#dms112");
 		disablenpc instance_npcname("尤皮#dms122");
@@ -470,7 +470,7 @@ OnInstanceInit:
 	disablenpc instance_npcname("米丽娅姆#dms801");
 
 	// Step 10 - Wolves Gathering Place
-	disablenpc instance_npcname("苏阿德#dms102");
+	disablenpc instance_npcname("苏亚德#dms102");
 
 	disablenpc instance_npcname("泽德#dms101");
 	disablenpc instance_npcname("尼伦#dms201");
@@ -720,10 +720,10 @@ OnMove3:
 		end;
 	'nyr_main_step = 2;
 
-	npctalk "苏阿德，情况如何？", instance_npcname("米丽娅姆#dms101");
+	npctalk "苏亚德，情况如何？", instance_npcname("米丽娅姆#dms101");
 	npctalk "不许再进入！", instance_npcname("神殿守卫#dms101");
 	sleep 1000;
-	npctalk "米丽娅姆，冒险者。再往这边一点。", instance_npcname("苏阿德#dms101");
+	npctalk "米丽娅姆，冒险者。再往这边一点。", instance_npcname("苏亚德#dms101");
 	sleep 1000;
 	npctalk "太过分了！他们把我们当罪犯！", instance_npcname("坤#dms112");
 	npctalk "我们是不是来到了不该来的地方？", instance_npcname("愤怒的人群#dms131");
@@ -794,16 +794,16 @@ OnGuy3:
 	end;
 }
 
-1@nyr,125,41,3	script	苏阿德#dms101	4_EP18_SUAD,{
+1@nyr,125,41,3	script	苏亚德#dms101	4_EP18_SUAD,{
 	if (is_party_leader() == false) {
 		cutin "ep18_Suad_01.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "队长在哪里？";
 		close3;
 	}
 	if ('nyr_main_step == 2) {
 		cutin "ep18_suad_01.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "现在情况不妙。我想……武装守卫正在加强戒备……";
 		next;
 		select( "看来上面的骚乱问题很严重。" );
@@ -849,10 +849,10 @@ OnGuy3:
 		unitwalk getnpcid(0,instance_npcname("尤皮#dms122")), 145,31, instance_npcname("米丽娅姆#dms101") + "::OnGuy3";
 		cutin "ep18_miriam_03.png",2;
 		mes "[米丽娅姆]";
-		mes "苏阿德，你给上面那些闹事的人下达过什么具体指示吗？";
+		mes "苏亚德，你给上面那些闹事的人下达过什么具体指示吗？";
 		next;
 		cutin "ep18_suad_01.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "没有？为什么？";
 		next;
 		cutin "ep18_miriam_03.png",2;
@@ -860,7 +860,7 @@ OnGuy3:
 		mes "看到那边那些人了吗？他们正在小心移动。那就是在上面发动袭击的那群人。";
 		next;
 		cutin "ep18_suad_03.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "我没有给你任何指示。你想擅自行动吗？";
 		next;
 		select( "看来他们正前往神殿。" );
@@ -869,7 +869,7 @@ OnGuy3:
 		mes "这是一次事先没有讨论过的行动。我已经有前科了，这可不是什么好事，对吧？我得悄悄行动，除此之外也不知道该怎么办……";
 		next;
 		cutin "ep18_suad_01.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "你要一个人去吗？";
 		next;
 		cutin "ep18_miriam_03.png",2;
@@ -883,11 +883,11 @@ OnGuy3:
 		}
 		donpcevent instance_npcname("米丽娅姆#dms101") + "::OnStartMove2";
 		cutin "ep18_suad_03.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "他们说自己只是在跟随，但谁知道他们可能在做什么。就算没有武器，也可能藏着什么……";
 		next;
 		unittalk getcharid(3), "" + strcharinfo(0) + "：让我跟上去。";
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "那就放心了。我不能在这里贸然行动。米丽娅姆 留下了踪迹。现在帮我个忙，沿着踪迹走吧。";
 		close2;
 		navigateto("1@nyr",179,164);
@@ -896,7 +896,7 @@ OnGuy3:
 	}
 	if ('nyr_main_step == 3) {
 		cutin "ep18_suad_01.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "小心。";
 		close2;
 		navigateto("1@nyr",179,164);
@@ -952,7 +952,7 @@ OnTouch:
 	npctalk "冒险者？", instance_npcname("米丽娅姆#dms201");
 	npctalk "冒险者？你为什么在这里？", instance_npcname("米丽娅姆#dms201");
 	sleep 2000;
-	npctalk "苏阿德 派我来的。别太担心。", instance_npcname("米丽娅姆#dms201");
+	npctalk "苏亚德 派我来的。别太担心。", instance_npcname("米丽娅姆#dms201");
 	sleep 1000;
 	enablenpc instance_npcname("神殿守卫#dms201");
 	enablenpc instance_npcname("神殿守卫#dms211");
@@ -1034,7 +1034,7 @@ OnTouch:
 OnStart:
 	// disabled npcs from step 1
 	disablenpc instance_npcname("米丽娅姆#dms101");
-	disablenpc instance_npcname("苏阿德#dms101");
+	disablenpc instance_npcname("苏亚德#dms101");
 	disablenpc instance_npcname("拉马库斯#dms102");
 	disablenpc instance_npcname("坤#dms112");
 	disablenpc instance_npcname("尤皮#dms122");
@@ -1066,11 +1066,11 @@ OnStart:
 	disablenpc instance_npcname("神殿守卫#dms241");
 	sleep 500;
 	.@label$ = instance_npcname("nyr_step_2") + "::OnMobDead";
-	monster 'map_2nyr$,35,215,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,34,212,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,36,212,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,33,209,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,38,209,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,35,215,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,34,212,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,36,212,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,33,209,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,38,209,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 	end;
 OnMobDead:
 	if ('nyr_main_step != 5)
@@ -1191,11 +1191,11 @@ OnStart:
 	disablenpc instance_npcname("神殿守卫#dms331");
 	disablenpc instance_npcname("神殿守卫#dms341");
 	.@label$ = instance_npcname("nyr_step_3") + "::OnMobDead";
-	monster 'map_2nyr$,45,96,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,47,94,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,43,96,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,47,98,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,44,98,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,45,96,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,47,94,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,43,96,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,47,98,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,44,98,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 	end;
 OnMobDead:
 	if ('nyr_main_step != 7)
@@ -1339,11 +1339,11 @@ OnStart:
 	disablenpc instance_npcname("神殿守卫#dms431");
 	disablenpc instance_npcname("神殿守卫#dms441");
 	.@label$ = instance_npcname("nyr_step_4") + "::OnMobDead";
-	monster 'map_2nyr$,88,44,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,87,46,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,87,42,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,85,46,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,85,42,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,88,44,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,87,46,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,87,42,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,85,46,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,85,42,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 	end;
 OnMobDead:
 	if ('nyr_main_step != 9)
@@ -1526,11 +1526,11 @@ OnStart:
 	disablenpc instance_npcname("米丽娅姆#dms501");
 	.@label$ = instance_npcname("nyr_step_5") + "::OnMobDead";
 
-	monster 'map_2nyr$,203,95,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,201,96,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,201,93,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,199,98,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,199,92,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,203,95,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,201,96,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,201,93,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,199,98,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,199,92,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 	end;
 OnMobDead:
 	if ('nyr_main_step != 11)
@@ -1836,7 +1836,7 @@ OnTouch:
 		disablenpc instance_npcname("舒朗#dms301");
 		disablenpc instance_npcname("巴戈特#dms201");
 		mes "[心猎者]";
-		mes "真希望苏阿德也在这里。真希望我曾经能帮到他。";
+		mes "真希望苏亚德也在这里。真希望我曾经能帮到他。";
 		next;
 		mes "[心猎者]";
 		mes "你好，让我正式介绍一下。我们是心猎者，而你们马上就要被埋在这里。";
@@ -2022,11 +2022,11 @@ OnStart:
 	monster 'map_2nyr$,120,206,"心猎者",21308,1, .@label$;	// EP18_MD_HEARTHUNTER_A
 	monster 'map_2nyr$,119,207,"心猎者",21308,1, .@label$;	// EP18_MD_HEARTHUNTER_A
 	monster 'map_2nyr$,111,207,"心猎者",21308,1, .@label$;	// EP18_MD_HEARTHUNTER_A
-	monster 'map_2nyr$,113,203,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,118,203,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,112,201,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,121,203,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
-	monster 'map_2nyr$,121,201,"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,113,203,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,118,203,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,112,201,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,121,203,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+	monster 'map_2nyr$,121,201,"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 	end;
 OnMobDead:
 	if ('nyr_main_step != 14)
@@ -2173,8 +2173,8 @@ OnTouch:
 		mes "不对劲。人们变得太激进了。";
 		next;
 		mes "[米丽娅姆]";
-		mes "情况不妙。我需要找苏阿德，但副手在哪里？";
-		npctalk "谁去找苏阿德，情况紧急！", instance_npcname("米丽娅姆#dms801");
+		mes "情况不妙。我需要找苏亚德，但副手在哪里？";
+		npctalk "谁去找苏亚德，情况紧急！", instance_npcname("米丽娅姆#dms801");
 		next;
 		enablenpc instance_npcname("尼伦#dms201");
 		enablenpc instance_npcname("泽德#dms101");
@@ -2192,13 +2192,13 @@ OnTouch:
 			disablenpc instance_npcname("#mstep10");
 			disablenpc instance_npcname("#mstep11");
 			disablenpc instance_npcname("#dmswch02");
-			enablenpc instance_npcname("苏阿德#dms102");
-			npctalk "怎么回事？你说你急着找到了它？", instance_npcname("苏阿德#dms102");
+			enablenpc instance_npcname("苏亚德#dms102");
+			npctalk "怎么回事？你说你急着找到了它？", instance_npcname("苏亚德#dms102");
 		}
 		cutin "ep18_suad_04.png",0;
-		mes "[苏阿德]";
+		mes "[苏亚德]";
 		mes "怎么回事？你说情况紧急。";
-		npctalk "怎么回事？你说情况紧急。", instance_npcname("苏阿德#dms102");
+		npctalk "怎么回事？你说情况紧急。", instance_npcname("苏亚德#dms102");
 		close3;
 	}
 	if ('nyr_main_step == 21) {
@@ -2232,7 +2232,7 @@ OnMove4:
 //------------------------------------------------------------
 // Step 10
 //------------------------------------------------------------
-1@nyr,127,163,5	script	苏阿德#dms102	4_EP18_SUAD,{
+1@nyr,127,163,5	script	苏亚德#dms102	4_EP18_SUAD,{
 	if (is_party_leader() == false) {
 		npctalk "真希望队长能把我当代表告诉我。";
 		end;
@@ -2240,7 +2240,7 @@ OnMove4:
 	if ('nyr_main_step != 19)
 		end;
 	cutin "ep18_suad_04.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "怎么回事？";
 	next;
 	cutin "ep18_miriam_03.png",1;
@@ -2248,15 +2248,15 @@ OnMove4:
 	mes "我们中间有内奸。";
 	next;
 	cutin "ep18_suad_04.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "内奸？在哪里？";
 	next;
 	cutin "ep18_miriam_03.png",1;
 	mes "[米丽娅姆]";
-	mes "苏阿德，先给我们介绍这里的情况。听起来我们快要暴动了，对吗？哦，你好，泽德祭司。";
+	mes "苏亚德，先给我们介绍这里的情况。听起来我们快要暴动了，对吗？哦，你好，泽德祭司。";
 	next;
 	cutin "ep18_suad_02.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "大祭司为什么在这里？";
 	next;
 	cutin "ra_gman2.bmp",2;
@@ -2265,14 +2265,14 @@ OnMove4:
 	next;
 	cutin "ep18_miriam_03.png",1;
 	mes "[米丽娅姆]";
-	mes "那是有原因的，不过先谈谈情况吧，苏阿德？";
+	mes "那是有原因的，不过先谈谈情况吧，苏亚德？";
 	next;
 	cutin "ep18_suad_03.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "情况很糟，正在失控。神殿正严厉打压我们。他们建议我们解散。时间不多了，我们正在准备撤离。";
 	next;
 	cutin "ep18_suad_01.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "你跟随的那些人怎么了？";
 	next;
 	select( "让我解释。" );
@@ -2284,7 +2284,7 @@ OnMove4:
 	mes "我的父亲和外国势力合谋分裂阿鲁纳佩尔兹并压迫原住民……";
 	next;
 	cutin "ep18_suad_04.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "我们中间有内奸……但谁是冒牌者？";
 	next;
 	cutin "ep18_miriam_03.png",1;
@@ -2292,7 +2292,7 @@ OnMove4:
 	mes "与其说他们背叛，不如说他们躲起来了。他们一开始就不是我们的人。";
 	next;
 	cutin "ep18_suad_02.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "所以从一开始我们就差点陷入有组织的暴动？";
 	next;
 	cutin "ra_gwoman.bmp",2;
@@ -2301,7 +2301,7 @@ OnMove4:
 	next;
 	mapannounce 'map_2nyr$, "嘟——", bc_map, 0xFF0000;
 	cutin "ep18_suad_04.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "那是什么哨声？不是我们的信号。";
 	next;
 	setnpcdisplay( instance_npcname("神殿守卫#dms802"), 21308 );	// EP18_MD_HEARTHUNTER_A
@@ -2366,7 +2366,7 @@ OnMove4:
 	mes "啊……我来晚了……！";
 	next;
 	cutin "ep18_suad_02.png",0;
-	mes "[苏阿德]";
+	mes "[苏亚德]";
 	mes "我们必须阻止强行攻击者。";
 	next;
 	cutin "ra_gwoman.bmp",2;
@@ -2382,7 +2382,7 @@ OnMove4:
 1@nyr,1,1,0	script	nyr_step_10	-1,{
 	end;
 OnStart:
-	disablenpc instance_npcname("苏阿德#dms102");
+	disablenpc instance_npcname("苏亚德#dms102");
 	disablenpc instance_npcname("米丽娅姆#dms801");
 	disablenpc instance_npcname("尼伦#dms201");
 	disablenpc instance_npcname("泽德#dms101");
@@ -2672,7 +2672,7 @@ S_Call:	// basic routine to display the message and spawn the monsters
 	areamonster 'map_1nyr$, .@x-2, .@y-2, .@x+2, .@y+2, "叛变守卫",21311,1, .@label$;	// EP18_MD_GUARD_B
 	for ( .@i = 3; .@i < getargcount(); .@i += 2 ) {
 		if (rand(2))
-			monster 'map_1nyr$, getarg(.@i), getarg(.@i+1),"神殿守卫",21310,1, .@label$;	// EP18_MD_GUARD_A
+			monster 'map_1nyr$, getarg(.@i), getarg(.@i+1),"神殿护卫",21310,1, .@label$;	// EP18_MD_GUARD_A
 		else
 			monster 'map_1nyr$, getarg(.@i), getarg(.@i+1),"叛变守卫",21311,1, .@label$;	// EP18_MD_GUARD_B
 	}

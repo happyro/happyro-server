@@ -2557,7 +2557,7 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		end;
 	} else if (job_kagero == 8) {
 		.@item = (isbegin_quest(5143) == 2) ? 13075 : 13311;
-		callsub L_CheckJobReward;
+		callsub L_CheckJobReward,.@item;
 		cutin "job_ko02",2;
 		mes "[吉恩首领]";
 		mes "看来你已经处理了目标。嗯。";
@@ -2653,7 +2653,7 @@ job_ko,148,46,4	script	Leader Gion#ko2	588,{
 		mes "[吉恩首领]";
 		mes "你只需向前看，永远不要回头。";
 		next;
-		callsub L_CheckJobReward;
+		callsub L_CheckJobReward,.@item;
 		jobchange (Sex == SEX_MALE)?Job_Kagerou:Job_Oboro;
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
@@ -2693,7 +2693,7 @@ L_CheckJobReward:
 		cutin "",255;
 		end;
 	}
-	if (!checkweight(.@item,1)) {
+	if (!checkweight(getarg(0),1)) {
 		mes "[吉恩首领]";
 		mes "请先为转职赠送的武器预留足够的负重和物品栏空间。";
 		close2;

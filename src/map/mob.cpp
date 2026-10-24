@@ -3370,10 +3370,11 @@ int32 mob_dead(mob_data *md, block_list *src, int32 type)
 
 			//A Rare Drop Global Announce by Lupus
 			if (first_sd != nullptr && entry->rate <= battle_config.rare_drop_announce) {
-				char message[128];
-				sprintf(message, msg_txt(nullptr, 541), first_sd->status.name, md->name, it->ename.c_str(), (float)drop_rate / 100);
+				StringBuf message;
+				StringBuf_Init(&message);
+				StringBuf_Printf(&message, msg_txt(nullptr, 541), first_sd->status.name, md->name, it->ename.c_str(), (float)drop_rate / 100);
 				//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
-				intif_broadcast(message, strlen(message) + 1, BC_DEFAULT);
+				intif_broadcast(StringBuf_Value(&message), StringBuf_Length(&message) + 1, BC_DEFAULT);
 			}
 			// Announce first, or else ditem will be freed. [Lance]
 			// By popular demand, use base drop rate for autoloot code. [Skotlex]
@@ -3535,10 +3536,11 @@ int32 mob_dead(mob_data *md, block_list *src, int32 type)
 
 				//A Rare MVP Drop Global Announce by Lupus
 				if(temp<=battle_config.rare_drop_announce) {
-					char message[128];
-					sprintf (message, msg_txt(nullptr,541), mvp_sd->status.name, md->name, i_data->ename.c_str(), temp/100.);
+					StringBuf message;
+					StringBuf_Init(&message);
+					StringBuf_Printf(&message, msg_txt(nullptr,541), mvp_sd->status.name, md->name, i_data->ename.c_str(), temp/100.);
 					//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
-					intif_broadcast(message,strlen(message)+1,BC_DEFAULT);
+					intif_broadcast(StringBuf_Value(&message), StringBuf_Length(&message) + 1, BC_DEFAULT);
 				}
 
 				mob_setdropitem_option( item, entry );
