@@ -47,7 +47,7 @@
 //= 3.8 Another 'unofficial fix'. Player can't change job if time out after the necklace is deleted. [Atemo]
 //============================================================
 
-in_moc_16,19,33,1	script	Guildsman#asn	55,{
+in_moc_16,19,33,1	script	工会员#asn::Guildsman#asn	55,{
 	if (Upper == 1) {
 		mes "[凶猛的家伙]";
 		mes "嗯？你……？";
@@ -290,7 +290,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 	}
 }
 
-in_moc_16,25,90,1	script	Guildsman#ASN2	730,2,2,{
+in_moc_16,25,90,1	script	工会相关人员#ASN2::Guildsman#ASN2	730,2,2,{
 	mes "[刺客“凯”]";
 	mes "呃？！";
 	emotion ET_SURPRISE;
@@ -1438,32 +1438,32 @@ OnMyMobDead:
 	end;
 }
 
-in_moc_16,89,98,1	script	Thomas#ASNTEST	118,5,1,{
+in_moc_16,89,98,1	script	丹驖#ASNTEST::Thomas#ASNTEST	118,5,1,{
 	end;
 
 OnTouch_:
 	if (getvariableofnpc(.Phase,"Beholder#ASNTEST") != 2 || getvariableofnpc(.Owner,"Beholder#ASNTEST") != getcharid(0)) end;
 	.@round = getvariableofnpc(.Round,"Beholder#ASNTEST");
 	if (ASSIN_Q == 4) {
-		mes "[托马斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "该死……！你看起来很痛苦。 ^666666*叹气*^000000 等我一下，我试着恢复你的 HP 和 SP……";
 		percentheal 100,100;
 		next;
-		mes "[托马斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看起来你很辛苦。 你要么太拼命，要么不够努力，孩子。";
 		next;
 		switch(select("我要再试一次！:我……我放弃！")) {
 		case 1:
-			mes "[托马斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，好吧。";
 			mes "祝你好运。";
 			close;
 		case 2:
-			mes "[托马斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咦……";
 			mes "退出测试，是吗？嗯，看来你不想再浪费我们的时间。";
 			next;
-			mes "[托马斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，对了，别忘了在城里保存复活点。";
 			close2;
 			if (getvariableofnpc(.Phase,"Beholder#ASNTEST") != 2 || getvariableofnpc(.Owner,"Beholder#ASNTEST") != getcharid(0) || .@round != getvariableofnpc(.Round,"Beholder#ASNTEST")) end;
@@ -1477,16 +1477,16 @@ OnTouch_:
 			end;
 		}
 	}
-	mes "[托马斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，我是托马斯，负责测试你使用隐匿技能的能力。 你觉得自己能做到吗？";
 	next;
-	mes "[托马斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "听着。测试中你不能杀死任何怪物。 你的目标是到达房间另一侧的‘巴卡迪’。";
 	next;
-	mes "[托马斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "简单来说，就是到达房间另一侧，在不杀死任何怪物的情况下见到‘巴卡迪’。明白吗？";
 	next;
-	mes "[托马斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你逃跑、流鼻血昏倒之类的，我就判你失败。 废话少说，让我看看你的本事。";
 	close2;
 	if (getvariableofnpc(.Phase,"Beholder#ASNTEST") != 2 || getvariableofnpc(.Owner,"Beholder#ASNTEST") != getcharid(0) || .@round != getvariableofnpc(.Round,"Beholder#ASNTEST")) end;
@@ -1525,7 +1525,7 @@ OnTouch_:
 
 }
 
-in_moc_16,87,48,2	script	Barcardi#ASN	725,2,2,{
+in_moc_16,87,48,2	script	巴尔卡帝#ASN::Barcardi#ASN	725,2,2,{
 	end;
 OnTouch_:
 	if (getvariableofnpc(.Phase,"Beholder#ASNTEST") != 2 || getvariableofnpc(.Owner,"Beholder#ASNTEST") != getcharid(0)) end;
@@ -1574,7 +1574,7 @@ OnCast:
 	end;
 }
 
-in_moc_16,149,80,4	script	Guildmaster#ASN2	106,1,1,{
+in_moc_16,149,80,4	script	工会长#ASN2::Guildmaster#ASN2	106,1,1,{
 	end;
 OnTouch_:
 	if (checkre(0))
@@ -2029,8 +2029,8 @@ OnTouch_:
 	}
 }
 
-in_moc_16,186,81,1	script	Master Assist	55,1,1,{
-	mes "[助理盖尔·马鲁比茨]";
+in_moc_16,186,81,1	script	工会长 补助官::Master Assist	55,1,1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉，我不负责转职。请按公会长所说的去找他。";
 	close;
 }
@@ -2096,10 +2096,10 @@ OnInit:
 	disablenpc();
 	end;
 }
-in_moc_16,156,87,1	duplicate(#moc_assin_dup)	[Huey]	55
-in_moc_16,156,85,1	duplicate(#moc_assin_dup)	[Khai]	730
-in_moc_16,156,83,1	duplicate(#moc_assin_dup)	[The Anonymous One]	106
-in_moc_16,156,81,2	duplicate(#moc_assin_dup)	[Barcardi]	725
-in_moc_16,156,79,1	duplicate(#moc_assin_dup)	[Beholder]	118
-in_moc_16,156,77,1	duplicate(#moc_assin_dup)	[Thomas]	118
-in_moc_16,156,75,1	duplicate(#moc_assin_dup)	[Gayle Maroubitz]	55
+in_moc_16,156,87,1	duplicate(#moc_assin_dup)	[修伊]::[Huey]	55
+in_moc_16,156,85,1	duplicate(#moc_assin_dup)	[卡伊]::[Khai]	730
+in_moc_16,156,83,1	duplicate(#moc_assin_dup)	[无名者]::[The Anonymous One]	106
+in_moc_16,156,81,2	duplicate(#moc_assin_dup)	[巴尔卡帝]::[Barcardi]	725
+in_moc_16,156,79,1	duplicate(#moc_assin_dup)	[注视者]::[Beholder]	118
+in_moc_16,156,77,1	duplicate(#moc_assin_dup)	[丹驖]::[Thomas]	118
+in_moc_16,156,75,1	duplicate(#moc_assin_dup)	[佳伊 马洛逼斯]::[Gayle Maroubitz]	55

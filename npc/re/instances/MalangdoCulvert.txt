@@ -145,7 +145,7 @@ L_GiveQuest:
 	close;
 }
 
-mal_in01,172,26,2	script	马德卡#mal::Madeca#mal	544,{
+mal_in01,172,26,2	script	马黛卡#mal::Madeca#mal	544,{
 	if (checkweight(1201,1) == 0) {
 		mes "你携带的物品种类太多。减少物品后再继续。";
 		close;
@@ -155,34 +155,34 @@ mal_in01,172,26,2	script	马德卡#mal::Madeca#mal	544,{
 		close;
 	}
 	if (BaseLevel < 90) {
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咔啊啊啊！！";
 		mes "来点可以煮或烤的坏海鲜吧！";
 		next;
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁？你真是个蹒跚者。连海藻都能杀了你！";
 		close;
 	}
-	mes "[马德卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦？";
 	mes "你就是完成我哥哥阿尔波 委托的人。那可是艰苦的工作！";
 	next;
 	set .@i, select("你在这里做什么？:普通下水道每日服务报酬:困难下水道每日服务报酬:普通下水道每周服务报酬:困难下水道每周服务报酬")-1;
 	if (.@i == 0) {
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是来帮助哥哥 阿尔波的！";
 		next;
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们为把坏海鲜制成淤泥的人类提供珍贵材料！";
 		next;
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "每日服务的报酬是 A～B 级硬币，每周服务的报酬是珍贵的海神之怒。";
 		next;
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你完成哥哥 阿尔波的委托，我会经常见到你。我们保持联系吧！";
 		close;
 	}
-	mes "[马德卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "过期委托无法发放报酬，让我检查你的委托是否过期。";
 	next;
 	specialeffect2 EF_SPHERE;
@@ -234,11 +234,11 @@ mal_in01,172,26,2	script	马德卡#mal::Madeca#mal	544,{
 		}
 		break;
 	default:
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "出了问题。请重新检查！";
 		close;
 	}
-	mes "[马德卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我没看到完成的任务！";
 	close;
 
@@ -247,14 +247,14 @@ L_EraseQuest:
 		if (checkquest(getarg(.@j)) > -1)
 			erasequest getarg(.@j);
 	}
-	mes "[马德卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃，抱歉。你超过了时限，所以无法领取报酬。";
 	close;
 
 // callsub L_CheckQuest,<quest ID>,<monster>,<reward item ID>,<reward item amount>;
 L_CheckQuest:
 	if (checkquest(getarg(0),HUNTING) == 2) {
-		mes "[马德卡]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经惩罚了 ^0000ff"+getarg(1)+"^000000！";
 		mes "这是你的报酬！";
 		erasequest getarg(0);
@@ -267,12 +267,12 @@ L_CheckQuest:
 
 // Instance Creation :: pump
 //============================================================
-mal_in01,160,34,4	script	清洁工米辛::Missing, the Cleaner	545,{
+mal_in01,160,34,4	script	清洁员 小草::Missing, the Cleaner	545,{
 	if (BaseLevel < 90) {
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你在和我说话吗？！";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不知道你为何来到这里，但你不能进入！";
 		mes "这是 托马斯 的命令……";
 		next;
@@ -280,70 +280,70 @@ mal_in01,160,34,4	script	清洁工米辛::Missing, the Cleaner	545,{
 		close;
 	}
 	if (in_canal_n == 0) {
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "（发抖）";
 		next;
 		mes "^660066这只猫看起来状态很差，正在轻微发抖。^000000";
 		next;
 		if(select("摸摸猫:你还好吗？") == 1) {
-			mes "[清洁工米辛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你在和我说话吗？！";
 			next;
 			mes "^660066一只发抖的猫抬头看着你。^000000";
 			close;
 		}
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿嚏！";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "清理下水道时遇到了很多问题。";
 		mes "但猫总得做这件事……";
 		next;
 		select("你在清理哪座下水道？");
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "外来者可能觉得这里陌生，";
 		mes "但这里其实用来保存纪念品和奢侈品。";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这座岛发生剧烈震动后，东西开始从这里泄漏。";
 		mes "所以我成了清洁工，尽管以前是经理。";
 		next;
 		mes "^660066这只猫看起来哭过……^000000";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "沿这条路可以到地下室的下水道。";
 		mes "那里有很多伤害我的坏家伙。";
 		mes "我厌倦了一天打那么多次架！";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你碰到我的毛了！";
 		mes "我的毛都要掉光了……都是那些家伙害的～";
 		next;
 		mes "^660066你这才注意到猫身上有些地方没有毛。^000000";
 		next;
 		select("你为什么不辞职！");
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我还是得谋生，对吧？";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有时我能得到幸运箱，";
 		mes "或者更好，得到罐头……";
 		next;
 		if(select("好，干杯！:如果可以，我会帮忙……") == 1) {
-			mes "[清洁工米辛]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你。我要回去倒水了！";
 			close;
 		}
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "（压低声音）";
 		mes "如果你真的想帮忙，就靠近些！";
 		next;
 		select("（靠近一些）");
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是所有人都能在这里当助手。";
 		mes "但现在我也没得选……";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你想下去，让我确认密码。";
 		next;
 		mes "^660066猫为你潦草写下一张密码备忘录。^000000";
@@ -351,20 +351,20 @@ mal_in01,160,34,4	script	清洁工米辛::Missing, the Cleaner	545,{
 		select("打开备忘录。");
 		mes "^660000阿拉甘侮辱了我。^000000";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须先组建或加入队伍才能进入！";
 		mes "密码由队伍队长提供！";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另外，你必须携带海神的庇护。";
 		next;
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别忘了！没有海神的庇护我不会开门！";
 		set in_canal_n,1;
 		close;
 	}
 	if (rentalcountitem(6436) == 0) {
-		mes "[清洁工米辛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看起来没有海神的庇护。我现在不能开门！";
 		close;
 	}
@@ -378,12 +378,12 @@ mal_in01,160,34,4	script	清洁工米辛::Missing, the Cleaner	545,{
 	set .@playtime, checkquest(12254,PLAYTIME);
 	if (.@playtime == -1) {
 		if (is_party_leader() == true) {
-			mes "[清洁工米辛]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？怎么了？如果你是队长就告诉我密码！";
 			next;
 			switch(select("不……没什么。:阿拉甘侮辱了我。:进入下水道。")) {
 			case 1:
-				mes "[清洁工米辛]";
+				mes "[" + strnpcinfo(1) + "]";
 		mes "真是个新手。";
 				close;
 			case 2:

@@ -15,8 +15,8 @@
 //= 1.2 Added use of F_HasEdenGroupMark function. [Ragno]
 //============================================================
 
-moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
-	mes "[旋律·杰克]";
+moc_para01,44,81,3	script	小麦-杰克#1::Melody-Jack#1	4_M_MELODY,8,8,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "你到底是谁？滚出去！";
 		mes "我只和基础等级^FF0000121～130^000000的冒险者说话。";
@@ -27,27 +27,27 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 		mes "你收到了那个小女孩的委托？就是那边那个矮小、话多又半裸的女孩？";
 		next;
 		select("说是。", "避免回答。");
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，我不在乎。只要你不是因为迷路才走进这房间就行。我需要任何人，唯独不需要那种蠢货。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听我说，我会给你一个诱人的提议。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是^ff0000梅洛迪·杰克！^000000拥有最强短剑技巧的男人。";
 		next;
 		mes "梅洛迪·杰克朝你的方向挥了挥短剑。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我有资格执行秘密任务。而现在你走运了。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来我必须放弃一份委托、一次交易和一个承诺，现在无法亲自接下它。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "接下我的任务并完成艾古的委托。我会补偿你。";
 		next;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这笔交易要对艾古保密。如果你不是有九条命，就开始吧。";
 		para_120lv01 = 2;
 	}
@@ -55,47 +55,47 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 		mes "......";
 		next;
 		if (select( "给我看看委托！", "闲聊。" ) == 2) {
-			mes "[旋律·杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么？你对我感兴趣？";
 			next;
 			switch( select( "我感兴趣。", "关于委托", "关于交易", "承诺是什么？" ) ) {
-				mes "[旋律·杰克]";
+				mes "[" + strnpcinfo(1) + "]";
 			case 1:
 				mes "那就走开。我对你没兴趣。";
 				close;
 			case 2:
 				mes "因为我的信誉不好，我无法停止。这让我很疯狂。";
 				next;
-				mes "[旋律·杰克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "能和你这样的冒险者签订双重合同，我很幸运。他们不在我们的合同范围内。";
 				close;
 			case 3:
 				mes "老实说，我认为没有人值得信任。信任和承诺都很可笑。";
 				next;
-				mes "[旋律·杰克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我只相信自己和交易。信任或承诺一旦破裂就毫无意义，但交易破裂会带来补偿或复仇。";
 				close;
 			case 4:
 				mes "这些孩子是谁？";
 				next;
-				mes "[旋律·杰克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我出来不是为了别的，只是应该履行职责。我不欠任何人什么。";
 				close;
 			}
 		}
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (BaseLevel < 121)
 			mes "哦，我弄错了。你不是我要找的等级冒险者。我寻找的是基础等级121到130的冒险者。";
 		else if (BaseLevel < 131) {
 			mes "我不喜欢这样，但交易就是交易。清除艾古要求搜索地点的魔物后再回来。";
 			next;
 			switch( select( "塔纳托斯之塔相关", "拉赫神殿相关", "无名岛相关", "深渊湖相关" ) ) {
-				mes "[旋律·杰克]";
+				mes "[" + strnpcinfo(1) + "]";
 			case 1:
 				mes "塔纳托斯之塔是最令人头疼的地方。别担心报酬，我说到做到。";
 				next;
 				switch( select( "复仇女伯爵", "慰藉女士", "庇护女王", "哨兵女士" ) ) {
-					mes "[旋律·杰克]";
+					mes "[" + strnpcinfo(1) + "]";
 				case 1:
 					if (checkquest(13120,PLAYTIME) == 0)
 						mes "我想今天的演出结束了。可我无法放松，万一魔物突然出现怎么办？";
@@ -103,11 +103,11 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "신벌의대행자카드",3;  //retribution_card
 						mes "我不喜欢那个生物，并不是因为艾古讨厌它们……你竟敢这样？到底是谁在惩罚谁？";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "这些是世界上最危险的生物。这些生物不值得任何正义。";
 						next;
 						cutin "",255;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "当然可以相信我，因为我相信真正的交易。让我们清除这些生物。";
 					}
 					else if (checkquest(13119,HUNTING) == 2) {
@@ -118,12 +118,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "신벌의대행자카드",3;  //retribution_card
 						mes "如你所知，塔纳托斯之塔是艾古最在意的地方。在某些方面，它也是最危险的地方。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "请清除魔物帮助艾古。外行只会把事情弄得一团糟。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "它们一定很多。别忘了保守秘密。";
 							callsub S_Quest,13120,13119;
 						}
@@ -136,11 +136,11 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "위로하는자",3;  //solace_card
 						mes "那座建筑似乎不是人类建造的，里面总是播放着奇怪的旋律。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "不要沉浸在旋律的情绪中，因为那可能是你听到的最后一首歌。";
 						next;
 						cutin "",255;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "记住，世上有像刀一样锋利的奇怪音乐，足以杀人。";
 					}
 					else if (checkquest(13121,HUNTING) == 2) {
@@ -151,12 +151,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "위로하는자",3;  //solace_card
 						mes "美妙的旋律。也许因为演奏者是那些生物，所以听起来才美。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "不过那是另一个障碍。交易永远优先于个人兴趣。所以清除慰藉女士。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我们只是履行交易的一方。现在清除那些生物。";
 							callsub S_Quest,13122,13121;
 						}
@@ -169,10 +169,10 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "안식을주는자카드",3;  //shelter_card
 						mes "你知道变成魔物的天使吗？我不知道它是否真是天使，但外表像天使。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "无论是天使还是生物，都不要因美丽的外表而慌张。你应该完成工作。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "万物皆有时。也许你提出这份请求，是因为时机已到。";
 						cutin "",255;
 					}
@@ -184,12 +184,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "안식을주는자카드",3;  //shelter_card
 						mes "你知道变成魔物的天使吗？我不知道它是否真是天使，但外表像天使。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "不管它是真天使还是普通生物，我都不在乎。清除庇护女王。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "凋零的花朵会随风雨落下。这就是你要做的事。";
 							emotion ET_BEST;
 							callsub S_Quest,13124,13123;
@@ -203,10 +203,10 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "감시하는자카드",3;  //observation_card
 						mes "踏入塔纳托斯之塔上层后，你可能已经感到它们在注视。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "哨兵女士不好对付，务必做好战斗准备。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "今天是适合赴死的好日子。死的是你还是它们，就看你的努力了。";
 						cutin "",255;
 					}
@@ -218,12 +218,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "감시하는자카드",3;  //observation_card
 						mes "如果艾古提出委托，你就会遇到它们。哨兵女士。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "希望它们也被清除，这样她就能顺利提出这份委托。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "为了委托而提出的委托……随便吧。";
 							callsub S_Quest,13126,13125;
 						}
@@ -234,7 +234,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 				mes "艾古的冒险指向拉赫神殿。好吧……艾古寻找的^FF0000那个人^000000出现在任何地方都不奇怪。";
 				next;
 				switch( select( "凡贝尔克和依莎", "霍德雷姆林", "阿加布和艾希欧" ) ) {
-					mes "[旋律·杰克]";
+					mes "[" + strnpcinfo(1) + "]";
 				case 1:
 					if (checkquest(13128,PLAYTIME) == 0)
 						mes "你可以休息一天。你已经清除得够多了，但狂热正在增加。";
@@ -242,10 +242,10 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "이실라카드",3;  //isilla_card
 						mes "自以为正确的人最危险。这个世界充满了蠢货。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "他们最终会强迫别人相信自己的信念。让我们清除凡贝尔克和依莎。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "这本来与我无关。但这次不同，小男孩可能有危险，所以赶快清除这些魔物。";
 						cutin "",255;
 					}
@@ -257,12 +257,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "판베르크카드",3;  //vanberk_card
 						mes "拉赫神殿禁止普通人进入。你应该知道这一点。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "他们以为能在那里找到线索，但那里并不安全。你应该提前清除凡贝尔克和依莎。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "尽快全部清除。";
 							emotion ET_SPARK;
 							callsub S_Quest,13128,13127;
@@ -276,10 +276,10 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "호드렘린카드",3;  //hodremlin_card
 						mes "冰冷的牙齿可能正在逼近。它的牙齿比你的手更快。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "拉赫神殿的危险可能从四面八方逼近。你要小心这个家伙。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "专心做好手头的工作就够了。";
 						cutin "",255;
 					}
@@ -291,12 +291,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "호드렘린카드",3;  //hodremlin_card
 						mes "狂热者是个问题。更严重的是，他们会突然出现。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "毫不犹豫地消灭^FF0000霍德雷姆林^000000，因为它们非常危险。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "它们需要比头脑更快的双手。我不担心，但你要小心。";
 							callsub S_Quest,13130,13129;
 						}
@@ -309,10 +309,10 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "에키오카드",3;  //echio_card
 						mes "这里充满疯狂。我只觉得恶心。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "这是我的感受，但你可能会喜欢。我敢肯定^FF0000阿加布^000000和^FF0000艾希欧^000000不会喜欢你。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "它们会主动冲向你。不要犹豫，专心完成任务。";
 						cutin "",255;
 					}
@@ -324,12 +324,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "아가브카드",3;  //agav_card
 						mes "拉赫神殿内部确实越来越危险，但艾古不会在意我们无法确认的事情。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "没那么糟。但有人需要帮助。让我们清除拉赫神殿内的^FF0000阿加布^000000和^FF0000艾希欧^000000。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我不能离开，就此告别。";
 							callsub S_Quest,13132,13131;
 						}
@@ -340,7 +340,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 				mes "普通冒险者并不了解无名岛。艾古也对那里感兴趣。";
 				next;
 				switch( select( "猎杀破烂僵尸", "猎杀僵尸屠杀者", "猎杀女妖" ) ) {
-					mes "[旋律·杰克]";
+					mes "[" + strnpcinfo(1) + "]";
 				case 1:
 					if (checkquest(13134,PLAYTIME) == 0)
 						mes "破烂僵尸数量减少了。现在是暂时推进艾古委托的好时机。";
@@ -348,7 +348,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "누더기좀비카드",3;  //ragged_zombie_card
 						mes "在无名岛上什么都很容易遇到。真无聊。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "消灭它，帮助艾古和其他冒险者。";
 						cutin "",255;
 					}
@@ -360,12 +360,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "누더기좀비카드",3;  //ragged_zombie_card
 						mes "死人会在夜里回来。回来这个说法真奇怪。别废话了。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "清除^FF0000破烂僵尸^000000。它们到处出现，很容易。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "洗个^FF0000澡^000000，你就不会再有味道了。";
 							callsub S_Quest,13134,13133;
 						}
@@ -378,7 +378,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "좀비슬러터카드",3;  //zombie_slaughter_card
 						mes "对我来说进入无名岛也不容易。我没那么有耐心。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "但冒险者应该挑战一次。^FF0000僵尸屠杀者^000000值得清除。";
 						cutin "",255;
 					}
@@ -390,12 +390,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "좀비슬러터카드",3;  //zombie_slaughter_card
 						mes "它们不像破烂僵尸那样危险，因为它们挥舞着锋利的东西。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "请清除^FF0000僵尸屠杀者^000000。小心避开它们的刀刃。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你还有很多事要处理，我就不多说了。清除它们。";
 							callsub S_Quest,13136,13135;
 						}
@@ -408,7 +408,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "밴시카드",3;  //banshee_card
 						mes "冒险时有时会遇到不受欢迎的事物，无论是魔物还是同伴。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "这份委托对我来说就是这样。我只是不喜欢这些生物，也不喜欢提出委托的理由。";
 						cutin "",255;
 					}
@@ -420,12 +420,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "밴시카드",3;  //banshee_card
 						mes "请清除无名岛内的^FF0000女妖^000000。别说不，你知道这也是为了艾古。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "女妖和艾古都很烦人。我才不会做这份委托，但你不一样，对吧？";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "看吧？有人需要这份委托。清除无名岛的^FF0000女妖^000000。";
 							callsub S_Quest,13138,13137;
 						}
@@ -436,14 +436,14 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 				mes "深渊湖有一名小女孩发布的委托。她非常勤奋。";
 				next;
 				if (select( "清除菲鲁斯和贝鲁", "清除金色和蓝色艾西拉" ) == 1) {
-					mes "[旋律·杰克]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (checkquest(13140,PLAYTIME) == 0)
 						mes "绿色龙和红色龙让我想起西瓜。";
 					else if (checkquest(13139,HUNTING) == 1) {
 						cutin "레드페러스카드",3;  //ferus_card
 						mes "深渊湖……你知道怎么进去吗？知道这个情报的你，应该不是普通冒险者吧？";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "以防万一，我给你一个提示：钥匙和入口就在附近。";
 						cutin "",255;
 					}
@@ -455,26 +455,26 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "그린페러스카드",3;  //ferus__card
 						mes "深渊湖内外到处都是龙。龙并不特别，但数量太多了。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "菲鲁斯和贝鲁哪个更危险？我不知道。把它们都清除。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "无论绿色还是红色都不算麻烦。但不管怎样，清除全部后再回来。";
 							callsub S_Quest,13140,13139;
 						}
 					}
 				}
 				else {
-					mes "[旋律·杰克]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (checkquest(13142,PLAYTIME) == 0)
 						mes "休息一下。我们得再次去制服艾西拉龙。";
 					else if (checkquest(13141,HUNTING) == 1) {
 						cutin "블루어시더스카드",3;  //acidus__card
 						mes "深渊湖并不近，但值得一去。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "严格来说这是训练，但你就当是在帮助别人吧。会有奖励。";
 						cutin "",255;
 					}
@@ -486,12 +486,12 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 						cutin "골드어시더스",3;  //acidus_card
 						mes "深渊湖里有一座住着龙的洞窟。龙太多了，而且会飞的家伙很烦。";
 						next;
-						mes "[旋律·杰克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "尽你所能制服它们。别在意颜色，因为它们都要被清除。";
 						next;
 						cutin "",255;
 						if (select( "接受委托。", "停止。" ) == 1) {
-							mes "[旋律·杰克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "在深渊湖最后一层制服金色和蓝色艾西拉魔物。";
 							callsub S_Quest,13142,13141;
 						}
@@ -516,7 +516,7 @@ moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
 				13137,"女妖",
 				13139,"贝勒斯 ",
 				13141,"俄希托斯";
-			mes "[旋律·杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不确定你是否找到了想找的东西……我不能再介入了。谢谢。";
 		}
 	}
@@ -539,11 +539,11 @@ S_Erasequest:
 			continue;
 		case 0:
 		case 1:
-			mes "[旋律·杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes getarg(.@i+1) +"尚未完成，我会从任务列表中移除这项委托。";
 			break;
 		case 2:
-			mes "[旋律·杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes getarg(.@i+1) +"已完成。一言为定，我需要领取报酬。";
 			getexp 900000,200000;
 			break;
@@ -555,15 +555,15 @@ S_Erasequest:
 OnTouch_:
 	if (para_120lv01 == 1) {
 		emotion ET_SURPRISE;
-		mes "[旋律·杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好！……等等？";
 		close;
 	}
 	end;
 }
 
-moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
-	mes "[艾古]";
+moc_para01,17,77,5	script	小可#1::Aigu#1	4_F_IU,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "哦，你为什么不是伊甸园成员？";
 		mes "我只和基础等级为 ^FF0000121-130^000000 的冒险者交谈。";
@@ -574,18 +574,18 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 		next;
 		if (select( "我可不友善。", "当然，我会帮忙。" ) == 1) {
 			cutin "igu05",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啧……我讨厌你。";
 		}
 		else {
 			cutin "igu03",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？我先自我介绍！我是^ff0000蒲公英乐队的首领艾古。^000000";
 			next;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我刚从当地演出回来。有个人我想见却找不到了，所以来伊甸园发布请求。";
 			next;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为没人负责、大家都很忙，我决定自己发布请求。谢谢你的帮助。";
 			para_120lv01 = 1;
 		}
@@ -596,24 +596,24 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 		next;
 		if (select( "你的请求是什么？", "聊点别的。" ) == 2) {
 			cutin "igu01",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "蒲公英乐队环游世界，把治愈的音乐传给人们。";
 			next;
 			cutin "igu02",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "其实我们的歌曲没有魔法，但我相信因为我的歌声，它们能帮助人们。";
 		}
 		else if (BaseLevel < 121) {
 			cutin "igu04",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你很难完成我的请求？现在看来，这只会让更多人迷路。通过旅行开阔视野如何？";
 		}
 		else if (BaseLevel < 131) {
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我为正在寻找的人和迷路的冒险者建了避难所。我想知道哪些冒险者来过那里。";
 			next;
 			switch( select( "搜索达纳托斯塔", "搜索拉赫圣域", "搜索无名岛", "搜索深渊湖" ) ) {
-				mes "[艾古]";
+				mes "[" + strnpcinfo(1) + "]";
 			case 1:
 				if (checkquest(13115,PLAYTIME) == 0)
 					mes "因为找到了某人的痕迹，还有希望，过一会儿我会再请你搜索。";
@@ -628,7 +628,7 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 					mes "危险的怪物和达纳托斯塔的高度很容易让冒险者迷路。但有些冒险者仍可能到达，请替我去确认。";
 					next;
 					if (select( "开始搜索。", "取消。" ) == 1) {
-						mes "[艾古]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "达纳托斯塔在施瓦茨瓦尔德共和国北部！离朱诺或毁葛不远。";
 						callsub S_Quest,13115,13107;// Thanatos Tower Search
 					}
@@ -647,12 +647,12 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 					cutin "igu03",2;
 					mes "拉赫神殿内部有一座圣域。一旦进入，就可能被困在那里。";
 					next;
-					mes "[艾古]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请看看中央区域二楼东南部是否有迷路冒险者的痕迹。";
 					next;
 					if (select( "开始搜索。", "停止。" ) == 1) {
 						cutin "igu05",2;
-						mes "[艾古]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "祝你搜索平安。";
 						callsub S_Quest,13116,13108;// Rachel holy ground Search
 					}
@@ -675,7 +675,7 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 					next;
 					if (select( "开始搜索。", "停止。" ) == 1) {
 						cutin "igu01",2;
-						mes "[艾古]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "请你搜索无名岛修道院地下 1 层。除非你自愿，否则我不能让你冒这个险。";
 						callsub S_Quest,13117,13109;// Unknown island Search
 					}
@@ -696,11 +696,11 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 				else {
 					mes "我建议仔细搜索深渊湖中央的洞穴。";
 					next;
-					mes "[艾古]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "没错！精彩冒险的结尾需要一条龙！听说湖底有怪物。";
 					next;
 					if (select( "开始搜索。", "停止。" ) == 1) {
-						mes "[艾古]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "深渊湖是前往毁葛最快的路线。请前往地下洞穴 3 层！";
 						callsub S_Quest,13118,13110;// Abyss Lake Search
 					}
@@ -709,7 +709,7 @@ moc_para01,17,77,5	script	Aigu#1	4_F_IU,{
 		}
 		else {
 			cutin "igu04",2;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在不能再给你搜索任务了！你需要适合当前等级的更难挑战。";
 			callsub S_Erasequest,
 				13107,"达纳托斯塔",
@@ -740,7 +740,7 @@ S_Erasequest:
 	for ( .@i = 0; .@i < .@total; .@i += 2 ) {
 		if (isbegin_quest(getarg(.@i))) {
 			next;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你正在进行"+ getarg(.@i+1) +"冒险任务。我来清除记录，这样你就能进行更好的任务。";
 			erasequest getarg(.@i);
 		}
@@ -751,7 +751,7 @@ S_Erasequest2:
 	for ( .@i = 0; .@i < .@total; .@i += 4 ) {
 		if (isbegin_quest(getarg(.@i))) {
 			next;
-			mes "[艾古]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你已经完成了"+ getarg(.@i+1) +"冒险。谢谢你帮助我完成任务！";
 			erasequest getarg(.@i);
 			getexp getarg(.@i+2),getarg(.@i+3);
@@ -772,12 +772,12 @@ S_Erasequest2:
 		mes "这里有某人来过的痕迹。";
 	close;
 }
-thana_step,167,292,5	duplicate(Trace of an adventurer)	Trace of an adventurer#1	4_TRACE
-ra_san05,265,69,5	duplicate(Trace of an adventurer)	Trace of an adventurer#2	4_TRACE
-abbey02,155,290,5	duplicate(Trace of an adventurer)	Trace of an adventurer#3	4_TRACE
-abyss_03,102,140,5	duplicate(Trace of an adventurer)	Trace of an adventurer#4	4_TRACE
+thana_step,167,292,5	duplicate(Trace of an adventurer)	冒险家的踪迹#1::Trace of an adventurer#1	4_TRACE
+ra_san05,265,69,5	duplicate(Trace of an adventurer)	冒险家的踪迹#2::Trace of an adventurer#2	4_TRACE
+abbey02,155,290,5	duplicate(Trace of an adventurer)	冒险家的踪迹#3::Trace of an adventurer#3	4_TRACE
+abyss_03,102,140,5	duplicate(Trace of an adventurer)	冒险家的踪迹#4::Trace of an adventurer#4	4_TRACE
 
-tha_t06,126,128,3	script	Suspicious Monster#1	4_DEVIRUCHI,{
+tha_t06,126,128,3	script	可疑的怪物#1::Suspicious Monster#1	4_DEVIRUCHI,{
 	mes "[伪装冒险家]";
 	mes "我只是在这个危险的地方工作，报酬是 5000 金币……你是接到伊甸园请求的冒险者吗？";
 	next;

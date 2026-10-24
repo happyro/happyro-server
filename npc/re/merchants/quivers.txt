@@ -22,20 +22,20 @@
 
 // Mora :: ep14_1_tre
 //============================================================
-mora,106,117,3	script	Quiver Maker#mora	4_M_RAFLE_GR,{
+mora,106,117,3	script	箭矢筒匠人#mora::Quiver Maker#mora	4_M_RAFLE_GR,{
 	if (checkweight(1201,1) == 0) {
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你携带的东西太多了。";
 		mes "清理一些背包空间再回来，我会告诉你有趣的事。";
 		close;
 	}
 	if (MaxWeight - Weight < 2000) {
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你似乎被这些东西累坏了。";
 		mes "清理一些背包空间再回来，我会告诉你有趣的事。";
 		close;
 	}
-	mes "[箭袋制作师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "穆拉村民问箭袋有什么用。他们根本不懂世事。";
 	mes "难怪他们对箭袋一无所知——整天只会在叶子上涂果酱。";
 	next;
@@ -45,13 +45,13 @@ mora,106,117,3	script	Quiver Maker#mora	4_M_RAFLE_GR,{
 	switch( select("请给我制作箭袋。", .@menu$, "什么是箭袋？") ) {
 	case 1:
 		if (getbattleflag("feature.barter")) {
-			mes "[箭袋制作师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "终于有人懂得箭袋的真正价值了。我会为懂得它价值的人制作。";
 			close2;
 			callshop "Quiver_Archer", 1;
 			end;
 		}
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "终于有人欣赏箭袋了！";
 		mes "我能制作精灵箭矢筒和狩猎箭矢筒。";
 		mes "你需要哪一种？";
@@ -60,24 +60,24 @@ mora,106,117,3	script	Quiver Maker#mora	4_M_RAFLE_GR,{
 		case 1: callsub S_BuyQuiver,1773,500,500,12575; //Arrow_Of_Elf_Cntr
 		case 2: callsub S_BuyQuiver,1774,500,500,12576; //Hunting_Arrow_Cntr
 		case 3:
-			mes "[箭袋制作师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可以从我旁边的工具商那里购买箭。";
 			close;
 		}
 		end;
 	case 2:
 		if (getbattleflag("feature.barter")) {
-			mes "[箭袋制作师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不卖普通箭。这些是只能在这里购买的工艺箭。你应该懂得它的价值吧？";
 			close2;
 			callshop "Catch_Arrows", 1;
 		}
 		end;
 	case 3:
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "箭可能又细又轻，但携带成百上千支箭就像扛着整根木头。";
 		next;
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有了箭袋，就能把箭装进去，节省重量和空间。";
 		mes "如果你感兴趣，我可以为你缝制一个。";
 		close;
@@ -88,11 +88,11 @@ S_BuyQuiver:
 	.@item_req = getarg(0);
 	.@req_amount = getarg(1);
 	if (countitem(getarg(0)) < .@req_amount) {
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带来至少 "+ .@req_amount +" 个"+ getitemname(.@item_req) +"，我就给你制作箭袋。";
 		close;
 	}
-	mes "[箭袋制作师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，我看到你手里有"+ getitemname(.@item_req) +"！";
 	mes "想使用箭袋吗？真的很方便！";
 	mes "如果你感兴趣，我可以用 "+ .@req_amount +" 支箭交换一个箭袋，费用是 ^FF3131"+getarg(2)+" Zeny^000000。";
@@ -110,7 +110,7 @@ S_BuyQuiver:
 		mes "交换吗？";
 		next;
 		if(select("交换:不交换") == 2) {
-			mes "[箭袋制作师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你不会怀疑我的手艺吧？";
 			close;
 		}
@@ -122,19 +122,19 @@ S_BuyQuiver:
 		set .@zeny_mes,1;
 		break;
 	case 3:
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你不会怀疑我的手艺吧？";
 		close;
 	}
 	if (Zeny < .@arrow_zeny01) {
-		mes "[箭袋制作师]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@zeny_mes == 1)
 			mes "我说过只收人类货币，你还不愿意花钱吗？";
 		else
 			mes "你不会真以为能白拿到杰作吧？";
 		close;
 	}
-	mes "[箭袋制作师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，给你。";
 	mes "有^3131FF一件事你需要知道^000000——记住它。";
 	mes "^FF0000打开箭袋前，请预留足够的负重和背包空间。^000000";

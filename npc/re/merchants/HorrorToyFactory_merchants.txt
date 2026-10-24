@@ -8,7 +8,7 @@
 //=     from iRO. [Capuche]
 //============================================================
 
-xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
+xmas,240,291,3	script	黄金手比利#1::Billy The Golden Hands#1	4_F_05,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "您携带的物品种类太多。减少种类后再试吧。";
@@ -18,7 +18,7 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 		mes "您的负重过高，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[金手比利]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呵呵。带硬币来了吗？只要有硬币，除了灵魂我什么都卖。";
 	next;
 
@@ -36,16 +36,16 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 
 	.@s = ( select( "取消", "封闭心灵盒（100 枚硬币）", "繁茂玫瑰（500 枚硬币）", "C 繁茂玫瑰（1000 枚硬币）", "C 圣诞发带（500 枚硬币）", "C 红色软帽（500 枚硬币）", "旧阳伞（1000 枚硬币）", "热茶（7 枚硬币）", "甜蜜小吃（5 枚硬币）", "圣水（1 枚硬币）", "黑暗之水（1 枚硬币）" ) -2 ) * 2;
 	if (.@s == -2) {
-		mes "[金手比利]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈，您是不是有些顾虑？好吧，改变主意后随时再来。";
 		close;
 	}
 	if (countitem(7642) >= .@xm_item[.@s+1]) {
-		mes "[金手比利]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚沾血硬币。要购买吗？";
 		next;
 		if (select( "取消", "购买" ) == 1) {
-			mes "[金手比利]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈，您真是善变的朋友。决定购买后再来吧。";
 			close;
 		}
@@ -56,18 +56,18 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 			}
 			delitem 7642,.@xm_item[.@s+1];// Bloody_Coin
 			getitem .@xm_item[.@s], 1;
-			mes "[金手比利]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "您已经付款。期待再次见到您！";
 			close;
 		}
 	}
-	mes "[金手比利]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "购买 ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000 需要 ^0000ff" + .@xm_item[.@s+1] + "^000000 枚沾血硬币。您的数量不足。";
 	close;
 }
 
 
-xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
+xmas,240,297,3	script	流浪儿 凯恩#1::Vagrant Cain#1	4_M_06,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "您携带的物品种类太多。减少种类后再试吧。";
@@ -77,13 +77,13 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		mes "您的负重过高，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[流浪者凯恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，我知道您不喜欢普通东西才来这里。告诉我吧，只要费用和材料合适，我什么都能制作。";
 	next;
 	.@s = select( "没有想要的。", "我想要 席琳的蝴蝶结。", "我在寻找 荣耀十架。", "我想要 邪灵手套。" );
 	switch(.@s) {
 	case 1:
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的是的，大家一开始都这么说。回头见。";
 		close;
 	case 2:
@@ -105,31 +105,31 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		.@string$[3] = "确定要交换吗？^ff0000物品的效果和卡片都会消失，且无法退款^000000。若您有同类物品，我也无法确定会选择哪一个。请慎重考虑。";
 		break;
 	}
-	mes "[流浪者凯恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes .@string$[0];
 	next;
-	mes "[流浪者凯恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes .@string$[1];
 	next;
 	if (select( "我还没有准备好材料。", "现在就兑换。" ) == 1) {
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好后再回来。我会提醒您所需材料。";
 		next;
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes .@string$[2];
 		close;
 	}
-	mes "[流浪者凯恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes .@string$[3];
 	next;
 	if (select( "下次再来。", "确认兑换。" ) == 1) {
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好的，您已经决定了。希望下次还能见到您，呵呵。";
 		close;
 	}
 	switch(.@s) {
 	case 2:
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (getequipid(EQI_HEAD_TOP) != 18848)// Lush_Rose
 			mes "您佩戴的帽子不是繁茂玫瑰。带来我说的正确材料，呵呵呵。";
 		else if (getequiprefinerycnt(EQI_HEAD_TOP) < 9)
@@ -148,7 +148,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		}
 		close;
 	case 3:
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (getequipid(EQI_HAND_R) != 1540)// Grand_Cross_
 			mes "您右手装备的不是 圣十字[1]。带来我说的正确物品，呵呵。";
 		else if (countitem(7642) < 2000)
@@ -165,7 +165,7 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		}
 		close;
 	case 4:
-		mes "[流浪者凯恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (countitem(7642) > 999 && countitem(2977) > 0 && countitem(2978) > 0 && countitem(2976) > 0) {
 			if (!checkweight(2980,1)) {
 				mes "请先为兑换物品预留足够的负重和物品栏空间。";
@@ -181,14 +181,14 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 		else {
 			mes "您的材料不足。";
 			next;
-			mes "[流浪者凯恩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请准备 ^0000ff1000 枚沾血硬币^000000，以及各 1 个 ^0000ff受伤的心、宅心仁厚 和 红色手提灯^000000来兑换 ^0000ff邪灵手套^000000。";
 		}
 		close;
 	}
 }
 
-xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
+xmas,240,294,3	script	黑胡须 乔#pa0829::Black Beard Joe#pa0829	4_M_05,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "您携带的物品种类太多。减少种类后再试吧。";
@@ -198,18 +198,18 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		mes "您的负重过高，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	mes "[黑胡子乔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呵呵，人类的贪欲真是无止境。您想让我做什么？";
 	next;
 	switch( select( "您能为我做什么？", "为玩具工厂饰品附魔", "为玩具工厂武器附魔", "为玩具工厂头具附魔", "为玩具工厂鞋子附魔" ) ) {
 	case 1:
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很简单。您只需带来沾血硬币，我就能为您的饰品附魔。";
 		next;
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "每次尝试收取 15 枚沾血硬币，每 15 枚可附魔一个插槽，最多 3 个。";
 		next;
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "饰品附魔次数越多，损坏风险越高。我建议您最多尝试一两次，嘻嘻。";
 		close;
 	case 2:
@@ -249,13 +249,13 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		.@sc_type = 3;// weapon
 		break;
 	case 16029:	// Noble_Cross
-		mes "[黑胡子乔]";// custom
+		mes "[" + strnpcinfo(1) + "]";// custom
 		mes "哦，您装备了 ^0000ff荣耀十架^000000！这件物品需要找其他人附魔。";
 		next;
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经试过几次，但都没有成功。";
 		next;
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想为这件武器附魔，请去马郎多岛找 ^0000ff玛约玛约^000000！他应该能做到。";
 		close;
 	default:
@@ -263,11 +263,11 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	}
 	switch(.@eq_num) {
 	case EQI_ACC_R:
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "您可以选择两种类型之一，每次尝试收费 15 枚沾血硬币。我会在附魔前收取。";
 		next;
 		.@enchant_type = select( "退出", "STR/AGI/DEX 中的随机属性", "INT/VIT/DEX 中的随机属性" ) - 1;// enchant_type [1-2]
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@enchant_type == 0) {
 			mes "好的，愿意时再来吧，呵呵。";
 			close;
@@ -297,7 +297,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		}
 		break;
 	case EQI_HAND_R:
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@sc_type < 1) {
 			mes "这件装备不是来自玩具工厂。我只能处理玩具工厂的物品。";
 			close;
@@ -309,7 +309,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		break;
 	case EQI_HEAD_TOP:
 	case EQI_SHOES:
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@sc_type < 1) {
 			mes "这件装备不是来自玩具工厂。我只能处理玩具工厂的物品。";
 			close;
@@ -331,17 +331,17 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		.@string$ = "你总是改来改去，真是个善变的朋友！";
 		break;
 	default:
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不为这个附魔！";// custom
 		close;
 	}
 	next;
 	if (select( "我稍后再来", "请现在处理" ) == 1) {
-		mes "[黑胡子乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes .@string$;
 		close;
 	}
-	mes "[黑胡子乔]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (.@slot_num == 3)
 		setarray .@range[0],550,1050;
 	else if (.@slot_num == 2)

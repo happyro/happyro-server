@@ -1460,11 +1460,72 @@ void pc_setnewpc(map_session_data *sd, uint32 account_id, uint32 char_id, int32 
 	sd->battle_status.speed = sd->base_status.speed = DEFAULT_WALK_SPEED;
 }
 
-/**
-* Get equip point for an equip
-* @param sd
-* @param id
-*/
+// The same capability drives equipment validation and client slot synchronization.
+bool pc_can_dual_wield(const map_session_data* sd) {
+	return pc_checkskill(sd, AS_LEFT) > 0
+		|| (sd->class_ & MAPID_SECONDMASK) == MAPID_ASSASSIN
+		|| (sd->class_ & MAPID_SECONDMASK) == MAPID_KAGEROUOBORO;
+}
+
+InventoryEquipUpdate::InventoryEquipUpdate(map_session_data& session)
+	: sd(session), dual_wield_before(pc_can_dual_wield(&session)) {
+	++sd.inventory_equip_update_depth;
+}
+
+InventoryEquipUpdate::~InventoryEquipUpdate() {
+	finish();
+}
+
+void InventoryEquipUpdate::finish() {
+	if (!active)
+		return;
+	active = false;
+	sd.inventory_equip_permissions_changed |= dual_wield_before != pc_can_dual_wield(&sd);
+	--sd.inventory_equip_update_depth;
+	pc_refresh_inventory_equip_locations(&sd);
+}
+
+void pc_refresh_inventory_equip_locations(map_session_data* sd) {
+	if (!sd->prev || sd->inventory_dual_wield < 0 || sd->inventory_equip_update_depth
+		|| sd->inventory_equip_refreshing)
+		return;
+	const bool dual_wield = pc_can_dual_wield(sd);
+	if (sd->inventory_dual_wield == dual_wield && !sd->inventory_equip_permissions_changed)
+		return;
+
+	sd->inventory_equip_refreshing = true;
+	bool equipment_changed = false;
+	if (!dual_wield) {
+		// Unequip scripts may grant a skill which the following calculation removes.
+		// Recheck earlier/skipped slots against the final skill state after each pass.
+		// Bound the passes in case custom scripts repeatedly equip another item.
+		for (int32 pass = 0; pass < MAX_INVENTORY; ++pass) {
+			bool unequipped = false;
+			for (int32 i = 0; i < MAX_INVENTORY; ++i) {
+				const auto& item = sd->inventory.u.items_inventory[i];
+				if (item.nameid && sd->inventory_data[i] && (item.equip & ~pc_equippoint(sd, i)))
+					unequipped |= pc_unequipitem(sd, i, 2);
+			}
+			if (!unequipped)
+				break;
+			equipment_changed = true;
+			status_calc_pc(sd, SCO_FORCE);
+		}
+		for (int32 i = 0; i < MAX_INVENTORY; ++i) {
+			const auto& item = sd->inventory.u.items_inventory[i];
+			if (item.nameid && sd->inventory_data[i] && (item.equipSwitch & ~pc_equippoint(sd, i))) {
+				pc_equipswitch_remove(sd, i);
+				equipment_changed = true;
+			}
+		}
+	}
+	if (equipment_changed || sd->inventory_dual_wield != pc_can_dual_wield(sd))
+		clif_inventorylist(sd);
+	sd->inventory_equip_permissions_changed = false;
+	sd->inventory_equip_refreshing = false;
+}
+
+/** Return the equipment locations allowed by this item and the current character. */
 int32 pc_equippoint_sub( const map_session_data* sd, const item_data* id){
 	int32 ep = 0;
 
@@ -1476,7 +1537,7 @@ int32 pc_equippoint_sub( const map_session_data* sd, const item_data* id){
 
 	ep = id->equip;
 	if(id->subtype == W_DAGGER	|| id->subtype == W_1HSWORD || id->subtype == W_1HAXE) {
-		if(pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_SECONDMASK) == MAPID_ASSASSIN || (sd->class_&MAPID_SECONDMASK) == MAPID_KAGEROUOBORO) { //Kagerou and Oboro can dual wield daggers. [Rytech]
+		if (pc_can_dual_wield(sd)) { //Kagerou and Oboro can dual wield daggers. [Rytech]
 			if (ep == EQP_WEAPON)
 				return EQP_ARMS;
 			if (ep == EQP_SHADOW_WEAPON)
@@ -5447,6 +5508,7 @@ void pc_bonus5(map_session_data *sd,int32 type,int32 type2,int32 type3,int32 typ
 bool pc_skill(map_session_data* sd, uint16 skill_id, int32 level, enum e_addskill_type type) {
 	uint16 idx = 0;
 	nullpo_ret(sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if (!skill_id || !(idx = skill_get_index(skill_id))) {
 		ShowError("pc_skill: Skill with id %d does not exist in the skill database\n", skill_id);
@@ -5525,6 +5587,7 @@ bool pc_skill(map_session_data* sd, uint16 skill_id, int32 level, enum e_addskil
  */
 bool pc_skill_plagiarism(map_session_data &sd, uint16 skill_id, uint16 skill_lv)
 {
+	InventoryEquipUpdate equip_update(sd);
 	skill_id = skill_dummy2skill_id(skill_id);
 	uint16 idx = skill_get_index(skill_id);
 
@@ -5570,6 +5633,7 @@ bool pc_skill_plagiarism(map_session_data &sd, uint16 skill_id, uint16 skill_lv)
  */
 bool pc_skill_plagiarism_reset(map_session_data &sd, uint8 type)
 {
+	InventoryEquipUpdate equip_update(sd);
 	uint16 idx;
 	if (type == 1) 
 		idx = sd.cloneskill_idx;
@@ -9277,6 +9341,7 @@ void pc_skillup(map_session_data *sd,uint16 skill_id)
 	uint16 idx = skill_get_index(skill_id);
 
 	nullpo_retv(sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if (!idx) {
 		if (skill_id)
@@ -9334,6 +9399,7 @@ int32 pc_allskillup(map_session_data *sd)
 	int32 i;
 
 	nullpo_ret(sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	for (i = 0; i < MAX_SKILL; i++) {
 		if (sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PERM_GRANTED && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED) {
@@ -9385,6 +9451,7 @@ int32 pc_resetlvl(map_session_data* sd,int32 type)
 	int32  i;
 
 	nullpo_ret(sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if (type != 3) //Also reset skills
 		pc_resetskill(sd, 0);
@@ -9575,6 +9642,7 @@ int32 pc_resetskill(map_session_data* sd, int32 flag)
 {
 	int32 i, skill_point=0;
 	nullpo_ret(sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if( flag&4 && (sd->class_&MAPID_SECONDMASK) != MAPID_BARDDANCER )
 		return 0;
@@ -10998,6 +11066,7 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 	int32 i, fame_flag = 0;
 
 	nullpo_retr(false,sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if (job < 0)
 		return false;
@@ -11133,6 +11202,11 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 	clif_updatestatus(*sd,SP_JOBEXP);
 	clif_updatestatus(*sd,SP_NEXTJOBEXP);
 
+	// End job-change soul-link bonuses before checking the new job's equipment.
+	if( sd->sc.getSCE(SC_SPIRIT) ){
+		status_change_end( sd, SC_SPIRIT );
+	}
+
 	for(i=0;i<EQI_MAX;i++) {
 		if(sd->equip_index[i] >= 0)
 			if( pc_isequip( sd, sd->equip_index[i] ) != ITEM_EQUIP_ACK_OK ){
@@ -11212,14 +11286,19 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 		status_change_end(sd, SC_SPRITEMABLE);
 	if (sd->sc.getSCE(SC_SOULATTACK) && !pc_checkskill(sd, SU_SOULATTACK))
 		status_change_end(sd, SC_SOULATTACK);
-	if( sd->sc.getSCE(SC_SPIRIT) ){
-		status_change_end( sd, SC_SPIRIT );
-	}
 
 	if(sd->status.manner < 0){
 		clif_changemanner( *sd );
 		clif_updatestatus(*sd,SP_MANNER);
 	}
+	// Mount/cart removal and skill-tree updates can also revoke item eligibility.
+	// Keep the earlier check for safe appearance changes, then validate final state.
+	for (int32 slot = 0; slot < EQI_MAX; ++slot) {
+		const int32 index = sd->equip_index[slot];
+		if (index >= 0 && pc_isequip(sd, index) != ITEM_EQUIP_ACK_OK)
+			pc_unequipitem(sd, index, 2);
+	}
+
 	status_calc_pc(sd,SCO_FORCE);
 	pc_checkallowskill(sd);
 	pc_equiplookall(sd);
@@ -11238,6 +11317,14 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 		}
 	}
 
+	// Apply the new job's item restrictions to switch presets as well as worn items.
+	for (int32 slot = 0; slot < EQI_MAX; ++slot) {
+		const int32 index = sd->equip_switch_index[slot];
+		if (index >= 0 && pc_isequip(sd, index) != ITEM_EQUIP_ACK_OK)
+			pc_equipswitch_remove(sd, index);
+	}
+
+	equip_update.finish();
 	chrif_save(sd, CSAVE_NORMAL);
 	//if you were previously famous, not anymore.
 	if (fame_flag)
@@ -12186,6 +12273,7 @@ bool pc_equipitem(map_session_data *sd,int16 n,int32 req_pos,bool equipswitch)
 	int16* equip_index;
 
 	nullpo_retr(false,sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if( n < 0 || n >= MAX_INVENTORY ) {
 		if( equipswitch ){
@@ -12300,6 +12388,10 @@ bool pc_equipitem(map_session_data *sd,int16 n,int32 req_pos,bool equipswitch)
 	}
 
 	if( equipswitch ){
+		// Moving the same item must release its previous slots before assigning new ones.
+		if (sd->inventory.u.items_inventory[n].equipSwitch)
+			pc_equipswitch_remove(sd, n);
+
 		for( i = 0; i < EQI_MAX; i++ ){
 			if( pos&equip_bitmask[i] ){
 				// If there was already an item assigned to this slot
@@ -12566,6 +12658,7 @@ bool pc_unequipitem(map_session_data *sd, int32 n, int32 flag) {
 	int32 i, pos;
 
 	nullpo_retr(false,sd);
+	InventoryEquipUpdate equip_update(*sd);
 
 	if (n < 0 || n >= MAX_INVENTORY) {
 		clif_unequipitemack(*sd,0,0,false);
@@ -12665,6 +12758,7 @@ bool pc_unequipitem(map_session_data *sd, int32 n, int32 flag) {
 }
 
 int32 pc_equipswitch( map_session_data* sd, int32 index ){
+	InventoryEquipUpdate equip_update(*sd);
 	// Get the target equip mask
 	int32 position = sd->inventory.u.items_inventory[index].equipSwitch;
 

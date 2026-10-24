@@ -20,7 +20,7 @@
 
 // Momotaro Event :: japan_momo_q
 //============================================================ 
-amatsu,223,236,3	script	出版商#ama	763,{
+amatsu,223,236,3	script	出版社职员#ama::出版商#ama	763,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 请稍等！！-";
 		mes "- 你目前携带了 -";
@@ -30,71 +30,71 @@ amatsu,223,236,3	script	出版商#ama	763,{
 		close;
 	}
 	if (event_momo < 2) {
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好～！！";
 		mes "我们的 ^009CFF卷轴出版公司^000000";
 		mes "专业出版";
 		mes "故事。";
 		mes " ";
 		next;
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们设立了";
 		mes "^3163FF桃太郎实地旅行^000000";
 		mes "庆祝 ^009CFF《桃太郎物语》^000000 销量超过一百万册。";
 		next;
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "成为桃太郎，像故事中一样";
 		mes "消灭土人！";
 		mes "还会有奖励。";
 		next;
 		switch(select("什么是桃太郎故事？:我想试试！:我现在很忙……")) {
 		case 1:
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咦～！？你怎么会不知道";
 			mes "桃太郎？这里没有这个";
 			mes "故事吗？？嗯……";
 			mes "让我讲给你听。";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很久以前，有一对老夫妻。他们很幸福，但没有孩子。";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一天，老妇人洗衣服时发现一个巨大的桃子。";
 			mes "她把桃子切成两半……";
 			mes "‘噗！’里面竟然有个婴儿！";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "老夫妇大吃一惊。";
 			mes "他们决定收养婴儿，";
 			mes "把爱都给他……";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "婴儿成长得很快，像《杰克与魔豆》的豆茎，几天就成了强壮男孩。";
 			mes " ";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "男孩的名字是……";
 			mes "<桃太郎>！！！";
 			mes "桃太郎踏上旅程，消灭骚扰镇民的";
 			mes "土人。";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他和 ^3163FF狭盗猴、小鸡和沙漠之狼^000000 成为朋友，";
 			mes "消灭了所有土人，之后和老夫妇幸福地生活。";
 			next;
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "怎么样？";
 			mes "很棒吧？";
 			mes "这故事可是卖了一百万册！";
 			close;
 		case 2:
 			if (BaseLevel > 29) {
-				mes "[出版商]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "耶！你看起来很兴奋！";
 				mes "你很快就能出发。";
 				mes "请填写登记卡。";
 				next;
-				mes "[出版商]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "....................";
 				mes "……嗯……让我看看……";
 				mes "……很好！";
@@ -105,32 +105,32 @@ amatsu,223,236,3	script	出版商#ama	763,{
 				warp "ama_test",52,35;
 				end;
 			}
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯～";
 			mes "再训练一下，";
 			mes "然后回来吧？";
 			close;
 		case 3:
-			mes "[出版商]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咦？";
 		mes "……可是有甜蜜奖励等着你……";
 			close;
 		}
 	}
 	else if (event_momo == 4) {
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊～天气真好！";
 		mes "正适合阅读。";
 		close;
 	}
 	else if (event_momo > 1) {
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么样？玩得开心吗？";
 		mes "希望你实地旅行玩得愉快。";
 		mes " ";
 		mes " ";
 		next;
-		mes "[出版商]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是给你的奖励。";
 		mes "请继续享受故事～";
 		mes " ";
@@ -209,7 +209,7 @@ amatsu,223,236,3	script	出版商#ama	763,{
 	}
 }
 
-ama_test,52,44,3	script	助手#ama	109,{
+ama_test,52,44,3	script	等待室负责人#ama::助手#ama	109,{
 	if (event_momo == 0) {
 		mes "[聪]";
 		mes "欢迎来到<桃太郎实地旅行>";
@@ -272,13 +272,13 @@ ama_test,52,44,3	script	助手#ama	109,{
 			mes "战斗好运！！";
 			close;
 		}
-		mes "[助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦？进入实地旅行时不能";
 		mes "跳过故事！！";
 		mes "作为桃太郎粉丝，";
 		mes "我不能允许你这样做！！！";
 		next;
-		mes "[助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请听出版社讲故事。";
 		mes "谢谢。";
 		mes "拜拜～～";
@@ -308,7 +308,7 @@ ama_test,52,44,3	script	助手#ama	109,{
 		mes "[聪]";
 		mes "我想你已经从实地旅行中获得了足够经验。";
 		next;
-		mes "[助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果听到好故事，";
 		mes "请联系我们的出版社。";
 		mes "再见～";
@@ -387,7 +387,7 @@ OnTouch_:
 	close;
 }
 
-ama_test,49,93,4	script	老爷爷#ama	766,{
+ama_test,49,93,4	script	老伯伯#ama::老爷爷#ama	766,{
 	end;
 
 OnInit:
@@ -395,7 +395,7 @@ OnInit:
 	end;
 }
 
-ama_test,50,93,4	script	老奶奶#ama1	761,10,10,{
+ama_test,50,93,4	script	老太太#ama1::老奶奶#ama1	761,10,10,{
 	end;
 
 OnInit:
@@ -403,17 +403,17 @@ OnInit:
 	end;
 
 OnTouch_:
-	mes "[老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊啊啊！！！";
 	next;
-	mes "[老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "亲爱的！！有人入侵我的账号，偷走了我的装备！！";
 	next;
 	mes "[老爷爷]";
 	mes "嗯，村长说土人靠盗取别人的账号赚了两千万 Zeny……";
 	next;
 	setquest 8127;
-	mes "[老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "可恶啊啊啊！！！";
 	next;
 	mes "[老爷爷]";
@@ -426,13 +426,13 @@ OnTouch_:
 		mes "如你所知，我们镇民平时只会坐着聊天，";
 		mes "等级太低，无法消灭土人，所以……请替我们消灭它们。";
 	next;
-	mes "[老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "桃太郎……";
 		mes "我真的很想送你";
 		mes "一瓶亲手制作的^3163FF世界上最美味的红色药水^000000……但是……";
 		mes "……我制作失败了……";
 	next;
-	mes "[老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "……对不起。我早该先提升等级……*抽泣*";
 	next;
 	mes "[老奶奶与老爷爷]";
@@ -746,7 +746,7 @@ OnTouch_:
 
 // Sushi Quest :: japan_sushi
 //============================================================ 
-ama_in01,162,17,1	script	寿司大师#ama	765,{
+ama_in01,162,17,1	script	寿司名人#ama::寿司大师#ama	765,{
 	if (MaxWeight - Weight < 5000) {
 		mes "[玛古玛古]";
 		mes "嘿，你看起来负重很高。走路不困难吗？抱歉，我店里没地方放你的东西。";
@@ -1291,14 +1291,14 @@ ama_in01,162,17,1	script	寿司大师#ama	765,{
 
 // Dungeon Quest :: japan_mono
 //============================================================ 
-amatsu,112,164,4	script	守门士兵#ama1	767,{
-	mes "[守门士兵]";
+amatsu,112,164,4	script	守门 士兵#ama1::守门士兵#ama1	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这里是宏伟的宫殿，";
 	mes "东宫城。";
 	mes "当地居民禁止";
 	mes "进入……";
 	next;
-	mes "[守门士兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你的服装看起来很陌生。";
 	mes "你来自其他大陆吗？";
 	mes "领主允许游客进入，";
@@ -1307,40 +1307,40 @@ amatsu,112,164,4	script	守门士兵#ama1	767,{
 	close;
 }
 	
-amatsu,119,164,4	script	守门士兵#ama2	767,{
-	mes "[守门士兵]";
+amatsu,119,164,4	script	守门 士兵#ama2::守门士兵#ama2	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你来自米德加尔特吗？";
 	mes "欢迎来到樱花城。";
 	mes "进去后请到春苏阁";
 	mes "拜访我们的领主。";
 	mes " ";
 	next;
-	mes "[守门士兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他非常亲切。";
 	mes "他投资樱花城的各个领域，";
 	mes "大陆间贸易也是他的主意。";
 	close;
 }
 	
-ama_in02,207,40,6	script	守门士兵#ama3	767,{
-	mes "[守门士兵]";
+ama_in02,207,40,6	script	守门 士兵#ama3::守门士兵#ama3	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎。宫殿领主";
 	mes "特许其他大陆的客人";
 	mes "进入这里。";
 	next;
-	mes "[守门士兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请随意参观，不必着急。";
 	mes "祝你在这里过得愉快。";
 	close;
 }
 	
-ama_in02,207,49,6	script	守门士兵#ama4	767,{
-	mes "[守门士兵]";
+ama_in02,207,49,6	script	守门 士兵#ama4::守门士兵#ama4	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "领主真是个好人。";
 	mes "谁能想到我们的城镇";
 	mes "曾经只是个小村庄？";
 	next;
-	mes "[守门士兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我很感谢他雇用我。";
 	mes "最近他似乎";
 	mes "有些烦恼。";
@@ -1349,15 +1349,15 @@ ama_in02,207,49,6	script	守门士兵#ama4	767,{
 	close;
 }
 	
-amatsu,164,174,4	script	守门士兵#ama5	767,{
-	mes "[守门士兵]";
+amatsu,164,174,4	script	守门 士兵#ama5::守门士兵#ama5	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (event_amatsu == 0) {
 		mes "你不能进入这里。";
 		mes "领主的母亲正在休息，她需要安静。";
 		next;
 		set event_amatsu,1;
 		setquest 8131;
-		mes "[守门士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她已经病了几个月。";
 		mes "所以一直住在这里。";
 		mes "这是一种相当可怕的疾病……";
@@ -1387,8 +1387,8 @@ amatsu,164,174,4	script	守门士兵#ama5	767,{
 	close;
 }
 	
-amatsu,171,174,4	script	守门士兵#ama6	767,{
-	mes "[守门士兵]";
+amatsu,171,174,4	script	守门 士兵#ama6::守门士兵#ama6	767,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (event_amatsu == 0) {
 		mes "你不能进入这里。";
 		mes "领主的母亲正在这里休息。";
@@ -1396,7 +1396,7 @@ amatsu,171,174,4	script	守门士兵#ama6	767,{
 		next;
 		setquest 8131;
 		set event_amatsu,1;
-		mes "[守门士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她已经病了几个月。";
 		mes "所以一直住在这里。";
 		mes "...";
@@ -1405,7 +1405,7 @@ amatsu,171,174,4	script	守门士兵#ama6	767,{
 		mes "请保持安静。";
 		mes "领主的母亲住在这里，需要休息。";
 		next;
-		mes "[守门士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么我亲切的领主";
 		mes "会遇到这种事……";
 		mes "怎么会这样？*抽泣*……";
@@ -1740,7 +1740,7 @@ ama_dun01,229,7,0	script	士兵#ama11	767,{
 	close;
 }
 	
-ama_in02,200,176,4	script	宫殿领主#ama	768,{
+ama_in02,200,176,4	script	城主#ama::宫殿领主#ama	768,{
 	if (event_amatsu == 0) {
 		mes "[石田吉长]";
 		mes "什么！外国人……？*呼*";
@@ -1898,7 +1898,7 @@ ama_in02,200,176,4	script	宫殿领主#ama	768,{
 	close;
 }
 	
-ama_in01,22,111,0	script	老奶奶#ama2	761,{
+ama_in01,22,111,0	script	老太太#ama2::老奶奶#ama2	761,{
 	if (event_amatsu == 4) {
 		mes "[....]";
 		mes "^FF6060嗷，嗷，愚蠢的人类";
@@ -2046,12 +2046,12 @@ ama_in01,22,111,0	script	老奶奶#ama2	761,{
 	end;
 }
 	
-amatsu,189,166,5	script	浩二#ama	764,{
-	mes "[浩二]";
+amatsu,189,166,5	script	克武基#ama::浩二#ama	764,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啦啦啦，啦啦啦，啦啦啦啦啦啦～";
 	mes "啦啦啦，啦啦啦，啦啦啦啦啦啦～";
 	next;
-	mes "[浩二]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (event_amatsu == 1) {
 		mes "生病时，年糕可没用～";
 		mes "家人的帮助才最好～";
@@ -2079,7 +2079,7 @@ amatsu,189,166,5	script	浩二#ama	764,{
 		mes "如果喊叫吓不走狐狸，";
 		mes "也许需要老虎和熊帮忙～！";
 		next;
-		mes "[浩二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这场战斗还需要别的吗？？？";
 		mes "也许需要服事提供的水～！";
 	}
@@ -2096,7 +2096,7 @@ amatsu,189,166,5	script	浩二#ama	764,{
 		mes "蓝蓝蓝，一切都是蓝色";
 	}
 	next;
-	mes "[浩二]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啦啦啦，啦啦啦，啦啦啦啦啦啦～";
 	mes "啦啦啦，啦啦啦，啦啦啦啦啦啦～";
 	close;

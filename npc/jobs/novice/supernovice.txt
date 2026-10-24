@@ -20,29 +20,29 @@
 //= 2.4 Added an Ex. Super Novice dialog check. [Euphy]
 //============================================================ 
 
-aldeba_in,223,167,3	script	Tzerero#sn	709,{
+aldeba_in,223,167,3	script	特杰雷诺#sn::Tzerero#sn	709,{
 	if (BaseJob == Job_Super_Novice) {
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信你很享受超级初心者的生活？啊，很好很好……正如我所料。";
 		mes "确实，平庸之光正在你体内耀眼闪烁……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我鼓励你像金木尚先生那样生活……";
 		mes "成为万事通……";
 		mes "……却样样不精。";
 		close;
 	}
 	if (SUPNOV_Q == 1 && (BaseJob != Job_Novice || Upper == 1 || BaseLevel < 45 || !callfunc("F_CanChangeJob"))) {
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只有达到 45 级并掌握基本技能的普通或宝宝初心者才能完成这项转职。";
 		close;
 	}
 	if (countitem(938) > 29 && countitem(907) > 29 && SUPNOV_Q == 1) {
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你带来了我要求的物品！";
 		mes "你证明了自己值得加入我们的超级初心者协会。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，如约我会将你的职业变成^3355FF超级初心者——^000000嗯？";
 		mes "你身后那是什么？";
 		next;
@@ -51,7 +51,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		mes "这里一定有古怪！^000000";
 		next;
 		if (BaseJob != Job_Novice || Upper == 1 || BaseLevel < 45 || !callfunc("F_CanChangeJob")) {
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只有达到 45 级并掌握基本技能的普通或宝宝初心者才能完成这项转职。";
 			close;
 		}
@@ -70,167 +70,167 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		completequest 6010;
 		callfunc "F_ClearJobVar";
 		getitem 2339,1; //G_Strings
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇哈！骗到你了！";
 		mes "怎么样……喜欢我的玩笑吗？";
 		mes "算了，忘了吧……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不然，像我这样的成年男子，还有什么理由随身携带一条三角裤呢？";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重要的是……";
 		mes "你已加入尊贵的超级初心者行列。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把这条三角裤当作礼物吧……";
 		mes "据说这件衣物曾被金木尚先生穿过，这位传奇协会创始人年轻时努力追求卓越的平庸。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "出去享受超级初心者的新生活！勇敢前行，帮助普通人，同时也成为普通人！";
 		close;
 	}
 	if (SUPNOV_Q == 1) {
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？忘了我想要什么吗？好吧，我再告诉你一次。请这次记住……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我要你带来^FF000030 个粘稠液体^000000和^FF000030 个枯木汁^000000。";
 		close;
 	}
 	if (BaseJob == Job_Novice && Upper != 1) {
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……嗯？";
 		mes "停下。";
 		mes "让我看看你。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ".....";
 		mes ".......";
 		mes ".........";
 		emotion ET_THINK;
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看见平庸之光在你体内闪耀……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "何不加入我们，年轻的初心者？加入我们，学习成为平庸者的微妙伟大……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "接受我的提议……";
 		mes "脱下你那沾满尘土的棕色衣物，蜕变为……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……^CE6300超级初心者^000000。";
 		next;
 		switch(select("接受他的提议。:拒绝他的提议。:仔细听。")) {
 		case 1:
 			if (!callfunc("F_CanChangeJob")) {
-				mes "[特泽罗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……但你真的理解从弱点中发现力量的价值吗？你必须向我证明你是真正的平庸者。";
 				next;
-				mes "[特泽罗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "以初心者身份生活……";
 				mes "当你掌握基本技能后回来……";
 				mes "在平庸中成长，成为 10 级初心者……";
 				close;
 			}
 			if (BaseLevel < 45) {
-				mes "[特泽罗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……但你真的珍视平凡冒险者的轻松生活吗？";
 				mes "向我证明你不渴求力量……";
 				next;
-				mes "[特泽罗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "平凡地生活……";
 				mes "成为 45 级初心者……";
 				mes "那时你就能加入我们……";
 				close;
 			}
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我能从你的眼中看到，你决心过简单生活……";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只有真正明智的人才能看出普通和平凡是最好的生活方式。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过，我们不会随便接纳任何人加入协会。你必须先通过我们的资格测试。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "测试中，你必须带来一些物品，它们由普通、不起眼的怪物掉落。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯嗯嗯……";
 			mes "^FF000030 个粘稠液体^000000以及 ^FF000030 个枯木汁，^000000正好可以测试你对抗弱小敌人的能力。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "另外，数字 30很重要。它不特别……只是一个普通数字。";
 			mes "哈哈哈哈哈~";
 			next;
 			set SUPNOV_Q,1;
 			setquest 6010;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "祝你好运，朋友。";
 			close;
 		case 2:
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀……我想简单生活的价值对你来说很难理解。没关系……";
 			mes "你的人生由你自己决定。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但如果你有一天看见平凡之光，欢迎随时来找我……";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "随着初心者俱乐部越来越受欢迎，获得更多追随者，我们可能会考虑使用更难的测试……";
 			close;
 		case 3:
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "初心者协会由传奇的金木尚先生创立……也许他是我们这一代最伟大的人。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他意识到世界上有许多苦难，尤其是米德加尔特的普通人承受着许多痛苦……";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他从遇到的不同人们那里学会许多技能，但因为他不在一个地方久留，他成为万事通……却样样不精。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "通过分担普通人的痛苦，他也成为其中一员……最伟大的普通人。";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "协会成员努力像金木尚先生一样生活，遵循他留给我们的原则……";
 			close;
 		}
 	}
 	else {
 		if (BaseJob == Job_Super_Novice) {
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "作为超级初心者，你喜欢简单地生活吗？我相信你一定很享受~";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请在帮助普通人、同时作为其中一员的过程中，成长为超级初心者……";
 			next;
-			mes "[特泽罗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我鼓励你在超级初心者之道上成长，在过着极其平凡的生活这件事上成为榜样。";
 			close;
 		}
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我是特泽罗，伟大初心者协会的非官方执行董事。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你似乎远胜普通人。是的，比起“普通”，你显然更“非凡”……";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*叹气* 我想你无法理解我们的生活方式、平凡中的微妙伟大。但没关系。";
 		next;
-		mes "[特泽罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "世界上有成千上万不同的人，所以我会试着接受所有差异。";
 		mes "希望你也能做到。";
 		close;
 	}
 }
 
-aldeba_in,216,169,5	script	Esseray#sn	86,{
+aldeba_in,216,169,5	script	阿瑟雷#sn::Esseray#sn	86,{
 	if (Class == Job_Super_Novice_E || Class == Job_Super_Baby_E) {
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你！比以前更强。";
 		mes "我就知道你能通过测试~";
 		close;
@@ -238,30 +238,30 @@ aldeba_in,216,169,5	script	Esseray#sn	86,{
 	if (BaseJob == Job_Super_Novice) {
 		if (checkre(0))
 			callfunc "Esseray_Ex";
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？嘿，你是伟大初心者协会成员，对吧？这不是最棒的协会吗？！";
 		next;
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "平凡地生活，遵循金木尚先生的原则……";
 		mes "做普通人真好！";
 		next;
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我们尽量正常地生活！";
 		mes "顺便说，我是第一号成员，当然是在特泽罗先生领导下！";
 		close;
 	}
 	if (BaseJob == Job_Novice && Upper != 1) {
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈~你还不了解如何做普通人！";
 		mes "何不加入我们的初心者协会？这是世界上最棒的协会~";
 		next;
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错，超级初心者是最棒的角色！";
 		mes "哈哈哈哈哈哈！";
 		close;
 	}
 	else {
-		mes "[埃瑟雷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呸~！你比普通人更优秀……甚至可能是“特别”的。";
 		mes "真遗憾！不过……";
 		mes "希望你仍然积极生活。";
@@ -269,9 +269,9 @@ aldeba_in,216,169,5	script	Esseray#sn	86,{
 	}
 }
 
-aldebaran,54,238,5	script	Kafra Employee#sn	117,{
+aldebaran,54,238,5	script	卡普拉职员#sn::Kafra Employee#sn	117,{
 	if (BaseJob == Job_Super_Novice) {
-		mes "[卡普拉员工]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE)
 			mes "你好，超级初心者先生~";
 		else
@@ -279,32 +279,32 @@ aldebaran,54,238,5	script	Kafra Employee#sn	117,{
 		mes "其他卡普拉员工不让你租车，你一定很失望。";
 		mes "不过现在别担心……";
 		next;
-		mes "[卡普拉员工]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会通过提供手推车使用来支持你们……";
 		next;
-		mes "[卡普拉员工]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^3355FF*低声说*^000000";
 		mes "^555555我本不该这样做，因为这违反我们的公司政策。但我很同情超级初心者……所以我来了。^000000";
 		next;
-		mes "[卡普拉员工]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，要租手推车使用吗？服务费是 1,900 Zeny。";
 		next;
 		if (select("租用手推车使用。:取消。") == 1) {
-			mes "[卡普拉员工]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是这样的……";
 			mes "你学会“手推车使用”技能了吗？我可以租给你手推车使用，但如果没学会推动它，只是在浪费 Zeny。";
 			next;
-			mes "[卡普拉员工]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "务必先学会“手推车使用”技能。";
 			next;
 			if (select("租用手推车使用。:取消。") == 1) {
 				if (checkcart()) {
-					mes "[卡普拉员工]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，你已经装备手推车使用了。";
 					close;
 				}
 				if (!getskilllv("MC_PUSHCART")) {
-					mes "[卡普拉员工]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请先学会“手推车使用”技能，再来租用手推车使用。本次不会收取费用。";
 					close;
 				}
@@ -312,28 +312,28 @@ aldebaran,54,238,5	script	Kafra Employee#sn	117,{
 					set RESRVPTS, RESRVPTS + 190;
 					set Zeny, Zeny-1900;
 					setcart;
-					mes "[卡普拉员工]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "感谢使用我的服务。";
 					mes "虽然我这样做可能对其他卡普拉员工来说不合规，但我坚信这是为顾客做正确的事。";
 					close;
 				}
 				else {
-					mes "[卡普拉员工]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，你没有足够的 Zeny。服务费为 1,900 Zeny。";
 					close;
 				}
 			}
-			mes "[卡普拉员工]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎再次光临。";
 			mes "感谢使用我的服务。";
 			close;
 		}
-		mes "[卡普拉员工]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎再次光临。";
 		mes "感谢使用我的服务。";
 		close;
 	}
-	mes "[卡普拉员工]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "祝你……哎呀……！";
 	mes "我想我无法提供你想要的服务……";
 	mes "请去找其他卡普拉员工。";

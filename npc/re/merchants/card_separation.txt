@@ -24,9 +24,9 @@
 		mes "您携带的物品太重，无法继续。减轻负重后再试吧。";
 		close;
 	}
-	if (strnpcinfo(1) == "Jeremy") {
+	explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "Jeremy") {
 		set .@Jeremy,1;
-		set .@n$, "[杰里米]";
+		set .@n$, "[" + strnpcinfo(1) + "]";
 		setarray .@equip_name$[0],  "铠甲",  "鞋子",  "披风", "头饰（上段）";
 		setarray .@equip_slot[0], EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP;
 
@@ -35,7 +35,7 @@
 		mes "我学会了从铠甲、鞋子、披风和上段头饰中分离卡片的新技能。要试试吗？";
 	} else {
 		set .@Jeremy,0;
-		set .@n$, "[理查特]";
+		set .@n$, "[" + strnpcinfo(1) + "]";
 		setarray .@equip_name$[0], "左手", "右手";
 		setarray .@equip_slot[0],   EQI_HAND_L,   EQI_HAND_R;
 
@@ -363,5 +363,5 @@
 	mes "以上就是卡片分离结果。欢迎下次再来。";
 	close;
 }
-malangdo,215,166,4	duplicate(CardSeparation_mal)	Jeremy#pa0829	553	// Armors :: mal_yong
+malangdo,215,166,4	duplicate(CardSeparation_mal)	杰勒米#pa0829::Jeremy#pa0829	553	// Armors :: mal_yong
 malangdo,208,166,6	duplicate(CardSeparation_mal)	理查特#pa0829	559	// Weapons :: soc_weapon

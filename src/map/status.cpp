@@ -5005,6 +5005,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 /// Intermediate function since C++ does not have a try-finally syntax
 int32 status_calc_pc_( map_session_data* sd, uint8 opt ){
+	InventoryEquipUpdate equip_update(*sd);
 	// Save the old script the player was attached to
 	struct script_state* previous_st = sd->st;
 

@@ -45,7 +45,7 @@
 		
 		// Roving Hair Dresser
 		// ============================================================
-		alberta,33,141,7	script	Roving Hair Dresser	87,{
+		alberta,33,141,7	script	流浪的 美容师::Roving Hair Dresser	87,{
 		mes "[鲁伊·维肖普]";
 		mes "那个维罗妮卡……";
 		mes "哈！还最佳理发师，真是胡说。";
@@ -153,74 +153,74 @@ mes "不过以后别怪我！";
 		}
 		
 		
-		lhz_in02,91,155,5	script	Assistant Beautician#li	862,{
-		mes "[美容师助手]";
+		lhz_in02,91,155,5	script	见习 美容师#li::Assistant Beautician#li	862,{
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇？！天哪，你吓到我了！";
 		mes "你在做什么？！";
 		emotion ET_HUK;
 		next;
-		mes "[美容师助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！呃，是客人！";
 		mes "你、你、你、你好！";
 		mes "有什么我能帮忙的吗？";
 	next;
 		switch(select("你做什么？:请帮我换发型。:夏米王子是谁？")) {
 			case 1:
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！我？我是美容师助手，每天努力训练，希望能成为真正的专业人士！";
 			next;
-		mes "[美容师助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，我训练时为老板做各种杂活。";
 			mes "有时他让我干得很辛苦。";
 			mes "其实我最好赶紧回去工作，免得他生气！";
 			close;
 			case 2:
 			if (BaseLevel < 60) {
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我？……不行，我很想帮忙，但是我还在训练，要是把小孩子的头发弄坏，我可负不起责任！";
 			close;
 			}
 			else if ((Zeny < 250000)) {
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……我只是助手，但我下班后一直学习发型设计。";
 			mes "如果你愿意，带来 250,000 Zeny，我会尽力帮你换发型~";
 			next;
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你能给我这次机会，我会很感激！";
 		mes "老板还不认为我能为真人做造型，所以我的实践经验不多！";
 			next;
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道我能把你的头发做好！";
 			mes "只是……如果弄坏了请理解。";
 			mes "不会太糟的，我保证~";
 			close;
 			}
 			else {
-			mes "[美容师助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你真的愿意给我练习的机会？";
 				mes "哦，我太爱你了！好的，材料费用需要 250,000 Zeny。";
 				mes "可以吗？";
 				next;
 				switch(select("当然~:我再想想……")) {
 				case 1:
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "太好了！现在请选择1 到 23 号发型。";
 					mes "嗯，如果要取消，请输入 0。";
 					next;
 					input .@input;
 				if (.@input == 0) {
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 					mes "呜呜……";
 					mes "看来你还是不信任我……";
 					close;
 					}
 					else if ((.@input < 1) || (.@input > 23)) {
-					mes "[美容师助手]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？我不是让你输入一个从‘1’到‘23’的数字吗？这次我又做错了什么吗？嗯……";
 					close;
 					}
 					else {
-						mes "[美容师助手]";
+						mes "[" + strnpcinfo(1) + "]";
 							mes "所以这就是你想让我尝试制作的发型吗？";
 					if (Sex == SEX_MALE) {
 					if (.@input < 10)
@@ -239,12 +239,12 @@ mes "不过以后别怪我！";
 						case 1:
 						break;
 						case 2:
-					mes "[美容师助手]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "哦哦，一定有你喜欢的发型，对吧？嗯……";
 				close3;
 				}
 				}
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "太好了，你终于选好了！";
 				mes "什么，你选的是哪一个来着？";
 				mes "啊，找到了，找到了！";
@@ -252,13 +252,13 @@ mes "不过以后别怪我！";
 				mes "现在开始造型！";
 				next;
 				nude;
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呜哇啊啊！";
 				next;
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呀！噗哇！";
 				next;
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇啊！";
 				mes "糟糕！";
 				mes "等等，我可以……";
@@ -266,13 +266,13 @@ mes "不过以后别怪我！";
 				next;
 				set .@style_r,rand(1,23);
 				set .@color_r,rand(1,8);
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^333333*喘、喘、喘*^000000";
 				next;
 				set Zeny, Zeny-250000;
 				setlook VAR_HEAD,.@style_r;
 				setlook VAR_HEADPALETTE,.@color_r;
-					mes "[美容师助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇哈哈哈！成功！";
 				if (.@input == .@style_r) {
 				mes "那么……你喜欢新发型吗？我很喜欢！";
@@ -282,13 +282,13 @@ mes "不过以后别怪我！";
 				mes "下次我一定能做得更好！对吧！";
 				}
 				next;
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，你真是个愿意帮我的好人！";
 				mes "谢谢使用我的服务，欢迎再来~";
 			emotion ET_CHUP;
 				close3;
 				case 2:
-				mes "[美容师助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？哦不，你要退出？";
 				mes "好吧，我想你也不信任我帮你做发型……";
 				mes "你……你是对的。";
@@ -296,7 +296,7 @@ mes "不过以后别怪我！";
 		}
 	}
 		case 3:
-		mes "[美容师助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "夏米王子？";
 		mes "他只有在发型设计方面才是天才！";
 		mes "我只是他的学徒，但也许有一天我也能成为时尚界的一股力量！";

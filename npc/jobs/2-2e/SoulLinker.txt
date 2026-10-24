@@ -23,14 +23,14 @@
 //= 1.6 Updated to match the latest official script. [Euphy]
 //============================================================ 
 
-morocc_in,174,30,6	script	Kid#link1	716,{
+morocc_in,174,30,6	script	小孩#link1::Kid#link1	716,{
 	if (Class == Job_Soul_Linker) {
 		mes "[玛雅]";
 		mes "祝你旅途顺利。随着你掌握更多灵魂链接者技能，你将能汲取更多灵魂力量赋予盟友……";
 		close;
 	}
 	if (Class == Job_Star_Gladiator) {
-		mes "[孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE) {
 			mes "你不是太阳的战士吗？";
 		}
@@ -41,86 +41,86 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 		close;
 	}
 	if (Class != Job_Taekwon) {
-		mes "[孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？我没什么可以给你。但如果你认识经验丰富的跆拳道修炼者，他们可能会从我这里受益。";
 		mes "至少据我所知是这样。";
 		close;
 	}
 	if (JobLevel < 40) {
-		mes "[孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以你正在学习跆拳道。很好，非常好。继续磨练技能，坚持训练吧。";
 		close;
 	}
 	else if (JobLevel > 39) {
 		if (SOUL_Q == 0) {
-			mes "[孩子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "嘿，你。";
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "你叫我吗？";
 			next;
-			mes "[孩子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "对，我叫你。";
 			mes "别逼我提高声音，赶紧过来。";
 			next;
 			if (select("小孩子怎么这么没礼貌！:不理他。") == 1) {
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你很幸运，我对你感兴趣！";
 				mes "我看起来像个孩子，但我已经三百多岁了！";
 				emotion ET_HNG;
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "听好了……";
 				mes "我知道你是跆拳道弟子。";
 				mes "那是值得尊敬的技艺，但我有个提议，你想听听吗？";
 				emotion ET_SMILE;
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我看着你就知道，你很有灵性。";
 				mes "你潜力很大，我不想浪费它。";
 				mes "为什么不成为‘灵魂链接者’呢？";
 				next;
 				if (select("哈！傻小子~:灵魂链接者？") == 1) {
-					mes "[孩子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你……你不相信我？";
 					mes "我是认真的。能不能暂时忘掉我看起来像小孩这件事？";
 					mes "*哼*……年轻人。";
 					close;
 				}
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "灵魂链接者会与战死却仍想在生者世界战斗的战士灵魂沟通。";
 				mes "不过这些战士灵魂无法以自身形态在我们的世界战斗。";
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "然而，由于你具有灵性，这些灵魂会被你吸引。";
 				mes "经过充分训练，你可以暂时将这些灵魂的力量赋予盟友。";
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过你无法将灵魂力量赋予自己。";
 				mes "此外，根据你作为灵魂链接者的技能，你只能将强化力量赋予特定职业的角色。";
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "要成为灵魂链接者，你必须进入一个完全不同的世界，但我知道你做得到。你觉得呢？";
 				next;
 				if (select("不，至少现在不想……:好吧，我需要做什么？") == 1) {
-					mes "[孩子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "啊，好吧。以后如果决定成为灵魂链接者，请随时回来和我谈谈。";
 					close;
 				}
 				set SOUL_Q,1;
 				setquest 6005;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以你想成为灵魂链接者？太好了！";
 				mes "首先请带回几件物品。";
 				mes "别担心，之后我会解释用途。";
 				next;
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在带给我^0000FF1 颗 3克拉钻石^000000、^0000FF1 个不死心脏^000000和^0000FF1 朵永恒玫瑰^000000。";
 				mes "别让我等太久，好吗？";
 				close;
 			}
-			mes "[孩子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "等等，你要去哪？我……";
 			mes "我在和你说话！";
@@ -128,7 +128,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 		}
 		else if (SOUL_Q == 1) {
 			if (Class == Job_Taekwon) {
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你回来了？";
 				mes "带来我要求的^0000FF1 颗 3克拉钻石^000000、^0000FF1 个不死心脏^000000和^0000FF1 朵永恒玫瑰^000000了吗？";
 				next;
@@ -139,7 +139,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 						delitem 748,1; //Witherless_Rose
 						set SOUL_Q,2;
 						changequest 6005,6006;
-						mes "[孩子]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "很好，你把东西都带齐了。";
 						mes "开始前先自我介绍一下。";
 						mes "我叫玛雅，已经活了三百多年。";
@@ -154,24 +154,24 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 						mes "到时我们再谈。";
 						close;
 					}
-					mes "[孩子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……？";
 					mes "嘿，你忘了几样东西。";
 					mes "现在回去把我要求的东西都带来，好吗？";
 					emotion ET_HNG;
 					next;
-					mes "[孩子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我知道刚才告诉过你需要什么，但再提醒一次：";
 					mes "^0000FF1 颗 3克拉钻石^000000、^0000FF1 个不死心脏^000000和^0000FF1 朵永恒玫瑰^000000。";
 					close;
 				}
-				mes "[孩子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，没关系。";
 				mes "虽然我有的是时间，但我不喜欢等太久。";
 				close;
 			}
 			set SOUL_Q,0;
-			mes "[孩子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你反而成为了太阳、月亮和星星的战士？";
 			mes "没想到你有那样的潜力。";
 			mes "我想也不能怪你……";

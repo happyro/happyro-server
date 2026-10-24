@@ -496,6 +496,10 @@ public:
 	struct item_data* inventory_data[MAX_INVENTORY]; // direct pointers to itemdb entries (faster than doing item_id lookups)
 	int16 equip_index[EQI_MAX];
 	int16 equip_switch_index[EQI_MAX];
+	int8 inventory_dual_wield = -1; // Last capability sent in the inventory snapshot.
+	uint32 inventory_equip_update_depth = 0;
+	bool inventory_equip_refreshing = false;
+	bool inventory_equip_permissions_changed = false;
 	uint32 weight,max_weight,add_max_weight;
 	int32 cart_weight,cart_num,cart_weight_max;
 	int32 fd;
@@ -1408,6 +1412,21 @@ void pc_setequipindex( map_session_data *sd );
 uint8 pc_isequip( const map_session_data* sd, int32 n );
 int32 pc_equippoint( const map_session_data* sd, int32 n );
 int32 pc_equippoint_sub( const map_session_data* sd, const item_data* id );
+bool pc_can_dual_wield(const map_session_data* sd);
+void pc_refresh_inventory_equip_locations(map_session_data* sd);
+
+// Batch nested skill/equipment recalculations into one final permission update.
+class InventoryEquipUpdate {
+	map_session_data& sd;
+	bool active = true;
+	bool dual_wield_before;
+public:
+	explicit InventoryEquipUpdate(map_session_data& session);
+	~InventoryEquipUpdate();
+	void finish();
+	InventoryEquipUpdate(const InventoryEquipUpdate&) = delete;
+	InventoryEquipUpdate& operator=(const InventoryEquipUpdate&) = delete;
+};
 void pc_setinventorydata( map_session_data& sd );
 
 int32 pc_get_skillcooldown( const map_session_data* sd, uint16 skill_id, uint16 skill_lv );

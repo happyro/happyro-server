@@ -218,7 +218,7 @@
 //----------------------------------------------------------------------------
 // Juno Pub Master/Starting point.
 //----------------------------------------------------------------------------
-yuno_in01,35,179,4	script	酒馆老板#kh	46,5,5,{
+yuno_in01,35,179,4	script	主人#kh::酒馆老板#kh	46,5,5,{
 	if (checkweight(7487,1) == 0) {
 		mes "[范特]";
 		mes "等一下！你现在携带的物品太多了。最好先把物品放进卡普拉仓库，否则就无法领取新物品了……";
@@ -363,7 +363,7 @@ OnTouch:
 //----------------------------------------------------------------------------
 // Juno Toast Sales Girl.
 //----------------------------------------------------------------------------
-yuno,217,114,6	script	小孩#kh	96,{
+yuno,217,114,6	script	可爱的小孩#kh::小孩#kh	96,{
 	mes "[塞祖]";
 	if (KielHyreQuest < 6) {
 		mes "新鲜酥脆的烤面包！想吃的话就来买吧～";
@@ -421,7 +421,7 @@ yuno,217,114,6	script	小孩#kh	96,{
 //----------------------------------------------------------------------------
 // Lighthalzen WindMill Owner.
 //----------------------------------------------------------------------------
-lighthalzen,366,299,4	script	磨坊老板#kh	46,{
+lighthalzen,366,299,4	script	辗米厂 主人#kh::磨坊老板#kh	46,{
 	if (checkweight(7488,1) == 0) {
 		mes "[米尔斯]";
 		mes "嘿，你身上的东西太多了。先把杂物放进卡普拉仓库，否则我没法把东西交给你。";
@@ -465,7 +465,7 @@ lighthalzen,366,299,4	script	磨坊老板#kh	46,{
 	}
 }
 
-lighthalzen,366,289,2	script	磨坊伙计	97,{
+lighthalzen,366,289,2	script	辗米厂 助理::磨坊伙计	97,{
 	if (KHToastGirlEnd < 1) {
 		mes "[克茨]";
 		mes "天啊，我们怎么总是这么忙？米尔斯为什么非要把我累垮？";
@@ -491,15 +491,15 @@ lighthalzen,366,289,2	script	磨坊伙计	97,{
 //----------------------------------------------------------------------------
 // Girl (Talks about the academy)
 //----------------------------------------------------------------------------
-yuno_fild08,196,196,5	script	哈妮#kh1	102,{
-	mes "[哈妮]";
+yuno_fild08,196,196,5	script	少女#kh1::哈妮#kh1	102,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，我真希望能在启·海伊洛学院学习……所有毕业生都能找到好工作，我都快嫉妒那些学生了！";
 	next;
 	select("启·海伊洛学院？");
-	mes "[哈妮]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "启·海伊洛学院是发明家基尔·海勒创办的学校。他靠那些奇特的机器发了财，于是建立了这所私立学院来回馈社会。";
 	next;
-	mes "[哈妮]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "不过，这所学校只招收穷得上不起其他学校的孤儿。有时我甚至希望自己也是孤儿！";
 	mes "当然不是真的，只是说说而已……";
 	close;
@@ -509,65 +509,65 @@ yuno_fild08,196,196,5	script	哈妮#kh1	102,{
 //----------------------------------------------------------------------------
 // Academy Security Guards
 //----------------------------------------------------------------------------
-yuno_fild08,158,194,6	script	保安#1::KHAGuard	852,{
+yuno_fild08,158,194,6	script	警卫#1::KHAGuard	852,{
 	if ((KielHyreQuest < 2) || (KielHyreQuest > 31)) { 
-		mes "[保安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，非本校人员不得进入^FF0000启·海伊洛学院^000000。若未与教职员预约，请离开。";
 		close;
 	}
 	else if (KielHyreQuest == 2) { 
-		mes "[保安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，非本校人员不得进入^FF0000启·海伊洛学院^000000。若未与教职员预约，请离开。";
 		next;
 		switch(select("我是来送货的。:......")) {
 		case 1:
-			mes "[保安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是来送货的？好，先告诉我收件人的^FF0000姓名^000000，再告诉我要送的^FF0000物品^000000。确认后我才能让你进去。";
 			next;
 			input .@KHDelivery$;
 			if (.@KHDelivery$ != "莱科兰夫人") {
-				mes "[保安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是来送酒给……谁来着？学院里好像没有叫这个名字的人。";
 				mes "你刚才说的是："+.@KHDelivery$+"？";
 				close;
 			}
 			input .@KHDelivery$ ;
 			if (.@KHDelivery$ != getitemname(7487)) {
-				mes "[保安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是给莱科兰夫人送货的？带来的是什么物品？";
 				mes "你带来的是^3355FF"+.@KHDelivery$+"^000000吗？";
 				next;
-				mes "[保安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我先联系她，确认她是否在等你送货。稍等……";
 				next;
 				mes "……";
 				mes "………";
 				mes "…………";
 				next;
-				mes "[保安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "莱科兰夫人确实在等送货，但要的不是你说的那件物品。你最好确认一下是否弄错了……";
 				close;
 			}
-			mes "[保安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好的……你是来给莱科兰夫人送一瓶酒的。我联系她，马上确认一下。";
 			next;
 			mes "……";
 			mes "………";
 			mes "…………";
 			next;
-			mes "[保安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了，没问题。莱科兰夫人一直在等你，你可以进去了。";
 			close2;
 			warp "kh_school",71,155;
 			end;
 		case 2:
-			mes "[保安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有预约就别在学院门口逗留！";
 			close;
 		}
 	}
 	else if (KielHyreQuest < 32) { 
-		mes "[保安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你在学院里还有其他事？我记得你，应该可以让你再进去……";
 		close2;
 		warp "kh_school",71,155;
@@ -610,49 +610,49 @@ kh_school,57,139,0	script	学生#khb	893,{
 //----------------------------------------------------------------------------
 // Mrs. Lecollane
 //----------------------------------------------------------------------------
-kh_school,176,60,4	script	莱科兰夫人#kh	101,{
+kh_school,176,60,4	script	太太#kh::莱科兰夫人#kh	101,{
 	if (KielHyreQuest < 2) {
-		mes "[莱科兰夫人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有什么事吗？外人不得进入这里，请离开。";
 		close;
 	}
 	else if (KielHyreQuest == 2) { 
-		mes "[莱科兰夫人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好。啊，你是来送酒的吧？保安刚联系过我，说你要过来。";
 		next;
 		switch(select("是的，没错！:呃，抱、抱歉！")) {
 		case 1:
-			mes "[莱科兰夫人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你来得比我预想的晚了些，不过也没办法。等了这么久，我反倒更期待这瓶酒了——";
 			next;
 			mes "^3355FF*叮当！哐啷！*^000000";
 			next;
-			mes "[莱科兰夫人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "艾莉？艾莉，你是不是又打碎东西了？！你得更小心！今天烤不完那些饼干，你这学期的成绩就要受影响了！";
 			next;
 			mes "[艾莉]";
 			mes "可、可是我刚才……";
 			next;
-			mes "[莱科兰夫人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF0000艾莉^000000！！";
 			next;
 			mes "[艾莉]";
 			mes "……";
 			mes "是的，莱科兰夫人。";
 			next;
-			mes "[莱科兰夫人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳，失礼了。请把酒放到那边。你可以走了，请不要在学院里随意闲逛。";
 			delitem 7487,1; //Tavern_Wine
 			set KielHyreQuest,4;
 			close;
 		case 2:
-			mes "[莱科兰夫人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？看来是我认错人了，抱歉。";
 			close;
 		}
 	}
 	else if (KielHyreQuest == 4) {
-		mes "[莱科兰夫人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "事情已经办完了，请尽快离开校园。唉，真不敢相信我们的未来掌握在这些女孩手里……";
 		close;
 	}
@@ -661,7 +661,7 @@ kh_school,176,60,4	script	莱科兰夫人#kh	101,{
 //----------------------------------------------------------------------------
 // Elly (In school)
 //----------------------------------------------------------------------------
-kh_school,179,39,0	script	可爱学生#kh	895,{
+kh_school,179,39,0	script	看似可爱的 学生#kh::可爱学生#kh	895,{
 	if (checkweight(908,200) == 0) {
 		mes "[艾莉]";
 		mes "抱歉，请先把一些物品存进卡普拉仓库，好吗？你带着这么多东西，我没法帮你。";
@@ -1342,36 +1342,36 @@ yuno_fild08,71,170,0	script	坟墓#kh	111,{
 //----------------------------------------------------------------------------
 // Cottage Keeper
 //----------------------------------------------------------------------------
-yuno_fild02,93,210,4	script	小屋管理员#kh	85,{
+yuno_fild02,93,210,4	script	别墅管家#kh::小屋管理员#kh	85,{
 	if ((KielHyreQuest < 12) || (KielHyreQuest > 12)) {
-		mes "[小屋管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里是私人领地，未经许可请勿入内。";
 		close;
 	}
 	else if (KielHyreQuest == 12) {
-		mes "[小屋管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里是私人领地，未经许可请勿入内。";
 		next;
 		switch(select("我与基尔·海勒有约。:好吧。")) {
 		case 1:
-			mes "[小屋管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你和基尔·海勒先生有约？";
 			mes "嗯，你确定吗？";
 			next;
 			switch(select("是:否")) {
 			case 1:
-				mes "[小屋管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一定是哪里搞错了。";
 				mes "海勒先生要是约了人，就不会出门了……";
 				set KielHyreQuest,14;
 				close;
 			case 2:
-				mes "[小屋管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没有预约的话，恐怕见不到海勒先生。";
 				close;
 			}
 		case 2:
-			mes "[小屋管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再见。";
 			close;
 		}
@@ -1777,7 +1777,7 @@ kh_vila,39,41,0	script	水池#khp1	111,{
 //----------------------------------------------------------------------------
 // Cottage interior, upstairs; Vicious Dog
 //----------------------------------------------------------------------------
-kh_vila,181,178,4	script	恶犬#khp1	81,7,3,{
+kh_vila,181,178,4	script	看起来 很凶的狗#khp1::恶犬#khp1	81,7,3,{
 OnTouch:
 	mes "*呜噜噜～*";
 	next;
@@ -1806,7 +1806,7 @@ OnTouch:
 		mes "^3355FF你慢慢靠近，但它仍不停地对你咆哮。";
 		mes "你想跑过去，却总被它挡住。该怎么办？^000000";
 		next;
-		mes "[恶犬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "汪汪！";
 		mes "汪汪！";
 		mes "汪汪汪！";
@@ -2349,7 +2349,7 @@ kh_dun01,235,114,0	duplicate(HeavyDoorKHQ2)	沉重的门#kh11	111
 //----------------------------------------------------------------------------
 // Beautiful Lady and Beautiful Lady copies.
 //----------------------------------------------------------------------------
-kh_school,119,149,4	script	美丽的女子#kh1::BeatifulLadyKHQ1	894,{
+kh_school,119,149,4	script	漂亮的女人#kh1::BeatifulLadyKHQ1	894,{
 	cutin "kh_ellisia",2;
 	if (KielHyreQuest < 40) {
 		mes "[艾莉西亚]";
@@ -2415,17 +2415,17 @@ kh_school,119,149,4	script	美丽的女子#kh1::BeatifulLadyKHQ1	894,{
 }
 
 
-kh_school,117,149,4	script	美丽的女子#kh2::BeatifulLadyKHQ2	894,{
+kh_school,117,149,4	script	漂亮的女人#kh2::BeatifulLadyKHQ2	894,{
 	end;
 }
-kh_school,118,149,4	duplicate(BeatifulLadyKHQ2)	美丽的女子#kh3	894
-kh_school,120,149,4	duplicate(BeatifulLadyKHQ2)	美丽的女子#kh4	894
-kh_school,121,149,4	duplicate(BeatifulLadyKHQ1)	美丽的女子#kh5	894
+kh_school,118,149,4	duplicate(BeatifulLadyKHQ2)	漂亮的女人#kh3::美丽的女子#kh3	894
+kh_school,120,149,4	duplicate(BeatifulLadyKHQ2)	漂亮的女人#kh4::美丽的女子#kh4	894
+kh_school,121,149,4	duplicate(BeatifulLadyKHQ1)	漂亮的女人#kh5::美丽的女子#kh5	894
 
 //----------------------------------------------------------------------------
 // Beautiful Lady "艾莉西亚"
 //----------------------------------------------------------------------------
-kh_school,122,186,4	script	美丽的女子#kh6	894,{
+kh_school,122,186,4	script	漂亮的女人#kh6::美丽的女子#kh6	894,{
 	if (checkweight(7496,1) == 0) {
 		mes "^3355FF等一下……";
 		mes "你携带的物品太多了，请先腾出一些背包空间。^000000";
@@ -2549,7 +2549,7 @@ kh_school,122,186,4	script	美丽的女子#kh6	894,{
 //----------------------------------------------------------------------------
 // Signboard (another useless NPC?)
 //----------------------------------------------------------------------------
-kh_dun01,163,223,4	script	告示牌#kh	857,{
+kh_dun01,163,223,4	script	广告牌#kh::告示牌#kh	857,{
 	mes "[公告]";
 	mes "此区域禁止携带宠物。";
 	mes "（为视障人士提供特殊协助的宠物不受此限制。）";
@@ -2773,7 +2773,7 @@ kh_mansion,78,55,5	script	管家#kh	109,{
 //----------------------------------------------------------------------------
 // Kiel Hyre
 //----------------------------------------------------------------------------
-kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
+kh_mansion,22,28,4	script	启 海伊洛#kh::基尔·海勒#kh	903,{
 	if (checkweight(908,200) == 0) {
 		mes "^3355FF等一下……";
 		mes "你携带的物品太多了，请先腾出一些背包空间。^000000";
@@ -2782,7 +2782,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 
 	cutin "kh_kyel01",2;
 	if (KielHyreQuest < 46) {
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "………";
 		mes "………";
 		mes "…………";
@@ -2793,7 +2793,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 
 	else if (KielHyreQuest == 46) {
 		cutin "kh_kyel01",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你一定就是"+strcharinfo(0)+"吧。";
 		mes "谢谢你救了我的命。你一定有很多问题，";
 		mes "我会尽力解答。";
@@ -2801,44 +2801,44 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		while(1) {
 			switch(select("机器人？:^3355FF基尔^000000？:^FF0000艾莉^000000的纽扣？")) {
 			case 1:
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我研究机器人已有三十二年。";
 				mes "我可以自豪地说，我做到了伟大的贤者巴尔蒙德未能做到的事。";
 				next;
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我的梦想是以人类为基础，开发人形机器人。";
 				mes "那些守护者或许也算机器人，";
 				mes "但它们不能凭自由意志行动。";
 				next;
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "想了解机器人技术的具体细节，可以和^3355FF艾莉西亚^000000聊聊。";
 				mes "她讲得比我简明多了，我总是容易说个没完……";
 				set .@KHQRead,.@KHQRead+1;
 				next;
 				break;
 			case 2:
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^3355FF基尔^000000是我唯一的儿子，";
 				mes "可我一生的挚爱在生下他后就去世了。";
 				mes "不得不承认，他是机械设计与开发方面的天才。";
 				next;
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "像艾莉这样的第三代机器人，主要都是他创造的。";
 				mes "遗憾的是，他正为某种邪恶目的改造自己的作品。";
 				next;
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我试图阻止他，结果却被锁进了工厂。";
 				mes "至今我也想不明白，他为什么要这样做……";
 				set .@KHQRead,.@KHQRead+1;
 				next;
 				break;
 			case 3:
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "艾莉手里那颗纽扣上刻着^3355FF基尔的徽章^000000。";
 				mes "至于那个威胁学生的黑衣人，";
 				mes "应该是基尔的保镖^3355FF凯撒^000000。";
 				next;
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "凯撒……我对他一无所知，甚至从没见过他的脸！";
 				mes "基尔雇他时，根本没告诉我……";
 				set .@KHQRead,.@KHQRead+1;
@@ -2846,7 +2846,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 				break;
 			}
 			if (.@KHQRead == 3) {
-				mes "[基尔·海勒]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果没有其他问题，可以让我休息一下吗？";
 				mes "自从被关在工厂里，我的身体就一直没恢复过来。";
 				delitem 7493,1; //Golden_Key
@@ -2857,20 +2857,20 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		}
 	}
 	else if (KielHyreQuest == 48) {
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，差点忘了。请收下这份小小的谢礼，感谢你救了我。";
 		getitem 12105,1; //Taming_Gift_Set
 		getexp (checkre(3))?70000:700000,0;
 		set KielHyreQuest,50;
 	}
 	else if ((KielHyreQuest >= 50) && (KielHyreQuest < 64)) {
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果没有其他问题，可以让我休息一下吗？";
 		mes "自从被关在工厂里，我的身体就一直没恢复过来。";
 	}
 	else if (KielHyreQuest == 64) {
 		cutin "kh_kyel01",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？你有什么想问我的吗？";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -2878,7 +2878,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 	}
 	else if (KielHyreQuest == 68) {
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，"+strcharinfo(0)+"，是你。今天有什么需要我帮忙的？";
 		next;
 		select("关于^3355FF艾莉西亚^000000……");
@@ -2887,11 +2887,11 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "她看起来和艾莉西亚一模一样。";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……就这件事吗？我还以为你想问机器人方面的问题。";
 		next;
 		cutin "kh_Kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这可真是个奇怪的巧合。";
 		mes "不过，世上有长得相像的人，也不算稀奇吧……";
 		next;
@@ -2901,7 +2901,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "她曾在朱诺的奥西米尔街工作。你有印象吗？";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……";
 		mes "………";
 		mes "…………";
@@ -2912,7 +2912,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "而你是以她为原型设计了机器人的外貌。";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "…………";
 		next;
 		cutin "kh_kyel01",2;
@@ -2929,18 +2929,18 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "于是，你决定报复罗西米尔，加入了雷根贝勒公司！";
 		next;
 		cutin "kh_Kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈哈哈哈！想象力可真丰富～太荒唐了……";
 		mes "不过我承认，也许我确实以很久以前见过的那个女人为原型，";
 		mes "设计了艾莉西亚。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我都快忘了她！我想，我们曾经是朋友……";
 		mes "但你怎么会认为我爱过她呢？";
 		next;
 		select("展示小屋中的基尔肖像");
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什、什么……怎么会……你从哪里……？";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -2953,16 +2953,16 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "又怎么能否认自己爱过她？";
 		next;
 		cutin "kh_Kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*叹气……*你说对了，我本不想让你知道真相。";
 		mes "我爱过艾莉西亚，所以把机器人设计得和她一模一样。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我永远忘不了她，永远。";
 		mes "但我绝不会伤害罗西米尔家族！我是科学家！";
 		mes "年轻时我是恨过他，可现在已经不同了！";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "罗西米尔家族衰败时，我确实没为他们流泪，";
 		mes "但那不是我干的。我也没有那样的资源和能力……";
 		next;
@@ -2976,7 +2976,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "有没有发现什么……能作为罪证的东西？";
 		next;
 		cutin "kh_Kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是说，除了詹姆斯·罗西米尔本人之外？";
 		mes "没有！我看不出这幅画有什么问题。";
 		next;
@@ -2985,7 +2985,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "那不就是你今天戴着的那块吗？";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……！！！";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -2993,7 +2993,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "但有雷根贝勒公司的帮助，就完全有可能了！";
 		next;
 		cutin "kh_Kyel03",2; 
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "干得漂亮，冒险者。我不后悔自己的所作所为！";
 		mes "是他们害死了我的艾莉西亚！";
 		mes "如果詹姆斯没有背叛她，没有逼得她自杀……";
@@ -3002,11 +3002,11 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "你错了！艾莉西亚是被杀的，她没有自杀。";
 		mes "好好看看这张便条！";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！";
 		next;
 		select("出示詹姆士的纸条");
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这能证明什么？它并不能证明詹姆斯没有背叛艾莉西亚。";
 		mes "这又能改变什么？她已经死了，";
 		mes "无论我做什么，都无法让她回到我身边！";
@@ -3021,7 +3021,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "如果她打算第二天和爱人一起离开，";
 		mes "就没有理由自杀！";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，不对！她大概没办法相信我！";
 		mes "她一定意识到，自己不过是他的另一个玩物！";
 		next;
@@ -3045,38 +3045,38 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "别再撒谎了，告诉我到底发生了什么！";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "…………";
 		mes "………";
 		mes "……";
 		next;
 		cutin "kh_Kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈……哈哈哈……是的，没错……";
 		mes "那个可怕的夜晚，我记得很清楚……";
 		mes "…………………";
 		next;
 		cutin "kh_kyel02",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那晚，她应约来到河边。";
 		mes "我求她跟我走，不要再等詹姆斯了。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她坚持说詹姆斯从没背叛她，";
 		mes "而且答应第二天就带她离开。";
 		mes "你能想象我的感受吗？在她眼里，我什么都不是。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她根本不在乎我的感受，只顾摆弄那枚戒指……";
 		mes "我失控了，想抢走那该死的东西，把它扔进河里……";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "可你知道吗？她挣扎着，竟然还和我扭打！";
 		mes "本来只是小小的争执，没想到脚下的地面塌了……";
 		mes "那些雨水……";
 		next;
 		select(".........");
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也不知道究竟怎么回事。雨水冲松了地面，";
 		mes "出了什么问题……她就……就这样……";
 		mes "河水吞没了她……我心里空荡荡的，她不在了。";
@@ -3092,32 +3092,32 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 	}
 	else if (KielHyreQuest <= 70) {
 		cutin "kh_kyel01",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经知道，第二天有人发现了她的尸体。";
 		mes "可最让我心碎的是，即使死了，";
 		mes "她手里仍紧紧攥着那枚戒指……";
 		next;
 		cutin "kh_kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他的家族拥有一切，而我一无所有。";
 		mes "他竟然还敢把艾莉西亚从我身边夺走？！";
 		mes "这怎么能算公平？";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使她已经死了，我也要向她证明，詹姆斯有多么卑劣。";
 		mes "于是，我加入了雷根贝勒公司。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我设计了第一代机器人的首个型号，取名艾莉西亚，";
 		mes "然后把设计卖给了雷根贝勒。";
 		mes "我提供机器人，他们给我金钱、权力和听命于我的手下。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我当然知道他们会用机器人刺探情报、杀人！";
 		mes "但只要他们给我复仇的手段，那又有什么关系？";
 		mes "这简直是完美的合作。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在你把我逼到这个地步了。";
 		mes "你替谁办事？究竟想要什么？";
 		mes "我的设计？我的命？还是一切……？";
@@ -3127,90 +3127,90 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		mes "其实，我只想问清楚你和雷根贝勒公司的合作关系，";
 		mes "还有基尔的事。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "基尔吗？听完我这段疯狂的往事，";
 		mes "你大概已经猜到他的真相了……";
 		mes "他也是机器人，是第二代机器人的首个型号。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他的心智由实验中的浓缩魔法咒语卷轴开发而成，";
 		mes "那种技术还不稳定。";
 		mes "他是唯一获准留在我身边的第二代机器人。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我对基尔产生了很深的感情。";
 		mes "这也不奇怪，毕竟机器人技术已经成了我的全部人生。";
 		mes "我把他当亲生儿子养大，教给他所有机器人知识。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如今他已是个天才，甚至开发出了第三代机器人。";
 		mes "可惜，我没能教会他人类的道德与伦理。";
 		next;
 		select("......");
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他一直在把第三代机器人改造成杀戮机器。";
 		mes "所以我才把它们送进学院，让它们学习人类的行为。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然学院拖延了他的计划，";
 		mes "但他最终还是把那些机器人变成了失控的大规模杀戮机器。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错，他一直在和雷根贝勒密切合作。";
 		mes "他们的真正目标，就是制造供雷根贝勒使用的杀戮机器。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在你知道我过去所有的秘密了。";
 		mes "我并没有生你的气，不过我有件事想求你。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "求你阻止基尔！我不想让他的疯狂毁掉更多机器人！";
 		mes "对我来说，它们每一个都是我的孩子！";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道，发生的一切都该由我负全责。";
 		mes "我保证，等事情解决后，会接受应有的惩罚。";
 		next;
 		select("接受:好的:点头");
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢！基尔就在这座宅邸的地下层。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他待在最初制造他的那个旧房间里，";
 		mes "却把那里改造成了洞穴，不让任何人进入，连我也不例外。";
 		mes "他已经不再信任任何人了……";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到他后，请从他心脏里取出爱丽丝亚的戒指。";
 		mes "取出戒指，应该就能阻止他继续发狂。";
 		next;
 		select("爱丽丝亚的戒指？");
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的……她的戒指是一切的开始。";
 		mes "我把它放进他的心脏，";
 		mes "就是为了永远记住罗西米尔家族对我做过的事。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "基尔现在强大得可能连普通武器都伤不了他了。";
 		mes "用这个装置干扰他的能源供应。";
 		getitem 7504,1; //Toy_Motor
 		next;
 		cutin "kh_kyel03",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把装置安到他身上，他就无法发挥全部力量。";
 		mes "趁他虚弱时打开胸腔，从心脏里取出戒指。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好后告诉我，我会指引你前往基尔的房间。";
 		set KielHyreQuest,74;
 	}
 	else if ((KielHyreQuest >= 74) && (KielHyreQuest <= 104)) {
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好去面对基尔了吗？";
 		next;
 		switch(select("是:否")) {
 		case 1:
-			mes "[基尔·海勒]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了，秘密通道已经打开。";
 			mes "从我的右边走。小心，基尔非常危险。";
 			close2;
@@ -3220,18 +3220,18 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 			end;
 			break;
 		case 2:
-			mes "[基尔·海勒]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "慢慢准备吧，我想这不会轻松。";
 			break;
 		}
 	}
 	else if ((KielHyreQuest >= 74) && (KielHyreQuest <= 106)) {
 		cutin "kh_kyel01",2;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你回来了……！从基尔心脏里取出爱丽丝亚的戒指了吗？";
 		next;
 		if (countitem(7508) < 1) {
-			mes "[基尔·海勒]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是说……没拿到？";
 			mes "请从基尔心脏里取回爱丽丝亚的戒指！";
 			next;
@@ -3241,17 +3241,17 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 			cutin "",255;
 			end;
 		}
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "发、发生了什么……？基尔给自己造了新的身体？";
 		mes "那、那就成了第四代机器人了。";
 		mes "没想到他竟然聪明到这种程度。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等，这么说来，我被关在工厂时，";
 		mes "确实见过一些长得像基尔的机器人躯体。";
 		mes "原来他是用那些复制品来研究自己的升级改造。";
 		next;
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拿着这张钥匙卡，就能进入工厂最深处调查。";
 		mes "我去检查基尔的房间。";
 		getitem 7509,1; //Fancy_Key_Card
@@ -3262,7 +3262,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 			else set .@KHSTitle$,"夫人";
 		}
 		else set .@KHTitle$,"先生";
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "基尔由我负责……无论付出什么代价，我都必须阻止他！";
 		mes "还有，请收下这份谢礼，感谢你的帮助，"+strcharinfo(0)+""+.@KHTitle$+"。";
 		getitem 616,1;  //Old Card Album
@@ -3270,7 +3270,7 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 		getexp (checkre(3))?100000:1000000,0;
 	}
 	else if (KielHyreQuest >= 108) {
-		mes "[基尔·海勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……";
 		mes "………";
 		mes "…………";
@@ -3284,100 +3284,100 @@ kh_mansion,22,28,4	script	基尔·海勒#kh	903,{
 //----------------------------------------------------------------------------
 // Allysia
 //----------------------------------------------------------------------------
-kh_mansion,18,30,4	script	艾莉西亚	894,{
+kh_mansion,18,30,4	script	爱丽希雅::艾莉西亚	894,{
 	if (KielHyreQuest < 46) {
-		mes "[艾莉西亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁？怎么进来的？快离开这里。";
 		close;
 	}
 	cutin "kh_ellisia",2;
 	if (KielHyreQuest < 70) {
-		mes "[艾莉西亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "发生了这么多事，你一定很吃惊。";
 		mes "也许我解释一下机器人，你就更容易理解了？";
 		next;
 		switch(select("是:否")) {
 		case 1:
-			mes "[艾莉西亚]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你遇到的机器人，是能够独立思考和行动的自动机械傀儡。";
 			mes "许多贤者都曾尝试开发自己的机器人，但都失败了。";
 			next;
-			mes "[艾莉西亚]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的主人基尔·海勒从二十岁起就开始研究机器人，";
 			mes "先后开发出了第一代、第二代和第三代机器人。";
 			next;
 			switch(select("第一代:第二代:第三代")) {
 			case 1:
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我就是第一代机器人的典型例子。";
 				mes "我的身体由沉重的机械骨架、机械心脏，";
 				mes "以及覆盖在外的化学合成皮肤构成。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我的中央处理器相当于你们的大脑，";
 				mes "它本质上是一种记忆卷轴，";
 				mes "以冒险者战斗时使用的魔法卷轴为基础设计而成。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我是最早的人形机器人型号，身体很重，";
 				mes "心智也只能处理有限的信息，";
 				mes "因此无法像人类一样表达感情。";
 				next;
 				break;
 			case 2:
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "第一代机器人主要由机械零件构成，";
 				mes "而第二代则融入了生命体的科学技术。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "第二代机器人拥有人造的皮肤与血肉，更像真正的生物，";
 				mes "不过内部仍是沉重的机械骨架。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "利用贤者的元素卷轴技术，还开发出了浓缩记忆卷轴，";
 				mes "其处理能力优于第一代机器人的中央处理器。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "虽然浓缩记忆卷轴的能力是普通记忆卷轴的十万倍，";
 				mes "但它存在缺陷，很容易产生大量错误。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "第二代机器人能表达人类般的感情，";
 				mes "但由于被认定存在缺陷，投产六年后便停止生产了。";
 				next;
 				break;
 			case 3:
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "第三代机器人主要由基尔·海勒的儿子基尔设计。";
 				mes "它们完全不使用机械骨架，整个身体本质上就是生命体。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有机的身体，加上用仿制伊米尔心脏碎片制造的先进人工心脏，";
 				mes "使它们能像普通人一样体验各种生理现象。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "基尔开发出了一种更稳定的浓缩记忆卷轴，";
 				mes "不会出现严重错误，还可以低成本大批量制造。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "艾莉其实是第三代机器人的原型机。";
 				mes "原型完善后，我们就会开始量产。";
 				mes "事实上，那所学院就是我们的原型测试场。";
 				next;
-				mes "[艾莉西亚]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "原型机器人能够像真人一样与人交往，";
 				mes "这正是机器人研究取得成功的证明。";
 				next;
 				break;
 			}
 		case 2:
-			mes "[艾莉西亚]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果还想了解基尔·海勒的机器人，请随时告诉我。";
 			break;
 		}
 	}
 	else {
-		mes "[艾莉西亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……";
 		mes "………";
 		mes "…………";
@@ -3405,7 +3405,7 @@ OnTouch:
 //----------------------------------------------------------------------------
 // Mysterious Woman "Mitchell Layla"
 //----------------------------------------------------------------------------
-kh_mansion,25,79,4	script	神秘女子#kh	727,3,3,{
+kh_mansion,25,79,4	script	可疑的女子#kh::神秘女子#kh	727,3,3,{
 
 OnTouch:
 	if (KielHyreQuest == 50) {
@@ -3619,7 +3619,7 @@ OnInit:
 //----------------------------------------------------------------------------
 // Odd Grandma
 //----------------------------------------------------------------------------
-yuno,257,140,4	script	古怪的老婆婆	846,{
+yuno,257,140,4	script	看似可疑的 奶奶::古怪的老婆婆	846,{
 	if (KielHyreQuest < 54) {
 		mes "[老婆婆]";
 		mes "亲爱的，你去哪儿了？";
@@ -3687,9 +3687,9 @@ yuno,257,140,4	script	古怪的老婆婆	846,{
 //----------------------------------------------------------------------------
 // Old Lady; gives you the key to the Rosimier Mansion
 //----------------------------------------------------------------------------
-yuno,250,132,0	script	老妇人#kh	711,{
+yuno,250,132,0	script	阿姨#kh::老妇人#kh	711,{
 	if (KielHyreQuest < 56) {
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎哟，腰酸腿疼的，这把老骨头浑身都痛……";
 		close;
 	}
@@ -3699,49 +3699,49 @@ yuno,250,132,0	script	老妇人#kh	711,{
 			mes "你携带的物品太多了，请先腾出一些背包空间。^000000";
 			close;
 		}
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊，我真讨厌这种天气！";
 		mes "它总提醒我已经老了，冷得骨头都发疼！";
 		next;
 		switch(select("……:您认识那位老婆婆吗？")) {
 		case 1:
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真是的！年轻时要是没经历那么多冒险，";
 			mes "也许到了这把年纪，就不用受这么多罪了！";
 			close;
 		case 2:
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……认识。她是我最好的朋友^3355FF艾莉西亚^000000的母亲。";
 			mes "自从艾莉西亚自杀后，一切都变了。";
 			mes "她母亲也失去了理智……";
 			next;
 			select("^3355FF艾莉西亚^000000她……？");
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "艾莉西亚是个美丽的姑娘，追求她的男人可多了，";
 			mes "尤其是那个英俊的詹姆斯·罗西米尔。";
 			mes "我记得听说他们要结婚了……";
 			next;
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我真替她高兴！可突然间，她就自杀了。";
 			mes "嗯，大家都这么说。";
 			mes "直到现在，我也不知道究竟发生了什么。";
 			next;
 			select("等等，詹姆斯·罗西米尔是谁？");
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "詹姆斯出身于朱诺历史最悠久、最富有的家族之一。";
 			mes "他们原本一切顺利，但艾莉西亚死后没多久，";
 			mes "这个家族就破产了。";
 			next;
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在他们的旧宅由市政厅管理。";
 			mes "不知为什么，市政厅把路史米埃尔加公馆的万能钥匙交给我保管了。";
 			next;
 			select("能把万能钥匙借给我吗？");
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我本来不能随便把钥匙借给别人，";
 			mes "不过，我看得出你是真心为艾莉西亚着想。";
 			next;
-			mes "[老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但你一定得在市政厅的人来要之前把钥匙还给我。";
 			mes "好吧，希望你能找到想找的东西。";
 			getitem 7498,1; //Rosimier_Key
@@ -3755,7 +3755,7 @@ yuno,250,132,0	script	老妇人#kh	711,{
 		(countitem(7500) < 1) || 
 		(countitem(7501) < 1) || 
 		(countitem(7502) < 1)) {
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请赶快在路史米埃尔加公馆里找到你要的东西。";
 		mes "要是市政厅的人来要钥匙，我可就麻烦了……";
 		close;
@@ -3766,24 +3766,24 @@ yuno,250,132,0	script	老妇人#kh	711,{
 		(countitem(7500) == 1) && 
 		(countitem(7501) == 1) && 
 		(countitem(7502) == 1)) {
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，宅邸已经搜查完了？很凄凉吧？";
 		mes "很久以前，债主们就把那里搜刮得差不多了。";
 		next;
 		select("^3355FF艾莉西亚^000000为什么会……？");
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道詹姆斯和艾莉西亚彼此相爱，他还答应娶她。";
 		mes "可是听说，他家里早已安排他和另一个女人订婚。";
 		next;
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "后来，他被迫娶了未婚妻。艾莉西亚伤透了心。";
 		mes "我想，也许她就是因为这样才……你懂的……";
 		next;
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果想进一步了解这件事，";
 		mes "就去找^3355FF住在启·海伊洛学院南边的渔夫^000000谈谈吧。";
 		next;
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "就是他在河里发现了艾莉西亚的尸体，";
 		mes "他可能更清楚发生了什么。";
 		delitem 7498,1; //Rosimier_Key 
@@ -3791,7 +3791,7 @@ yuno,250,132,0	script	老妇人#kh	711,{
 		close;
 	}
 	else if (KielHyreQuest >= 60) {
-		mes "[老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是啊，要下雨了。我的骨头都感觉到了。";
 		close;
 	}

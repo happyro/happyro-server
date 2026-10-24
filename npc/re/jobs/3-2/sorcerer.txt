@@ -16,8 +16,8 @@
 //= 1.3 Added VIP features. [Euphy]
 //============================================================
 
-gef_tower,102,34,5	script	Merito	742,{
-	mes "[梅里托]";
+gef_tower,102,34,5	script	梅利托::Merito	742,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
 		mes "你的背包里装了太多东西。清空后再试。";
 		close;
@@ -38,33 +38,33 @@ gef_tower,102,34,5	script	Merito	742,{
 		mes "欢迎。有什么我能帮你的吗？";
 		next;
 		select("你了解妖术师吗？");
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只当学者不是更舒服吗？妖术师忙于和精灵交流，没多少时间读书……";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是什么让你想成为妖术师？";
 		next;
 		if(select("火精灵指引我来这里。:水精灵指引我来这里。:地精灵指引我来这里:肉精灵指引我来这里。") == 4) {
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不存在那种精灵！";
 			close;
 		}
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我明白了。";
 		mes "你一定天生就有看见精灵的能力，已经和它们交流过；或者你是个优秀的骗子。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……那么，先在这张名单上写下你的名字吧？";
 		next;
 		if(select("写下名字。:我不写。") == 2) {
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧。有机会再见。";
 			close;
 		}
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，你是[" + strcharinfo(0) +"]。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给我一点时间登记你的名字。";
 		mes "稍后再和我谈。";
 		set job_soc,1;
@@ -72,41 +72,41 @@ gef_tower,102,34,5	script	Merito	742,{
 	} else if (job_soc == 1) {
 		mes "很好，那我简短介绍一下妖术师。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "[" + strcharinfo(0) +"]，你能熟练运用魔法吗？";
 		next;
 		if(select("是的，我可以。:不，我不太擅长。") == 2) {
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么！？你不会使用魔法？";
 			mes "那你来这里做什么？出去。现在就走！";
 			close;
 		}
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，这很明显。";
 		mes "当然妖术师也使用魔法。但你知道妖术师与其他魔法职业的主要区别吗？";
 		next;
 		switch(select("他们会唱歌。:他们都是老古董。:他们能对付精灵。")) {
 		case 1:
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "也许有些人会唱，但那不是主要区别。";
 			close;
 		case 2:
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么！你怎么敢？！";
 			close;
 		case 3:
 			break;
 		}
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错。这就是妖术师最显著的特征。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想成为妖术师的人来时，我们首先检查他们能否与精灵交流。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这就是基本介绍，你只需决定是否参加资格考试。";
 		next;
-		mes "[梅里托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一切由你决定。你要怎么做？";
 		next;
 		switch(select("我现在参加测试。:我稍后再来。")) {
@@ -115,12 +115,12 @@ gef_tower,102,34,5	script	Merito	742,{
 				callfunc "VIP_Third_Class";
 			set job_soc,2;
 			setquest 12096;
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好的。";
 			mes "那我把你交给4楼的卡拉卡斯。他会指导你完成考试。";
 			close;
 		case 2:
-			mes "[梅里托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么？我还以为你想成为妖术师。";
 			close;
 		}
@@ -130,8 +130,8 @@ gef_tower,102,34,5	script	Merito	742,{
 	}
 }
 
-gef_tower,113,161,5	script	Karacas	754,{
-	mes "[卡拉卡斯]";
+gef_tower,113,161,5	script	加拉加斯::Karacas	754,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
 		mes "哦，你的负重太高了。清空背包后再来。";
 		close;
@@ -155,79 +155,79 @@ gef_tower,113,161,5	script	Karacas	754,{
 		mes "....";
 		next;
 		select("啊……打扰了～");
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……（Z z z～）";
 		next;
 		select("嗯嗯！！！～");
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊啊啊！！";
 		mes "哦，天啊……";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你……你从哪里来？";
 		next;
 		select("梅里托让我来找你。" );
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了，稍等。";
 		mes "名单……已经送到了。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，你是[" + strcharinfo(0) +"]……对吗？";
 		next;
 		if(select("是的。:不，我不是！") == 2) {
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，名单上一定有错误。你稍后再来好吗？";
 			close;
 		}
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在参加妖术师考试前，我先告诉你基本信息。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "取得妖术师登记凭证的方法很简单。找到散布世界各处的各种精灵，再将它们的力量转化为特定材料。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听起来很简单，对吧？";
 		next;
 		select("啊……先生，真的可能吗？" );
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不可能独自遇见每个精灵。必须刻苦训练，让精灵显形并用双眼清楚看见。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我们通常会举行仪式，前往能感受到精灵的地方。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会告诉你方法，请仔细听。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "通常我们无法用肉眼看见精灵，但可通过特殊媒介感知精灵的一部分。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "例如，带着一定数量的风灵矿石前往风精灵所在之处，精灵的反应就会增强。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "同样，带着一定数量的火灵矿石接近火精灵所在之处，精灵会产生相应反应。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "妖术师利用这一基本原理，这是接触精灵所需的关键知识。";
 		next;
 		select("所以要和精灵交流……" );
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错～";
 		mes "这个职业以精灵之力为基础。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，不过对只专注读书的你来说可能很难……";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，你需要带来考试所需的材料。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "3个风灵矿石。";
 		mes "3个水灵矿石。";
 		mes "3个火灵矿石。";
 		mes "3个地灵矿石。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带来这些材料后，我会告诉你下一步。";
 		set job_soc,3;
 		changequest 12096,12097;
@@ -237,66 +237,66 @@ gef_tower,113,161,5	script	Karacas	754,{
 			mes "哦，你带齐了材料。";
 			next;
 		select("我接下来该做什么？");
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在告诉你。首先是考试地点，最好记下来。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "1. 冰洞1楼";
 			mes "2. 托尔火山密穴1楼";
 			mes "3. 妙勒尼山废弃矿坑地下3层";
 			mes "4. 昆仑地下城2楼";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们在这4处设置了探测柱，让普通人也能与精灵交流。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "注意，探测柱只有在你拥有一定数量的属性石时才会启动。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "每种属性至少准备3颗小石头。例如需要风灵矿石，而不是粗糙之风。";
 			next;
 			select("所以我需要属性石……" );
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是的，你反应很快！";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "把石头带到探测柱后，放入柱子上的属性分解机。探测柱会启动，你就能与精灵交流。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "成功的话可以提取精灵的一部分作为试剂。失败的话属性石会碎裂。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然，足够幸运时，失败也可能把风灵矿石变成粗糙之风……不过这不常见，暂且不谈。";
 			next;
 			select("如果石头用完了呢？" );
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈哈……属性石用完就再去收集。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "参加考试的人通常会尽可能多带属性石。我让你准备的数量只是最低限度。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "高级妖术师无需再走这个流程就能和精灵交谈。但初学者需要用这种媒介。";
 			next;
 			select("所以试剂是……？" );
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们不知道精灵会制造哪种试剂，这取决于精灵的状态。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "成功获得3种不同试剂后就可以回来。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一种精灵制造的试剂不会超过2种，所以想获得3种试剂，建议去几个地方。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还有问题吗？";
 			next;
 			if(select("没有。:请再解释一次。") == 2) {
-				mes "[卡拉卡斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哈哈，那能给我一杯水吗？稍后再来找我。";
 				next;
 			}
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那我把总结的流程写下来。等一下……";
 			next;
 			mes "^000099你获得了一张写有精灵交流方法的纸。更多信息请打开任务窗口。^000000";
@@ -306,13 +306,13 @@ gef_tower,113,161,5	script	Karacas	754,{
 		}
 		mes "告诉你流程前，需要带来一些材料。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "3个风灵矿石。";
 		mes "3个水灵矿石。";
 		mes "3个火灵矿石。";
 		mes "3个地灵矿石。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带来这些基本材料后，我会指导下一步。";
 		close;
 	} else if (job_soc == 4) {
@@ -321,7 +321,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 			mes "我以为你会被精灵压倒，但你成功取得了有效药剂！";
 			next;
 		select("我只需要做这些吗？" );
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "做得好。首先我会整理奇迹药剂，请稍候。";
 			if (job_soc != 4 || countitem(6276) < 1 || countitem(6278) < 1 || countitem(6277) < 1) {
 				mes "请确认考试进度，并带齐三种试剂后再来。";
@@ -336,27 +336,27 @@ gef_tower,113,161,5	script	Karacas	754,{
 		}
 		mes "通过与精灵交流取得想要的效果并不容易。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别放弃，继续尝试～";
 		close;
 	} else if (job_soc == 5) {
 		mes "原本应由我的老师确认妖术师转职，但他去寻找鱼精灵后就不见了。所以我亲自确认。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "亲爱的[" + strcharinfo(0) +"]，";
 		mes "你走遍荒野，以妖术师身份打开了大门，并通过学院的所有要求。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然这只是开始，我们不知道你将与哪种精灵交流，也不知道等待你的困难。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但凭你至今展现的能力，今后任何事都能做到。亲爱的[" + strcharinfo(0) +"]。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (BaseLevel < 99 || JobLevel < 50 || SkillPoint) {
 			mes "在授予你新职业前，请先确认自己的身体状态。";
 			next;
-			mes "[卡拉卡斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "接受新职业前必须符合职业要求！";
 			close;
 		}
@@ -367,7 +367,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 		}
 		mes "此外，我正式确认你完成了妖术师学院的所有转职考试。";
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "恭喜你，[" + strcharinfo(0) +"]";
 		if (job_soc != 5 || BaseJob != Job_Sage || BaseLevel < 99 || JobLevel < 50 || SkillPoint || ismounting()) {
 			mes "请确认转职进度、等级与技能点，并解除坐骑后再来。";
@@ -381,7 +381,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 		getitem 5756,1; //Wind_Whisper
 		getitem 2795,1; //Green_Apple_Ring
 		next;
-		mes "[卡拉卡斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你今后能与精灵进行更多交流。";
 		close;
 	}
@@ -437,7 +437,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 	}
 	close;
 }
-thor_v01,64,252,0	duplicate(Spirit Detecting Staff#0)	Spirit Detecting Staff#1	836
-ice_dun01,274,274,0	duplicate(Spirit Detecting Staff#0)	Spirit Detecting Staff#2	836
-mjo_dun03,200,141,0	duplicate(Spirit Detecting Staff#0)	Spirit Detecting Staff#3	836
-gon_dun02,195,190,0	duplicate(Spirit Detecting Staff#0)	Spirit Detecting Staff#4	836
+thor_v01,64,252,0	duplicate(Spirit Detecting Staff#0)	元素精灵探测棒#1::Spirit Detecting Staff#1	836
+ice_dun01,274,274,0	duplicate(Spirit Detecting Staff#0)	元素精灵探测棒#2::Spirit Detecting Staff#2	836
+mjo_dun03,200,141,0	duplicate(Spirit Detecting Staff#0)	元素精灵探测棒#3::Spirit Detecting Staff#3	836
+gon_dun02,195,190,0	duplicate(Spirit Detecting Staff#0)	元素精灵探测棒#4::Spirit Detecting Staff#4	836

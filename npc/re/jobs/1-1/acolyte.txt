@@ -13,51 +13,51 @@
 //= 1.1 Added back the npcs used for the priest quest.
 //= 1.2 Added support for Baby classes. [Euphy]
 //============================================================ 
-prt_church,184,41,4	script	玛雷乌西斯神父::Cleric#aco	60,{
+prt_church,184,41,4	script	圣堂 神父::Cleric#aco	60,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Priest || ADVJOB == Job_Champion) {
 			if (Class == Job_Novice_High) {
-				mes "[玛雷乌西斯神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我感觉你经历过前世。进入英灵殿前，你一定学到了很多。";
 				next;
 				if (!callfunc("F_CanChangeJob")) {
-					mes "[玛雷乌西斯神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "遗憾的是，我认为你还没准备好成为服事。请先学完所有基本技能。";
 					next;
-					mes "[玛雷乌西斯神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "在此期间，我会等到你准备好。";
 					mes "愿上帝与你同在。";
 					close;
 				}
-				mes "[玛雷乌西斯神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那么，欢迎你从英灵殿回来，祝你新生命旅程好运。";
 				next;
 				skill "NV_TRICKDEAD",0,SKILL_PERM;
 				jobchange Job_Acolyte_High;
 				skill "AL_HOLYLIGHT",1,SKILL_PERM;
-				mes "[玛雷乌西斯神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在出发，寻找需要你帮助的人。愿上帝照亮你的道路。";
 				close;
 			}else{
-				mes "[玛雷乌西斯神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在出发寻找需要你帮助的人。愿上帝指引你的道路。";
 				close;
 			}
 		}else{
-			mes "[玛雷乌西斯神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我感觉你经历过前世。进入英灵殿前，你一定学到了很多。";
 			next;
-			mes "[玛雷乌西斯神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但我能看出你不适合成为服事。请记住前世的自己，寻找你的道路。";
 			close;
 		}
 	}
-	mes "[玛雷乌西斯神父]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想寻求什么？";
 	next;
 	switch(select("转职为服事。:询问服事要求。:算了。")) {
 	case 1:
-		mes "[玛雷乌西斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		if(BaseJob != Job_Novice) {
 			if(BaseJob == Job_Acolyte)
 				mes "今天还好吗？看你的服装就知道你已经是服事。你不是在开玩笑吧？";
@@ -69,15 +69,15 @@ prt_church,184,41,4	script	玛雷乌西斯神父::Cleric#aco	60,{
 			mes "让我看看你是否准备好了……嗯……";
 			next;
 			if (!callfunc("F_CanChangeJob")) {
-				mes "[玛雷乌西斯神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "天啊？！你还没完成基础修行？！路还很长！提升职业等级后再来！";
 				close;
 			}
-			mes "[玛雷乌西斯神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……你的职业等级够了……";
 			mes "很好。现在我授予你成为服事的资格。";
 			next;
-			mes "[玛雷乌西斯神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "永远记得感谢一直照顾我们的上帝。在混乱和困难时期，以坚定信仰面对苦难。";
 			if (!checkweight(1545,1)) {
 				mes "请先为转职赠送的装备预留足够的负重及背包空间，再来办理转职。";
@@ -86,20 +86,20 @@ prt_church,184,41,4	script	玛雷乌西斯神父::Cleric#aco	60,{
 			callfunc "Job_Change",Job_Acolyte;
 			getitem 1545,1;	// N_Mace
 			next;
-			mes "[玛雷乌西斯神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "最后，真诚恭喜你坚持通过苦修试炼。";
 			close;
 		}
 	case 2:
-		mes "[玛雷乌西斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想成为服事吗？";
 		mes "那么，你必须完成以下要求，把它们当作上帝给予的修行。";
 		next;
-		mes "[玛雷乌西斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，你必须将初心者的基本技能学到 9 级。";
 		mes "这是最基本的要求，要把它当作自我训练。";
 		next;
-		mes "[玛雷乌西斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "满足要求后再回来。届时你就能获得传播上帝旨意的神圣职业。";
 		close;
 	case 3:
@@ -108,13 +108,13 @@ prt_church,184,41,4	script	玛雷乌西斯神父::Cleric#aco	60,{
 }
 
 
-prt_fild03,365,255,2	script	鲁巴卡巴拉神父::Ascetic#aco	89,{
-	mes "[鲁巴卡巴拉神父]";
+prt_fild03,365,255,2	script	修行中的神父::Ascetic#aco	89,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 6) {
 			mes "请保重。你抵达普隆德拉圣堂时，他们应该已经知道你见过我。";
 			next;
-			mes "[鲁巴卡巴拉神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我已派信鸽送信，希望它能安全抵达……";
 			close;
 		}
@@ -122,22 +122,22 @@ prt_fild03,365,255,2	script	鲁巴卡巴拉神父::Ascetic#aco	89,{
 			if (job_acolyte_q == 2) {
 				mes "哦……？你一定是想成为服事的人。我已收到圣堂消息，说你可能会来。";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的名字是" + strcharinfo(0) +"，对吧？很好，谢谢你来看我。";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我相信玛雷乌西斯神父已告诉你许多服事的事。普隆德拉圣堂也有很多热心的人。";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看来我没什么需要教你的。而且你们这一代人大概不愿听我这个老人的话。哈哈哈～";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过，人生的启示往往来自意想不到的地方。上帝喜欢用奇特方式教导孩子。你会看到的。";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会发消息告诉他们你来过。现在你可以回普隆德拉圣堂了。";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "再会。";
 				close2;
 				savepoint "prt_fild03",361,255,1,1;
@@ -149,11 +149,11 @@ prt_fild03,365,255,2	script	鲁巴卡巴拉神父::Ascetic#aco	89,{
 				mes "你是服事申请者吗……？";
 				mes "让我看看……";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的名字是" + strcharinfo(0) +"？";
 				mes "我想你的名字不在名单上。嗯……";
 				next;
-				mes "[鲁巴卡巴拉神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你为什么不回普隆德拉圣堂再确认一次？";
 				close;
 			}
@@ -168,7 +168,7 @@ prt_fild03,365,255,2	script	鲁巴卡巴拉神父::Ascetic#aco	89,{
 		if (BaseJob == Job_Priest) {
 			mes "你好。";
 			next;
-			mes "[鲁巴卡巴拉神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎来到这片僻静之地。坐下来和我思考上帝的讯息吧。这里很美，尽管宁静中伴随着危险……";
 			close;
 		}
@@ -176,20 +176,20 @@ prt_fild03,365,255,2	script	鲁巴卡巴拉神父::Ascetic#aco	89,{
 			mes "哦呵……";
 			mes "你来这里修行吗？还是只是个流浪者？";
 			next;
-			mes "[鲁巴卡巴拉神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "无论你是谁，请保重。这里的怪物外表可爱，力量却惊人。";
 			close;
 		}
 	}
 }
 
-moc_fild07,41,355,4	script	玛蒂尔达修女::Ascetic#2aco	95,{
-	mes "[玛蒂尔达修女]";
+moc_fild07,41,355,4	script	修行中的修女::Ascetic#2aco	95,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 7) {
 			mes "我会派信鸽前往普隆德拉圣堂。你回去时，那里的祭司应该已经收到我的消息。";
 			next;
-			mes "[玛蒂尔达修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会向上帝祈祷，希望你早日成为服事。";
 			close;
 		}
@@ -197,13 +197,13 @@ moc_fild07,41,355,4	script	玛蒂尔达修女::Ascetic#2aco	95,{
 			if (job_acolyte_q == 3) {
 				mes "啊，你一定是服事申请者。真诚欢迎你。";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "你叫什么？" + strcharinfo(0) +"？让我看看……啊，你在我的名单上。";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "我会向圣堂发消息，确认" + strcharinfo(0) +"来见过我并完成了苦修。";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请回普隆德拉圣堂，和负责的祭司谈谈。";
 				close2;
 				savepoint "moc_fild07",35,355,1,1;
@@ -215,15 +215,15 @@ moc_fild07,41,355,4	script	玛蒂尔达修女::Ascetic#2aco	95,{
 				mes "你一定是服事申请者。";
 				mes "真诚欢迎你。";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你叫什么名字？";
 			mes "" + strcharinfo(0) +"？让我看看……";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "看来你的名字不在名单上……";
 				next;
-				mes "[玛蒂尔达修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "也许你应该回普隆德拉圣堂，再次确认苦修试炼的地点。";
 				close;
 			}
@@ -238,7 +238,7 @@ moc_fild07,41,355,4	script	玛蒂尔达修女::Ascetic#2aco	95,{
 		if (BaseJob == Job_Priest) {
 			mes "你好～";
 			next;
-			mes "[玛蒂尔达修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的修行进展如何？希望你享受生活在上帝恩典中的日子。";
 			close;
 		}
@@ -249,13 +249,13 @@ moc_fild07,41,355,4	script	玛蒂尔达修女::Ascetic#2aco	95,{
 	}
 }
 
-prt_fild00,208,218,6	script	约斯克神父::Ascetic#3aco	98,{
-	mes "[约斯克神父]";
+prt_fild00,208,218,6	script	修行中的神父::Ascetic#3aco	98,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 8) {
 			mes "什么？";
 			next;
-			mes "[约斯克神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还有什么事？！没有！现在回圣堂去！";
 			close;
 		}
@@ -265,17 +265,17 @@ prt_fild00,208,218,6	script	约斯克神父::Ascetic#3aco	98,{
 				mes "不管你是谁，看起来像个服事申请者。";
 				mes "对吧？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不错，不错。你很好地通过了苦修试炼。";
 				mes "你叫什么名字？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "" + strcharinfo(0) +"，嗯？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "好。我会向圣堂发消息，说" + strcharinfo(0) +"来见过我。";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在回圣堂，完成服事转职吧，小子。";
 				close2;
 				savepoint "prt_fild00",206,230,1,1;
@@ -286,13 +286,13 @@ prt_fild00,208,218,6	script	约斯克神父::Ascetic#3aco	98,{
 				mes "嘿。";
 				mes "你看起来像服事申请者。对吗？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "很不错，你从普隆德拉一路来到这里。你叫什么，小子？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "" + strcharinfo(0) +"，嗯？你的名字为什么不在名单上？";
 				next;
-				mes "[约斯克神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你可能弄错了。回圣堂去，和主教确认。";
 				close;
 			}
@@ -309,7 +309,7 @@ prt_fild00,208,218,6	script	约斯克神父::Ascetic#3aco	98,{
 		if (BaseJob == Job_Priest) {
 			mes "嘿……";
 			next;
-			mes "[约斯克神父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "愿意的话，来和我一起坐下冥想伟大真理。上帝的威严确实令人敬畏……";
 			close;
 		}

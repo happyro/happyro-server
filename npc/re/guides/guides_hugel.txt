@@ -15,8 +15,8 @@
 //= 1.2 Navigation system update. [Euphy]
 //============================================================ 
 
-hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
-	mes "[休尔赫尔姆向导奶奶]";
+hugel,98,56,3	script	毁葛 大妈解说员#hugel::休尔赫尔姆向导奶奶#hugel	863,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，你好~真是个精力充沛的冒险者。";
 	mes "欢迎来到^8B4513休尔赫尔姆^000000。我很荣幸为你介绍这座美丽的村庄。";
 	mes "如果你第一次使用向导服务，尽管多问一些问题。";
@@ -30,14 +30,14 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 			while (.@loop) {
 				switch(select("[ 教堂 ]:[ 旅馆 ]:[ 酒吧 ]:[ 机场 ]:[ 武器商店 ]:[ 工具商店 ]:[ 宾果竞技场 ]:[ ^3131FF猎人公会^000000 ]:[ 聚会用品商店 ]:[ ^3131FF神殿远征队^000000 ]:上一级菜单")) {
 				case 1:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "对我这个老人来说，"+F_Navi("教堂","hugel,159,113")+"更像是适合老年人的地方……";
 					mes .@str$;
 					viewpoint 1,159,113,0,0xFF0000;
 					next;
 					break;
 				case 2:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "与其夸奖，不如来点布丁。";
 					mes "在逛村子前，最好先把行李放到"+F_Navi("旅馆","hugel,101,77")+"。";
 					mes .@str$;
@@ -45,7 +45,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 3:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "旅行时当然要去"+F_Navi("酒吧","hugel,126,65")+"结交新朋友。";
 					mes "从这里向东走就能到酒吧。";
 					mes .@str$;
@@ -53,7 +53,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 4:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不久前，陌生人来到村子，建了那个奇怪的"+F_Navi("机场","hugel,178,146")+"……";
 					mes "他们叫它什么？飞艇？";
 					mes .@str$;
@@ -61,7 +61,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 5:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "村子中央有一家"+F_Navi("武器商店","hugel,88,167")+"。";
 					mes "不过我不知道那里有没有你用得上的武器。";
 					mes .@str$;
@@ -69,7 +69,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 6:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我喜欢休尔赫尔姆牌红色药水。我还没尝过其他牌子的红色药水……呵呵呵。";
 					mes ""+F_Navi("工具商店","hugel,92,163")+"位于村子中央。";
 					mes .@str$;
@@ -77,14 +77,14 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 7:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我会在你的小地图上标记" + F_Navi("宾果竞技场","hugel,58,206","^800080") + "的位置。";
 					mes .@str$;
 					viewpoint 1,58,206,6,0x800080;
 					next;
 					break;
 				case 8:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，你想成为猎人吗？";
 					mes "沿着海滩向东北走，就能找到"+F_Navi("猎人公会","hugel,209,224")+"。";
 					mes .@str$;
@@ -92,14 +92,14 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 9:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我会在你的小地图上标记" + F_Navi("聚会用品商店","hugel,95,103","^483D8B") + "的位置。";
 					mes .@str$;
 					viewpoint 1,95,103,8,0x483D8B;
 					next;
 					break;
 				case 10:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我听说" + F_Navi("神殿探险队","hugel,52,95")+"住在西边的一间房子里。";
 					mes "他们在村子中央立了某种标志，看来是在招人做什么……";
 					mes "不知道他们在这里做什么……嗯。";
@@ -118,7 +118,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 			while (.@loop) {
 				switch(select("[ 魔物赛跑竞赛场 ]:[ 酷酷活动公司职员 ]:上一级菜单")) {
 				case 1:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我也喜欢玩怪物赛跑，很有趣呢。";
 					mes "哦，你还没试过？不~最好去试试。相信我，你会喜欢的。";
 					mes .@str$;
@@ -126,7 +126,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 					next;
 					break;
 				case 2:
-					mes "[休尔赫尔姆向导奶奶]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我会在你的小地图上标记^DA70D6酷酷活动公司职员^000000的位置。";
 					mes .@str$;
 					viewpoint 1,88,168,11,0xDA70D6;
@@ -139,7 +139,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 			}
 			break;
 		case 3:
-			mes "[休尔赫尔姆向导奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会移除你小地图上的标记。";
 			mes "还有什么我能帮你的吗？";
 			viewpoint 2,159,113,0,0xFFFFFF;
@@ -157,7 +157,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 			next;
 			break;
 		case 4:
-			mes "[休尔赫尔姆向导奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呵呵呵~！";
 			mes "做向导很有意思。";
 			close;
@@ -165,7 +165,7 @@ hugel,98,56,3	script	休尔赫尔姆向导奶奶#hugel	863,{
 	}
 }
 
-hugel,187,172,6	script	向导富有的国王#hugel	414,{
+hugel,187,172,6	script	解说员 大叔#hugel::向导富有的国王#hugel	414,{
 	mes "[富有的国王]";
 	mes "你来这座乡村有什么事？";
 	next;

@@ -50,13 +50,13 @@
 	}
 }
 
-brasilis,316,57,3	script	船员#bra1	100,{
-	mes "[船员]";
+brasilis,316,57,3	script	布兰妮号 船员#bra1::船员#bra1	100,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的船要返回艾尔贝塔，你要一起吗？";
 	next;
 	switch(select("返回艾尔贝塔。:还不要~。")) {
 	case 1:
-		mes "[船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我确实很想家。";
 		close2;
 		if (checkre(0))
@@ -65,7 +65,7 @@ brasilis,316,57,3	script	船员#bra1	100,{
 			warp "alberta",244,115;
 		end;
 	case 2:
-		mes "[船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，随你。我们回来时再见。";
 		close;
 	}
@@ -73,7 +73,7 @@ brasilis,316,57,3	script	船员#bra1	100,{
 
 // Generic Brasilis NPCs :: brazil_tre
 //============================================================
-brasilis,155,165,3	script	路牌#bra1	858,{
+brasilis,155,165,3	script	告示牌#bra1::路牌#bra1	858,{
 	mes ":: 美术馆 ::";
 	close;
 }
@@ -83,26 +83,26 @@ brasilis,191,239,3	script	路牌#bra2	858,{
 	close;
 }
 
-brasilis,240,247,3	script	路牌#bra3	858,{
+brasilis,240,247,3	script	告示牌#bra3::路牌#bra3	858,{
 	mes ":: 市场 ::";
 	mes " ";
 	mes "- 这里有药水和武器 -";
 	close;
 }
 
-brasilis,303,309,3	script	路牌#bra4	858,{
+brasilis,303,309,3	script	告示牌#bra4::路牌#bra4	858,{
 	mes ":: 丛林缆车 ::";
 	mes "- 胆小者勿入 -";
 	close;
 }
 
-brasilis,278,137,3	script	路牌#bra5	858,{
+brasilis,278,137,3	script	告示牌#bra5::路牌#bra5	858,{
 	mes ":: 巴西酒店 ::";
 	close;
 }
 
-brasilis,137,77,5	script	冰淇淋商人	85,{
-	mes "[冰淇淋商人]";
+brasilis,137,77,5	script	冰淇淋宝贝::冰淇淋商人	85,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "来吧~来吧~";
 	mes "冰淇淋是炎热天气的完美零食~";
 	mes "只要^3355FF100 Zeny^000000~";
@@ -111,20 +111,20 @@ brasilis,137,77,5	script	冰淇淋商人	85,{
 	next;
 	switch(select("给我一个！:冰淇淋是什么？:取消。")) {
 	case 1:
-		mes "[冰淇淋商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想要凉爽冰淇淋的人很多，所以一次最多只能订购 5 个。";
 		mes "那么你要多少？";
 		next;
 		while(1) {
 			input .@input; //,1,5;
 			if (.@input == 0) {
-				mes "[冰淇淋商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一个都不要？";
 				mes "那就让开，我还要招待其他客人。";
 				close;
 			}
 			else if ((.@input < 0) || (.@input > 5)) {
-				mes "[冰淇淋商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇。";
 				mes "你点得太多了。";
 				mes "吃超过 5 个的话，你可能要和肚子里的怪物战斗。冷静点，伙计。";
@@ -135,13 +135,13 @@ brasilis,137,77,5	script	冰淇淋商人	85,{
 		}
 		set .@icecream_hap,.@input*100;
 		if (Zeny < .@icecream_hap) {
-			mes "[冰淇淋商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "伙计~！你的钱不够。";
 			mes "真的只要^3355FF100 Zeny^000000~！";
 			close;
 		}
 		if (!checkweight(536,.@input)) {
-			mes "[冰淇淋商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你携带的东西太多了。";
 			mes "购买前请减轻负重。";
 			close;
@@ -150,19 +150,19 @@ brasilis,137,77,5	script	冰淇淋商人	85,{
 		getitem 536,.@input; //Ice_Cream
 		close;
 	case 2:
-		mes "[冰淇淋商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "‘冰淇淋是……";
 		mes "等等，你不知道";
 		mes "冰淇淋是什么吗？";
 		mes "你到底";
 		mes "住在哪块石头下面？";
 		next;
-		mes "[冰淇淋商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我都不知道该从何吐槽这种奇怪说法。";
 		mes "总之，趁冰淇淋又凉又好吃，快来买吧。";
 		close;
 	case 3:
-		mes "[冰淇淋商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别错过吃遍全大陆最好冰淇淋的机会~！";
 		close;
 	}

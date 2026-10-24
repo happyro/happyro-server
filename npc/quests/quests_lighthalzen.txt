@@ -49,9 +49,9 @@ OnMyMobDead:
 	end;
 }
 
-lighthalzen,267,200,3	script	卫兵#lhz01	4_M_LGTGUARD,{
+lighthalzen,267,200,3	script	警卫#lhz01::卫兵#lhz01	4_M_LGTGUARD,{
 	if (countitem(7350) > 0) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "站住——！";
 		mes "哦，抱歉。我没注意到你带着通行证，已经获得了许可。";
 		close2;
@@ -59,13 +59,13 @@ lighthalzen,267,200,3	script	卫兵#lhz01	4_M_LGTGUARD,{
 		end;
 	}
 	if ($@Lhz_Gangster_Alert >= 100) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近往返上城区和贫民窟的人太多了，所以我们加强了这里的警戒。";
 		mes "可这么多人究竟是怎么偷偷通过的？";
 		close;
 	}
 	if ($@Lhz_Gangster_Alert > 14) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近往返上城区和贫民窟的人太多了，所以我们加强了这里的警戒。";
 		mes "可这么多人究竟是怎么偷偷通过的？";
 		donpcevent "Law Enforcement::OnEnable";
@@ -73,7 +73,7 @@ lighthalzen,267,200,3	script	卫兵#lhz01	4_M_LGTGUARD,{
 		close;
 	}
 	if (gettime(DT_HOUR) >= 22 || gettime(DT_HOUR) < 2) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……呼……";
 		mes "呼噜……";
 		next;
@@ -92,7 +92,7 @@ lighthalzen,267,200,3	script	卫兵#lhz01	4_M_LGTGUARD,{
 		end;
 	}
 	else {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "站住！";
 		mes "我不能让任何人进入贫民窟。";
 		mes "冒险者，回你来的地方去！";
@@ -100,9 +100,9 @@ lighthalzen,267,200,3	script	卫兵#lhz01	4_M_LGTGUARD,{
 	}
 }
 
-lighthalzen,294,223,7	script	卫兵#lhz02	4_M_LGTGUARD,{
+lighthalzen,294,223,7	script	警卫#lhz02::卫兵#lhz02	4_M_LGTGUARD,{
 	if (countitem(7350) > 0) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "站住——！";
 		mes "哦，抱歉。我没注意到你带着通行证，已经获得了许可。";
 		close2;
@@ -110,13 +110,13 @@ lighthalzen,294,223,7	script	卫兵#lhz02	4_M_LGTGUARD,{
 		end;
 	}
 	if ($@Lhz_Gangster_Alert >= 100) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近往返上城区和贫民窟的人太多了，所以我们加强了这里的警戒。";
 		mes "可这么多人究竟是怎么偷偷通过的？";
 		close;
 	}
 	if ($@Lhz_Gangster_Alert > 14) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近往返上城区和贫民窟的人太多了，所以我们加强了这里的警戒。";
 		mes "可这么多人究竟是怎么偷偷通过的？";
 		donpcevent "Law Enforcement::OnEnable";
@@ -124,7 +124,7 @@ lighthalzen,294,223,7	script	卫兵#lhz02	4_M_LGTGUARD,{
 		close;
 	}
 	if (gettime(DT_HOUR) >= 22 || gettime(DT_HOUR) < 2) {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……呼……";
 		mes "呼噜……";
 		next;
@@ -143,7 +143,7 @@ lighthalzen,294,223,7	script	卫兵#lhz02	4_M_LGTGUARD,{
 		end;
 	}
 	else {
-		mes "[卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "站住！";
 		mes "我不能让任何人进入里希塔乐镇的上城区！";
 		mes "没有通行证就赶快离开这里！";
@@ -153,15 +153,15 @@ lighthalzen,294,223,7	script	卫兵#lhz02	4_M_LGTGUARD,{
 
 // Cube Room Quest
 //============================================================
-lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
+lighthalzen,341,224,3	script	彼士本::鱼骨头	4_M_LGTGUARD,{
 	// Quest is finished.
 	if (MISC_QUEST&512) {
-		mes "[鱼骨头]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，原来是你！";
 		mes "听着，如果你想再次进入雷根施姆实验室，";
 		mes "就得进入我东北方的那根下水道管道。虽然很恶心，但你必须进去……";
 		next;
-		mes "[鱼骨头]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，不管你来里希塔乐镇做什么，都祝你好运。";
 		mes "哦，千万小心！这座大城市里正在发生比我的勾当还见不得光的事～";
 		close;
@@ -169,21 +169,21 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 	// Apparently if the boss quest progress is at 6, you skip the level requirement.
 	if (lhz_boss == 6 || BaseLevel >= 60) {
 		if (lhz_sincube == 0) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……？";
 			mes "我脸上有什么吗？别盯着我，让我工作。";
 			lhz_sincube = 1;
 			close;
 		}
 		if (lhz_sincube == 1) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喂，喂你！";
 			mes "你还在看我。别看了，我在忙，你这样很烦人。";
 			lhz_sincube = 2;
 			close;
 		}
 		if (lhz_sincube == 2) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "说真的，你开始让我火大了！";
 			mes "你到底想从我这里得到什么？！";
 			next;
@@ -192,19 +192,19 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "我只是想看你工作。";
 			mes "你到底在做什么？";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喂！如果能随便让你看，我还会这么紧张你盯着我干活吗？";
 			next;
 			mes "[" + .@player_name$ + "]";
 			mes "不……";
 			mes "我只是觉得你平时就很紧张。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真是见鬼！";
 			mes "你打算坐着看我一整天吗？！";
 			mes "好，那我就无视你这个混蛋！";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……";
 			mes "…………";
 			mes "该死！真让人火大！";
@@ -213,12 +213,12 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "[" + .@player_name$ + "]";
 			mes "嗯，我也想知道你为什么在这么……令人沮丧的地方工作。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，行！";
 			mes "但我告诉你这里的工作后，你就得离开！明白吗？";
 			mes "现在给我把嘴闭严了，我做的事有点违法。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我提供一些路线，让人不用许可就能进入里希塔乐镇，";
 			mes "甚至能到这座城市的任何地方。";
 			mes "嘿，我还能让你进入那座实验室……";
@@ -227,7 +227,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "等、等等！实验室？！";
 			mes "你是认真的吗？你能让我进去吗？";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "混账——你就是不肯放过我，是吧？";
 			mes "听着，你看起来还不错，就是有点固执。";
 			mes "但我不信任陌生人，也不为陌生人服务，就这样。";
@@ -235,7 +235,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "[" + .@player_name$ + "]";
 			mes "我能做些什么，让你帮我进入实验室吗？";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不可能。";
 			mes "无论你怎么哀求，我都不会冒险相信想知道秘密路线的人。";
 			mes "现在滚出去！";
@@ -247,7 +247,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "求求你……";
 			mes "请告诉我怎么进入实验室。我……我求你了！";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不！闭嘴，别再求了，好吗？";
 			mes "你只是在自取其辱！天啊……";
 			lhz_sincube = 4;
@@ -260,7 +260,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "求求你～";
 			mes "只有你知道怎么进去啊～";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啧，你这孩子真疯。";
 			mes "听着，“不”就是“不”。就这样，这是最终答案。";
 			mes "还要我解释多少次？";
@@ -270,12 +270,12 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "事、事情一直都是这样运作的。";
 			mes "你不能——你不能……";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，真拿你没办法。";
 			mes "但如果要冒着生命危险帮你进入实验室，";
 			mes "我得要点回报，明白吗？";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你只需带着^FF000071,381,305,294,921,000 Zeny^000000回来，";
 			mes "然后我就会尽力帮助你。";
 			mes "好了，祝你好运，勇敢的冒险者。";
@@ -285,29 +285,29 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "我怎么可能弄到那么多钱！我……";
 			mes "除非先征服世界，或者，或者……";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有道理。好吧，那个价格可能太高了。";
 			mes "那就减半吧。";
 			mes "还想让我帮忙？那就带来……";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes " ";
 			mes " ";
 			mes "……^FF000020 个杰勒比结晶^000000。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊。";
 			mes "简直像是我在免费帮忙……";
 			next;
 			if (select( "好的。", "不！这不可能！" ) == 1) {
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好，那就带回总共 20 个杰勒比结晶。";
 				mes "你身上要带齐 20 个，明白吗？再见，朋友～";
 				lhz_sincube = 5;
 				setquest 12014;// More missions
 				close;
 			}
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你说什么——";
 			mes "好了，现在是你在开玩笑。";
 			mes "听着，要么带来 20 个杰勒比结晶，";
@@ -315,42 +315,42 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			close;
 		}
 		if (lhz_sincube == 5) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么……";
 			mes "东西带来了吗？";
 			next;
 			switch( select( "我还在收集。", "给你！", "呃……东西？" ) ) {
 			case 1:
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还在努力？";
 				mes "好吧，我知道我要的不多，但你也尊重我一下，认真点！";
 				mes "就是 20 个杰勒比结晶！";
 				close;
 			case 2:
 				if (countitem(909) < 20) {
-					mes "[鱼骨头]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "呃……我说的是 20 个杰勒比结晶，对吧？";
 					mes "这不够，朋友，再去弄一些来！";
 					close;
 				}
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，干得好！";
 				mes "看得出你是个可靠的人。";
 				mes "一言为定，我告诉你如何进入实验室。";
 				next;
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你可能奇怪我为什么愿意帮你，";
 				mes "因为我以前在实验室工作……";
 				mes "但他们不公平地解雇了我。";
 				next;
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，在我看来，能给他们添麻烦的事都是好事。";
 				mes "让我准备一些东西，然后告诉你真正需要知道的事。";
 				delitem 909,20;// Jellopy
 				lhz_sincube = 6;
 				close;
 			case 3:
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么……？";
 				mes "这种事你也能忘？";
 				mes "我让你带来 20 个杰勒比结晶。";
@@ -358,7 +358,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			}
 		}
 		if (lhz_sincube == 6) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (lhz_boss == 6) {
 				mes "我知道一条通往雷根施姆实验室的路线。";
 				mes "那里有座秘密迷宫，应该能带你到实验室。";
@@ -370,12 +370,12 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			}
 			next;
 			if (select( "还没有。", "是的。") == 1) {
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……？";
 				mes "好吧，没关系。慢慢来。";
 				close;
 			}
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了！";
 			mes "那么，出发吧！";
 			close2;
@@ -388,7 +388,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			end;
 		}
 		if (lhz_sincube < 10) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，看样子你还没完成";
 			if (lhz_boss == 6) {
 				mes "在雷根施姆实验室要做的事。";
@@ -399,12 +399,12 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "要我再送你去一次吗？";
 			next;
 			if (select( "不是。", "是的。" ) == 1) {
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "天啊，看样子你在那里吃了不少苦头。";
 				mes "好吧，等你准备好再去，告诉我就行，明白吗？";
 				close;
 			}
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你很有冲劲嘛！嘿！";
 			mes "我喜欢你的作风～";
 			mes "准备好，我们出发……！";
@@ -418,7 +418,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			end;
 		}
 		if (lhz_sincube == 10) {
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你回来了！";
 			mes "太好了，我刚才还在担心你出了什么事。";
 			mes "那么，你在那里得到想要的东西了吗？";
@@ -429,21 +429,21 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 			mes "是啊……";
 			mes "反正我希望是这样。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好！不管你做了什么，我都希望能把他们搞得一团糟！";
 			mes "我以前在雷根施姆实验室可是受人尊敬的科学家，后来他们却解雇了我！";
 			mes "那群忘恩负义的混蛋，活该！";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过，现在的工作似乎更适合我。";
 			mes "我再也不用为公式和算法发愁了。";
 			next;
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，对了，你刚才去的那个地方有条通往实验室的秘密通道。";
 			mes "如果你愿意，我可以再送你过去。怎么样？";
 			next;
 			if (select( "当然。", "不用了，谢谢～" ) == 1) {
-				mes "[鱼骨头]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧，出发！";
 				mes "祝你好运，朋友。";
 				close2;
@@ -454,13 +454,13 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 				}
 				end;
 			}
-			mes "[鱼骨头]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，你自己决定。";
 			mes "哦，你手上的通行证应该也能让你进入实验室。";
 			mes "祝你好运，朋友。";
 			close;
 		}
-		mes "[鱼骨头]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，朋友！好久不见。";
 		mes "你过得还好吗？";
 		mes "我过得好极了，谢谢～";
@@ -473,7 +473,7 @@ lighthalzen,341,224,3	script	鱼骨头	4_M_LGTGUARD,{
 		close;
 	}
 	if (lhz_boss > 6) {
-		mes "[鱼骨头]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，朋友！好久不见。";
 		mes "你过得还好吗？";
 		mes "我过得好极了，谢谢～";
@@ -1217,7 +1217,7 @@ OnTouch_:
 
 // Lighthalzen Pickpocket Mini-Quest
 //============================================================
-lighthalzen,240,216,4	script	可疑男子#lhz_01	4_M_LGTPOOR,2,2,{
+lighthalzen,240,216,4	script	男子#lhz_01::可疑男子#lhz_01	4_M_LGTPOOR,2,2,{
 	end;
 
 OnTouch_:
@@ -1269,7 +1269,7 @@ OnTouch_:
 		mes "他就是！喂！那家伙";
 		mes "偷走了我的钱！";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕！";
 		mes "得溜了！";
 		mes "有本事就来追我啊，好人！";
@@ -1286,7 +1286,7 @@ OnTouch_:
 	}
 }
 
-lighthalzen,220,169,3	script	可疑男子#lhz_02	4_M_LGTPOOR,2,2,{
+lighthalzen,220,169,3	script	男子#lhz_02::可疑男子#lhz_02	4_M_LGTPOOR,2,2,{
 	end;
 
 OnInit:
@@ -1342,7 +1342,7 @@ OnTouch_:
 		mes "他就是！喂！那家伙";
 		mes "偷走了我的钱！";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕！";
 		mes "得溜了！";
 		mes "有本事就来追我啊，好人！";
@@ -1358,7 +1358,7 @@ OnTouch_:
 	}
 }
 
-lighthalzen,164,127,4	script	可疑男子#lhz_03	4_M_LGTPOOR,2,2,{
+lighthalzen,164,127,4	script	男子#lhz_03::可疑男子#lhz_03	4_M_LGTPOOR,2,2,{
 	end;
 
 OnInit:
@@ -1416,7 +1416,7 @@ OnTouch_:
 		mes "他就是！喂！那家伙";
 		mes "偷走了我的钱！";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕！";
 		mes "得溜了！";
 		mes "有本事就来追我啊，好人——！";
@@ -1426,7 +1426,7 @@ OnTouch_:
 		mes "我要把你交给卫兵，";
 		mes "你这个扒手！";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不……！对不起！";
 		mes "我把钱还给你，";
 		mes "现在就放我走吧！";
@@ -1438,11 +1438,11 @@ OnTouch_:
 		mes "但你最好别再过";
 		mes "这种犯罪生活了！";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说得对，是我不对。谢谢你放我一马。";
 		mes "既然你帮了我，我就卖给你一些让我跑得飞快的药剂。";
 		next;
-		mes "[可疑男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的秘密药剂最多只能卖给你三瓶，因为手上只有这么多。";
 		mes "每瓶 15,000 Zeny。怎么样？";
 		next;
@@ -1451,21 +1451,21 @@ OnTouch_:
 		case 2: set .@number,2; set .@price,15000*2; break;
 		case 3: set .@number,3; set .@price,15000*3; break;
 		case 4:
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "你就这样";
 			mes "放我走了？";
 			mes "你可真慷慨。";
 			mes "谢谢，我很感激。";
 			next;
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，我要";
 			mes "回去工作了。";
 			mes "嘿嘿嘿~";
 		}
 		if (.@number) {
 			if (Zeny < .@price) {
-				mes "[可疑男子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呃，既然我要改掉";
 				mes "扒窃的毛病，";
 				mes "就得作为商人";
@@ -1473,24 +1473,24 @@ OnTouch_:
 				mes "但我不能把这些药剂";
 				mes "白送给你！";
 				next;
-				mes "[可疑男子]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，我要";
 				mes "回去工作了。";
 				mes "嘿嘿嘿~";
 			}
 			else {
 				if ((MaxWeight-Weight) < 400) {
-					mes "[可疑男子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "呃，抱歉，你的物品栏连这些药剂都装不下了。";
 					mes "抱歉，朋友，这笔交易取消了。";
 					next;
-					mes "[可疑男子]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "总之，我要";
 					mes "回去工作了。";
 					mes "嘿嘿嘿~";
 				}
 				else {
-					mes "[可疑男子]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@number == 1) {
 						mes "只要一瓶？好吧，你";
 						mes "可能还真小气，";
@@ -1528,14 +1528,14 @@ OnTouch_:
 
 // Friendship Quest
 //============================================================
-lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
+lhz_in02,201,210,5	script	达伊戈次::迪戈茨	4_M_LGTMAN,{
 	if (BaseLevel < 50) {
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，冒险者？";
 		mes "欢迎来到里希塔乐镇上城区。";
 		mes "不过，恐怕这里没什么能让你兴奋的东西。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是想冒犯你，不过这座城镇应该足够安全，适合你探索。";
 		mes "我的意思是……你似乎刚开始当冒险者不久。";
 		close;
@@ -1555,35 +1555,35 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 		mes "不好，我去找人来救你！";
 		next;
 		cutin "lhz_diguts04.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿……是那位冒险者……";
 		mes "唉，马克那家伙，总给我带来坏运气……";
 		mes "已经太迟了，我的时间不多了……";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我跟你说过的那些卫兵……";
 		mes "就是不愿让穷人和富人来往的那些人。";
 		mes "我……猜他们发现我要去见老朋友了。我只是想见见他……";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那个……穿黑衣服的家伙……";
 		mes "他……他刺伤了我！我……天啊，已经好久没和他说话了。";
 		mes "我们要一起出去玩，像从前一样开心。";
 		next;
 		cutin "lhz_diguts05.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我很想念我的朋友们，可现在……我能听见他们在叫我。";
 		mes "现在，我们终于能像约定的那样团聚了。是啊……";
 		mes "是我错了。人生苦短，不该跟朋友生气——";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "………………";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "………………";
 		mes "……………………";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "………………";
 		mes "……………………";
 		mes "…………………………";
@@ -1600,7 +1600,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 	}
 	if (friendship == 13) {
 		cutin "lhz_diguts08.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，我得准备一下！";
 		mes "要是看起来太富贵娇惯，马克一定会取笑我。";
 		mes "该死！我那些时髦的便装放哪儿了？";
@@ -1608,13 +1608,13 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 	}
 	if (friendship == 12 && countitem(7351) > 0) {
 		cutin "lhz_diguts08.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "就算班卡斯坦回来，我也不觉得自己能原谅马克。";
 		mes "其实，你知道吗？我可能会更生气！";
 		next;
 		if (select("出示班卡斯坦的日记。:不出示班卡斯坦的日记。") == 1) {
 			cutin "",255;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我为什么这么生气？";
 			mes "^3355FF*叹气*^000000你有东西给我看？嗯？班卡斯坦想让我读他的日记？";
 			mes "好啊，有什么不行的？这些年来我欠他很多……";
@@ -1630,7 +1630,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 			mes "天啊，希望我们别再玩了。^000000";
 			next;
 			cutin "lhz_diguts02.bmp",2;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，我记得！";
 			mes "大多数时候都是马克戴翅膀，但在空中停留最久的纪录还是我的！";
 			mes "没错，我简直就是个小飞马～";
@@ -1647,7 +1647,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 			mes "天啊，妈妈很不高兴……^000000";
 			next;
 			cutin "lhz_diguts03.bmp",2;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，我不太记得了。";
 			mes "但我知道，那时班卡斯坦、我和马克什么都不怕。";
 			mes "不过，敢去和魔物打架，我们一定是疯了。";
@@ -1659,7 +1659,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 			mes "但他总是让我去探望迪戈茨，看看他是否安好。^000000";
 			next;
 			cutin "lhz_diguts01.bmp",2;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我记得自己好像病得很重。马克很担心？";
 			mes "我……我一定是得了某种可怕的致命疾病，像是……呃，淋炎病。";
 			mes "你懂吧，大概就是那个。";
@@ -1676,7 +1676,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 			mes "我知道他很喜欢马克。^000000";
 			next;
 			cutin "lhz_diguts07.bmp",2;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，那时候我们更年轻，也更亲近，所以……";
 			mes "^333333*咳！*^000000班卡斯坦为什么连这个都写？！";
 			next;
@@ -1687,20 +1687,20 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 			mes "永远，永远。^000000";
 			next;
 			cutin "lhz_diguts07.bmp",2;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我……我是被迫发誓的！";
 			mes "而且，人是会变的，你知道吧！那时候我们还只是孩子。";
 			mes "那个誓言现在也没什么意义了，对不对？";
 			next;
 			cutin "",255;
 			set friendship,13;
-			mes "[迪戈茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "就这么定了，我要去见马克。";
 			mes "我可不是想他了，只是得让他取消那个誓言。";
 			mes "也许再顺便揍他一顿。";
 			close;
 		}
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不明白自己为什么这么生气！";
 		mes "我越来越像马克了。";
 		mes "不过别误会，我可不是在乎那家伙。";
@@ -1708,14 +1708,14 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 	}
 	if (friendship == 7) {
 		cutin "lhz_diguts03.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "就算班卡斯坦从求学的地方回来，我也不觉得他能让马克向我道歉。";
 		mes "那家伙固执得没救了！";
 		close3;
 	}
 	if (friendship == 6) {
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，好久不见。你又来这里做什么？";
 		mes "还有，呃，你把口信带给马克了吗？";
 		mes "现在想想，我当时有点——";
@@ -1725,42 +1725,42 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 		mes "马克很生气，骂了你，还威胁说要狠狠揍你一顿。";
 		next;
 		cutin "lhz_diguts08.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那个没用、卑鄙、满嘴谎话的混蛋！";
 		mes "要不是有那些卫兵，我就亲自去贫民窟揍马克！";
 		mes "那个蠢货！";
 		next;
 		cutin "lhz_diguts03.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种时候，我真想念^FF0000班卡斯坦^000000。";
 		mes "那家伙总知道该怎么处理这种情况。";
 		mes "对，我想他正在某个遥远的城镇学习。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听说他去那个地方，是因为那里有很多书可供他研究。";
 		mes "那地方叫什么来着？";
 		mes "总之，班卡斯坦总是负责调解……";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "以前我、他和马克一起玩时，我们要是吵起来，班卡斯坦就会居中调解。";
 		mes "不过，现在就算是他，也拿马克没办法……";
 		set friendship,7;
 		changequest 12002,12003;
 		next;
 		cutin "",255;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道为什么，但我就是很生气！";
 		mes "我为什么要为这件事这么烦恼？！";
 		close;
 	}
 	if (friendship == 4 || friendship == 5) {
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还在逛里希塔乐镇上城区？";
 		mes "我才不在乎。不过，如果你碰巧见到马克，";
 		mes "就把下面这段话逐句转告他。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^FF0000无可救药的混蛋！";
 		mes "^FF0000你还是个顽固的蠢货！";
 		mes "^FF0000你至少欠我三顿午饭！";
@@ -1771,7 +1771,7 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 	}
 	if (friendship == 3) {
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道上城区的奢华看起来很吸引人，但相信我，这里毫无色彩。";
 		mes "那么，你去过贫民区吗？";
 		next;
@@ -1780,46 +1780,46 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 		mes "是的，已经去过了……";
 		mes "我在那里遇到一个叫马克的人。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马克？！哦，他一定提到我了。";
 		mes "但除非他为自己的混蛋行为道歉，否则我才不在乎他说什么。";
 		mes "从我们小时候开始……";
 		cutin "",255;
 		next;
 		cutin "lhz_diguts08.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我们以前很亲近，可那家伙从来不是真正的朋友！";
 		mes "比如他掰手腕时作弊赢我！还有我请吃午饭，他却从不道谢！";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是，他在我认识第一个女朋友时帮了点忙。";
 		mes "但他安排的那些相亲简直糟透了，我永远不会原谅他！";
 		next;
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马克根本不懂什么是友情！";
 		mes "就算我想见他，也有些人不愿让富人和穷人来往。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "知道马克没事，对我来说就够了！";
 		mes "我没必要特意跑到那边去看他。";
 		mes "不过，我只有一个遗憾……";
 		next;
 		cutin "lhz_diguts07.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只希望还有最后一次见到马克的机会……";
 		mes "这样我就能亲自狠狠踢他的屁股！对，就是这样！自大的混蛋！";
 		mes "可是，我还是做不到……";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里的卫兵怕穷人破坏城市的安宁和秩序，绝不会让富人和穷人见面。";
 		mes "真是为蠢人制定的愚蠢规定。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，违反这种愚蠢的禁忌居然会受罚，想想还挺可怕。";
 		mes "总之，如果你再见到马克，就替我转告他这些话，明白吗？";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^FF0000无可救药的混蛋！";
 		mes "^FF0000你还是个顽固的蠢货！";
 		mes "^FF0000你至少欠我三顿午饭！";
@@ -1831,34 +1831,34 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 	}
 	if (friendship == 2) {
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还在这里晃什么？";
 		mes "冒险者，上城区没什么有趣的东西可看。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊……！";
 		mes "不知道为什么，光听到马克的事就让我这么生气！";
 		close3;
 	}
 	if (friendship == 1) {
 		cutin "lhz_diguts02.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，冒险者？";
 		mes "欢迎来到里希塔乐镇上城区。";
 		mes "不过，恐怕这里没什么能让你兴奋的东西。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我叫迪戈茨，只是里希塔乐镇上城区的普通市民。";
 		mes "希望你在我的家乡过得愉快。";
 		next;
 		select("你认识一个叫马克的人吗？");
 		cutin "lhz_diguts01.bmp",2;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马克？马克。对，他是我儿时的朋友。";
 		mes "至少以前是，现在只是个混蛋。";
 		mes "总之，由于种种原因，就算想一起玩，我们也没办法见面。";
 		next;
-		mes "[迪戈茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂，我干吗要说这些？";
 		mes "又不是因为我和马克不再是朋友，就让我心烦。";
 		mes "算了，忘掉我说的话吧。";
@@ -1867,25 +1867,25 @@ lhz_in02,201,210,5	script	迪戈茨	4_M_LGTMAN,{
 		close3;
 	}
 	cutin "lhz_diguts02.bmp",2;
-	mes "[迪戈茨]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，冒险者？";
 	mes "欢迎来到里希塔乐镇上城区。";
 	mes "不过，恐怕这里没什么能让你兴奋的东西。";
 	next;
-	mes "[迪戈茨]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "想逛就随便看看吧。";
 	mes "说实话，能见到住在这里的那些自命不凡的富人以外的人，我还挺高兴。";
 	close3;
 }
 
-lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
-	mes "[马克]";
+lighthalzen,337,232,3	script	麻库::马克	4_M_LGTPOOR,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (friendship > 14) {
 		cutin "lhz_macu07",2;
 		mes "这家伙怎么这么晚还没来？";
 		mes "我发誓，等他一出现，我就……！";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，他迟到也许有点理由。";
 		mes "不过要是没有，我可攒了一肚子的拳脚，专门等着招呼他。";
 		mes "嘿嘿嘿～";
@@ -1902,7 +1902,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "呃，好吧，可翻别人的日记让我有点不自在。";
 		mes "你知道，那感觉……怪怪的。";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，这是班卡斯坦的东西。我已经很久没见过他了。";
 		mes "哦，是他交给你，让你带来给我看的？";
 		mes "好吧，我还欠他一两个人情，应该读一读……";
@@ -1919,7 +1919,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "天啊，希望我们别再玩了。^000000";
 		next;
 		cutin "lhz_macu03",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他在说什么？！那个游戏明明很好玩！";
 		mes "没错，通常都是我戴翅膀，迪戈茨也老想戴。";
 		next;
@@ -1935,7 +1935,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "天啊，妈妈很不高兴……^000000";
 		next;
 		cutin "lhz_macu03",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错！当时我们三个什么都不怕！";
 		mes "当然，迪戈茨挨打最多。";
 		mes "不过我得说，他也是我们之中最勇敢的。";
@@ -1947,7 +1947,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "但他总是让我去探望迪戈茨，看看他是否安好。^000000";
 		next;
 		cutin "lhz_macu04",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什、什么？！不，我一点也没担心！";
 		mes "那一定是迪戈茨得了克莱蒙尼亚病的时候。";
 		mes "你知道，就是那种……呃，很可怕的病。谁都不该得那种病！";
@@ -1964,7 +1964,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "但迪戈茨不在乎。";
 		mes "我知道他很喜欢马克。^000000";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……";
 		mes "…………";
 		next;
@@ -1975,7 +1975,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "永远，永远。^000000";
 		next;
 		cutin "lhz_macu06",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，也许没错，但人是会变的！";
 		mes "而且，那主意是从漫画书里学来的！";
 		mes "好吧，如果他先道歉，我想还是原谅他比较好。";
@@ -1985,12 +1985,12 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "因为迪戈茨说，他过几天会过来。";
 		next;
 		cutin "lhz_macu07",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！他真要来？来干什么？";
 		mes "现在才想和好，太晚了！不过，不见他的话，我也太混账了。";
 		mes "好吧！等他来了，我一定要教训他！";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还有，嗯，把日记给我！";
 		mes "我要多读一点，好拿来取笑迪戈茨。哇哈哈哈！";
 		mes "不过，嗯，谢谢。可不是说我很感激什么的。";
@@ -2008,7 +2008,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 			else getexp 200000,0;
 		}
 		cutin "lhz_macu04",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那，呃，回头见吧。";
 		mes "嗯，我得去准备点事情。";
 		mes "^333333（但不是为了见迪戈茨！）^000000";
@@ -2018,7 +2018,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "啊啊啊！一听到迪戈茨的事我就来气！";
 		mes "就因为我不像他那么有钱，他就想甩开我？！";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不能……有那些该死的卫兵在，连好好揍他一顿都办不到！";
 		mes "啊啊啊！需要班卡斯坦的时候，他到底在哪儿？";
 	}
@@ -2035,10 +2035,10 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "………………";
 		next;
 		cutin "lhz_macu06",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃啊啊……";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊啊啊——！";
 		mes "他以为自己是谁，竟敢对我说那些鬼话？！";
 		mes "迪戈茨，我不会放过你！我要揍扁你！！";
@@ -2048,17 +2048,17 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "也差点在这场暴怒中丢了性命。^000000";
 		percentheal -50,0;
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^333333*喘气、喘气*呼～^000000";
 		mes "别、别担心，我已经控制住自己了。";
 		mes "谢谢你没让我彻底发疯。每到这种时候，我都很想念^FF0000班卡斯坦^000000。";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "班卡斯坦总会拦住我，不让我打架。";
 		mes "我真想念那家伙。可惜他不在……";
 		next;
 		set friendship,6;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "该死的卫兵！";
 		mes "要不是他们挡着，我就能过去狠狠揍迪戈茨！";
 		mes "我发誓，要不是因为他们……！";
@@ -2073,28 +2073,28 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "说到这个……我又去和迪戈茨谈过了。";
 		mes "他让我给你带个口信，但我不确定——";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那个没用的混蛋有话要给我？！";
 		mes "哦，我可真荣幸～";
 		mes "把那卑鄙家伙的话逐句告诉我！";
 		next;
 		input .@input$;
 		if (.@input$ == "无可救药的混蛋！") {
-			mes "[马克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "“无可救药的混蛋”？！";
 			mes "好吧，他至少还敢说这种话，虽然是托别人转达的！";
 			mes "他还说什么了？！";
 			next;
 			input .@input$;
 			if (.@input$ == "你还是个顽固的蠢货！") {
-				mes "[马克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "“顽固的蠢货”？！";
 				mes "他自己不就是，混蛋！我真该——";
 				mes "可恶！他接着说什么？！";
 				next;
 				input .@input$;
 				if (.@input$ == "你至少欠我三顿午饭！") {
-					mes "[马克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "三顿午饭？！我都请那家伙吃过十五次了！";
 					mes "我告诉你，他根本不懂友情！";
 					mes "那个蠢货还说什么了？！";
@@ -2102,7 +2102,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 					input .@input$;
 					if (.@input$ == "更别提道歉了！") {
 						cutin "lhz_macu05",255;
-						mes "[马克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "让我道歉？！";
 						mes "他才应该跪在地上，求我原谅！";
 						mes "那个……那个自私、没用的蠢……";
@@ -2110,7 +2110,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 						next;
 						input .@input$;
 						if (.@input$ == "谁在乎你的想法？！") {
-							mes "[马克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "“谁在乎我的想法”？！";
 							mes "啊啊啊——！！谁在乎他的想法！！^333333*喘气、喘气*^000000";
 							mes "我要宰了那个蠢货！他已经不可能让我更生气了！";
@@ -2119,7 +2119,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 							if (.@input$ == "没有你我开心极了！") {
 								set friendship,5;
 								cutin "lhz_macu06",2;
-								mes "[马克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "够了，就这么决定了。";
 								mes "下次见到迪戈茨，我一定要把他的脸狠狠按在地上。";
 								close2;
@@ -2131,7 +2131,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 				}
 			}
 		}
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么……？我不知道迪戈茨会不会说这种话。";
 		mes "你确定听清楚了？";
 		mes "虽然很久没见，但我知道迪戈茨说话是什么样。";
@@ -2142,11 +2142,11 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "是，以前我和迪戈茨是好哥们，现在看起来也许还像朋友，";
 		mes "但早就不是了，虽然以前比现在亲近。啊，烦死了！";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别误会，我可没想念他，也不为发生的事后悔。";
 		mes "不过，要是他来向我道歉，我大概会接受。";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，要先考虑一下。";
 		mes "我是说，记仇的人可不是我。";
 		mes "全都是他的错！真是的！";
@@ -2158,19 +2158,19 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		next;
 		select("其实我见到了迪戈茨，而且……");
 		cutin "lhz_macu05",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说什么……？！";
 		mes "你见到了我的老朋友迪戈茨？！";
 		mes "呃，我是说亚历山大·迪戈茨先生。以前是我朋友，现在显然不是了。";
 		next;
 		cutin "lhz_macu02",2;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是，我们曾经很亲近，但那是很久以前的事了。";
 		mes "我们很久没一起玩，他大概讨厌我这个穷光蛋，还有……";
 		set friendship,3;
 		changequest 12001,12002;
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "该死，听听我自己说的，简直像个懦夫。";
 		mes "我才不想念迪戈茨！事实上，我百分之百讨厌他！";
 		mes "下次见到他，我一定把他揍得稀巴烂！";
@@ -2181,21 +2181,21 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		mes "欢迎来到贫民窟。";
 		mes "这里没什么值得冒险的，不过你想怎么逛都行。";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不知道你知不知道，住在这里的人其实不能自由走遍整座城市。";
 		mes "这事有点犯忌讳，但我才不在乎，对吧？";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对，说白了，这里的富人太怕穷人来见他们，";
 		mes "所以城里警戒得特别严！";
 		mes "那些上流社会的人都是垃圾……";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我以前不是这么想的。";
 		mes "其实，我曾经有个很有钱的朋友，后来才发现他不是我想的那样。";
 		mes "那个蠢货！他为什么变成这样？！";
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，算了。";
 		mes "我干吗跟刚认识的人谈自己的私事？";
 		mes "虽然大家都会这样，但还是……";
@@ -2203,7 +2203,7 @@ lighthalzen,337,232,3	script	马克	4_M_LGTPOOR,{
 		if (isbegin_quest(12000) == 0)
 			setquest 12000;
 		next;
-		mes "[马克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当你厌倦";
 		mes "贫民窟后，";
 		mes "真的应该去看看";
@@ -2239,7 +2239,7 @@ yuno_in04,107,14,5	script	学生	4_M_SAGE_A,{
 	close;
 }
 
-yuno_in04,96,106,5	script	热情的学生	4_M_SAGE_A,{
+yuno_in04,96,106,5	script	热血学生::热情的学生	4_M_SAGE_A,{
 	if ((MaxWeight-Weight) < 300 || checkweight(1201,1) == 0) {
 		mes "^3355FF请稍等！";
 		mes "你现在携带的物品太多了。";
@@ -3623,13 +3623,13 @@ lighthalzen,346,263,3	script	长老#lhz	4_F_EINOLD,{
 	}
 }
 
-lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
+lhz_in03,32,162,3	script	跛脚的少女#li_tre::跛脚女孩#li_tre	1_M_INNKEEPER,{
 	if (lhz_curse == 23) {
 		if (countitem(7341) > 0) {
 			mes "["+strcharinfo(0)+"]";
 			mes "你好，你感觉还好吗？";
 			next;
-			mes "[跛脚女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，谢谢，我很好。";
 			mes "不过……我们以前见过吗？";
 			next;
@@ -3689,7 +3689,7 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 			mes "["+strcharinfo(0)+"]";
 			mes "你好，你感觉还好吗？";
 			next;
-			mes "[跛脚女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，谢谢，我很好。";
 			mes "不过……我们以前见过吗？";
 			next;
@@ -3719,13 +3719,13 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 		close;
 	}
 	else {
-		mes "[跛脚女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……";
 		mes "…………";
 		mes "*叹气……*";
 		next;
 		select("你好，最近怎么样？");
-		mes "[跛脚女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我很好，谢谢关心。";
 		mes "我只是在等一个人，仅此而已。";
 		if (lhz_curse == 19) {
@@ -3734,7 +3734,7 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 			case 1:
 				break;
 			case 2:
-				mes "[跛脚女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧，再见……";
 				close;
 			}
@@ -3742,12 +3742,12 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 			mes "嗯，你知道这条吊坠可能是谁的吗？";
 			next;
 			if (countitem(7341) < 1) {
-				mes "[跛脚女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你在说什么？";
 				close;
 			}
 			emotion ET_SURPRISE;
-			mes "[跛脚女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，那是我的！";
 			mes "哥哥出差前，我把它送给了他。";
 			mes "你一定是他的朋友，对吧？";
@@ -3764,11 +3764,11 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 				mes "……简单来说，你哥哥的鬼魂……哦，对，我有没有说他已经死了？";
 				mes "总之，他已经不在人世了，但他的灵魂之类的东西还在附近——";
 				next;
-				mes "[跛脚女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……";
 				mes "…………";
 				next;
-				mes "[跛脚女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……死了？";
 				mes "不！我不相信！他不可能死！";
 				mes "他最勇敢、最温柔、最——别烦我！";
@@ -3785,11 +3785,11 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 				end;
 			case 2:
 				if (countitem(7341) > 0) {
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你见过我的";
 					mes "哥哥吗……？";
 					next;
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我哥哥很强，";
 					mes "我应该为此感到高兴，";
 					mes "因为";
@@ -3805,7 +3805,7 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 					mes "你应该睡觉保持健康，";
 					mes "等哥哥回来。";
 					next;
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "是的！哥哥回来时，我一定要好好的，还要能够走路。";
 					next;
 					mes "^3131ff你把老旧坠子放进她的手里。^000000";
@@ -3901,11 +3901,11 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 					}
 				}
 				else {
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你见过我的";
 					mes "哥哥吗……？";
 					next;
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我哥哥很强，";
 					mes "我应该为此感到高兴，";
 					mes "因为";
@@ -3921,7 +3921,7 @@ lhz_in03,32,162,3	script	跛脚女孩#li_tre	1_M_INNKEEPER,{
 					mes "你应该睡觉保持健康，";
 					mes "等哥哥回来。";
 					next;
-					mes "[跛脚女孩]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "是的！哥哥回来时，我一定要好好的，还要能够走路。";
 					close;
 				}
@@ -4008,47 +4008,47 @@ OnTouch_:
 	end;
 }
 
-lhz_in01,114,181,5	script	接待员#li_01	1_F_LIBRARYGIRL,{
+lhz_in01,114,181,5	script	服务员#li_01::接待员#li_01	1_F_LIBRARYGIRL,{
 	if (lhz_curse == 7) {
-		mes "[接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "您好，欢迎来到雷根贝勒公司。";
 		mes "今天有什么可以为您服务？";
 		next;
 		switch(select("大楼信息:公司历史")) {
 		case 1:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请告诉我，您想进一步了解哪一层。";
 			next;
 			while (1) {
 				switch(select("一楼:二楼:地下一楼:取消")) {
 				case 1:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF雷根贝勒图书馆^000000位于左侧走廊尽头。";
 					mes "图书馆为从事系统开发的员工提供创新思路与信息，是宝贵的资源。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF舞厅^000000通常用于举办各种正式活动，";
 					mes "沿右侧走廊即可到达。";
 					next;
 					break;
 				case 2:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请使用服务台两侧的楼梯前往二楼。";
 					mes "二楼主要用于行政事务。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那里有^3131FF会议室^000000、^3131FF秘书办公室^000000、";
 					mes "^3131FF礼堂^000000以及^3131FF董事长办公室^000000。";
 					next;
 					break;
 				case 3:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "地下第一层由我们的附属实验室^3131FF雷根施姆^000000使用。";
 					mes "出于安全考虑，该楼层不对访客开放。";
 					next;
 					break;
 				case 4:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我们始终竭尽全力，为客户提供最优质的服务。";
 					mes "请记住，雷根贝勒是值得信赖的名字。";
 					mes "谢谢，祝您今天愉快。";
@@ -4056,11 +4056,11 @@ lhz_in01,114,181,5	script	接待员#li_01	1_F_LIBRARYGIRL,{
 				}
 			}
 		case 2:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果您想了解公司的历史，请与图书馆内的工作人员交谈。";
 			mes "谢谢。";
 			next;
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "沿左侧走廊前进，就能找到我们的图书馆。";
 			mes "谢谢，祝您今天愉快。";
 			set lhz_curse,8;
@@ -4069,45 +4069,45 @@ lhz_in01,114,181,5	script	接待员#li_01	1_F_LIBRARYGIRL,{
 		}
 	}
 	else {
-		mes "[接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "您好，欢迎来到雷根贝勒公司。";
 		mes "今天有什么可以为您服务？";
 		next;
 		switch(select("大楼信息。")) {
 		case 1:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请告诉我，您想进一步了解哪一层。";
 			next;
 			while (1) {
 				switch(select("一楼:二楼:地下一楼:取消")) {
 				case 1:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF雷根贝勒图书馆^000000位于左侧走廊尽头。";
 					mes "图书馆为从事系统开发的员工提供创新思路与信息，是宝贵的资源。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF舞厅^000000通常用于举办各种正式活动，";
 					mes "沿右侧走廊即可到达。";
 					next;
 					break;
 				case 2:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请使用服务台两侧的楼梯前往二楼。";
 					mes "二楼主要用于行政事务。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那里有^3131FF会议室^000000、^3131FF秘书办公室^000000、";
 					mes "^3131FF礼堂^000000以及^3131FF董事长办公室^000000。";
 					next;
 					break;
 				case 3:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "地下第一层由我们的附属实验室^3131FF雷根施姆^000000使用。";
 					mes "出于安全考虑，该楼层不对访客开放。";
 					next;
 					break;
 				case 4:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我们始终竭尽全力，为客户提供最优质的服务。";
 					mes "请记住，雷根贝勒是值得信赖的名字。";
 					mes "谢谢，祝您今天愉快。";
@@ -4118,27 +4118,27 @@ lhz_in01,114,181,5	script	接待员#li_01	1_F_LIBRARYGIRL,{
 	}
 }
 
-lhz_in01,27,247,5	script	接待员#li_02	1_F_LIBRARYGIRL,{
+lhz_in01,27,247,5	script	服务员#li_02::接待员#li_02	1_F_LIBRARYGIRL,{
 	if (lhz_curse > 6) {
-		mes "[接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到雷根贝勒公司。";
 		mes "有什么可以帮您？";
 		next;
 		switch(select("公司历史:雷根贝勒公司的业务")) {
 		case 1:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "雷根贝勒成立于四百年前，";
 			mes "大致与施瓦茨瓦尔德共和国建国同时。";
 			next;
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们最初叫“岑特·泽特尔·里希塔尔研究中心”，以首任董事长的名字命名。";
 			mes "战后纪元 560 年，机构改以新任董事长雷根贝勒先生的名字命名。";
 			next;
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "雷根贝勒先生拓展了公司的业务，";
 			mes "同时也创立了雷根施姆实验室，延续公司最初从事科学研究的目标。";
 			next;
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "战后纪元 700 年，^FF0000瓦尔蒙特博士^000000加入雷根施姆。";
 			mes "正是他的科学研究，让雷根贝勒公司成长为全国最大的企业。";
 			if (lhz_curse == 8) set lhz_curse,9;
@@ -4146,11 +4146,11 @@ lhz_in01,27,247,5	script	接待员#li_02	1_F_LIBRARYGIRL,{
 			next;
 			break;
 		case 2:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "除了商品销售、货物运输和贸易，";
 			mes "雷根贝勒公司还大力参与飞艇服务，这也是我们的主要项目之一。";
 			next;
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "雷根贝勒几乎涉足您能想到的所有行业。";
 			mes "请记住，雷根贝勒是值得信赖的名字。";
 			if (lhz_curse == 8) set lhz_curse,9;
@@ -4158,7 +4158,7 @@ lhz_in01,27,247,5	script	接待员#li_02	1_F_LIBRARYGIRL,{
 			next;
 			break;
 		}
-		mes "[接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果您想进一步了解我们的使命，";
 		mes "请参阅我身旁的《雷根贝勒指南》。";
 		mes "谢谢，祝您今天愉快。";
@@ -4167,45 +4167,45 @@ lhz_in01,27,247,5	script	接待员#li_02	1_F_LIBRARYGIRL,{
 		close;
 	}
 	else {
-		mes "[接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到雷根贝勒公司。";
 		mes "有什么可以帮您？";
 		next;
 		switch(select("大楼信息。")) {
 		case 1:
-			mes "[接待员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请告诉我，您想进一步了解哪一层。";
 			next;
 			while (1) {
 				switch(select("一楼:二楼:地下一楼:取消")) {
 				case 1:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF雷根贝勒图书馆^000000位于左侧走廊尽头。";
 					mes "图书馆为从事系统开发的员工提供创新思路与信息，是宝贵的资源。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^3131FF舞厅^000000通常用于举办各种正式活动，";
 					mes "沿右侧走廊即可到达。";
 					next;
 					break;
 				case 2:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请使用服务台两侧的楼梯前往二楼。";
 					mes "二楼主要用于行政事务。";
 					next;
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那里有^3131FF会议室^000000、^3131FF秘书办公室^000000、";
 					mes "^3131FF礼堂^000000以及^3131FF董事长办公室^000000。";
 					next;
 					break;
 				case 3:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "地下第一层由我们的附属实验室^3131FF雷根施姆^000000使用。";
 					mes "出于安全考虑，该楼层不对访客开放。";
 					next;
 					break;
 				case 4:
-					mes "[接待员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我们始终竭尽全力，为客户提供最优质的服务。";
 					mes "请记住，雷根贝勒是值得信赖的名字。";
 					mes "谢谢，祝您今天愉快。";
@@ -4242,7 +4242,7 @@ lhz_in01,25,251,3	script	雷根贝勒指南#li	HIDDEN_NPC,{
 	close;
 }
 
-lhz_in01,273,121,1	script	疯狂科学家#li	4_LGTSCIENCE,{
+lhz_in01,273,121,1	script	狂热 科学家#li::疯狂科学家#li	4_LGTSCIENCE,{
 	if (lhz_curse == 13) {
 		mes "[沃尔夫切夫]";
 		mes "谁也不许";
@@ -4427,7 +4427,7 @@ lhz_in01,273,121,1	script	疯狂科学家#li	4_LGTSCIENCE,{
 	}
 }
 
-lhz_in01,286,226,3	script	秘书斯莉尔#li	4_F_ZONDAGIRL,{
+lhz_in01,286,226,3	script	秘书 雪依 苏丽娥#li::秘书斯莉尔#li	4_F_ZONDAGIRL,{
 	if (lhz_curse == 26) {
 		mes "[苏伊·斯莉尔]";
 		mes "抱歉，这里不允许你进入。";
@@ -4840,7 +4840,7 @@ lhz_in01,269,114,3	script	一份文件#li-1	HIDDEN_NPC,{
 
 // President Quest, a.k.a. Schwarzwald Triology Quest
 //============================================================
-lighthalzen,179,170,4	script	普通男子	4W_M_02,{
+lighthalzen,179,170,4	script	看似平凡的 男子::普通男子	4W_M_02,{
 
 	if(!lhz_boss)
 	{
@@ -5399,7 +5399,7 @@ OnTouch_:
 	}
 }
 
-yuno_fild04,165,245,4	script	阴沉的男子	4_M_ORIENT02,{
+yuno_fild04,165,245,4	script	阴沉的 男人::阴沉的男子	4_M_ORIENT02,{
 
 	if(lhz_boss < 8)
 	{
@@ -5726,7 +5726,7 @@ yuno_pre,69,20,4	script	秘书#1	4_F_LGTGIRL,{
 	}
 }
 
-yuno_pre,95,71,5	script	总统官邸卫兵	4_M_EIN_SOLDIER,{
+yuno_pre,95,71,5	script	警卫兵::总统官邸卫兵	4_M_EIN_SOLDIER,{
 
 	if(lhz_boss < 11)
 	{
@@ -5851,14 +5851,14 @@ yuno_pre,95,71,5	script	总统官邸卫兵	4_M_EIN_SOLDIER,{
 	}
 }
 
-yuno_pre,96,69,2	script	优雅的绅士	4_M_SAGE_A,{
+yuno_pre,96,69,2	script	帅气的 绅士::优雅的绅士	4_M_SAGE_A,{
 
 OnInit:
 	disablenpc "优雅的绅士";
 	end;
 }
 
-yuno_pre,69,79,4	script	总统先生	4_M_PRESIDENT,{
+yuno_pre,69,79,4	script	总统::总统先生	4_M_PRESIDENT,{
 
 	if(checkweight(7342,1) != 1)
 	{
@@ -6713,7 +6713,7 @@ OnInit:
 	end;
 }
 
-yuno_pre,75,73,0	script	衣着整洁的绅士	4_M_MANAGER,{
+yuno_pre,75,73,0	script	完美的 绅士::衣着整洁的绅士	4_M_MANAGER,{
 
 OnInit:
 	disablenpc "衣着整洁的绅士";
@@ -6753,23 +6753,23 @@ OnTouch_:
 	}
 }
 
-aldebaran,58,225,4	script	卡普拉职员#l1	4_F_KAFRA2,{
+aldebaran,58,225,4	script	卡普拉#l1::卡普拉职员#l1	4_F_KAFRA2,{
 
 	if(lhz_boss != 17)
 	{
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到卡普拉总部。";
 		mes "这里是卡普拉的运营中心，";
 		mes "能为你提供";
 		mes "其他地方没有的特别服务！";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有任何需要，";
 		mes "请向楼内的卡普拉职员咨询。";
 		mes "谢谢，祝你今天愉快～";
 		close;
 	}
-	mes "[卡普拉职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好～";
 	mes "卡普拉公司始终致力于";
 	mes "让每一位顾客满意。";
@@ -6778,7 +6778,7 @@ aldebaran,58,225,4	script	卡普拉职员#l1	4_F_KAFRA2,{
 	switch( select( "我有个问题。","我没事，谢谢。" ) )
 	{
 		case 1:
-			mes "[卡普拉职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然，我会尽力解答你的问题。";
 			mes "不过，如果涉及专业信息，";
 			mes "可能需要请其他职员";
@@ -6789,21 +6789,21 @@ aldebaran,58,225,4	script	卡普拉职员#l1	4_F_KAFRA2,{
 				case 1:
 					break;
 			}
-			mes "[卡普拉职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，贝妮丝？";
 			mes "她就在卡普拉总部里面，";
 			mes "往右边找找就能找到。";
 			mes "她穿着特别的制服，";
 			mes "你很容易就能认出她。";
 			next;
-			mes "[卡普拉职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，祝你今天愉快！";
 			mes "请记住，卡普拉服务";
 			mes "永远站在你这一边～";
 			close;
 
 		case 2:
-			mes "[卡普拉职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果需要卡普拉的特别服务，";
 			mes "请随时向附近的职员咨询。";
 			mes "谢谢，祝你今天愉快～";
@@ -6811,7 +6811,7 @@ aldebaran,58,225,4	script	卡普拉职员#l1	4_F_KAFRA2,{
 	}
 }
 
-aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
+aldeba_in,155,240,5	script	卡普拉#l2::卡普拉职员#l2	4_F_AGENTKAFRA,{
 
 	if(checkweight(7343,1) != 1)
 	{
@@ -6823,20 +6823,20 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 	}
 	if(lhz_boss < 17)
 	{
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到卡普拉总部。";
 		mes "卡普拉最近有什么新消息？";
 		mes "很高兴你这么问。";
 		mes "我们正在与酷酷活动公司";
 		mes "合作开发一项全新的服务。";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这项新服务将提供";
 		mes "直达地下城的传送，";
 		mes "方便我们尊贵的顾客。";
 		mes "是不是……很令人期待呢？";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "由于技术原因，";
 		mes "卡普拉公司和酷酷活动公司";
 		mes "无法同时提供";
@@ -6844,7 +6844,7 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 		mes "所以必须选出一家";
 		mes "统一提供这项服务。";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因此，我们将举行投票，";
 		mes "决定由哪家公司";
 		mes "提供地下城传送服务。";
@@ -6854,20 +6854,20 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 	}
 	else if(lhz_boss == 17)
 	{
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到卡普拉总部。";
 		mes "卡普拉最近有什么新消息？";
 		mes "很高兴你这么问。";
 		mes "我们正在与酷酷活动公司";
 		mes "合作开发一项全新的服务。";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这项新服务将提供";
 		mes "直达地下城的传送，";
 		mes "方便我们尊贵的顾客。";
 		mes "是不是……很令人期待呢？";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "由于技术原因，";
 		mes "卡普拉公司和酷酷活动公司";
 		mes "无法同时提供";
@@ -6875,13 +6875,13 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 		mes "所以必须选出一家";
 		mes "统一提供这项服务。";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们想告诉你，";
 		mes "传送服务的提供方";
 		mes "将由顾客投票选出。";
 		mes "非常感谢你参与投票。";
 		next;
-		mes "[卡普拉职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "记得参加在普隆德拉";
 		mes "和朱诺举行的投票。";
 		mes "祝你投票愉快。";
@@ -6889,7 +6889,7 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 		switch( select( "好的。","我已经等不及了！" ) )
 		{
 			case 1:
-				mes "[卡普拉职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呃，哦……";
 				mes "你有什么问题吗？";
 				mes "老实说，卡普拉提供的服务";
@@ -6900,7 +6900,7 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 				switch( select( "哦，那没关系。","你是贝妮丝吗……？" ) )
 				{
 					case 1:
-						mes "[卡普拉职员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "呼！";
 						mes "那就好。如果对卡普拉服务";
 						mes "有任何疑问，请向其他";
@@ -6965,7 +6965,7 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 				}
 
 			case 2:
-				mes "[卡普拉职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那我们两个里至少有一个人——";
 				mes "我是说，非常感谢你的参与。";
 				mes "请记住，卡普拉";
@@ -7064,7 +7064,7 @@ aldeba_in,155,240,5	script	卡普拉职员#l2	4_F_AGENTKAFRA,{
 	}
 }
 
-lhz_fild02,228,214,0	script	受伤的男子	4_M_DIEMAN,{
+lhz_fild02,228,214,0	script	受伤的 男子::受伤的男子	4_M_DIEMAN,{
 
 	if(checkweight(7343,1) != 1)
 	{
@@ -7189,7 +7189,7 @@ OnTouch_:
 	}
 }
 
-lhz_fild01,66,219,4	script	神秘女子	4_F_AGENTKAFRA,{
+lhz_fild01,66,219,4	script	神秘的 女人::神秘女子	4_F_AGENTKAFRA,{
 
 	if(lhz_boss == 26)
 	{
@@ -8226,7 +8226,7 @@ lhz_in02,19,274,2	script	维修工	4_M_REPAIR,{
 
 // Rekenber Job Quest
 //============================================================
-lhz_in01,174,258,3	script	年轻人#reken	4_M_LGTGUARD,{
+lhz_in01,174,258,3	script	青年#reken::年轻人#reken	4_M_LGTGUARD,{
 
 	if(lhz_rekenber > 21)
 	{
@@ -8966,16 +8966,16 @@ lhz_in01,174,258,3	script	年轻人#reken	4_M_LGTGUARD,{
 	end;
 }
 
-lighthalzen,141,162,3	script	老人#reken	4_M_03,{
+lighthalzen,141,162,3	script	中年#reken::老人#reken	4_M_03,{
 
-	mes "[老人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "最近，凯岑";
 	mes "似乎在经营生意上";
 	mes "遇到了困难。";
 	mes "他总是抱怨";
 	mes "人手不够……";
 	next;
-	mes "[老人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我不知道他在做";
 	mes "什么生意，";
 	mes "但你为什么不去帮帮他呢？";
@@ -8987,7 +8987,7 @@ lighthalzen,141,162,3	script	老人#reken	4_M_03,{
 		set lhz_rekenber,1;
 		setquest 12007;
 	}
-	mes "[老人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，如果你感兴趣，";
 	mes "可以在公司大楼里";
 	mes "找到凯岑。";
@@ -8996,11 +8996,11 @@ lighthalzen,141,162,3	script	老人#reken	4_M_03,{
 	close;
 }
 
-einbroch,55,52,3	script	实验室守卫#reken	4_M_EIN_SOLDIER,{
+einbroch,55,52,3	script	研究所 士兵#reken::实验室守卫#reken	4_M_EIN_SOLDIER,{
 
 	if(lhz_rekenber == 3)
 	{
-		mes "[实验室守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "站住！这里禁止公众进入！";
 		mes "除非有特别的事务，";
 		mes "否则请立即离开。";
@@ -9008,7 +9008,7 @@ einbroch,55,52,3	script	实验室守卫#reken	4_M_EIN_SOLDIER,{
 		switch( select( "其实，我来这里确实有事。","哇，我这就走！" ) )
 		{
 			case 1:
-				mes "[实验室守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有什么事？请说明";
 				mes "你来这里的事由，";
 				mes "以及你想在这座";
@@ -9023,7 +9023,7 @@ einbroch,55,52,3	script	实验室守卫#reken	4_M_EIN_SOLDIER,{
 						mes "确认他是否收到了";
 						mes "寄给他的包裹。";
 						next;
-						mes "[实验室守卫]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "加林斯，是吗？";
 						mes "好，让我查一下";
 						mes "员工名单。嗯……";
@@ -9031,7 +9031,7 @@ einbroch,55,52,3	script	实验室守卫#reken	4_M_EIN_SOLDIER,{
 						mes "他不在这里。你是不是";
 						mes "走错地方了？";
 						next;
-						mes "[实验室守卫]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "抱歉，看来";
 						mes "你白跑一趟了。";
 						mes "我们这里没有";
@@ -9068,7 +9068,7 @@ einbroch,55,52,3	script	实验室守卫#reken	4_M_EIN_SOLDIER,{
 				close;
 		}
 	}
-	mes "[实验室守卫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这里禁止";
 	mes "公众进入。除非你";
 	mes "有某种特别的";

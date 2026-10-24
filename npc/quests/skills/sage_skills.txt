@@ -14,17 +14,17 @@
 //= 1.5 Optimized. [Euphy]
 //============================================================
 
-yuno_in03,176,24,3	script	Mischna	755,{
+yuno_in03,176,24,3	script	米秀娜::Mischna	755,{
 	if(BaseJob != Job_Sage) {
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我是米舒娜，是这里的讲师之一，任教于施魏彻比尔魔法学院。";
 		mes "你是贤者或学者吗？哦……不是？";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，真遗憾。";
 		mes "不过，如果你认识或在旅途中遇到还不知道这门课程的贤者或学者，请把他们介绍给我。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉打扰你，也谢谢你抽出时间。祝你今天愉快，冒险家。";
 		close;
 	}
@@ -32,17 +32,17 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		set .@Element, getskilllv("SA_ELEMENTFIRE") + getskilllv("SA_ELEMENTGROUND") + getskilllv("SA_ELEMENTWIND") + getskilllv("SA_ELEMENTWATER");
 		set .@Convert, getskilllv("SA_CREATECON");
 		if(.@Element && .@Convert) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你有还没从巴蒙特爵士的卷轴中学会技能的贤者或学者朋友，请把他们介绍给我。";
 			mes "我会帮助他们学习。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我相信你已经发现，这些基于元素的技能在战斗中非常有用。";
 			mes "从长远来看，知识确实等同于力量……";
 			mes "请继续学习。";
 			close;
 		}
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你一定是忘记了我教你的内容。";
 		mes "也许你弄丢了我给你的技能卷轴？";
 		mes "没关系，我会帮你回忆起来。";
@@ -51,11 +51,11 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		mes "你一定能想起来。";
 		next;
 		if(.@Element == 0) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你将有机会选择想要的^FF0000元素转换^000000技能，即使之前没有学过也可以，只要满足该技能的要求即可。";
 			mes "请慎重选择。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请记住，一旦学会元素转换技能，就不能再更改。";
 			mes "现在，你想学习哪项技能？";
 			mes "请告诉我。";
@@ -68,21 +68,21 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			while(1) {
 				set .@i, select("火元素转换:地元素转换:风元素转换:水元素转换")-1;
 				if(getskilllv(.@ReqSkill[.@i]) == 0) {
-					mes "[米舒娜]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，你还没有学会^FF0000赋予 "+.@ReqSkill$[.@i]+"^000000，这是学习 ^FF0000"+.@Skill$[.@i]+" 元素转换^000000所需的技能。请学习赋予"+.@ReqSkill$[.@i]+"，或选择其他元素转换技能。请重新选择。";
 					next;
 				}
 				else {
-					mes "[米舒娜]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "很好，我会教你^FF0000"+.@Skill$[.@i]+" 元素转换^000000技能以及 ^FF0000元素转换器制作技能^000000。吟唱时请保持不动。";
 					mes "请集中注意力。";
 					mes "马上就完成。";
 					next;
-					mes "[米舒娜]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "%$#@!#$% 呀～～";
 					specialeffect2 EF_RUWACH;
 					next;
-					mes "[米舒娜]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "呀！";
 					specialeffect2 EF_BRANDISHSPEAR;
 					next;
@@ -97,17 +97,17 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			}
 		}
 		else if(.@Convert == 0) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，我要施展一个帮助你回忆忘记的技能的法术。";
 			mes "不要动，尽量保持不动……";
 			mes "请集中精神。";
 			mes "马上就好。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "%$#@!#$% 呀～～";
 			specialeffect2 EF_RUWACH;
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呀！";
 			specialeffect2 EF_BRANDISHSPEAR;
 			next;
@@ -116,46 +116,46 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			skill "SA_CREATECON",1,SKILL_PERM;
 			next;
 		}
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你学会这些技能的速度比我想象中还快。很好，希望你能将这些才能用于正确的目的。";
 		mes "暂时再见，"+strcharinfo(0)+"。";
 		mes "祝你冒险顺利。";
 		close;
 	}
 	else if(SAG_SK == 0) {
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我是米舒娜，是这里的讲师之一，任教于施魏彻比尔魔法学院。";
 		mes "我能为你提供什么帮助？";
 		next;
 		select("我寻求新的知识。");
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你一定是"+strcharinfo(0)+"。";
 		mes "我一直期待与你见面。";
 		mes "在追求知识的道路上，我建议你阅读最近修复的巴蒙特爵士卷轴。";
 		mes "那里面记载着珍贵的知识。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "巴蒙特爵士的卷轴包含四种元素的知识：火、水、土和风。";
 		mes "这些卷轴中的知识可以用于两项新的贤者技能。";
 		mes "请仔细阅读。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第一项叫做 ^FF0000元素转换^000000，可以根据你学会的元素转换技能所对应的元素，改变怪物的属性。";
 		mes "请善加利用。";
 		mes "这是一项非常强大的技能。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第二项叫做元素转换器制作，可以制作使用元素转换技能所需的转换器物品。";
 		mes "学习后即可自行制作。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然这两项技能的知识已经失传多年，但我们终于恢复了大部分内容。";
 		mes "那么，你准备好学习这些技能了吗？";
 		mes "请告诉我你的决定。";
 		mes "现在就可以开始。";
 		next;
 		if(select("以后再说。:是的，我准备好了。") == 1) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你现在一定很忙。";
 			mes "没关系，准备好学习时再回来。";
 			mes "那么，再见，祝你今天愉快～";
@@ -163,21 +163,21 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			mes "下次见。";
 			close;
 		}
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好。那么首先，你必须学习元素转换器制作技能，这是学习元素转换技能的基础。";
 		mes "请先完成这一步。";
 		mes "之后才能继续。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请带来所需材料，这样我们就能制作基础元素转换器，帮助你学习这项技能。";
 		mes "让我看看，你需要带来……";
 		mes "请记好清单。";
 		mes "不要遗漏材料。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^ff00007 个角^000000、^ff000012 个彩色昆虫外壳^000000、^ff000010 个蜗牛外壳^000000、^ff00004 张空卷轴^000000和^ff000010 条蝎子尾巴^000000。^000000";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，我会在这里等你回来。";
 		mes "记住，我们需要这些物品来制作转换器，这样你才能通过我的示范学习技能……";
 		mes "请尽快回来。";
@@ -186,44 +186,44 @@ yuno_in03,176,24,3	script	Mischna	755,{
 	}
 	else if(SAG_SK == 1) {
 		if (countitem(904) < 10 || countitem(947) < 7 || countitem(1013) < 12 || countitem(946) < 10 || countitem(7433) < 4) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，你还没有收集齐制作元素转换器所需的材料。";
 			mes "让我提醒你下次要带什么，免得你忘记……";
 			mes "请仔细确认。";
 			mes "准备好后再来。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^ff00007 个角^000000、^ff000012 个彩色昆虫外壳^000000、^ff000010 个蜗牛外壳^000000、^ff00004 张空卷轴^000000和^ff000010 条蝎子尾巴^000000。^000000";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别忘了我们需要所有这些物品来制作转换器，这样你就能通过观察我的示范学习元素转换器制作技能。";
 			mes "请牢记这一点。";
 			mes "准备好后再来。";
 			close;
 		}
 		else {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了，你把东西都带来了。";
 			mes "现在让我解释这项技能。";
 			mes "你作为贤者学会的技能，决定你能制作哪种元素转换器。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF0000火焰赋予^000000技能可以制作火元素转换器。^FF0000地震赋予^000000";
 			mes "技能可以制作地元素转换器。";
 			mes "请根据需要学习。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF0000龙卷风赋予^000000可以制作风元素转换器，^FF0000海啸赋予^000000";
 			mes "可以制作水元素转换器。";
 			mes "这样就清楚了吧？";
 			mes "请记住这些对应关系。";
 			mes "不要弄错。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "元素转换器的制作成功率取决于火焰赋予、地震赋予、龙卷风赋予或海啸赋予技能的等级，以及你的能力。";
 			mes "技能等级越高，成功率越高。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在请拿着这份巴蒙特卷轴的副本，制作元素转换器时，可以把它作为参考。";
 			mes "使用元素转换器制作技能时，请按照卷轴中的说明操作。";
 			mes "祝你成功。";
@@ -240,13 +240,13 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			set SAG_SK,2;
 			skill "SA_CREATECON",1,SKILL_PERM;
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，"+strcharinfo(0)+"！";
 			mes "你学会那项技能的速度真快！";
 			mes "难怪大家都说你是最优秀的贤者之一！";
 			mes "真令人佩服。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在你已经准备好学习另一项技能，元素转换了。好吧，我需要为这堂课准备一些东西，我们之后再见面讨论，好吗？";
 			mes "请耐心等待。";
 			mes "很快就会开始。";
@@ -259,11 +259,11 @@ yuno_in03,176,24,3	script	Mischna	755,{
 			mes "- 我在与米舒娜交谈时回忆起了^ff0000元素转换器制作技能^000000！ -";
 			next;
 		}
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你将有机会选择想要的^FF0000元素转换^000000技能，即使之前没有学过也可以，只要满足该技能的要求即可。";
 		mes "请慎重选择。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请记住，一旦学会元素转换技能，就不能再更改。";
 		mes "现在，你想学习哪项技能？";
 		mes "请告诉我。";
@@ -276,16 +276,16 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		while(1) {
 			set .@i, select("火元素转换:地元素转换:风元素转换:水元素转换")-1;
 			if(getskilllv(.@ReqSkill[.@i]) == 0) {
-				mes "[米舒娜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，你还没有学会^FF0000赋予 "+.@ReqSkill$[.@i]+"^000000。这是学习 "+.@Skill$[.@i]+" 元素转换所需的技能。";
 				mes "请学习赋予"+.@ReqSkill$[.@i]+"，或选择其他元素转换技能。";
 				next;
 			}
 			else {
-				mes "[米舒娜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "很好。那么请带来以下物品，这样你就能学习"+.@Skill$[.@i]+" 元素转换技能。请准备齐全。";
 				next;
-				mes "[米舒娜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^FF000020 个"+.@ReqItem$[.@i]+"^000000、";
 				mes "^FF00001 个斐扬水溶液试管^000000和^FF00001 个梦罗克水溶液试管^000000。";
 				mes "材料准备好后再回来找我。";
@@ -307,29 +307,29 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		setarray .@Skill[0],1018,1017,1019,1008;
 		setarray .@Skill$[0],"火","地","风","水";
 		if (countitem(.@ReqItem[.@i]) < 20 || countitem(1089) < 1 || countitem(1088) < 1) {
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "收集所需物品遇到困难了吗？";
 			mes "以防万一，我再提醒你学习"+.@Skill$[.@i]+" 元素转换技能需要带来的物品。";
 			mes "请仔细确认。";
 			mes "不要忘记。";
 			next;
-			mes "[米舒娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^ff000020 个"+.@ReqItem$[.@i]+"^000000、";
 			mes "^ff00001 个斐扬水溶液试管^000000和^ff00001 个梦罗克水溶液试管^000000。";
 			mes "别忘了准备好材料，下次见到我时带来，好吗？";
 			mes "请务必记住。";
 			close;
 		}
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了。现在我终于可以教你"+.@Skill$[.@i]+" 元素转换技能。这项技能有机会将目标怪物的属性永久改变为"+.@Skill$[.@i]+"。请仔细听说明。";
 		mes "不要在不合适的时机使用。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "记住，你必须使用元素转换器才能施展这项技能，而且它也有成功率，和元素转换器制作技能类似。";
 		mes "请注意这一点。";
 		mes "失败时可能浪费材料。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，"+strcharinfo(0)+"，";
 		mes "我要施展一个法术，帮助你记住"+.@Skill$[.@i]+" 元素转换技能。请保持不动……";
 		mes "马上就好。";
@@ -338,7 +338,7 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		mes "请保持安静。";
 		specialeffect2 EF_RUWACH;
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "@#$%^~ 呀！";
 		specialeffect2 EF_BRANDISHSPEAR;
 		delitem .@ReqItem[.@i],20;
@@ -347,7 +347,7 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		set SAG_SK,100;
 		skill .@Skill[.@i],1,0;
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes strcharinfo(0)+"……";
 		mes "我很高兴地告诉你，你已经成功记住了"+.@Skill$[.@i]+" 元素转换技能。希望它能在战斗中帮助你。";
 		mes "暂时再见～";
@@ -355,12 +355,12 @@ yuno_in03,176,24,3	script	Mischna	755,{
 		close;
 	}
 	else {
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有还没从巴蒙特爵士卷轴中学会技能的贤者或学者朋友，请把他们介绍给我。";
 		mes "我会帮助他们学习。";
 		mes "请不要错过机会。";
 		next;
-		mes "[米舒娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信你已经发现，这些基于元素的技能在战斗中非常有用。";
 		mes "知识确实等同于力量；";
 		mes "从长远来看，它会带来真正的力量……";

@@ -8,9 +8,9 @@
 //= 1.1 Updated to match official script. [Capuche]
 //============================================================
 
-moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
+moro_cav,61,69,3	script	资深追踪队员#a1::资深追踪者#a1	4_M_JOB_ASSASSIN,{
 	if (ep14_3_isle == 0) {
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是我们阻止摩洛克的前进基地。";
 		mes "我是负责带领部队前往梦罗克巢穴的追踪者。";
 		close;
@@ -30,23 +30,23 @@ moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
 		break;
 	case 0:
 	case 1:
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们离阻止摩洛克复活还差得很远。";
 		mes "想到摩洛克正在竭尽全力恢复力量，";
 		mes "我晚上根本睡不着。";
 		mes "你明天再回来好吗？";
 		close;
 	case 2:
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我就知道你会回来。";
 		mes "看起来你休息得很好。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "根据我的情报，";
 		mes "摩洛克正藏在这里，";
 		mes "恢复他的力量。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对抗摩洛克";
 		mes "不是几个战士，无论他们多强，都能完成的。";
 		mes "我建议你和尽可能多的同伴";
@@ -57,20 +57,20 @@ moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
 			close;
 		next;
 		if (select( "不。", "是。" ) == 1) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "改变主意后";
 			mes "再回来吧。";
 			close;
 		}
 		if (instance_create("摩洛斯洞穴") < 1) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "红色花朵的入口";
 			mes "还没有开放。";
 			mes "请稍后回来";
 			mes "再试一次。";
 			close;
 		}
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "红色花朵的入口";
 		mes "已经开放。";
 		mes "它只会开放一段时间。";
@@ -80,50 +80,50 @@ moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
 	}
 	.@hunting_9318 = checkquest(9318,HUNTING);
 	if (.@hunting_9318 == -1) {
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是我们阻止摩洛克的前进基地。";
 		mes "我是负责带领部队前往梦罗克巢穴的追踪者。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "经过艰苦的搜索，";
 		mes "我找到了";
 		mes "最有可能";
 		mes "藏着摩洛克的地方。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "根据我的情报，";
 		mes "摩洛克正藏在这里，";
 		mes "试图恢复";
 		mes "全部力量。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然这是我亲自找到的地方，";
 		mes "但我必须承认，";
 		mes "我没有能力独自";
 		mes "探索这里。";
 		mes "毕竟我是追踪者，不是战士。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看起来像是";
 		mes "渴望和摩洛克";
 		mes "好好战斗的战士，";
 		mes "我认为";
 		mes "你有机会获胜。";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你愿意进入摩洛克的巢穴，";
 		mes "击败他，";
 		mes "成为从邪恶手中";
 		mes "拯救世界的英雄吗？";
 		next;
 		if (getcharid(1) < 1 || is_party_leader() == false) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你对我的提议感兴趣，";
 			mes "让我和你的队长谈谈。";
 			mes "我们一起讨论更多细节。";
 			close;
 		}
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "摩洛克也许还没有恢复全部力量，但对抗他仍然";
 		mes "不是几个战士，无论他们多强，都能完成的。";
 		mes "我建议你和尽可能多的同伴";
@@ -132,20 +132,20 @@ moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
 		mes "红色花朵了吗？";
 		next;
 		if (select( "不。", "是。" ) == 1) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "改变主意后";
 			mes "再回来吧。";
 			close;
 		}
 		if (instance_create("摩洛斯洞穴") < 1) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "红色花朵的入口";
 			mes "还没有开放。";
 			mes "请稍后回来";
 			mes "再试一次。";
 			close;
 		}
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "红色花朵的入口";
 		mes "已经开放。";
 		mes "它只会开放一段时间。";
@@ -154,25 +154,25 @@ moro_cav,61,69,3	script	资深追踪者#a1	4_M_JOB_ASSASSIN,{
 		close;
 	}
 	else {
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你终于回来了！";
 		mes "里面发生了什么？";
 		next;
 		mes "- 你讲述在红色花朵中的经历。 -";
 		next;
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以摩洛克逃走了。";
 		mes "真遗憾。";
 		next;
 		if (checkquest(9318,HUNTING) == 2) {
-			mes "[资深追踪者]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "至少";
 		mes "你消灭了";
 		mes "他的军队。";
 		mes "这本身就是一项成就。";
 			next;
 		}
-		mes "[资深追踪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至少我们知道";
 		mes "他在哪里。";
 		mes "你明天能回来";

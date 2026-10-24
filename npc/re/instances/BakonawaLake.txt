@@ -18,7 +18,7 @@
 
 // Instance Creation :: ma_baku
 //============================================================
-ma_scene01,174,179,4	script	塔霍::Taho	541,{
+ma_scene01,174,179,4	script	绍绍::Taho	541,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "你携带的物品太多了。拿掉一部分后再回来。";
@@ -29,12 +29,12 @@ ma_scene01,174,179,4	script	塔霍::Taho	541,{
 		close;
 	}
 	if (BaseLevel < 140) {
-		mes "[塔霍]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂，这里对你来说太危险了，你无法保证自身安全。马上离开这里，回村子去！";
 		close;
 	}
 	if (malaya_bakona1 < 7 && malaya_bakona2 < 15) {
-		mes "[塔霍]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们会被那条巴库纳瓦全杀掉的。唉，我们必须杀了它，但遗憾的是还没有准备好。";
 		close;
 	}
@@ -47,18 +47,18 @@ ma_scene01,174,179,4	script	塔霍::Taho	541,{
 		if (checkquest(12279) == -1) setquest 12279;
 	}
 	if (!.@party_id) {
-		mes "[塔霍]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有同伴能和你一起去吗？就算想独自前往，也请先组织好队伍再来。";
 		close;
 	}
 	if (.@baku_time == -1) {
 		if (is_party_leader() == true) {
-			mes "[塔霍]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是巴库纳瓦讨伐队的队长吗？路况不好，我们必须用绳子下悬崖，可以吗？";
 			next;
 			set .@i, select("请编好绳子。:现在就下去。:取消。");
 		} else {
-			mes "[塔霍]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你们是来讨伐巴库纳瓦的。你的队长必须帮我编织下去用的绳子。";
 			next;
 			set .@i, select(":现在就下去。:取消。");
@@ -66,25 +66,25 @@ ma_scene01,174,179,4	script	塔霍::Taho	541,{
 		switch(.@i) {
 		case 1:
 			if (instance_create(.@md_name$) < 0) {
-				mes "[塔霍]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，绳子掉下去了。我得重新做一条。";
 				close;
 			}
-			mes "[塔霍]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我现在正在编织，完成后你们就可以下去了。";
 			close;
 		case 2:
 			switch(instance_enter(.@md_name$)) {
 			case IE_OTHER:
-				mes "[塔霍]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "发生了未知错误。";
 				close;
 			case IE_NOINSTANCE:
-				mes "[塔霍]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "绳子还没编好。请稍等。";
 				close;
 			case IE_NOMEMBER:
-				mes "[塔霍]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你不属于申请此副本的队伍，无法进入。";
 				close;
 			case IE_OK:
@@ -97,11 +97,11 @@ ma_scene01,174,179,4	script	塔霍::Taho	541,{
 			close;
 		}
 	} else if (.@baku_time == 0 || .@baku_time == 1) {
-		mes "[塔霍]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "前往湖泊的绳子已经断了。我们正在清理周围环境，请过一段时间再回来。";
 		close;
 	} else if (.@baku_time == 2) {
-		mes "[塔霍]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里已经清理干净了。拿到绳子后，你现在可以再次下去了。";
 		erasequest 12278;
 		close;

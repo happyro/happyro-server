@@ -29,3 +29,11 @@ Game Control 让 Admin 和冒险工具向 map-server 发送已授权命令。web
 ## 配置环境覆盖
 
 `battle_config.read` 的结果包含实际 `values` 和 `environment_overrides`（配置键到环境变量名的映射）。`battle_config.apply` 在修改任何值之前检查整批请求；含非空环境变量受控项时返回 configuration_conflict，不产生部分赋值。API 也会在发布配置文件前拒绝，变量和优先级见[地图服环境变量](battle-environment.md)。
+
+## 转职后的装备权限同步
+
+`InventoryEquipUpdate` 协调转职、技能授予／移除及装备脚本重算引起的双持资格变化。使用与装备部位判断相同的 `pc_can_dual_wield`；失去资格时清理不合法的普通／影子左手武器及切换配置，保留合法盾牌、右手与原 GM 装备许可。
+
+转职先移除灵魂附体的临时资格，在技能树及骑乘／手推车清理后再次验证穿戴，最终校验切换配置并完成权限同步后才存档。完整背包快照同时发送合法切换配置，客户端无需重新登录。跨仓库证据及实机验收边界见[装备权限审查](../../../docs/development/equipment-permission-audit/README.md)。
+
+回归检查：`node --test tests/job-change-inventory.test.mjs tests/equipment-switch-reassignment.test.mjs`，包含实际协调代码与 ASan／UBSan 检查；桩资格判定不代替在线角色验收。

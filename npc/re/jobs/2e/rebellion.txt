@@ -8,33 +8,33 @@
 //= 1.1 Syntax change. [Capuche]
 //============================================================
 
-moc_fild12,261,318,3	script	Suspicious Man	4_M_MOCASS2,2,2,{
+moc_fild12,261,318,3	script	可疑的男子::Suspicious Man	4_M_MOCASS2,2,2,{
 	end;
 OnTouch:
 	if (Class == Job_Gunslinger && BaseLevel >= 99 && JobLevel >= 70) {
 		if (isbegin_quest(12340) == 0) {
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "终于找到你了，流浪者斯派克！我要取你的首级！";
 			next;
 			select("你说什么？");
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*哼*别装作不知道。看看这张海报！上面就是你！";
 			next;
 			select("看起来是有点像，但那不是我。");
 			mes "["+strcharinfo(0)+"]";
 		mes "别说相像了。你从哪里得到那张海报的？我从没犯罪。";
 			next;
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我就知道你会想靠撒谎脱身。";
 			next;
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "^0000ff艾音布罗克私人酒吧^000000发布了那张通缉海报。许多像我这样的赏金猎人都在追你。";
 			next;
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "只要你看起来像，我不在乎你是不是本人。我要把你活捉或杀死。";
 		}
 		else {
-			mes "[可疑男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "又是你！竟然还有胆子回来！";
 		}
 		next;
@@ -50,46 +50,46 @@ OnTouch:
 	end;
 }
 
-einbroch,54,97,3	script	Bouncer	4_M_REBELLION,{
+einbroch,54,97,3	script	酒店门卫::Bouncer	4_M_REBELLION,{
 	if (BaseClass != Job_Gunslinger) {
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不要在场地附近闲逛。";
 		close;
 	}
 	switch( isbegin_quest(12340) ) {
 	case 0:
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "正在施工，不能进入。";
 		close;
 	case 1:
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*倒吸气*是你！我以为你已经被抓了。哦，现在不重要了。你就是我的免罪卡！";
 		next;
 		select("我不是你以为的那个罪犯！");
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不是？";
 		next;
 		mes "^0000ff门卫检查了你的脸。^000000";
 		next;
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，你们非常相像，不过你看起来没有那个罪犯斯派克那么凶。";
 		next;
 		select("我要找发布通缉令的人谈谈。");
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的问题超出我的能力范围。进去吧。如果发现你真的是本人，我会让你再也见不到外面。";
 		close2;
 		warp "job_gun",81,29;
 		end;
 	case 2:
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你回来了。为什么？";
 		next;
 		if (select("我要进去。:我只是路过。") == 2) {
-			mes "[门卫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你真傻。";
 			close;
 		}
-		mes "[门卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去吧。别惹麻烦。";
 		close2;
 		warp "job_gun",70,28;

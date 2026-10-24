@@ -51,7 +51,7 @@ moc_ruins,86,103,1	script	Thug#rg	118,{
 	close;
 }
 
-in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
+in_rogue,363,122,4	script	流氓 工会员#rg::Rogue Guildsman#rg	747,{
 	if (Upper == 1) {
 		mes "[马克]";
 		mes "咦？你……你……？！";
@@ -71,14 +71,14 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 	}
 	if (BaseJob == Job_Thief) {
 		if (SkillPoint) {
-			mes "[流氓公会成员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哟，你在做什么？！";
 			mes "还有未使用的技能点就不能转职，全部用掉。先检查好自己，别搞砸了。";
 			close;
 		}
 		if (JobLevel > 39) {
 			if (ROGUE_Q == 0) {
-				mes "[流氓公会成员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "像你这样的孩子来这里做什么？";
 				if (Sex == SEX_MALE) {
 					mes "哦，我明白了……";
@@ -89,7 +89,7 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 					mes "这个小可爱想要成为^800000流氓^000000。";
 				}
 				next;
-				mes "[流氓公会成员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呃，很高兴见到你。我是马克，为流氓公会工作。这是一个慈善——*咳*，^800000感情慈善^000000团体。你叫什么名字？";
 				next;
 				mes "[马克]";
@@ -431,20 +431,20 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 			}
 		}
 		else if (JobLevel < 40) {
-			mes "[流氓公会成员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喂，慢点，新人。我们只接受职业等级至少40的盗贼。在你准备好前让你加入太冒险了。明白吗？";
 			close;
 		}
 	}
 	else if (BaseJob == Job_Assassin) {
-		mes "[流氓公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦……？";
 		mes "刺客来这里做什么？呃，你不是被派来杀流氓公会某人的吧？";
 		next;
-		mes "[流氓公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，别惹我们！你抓不到我……我是潇洒的罪犯！";
 		next;
-		mes "[流氓公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不明白吗？这是我以前常对休伊说的话。如果你在刺客公会，应该见过他……";
 		close;
 	}
@@ -456,26 +456,26 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
 		close;
 	}
 	else {
-		mes "[流氓公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你……";
 		mes "赶紧把你丑陋的屁股从这里滚出去，免得我重新装饰你的脸！";
 		close;
 	}
 }
 
-in_rogue,376,23,1	script	Mr. Smith#rg	57,{
+in_rogue,376,23,1	script	司马斯拉托#rg::Mr. Smith#rg	57,{
 	if (ROGUE_Q == 2) {
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到流氓公会。";
 		mes "从现在开始，我会确认你的资格。";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "开始之前，我想让你知道一件事……";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所有新流氓都必须缴纳申请费，希望你先处理好。";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要明白，流氓公会做很多生意， ^666666有时甚至违法^000000，这些生意需要资金支持。";
 		next;
 		set .@item_need,rand(1,15);
@@ -483,49 +483,49 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 		else if (.@item_need > 5 && .@item_need < 11) callsub S_Req,"10 绿色药草","10 蟹背壳","10 蛇鳞片","10 加勒特",4;
 		else if (.@item_need > 10 && .@item_need < 15) callsub S_Req,"10 黄色药草","10 坚硬外壳","10 蝗虫后腿","10 熊掌",5;
 		else if (.@item_need == 15) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会告诉你……";
 			set ROGUE_Q,6;
 			changequest 2017,2021;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会告诉你……...";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会告诉你…….....";
 			mes "顺便说……";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊……";
 			mes "这真是……";
 			mes "该死……";
 			mes "烦死了！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天我心情很差，你知道为什么吗？！ 我还没收回任何欠款！ 天啊！ 笨蛋盗贼总来找我，想成为流氓！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊！我现在明白为什么首领说客服工作糟透了。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那个该死的公会会长把这种破工作交给我。 我比这该死的工作强！";
 			mapannounce "in_rogue","那个该死的公会会长把这种破工作交给我！那个混蛋！",bc_map;
 			mes "那个混蛋该下地狱，我要狠狠教训他！F#%k F#%k F#%k！！！";
 			mapannounce "in_rogue","那个混蛋该下地狱，我要狠狠教训他！F#%k F#%k F#%k！！！",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "刚才那个想转职的蠢货，就是你前面的那个……";
 			mapannounce "in_rogue","刚才那个想转职的蠢货，就是你前面的那个……",bc_map;
 			mes "你知道他到底跟我说了什么鬼话吗？！";
@@ -533,11 +533,11 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 			mes "F#$@%#$*#$%@#$!!";
 			mapannounce "in_rogue","F#$@%#$*#$%@#$!!",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么——？！这个聊天过滤器是怎么回事？！别再屏蔽我了！你这个蠢货！让我说完！！！";
 			mapannounce "in_rogue","什么——？！这个聊天过滤器是怎么回事？！别再 #*!@$ 屏蔽我了！你这个蠢 F#$%*！让我说完！！！",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你到底在看什么……？" + strcharinfo(0) + "？那是你的名字！？";
 			mapannounce "in_rogue","你 f#@k 到底在看什么……？" + strcharinfo(0) + "？那是你的名字！？",bc_map;
 			mes " ";
@@ -546,76 +546,76 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 			mes "先生……？";
 			mes "我不是有意惹你生气。我只是来这里想成为流氓。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊，我刚才到底在说什么鬼话，你这个笨蛋！";
 			mapannounce "in_rogue","天啊，我刚才到底在说什么 f#$k 鬼话，你这个 f!#king 笨蛋！",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别来烦我！别管我！别来烦我！";
 			mapannounce "in_rogue","别来烦我！别管我！别来烦我！",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "随你便，好吗？想做什么鬼事就做什么……！！";
 			mapannounce "in_rogue","随你便，好吗？想做什么 F$!!K 鬼事就做什么……！！",bc_map;
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的申请费……^FF000010,000 Zeny^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005个蛹壳^000000！";
 			mes "^FF00005个空瓶^000000！";
 			mes "^FF00005个铁矿石^000000！";
 			mes "^FF00005个石之心^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005个红色药草^000000！";
 			mes "^FF00005张动物外皮^000000！！";
 			mes "^FF00005颗黄色魔力矿石^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005颗蝙蝠牙^000000！";
 			mes "^FF00005条蝎子尾巴^000000！！";
 			mes "^FF00005条猴子尾巴^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005份魔物饲料^000000！";
 			mes "^FF00005团棉绒^000000！！";
 			mes "^FF00005片三叶幸运草^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005根鸟羽毛^000000！";
 			mes "^FF00005只鸟爪^000000！！";
 			mes "^FF00005个蛙卵^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没带齐这些东西就别想回来，否则我会当场杀了你。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么鬼？你刚说我烦你？闭嘴，你这个忘恩负义的混蛋！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我刚把^FF00005片变身叶子^000000加进清单。你最好把它拿来！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "该死！你有没有想过，成为 NPC 有多难！？！";
 			mapannounce "in_rogue","F%$#*&#@$%#@$@#$%@$%&*k！你有没有想过，成为 NPC 有多难！？！",bc_map;
 			close;
 		}
 	}
 	else if (ROGUE_Q < 2) {
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "三千二百七十二。三千二百七十三。三千二百七十四……";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "呃……";
 			mes "头好痛……";
 			mes "要数的 Zeny 太多了。";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "呃……？";
 			mes "你来这里做什么？想谈转职的话，先去和另一个人谈谈。";
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "……该死！";
 			mes "我数到哪了！";
 		close;
@@ -631,11 +631,11 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 			countitem(914) > 4 && countitem(705) > 4 && countitem(916) > 4 && countitem(917) > 4 &&
 			countitem(908) > 4 && countitem(945) > 4) {
 				if (!checkweight(1097,1)) {
-					mes "[史密斯先生]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请先为推荐信预留足够的负重和物品栏空间，再来交付材料。";
 					close;
 				}
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……让我看看……";
 				set Zeny, Zeny-10000;
 				delitem 915,5; //Chrysalis
@@ -659,35 +659,35 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 				set ROGUE_Q,8;
 				changequest 2021,2025;
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇，你把我要求的每一样东西都带来了。干得好……我向你致敬。";
 				next;
 				mes "^CCCCCC- 竖中指 -^000000'";
 				mes "*咧嘴笑*";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "既然你如此努力，我就为你写一封推荐信吧。通常我可不会这样做。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但我相信你会成为流氓公会的优秀人才。嗯，我现在没有空白纸张，就先拿这个吧……";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "*叹气……*";
 				mes "我知道，我知道。我本该在工作场所控制自己。发火是个坏习惯……";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "*喃喃自语……*";
 				mes "我当时是……*喃喃……*";
 				mes "怎么会……我想起来了……";
 				mes "*叹气* 都是因为我的坏脾气！";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇啊……！！！";
 				next;
 				mes "^3355FF也许过一会儿再回来比较好。^000000";
 				close;
 			}
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这次听好了！";
 			mes "申请费：";
 			mes "^FF000010,000 Zeny^000000、";
@@ -695,34 +695,34 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 			mes "^FF00005个空瓶^000000！";
 			mes "^FF00005个铁矿石^000000！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005个石之心^000000！！";
 			mes "^FF00005个红色药草^000000！";
 			mes "^FF00005张动物外皮^000000！！";
 			mes "^FF00005颗黄色魔力矿石^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005颗蝙蝠牙^000000！";
 			mes "^FF00005条蝎子尾巴^000000！！";
 			mes "^FF00005条猴子尾巴^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005份魔物饲料^000000！";
 			mes "^FF00005团棉绒^000000！！";
 			mes "^FF00005片三叶幸运草^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00005根鸟羽毛^000000！";
 			mes "^FF00005只鸟爪^000000！！";
 			mes "^FF00005个蛙卵^000000！！";
 			mes "^FF00005片变身叶子^000000！！";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没带齐它们就别想回来！";
 			close;
 		}
 		else if (ROGUE_Q == 7) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "让我看看……";
 			mes "我该把你派去哪里呢……？";
 			switch(rand(1,3)) {
@@ -738,28 +738,28 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 					changequest 2020,2022;
 				}
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "对了！我知道该找谁了~！";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "去拜访住在沙漠要塞南边的小阿拉甘。那里在这里东边的下一张原野地图。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他人挺不错的。他工作努力，收账也很在行。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在加入流氓公会前，人们因他父亲过去做的事而追杀他，所以他成了逃亡者。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，他因此加入了我们。我们一直帮他躲避敌人。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，想见他的话最好记住密码。没有密码他不会让任何人进屋。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "密码是^0000FF阿拉甘从未囤积过升级物品^000000。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "祝你好运。他住的地方离这里不远，尽快回来。迅捷……这就是流氓的精神。";
 				close;
 			case 2:
@@ -774,28 +774,28 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 					changequest 2020,2023;
 				}
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "这个人可能很适合你，";
 				mes "不过……";
 				mes "他有点危险。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想让你见见第一代安东尼奥的儿子小安东尼奥。人们因他父亲过去做的事而追杀他。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他在斐扬长大，现在住在克克魔海边附近的一栋空屋里。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "听说他最近总抱怨屋外的噪音，还担心有人刺杀他。总之……";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他神经紧绷，任何靠近房子的人都会被他扔飞刀。他性格暴躁。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过他的经商能力很出色，也很喜欢赌博。熟悉他之后，他会好好负责你的流氓训练。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，想亲自见他最好记住密码。密码是^0000FF安东尼奥不乐于破坏升级物品^000000。";
 				close;
 			case 3:
@@ -810,80 +810,80 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 					changequest 2020,2024;
 				}
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "这个人可能很适合你，";
 				mes "不过……";
 				mes "他有点危险。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他的名字是小霍尔格伦，操纵方面的天才。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "然而，由于他父亲很久以前做过的事，人们一直想杀他。因此他神经高度紧张，会向不信任的人投掷飞刀。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们的首领成功让他加入公会，他聪明的头脑也成了我们的财富。熟悉他后，他会好好负责你的流氓训练。";
 				next;
-				mes "[史密斯先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，想亲自见他最好记住密码。密码是^0000FF我父亲从未囤积过升级物品^000000。";
 				close;
 			}
 		}
 		else if (ROGUE_Q == 8) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了……我冷静下来了，现在可以告诉你下一个目的地。*呼*";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去找住在^0000FF帕罗斯灯塔检查站^000000附近的小赫尔曼索恩，那里位于梦罗克和克魔岛的边界。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊……差点忘了，记住不要提任何关于升级物品的事。这非常重要。";
 			close;
 		}
 		else if (ROGUE_Q == 9) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……？";
 			mes "你刚才是说你忘了该去哪里吗？";
 			mes "";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "向东进入下一张原野地图，再进入沙漠要塞南边的建筑，去见小阿拉甘。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "密码是^0000FF阿拉甘从未囤积过升级物品^000000。";
 			close;
 		}
 		else if (ROGUE_Q == 10) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……？";
 			mes "你刚才是说你忘了该去哪里吗？";
 			mes "";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去克克魔海边的建筑，它位于前往克魔岛的路上，在那里见小安东尼奥。";
 			mes "";
 			mes "";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "密码是^0000FF‘安东尼奥不乐于破坏升级物品’^000000。";
 			close;
 		}
 		else if (ROGUE_Q == 11) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……？";
 			mes "你刚才是说你忘了该去哪里吗？";
 			mes "";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去沙漠要塞南边的原野，那里是从这里前往梦罗克的路上，去见小霍尔格伦。";
 			next;
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "密码是^0000FF我父亲从未囤积过升级物品^000000。";
 			close;
 		}
 		else if (ROGUE_Q > 11) {
-			mes "[史密斯先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "你不是还要去别处完成流氓训练吗？";
 			mes "";
@@ -894,12 +894,12 @@ in_rogue,376,23,1	script	Mr. Smith#rg	57,{
 
 
 S_Req:
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "首先是申请费：";
 	mes "^FF000010,000 Zeny^000000。";
 	mes "";
 	next;
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "还需要你带来以下物品：";
 		mes "^FF0000"+getarg(0)+"^000000、";
 		mes "^FF0000"+getarg(1)+"^000000、";
@@ -917,13 +917,13 @@ S_Req:
 		changequest 2017,2020;
 	}
 	next;
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……？";
 	mes "你说什么？";
 	mes "你刚才是说愿意为公会捐更多东西吗？";
 	mes "";
 	next;
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "听起来真不错，我很感激。";
 	mes "准备好后再回来。";
 	mes "";
@@ -935,7 +935,7 @@ S_CheckItems:
 	setarray .@amount[0], getarg(1), getarg(3), getarg(5), getarg(7);
 
 	if (Zeny > 9999 && countitem(.@item_req[0]) >= .@amount[0] && countitem(.@item_req[1]) >= .@amount[1] && countitem(.@item_req[2]) >= .@amount[2] && countitem(.@item_req[3]) >= .@amount[3]) {
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，申请费^FF000010,000 Zeny^000000，以及 "+ .@amount[0] +" 个"+ getitemname(.@item_req[0]) +"、"+ .@amount[1] +" 个"+ getitemname(.@item_req[1]) +" 都收到了，"+.@amount[2] +" 个"+ getitemname(.@item_req[2]) +" 和 "+ .@amount[3] +" 个"+ getitemname(.@item_req[3]) +" 也都齐了……";
 		set Zeny, Zeny-10000;
 		delitem .@item_req[0],.@amount[0];
@@ -944,24 +944,24 @@ S_CheckItems:
 		delitem .@item_req[3],.@amount[3];
 		set ROGUE_Q,7;
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好，很好……";
 		mes "我想你把东西都带齐了。";
 		set ROGUE_Q,7;
 		next;
-		mes "[史密斯先生]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，稍等片刻，我准备好这些东西。";
 		mes "让我看看……你的下一项测试是……";
 		close;
 	}
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "搞什么！？你没带齐所需物品？！难道还要我再说一遍要求！？";
 	next;
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "听好了……！";
 	mes "带来 ^FF000010,000 Zeny^000000，以及以下物品……";
 	next;
-	mes "[史密斯先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^FF0000 "+ .@amount[0] +" "+ getitemname(.@item_req[0]) +"^000000,";
 	mes "^FF0000 "+ .@amount[1] +" "+ getitemname(.@item_req[1]) +"^000000,";
 	mes "^FF0000 "+ .@amount[2] +" "+ getitemname(.@item_req[2]) +"^000000,";
@@ -1177,32 +1177,32 @@ OnTouch_:
 	}
 }
 
-in_rogue,272,135,1	script	Hermanthorn Jr#rg	85,{
+in_rogue,272,135,1	script	海勒曼梭 Jr#rg::Hermanthorn Jr#rg	85,{
 	if (ROGUE_Q == 8) {
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了……";
 		mes "你一定来自流氓公会。";
 		mes "你一定是那些史密斯先生不太满意的人之一……";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他发了一通脾气，你把他要的物品都带来了，对吧？看来你仍然很天真。哈哈哈~";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想他骗你收集那些物品，然后把你交给我。真可悲。";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然你被他折磨过，我会特别慷慨。给你的测试很简单，非常简单。";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你只需穿过地下通道，一直走回流氓公会。";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过有件事要告诉你。在里面要小心，知道吗？";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一群混蛋到处丢树枝、施放魔术……";
 		next;
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "活着回到流氓公会即可！这就是你要做的全部！";
 		set ROGUE_Q,12;
@@ -1210,12 +1210,12 @@ in_rogue,272,135,1	script	Hermanthorn Jr#rg	85,{
 		close;
 	}
 	else if (ROGUE_Q == 12) {
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对了，这很重要。进入通道需要密码。开门的四位数字组合是 ^0000FF3019^000000。";
 		close;
 	}
 	else {
-		mes "[小赫尔曼索恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "搞什么，你在这里做什么？";
 		mes "还不快滚？";
@@ -1346,31 +1346,31 @@ OnTouch_:
 	end;
 }
 
-in_rogue,244,39,1	script	小阿拉甘#rg::Aragham Junior#rg	99,{
+in_rogue,244,39,1	script	阿拉甘 Jr.#rg::Aragham Junior#rg	99,{
 	if (ROGUE_Q == 9) {
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你一定来自流氓公会……";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我叫小阿拉甘，沙漠盗贼。";
 		mes "准备学习如何成为流氓了吗？";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "作为流氓，我们的格言是“^0000FF避开强者！恶意对待弱者！^000000”，尤其适用于怪物。";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "避开强者！";
 		mes "恶意对待弱者！";
 		mes "这是条简单规则……";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "穿过 ^0000FF地下通道^000000 时记住这一点。尽量一直走到流氓公会。";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "会有一些怪物，但别担心。我知道你很强。那么准备好出发了吗？";
 		next;
 		if (select("好，出发吧。:暂时不要~") == 1) {
-			mes "[小阿拉甘]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好……";
 			mes "祝你好运。";
 			close2;
@@ -1380,43 +1380,43 @@ in_rogue,244,39,1	script	小阿拉甘#rg::Aragham Junior#rg	99,{
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，好吧。";
 		mes "慢慢来，准备好后再回来。";
 		mes "";
 		close;
 	}
 	else if (ROGUE_Q == 13) {
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你回来了。";
 		mes "我觉得这次你会做得很好。流氓的另一句格言是“^0000FF失败教会成功^000000”。不过话说回来……";
 		next;
 		if (select("重新测试:取消") == 1) {
-			mes "[小阿拉甘]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "祝你好运。";
 			close2;
 			if (ROGUE_Q != 13) end;
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，好吧。";
 		mes "慢慢来，准备好后再回来。";
 		mes "";
 		close;
 	}
 	else if (BaseJob != Job_Rogue) {
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "你是谁？！";
 		mes "你不是来自流氓公会！！";
 		next;
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是来杀我的，对吧？不！我还不能死！滚开！否则我先杀了你！";
 		close;
 	}
 	else {
-		mes "[小阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿……";
 		mes "什么风把你吹回这里了？";
 		mes "何不休息一下再离开？";
@@ -1424,30 +1424,30 @@ in_rogue,244,39,1	script	小阿拉甘#rg::Aragham Junior#rg	99,{
 	}
 }
 
-in_rogue,160,34,1	script	小霍尔格伦#rg::Hollgrehenn junior#rg	85,{
+in_rogue,160,34,1	script	豪格蓝Jr.#rg::Hollgrehenn junior#rg	85,{
 	if (ROGUE_Q == 11) {
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "来自流氓公会，是吗？";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是小霍尔格伦，负责地下业务。准备好接受我的测试了吗？";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们流氓共有这句格言：^0000FF避开强者！恶意对待弱者！^000000，适用于任何威胁，尤其是怪物。";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很容易记住。";
 		mes "别忘了付诸实践。明白了吗？";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的测试是让你穿过^0000FF地下隧道^000000，沿路一直回到流氓公会。";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那里有一些怪物，不过这也是训练的一部分。现在，你准备好出发了吗？";
 		next;
 		if (select("是的，我准备好了。:才不要~") == 1) {
-			mes "[小霍尔格伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "祝你好运。";
 			close2;
 			if (ROGUE_Q != 11) end;
@@ -1456,45 +1456,45 @@ in_rogue,160,34,1	script	小霍尔格伦#rg::Hollgrehenn junior#rg	85,{
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "慢慢来。";
 		mes "准备好后再回来这里。";
 		close;
 	}
 	else if (ROGUE_Q == 15) {
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。";
 		mes "你失败了。";
 		mes "要再试一次吗？";
 		next;
 		if (select("重新测试:取消。") == 1) {
-			mes "[小霍尔格伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "祝你好运。";
 			close2;
 			if (ROGUE_Q != 15) end;
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "慢慢来。";
 		mes "准备好后再回来这里。";
 		close;
 	}
 	else if (BaseJob != Job_Rogue) {
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "你不是流氓公会的人……";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你还想平安无事，最好现在就离开这里……";
 		next;
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在……";
 		mes "趁我还没改变杀你的主意，赶紧滚蛋。";
 		close;
 	}
 	else {
-		mes "[小霍尔格伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿……";
 		mes "来参观的吗？";
 		mes "我们流氓得团结一致，对吧？";
@@ -1502,26 +1502,26 @@ in_rogue,160,34,1	script	小霍尔格伦#rg::Hollgrehenn junior#rg	85,{
 	}
 }
 
-in_rogue,177,109,1	script	小安东尼奥#rg::Antonio junior#rg	88,{
+in_rogue,177,109,1	script	安童尼奥Jr.#rg::Antonio junior#rg	88,{
 	if (ROGUE_Q == 10) {
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是流氓公会的人？";
 		mes "如果你想学习如何成为流氓，那就闭嘴待着。";
 		next;
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF避开强者！对弱者狠辣！^000000这就是我们对付怪物的格言。";
 		next;
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对付弱小怪物时不要手下留情，同时尽量远离强大的怪物。";
 		next;
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，我要你通过这条^0000FF地下隧道^000000一路走到流氓公会。";
 		next;
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那里有怪物，不过只要避开强者、对弱者狠辣，你就会没事。";
 		next;
 		if (select("走吧！:等、等等~") == 1) {
-			mes "[小安东尼奥]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "希望你不要在测试中失败，只有通过测试才能成为流氓……";
 			close2;
 			if (ROGUE_Q != 10) end;
@@ -1530,19 +1530,19 @@ in_rogue,177,109,1	script	小安东尼奥#rg::Antonio junior#rg	88,{
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没时间陪你胡闹。";
 		mes "快点准备好，然后参加测试。";
 		close;
 	}
 	else if (ROGUE_Q == 14) {
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你失败了……？";
 		mes "人生就是这样吧。";
 		mes "你还要再试一次吗？";
 		next;
 		if (select("重新测试:取消") == 1) {
-			mes "[小安东尼奥]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记住，我是在帮你的忙……";
 			mes "现在，成为流氓之前别再回来。";
 			close2;
@@ -1550,7 +1550,7 @@ in_rogue,177,109,1	script	小安东尼奥#rg::Antonio junior#rg	88,{
 			warp "in_rogue",15,105;
 			end;
 		}
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没时间陪你胡闹。";
 		mes "快点准备好，然后参加测试。";
 		close;
@@ -1560,12 +1560,12 @@ in_rogue,177,109,1	script	小安东尼奥#rg::Antonio junior#rg	88,{
 		mes "你是谁？！";
 		mes "你不是流氓公会的人！！";
 		next;
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是来杀我的吗？！我不会让你得逞！！来吧，使出你的全力！要是我挖掉你的眼睛，你就没法战斗了！";
 		close;
 	}
 	else {
-		mes "[小安东尼奥]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，最近怎么样？";
 		mes "放松点，";
 		mes "离开前好好休息。";

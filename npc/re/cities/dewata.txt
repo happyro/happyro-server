@@ -55,13 +55,13 @@ alberta,212,202,4	script	德瓦塔水手#alberta	536,{
 	}
 }
 
-dewata,229,49,6	script	艾尔贝塔水手#dewata	536,{
-	mes "[艾尔贝塔水手]";
+dewata,229,49,6	script	艾尔贝塔方向船员#dewata::艾尔贝塔水手#dewata	536,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "要回到艾尔贝塔吗？";
 	next;
 	switch(select("是。:不。")) {
 	case 1:
-		mes "[艾尔贝塔水手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你在^8B4513德瓦他^000000岛";
 		mes "玩得很开心。";
 		mes "欢迎下次再来！";
@@ -69,7 +69,7 @@ dewata,229,49,6	script	艾尔贝塔水手#dewata	536,{
 		warp "alberta",192,215;
 		end;
 	case 2:
-		mes "[艾尔贝塔水手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "离开前再多玩一会儿吧。";
 		mes "^8B4513德瓦他^000000岛还有很多精彩之处。";
 		close;
@@ -78,7 +78,7 @@ dewata,229,49,6	script	艾尔贝塔水手#dewata	536,{
 
 // Generic Dewata NPCs :: dewata_npc
 //============================================================ 
-dewata,221,237,5	script	青年#dew-1	536,{
+dewata,221,237,5	script	棕榈果实青年#dew-1::青年#dew-1	536,{
 	mes "[水果爱好者]";
 	mes "你的脸怎么了？你真是毫无头绪啊！";
 	next;
@@ -174,38 +174,38 @@ dewata,221,237,5	script	青年#dew-1	536,{
 	}
 }
 
-dewata,114,243,6	script	懒散的青年#dew	536,1,1,{
+dewata,114,243,6	script	懒惰的青年#dew::懒散的青年#dew	536,1,1,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 500) {
-		mes "[懒散的青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么带这么多东西？不觉得重吗？";
 		close;
 	}
 	if (countitem(11534)) {
-		mes "[懒散的青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇~！！那是椰汁吗？";
 		mes "可以给我吗？我刚睡醒，";
 		mes "嗓子都渴干了！";
 		next;
 		switch(select("给你:不给")) {
 		case 1:
-			mes "[懒散的青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？给我的？？我用这个回报你……谢谢……嘿嘿~";
 			delitem 11534,1; //Coco_Juice
 			getgroupitem(IG_GiftBox);
 			close;
 		case 2:
-			mes "[懒散的青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那就算了~好吧……";
 			close;
 		}
 	}
-	mes "[懒散的青年]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊~好渴~有没有人";
 	mes "给我一些椰汁啊~";
 	close;
 OnTouch:
 	if (countitem(11534) == 0) {
-		mes "[懒散的青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊~我好渴~~太渴了~~";
 		mes "给我椰汁……椰汁~~";
 		emotion ET_FRET;
@@ -220,7 +220,7 @@ OnTouch:
 	end;
 }
 
-dewata,159,81,4	script	游客#dew-1	881,{
+dewata,159,81,4	script	观光客#dew-1::游客#dew-1	881,{
 	mes "[纳索罗]";
 	mes "哇~纯净的大海，温暖的海滩……";
 	mes "真适合和女朋友约会……";
@@ -336,7 +336,7 @@ dewata,147,107,6	script	美食家#dew	85,{
 	close;
 }
 
-dewata,154,107,4	script	观光客#dew	86,{
+dewata,154,107,4	script	闲逛中的观光客#dew::观光客#dew	86,{
 	mes "[游客]";
 	mes "哇……";
 	mes "他已经吃了多少了？";
@@ -375,53 +375,53 @@ dewata,95,203,6	script	导游#dew	536,{
 	close;
 }
 
-dewata,97,207,4	script	游客#dew1	803,{
-	mes "[游客]";
+dewata,97,207,4	script	观光客#dew1::游客#dew1	803,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，真倒霉……我居然";
 	mes "选错了导游……";
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这个家伙真让人犯困……";
 	mes "为什么还要继续……";
 	emotion ET_CONFUSE;
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我得换个旅行代理……";
 	emotion ET_OHNO;
 	close;
 }
 
-dewata,100,206,4	script	游客#dew2	59,{
-	mes "[游客]";
+dewata,100,206,4	script	观光客#dew2::游客#dew2	59,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，我们去那里吧！快点，";
 	mes "趁导游正在解释~";
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "拜托……听起来他";
 	mes "短时间内不会停下来。";
 	close;
 }
 
-dewata,101,206,4	script	游客#dew3	90,{
-	mes "[游客]";
+dewata,101,206,4	script	观光客#dew3::游客#dew3	90,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "没有导游我们不会迷路吗？";
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "上次我们就已经迷路了……";
 	close;
 }
 
-dewata,99,203,4	script	游客#dew4	755,{
-	mes "[游客]";
+dewata,99,203,4	script	观光客#dew4::游客#dew4	755,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦~真有意思。一座";
 	mes "供奉佛祖的寺庙……";
 	emotion ET_OK;
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但我不太理解这里的";
 	mes "象征意义。";
 	next;
-	mes "[游客]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真漂亮……不知道是谁建造了";
 	mes "这个地方？";
 	close;
@@ -632,40 +632,40 @@ dewata,71,79,6	script	僧侣#dewt3	834,{
 	close;
 }
 
-dewata,211,272,4	script	旅馆老板#dew	534,2,3,{
+dewata,211,272,4	script	民宿主人#dew::旅馆老板#dew	534,2,3,{
 OnTouch:
-	mes "[旅馆老板]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "最近有很多新婚夫妇来这里度蜜月。";
 	next;
-	mes "[旅馆老板]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "一定是因为美丽的景色，对吧？";
 	next;
-	mes "[旅馆老板]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的生意很不错。希望有更多这样的游客。";
 	next;
-	mes "[旅馆老板]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊！你度蜜月时也该带恋人来德瓦他。我会给你优惠——";
 	close;
 }
 
-dewata,245,244,4	script	旅馆员工#dew	536,2,3,{
+dewata,245,244,4	script	民宿服务员#dew::旅馆员工#dew	536,2,3,{
 OnTouch:
-	mes "[旅馆员工]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊~真让我火大！";
 	emotion ET_FRET;
 	next;
-	mes "[旅馆员工]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "为什么越来越多情侣来这里？";
 	next;
-	mes "[旅馆员工]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "而且他们为什么表现得这么卿卿我我？搞什么啊？";
 	next;
-	mes "[旅馆员工]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "拜托，尊重一下在这里工作的人……";
 	close;
 }
 
-dewata,233,263,8	script	恩爱夫妻#1	828,2,3,{
+dewata,233,263,8	script	新婚夫妻#1::恩爱夫妻#1	828,2,3,{
 OnTouch:
 	mes "[恩爱的丈夫]";
 	mes "宝贝，你是世界上最美的东西~";
@@ -675,7 +675,7 @@ OnTouch:
 	mes "真的吗？我真的那么美？我爱你，亲爱的~";
 	emotion ET_CHUPCHUP, getnpcid(0, "恩爱夫妻#2");
 	next;
-	mes "[恩爱夫妻]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
 	mes "呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵";
 	emotion ET_SMILE;
@@ -685,7 +685,7 @@ OnTouch:
 	close;
 }
 
-dewata,234,263,8	script	恩爱夫妻#2	727,2,3,{
+dewata,234,263,8	script	新婚夫妻#2::恩爱夫妻#2	727,2,3,{
 OnTouch:
 	mes "[恩爱的妻子]";
 	mes "宝贝~你知道那是什么花吗~？";
@@ -706,7 +706,7 @@ OnTouch:
 	mes "真的吗？我真的那么漂亮？我爱你，亲爱的~";
 	emotion ET_CHUPCHUP;
 	next;
-	mes "[恩爱夫妻]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
 	mes "呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵";
 	emotion ET_SMILE, getnpcid(0, "恩爱夫妻#1");
@@ -716,7 +716,7 @@ OnTouch:
 	close;
 }
 
-dewata,279,213,4	script	游客#dew-2	887,2,3,{
+dewata,279,213,4	script	旅客#dew-2::游客#dew-2	887,2,3,{
 OnTouch:
 	mes "[躺着的游客]";
 	mes "哇~这里真舒服~";
@@ -733,7 +733,7 @@ OnTouch:
 	close;
 }
 
-dewata,269,208,4	script	镇上的小孩#dew	538,2,3,{
+dewata,269,208,4	script	小区小朋友#dew::镇上的小孩#dew	538,2,3,{
 OnTouch:
 	mes "[小孩]";
 	mes "嘿，"+((Sex == SEX_MALE)?"哥们":"姐妹")+"，看那个男人！";
@@ -750,31 +750,31 @@ OnTouch:
 	close;
 }
 
-dewata,227,129,4	script	萨尔#dew	538,2,3,{
+dewata,227,129,4	script	夏勒#dew::萨尔#dew	538,2,3,{
 OnTouch:
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他们在躲，所以该我找了。我一定会找到他们！";
 	next;
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "一~";
 	next;
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "二~三~";
 	next;
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "四~五~六~";
 	next;
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "... ... ... ...";
 	next;
-	mes "[萨尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "九十九~一百！！！我来了~";
 	close;
 }
 
-dewata,239,140,4	script	希雅克#dew	539,2,3,{
+dewata,239,140,4	script	斯若#dew::希雅克#dew	539,2,3,{
 OnTouch:
-	mes "[希雅克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，快让让~他要找到我了~~";
 	next;
 	mes "[萨尔]";
@@ -784,15 +784,15 @@ OnTouch:
 	emotion ET_KIK, getnpcid(0, "希波#dew");
 	emotion ET_HUK, playerattached();
 	next;
-	mes "[希雅克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊啊！！都是你的错~！！";
 	emotion ET_FRET;
 	close;
 }
 
-dewata,193,145,4	script	希波#dew	538,2,3,{
+dewata,193,145,4	script	斯波#dew::希波#dew	538,2,3,{
 OnTouch:
-	mes "[希波]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "萨尔不会在这里找到我，对吧？";
 	next;
 	mes "[萨尔]";
@@ -802,26 +802,26 @@ OnTouch:
 	emotion ET_KIK;
 	emotion ET_HUK, playerattached();
 	next;
-	mes "[希波]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿嘿~现在希雅克是鬼~我就继续藏在这里。";
 	close;
 }
 
-dewata,228,177,4	script	玛嘉#dew	538,2,3,{
+dewata,228,177,4	script	莫查#dew::玛嘉#dew	538,2,3,{
 OnTouch:
-	mes "[玛嘉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我刚才和朋友玩捉迷藏……";
 	next;
-	mes "[玛嘉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我一直站在这里，他们三个小时都没找到我……";
 	emotion ET_SCRATCH;
 	next;
-	mes "[玛嘉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我该怎么办？要出去吗？我不想当鬼……";
 	close;
 }
 
-dewata,278,100,4	script	走失的小孩#dew	703,2,3,{
+dewata,278,100,4	script	迷路的孩子#dew::走失的小孩#dew	703,2,3,{
 OnTouch:
 	mes "[乌琪]";
 	mes "哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇~";
@@ -846,134 +846,134 @@ OnTouch:
 	close;
 }
 
-dewata,249,87,4	script	妈妈#dew	101,2,3,{
+dewata,249,87,4	script	优纪的妈#dew::妈妈#dew	101,2,3,{
 OnTouch:
-	mes "[妈妈]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "乌琪~ 乌琪~她去哪儿了？";
 	emotion ET_KEK;
 	next;
-	mes "[妈妈]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我一刻也不能把视线从她身上移开……";
 	next;
-	mes "[妈妈]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "乌琪~";
 	emotion ET_KEK;
 	close;
 }
 
-dewata,251,85,6	script	爸爸#dew	97,2,3,{
+dewata,251,85,6	script	优纪的爸#dew::爸爸#dew	97,2,3,{
 OnTouch:
-	mes "[爸爸]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "亲爱的，乌琪又迷路了吗？";
 	emotion ET_QUESTION;
 	next;
-	mes "[爸爸]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊……带着她我哪里都去不了……这已经是第几次了？";
 	emotion ET_PROFUSELY_SWEAT;
 	next;
-	mes "[爸爸]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "她在龙之城、樱花城、莫斯科比亚、巴西、昆仑和艾尔帕兰都迷过路……";
 	emotion ET_PROFUSELY_SWEAT;
 	next;
-	mes "[爸爸]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "什么！！加上这次在德瓦他，她已经迷路 7 次了……整整 7 次！！！！！！";
 	emotion ET_OTL;
 	close;
 }
 
-dewata,278,281,4	script	恩爱的老爷爷	534,{
-	mes "[恩爱的老爷爷]";
+dewata,278,281,4	script	情比金坚的老爷爷::恩爱的老爷爷	534,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "今天我要请夫人给我做些^006400炒饭^000000。";
 	next;
-	mes "[恩爱的老爷爷]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我妻子的^006400炒饭^000000总是特别美味！";
 	next;
-	mes "[恩爱的老爷爷]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这让我更爱她了。你无法想象那美妙的味道！";
 	emotion ET_THROB;
 	close;
 }
 
-dewata,280,277,4	script	恩爱的老奶奶	535,{
-	mes "[恩爱的老奶奶]";
+dewata,280,277,4	script	情比金坚的老奶奶::恩爱的老奶奶	535,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我年轻时，有许多绅士上门追求我。";
 	emotion ET_PROFUSELY_SWEAT;
 	next;
-	mes "[恩爱的老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "后来我遇到了命中注定的人并结婚。我问他最喜欢我的什么，他说是我做的^006400炒饭^000000。";
 	next;
-	mes "[恩爱的老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "从那以后，他每晚只让我做^006400炒饭^000000。结婚四十多年了，他仍然吃不腻。";
 	next;
-	mes "[恩爱的老奶奶]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我总觉得，能和喜欢我做的饭、一起慢慢变老的人生活很幸运。";
 	emotion ET_THROB;
 	close;
 }
 
-dewata,165,103,6	script	冒险家塞曼加特#dew	534,{
-	mes "[冒险家塞曼加特]";
+dewata,165,103,6	script	冒险家 史汪特#dew::冒险家塞曼加特#dew	534,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我年轻时也像你一样周游世界。";
 	mes "^FF0000猴子、乌贼^000000";
 	mes "^FF0000鹰和蛇^000000，";
 	mes "它们都是我旅行时遇到的好朋友。";
 	next;
-	mes "[冒险家塞曼加特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我仍然热爱冒险和旅行。但我不能抛下心爱的妻子和孙子孙女……";
 	next;
-	mes "[冒险家塞曼加特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "总有一天，你心中也会拥有珍贵的事物或某个人。";
 	close;
 }
 
-dewata,139,114,6	script	塞曼加特的妻子#dew	535,{
-	mes "[塞曼加特的妻子]";
+dewata,139,114,6	script	史汪特的太太#dew::塞曼加特的妻子#dew	535,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那个老头又跑哪儿去了？你看到我丈夫了吗？";
 	next;
 	switch(select("我好像在那里见过他……:没有……")) {
 	case 1:
-		mes "[塞曼加特的妻子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我找他时他跑掉了。他应该在某处像往常一样给旅行者讲夸张故事。";
 		next;
-		mes "[塞曼加特的妻子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我替丈夫道歉。请别相信他的傻故事，他说自己遇到过^FF0000猴子和蛇^000000，或与^FF0000乌贼^000000并肩战斗。";
 		next;
-		mes "[塞曼加特的妻子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他一辈子都住在这里，却总能找到愿意听他编故事的旅行者。";
 		close;
 	case 2:
-		mes "[塞曼加特的妻子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，如果你看到他，请告诉我。";
 		close;
 	}
 }
 
-dewata,181,88,6	script	青年#dew-2	536,{
-	mes "[青年]";
+dewata,181,88,6	script	德瓦他青年#dew-2::青年#dew-2	536,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^8B4513德瓦他^000000的海滩很美，对吧？孩子们总在这里玩。这真的让我想起年轻的时候。";
 	next;
-	mes "[青年]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "傍晚时可以在海滩看到烟花。伴着海风和拍岸的浪花，";
 	mes "烟花照亮夜空，";
 	mes "这里的夜晚真是美丽！";
 	close;
 }
 
-dewata,179,204,4	script	年轻女士#dew	537,{
-	mes "[年轻女士]";
+dewata,179,204,4	script	德瓦他少女#dew::年轻女士#dew	537,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "离开城镇后，";
 	mes "如果遇到^FF0000老虎、猴子或猪^000000，";
 	mes "一定要躲开它们。";
 	next;
 	select("你是什么意思？");
-	mes "[年轻女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我还没亲眼见过，";
 	mes "但传说有一种";
 	mes "名为^FF0000让特^000000的残酷怪物，";
 	mes "它能变成动物，";
 	mes "并催眠人类互相残杀。";
 	next;
-	mes "[年轻女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你知道这个世界有多危险。";
 	mes "小心一点总不会错，";
 	mes "即使那只是都市传说。";
@@ -981,54 +981,54 @@ dewata,179,204,4	script	年轻女士#dew	537,{
 	close;
 }
 
-dewata,280,236,4	script	定居者#dew	726,{
-	mes "[定居者]";
+dewata,280,236,4	script	定居的旅行家#dew::定居者#dew	726,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我其实并不是^8B4513德瓦他^000000人。";
 	mes "不过旅行时，";
 	mes "我发现了这里……";
 	mes "于是决定";
 	mes "住在这座美丽的城镇。";
 	next;
-	mes "[定居者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我很高兴能住在这里，";
 	mes "发现并体验";
 	mes "这里所有美丽的景色。";
 	mes "这就像梦想成真。";
 	next;
-	mes "[定居者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你有没有想过";
 	mes "也定居在这里？";
 	close;
 }
 
-dewata,204,230,6	script	节食的女士#dew	537,{
+dewata,204,230,6	script	减肥中的女人#dew::节食的女士#dew	537,{
 	if (countitem(11533) == 0) {
-		mes "[节食的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊～我快饿死了！！";
 		mes "我现在应该节食。";
 		mes "为什么还是这么饿？";
 		next;
-		mes "[节食的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别跟我说太多话！！";
 		mes "我好想尝尝烤^006400沙嗲^000000";
 		mes "啊～！！！！！";
 		close;
 	}
-	mes "[节食的女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那份让人垂涎的";
 	mes "^006400沙嗲^000000是给我的吗？";
 	next;
 	switch(select("是，想尝尝吗？:不，这是我的！")) {
 	case 1:
 		delitem 11533,1; //Satay
-		mes "[节食的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "太感谢了！";
 		mes "我一直饿得慌～！！";
 		mes "这份^006400沙嗲^000000的香味";
 		mes "真棒～！";
 		next;
 		getitem 11533,1; //Satay
-		mes "[节食的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……得清醒过来，";
 		mes "好东西吃太多也不好……";
 		mes "我应该坚持节食。";
@@ -1036,7 +1036,7 @@ dewata,204,230,6	script	节食的女士#dew	537,{
 		emotion ET_CRY;
 		close;
 	case 2:
-		mes "[节食的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……你真贪心！";
 		mes "既然你不愿分享。";
 		mes "总之，我不该为了";
@@ -1046,15 +1046,15 @@ dewata,204,230,6	script	节食的女士#dew	537,{
 	}
 }
 
-dewata,117,156,6	script	爱做梦的孩子#dew	538,{
-	mes "[爱做梦的孩子]";
+dewata,117,156,6	script	梦想幸福的孩子#dew::爱做梦的孩子#dew	538,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "奶奶说，";
 	mes "曾经有一只名叫^FF0000迦楼罗^000000的鸟";
 	mes "飞过这座城镇。";
 	mes "后来我们收获丰收，";
 	mes "过上了幸福的生活。";
 	next;
-	mes "[爱做梦的孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想再次看到那只鸟";
 	mes "飞过我们的城镇！";
 	mes "这样妈妈、爸爸、";
@@ -1064,8 +1064,8 @@ dewata,117,156,6	script	爱做梦的孩子#dew	538,{
 	close;
 }
 
-dewata,144,216,4	script	活泼的孩子#dew	538,{
-	mes "[活泼的孩子]";
+dewata,144,216,4	script	满怀梦想的孩子#dew::活泼的孩子#dew	538,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "父母以前常告诉我……";
 	next;
 	mes "- ^006400孩子，^000000 -";
@@ -1076,7 +1076,7 @@ dewata,144,216,4	script	活泼的孩子#dew	538,{
 	mes "- ^006400那边的山^000000 -";
 	mes "- ^006400永远会在那里支持你。^000000 -";
 	next;
-	mes "[活泼的孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这不是很棒的人生哲学吗？";
 	mes "我想那样生活，";
 	mes "成为优秀的人，";
@@ -1085,7 +1085,7 @@ dewata,144,216,4	script	活泼的孩子#dew	538,{
 	close;
 }
 
-dewata,127,248,6	script	许愿的孩子#dew	539,{
+dewata,127,248,6	script	想变大人的孩子#dew::许愿的孩子#dew	539,{
 	mes "[盼望长大的孩子]";
 	mes "我们家族酿造";
 	mes "传统的德瓦他葡萄酒已经很多年了。";
@@ -1105,15 +1105,15 @@ dewata,127,248,6	script	许愿的孩子#dew	539,{
 	close;
 }
 
-dew_fild01,101,259,6	script	贾蒂部落守门人	541,{
-	mes "[贾蒂部落守门人]";
+dew_fild01,101,259,6	script	贾提部族守门员::贾蒂部落守门人	541,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎来到^FF0000贾蒂^000000镇。";
 	mes "我们族群崇尚力量与勇气。";
 	mes "祝你在这里安全、舒适。";
 	close;
 }
 
-dew_fild01,106,306,4	script	贾蒂部落预备战士	541,{
+dew_fild01,106,306,4	script	贾提部族预备战士::贾蒂部落预备战士	541,{
 	mes "[贾蒂预备战士]";
 	mes "我想成为最优秀的人，";
 	mes "成为前所未有的强者。";

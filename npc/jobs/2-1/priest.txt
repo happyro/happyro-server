@@ -32,7 +32,7 @@
 //= 2.6 Removed the need for use of 'goto.' [L0ne_W0lf]
 //==========================================================
 
-prt_church,16,41,4	script	High Bishop#prst	60,{
+prt_church,16,41,4	script	高等级 祭司#prst::High Bishop#prst	60,{
 	// Uncomment the following 'if' statement to allow High Priests to assist Acolytes with the job change quest.
 	// Officially High Priests are blocked from helping by an indiscriminate check if you are a transcended character.
 	//if (Class == Job_High_Priest) set .@AllowHPAssist,1;
@@ -524,8 +524,8 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 	}
 }
 
-prt_church,27,24,1	script	Sister Cecilia	79,{
-	mes "[塞西莉亚修女]";
+prt_church,27,24,1	script	奉献的 修女::Sister Cecilia	79,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Acolyte) {
 		if (BaseJob == Job_Priest) {
 			mes "愿上帝祝福你， "+ (Sex == SEX_MALE ? "弟兄":"姐妹") +"。看到你努力履行上帝的旨意，我由衷感到高兴。";
@@ -533,19 +533,19 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 			mes "愿上帝祝福你， "+ (Sex == SEX_MALE ? "弟兄":"姐妹") +"。";
 			mes "普隆德拉教区欢迎你。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你还没选择职业？何不考虑将一生奉献给上帝？";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "成为服事者也能过充实的生活，帮助有需要的人。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你感兴趣，请询问另一个房间的牧师。选择成为服事者绝不会后悔。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "服事者职业等级达到 40 后，就能晋升为牧师。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过请……";
 			mes "慢慢来，决定最适合你的职业。";
 		} else {
@@ -553,16 +553,16 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 			mes "欢迎来到普隆德拉教区。我能帮你什么？";
 			next;
 			if (select("告诉我更多关于牧师的事。:没什么。") == 1) {
-				mes "[塞西莉亚修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "上帝的使者通常被称为牧师。成为服事者后，你可以以成为牧师为目标训练。";
 				next;
-				mes "[塞西莉亚修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "上帝的仆人不得使用刀刃类武器。对我们而言，与怪物战斗不在于杀戮，而在于启迪它们的灵魂。";
 			} else {
-				mes "[塞西莉亚修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我明白了。请放松，把这里当作家。世上没有比普隆德拉圣域更安全的地方。";
 				next;
-				mes "[塞西莉亚修女]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "愿上帝祝福你……";
 			}
 		}
@@ -577,26 +577,26 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 		next;
 		switch(select("我想成为牧师。:没什么。")) {
 		case 1:
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我明白了。你已将自己奉献给上帝。许多服事者希望成为牧师，继续个人的圣洁之旅。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "自我介绍一下。我是塞西莉亚·玛格丽塔，负责牧师转职流程的一部分。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "自从加入普隆德拉教区，我一直协助许多人成为牧师。这是我的主要职责之一。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要成为牧师，你必须完成 3 项试炼：朝圣、精神训练，以及对上帝的奉献誓言。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你想成为上帝的仆人，请向保罗主教申请牧师职业，并完成全部 3 项试炼。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "试炼期间遇到问题，随时来找我。我会尽力帮助你。";
 			close;
 		case 2:
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请把这里当作家。我希望你在圣域恢复并休息。愿上帝祝福你……";
 			close;
 		}
@@ -604,79 +604,79 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 	else if (PRIEST_Q == 1) {
 		mes "啊，你已经开始朝圣了。请尽力完成第一项试炼。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须见到的第一位牧师是鲁巴卡巴拉神父。他在普隆德拉东北方的遗迹。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从普隆德拉向北走一格，再向东走三格，就能到达遗迹。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，你也可以从普隆德拉向东走 1 格，再向北走 1 格，最后向东走 2 格……";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "鲁巴卡巴拉神父会在普隆德拉遗迹入口。小心，那是凶猛巧克猴的栖息地。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "见过鲁巴卡巴拉神父后，请拜访玛蒂尔达修女和约斯克神父。之后有问题可以来我这里查看任务进度。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，旅途愉快。不要因短暂的磨难放弃，希望你能实现目标。";
 		close;
 	}
 	else if (PRIEST_Q == 2) {
 		mes "哦，你见过鲁巴卡巴拉神父了。现在该去拜访玛蒂尔达修女。她在梦罗克附近。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她一直在梦罗克北方某处旷野修行。仔细寻找就能找到她。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，我有时也想像其他牧师那样专心修行，但我的职责是协助申请牧师职业的服事者。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我相信这是上帝的旨意，是他安排我作为仆人完成的工作。旅途平安，安全回来。";
 		close;
 	}
 	else if (PRIEST_Q == 3) {
 		mes "最后一位必须见到的牧师是约斯克神父。听说他在普隆德拉西北方的湖边训练。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从普隆德拉向北走一格，再向西走两格。也可以先向西走两格，再向北走一格。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然还有两项试炼等待你，但我相信你能实现成为牧师的目标……";
 		close;
 	}
 	else if (PRIEST_Q == 4) {
 		mes "欢迎。你为完成第一项试炼付出了巨大努力。现在去找保罗主教，开始牧师之路的下一项试炼。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE)
 			mes "弟兄 "+ strcharinfo(0) +"……";
 		else
 			mes "姐妹 "+ strcharinfo(0) +"……";
 		mes "精神训练比朝圣困难得多，但我相信你。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你找到一位牧师在精神训练中帮助你。祝你好运，要有信仰。";
 		close;
 	}
 	else if (PRIEST_Q == 5) {
 		mes "哦，你还没完成精神训练吗？";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不能透露具体细节，但只要相信自己并相信一切美好，你就会成功。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "详情请咨询测试大厅的彼得神父。他是保罗主教的好友，可能会给你精神训练的有用提示。";
 		close;
 	}
 	else if (PRIEST_Q == 6) {
 		mes "是的，我知道你经历了艰难处境。但不要放弃或屈服于诱惑。要成为牧师，必须抵抗邪恶。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果认识已经成为牧师的人，请让他在精神训练中帮助你。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "愿上帝给予你指引和保护。完成训练后请回来找我。";
 		close;
 	}
@@ -690,19 +690,19 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 		else if (PRIEST_Q == 8) {
 			mes "...";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎回来。";
 			mes "希望你已经反思上次说的话，现在具备成为牧师的态度。";
 		}
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE)
 			mes "弟兄 "+ strcharinfo(0) +"……";
 		else
 			mes "姐妹 "+ strcharinfo(0) +"……";
 		mes "现在开始牧师的正式誓言。放松身心，用心回答。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE)
 			mes "弟兄 "+ strcharinfo(0) +"，";
 		else
@@ -710,88 +710,88 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 		mes "你是否愿意将一生献给上帝？";
 		next;
 		if (select("是的。:不！") == 2) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊……？你怎么能这样回答？看来你还没准备好成为牧师……";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你应该进一步反思圣洁教诲，之后再回来。精神软弱就无法成为牧师。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会利用上帝赐予的神圣能力满足自私、破坏或贪婪的目的吗？";
 		next;
 		if (select("是的。:不。") == 1) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊……？如果目标不公正纯洁，上帝不会赐予你圣洁之力。思考你的动机后再回来。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想想让牧师受人尊敬的品质。精神不符合上帝旨意就无法成为牧师。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是否愿意在战斗中减轻他人、甚至陌生人的痛苦来帮助他们？";
 		next;
 		if (select("是的。:不。") == 2) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不，不，你误解了。上帝授权我们使用他的力量帮助子民。你必须帮助处于危险中的人，这是你的义务。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去观察为世界和平而战的冒险者。他们会教你如何帮助他们。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是否愿意为他人牺牲自己？";
 		next;
 		if (select("是的。:不。") == 2) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你怎么能说不……？这是牧师的基本准则之一。必须将他人福祉置于自身安全之上。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去思考苦难的价值与牺牲的意义。更理解如何帮助有需要的人后再回来。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会为了向上帝的子民传达福音而在公共场合反复发送同一句话吗？";
 		next;
 		if (select("是的。:不。") == 1) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不不不……你错了。即使目的是传播上帝的福音，刷屏也不会让人接受你的话。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记住……";
 			mes "你必须有道德，表现出成熟并尊重其他玩家。我相信，这种态度适用于所有职业。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会引来大量怪物帮助队友升级吗？";
 		next;
 		if (select("是的。:不。") == 1) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不，你不会。引来大量怪物弊大于利，没有例外。这种行为完全不可接受。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "即使看起来是在帮助队友，这种行为也会带来恶业。请好好反思。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是否会无论代价如何都追随上帝，即使他要求你自杀？";
 		next;
 		if (select("是的。:不。") == 2) {
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱着这种想法无法成为牧师。如果为善而牺牲是上帝的旨意，你必须作为仆人执行。";
 			next;
 			set PRIEST_Q,8;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "此外，上帝也赋予牧师复活之力。重新思考生与死的意义后再回来。";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (Sex == SEX_MALE)
 			mes "弟兄 "+ strcharinfo(0) +"……";
 		else
@@ -801,22 +801,22 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 		if (select("我发誓。:不。") == 1) {
 			set PRIEST_Q,9;
 			changequest 8014,8015;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在你完成了牧师誓言，也完成成为牧师所需的三项试炼。";
 			next;
-			mes "[塞西莉亚修女]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在去找保罗主教。记住，在上帝眼中我们都是兄弟姐妹。愿和平与你同在……";
 			close;
 		}
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		next;
 		set PRIEST_Q,8;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经走了这么远……";
 		mes "为什么要放弃这一切……？";
 		close;
@@ -825,7 +825,7 @@ prt_church,27,24,1	script	Sister Cecilia	79,{
 		mes "恭喜。";
 		mes "你完成了牧师所需的三项试炼。保罗主教正在等你。";
 		next;
-		mes "[塞西莉亚修女]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "愿和平与你同在……";
 		close;
 	}

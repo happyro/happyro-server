@@ -17,7 +17,7 @@
 //= 1.5 Added use of F_HasEdenGroupMark function. [Ragno]
 //============================================================
 
-moc_para01,48,175,3	script	86-90 Mission Board	857,{
+moc_para01,48,175,3	script	委托 [86 - 90]::86-90 Mission Board	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "请稍等！";
 		mes "- 你需要拥有^4d4dff‘伊甸园徽章’^000000才能接受这些任务。 -";
@@ -74,7 +74,7 @@ moc_para01,48,175,3	script	86-90 Mission Board	857,{
 		}
 		close;
 	}
-	mes "[86～90级任务公告板]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "公告板上有几个委托。";
 	next;
 	switch(select("^8B4513乌龟岛^000000:^8B4513钟楼地下城^000000:^8B4513扩展城镇^000000:^8B4513其他地区^000000")) {
@@ -106,7 +106,7 @@ moc_para01,48,175,3	script	86-90 Mission Board	857,{
 			case 4: callsub L_Quest,4175,"拉链熊",120000,"지퍼베어카드","昆仑地下城里聚集着大量熊形魔物。";
 		}
 	case 4:
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里列出在米德加尔德其他地区猎杀怪物的随机委托。";
 		mes "你要猎杀哪种怪物，或已经完成哪种猎杀？";
 		next;
@@ -127,17 +127,17 @@ L_Quest:
 	.@cutin$ = getarg(3);
 	set .@playtime, checkquest(.@quest2,PLAYTIME);
 	if (.@playtime == 0 || .@playtime == 1) {
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你需要等待 3 小时才能再次接受这个任务。";
 		close;
 	}
 	set .@hunting, checkquest(.@quest1,HUNTING);
 	if (.@hunting == 0 || .@hunting == 1) {
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经猎杀完 30 只"+getarg(1)+"了吗？";
 		close;
 	} else if (.@hunting == 2) {
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你完成了猎杀。";
 		mes "请收下这份奖励。";
 		erasequest .@quest1;
@@ -152,16 +152,16 @@ L_Quest:
 		mes "你重新接受了"+getarg(1)+"猎杀任务。";
 		close;
 	}*/ else {
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes getarg(4);
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,3;
-		mes "[86～90级任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在那里猎杀 30 只"+getarg(1)+"，然后在公告板上登记成功。";
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,255;
 		if(select("我去猎杀。:不用了，谢谢。") == 1) {
-			mes "[86～90级任务公告板]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "完成任务后，在公告板上登记并领取奖励。";
 			if (.@playtime > -1) erasequest .@quest2;
 			setquest .@quest1;

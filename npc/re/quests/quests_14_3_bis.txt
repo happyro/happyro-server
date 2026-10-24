@@ -9,7 +9,7 @@
 //= 1.2 Added Flaming Basin and Doom Prayers quests. [Capuche]
 //============================================================
 
-moro_vol,94,110,5	script	守护者尼德霍格#143nyd01	4_F_NYDHOG,{
+moro_vol,94,110,5	script	守护者 尼德霍格#143nyd01::守护者尼德霍格#143nyd01	4_F_NYDHOG,{
 	mes "[尼德霍格]";
 	if (ep4_3_mockill == 0) {
 		mes "我们很快会面对决定性战争。";
@@ -139,7 +139,7 @@ OnTimer12000:
 	end;
 }
 
-moro_vol,98,107,3	script	魔法学者#143avt01	4_M_FAIRYAVANT,{
+moro_vol,98,107,3	script	魔学家#143avt01::魔法学者#143avt01	4_M_FAIRYAVANT,{
 	if (checkweight(1304,3) == 0) {
 		mes "你携带的物品太多，无法继续任务。";
 		mes "请在物品栏中腾出空间。";
@@ -147,7 +147,7 @@ moro_vol,98,107,3	script	魔法学者#143avt01	4_M_FAIRYAVANT,{
 	}
 	cutin "avant01.bmp",1;
 	if (ep14_2_mylord < 33) {
-		mes "[魔法学者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别烦我。";
 		mes "如果你是来为我的实验捐献身体，可以留下。";
 		mes "否则滚！";
@@ -250,14 +250,14 @@ OnInit:
 	end;
 }
 
-moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
+moro_vol,95,108,7	script	希西艾#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 	cutin "hisie01.bmp",0;
-	mes "[希茜]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (ep14_2_mylord < 15) {
 		mes "你是人类联盟的人吗？";
 		mes "我不记得曾请求过你的帮助。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果发生什么事，我会通知你的总司令 希巴·阿吉普。";
 		close3;
 	}
@@ -265,7 +265,7 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 		mes "我们真的能在这里了解恶魔之神的真相吗？";
 		mes "里面充满了我从未见过的生物。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真诡异……";
 		close3;
 	}
@@ -273,41 +273,41 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 		mes "所有坏事的始作俑者真的藏在这里，对吧？";
 		mes "真令人兴奋！";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我为什么会在这里？";
 		mes "我是替 卡尔 来的。";
 		mes "宝珠已经无法供应魔力，他必须留在艾可拉治，为那里提供魔力。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的首要任务是伊格德拉希尔和她的守护者。";
 		mes "而且我们绝不能失去新任市长。";
 		next;
 		cutin "hisie04.bmp",0;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我说服了长老们，让我指挥军队，";
 		mes "但我仍然只是名义上的指挥官。";
 		next;
 		select("阿凡特 怎么了？");
 		cutin "hisie02.bmp",0;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我们正在利用他的知识。";
 		mes "我们本可以杀了他，但那样太便宜他了。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想这算是一种复仇吧，嗯？";
 		mes "毕竟，他唯一的过错就是太热爱自己的科学。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "连长老们也承认他的才能，决定救他一命。";
 		mes "最重要的是……";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "（压低声音）";
 		mes "没有其他人知道宝珠的魔力被偷了。";
 		mes "在其他人看来，阿凡特 只负责我和 卡尔。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿凡特 就在那边。想问问题的话可以去找他。";
 		mes "哈哈。";
 		close3;
@@ -320,25 +320,25 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 				mes "恶魔之神神殿？好吧，如果你在那里发现宝珠逸散的魔力，能处理一下吗？";
 				mes "我不知道魔力现在会呈现什么形态，但你不会把它误认成其他东西。";
 				next;
-				mes "[希茜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你发现宝珠逸散的魔力，请攻击并驱散它。";
 				mes "它会自行回到伊格德拉希尔和宝珠那里。";
 				mes "你能帮我们吗？";
 				next;
 				if (select( "乐意效劳。", "抱歉。" ) == 2) {
 					cutin "hisie02.bmp",0;
-					mes "[希茜]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "别担心。";
 					mes "我会找别人帮忙。";
 					mes "没事的。";
 					close3;
 				}
-				mes "[希茜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我欠你太多了，";
 				mes "不知道该如何报答你。";
 				mes "谢谢。";
 				next;
-				mes "[希茜]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请释放3个光辉的玛娜、3个生命的玛娜和3个大地的玛娜。";
 				mes "我就拜托你了。";
 				mes "听到了吗？一定要平安回来。";
@@ -348,12 +348,12 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 			mes "阿凡特 比任何人都更了解宝珠的魔力。";
 			mes "连 卡尔 和我都几乎无法忍受 阿凡特，但他确实需要你的帮助。";
 			next;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这不仅是收集宝珠魔力的问题，也关系到恶魔之神。";
 			mes "我的大多数族人还不知道宝珠的核心魔力被偷走了。";
 			next;
 			cutin "hisie02.bmp",0;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我希望继续隐瞒下去。";
 			mes "请帮助我们。";
 			mes "卡尔 和我真的需要你。";
@@ -363,11 +363,11 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 			mes "你只要击打并驱散恶魔之神神殿中移动的魔力球。";
 			mes "这样魔力就会回到伊格德拉希尔。";
 			next;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你发现凝固且不动的魔力，";
 			mes "只要触碰它并吸收即可。";
 			next;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它对我们已经没有用，但你可以用它";
 			mes "来对抗恶魔。";
 			close3;
@@ -378,12 +378,12 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 			mes "你做得很好。卡尔 一定会很兴奋！";
 			next;
 			cutin "hisie01.bmp",0;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这不算什么，但我想送给你。";
 			mes "希望你喜欢。";
 		mes "大量魔力已经从宝珠中逸散出来。";
 			next;
-			mes "[希茜]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "如果你打算再次进入恶魔之神神殿，请寻找更多魔力球。";
 			mes "你现在应该去休息。";
 			erasequest 7595;// Wandering Orb Magic
@@ -404,7 +404,7 @@ moro_vol,95,108,7	script	希茜#143hisie01::希谢#143hisie01	4_M_FARIY_HISIE,{
 		mes "是的，还是我之前拜托你的事：";
 		mes "归还魔力。";
 		next;
-		mes "[希茜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你想帮助我们，再来和我谈谈。";
 		close3;
 	}
@@ -415,7 +415,7 @@ OnInit:
 	end;
 }
 
-moro_vol,108,88,5	script	司令希巴·阿吉普#14301	4_M_REDSWORD,{
+moro_vol,108,88,5	script	司令 希巴 阿吉普#14301::司令希巴·阿吉普#14301	4_M_REDSWORD,{
 	cutin "ep13_captin_edq.bmp",2;
 	mes "[希巴·阿吉普]";
 	if (ep14_3_mors01 == 0 || BaseLevel < 160) {
@@ -600,7 +600,7 @@ OnInit:
 	end;
 }
 
-moro_vol,110,90,3	script	副官阿比达尔#14302	4_M_SAGE_C,{
+moro_vol,110,90,3	script	参谋 阿比达#14302::副官阿比达尔#14302	4_M_SAGE_C,{
 	switch( checkquest(7599,PLAYTIME) ) {
 	case -1:
 		switch( checkquest(7594,HUNTING) ) {
@@ -688,9 +688,9 @@ OnInit:
 	end;
 }
 
-moro_vol,111,87,1	script	教官伊格丽德#14303	4_M_CRU,{
+moro_vol,111,87,1	script	教官 伊格里德#14303::教官伊格丽德#14303	4_M_CRU,{
 	if (BaseLevel < 140) {
-		mes "[教官伊格丽德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你。";
 		mes "（摇头）你不行。";
 		mes "你太弱了，无法与这些恶魔战斗。";
@@ -701,36 +701,36 @@ moro_vol,111,87,1	script	教官伊格丽德#14303	4_M_CRU,{
 	case -1:
 		switch( checkquest(7581,HUNTING) ) {
 		case -1:
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，幸会。";
 			mes "我需要你的帮助。";
 			mes "从燃烧盆地涌出的恶魔中，有些实在令人头疼。";
 			next;
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "梦罗克转生体也入侵了这里，其中一些尤其强大。";
 			mes "我希望你消灭它们。";
 			next;
 			if (select( "为什么是我？", "没问题。" ) == 1) {
-				mes "[教官伊格丽德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，这出乎意料。";
 				mes "我以为你来这里是为了保护米德加尔特的和平与繁荣，不是吗？";
 				next;
-				mes "[教官伊格丽德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "也许我太高估你了。";
 				mes "好吧，我去问别人。";
 				mes "我真的对你很失望。";
 				close;
 			}
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没有让我失望。";
 			mes "听着，盆地中央有一座高山。";
 			mes "从中心向四个方向各有一只强大的恶魔游荡。";
 			next;
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们看起来就像袭击梦罗克城的那些转生体，";
 			mes "但体型更大，也更强。";
 			next;
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为了顺利完成讨伐任务，";
 			mes "请^4d4dff消灭猖狂梦罗克门徒、烈火梦罗克门徒和冰冻的梦罗克门徒。^000000";
 			mes "拜托你了。";
@@ -738,17 +738,17 @@ moro_vol,111,87,1	script	教官伊格丽德#14303	4_M_CRU,{
 			close;
 		case 0:
 		case 1:
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请^4d4dff消灭猖狂梦罗克门徒、烈火梦罗克门徒和冰冻的梦罗克门徒。^000000";
 			mes "它们分别驻扎在盆地中心的四个方向。";
 			close;
 		case 2:
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你真的消灭了那些强大的恶魔。";
 			mes "这应该足以打击其余恶魔的士气。";
 			mes "干得好。";
 			next;
-			mes "[教官伊格丽德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "希望你能再回来帮助我。";
 			mes "我们一起回家吧，好吗？";
 			erasequest 7581;// Eliminating Risks
@@ -758,16 +758,16 @@ moro_vol,111,87,1	script	教官伊格丽德#14303	4_M_CRU,{
 		}
 	case 0:
 	case 1:
-		mes "[教官伊格丽德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你。";
 		mes "你是说那些巨大的转生体吗？";
 		mes "我已经安排其他冒险者去处理它们了。";
 		next;
-		mes "[教官伊格丽德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天你应该休息。明天再回来狩猎吧。";
 		close;
 	case 2:
-		mes "[教官伊格丽德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "差不多又到讨伐恶魔的时间了。";
 		mes "你不兴奋吗？我可是很兴奋！哈哈！";
 		erasequest 7582;// Daily Cleaning
@@ -780,14 +780,14 @@ OnInit:
 	end;
 }
 
-moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
+moro_vol,136,84,3	script	杰卢拓 海斯蓝特#ep143::贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 	if (checkweight(1304,3) == 0) {
 		mes "你携带的物品太多，无法继续任务。";
 		mes "请为背包腾出空间。";
 		close;
 	}
 	cutin "ep13_heslanta.bmp",2;
-	mes "[贾鲁特·赫斯兰塔]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (ep13_3_secret < 22) {
 		mes "我是赫斯兰塔，萨帕军队的指挥官。";
 		mes "能与人类并肩作战是我的荣幸。";
@@ -797,7 +797,7 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		mes "没想到会在这里见到你！";
 		mes "……虽然发生了很多事，但我还在等你完成我最初交代的事情！";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请回来帮助我！";
 		close3;
 	}
@@ -807,37 +807,37 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		mes "我们以前在迪尔进行过一次重要的谈话。";
 		next;
 		select("你为什么在这里？");
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我说服了长老们，让我带军队来到这里。";
 		mes "正如你怀疑的那样，阿哈特不是萨帕。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "目前只有我知道这件事。";
 		mes "其他人几乎都忘了他曾经存在过。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我对他的持续怀疑使我免受阿哈特的催眠。";
 		mes "他利用不可言说的能力消失了。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他消失后，我说服长老们加入讨伐魔神的行动。";
 		mes "其他萨帕出于种族安全考虑反对我，";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但不惜一切代价帮助朋友是我们的天性。";
 		mes "所以我把我们最勇敢的加尔滕带到了战场。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "长话短说，";
 		mes "你不必再为阿哈特工作了。";
 		mes "如果你需要沙帕功勋证，之后帮我一个忙，我就给你一张。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你认识切谢尔，对吧？";
 		mes "说到他，";
 		mes "我无法信任其他人。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在执行计划前，我想先收集关于他的情报。";
 		mes "在我再次联系你之前，请务必保证安全。";
 		ep13_3_secret = 25;
@@ -857,7 +857,7 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 			mes "还记得我们谈过切谢尔吗？";
 			mes "他是个敏感人物，所以我不能和其他萨帕谈论他。";
 			next;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但是……你好像不太高兴，";
 			mes "回去再多训练一会儿吧。";
 			close3;
@@ -866,33 +866,33 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		mes "他是个敏感人物，所以我不能和其他萨帕谈论他。";
 		mes "我在想……";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也许你能帮我确认我的猜疑。";
 		next;
 		select("什么猜疑？");
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有些东西似乎不属于这片火焰盆地。";
 		mes "它们看起来像某种箱子。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那些箱子被魔神的邪恶能量赋予了生命，正在盆地里横冲直撞。";
 		mes "现在我很担心……";
 		next;
 		select("你很担心？");
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它们和埃·迪斯特斯的马努克魔力之石箱子一模一样。";
 		mes "你能消灭它们，帮我确认它们的身份吗？";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它们很可能就是切谢尔从埃·迪斯特斯偷走的马努克魔力之石箱子。";
 		mes "如果真是这样，我就能用这些箱子补充军队。";
 		next;
 		select("还要取回被偷走的钸镭矿石。" );
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错。因为这次远征完全是我的主意，所以我的军队没有得到多少支援。";
 		mes "这只是我的一厢情愿；拿到箱子前我们无法确定。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在请先猎杀一个箱子，告诉我你从里面发现了什么。";
 		mes "我会等你。";
 		setquest 7578;// Rampaging Box
@@ -902,7 +902,7 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 	if (ep13_3_secret == 26) {
 		if (checkquest(7578,HUNTING) != 2) {
 			cutin "ep13_heslanta.bmp",2;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只要猎杀 1 个^4d4dff飞来飞去的箱子^000000，把里面的东西带给我。";
 			if (isbegin_quest(7578) == 0)
 				setquest 7578;
@@ -918,21 +918,21 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		mes "这么一个装满矿石的箱子竟能自行移动，真令人惊讶。";
 		mes "它一定被施加了魔法，你不觉得吗？";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这证实了我的猜疑：";
 		mes "火焰盆地的那些箱子就是埃·迪斯特斯的马努克魔力之石箱子。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不想过分利用你的善意，但希望你继续猎杀这些箱子。";
 		mes "至少目前，你是我唯一能信任的人。";
 		mes "加尔滕人很勇敢，但他们会想知道马努克魔力之石箱子为何出现在这里。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那我就必须把一切告诉他们，";
 		mes "从阿哈特开始，而大多数萨帕已经忘了他，这会让事情变得非常复杂。";
 		next;
 		select("我什么时候开始？");
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在怎么样？";
 		mes "^4d4dff请猎杀那些飞来飞去的箱子，收集 10 个马努克魔力之石箱子。^000000";
 		delitem 6392,1;// Bradium_Box
@@ -947,16 +947,16 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		switch( checkquest(7579,HUNTING) ) {
 		case 0:
 			cutin "ep13_heslanta.bmp",2;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来。";
 		mes "今天准备好了吗？";
 			break;
 		case 1:
 			cutin "ep13_heslanta.bmp",2;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "飞来飞去的箱子本身并不可怕，但周围有危险的魔物。请小心。";
 			next;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "狩猎顺利！";
 			close3;
 		case 2:
@@ -966,12 +966,12 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 				close3;
 			}
 			cutin "ep13_heslanta.bmp",2;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "干得好。";
 		mes "我真不知该如何感谢你。";
 		mes "让我把所有马努克魔力之石箱子收下吧。";
 			next;
-			mes "[贾鲁特·赫斯兰塔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我能感觉到其他人的目光。哈哈。";
 		mes "下次再见。";
 			delitem 6392, countitem(6392);// Bradium_Box
@@ -987,29 +987,29 @@ moro_vol,136,84,3	script	贾鲁特·赫斯兰塔#ep143	4_MAN_JERUTOO,{
 		mes "哈哈，我们现在不急。";
 		mes "不知道切谢尔是否知道我们正在夺回他的马努克魔力之石箱子。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "晚点该给可怜的猫喂什么呢？";
 		mes "哦，继续努力收集马努克魔力之石箱子吧。";
 		break;
 	case 2:
 		cutin "ep13_heslanta.bmp",2;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "该收集马努克魔力之石箱子了。";
 		erasequest 7580;// Collecting Every Day
 		break;
 	}
 	next;
 	if (select( "我这就去办。", "我稍后再回来。" ) == 2) {
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "没问题。";
 	mes "有空再回来吧。";
 		next;
-		mes "[贾鲁特·赫斯兰塔]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉，";
 	mes "我总是不断拜托你帮忙。";
 		close3;
 	}
-	mes "[贾鲁特·赫斯兰塔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "就是这种精神！";
 	mes "去猎杀飞来飞去的箱子，收集魔力之石。";
 	setquest 7579;// Collecting Bradiums
@@ -1035,7 +1035,7 @@ function	script	kick_mob	{
 	return;
 }
 
-moro_vol,88,107,5	script	魔法学者多菲#143vol01	4_F_FAIRYKID5,{
+moro_vol,88,107,5	script	魔学家 多比#143vol01::魔法学者多菲#143vol01	4_F_FAIRYKID5,{
  	mes "[多菲]";
 	mes "原来是人类。";
 	mes "看着你，我不禁思考起我们的处境。";
@@ -1064,14 +1064,14 @@ moro_vol,88,107,5	script	魔法学者多菲#143vol01	4_F_FAIRYKID5,{
 	close;
 }
 
-moro_vol,87,104,5	script	魔法学者孔帕纳#143vol02	4_M_FAIRYKID5,{
+moro_vol,87,104,5	script	魔学家 康宝蓝#143vol02::魔法学者孔帕纳#143vol02	4_M_FAIRYKID5,{
 	mes "[孔帕纳]";
 	mes "这里和我想象的完全不同。";
 	mes "真的没有草地或森林吗？";
 	close;
 }
 
-moro_vol,88,102,6	script	魔法学者玛琪亚#143vol03	4_M_FAIRYKID3,{
+moro_vol,88,102,6	script	魔学家 马卡#143vol03::魔法学者玛琪亚#143vol03	4_M_FAIRYKID3,{
 	mes "[玛琪亚]";
 	mes "这里到处都是奇怪的生物。";
 	mes "四处都在燃烧，空气却不令人窒息。";
@@ -1079,17 +1079,17 @@ moro_vol,88,102,6	script	魔法学者玛琪亚#143vol03	4_M_FAIRYKID3,{
 	close;
 }
 
-moro_vol,104,109,0	script	拉菲内士兵#sol01	4_M_FAIRYSOLDIER,{ end; }
-moro_vol,106,109,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol02	4_M_FAIRYSOLDIER
-moro_vol,108,109,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol03	4_M_FAIRYSOLDIER
-moro_vol,104,107,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol04	4_M_FAIRYSOLDIER
-moro_vol,106,107,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol05	4_M_FAIRYSOLDIER
-moro_vol,108,107,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol06	4_M_FAIRYSOLDIER
-moro_vol,104,105,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol07	4_M_FAIRYSOLDIER
-moro_vol,106,105,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol08	4_M_FAIRYSOLDIER
-moro_vol,108,105,0	duplicate(拉菲内士兵#sol01)	拉菲内士兵#sol09	4_M_FAIRYSOLDIER
+moro_vol,104,109,0	script	战斗守护精灵#sol01::拉菲内士兵#sol01	4_M_FAIRYSOLDIER,{ end; }
+moro_vol,106,109,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol02::拉菲内士兵#sol02	4_M_FAIRYSOLDIER
+moro_vol,108,109,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol03::拉菲内士兵#sol03	4_M_FAIRYSOLDIER
+moro_vol,104,107,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol04::拉菲内士兵#sol04	4_M_FAIRYSOLDIER
+moro_vol,106,107,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol05::拉菲内士兵#sol05	4_M_FAIRYSOLDIER
+moro_vol,108,107,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol06::拉菲内士兵#sol06	4_M_FAIRYSOLDIER
+moro_vol,104,105,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol07::拉菲内士兵#sol07	4_M_FAIRYSOLDIER
+moro_vol,106,105,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol08::拉菲内士兵#sol08	4_M_FAIRYSOLDIER
+moro_vol,108,105,0	duplicate(拉菲内士兵#sol01)	战斗守护精灵#sol09::拉菲内士兵#sol09	4_M_FAIRYSOLDIER
 
-moro_vol,106,111,3	script	战斗指挥官#sol10	4_M_FAIRYSOLDIER,3,3,{
+moro_vol,106,111,3	script	作战指挥官#sol10::战斗指挥官#sol10	4_M_FAIRYSOLDIER,3,3,{
 	mes "[拉菲内指挥官]";
 	mes "我们正在为即将到来的战斗重新集结。";
 	mes "请不要打扰我们。";
@@ -1144,7 +1144,7 @@ OnInit:
 	end;
 }
 
-moro_vol,101,102,0	script	拉菲内魔法师#wsol01	4_F_FAIRY2,{
+moro_vol,101,102,0	script	守护精灵魔法师#wsol01::拉菲内魔法师#wsol01	4_F_FAIRY2,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "……把他们全部冻结！冻结！";
@@ -1159,7 +1159,7 @@ moro_vol,101,102,0	script	拉菲内魔法师#wsol01	4_F_FAIRY2,{
 	end;
 }
 
-moro_vol,103,102,0	script	拉菲内魔法师#wsol02	4_F_MORAFINE1,{
+moro_vol,103,102,0	script	守护精灵魔法师#wsol02::拉菲内魔法师#wsol02	4_F_MORAFINE1,{
 	if (rand(1,5) == 5)
 		npctalk "嘘。";
 	else
@@ -1167,7 +1167,7 @@ moro_vol,103,102,0	script	拉菲内魔法师#wsol02	4_F_MORAFINE1,{
 	end;
 }
 
-moro_vol,105,102,0	script	拉菲内魔法师#wsol03	4_M_FAIRYKID5,{
+moro_vol,105,102,0	script	守护精灵魔法师#wsol03::拉菲内魔法师#wsol03	4_M_FAIRYKID5,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "后面的那些人类让我很烦。";
@@ -1182,7 +1182,7 @@ moro_vol,105,102,0	script	拉菲内魔法师#wsol03	4_M_FAIRYKID5,{
 	end;
 }
 
-moro_vol,107,102,0	script	拉菲内魔法师#wsol04	4_F_FAIRYKID5,{
+moro_vol,107,102,0	script	守护精灵魔法师#wsol04::拉菲内魔法师#wsol04	4_F_FAIRYKID5,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "我很紧张。";
@@ -1197,7 +1197,7 @@ moro_vol,107,102,0	script	拉菲内魔法师#wsol04	4_F_FAIRYKID5,{
 	end;
 }
 
-moro_vol,109,102,0	script	拉菲内魔法师#wsol05	4_M_FAIRYKID5,{
+moro_vol,109,102,0	script	守护精灵魔法师#wsol05::拉菲内魔法师#wsol05	4_M_FAIRYKID5,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 			npctalk "我正努力记住一看到敌人就开火。";
@@ -1212,7 +1212,7 @@ moro_vol,109,102,0	script	拉菲内魔法师#wsol05	4_M_FAIRYKID5,{
 	end;
 }
 
-moro_vol,93,128,1	script	拉菲内士兵#line01	4_M_FAIRYSOLDIER2,2,3,{
+moro_vol,93,128,1	script	战斗守护精灵#line01::拉菲内士兵#line01	4_M_FAIRYSOLDIER2,2,3,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "好啦，好啦~";
@@ -1237,14 +1237,14 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,96,130,1	duplicate(拉菲内士兵#line01)	拉菲内士兵#line02	4_M_FAIRYSOLDIER2
-moro_vol,99,131,1	duplicate(拉菲内士兵#line01)	拉菲内士兵#line03	4_M_FAIRYSOLDIER2,2,3
-moro_vol,102,132,7	duplicate(拉菲内士兵#line01)	拉菲内士兵#line04	4_M_FAIRYSOLDIER
-moro_vol,105,132,7	duplicate(拉菲内士兵#line01)	拉菲内士兵#line05	4_F_FAIRYSOLDIER,2,3
-moro_vol,108,131,7	duplicate(拉菲内士兵#line01)	拉菲内士兵#line06	4_M_FAIRYSOLDIER2
-moro_vol,111,129,7	duplicate(拉菲内士兵#line01)	拉菲内士兵#line07	4_M_FAIRYSOLDIER,2,3
+moro_vol,96,130,1	duplicate(拉菲内士兵#line01)	战斗守护精灵#line02::拉菲内士兵#line02	4_M_FAIRYSOLDIER2
+moro_vol,99,131,1	duplicate(拉菲内士兵#line01)	战斗守护精灵#line03::拉菲内士兵#line03	4_M_FAIRYSOLDIER2,2,3
+moro_vol,102,132,7	duplicate(拉菲内士兵#line01)	战斗守护精灵#line04::拉菲内士兵#line04	4_M_FAIRYSOLDIER
+moro_vol,105,132,7	duplicate(拉菲内士兵#line01)	战斗守护精灵#line05::拉菲内士兵#line05	4_F_FAIRYSOLDIER,2,3
+moro_vol,108,131,7	duplicate(拉菲内士兵#line01)	战斗守护精灵#line06::拉菲内士兵#line06	4_M_FAIRYSOLDIER2
+moro_vol,111,129,7	duplicate(拉菲内士兵#line01)	战斗守护精灵#line07::拉菲内士兵#line07	4_M_FAIRYSOLDIER,2,3
 
-moro_vol,85,117,1	script	拉菲内士兵#line11	4_F_FAIRYSOLDIER,2,2,{
+moro_vol,85,117,1	script	战斗守护精灵#line11::拉菲内士兵#line11	4_F_FAIRYSOLDIER,2,2,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "好啦，好啦~";
@@ -1270,14 +1270,14 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,89,118,1	duplicate(拉菲内士兵#line11)	拉菲内士兵#line12	4_M_FAIRYSOLDIER
-moro_vol,92,119,7	duplicate(拉菲内士兵#line11)	拉菲内士兵#line13	4_M_FAIRYSOLDIER,2,2
-moro_vol,96,119,7	duplicate(拉菲内士兵#line11)	拉菲内士兵#line14	4_M_FAIRYSOLDIER2
-moro_vol,100,117,7	duplicate(拉菲内士兵#line11)	拉菲内士兵#line15	4_M_FAIRYSOLDIER,2,2
-moro_vol,107,118,7	duplicate(拉菲内士兵#line11)	拉菲内士兵#line17	4_F_FAIRYSOLDIER,2,2
-moro_vol,114,114,7	duplicate(拉菲内士兵#line11)	拉菲内士兵#line19	4_M_FAIRYSOLDIER2,2,2
+moro_vol,89,118,1	duplicate(拉菲内士兵#line11)	战斗守护精灵#line12::拉菲内士兵#line12	4_M_FAIRYSOLDIER
+moro_vol,92,119,7	duplicate(拉菲内士兵#line11)	战斗守护精灵#line13::拉菲内士兵#line13	4_M_FAIRYSOLDIER,2,2
+moro_vol,96,119,7	duplicate(拉菲内士兵#line11)	战斗守护精灵#line14::拉菲内士兵#line14	4_M_FAIRYSOLDIER2
+moro_vol,100,117,7	duplicate(拉菲内士兵#line11)	战斗守护精灵#line15::拉菲内士兵#line15	4_M_FAIRYSOLDIER,2,2
+moro_vol,107,118,7	duplicate(拉菲内士兵#line11)	战斗守护精灵#line17::拉菲内士兵#line17	4_F_FAIRYSOLDIER,2,2
+moro_vol,114,114,7	duplicate(拉菲内士兵#line11)	战斗守护精灵#line19::拉菲内士兵#line19	4_M_FAIRYSOLDIER2,2,2
 
-moro_vol,103,118,1	script	拉菲内士兵#line16	4_F_FAIRYSOLDIER,{
+moro_vol,103,118,1	script	战斗守护精灵#line16::拉菲内士兵#line16	4_F_FAIRYSOLDIER,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "萨帕最好别从侧翼包抄我们。";
@@ -1292,24 +1292,24 @@ moro_vol,103,118,1	script	拉菲内士兵#line16	4_F_FAIRYSOLDIER,{
 	end;
 }
 
-moro_vol,110,117,7	duplicate(拉菲内士兵#line16)	拉菲内士兵#line18	4_M_FAIRYSOLDIER2
+moro_vol,110,117,7	duplicate(拉菲内士兵#line16)	战斗守护精灵#line18::拉菲内士兵#line18	4_M_FAIRYSOLDIER2
 
-moro_vol,104,86,3	script	里奥森#14304	4_M_ALCHE_A,{
-	mes "[里奥森]";
+moro_vol,104,86,3	script	廖森#14304::里奥森#14304	4_M_ALCHE_A,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "当然紧张。你不用问我这个。";
 	mes "我不明白行政官为什么让我负责这些骑士。";
 	next;
-	mes "[里奥森]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他们不是受训骑士，甚至不是见习骑士，而是货真价实的符文骑士。";
 	mes "唉，我经验不足又无能为力，根本管不了他们。";
 	next;
-	mes "[里奥森]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "至少只要三名骑士和我在一起，我的安全就有保障。";
 	mes "希望如此。";
 	close;
 }
 
-moro_vol,101,87,5	script	卢恩王国骑士#mid01	4_M_KNIGHT_BLACK,{
+moro_vol,101,87,5	script	卢恩 米德加兹骑士#mid01::卢恩王国骑士#mid01	4_M_KNIGHT_BLACK,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "...";
@@ -1324,7 +1324,7 @@ moro_vol,101,87,5	script	卢恩王国骑士#mid01	4_M_KNIGHT_BLACK,{
 	end;
 }
 
-moro_vol,101,85,5	script	卢恩王国骑士#mid02	4_M_KNIGHT_GOLD,{
+moro_vol,101,85,5	script	卢恩 米德加兹骑士#mid02::卢恩王国骑士#mid02	4_M_KNIGHT_GOLD,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "我是来保护重要人员的。";
@@ -1339,7 +1339,7 @@ moro_vol,101,85,5	script	卢恩王国骑士#mid02	4_M_KNIGHT_GOLD,{
 	end;
 }
 
-moro_vol,103,83,1	script	卢恩王国骑士#mid03	4_M_KNIGHT_SILVER,{
+moro_vol,103,83,1	script	卢恩 米德加兹骑士#mid03::卢恩王国骑士#mid03	4_M_KNIGHT_SILVER,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "里奥森，没人会咬你。别这么害怕。";
@@ -1354,29 +1354,29 @@ moro_vol,103,83,1	script	卢恩王国骑士#mid03	4_M_KNIGHT_SILVER,{
 	end;
 }
 
-moro_vol,110,83,3	script	休#14305	4_M_LGTGUARD,{
-	mes "[休]";
+moro_vol,110,83,3	script	修#14305::休#14305	4_M_LGTGUARD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们终于到了。";
 	mes "起初我不敢相信那些关于魔神藏身处和据点的传闻。";
 	next;
-	mes "[休]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "照现在的情况，我近期根本没有希望回到大陆。";
 	next;
-	mes "[休]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真是的，我受够那些家伙了。";
 	mes "我最好赶快找到魔神。";
 	next;
-	mes "[休]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想过失败吗？";
 	mes "想过，但我尽量不去想。";
 	mes "如果我相信自己会输，就永远不可能获胜。";
 	next;
-	mes "[休]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们施瓦茨瓦尔德人天生就是为了胜利。";
 	close;
 }
 
-moro_vol,108,81,7	script	施瓦茨精锐#sch01	4_M_EIN_SOLDIER,{
+moro_vol,108,81,7	script	秀发兹发德精兵#sch01::施瓦茨精锐#sch01	4_M_EIN_SOLDIER,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "为了施瓦茨瓦尔德的荣耀！";
@@ -1391,7 +1391,7 @@ moro_vol,108,81,7	script	施瓦茨精锐#sch01	4_M_EIN_SOLDIER,{
 	end;
 }
 
-moro_vol,111,80,1	script	施瓦茨精锐#sch02	4_M_EIN_SOLDIER,{
+moro_vol,111,80,1	script	秀发兹发德精兵#sch02::施瓦茨精锐#sch02	4_M_EIN_SOLDIER,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "为了施瓦茨瓦尔德的荣耀！";
@@ -1406,7 +1406,7 @@ moro_vol,111,80,1	script	施瓦茨精锐#sch02	4_M_EIN_SOLDIER,{
 	end;
 }
 
-moro_vol,113,81,3	script	施瓦茨精锐#sch03	4_M_EIN_SOLDIER,{
+moro_vol,113,81,3	script	秀发兹发德精兵#sch03::施瓦茨精锐#sch03	4_M_EIN_SOLDIER,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "唉。";
@@ -1422,18 +1422,18 @@ moro_vol,113,81,3	script	施瓦茨精锐#sch03	4_M_EIN_SOLDIER,{
 }
 
 
-moro_vol,118,86,5	script	亨金#14306	4_M_RACHMAN1,{
-	mes "[亨金]";
+moro_vol,118,86,5	script	韩吉奴#14306::亨金#14306	4_M_RACHMAN1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这里比我想象的刺激多了！";
 	mes "魔神到底在哪里？";
 	next;
-	mes "[亨金]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "连他的影子都看不到。";
 	mes "哇哈哈哈！";
 	close;
 }
 
-moro_vol,116,84,7	script	阿鲁纳圣战士#aru01	4_M_TRAINEE,{
+moro_vol,116,84,7	script	阿卢纳贝兹信徒团#aru01::阿鲁纳圣战士#aru01	4_M_TRAINEE,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "一切都是她的意志。";
@@ -1448,7 +1448,7 @@ moro_vol,116,84,7	script	阿鲁纳圣战士#aru01	4_M_TRAINEE,{
 	end;
 }
 
-moro_vol,118,83,7	script	阿鲁纳圣战士#aru02	4_F_MASK,{
+moro_vol,118,83,7	script	阿卢纳贝兹信徒团#aru02::阿鲁纳圣战士#aru02	4_F_MASK,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "一切都是她的意志。";
@@ -1463,7 +1463,7 @@ moro_vol,118,83,7	script	阿鲁纳圣战士#aru02	4_F_MASK,{
 	end;
 }
 
-moro_vol,121,84,1	script	阿鲁纳圣战士#aru03	4_F_TRAINEE,{
+moro_vol,121,84,1	script	阿卢纳贝兹信徒团#aru03::阿鲁纳圣战士#aru03	4_F_TRAINEE,{
 	.@ttemp = rand(1,5);
 	if (.@ttemp == 1)
 		npctalk "女神正在守护我们。";
@@ -1478,15 +1478,15 @@ moro_vol,121,84,1	script	阿鲁纳圣战士#aru03	4_F_TRAINEE,{
 	end;
 }
 
-moro_vol,119,106,3	script	教官雅肯#h_sol01	4_M_YOUNGKNIGHT,3,3,{
-	mes "[教官雅肯]";
+moro_vol,119,106,3	script	教官 札坎#h_sol01::教官雅肯#h_sol01	4_M_YOUNGKNIGHT,3,3,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我自愿参加阿什·巴库姆远征时，就知道这一天会到来。";
 	next;
-	mes "[教官雅肯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我准备好了。";
 	mes "我会为米德加尔特大陆的和平战斗到底。";
 	next;
-	mes "[教官雅肯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但我还是很紧张。";
 	mes "我真的需要加强情绪控制，不想吓到其他人。";
 	close;
@@ -1597,7 +1597,7 @@ moro_vol,105,95,1	script	远征队刺客#ass03	4_TOWER_15,{
 	close;
 }
 
-moro_vol,114,128,1	script	大陆卫兵#line01	4_M_MOCASS1,2,2,{
+moro_vol,114,128,1	script	洲际卫队#line01::大陆卫兵#line01	4_M_MOCASS1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "前方危险，请后退。";
@@ -1614,10 +1614,10 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,119,130,1	duplicate(大陆卫兵#line01)	大陆卫兵#line02	4_M_MOCASS2
-moro_vol,122,130,7	duplicate(大陆卫兵#line01)	大陆卫兵#line03	4_M_MOCASS1,2,2
-moro_vol,125,129,7	duplicate(大陆卫兵#line01)	大陆卫兵#line04	4_M_MOCASS1
-moro_vol,127,127,7	duplicate(大陆卫兵#line01)	大陆卫兵#line05	4_M_MOCASS2
+moro_vol,119,130,1	duplicate(大陆卫兵#line01)	洲际卫队#line02::大陆卫兵#line02	4_M_MOCASS2
+moro_vol,122,130,7	duplicate(大陆卫兵#line01)	洲际卫队#line03::大陆卫兵#line03	4_M_MOCASS1,2,2
+moro_vol,125,129,7	duplicate(大陆卫兵#line01)	洲际卫队#line04::大陆卫兵#line04	4_M_MOCASS1
+moro_vol,127,127,7	duplicate(大陆卫兵#line01)	洲际卫队#line05::大陆卫兵#line05	4_M_MOCASS2
 
 moro_vol,135,123,1	script	米德加尔特联军#line21	4_M_MONK,2,2,{
 	.@ttemp = rand(1,3);
@@ -1820,25 +1820,25 @@ moro_vol,138,108,7	script	米德加尔特联军#line38	4_DST_SOLDIER,{
 	end;
 }
 
-moro_vol,134,83,5	script	维哈努斯#ep143	4_MAN_JERUTOO,{
-	mes "[维哈努斯]";
+moro_vol,134,83,5	script	杰卢拓 皮夏努斯#ep143::维哈努斯#ep143	4_MAN_JERUTOO,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你也来到这里了。";
 	mes "看来不用戒指也能和我交流。";
 	next;
-	mes "[维哈努斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "现在我想知道彩虹桥的恩泽能延伸多远。";
 	mes "也许我该借此机会了解拉菲内族。";
 	next;
-	mes "[维哈努斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我佩服赫斯兰塔的勇气。";
 	mes "他来到战场，愿意与我们的敌人拉菲内族结盟。";
 	next;
-	mes "[维哈努斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我真希望我们不必在这里和拉菲内族交战。";
 	close;
 }
 
-moro_vol,138,84,3	script	副官蒂耶拉#ep143	4_MAN_NITT,{
+moro_vol,138,84,3	script	辅佐 提亚拉#ep143::副官蒂耶拉#ep143	4_MAN_NITT,{
 	mes "[蒂耶拉]";
 	mes "埃·迪斯特斯·迪尔的杰鲁斯和尼特族或许答应了赫斯兰塔的请求，";
 	next;
@@ -1856,7 +1856,7 @@ moro_vol,138,84,3	script	副官蒂耶拉#ep143	4_MAN_NITT,{
 	close;
 }
 
-moro_vol,134,87,1	script	队长阿瓦兰奇#ep143	4_MAN_GALTUN,{
+moro_vol,134,87,1	script	先遣队长 阿巴蓝齐#ep143::队长阿瓦兰奇#ep143	4_MAN_GALTUN,{
 	mes "[阿瓦兰奇]";
 	mes "我的部队由最优秀的加尔滕组成。";
 	mes "人类战士，";
@@ -1867,40 +1867,40 @@ moro_vol,134,87,1	script	队长阿瓦兰奇#ep143	4_MAN_GALTUN,{
 	close;
 }
 
-moro_vol,131,86,1	script	加尔滕战士#gal01	4_MAN_GALTUN1,{
-	mes "[加尔滕战士]";
+moro_vol,131,86,1	script	迪卡斯特 高尔顿#gal01::加尔滕战士#gal01	4_MAN_GALTUN1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们什么时候开战？";
 	mes "什么时候？";
 	next;
-	mes "[加尔滕战士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真不敢相信我要和那些该死的拉菲内族并肩作战。";
 	mes "我还记得他们在上次战斗中对我们做了什么。";
 	close;
 }
 
-moro_vol,138,87,7	script	加尔滕战士#gal02	4_MAN_GALTUN1,{
-	mes "[加尔滕战士]";
+moro_vol,138,87,7	script	迪卡斯特 高尔顿#gal02::加尔滕战士#gal02	4_MAN_GALTUN1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的职责是保护杰鲁斯·赫斯兰塔。";
 	mes "你最好退后，";
 	mes "否则我就把你当作敌人。";
 	close;
 }
 
-moro_vol,140,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal11	4_MAN_GALTUN1
-moro_vol,143,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal12	4_MAN_GALTUN1
-moro_vol,146,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal13	4_MAN_GALTUN1
-moro_vol,140,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal14	4_MAN_GALTUN
-moro_vol,143,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal15	4_MAN_GALTUN
-moro_vol,146,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal16	4_MAN_GALTUN
+moro_vol,140,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal11::迪卡斯特斯精锐#gal11	4_MAN_GALTUN1
+moro_vol,143,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal12::迪卡斯特斯精锐#gal12	4_MAN_GALTUN1
+moro_vol,146,97,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal13::迪卡斯特斯精锐#gal13	4_MAN_GALTUN1
+moro_vol,140,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal14::迪卡斯特斯精锐#gal14	4_MAN_GALTUN
+moro_vol,143,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal15::迪卡斯特斯精锐#gal15	4_MAN_GALTUN
+moro_vol,146,94,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal16::迪卡斯特斯精锐#gal16	4_MAN_GALTUN
 
-moro_vol,150,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal21	4_MAN_GALTUN1
-moro_vol,153,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal22	4_MAN_GALTUN1
-moro_vol,156,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal23	4_MAN_GALTUN1
-moro_vol,150,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal24	4_MAN_GALTUN
-moro_vol,153,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal25	4_MAN_GALTUN
-moro_vol,156,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特斯精锐#gal26	4_MAN_GALTUN
+moro_vol,150,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal21::迪卡斯特斯精锐#gal21	4_MAN_GALTUN1
+moro_vol,153,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal22::迪卡斯特斯精锐#gal22	4_MAN_GALTUN1
+moro_vol,156,86,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal23::迪卡斯特斯精锐#gal23	4_MAN_GALTUN1
+moro_vol,150,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal24::迪卡斯特斯精锐#gal24	4_MAN_GALTUN
+moro_vol,153,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal25::迪卡斯特斯精锐#gal25	4_MAN_GALTUN
+moro_vol,156,83,1	duplicate(拉菲内士兵#sol01)	迪卡斯特 精锐部队#gal26::迪卡斯特斯精锐#gal26	4_MAN_GALTUN
 
-moro_vol,139,104,1	script	马努克守卫#line01	4_MAN_GALTUN1,{
+moro_vol,139,104,1	script	魔怒克 护卫队#line01::马努克守卫#line01	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "嗯！";
@@ -1917,9 +1917,9 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,143,106,1	duplicate(马努克守卫#line01)	马努克守卫#line02	4_MAN_GALTUN1,2,2
+moro_vol,143,106,1	duplicate(马努克守卫#line01)	魔怒克 护卫队#line02::马努克守卫#line02	4_MAN_GALTUN1,2,2
 
-moro_vol,147,108,1	script	马努克守卫#line03	4_MAN_GALTUN1,{
+moro_vol,147,108,1	script	魔怒克 护卫队#line03::马努克守卫#line03	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "你听到虫子嗡嗡叫了吗？";
@@ -1930,7 +1930,7 @@ moro_vol,147,108,1	script	马努克守卫#line03	4_MAN_GALTUN1,{
 	end;
 }
 
-moro_vol,152,109,1	script	马努克守卫#line04	4_MAN_GALTUN1,2,2,{
+moro_vol,152,109,1	script	魔怒克 护卫队#line04::马努克守卫#line04	4_MAN_GALTUN1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "嗯！";
@@ -1947,7 +1947,7 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,156,110,1	script	马努克守卫#line05	4_MAN_GALTUN1,{
+moro_vol,156,110,1	script	魔怒克 护卫队#line05::马努克守卫#line05	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "别把我们和那些长翅膀的混蛋相提并论！";
@@ -1958,7 +1958,7 @@ moro_vol,156,110,1	script	马努克守卫#line05	4_MAN_GALTUN1,{
 	end;
 }
 
-moro_vol,160,110,7	script	马努克守卫#line06	4_MAN_GALTUN1,2,2,{
+moro_vol,160,110,7	script	魔怒克 护卫队#line06::马努克守卫#line06	4_MAN_GALTUN1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "嗯！";
@@ -1975,7 +1975,7 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,164,109,7	script	马努克守卫#line07	4_MAN_GALTUN1,{
+moro_vol,164,109,7	script	魔怒克 护卫队#line07::马努克守卫#line07	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "嗯！";
@@ -1986,7 +1986,7 @@ moro_vol,164,109,7	script	马努克守卫#line07	4_MAN_GALTUN1,{
 	end;
 }
 
-moro_vol,167,107,7	script	马努克守卫#line08	4_MAN_GALTUN1,2,2,{
+moro_vol,167,107,7	script	魔怒克 护卫队#line08::马努克守卫#line08	4_MAN_GALTUN1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 		npctalk "嗯！";
@@ -2003,7 +2003,7 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,169,104,7	script	马努克守卫#line09	4_MAN_GALTUN1,{
+moro_vol,169,104,7	script	魔怒克 护卫队#line09::马努克守卫#line09	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 npctalk "嗯！";
@@ -2014,7 +2014,7 @@ npctalk "嗯！";
 	end;
 }
 
-moro_vol,171,100,5	script	马努克守卫#line10	4_MAN_GALTUN1,2,2,{
+moro_vol,171,100,5	script	魔怒克 护卫队#line10::马努克守卫#line10	4_MAN_GALTUN1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 npctalk "嗯！";
@@ -2031,7 +2031,7 @@ OnTouchNPC:
 	end;
 }
 
-moro_vol,172,95,5	script	马努克守卫#line11	4_MAN_GALTUN1,{
+moro_vol,172,95,5	script	魔怒克 护卫队#line11::马努克守卫#line11	4_MAN_GALTUN1,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 npctalk "嗯！";
@@ -2042,7 +2042,7 @@ npctalk "嗯！";
 	end;
 }
 
-moro_vol,173,89,5	script	马努克守卫#line12	4_MAN_GALTUN1,2,2,{
+moro_vol,173,89,5	script	魔怒克 护卫队#line12::马努克守卫#line12	4_MAN_GALTUN1,2,2,{
 	.@ttemp = rand(1,3);
 	if (.@ttemp == 1)
 npctalk "嗯！";
@@ -2061,7 +2061,7 @@ OnTouchNPC:
 
 
 // Dimensional Travel Quest
-morocc,138,238,4	script	破布堆#ep14bs	4_M_DIEMAN,{
+morocc,138,238,4	script	破烂堆#ep14bs::破布堆#ep14bs	4_M_DIEMAN,{
 	if (BaseLevel < 140) {
 		mes "- 这里有一堆脏抹布。 -";
 		close;
@@ -2260,167 +2260,167 @@ OnInit:
 	end;
 }
 
-moc_ruins,106,140,4	script	塔玛林#ep14bs_ru	4_M_TAMARIN,{
+moc_ruins,106,140,4	script	狨猴#ep14bs_ru::塔玛林#ep14bs_ru	4_M_TAMARIN,{
 	if (ep14_3_newerabs == 5 || ep14_3_newerabs == 6) {
 		if (ep14_3_newerabs == 5) {
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈！";
 			mes "感觉真棒！";
 			cutin "ep143_tasmi.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "水对我来说有点太暖了，但叫花子没得挑。";
 			cutin "ep143_tasta.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你救我免于饿死，还带我来到这个好地方。我前世一定是个大好人，";
 			mes "否则不会得到这样的善意。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想报答你，冒险者。";
 			mes "我掉进那个奇怪的洞后和队伍走散，所有财物都丢了，";
 			cutin "ep143_tasta.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但至少我可以告诉你一个^0000FF有趣的故事^000000。";
 			cutin "ep143_tasmi.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是关于我去过的奇怪地方。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
 			if (select( "没兴趣。", "我在听。" ) == 1) {
-				mes "[塔玛林]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧。";
 				mes "我还以为你很认真地对待冒险呢。";
 				cutin "ep143_tahuk.bmp",2;
 				next;
-				mes "[塔玛林]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那么，";
 				mes "你想要回魔物饲料吗？";
 				cutin "ep143_tasta.bmp",2;
 				next;
-				mes "[塔玛林]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "*呕*";
 				cutin "ep143_taang.bmp",2;
 				close3;
 			}
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我就知道你会感兴趣！";
 			mes "没有什么比奇怪地方的故事更能引起冒险者的兴趣，对吧？";
 			cutin "ep143_tasmi.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳咳。";
 			mes "故事始于我前往^0000FF异世界^000000的旅程，那是冒险者最近的热门地点。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冒险者塔玛林和他的队伍踏上了前往未知之地——异世界的旅程。";
 			cutin "ep143_tasmi.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们的旅途充满危险，但仍勇敢前进。";
 			cutin "ep143_taang.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，";
 			mes "我为什么要用第三人称说话？";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我最初想成为吟游诗人，但朋友们觉得猎人更适合我，所以后来成了猎人。";
 			cutin "ep143_tasmi.bmp",2;
 			next;
 			select("让他讲得直白些。");
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不久前，我和朋友们决定一起探索异世界。";
 			cutin "ep143_tasta.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为是第一次去异世界，我们想去更热门的地点，但其中一人不愿意——他太兴奋，开始失去控制。";
 			cutin "ep143_taang.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "恢复意识时，我已经独自一人在一个奇怪的地方。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那片^0000FF土地燃烧着永不熄灭的火焰^000000，摸起来却不太热，到处爬满了^0000FF外形奇怪的植物和昆虫^000000。";
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "起初我大声求救并四处寻找其他人，但一无所获。";
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "几天没东西吃后，我开始捡地上的任何东西来吃，结果得了最严重的腹泻。";
 			cutin "ep143_taang.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不知道过去了多少天，直到看到一群乍看像人的存在。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但^0000FF他们看起来太奇怪，不能算是人类^000000。";
 			mes "我无法和他们交谈，只好跳进他们出来的裂缝。";
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的膝盖失去力气，侧身滚倒。环顾四周时，我回到了和朋友们最初抵达的^0000FF次元裂缝^000000。";
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我通过^0000FF梦罗克次元传送点^000000出来，用尽所有力气回到梦罗克。";
 			next;
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "唉……";
 			mes "不知道我的朋友是否安全。";
 			cutin "ep143_tasta.bmp",2;
 			next;
 		}
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我应该去找他们，";
 		mes "但在恢复全部力气后，我想先回那个奇怪的地方。不是很多人都有机会看到那样特别的地方。";
 		cutin "ep143_tasmi.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "幸运的是，^0000FF梦罗克重建工作^000000正在进行，我可以靠一些兼职赚钱。";
 		next;
 		if (select( "祝他一路平安。", "告诉他你想同行。" ) == 1) {
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会的。";
 			mes "谢谢你救了我。";
 			cutin "ep143_tahuk.bmp",2;
 			next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这就是冒险的美妙之处：";
 		mes "结识新朋友！";
 			cutin "ep143_tasmi.bmp",2;
 			next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会在梦罗克待一阵子，赚些钱，为下一次冒险做准备。希望离开前还能再见到你。";
 			ep14_3_newerabs = 6;
 			close3;
 		}
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "！！";
 		cutin "ep143_tahuk.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是认真的吗？";
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊，我真是个幸运的混蛋！";
 		mes "*抽泣*";
 		cutin "ep143_taang.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就在^0000FF次元裂缝^000000见。我得先恢复体力。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "收拾好所有东西可能要花些时间，你先去处理其他事情吧。";
 		erasequest 11351;// Dimensional Travel
 		setquest 11352;// Dimensional Travel
@@ -2428,42 +2428,42 @@ moc_ruins,106,140,4	script	塔玛林#ep14bs_ru	4_M_TAMARIN,{
 		close3;
 	}
 	if (ep14_3_newerabs == 7) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就在^0000FF次元裂缝^000000见。我得先恢复体力。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "收拾好所有东西可能要花些时间，你先去处理其他事情吧。";
 		close3;
 	}
-	mes "[塔玛林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈！";
 	mes "感觉真棒！";
 	cutin "ep143_tasmi.bmp",2;
 	close3;
 }
 
-dali,112,69,4	script	塔玛林#ep14bs_cha	4_M_TAMARIN,{
+dali,112,69,4	script	狨猴#ep14bs_cha::塔玛林#ep14bs_cha	4_M_TAMARIN,{
 	if (ep14_3_newerabs == 7) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + strcharinfo(0) + "，这边！";
 		mes "你来得真早。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "（偷偷环顾四周）";
 		mes "希望没人监视我们。";
 		cutin "ep143_tahuk.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我藏起了通往那里的入口，不想让别人先到那里。";
 		cutin "ep143_tasmi.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当时我太分心，记不起入口在哪里，但我确定它在^0000FF二楼的某处^000000。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在^0000FF隐藏裂缝^000000前和我会合。确保没人跟踪你。";
 		mes "我已经用^0000FF泥土盖住入口^000000。希望没人把它挖开。";
 		erasequest 11352;// Dimensional Travel
@@ -2472,20 +2472,20 @@ dali,112,69,4	script	塔玛林#ep14bs_cha	4_M_TAMARIN,{
 		close3;
 	}
 	if (ep14_3_newerabs == 8) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我藏起了通往那里的入口，不想让别人先到那里。";
 		cutin "ep143_tasmi.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当时我太分心，记不起入口在哪里，但我确定它在^0000FF二楼的某处^000000。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在^0000FF隐藏裂缝^000000前和我会合。确保没人跟踪你。";
 		mes "我已经用^0000FF泥土盖住入口^000000。希望没人把它挖开。";
 		close3;
 	}
-	mes "[塔玛林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，希望我的标记还留在原处。";
 	cutin "ep143_tahuk.bmp",2;
 	close3;
@@ -2551,23 +2551,23 @@ moro_vol,137,136,0	script	沙堆#ep14bs_	4_SOIL,{
 	end;
 }
 
-moro_vol,132,140,4	script	塔玛林#ep14bs_ju	4_M_TAMARIN,{
+moro_vol,132,140,4	script	狨猴#ep14bs_ju::塔玛林#ep14bs_ju	4_M_TAMARIN,{
 	if (ep14_3_newerabs == 9) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇！";
 		mes "没想到会看到这么多人。";
 		cutin "ep143_tahuk.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没能成为第一个发现这里的人，真有点失望；不过在这个阴森的地方不是孤身一人，也让我很高兴。";
 		cutin "ep143_taang.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看到更多那种看起来像人的实体了。";
 		mes "这个地方可能比我想象的更不得了！";
 		cutin "ep143_tasmi.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看！";
 		mes "会走路的树！";
 		mes "嗷呜！";
@@ -2582,7 +2582,7 @@ moro_vol,132,140,4	script	塔玛林#ep14bs_ju	4_M_TAMARIN,{
 		close;
 	}
 	if (ep14_3_newerabs == 15) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看！";
 		mes "会走路的树！";
 		mes "嗷呜！";
@@ -2595,18 +2595,18 @@ moro_vol,132,140,4	script	塔玛林#ep14bs_ju	4_M_TAMARIN,{
 		close;
 	}
 	if (ep14_3_newerabs == 16) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果他们知道我们偷偷溜进来，可能会把我们赶出去。";
 		mes "现在先按他们说的做吧，好吗？";
 		cutin "ep143_taang.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs == 17 || ep14_3_newerabs == 18) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "收集植物样本听起来不太难。我们可以分头收集。";
 		cutin "ep143_tasta.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF收集到25根美味枝干后，到这里中央的大岩石旁找我。^000000";
 		if (ep14_3_newerabs == 17) {
 			erasequest 11356;// Specimen Collection
@@ -2617,93 +2617,93 @@ moro_vol,132,140,4	script	塔玛林#ep14bs_ju	4_M_TAMARIN,{
 	}
 	if (ep14_3_newerabs == 19) {
 		if (countitem(6690) < 25) {// YummyStem
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！（皱眉）";
 			mes "你的茎不够。";
 			mes "再收集一些，然后带给巴杰特。";
 			cutin "ep143_tahuk.bmp",2;
 			close3;
 		}
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们先去向巴杰特报告吧。";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs == 21 || ep14_3_newerabs == 22) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快点，";
 		mes "赶紧去找^0000FF鲁根教官^000000！";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs == 23) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢诸神，谁能想到我饿急了吃下的东西竟然救了我？";
 		mes "我们去向巴杰特报告吧。";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs == 24) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊！";
 		mes "" + strcharinfo(0) + "，趁其他人还没探索，快进洞穴！";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
-	mes "[塔玛林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃……";
 	mes "我明明是第一个来到这里的人！";
 	cutin "ep143_taang.bmp",2;
 	close3;
 }
 
-moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
+moro_vol,142,131,5	script	巴捷特 堤卜勒#ep14bs::巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 	if (checkweight(1119,3) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。-";
 		close;
 	}
 	if (ep14_3_newerabs < 15) {
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃，我累坏了。";
 		mes "我明白事情很紧急，但这不代表我喜欢被人呼来喝去。";
 		close;
 	}
 	if (ep14_3_newerabs == 15) {
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你毁了我珍贵的样本！";
 		mes "我不是叫过你们这种人离我的工作区远一点吗？你的上级没告诉你？";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在营地的研究还没完成，他们又把我拖来做另一个麻烦项目。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我要求一个助手！";
 		mes "别再拿预算问题搪塞我了！";
 		mes "啊！";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "...";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧。";
 		mes "你们两个！";
 		mes "你们一定很闲，才会在这里漫无目的地闲逛。做点有用的事，帮我收集样本。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毕竟你们已经毁掉我现有的样本了。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，我要收集动物样本。";
 		mes "这里经常能看到变异动物。最近，其中一种被确认是^0000FF全新的物种^000000。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF这种新型昆虫被称为火虫，因为它们周身被火焰包围，生活在那样的火坑里。^000000";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "爬出火坑的火虫很快就会死亡。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请调查^0000FF20个火坑，并从火虫身上收集50个燃烧的虫茧^000000。";
 		mes "过程中小心别烧伤自己。";
 		erasequest 11354;// Specimen Collection
@@ -2714,22 +2714,22 @@ moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 	if (ep14_3_newerabs < 19) {
 		if (ep14_3_newerabs == 16) {
 			if (countitem(6689) < 50 || checkquest(11355,HUNTING) != 2) {
-				mes "[巴杰特·蒂布莱克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "首先，我要收集动物样本。";
 				mes "这里经常能看到变异动物。最近，其中一种被确认是^0000FF全新的物种^000000。";
 				next;
-				mes "[巴杰特·蒂布莱克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^0000FF这种新型昆虫被称为火虫，因为它们周身被火焰包围，生活在那样的火坑里。^000000";
 				next;
-				mes "[巴杰特·蒂布莱克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "爬出火坑的火虫很快就会死亡。";
 				next;
-				mes "[巴杰特·蒂布莱克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请调查^0000FF20个火坑，并从火虫身上收集50个燃烧的虫茧^000000。";
 				mes "过程中小心别烧伤自己。";
 				close;
 			}
-			mes "[巴杰特·蒂布莱克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，";
 			mes "做得好！";
 			mes "你完成任务的速度比我预想的快。";
@@ -2738,26 +2738,26 @@ moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 			setquest 11356;// Specimen Collection
 			ep14_3_newerabs = 17;
 			next;
-			mes "[巴杰特·蒂布莱克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎哟，好烫！";
 			mes "*呼哧呼哧*";
 			mes "趁它们冷却前，我先把它们装瓶，然后送到实验室。";
 			next;
 		}
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在轮到植物样本了。";
 		mes "我们的目标植物叫索妮雅，是一种非常原始的植物。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "乍看之下，索妮雅像塑料管，但结构非常简单。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它们不难收集。请^0000FF采集50株索妮雅，并带给我50根美味枝干^000000。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "索妮雅样本是我最后要收集的样本。如果你碰巧^0000FF看到了奇怪的索妮雅^000000，请马上告诉我。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "尽量不要离基地太远。外面太危险了。";
 		mes "平安回来。";
 		next;
@@ -2769,56 +2769,56 @@ moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 	}
 	if (ep14_3_newerabs == 19) {
 		if (countitem(6690) < 25) {
-			mes "[巴杰特·蒂布莱克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "索妮雅收集得怎么样了？";
 			close;
 		}
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，";
 		mes "欢迎回来！";
 		mes "我忘了告诉你，^0000FF不要靠近这里中央的岩石^000000。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "意识到自己的疏忽后，我担心你的安全，立刻叫了救援队。很高兴你毫发无伤地回来了。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我为自己之前的混蛋态度道歉。";
 		mes "繁重的工作让我压力很大。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我还有这么多事要做……唉……";
 		next;
 		select("告诉她中央岩石的事。");
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说什么？！";
 		mes "你去那里了？！";
 		mes "而且还毫发无伤地回来了？怎么做到的？";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "其他去那里的人都^0000FF因为岩石释放的有毒气体而陷入昏迷^000000。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你做了什么？";
 		mes "这是重大发现！";
 		next;
 		select("转述发生的事情。");
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你吃了一根美味枝干。";
 		mes "好吧，我知道这种茎没有毒，但还没完成成分研究。你有感到什么副作用吗？";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇！";
 		mes "这真是重大发现！";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最好回去继续研究……";
 		mes "不，我们首先必须^0000FF用美味枝干治疗那些患者。请把茎送过去。^000000";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF鲁根教官负责照顾那些患者^000000，请把美味枝干交给他。";
 		mes "请把文件交给我。我来替你签字。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最好回去继续研究植物茎。我会找其他人帮忙。";
 		mes "这次算你走运。最好别养成吃地上东西的习惯。";
 		erasequest 11358;// Specimen Collection
@@ -2827,47 +2827,47 @@ moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 		close;
 	}
 	if (ep14_3_newerabs == 20) {
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最好回去继续研究……";
 		mes "不，我们首先必须^0000FF用美味枝干治疗那些患者。请把茎送过去。^000000";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF鲁根教官负责照顾那些患者^000000，请把美味枝干交给他。";
 		mes "请把文件交给我。我来替你签字。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最好回去继续研究植物茎。我会找其他人帮忙。";
 		mes "这次算你走运。最好别养成吃地上东西的习惯。";
 		close;
 	}
 	if (ep14_3_newerabs < 23) {
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你见到鲁根教官了吗？";
 		close;
 	}
 	if (ep14_3_newerabs == 23) {
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈哈！";
 		mes "进展如何？";
 		mes "他们奏效了，对吧？";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我对自己的研究很有信心。";
 		mes "你看似鲁莽的决定救了许多人的性命。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样一来，我们很快就能彻底调查那个^0000FF可疑的洞穴^000000了！";
 		next;
 		select("什么洞穴？");
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，就是释放有毒气体的洞穴。";
 		mes "气体在空气中^0000FF浓得让你看不清洞穴入口^000000。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们给了第一批疫苗的人已经前往洞穴了。";
 		mes "目前还没有他们的消息。我希望这是个好兆头。";
 		next;
-		mes "[巴杰特·蒂布莱克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要不是有你们两个，我可能已经气得把头发全扯掉了。";
 		mes "干得好，你们两个！";
 		getexp 0,1500000;
@@ -2875,19 +2875,19 @@ moro_vol,142,131,5	script	巴杰特·蒂布莱克#ep14bs	4_M_ALCHE_D,{
 		ep14_3_newerabs = 24;
 		close;
 	}
-	mes "[巴杰特·蒂布莱克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们给了第一批疫苗的人已经前往洞穴了。";
 	mes "目前还没有他们的消息。我希望这是个好兆头。";
 	next;
-	mes "[巴杰特·蒂布莱克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "要不是有你们两个，我可能已经气得把头发全扯掉了。";
 	mes "干得好，你们两个！";
 	close;
 }
 
-moro_vol,198,179,4	script	塔玛林#ep14bs_st	4_M_TAMARIN,{
+moro_vol,198,179,4	script	狨猴#ep14bs_st::塔玛林#ep14bs_st	4_M_TAMARIN,{
 	if (ep14_3_newerabs < 18) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我们没时间耗在这里！";
 		cutin "ep143_taang.bmp",2;
@@ -2895,28 +2895,28 @@ moro_vol,198,179,4	script	塔玛林#ep14bs_st	4_M_TAMARIN,{
 	}
 	if (ep14_3_newerabs == 18) {
 		if (countitem(6690) < 25 || checkquest(11357,HUNTING) != 2) {
-			mes "[塔玛林]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^0000FF收集到25根美味枝干后，到这里找我。^000000";
 			cutin "ep143_tasta.bmp",2;
 			close3;
 		}
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不记得这块岩石有这么大。";
 		mes "也不记得周围有这些奇怪的东西。";
 		mes "我还闻到了^0000FF烟味^000000。";
 		cutin "ep143_tahuk.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还有，";
 		mes "我也不记得见过^0000FF这么多奇怪的动物和植物^000000。";
 		mes "这些是索妮雅，对吧？之前没这么多。";
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果真是这样，我就不用挨饿了。";
 		mes "在我尝过的所有植物中，索妮雅最好吃，毒性也最低。";
 		cutin "ep143_taang.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + strcharinfo(0) + "，你想尝尝吗？";
 		mes "为了留个纪念，我带了几根茎。";
 		cutin "ep143_tasmi.bmp",2;
@@ -2925,12 +2925,12 @@ moro_vol,198,179,4	script	塔玛林#ep14bs_st	4_M_TAMARIN,{
 		mes "- 索妮雅的味道 -";
 		mes "浓稠且温暖舌头的汁液充满口腔，散发出美味的香气。";
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你觉得怎么样？";
 		mes "很好吃吧？";
 		cutin "ep143_tahuk.bmp",2;
 		next;
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只剩几根了。我们轮流再收集一些吧。";
 		cutin "ep143_tasmi.bmp",2;
 		erasequest 11357;// Specimen Collection
@@ -2939,81 +2939,81 @@ moro_vol,198,179,4	script	塔玛林#ep14bs_st	4_M_TAMARIN,{
 		close3;
 	}
 	if (ep14_3_newerabs == 19) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只剩几根了。我们轮流再收集一些吧。";
 		cutin "ep143_tasmi.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs < 23) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快点，";
 		mes "赶紧去找^0000FF鲁根教官^000000！";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
 	if (ep14_3_newerabs == 23) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢诸神，谁能想到我饿急了吃下的东西竟然救了我？";
 		mes "我们去向巴杰特报告吧。";
 		cutin "ep143_tahuk.bmp",2;
 		close3;
 	}
-	mes "[塔玛林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊！";
 	mes "" + strcharinfo(0) + "，趁其他人还没探索，快进去！";
 	cutin "ep143_tahuk.bmp",2;
 	next;
 	if (select( "进入。", "退出。" ) == 2) {
-		mes "[塔玛林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……";
 		cutin "ep143_taang.bmp",2;
 		close3;
 	}
-	mes "[塔玛林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "地面很暗。小心脚下！";
 	close2;
 	warp "moro_cav",40,50;
 	end;
 }
 
-moro_vol,105,71,5	script	鲁根教官#ep14bs	4_M_YOUNGKNIGHT,{
+moro_vol,105,71,5	script	教官 鲁根#ep14bs::鲁根教官#ep14bs	4_M_YOUNGKNIGHT,{
 	if (ep14_3_newerabs < 20) {
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……";
 		mes "你为什么这么鲁莽？";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这值得吗？";
 		mes "...";
 		close;
 	}
 	if (ep14_3_newerabs == 20) {
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……";
 		mes "你为什么这么鲁莽？";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这值得吗？";
 		mes "...";
 		next;
 		if (select( "和他说话。", "不了，他看起来太难过，不想说话。" ) == 2) {
-			mes "[鲁根教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "唉……";
 			mes "这只是……";
 			close;
 		}
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我能怎样帮助你？";
 		mes "如果你需要医疗帮助，请在接待处描述症状，然后等待救援。";
 		next;
 		select("交出美味枝干。");
 		if (countitem(6690) < 25) {
-			mes "[鲁根教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这些不够。";
 			mes "请确认你拥有的美味枝干数量。";
 			close;
 		}
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是认真的吗？";
 		mes "蒂布莱克博士派你来的，所以我应该相信你。";
 		mes "我会把这些喂给病人。";
@@ -3024,14 +3024,14 @@ moro_vol,105,71,5	script	鲁根教官#ep14bs	4_M_YOUNGKNIGHT,{
 		close;
 	}
 	if (ep14_3_newerabs == 21) {
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是认真的吗？";
 		mes "蒂布莱克博士派你来的，所以我应该相信你。";
 		mes "我会把这些喂给病人。";
 		close;
 	}
 	if (ep14_3_newerabs == 22) {
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！";
 		mes "奥托！";
 		mes "你能看到我吗？";
@@ -3039,15 +3039,15 @@ moro_vol,105,71,5	script	鲁根教官#ep14bs	4_M_YOUNGKNIGHT,{
 		mes "[奥托]";
 		mes "呃……";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！";
 		mes "成功了！";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "病人们恢复得非常明显，不过现在还需要卧床。";
 		mes "我会把茎喂给病情最重的病人，并等待蒂布莱克博士完成研究。";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会给你一份病人对茎的反应报告。请把报告带给^0000FF蒂布莱克博士^000000。";
 		mes "哈哈。";
 		mes "成功了！";
@@ -3057,26 +3057,26 @@ moro_vol,105,71,5	script	鲁根教官#ep14bs	4_M_YOUNGKNIGHT,{
 		close;
 	}
 	if (ep14_3_newerabs == 23) {
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "病人们恢复得非常明显，不过现在还需要卧床。";
 		mes "我会把茎喂给病情最重的病人，并等待蒂布莱克博士完成研究。";
 		next;
-		mes "[鲁根教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会给你一份病人对茎的反应报告。请把报告带给^0000FF蒂布莱克博士^000000。";
 		mes "哈哈。";
 		mes "成功了！";
 		close;
 	}
-	mes "[鲁根教官]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我很高兴研究结果对我们有利。";
 	mes "我的同伴们正在顺利恢复。";
 	mes "多亏了你。";
 	close;
 }
 
-moro_vol,104,70,4	script	中毒的病人#ep14bs	4_M_LIEMAN,{
+moro_vol,104,70,4	script	中毒的病患#ep14bs::中毒的病人#ep14bs	4_M_LIEMAN,{
 	if (ep14_3_newerabs == 21) {
-		mes "[中毒的病人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		next;
 		mes "- 你给他喂了美味枝干。他的脸色立刻恢复。-";
@@ -3086,38 +3086,38 @@ moro_vol,104,70,4	script	中毒的病人#ep14bs	4_M_LIEMAN,{
 		close;
 	}
 	if (ep14_3_newerabs == 22) {
-		mes "[中毒的病人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		next;
 		mes "- 你给他喂了美味枝干。他的脸色立刻恢复。-";
 		mes "- 和鲁根教官交谈。-";
 		close;
 	}
-	mes "[中毒的病人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃……";
 	close;
 }
 
-moro_vol,101,72,4	script	病人#ep14bs1	4_M_PATIENT,{
-	mes "[病人]";
+moro_vol,101,72,4	script	病患#ep14bs1::病人#ep14bs1	4_M_PATIENT,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃……";
 	close;
 }
 
-moro_vol,101,74,4	script	病人#ep14bs2	4_F_FAIRYKID6,{
-	mes "[病人]";
+moro_vol,101,74,4	script	病患#ep14bs2::病人#ep14bs2	4_F_FAIRYKID6,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "*呻吟*";
 	close;
 }
 
-moro_vol,103,71,6	script	病人#ep14bs3	4_F_PATIENT,{
-	mes "[病人]";
+moro_vol,103,71,6	script	病患#ep14bs3::病人#ep14bs3	4_F_PATIENT,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "*低吟*";
 	close;
 }
 
-moro_vol,106,69,4	script	病人#ep14bs4	4_M_PATIENT,{
-	mes "[病人]";
+moro_vol,106,69,4	script	病患#ep14bs4::病人#ep14bs4	4_M_PATIENT,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊……呃……";
 	close;
 }
@@ -3126,7 +3126,7 @@ moro_vol,106,69,4	script	病人#ep14bs4	4_M_PATIENT,{
 moro_cav,64,13,0	warp	#ep14_3What caveExit	3,3,moro_vol,198,176
 
 // Merchants
-moro_vol,95,96,6	shop	工具商人	4_CAT_DOWN,611:-1,501:-1,502:-1,503:-1,504:-1,645:-1,656:-1,601:-1,602:-1,1065:-1,1750:-1
+moro_vol,95,96,6	shop	道具商人::工具商人	4_CAT_DOWN,611:-1,501:-1,502:-1,503:-1,504:-1,645:-1,656:-1,601:-1,602:-1,1065:-1,1750:-1
 
 
 moro_vol,1,2,3	script	#f_boss_c	CLEAR_NPC,{
@@ -3214,8 +3214,8 @@ OnTimer60000:
 moro_vol,1,2,3	duplicate(#f_boss0)	#f_boss1	CLEAR_NPC
 moro_vol,1,2,3	duplicate(#f_boss0)	#f_boss2	CLEAR_NPC
 
-moro_vol,86,167,7	script	前线基地守卫#1	4_M_CRU_HEAD,3,3,{
-	mes "[前线基地守卫]";
+moro_vol,86,167,7	script	前哨基地守卫#1::前线基地守卫#1	4_M_CRU_HEAD,3,3,{
+	mes "[" + strnpcinfo(1) + "]";
 	.@num = atoi(strnpcinfo(2));
 	if (.@num == 1 || .@num == 11)
 		mes "这里太危险了。马上回基地！";
@@ -3266,85 +3266,85 @@ OnTouchNPC:
 	unitwarp 0,"moro_vol",145,148;
 	end;
 }
-moro_vol,93,166,7	duplicate(前线基地守卫#1)	前线基地守卫#2	4_M_CRU_KNT,3,3
-moro_vol,100,165,7	duplicate(前线基地守卫#1)	前线基地守卫#3	4_M_CRU_SOLD,3,3
-moro_vol,107,164,7	duplicate(前线基地守卫#1)	前线基地守卫#4	4_M_KY_HEAD,3,3
-moro_vol,114,162,7	duplicate(前线基地守卫#1)	前线基地守卫#5	4_M_KY_KIYOM,3,3
-moro_vol,121,160,7	duplicate(前线基地守卫#1)	前线基地守卫#6	4_M_KY_KNT,3,3
-moro_vol,128,158,7	duplicate(前线基地守卫#1)	前线基地守卫#7	4_M_CRU_HEAD,3,3
-moro_vol,135,155,7	duplicate(前线基地守卫#1)	前线基地守卫#8	4_M_CRU_KNT,3,3
-moro_vol,142,152,7	duplicate(前线基地守卫#1)	前线基地守卫#9	4_M_CRU_SOLD,3,3
-moro_vol,149,148,7	duplicate(前线基地守卫#1)	前线基地守卫#10	4_M_KY_HEAD,3,3
-moro_vol,156,144,7	duplicate(前线基地守卫#1)	前线基地守卫#11	4_M_KY_KIYOM,3,3
-moro_vol,162,137,6	duplicate(前线基地守卫#1)	前线基地守卫#12	4_M_KY_KNT,3,3
-moro_vol,168,130,6	duplicate(前线基地守卫#1)	前线基地守卫#13	4_M_CRU_HEAD,3,3
-moro_vol,174,123,6	duplicate(前线基地守卫#1)	前线基地守卫#14	4_M_CRU_KNT,3,3
-moro_vol,178,116,6	duplicate(前线基地守卫#1)	前线基地守卫#15	4_M_CRU_SOLD,3,3
-moro_vol,182,109,6	duplicate(前线基地守卫#1)	前线基地守卫#16	4_M_KY_HEAD,3,3
-moro_vol,185,102,6	duplicate(前线基地守卫#1)	前线基地守卫#17	4_M_KY_KIYOM,3,3
-moro_vol,187,95,6	duplicate(前线基地守卫#1)	前线基地守卫#18	4_M_KY_KNT,3,3
-moro_vol,189,88,6	duplicate(前线基地守卫#1)	前线基地守卫#19	4_M_CRU_HEAD,3,3
-moro_vol,191,81,6	duplicate(前线基地守卫#1)	前线基地守卫#20	4_M_CRU_KNT,3,3
+moro_vol,93,166,7	duplicate(前线基地守卫#1)	前哨基地守卫#2::前线基地守卫#2	4_M_CRU_KNT,3,3
+moro_vol,100,165,7	duplicate(前线基地守卫#1)	前哨基地守卫#3::前线基地守卫#3	4_M_CRU_SOLD,3,3
+moro_vol,107,164,7	duplicate(前线基地守卫#1)	前哨基地守卫#4::前线基地守卫#4	4_M_KY_HEAD,3,3
+moro_vol,114,162,7	duplicate(前线基地守卫#1)	前哨基地守卫#5::前线基地守卫#5	4_M_KY_KIYOM,3,3
+moro_vol,121,160,7	duplicate(前线基地守卫#1)	前哨基地守卫#6::前线基地守卫#6	4_M_KY_KNT,3,3
+moro_vol,128,158,7	duplicate(前线基地守卫#1)	前哨基地守卫#7::前线基地守卫#7	4_M_CRU_HEAD,3,3
+moro_vol,135,155,7	duplicate(前线基地守卫#1)	前哨基地守卫#8::前线基地守卫#8	4_M_CRU_KNT,3,3
+moro_vol,142,152,7	duplicate(前线基地守卫#1)	前哨基地守卫#9::前线基地守卫#9	4_M_CRU_SOLD,3,3
+moro_vol,149,148,7	duplicate(前线基地守卫#1)	前哨基地守卫#10::前线基地守卫#10	4_M_KY_HEAD,3,3
+moro_vol,156,144,7	duplicate(前线基地守卫#1)	前哨基地守卫#11::前线基地守卫#11	4_M_KY_KIYOM,3,3
+moro_vol,162,137,6	duplicate(前线基地守卫#1)	前哨基地守卫#12::前线基地守卫#12	4_M_KY_KNT,3,3
+moro_vol,168,130,6	duplicate(前线基地守卫#1)	前哨基地守卫#13::前线基地守卫#13	4_M_CRU_HEAD,3,3
+moro_vol,174,123,6	duplicate(前线基地守卫#1)	前哨基地守卫#14::前线基地守卫#14	4_M_CRU_KNT,3,3
+moro_vol,178,116,6	duplicate(前线基地守卫#1)	前哨基地守卫#15::前线基地守卫#15	4_M_CRU_SOLD,3,3
+moro_vol,182,109,6	duplicate(前线基地守卫#1)	前哨基地守卫#16::前线基地守卫#16	4_M_KY_HEAD,3,3
+moro_vol,185,102,6	duplicate(前线基地守卫#1)	前哨基地守卫#17::前线基地守卫#17	4_M_KY_KIYOM,3,3
+moro_vol,187,95,6	duplicate(前线基地守卫#1)	前哨基地守卫#18::前线基地守卫#18	4_M_KY_KNT,3,3
+moro_vol,189,88,6	duplicate(前线基地守卫#1)	前哨基地守卫#19::前线基地守卫#19	4_M_CRU_HEAD,3,3
+moro_vol,191,81,6	duplicate(前线基地守卫#1)	前哨基地守卫#20::前线基地守卫#20	4_M_CRU_KNT,3,3
 
 
 // Flaming Basin and Doom Prayers
 // gef_fild02,106,225,4	script	基地调查员#bl	4_M_KY_HEAD,{
-moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
+moro_vol,131,103,3	script	驻扎地调查官#bl::基地调查员#bl	4_M_KY_HEAD,{
 	if (checkweight(1301,3) == 0) {
 		mes "- 物品太多，无法继续对话。-";
 		close;
 	}
 	if (BaseLevel < 150) {
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看起来非常弱！";
 		mes "你为什么来这里？？";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，人手不够！";
 		mes "但我们会等你达到150级。";
 		mes "请稍后再来！";
 		close;
 	}
 	if (ep14_3_fall_bless == 0) {
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你也注意到了吗？";
 		mes "是的，这里的魔物真的很奇怪。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它们似乎是米德加尔特魔物的变种";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "更糟的是，它们的数量正在快速增加。";
 		mes "我们必须密切关注它们。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "遗憾的是，调查非常重要，但大家似乎都很忙，我无法请他们帮忙。";
 		mes "这里并不安全。";
 		next;
 		switch( select( "发生什么事了？", "你为什么不能自己做？", "想让我来做吗？" ) ) {
 		case 1:
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这里的环境特征让调查变得非常困难。";
 			mes "景色看起来很熟悉，但又有些……奇怪。";
 			mes "这里看似濒临彻底崩溃，但我能看到充满活力的生长。";
 			next;
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这里是什么地方？";
 			close;
 		case 2:
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "和所有贵族出身的人一样，";
 			mes "我只知道如何命令别人。";
 			emotion 4, playerattached();
 			close;
 		case 3:
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在那些魔物中，";
 			mes "^0000FF火焰秃鹰^000000看起来最危险。";
 			mes "那些尾巴燃烧的鸟会冲向它们看到的所有人。你也许能逃跑，但总会被烧伤。";
 			next;
 			select("想让我猎杀火焰秃鹰吗？");
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不，我没有人处理它们的尸体。";
 			mes "毕竟我的目的是调查。";
 			mes "只要带给我";
@@ -3352,12 +3352,12 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 			mes "来自^0000FF火焰秃鹰^000000。";
 			next;
 			if (select( "我和你一样忙！", "明白了。" ) == 1) {
-				mes "[基地调查员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你表现得好像会帮我。";
 				mes "你是在耍我吗？";
 				close;
 			}
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "带给我";
 			mes "^FF000015根火焰羽毛^000000";
 			mes "来自^0000FF火焰秃鹰^000000。";
@@ -3369,50 +3369,50 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 	}
 	if (ep14_3_fall_bless == 1) {
 		if (countitem(6691) < 15) {
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我以为你现在应该在努力工作，";
 			mes "收集^FF000015根火焰羽毛^000000";
 			mes "来自^0000FF火焰秃鹰^000000，";
 			mes "所以我召集了";
 			mes "我的调查员举行紧急会议。";
 			next;
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "而你还在城里，";
 			mes "悠闲地散步。";
 			close;
 		}
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来了";
 		mes "全部^FF000015根火焰羽毛^000000。";
 		mes "谢谢。现在我可以";
 		mes "继续调查。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最重要的是，我终于可以享受火焰的温暖了！";
 		emotion 21;
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你注意到我脸上担忧的表情了吗？";
 		next;
 		if (select( "没有，从没注意。", "我马上就注意到了。" ) == 1) {
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这不是我期待的回答，";
 			mes "不过，我还是要继续说";
 			mes "事先准备好的那番话。";
 			mes "唉……";
 			next;
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一名侦察员去了火焰盆地，";
 			mes "到现在还没回来。";
 			mes "我想让你去确认";
 			mes "他发生了什么。";
 			next;
 			if (select( "做不到。", "好的。" ) == 1) {
-				mes "[基地调查员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我知道你最终会做的！";
 				close;
 			}
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "侦察员前往了魔物密集的区域。";
 			mes "仔细寻找他。";
 			delitem 6691,15;// BurningFeather
@@ -3421,23 +3421,23 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 			ep14_3_fall_bless = 2;
 			close;
 		}
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		// google translate..
 		mes "不错！你们这些人……";
 		mes "请吃三碗贡菜！";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一名侦察员去了火焰盆地，";
 		mes "到现在还没回来。";
 		mes "我想让你去确认";
 		mes "他发生了什么。";
 		next;
 			if (select( "做不到。", "好的。" ) == 1) {
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道你最终会做的！";
 			close;
 		}
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "侦察员前往了魔物密集的区域。";
 		mes "仔细寻找他。";
 		delitem 6691,15;// BurningFeather
@@ -3447,66 +3447,66 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 		close;
 	}
 	if (ep14_3_fall_bless < 4) {
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我派你去寻找侦察员。";
 		mes "你是回来了，还是根本没出发？";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去魔物密集的地方寻找侦察员！";
 		close;
 	}
 	if (ep14_3_fall_bless == 4) {
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到侦察员了吗？";
 		mes "他正在休息并重写巡逻日志？";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他没有让我失望。";
 		mes "他是个好士兵！";
 		emotion 21;
 		emotion 4, playerattached();
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然找到了失踪的侦察员，";
 		mes "我想让你继续下一个任务。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你知道神秘魔物的数量";
 		mes "在这片火焰盆地中一直在增加。";
 		next;
 		select("我知道。");
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "事情可能很快失控";
 		mes "如果它们扩散到外界。";
 		mes "如果它们在米德加尔特或其他世界遇到其他魔物，";
 		mes "它们可能会大肆破坏，";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "传播致命病毒，";
 		mes "繁殖出强大的变种，";
 		mes "甚至造成更糟的后果。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "目前最好的解决办法是";
 		mes "进行大规模清除，我希望你来完成。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请消灭";
 		mes "20只^0000FF火焰泥人^000000";
 		mes "以及^0000FF火焰伞蜥^000000。";
 		next;
 		if (select( "你自己做！", "我会尽力。" ) == 1) {
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我讨厌重复自己，";
 			mes "但和所有贵族出身的人一样，";
 			mes "我只知道如何命令别人。";
 			emotion 19, playerattached();
 			close;
 		}
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快点，那些怪物现在还在繁殖。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请消灭";
 		mes "20 只^0000FF火焰泥人^000000";
 		mes "以及 20 只^0000FF火焰伞蜥^000000。";
@@ -3518,15 +3518,15 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 	}
 	if (ep14_3_fall_bless == 5) {
 		if (checkquest(1268,HUNTING) == 2 && checkquest(1269,HUNTING) == 2) {
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你消灭了";
 			mes "20 只^0000FF火焰泥人^000000";
 			mes "以及我命令的 20 只^0000FF火焰伞蜥^000000。";
 			next;
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "多亏了你，我们找到了有效对付这些怪物的方法。";
 			next;
-			mes "[基地调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从现在开始由我的士兵接手。";
 			completequest 1268;	// Flaming Basin and Doom Prayers
 			completequest 1269;	// Flaming Basin and Doom Prayers
@@ -3535,21 +3535,21 @@ moro_vol,131,103,3	script	基地调查员#bl	4_M_KY_HEAD,{
 			getexp 0,100000;
 			close;
 		}
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快点，那些怪物正在";
 		mes "不断繁殖。";
 		next;
-		mes "[基地调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请消灭";
 		mes "20 只^0000FF火焰泥人^000000";
 		mes "以及 20 只^0000FF火焰伞蜥^000000。";
 		close;
 	}
-	mes "[基地调查员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这里交给我们处理，你继续向北走。";
 	mes "我希望你处理一下那边那群奇怪的人。";
 	next;
-	mes "[基地调查员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他们突然凭空出现。";
 	mes "想尽办法骚扰我们。";
 	emotion 28;
@@ -3561,76 +3561,76 @@ OnInit:
 }
 
 //gef_fild02,106,225,4	script	侦察员#bl	4_M_CRU_SOLD,{
-moro_vol,234,301,3	script	侦察员#bl	4_M_CRU_SOLD,{
+moro_vol,234,301,3	script	侦察兵#bl::侦察员#bl	4_M_CRU_SOLD,{
 	if (checkweight(1301,3) == 0) {
 		mes "- 由于携带的物品太多，无法继续对话。-";
 		close;
 	}
 	if (ep14_3_fall_bless == 0) {
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我被派来调查这些怪物。";
 		mes "让我一个人";
 		mes "待在这个危险的地方却没有援军，太不公平了！";
 		close;
 	}
 	if (ep14_3_fall_bless == 1) {
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我被派来调查这些怪物。";
 		mes "让我一个人";
 		mes "待在这个危险的地方却没有援军，太不公平了！";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我要擅自离队了！";
 		close;
 	}
 	if (ep14_3_fall_bless == 2) {
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎！";
 		mes "我急需帮助！";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我独自来这里执行侦察任务。";
 		mes "一群怪物包围了我，让我无法离开，";
 		mes "所以我只能留在这里。";
 		next;
 		if (select("那就继续待着吧。", "和我一起回去吧。") == 1) {
-			mes "[侦察员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是怕我会求助，";
 			mes "我明白了。";
 			close;
 		}
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没有受伤，只是有几处擦伤，";
 		mes "但^0000FF火焰泥人^000000偷走了";
 		mes "我的^FF0000巡逻日志^000000。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有^FF0000巡逻日志^000000我就无法回去。";
 		mes "如果我的上级不";
 		mes "对我进行军事审判，我就算走运了。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听起来不可怜吗？";
 		mes "这难道不能激励你帮助我吗？";
 		next;
 		if (select("才不要。", "确实。") == 1) {
-			mes "[侦察员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，那我只能";
 			mes "留在这里等援军。";
 			close;
 		}
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，你可以这样帮我：";
 		mes "请带来^FF0000巡逻日志^000000";
 		mes "来自^0000FF火焰泥人^000000的。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "日志可能被那些野蛮怪物撕成了几页。";
 		mes "我不在乎；我仍然需要把它们交给上级。";
 		mes "请带给我";
 		mes "20 页^FF0000巡逻日志^000000。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "小心——它们会伏击你，在你察觉前抢走^FF0000巡逻日志^000000。";
 		completequest 1265;	// Flaming Basin and Doom Prayers
 		setquest 1266;	// Flaming Basin and Doom Prayers
@@ -3639,24 +3639,24 @@ moro_vol,234,301,3	script	侦察员#bl	4_M_CRU_SOLD,{
 	}
 	if (ep14_3_fall_bless == 3) {
 		if (countitem(6692) < 20) {
-			mes "[侦察员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请带来 20 页^FF0000巡逻日志^000000";
 			mes "来自^0000FF火焰泥人^000000的。";
 			next;
-			mes "[侦察员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "小心——它们会伏击你，在你察觉前抢走^FF0000巡逻日志^000000。";
 			close;
 		}
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经找到";
 		mes "20 页^FF0000巡逻日志^000000了吗？";
 		mes "早知道你这么快，我就让你带 100 页了。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一想到回基地后可能受到的惩罚，";
 		mes "我的伤口就隐隐作痛。";
 		next;
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "整理完这些页面后我就跟着你。";
 		mes "请向调查员报告，并替我说几句好话。";
 		delitem 6692,20;// PatrolLog
@@ -3666,12 +3666,12 @@ moro_vol,234,301,3	script	侦察员#bl	4_M_CRU_SOLD,{
 		close;
 	}
 	if (ep14_3_fall_bless == 4) {
-		mes "[侦察员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "整理完这些页面后我就跟着你。";
 		mes "请向调查员报告，并替我说几句好话。";
 		close;
 	}
-	mes "[侦察员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我被派来调查这些怪物。";
 	mes "让我一个人";
 	mes "待在这个危险的地方却没有援军，太不公平了！";
@@ -3715,29 +3715,29 @@ moro_vol,232,266,0	duplicate(#bg1)	#bg10	HIDDEN_WARP_NPC,2,2
 
 
 // moro_vol,104,141,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
-moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
+moro_vol,91,197,3	script	灭亡祈福会教主#bl::末日祈祷者首领#bl	4_M_BELIEVER01,{
 	if (checkweight(1301,3) == 0) {
 		mes "- 由于携带的物品太多，无法继续对话。-";
 		close;
 	}
 	if (ep14_3_fall_bless < 6) {
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "末日终于降临了！";
 		mes "毁灭就是祝福！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "引导我们进入内部！";
 		mes "我们是众神选中的人！";
 		mes "世界毁灭之日开始了。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "以血还血～～";
 		mes "我是说，毁灭很好！";
 		mes "毁灭就是祝福！";
 		close;
 	}
 	if (ep14_3_fall_bless == 6) {
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "末日终于降临了！";
 		mes "毁灭就是祝福！";
 		next;
@@ -3749,66 +3749,66 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		mes "毁灭！祝福！";
 		mes "我们是被选中的人！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "引导我们进入内部！";
 		mes "我们是众神选中的人！";
 		mes "世界毁灭之日开始，";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "枪是好的！";
 		mes "蚯蚓 是邪恶的！";
 		next;
 		switch( select( "你侍奉哪位神？", "你们是谁？", "回去！" ) ) {
 		case 1:
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们侍奉毁灭之神！";
 			mes "他掌管一切毁灭——从一颗星辰的毁灭到整个星系的毁灭，";
 			mes "从我的早餐腐坏到晚餐腐坏。";
 			close;
 		case 2:
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们是末日祈祷者！";
 			mes "我们侍奉毁灭之神，";
 			mes "并祈祷他以世界末日祝福我们。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只有当其他一切都被毁灭后，";
 			mes "我们才能真正得到祝福。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那些突然出现的裂缝";
 			mes "地面上的裂缝。";
 			mes "那些会说话的猫。";
 			mes "那些绿色巨人。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们证明末日将近！";
 			mes "哦，末日已经到来！";
 			mes "毁灭就是祝福！";
 			close;
 		case 3:
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不，我们不会！";
 			mes "末日终于降临了！";
 			mes "我们渴望这份祝福很久了！";
 			mes "我想在所有人之前到达那里！";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "绝不，我们不会走！";
 			mes "让我们进去！";
 			mes "我们被毁灭之神选中了。";
 			mes "和你不同，我们是无敌的！";
 			next;
 			select("你能证明吗？");
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你竟敢挑战我？！";
 			mes "好，我证明给你看！";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "搜索这片末日之地，找到^FF000040 祈福之石^000000。";
 			mes "把它们扔向我们，你就会看到。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们击中我们身体的瞬间，";
 			mes "就会砰的一声变成花瓣！";
 			mes "毁灭就是祝福！";
@@ -3825,13 +3825,13 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 			mes "并收集 40 个^FF0000祈福之石^000000吗？";
 			next;
 			if (select( "不，我一点也不在乎！", "我会收集石头。" ) == 1) {
-				mes "[末日祈祷者首领]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我看你是害怕见证神的恩典，担心那会改变你的想法。";
 				mes "别烦我，滚开！";
 				mes "毁灭就是祝福！";
 				close;
 			}
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去吧，带来^FF0000祈福之石^000000扔向我们！";
 			mes "你会看到石头变成飘落的花瓣！";
 			mes "然后你会哭着求我让你加入我们。";
@@ -3843,23 +3843,23 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 	}
 	if (ep14_3_fall_bless == 7) {
 		if (countitem(6693) < 40) {	// Stone_Of_Blessing
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "搜索这片末日之地，找到^FF000040 祈福之石^000000。";
 			mes "把它们扔向我们，你就会看到。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们击中我们身体的瞬间， 就会砰的一声变成花瓣！";
 			mes "毁灭就是祝福！";
 			next;
 			mes "猎杀^0000FF火焰巨石怪^000000并收集 40 个^FF0000祈福之石^000000。";
 			close;
 		}
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来了 40 个^FF0000祈福之石^000000。";
 		mes "好，我们准备好了。";
 		mes "把石头扔向我们！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备见证奇迹吧！";
 		mes "来吧，用力打我们！";
 		mes "毁灭就是祝福！";
@@ -3913,7 +3913,7 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		emotion 19, getnpcid(0, "末日祈祷者#bl11");
 		emotion 19, getnpcid(0, "末日祈祷者#bl12");
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好痛！";
 		mes "痛死了！";
 		mes "停下！别再打我的脸！";
@@ -3957,7 +3957,7 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		emotion 19, getnpcid(0, "末日祈祷者#bl11");
 		emotion 19, getnpcid(0, "末日祈祷者#bl12");
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好痛！";
 		mes "痛死了！";
 		mes "我还没准备好！";
@@ -3965,7 +3965,7 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		close;
 	}
 	if (ep14_3_fall_bless == 8) {
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "兄弟姐妹们，冷静！";
 		mes "那个异教徒用错误的石头骗了我们！";
 		next;
@@ -3994,11 +3994,11 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是懦夫！";
 		mes "我再次命令你。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带来在毁灭之地游荡的怪兽血液。";
 		mes "我会饮下它并悬浮，引导你们走向真正的信仰！";
 		next;
@@ -4008,20 +4008,20 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		mes "我想 30 瓶就够了。";
 		next;
 		if (select( "不，我一点也不在乎！", "我去收集怪兽血液。") == 1) {
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我就知道你会答应！";
 			mes "我能感觉到你害怕见证毁灭之神的恩典。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别烦我，滚开！";
 			mes "毁灭就是祝福！";
 			close;
 		}
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在去带怪兽血液给我！";
 		mes "去猎杀那些可恶的^0000FF火焰伞蜥^000000和^0000FF火焰泥人^000000，带 30 瓶^FF0000怪兽血液^000000给我。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是危险的任务。";
 		mes "你想逃跑我能理解。";
 		mes "如果你真的不听我的劝告，那就随你的便吧。";
@@ -4033,40 +4033,40 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 	}
 	if (ep14_3_fall_bless == 9) {
 		if (countitem(6694) < 30) {
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在去带怪兽血液给我！";
 			mes "去猎杀那些可恶的^0000FF火焰伞蜥^000000和^0000FF火焰泥人^000000，带 30 瓶^FF0000怪兽血液^000000给我。";
 			next;
-			mes "[末日祈祷者首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是危险的任务。";
 			mes "你想逃跑我能理解。";
 			mes "如果你真的不听我的劝告，那就随你的便吧。";
 			mes "哇哈哈哈！";
 			close;
 		}
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "异教徒，你一定太闲了：你真的带来了所有^FF0000怪兽血液^000000。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看啊！";
 		mes "我会喝下它，用力量让自己悬浮！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*咕噜咕噜*";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*哗啦哗啦*";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*咕咚咕咚*";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*嗝*";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*肚子咕噜作响*";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "呃……";
 		emotion 4;
@@ -4090,31 +4090,31 @@ moro_vol,91,197,3	script	末日祈祷者首领#bl	4_M_BELIEVER01,{
 		close;
 	}
 	if (ep14_3_fall_bless == 12) {
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，世界又没毁灭。";
 		mes "我真想现在回家换条干净内裤……";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会等待下一场自然灾害，召集更多信徒召唤毁灭之神！";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过多亏了你，这场意外震撼了所有人，也让他们认清了自己的位置。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的信徒开始怀疑对我的信仰，已经好几个月没交会费了。";
 		mes "我应该奖励你的帮助。";
 		next;
-		mes "[末日祈祷者首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你能参加我们的下一次集会，再次创造奇迹。";
 		completequest 1275;	// Flaming Basin and Doom Prayers
 		ep14_3_fall_bless = 13;
 		getexp 2000000,0;
 		close;
 	}
-	mes "[末日祈祷者首领]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "不过多亏了你，这场意外震撼了所有人，也让他们认清了自己的位置。";
 	next;
-	mes "[末日祈祷者首领]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "希望你能参加我们的下一次集会，再次创造奇迹。";
 	close;
 
@@ -4123,13 +4123,13 @@ OnInit:
 	end;
 }
 
-moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
+moro_vol,95,195,3	script	灭亡祈福会副教主#bl::末日教团副首领#bl	4_F_BELIEVER01,{
 	if (checkweight(1301,3) == 0) {
 		mes "- 由于携带物品过多，无法继续对话。-";
 		close;
 	}
 	if (ep14_3_fall_bless < 10) {
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "末日祈祷者！";
 		mes "更加努力地祈祷！";
 		mes "毁灭就是祝福！";
@@ -4140,14 +4140,14 @@ moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
 		close;
 	}
 	if (ep14_3_fall_bless == 10) {
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "末日祈祷者，不要慌！保持冷静！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "审判很快就会开始，我们将获得祝福。";
 		mes "我们将无所缺乏！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我们一起祈祷，打开祝福之门！";
 		mes "毁灭就是祝福！";
 		next;
@@ -4155,42 +4155,42 @@ moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我看见光了！";
 		mes "只要我手里有 30 个^FF0000火焰巨石怪石牙^000000和 30 个^FF0000火焰伞蜥的项颈^000000（火焰伞蜥掉落）就好了！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "高耸的祝福之门会出现在我们面前，为我们敞开！";
 		next;
 		mes "[末日祈祷者们]";
 		mes "哦！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "末日祈祷者，向前冲，摧毁沿途一切，用赤手空拳无畏地攻击那些危险怪物！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带 30 个^FF0000火焰巨石怪石牙^000000和 30 个^FF0000火焰伞蜥的项颈^000000（火焰伞蜥掉落）给我。";
 		next;
 		if (select( "不，我一点也不在乎！", "我会带来。" ) == 1) {
-			mes "[末日教团副首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听好了，末日祈祷者！";
 			mes "那个无情的异教徒根本不在乎我们。";
 			mes "真是太好了！";
 			next;
-			mes "[末日教团副首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在用赤手空拳猎杀那些可恶的怪物，把材料带给我！";
 			next;
-			mes "[末日教团副首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "就算连波利都打不过也别害怕；";
 			mes "我知道你心里和巴风特一样强大！";
 			emotion 19, playerattached();
 			close;
 		}
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，末日祈祷者！";
 		mes "再给这个异教徒一次获得祝福的机会！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在带 30 个^FF0000火焰巨石怪石牙^000000和 30 个^FF0000火焰伞蜥的项颈^000000（火焰伞蜥掉落）给我。";
 		completequest 1273;	// Flaming Basin and Doom Prayers
 		setquest 1274;	// Flaming Basin and Doom Prayers
@@ -4199,11 +4199,11 @@ moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
 	}
 	if (ep14_3_fall_bless == 11) {
 		if (countitem(6695) < 30 || countitem(6696) < 30) {
-			mes "[末日教团副首领]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在带 30 个^FF0000火焰巨石怪石牙^000000和 30 个^FF0000火焰伞蜥的项颈^000000（火焰伞蜥掉落）给我。";
 			close;
 		}
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，末日祈祷者，欢呼吧——我们终于集齐了所有材料！";
 		mes "毁灭就是祝福！";
 		next;
@@ -4211,7 +4211,7 @@ moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		next;
-		mes "[末日教团副首领]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我们一起祈祷，打开祝福之门！";
 		next;
 		mes "[末日祈祷者们]";
@@ -4270,181 +4270,181 @@ moro_vol,95,195,3	script	末日教团副首领#bl	4_F_BELIEVER01,{
 		ep14_3_fall_bless = 12;
 		close;
 	}
-	mes "[末日教团副首领]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜……我好害怕……";
 	mes "要是我一个人，我早就逃跑了。";
 	mes "太可怕了。我还要再哭一会儿……";
 	close;
 }
 
-moro_vol,100,183,1	script	基地哨兵#bl	4_M_KY_SOLD,{
-	mes "[基地哨兵]";
+moro_vol,100,183,1	script	驻扎地哨兵#bl::基地哨兵#bl	4_M_KY_SOLD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这片区域很危险。";
 	mes "请不要独自探索。";
 	close;
 }
-moro_vol,102,188,1	duplicate(基地哨兵#bl)	基地哨兵#bl1	4_M_KY_SOLD
-moro_vol,104,193,1	duplicate(基地哨兵#bl)	基地哨兵#bl2	4_M_KY_SOLD
-moro_vol,95,182,1	duplicate(基地哨兵#bl)	基地哨兵#bl3	4_M_KY_SOLD
-moro_vol,90,181,7	duplicate(基地哨兵#bl)	基地哨兵#bl4	4_M_KY_SOLD
+moro_vol,102,188,1	duplicate(基地哨兵#bl)	驻扎地哨兵#bl1::基地哨兵#bl1	4_M_KY_SOLD
+moro_vol,104,193,1	duplicate(基地哨兵#bl)	驻扎地哨兵#bl2::基地哨兵#bl2	4_M_KY_SOLD
+moro_vol,95,182,1	duplicate(基地哨兵#bl)	驻扎地哨兵#bl3::基地哨兵#bl3	4_M_KY_SOLD
+moro_vol,90,181,7	duplicate(基地哨兵#bl)	驻扎地哨兵#bl4::基地哨兵#bl4	4_M_KY_SOLD
 
-moro_vol,85,196,7	script	末日祈祷者#bl1	4_M_BELIEVER02,{
+moro_vol,85,196,7	script	灭亡祈福会信徒#bl1::末日祈祷者#bl1	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜，好可怕！";
 	mes "我真的想回家！";
 	close;
 }
 
-moro_vol,87,193,7	script	末日祈祷者#bl2	4_M_BELIEVER02,{
+moro_vol,87,193,7	script	灭亡祈福会信徒#bl2::末日祈祷者#bl2	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "我们是被选中的人！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "太可怕了！";
 	mes "一有机会我就要逃跑！";
 	close;
 }
 
-moro_vol,90,191,7	script	末日祈祷者#bl3	4_M_BELIEVER02,{
+moro_vol,90,191,7	script	灭亡祈福会信徒#bl3::末日祈祷者#bl3	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我把拥有的一切都交给了首领，可这到底是为了什么？！";
 	next;
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "...";
 	mes "也许是我祈祷得不够虔诚。";
 	close;
 }
 
-moro_vol,93,189,7	script	末日祈祷者#bl4	4_M_BELIEVER02,{
+moro_vol,93,189,7	script	灭亡祈福会信徒#bl4::末日祈祷者#bl4	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "我们是被选中的人！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜，好可怕！";
 	mes "我真的想回家！";
 	close;
 }
 
-moro_vol,83,193,7	script	末日祈祷者#bl5	4_M_BELIEVER02,{
+moro_vol,83,193,7	script	灭亡祈福会信徒#bl5::末日祈祷者#bl5	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "*嚎哭*";
 	mes "啊，我好害怕！";
 	close;
 }
 
-moro_vol,86,190,7	script	末日祈祷者#bl6	4_M_BELIEVER02,{
+moro_vol,86,190,7	script	灭亡祈福会信徒#bl6::末日祈祷者#bl6	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜，好可怕！";
 	mes "我真的想回家！";
 	close;
 }
 
-moro_vol,89,188,7	script	末日祈祷者#bl7	4_M_BELIEVER02,{
+moro_vol,89,188,7	script	灭亡祈福会信徒#bl7::末日祈祷者#bl7	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "我们是被选中的人！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃，我好害怕！";
 	mes "我不该来的！";
 	close;
 }
 
-moro_vol,93,185,7	script	末日祈祷者#bl8	4_M_BELIEVER02,{
+moro_vol,93,185,7	script	灭亡祈福会信徒#bl8::末日祈祷者#bl8	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜，好可怕！";
 	mes "我真的想回家！";
 	mes "我讨厌首领！";
 	close;
 }
 
-moro_vol,81,197,7	script	末日祈祷者#bl9	4_M_BELIEVER02,{
+moro_vol,81,197,7	script	灭亡祈福会信徒#bl9::末日祈祷者#bl9	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "我们是被选中的人！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我再也无法相信首领了！";
 	mes "我可能比他更适合当首领！";
 	close;
 }
 
-moro_vol,84,201,5	script	末日祈祷者#bl0	4_M_BELIEVER02,{
+moro_vol,84,201,5	script	灭亡祈福会信徒#bl0::末日祈祷者#bl0	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "毁灭就是祝福！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜，好可怕！";
 	mes "太可怕了，我都要吓尿裤子了！";
 	close;
 }
 
-moro_vol,97,187,5	script	末日祈祷者#bl11	4_M_BELIEVER02,{
+moro_vol,97,187,5	script	灭亡祈福会信徒#bl11::末日祈祷者#bl11	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毁灭就是祝福！";
 		mes "我们是被选中的人！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这一切太恐怖了……";
 	mes "也许我的信仰还不够深……";
 	mes "我最好再多捐点钱！";
 	close;
 }
 
-moro_vol,82,189,7	script	末日祈祷者#bl12	4_M_BELIEVER02,{
+moro_vol,82,189,7	script	灭亡祈福会信徒#bl12::末日祈祷者#bl12	4_M_BELIEVER02,{
 	if (ep14_3_fall_bless < 12) {
-		mes "[末日祈祷者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，毁灭之神！";
 		mes "让你的愤怒降临这个世界吧！";
 		mes "让我成为你祝福的唯一受益者！";
 		close;
 	}
-	mes "[末日祈祷者]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这一切太恐怖了……";
 	mes "也许我的信仰还不够深……";
 	mes "我最好再多捐点钱！";

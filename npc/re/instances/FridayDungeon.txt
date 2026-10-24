@@ -8,9 +8,9 @@
 //= 1.1 Clean-up [Capuche]
 //============================================================
 
-gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
+gef_tower,57,170,3	script	玛利亚朱::Marry Jay	4_F_JOB_BLACKSMITH,{
 	if (BaseLevel < 130) {
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的基础等级太低，达到 130 级后再来。";
 		close;
 	}
@@ -18,15 +18,15 @@ gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
 	next;
 	.@day = gettime(DT_DAYOFWEEK);
 	if (.@day != FRIDAY) {
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，好奇的旁观者？我是玛丽·杰伊，负责星期五地下城。";
 		next;
 		select( "什么时候开放？" );
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "地下城开放时间：";
 		mes "^0000FF星期五 00:00 ~ 星期五 23:59^000000";
 		next;
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望星期五到来时能见到你~";
 		close;
 	}
@@ -37,18 +37,18 @@ gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
 		break;
 	case 0:
 	case 1:
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，你进入" + .@md_name$ + "的冷却时间尚未结束。";
 		mes "请先休息，冷却会在每日凌晨 4 点重置。";
 		close;
 	case 2:
 		erasequest 12379;
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冷却时间结束了。";
 		mes "你可以再次进入纪念地下城。";
 		close;
 	}
-	mes "[玛丽·杰伊]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你来得正是时候。";
 	mes "纪念地下城刚好准备开放。";
 	mes "现在要进入吗？";
@@ -60,7 +60,7 @@ gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
 	switch( select( .@menu$, "进入星期五纪念地下城", "取消" ) ) {
 	case 1:
 		instance_create(.@md_name$);
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "纪念地下城已创建。";
 		mes "现在可以进入了。";
 		close;
@@ -83,7 +83,7 @@ gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
 			mes "发生未知错误。";
 			close;
 		case IE_OK:
-			mes "[玛丽·杰伊]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "出发吧！";
 			mapannounce "gef_tower", "队伍中的" + strcharinfo(0) + "正在进入" + .@md_name$ + "。", bc_map, 0xFF99;
 			if (isbegin_quest(12379) < 1)
@@ -92,7 +92,7 @@ gef_tower,57,170,3	script	玛丽·杰伊::Marry Jay	4_F_JOB_BLACKSMITH,{
 		}
 		end;
 	case 3:
-		mes "[玛丽·杰伊]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还没准备好吗？";
 		mes "看来也没办法了。";
 		close;
@@ -342,7 +342,7 @@ OnTimer180000:	//3min before chest disappears
 
 
 //Merchant
-gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
+gef_tower,57,167,3	script	初级收集家::Amateur Collector#pa0829	1_F_01,{
 	disable_items;
 	function F_equip_menu;
 	function F_enchant;
@@ -355,41 +355,41 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 		mes "无法继续，因为你携带了太多重物。请清理背包以降低总重量。";
 		close;
 	}
-	mes "[业余收藏家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你带来" + mesitemlink(25235, false) + "，我就能为你的饰品附加绝妙效果！";
 	next;
 	switch( select( "附魔原石有什么用？", "饰品附魔", "重置附魔" ) ) {
 	case 1:
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我用自己的手艺交换副本里的珍贵石头。我还是初学者，但技术还算过得去。";
 		mes "请多多关照。";
 		next;
 		if (select( "我已经听说过了。", "请继续说。" ) == 1) {
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是这样吗？";
 			close;
 		}
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "使用附魔原石，我可以为你的饰品附加能力。";
 		next;
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我需要 10 个" + mesitemlink(25235, false) + "和 100,000 Zeny。";
 		mes "附魔过程不会失败。";
 		next;
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但是，^0000FF如果饰品有随机选项，附魔后随机选项会被移除。^000000";
 		next;
 		select( "还有其他需要注意的吗？" );
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "饰品上的卡片在附魔后仍会保留。";
 		next;
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "可以重置，但我不能说自己经验丰富。";
 		mes "我的成功率是：";
 		mes "皇家戒指：80%";
 		mes "其他饰品：20%";
 		next;
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000FF如果饰品带有随机属性，重置附魔后这些随机属性会被移除。^000000";
 		close;
 	case 2:
@@ -409,7 +409,7 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 	
 	switch( .@equip_id ) {
 	case 0:
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请装备饰品。";
 		close;
 	case 28483:
@@ -536,7 +536,7 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 	case 2956:
 		break;
 	default:
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我无法对这个" + mesitemlink(.@equip_id, false) + "饰品进行" + .@type_name$ + "。";
 		close;
 	}
@@ -545,13 +545,13 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 		switch( .@equip_id ) {
 		case 28483:	//Royal Ring Enchantment
 			if (.@equip_card[2] != 0) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes mesitemlink(.@equip_id, false) + "已经达到最大附魔等级。";
 				mes "我无法继续处理它。";
 				close;
 			}
 			.@pos = .@equip_card[3] != 0 ? 2 : 3;
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请选择附魔类型~";
 			next;
 			switch( select( "物理", "魔法", "远程" ) ) {
@@ -575,7 +575,7 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 				break;
 			}
 			if (.@pos == 2) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "确定要强化" + mesitemlink(.@equip_id, false) + "吗？";
 				mes "^0000FF不会失败。^000000";
 				next;
@@ -583,12 +583,12 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 					end;
 			}
 			if (countitem(25235) < 10) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请带来 10 个" + mesitemlink(25235, false) + "。";
 				close;
 			}
 			if (Zeny < 100000) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我需要 100,000 Zeny！";
 				close;
 			}
@@ -601,31 +601,31 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 
 			delequip .@slot;
 			specialeffect2 EF_REPAIRWEAPON;
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes mesitemlink(.@equip_id, false) + "已经附魔！！";
 			getitem2 .@equip_id,1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
 			close;
 
 		default:	// Normal Accessory Enchantment
 			if (.@equip_card[3] != 0) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes mesitemlink(.@equip_id, false) + "已经有附魔。";
 				mes "我无法继续处理它。";
 				close;
 			}
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "确定要强化" + mesitemlink(.@equip_id, false) + "吗？";
 			mes "^0000FF不会失败。^000000";
 			next;
 			if (select( "是，请继续", "取消") == 2)
 				end;
 			if (countitem(25235) < 10) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请带来 10 个" + mesitemlink(25235, false) + "。";
 				close;
 			}
 			if (Zeny < 100000) {
-				mes "[业余收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我需要 100,000 Zeny！";
 				close;
 			}
@@ -639,7 +639,7 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 			delequip .@slot;
 			.@enchant = F_enchant(1);
 			specialeffect2 EF_REPAIRWEAPON;
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes mesitemlink(.@equip_id, false) + "已经附加了" + mesitemlink(.@enchant, false) + "。";
 			getitem2 .@equip_id,1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant;
 			close;
@@ -655,24 +655,24 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 			.@success = 20;	// success normal
 		}
 		if (.@equip_card[.@pos] == 0) {
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes mesitemlink(.@equip_id, false) + "还没有达到最大附魔等级。";
 			mes "我无法重置这个饰品。";
 			close;
 		}
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要移除" + mesitemlink(.@equip_id, false) + "上的全部附魔效果吗？";
 		mes "^FF0000成功率为 " + .@success + "%。重置失败时饰品会被摧毁！^000000";
 		next;
 		if (select( "我之后再来", "请继续") == 1)
 			end;
 		if (countitem(25235) < 10) {
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请带来 10 个" + mesitemlink(25235, false) + "";
 			close;
 		}
 		if (Zeny < 100000) {
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我需要 100,000 Zeny！";
 			close;
 		}
@@ -686,13 +686,13 @@ gef_tower,57,167,3	script	业余收藏家::Amateur Collector#pa0829	1_F_01,{
 		delequip .@slot;
 		if (rand(100) > .@success) {
 			specialeffect2 EF_SUI_EXPLOSION;
-			mes "[业余收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "可恶……";
 			mes "失败了，饰品被摧毁了。真的很抱歉。";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[业余收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "成功了。";
 		mes mesitemlink(.@equip_id, false) + "已经初始化。";
 		getitem2 .@equip_id,1,1,0,0,.@equip_card[0],.@equip_card[1],0,0;

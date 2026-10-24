@@ -16,41 +16,41 @@
 
 // Main NPC :: craft_book_alche_skill_npc
 //============================================================
-alde_alche,31,186,3	script	Craft Book Merchant#alde	883,{
-	mes "[制作手册商人]";
+alde_alche,31,186,3	script	制作书销售员#alde::Craft Book Merchant#alde	883,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎。";
 	mes "我这里出售给基因学者使用的^0000FF特殊制作手册^000000。";
 	next;
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "基因学者有些技能需要制作手册才能激活。";
 	next;
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你拥有的制作手册越多，能使用的技能就越多。";
 	next;
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请理解，我专门销售这些特殊手册，我^FF0000不出售其他物品^000000。";
 	next;
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "要看看我的制作手册吗？";
 	next;
 	if(select("当然:不了") == 2) {
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢光临我的商店。";
 		mes "旅途请注意安全。";
 		close;
 	}
 	if (checkweight(1201,1) == 0) {
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，你的物品栏快满了。";
 		mes "请先清理物品栏。";
 		close;
 	}
 	if (MaxWeight - Weight < 2500) {
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请先清理物品栏。";
 		close;
 	}
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好的，这是可购买的制作手册列表。";
 	next;
 	switch(select("[苹果炸弹制作书] 100,000 Z:[菠萝炸弹制作书] 100,000 Z:[椰子炸弹制作书] 100,000 Z:[哈密瓜炸弹制作书] 100,000 Z:[香蕉炸弹制作书] 100,000 Z:[植物基因栽培法] 100,000 Z:[高级药水制造手册] 100,000 Z:[组合烹饪料理书] 100,000 Z:[体力爆发研究书] 100,000 Z:[活力饮料配方] 100,000 Z:关闭")){
@@ -65,50 +65,50 @@ alde_alche,31,186,3	script	Craft Book Merchant#alde	883,{
 	case 9: set .@item,11023; break;
 	case 10: set .@item,11024; break;
 	case 11:
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢惠顾。";
 		mes "欢迎下次再来。";
 		close;
 	}
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^0000FF["+getitemname(.@item)+"]^000000单价为 100,000 Z。";
 	mes "你想购买多少？";
 	next;
 	input .@amount;
 	if (.@amount == 0) {
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要看看其他手册吗？";
 		close;
 	}
 	if (.@amount < 1 || .@amount > 99 ){
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一次可购买 1～99 本。";
 		close;
 	}
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你选择购买 "+.@amount+" 本^0000FF["+getitemname(.@item)+"]^000000。";
 	mes "要继续吗？";
 	next;
 	if (select("是:否") == 1) {
 		set .@total, .@amount * 100000;
 		if (Zeny < .@total) {
-			mes "[制作手册商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，你的钱不够。";
 			close;
 		}
 		if (checkweight(.@item,.@amount) == 0){
-			mes "[制作手册商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你无法携带全部物品。";
 			mes "请确认物品栏中有足够空间。";
 			close;
 		}
-		mes "[制作手册商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢惠顾。";
 		set Zeny,Zeny - .@total;
 		getitem .@item,.@amount;
 		close;
 	}
-	mes "[制作手册商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请慢慢考虑后再做决定。";
 	mes "";
 	close;

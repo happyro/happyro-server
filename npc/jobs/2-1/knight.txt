@@ -42,7 +42,7 @@
 //= 3.3 Fixed missing changequest. [Joseph]
 //============================================================ 
 
-prt_in,88,101,4	script	Chivalry Captain#knt	56,{
+prt_in,88,101,4	script	普隆德拉 骑士团长#knt::Chivalry Captain#knt	56,{
 	mes "让我看看……";
 	if (Upper == 1) {
 		mes "嗯？你是……你身上有什么？我做了很久的荣誉骑士，却无法理解从你身上感受到的这股气息……";
@@ -359,8 +359,8 @@ L_Mission:
 	}
 }
 
-prt_in,75,107,4	script	Sir Andrew#knt	65,{
-	mes "[安德鲁爵士]";
+prt_in,75,107,4	script	忠实的 骑士#knt::Sir Andrew#knt	65,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
 			mes "你一定是骑士团的成员。";
@@ -426,7 +426,7 @@ prt_in,75,107,4	script	Sir Andrew#knt	65,{
 				mes "不再多说，开始吧！";
 				mes "去收集以下物品……";
 			next;
-			mes "[安德鲁爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			switch(rand(1,2)) {
 			//Elder_Pixie's_Beard, Wing_Of_Red_Bat, Orcish_Voucher, Moth_Dust, Reptile_Tongue, Wild_Boar's_Mane
 			case 1: setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 2; break;
@@ -488,7 +488,7 @@ prt_in,75,107,4	script	Sir Andrew#knt	65,{
 		mes "等等，等等……";
 		mes "我想你还缺少一些物品。以防你忘记了，让我提醒你……";
 		next;
-		mes "[安德鲁爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^236B8E"+.@items[1]+" "+getitemname(.@items[0])+"^000000，";
 		mes "^236B8E"+.@items[3]+" "+getitemname(.@items[2])+"^000000，";
 		mes "^236B8E"+.@items[5]+" "+getitemname(.@items[4])+"^000000，";
@@ -515,8 +515,8 @@ prt_in,75,107,4	script	Sir Andrew#knt	65,{
 	}
 }
 
-prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
-	mes "[西拉库斯爵士]";
+prt_in,71,91,0	script	名誉的 骑士#knt::Sir Siracuse#knt	65,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
 			mes "你好！";
@@ -740,10 +740,10 @@ prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
 		}
 		set KNIGHT_Q,6;
 		changequest 9003,9004;
-		mes "[西拉库斯爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，这就是我的测试终点。";
 		next;
-		mes "[西拉库斯爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下一项测试请去找温莎爵士。";
 		mes "他很安静，但别让这影响你。";
 		close;
@@ -753,12 +753,12 @@ prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
 		mes "你有什么想问我吗？";
 		next;
 		if (select("我想参加转职测试。:哦，没什么。") == 1) {
-			mes "[西拉库斯爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿……";
 			mes "你已经参加过我的测试了，对吧？这里结束了。现在去找温莎爵士吧……";
 			close;
 		}
-		mes "[西拉库斯爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "好吧。";
 		mes "只是因为你脸上有那种表情。";
@@ -768,7 +768,7 @@ prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
 		mes "嗯……？";
 		mes "你完成了其他人的测试吗？";
 		next;
-		mes "[西拉库斯爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，去见队长。我们会一起在那里评估你的表现。";
 		close;
 	}
@@ -780,15 +780,15 @@ prt_in,71,91,0	script	西拉库斯爵士#knt::Sir Siracuse#knt	65,{
 	}
 }
 
-prt_in,79,94,4	script	Sir Windsor#knt	733,{
-	mes "[温莎爵士]";
+prt_in,79,94,4	script	武艺的 骑士#knt::Sir Windsor#knt	733,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "...";
 	next;
-	mes "[温莎爵士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "...";
 	mes "......";
 	next;
-		mes "[温莎爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) mes "守护。";
 		else if (BaseClass == Job_Novice) {
@@ -805,18 +805,18 @@ prt_in,79,94,4	script	Sir Windsor#knt	733,{
 		mes "……什么？";
 		next;
 		if (select("我想参加转职测试。:哦，没什么。") == 1) {
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			next;
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			next;
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "……还没轮到我。";
 			close;
 		}
-		mes "[温莎爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		close;
 	}
@@ -831,7 +831,7 @@ prt_in,79,94,4	script	Sir Windsor#knt	733,{
 			next;
 		}
 		if (select(.@mes$) == 1) {
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			next;
 			.@first_test = (KNIGHT_Q == 6);
@@ -839,17 +839,17 @@ prt_in,79,94,4	script	Sir Windsor#knt	733,{
 			if (checkquest(9004) != -1) {
 				changequest 9004,9005;
 			}
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			next;
-				mes "[温莎爵士]";
+				mes "[" + strnpcinfo(1) + "]";
 			if (.@first_test)
 				mes "……跟我来。";
 			else {
 				mes "……好吧。";
 				next;
-			mes "[温莎爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……这边。";
 			}
 			close2;
@@ -857,7 +857,7 @@ prt_in,79,94,4	script	Sir Windsor#knt	733,{
 			warp "job_knt",89,101;
 			end;
 		}
-		mes "[温莎爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		close;
 	}
@@ -1163,34 +1163,34 @@ OnTimer182000:
 
 // Test 3 (Manners)
 //==========================================================
-prt_in,69,107,6	script	Lady Amy#knt	728,{
-		mes "[艾米女士]";
+prt_in,69,107,6	script	有礼貌的 骑士#knt::Lady Amy#knt	728,{
+		mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
 			mes "哦……！";
 			mes "我想知道，你为什么来找我？";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "作为骑士没有遇到麻烦吧？我看你做得很好~";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然~你是普隆德拉骑士团的一员~";
 			close;
 		}
 		else if (BaseClass == Job_Novice) {
 			mes "哎呀~多么可爱的小新手！太可爱了！";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿……以后有兴趣成为骑士吗？你会成为优秀的骑士~";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记住，你要成为骑士，好吗？答应我？";
 			close;
 		}
 		else {
 			mes "欢迎来到普隆德拉骑士团~";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们这里只有骑士，但希望你在这里过得愉快。嘿嘿~";
 			close;
 		}
@@ -1199,7 +1199,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "哦，你是剑士……？";
 		mes "你是来转职成为骑士的吗？";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "申请转职请去和那边的队长交谈。";
 		mes "嘻嘻～";
 		close;
@@ -1209,20 +1209,20 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "你为什么来找艾米？";
 		next;
 		if (select("我想参加转职测试。:哦，没什么。") == 1) {
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯～";
 			mes "你申请转职了！好！有这种决心，你很快就会成为骑士！";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但是……";
 			mes "在和艾米交谈前，你必须先去见其他骑士。";
 			next;
-			mes "[艾米女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我很想从头测试你，但我不被允许这么做。";
 			mes "嘻嘻～";
 			close;
 		}
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀～";
 		mes "好吧……";
 		close;
@@ -1234,27 +1234,27 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 			next;
 			if (select("温莎爵士让我来——:哦，没什么。") == 1) {
 				if(checkquest(9008) == -1) changequest 9007,9008;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦！";
 				mes "不用再说了。";
 				mes "欢迎！现在是参加艾米测试的时间！";
 				next;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我叫艾米·比阿特丽斯，是普隆德拉骑士团骄傲的女骑士。艾米的测试会考验你的骑士礼仪～";
 				next;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会讲一个故事，每当我提问时你选择答案。";
 				mes "你的礼仪会根据答案来评判。";
 				next;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以仔细听，像真正的骑士一样回答，好吗？";
 				next;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那么，开始吧！";
 				next;
 			}
 			else {
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀……";
 				mes "好吧～";
 				close;
@@ -1265,18 +1265,18 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 			mes "你为什么来找艾米？";
 			next;
 			if (select("我想参加转职测试。:哦，没什么。") == 1) {
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯～？";
 				mes "你明白上次错在哪里了吗？";
 				mes "如果再失败，我会生气的！";
 				next;
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以仔细听，像骑士一样回答。";
 				mes "那么，开始吧！";
 				next;
 			}
 			else {
-				mes "[艾米女士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀……";
 				mes "好吧～";
 				close;
@@ -1287,92 +1287,92 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		next;
 		if (select("大声喊话寻找队伍。:开聊天室等待。:寻找需要骑士的人。") != 1)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你和等级相近的玩家组成队伍，有牧师、巫师、猎人、刺客和铁匠……";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你们六人决定去狩猎，目的地是金字塔。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你和队伍到达金字塔第四层。";
 		mes "你该怎么做？";
 		next;
 		if (select("查看周围情况，提前制定计划。:为队友聚集魔物。:在前方缓慢带领队伍前进。") != 2)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但一些无礼的玩家带着一群怪物出现后消失了！你该怎么办？";
 		next;
 		if (select("阻止魔物接近队伍。:掩护队伍撤退。:骑着大嘴鸟逃跑。") != 3)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "幸运的是，你们都活过了危机。但途中发现一名非队伍成员倒在地上。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那个人礼貌地请求帮助。你该怎么办？";
 		next;
 		if (select("请队伍里的牧师帮忙。:说给 Zeny 才帮忙。:无视并离开。") == 1)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为必须去别处，你要和队友告别。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但你在战斗中发现一件稀有物品。";
 		mes "你该怎么做？";
 		next;
 		if(select("交给最应该获得它的人。:假装什么也没发生，自己留下。:和队友商量物品归属。") != 2)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你拿到物品后前往普隆德拉出售，那里有许多开店或聊天室卖东西的人。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你该怎么出售物品？";
 		next;
 		if (select("向所有人大声叫卖。:开聊天室等待。:询问是否有人感兴趣。") != 1)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等待时，有人过来乞求物品和 Zeny。";
 		mes "你会怎么做？";
 		next;
 		if (select("给他们一些 Zeny 和物品。:直接无视。:建议合适的狩猎地点。") == 3)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在你决定独自前往隐秘神殿，开心地骑着大嘴鸟。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但你遇到一个迷路的人。";
 		mes "你该怎么做？";
 		next;
 		if(select("告诉对方出口方向。:带对方前往出口。:给对方一片蝴蝶翅膀。") != 3)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你狩猎了一阵子，现在 HP 很低！";
 		mes "已经变红，非常危险。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这时恰好有一名牧师经过。";
 		mes "你会如何向牧师请求治疗？";
 		next;
 		if (select("可以请你治疗我吗？:喂，过来给我治疗！:快治疗我！！") == 1)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你现在非常疲惫，是时候回城了。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你在街上发现一件稀有物品。";
 		mes "你该怎么做？";
 		next;
 		if (select("捡起来据为己有。:四处询问寻找失主。:直接走开。") != 1)
 			set .@knight_t,.@knight_t+10;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，我的测试结束了！";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@knight_t == 100) {
 			set KNIGHT_Q,10;
 			changequest 9008,9009;
 		mes "做得好，骑士需要这样的心态！下一项测试请去找埃德蒙爵士～";
 			next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会向队长称赞你。剩下的测试也要好好表现，好吗？";
 			close;
 		}
@@ -1381,7 +1381,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 			changequest 9008,9009;
 		mes "虽然不完美，但我认为你的礼仪知识足以成为优秀的骑士。";
 			next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在去找埃德蒙爵士参加下一项测试。剩下的测试也要好好表现，答应我～";
 			close;
 		}
@@ -1389,10 +1389,10 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "嗯……";
 		mes "老实说，你的态度还不够成为骑士。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你真是那样，大家会以为骑士都很无礼！想想你如何回答问题，之后再来。";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你愿意，我可以让你重新测试，好吗？";
 		close;
 	}
@@ -1400,7 +1400,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "嗯……？";
 		mes "你为什么来找艾米？";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须去找埃德蒙爵士参加下一项测试，好吗？";
 		close;
 	}
@@ -1408,7 +1408,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "哇～";
 		mes "现在该由大家决定你的转职了！";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去和我们的队长谈谈。";
 		mes "别太担心，应该没问题。";
 		close;
@@ -1417,7 +1417,7 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 		mes "嗯……？";
 		mes "你为什么来找艾米？";
 		next;
-		mes "[艾米女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还有其他测试要完成。";
 		mes "快点完成吧～";
 		close;
@@ -1426,22 +1426,22 @@ prt_in,69,107,6	script	Lady Amy#knt	728,{
 
 // Test 4 (patience)
 //==========================================================
-prt_in,70,99,6	script	Sir Edmond#knt	734,{
-	mes "[埃德蒙爵士]";
+prt_in,70,99,6	script	虔诚的骑士#knt::Sir Edmond#knt	734,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
 			mes "把你的心思想象成流动的水。";
 			next;
 		mes "流水会避开障碍，继续向前流淌……";
 			next;
-		mes "[埃德蒙爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "骑士必须像平静的流水一样，能够在任何情况下渡过难关。";
 			close;
 		}
 		else if (BaseClass == Job_Novice) {
 		mes "根深的树木不会随风摇摆。强大的技能必须建立在扎实基础上，这是不变的真理……";
 			next;
-		mes "[埃德蒙爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的未来甚至现在就能决定……";
 			close;
 		}
@@ -1459,13 +1459,13 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 		mes "流浪剑士？";
 		next;
 		if (select("我想参加转职测试。:哦，没什么。") == 1) {
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "种子必须先埋入泥土，才能发芽；嫩芽必须长出叶子，花蕾才能绽放……";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "否则……花朵就会不完整。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "先去见其他人，这样才能找到你的道路……";
 			close;
 		}
@@ -1478,23 +1478,23 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 		mes "流浪剑士。";
 		next;
 		if (select("艾米女士让我来。:哦，没什么。") == 1) {
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在是参加我测试的时候。像之前的测试一样，请尽力而为。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我叫埃德蒙·格罗斯特。";
 			mes "我是普隆德拉骑士团成员。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "骑士处于被他人追随的位置。因此，你必须谦逊地思考世界秩序，并具备符合自身角色的品格。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不能轻率地做决定。需要时，意志应像芦苇一样柔韧，也应像岩石一样坚定。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不能无缘无故杀死怪物，也不能以此为乐。现在安静地独自思考这些……";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，我们开始测试。";
 			mes "请记住敬意的品质。";
 			mes "请先关闭自动战斗，在场内安静等待，不要击杀任何魔物。";
@@ -1504,7 +1504,7 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 			warp "job_knt",143,57;
 			end;
 		}
-		mes "[埃德蒙爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想要的生活很快就会出现在你眼前。";
 		close;
 	}
@@ -1513,13 +1513,13 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 		mes "流浪剑士？";
 		next;
 		if (select("对不起，我不是故意的……:哦，没什么。") == 1) {
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你在上次测试中太粗心了。骑士之剑是为了保护他人，而不是折磨弱小怪物。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "万物和谐共存的世界里，人类不能毫无目的地持续破坏。这条原则适用于现实世界，不只是测试。";
 			next;
-			mes "[埃德蒙爵士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "测试现在开始。";
 			mes "让我看看你的耐心……";
 			mes "请先关闭自动战斗，在场内安静等待，不要击杀任何魔物。";
@@ -1527,7 +1527,7 @@ prt_in,70,99,6	script	Sir Edmond#knt	734,{
 			warp "job_knt",143,57;
 			end;
 		}
-		mes "[埃德蒙爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想要的生活很快就会出现在眼前。";
 		mes "一切都会井然有序。";
 		close;
@@ -1605,8 +1605,8 @@ OnTouch_:
 
 // Test 5, and creates Claymores for knights
 //==========================================================
-prt_in,87,92,4	script	Sir Gray#knt	119,{
-	mes "[格雷爵士]";
+prt_in,87,92,4	script	谦让的骑士#knt::Sir Gray#knt	119,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
 			mes "刀刃上闪耀的光芒无法用言语形容。这是每位骑士都必须拥有的武器。";
@@ -1961,7 +1961,7 @@ prt_in,87,92,4	script	Sir Gray#knt	119,{
 			mes "如果你和他们全部交谈，我也许会重新考察你。";
 			close;
 		}
-		mes "[格雷爵士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保重！";
 		mes "健康是每个人的财富！";
 		close;

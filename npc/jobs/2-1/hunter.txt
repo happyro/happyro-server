@@ -90,11 +90,11 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 		//
 		//
 		
-		pay_fild10,148,252,3	duplicate(HntNotice)	转职地点#hu::Job Change Location#hu	857
+		pay_fild10,148,252,3	duplicate(HntNotice)	转职所 搬迁 公告#hu::Job Change Location#hu	857
 		
 		// Actual Job quest start
 		//============================================================
-		hu_in01,386,373,4	script	Hunter Guildsman#hnt	727,{
+		hu_in01,386,373,4	script	猎人 公会员#hnt::Hunter Guildsman#hnt	727,{
 	if (Upper == 1) {
 	mes "[猎人谢琳]";
 		mes "哦，你过得好吗？好久不见了，对吧？";
@@ -105,13 +105,13 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 		close;
 		}
 		if (BaseJob == Job_Archer && JobLevel < 40) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "嗯？你还没有作为弓箭手接受足够训练。要成为猎人，必须先积累一定弓箭手经验。";
 	next;
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "出去再训练一阵。准备成为猎人前，职业等级至少要达到 40。当然，想继续训练也可以。";
 		next;
-	mes "[猎人公会职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "下次见～";
 		close;
 		}
@@ -121,39 +121,39 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 		close;
 		}
 		if (BaseClass == Job_Novice) {
-	mes "[猎人公会职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是……初心者？哇，你还有很长的路要走。这里没什么能帮你的。";
 		close;
 		}
 		else if (BaseClass == Job_Swordman) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你选择了剑之道。我尊重你刀刃的力量。当然，远距离时你总不能把剑扔向敌人吧？";
 	close;
 		}
 		else if (BaseClass == Job_Mage) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你使用魔法？能够操纵神秘力量一定很棒。";
 	close;
 	}
 		else if (BaseClass == Job_Acolyte) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，侍奉神的人！很高兴认识你。来这里的这类人可不多～嘿嘿。";
 		close;
 	}
 	else if (BaseClass == Job_Merchant) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……";
 		mes "生意进展如何？";
 		close;
 		}
 		else if (BaseClass == Job_Thief) {
-		mes "[猎人公会职员]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "啊？！";
 	mes "这里没有值得偷的东西，也没有值得杀的人！！";
 		close;
 			}
 			else if (BaseJob == Job_Dancer || BaseJob == Job_Bard) {
-			mes "[猎人公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……有时当猎人真的很辛苦，你知道……";
 			mes "你喜欢波希米亚式生活吗？我真羡慕你拥有这么多自由……";
 			close;
@@ -213,23 +213,23 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 					}
 					else if (HNTR_Q == 0 || HNTR_Q == 1) {
 					if (HNTR_Q == 0) {
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，你是弓箭手！看来你训练得够多了……你是来成为猎人的，对吧？";
 					next;
 					switch( select( "是的，我就是为此而来。", "转职有什么要求？", "……我还不想转职。" ) ) {
 					case 1:
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嘿嘿～";
 					mes "我猜对了！让我把你列入候选名单。";
 						next;
-						mes "[猎人公会职员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "嗯……从面试开始。先放松一下，不用担心，我会准备好一切～";
 						next;
 						mes "^3355FF*整理并翻阅文件*^000000";
 					next;
 					mes "^3355FF*翻找文件*^000000";
 						next;
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "啊！";
 					mes "面试问题来了～首先，我叫谢琳。很高兴认识你！";
 					next;
@@ -251,21 +251,21 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 					mes "我只是想知道你如何看待人生，以及为什么想成为猎人，不用紧张。";
 					break;
 					case 2:
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "转职要求？";
 					mes "第一……你必须是弓箭手。";
 				next;
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "第二……职业等级至少 40。";
 					next;
-					mes "[猎人公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "第三……带齐公会要求的所有物品。稍后再担心。";
 			next;
-			mes "[猎人公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "第四……通过公会测试。如果你接受了足够的弓箭手训练，就应该能通过～";
 				close;
 				case 3:
-			mes "[猎人公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，下次见～";
 			close;
 			}
@@ -444,17 +444,17 @@ in_hunter,99,99,4	script	Hunter Info#hnt::HntNotice	727,{
 		mes "听说他在斐扬中央宫殿……或者弓箭手村，去那里找找吧。";
 		close;
 	}
-	mes "[猎人公会职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯？你作为弓箭手训练不够。要成为猎人，先积累更多弓箭手经验。";
 	next;
-	mes "[猎人公会职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那么再训练一些。职业等级必须至少 40。当然可以更高。下次见～";
 	close;
 }
 
-hu_in01,382,382,4	script	Guild Receptionist#hnt	732,{
+hu_in01,382,382,4	script	猎人公会 考试报名人员#hnt::Guild Receptionist#hnt	732,{
 	if (HNTR_Q == 2) {
-		mes "[公会接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。他们称我为……^660000恶魔猎人^000000。我负责处理申请。你的名字是"+strcharinfo(0)+"，对吧？";
 		next;
 		if (select( "是的，没错。", "不是～～（嘻嘻嘻）" ) == 2) {
@@ -615,40 +615,40 @@ hu_in01,382,382,4	script	Guild Receptionist#hnt	732,{
 		close;
 	}
 	else {
-		mes "[公会接待员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想转职为猎人，必须先登记。";
 		close;
 	}
 }
 
-payon_in03,131,7,3	script	Hunter#htnGM	59,{
+payon_in03,131,7,3	script	猎人#htnGM::Hunter#htnGM	59,{
 	if (HNTR_Q == 10) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哼。你是来参加猎人转职测试的吧。我来说明测试流程。你想了解什么？";
 		next;
 		switch( select( "测试是什么？", "通过要求是什么？", "有什么注意事项？", "开始测试。" ) ) {
 		case 1:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你必须猎杀指定名称的怪物，同时避开所有陷阱。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是为了测试你在各种情况下快速移动和寻找目标的能力。";
 			close;
 		case 2:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在时间限制内，从地图 6 点钟方向开始，猎杀目标怪物，然后按下出现在地图中央的逃脱开关。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "按下开关后从地图 12 点钟方向逃出即可通过。";
 			close;
 		case 3:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯。注意事项……如果掉入陷阱，必须从头开始。而且一次只能有一人参加测试。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会送你去测试地点。那里有等候室，但若有人正在测试，你必须在聊天室等待。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "前一个人成功、放弃或失败后，聊天室中下一位等待者会被送往测试区。如果没人等待，你进入聊天室后测试就会开始。";
 			close;
 		case 4:
@@ -662,11 +662,11 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 			// 	mes "Okay. Best of luck.";
 			// 	mes "I'll send you right now.";
 			// }
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好。我现在就送你去测试区。若你因没听说明而迷路或困惑，别怪我。";
 			next;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，你的箭可能还在制作中，可以用我的参加测试。";
 		if (!checkweight(1751,200)) {
 			mes "请先为 200 支银箭预留足够的负重和物品栏空间。";
@@ -680,14 +680,14 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 		end;
 	}
 	else if (HNTR_Q > 1 && HNTR_Q < 10) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "弓箭手来找我做什么？";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没收到猎人公会的特别通知。你不是想跳过猎人测试的中间环节吧？";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "收集测试所需物品，并拜访猎人公会后再回来。";
 		close;
 	}
@@ -697,60 +697,60 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 		close;
 	}
 	else if (HNTR_Q > 11 && HNTR_Q < 16) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。你就是差点放弃转职的弓箭手。你已经准备好了吗？那我马上送你去测试。";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有任何问题，现在就问。";
 		next;
 		switch( select( "测试是什么？", "通过要求是什么？", "有什么注意事项？", "开始测试。" ) ) {
 		case 1:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你必须猎杀指定名称的怪物，同时避开所有陷阱。这是为了测试你在各种情况下快速移动和寻找目标的能力。";
 			close;
 		case 2:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在规定时间内，你从地图 6 点钟方向开始，猎杀目标怪物，然后按下出现在中央的逃脱开关。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "按下开关后从地图 12 点钟方向逃出即可通过。";
 			close;
 		case 3:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯。注意事项……如果掉入陷阱，必须从头开始。而且一次只能有一人参加测试。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会送你去测试地点。那里有等候室，但若有人正在测试，你必须在聊天室等待。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "前一个人成功、放弃或失败后，聊天室中下一位等待者会被送往测试区。如果没人等待，你进入聊天室后测试就会开始。";
 			close;
 		case 4:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好。祝你好运。";
 			mes "我现在就送你过去。";
 			next;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦？为什么不给你银箭？没带材料就别指望得到任何东西。";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我相信你已经自己准备好了。现在开始吧。";
 		next;
 		if (select( "好。开始吧……", "啊，等一下。" ) == 1) {
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好！！希望你这次能通过！";
 			close2;
 			HNTR_Q = 12;
 			warp "job_hunte",176,22;
 			end;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就快点完成所有准备工作。";
 		close;
 	}
 	else if (HNTR_Q == 16) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，你平安回来了！";
 		mes "我是说，干得好。我会给你证明通过测试的物品。";
 		if (!checkweight(1007,1)) {
@@ -762,15 +762,15 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 		getitem 1007,1; // Penetration
 		changequest 4012,4013;
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，就是这个。现在回猎人公会吧。我这里还有些事务，希望你很快能成为猎人。";
 		close;
 	}
 	else if (HNTR_Q == 17) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你不急着成为猎人？我刚成为猎人时高兴得挥舞弓箭到处跑了一个月。呵呵~";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，你该回猎人公会了~";
 		close;
 	}
@@ -782,35 +782,35 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 	}
 }
 
-payon_in02,21,31,1	script	Hunter#htnGM2	59,{
+payon_in02,21,31,1	script	猎人#htnGM2::Hunter#htnGM2	59,{
 	cutin "job_huntermaster",2;
 	if (HNTR_Q == 11) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。你是来参加猎人转职测试的吧。我来说明测试流程。你想了解什么？";
 		next;
 		switch( select( "测试是什么？", "通过要求是什么？", "有什么注意事项？", "开始测试。" ) ) {
 		case 1:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你必须猎杀指定名称的怪物，同时避开这里的所有陷阱。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是为了测试你在各种情况下快速移动和寻找目标的能力。";
 			close3;
 		case 2:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在规定时间内，你从地图 6 点钟方向开始，猎杀目标怪物，然后按下出现在中央的逃脱开关。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "开关启动后从地图 12 点钟方向逃出即可通过。";
 			close3;
 		case 3:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯。注意事项……如果掉入陷阱，必须从头开始测试。而且一次只能有一人参加。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会送你去测试地点。那里有等候室，但若有人正在测试，你必须在聊天室等待。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当前测试者通过或失败后，聊天室中下一位等待者会被送往测试区。如果没人等待，你进入聊天室后测试就会开始。";
 			close3;
 		case 4:
@@ -826,14 +826,14 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 			// 	mes "I'll send you right now.";
 			// }
 			// next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……好。我现在就送你去测试区。若你因没听说明而迷路或困惑，别怪我。";
 			next;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的箭可能还在制作中，可以用我的参加测试。";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "祝你好运。";
 		if (!checkweight(1751,200)) {
 			mes "请先为 200 支银箭预留足够的负重和物品栏空间。";
@@ -846,14 +846,14 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 		end;
 	}
 	else if (HNTR_Q > 1 && HNTR_Q < 10) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "弓箭手来找我做什么？";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没收到猎人公会的通知。你不是想跳过猎人测试的中间环节吧？";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "收集齐测试所需物品后再来。";
 		close3;
 	}
@@ -868,53 +868,53 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 		close3;
 	}
 	else if (HNTR_Q > 11 && HNTR_Q < 16) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？你不是上次放弃的弓箭手吗？现在准备好了吗？那我马上送你去转职区域。";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你还有问题，尽管问。";
 		next;
 		switch( select( "测试是什么？", "通过测试需要什么？", "有什么注意事项？", "开始测试。" ) ) {
 		case 1:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你必须猎杀指定名称的怪物，同时避开这里的所有陷阱。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是为了测试你在各种情况下快速移动和寻找目标的能力。";
 			close3;
 		case 2:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在规定时间内，你从地图 6 点钟方向开始，猎杀目标怪物，然后按下出现在中央的逃脱开关。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "开关启动后从地图 12 点钟方向逃出即可通过。";
 			close3;
 		case 3:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯。注意事项……如果掉入陷阱，必须从头开始测试。而且一次只能有一人参加。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会送你去测试地点。那里有等候室，但若有人正在测试，你必须在聊天室等待。";
 			next;
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当前测试者通过或失败后，聊天室中下一位等待者会被送往测试区。如果没人等待，你进入聊天室后测试就会开始。";
 			close3;
 		case 4:
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，祝你好运。";
 			mes "我现在就送你过去……";
 			next;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首次入场时已经给过你银箭，重试不会再次补给。请自行备足箭矢。";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我相信你准备好了。";
 		mes "开始吧。";
 		next;
 		if (select( "好，开始吧。", "啊，等一下。" ) == 1) {
-			mes "[猎人公会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好！！现在……";
 			mes "这次一定要通过！";
 			close2;
@@ -923,13 +923,13 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 			warp "job_hunte",176,22;
 			end;
 		}
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*叹气……*";
 		mes "完成准备工作后再回来。";
 		close3;
 	}
 	else if (HNTR_Q == 16) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，你平安回来了！";
 		mes "我是说，干得好。那么我会给你证明通过测试的物品。";
 		if (!checkweight(1007,1)) {
@@ -941,16 +941,16 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 		getitem 1007,1; //Penetration
 		changequest 4012,4013;
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……给你。";
 		mes "现在赶快回猎人公会，加入我们吧~";
 		close3;
 	}
 	else if (HNTR_Q == 17) {
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你不急着成为猎人。我刚成为猎人时高兴得挥舞弓箭到处跑了一个月。呵呵~";
 		next;
-		mes "[猎人公会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在快点~";
 		mes "他们正在猎人公会等你。";
 		close3;

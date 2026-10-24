@@ -15,7 +15,7 @@
 
 // Main Quest :: TutorialVer2
 //============================================================
-moc_para01,34,178,3	script	Tutorial Instructor	904,{
+moc_para01,34,178,3	script	新手教学男专家::Tutorial Instructor	904,{
 	if (Class == Job_Novice) {
 		// Fall through
 	} else if (checkquest(9167) == -1) {
@@ -24,24 +24,24 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 			set .@tutorial_restart,1;
 			set @tutorial_restart,0;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近有人说，人们正在研究为装备添加选项以便放入插槽或添加状态给原本没有这些效果的装备。他们把这称为^006400附魔^000000。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看到这项技术正在开发后，我深受启发，努力研究最终找到了方法创造了自己的^006400附魔^000000方式！";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但要做到这一点，我需要一些特殊材料。如果你愿意的话……你能不能帮我收集它们？";
 		next;
 		switch(select("好的，我可以帮忙:我现在有点忙……")) {
 		case 1:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过，看看你现在的样子，让我怀疑你是否有能力收集我需要的物品……";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，如果你雇佣一名^006400佣兵^000000来做这件事，我想我就可以把委托交给你……可以吧？";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想雇佣佣兵，就去找^006400佣兵公会^000000，它就在^8B4513普隆德拉^000000正门附近。去找^006400信息员^000000，询问^006400佣兵公会官员^000000的位置，他们会告诉你。";
 			next;
 			if (.@tutorial_restart) {
@@ -54,44 +54,44 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 				completequest 9173;
 				erasequest 9173;
 			}
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在……快去雇佣一名^006400佣兵^000000再回来找我！";
 			setquest 9167;
 			close;
 		case 2:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "既然你说你很忙，那我也没办法……不忙的时候再来找我。";
 			close;
 		}
 	} else if (checkquest(9167) == 0 || checkquest(9167) == 1) {
 		if (!getmercinfo(1)) {
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还没有佣兵。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想雇佣佣兵，就去找^006400佣兵公会^000000，它就在^8B4513普隆德拉^000000正门附近。去找^006400信息员^000000，询问^006400佣兵公会官员^000000的位置，他们会告诉你。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在……快去雇佣一名^006400佣兵^000000再回来找我！";
 			close;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看到你带着^006400佣兵^000000，我确实更信任你了。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^006400佣兵^000000会通过为你战斗直接提供帮助，而^006400宠物^000000则通过它们的能力和多样外表间接帮助你，并俘获你的心。将来也试着养一只^006400宠物^000000吧。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，让我看看……为了让这次^006400附魔^000000成功，你需要为我收集一些材料……我需要的是……..............";
 		next;
 		select("我好像没听清楚……");
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真的不喜欢重复自己……你再这样问我，嘴巴不会累吗？这种情况下，打开^006400任务窗口^000000就能看到要求你做什么以及我的委托详情。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "查看左上角信息区域内会显示^006400任务^000000点击它后就会显示所有与委托相关的信息。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从^006400任务窗口^000000确认所需材料，收集齐后再回来和我说话。";
 		completequest 9167;
 		setquest 9168;
@@ -99,145 +99,145 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 	} else if (checkquest(9168) == 0 || checkquest(9168) == 1) {
 		if (checkweight(607,1) == 0) {
 			if (MaxWeight - Weight < getiteminfo(607, ITEMINFO_WEIGHT)) {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你似乎携带了太多物品，物品栏很重，行动迟缓……这样很难完成我的委托因为那些杂物让你负重过高！清空物品栏后再回来找我。";
 				close;
 			} else {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看来你身上多带了一件物品……如果你想帮我就得先把一些东西收起来再回来。";
 				close;
 			}
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你打开^006400任务窗口^000000了吗确认材料了吗？";
 		next;
 		switch(select("是的！:没有……:任务窗口在哪里……")) {
 		case 1:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是吗？那我来测试一下看看你是否真的检查过？写下我让你收集的材料。";
 			next;
 			input .@inputstr$;
 			if (.@inputstr$ == "10 杰勒比结晶") {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "很好，你知道。现在，你是否已经熟悉^006400任务窗口^000000了？但还有个问题……你知道要收集什么材料，但收集起来并不容易。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "另外，还有一件事我强烈建议你尝试。那就是……^006400万能银色目录^000000。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^006400万能银色目录^000000可以从位于伊甸园集团总部的^0000FF目录魔法师^000000那里获得。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在，去获得一本^006400万能银色目录^000000然后回来和我说话。";
 				completequest 9168;
 				setquest 9169;
 				close;
 			}
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你……看起来仍然不太了解^006400任务窗口^000000.我再告诉你一次。";
 			next;
 			break;
 		case 2:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "快检查你的^006400任务窗口^000000，看看需要哪些材料。";
 			close;
 		case 3:
 			break;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "查看左上角信息区域内会显示^006400任务^000000点击它后就会显示所有与委托相关的信息。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从^006400任务窗口^000000确认所需材料，收集齐后再回来和我说话。";
 		close;
 	} else if (checkquest(9169) == 0 || checkquest(9169) == 1) {
 		if (countitem(12580) == 0) {
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？我注意到你还没有去领取^006400露天商店检索卡(银)^000000 ！";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可以领取^006400露天商店检索卡(银)^000000，去找位于伊甸园集团总部的^0000FF目录魔法师^000000即可。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以，去领取^006400露天商店检索卡(银)^000000然后回来找我。";
 			close;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你成功获得了^006400露天商店检索卡(银)^000000!";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它可以让你浏览和搜索所有各种商店它们位于同一地图并且正在营业。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一本只需200 金币使用它可以搜索最多10次。可以说这是必需品。";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，前往你想去的区域并试用^006400露天商店检索卡(银)^000000，完成后再来找我。";
 		completequest 9169;
 		setquest 9170;
 		close;
 	} else if (checkquest(9170) == 0 || checkquest(9170) == 1) {
 		if (countitem(12580)) {
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……看来你仍然有物品栏中的^006400万能银色目录^000000。既然你说忘了如何使用它我再向你说明一次。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你看……^006400万能银色目录^000000可以让你浏览和搜索所有各种商店它们位于同一地图并且正在营业。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以，前往你想去的区域并试用^006400露天商店检索卡(银)^000000，完成后再来找我。";
 			close;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "试用后感觉如何？^006400万能银色目录^000000？这比逐一查看每个商人并寻找物品要轻松得多，对吧？";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，出去收集我需要的材料，我一定会给你精彩的^006400附魔^000000！我会等你！";
 		completequest 9170;
 		setquest 9171;
 		close;
 	} else if (checkquest(9171) == 0 || checkquest(9171) == 1) {
 		if (countitem(909) < 10) {
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你没有带来足够的材料。你忘了需要收集什么吗？";
 			next;
 			switch(select("是啊……:才不是！")) {
 			case 1:
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有人告诉我，点击左上角写着^006400任务^000000的地方，就会显示所有你需要的信息以及与你的委托相关的内容。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "收集完所有列出的材料后再来和我说话。材料清单都在你的^006400任务窗口^000000中。";
 				close;
 			case 2:
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "收集物品后来找我，我会展示给你厉害的^006400附魔^000000。我会等你！";
 				close;
 			}
 		}
 		if (!checkweight(15033,2,15034,1)) {
 			if (MaxWeight - Weight < 2 * getiteminfo(15033, ITEMINFO_WEIGHT) + getiteminfo(15034, ITEMINFO_WEIGHT)) {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的物品栏似乎塞得太满装满各种东西……你觉得负重这么高还能完成什么吗？负重太高了。先收起一些东西然后回来找我。";
 				close;
 			} else {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你似乎有太多东西在物品栏中……先把一些东西收起来，再回来找我等你身上没那么多东西时。";
 				close;
 			}
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来了我要求的一切！那么～开始这厉害的我发现并开发的附魔吧？";
 		next;
 		specialeffect EF_BASH3D2;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好！现在是第一个技能！！为防具添加新能力……^006400隐藏插槽附魔^000000！！";
 		next;
 		specialeffect EF_BASH3D2;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第二个技能！！为你的武器和盾牌添加新插槽……^006400插槽附魔^000000！！";
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，附魔完成。光看我操作你无法理解过程，所以让你亲自查看这些物品。";
 		if (countitem(909) < 10) {
 			mes "请带齐 10 个杰勒比结晶后再来找我。";
@@ -254,28 +254,28 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 		getitem 15033,1; //Tutorial_Mattle
 		getitem 15034,1; //Tutorial_Mattle_
 		next;
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些物品不能装备或交易，所以别想着带着它们逃跑。查看完后，把它们还给我。";
 		close;
 	} else if (checkquest(9172) == 0 || checkquest(9172) == 1) {
 		if (countitem(15033) < 2 || countitem(15034) < 1) {
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你把我借给你查看的附魔物品弄到哪里去了？在你带回我的劳动成果前，我不想和你说话，更别说见你的脸。";
 			close;
 		}
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "查看完我附魔的物品了吗？";
 		next;
 		switch(select("是的，谢谢:我还没看。")) {
 		case 1:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "检查后感觉如何？现在你已经看过真正的附魔物品，理解附魔了吗？";
 			// Item deletions moved below to prevent errors.
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "多亏了你，我才能看到研究和学习的成果。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你对我讲过的内容有任何疑问，我会全部告诉你！感谢你的努力！";
 			if (countitem(15033) < 2 || countitem(15034) < 1) {
 				mes "请带回全部三件示范装备后再来找我。";
@@ -288,30 +288,30 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 			getexp 5000,2500;
 			close;
 		case 2:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "慢慢查看然后把它们还给我。";
 			close;
 		}
 	} else if (checkquest(9173) == 0 || checkquest(9173) == 1) {
-		mes "[教程教官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你有什么问题吗？";
 		next;
 		switch(select("可以再次做同样的任务吗？:关于任务窗口……:关于附魔……:关于商店搜索……:关于佣兵和宠物……:结束对话。")) {
 		case 1:
 			if (checkquest(9173,PLAYTIME) == 0 || checkquest(9173,PLAYTIME) == 1) {
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "重复完成同样任务的方法是进行^006400每日任务^000000。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "完成并提交^006400每日任务^000000后，等待大约一天，再回来领取委托并重新完成！";
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "领取每日任务后，查看^006400任务窗口^000000右下角。那里有名为^006400有限^000000的区域，会告诉你还需等待多久才能领取下一个每日任务。";
 				next;
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "完成我的任务后似乎还要等待一段时间。再等一会儿，然后回来找我，就能再次接到同样的任务。";
 				close;
 			}
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你完成我的任务已经过去一天左右了。好吧，和^006400每日任务^000000一样，你可以从我这里领取任务。要继续吗？";
 			next;
 			switch(select("是:否")) {
@@ -319,121 +319,121 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 				set @tutorial_restart,1;
 				goto OnStartQuest;
 			case 2:
-				mes "[教程教官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧。但如果改变主意想领取任务，就来找我。";
 				close;
 			}
 		case 2:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "据说^006400任务窗口^000000会详细列出你需要了解的任务信息。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "查看左上角信息区域，那里会显示^006400任务^000000；点击它后，就会显示所有与委托相关的信息。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "使用^006400任务窗口^000000会让生活更轻松。它会告诉你去哪里、获得哪些物品、寻找谁等等。";
 			close;
 		case 3:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一般来说，^006400附魔^000000分为两类：^006400插槽附魔^000000和^006400隐藏插槽附魔^000000。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^006400插槽附魔^000000用于给装备增加插槽，^006400隐藏插槽附魔^000000用于给防具的插槽添加属性。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然，这需要一些材料，也有失败的可能，但这就是你要承担的风险。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "负责^006400插槽附魔^000000的人位于^8B4513普隆德拉、梦罗克、斐扬^000000。^8B4513里希塔乐镇^000000在精炼所，^0000FF塞亚布雷姆^000000和^0000FF雷亚布雷姆^000000在入口附近。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "负责^006400隐藏插槽附魔^000000的人位于^8B4513普隆德拉^000000 6 点钟方向。寻找^0000FF工匠学徒^000000。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你现在更了解^006400附魔^000000了吗？";
 			close;
 		case 4:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "使用^006400万能银目录^000000道具可以进行^006400摊位搜索^000000。它会搜索地图上的摊位，让你更容易找到想要的物品。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^006400万能银目录^000000可以从^0000FF目录巫师^000000那里获得，他位于伊甸园集团总部。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一个只需 200 金币，使用它可以搜索最多 10 次。可以说这是必需品。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，你熟悉^006400摊位搜索^000000了吗？别只站在那里听我说，自己试试看！";
 			close;
 		case 5:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "根据你的需要，^006400佣兵^000000和^006400宠物^000000有多种用途。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes "^006400佣兵^000000会直接为你战斗并产生效果，而^006400宠物^000000会通过能力和多样外表间接帮助你，并俘获你的心。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要雇佣佣兵，去寻找^006400佣兵公会^000000它就在^8B4513普隆德拉^000000正门附近。去找^006400信息员^000000询问^006400佣兵公会职员^000000的位置，他们会告诉你。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要获得^006400宠物^000000，狩猎时会获得驯服道具。对对应怪物使用驯服道具，就能获得宠物。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "由于可能失败，请谨慎使用驯服道具。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "除此之外……你可以从佣兵公会获得^006400佣兵^000000，也可以和其他玩家交易或购买^006400宠物^000000。";
 			next;
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在你更了解如何使用^006400佣兵^000000和^006400宠物^000000了吗？希望将来你有机会使用它们。";
 			close;
 		case 6:
-			mes "[教程教官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有问题就再来找我。";
 			close;
 		}
 	}
-	mes "[教程教官]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "最近据说人们正在研究给装备添加选项将选项放入插槽，或添加属性给原本没有这些属性的装备。";
 	close;
 }
 
-moc_para01,32,179,4	script	Tutorial Goal	895,{
+moc_para01,32,179,4	script	新手教学女专家::Tutorial Goal	895,{
 	if (checkquest(4161) == 0 || checkquest(4161) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好～我们要去挑战专家，对吧？";
 		mes "先去找^006400攻城战专家^000000吧！";
 		close;
 	} else if (checkquest(4162) == 0 || checkquest(4162) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你通过了^006400攻城战专家^000000的测试！恭喜！";
 		mes "现在去找^006400组队招募专家^000000！";
 		close;
 	} else if (checkquest(4163) == 0 || checkquest(4163) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你通过了^006400组队招募专家^000000的测试！恭喜！";
 		mes "现在去找^006400战场专家^000000！";
 		close;
 	} else if (checkquest(4164) == 0 || checkquest(4164) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "耶！你通过了^006400战场专家^000000的测试！恭喜！";
 		mes "接下来去找^006400纪念地下城专家^000000！";
 		close;
 	} else if (checkquest(4165) == 0 || checkquest(4165) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你通过了^006400纪念地下城专家^000000的测试！太好了！";
 		mes "试着去找^006400地图专家^000000！";
 		close;
 	} else if (checkquest(4166) == 0 || checkquest(4166) == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你通过了^006400地图专家^000000的测试！恭喜！";
 		mes "我很高兴你通过了所有专家的测试！你比我预想的更优秀！！";
 		next;
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，你也是^006400专家^000000了！！这个称号非常适合你！";
 		mes "非常感谢你的努力。如约，这是给你的小奖励。";
 		next;
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想它会在你的冒险中派上用场。祝你未来冒险好运～";
 		if (!checkweight(510,5,511,5,504,5,608,1)) {
 			mes "请先为奖励预留足够的负重和物品栏空间，再来领取。";
@@ -446,41 +446,41 @@ moc_para01,32,179,4	script	Tutorial Goal	895,{
 		getitem 608,1; //Seed_Of_Yggdrasil
 		close;
 	} else if (checkquest(4166) == 2) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，你也是^006400专家^000000了！！这个称号非常适合你！";
 		mes "非常感谢你的努力。";
 		mes "祝你未来的冒险好运相伴。";
 		close;
 	}
 	if (Class == Job_Novice) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，不知道有没有足够聪明的冒险者能挑战我们的专家……";
 		close;
 	}
-	mes "[教程目标]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，你！你看起来像冒险者……不过似乎有点迟钝……";
 	next;
 	if(select("你说什么？我很聪明！:是啊……我很迟钝。") == 1) {
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真的吗？虽然我不知道该不该相信。看看我面前的专家！他专攻一个领域 16 年，现在已经非常威严！";
 		next;
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，如果你能通过他们所有的测试，我就相信你的能力。";
 		next;
-		mes "[教程目标]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也会为称你迟钝道歉。怎么样，迟钝专家？你想挑战他们吗？";
 		next;
 		if(select("挑……挑战！！:嗯……我想现在还是放弃吧……") == 1) {
-			mes "[教程目标]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你比看起来勇敢。既然决定挑战，就不能回头了！";
 			next;
-			mes "[教程目标]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好～先去和面前的^006400攻城战专家^000000谈谈。";
 			setquest 4161;
 			close;
 		}
 	}
-	mes "[教程目标]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "别灰心……改变主意想挑战时就来找我。";
 	close;
 }
@@ -658,37 +658,37 @@ L_Info:
 	return;
 }
 
-moc_para01,21,172,4	script	Party Recruiting Expert	878,{
+moc_para01,21,172,4	script	组队达人::Party Recruiting Expert	878,{
 	set .@checkquest, checkquest(4162);
 	if (.@checkquest == 2) {
-		mes "[队伍招募专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然你来找我，看来你对^006400组队招募^000000感兴趣？";
 		next;
 		switch(select("听组队招募介绍。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[队伍招募专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这位专家的讲解很棒，对吧？需要复习时再来找我。";
 			close;
 		case 2:
-			mes "[队伍招募专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有问题就来找我。";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
-		mes "[队伍招募专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我研究^006400组队招募^000000 16 年，所以我是专家！你通过了^006400攻城战专家^000000的测试，他才把你介绍给我，对吧？";
 		next;
-		mes "[队伍招募专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可能已经听说，答对所有专家的测验就能获得丰厚奖励！";
 		next;
-		mes "[队伍招募专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "作为第二位专家，我会告诉你^006400组队招募^000000的一切！怎么样？";
 		next;
 		switch(select("听组队招募介绍。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[队伍招募专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在～我的讲解像滑头罪犯一样顺滑，对吧？接下来有 3 道题，全部答对就算通过。要挑战吗？";
 			while(1) {
 				set .@correct,0;
@@ -697,26 +697,26 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "组队招募用于帮助寻找[]的用户以及寻找[]的用户。";
 						mes "[] 中的空格应该填什么？";
 						next;
 						if(select("公会、公会成员:俱乐部、俱乐部成员:巴黎、队伍成员:队伍、队伍成员") == 4)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "帮助用户寻找和搜索队伍的窗口叫作[]。";
 						mes "[] 中的空格应该填什么？";
 						next;
 						if(select("队伍列表:队伍需求列表:组队招募列表:服装队伍列表") == 3)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "创建组队招募公告时，以下哪个选项不会列出？";
 						next;
 						if(select("等级:技能:职业:地图") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "组队招募有两种。";
 						mes "一种是登记组队招募";
 						mes "另一种是[]。";
@@ -724,13 +724,13 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						next;
 						if(select("搜索正在招募的队伍:开始狩猎的队伍:队伍招募和物品分配:队伍物品") == 1)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "要开始组队招募，必须点击左上方信息区域的[]按钮。";
 						mes "[] 中的空格应该填什么？";
 						next;
 						if(select("队伍:公会:预约:技能") == 3)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "想了解组队招募命令，必须按下组队招募列表窗口中的[]按钮。";
 						mes "[] 中的空格应该填什么？";
 						next;
@@ -738,20 +738,20 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 							set .@correct, .@correct+10;
 						break;
 					case 3:
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "要先创建自己的队伍，应使用哪个命令？";
 						mes "[] 中的空格应该填什么？";
 						next;
 						if(select("/guild:/leave:/invite:/organize") == 4)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "招募队伍时可以设置 3 个参数，分别是";
 						mes "等级、职业和[]。";
 						mes "[] 中的空格应该填什么？";
 						next;
 						if(select("技能:公会:地图:选项") == 3)
 							set .@correct, .@correct+10;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "组队招募用于帮助寻找[]的用户以及寻找[]的用户。";
 						mes "[] 中的空格应该填什么？";
 						next;
@@ -760,112 +760,112 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						break;
 					}
 					if (.@correct == 30) {
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "很好！3 道题全答对了！现在你更有信心进行^006400组队招募^000000了吗？";
 						next;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "想了解更多^006400组队招募^000000内容，随时来找我。";
 						next;
-						mes "[队伍招募专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "好了，去找^0000FF战场专家^000000吧！他应该在等你。";
 						completequest 4162;
 						setquest 4163;
 						getexp 2000,1000;
 						close;
 					}
-					mes "[队伍招募专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "只有 3 个问题，而你没有全部答对！这样下去你会通不过所有专家的测试。";
 					next;
-					mes "[队伍招募专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "但如果你想重考测验，就去做吧！我觉得你有潜力！想再试一次吗？";
 					break;
 				case 2:
 					callsub L_Info;
-					mes "[队伍招募专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "现在～我的讲解像滑头罪犯一样顺滑，对吧？接下来有 3 道题，全部答对就算通过。要挑战吗？";
 					break;
 				case 3:
-					mes "[队伍招募专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "别放弃！你能做到！改变主意后再来和我谈谈！";
 					close;
 				}
 			}
 			close;
 		case 2:
-			mes "[队伍招募专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你连听都不听就要放弃吗？改变主意后再来和我谈谈！";
 			close;
 		}
 	}
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你想向我学习，先和^006400攻城战大师^000000谈谈。";
 	close;
 
 L_Info:
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^006400队伍招募^000000顾名思义，既能帮助大家招募队员，也能帮助大家寻找队伍。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "组队招募分为两部分。";
 	mes "第一步是^0000FF登记队伍招募^000000，";
 	mes "第二步是^0000FF队伍搜索^000000。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "要查看组队招募，请点击左上方信息窗口中的^006400预约^000000按钮。之后会显示^006400组队招募列表^000000。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^006400组队招募列表^000000窗口显示其他用户发布的招募队伍，你可以搜索。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你想创建自己的队伍，请输入^006400/organize 队伍名^000000；之后可使用 /invite 玩家名，邀请其他玩家加入^006400队伍^000000。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "在^006400队伍招募^000000窗口登记招募公告后，其他用户就能搜索你的^006400队伍招募列表^000000。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "在^006400队伍招募列表^000000中，";
 	mes "^006400队伍招募^000000中可以填写你准备进行的活动或招募要求等基本信息，例如";
 	mes "^006400等级^000000、^006400地图^000000、^006400职业^000000。";
 	mes "用户就能利用这些参数和^006400队伍招募^000000系统进行搜索。";
 	next;
-	mes "[队伍招募专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果想了解更多^006400队伍招募^000000命令，请点击^006400队伍招募列表^000000右下方的^006400帮助^000000按钮。";
 	next;
 	return;
 }
 
-moc_para01,12,179,6	script	战场专家::Battleground Master	419,{
+moc_para01,12,179,6	script	战场达人::Battleground Master	419,{
 	set .@checkquest, checkquest(4163);
 	if (.@checkquest == 2) {
-		mes "[战场专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看你来找我，应该是想了解^006400战场^000000吧？";
 		next;
 		switch(select("了解战场。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[战场专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有什么比直接听专家讲解更好了！如果想再复习一遍，就来和我交谈。";
 			close;
 		case 2:
-			mes "[战场专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果想复习任何内容，告诉我就好。";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
-		mes "[战场专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在^006400战场^000000经历了 16 年激烈战斗……我是^006400战场^000000专家！";
 		mes "看来你通过了^006400队伍招募专家^000000的测验，所以他把你介绍给我。";
 		next;
-		mes "[战场专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可能已经知道，但通过所有专家测验会获得奖励！";
 		next;
-		mes "[战场专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我来告诉你^006400战场^000000的事！我会把知道的一切都告诉你！怎么样？想听吗？";
 		next;
 		switch(select("了解战场。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[战场专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有比专家亲自讲解更好的了！现在要参加我的 3 题测验吗？必须全部答对才能通过！";
 			while(1) {
 				set .@correct,0;
@@ -874,19 +874,19 @@ moc_para01,12,179,6	script	战场专家::Battleground Master	419,{
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "首先，你必须选择[]阵营或[]阵营才能参加战场。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("吉约姆, 提耶拉:拉赫, KVM:吉约姆, 克罗伊:马罗尔, KVM") == 3)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "[]是 10 对 10，你要攻击对方的水晶，同时保护自己的水晶。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("提耶拉:弗拉维乌斯:KVM:马罗尔") == 2)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "完成战斗后可能获得奖励！KVM 战斗会奖励[]。";
 						mes "[]的空格中应该填什么？";
 						next;
@@ -894,18 +894,18 @@ moc_para01,12,179,6	script	战场专家::Battleground Master	419,{
 							set .@correct, .@correct+10;
 						break;
 					case 2:
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "[]是 10 对 10。你还要攻击敌人的补给仓库，同时保护自己的仓库。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("马罗尔:KVM:弗拉维乌斯:提耶拉") == 4)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "想进入战场，以下哪一个不是你需要寻找的招募员？";
 						next;
 						if(select("马罗尔 佣兵招募员:KVM 佣兵招募员:提耶拉 佣兵招募员:弗拉维乌斯 佣兵招募员") == 1)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "参加 提耶拉 战场可以获得[]。";
 						mes "[]的空格中应该填什么？";
 						next;
@@ -913,19 +913,19 @@ moc_para01,12,179,6	script	战场专家::Battleground Master	419,{
 							set .@correct, .@correct+10;
 						break;
 					case 3:
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "在每个主要城镇，你都能找到[]进入战场。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("马罗尔 战场招募员:提耶拉 战场招募员:弗拉维乌斯 战场招募员:KVM 战场招募员") == 1)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "[]是 5 对 5，目标是减少对方人数。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("马罗尔:弗拉维乌斯:KVM:提耶拉") == 3)
 							set .@correct, .@correct+10;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "完成战斗后可以获得奖品。弗拉维乌斯 的奖品叫作[]。";
 						mes "[]的空格中应该填什么？";
 						next;
@@ -934,80 +934,80 @@ moc_para01,12,179,6	script	战场专家::Battleground Master	419,{
 						break;
 					}
 					if (.@correct == 30) {
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "3 题全对！我觉得你很聪明。你已经了解一些^006400战场^000000知识了。";
 						next;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想复习^006400战场^000000的内容，随时可以来找我！";
 						next;
-						mes "[战场专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "去找^0000FF纪念地下城专家^000000交谈吧！";
 						completequest 4163;
 						setquest 4164;
 						getexp 2000,1000;
 						close;
 					}
-					mes "[战场专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "只有 3 题，但你没有全答对！照这样下去，你会通不过所有专家的测试。";
 					next;
-					mes "[战场专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不过如果你想再挑战一次，也可以。";
 					break;
 				case 2:
 					callsub L_Info;
-					mes "[战场专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "没有比专家亲自讲解更好的了！现在要参加我的 3 题测验吗？必须全部答对才能通过！";
 					break;
 				case 3:
-					mes "[战场专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "别因放弃让我失望。如果改变主意，再来找我。";
 					close;
 				}
 			}
 			close;
 		case 2:
-			mes "[战场专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还没开始就放弃的人是胆小鬼。如果改变主意，再来找我。";
 			close;
 		}
 		close;
 	}
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果想从我这里学习，就先得到^006400队伍招募专家^000000的认可。";
 	close;
 
 L_Info:
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "简单来说，^006400战场^000000就是……";
 	mes "选择^006400吉约姆 阵营^000000或^006400克罗伊 阵营^000000，然后彼此战斗。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^006400战场^000000有 3 种。";
 	mes "第一种是^006400KVM^000000，5 对 5 的战斗，目标是减少对方人数。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "第二种是 10 对 10。攻击对手的补给仓库，同时保护自己的补给仓库，称为^006400提耶拉^000000。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "第三种也是最后一种叫^006400弗拉维乌斯^000000，同样是 10 对 10。攻击对手的水晶，同时保护自己的水晶。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "想进入^006400战场^000000，去找各大城镇都有的^006400招募员 马罗尔^000000。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "进入后选择支持 吉约姆 或 克罗伊，然后在对应阵营中选择……";
 	mes "^006400KVM 佣兵招募员^000000,";
 	mes "^006400提耶拉佣兵招募员^000000，或";
 	mes "^006400弗拉维乌斯 佣兵招募员^000000,";
 	mes "之后就能参加^006400战场^000000。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "根据^006400战场^000000的结果，你也能获得奖励。";
 	mes "从^006400KVM^000000获得 KVM 徽章，";
 	mes "从^006400提耶拉^000000获得勇气徽章，";
 	mes "从^006400弗拉维乌斯^000000获得英勇徽章。";
 	next;
-	mes "[战场专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "使用^006400战场^000000奖励，可以获得平时无法从其他地方取得的物品。";
 	mes "每种^006400战场^000000的奖励都不同，请自行确认。";
 	next;
@@ -1192,39 +1192,39 @@ L_Info:
 	return;
 }
 
-moc_para01,14,168,6	script	Map Expert	743,{
+moc_para01,14,168,6	script	地图达人::Map Expert	743,{
 	set .@checkquest, checkquest(4165);
 	if (.@checkquest == 2) {
-		mes "[地图专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然你来找我，我想你一定对^006400地图^000000有些疑问？";
 		next;
 		switch(select("了解地图。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[地图专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冒险时如果到达那些区域，记得把见闻都告诉我！";
 			mes "现在，既然你通过了所有专家的测验，就去和^006400教程目标^000000交谈吧。";
 			close;
 		case 2:
-			mes "[地图专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果还有问题，就来找我。";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
-		mes "[地图专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我研究^006400地图^000000已经 16 年，所以现在是^006400地图^000000专家！";
 		mes "既然你来找我，看来你已经通过了^006400纪念地下城专家^000000的测验。";
 		next;
-		mes "[地图专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如你所知，通过所有专家的测验就能获得奖励。";
 		next;
-		mes "[地图专家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "作为最后一位专家，我会尽量把^006400地图^000000讲得简单易懂。准备开始了吗？";
 		next;
 		switch(select("了解地图。:结束对话。")) {
 		case 1:
 			callsub L_Info;
-			mes "[地图专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的说明怎么样？现在来个小测验！必须全部答对才能通过。准备好了吗？";
 			while(1) {
 				set .@correct,0;
@@ -1233,19 +1233,19 @@ moc_para01,14,168,6	script	Map Expert	743,{
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "点击左上方的[]按钮即可查看地图。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("技能:公会:地图:预约") == 3)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "查看地图时，每个区域都会提供怪物的[]和[]信息，帮助你决定该去哪里狩猎。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("名称、年龄:属性、等级:属性、种族:名称、等级") == 4)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想停止查看地图，只需按[]快捷键或 ESC，即可关闭地图。";
 						mes "[]的空格中应该填什么？";
 						next;
@@ -1253,19 +1253,19 @@ moc_para01,14,168,6	script	Map Expert	743,{
 							set .@correct, .@correct+10;
 						break;
 					case 2:
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "打开地图后，将鼠标悬停在特定区域上，就能看到该区域的[]和[]。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("名称、区域详情:名称、魔物属性:特产、区域详情:特产、名称") == 1)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "查看地图右下方，你会看到[]的图标。点击它或按 TAB 快捷键，即可查看各种信息。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("沙漠之狼:邪恶箱:小雪兽:波利") == 4)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "查看地图时按 TAB 快捷键，就能找到各个地下城及其入口位置。";
 						mes "你还可以查看该区域怪物的[]。";
 						mes "[]的空格中应该填什么？";
@@ -1274,20 +1274,20 @@ moc_para01,14,168,6	script	Map Expert	743,{
 							set .@correct, .@correct+10;
 						break;
 					case 3:
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想停止查看地图，只需按[]返回普通画面。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("O:X:退出:ALT") == 2)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "查看地图时按 TAB 快捷键，就能找到各个地下城及其入口位置。";
 						mes "你还可以查看该区域怪物的[]。";
 						mes "[]的空格中应该填什么？";
 						next;
 						if(select("等级:名称:体型:属性") == 1)
 							set .@correct, .@correct+10;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "点击左上方的[]按钮即可查看地图。";
 						mes "[]的空格中应该填什么？";
 						next;
@@ -1296,80 +1296,80 @@ moc_para01,14,168,6	script	Map Expert	743,{
 						break;
 					}
 					if (.@correct == 30) {
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "答对了！三个问题全对！现在更了解^006400地图^000000了吗？";
 						next;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想进一步了解^006400地图^000000，随时可以来找我。";
 						next;
-						mes "[地图专家]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "恭喜你通过了所有专家的测验！现在去找^006400教程目标^000000交谈吧！";
 						completequest 4165;
 						setquest 4166;
 						getexp 2000,1000;
 						close;
 					}
-					mes "[地图专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "这 3 个问题不该这么难……";
 					next;
-					mes "[地图专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你看起来很聪明，为什么不再试一次测验？";
 					break;
 				case 2:
 					callsub L_Info;
-					mes "[地图专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "专家的讲解怎么样？现在我要给你一个小测验。全部答对才能通过。想试试吗？";
 					break;
 				case 3:
-					mes "[地图专家]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我是最后一位专家！别放弃！准备好后再来找我！";
 					close;
 				}
 			}
 			close;
 		case 2:
-			mes "[地图专家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你都不试就要放弃？但我是最后一位专家！别放弃！准备好后再来找我！";
 			close;
 		}
 		close;
 	}
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "想向我学习，先获得^006400纪念地下城^000000的认可。";
 	close;
 
 L_Info:
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^006400地图^000000显示世界旅行所需信息，例如地形、主要城镇和原野。它是非常重要的工具！";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "因此，了解^006400地图^000000比其他任何事都重要。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "点击屏幕左上方写着^006400地图^000000的按钮即可打开地图。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "点击^006400地图^000000按钮后，米德加尔特全地图会占满屏幕。";
 	mes "将鼠标^0000FF悬停在特定区域^000000上，可以查看^006400名称^000000和区域详情。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "地图右下方有一幅^006400波利图案^000000。";
 	mes "点击它或按 ^006400TAB^000000 快捷键，即可查看各种信息。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "首先，你可以查看各区域怪物的^006400名称^000000和^006400等级^000000，方便决定去哪里狩猎。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "其次，你可以找到各种^006400地下城^000000及其^006400入口位置^000000。";
 	mes "还可以查看该区域的怪物及其^006400等级^000000，信息以红色显示，便于查找。";
 	mes "";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果想关闭地图，有两种方法。";
 	mes "可以按 ^006400ALT + 0^000000 或 ^006400ESC^000000 快捷键。";
 	mes "或者点击地图右上角的 ^006400X^000000 按钮，返回正常游戏画面。";
 	next;
-	mes "[地图专家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "目前我们无法看到米德加尔特之外的地方，但据说外面存在许多未知世界。";
 	next;
 	return;

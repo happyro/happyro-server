@@ -18,7 +18,7 @@
 // Manuk & Splendide
 //============================================================
 -	script	::merchant_13_2	-1,{
-	set .@n$, strnpcinfo(1) == "Merchant of Manuk" ? "[马努克商人]" : "[斯普朗迪商人]";
+	set .@n$, "[" + strnpcinfo(1) + "]";
 	mes .@n$;
 	if (isequipped(2782) && ep13_2_rhea == 100) {
 		if (!checkweight(1201,1)) {
@@ -29,7 +29,7 @@
 		mes "你好。";
 		mes "你想找什么？";
 		next;
-		if (strnpcinfo(1) == "Merchant of Manuk") {
+		explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "Merchant of Manuk") {
 			setarray .@Items[2],12342,12343,12348;
 			set .@Book,11019; //Manuk_Selling_Item
 			set .@Coin,6080; //Manuk_Coin
@@ -78,7 +78,7 @@
 		close;
 	}
 	else {
-		if (strnpcinfo(1) == "Merchant of Manuk") {
+		explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "Merchant of Manuk") {
 			mes "Rtt od d";
 			mes "Qwo hd is d irr";
 		}
@@ -89,5 +89,5 @@
 		close;
 	}
 }
-man_in01,286,16,1	duplicate(merchant_13_2)	Merchant of Manuk	454
-spl_in01,110,326,5	duplicate(merchant_13_2)	斯普伦迪德商人::Merchant of Splendide	439
+man_in01,286,16,1	duplicate(merchant_13_2)	魔怒克商人::Merchant of Manuk	454
+spl_in01,110,326,5	duplicate(merchant_13_2)	史波浪壮丽商人::Merchant of Splendide	439

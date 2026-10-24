@@ -392,7 +392,7 @@ int_land04,58,69,5	duplicate(Sailor#intro_npc04)	Sailor#intro_npc04_04	4W_SAILOR
 
 // - Captain Carocc
 // -----------------------------------------------------------------------------
-izlude,198,213,3	script	Captain Carocc#iz	4_M_REINDEER,5,5,{
+izlude,198,213,3	script	船长卡鲁#iz::Captain Carocc#iz	4_M_REINDEER,5,5,{
 	cutin "fly_trock.bmp", 2;
 	if (Class == Job_Novice && BaseLevel < 15) {
 		if (isbegin_quest(4269) == 2) {
@@ -807,15 +807,15 @@ izlude_d,198,213,3	duplicate(Captain Carocc#iz)	Captain Carocc#iz_d	4_M_REINDEER
 // - Criatura Academy Staff
 // - Teaches the player about the Inventory.
 // -----------------------------------------------------------------------------
-izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
+izlude,122,207,3	script	克里图拉学院员工勋#0::Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 	viewpoint 2,122,207,1,0xFFFFFF;
 	if (Class == Job_Novice && BaseLevel < 15) {
 		if (isbegin_quest(7472) == 1) {
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……你一定就是 卡洛克 提到的冒险者。";
 			mes "我不知道你的故乡在哪里，但米德加尔特是开始人生旅程的好地方。";
 			next;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看到新冒险者踏上旅程真令人高兴。";
 			mes "你一定累了。要喝点什么吗？";
 			if (!checkweight(531,1)) {
@@ -827,14 +827,14 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 			setquest 7473;
 			getitem 531,1;// Apple_Juice
 			next;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "桌面端可按 Alt+E 打开背包；手机和平板可从菜单打开背包。";
 			next;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "背包会将物品按用途分类；切换分类可以查找消耗品、装备和其他物品。";
 			mes "苹果汁属于消耗品。";
 			next;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "桌面端可^4d4dff双击物品使用或装备^000000；手机和平板请点选物品，再点^4d4dff使用或穿戴^000000。";
 			next;
 			cutin "tutorial03.bmp", 4;
@@ -847,7 +847,7 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 			mes "穿戴装备前，请确认职业和等级符合要求。";
 			next;
 			cutin "", 255;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "桌面端^4d4dff右键点击物品^000000查看详情；手机和平板在背包中^4d4dff点选物品^000000即可查看。";
 			mes "你可以查看物品的详细信息。";
 			next;
@@ -859,16 +859,16 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 				mes "^4d4dff选中其他玩家后，可以在弹出的社交窗口中与他们交易或组队。";
 			next;
 			cutin "", 255;
-			mes "[亨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在请^4d4dff喝下我给你的苹果汁^000000。";
 			close;
 		} else {
 			if (!isbegin_quest(7473)) {
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿，你好。";
 				mes "休息一会儿吧。";
 				next;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看到新冒险者踏上旅程真令人高兴。";
 				mes "休息时想喝点什么吗？";
 				if (!checkweight(531,1)) {
@@ -878,17 +878,17 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 				setquest 7473;
 				getitem 531,1;// Apple_Juice
 				next;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "先打开背包：桌面端可按 Alt+E，手机和平板可从菜单进入。";
 				next;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "背包会将物品按用途分类；切换分类可以查找消耗品、装备和其他物品。";
 				mes "苹果汁属于消耗品。";
 				next;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "桌面端可^4d4dff双击物品使用或装备^000000；手机和平板请点选物品，再点^4d4dff使用或穿戴^000000。";
 				next;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "桌面端^4d4dff右键点击物品^000000查看详情；手机和平板在背包中^4d4dff点选物品^000000即可查看。";
 				mes "你可以查看物品的详细信息。";
 				next;
@@ -900,22 +900,22 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 				mes "选择其他玩家后，^4d4dff可以通过弹出的社交窗口与他们交易或组队。";
 				next;
 				cutin "", 255;
-				mes "[亨]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在请^4d4dff喝下我给你的苹果汁^000000。";
 				close;
 			} else if (isbegin_quest(7473) == 1) {
 				if (countitem(531) > 0) {
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "在背包中使用我给你的苹果汁。";
 					mes "之后我们再谈。";
 					close;
 				} else {
 					if (isbegin_quest(4269) > 0) {
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "味道怎么样？";
 						mes "酸甜可口，对吧？虽然效果不算强，但也有治疗作用。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我想多给你一些，可那已经是最后一瓶了。";
 						mes "总之，这里有一些药水。开始战斗后会派上用场。";
 						if (!checkweight(569,30)) {
@@ -926,19 +926,19 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 						getitem 569,30;// Novice_Potion
 						getexp 200,0;
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "魔法学院是为未来积累经验的好地方。";
 						mes "我不是因为在这里工作才这么说。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我是认真的……哈哈。";
 						close;
 					} else {
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "味道怎么样？";
 						mes "酸甜可口，对吧？虽然效果不算强，但也有治疗作用。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我想多给你一些，可那已经是最后一瓶了。";
 						mes "总之，这里有一些药水。开始战斗后会派上用场。";
 						if (!checkweight(569,30)) {
@@ -949,22 +949,22 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 						getitem 569,30;// Novice_Potion
 						getexp 200,0;
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你接下来打算做什么？";
 						mes "找到住的地方了吗？";
 						next;
 						switch(select("我需要帮助", "什么都可以。", "别担心。")) {
 						case 1:
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "不过话说回来。";
 							mes "独自在陌生地方生活很辛苦。";
 							mes "所以才有魔法学院。";
 							next;
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "卡洛克 大概也是因为同样的原因把你介绍给我。";
 							mes "虽然我只是这里的工作人员，但可以带你参观。";
 							next;
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "沿着这条路向北走，你就能看到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 							mes "任何人都可以入学，好好利用这个机会吧。";
 							next;
@@ -977,15 +977,15 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 							mes "亨 提供的资讯有限。";
 							close;
 						case 2:
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你真乐观。";
 							mes "如果需要帮助，随时可以来魔法学院。";
 							next;
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "入学没有要求，也不需要付费，这会对你很有帮助。";
 							mes "沿这条路向北走，你会找到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 							next;
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "如果有更多像你这样的冒险者，未来会更加光明。";
 							mes "哈哈哈哈。";
 							next;
@@ -998,12 +998,12 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 							mes "亨 提供的资讯有限。";
 							close;
 						case 3:
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你已经安排好计划了？";
 							mes "准备得很充分。";
 							mes "不过，如果你对魔法学院好奇，不妨去看看。";
 							next;
-							mes "[亨]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "沿这条路向北走，你会找到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 							mes "一切顺其自然，不是吗？";
 							next;
@@ -1021,21 +1021,21 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 				}
 			} else {
 				if (!isbegin_quest(4269)) {
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "是你啊……";
 					mes "你接下来打算做什么？找到住处了吗？";
 					next;
 					switch(select("我需要帮助", "什么都可以。", "别担心。")) {
 					case 1:
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "不过话说回来，独自在新地方生活很辛苦。";
 						mes "所以才有魔法学院。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "卡洛克大概也是因为这个原因才让你来找我。";
 						mes "虽然我只是这里的帮工，但可以带你四处看看。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "沿着这条路向北走，你就能看到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 						mes "任何人都能报名，别错过机会。";
 						next;
@@ -1048,14 +1048,14 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 						mes "亨的情报也是有限的。";
 						close;
 					case 2:
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你真乐观。如果需要帮助，随时可以去魔法学院。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "报名没有任何要求，也不收费，对你会很有帮助。";
 						mes "沿这条路向北走，你会找到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 						next;
-						mes "[亨]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果有更多像你这样的冒险者，未来会更加光明。哈哈哈哈。";
 						next;
 						emotion ET_SURPRISE, getnpcid(0, "Information Staff#"+strnpcinfo(2));
@@ -1067,11 +1067,11 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 						mes "亨的情报也是有限的。";
 						close;
 					case 3:
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你已经制定好计划了？准备得很充分。";
 					mes "不过如果你对魔法学院感兴趣，还是去看看吧。";
 						next;
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "沿这条路向北走，你会找到<NAVI>[学院建筑]<INFO>iz_ac01,100,39</INFO></NAVI>。";
 					mes "顺其自然，不是吗？";
 						next;
@@ -1085,21 +1085,21 @@ izlude,122,207,3	script	Criatura Academy Staff#0	4_M_KHKYEL,3,3,{
 						close;
 					}
 				} else {
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "魔法学院是为未来积累经验的好地方。";
 					mes "我不是因为在这里工作才这么说。";
 					next;
-					mes "[亨]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "真的……哈哈哈哈。";
 					close;
 				}
 			}
 		}
 	} else {
-		mes "[亨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "皇家魔法学院成立的目的，是帮助初出茅庐的冒险者踏上最初的旅程。";
 		next;
-		mes "[亨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我只是这里的帮工，但看到学生毕业并成为优秀的社会成员，我很高兴。";
 		close;
 	}
@@ -1124,52 +1124,52 @@ izlude_d,122,207,3	duplicate(Criatura Academy Staff#0)	Criatura Academy Staff#d	
 // - Information Staff
 // - Teaches the player about the Mini-Map through a quick quest.
 // -----------------------------------------------------------------------------
-izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
+izlude,120,207,4	script	导览人员#0::Information Staff#0	8W_SOLDIER,{
 
 	if (BaseLevel < 15 && !isbegin_quest(7474)) {
-		mes "[信息工作人员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，你好吗？";
 		mes "我负责依斯鲁得重要地点的导航指引。";
 		mes "我想在提供导航的同时玩个小游戏，可以吗？";
 		next;
 		if (select("好，我们玩吧！", "我全都知道了。") == 1) {
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，来看看如何查看小地图。";
 			mes "你可以通过画面右上角的小地图确认自己的位置。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果获得城镇或城市的信息，地图上会标记一个^4d4dff+^000000路标。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "电脑按 ^4d4dffCtrl+~^000000 查看世界地图；手机和平板打开菜单中的“地图”查看地图信息。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "电脑的世界地图可以查看你和队员的位置；手机和平板的地图页面可查看当前地图及魔物信息。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记住这些有用的信息。现在，要玩个小游戏吗？";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会在小地图上^4d4dff标记三个特定地点。^000000";
 			mes "请以路标为参考，^4d4dff访问这些地点^000000。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "把它当作寻宝游戏去吧。我在那里藏了一些有用物品。";
 			viewpoint 1,179,75,1,0xCCFFFF;
 			viewpoint 1,45,94,2,0x00FF00;
 			viewpoint 1,207,167,3,0xFFEB46;
 			setquest 7474;
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "走过三个地点后再来找我，我会确认结果。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，有人比你先出发了！如果不快点，物品会被那个人全部拿走！";
 			mes "快跑！";
 			npcskill "AL_INCAGI", 10, 10, 10;
 			close;
 		}
-		mes "[信息工作人员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你需要依斯鲁得所有地点的信息吗？";
 		mes "点击介绍的^B9062F[营地名称]^000000，我会为你指引，请跟随^B9062F红色箭头^000000。";
 		next;
@@ -1179,36 +1179,36 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				while (1) {
 					switch(select("[魔法学院]", "[码头]", "[国际飞艇]", "[竞技场]", "[商店]", "[剑士公会]", "[附魔协会]", "[铁匠工坊]", "返回上一级菜单")) {
 					case 1:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果你是第一次冒险，<NAVI>[魔法学院]<INFO>iz_ac01,100,39,</INFO></NAVI>能提供很多信息和帮助。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 128, 260, 0, 0xFFD269;
 						next;
 						continue;
 					case 2:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "从东北方的<NAVI>[码头]<INFO>izlude,197,205,</INFO></NAVI>可以前往^8B4513艾尔贝塔^000000或^8B4513巴亚兰岛^000000。";
 						next;
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "巴亚兰岛是个可怕的地方，里面有^8B4513依斯鲁得地下城^000000。需要进一步指引吗？";
 						viewpoint 1, 197, 205, 1, 0xFFFF00;
 						next;
 						continue;
 					case 3:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "东南方的<NAVI>[飞艇]<INFO>izlude,206,75,</INFO></NAVI>连接施瓦茨瓦尔德共和国首都^8B4513朱诺^000000，以及阿鲁纳佩尔兹王国首都^8B4513拉赫^000000。需要进一步指引吗？";
 						viewpoint 1, 210, 73, 2, 0xFF0A82;
 						next;
 						continue;
 					case 4:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "东边的<NAVI>[竞技场]<INFO>izlude,213,161,</INFO></NAVI>用于测试战斗能力。";
 						mes "这是个很棒的地方，我会在小地图上标记位置。需要进一步指引吗？";
 						viewpoint 1, 213, 161, 3, 0xFFFF54;
 						next;
 						continue;
 					case 5:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 			mes "我会在小地图上标记<NAVI>[商店]<INFO>izlude,110,182,</INFO></NAVI>的位置。";
 //
 //
@@ -1275,21 +1275,21 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 						next;
 						continue;
 					case 6:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "<NAVI>[剑士公会]<INFO>izlude,51,172,</INFO></NAVI>负责剑士转职。";
 						mes "我会在小地图上标记剑士公会的位置。需要进一步指引吗？";
 						viewpoint 1, 52, 172, 5, 0xFFDA70;
 						next;
 						continue;
 					case 7:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[附魔协会]<INFO>izlude,97,125,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 97, 125, 6, 0xFFDA70;
 						next;
 						continue;
 					case 8:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[铁匠工坊]<INFO>izlude,153,126,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 153, 126, 7, 0xFFAAFF;
@@ -1305,42 +1305,42 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				while (1) {
 					switch(select("[乐园团空间传送员]", "[卡普拉员工]", "[催眠师]", "[蜜月助手]", "[佣兵管理员]", "[宠物美容师]", "返回上一级菜单")) {
 					case 1:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[乐园团空间传送员]<INFO>izlude,131,148,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 131, 148, 8, 0xFF0A82;
 						next;
 						continue;
 					case 2:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[卡普拉员工]<INFO>izlude,128,148,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 128, 148, 9, 0xFFFF54;
 						next;
 						continue;
 					case 3:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[催眠师]<INFO>izlude,127,175,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 127, 175, 10, 0xFF0064;
 						next;
 						continue;
 					case 4:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想去情侣度假地^8B4513爪哇伊^000000，请和<NAVI>[蜜月助手]<INFO>izlude,180,224,</INFO></NAVI>交谈。";
 						mes "问她相关问题即可。需要进一步指引吗？";
 						viewpoint 1, 180, 224, 11, 0xFFFF00;
 						next;
 						continue;
 					case 5:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想了解佣兵公会，向西走并和<NAVI>[佣兵管理员]<INFO>izlude,47,170,</INFO></NAVI>交谈。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 47, 170, 12, 0xFFDA70;
 						next;
 						continue;
 					case 6:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[宠物美容师]<INFO>izlude_in,72,98,</INFO></NAVI>的位置。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 108, 179, 13, 0xFF0064;
@@ -1353,7 +1353,7 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				}
 				break;
 			case 3:
-				mes "[信息工作人员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会清除标记。需要进一步指引吗？";
 				viewpoint 2, 197, 205, 1, 0xFF0000;
 				viewpoint 2, 210, 73, 2, 0xFF0000;
@@ -1371,14 +1371,14 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				next;
 				break;
 			case 4:
-				mes "[信息工作人员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "祝你冒险愉快。再见~~！";
 				close;
 			}
 		}
 	} else if (isbegin_quest(7474) == 1) {
 		if ((isbegin_quest(7475) + isbegin_quest(7476) + isbegin_quest(7477)) > 2) {
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "怎么愁眉苦脸的？看起来你找到了我标记的所有地点。";
 			next;
 			mes "[卢敏]";
@@ -1413,11 +1413,11 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				next;
 			}
 			cutin "", 255;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你们两个冷静。卢敏把它们全拿走了。";
 			mes ""+ strcharinfo(0) + "，我会另外给你一套。";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想想原因吧，是我犯错了，本来只该留下一人的物品，却把你们两人的都留下了。";
 			next;
 			cutin "nov_lumin03.bmp", 2;
@@ -1425,11 +1425,11 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 			mes "简单又公平的决定。好了，我走了。朋友，回头见。";
 			next;
 			cutin "", 255;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你们两个不是朋友吗？";
 			mes "看起来你们相处得很友好，对吧？";
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是我送给你们的礼物。希望能派上用场。";
 			if (!checkweight(12323,20,12324,10,569,20)) {
 				mes "请先整理背包，为[非卖品]新手专用苍蝇翅膀、[非卖品]新手专用蝴蝶翅膀和初学者专用药水奖励预留足够空间。";
@@ -1444,11 +1444,11 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 			getitem 12324,10;// N_Butterfly_Wing
 			getitem 569,20;// Novice_Potion
 			next;
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "祝你旅途愉快。";
 			close;
 		} else {
-			mes "[信息工作人员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还没有找到我藏的宝藏。";
 			mes "这是地点列表，再看一遍。快点！";
 			viewpoint 1,179,75,1,0xccffff;
@@ -1457,10 +1457,10 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 			close;
 		}
 	} else {
-		mes "[信息工作人员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里是依斯鲁得——普隆德拉的卫星城。需要指引吗？";
 		next;
-		mes "[信息工作人员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "点击^B9062F[区域名称]^000000后，我可以为你^B9062F导航^000000一条可跟随的路线。";
 		next;
 		while(1) {
@@ -1469,36 +1469,36 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				while (1) {
 					switch(select("[魔法学院]:[码头]:[国际飞艇]:[竞技场]:[商店]:[剑士公会]:[附魔协会]:[铁匠工坊]:返回上一级菜单")) {
 					case 1:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果你是第一次冒险，<NAVI>[魔法学院]<INFO>iz_ac01,100,39,</INFO></NAVI>能提供很多信息和帮助。";
 						mes "需要进一步指引吗？";
 						viewpoint 1, 128, 260, 0, 0xFFD269;
 						next;
 						continue;
 					case 2:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "从东北方的<NAVI>[码头]<INFO>izlude,197,205,</INFO></NAVI>可以前往^8B4513艾尔贝塔^000000或^8B4513巴亚兰岛^000000。";
 						next;
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "巴亚兰岛是个可怕的地方，里面有^8B4513依斯鲁得地下城^000000。需要进一步指引吗？";
 						viewpoint 1, 197, 205, 1, 0xFFFF00;
 						next;
 						continue;
 					case 3:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "东南方的<NAVI>[飞艇]<INFO>izlude,206,75,</INFO></NAVI>连接施瓦茨瓦尔德共和国首都^8B4513朱诺^000000，以及阿鲁纳佩尔兹王国首都^8B4513拉赫^000000。需要进一步指引吗？";
 						viewpoint 1, 210, 73, 2, 0xFF0A82;
 						next;
 						continue;
 					case 4:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "东边的<NAVI>[竞技场]<INFO>izlude,213,161,</INFO></NAVI>用于测试战斗能力。";
 						mes "这是个很棒的地方，我会在小地图上标记位置。需要进一步指引吗？";
 						viewpoint 1, 213, 161, 3, 0xFFFF54;
 						next;
 						continue;
 					case 5:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[商店]<INFO>izlude,110,182,</INFO></NAVI>的位置。";
 						mes "在小地图上。";
 						mes "需要更详细的指引吗？";
@@ -1506,7 +1506,7 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 						next;
 						continue;
 					case 6:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "<NAVI>[剑士公会]<INFO>izlude,51,172,</INFO></NAVI>是办理剑士转职的地方。";
 						mes "我会在小地图上标记剑士公会的位置。";
 						mes "需要更详细的指引吗？";
@@ -1514,14 +1514,14 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 						next;
 						continue;
 					case 7:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[附魔协会]<INFO>izlude,97,125,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 97, 125, 6, 0xFFDA70;
 						next;
 						continue;
 					case 8:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[铁匠工坊]<INFO>izlude,153,126,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 153, 126, 7, 0xFFAAFF;
@@ -1537,28 +1537,28 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				while (1) {
 					switch(select("[乐园团空间传送员]:[卡普拉员工]:[催眠师]:[蜜月助手]:[佣兵管理员]:[宠物美容师]:返回上一级菜单")) {
 					case 1:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "现在我会在小地图上标记<NAVI>[乐园团空间传送员]<INFO>izlude,131,148,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 131, 148, 8, 0xFF0A82;
 						next;
 						continue;
 					case 2:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[卡普拉员工]<INFO>izlude,128,148,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 128, 148, 9, 0xFFFF54;
 						next;
 						continue;
 					case 3:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[催眠师]<INFO>izlude,127,175,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 127, 175, 10, 0xFF0064;
 						next;
 						continue;
 					case 4:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想去^8B4513爪哇伊^000000——情侣度假地，请和<NAVI>[蜜月助手]<INFO>izlude,180,224,</INFO></NAVI>交谈。";
 						mes "直接询问相关问题即可。";
 						mes "需要更详细的指引吗？";
@@ -1566,14 +1566,14 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 						next;
 						continue;
 					case 5:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果想了解佣兵公会，请向西走并与<NAVI>[佣兵管理员]<INFO>izlude,47,170,</INFO></NAVI>交谈。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 47, 170, 12, 0xFFDA70;
 						next;
 						continue;
 					case 6:
-						mes "[信息工作人员]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我会在小地图上标记<NAVI>[宠物美容师]<INFO>izlude_in,72,98,</INFO></NAVI>的位置。";
 						mes "需要更详细的指引吗？";
 						viewpoint 1, 108, 179, 13, 0xFF0064;
@@ -1586,7 +1586,7 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				}
 				break;
 			case 3:
-				mes "[信息工作人员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会清除标记。";
 				mes "需要更详细的指引吗？";
 				viewpoint 2, 197, 205, 1, 0xFF0000;
@@ -1605,7 +1605,7 @@ izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
 				next;
 				break;
 			case 4:
-				mes "[信息工作人员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "祝你冒险愉快。";
 				mes "再见～～！";
 				close;
@@ -1906,7 +1906,7 @@ izlude_d,207,167,3	duplicate(Arena#iz)	Arena#iz_d	4_BULLETIN_BOARD2,3,3
 
 // - Bulletin Board
 // -----------------------------------------------------------------------------
-izlude,45,94,3	script	Bulletin Board#iz	4_BULLETIN_BOARD2,3,3,{
+izlude,45,94,3	script	里程碑#iz::Bulletin Board#iz	4_BULLETIN_BOARD2,3,3,{
 	.@total = isbegin_quest(7475) + isbegin_quest(7476) + isbegin_quest(7477);
 	if (isbegin_quest(7474) == 1) {
 		if (!isbegin_quest(7477)) {
@@ -2254,7 +2254,7 @@ iz_ac01_d,59,43,3	duplicate(Therapist#ac)	Therapist#ac_d	4_M_6THPRIN1
 
 // - Cultivated Red Plant (Red Herb Quest)
 // -----------------------------------------------------------------------------
-izlude,141,251,0	script	Cultivated Red Plant#0	1078,3,3,{
+izlude,141,251,0	script	种植中的红色草#0::Cultivated Red Plant#0	1078,3,3,{
 	end;
 
 OnTouch:
@@ -2284,7 +2284,7 @@ izlude_d,141,251,0	duplicate(Cultivated Red Plant#0)	Cultivated Red Plant#d	1078
 
 // - Academy Student (Red Herb Quest)
 // -----------------------------------------------------------------------------
-izlude,140,249,7	script	Academy Student#0	4_M_NOV_RUMIN,{
+izlude,140,249,7	script	克里图拉学院学生#0::Academy Student#0	4_M_NOV_RUMIN,{
 	if (isbegin_quest(7478) == 1 && !isbegin_quest(7479)) {
 		specialeffect EF_STEAL, AREA, "Cultivated Red Plant#"+strnpcinfo(2);
 		donpcevent "Cultivated Red Plant#"+strnpcinfo(2)+"::OnDisable";
@@ -2398,7 +2398,7 @@ izlude_d,140,249,7	duplicate(Academy Student#0)	Academy Student#d	4_M_NOV_RUMIN
 
 // - Instructor Argos (Trick Dead Quest)
 // -----------------------------------------------------------------------------
-izlude,140,260,3	script	Instructor Argos#iz	4_M_LIEMAN,{
+izlude,140,260,3	script	教官 亚勒库斯#iz::Instructor Argos#iz	4_M_LIEMAN,{
 	if (Class != Job_Novice || getskilllv("NV_TRICKDEAD") != 0) {
 		mes "[阿尔戈斯教官]";
 		mes "呼噜……呼噜……";
@@ -2567,7 +2567,7 @@ izlude_d,140,260,3	duplicate(Instructor Argos#iz)	Instructor Argos#iz_d	4_M_LIEM
 // - Academy Receptionist
 // - Gives player some basic equipment and starts Academy quests.
 // -----------------------------------------------------------------------------
-iz_ac01,100,39,5	script	Academy Receptionist#1	4_F_01,{
+iz_ac01,100,39,5	script	学院接待人员#1::Academy Receptionist#1	4_F_01,{
 
 	if (isbegin_quest(4269) == 2) {
 		mes "[接待员]";
@@ -2768,7 +2768,7 @@ iz_ac01_d,100,39,5	duplicate(Academy Receptionist#1)	Academy Receptionist#1_d	4_
 // - Trainer Mainz
 // - Teaches the player about Status Effects (poison, stun, etc).
 // -----------------------------------------------------------------------------
-iz_ac01,134,47,5	script	Trainer Mainz#ac	4_M_KY_KNT,4,4,{
+iz_ac01,134,47,5	script	教官 马因斯#ac::Trainer Mainz#ac	4_M_KY_KNT,4,4,{
 	if (!isbegin_quest(4269)) {
 		mes "[迈因兹]";
 		mes "哈啊……";
@@ -3229,8 +3229,8 @@ iz_ac01_d,134,47,5	duplicate(Trainer Mainz#ac)	Trainer Mainz#ac_d	4_M_KY_KNT,4,4
 // - Odd Novice
 // - Introduces the player to the concept of Super Novices.
 // -----------------------------------------------------------------------------
-iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
-	mes "[古怪的初心者]";
+iz_ac01,36,52,3	script	奇怪的初学者#ac::Odd Novice#ac	4_M_SIT_NOVICE,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊哈~~ 在药房摸鱼。";
 	mes "逃课又酷又棒。";
 	if (Class == Job_Novice) {
@@ -3239,7 +3239,7 @@ iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
 		next;
 		.@choice = rand(1,10);
 		if (.@choice < 3) {
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……你看起来很有天赋。";
 			mes "我心情不错，要不要给你展示点新花样？";
 			next;
@@ -3250,41 +3250,41 @@ iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
 		switch(.@message)
 		{
 		case 1:
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我看起来也许很普通，但我有新奇的天赋。";
 			mes "看到它后受到惊吓可别怪我。";
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，我该从哪里开始？";
 			mes "首先，重击！";
 			specialeffect2 EF_BASH;
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿……吓到了？";
 			mes "我只是装装样子……";
 			mes "不是真的拳头。";
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你被吓到了！";
 			specialeffect2 EF_BLESSING;
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "保持冷静，喝下药水，";
 			mes "但这还不是全部。";
 			specialeffect2 EF_STEAL;
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我偷走了你的一根头发。";
 			mes "我不相信巫毒术。";
 			mes "把它当作你的幸运吧。";
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "最后一个，至少可以说是一团火焰！";
 			mes "怎么样？很新奇吧。";
 			mes "别再浪费时间了，学到的技能都应该用起来。";
 			specialeffect EF_SIGHT, AREA, strnpcinfo(3);
 			next;
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呃，我的 SP 全没了……";
 			mes "都浪费掉了……我累了。";
 			mes "我要回去休息。";
@@ -3292,36 +3292,36 @@ iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
 			close;
 		case 2:
 			if (.@choice == 10) {
-				mes "[古怪的初心者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么？你来打扰我。";
 				mes "离我远点，孩子，你烦到我了。";
 				close;
 			} else {
 				switch(rand(1,3)) {
 					case 1:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我？我是初心者。";
 						mes "什么？很奇怪？你第一次见到我吗？";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果我看起来很寒酸，你应该去照照镜子。";
 						mes "朋友，你和我穿的是同样的东西。";
 						close;
 					case 2:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我就是所谓的初心者中的初心者。";
 						mes "什么都会一点，却没有一项精通。";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果你不从学校毕业，只会闲逛并模仿别人的生活方式，最后就会变成我这样。";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "天才和笨蛋之间只有一线之隔。";
 						mes "多才多艺却没有专长的人，就是超级初心者。";
 						mes "大家都是这么称呼我们的。";
 						close;
 					case 3:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "玫瑰换个名字……";
 						mes "我就是我。超级初心者！";
 						close;
@@ -3329,51 +3329,51 @@ iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
 			}
 		case 3:
 			if (.@choice == 10) {
-				mes "[古怪的初心者]";
+				mes "[" + strnpcinfo(1) + "]";
 					mes "什么？你来打扰我。";
 					mes "离我远点，孩子，你烦到我了。";
 				close;
 			} else {
 				if (!callfunc("F_CanChangeJob")) {
-					mes "[古怪的初心者]";
+					mes "[" + strnpcinfo(1) + "]";
 						mes "你都这样说了，为什么不去转职，非要在这里闲逛？";
 						mes "嗯，你难道想变得和我一样？";
 					next;
-					mes "[古怪的初心者]";
+					mes "[" + strnpcinfo(1) + "]";
 						mes "啊哈~ 如果你想要各种不同的技能……";
 					next;
-					mes "[古怪的初心者]";
+					mes "[" + strnpcinfo(1) + "]";
 						mes "如果你像我一样努力，就会成为伟大的超级初心者。";
 					close;
 				} else {
 					switch(rand(1,3)) {
 					case 1:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "嗯。真是脏嘴！";
 						mes "我在你这个年纪时，如果像你一样胡乱说话，就会被拖到后山，然后……";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "好……够了……";
 						mes "我现在心情好多了？";
 						mes "我说好话的时候，你就安静地走开，好吗？";
 						close;
 					case 2:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你在学校里闲逛吗？";
 						mes "我不需要多说。";
 						mes "如果你一直在这里混日子，长大后就会变成我这样。";
 						mes "很可怕，对吧？";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我知道，我知道，在被老师发现，或者更糟糕地被校长发现之前，快走，走~~~~远~~~~点~~~~~吧~";
 						close;
 					case 3:
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "嗯，";
 						mes "我在做什么？";
 						mes "一转眼，我就变成这样了。";
 						next;
-						mes "[古怪的初心者]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "其实，我曾经有一个伟大的梦想……";
 						mes "唉~~ 是因为想做的事情太多了吗？";
 						close;
@@ -3381,7 +3381,7 @@ iz_ac01,36,52,3	script	Odd Novice#ac	4_M_SIT_NOVICE,{
 				}
 			}
 		case 4:
-			mes "[古怪的初心者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，好，走你的路吧……";
 			mes "我是骄傲而孤独的初心者。";
 			mes "我能自得其乐。";
@@ -3399,7 +3399,7 @@ iz_ac01_d,36,52,3	duplicate(Odd Novice#ac)	Odd Novice#ac_d	4_M_SIT_NOVICE
 // - Shop Helper
 // - Teaches the player about Shops and Currency.
 // -----------------------------------------------------------------------------
-izlude,115,181,5	script	Shop Helper#iz	4_F_KHELLISIA,{
+izlude,115,181,5	script	商店服务员#iz::Shop Helper#iz	4_F_KHELLISIA,{
 
 	if (Class == Job_Novice) {
 		if (!isbegin_quest(1237)) {
@@ -3833,10 +3833,10 @@ iz_ac01_d,56,68	monster	10级	2408,1,5000
 // - Dacquoise
 // - Teaches the player about Cooking.
 // -----------------------------------------------------------------------------
-iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
+iz_ac01,147,50,3	script	塔库瓦兹#ac::Dacquoise#ac	4_COOK,{
 	if (Class == Job_Novice || (isbegin_quest(14154) == 1 || isbegin_quest(14155) == 1 || isbegin_quest(14156) == 1 || isbegin_quest(14157) == 1)) {
 		if (!new_cook) {
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "多么诱人的香味！";
 			next;
 			mes "[艾克莱尔]";
@@ -3845,14 +3845,14 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			mes "[米尔菲]";
 		mes "你来到这里绝不是偶然！";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "陌生人，你叫什么？";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes ""+strcharinfo(0)+"，你好。";
 			next;
 			emotion ET_BEST;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我是达克瓦兹，卢恩·米德加尔特传奇厨师^0000cd查尔斯·奥尔良^000000的弟子。";
 			next;
 			emotion ET_BEST, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -3864,10 +3864,10 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 		mes "奥尔良属于我们所有人！";
 			next;
 			emotion ET_CRY;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "啊，大地上的傻瓜们都吃什么？";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "水果？当然可以生吃，但看到红色草莓铺在奶油蛋糕上时，不就是艺术吗？";
 			next;
 			mes "[艾克莱尔]";
@@ -3876,7 +3876,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			mes "[米尔菲]";
 		mes "我喜欢蒸米诺斯马蹄！";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "吃下专门料理可以^0000cd提升特定属性^000000，另外还能^0000cd恢复生命^000000，为什么不烹饪呢？";
 			next;
 			mes "[艾克莱尔]";
@@ -3887,7 +3887,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 		mes "要体验烹饪的各种可能吗？";
 			next;
 			if (select("我没兴趣，告辞……", "哇！我想了解更多！") == 1) {
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？那好吧……改变主意时再回来。";
 				next;
 				mes "[艾克莱尔]";
@@ -3898,7 +3898,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				close;
 			}
 			emotion ET_BEST;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，我们会成为你烹饪之旅的友善向导！！";
 			next;
 			emotion ET_BEST, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -3911,11 +3911,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			next;
 				switch(select("烹饪的好处", "烹饪方法", "其实我得走了……")) {
 			case 1:
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊哈！你想知道烹饪的好处？料理有两种好处！";
 				next;
 				emotion ET_SURPRISE;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "第一，^0000cd提升属性！^000000砰！！";
 				next;
 				mes "[艾克莱尔]";
@@ -3925,7 +3925,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "属性提升量会根据烹饪等级变化。";
 				next;
 				emotion ET_SURPRISE;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "下一个好处？砰砰！";
 				next;
 				mes "[艾克莱尔]";
@@ -3934,7 +3934,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[米尔菲]";
 				mes "这也会随烹饪等级变化，有些料理只能恢复HP。";
 				next;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "怎么样？听起来很好吃吧？";
 				next;
 				mes "[艾克莱尔]";
@@ -3944,10 +3944,10 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "准备好蕾丝手帕。";
 				next;
 				select("我该怎么烹饪？");
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这就对了！现在你似乎感兴趣了！";
 				next;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但烹饪不能急于求成！正确烹饪需要准备。";
 				next;
 				mes "[艾克莱尔]";
@@ -3956,20 +3956,20 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[米尔菲]";
 				mes "准备工作并不难！";
 				next;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备也可以分为两个阶段。";
 				next;
 				emotion ET_SURPRISE;
 				break;
 			case 2:
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没错，烹饪需要准备。这也可以分为两类。";
 				next;
 				emotion ET_SURPRISE, getnpcid(0, "Dacquoise#"+strnpcinfo(2));
 				break;
 			case 3:
 				emotion ET_FRET;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是什么？真是浪费时间！";
 				next;
 				emotion ET_ANGER, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -3981,7 +3981,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "别再出现了！！";
 				close;
 			}
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，你需要一本^0000cd食谱。^000000";
 			next;
 			mes "[艾克莱尔]";
@@ -3990,7 +3990,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			mes "[米尔菲]";
 			mes "这时候就要打开食谱。";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你需要食谱来了解如何准备烹饪食材。";
 			next;
 			mes "[艾克莱尔]";
@@ -4000,7 +4000,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			mes "食谱可以通过^0000cd任务^000000获得，也可以通过猎杀^0000cd怪物^000000找到。";
 			next;
 			emotion ET_SURPRISE;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拿到食谱后，下一步准备的是！";
 			mes "^0000cd食材！^000000";
 			next;
@@ -4010,15 +4010,15 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			mes "[米尔菲]";
 			mes "你可以通过击败或打倒^0000cd怪物^000000获得食材，也可以从^0000cd烹饪食材商人^000000那里购买。";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "烹饪需要一些准备，但收获绝对值得。";
 			next;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还有一点要记住，^0000cd烹饪有失败的可能^000000。请注意，结果取决于你的厨具和烹饪等级。";
 			next;
 			if (new_cook == 1) {
 				select("我想烹饪！");
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "就是这个精神！我们来真正烹饪吧！";
 				mes "准备好后再回来！";
 				emotion ET_BEST;
@@ -4030,11 +4030,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			close;
 		} else if (new_cook >= 1) {
 			if (isbegin_quest(14154) == 1 || isbegin_quest(14155) == 1 || isbegin_quest(14156) == 1 || isbegin_quest(14157) == 1) {
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你都带来了吗？";
 				next;
 				if (select("是的！我带来了！", "不，我放弃了。") == 2) {
-					mes "[达克瓦兹]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我可是用宝贵的时间向你介绍烹饪世界。";
 					mes "结果你就这样放弃了？";
 					emotion ET_FRET;
@@ -4057,11 +4057,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 						erasequest 14157;
 					end;
 				}
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我能看看吗？";
 				next;
 				if (isbegin_quest(14154) == 1 && countitem(705) > 0 && countitem(511) > 0 && countitem(507) > 0) {
-					mes "[达克瓦兹]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你带来了我需要的东西！好，那我就按约定为你烹饪。";
 					mes "现在要像闪电一样行动！！！！";
 					emotion ET_SPARK;
@@ -4091,7 +4091,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 					end;
 				}
 				if (isbegin_quest(14155) == 1 && countitem(512) > 0 && countitem(515) > 1) {
-					mes "[达克瓦兹]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你带来了我需要的东西！好，那我就按约定为你烹饪。";
 					mes "现在要像闪电一样行动！！！！";
 					emotion ET_SPARK;
@@ -4119,7 +4119,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 					end;
 				}
 				if (isbegin_quest(14156) == 1 && countitem(909) > 0 && countitem(914) > 0 && countitem(949) > 0) {
-					mes "[达克瓦兹]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你带来了我需要的东西！好，那我就按约定为你烹饪。";
 					mes "现在要像闪电一样行动！！！！";
 					emotion ET_SPARK;
@@ -4148,7 +4148,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 					end;
 				}
 				if (isbegin_quest(14157) == 1 && countitem(512) > 0 && countitem(705) > 0) {
-					mes "[达克瓦兹]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你带来了我需要的东西！好，那我就按约定为你烹饪。";
 					mes "现在要像闪电一样行动！！！！";
 					emotion ET_SPARK;
@@ -4177,12 +4177,12 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 					erasequest 14157;
 					end;
 				}
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没有食材你要我做什么？难道要我自己去拿？";
 				close;
 			}
 			if (new_cook == 2) {
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你又回来找我，是因为想烹饪，对吧？";
 				next;
 				mes "[艾克莱尔]";
@@ -4192,7 +4192,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "哦？那个孩子又回来了。"+strcharinfo(0)+"，对吧？你想要什么？";
 				next;
 			} else {
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备好了吗？实践才是最好的证明！我们来烹饪吧！";
 				next;
 				mes "[艾克莱尔]";
@@ -4202,14 +4202,14 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "接下来要展示的烹饪需要食谱和烹饪设备，但对初心者来说太难了，所以我来为你烹饪。";
 				next;
 				emotion ET_STARE;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你为什么说你要做？";
 				next;
 				emotion ET_SCRATCH, getnpcid(0, "Mille Feuille#"+strnpcinfo(2));
 				mes "[米尔菲]";
 				mes "啊，为什么不呢？";
 				next;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我是火焰烹饪三人厨师组的领袖！";
 				next;
 				emotion ET_HUK, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -4217,7 +4217,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "什么？！！什么时候决定的？";
 				next;
 				emotion ET_STARE_ABOUT;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有人比我年长吗？";
 				next;
 				emotion ET_HUK, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -4229,17 +4229,17 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "就因为你大一岁，就想自动当领袖。有人反对吗？";
 				next;
 				emotion ET_FRET;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "安静！";
 				next;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那么你想做什么？Int 和 Luk 餐对你没有帮助，所以我准备了另外 4 种食物。";
 				next;
 			}
 			switch(select("香拌药草", "清脆色拉", "综合火锅", "金黄烤苹果")) {
 			case 1:
 				// Fragrant Herb Mix
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^0000cd香拌药草^000000。它会提升^0000cdStr^000000。";
 				next;
 				mes "[艾克莱尔]";
@@ -4249,7 +4249,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "食材——^0000cd1 个三叶幸运草、1 个绿色药草、1 个红色药草^000000。";
 				next;
 				cutin "루나틱카드.bmp", 3;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "三叶幸运草可从依斯鲁得城外原野的疯兔或绿棉虫获得；红色药草可从红草获得。";
 				next;
 				cutin "파브르카드.bmp", 3;
@@ -4265,7 +4265,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				end;
 			case 2:
 				// Crunchy Salad
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "清脆色拉。我很喜欢这个。你很懂烹饪嘛。";
 				next;
 				mes "[艾克莱尔]";
@@ -4275,7 +4275,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "食材是^0000cd1 个苹果和 2 根胡萝卜^000000。";
 				next;
 				cutin "포링카드.bmp", 3;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "苹果由依斯鲁得城外原野上蹦跳的波利掉落。";
 				next;
 				cutin "루나틱카드.bmp", 3;
@@ -4291,7 +4291,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				end;
 			case 3:
 				// Mixed Shabu Shabu
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "可怕的^0000cd综合火锅！^000000它会提升^0000cdVit^000000。即使一小份也能让你吃饱。";
 				next;
 				mes "[艾克莱尔]";
@@ -4301,7 +4301,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "食材是^0000cd1 个杰勒比结晶、1 个棉绒、1 根柔软的毛^000000。";
 				next;
 				cutin "포링카드.bmp", 3;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "杰勒比结晶由依斯鲁得原野上蹦跳的波利掉落。";
 				next;
 				cutin "파브르카드.bmp", 3;
@@ -4313,7 +4313,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "柔软的毛由疯兔或绿棉虫掉落。";
 				next;
 				cutin "", 255;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你带齐所有食材后，我会为你制作。";
 				close2;
 				new_cook = 2;
@@ -4321,7 +4321,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				end;
 			case 4:
 				// Golden Apple Roast
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^0000cd金黄烤苹果～^000000闪耀的金色糖衣……味道和外观一样好。";
 				next;
 				mes "[艾克莱尔]";
@@ -4331,7 +4331,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "食材是——^0000cd1 个苹果和 1 个三叶幸运草^000000。";
 				next;
 				cutin "포링카드.bmp", 3;
-				mes "[达克瓦兹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "苹果可以从依斯鲁得城外原野的波利身上获得。";
 				next;
 				cutin "루나틱카드.bmp", 3;
@@ -4348,7 +4348,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			}
 		} else {
 			emotion ET_BEST;
-			mes "[达克瓦兹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我是 达克瓦兹，卢恩·米德加尔特传奇厨师^0000cd查尔斯·奥尔良^000000的弟子。";
 			next;
 			emotion ET_BEST, getnpcid(0, "Eclaire#"+strnpcinfo(2));
@@ -4361,7 +4361,7 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 			close;
 		}
 	} else {
-		mes "[达克瓦兹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你已经不再是新手了。最近在烹饪吗？";
 		next;
 		mes "[艾克莱尔]";
@@ -4388,7 +4388,7 @@ iz_ac01_d,147,50,3	duplicate(Dacquoise#ac)	Dacquoise#ac_d	4_COOK
 // - General Store Owner
 // - Sells the player the Novice Combination Book and Kit.
 // -----------------------------------------------------------------------------
-iz_ac01,68,49,3	script	General Store Owner#ac	4_F_03,{
+iz_ac01,68,49,3	script	组合五金行凯利#ac::General Store Owner#ac	4_F_03,{
 	mes "[奎莉]";
 	mes "你对初心者公会感兴趣吗？";
 	mes "我出售新手物品组合书和组合专用工具。";
@@ -4492,15 +4492,15 @@ iz_ac01_d,68,49,3	duplicate(General Store Owner#ac)	General Store Owner#ac_d	4_F
 // - Battle Instructor
 // - Gives the player monster hunting quests.
 // -----------------------------------------------------------------------------
-iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
+iz_ac01,59,83,3	script	战斗教官 史必奴#08::Battle Instructor#08	4_M_NOV_HUNT,{
 	if (Class == Job_Novice) {
 		if (isbegin_quest(4269) == 2) {
 			if (JobLevel == 10) {
-				mes "[战斗教官苏比诺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你已经达到转职等级，不该这样。";
 				mes "即使你停在原地，我也不会阻止你……";
 				next;
-				mes "[战斗教官苏比诺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你还不确定想从事什么职业，就去学院二楼和^ff0000各职业教官^000000交谈。";
 				setarray .@bexp[0],90,90,135,200,0,120;
 				setarray .@jexp[0],50,50,100,175,0,90;
@@ -4535,7 +4535,7 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 				}
 				close;
 			}
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎！";
 			mes "我是^ff0000战斗教官苏比诺^000000。";
 			mes "我会^ff0000提供一个简单的委托^000000，帮助你尽快成长为优秀的战士，四处看看吧。";
@@ -4549,10 +4549,10 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 								completequest 11338;
 							}
 							if (checkquest(11339,HUNTING) < 2) {
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^ff0000波利^000000是非常可爱的怪物。";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "它们会掉落杰勒比结晶，这是魔法学院的主要烹饪材料之一，所以我们总要猎杀波利。";
 								next;
 							}
@@ -4563,14 +4563,14 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 								completequest 11338;
 							}
 							if (checkquest(11340,HUNTING) < 2) {
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^ff0000疯兔^000000是生活在普隆德拉附近的可爱动物。";
 								mes "温柔……柔软……非常可爱……真的很可爱……";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "它们总会带着^ff0000胡萝卜^000000，所以猎杀它们很容易得到美味的胡萝卜。";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "胡萝卜含有大量纤维细胞、维生素 A 和胡萝卜素，对眼睛有好处！";
 								next;
 							}
@@ -4581,11 +4581,11 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 								completequest 11338;
 							}
 							if (checkquest(11341,HUNTING) < 2) {
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^ff0000绿棉虫^000000是卢恩·米德加尔特王国最常见的昆虫。";
 								mes "虽然是虫子，却因为外表可爱而很受欢迎。";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "魔法学院提供的大多数服装都是用绿棉虫身上的^ff0000棉绒^000000制成的，织物既结实又保暖。";
 								next;
 							}
@@ -4596,11 +4596,11 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 								completequest 11338;
 							}
 							if (checkquest(11344,HUNTING) < 2) {
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^ff0000虫蛹^000000是绿棉虫变成克瑞米前的中间阶段。";
 								mes "幼虫变成蝴蝶的过程很神秘。";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "就像绿棉虫会变成克瑞米一样，希望所有初心者都能成为伟大的冒险者！所以，这是^ff0000虫蛹^000000。";
 								next;
 							}
@@ -4611,52 +4611,52 @@ iz_ac01,59,83,3	script	Battle Instructor#08	4_M_NOV_HUNT,{
 								completequest 11338;
 							}
 							if (checkquest(11342,HUNTING) < 2) {
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^ff0000蜂兵^000000是生活在普隆德拉附近、受蜂后米斯特里斯控制的一群蜜蜂。";
 								mes "它们并不主动攻击……只有在遇到危险时才会用毒针反击。";
 								next;
-								mes "[战斗教官苏比诺]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "魔法学院正在研究提取它们毒针中的毒液来制作解毒剂。";
 								next;
 							}
 							callsub L_Quest,11342,200,175,939,3,"蜂兵","可以找到","猎杀","蜜蜂毒刺";
 						case 6:
-							mes "[战斗教官苏比诺]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你似乎没兴趣。";
 							mes "改变主意后再回来。";
 							close;
 					}
 				case 2:
-					mes "[战斗教官苏比诺]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好，我把你送到依斯鲁得西部原野。";
 					mes "记得回来的路。";
 					close2;
 					warp "prt_fild"+strnpcinfo(2), 344, 213;
 					end;
 				case 3:
-					mes "[战斗教官苏比诺]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你似乎没兴趣。";
 					mes "改变主意后再回来。";
 					close;
 			}
 		}
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还没在^ff0000魔法学院^000000登记？";
 		mes "手续很简单，去登记吧。";
 		mes "你可以在学院的^ff0000信息中心^000000登记。";
 		close;
 	} else {
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你不需要我的帮助。";
 		mes "你最好去别处看看，或者前往更广阔的世界。";
 		next;
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "可以去^ff0000职业公会的支援处（等级 10~20），或查看乐园团（等级 15~100）^000000。";
 		next;
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "向二楼的^ff0000各职业工作人员询问职业公会的位置^000000，就能找到可以接取简单狩猎任务的^ff0000乐园团总部^000000。";
 		next;
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它会^ff0000显示在右侧屏幕的地图上^000000，找找看吧。";
 		mes "如果不知道位置，就向^ff0000城镇导游^000000求助。";
 		close;
@@ -4666,17 +4666,17 @@ L_Quest:
 	.@quest_id = getarg(0);
 	if (checkquest(.@quest_id,HUNTING) == -1) {
 		if (select("接受任务。", "停止。") == 2) {
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你似乎没兴趣。";
 			mes "改变主意后再回来。";
 			close;
 		}
-		mes "[战斗教官苏比诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@quest_id == 11342) {
 			mes getarg(5)+"在^ff0000普隆德拉西部原野^000000。";
 			mes getarg(5)+"对初心者来说很难捕捉……但只要聚集更多初心者，就能做到。";
 			next;
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 		} else
 			mes getarg(5)+"在^ff0000依斯鲁得西部原野^000000。";
 		mes getarg(7)+" ^ff0000"+(.@quest_id==11344?"5":"10")+" 只"+getarg(5)+"^000000，并带来^ff0000"+getarg(4)+" 个"+getarg(8)+"^000000。";
@@ -4685,11 +4685,11 @@ L_Quest:
 		close;
 	} else if (checkquest(.@quest_id,HUNTING) == 1) {
 		if (select("结束对话", "放弃任务。") == 2) {
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的要放弃任务吗？";
 			next;
 			if (select("结束对话", "确定放弃。") == 2) {
-				mes "[战斗教官苏比诺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "只要你需要我的帮助，就可以再次挑战任务，随时来找我。";
 				erasequest .@quest_id;
 			}
@@ -4697,23 +4697,23 @@ L_Quest:
 		close;
 	} else {
 		if (countitem(getarg(3)) < getarg(4)) {
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的^ff0000"+getarg(8)+"^000000不够。";
 			mes "再努力一点！";
 			next;
 			if (select("结束对话", "放弃任务。") == 2) {
-				mes "[战斗教官苏比诺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的要放弃任务吗？";
 				next;
 				if (select("结束对话", "是的，放弃。") == 2) {
-					mes "[战斗教官苏比诺]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "只要你需要我的帮助，就可以再次挑战任务，随时来找我。";
 					erasequest .@quest_id;
 				}
 			}
 			close;
 		}
-			mes "[战斗教官苏比诺]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哇……！！";
 		mes "干得好！！";
 		if (!checkweight(7059,1)) {
@@ -4741,79 +4741,79 @@ iz_ac01_d,59,83,3	duplicate(Battle Instructor#08)	Battle Instructor#08d	4_M_NOV_
 // - Adept Adventurer
 // - Teaches the player about Pets.
 // -----------------------------------------------------------------------------
-iz_ac01,45,80,5	script	Adept Adventurer#ac	4_M_JOB_BLACKSMITH,{
+iz_ac01,45,80,5	script	老练的冒险家#ac::Adept Adventurer#ac	4_M_JOB_BLACKSMITH,{
 	if (isbegin_quest(2298) > 1) {
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对让怪物成为宠物有疑问吗？";
 		next;
 		while(1) {
 			switch(select("驯服怪物", "孵化蛋", "查看宠物状态", "喂食", "表演", "移除饰品", "变回蛋", "结束对话")) {
 			case 1:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "只有一部分怪物可以成为宠物，而且每种怪物的驯服方式都不同。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "每种可驯服的怪物都需要特定的^3131FF驯服道具^000000。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "电脑双击背包中的驯服道具；手机和平板点选道具后点击“使用”，然后选择要驯服的魔物。";
 				cutin "pet_ex_01.bmp", 3;
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "点击弹出老虎机中央的^3131FF按钮^000000来驯服怪物。";
 				cutin "pet_ex_02.bmp", 3;
 				next;
 				cutin "", 255;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "成功后，怪物会变成一枚蛋！";
 				next;
 				break;
 			case 2:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "孵化需要^3131FF<携带用孵蛋器>^000000来唤醒蛋中的怪物。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "大多数城镇都有^3131FF<宠物美容师>^000000，可以在那里购买^3131FF<携带用孵蛋器>^000000。";
 				mes "如果找不到宠物美容师，就向城镇导游询问位置。";
 				next;
 				break;
 			case 3:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "电脑按 ^3131FFAlt+J^000000 查看宠物状态；手机和平板打开菜单中的“宠物”。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这会打开状态窗口。你可以在这里更改宠物的^3131FF名字^000000，并查看^3131FF饱食度^000000和^3131FF亲密度^000000。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有些特殊宠物在^3131FF亲密度^000000达到信赖时会获得特殊技能。大多数宠物起初都很害羞，时间和食物会改变这一点。";
 				next;
 				break;
 			case 4:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "<宠物饲料>是宠物的普通食物，但有些宠物喜欢其他食物。你应该随身准备足够的食物，以免宠物挨饿。";
 				next;
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "宠物太饱或太饿都会^3131FF逃跑^000000。所以一定要经常查看宠物的饥饿状态！";
 				next;
 				break;
 			case 5:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有些宠物心情好时会进行特殊表演。";
 				next;
 				break;
 			case 6:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有些宠物甚至可以佩戴饰品。";
 				mes "^3131FF<宠物美容师>^000000会出售一些宠物饰品，某些怪物也会掉落宠物饰品。";
 				next;
 				break;
 			case 7:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我觉得一起经历更多事情，总比变回蛋好吧？";
 				next;
 				break;
 			case 8:
-				mes "[老练的冒险者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有其他问题时再回来吧。";
 				close;
 			}
@@ -4823,18 +4823,18 @@ iz_ac01,45,80,5	script	Adept Adventurer#ac	4_M_JOB_BLACKSMITH,{
 		mes "[冒险者的宠物]";
 		mes "我饿了~先喂我，然后一起散步吧~";
 		next;
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冷静点，给你！";
 		next;
 		mes "[冒险者的宠物]";
 		mes "呼，真好吃。我吃饱了。";
 		next;
 		if (select("会说话的怪物！", "无视它。") == 2) {
-			mes "[老练的冒险者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "宠物是孤独旅途中的最佳伙伴……";
 			close;
 		}
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它曾经是危险的怪物，如今是我最亲密的朋友。这就是我的^3131FF宠物^000000，名字叫黛比鲁奇。";
 		next;
 		if (select("什么是宠物？", "结束对话") == 2) {
@@ -4842,47 +4842,47 @@ iz_ac01,45,80,5	script	Adept Adventurer#ac	4_M_JOB_BLACKSMITH,{
 			mes "哈欠~我无聊死了！";
 			close;
 		}
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "宠物就是忠诚的^3131FF怪物^000000，会陪伴在你身边。";
 		next;
 		select("它能帮助你战斗吗？");
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它不会直接帮我战斗，但会提供额外的^3131FF属性^000000和其他增益效果。";
 		next;
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只有和宠物的^3131FF亲密度^000000很高时，这些效果才会实现。";
 		next;
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "亲密度需要投入时间和大量食物。食物是赢得任何生物忠诚的办法，对吧？哈哈。";
 		next;
 		if (select("怎样获得宠物？", "结束对话") == 2) {
-			mes "[老练的冒险者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "宠物是孤独旅途中的最佳伙伴……";
 			close;
 		}
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你需要一只宠物吗？";
 		next;
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，那我们一起去学院庭院吧！";
 		mes "我会向你展示该怎么做。";
 		next;
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好去庭院时再来找我！";
 		setquest 2293;
 		close;
 	} else {
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要去魔法学院的庭院吗？";
 		next;
 		if (select("现在送我过去！", "留下") == 1) {
-			mes "[老练的冒险者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，跟我来。";
 			close2;
 			warp "new_1-3", 95, 171;
 			end;
 		}
-		mes "[老练的冒险者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你愿意，我随时都可以带你去。";
 		close;
 	}
@@ -5304,68 +5304,68 @@ new_1-3,105,163,5	script	Foolish Poring#pet_3	2398,{ end; }
 // - Kafra Guide Trainer
 // - Teaches the player about Kafra Services.
 // -----------------------------------------------------------------------------
-iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
+iz_ac01,95,46,5	script	卡普拉导览教官#ac::Kafra Guide Trainer#ac	4_F_KAFRA1,{
 	cutin "kafra_01.bmp", 2;
 	if (isbegin_quest(4269) == 2) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎，卡普拉服务始终陪伴在你身边。";
 		next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "这是给第一次使用卡普拉服务的人。";
 		mes "卡普拉服务会为你详细介绍相关信息~！";
 		while(1) {
 			next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "告诉我们你想了解卡普拉服务的哪一部分~！";
 			next;
 		switch(select("保存服务", "仓库服务", "传送服务", "手推车服务", "查看其他信息", "取消")) {
 			case 1:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "保存服务会在你^8B4513战斗死亡^000000或使用^8B4513蝴蝶翅膀^000000等物品时，将你送回保存地点。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "很容易理解吧~？";
 				mes "想试试保存服务吗~？";
 				next;
 				if (select("不想", "想") == 1) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "不用害怕~！";
 					mes "保存服务不会把你吞掉。";
 					mes "如果改变主意，最好一定要试试看~！";
 				} else {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "那么~ 现在就把魔法学院所在的^8B4513依斯鲁得广场^000000设为保存点~！";
 					next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "完成~！";
 					next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "已经完成了。很简单吧？";
 					savepoint "izlude",128,98,1,1;
 					next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "现在使用^006400蝴蝶翅膀^000000时，就会被送到上次保存的地点。";
 				}
 				break;
 			case 2:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "仓库服务可以安全地存放物品。";
 				mes "账号中的所有角色都可以访问这些物品。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "使用仓库通常需要将“基本技能”学到 6 级；杜兰的“新基础技能”也可满足条件。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "支付少量费用后，大多数卡普拉员工都会为你打开仓库。";
 				mes "你甚至可以从道具商城购买卡普拉卡，在任何地方打开仓库！";
 				mes "想使用仓库吗？";
 				next;
 				if (select("不想", "想") == 1) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "仓库对生存很重要，请定期使用。";
 				} else {
 					if (!callfunc("F_CanOpenStorage")) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "请先将“基本技能”学到 6 级，或学习杜兰的“新基础技能”。";
 					} else if (countitem(7059) || Zeny >= 500) {
 						if (countitem(7059)) {
@@ -5374,7 +5374,7 @@ iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
 							Zeny -= 500;
 							RESRVPTS += 5;
 						}
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "我来打开仓库~。";
 						mes "感谢使用~！";
 						close2;
@@ -5382,25 +5382,25 @@ iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
 						openstorage;
 						end;
 					} else {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "亲爱的客人，你的钱不够~！";
 						mes "使用仓库需要 500 Zeny~！";
 					}
 				}
 				break;
 			case 3:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "传送服务会把你送往米德加尔特各地。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "不同的卡普拉员工负责不同的传送地点，你需要询问他们各自能传送到哪里。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "好，为了教学，我在学院提供免费传送服务。";
 				mes "要不要试试看~！";
 				next;
 				if (select("不", "是") == 1) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "你害怕细胞被切碎之类的吗？别担心，这非常安全~！";
 					mes "这是必不可少的服务~";
 					mes "所以最好习惯它，好吗？";
@@ -5416,12 +5416,12 @@ iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
 						warp "iz_ac02", 101, 36;
 						end;
 					case 3:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 							mes "这会把你送到魔法学院外面，可以吗？";
 							mes "如果想回学院，请寻找依斯鲁得北边的入口。";
 						next;
 							if (select("不", "是") == 1) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 							mes "你害怕细胞被切碎之类的吗？别担心，这非常安全~！";
 							break;
 						} else {
@@ -5431,46 +5431,46 @@ iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
 						}
 						break;
 					case 4:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "你害怕细胞被切碎之类的吗？别担心，这非常安全~！";
 						break;
 					}
 				}
 				break;
 			case 4:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "手推车服务供职业为^8B4513商人^000000的人使用。";
 				mes "商人只需支付少量 Zeny 就能租用手推车。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "如果你不是商人，或尚未学习手推车使用技能，就不能使用这项卡普拉服务。";
 				break;
 			case 5:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "在我们提供的其他服务中，还有卡普拉客户积分系统！";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "每次使用卡普拉服务，都能获得特别储备积分~";
 				mes "你可以在艾尔帕兰的卡普拉总部用积分兑换特定物品。";
 				next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "现在我来告诉你目前拥有多少特别储备积分。";
 				next;
 				if (select("查看特别储备积分。", "取消") == 2) {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "以后再看吧~~！！";
 					mes "请查看你积累的客户积分~！";
 				} else {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes ""+strcharinfo(0)+"，你积累了 "+RESRVPTS+" 点积分。";
 					next;
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "你可以在艾尔帕兰卡普拉总部用特别储备积分兑换奖励。";
 					mes "请使用我们便捷的服务，享受奖励计划的好处。";
 				}
 				break;
 			case 6:
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "卡普拉服务会竭尽全力，为你提供作为客人应得的满意体验。";
 				mes "感谢你的使用。";
 				close2;
@@ -5479,7 +5479,7 @@ iz_ac01,95,46,5	script	Kafra Guide Trainer#ac	4_F_KAFRA1,{
 			}
 		}
 	} else {
-	mes "[卡普拉指导员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "首先，你需要在学院前台完成^8B4513登记^000000。";
 	mes "完成后就能继续学院课程。";
 	mes "去一楼后，会有人为你办理登记。";
@@ -5494,7 +5494,7 @@ iz_ac01_b,95,46,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#ac_b	4_F
 iz_ac01_c,95,46,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#ac_c	4_F_KAFRA1
 iz_ac01_d,95,46,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#ac_d	4_F_KAFRA1
 
-iz_ac01,89,103,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#01	4_F_KAFRA1
+iz_ac01,89,103,5	duplicate(Kafra Guide Trainer#ac)	卡普拉导览教官#01::Kafra Guide Trainer#01	4_F_KAFRA1
 iz_ac01_a,89,103,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#01_a	4_F_KAFRA1
 iz_ac01_b,89,103,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#01_b	4_F_KAFRA1
 iz_ac01_c,89,103,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#01_c	4_F_KAFRA1
@@ -5513,102 +5513,102 @@ iz_ac02_d,204,115,5	duplicate(Kafra Guide Trainer#ac)	Kafra Guide Trainer#02_d	4
 // - Wedding Secretary
 // - Teaches the player about in-game Marriage & Adoption mechanics.
 // -----------------------------------------------------------------------------
-izlude,102,150,5	script	Wedding Secretary#iz	1_F_LIBRARYGIRL,{
+izlude,102,150,5	script	结婚小帮手#iz::Wedding Secretary#iz	1_F_LIBRARYGIRL,{
 	if (Class == Job_Novice) {
-		mes "[婚礼秘书]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你只是个新手。";
 		next;
-		mes "[婚礼秘书]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一切看起来都新鲜又陌生，对吧？是不是很令人兴奋？";
 		next;
-		mes "[婚礼秘书]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人生还有什么比婚姻更令人兴奋的开始呢？";
 		next;
 	} else {
-		mes "[婚礼秘书]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你恋爱了吗？";
 		next;
 	}
-	mes "[婚礼秘书]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我是婚礼秘书，为想与他人共度一生的人服务。";
 	next;
 	while(1) {
-		mes "[婚礼秘书]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "关于婚姻有什么担心的事，尽管问吧！";
 		next;
 		switch(select("如何结婚。", "婚姻的好处", "收养", "闭嘴！")) {
 		case 1:
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "为恋人举行婚礼，确实是人生中最美丽、最特别的事件。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "不过，结婚需要完成一些手续。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "首先，想结婚的双方基础等级必须达到^0000cd45^000000以上，也就是要有能力负责自己的生活和财务。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "接着要准备感谢的象征。男方需要^0000cd燕尾服^000000，女方需要^0000cd婚纱^000000，双方都要有作为永恒爱情象征的^0000cd钻石戒指^000000。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "新郎需支付 ^0000cd130 万 Zeny^000000，新娘需支付 ^0000cd120 万 Zeny^000000；携带结婚证书可代替各自的费用。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "准备好这些后，只组建两人的队伍，前往^0000cd普隆德拉大教堂^000000。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "那里有另一位像我一样的^0000cd婚礼秘书^000000等着你。和她交谈，她会告诉你更多细节。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "希望你能遇到优秀的伴侣，享受幸福婚姻！";
 			next;
 			break;
 		case 2:
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "婚姻最重要的好处，就是永远在一起！";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "婚礼后，你们可以在专属于你们的^0000cd爪哇伊^000000度假地享受甜蜜蜜月。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "结婚后，双方都会获得^0000cd特殊技能^000000。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "其中两个技能叫^0000cd只呵护妳^000000和^0000cd只为你牺牲^000000，能牺牲HP或SP传给伴侣。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "其中^0000cd想念你^000000最浪漫，可以在允许使用该技能的地图上召唤伴侣到身边。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "这些技能很棒吧？你现在想结婚吗？";
 			next;
 			break;
 		case 3:
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "在一起很美好，但没有经历过的人无法理解成为父母的全部幸福。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "已婚夫妇可以收养其他角色作为孩子。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "可以收养尚未结婚、未被收养的初心者、普通一转职业或超级初心者；其他职业不能被收养。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "准备成为父母的双方基础等级必须达到^0000cd70^000000，才有资格承担父母的责任。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "收养时夫妻双方和孩子须在同一队伍，双方父母须佩戴结婚戒指，且还没有收养过孩子。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "还有其他技能可以巩固羁绊，例如想念孩子时召唤他们，或战斗死亡时不损失已获得的等级。";
 			next;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "孩子带来的可爱魅力也是额外奖励～";
 			next;
 			break;
 		case 4:
 			emotion ET_HUK;
-			mes "[婚礼秘书]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你妈妈没教好你吗？";
 		mes "真可怜，你完全不懂爱情的美好！！！";
 			close;
@@ -5728,7 +5728,7 @@ izlude_d,97,144,1	duplicate(Etinifni#iz)	Etinifni#iz_d	4_M_DEWBOY
 
 // - Romantic Male
 // -----------------------------------------------------------------------------
-izlude,99,138,3	script	Romantic Male#iz	4_M_SITDOWN,{
+izlude,99,138,3	script	肉麻情侣男#iz::Romantic Male#iz	4_M_SITDOWN,{
 	emotion ET_DELIGHT;
 	mes "[浪漫的男子]";
 	mes "一起走吧～～手牵着手～～抛开一切～～在爪哇伊深蓝的夜空下～～星光之中～～";
@@ -5758,7 +5758,7 @@ izlude_d,99,138,3	duplicate(Romantic Male#iz)	Romantic Male#iz_d	4_M_SITDOWN
 
 // - Romantic Female
 // -----------------------------------------------------------------------------
-izlude,97,138,5	script	Romantic Female#iz	4_F_SITDOWN,{
+izlude,97,138,5	script	肉麻情侣女#iz::Romantic Female#iz	4_F_SITDOWN,{
 	mes "[浪漫的女子]";
 	mes "想念我时就这样喊，亲爱的！！";
 	next;
@@ -5836,7 +5836,7 @@ izlude_d,93,143,3	duplicate(Manufacturing Maniac#0)	Manufacturing Maniac#d	2_M_A
 
 // - Repairing Blacksmith
 // -----------------------------------------------------------------------------
-izlude,147,131,5	script	Repairing Blacksmith#0	4_F_JOB_BLACKSMITH,5,7,{
+izlude,147,131,5	script	修理中的铁匠#0::Repairing Blacksmith#0	4_F_JOB_BLACKSMITH,5,7,{
 	mes "[工作中的铁匠]";
 	mes "那边坐着的家伙一直盯着瓦格扎克。我听说他丢了所有武器，只剩一把刀？";
 	next;
@@ -5856,30 +5856,30 @@ izlude_d,147,131,5	duplicate(Repairing Blacksmith#0)	Repairing Blacksmith#d	4_F_
 
 // - Refining Maniac
 // -----------------------------------------------------------------------------
-izlude,148,122,5	script	Refining Maniac#iz	4_M_SITDOWN,{
-	mes "[精炼狂人]";
+izlude,148,122,5	script	精炼爱好者#iz::Refining Maniac#iz	4_M_SITDOWN,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘘……！安静。";
 	mes "我正在专注于^3131FF精炼^000000。";
 	next;
 	if (select("什么是精炼？", "祝你好运。") == 2) {
-		mes "[精炼狂人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "加油……加……油……！！";
 		close;
 	}
-	mes "[精炼狂人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "除少数特殊装备外，一些装备可以通过^3131FF精炼^000000强化。";
 	next;
-	mes "[精炼狂人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "武器会增加^3131FF攻击力^000000，所以精炼等级越高就越强。";
 	next;
-	mes "[精炼狂人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "每种武器等级都有不同的精炼安全值，所以精炼时要小心。";
 	mes "如果精炼损坏，就会失去它。";
 	next;
-	mes "[精炼狂人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我现在正努力精炼到+10……所有训练都是为了这个！";
 	next;
-	mes "[精炼狂人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请去问精炼负责人，我有一个重要的+10任务！";
 	close;
 }
@@ -5892,34 +5892,34 @@ izlude_d,148,122,5	duplicate(Refining Maniac#iz)	Refining Maniac#iz_d	4_M_SITDOW
 // - Otter Samssoon
 // - Allows the player to change their hair style and color once.
 // -----------------------------------------------------------------------------
-iz_ac01,69,36,3	script	Otter Samssoon#ac	4W_SAILOR,{
-	mes "[水獭三顺]";
+iz_ac01,69,36,3	script	沙顺设计师#ac::Otter Samssoon#ac	4W_SAILOR,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎～";
 	mes "我是三顺～！我是被派到学院的皇家水獭发型设计师。";
 	next;
-	mes "[水獭三顺]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "每次消耗 1 张^ff0000克里图拉美发券^000000即可更换发型，不另收 Zeny。有券就可以再来～";
 	next;
 	switch(select("阅读发型手册。", "改变发型。", "如何获得优惠券", "停止。")) {
 		case 1:
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦～我相信任何发型都适合你！你真有品味～";
 			mes "有很多发型，请从^ff0000第1页到第19页^000000选择。";
 			mes "想停止就输入0。";
 			next;
 			input .@style;
 			if (.@style > 19) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，天啊！！？亲爱的～你可以用优惠券选择这里的发型～";
 				close;
 			} else if (.@style <= 0) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "决定了吗？哪种发型？";
 				mes "我想亲手摸摸你的头发～亲爱的～";
 				close;
 			} else {
 				callsub L_cutin, .@style;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				switch(.@style) {
 				case 1:
 					if (Sex == SEX_MALE) {
@@ -6104,40 +6104,40 @@ iz_ac01,69,36,3	script	Otter Samssoon#ac	4W_SAILOR,{
 			close;
 		case 2:
 			if (!countitem(6593)) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "来吧……亲爱的～";
 				mes "你应该带来^ff0000“克里图拉美发券”^000000来更换发型……";
 				close;
 			}
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "亲爱的～你想要什么造型？";
 			mes "你完全就是我的类型。所以我非常兴奋～～";
 			mes "请从第 1 到 19 页选择造型。";
 			next;
 			input .@style;
 			if (.@style > 19) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "来吧……亲爱的～你可以在这里使用发型优惠券～";
 				close;
 			} else if (.@style <= 0) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀！！？你不想要吗？";
 				close;
 			} else if (getlook(1) == .@style) {
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "来吧……亲爱的～那就是你现在的发型。";
 				mes "你想尝试新造型吗？";
 				close;
 			}
 			callsub L_cutin, .@style;
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "造型（"+.@style+")？";
 			mes "感觉就是这样……怎么样？";
 			next;
 			if (select("很好。", "不要。") == 1) {
 				.@pallete = getlook(6);
 				if (!getlook(6)) {
-					mes "[水獭三顺]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "没错！";
 					mes "亲爱的！要不要顺便染发？";
 					mes "这项服务也包括染发。";
@@ -6168,7 +6168,7 @@ iz_ac01,69,36,3	script	Otter Samssoon#ac	4W_SAILOR,{
 							.@pallete = 7;
 							break;
 						case 9:
-							mes "[水獭三顺]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "不要吗？";
 							mes "还需要时间吗？如果想保持原来的颜色，就选择相同的颜色。";
 							close2;
@@ -6177,10 +6177,10 @@ iz_ac01,69,36,3	script	Otter Samssoon#ac	4W_SAILOR,{
 					}
 				}
 				nude;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "放松，马上就完成了～";
 				next;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "- 沙沙、咔咔、咔咔咔 -";
 				mes "- 咔嚓、咔嚓、咔嚓……-";
 				mes "- 啪、啪、啪……咔嚓 -";
@@ -6193,41 +6193,41 @@ iz_ac01,69,36,3	script	Otter Samssoon#ac	4W_SAILOR,{
 				}
 				delitem 6593,1;// Criatura_Hair_Coupon
 				cutin "", 255;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀！哎呀！哎呀！";
 				mes "编号为（"+.@style+")的发型很适合你，看起来不错～";
 				mes "你觉得怎么样？";
 				setlook 1, .@style;
 				setlook 6, .@pallete;
 				next;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想帮你打理造型……";
 				mes "但因为我属于这里，没办法选择顾客。";
 				next;
-				mes "[水獭三顺]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "要更换发型，请去^ff0000艾尔贝塔或里希塔乐镇^000000。";
 				mes "要染发，请去^ff0000普隆德拉或里希塔乐镇^000000。";
 				close;
 			}
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "亲爱的～你不喜欢吗？";
 			mes "咳……你想再读一遍造型书吗？";
 			mes "慢慢来，决定后告诉我～好吗？～";
 			close;
 		case 3:
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首次在学院前台完成入学登记时，会获得 1 张^ff0000克里图拉美发券^000000。";
 			next;
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还想要美容券，可以使用初心者自动售货机兑换。";
 			mes "你到达学院时收到的装备呢？";
 			mes "每顶^ff0000初学者蛋壳帽^000000可以换 1 张美容券。兑换前请阅读机器说明，它会一并兑换你持有的全部指定新手装备。";
 			next;
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "乐园团内的<NAVI>[初心者自动售货机]<INFO>moc_para01,17,37,0,101,0</INFO></NAVI>可以兑换。带好美容券再来找我～";
 			close;
 		case 4:
-			mes "[水獭三顺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀！！？亲爱的，你不打算换发型吗？";
 			mes "你现在的粗犷发型看起来很棒。";
 			close;
@@ -6255,20 +6255,20 @@ iz_ac01_d,69,36,3	duplicate(Otter Samssoon#ac)	Otter Samssoon#ac_d	4W_SAILOR
 
 // - Lady
 // -----------------------------------------------------------------------------
-iz_ac01,138,69,3	script	Lady#ac	1_F_ORIENT_02,{
-	mes "[女士]";
+iz_ac01,138,69,3	script	小姐#ac::Lady#ac	1_F_ORIENT_02,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF东边的窗户亮了吗？大嘴鸟正在歌唱。^000000";
 	next;
-	mes "[女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF喂食 小鸡 的孩子们还没醒吗？^000000";
 	next;
-	mes "[女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF你什么时候要穿越沙漠去梦罗克？^000000";
 	next;
-	mes "[女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "……匿名者……";
 	next;
-	mes "[女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你的名字真好听……匿名者……你的作品吸引了我。";
 	emotion ET_THROB;
 	close;
@@ -6294,9 +6294,9 @@ iz_ac01_d,149,46,3	duplicate(Eclaire#ac)	Eclaire#ac_d	4_F_KAFRA7
 
 // - Mille Feuille
 // -----------------------------------------------------------------------------
-iz_ac01,150,50,3	script	Mille Feuille#ac	4_F_KAFRA8,{
+iz_ac01,150,50,3	script	觅佩优#ac::Mille Feuille#ac	4_F_KAFRA8,{
 	emotion ET_THROB;
-	mes "[米尔菲]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊。查尔斯·奥尔良 爵士最近还好吗？";
 	close;
 }
@@ -6308,16 +6308,16 @@ iz_ac01_d,150,50,3	duplicate(Mille Feuille#ac)	Mille Feuille#ac_d	4_F_KAFRA8
 
 // - Chef
 // -----------------------------------------------------------------------------
-iz_ac01,160,50,3	script	Chef#ac	4_F_GODEMOM,{
-	mes "[厨师]";
+iz_ac01,160,50,3	script	主厨#ac::Chef#ac	4_F_GODEMOM,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是新的克里图拉学员吗？";
 	mes "那就去找 达克瓦兹。";
 	next;
-	mes "[厨师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我也是向 查尔斯·奥尔良 爵士学习的。";
 	mes "每个人吃了我的料理都会变得开心。";
 	next;
-	mes "[厨师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "现在能为学院的新学员提供食物是我的荣幸……";
 	close;
 }
@@ -6329,8 +6329,8 @@ iz_ac01_d,160,50,3	duplicate(Chef#ac)	Chef#ac_d	4_F_GODEMOM
 
 // - Hungry Trainee
 // -----------------------------------------------------------------------------
-iz_ac01,159,32,3	script	Hungry Trainee#ac	4_M_SIT_NOVICE,{
-	mes "[饥饿的学员]";
+iz_ac01,159,32,3	script	饥饿的学生#ac::Hungry Trainee#ac	4_M_SIT_NOVICE,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "不知道什么时候能轮到我点餐……已经一个小时了……";
 	mes "看看那些在旁边磨蹭的帮手……";
 	next;
@@ -6339,12 +6339,12 @@ iz_ac01,159,32,3	script	Hungry Trainee#ac	4_M_SIT_NOVICE,{
 	mes "唉……这个家伙……";
 	mes "我已经告诉你八百遍了！这是自助餐！啊！";
 	next;
-	mes "[饥饿的学员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "自助餐？那是什么？可以吃吗？";
 	mes "你因为我是乡下来的就瞧不起我，对吧？";
 	next;
 	emotion ET_ANGER;
-	mes "[饥饿的学员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "别说这很难理解！给我解释一下！";
 	close;
 }
@@ -6356,8 +6356,8 @@ iz_ac01_d,159,32,3	duplicate(Hungry Trainee#ac)	Hungry Trainee#ac_d	4_M_SIT_NOVI
 
 // - Scholarship Trainee
 // -----------------------------------------------------------------------------
-iz_ac01,164,36,3	script	Scholarship Trainee#ac	1_F_PUBGIRL,{
-	mes "[勤工俭学的学员]";
+iz_ac01,164,36,3	script	勤奋奖学生#ac::Scholarship Trainee#ac	1_F_PUBGIRL,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我在许多不同的地方工作过，但这里最奇怪。";
 	close;
 }
@@ -6369,15 +6369,15 @@ iz_ac01_d,164,36,3	duplicate(Scholarship Trainee#ac)	Scholarship Trainee#ac_d	1_
 
 // - Broke Trainee
 // -----------------------------------------------------------------------------
-iz_ac01,133,34,5	script	Broke Trainee#ac	4_M_SITDOWN,{
-	mes "[拮据的学员]";
+iz_ac01,133,34,5	script	穷学生#ac::Broke Trainee#ac	4_M_SITDOWN,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "价格上涨后，我一有机会就尽量填饱肚子。";
 	next;
-	mes "[拮据的学员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我已经在这里待了 21 个小时。";
 	mes "这是自助餐，所以可以不限时间进食。";
 	next;
-	mes "[拮据的学员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "吃了消化，吃了消化，嘿嘿。";
 	mes "你想加入吗？";
 	close;
@@ -6390,35 +6390,35 @@ iz_ac01_d,133,34,5	duplicate(Broke Trainee#ac)	Broke Trainee#ac_d	4_M_SITDOWN
 
 // - Noisy Trainee
 //-----------------------------------------------------------------------------
-iz_ac02,152,79,3	script	Noisy Trainee#ac	4_M_HUBOY,{
+iz_ac02,152,79,3	script	喧哗的学生#ac::Noisy Trainee#ac	4_M_HUBOY,{
 	if (Class == Job_Novice) {
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你知道枪手专用的武器吗？";
 		next;
 		if (select("不知道", "知道") == 2) {
-			mes "[吵闹的学员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈，才怪！";
 			close;
 		}
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我就猜到你不知道。";
 		next;
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "枪手使用 5 种枪械，每种枪都有自己的特点。";
 		next;
 		select("什么特点？");
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈哈～我也在上课，但还没成为枪手，所以不知道细节。";
 		next;
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听说枪械很危险，所以他们还不让我们使用！";
 		close;
 	} else if (Class == Job_Gunslinger) {
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，枪手先生！！真棒。";
 		close;
 	} else {
-		mes "[吵闹的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？你为什么选择其他职业，而不是成为帅气的枪手？";
 		close;
 	}
@@ -6431,9 +6431,9 @@ iz_ac02_d,152,79,3	duplicate(Noisy Trainee#ac)	Noisy Trainee#ac_d	4_M_HUBOY
 
 // - Quiet Trainee
 // -----------------------------------------------------------------------------
-iz_ac02,143,77,3	script	Quite Trainee#ac	4_F_KID2,{
+iz_ac02,143,77,3	script	安静的学生#ac::Quite Trainee#ac	4_F_KID2,{
 	if (Class == Job_Novice) {
-		mes "[安静的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		switch(rand(1,5)) {
 		case 1:
 			mes "你是来上枪手课程的吗？";
@@ -6453,11 +6453,11 @@ iz_ac02,143,77,3	script	Quite Trainee#ac	4_F_KID2,{
 		}
 		close;
 	} else if (Class == Job_Gunslinger) {
-		mes "[安静的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是枪手？你看起来很棒！我想成为枪手……";
 		close;
 	} else {
-		mes "[安静的学员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "暴风射击是子弹……吧啦……远程攻击……物理……";
 		next;
 		mes "因为她的声音太小，你听不清她的话。";
@@ -6472,8 +6472,8 @@ iz_ac02_d,143,77,3	duplicate(Quite Trainee#ac)	Quite Trainee#ac_d	4_F_KID2
 
 // - Frightened Trainee
 // -----------------------------------------------------------------------------
-iz_ac02,159,79,7	script	Frightened Trainee#ac	4_F_HUGIRL,{
-	mes "[胆怯的学员]";
+iz_ac02,159,79,7	script	害怕的学生#ac::Frightened Trainee#ac	4_F_HUGIRL,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那个人看起来太可怕了。";
 	close;
 }
@@ -6486,110 +6486,110 @@ iz_ac02_d,159,79,7	duplicate(Frightened Trainee#ac)	Frightened Trainee#ac_d	4_F_
 // - Ragie
 // - Teaches the player about Transcendent and Third classes.
 // -----------------------------------------------------------------------------
-iz_ac02,149,43,3	script	Ragie#ac	1_M_BARD,{
-	mes "[拉吉]";
+iz_ac02,149,43,3	script	拉奇#ac::Ragie#ac	1_M_BARD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "突然涌现了诗意灵感！";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF巴亚兰岛的月夜，在月光下独坐依斯鲁得^000000";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF腹上佩着短剑，深深地焦虑着，^000000";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^3377FF听说有人发了财，温柔地将我击倒。^000000";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "........";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "怎么样？很棒吧？";
 	next;
-	mes "[拉吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想先^FF0000转生^000000，再挑战^FF0000三转^000000。成为宫廷乐师后，就能和伊古小姐这样的著名漫游舞者一起演奏。";
 	next;
 	while (1) {
 		switch(select("什么是转生？", "什么是 3 转？", "伊古 是谁？", "结束对话")) {
 		case 1:
 			if (ADVJOB != 0) {
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看来你已经知道了！";
 				next;
 			} else {
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "转生很棒。非常棒。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "基本上，二转冒险者达到基础等级 99 和职业等级 50 后就能转生。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "转生后，你会成为基础等级 1、职业等级 1 的进阶初心者。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "重新开始冒险很困难。但艰辛也有好处。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "提升等级后可以学习新的进阶职业技能。像我这样的诗人，转生后可以沿原路线成为进阶诗人。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "确实要小心，因为只能沿着转生前选择的职业路线前进。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你对转生感兴趣，建议去^FF0000朱诺^000000的贤者城堡看看。对我来说可能还早了些。";
 				next;
 			}
 			break;
 		case 2:
 			if (BaseLevel > 99) {
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，你知道得很清楚嘛？";
 				next;
 			} else {
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "三转显然是新职业。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "以诗人路线为例，基础等级达到 99、职业等级达到 50 后，可以申请宫廷乐师转职任务；正式转职前还要用完技能点。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "例如，我最初是弓箭手，现在是诗人。完成相应任务后，可以三转成为宫廷乐师。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过，我打算先转生，经历进阶职业的成长后，再成为宫廷乐师。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "转生会从进阶初心者重新开始；三转本身不会把你变回初心者。你可以按自己的目标规划路线。";
 				next;
-				mes "[拉吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "选择永远在你手中。要有雄心，冒险者。总有一天我会为你唱一首鼓舞人心的歌。";
 				next;
 			}
 			break;
 		case 3:
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不！你不知道这个时代最美的漫游舞者 伊古 吗？";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没听说过《第一卷——迷失的波利》或《第二卷——波利，我的爱》吗？";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，你从没听过《这是开启 OCA 的好日子》或《巴风特，我几乎不认识你》这样的歌吗？";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "她是来自克魔岛的 20 岁美丽漫游舞者。不仅在米德加尔特，无论她的巡演队伍走到哪里，都会有粉丝俱乐部追随。";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我是^FF0000拉吉^000000，负责卢恩·米德加尔特分部，也是 伊古 非正式粉丝俱乐部的负责人！伊古 去了第二世界，所以我暂时休息一阵。但她很快就会回来。";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为我还是低等级冒险者，所以没能跟她去第二世界……看着吧！我会努力提升实力，追随她到任何地方。";
 			next;
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊哈。不用在意，不用在意。对这些无知的人讲这种故事也没用。";
 			next;
 			break;
 		case 4:
-			mes "[拉吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！我突然又有了绝妙的诗歌灵感……记下来……记下来……";
 			close;
 		}
@@ -6603,7 +6603,7 @@ iz_ac02_d,149,43,3	duplicate(Ragie#ac)	Ragie#ac_d	1_M_BARD
 
 // - Lady Harvesting Herbs
 // -----------------------------------------------------------------------------
-pay_fild08,153,83,1	script	Lady Harvesting Herbs#2	1_F_ORIENT_02,{
+pay_fild08,153,83,1	script	娜莫凯是小姐#2::Lady Harvesting Herbs#2	1_F_ORIENT_02,{
 	mes "[女士]";
 	mes "东边有个叫斐扬的城镇。沿着南边的远路走，甚至还能到达艾尔帕兰。";
 	next;
@@ -6619,13 +6619,13 @@ pay_fild08,153,83,1	script	Lady Harvesting Herbs#2	1_F_ORIENT_02,{
 	end;
 }
 
-iz_ac01,93,76,5	duplicate(ac_board)	[武器库]::[Armory]#ac	2_BULLETIN_BOARD
+iz_ac01,93,76,5	duplicate(ac_board)	[后勤室]::[Armory]#ac	2_BULLETIN_BOARD
 iz_ac01_a,93,76,5	duplicate(ac_board)	[武器库]::[Armory]#ac_a	2_BULLETIN_BOARD
 iz_ac01_b,93,76,5	duplicate(ac_board)	[武器库]::[Armory]#ac_b	2_BULLETIN_BOARD
 iz_ac01_c,93,76,5	duplicate(ac_board)	[武器库]::[Armory]#ac_c	2_BULLETIN_BOARD
 iz_ac01_d,93,76,5	duplicate(ac_board)	[武器库]::[Armory]#ac_d	2_BULLETIN_BOARD
 
-iz_ac01,106,76,3	duplicate(ac_board)	[图书馆]::[Library]#ac	2_BULLETIN_BOARD
+iz_ac01,106,76,3	duplicate(ac_board)	[图书室]::[Library]#ac	2_BULLETIN_BOARD
 iz_ac01_a,106,76,3	duplicate(ac_board)	[图书馆]::[Library]#ac_a	2_BULLETIN_BOARD
 iz_ac01_b,106,76,3	duplicate(ac_board)	[图书馆]::[Library]#ac_b	2_BULLETIN_BOARD
 iz_ac01_c,106,76,3	duplicate(ac_board)	[图书馆]::[Library]#ac_c	2_BULLETIN_BOARD
@@ -6643,7 +6643,7 @@ iz_ac01_b,93,44,5	duplicate(ac_board)	[医务室]::[Dispensary]#ac_b	2_BULLETIN_
 iz_ac01_c,93,44,5	duplicate(ac_board)	[医务室]::[Dispensary]#ac_c	2_BULLETIN_BOARD
 iz_ac01_d,93,44,5	duplicate(ac_board)	[医务室]::[Dispensary]#ac_d	2_BULLETIN_BOARD
 
-iz_ac01,103,89,3	duplicate(ac_board)	[大礼堂]::[Great Hall]#ac	2_BULLETIN_BOARD
+iz_ac01,103,89,3	duplicate(ac_board)	[大讲义室]::[Great Hall]#ac	2_BULLETIN_BOARD
 iz_ac01_a,103,89,3	duplicate(ac_board)	[大礼堂]::[Great Hall]#ac_a	2_BULLETIN_BOARD
 iz_ac01_b,103,89,3	duplicate(ac_board)	[大礼堂]::[Great Hall]#ac_b	2_BULLETIN_BOARD
 iz_ac01_c,103,89,3	duplicate(ac_board)	[大礼堂]::[Great Hall]#ac_c	2_BULLETIN_BOARD
@@ -6723,31 +6723,31 @@ iz_ac02_d,211,118,3	duplicate(ac_board)	[校长室]::[Principal's Office]#ad	2_B
 //= Cream Puff
 //= Gives the player a personality test to determine the class they should be.
 //==============================================================================
-iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
+iz_ac02,143,55,3	script	休可宁#ac::Cream Puff#ac	4_M_KID1,{
 	cutin "choucream_n.bmp", 2;
 	if (Class == Job_Novice) {
 		emotion ET_QUESTION;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是初心者，对吧？";
 		next;
 	} else {
 		emotion ET_OHNO;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对已经有职业的人来说，职业适性测试毫无意义。";
 		close2;
 		cutin "", 255;
 		end;
 	}
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你还没决定职业吗？";
 	next;
 	if (select("没有……你怎么知道？", "我决定了。") == 2) {
 		cutin "choucream_d.bmp",2;
 		emotion ET_OHNO;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "你已经决定了吗？好吧。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "我本来想让你参加职业适性测试玩玩的……";
 		close2;
 		cutin "", 255;
@@ -6755,7 +6755,7 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 	}
 	cutin "choucream_e.bmp",2;
 	emotion ET_SPARK;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，那就好。";
 	mes "^0000FF职业适性测试^000000是什么？";
 	mes "我还剩下一本书。想试试吗？我不能保证一定有帮助，但会很有趣。";
@@ -6764,14 +6764,14 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		switch(select("什么是职业适性测试？", "参加职业适性测试。", "停止。")) {
 		case 1:
 			cutin "choucream_n.bmp",2;
-			mes "[奶油泡芙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "职业适性测试会根据你的回答分析性格和能力，并推荐适合的职业。";
 			next;
-			mes "[奶油泡芙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "测试分为三类问题，依次回答即可。";
 			next;
 			emotion ET_QUESTION;
-			mes "[奶油泡芙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你有空闲时间，又还没决定职业……不如参加这个测试？";
 			next;
 			continue;
@@ -6780,7 +6780,7 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		case 3:
 			cutin "choucream_d.bmp",2;
 			emotion ET_HNG;
-			mes "[奶油泡芙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，再见。";
 			close2;
 			cutin "", 255;
@@ -6789,10 +6789,10 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		break;
 	}
 	cutin "choucream_e.bmp",2;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们开始吧？";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "第一类问题是针对特定情况采取行动。";
 	next;
 	mes "夜幕中，你正走在普隆德拉的街道上，突然听到有人尖叫。";
@@ -6902,10 +6902,10 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		.@merchant_p = .@merchant_p + 1;
 		.@gunslinger_p = .@gunslinger_p + 1;
 	}
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "现在进行第二项测试。请选择你认为最合适的答案。";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "第二类问题是选择最符合自己的词语或句子。";
 	next;
 	switch(select("学习", "锻炼", "服务", "暴力")) {
@@ -6958,10 +6958,10 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		.@swordman_p = .@swordman_p + 1;
 		.@taekwon_p = .@taekwon_p + 1;
 	}
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "第二类问题结束了。很简单，对吧？我们进入下一项。";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "现在进行第三项测试。请对每个问题选择“是”或“否”。";
 	next;
 	mes "你总会捡起地上发现的钱吗？";
@@ -7139,11 +7139,11 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		.@ninja_p = .@ninja_p + 1;
 		.@archer_p = .@archer_p + 1;
 	}
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "职业适性测试的前三项已经完成。请稍等。";
 	next;
 	cutin "choucream_d.bmp",2;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如你所知，需要手动计算。";
 	next;
 	setarray .@points[0],.@swordman_p,.@magician_p,.@archer_p,.@merchant_p,.@thief_p,.@acolyte_p,.@taekwon_p,.@gunslinger_p,.@ninja_p;
@@ -7155,64 +7155,64 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 		}
 	}
 	set .@who_job, .@ele + 1;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好了！！！！完成了！！！！";
 	next;
 	cutin "choucream_e.bmp", 2;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "计算完成。数学总是很难。";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "根据职业适性测试结果！";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (.@who_job == 1) {
 		.@job_name$ = "剑士";
 		mes "拥有坚定信念、想成为英雄并影响世界的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想要保护弱者的人。";
 	} else if (.@who_job == 2) {
 		.@job_name$ = "魔法师";
 		mes "对一切充满好奇、喜欢独立工作的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "判断力强、不外向、善于分析且洞察力强，喜欢观察的人……";
 	} else if (.@who_job == 3) {
 		.@job_name$ = "弓箭手";
 		mes "浪漫、理解他人感受，也希望被他人理解的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "愿意花时间了解自己的人。";
 	} else if (.@who_job == 4) {
 		.@job_name$ = "商人";
 		mes "善于读懂他人想法且果断的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "热衷于达成目标、积极进取且有责任感的人。";
 	} else if (.@who_job == 5) {
 		.@job_name$ = "盗贼";
 		mes "喜欢享受乐趣、乐观且热爱冒险的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想寻找刺激，并希望用自己的方式为世界做贡献的人。";
 	} else if (.@who_job == 6) {
 		.@job_name$ = "服事";
 		mes "拥有善良的心，愿意帮助和理解他人的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "渴望被爱，也愿意关心他人的人。";
 	} else if (.@who_job == 7) {
 		.@job_name$ = "跆拳少年";
 		mes "通过正确训练拥有健全心智的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "每天努力、怀抱坚定信念，并努力让他人理解自己的人。";
 	} else if (.@who_job == 8) {
 		.@job_name$ = "神枪手";
 		mes "被称为正义执行者，却也带来混乱与恐惧的人。";
 		next;
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "努力在正义与混乱之间保持平衡的人。";
 	} else if (.@who_job == 9) {
 		.@job_name$ = "忍者";
@@ -7225,28 +7225,28 @@ iz_ac02,143,55,3	script	Cream Puff#ac	4_M_KID1,{
 	}
 	next;
 	emotion ET_BEST;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^8014EB"+.@job_name$+"^000000 很适合你。";
 	next;
 	cutin "choucream_n.bmp", 2;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，上面写着。";
 	next;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你不必根据职业适性测试选择职业，那只是娱乐。";
 	next;
 	emotion ET_QUESTION;
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你愿意，我可以把你送到适性结果推荐的职业地点。";
 	next;
 	if (select("现在送我过去。", "没关系，我还在考虑。") == 2) {
-		mes "[奶油泡芙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，我猜你已经知道自己想要什么了。";
 		close2;
 		cutin "", 255;
 		end;
 	}
-	mes "[奶油泡芙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "推荐给你的职业是"+.@job_name$+"。我会把你送到能与该职业专家交谈的地方。";
 	close2;
 	cutin "",255;
@@ -7297,11 +7297,11 @@ iz_ac02_d,143,55,3	duplicate(Cream Puff#ac)	Cream Puff#ac_d	4_M_KID1
 // - Lusa
 // - Teaches the player about Gunslinger class.
 // -----------------------------------------------------------------------------
-iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
+iz_ac02,142,85,6	script	鲁斯#ac::Lusa#ac	4_F_GUNSLINGER,{
 	cutin "aca_gung_01.bmp", 2;
 	if (Class == Job_Novice) {
 		if (isbegin_quest(4269) != 2) {
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！抱歉，要学习这个职业，你得先注册。去一楼柜台登记后再回来，听到了吗？";
 			close2;
 			// ConsumeSpecialItem Inspector_Certificate_
@@ -7314,7 +7314,7 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				.@has_manual = 1;
 		}
 		emotion ET_COOL;
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天哪！你比小猪还可爱！你想学习成为^ff0000神枪手^000000吗？";
 		next;
 		if (.@has_manual == 1) {
@@ -7325,51 +7325,51 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 		switch(select(.@menu$)) {
 		case 1:
 			emotion ET_THROB;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你真可爱！^ff0000神枪手^000000拥有勇气，在这个混乱的时代用武器伸张正义。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Sex == SEX_MALE)
 				mes "你让我想起弟弟，那小子连谷仓都打不中……至少在我教他之前是这样。";
 			else
 				mes "你让我想起妹妹，那丫头连谷仓都打不中……至少在我教她之前是这样。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你们要明白，枪不是对着动物挥舞的小玩意，也不是动动手指就能把它电死的东西。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不！你要用枪射击，所以必须瞄准。这需要神枪手拥有很高的^ff0000灵巧^000000。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在你跑出去朝空中乱开枪、得意洋洋跳舞之前，要明白这不是轻松的工作！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "子弹要花 Zeny，所以每一枪都必须物有所值！我们进行远程攻击，避免被那个拿猪刀的恶棍骚扰！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "都明白了吗？";
 			next;
 			while(1) {
 				switch(select("远程攻击？", "弹药为什么贵？", "转职测试？", "明白~！！")) {
 				case 1:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那些低科技的野蛮人需要力量和灵巧才能正确战斗，但神枪手不一样。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "因为灵巧同时影响攻击力和命中率！记住，说话慢一点，但思考要快！";
 					next;
 					break;
 				case 2:
 					cutin "aca_gung_02.bmp", 2;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你们看到附近有很多工厂、矿井和炼金实验室吗？这些都需要 Zeny 运转，这就是弹药昂贵的原因！";
 					next;
 					break;
 				case 3:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "有些职业可能认为把伤人的力量交给随便什么家伙也很安全。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "但我们必须确认你有勇气！记住，快很好，但准确更重要。";
 					next;
 					break;
@@ -7379,31 +7379,31 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				cutin "aca_gung_01.bmp", 2;
 				break;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还有问题的话，随时可以回来问我。";
 			close2;
 			//ConsumeSpecialItem Inspector_Certificate_
 			cutin "", 255;
 			end;
 		case 2:
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听说魔法学院是给还没决定职业的新手准备的。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们雇了我，还给了我枪，来教你如何成为神枪手！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想让我教你吗？";
 			next;
 			if (select("好，女士！", "不用了，谢谢。") == 2) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，你看起来确实没什么胆量。";
 				close2;
 				//ConsumeSpecialItem Inspector_Certificate_
 				cutin "", 255;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (isequippedcnt(2941) || countitem(2941)) {
 				mes "嘿！这是怎么回事？！你已经有手册了！";
 			} else {
@@ -7417,7 +7417,7 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				mes "拿着这本手册。我不太擅长读书，但可以回答你的问题。";
 			}
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果需要战斗训练，请访问<NAVI>[苏比诺]<INFO>iz_ac01,59,83</INFO></NAVI>。";
 			close2;
 			//ConsumeSpecialItem Inspector_Certificate_
@@ -7426,91 +7426,91 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 		case 3:
 			if (Upper == 2) {
 				emotion ET_SEXY;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，抱歉！孩子不能成为神枪手！";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "也许你应该和父母谈谈其他职业。";
 				close2;
 				// ConsumeSpecialItem Inspector_Certificate_
 				cutin "", 255;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你要学习作为神枪手射击吗？";
 			next;
 			if (JobLevel < 10) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀！你还没准备好去大城市！";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "达到^ff0000职业等级：^0000ff10^000000后回来，我就帮你！";
 				close2;
 				//ConsumeSpecialItem Inspector_Certificate_
 				cutin "", 255;
 				end;
 			} else {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你准备好参加神枪手转职测试了吗？";
 				next;
 			}
 			if (select("等一下。", "送我过去。") == 1) {
 				cutin "aca_gung_02.bmp", 2;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备好后就来找我！";
 				close2;
 				cutin "", 255;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，你应该去找^ff0000米勒大师先生^000000，向他询问测试。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记住，如果你发现自己掉进了洞里，第一件事就是停止挖掘！";
 			close2;
 			cutin "",255;
 			warp "que_ng", 150, 167;
 			end;
 		case 4:
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你需要我帮你使用那本书吗？";
 			while(1) {
 				next;
 				switch(select("这本书怎么用？", "我找不到技能。", "我没有枪……", "暂时没有问题了。")) {
 				case 1:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦……我想我知道问题在哪了，";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "先装备手册：电脑按 Alt+E 打开背包，双击手册；手机和平板打开背包，点选手册后点击“穿戴”。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "电脑按 Alt+Q 查看已装备的物品；手机和平板打开菜单中的“装备”查看。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你还有其他问题吗？";
 					continue;
 				case 2:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你想学习如何使用技能吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "电脑按 Alt+S，可用右上角减号切到技能列表；手机和平板打开菜单中的“技能”，查找手册提供的试用技能。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "电脑可将技能拖到快捷栏；手机和平板点选技能，再选择“设置快捷键”。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "……我就是这样明白的：犹豫不决时，就让你的大嘴鸟替你思考吧。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你还有其他问题吗？";
 					continue;
 				case 3:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯，我觉得你还没准备好拿枪。所以训练手册只会展示不需要枪的技能。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你还有其他问题吗？";
 					continue;
 				case 4:
@@ -7518,7 +7518,7 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				}
 				break;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还有问题的话，随时可以回来问我。";
 			close2;
 			cutin "", 255;
@@ -7530,47 +7530,47 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 		}
 	} else if (Class == Job_Gunslinger) {
 		if (!nov_3_guns && BaseLevel < 21) {
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！你真可爱，是刚成为神枪手的吗！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的枪比银色Zeny还闪亮！需要什么吗？";
 			next;
 			if (select("能帮我去艾音布罗克吗？", "不用了，谢谢。") == 1) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "当然可以。记得花时间训练！";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "去那里吧，小淘气！";
 				close2;
 				cutin "",255;
 			warp "que_ng", 150, 167;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，听说你这么强，我很高兴！";
 			close2;
 			cutin "", 255;
 			end;
 		} else if (nov_3_guns > 0 && nov_3_guns < 7) {
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，还在基础训练吗？你没有随便使用蝴蝶翅膀，对吧？";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你要去艾音布罗克完成基础训练吗？";
 			next;
 			if (select("能帮我去艾音布罗克吗？", "不用了，我还有其他事。") == 1) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "当然可以。记得花时间训练！";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "去那里吧，小淘气！";
 				close2;
 				cutin "",255;
 			warp "que_ng", 150, 167;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是这样吗？如果想去艾音布罗克却不想坐飞艇，来找我。";
 			mes "因为你还在训练，我会免费送你过去。";
 			close2;
@@ -7578,54 +7578,54 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 			end;
 		} else if (nov_3_guns == 7) {
 			emotion ET_OK;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你回来了，还穿着漂亮的神枪手服装！很适合你，恭喜！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我刚从哥哥那里得知你完成基础训练的消息。";
 			next;
 			select("哥哥？");
 			cutin "aca_gung_02.bmp", 2;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？我哥哥没告诉你？他负责基础训练。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "路易和露莎的名字很像，对吧？";
 			next;
 			select("我想是吧……");
 			cutin "aca_gung_01.bmp", 2;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈～我们的关系其实没那么重要。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我被指派负责神枪手公会的战斗训练。";
 			next;
 			select("为什么是你？");
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "神枪手非常向往自由，所以公会能选择的人很有限。";
 			next;
 			cutin "aca_gung_02.bmp", 2;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们突然叫我来做这个。老实说，我觉得有点荒唐。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但因为之前没有战斗训练，我同意帮忙。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以决定利用这个机会，消灭普隆德拉和依斯鲁得附近的一些魔物。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这应该能帮助每天受同样魔物困扰的居民。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "按照公会原则，战斗训练不是强制的。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "完成任务后，再来和我谈以完成流程。";
 			next;
 			nov_3_guns = 8;
 			erasequest 5148;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了，就是这些！如果任务太难，可以随时取消，不用担心。";
 			close2;
 			cutin "", 255;
@@ -7637,37 +7637,37 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 			.@gun_quest_04 = checkquest(5152,HUNTING);
 
 			if (.@gun_quest_01 == -1 && .@gun_quest_02 == -1 && .@gun_quest_03 == -1 && .@gun_quest_04 == -1) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你还没开始基础战斗训练吧？想了解训练的什么？";
 				next;
 				switch(select("我能训练多久？", "在哪里领取训练任务？", "为什么要战斗训练？", "取消")) {
 				case 1:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "基础战斗训练可以进行到基础等级20。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "因为还处于初期，你可能以为训练很简单。";
 					close2;
 					cutin "", 255;
 					end;
 				case 2:
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉！我没提过吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你可以从入口附近我桌上的委托中选择任意任务。";
 					close2;
 					cutin "", 255;
 					end;
 				case 3:
 					cutin "aca_gung_02.bmp", 2;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "对了，为什么？嗯，神枪手公会一开始没有战斗训练。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "所以他们突然让我为新成员进行战斗训练。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "如果你不想参加，这项训练不是强制的。";
 					close2;
 					cutin "", 255;
@@ -7681,10 +7681,10 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 			.@gun_tok = 0;
 			if (.@gun_quest_01 == 2 || .@gun_quest_02 == 2 || .@gun_quest_03 == 2 || .@gun_quest_04 == 2) {
 				if (.@gun_quest_01 == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你完成了<任务A>？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇！你做得完美！我确认了10只蜂兵。孩子们会很高兴。";
 					next;
 					if (!checkweight(7059,1)) {
@@ -7701,13 +7701,13 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_02 == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 					mes "你完成了<任务B>？";
 					else
 					mes "你也完成了<任务B>？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇！你做得完美！我确认了10只罗达蛙。今晚我可以好好睡一觉了。";
 					next;
 					if (!checkweight(7059,1)) {
@@ -7724,13 +7724,13 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_03 == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 					mes "你完成了<任务C>？";
 					else
 					mes "你也完成了<任务C>？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇！你做得完美！我确认了10只小野猪。想培养特殊宠物的学生一定很高兴。";
 					next;
 					if (!checkweight(7059,1)) {
@@ -7747,13 +7747,13 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_04 == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 					mes "你完成了<任务D>？";
 					else
 					mes "你也完成了<任务D>？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇！你做得完美！我确认了10只蝗虫。它们难抓吗？";
 					next;
 					if (!checkweight(7059,1)) {
@@ -7768,11 +7768,11 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 					mes "查看报告后，你获得了经验值和卡普拉仓库免费利用券。";
 					next;
 				}
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我已经处理完你完成的任务。要取消现有任务吗？";
 				next;
 				if (select("是", "否") == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好的，祝你继续训练时好运！";
 					close2;
 					cutin "", 255;
@@ -7783,7 +7783,7 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				.@gun_quest_03 = checkquest(5151,HUNTING);
 				.@gun_quest_04 = checkquest(5152,HUNTING);
 				if (.@gun_quest_01 == -1 && .@gun_quest_02 == -1 && .@gun_quest_03 == -1 && .@gun_quest_04 == -1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯？你没有可取消的任务。确定有任务吗？";
 					close2;
 					cutin "", 255;
@@ -7791,11 +7791,11 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				}
 			}
 			if (.@gun_quest_01 == 1 || .@gun_quest_02 == 1 || .@gun_quest_03 == 1 || .@gun_quest_04 == 1) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你还有一些任务，是不是太难了？要取消吗？";
 				next;
 					if (select("取消任务", "算了") == 2) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那么，继续表现出色吧！";
 					close2;
 					cutin "", 255;
@@ -7803,97 +7803,97 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				}
 				.@gun_tok = 0;
 				if (.@gun_quest_01 == 1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你正在进行<任务A>。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "蜂兵不好对付吧？要取消任务吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "取消任务后就无法获得奖励，你知道吗？";
 					next;
 					if (select("取消任务", "算了") == 1) {
 						erasequest 5149;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "哦……蜂兵太强了吗？";
 						next;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "我已经取消<任务A>。现在不用担心了。";
 						next;
 					}
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_02 == 1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 						mes "你正在进行<任务B>。";
 					else
 						mes "你也正在进行<任务B>。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "罗达蛙不好对付吧？要取消任务吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "取消任务后就无法获得奖励，你知道吗？";
 					next;
 					if (select("取消任务", "算了") == 1) {
 						erasequest 5150;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "哦……罗达蛙太强了吗？";
 						next;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我已经取消<任务B>。现在不用担心了。";
 						next;
 					}
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_03 == 1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 					mes "你正在进行<任务C>。";
 					else
 					mes "你也正在进行<任务C>。";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "小野猪不好对付吧？要取消任务吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "取消任务后就无法获得奖励，你知道吗？";
 					next;
 					if (select("取消任务", "算了") == 1) {
 						erasequest 5151;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "哦……小野猪太强了吗？";
 						next;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "我已经取消<任务C>。现在不用担心了。";
 						next;
 					}
 					.@gun_tok = 1;
 				}
 				if (.@gun_quest_04 == 1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (.@gun_tok == 0)
 					mes "你正在进行<任务D>。";
 					else
 					mes "你也正在进行<任务D>。";
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "蝗虫不好对付吧？要取消任务吗？";
 					next;
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "取消任务后就无法获得奖励，你知道吗？";
 					next;
 					if (select("取消任务", "算了") == 1) {
 						erasequest 5152;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "哦……蝗虫太强了吗？";
 						next;
-						mes "[露莎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "我已经取消<任务D>。现在不用担心了。";
 						next;
 					}
 				}
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我已经取消了你想取消的所有任务。如果其他任务也很难，请来找我。";
 				close2;
 				cutin "", 255;
@@ -7905,21 +7905,21 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 			.@gun_quest_03 = checkquest(5151,HUNTING);
 			.@gun_quest_04 = checkquest(5152,HUNTING);
 			.@gun_quest_all = .@gun_quest_01 + .@gun_quest_02 + .@gun_quest_03 + .@gun_quest_04;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "时间过得真快，你的基础训练快结束了！";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这段时间你很努力！你已经成为优秀的神枪手。";
 			next;
 			if (.@gun_quest_all > -4) {
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "不过，你还没有完成所有任务。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "不完成分配的任务就无法获得奖励。";
 				next;
 					if (select("什么？！我去完成！", "我不再训练了！") == 1) {
-					mes "[露莎]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "保重！";
 					close2;
 					cutin "", 255;
@@ -7955,116 +7955,116 @@ iz_ac02,142,85,6	script	Lusa#ac	4_F_GUNSLINGER,{
 				next;
 			}
 			nov_3_guns = 9;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的神枪手基础训练结束了。";
 			close2;
 			cutin "", 255;
 			end;
 		} else if (nov_3_guns == 9) {
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊！又是你！";
 			next;
 			select("你好吗？");
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "老样子。每天教新人神枪手知识。不过我很喜欢。";
 			next;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "对了！我哥哥说很久没见到你了。记得抽时间去看看他。";
 			close2;
 			cutin "", 255;
 			end;
 		} else {
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你好！很高兴再次见到你。";
 			close2;
 			cutin "", 255;
 			end;
 		}
 	} else {
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你好！";
 	mes "嗯！你似乎转职成了别的职业，为什么来到这里？";
 		next;
 		if (select("成为神枪手", "离开") == 2) {
 			cutin "aca_gung_02.bmp", 2;
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？嗯？你要去哪里？";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你不能拥有多个职业。但你似乎真的很想学习。";
 		next;
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这是我的工作，而且不麻烦，我来简单说明一下！";
 		next;
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "神枪手是远程攻击职业。但与箭不同，子弹很昂贵，初学者需要注意这一点。";
 		next;
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这样够了吗？";
 		next;
 		select("是不是太简单了？");
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，是吗？你还想知道什么？";
 		next;
 		while(1) {
 			switch(select("属性", "技能", "武器", "算了。")) {
 			case 1:
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "神枪手是远程攻击职业，所以手部灵巧度（DEX）非常重要。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "想提高攻击力，就必须强化双手。";
 				next;
 				break;
 			case 2:
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "神枪手技能和其他职业不同。每种武器类型都有专用技能。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "和其他职业一样，没有规定你必须学习哪些技能。";
 				next;
 				break;
 			case 3:
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "神枪手有五种不同的枪械。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "左轮手枪命中率低，但攻击速度快。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "步枪性能平均，通常是新神枪手的首选武器。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "霰弹枪攻击力强，但攻击速度较低。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "加特林机枪攻击速度很快，但攻击力较低。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "榴弹发射器可以进行强力地面攻击，但子弹消耗很快。";
 				next;
 				break;
 			case 4:
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呼~希望我回答了你的所有问题。这还是我第一次见到想学习其他职业的人。";
 				next;
-				mes "[露莎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "保重！";
 				close2;
 				cutin "", 255;
 				end;
 			}
-			mes "[露莎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还有其他问题吗？";
 			next;
 		}
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼~希望我回答了你的所有问题。这还是我第一次见到想学习其他职业的人。";
 		next;
-		mes "[露莎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保重！";
 		close2;
 		cutin "", 255;
@@ -8234,7 +8234,7 @@ iz_ac02_d,131,82,4	duplicate(Lusa's Desk#ac)	Lusa's Desk#ac_d	CLEAR_NPC
 
 // - Staff sent by guild
 // -----------------------------------------------------------------------------
-iz_ac02,162,86,4	script	Guild Staff#ac	4W_M_02,{
+iz_ac02,162,86,4	script	公会派驻人员#ac::Guild Staff#ac	4W_M_02,{
 	if (nov_3_guns < 8) {
 		mes "[尖牙蛇]";
 		mes "什——？我是学院派来的。";
@@ -8345,8 +8345,8 @@ iz_ac02_d,162,86,4	duplicate(Guild Staff#ac)	Guild Staff#ac_d	4W_M_02
 
 // - Arang
 // -----------------------------------------------------------------------------
-iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
-	mes "[阿朗]";
+iz_ac02,70,85,5	script	阿郎#ac::Arang#ac	4_F_TAEKWON,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗨，早上好！";
 	emotion ET_DELIGHT;
 	cutin "arang03.bmp", 0;
@@ -8356,35 +8356,35 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 			if (nov_3_taekwon == 1) {
 				if (JobLevel >= 10) {
 					cutin "arang01.bmp", 0;
-					mes "[阿朗]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "该选择职业了吗？跆拳少年怎么样？你也可以成为像我一样优秀的大人。";
 					next;
 				}
 				while (1) {
 					switch(select("遵循跆拳之道的人", "我要遵循跆拳之道！！！", "早上好！现在……", "结束对话")) {
 					case 1:
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "想了解跆拳少年吗？你也想成为像我一样酷的人，对吧？";
 						next;
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "用正确的精神锻炼强健身体，让世界变得美好。这就是跆拳的格言！";
 						next;
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "将来锻炼出更强的身体后，可以转职为^FF0000跆拳宗师^000000或^FF0000灵魂链接者^000000。";
 						next;
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "这条路并不容易。如果没有充分准备，我不建议你选择。但它确实值得追随！！";
 						next;
 						if (isequipped(2942) > 0 || countitem(2942) > 0) {
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "职业介绍能让你更详细地了解跆拳。";
 							next;
 						} else {
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "如果你真的对跆拳感兴趣，我建议你看看简短介绍。要使用吗？";
 							next;
 							if (select("我再看看。", "好，就这么做！") == 1) {
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "每个冒险者都可以拥有自己的职业！希望你能找到想要的！";
 								next;
 							} else {
@@ -8395,38 +8395,38 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 									end;
 								}
 								getitem 2942,1;// Taekwon_Manual
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "先在背包装备手册。电脑按 Alt+S，可用右上角减号切到技能列表；手机和平板从菜单打开“技能”，查找试用技能。";
 								next;
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^FF0000飞踢^000000是快速接近并攻击敌人的技能！充分体现了跆拳的特色！";
 								next;
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "^FF0000温暖的风^000000是改变攻击属性的技能，是^FF0000无法使用武器的跆拳^000000必备技能。";
 								next;
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "接受任务时可以体验跆拳技能！一楼有一位熟练的教练。";
 								next;
 							}
 						}
 						break;
 					case 2:
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "想遵循跆拳之道吗？让我看看……";
 						next;
 						if (JobLevel >= 10) {
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "跆拳之道要求自行艰苦训练，而不是向别人学习。不过如果你想追随，我可以推荐一位教练。";
 							next;
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "训练要靠你自己，但他会指导你。我可以带你过去。现在要去吗？";
 							next;
 							if (select("让我再想想。", "走吧！！") == 1) {
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "请谨慎选择。这关系到你未来的冒险。";
 								next;
 							} else {
-								mes "[阿朗]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "进入斐扬后，请按导航寻找<NAVI>[菲尼克斯]<INFO>payon_in01,62,10,0,101,0</INFO></NAVI>，他会指导你完成跆拳转职。";
 								next;
 								setquest 13101;
@@ -8435,21 +8435,21 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 								end;
 							}
 						} else {
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "要遵循跆拳之道，必须达到职业等级 10。想成为跆拳，就训练到职业等级 10！";
 							next;
-							mes "[阿朗]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "如果觉得独自训练困难，就去一楼拜访教练。";
 							next;
 						}
 						break;
 					case 3:
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "啊哈哈……已经到时间了吗？我还在里面……别担心。";
 						next;
 						break;
 					case 4:
-						mes "[阿朗]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "祝你今天愉快！";
 						close2;
 						cutin "", 255;
@@ -8458,15 +8458,15 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 				}
 			} else {
 				cutin "arang01.bmp", 0;
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你想成为用强大精神锻炼健康身体的跆拳，这里能学到很多。";
 				next;
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你觉得呢？对成为跆拳感兴趣吗？我不勉强你！但如果你愿意，我可以成为你的教练……";
 				cutin "arang02.bmp", 0;
 				next;
 				if (select("我感兴趣！", "我对你感兴趣！") == 1) {
-					mes "[阿朗]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "真的吗！？你愿意！？呀呼！我现在是老师了！想问什么都可以！";
 					nov_3_taekwon = 1;
 					emotion ET_SMILE;
@@ -8474,7 +8474,7 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 					cutin "", 255;
 					end;
 				}
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哈哈哈……你对我感兴趣？";
 				emotion ET_FRET;
 				cutin "arang03.bmp", 0;
@@ -8494,7 +8494,7 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 				end;
 			}
 		} else {
-			mes "[阿朗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你看起来像个天真的新手？想加入这个职业的话，先去一楼登记再来。";
 			close2;
 			cutin "", 255;
@@ -8503,24 +8503,24 @@ iz_ac02,70,85,5	script	Arang#ac	4_F_TAEKWON,{
 	} else {
 		if (nov_3_taekwon > 0) {
 			if (Class == Job_Taekwon) {
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你在认真训练吗？训练有成后，可以成为跆拳宗师或灵魂链接者。";
 				close2;
 			} else if (Class == Job_Star_Gladiator) {
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你成为优秀的跆拳宗师了！？请记住力量伴随着责任。";
 				close2;
 			} else if (Class == Job_Soul_Linker) {
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "听说操控灵魂是非常细致的工作。太棒了！我带领的冒险者就这样成长起来了。";
 				close2;
 			} else {
-				mes "[阿朗]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀！我还以为你追随跆拳之道~~虽然遗憾，但每个人都有自己的生活，嘿嘿。";
 				close2;
 			}
 		} else {
-			mes "[阿朗]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我正在宣传跆拳之道！";
 			close2;
 		}
@@ -8560,7 +8560,7 @@ iz_ac01_d,54,49,0	duplicate(#acKick)	#acKick_d	HIDDEN_NPC,5,5
 
 // - Archer Teacher (Marlbron)
 // -----------------------------------------------------------------------------
-iz_ac02,65,109,5	script	Archer Teacher#ac	4_M_ARCHER,{
+iz_ac02,65,109,5	script	弓箭手老师#ac::Archer Teacher#ac	4_M_ARCHER,{
 	if (Class == Job_Archer) {
 		if (nov_3_archer == 0) {
 			cutin "gnor.bmp", 2;
@@ -9147,25 +9147,25 @@ iz_ac02_d,60,51,5	duplicate(Swordman Trainer#ac)	Swordman Trainer#ac_d	4_M_SWORD
 
 // - Swordman Assistant (Neals)
 // -----------------------------------------------------------------------------
-iz_ac02,53,48,5	script	Swordman Assistant#ac	4_M_KY_KNT,{
+iz_ac02,53,48,5	script	剑士副教官#ac::Swordman Assistant#ac	4_M_KY_KNT,{
 	if (isbegin_quest(4269) != 2) {
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想了解剑士吗？如果想参加课程，必须先登记，然后回来这里。";
 		close;
 	}
 	if (Class == Job_Novice && JobLevel >= 10) {
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的职业等级已经足够，不需要再听课了。";
 		next;
 		if (select("那我就停下。", "马上成为剑士！") == 1) {
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "训练开始前你就已经提升了等级。真令人印象深刻。";
 			close;
 		}
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你已经成长充分。前往剑士公会成为剑士吧！";
 		next;
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "剑士公会位于依斯鲁得广场，从中心向西走。应该很容易找到。";
 		cutin "", 255;
 		if (isbegin_quest(1230))
@@ -9173,65 +9173,65 @@ iz_ac02,53,48,5	script	Swordman Assistant#ac	4_M_KY_KNT,{
 		close;
 	} else {
 		if (Class == Job_Swordman) {
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你现在是剑士了！没有其他特别的东西可以教你。";
 			close;
 		} else if (Class != Job_Novice) {
-			mes "[助理训练师尼尔斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你已经有其他职业了！走开！";
 			close;
 		} else {
 			if (nov_3_swordman >= 2) {
-				mes "[助理训练师尼尔斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们来复习剑士的前置知识，这是复习课程！";
 				next;
 				while(1) {
 					switch(select("剑士要点", "提升攻击与防御。", "相关属性", "其他剑士职业？", "我已经学够了。")) {
 					case 1:
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "剑士体质强健，能轻松承受敌人伤害；组队时是领导者和保护者。";
 						next;
 						break;
 					case 2:
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "剑士偏好使用长矛、双手剑或剑盾组合。";
 						next;
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "剑士通常力量很高，因此可以携带大量重量。";
 						next;
 						break;
 					case 3:
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "通常推荐的属性是^0000FF力量、^0000FF敏捷^000000、^0000FF体质^000000和^0000FF灵巧^000000，当然由你决定。";
 						next;
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "^0000FF体质^000000影响^FF0000HP自然恢复量^000000。";
 						mes "^0000FF力量^000000影响^FF0000负重上限和近战物理攻击力^000000。";
 						mes "^0000FF灵巧^000000提高^FF0000攻击命中率^000000。";
 						next;
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "^0000FF敏捷^000000提高^FF0000攻击速度^000000和^FF0000回避率^000000。";
 						mes "^0000FF幸运^000000影响^FF0000暴击概率^000000。";
 						next;
 						break;
 					case 4:
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "转职为剑士后，可以转职为^0000FF骑士^000000或^0000FF十字军^000000。";
 						next;
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "确定自己偏向攻击还是防御的同时，去提升你的力量。这是你应该做的事。";
 						break;
 					case 5:
-						mes "[助理训练师尼尔斯]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "随时可以再来问。我会回答一切！";
 						close;
 					}
-					mes "[助理训练师尼尔斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我们来复习剑士的前置知识，这是复习课程！";
 					next;
 				}
 			} else {
-				mes "[助理训练师尼尔斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "像你这样弱小的人也能很快成为英勇的剑士。";
 				mes "没错，你可以。要有抱负。";
 				close;
@@ -9251,83 +9251,83 @@ iz_ac02_d,53,48,5	duplicate(Swordman Assistant#ac)	Swordman Assistant#ac_d	4_M_K
 
 // - Mage Chuck
 // -----------------------------------------------------------------------------
-iz_ac02,148,110,3	script	Mage Chuck#ac	4_M_JOB_WIZARD,{
+iz_ac02,148,110,3	script	魔幻灵魂 查尔斯#ac::Mage Chuck#ac	4_M_JOB_WIZARD,{
 	cutin "nov_magicsoul01.bmp", 2;
 	if (Class == Job_Novice) {
 		if (isbegin_quest(4269) == 2) {
-			mes "[法师查克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我负责魔法学院的魔法研究，是^0000FF天才魔法师^000000~！";
 			mes "^0000FF法师查克^000000。";
 			next;
-			mes "[法师查克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我愿意为像你这样有魔法天赋、却不知道如何成为魔法师的^FF0000初心者^000000提供训练。";
 			next;
-			mes "[法师查克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "怎么样？想试试我无价的课程吗？";
 			next;
 			if (select("我要学习。", "不用了，谢谢！") == 2) {
-				mes "[法师查克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不听我的话，你会后悔的。";
 				next;
-				mes "[法师查克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "改变主意后就回来找我。";
 			} else {
-				mes "[法师查克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "很好！既然你决定了，我会尽力。";
 				mes "你能学多少取决于自己的努力。";
 				next;
-				mes "[法师查克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "要成为魔法师，你必须勤奋好学。问我你想学什么吧！";
 				while(1) {
 					next;
 					switch(select("魔法师的主要职责是什么？", "哪些^8B4513属性^000000适合魔法师？", "魔法师有哪些^8B4513技能^000000？", "我可以试试技能吗？！", "我想^8B451C转职^000000为魔法师！", "我之后再来")) {
 					case 1:
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "魔法师的主要职责是使用魔法发动强力攻击。";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我们的防御力较低，但拥有各种攻击^006400技能^000000。";
 						mes "作为魔法师要小心承受的伤害。";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "记住这些小事，你就能成为优秀的魔法师。";
 						mes "随着魔力增长，骄傲地前进吧~";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还想了解魔法师的其他事情吗？";
 						break;
 					case 2:
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "说到魔法师，你是不是想到了某种坚实的东西？";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "纯粹的物理力量属于提升^006400力量^000000的莽夫。";
 						mes "对我这样的^0000FF天才魔法师^000000来说那是浪费。";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "用^006400心灵力量^000000变得聪明睿智。";
 						mes "魔法师的主要属性是^006400智力^000000，这最重要！";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "记住这些小事，你就能成为优秀的魔法师。";
 						mes "随着魔力增长，骄傲地前进吧~";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还想了解魔法师的其他事情吗？";
 						break;
 					case 3:
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "魔法师拥有强大的魔法技能。";
 						mes "这些技能以^006400<水、风、地、火>^000000属性为基础。";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "每种元素都有自己的^006400范围攻击魔法^000000，面对大量敌人时非常有用~！！";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "好了，废话到此为止。";
 						mes "我会用演示展现我的力量，你应该感到荣幸！";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						switch(rand(1,7)) {
 						case 1:
 							mes "探测隐藏敌人";
@@ -9367,37 +9367,37 @@ iz_ac02,148,110,3	script	Mage Chuck#ac	4_M_JOB_WIZARD,{
 							break;
 						}
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "看到我的技能是不是很震撼？你不会受伤的，别担心~！";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还想了解魔法师的其他事情吗？";
 						break;
 					case 4:
 						if (isequippedcnt(2824) > 0 || countitem(2824) > 0) {
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我想你已经拿过^FF0000魔法师入门手册^000000了~！";
 							mes "我不能给你两本，一本就够了~！";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "装备^006400魔法师入门手册^000000后试用技能。";
 							mes "电脑按 Alt+S 打开技能窗口；手机和平板从菜单打开“技能”，点选试用技能查看详情或设置快捷键。";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "还想了解魔法师的其他事情吗？";
 						} else {
 							if (checkweight(2824,1)) {
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "对，你一定已经下定决心成为魔法师了。";
 								next;
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "好！我就给你体验成为魔法师的机会。";
 								mes "拿着这本^006400魔法师入门手册^000000，我借给你！";
 								next;
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "装备^006400魔法师入门手册^000000后试用技能，电脑按 Alt+S 打开技能窗口；手机和平板从菜单打开“技能”，点选试用技能查看详情或设置快捷键。";
 								next;
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "这是珍贵物品，不要弄丢。";
 								mes "如果想成为像我一样的^0000FF天才魔法师^000000，就沿着我的道路前进。";
 								if (!checkweight(2824,1)) {
@@ -9409,64 +9409,64 @@ iz_ac02,148,110,3	script	Mage Chuck#ac	4_M_JOB_WIZARD,{
 								getitem 2824,1;// Mage_Manual
 								break;
 							} else {
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "请先整理背包，预留足够的负重和物品栏空间，再来领取魔法师入门手册。";
 								next;
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "还想了解魔法师的其他事情吗？";
 							}
 						}
 						break;
 					case 5:
 						if (isbegin_quest(9264) == 2) {
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "啊~你想转职为魔法师？";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我之前送你们过去似乎消耗了太多魔力……";
 							mes "像你这样的学生太多了，我不能再送你一次！";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "如果真的想去，请找卡普拉员工使用传送服务。";
 						} else {
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "啊~你想转职为魔法师？";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "要转职为魔法师，必须前往魔法师公会。";
 							mes "我可以送你到附近，但是……";
 							next;
-							mes "[法师查克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你必须先达到^006400职业等级 10^000000和^006400基本技能等级 9^000000。";
 							next;
 							if (!callfunc("F_CanChangeJob")) {
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "你还没准备好！";
 								mes "想转职必须先达到^006400职业等级 10^000000和^006400基本技能等级 9^000000。";
 								mes "之后再回来找我！";
 								next;
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "还想了解魔法师的什么事情？";
 							} else {
-								mes "[法师查克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "啊，看来你已经满足这些条件了！要现在转职吗？";
 								next;
 								if (select("不", "是") == 1) {
-									mes "[法师查克]";
+									mes "[" + strnpcinfo(1) + "]";
 									mes "好吧，决定后再回来！";
 									next;
-									mes "[法师查克]";
+									mes "[" + strnpcinfo(1) + "]";
 									mes "还想了解魔法师的什么事情？";
 								} else {
-									mes "[法师查克]";
+									mes "[" + strnpcinfo(1) + "]";
 									mes "那么我会用魔法把你送到^8B4513吉芬^000000附近的魔法师公会。";
 									mes "你可以在那里转职为魔法师。";
 									next;
-									mes "[法师查克]";
+									mes "[" + strnpcinfo(1) + "]";
 									mes "送你过去后，请和^0000FF魔法师公会向导^000000交谈。";
 									mes "他们会进一步帮助你。走吧！我准备送你过去了！";
 									next;
-									mes "[法师查克]";
+									mes "[" + strnpcinfo(1) + "]";
 									mes "呼——呼——";
 									mes "哦……哦……嗯……嗯！";
 									mes "传送！";
@@ -9481,11 +9481,11 @@ iz_ac02,148,110,3	script	Mage Chuck#ac	4_M_JOB_WIZARD,{
 						}
 						break;
 					case 6:
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "是的~去见见其他老师，然后再回来。";
 						mes "当然，魔法师是所有职业中最迷人的~";
 						next;
-						mes "[法师查克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我相信你还会选择魔法师~~！！哈哈，回头见~";
 						break;
 					}
@@ -9493,12 +9493,12 @@ iz_ac02,148,110,3	script	Mage Chuck#ac	4_M_JOB_WIZARD,{
 				}
 			}
 		} else {
-			mes "[法师查克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先要在学院前台完成^8B4513登记^000000。";
 			mes "去学院一楼，会有人帮你登记。";
 		}
 	} else {
-		mes "[法师查克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经不再是那个一无所知的^8b4513初心者^000000了~？";
 		mes "我没什么可教你的了~！";
 	}
@@ -9573,18 +9573,18 @@ OnTouch:
 
 // - Magician's Guild Guide
 // -----------------------------------------------------------------------------
-gef_fild07,89,208,6	script	Magician's Guild Guide#1	2_F_MAGICMASTER,{
+gef_fild07,89,208,6	script	魔法公会服务人员_d#1::Magician's Guild Guide#1	2_F_MAGICMASTER,{
 	if (isbegin_quest(9265) == 1) {
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，我的任务是带你前往魔法师公会！";
 		mes "一直向右走！";
 		mes "^8B4513过桥^000000后，你就会看到^FF0000吉芬^000000的入口！";
 		next;
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "到了那里，你应该能找到我们的<NAVI>^4D4DFF[魔法师公会向导]^000000<INFO>geffen,43,123,</INFO></NAVI>。";
 		mes "和他交谈，他会继续带你前往魔法师公会！";
 	} else {
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我负责带领^8B4513魔法学院^000000的学生前往魔法师公会。";
 		mes "最近学院来了很多新学生，所以我很高兴能在这里工作。";
 	}
@@ -9597,36 +9597,36 @@ OnInit:
 
 // - Magician's Guild Guide
 // -----------------------------------------------------------------------------
-geffen,43,123,6	script	Magician's Guild Guide#2	2_F_MAGICMASTER,{
+geffen,43,123,6	script	魔法师公会服务人员#2::Magician's Guild Guide#2	2_F_MAGICMASTER,{
 	if (isbegin_quest(9265) == 1) {
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你一路来到这里了。对学院学生来说做得很好！";
 		next;
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有这份一步步的向导，他们很容易迷路并感到沮丧。";
 		next;
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，长话短说。";
 		mes "现在我告诉你前往魔法师公会的路线！";
 		mes "路线很简单……";
 		mes "从这里朝11点钟方向走，你就会看到魔法师公会。";
 		next;
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "进去后上楼走一小段，就能找到<NAVI>^4D4DFF[魔法师公会职员]^000000<INFO>geffen_in,164,124,</INFO></NAVI>。";
 		mes "他会在那里协助你成为魔法师。";
 		completequest 9265;
 		erasequest 9265;
 		setquest 9266;
 	} else if (isbegin_quest(9266) == 1) {
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "路线很简单……";
 		mes "从这里朝11点钟方向走，你就会看到魔法师公会。";
 		next;
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "进去后上楼走一小段，就能找到<NAVI>^4D4DFF[魔法师公会职员]^000000<INFO>geffen_in,164,124,</INFO></NAVI>。";
 		mes "他会在那里协助你成为魔法师。";
 	} else {
-		mes "[魔法师公会向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我负责带领^8B4513魔法学院^000000的学生前往魔法师公会。";
 		mes "最近学院来了很多新学生，所以我很高兴能在这里工作。";
 	}
@@ -9643,15 +9643,15 @@ OnInit:
 
 // - Salim Hamid
 // -----------------------------------------------------------------------------
-iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
+iz_ac02,50,169,3	script	哈米德#ac::Salim Hamid#ac	1_M_MERCHANT,{
 	disable_items;
 	if (BaseLevel > 15 || Class != Job_Novice) {
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "这门课程只面向刚开始冒险的初心者。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看你的样子似乎需要帮助。要不要去别的地方看看？";
 		close2;
 		cutin "", 255;
@@ -9659,11 +9659,11 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	if (isbegin_quest(4269) < 1) {
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦～";
 		mes "一眼看去，你就像一只迷路的小羊……这里禁止未登记的访客进入。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你想自由参观这里，最好先在学院入口的信息台登记。";
 		close2;
 		cutin "", 255;
@@ -9671,37 +9671,37 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	if (JobLevel >= 10) {
 		cutin "aca_salim01.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哟哦～";
 		mes "看起来你已经准备好转职为一转职业了。";
 		next;
 		cutin "aca_salim02",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么样？你对商人的道路感兴趣吗？如果感兴趣，我可以帮助你。";
 		next;
 		if (select("没兴趣。", "感兴趣。") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……不……";
 			mes "好吧，没办法。魔法学院优先尊重冒险者自己的选择。";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好～我会把你送到艾尔贝塔城外，你可以在那里转职为商人。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不要去别处，马上进入城镇。";
 		mes "到商人公会寻找<NAVI>[曼苏]<INFO>alberta_in,53,43,0,101,0</INFO></NAVI>，由他办理转职。";
 		next;
 		if (select("还没准备好。", "我准备好了！") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好的，我明白了。准备好后再来找我吧。";
 			close2;
 			cutin "", 255;
 			end;
 		} else {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很好～请前往商人公会，找公会成员办理转职。";
 			close2;
 			cutin "",255;
@@ -9712,31 +9712,31 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	if (isbegin_quest(12302) < 1) {
 		cutin "aca_salim02.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦～";
 		mes "嘿，你就像一只迷路的小羊。知道自己为什么来到这里吗？";
 		next;
 		if (select("不知道", "知道。") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……你不知道吗？";
 			next;
 		} else {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦～看来你学东西很快。";
 			next;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，至少让我先做个介绍。";
 		next;
 		cutin "aca_salim01.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是负责魔法学院商人课程培训的^0000ff萨利姆·哈米德^000000。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这间教室供商人申请者使用。实际上，这里主要负责魔法学院的财务管理。";
 		next;
 		cutin "aca_salim02.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下次如果想旁听商人课程，可以来找我萨利姆·哈米德登记。";
 		setquest 12302;
 		completequest 12302;
@@ -9746,40 +9746,40 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	if (isbegin_quest(12303) < 1) {
 		cutin "aca_salim01.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦～你回来了。想体验商人培训课程吗？对普通初心者来说，这门课有点难。";
 		next;
 		if (select("不用了，谢谢！", "我要报名！") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦～虽然有点难，但很值得学习。可惜，也没有别的办法。";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，是的……那么，先在这份学生名单上登记你的名字吧？";
 		next;
 		if (select("拒绝。", "把名字写在名单上。") == 1) {
 			cutin "aca_salim03.bmp", 2;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一开始就抗拒吗？这可不是开始训练的方式。";
 			close2;
 			cutin "", 255;
 			end;
 		}
 		cutin "aca_salim01.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯～你的名字是……";
 		mes "^0000ff"+ strcharinfo(0) +"^000000……对吗？";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想旁听商人课程，首先要具备商人的心态。手里不到100 Zeny的交易者不能称为商人。";
 		next;
 		cutin "aca_salim02.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ""+ strcharinfo(0) +"^000000下节课前带着100 Zeny回来找我。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，我不会拿走那笔钱。这只是测试你是否具备成为商人的基本心态。祝你好运。";
 		setquest 12303;
 		close2;
@@ -9788,16 +9788,16 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	} else if (isbegin_quest(12303) == 1) {
 		if (Zeny >= 100) {
 			cutin "aca_salim02.bmp", 2;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，你真的带着100 Zeny回来了。我清楚感受到了你想学习的愿望。";
 			next;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在我会给你一本商人入门手册。电脑在背包双击装备；手机和平板点选手册，再点击“穿戴”。";
 			next;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "电脑按 Alt+S，可用右上角减号切到技能列表；手机和平板从菜单打开“技能”，查看手册提供的试用技能。";
 			next;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在～我们该进入下一门课程了。装备手册并查看技能，然后再来和我说话。";
 			if (!checkweight(2823,1)) {
 				mes "请先整理背包，为领取物品预留足够的负重和物品栏空间。";
@@ -9812,17 +9812,17 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 			end;
 		} else {
 			cutin "aca_salim02.bmp", 2;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呵呵呵……测试不容易吧？现在要放弃吗？";
 			next;
 			if (select("做不到。", "放弃。") == 1) {
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "要放弃吗？100 Zeny并不难赚到，朋友。";
 				close2;
 				cutin "", 255;
 				end;
 			} else {
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好的，改变主意后再来找我。";
 				erasequest 12303;
 				close2;
@@ -9833,10 +9833,10 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	if (isbegin_quest(12304) < 1) {
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，要不要参加关于商人赚钱所需各种基础技能的课程？";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你最好向隔壁场地工作的管理员学习。去找他上商人理论课，然后再回来找我。";
 		setquest 12304;
 		close2;
@@ -9844,31 +9844,31 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 		end;
 	} else if (isbegin_quest(12304) == 1) {
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还没去上课吗？去找我旁边的管理员，完成商人技能理论课后再回来。";
 		close2;
 		cutin "", 255;
 		end;
 	}
 	if (isbegin_quest(12305) < 1) {
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你听完管理员讲解商人能做什么的课程了吗？";
 		next;
 		cutin "aca_salim02",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ""+strcharinfo(0)+"，你有兴趣继续在这里了解商人吗？";
 		next;
 		if (select("我去看看其他职业。", "让我再学习一点。") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很好，你愿意保持开放的心态。学院里除了商人，还有许多其他讲师。";
 			next;
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes ""+strcharinfo(0)+"，想再次学习时随时回来找我。";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是这样吗？好吧，现在要学习商人属性的主要作用吗？准备好后和我说话。";
 		setquest 12305;
 		close2;
@@ -9876,81 +9876,81 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 		end;
 	} else if (isbegin_quest(12305) == 1) {
 		cutin "aca_salim01.bmp", 2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "交易者的属性分为两大类：一类用于制造，另一类用于战斗。";
 		next;
 		cutin "aca_salim02",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，那是今后才会用到的内容。目前你甚至缺少足够的属性点来投资DEX，以便猎杀魔物。";
 		next;
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，了解基本规则和对此一无所知之间有很大差别。";
 		mes "让我们逐一了解吧。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，我们先从哪一类开始？";
 		while(1) {
 			next;
 			switch(select("已经知道了。", "战斗属性", "制造属性")) {
 			case 1:
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这样就可以了吧？";
 				next;
 				if (select("我全都知道了。", "请再解释一次。") == 1) {
-					mes "[萨利姆·哈米德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "是的，"+strcharinfo(0)+"。很高兴遇到你这样学得快的学生，也省了我的时间。";
 					next;
 				} else {
-					mes "[萨利姆·哈米德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "啊哈～看来是我误会你了。我们重新开始讲课吧。";
 					continue;
 				}
 				break;
 			case 2:
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "作为交易者，影响战斗力的属性主要有两项：^4d4fffSTR和DEX^000000。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "STR提高近战物理攻击力和负重上限，DEX提高命中率。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "将来根据你选择的二转和三转职业，还能学习其他攻击属性，例如^4d4fffINT或AGI^000000。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "为了弥补不足，你可以适当提高LUK。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "与其自己烦恼，不如向其他商人学习。记得向别人请教。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还有其他问题吗？";
 				continue;
 			case 3:
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "制造相关属性比战斗属性简单。唯一的难点是如何培养。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "通常会以^4d4fffDEX和LUK^000000为基础，如果还有余力，就把剩余点数投入^4d4fffINT^000000。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "当然，属性点的分配应根据你的装备和所处状况适当调整。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请记住，独自作为专精制造的商人成长，可能会是一条非常枯燥而清苦的道路。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "可以的话，尽量利用朋友和他们的物品。";
 				mes "这只是我的个人意见。";
 				mes "绝不代表魔法学院的官方立场。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还有其他问题吗？";
 				continue;
 			}
 			break;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，这门课就到此结束。";
 		mes "如果还想了解商人，请再来找我。";
 		completequest 12305;
@@ -9959,31 +9959,31 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 		end;
 	}
 	if (isbegin_quest(12306) < 1) {
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你又回来了。"+strcharinfo(0)+"，这次要不要通过跑一趟简单的差事进行实践训练？";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看到我旁边的学院练习售货机了吗？它是专门用来练习交易技能的。";
 		next;
 		cutin "aca_salim02",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，由于这个原因，它现在被用来让学员练习技能。请确认加勒结晶和扎贡的价格。";
 		next;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但是！你必须装备商人手册并使用折扣技能，带着^4d4fff折扣价格的信息^000000回来。";
 		next;
 		cutin "aca_salim01",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不要购买它们，只要带着确认过的价格回来。能做到吗？";
 		next;
 		if (select("我下次再做。", "我会去做。") == 1) {
-			mes "[萨利姆·哈米德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，那就下次再挑战吧。";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好～回头见。";
 		setquest 12306;
 		close2;
@@ -9991,32 +9991,32 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 		end;
 	} else if (isbegin_quest(12306) == 1) {
 		cutin "aca_salim02",2;
-		mes "[萨利姆·哈米德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好的。让我看看你确认的价格。";
 		next;
 		switch(select("我重新确认后再回来。:加勒结晶39z 扎贡450z:加勒结晶37z 扎贡448z:加勒结晶37z 扎贡446z:加勒结晶37z 扎贡444z")) {
 			case 1:
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧。重新仔细确认后再回来。";
 				close2;
 				cutin "", 255;
 				end;
 			case 4:
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好～你装备商人手册正确确认了价格。";
 				next;
 				cutin "aca_salim01",2;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "也许，成为商人并使用高级折扣技能后，你就能以便宜得多的价格买到想要的东西。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "高价卖出练习也是一样的道理。";
 				next;
 				cutin "aca_salim02",2;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你也不必专门练习高价卖出。出售其他课程中获得的物品时就能体验。";
 				next;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "学院的商人培训到此结束。";
 				completequest 12306;
 				close2;
@@ -10024,7 +10024,7 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 				end;
 			default:
 				cutin "aca_salim03",2;
-				mes "[萨利姆·哈米德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你确认得正确吗？";
 				close2;
 				cutin "", 255;
@@ -10033,16 +10033,16 @@ iz_ac02,50,169,3	script	Salim Hamid#ac	1_M_MERCHANT,{
 	}
 	// if (JobLevel < 10) {
 	cutin "aca_salim02",2;
-	mes "[萨利姆·哈米德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈哈。"+strcharinfo(0)+"，你已经完成了魔法学院的商人理论课程。";
 	next;
-	mes "[萨利姆·哈米德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你想测试商人入门手册中的其他战斗技能，请前往一楼的<NAVI>[战斗教官苏比诺]<INFO>iz_ac01,59,83</INFO></NAVI>。";
 	next;
-	mes "[萨利姆·哈米德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你可以通过他完整体验战斗相关的练习。";
 	next;
-	mes "[萨利姆·哈米德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "达到职业等级 10 后，"+strcharinfo(0)+"将获得下一门课程的向导。祝你好运。";
 	close2;
 	cutin "", 255;
@@ -10062,7 +10062,7 @@ iz_ac02_d,50,166,5	duplicate(AcademyPracticeShop)	学院练习售货机::Academy
 
 // - Steward Aydin
 // -----------------------------------------------------------------------------
-iz_ac02,53,171,3	script	Steward Aydin#ac	4_M_MANAGER,{
+iz_ac02,53,171,3	script	管家 老丁#ac::Steward Aydin#ac	4_M_MANAGER,{
 	disable_items;
 	if (isbegin_quest(12304) == 1) {
 		mes "[管理员艾丁]";
@@ -10191,7 +10191,7 @@ iz_ac02_d,53,171,3	duplicate(Steward Aydin#ac)	Steward Aydin#ac_d	4_M_MANAGER
 // - Guest Lecturer Mayssel
 // - Teaches the player about the Thief class.
 // -----------------------------------------------------------------------------
-iz_ac02,52,136,3	script	Guest Lecturer Mayssel#0	4_F_MAYSEL,{
+iz_ac02,52,136,3	script	聘用讲师梅雪#0::Guest Lecturer Mayssel#0	4_F_MAYSEL,{
 
 	if (isbegin_quest(4269) > 0 && Class == Job_Novice) {
 		if (!isbegin_quest(7480)) {
@@ -11397,10 +11397,10 @@ iz_ac02_d,49,134,5	duplicate(Vicente#ac)	Vicente#ac_d	4_M_HUMAN_02
 // - Verkhasel
 // - Teaches the player about the Thief class.
 // -----------------------------------------------------------------------------
-iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
+iz_ac02,55,134,3	script	贝尔卡塞#ac::Verkhasel#ac	4_M_GUILLOTINE,{
 	if (isbegin_quest(4269) > 0 && Class == Job_Novice) {
 		if (!isbegin_quest(7480)) {
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "什么？你打扰到我了。";
 			cutin "gc_verkhasel01.bmp", 0;
 			close2;
@@ -11408,7 +11408,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 			end;
 		} else if (isbegin_quest(7480) == 1) {
 			if (!isbegin_quest(7482)) {
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "嘿嘿，嘿嘿，这可不是开玩笑。";
 				mes "梅谢尔的课程……";
 				mes "你叫我来就是为了这种讨厌的事？";
@@ -11420,7 +11420,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				mes "但只要我和你在一起，就不用怕他。";
 				cutin "nov_lumin02.bmp", 2;
 				next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "你这次又在说什么？";
 				mes "一开始，卢……你不该在这里……";
 				cutin "gc_verkhasel01.bmp", 0;
@@ -11431,7 +11431,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				mes "助手……教官？";
 				next;
 				cutin "gc_verkhasel02.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "啧……";
 				mes "那么，你对哪一个感兴趣？";
 				next;
@@ -11440,27 +11440,27 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				while(1) {
 					switch(select("二刀连击", "施毒", "残影与隐匿", "关于你", "够了。")) {
 					case 1:
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "你可能已经知道，盗贼的主要武器是短剑。";
 						mes "盗贼的特色是用短剑发动^4d4dff二刀连击^000000。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "如果攻击力不足，它可以在一定程度上弥补。";
 						mes "还有其他问题吗？";
 						.@ok_chk = .@ok_chk + 1;
 						next;
 						continue;
 					case 2:
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "有一项叫^4d4dff施毒^000000的技能，可以用毒素使敌人中毒，还有一项叫^4d4dff解毒^000000的技能，可以解除中毒状态。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "中毒状态会呈现漂亮的紫色，很容易辨认。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "如果你中毒，毒素会迅速降低生命力，要立即解毒或服用解毒药水。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "如果你对毒药更感兴趣，也许可以成为刺客。";
 						mes "他们正式将毒药作为武器。";
 						mes "下一个！";
@@ -11468,30 +11468,30 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 						next;
 						continue;
 					case 3:
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "盗贼会训练^4d4dff残影^000000技能。";
 						mes "通过闪避攻击，让敌人无计可施。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "与其挨打后忍耐，防御较低的盗贼更适合迅速闪避。";
 						mes "因此不能忽视敏捷 [AGI]。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "^4d4dff隐匿^000000是用于躲避的技能。";
 						mes "成功后，其他人就看不到你。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "啊，俗话说你骗不了鬼……你会被邪恶发现。";
 						mes "敏感的昆虫也能察觉到你……";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "除此之外，它也适合用来躲避紧急情况。";
 						mes "转职为流氓或刺客等高级职业后，还能学习更多有用的技能。";
 						.@ok_chk = .@ok_chk + 1;
 						next;
 						continue;
 					case 4:
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "我？我是十字斩首者的首领。";
 						mes "......";
 						next;
@@ -11506,7 +11506,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 						cutin "nov_lumin03.bmp", 2;
 						next;
 						cutin "gc_verkhasel01.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "哦……聪明的小子~~";
 						mes "够了，卢敏。";
 						mes "还有问题吗？";
@@ -11514,12 +11514,12 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 						continue;
 					case 5:
 						if (.@ok_chk == 0) {
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 							mes "你可以从一个敌人身上偷取一件物品。";
 							mes "停在这里让我很惭愧，但被忽视更糟……";
 							next;
 						} else {
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 							mes "好。";
 							mes "看在你没有忽视我的份上，我们现在结束课程吧。";
 							next;
@@ -11529,11 +11529,11 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					break;
 				}
 				cutin "gc_verkhasel01.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "老实说，我不认为你需要知道盗贼技能的详细内容。";
 					mes "只要知道有这类技能就够了……";
 				next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "我的意思是，现在这样就够了。";
 				setquest 7482;
 				close2;
@@ -11541,11 +11541,11 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				end;
 			} else {
 				cutin "gc_verkhasel01.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "还有其他好奇的事情吗？";
 					mes "完成梅谢尔的课程后，我会回答你。";
 				next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "我的意思是她知道答案。";
 					mes "梅谢尔会替你解答。";
 				next;
@@ -11555,7 +11555,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					mes "说实话……你真烦。";
 				next;
 				cutin "gc_verkhasel02.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 					mes "……你……";
 					mes "啧……我不知道敌人是谁……";
 				close2;
@@ -11567,20 +11567,20 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				if (BaseLevel > 12) {
 					if (!isbegin_quest(7485)) {
 						cutin "gc_verkhasel01.bmp", 0;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "技能的实际体验任务？";
 						mes "要进行体验，你的等级太高了。";
 						mes "我无法使用指导流程。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "原本我会让你用施毒猎杀波利。";
 						mes "但如果不能使用技能，就没办法了……";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "施毒是让敌人中毒的技能。";
 						mes "即使没有使它中毒，也可以利用毒素特性造成伤害。";
 						next;
-	mes "[贝尔卡塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 						mes "记住这些就够了。";
 						mes "这门课就是为了让你了解自己能做什么。";
 						mes "让我们完成技能体验。";
@@ -11593,11 +11593,11 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					} else if (isbegin_quest(7485) == 1) {
 						if (checkquest(7485,HUNTING) == 2) {
 							cutin "gc_verkhasel01.bmp", 0;
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你做得很好。";
 							mes "施毒具有中毒效果，也能通过毒素本身造成伤害。";
 							next;
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "技能体验已经足够了。";
 							mes "去找梅谢尔确认。";
 							completequest 7485;
@@ -11607,16 +11607,16 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 							end;
 						} else {
 							cutin "gc_verkhasel01.bmp", 0;
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你无法装备盗贼入门手册吗？";
 							mes "你的等级太高了。";
 							mes "没有其他办法了。";
 							next;
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "施毒是让目标中毒的技能。";
 							mes "即使没有使目标中毒，也能利用毒素的特性对其造成伤害。";
 							next;
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "记住这些就够了。";
 							mes "这门课就是为了让你了解自己能做什么。";
 							mes "让我们完成技能体验。";
@@ -11631,17 +11631,17 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 
 				if (!isbegin_quest(7485)) {
 					cutin "gc_verkhasel01.bmp", 0;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "这是关于技能使用的课程。";
 					mes "如果你将来成为刺客，要不要现在测试一下今后可以继续使用的毒素相关技能？";
 					next;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "装备梅谢尔给你的盗贼入门手册。电脑按 Alt+S，切到技能列表后把施毒拖到快捷栏；手机和平板从菜单打开“技能”，点选施毒并选择“设置快捷键”。";
 					next;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "然后，走近房间中央的波利笼子，瞄准波利，并使用^4d4dff施毒猎杀一只波利^000000。";
 					next;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "这就是我交给你的任务。";
 					mes "你必须在这个房间里对波利使用施毒。";
 					mes "不要跑到外面寻找波利。";
@@ -11665,11 +11665,11 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				} else if (isbegin_quest(7485) == 1) {
 					if (checkquest(7485,HUNTING) == 2) {
 						cutin "gc_verkhasel01.bmp", 0;
-						mes "[贝尔卡塞尔]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你做得很好。";
 						mes "施毒具有中毒效果，也能通过毒素本身造成伤害。";
 						next;
-						mes "[贝尔卡塞尔]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "技能体验已经足够了。";
 						mes "去找梅谢尔确认。";
 						completequest 7485;
@@ -11679,31 +11679,31 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 						end;
 					} else {
 						cutin "gc_verkhasel01.bmp", 0;
-						mes "[贝尔卡塞尔]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "靠近波利笼子，对波利使用施毒。";
 						mes "你只能对这个房间里的波利这样做。";
 						next;
 						if (select("我明白了……", "我不做。") == 1) {
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "好的。在杀死笼子里的所有波利前，继续用毒素攻击它们。";
 							percentheal 0,100;
 							close2;
 							cutin "", 255;
 							end;
 						}
-						mes "[贝尔卡塞尔]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "看来这不适合你。";
 						mes "我会取消我的任务，梅谢尔交给你的其他任务也会由她取消。";
 						next;
 						if (select("取消。", "我会继续……") == 1) {
-							mes "[贝尔卡塞尔]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "取消使用施毒猎杀波利的任务。";
 							erasequest 7485;
 							close2;
 							cutin "", 255;
 							end;
 						}
-						mes "[贝尔卡塞尔]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你改变主意了吗？";
 						mes "那么，在杀死笼子里的所有波利前，继续对它们使用施毒。";
 						percentheal 0,100;
@@ -11712,7 +11712,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 						end;
 					}
 				} else {
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "现在你已经完全理解毒素技能了……";
 					mes "既然你完成了我的任务，就去找梅谢尔确认吧。";
 					cutin "gc_verkhasel01.bmp", 0;
@@ -11721,13 +11721,13 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					end;
 				}
 			} else {
-				mes "[贝尔卡塞尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你已经顺利完成梅谢尔的课程了。";
 				mes "还有问题就去问梅谢尔。";
 				mes "我的课程到此结束。";
 				cutin "gc_verkhasel01.bmp", 0;
 				next;
-				mes "[贝尔卡塞尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你成为盗贼，也许将来某天我们还会再见……";
 				mes "如果你成为刺客的话。";
 				close2;
@@ -11737,7 +11737,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 		}
 	} else {
 		if (!isbegin_quest(4269)) {
-			mes "[贝尔卡塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没什么好对不属于本学院的家伙说的。";
 			mes "其实我是被迫来到这里的，没心情对你这种人客气……";
 			cutin "gc_verkhasel01.bmp", 0;
@@ -11753,7 +11753,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 			close;
 		} else {
 			if (Class == Job_Thief) {
-				mes "[贝尔卡塞尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哟～你……";
 				mes "你想成为什么？";
 				cutin "gc_verkhasel01.bmp", 0;
@@ -11765,7 +11765,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					cutin "nov_lumin03.bmp", 2;
 					next;
 					cutin "gc_verkhasel02.bmp", 0;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "..............";
 					mes "（贝尔卡塞尔抬头望天）";
 					mes "...";
@@ -11775,7 +11775,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					mes "气氛变得奇怪了。";
 					close;
 				} else {
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "到那边去。";
 					cutin "gc_verkhasel01.bmp", 0;
 					next;
@@ -11786,7 +11786,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 					mes "你为什么要把我们分成两队？";
 					next;
 					cutin "gc_verkhasel01.bmp", 0;
-					mes "[贝尔卡塞尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我从来就不是你们家的人。";
 					mes "说到底，你也不是流氓。";
 					mes "你以前只是个商人。";
@@ -11806,7 +11806,7 @@ iz_ac02,55,134,3	script	Verkhasel#ac	4_M_GUILLOTINE,{
 				}
 			} else {
 				cutin "gc_verkhasel01.bmp", 0;
-				mes "[贝尔卡塞尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是那个什么都知道的家伙。";
 				mes "你只是来旁观的吗？嗯？";
 				mes "别只看着，去帮助后辈吧？";
@@ -11830,24 +11830,24 @@ iz_ac02_d,55,134,3	duplicate(Verkhasel#ac)	Verkhasel#ac_d	4_M_GUILLOTINE
 
 // - Lumin
 // -----------------------------------------------------------------------------
-iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
+iz_ac02,62,139,3	script	鲁米#ac::Lumin#ac	4_M_NOV_RUMIN,{
 	if (checkquest(7487,HUNTING) == -1) {
 		if (isbegin_quest(7485) == 2) {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你完成任务的热情和努力打动了我，所以我想送你一些东西。";
 			cutin "nov_lumin01.bmp", 2;
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^4d4dff在30秒内猎杀这里的4只波利^000000。";
 			mes "如果你做到，我会把手头所有获得的物品都给你。";
 			next;
 			select("如果我失败了呢？");
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是我们的赌约。你输了就必须交出你的赌注。";
 			mes "嗯……我很慷慨，只要你交出^4d4dff10瓶初学者专用药水^000000。";
 			next;
 			if (select("放弃。", "我接受。") == 1) {
-				mes "[卢敏]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……呃……";
 				mes "胆小鬼！";
 				cutin "nov_lumin02.bmp", 2;
@@ -11855,7 +11855,7 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 				cutin "", 255;
 				end;
 			} else {
-				mes "[卢敏]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……很好！";
 				mes "现在，^4d4dff在30秒内猎杀4只波利后再来找我。^000000";
 				ACA_LuminReward = 0;
@@ -11865,12 +11865,12 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 				end;
 			}
 		} else {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "中毒的敌人不会仅因中毒而死亡。";
 			mes "它们只会濒临死亡。";
 			cutin "nov_lumin01.bmp", 2;
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……波利为什么转过身去？";
 			close2;
 			cutin "", 255;
@@ -11878,12 +11878,12 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 		}
 	} else if (isbegin_quest(7487) == 1 && checkquest(7487,HUNTING) != 2) {
 		if (checkquest(7487,PLAYTIME) == 2) {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……30秒过去了，你还没有猎杀4只波利。";
 			mes "那就没意思了。";
 			cutin "nov_lumin01.bmp", 2;
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你不想做……那就算了。";
 			mes "我很慷慨，这次就不计较赌约了。";
 			erasequest 7487;
@@ -11892,7 +11892,7 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 			cutin "", 255;
 			end;
 		} else {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可能正忙着^4d4dff在30秒内猎杀4只波利。^000000";
 			mes "嘿，时间正在流逝……";
 			cutin "nov_lumin01.bmp", 2;
@@ -11905,12 +11905,12 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 		if (!ACA_LuminReward)
 			ACA_LuminReward = checkquest(7487,PLAYTIME) == 0 ? 1 : 2;
 		if (ACA_LuminReward == 1) {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……你真厉害！";
 			mes "那么，按照约定，我会把我拥有的一切都给你。";
 			cutin "nov_lumin03.bmp", 2;
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "多亏你，我玩得很开心！";
 			cutin "nov_lumin05.bmp", 2;
 			if (!checkweight(512,3,511,2,569,22,622,1)) {
@@ -11935,12 +11935,12 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 			cutin "", 255;
 			end;
 		} else {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "遗憾的是，30秒已经过去了。";
 			cutin "nov_lumin02.bmp", 2;
 			mes ".....";
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不管怎样我都会给你。";
 			mes "来，拿着吧。";
 			cutin "nov_lumin03.bmp", 2;
@@ -11961,7 +11961,7 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 			getitem 512,22;// Apple
 			next;
 			select("你为什么要这样对我？", "我不是输了吗？");
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你陪我度过了这段时间。";
 			mes "免费拿走吧。这些是我从波利那里偷来的。";
 			cutin "nov_lumin05.bmp", 2;
@@ -11971,18 +11971,18 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 		}
 	} else {
 		if (Class == Job_Novice) {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们也许会再见。";
 			mes "和别人熟悉起来，既快乐又令人伤感。";
 			cutin "nov_lumin02.bmp", 2;
 			next;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……如果它当场死掉，可能会有麻烦……";
 			close2;
 			cutin "", 255;
 			end;
 		} else {
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这一天终于到来了。";
 			cutin "nov_lumin01.bmp", 2;
 			next;
@@ -11992,11 +11992,11 @@ iz_ac02,62,139,3	script	Lumin#ac	4_M_NOV_RUMIN,{
 			specialeffect2 EF_SPHERE;
 			next;
 			cutin "thf_lumin01.bmp", 2;
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我正在执行任务。";
 			next;
 			select("不用找借口……");
-			mes "[卢敏]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "至少我不想和你变成陌生人。";
 			mes "忘掉你今天看到的一切，因为我必须尽可能多地向人介绍盗贼公会的道路。";
 			cutin "thf_lumin05.bmp", 2;
@@ -12139,7 +12139,7 @@ iz_ac02_d,1,1,0	duplicate(#nbacStone03)	#nbacStone03_d	CLEAR_NPC
 
 // - Acolyte Leader Alice
 // -----------------------------------------------------------------------------
-iz_ac02,156,169,5	script	Acolyte Leader Alice#2	4_F_ACOLYTE,{
+iz_ac02,156,169,5	script	服事导师 艾莉丝#2::Acolyte Leader Alice#2	4_F_ACOLYTE,{
 	if (isbegin_quest(4269) < 1) {
 		mes "[爱丽丝·伊莎]";
 		mes "你已经^ff0000在魔法学院登记^000000了吗？";
@@ -12398,31 +12398,31 @@ iz_ac02_d,152,165,5	duplicate(A Nun#2)	A Nun#2_d	4_F_SISTER
 // - Ninja Guide (Ko Ori)
 // - Teaches the player about the Ninja class.
 // -----------------------------------------------------------------------------
-iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
+iz_ac02,140,139,5	script	忍者导游#ac::Ninja Guide#ac	4_M_NINJA_BLUE,{
 	cutin "aca_ninja_k.bmp", 2;
 	if (Class != Job_Novice) {
 		if (Upper != 0) {
-			mes "[忍者向导]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不想和你说话。现在离开……";
 			close2;
 			cutin "", 255;
 			end;
 		} else {
 			if (Class == Job_Ninja) {
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我是科·奥利。就由我为你介绍忍者的基础。";
 				if (!isbegin_quest(4268))
 					setquest 4268;
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "电脑按 ^4d4dffAlt+S^000000 打开技能窗口；手机和平板打开菜单中的“技能”。";
 				mes "提升职业等级可以获得技能点。分配之前，先查看技能的前置条件与说明。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "部分忍者技能需要指定武器或消耗道具。请按技能说明准备装备和材料，再确认 SP 是否足够。";
 				mes "电脑可将技能拖到快捷栏；手机和平板点选技能，再选择“设置快捷键”。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (Class == Job_Ninja && isbegin_quest(4268) == 1) {
 					completequest 4268;
 					mes "基础介绍到这里。去安全的地方熟悉自己的技能吧！";
@@ -12432,10 +12432,10 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 				cutin "", 255;
 				end;
 			} else {
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我是为新人指引忍者之道的人。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我对已经走上自己道路的人不感兴趣。";
 				mes "现在请离开……";
 				close2;
@@ -12445,7 +12445,7 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 		}
 	} else {
 		if (Upper == 2) {
-			mes "[忍者向导]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "孩子无法接受忍者的生活。";
 			mes "这样的生活并不容易胜任，所以不要感到遗憾……";
 			close2;
@@ -12453,71 +12453,71 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 			end;
 		}
 		if (isbegin_quest(4269) != 2) {
-			mes "[忍者向导]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，你必须在学院^ff0000登记^000000，然后再来找我。";
 			mes "一切都必须遵循正确的流程，笨拙不能成为借口。";
 			close2;
 			cutin "", 255;
 			end;
 		}
-		mes "[忍者向导]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。来了一位新的初学者啊？";
 		mes "你为什么来这里？";
 		next;
 		switch(select("忍者说明。", "我决定成为忍者。", "我没事要来这里。")) {
 		case 1:
 			while(1) {
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "想成为忍者的初学者……";
 				mes "有什么好奇的就问我。";
 				next;
 				switch(select("成为忍者后我能做什么？", "成为忍者需要什么条件？", "我想体验忍者技能。", "我对忍者没有疑问。")) {
 				case 1:
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "忍者可以在潜行时发动攻击，造成最大伤害。";
 					mes "忍者拥有各种欺敌技能，非常适合单人行动。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你不仅能学习类似魔法的忍术，还能直接攻击、造成暴击伤害或向敌人投掷飞刀。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "没有足够的装备，你无法完美做到这些。";
 					mes "如果被击中，你会比其他人承受更多伤害。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "因此，如果一个还不了解这个世界的人不加考虑地选择这个职业，就会遭遇失败。";
 					next;
 					break;
 				case 2:
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "忍者可以学习多种不同的路线。";
 					mes "每种路线都有优点和缺点。";
 					mes "最好经过深思熟虑后自行决定。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "有两个主要属性会影响伤害程度。";
 					mes "一个是^ff0000力量^000000，另一个是^ff0000智力^000000，";
 					mes "力量影响^8E2323物理攻击^000000和^8E2323投掷攻击^000000的伤害。";
 					mes "智力影响^8E2323魔法类忍术^000000造成的伤害。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "关于其他属性的知识，你可以向教授基础战斗技能的教官请教。";
 					next;
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "例如，要提高命中率，你应该怎么做？";
 					mes "要提高防御力，你应该穿什么？等等……";
 					next;
 					break;
 				case 3:
 					if (countitem(2940) > 0) {
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你可以装备这本手册来体验一些技能。";
 						mes "电脑按 Alt+S，可用右上角减号切到技能列表；手机和平板从菜单打开“技能”，点选技能查看说明或设置快捷键。";
 						next;
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "学院楼下有一位会提供战场训练的教官。去见他并训练技能。";
 						next;
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "他会给你一些任务。使用手册帮助你战斗。";
 						if (countitem(13295) < 10) {
 							if (!checkweight(13295,10)) {
@@ -12530,7 +12530,7 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 						}
 						next;
 					} else {
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "珍惜每一个有用的时刻。";
 						mes "你可以装备这本手册来体验一些技能。";
 						mes "电脑按 Alt+S，可用右上角减号切到技能列表；手机和平板从菜单打开“技能”，点选技能查看说明或设置快捷键。";
@@ -12543,16 +12543,16 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 						getitem 2940,1;// Ninja_Manual
 						getitem 13295,10;// Light_Shuriken
 						next;
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "学院楼下有一位会提供战场训练的教官。去见他并训练技能。";
 						next;
-						mes "[忍者向导]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "他会给你一些任务。使用手册帮助你战斗。";
 						next;
 					}
 					break;
 				case 4:
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我说的你都明白了吗？";
 					mes "就是这些……你没有问题了吗？";
 					close2;
@@ -12563,44 +12563,44 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 			break;
 		case 2:
 			if (!callfunc("F_CanChangeJob")) {
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我欣赏你的勇气，但首先你必须熟悉当前职业。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在你决定成为忍者之前，请先将初心者的基本技能学到 9 级，再回来找我。";
 				close2;
 				cutin "", 255;
 				end;
 			} else {
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这可能是我最后的警告。";
 				mes "成为忍者意味着过上艰苦的生活。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "忍者不属于公会，因此初心者很容易获得这条道路。";
 				mes "确保你的决定是最终决定！";
 				next;
 				if (select("我会重新考虑。", "我已经决定了。") == 1) {
-					mes "[忍者向导]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "深思熟虑的行动通常会带来好结果。";
 					close2;
 					cutin "", 255;
 					end;
 				}
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "既然你如此坚定，我只能带你去那里。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会把你送到可以转职的地方附近。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会给你一个特别提示。";
 				mes "你要到达的是樱花城。去空房子里寻找隐藏的通道。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在那里你会遇到带你成为忍者的人。";
 				next;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你在城里迷路，那就没办法了……成为忍者需要观察力。";
 				next;
 				mes "- 选择^ff0000确认^000000前往樱花城。";
@@ -12608,17 +12608,17 @@ iz_ac02,140,139,5	script	Ninja Guide#ac	4_M_NINJA_BLUE,{
 				next;
 				if (select("确认", "取消") == 1)
 					warp "amatsu", 112, 141;
-				mes "[忍者向导]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "............";
 				close2;
 				cutin "", 255;
 				end;
 			}
 		case 3:
-			mes "[忍者向导]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "......";
 			next;
-			mes "[忍者向导]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你没事找我，我没什么可说的。";
 			close2;
 			cutin "", 255;

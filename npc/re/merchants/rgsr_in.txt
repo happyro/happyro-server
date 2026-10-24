@@ -4,8 +4,8 @@
 //= 1.0 First Version. [Capuche]
 //============================================================
 
-itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
-	mes "[装备改造宣传员]";
+itemmall,14,50,3	script	装备改造宣传要员#it01::Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好，冒险者！";
 	mes "你对现在的装备不满意吗？";
 	mes "不想尝试不同于普通方法的新改造吗？";
@@ -13,26 +13,26 @@ itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
 	next;
 	switch( select( "走吧。", "听听说明。", "退出。" ) ) {
 	case 1:
-		mes "[装备改造宣传员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好！研究所其他设施属于机密，无法进入，所以我们会引导你们这些外来者走特殊通道！";
 		close2;
 		warp "rgsr_in",125,170;
 		end;
 	case 2:
-		mes "[装备改造宣传员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "雷根贝勒研究所正在世界各地研究武器、铠甲、饰品及其他装备的改造……";
 		mes "我们仍在收集数据、研究改造，因此需要大量冒险者装备来推进研究。";
 		next;
-		mes "[装备改造宣传员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "研究仍在进行，完成后会追加许多新装备，敬请期待！";
 		close;
 	case 3:
-		mes "[装备改造宣传员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "以后感兴趣的话再回来！";
 		close;
 	}
 }
-lighthalzen,99,156,3	duplicate(Equipment Reform PR Agent#it01)	Equipment Reform PR Agent#lh01	4_F_ZONDAGIRL
+lighthalzen,99,156,3	duplicate(Equipment Reform PR Agent#it01)	装备改造宣传要员#lh01::Equipment Reform PR Agent#lh01	4_F_ZONDAGIRL
 
 rgsr_in,112,167,7	script	Enchant Researcher#rg02-1	MD_ED_M_SCIENCE,{
 	mes "[托鲁斯]";
@@ -395,38 +395,38 @@ OnInit:
 	end;
 }
 
-rgsr_in,128,174,5	script	Director#rg02	1_M_LIBRARYMASTER,{
-	mes "[主管]";
+rgsr_in,128,174,5	script	研究所长#rg02::Director#rg02	1_M_LIBRARYMASTER,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "……来吧。";
 	mes "你来时可能已经听过说明，我再简单介绍一下吧。我们的研究还有很长的路要走，目前正在尝试改造各种武器、铠甲和饰品，让它们焕然一新。";
 	next;
-	mes "[主管]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "转换装备必须降低精炼等级，但这是获得更强力量的代价。";
 	next;
-	mes "[主管]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "研究仍在继续，不知道何时何地会突然完成并提供给冒险者。";
 	mes "就是这样……数据收集完毕后总会有办法。";
 	next;
-	mes "[主管]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这一次，利希特团队做到了。";
 	mes "如果感兴趣，看看完成了哪些研究。";
 	next;
-	mes "[主管]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "大家都喜欢安静，所以别大声说话。";
 	close;
 }
 
-rgsr_in,122,160,5	script	Exit Guard#rg01	4_M_LGTGUARD,{
-	mes "[出口警卫]";
+rgsr_in,122,160,5	script	出口警备员#rg01::Exit Guard#rg01	4_M_LGTGUARD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "结束了吗？";
 	mes "要^FF0000返回里希塔乐^000000吗？";
 	next;
 	if (select( "返回。", "还有工作。" ) == 2) {
-		mes "[出口警卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "完成后随时告诉我们。";
 		close;
 	}
-	mes "[出口警卫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我带你回去。";
 	close2;
 	warp "lighthalzen",101,156;

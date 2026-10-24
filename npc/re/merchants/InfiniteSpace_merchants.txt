@@ -12,8 +12,8 @@
 // Food Merchant
 -	shop	inf_ration	-1,512:-1,513:-1,515:-1,516:-1
 
-cmd_fild07,63,268,1	script	Emergency Food Merchant#pa0829_01	4_M_BIBI,{
-	mes "[应急食品商人]";
+cmd_fild07,63,268,1	script	紧急粮食商人#pa0829_01::Emergency Food Merchant#pa0829_01	4_M_BIBI,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我这里有很多东西，当然不是免费的。";
 	close2;
 	callshop "inf_ration",1;
@@ -21,8 +21,8 @@ cmd_fild07,63,268,1	script	Emergency Food Merchant#pa0829_01	4_M_BIBI,{
 }
 
 // Warp Scroll Seller
-cmd_fild07,375,167,1	script	Ruins Black Trader#pa0829_01	4_F_JOB_HUNTER,{
-	mes "[遗迹黑市商人]";
+cmd_fild07,375,167,1	script	无限管理员#pa0829_01::Ruins Black Trader#pa0829_01	4_F_JOB_HUNTER,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，每次进出这里不麻烦吗？只要^0000ff20,000^000000 Zeny，就能买一张直接传送到遗迹入口的卷轴，怎么样？";
 Purchase:
 	next;
@@ -34,36 +34,36 @@ Purchase:
 				close;
 			}
 			else if (Zeny < 20000) {
-				mes "[遗迹黑市商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你似乎没有足够的钱。卷轴售价20,000 Zeny。";
 				close;
 			}
 			Zeny -= 20000;
 			getitem 22980,1;
-			mes "[遗迹黑市商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "交易愉快。还要更多吗？";
 			goto Purchase;
 		case 2:
-			mes "[遗迹黑市商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "随时欢迎回来。";
 			close;
 	}
 }
 
 // Equipment Shop
-cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
+cmd_fild07,57,275,5	script	文物鉴定师#pa0829_01::Artifact Appraiser#pa0829_01	1_F_02,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
 		mes "你携带的物品太多，无法继续对话。";
 		mes "请整理物品后再试。";
 		close;
 	}
 	.@stone_id = 6905;
-	mes "[古物鉴定师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请选择要购买的装备类型。只要有" + getitemname(.@stone_id) + "，想买多少都可以。";
 	next;
 	switch (select("取消:武器:防具")) {
 		case 1:
-			mes "[古物鉴定师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想回来时随时来吧～";
 			close;
 
@@ -83,26 +83,26 @@ cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
 	.@s = select(.@menu$) - 1;
 	switch (.@s) {
 		case 0:
-			mes "[古物鉴定师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想回来时随时来吧～";
 			close;
 
 		default:
 			.@s--;
-			mes "[古物鉴定师]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes "购买" + getitemname(.@equip_id[.@s]) + "需要^0000FF" + .@price + "^000000个" + getitemname(.@stone_id) + "～";
 			next;
 			if (select("取消:购买") == 1) {
-				mes "[古物鉴定师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "想回来时随时来吧～";
 				close;
 			}
 			if (countitem(.@stone_id) < .@price) {
-				mes "[古物鉴定师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的" + getitemname(.@stone_id) + "不足，无法购买。";
 				close;
 			}
-			mes "[古物鉴定师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "感谢你的信任。下次再来。";
 			if (!checkweight(.@equip_id[.@s],1)) {
 				mes "请先为所选装备预留足够的负重和物品栏空间。";
@@ -115,7 +115,7 @@ cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
 }
 
 // Equipment Enchanter
-cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
+cmd_fild07,60,275,3	script	文物强化师#pa0829_01::Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
 		mes "你携带的物品太多，无法继续对话。";
 		mes "请整理物品后再试。";
@@ -124,37 +124,37 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 	disable_items;
 	.@stone_id = 6905;
 	function equip_check;
-	mes "[古物强化师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果想强化在无限空间获得的装备，你来对地方了。";
 	mes "你有" + getitemname(.@stone_id) + "吗？";
 	next;
 	switch (select("如何附魔装备？:附魔装备。:初始化装备附魔。")) {
 		case 1:
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "探索帕罗斯灯塔下方的空间，就能获得" + getitemname(.@stone_id) + "。";
 			next;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有了这种材料，我就能强化你从无限空间获得的装备。";
 			next;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我只能附魔第3和第4槽位。";
 			next;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "附魔过程中装备不会损坏，但初始化附魔时有很高概率损坏。";
 			next;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想附魔装备时再来找我。";
 			break;
 
 		case 2:
 			.@stone_id = 6905;
 			.@fee = 20;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请选择要附魔的装备。";
 			next;
 			switch (select("取消:武器:铠甲:鞋子:披肩:头盔")) {
 				case 1:
-					mes "[古物强化师]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "想附魔装备时再来找我。";
 					close;
 
@@ -186,7 +186,7 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 				.@check[.@i] = getequipcardid(.@part,.@i);
 			}
 			if (.@card[2] > 0) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我最多只能附魔到第三槽位。你的装备无法继续附魔。";
 				close;
 			}
@@ -213,7 +213,7 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			}
 			.@slot = (.@card[3] > 0 ? 2 : 3);
 			.@index = (.@slot == 3 ? 0 : 1);
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可以选择3种附魔，费用是" + .@fee + "个" + getitemname(.@stone_id) + "。";
 			mes "我会确保附魔顺利完成。";
 			next;
@@ -222,19 +222,19 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 				mes "已取消附魔，欢迎随时再来。";
 				close;
 			}
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (.@slot == 3)
 				mes "好，开始第一次附魔。";
 			else
 				mes "好，进行第二次附魔。";
 			next;
 			if (select("我以后再来。:请继续。") == 1) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "改变主意的话，随时回来。";
 				close;
 			}
 			if (countitem(.@stone_id) < .@fee) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯。顺便说，你似乎没听我说，你的" + getitemname(.@stone_id) + "不够。";
 				close;
 			}
@@ -248,7 +248,7 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			delequip .@part;
 			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 			specialeffect2 EF_REPAIRWEAPON;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，完成得很好。马上检查你的装备。";
 			break;
 		
@@ -256,12 +256,12 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			.@stone_id = 6905;
 			.@fee = 30;
 			.@break_chance = 30;
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请选择要附魔的装备。";
 			next;
 			switch (select("取消:武器:铠甲:鞋子:披肩:头盔")) {
 				case 1:
-					mes "[古物强化师]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "想附魔装备时再来找我。";
 					close;
 
@@ -293,20 +293,20 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 				.@check[.@i] = .@card[.@i];
 			}
 			if (.@card[3] == 0) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的装备没有任何附魔。";
 				close;
 			}
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "初始化需要 " + .@fee + " 个" + getitemname(.@stone_id) + "，装备有 " + .@break_chance + "% 的概率损坏并消失。你仍要继续吗？";
 			next;
 			if (select("退出:继续") == 1) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "改变主意的话，随时回来。";
 				close;
 			}
 			if (countitem(.@stone_id) < .@fee) {
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯。顺便说，你似乎没听我说，你的" + getitemname(.@stone_id) + "不够。";
 				close;
 			}
@@ -317,11 +317,11 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			if (rand(1,100) > .@break_chance) {
 				getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],0,0;
 				specialeffect2 EF_REPAIRWEAPON;
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，完成得很好。马上检查你的装备。";
 			} else {
 				specialeffect2 EF_REFINEFAIL;
-				mes "[古物强化师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我已经提醒过你了。看来你运气不好，是吧？";
 			}
 			break;
@@ -331,12 +331,12 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 	function	equip_check	{
 		setarray .@equip_id,1994,1938,13323,13126,28703,2024,16038,21014,28105,18128,15141,22075,20779,19033;
 		if (!getarg(0)) {
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是不是脱下了装备？";
 			close;
 		}
 		if (inarray(.@equip_id,getarg(0)) == -1) {
-			mes "[古物强化师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这件装备不适合附魔。别忘了只有无限空间系列装备可以附魔。";
 			close;
 		}

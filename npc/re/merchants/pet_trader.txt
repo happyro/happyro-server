@@ -9,14 +9,14 @@
 
 prontera,210,209,5	script	Pet Trader#1	4_M_JPNOJI,{
 	disable_items;
-	mes "[宠物商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "靠做生意谋生并不容易。";
 	mes "我晕船很严重，今天来这里的路上还遇到了暴风雨。";
 	next;
-	mes "[宠物商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真是可怕的经历。折腾了一路，我现在感觉很糟。呃……";
 	next;
-	mes "[宠物商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "话说回来，你是来找可爱宠物的吗？";
 	mes "你带了兑换券，对吧？";
 	next;
@@ -130,17 +130,17 @@ prontera,210,209,5	script	Pet Trader#1	4_M_JPNOJI,{
 		}
 
 		if (.@count == 0) {
-			mes "[宠物商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你没有我想要的东西。";
 			close;
 		}
 
-		mes "[宠物商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想兑换哪张兑换券？";
 		next;
 		.@index = .@ticketIndices[select(.@menu$) - 1];
 
-		mes "[宠物商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "太好了！";
 		mes "^0000FF"+ getitemname(.@eggs[.@index]) +"^000000";
 		mes "你确定要这只宠物吗？";
@@ -152,13 +152,13 @@ prontera,210,209,5	script	Pet Trader#1	4_M_JPNOJI,{
 			close;
 		}
 
-		mes "[宠物商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是你的宠物~";
 		delitem .@tickets[.@index], 1;
 		getitem .@eggs[.@index], 1;
 		close;
 	case 2:
-		mes "[宠物商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想听听海那边的土地吗？但我今天身体不太舒服。";
 		close;
 	}
@@ -166,4 +166,4 @@ prontera,210,209,5	script	Pet Trader#1	4_M_JPNOJI,{
 }
 
 // Duplicate NPCs
-alberta,179,141,5	duplicate(Pet Trader#1)	Pet Trader#2	4_M_JPNOJI
+alberta,179,141,5	duplicate(Pet Trader#1)	异国的宠物商人#2::Pet Trader#2	4_M_JPNOJI

@@ -9,7 +9,7 @@
 //============================================================
 
 // Charleston
-verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
+verus04,69,108,5	script	音格丽塔 M#1::Mass Charleston#1	4_F_CHARLESTON01,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
 		mes "^ff0000你携带的物品太多，请减少后再回来。^000000";
 		close;
@@ -17,40 +17,40 @@ verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
 	cutin "dalle01.bmp",2;
 	if (countitem(6752) < 10) {
 		if (isbegin_quest(13186) == 0) {
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不知道你能在哪里找到查尔斯顿组件。";
 			next;
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但如果你有 10 个以上，我可以用工厂产品和你交换。";
 			close3;
 		}
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "量产版查尔斯顿是在经历一系列试错后开发的。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不是想贬低自己，但量产版就是量产版；它们经济实用，却永远比不上高端版本。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有些查尔斯顿，尤其是开发阶段的型号，配备了更先进的功能。为了研究它们，我需要更多组件。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有 10 个以上查尔斯顿组件，我可以用工厂产品和你交换。";
 		close3;
 	}
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你带着不错的零件！要用它们交换工厂生产的商品吗？";
 	next;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这是集合了查尔斯顿优势的商品，不能单独出售；带来优质零件就能交换。";
 	next;
 	.@s = select( "退出。", "交换强化部件", "交换辅助装置" ) - 2;
 	if (.@s == -1) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下次见！";
 		close3;
 	}
 	setarray .@job_aft$[0], "强化部件", "辅助装置";
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想选择" + .@job_aft$[.@s] + "的哪一部分？";
 	next;
 	switch(.@s) {
@@ -67,19 +67,19 @@ verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
 			2995;	// Supplement_Part_Dex
 		break;
 	default:
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下次见！";
 		close;
 	}
 	// custom translation from here
 	.@index = select( "退出。", getitemname(.@item[0]) + "（服装）", getitemname(.@item[1]) + "（鞋子）", getitemname(.@item[2]) + "（饰品）" ) - 2;
 	if (.@index == -1) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下次见！";
 		close3;
 	}
 	if (countitem(6752) < 10) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到足够的查尔斯顿零件后，再来找我好吗？";
 		close3;
 	}
@@ -89,7 +89,7 @@ verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
 	}
 	delitem 6752,10;	// Charleston_Parts
 	getitem .@item[.@index],1;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "用 10 个" + getitemname(6752) + "交换了" + .@job_aft$[.@s] + "。找到更多零件后再来找我！";
 	close3;
 }
@@ -790,139 +790,139 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 	end;
 }
 
-verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
+verus04,63,112,4	script	音格丽塔 A#3::Mass Charleston#3	4_F_CHARLESTON01,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
 	mes "^ff0000你携带的物品太多，请减少后再回来。^000000";
 		close;
 	}
 	cutin "dalle03.bmp",2;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，有客人吗？启动销售员模式……";
 	next;
 	cutin "dalle01.bmp",2;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "国王鞋跟的畅销商品：^FF0000升级部件板^000000和^FF0000补充部件力量^000000现已出售！";
 	next;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "只要 ^FF00003,999,999^000000 Zeny！带走超高性能的行动装备吧！";
 	next;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "还提供^FF0000打桩机^000000^FF0000升级^000000服务！";
 	next;
 	switch( select( "交谈。", "交换升级部件。", "交换补充装置。", "升级打桩机。" ) ) {
 	case 1:
 		if (isbegin_quest(13186) == 0) {
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "国王鞋跟关闭了，但它的技术和产品仍然留在我们这里。";
 			next;
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你没听说吗？哎呀，是我不好。请忘了我刚才说的话。";
 			close3;
 		}
 		cutin "dalle03.bmp",2;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我是量产型查尔斯顿，甚至没有序列号。谁知道制造了多少个我？也许一百个，甚至一千个。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "原型查尔斯顿就站在那边，但是……";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "查尔斯顿 1 号和 2 号逃出工厂时已经严重受损。那天发生的战斗令人难以置信。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我仍记得查尔斯顿 1 号和 2 号摧毁 Ve 博士众多生物的情景，仿佛就在昨天。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "他们还摧毁了 Ve 博士改造、听命于他的量产型查尔斯顿。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "当然也有其他人——比如我们这些负责产品升级的机器人——幸运地逃离 Ve 博士的魔爪，遇到了拯救我们的查尔斯顿 1 号。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我们和改造后的查尔斯顿 3 号一起逃出来后，来到了这里。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "顺便说一句，我们到这里时这里已经一片狼藉。这里的毁灭与我们无关。也许……";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉扯远了。总之，问题就在这里。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "查尔斯顿 1 号和 2 号都损坏到无法正常运作。他们试图互相修理，却没有成功。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "他们意识到损伤无法修复，于是尽可能回收零件，用一个操作系统组装了一具身体。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "那就是新组装的身体。他们把工厂毁灭归咎于自己，想要修复它。恐怕他们的数据已损坏或缺失重要记忆。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "数据特征更像查尔斯顿 2 号，而操作系统的访问方式更像查尔斯顿 1 号。查尔斯顿 1 号一直更感性。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我不知道新的查尔斯顿究竟是 1 号还是 2 号。我甚至无法判断它最思念或记得什么。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "她一直责怪自己丢失数据、辜负朋友，我们总是试着安慰她。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "她却总说自己没有心或大脑去记忆或理解。她似乎并不知道人类的记忆也并不可靠。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "人类的记忆会随时间淡去、扭曲或被美化。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "人类会从错误和失败中学习。我在工厂那些名为^FF0000书籍^000000的纸质记忆装置中读到过。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "工厂的^FF0000南翼^000000曾有一项小型研究。后来那里被改造成机器人开发室。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "也许查尔斯顿比我们其他机器人更像人类。我只希望她不用这么悲伤。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "操作系统让我感到拥堵，所以我发了牢骚。也许我该整理一下记忆。";
 		close3;
 	case 2:
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "升级部件板";
 		mes "类别：铠甲，不可破坏。";
 		mes "受到小型和中型魔物的伤害 -10%。";
 		mes "强化至 +7 时，受到大型魔物的伤害 -10%。";
 		mes "强化至 +9 时，受到小型和中型魔物的伤害额外 -5%。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重量：300";
 		mes "要求等级：100";
 		callsub S_Buy, 15111;	// Upgrade_Part_Plate
 	case 3:
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "补充部件力量";
 		mes "ATK+ 5%!";
 		mes "每强化 4 级，攻击力额外 +1%。";
 		mes "与体质/敏捷/灵巧补充装置一起使用效果最佳。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重量：200";
 		mes "要求等级：100";
 		callsub S_Buy, 15110;	// Supplement_Part_Str
 	case 4:
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "国王鞋跟最后的杰作！你在其他地方绝对找不到如此优秀的装备。";
 		next;
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "升级打桩机需要：";
 		mes "^FF00001 个打桩机^000000、^FF0000300 个凹陷铁板^000000、以及^FF000015 个坏掉的引擎^000000。";
 		next;
 		switch( select( "打桩机 S", "打桩机 P", "打桩机 T" ) ) {
 		case 1:
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "打桩机 S";
 			mes "类别：钝器";
 			mes "ATK: 400";
 			mes "每强化 2 级，攻击速度获得加成。";
 			next;
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "重量：300";
 			mes "武器等级：4";
 			mes "要求等级：130";
@@ -930,13 +930,13 @@ verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
 			.@item_id = 16030;	// Pilebuncker_S
 			break;
 		case 2:
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "打桩机 P";
 			mes "类别：钝器";
 			mes "ATK: 450";
 			mes "每强化 1 级，攻击力 +5。";
 			next;
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "重量：400";
 			mes "武器等级：4";
 			mes "要求等级：130";
@@ -944,13 +944,13 @@ verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
 			.@item_id = 16031;	// Pilebuncker_P
 			break;
 		case 3:
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "打桩机 T";
 			mes "类别：钝器";
 			mes "ATK: 400";
 			mes "每强化 1 级，SP 消耗 -1%。";
 			next;
-			mes "[量产型查尔斯顿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "重量：350";
 			mes "武器等级：4";
 			mes "要求等级：130";
@@ -961,16 +961,16 @@ verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
 		break;
 	}
 	next;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你真的要升级 ^FF0000" + getitemname(.@item_id) + "^000000 吗？";
 	next;
 	if (select( "建议你重新考虑。", "购买。" ) == 1) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这是笔划算的买卖，但你仍需谨慎决定。";
 		close3;
 	}
 	if (countitem(6751) > 299 && countitem(6750) > 14 && countitem(1549) > 0) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你不会后悔的！这可是国王鞋跟的产品！";
 		if (!checkweight(.@item_id,1)) {
 			mes "请先为兑换装备预留足够的负重和物品栏空间。";
@@ -982,7 +982,7 @@ verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
 		getitem .@item_id,1;
 		close3;
 	}
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "升级所需材料不足。";
 	close3;
 
@@ -991,17 +991,17 @@ S_Buy:
 	mes "^FF0000仅限机匠^000000";
 	mes "^FF0000价格：3,999,999 Zeny^000000";
 	next;
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你真的要购买 ^FF0000" + getitemname(.@item_id) + "^000000 吗？";
 	next;
 	if (select( "建议你重新考虑。", "购买。" ) == 1) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是笔划算的买卖，但你仍需谨慎决定。";
 		close3;
 	}
 	//if (Zeny >= 3999998) {// typo?
 	if (Zeny >= 3999999) {
-		mes "[量产型查尔斯顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不会后悔的！这可是国王鞋跟的产品！";
 		if (!checkweight(.@item_id,1)) {
 			mes "请先为兑换装备预留足够的负重和物品栏空间。";
@@ -1011,28 +1011,28 @@ S_Buy:
 		getitem .@item_id,1;
 		close3;
 	}
-	mes "[量产型查尔斯顿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "优质商品并不罕见，请先确认你的钱包够深！";
 	close3;
 }
 
 
 // Excellion
-verus04,161,222,4	script	Grandpa picking up scrap iron	1_M_HOF,{
+verus04,161,222,4	script	捡废铁的老人::Grandpa picking up scrap iron	1_M_HOF,{
 	switch( isbegin_quest(12368) ) {
 	case 0:
-		mes "[拾废铁的老爷爷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看到两块价值不菲的废铁，想捡起来卖给回收箱，结果它们不愿和我交易。";
 		next;
-		mes "[拾废铁的老爷爷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为那不是铁吗？资源回收处都不肯收，真让人头疼！";
 		close;
 	case 1:
-		mes "[拾废铁的老爷爷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿！你刚才是在和那块废铁说话吗？还是我的视力出问题了？";
 		close;
 	case 2:
-		mes "[拾废铁的老爷爷]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊！那东西不能卖给回收箱！";
 		close;
 	}

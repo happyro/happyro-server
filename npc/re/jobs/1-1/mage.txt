@@ -12,48 +12,48 @@
 //= 1.0 First Version. [Kisuka]
 //= 1.1 Added support for Baby classes. [Euphy]
 //============================================================ 
-geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
+geffen_in,164,124,4	script	公会服务人员::Mage Guildsman#mage	123,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {
 			if (Class == Job_Novice_High) {
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇，好久不见！不过你不是应该已经死了吗？";
 				next;
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，你一定是转生了。很高兴你回来了。";
 				next;
 				if (!callfunc("F_CanChangeJob")) {
-					mes "[魔法师公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，我觉得你还没准备好学习魔法。先去完成基本技能的学习吧？";
 					next;
-					mes "[魔法师公会职员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "慢慢来。学得越多，就越能准备好再次学习魔法。";
 					close;
 				}
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "既然你曾通过魔法师测试，我不会质疑你的资格。你想立刻恢复魔法技能，对吧？";
 				next;
 				skill "NV_TRICKDEAD",0,SKILL_PERM;
 				jobchange Job_Mage_High;
 				skill "MG_ENERGYCOAT",1,SKILL_PERM;
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇，不知为何，你看起来比以前好多了。总之，我相信你也会成为更出色的魔法师。";
 				close;
 			}else{
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还有什么我能帮你的吗？如果没有，就去测试你的技能吧！世界正在等待你~！";
 				close;
 			}
 		}else{
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么，你对魔法师公会感兴趣？虽然不想告诉你，但你不属于这里。";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不知道你为什么还站在我面前，但我能看出你不适合成为魔法师。";
 			close;
 		}
 	}
-	mes "[魔法师公会职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	if(BaseJob != Job_Novice) {
 		if(BaseJob == Job_Mage) {
 			mes "喂，你没发现吗？你已经是魔法师了，傻瓜！";
@@ -66,10 +66,10 @@ geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
 		next;
 		switch(select("我想成为魔法师:成为魔法师有什么要求？:没事，谢谢。")) {
 		case 1:
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想成为魔法师？嗯……";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Sex == SEX_MALE) {
 				mes "嘿，看看你！真可爱~！不过不是我的类型……";
 			}else{
@@ -79,11 +79,11 @@ geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
 			mes "对了，你说你想成为魔法师？";
 			next;
 			if(select("我想成为魔法师。:不用了，谢谢。") == 2) {
-				mes "[魔法师公会职员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么~？！刚说想成为魔法师就改变主意？！果断一点！";
 				close;
 			}
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (!callfunc("F_CanChangeJob")) {
 				mes "哎，你的基本技能等级还不够成为魔法师。";
 				mes "回去提升基本技能吧。";
@@ -92,11 +92,11 @@ geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
 			mes "好……签申请表……哇~你的字真漂亮！啊，好了，够了。";
 			mes "你是……"+strcharinfo(0)+"。";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，我看得出你用自己的方式努力过。虽然有点笨拙，不过我觉得没问题！";
 			mes "很好！坚持基础最重要！我马上为你转职。";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (BaseJob != Job_Novice || Upper == 1 || !callfunc("F_CanChangeJob")) {
 				mes "请以满足基本技能要求的初心者身份办理转职。";
 				close;
@@ -112,27 +112,27 @@ geffen_in,164,124,4	script	魔法师公会职员::Mage Guildsman#mage	123,{
 			mes "哈……！你现在是魔法师了，我们的同伴！";
 			mes "欢迎加入魔法师公会，新朋友！";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "“欢迎加入魔法师公会～”";
 			mes "恭喜你成为魔法师公会成员！加油！";
 			close;
 		case 2:
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想成为魔法师？";
 			mes "我很乐意为你说明转职要求！";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，你必须达到初心者职业等级 10，并学会全部基本技能。";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "过去有复杂的药水制作测试，因此申请者逐渐减少。";
 			mes "所以，我们决定接受所有满足基本要求的申请者。";
 			next;
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别犹豫，成为魔法师吧！";
 			close;
 		case 3:
-			mes "[魔法师公会职员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没事……？";
 			close;
 		}

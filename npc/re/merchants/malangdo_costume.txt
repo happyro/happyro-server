@@ -34,7 +34,7 @@
 
 
 // Costume exchange
-mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
+mal_in01,20,124,5	script	海丹·斐罗#eventhat::Designer Heidam#eventhat	4_CAT_SAILOR5,{
 	if (checkweight(1301,1) == 0) {
 		mes "-请停一下！！-";
 		mes "-你携带的物品太多，无法再领取物品。-";
@@ -42,22 +42,22 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 		close;
 	}
 	disable_items;
-	mes "[设计师海达姆]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我是设计师海达姆，拥有世界各地各种酷炫服装。";
 	mes "如果你带着凯特硬币，就来找设计师海达姆！";
 	next;
 	if (select( "用服装兑换随机附魔箱", "继续交谈" ) == 2) {
-		mes "[设计师海达姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我现在身材走样，但以前可是著名的时装模特兼设计师！";
 		next;
-		mes "[设计师海达姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别可怜我！我很清楚自己的外表，但我喜欢内在的自己。";
 		close;
 	}
 	mes "[" + strcharinfo(0) + "]";
 	mes "这件物品对我没用！还有别的吗？";
 	next;
-	mes "[设计师海达姆]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，那我可以把它换成一箱服装附魔物品。";
 	next;
 	mes "-翻找中-";
@@ -438,12 +438,12 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 					continue;
 				if (countitem(.@id) < 1)
 					continue;
-				mes "[设计师海达姆]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我看到你有^3131FF" + getitemname(.@id) + "^000000。要用它兑换服装附魔箱吗？";
 				next;
 				switch( select( "兑换", "寻找其他物品", "停止兑换" ) ) {
 				case 1:
-					mes "[设计师海达姆]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (countitem(.@id) < 1)
 						mes "哦～有什么东西突然消失了……";
 					else {
@@ -461,17 +461,17 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 				case 2:
 					break;
 				case 3:
-					mes "[设计师海达姆]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "喵？你要去哪里？";
 					close;
 				}
 			}
 		}
-		mes "[设计师海达姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来就这些了。";
 		next;
 		if (select( "再找找", "退出" ) == 2) {
-			mes "[设计师海达姆]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再见～";
 			close;
 		}
@@ -481,30 +481,30 @@ mal_in01,20,124,5	script	Designer Heidam#eventhat	4_CAT_SAILOR5,{
 malangdo,115,154,3	script	Fashion Stone#stone	4_BULLETIN_BOARD2,{ end; }
 
 // Costume enchant (top, mid, low)
-mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
+mal_in01,22,113,3	script	阿维尔·道旭#cos_ect::Aver De Dosh#cos_ect	4_WHITETIGER,{
 	disable_items;
-	mes "[艾弗·德·多什]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎来到时尚石服务！！";
 	next;
-	mes "[艾弗·德·多什]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们接受各种服装物品。";
 	next;
-	mes "[艾弗·德·多什]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果想为服装打造酷炫造型，请来找我‘艾弗·德·多什’！";
 	mes "别忘了带上^ff0000你自己的服装和服装石^000000～";
 	next;
 	if (select( "进行附魔。", "结束对话。" ) == 2) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也请看看我们的其他升级服务～";
 		close;
 	}
 	if (checkweight(1119,3) == 0) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呀啊啊啊！！！";
 		mes "我讨厌鼓鼓的包！";
 		mes "无论你的服装多酷，你那个肥包都是时尚灾难！";
 		next;
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你身上物品太多。";
 		mes "清理物品栏空间后再回来。";
 		close;
@@ -514,7 +514,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
 
 	if (.@eq_top == -1 && .@eq_mid == -1 && .@eq_low == -1) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须穿上想附魔的服装。";
 		mes "这样我才能帮助你。";
 		close;
@@ -812,7 +812,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31409:	// C_Barrel_Helm
 			break;
 		default:
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -904,7 +904,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31505:	// C_Falcon_Mask
 			break;
 		default:
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -1030,7 +1030,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		case 31698:	// C_Pigtail_Red_Hood
 			break;
 		default:
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "这件服装目前无法升级。";
 			close;
@@ -1046,7 +1046,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@equip_refine = getequiprefinerycnt(.@part);
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
-	mes "[艾弗·德·多什]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哇~这件^0000FF" + getitemname(.@equip_id) + "^000000！！！你穿起来真好看！！";
 	mes "你想用哪种石头升级？";
 	next;
@@ -1060,7 +1060,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	switch(.@slot) {
 	case 0:
 		if (!(.@location & EQP_COSTUME_HEAD_TOP)) {
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1118,7 +1118,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		break;
 	case 1:
 		if (!(.@location & EQP_COSTUME_HEAD_MID)) {
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1180,7 +1180,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 		break;
 	case 2:
 		if (!(.@location & EQP_COSTUME_HEAD_LOW)) {
-			mes "[艾弗·德·多什]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "服装无法在此位置强化。";	// custom
 			close;
 		}
@@ -1244,7 +1244,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 			1000307, 310268;	// WanderMinsStone_Bottom2	WandMinst_Bot2
 		break;
 	default:
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请看看我们的其他升级服务~";
 		close;
 	}
@@ -1274,7 +1274,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	.@enchant = .@stone_id[.@s+1];
 
 	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？你缺少材料。";
 		mes "升级需要服装和附魔石两者。";
 		close;
@@ -1285,7 +1285,7 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	mes "^FF0000确定要升级这件物品吗？^000000";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请看看我们的其他升级服务~";
 		close;
 	}
@@ -1296,13 +1296,13 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 	delitem .@stone, 1;
 	delequip .@part;
 	if (rand(1,100) < 51) {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇……优雅！！";
 		mes "太完美了……哇！";
 		.@card[.@slot] = .@enchant;
 	}
 	else {
-		mes "[艾弗·德·多什]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "历史以失败闻名……";
 		mes "就像时尚的历史一样……";
 		mes "抱歉让你失望了~哈哈。";
@@ -1313,23 +1313,23 @@ mal_in01,22,113,3	script	Aver De Dosh#cos_ect	4_WHITETIGER,{
 }
 
 // Costume enchant (garment)
-mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
+mal_in01,20,107,3	script	雷斯·查德#cos_ect::Lace La Zard#cos_ect	4_FROG,{
 	disable_items;
-	mes "[蕾丝·拉扎德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎来到时尚之石！！";
 	mes "我叫蕾丝·拉扎德，会让你的‘力量护肩’梦想成真。";
 	next;
-	mes "[蕾丝·拉扎德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "带来你的^ff0000服装披风^000000和^ff0000披风附魔石^000000，我会为你完成完美升级！";
 	mes "我是在强化自己身体时发现这个配方的！";
 	next;
 	if (select( "应用附魔。", "结束对话。" ) == 2) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	if (checkweight(1119,3) == 0) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你的沉重护肩似乎无法升级……！";
 		mes "别对你的护肩这么残忍！";
 		next;
@@ -1340,7 +1340,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@part = EQI_COSTUME_GARMENT;
 	.@equip_id = getequipid(.@part);
 	if (.@equip_id == -1) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把披风装备在肩上。";
 		mes "我得先看看，才能判断它是否值得升级……";
 		close;
@@ -1366,7 +1366,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	case 20765:	// C_Archangel_Wing
 		break;
 	default:
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我得先看看，才能确认是否可以升级……";// custom
 		close;
 	}
@@ -1374,7 +1374,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@equip_refine = getequiprefinerycnt(.@part);
 	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
 
-	mes "[蕾丝·拉扎德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哇，^0000FF" + getitemname(.@equip_id) + "^000000！！！你的品味真不错，对吧？";
 	mes "太棒了！！我已经完全准备好进行升级了！！";
 	next;
@@ -1426,14 +1426,14 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	.@menu$ += "结束对话。";
 	.@s = (select(.@menu$) - 1) * 3;
 	if (.@s == .@size) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
 	.@id = atoi(.@data$[.@s]);
 	.@enchant = atoi(.@data$[.@s+1]);
 	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "升级需要服装和附魔石两者。";
 		close;
 	}
@@ -1443,7 +1443,7 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	mes "^ff0000确定要升级这件物品吗？^000000";
 	next;
 	if (select( "是。", "否。" ) == 2) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是吗？你还想继续看看吗？";
 		close;
 	}
@@ -1455,13 +1455,13 @@ mal_in01,20,107,3	script	Lace La Zard#cos_ect	4_FROG,{
 	delitem .@id, 1;
 	delequip .@part;
 	if (rand(100) < 50) {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真美！！";
 		mes "这真的是我亲手做的吗？！！！";
 		.@card[0] = .@enchant;
 	}
 	else {
-		mes "[蕾丝·拉扎德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕！";
 		mes "哐！！！！我不能让世人看到这次失败！！！";
 		.@card[0] = 0;

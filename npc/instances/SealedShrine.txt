@@ -31,12 +31,12 @@
 
 // Sealed Catacomb Entrance
 //============================================================
-monk_test,309,146,3	script	帕特里克修士::Friar Patrick#edq	412,{
+monk_test,309,146,3	script	降魔修士 派屈克::Friar Patrick#edq	412,{
 	cutin "ins_cata_pri_n",2;
-	mes "[帕特里克修士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "世界的和平不可能永远持续……邪恶之手再次伸向这个世界……";
 	next;
-	mes "[帕特里克修士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "是什么把你带到这里的？";
 	next;
 	if (countitem(6004) > 0) {
@@ -48,48 +48,48 @@ monk_test,309,146,3	script	帕特里克修士::Friar Patrick#edq	412,{
 	}
 	switch(.@selection) {
 	case 1:
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦……你不知道吗？这里是圣卡皮托利那修道院，想成为修士的兄弟们在这里训练和祈祷。";
 		next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至于这里……该怎么说呢……没错，这是恶魔的坟墓。坟墓……";
 		next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "曾经毁灭世界的伟大恶魔，就沉睡在这里。";
 		next;
 		switch(select("再多告诉我一些。:别说了。")) {
 		case 1:
 			cutin "ins_cata_pri_n",2;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "巴风特……就是那恶魔的名字……我想你听说过。";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "许多勇敢的人和兄弟曾在这座修道院训练……";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "就在你面前的墓碑下……封印着巴风特。";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但是……此刻魔王摩洛克正集结强大魔法，企图影响这片大陆上的所有生命。";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "巴风特也……已经苏醒，借助魔王摩洛克的力量削弱封印，准备复活到这个世界……";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在……我正在寻找足够勇敢的人，将巴风特重新封印在神殿中……就像多年前我们做过的那样……";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "任何为正义而战的人，内心深处都知道邪恶正企图征服这个世界……";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "继续训练，运用你的技能保护世界免受邪恶的威胁……";
 			break;
 		case 2:
 			cutin "ins_cata_pri_n",2;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "任何为正义而战的人，内心深处都知道邪恶正企图征服这个世界……";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "继续训练，运用你的技能保护世界免受邪恶的威胁……";
 			break;
 		}
@@ -99,7 +99,7 @@ monk_test,309,146,3	script	帕特里克修士::Friar Patrick#edq	412,{
 
 			set .@party_id,getcharid(1);
 
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是要前往神殿重新封印巴风特吗？";
 			next;
 
@@ -110,7 +110,7 @@ monk_test,309,146,3	script	帕特里克修士::Friar Patrick#edq	412,{
 
 			if (.@ins_bapho_check == -1) {
 				if (is_party_leader(.@party_id) == true && instance_check_party(.@party_id,2,75)) {
-					mes "[帕特里克修士]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "队伍名称是 "+getpartyname(.@party_id)+"……";
 					mes "队长名称是 "+strcharinfo(0)+"……";
 					if (instance_create("封印地下墓穴") < 0) {
@@ -119,79 +119,79 @@ monk_test,309,146,3	script	帕特里克修士::Friar Patrick#edq	412,{
 					else {
 						mes "好……我会调整神殿封印，让你和队伍成员进入。";
 						next;
-						mes "[帕特里克修士]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "封印解除时你会看到信号。请等待信号出现……";
 						next;
-						mes "[帕特里克修士]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "看到信号后，把手放在墓碑上……然后就能进入。";
 						next;
-						mes "[帕特里克修士]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "记住一件事……进入神殿的人都会被巴风特诅咒，在诅咒期间无法进出。";
 						next;
-						mes "[帕特里克修士]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还有一件事……在这个被诅咒的区域，封印效果会禁止一些依靠外部物理力量保护的技能。";
 						next;
-						mes "[帕特里克修士]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "例如^0000FF暗之障壁和霸邪之阵^000000……所以进入神殿前最好做好准备。";
 					}
 				}
 				else {
-					mes "[帕特里克修士]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……请由队长申请进入，队伍中至少需要两名在线成员，且在线成员都须达到 75 级。";
 					next;
-					mes "[帕特里克修士]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "队长申请成功后，队员就可以触摸墓碑进入。这是修道院的规定，请理解。";
 				}
 			}
 			else if (.@ins_bapho_check == 0 || .@ins_bapho_check == 1) {
-				mes "[帕特里克修士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你最近似乎进入过神殿……巴风特的诅咒仍在，所以不能再次进入。诅咒要过一段时间才会消失。";
 			}
 			else if (.@ins_bapho_check == 2) {
-				mes "[帕特里克修士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……巴风特的诅咒似乎减弱了。我现在可以解除它。";
 				next;
-				mes "[帕特里克修士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哈啊啊啊……呼呼克斯·翼加迪姆·阿布拉卡达布拉！！！！！";
 				next;
 				erasequest 3040;
 				if (checkquest(3041)>=0) erasequest 3041;
-				mes "[帕特里克修士]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呼……结束了。巴风特的诅咒已经解除，你可以再次进入。";
 			}
 		}
 		else {
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……你应该多训练，才能进入这个危险的地方……至少要达到 Lv 75。";
 			next;
-			mes "[帕特里克修士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请继续训练，以后再来。";
 		}
 		break;
 	case 3:
 		if (.@doll == 1) {
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就是……你手里的邪恶玩偶……让我看看。";
 			next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "... ... ...";
 			next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错……我能感受到其中的巴风特邪恶力量……你要怎么处理玩偶？";
 			next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果什么也不做，它只是危险又无用的东西……我介绍一个能帮助你的人……想见他吗？";
 			next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去见修道院主建筑附近的^0000FF鲁斯特·黑手^000000……他能让这个玩偶发挥作用。";
 			setquest 3042;
 			break;
 		}
 	case 4:
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "任何为正义而战的人，内心深处都知道邪恶正企图征服这个世界……";
 		next;
-		mes "[帕特里克修士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "继续训练，运用你的技能保护世界免受邪恶的威胁……";
 		break;
 	}
@@ -249,23 +249,23 @@ monk_test,306,151,3	script	巴风特之墓::Grave of Baphomet#edq	111,{
 	}
 }
 
-prt_monk,261,91,3	script	鲁斯特·黑手::Rust Blackhand#edq	826,{
+prt_monk,261,91,3	script	罗斯特 布莱亨德::Rust Blackhand#edq	826,{
 	set .@new_maje,checkquest(3043);
-	mes "[鲁斯特·黑手]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是谁？找我有什么事？";
 	next;
-	mes "[鲁斯特·黑手]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你不是修士，那你想要什么？";
 	next;
 	if (.@new_maje == 0 || .@new_maje == 1) {
-		mes "[鲁斯特·黑手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "材料都带来了吗？";
 		next;
 		if ((countitem(6004) > 0) && (countitem(2256) > 0) && (countitem(7799) > 29) && (countitem(7798) > 49) && (Zeny >= 990000)) {
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咯咯……材料准备得不错。放在那里等着吧。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……我好久没见过这些邪恶的角了……咯咯……开始吧……";
 			next;
 			mes "...";
@@ -281,21 +281,21 @@ prt_monk,261,91,3	script	鲁斯特·黑手::Rust Blackhand#edq	826,{
 			set Zeny, Zeny-990000;
 			completequest 3043;
 			getitem 5374,1; //L_Magestic_Goat
-		mes "[鲁斯特·黑手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "完成了。当然你可能很兴奋，我理解……";
 			next;
-		mes "[鲁斯特·黑手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不接受投诉或售后请求，小心使用。我要走了……";
 			close;
 		}
 		else {
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……你没听懂我的话。材料不齐，什么也做不了。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我再说一遍材料，请正确收集。";
 			next;
-	mes "[鲁斯特·黑手]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "^0000FF附有魔力的巴风特娃娃 1 个、山羊头盔 1 个、黑暗的结晶体 30 个、黑暗碎片 50 个^000000，最重要的是制作费用 ^0000FF990000^000000 Zeny。";
 			close;
 		}
@@ -303,39 +303,39 @@ prt_monk,261,91,3	script	鲁斯特·黑手::Rust Blackhand#edq	826,{
 	else if ((.@new_maje == -1) && (countitem(6004) > 0)) {
 		switch(select("关于附有魔力的巴风特娃娃:停止交谈。")) {
 		case 1:
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……嗯……你拿到玩偶了？不错嘛，和外表不一样……";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "让我看看……不用说，一定是帕特里克派你来处理玩偶的，对吧？";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "酷……我会帮你让邪恶玩偶发挥作用。什么？我能做什么？";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我可以为你制作邪恶魔王巴风特强大巨大的角，做成蕴含其力量的头盔。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它叫^4d4dff巨大山羊头盔^000000。你会发现熟悉的山羊头盔根本无法相比。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "附有魔力的巴风特娃娃是最重要的材料……你想要的话我就帮你制作。想怎么做？";
 			next;
 			switch(select("我想做一个！:我不需要。")) {
 			case 1:
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "咯咯……没错，聪明人会抓住机会。我告诉你材料。别忘了全部带来。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^0000FF附有魔力的巴风特娃娃 1 个、山羊头盔 1 个、黑暗的结晶体 30 个、黑暗碎片 50 个^000000，制作费用 ^0000FF990000^000000 Zeny。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "山羊头盔可以从迷宫森林的弱化巴风特处获得。黑暗的结晶体和黑暗碎片来自摩洛克的化身。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你既然封印过真正的巴风特，肯定能拿到材料。对吧？咯咯……";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "得到这顶帽子前，你永远不会知道它有多棒。明白了就去收集材料。";
 				if (isbegin_quest(3042))
 					changequest 3042,3043;
@@ -343,57 +343,57 @@ prt_monk,261,91,3	script	鲁斯特·黑手::Rust Blackhand#edq	826,{
 					setquest 3043;
 				close;
 			case 2:
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……随你吧……你真的要浪费这个机会吗？";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啧啧……邪恶玩偶一直威胁你的生命，我才不在乎呢！";
 				close;
 			}
 		case 2:
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真是个无趣的小子……哼……";
 			close;
 		}
 	}
 	else if ((.@new_maje == -1) && (countitem(6004) == 0)) {
-		mes "[鲁斯特·黑手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没事就走开！我为修道院的兄弟制作装备，不是为你这样的冒险家。明白吗？";
 		close;
 	}
 	else if ((.@new_maje == 2) && (countitem(6004) > 0)) {
 		switch(select("关于附有魔力的巴风特娃娃:停止交谈。")) {
 		case 1:
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么……又是你？这次想要什么？";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么？你又拿到了邪恶魔王的玩偶？嗯……你比我想的厉害……";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧……我再帮你一次。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你想再次把玩偶制成^4d4dff巨大山羊头盔^000000，我可以再做一个。";
 			next;
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我再告诉你一次材料。你要制作吗？";
 			next;
 			switch(select("我想要。:不，我不要。")) {
 			case 1:
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呵呵呵……没错，聪明人会在机会来临时把握住它。我告诉你材料，别忘了全部带来。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^0000FF附有魔力的巴风特娃娃 1 个、山羊头盔 1 个、黑暗的结晶体 30 个、黑暗碎片 50 个^000000，最重要的是，制作费为^0000FF990000^000000 Zeny。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "山羊头盔可以从迷宫森林的弱化巴风特处获得。黑暗的结晶体和黑暗碎片来自摩洛克的化身。";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你封印过真正的巴风特，所以肯定能拿到材料，对吧？呵呵呵……";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "得到这顶帽子前，你永远不会知道它有多棒。明白了就去收集材料。";
 				//recall_completequest 3043
 				if (isbegin_quest(3042))
@@ -404,21 +404,21 @@ prt_monk,261,91,3	script	鲁斯特·黑手::Rust Blackhand#edq	826,{
 				}
 				close;
 			case 2:
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……随你吧……你真的要浪费这个机会吗？";
 				next;
-				mes "[鲁斯特·黑手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啧啧……邪恶玩偶一直威胁你的生命，我才不在乎呢！";
 				close;
 			}
 		case 2:
-			mes "[鲁斯特·黑手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真是个无趣的小子……哼……";
 			close;
 		}
 	}
 	else if ((.@new_maje == 2) && (countitem(6004) == 0)) {
-		mes "[鲁斯特·黑手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么还在这里闲逛？不想要^4d4dff巨大山羊头盔^000000就走开。";
 		close;
 	}

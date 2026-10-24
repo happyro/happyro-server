@@ -22,51 +22,51 @@
 
 // 'Pretend Murdered' Quest
 //============================================================
-payon_in01,99,72,4	script	老奶奶#payon	103,{
+payon_in01,99,72,4	script	老太太#payon::老奶奶#payon	103,{
 	if (checkweight(908,1) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了。请先把一些东西存进卡普拉仓库，再回来吧。^000000";
 		close;
 	}
 	if (countitem(1049) > 3) {
-		mes "[老奶奶]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真希望能在节庆季为孙辈做些衣服……";
 		next;
-		mes "[老奶奶]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！能把你的 ^3355FF韩服^000000给我吗？我需要 4 件。求求你了。";
 		next;
 		switch(select("好吧。:不可能！")) {
 		case 1:
 			delitem 1049,4; //Skirt_Of_Virgin
-			mes "[老奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！太感谢了~现在我可以给小猫咪做衣服了~";
 			next;
-			mes "[老奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，等等！我差点忘了。我年轻时是很受欢迎的演员。离开剧团时，演员朋友们送了我一件结婚礼物。我一直留着它，纪念那些珍贵时光。";
 			next;
-			mes "[老奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你不介意……";
 			mes "我想把这个给你。";
 			next;
 			getitem 2293,1; //Pretend_Murdered
-			mes "[老奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再见，冒险者~！";
 			mes "谢谢你让一个老太婆这么开心……";
 			close;
 		case 2:
-			mes "[老奶奶]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*叹气*我怎么能自己取得 ^3355FF韩服^000000？我年老体弱，连坐在摇椅上摇一摇都觉得累。*抽泣*我只想让孙辈开心……";
 			close;
 		}
 	}
 	else {
-		mes "[老奶奶]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我每天在斐扬山采蘑菇。时光流逝，不知不觉又到了节庆季。真希望今年能为家人做衣服。";
 		next;
-		mes "[老奶奶]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "但那需要 ^3355FF4 件韩服^000000……";
 		next;
-		mes "[老奶奶]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "年轻的旅人，请帮帮我。找到 ^3355FF韩服^000000后请带给我。我会非常感激……";
 		close;
 	}
@@ -74,22 +74,22 @@ payon_in01,99,72,4	script	老奶奶#payon	103,{
 
 // 'Ear Muffs' Quest
 //============================================================
-payon_in01,18,10,4	script	神秘女士#payon	76,{
-	mes "[神秘女士]";
+payon_in01,18,10,4	script	神秘的姑娘#payon::神秘女士#payon	76,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我家多年来一直生产和销售特殊的冬季商品 ^3355FF耳罩^000000。我们刚搬到这里，但天气总是温暖，几乎无法维持生计。";
 	next;
-	mes "[神秘女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你打算前往寒冷地区，建议带上 ^3355FF耳罩^000000……";
 	emotion ET_THINK;
 	next;
-	mes "[神秘女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "耳罩是我家的特产，我们会为拥有 ^FF33551 个诅咒红宝石^000000、^3311AA1 个耳机^000000、^3355FF200 根羽毛^000000 和 ^DDDD005000 Zeny^000000 的顾客提供。";
 	emotion ET_THINK;
 	next;
 	switch(select("哦，是吗？听起来不错。:不用了，谢谢您。")) {
 	case 1:
 		if ((countitem(724) > 0) && (countitem(949) > 199) && (countitem(5001) > 0) && (Zeny > 4999)) {
-			mes "[神秘女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			delitem 724,1; //Cardinal_Jewel_
 			delitem 949,200; //Feather
 			delitem 5001,1; //Headset
@@ -97,20 +97,20 @@ payon_in01,18,10,4	script	神秘女士#payon	76,{
 			mes "来，我把这件做好的给你。";
 			getitem 2283,1; //Ear_Mufs
 			next;
-			mes "[神秘女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢购买我们的产品。买耳罩绝不会后悔：保证满意~";
 			emotion ET_THINK;
 			close;
 		}
 		else {
-			mes "[神秘女士]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀……";
 			mes "你的钱或物品不够。很遗憾，我们不能打折。请理解我们也要生活……";
 			emotion ET_THINK;
 			close;
 		}
 	case 2:
-		mes "[神秘女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没关系。";
 		mes "我相信我们还会再见。";
 		mes "……总有一天。";
@@ -121,89 +121,89 @@ payon_in01,18,10,4	script	神秘女士#payon	76,{
 
 // 'Oxygen Mask' Quest
 //============================================================
-payon_in02,25,71,4	script	青年#payon_oxygen	86,{
+payon_in02,25,71,4	script	氧气罩青年#payon_oxygen::青年#payon_oxygen	86,{
 	if (countitem(701) > 4) {
-		mes "[青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊啊啊！";
 		mes "啊，不行……";
 		next;
-		mes "[青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*咳*";
 		mes "现在连我的眼睛都疯了！！这些虫子怎么突然变得这么可爱？！不要啊~！！！";
 		next;
 		switch(select("展示欧拉欧拉:交出欧拉欧拉:取消")) {
 		case 1:
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦哦哦！！！";
 			mes "这、这就是那个吗？！";
 			mes "这就是……";
 			mes "欧拉欧拉！！";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我长话短说！把它给我，我就把宝藏给你！怎么样？要交易吗？";
 			close;
 		case 2:
 			if (countitem(701) > 4) {
 				delitem 701,5; //Ora_Ora
 			}
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呜哈哈哈哈！！！";
 			mes "我终于拿到了！";
 			mes "欧拉欧拉！";
 			mes "愚蠢又恶心的盗虫！！";
 			mes "你们会付出代价！！！";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳……咳……";
 			mes "抱歉，我刚才因兴奋有些失控。现在按约定给你宝藏。";
 			next;
 			getitem 5004,1; //Oxygen_Mask
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "把它戴在嘴上呼吸时，它会在空气进入肺部前过滤杂质。";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咔咔咔咔咔！";
 			mes "我等不及要使用这个欧拉欧拉了！";
 			close;
 		case 3:
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呵呵呵呵……";
 			mes "如果我无法摆脱这些盗虫怎么办？我甚至可能爱上它们……*咳*";
 			close;
 		}
 	}
 	else {
-		mes "[青年]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇啊啊啊！我、我……";
 		mes "我受不了了！";
 		mes "你们这些臭脏混蛋！";
 		next;
 		switch(select("继续:取消")) {
 		case 1:
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天啊……";
 			mes "一切始于我小时候父母去世。很早我就必须工作谋生，日子非常艰难。";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我工作了 10 年，希望买一栋梦想中的房子，重新找回平静和舒适。最后我以为自己攒够了 Zeny，可以买下甜蜜的家。";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "遗憾的是钱不够买看中的好房子。但后来我找到这栋更大更便宜的房子，没多想就买了……";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天哪！结果这里竟是盗虫的天堂！！！";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我试过一切办法。哄它们、杀它们，但只能换来片刻安宁！我甚至试过烧掉房子……！";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*喘气*我是说，我真的需要 ^3355FF欧拉欧拉^000000 来摆脱它们吗？听说它在遥远国度非常罕见。";
 			next;
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果我能买到 5 个，就不用再被这些恶心的虫子折磨了……";
 			close;
 		case 2:
-			mes "[青年]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "和虫子的无休止斗争让我精疲力竭。我放弃了。你们这些混蛋爱怎样就怎样吧！";
 			close;
 		}

@@ -7,8 +7,8 @@
 //= 1.0 Initial release [Everade]
 //============================================================
 
-pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
-	mes "[玛丽·杰]";
+pay_arche,44,124,5	script	玛利亚朱::玛丽·杰	4_F_JOB_BLACKSMITH,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseLevel < 60) {
 		mes "你的基础等级太低了，达到 60 级以上后再回来。";
 		close;
@@ -17,33 +17,33 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 	next;
 	.@day = gettime(DT_DAYOFWEEK);
 	if (.@day != SATURDAY && .@day != SUNDAY) {
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，好奇的旁观者？我是玛丽·杰，负责一周中的周末。";
 		next;
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么是周末副本？其实，这是为新手冒险家特别设计的训练空间。";
 		next;
 		mes "^0000FF环顾四周，很明显玛丽·杰是在和你说话。^000000";
 		next;
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对于周末没有队伍的人来说，这里是孤独冒险家狩猎和获取经验的场所！";
 		next;
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且，这里的经验收益非常丰厚。";
 		next;
 		select( "什么时候开放？" );
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "副本开放时间：";
 		mes "^0000FF周六 00:00 ～ 周日 23:59^000000";
 		next;
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "周末到来时，希望能见到你～";
 		close;
 	}
 	.@md_name$ = "周末地下城";
 
 	if (getcharid(1) < 1) {
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你需要组成至少一人的队伍。";
 		close;
 	}
@@ -55,7 +55,7 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 		switch( checkquest(12377,PLAYTIME) ) {
 		case -1:
 		case 2:
-			mes "[玛丽·杰]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，进入 " + .@md_name$ + " 的时间已经结束。";
 			mes "请休息一下，等待副本再次开放。";
 			close;
@@ -67,7 +67,7 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 	case 2:
 		erasequest 12377;
 		erasequest 12378;
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冷却时间已结束。";
 		mes "你可以再次进入纪念副本。";
 		close;
@@ -76,14 +76,14 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 	if (is_party_leader() == true)
 		.@menu$ = "创建纪念副本";
 
-	mes "[玛丽·杰]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想你已经准备好了。";
 	mes "现在要进去吗？";
 	next;
 	switch( select( .@menu$, "进入周末地下城", "取消" ) ) {
 	case 1:
 		instance_create(.@md_name$);
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "纪念副本已经创建。";
 		mes "现在可以进入了。";
 		close;
@@ -98,7 +98,7 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 			mes "发生了未知错误。";
 			close;
 		case IE_OK:
-			mes "[玛丽·杰]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "出发吧！";
 			mapannounce "pay_arche", "" + strcharinfo(0) + "，所属队伍：" + getpartyname( getcharid(1) ) + "，正在进入" + .@md_name$ + ".", bc_map, 0xFF99;
 			if (isbegin_quest(12377) == 0)
@@ -109,7 +109,7 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 		}
 		end;
 	case 3:
-		mes "[玛丽·杰]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还没准备好吗？";
 		mes "那也没办法了。";
 		close;
@@ -117,18 +117,18 @@ pay_arche,44,124,5	script	玛丽·杰	4_F_JOB_BLACKSMITH,{
 }
 
 //Merchant
-pay_arche,44,121,5	script	礼品用品职员	4_F_02,{
+pay_arche,44,121,5	script	礼品店员::礼品用品职员	4_F_02,{
 	.@zeny = 60000;
-	mes "[礼品用品职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我为想把珍贵礼物送给重要之人的人提供包装服务。";
 	next;
-	mes "[礼品用品职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你有 5 个 <ITEM>" + getitemname(23143) + "<INFO>23143</INFO></ITEM> 或 <ITEM>" + getitemname(23142) + "<INFO>23142</INFO></ITEM>，我只需 ^FF0000" + F_InsertComma(.@zeny) + "^000000 Zeny 就能帮你包装！";
 	mes "现在要包装吗？";
 	next;
 	switch( select( "取消", "包装成长灵药", "包装职业灵药" ) ) {
 	case 1:
-		mes "[礼品用品职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "需要包装服务时随时回来！";
 		close;
 	case 2:
@@ -140,7 +140,7 @@ pay_arche,44,121,5	script	礼品用品职员	4_F_02,{
 		.@box = 23145;
 		break;
 	}
-	mes "[礼品用品职员]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (countitem(.@item) < 5) {
 		mes "材料足够后再回来。";
 		close;
@@ -161,7 +161,7 @@ pay_arche,44,121,5	script	礼品用品职员	4_F_02,{
 	mes "确定花费 " + F_InsertComma(.@zeny) + " Zeny，将 5 个 <ITEM>" + getitemname(.@item) + "<INFO>" + .@item + "</INFO></ITEM> 包装成 <ITEM>" + getitemname(.@box) + "<INFO>" + .@box + "</INFO></ITEM> 吗？";
 	next;
 	if (select( "是", "否" ) == 2) {
-		mes "[礼品用品职员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "需要包装服务时随时回来！";
 		close;
 	}

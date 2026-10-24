@@ -49,15 +49,15 @@
 
 // Prontera Culvert :: prt_npc
 //============================================================
-prt_in,88,105,2	script	招募员#culvert	105,{
+prt_in,88,105,2	script	祭祀坛 集英馆#culvert::招募员#culvert	105,{
 	if (MISC_QUEST & 8) {
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……";
 		mes "我认识那种眼神。";
 		mes "充满同情";
 		mes "……和勇气。";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你当然是收复普隆德拉下水道行动的志愿者。要我把你传送过去吗？";
 		next;
 		if (select("传送到下水道入口。:退出。") == 1) {
@@ -66,50 +66,50 @@ prt_in,88,105,2	script	招募员#culvert	105,{
 		}
 		close;
 	}
-	mes "[招募员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，卢恩·米德加尔特王国首都防卫总部决定招募讨伐队，处理普隆德拉下水道的问题。";
 	next;
 	switch(select("志愿:情况……？:退出")) {
 	case 1:
 		callsub S_Volunteer;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好了吗，英雄？";
 		mes "现在将把你传送到下水道。";
 		next;
 		warp "prt_fild05",274,208;
 		end;
 	case 2:
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你没听说吗……？";
 		mes "普隆德拉下水道充满各种肮脏害虫！";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "由于水污染风险严重，为保障王国人民安全，王室已下令隔离下水道。";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不用说，这造成王国供水短缺。在这黑暗时期真是危机……";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的人民渴望水……";
 		mes "但他们更渴望……";
 		mes "英雄！";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "难道你要袖手旁观，看着卢恩·米德加尔特的孩子们口渴难耐、流下干涸的泪水吗？！难道你要埋葬我们的孩子吗？！";
 		next;
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "战士们！卢恩·米德加尔特在召唤你们！净化土地的瘟疫，驱逐下水道害虫！只有你们……能带来改变。";
 		next;
 		if (select("志愿。:退出。") == 1) {
 			callsub S_Volunteer;
-			mes "[招募员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冒险者……";
 			mes "现在将把你传送到普隆德拉下水道。";
 			next;
 			warp "prt_fild05",274,208;
 			end;
 		}
-		mes "[招募员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哼。下次喝水时，记住平均有九个半孩子刚刚死去……^990000死于口渴^000000。";
 		close;
 
@@ -119,14 +119,14 @@ prt_in,88,105,2	script	招募员#culvert	105,{
 
 S_Volunteer:
 	set MISC_QUEST,MISC_QUEST | 8;
-	mes "[招募员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你的登记……";
 	mes "已经完成。";
 	next;
-	mes "[招募员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "感谢你志愿为伟大王国尽力。拿着这些物资，对抗黑暗势力。";
 	next;
-	mes "[招募员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "3 瓶红色药水、1 杯牛奶，";
 	mes "以及 1 瓶赤色药水";
 	mes "……愿它们给你希望。";
@@ -137,9 +137,9 @@ S_Volunteer:
 	return;
 }
 
-prt_fild05,270,212,5	script	下水道守卫#culvert	105,{
+prt_fild05,270,212,5	script	地下水道 管理兵#culvert::下水道守卫#culvert	105,{
 	if (MISC_QUEST & 8) {
-		mes "[下水道守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你是志愿者。这是普隆德拉下水道入口。";
 		mes "你想进去吗？";
 		next;
@@ -149,29 +149,29 @@ prt_fild05,270,212,5	script	下水道守卫#culvert	105,{
 		}
 		close;
 	}
-	mes "[下水道守卫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉，只有下水道行动志愿者才能进入。";
 	next;
-	mes "[下水道守卫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "想当志愿者，请前往普隆德拉 11 点钟方向的 ^000077下水道登记员^000000。";
 	close;
 }
 
 // Ph.D Hat Quest :: npc_6cript
 //============================================================
-prt_in,38,108,4	script	老师#phd	53,{
+prt_in,38,108,4	script	教授#phd::老师#phd	53,{
 	if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
-		mes "[老师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……";
 		mes "你手中的花是……";
 		next;
 		switch(select("展示花朵:提交花朵:取消")) {
 		case 1:
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊……";
 			mes "这正是我寻找的 4 种花！你愿意给我吗？";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果愿意……";
 			mes "我会给你珍贵物品。";
 			close;
@@ -182,15 +182,15 @@ prt_in,38,108,4	script	老师#phd	53,{
 				delitem 704,1;  //Aloe
 				delitem 708,1;  //Ment
 				getitem 5012,1;	//Ph.D_Hat
-				mes "[老师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "非常感谢你为我所做的一切。我会按约定给你珍贵物品。";
 				next;
-				mes "[老师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是我大学毕业时戴的帽子。它让我想起快乐的学生时代。请收下……";
 				close;
 			}
 			else {
-				mes "[老师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……哦，抱歉。";
 				mes "但这不是我想找的东西。也许你需要再了解一下花朵？";
 				close;
@@ -198,43 +198,43 @@ prt_in,38,108,4	script	老师#phd	53,{
 		}
 	}
 	else {
-		mes "[老师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不觉得……";
 		mes "花朵很漂亮吗？";
 		next;
 		switch(select("交谈:退出")) {
 		case 1:
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我年轻的时候，";
 			mes "没有朋友，";
 			mes "一直都在学习。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有时我会后悔年轻时做过的事，但现在已经不算什么了。通过刻苦学习，我比其他学生更早完成了全部课程。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "然而……";
 			mes "我曾经悲伤，有时也很孤独。学习太辛苦时，我需要一个愿意倾听我的人。终于有一天，我遇见了最好的朋友。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当我看到一朵美丽的花在废弃的花园中绽放时，我意识到它就是与我命运相连的朋友。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "对别人来说，它只是普通平凡的花，但它给了我重新学习的理由。正因为它，我才能实现目标。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以最近……";
 			mes "我想报答它。现在我正在研究花朵，计划让它们遍布整个世界。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为了完成我的工作……";
 			mes "我需要许多花朵。但对很少出门的人来说，找齐需要的花实在太难了。";
 			next;
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我需要 1 个^3355FF幻想花^000000、1 个^3355FF西纳雷花^000000、1 个^3355FF芦荟^000000和 1 个^3355FF薄荷^000000。如果你能带给我，我就把宝物给你……";
 			close;
 		case 2:
-			mes "[老师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总有一天，我会让花朵覆盖整个世界。";
 			close;
 		}
@@ -243,11 +243,11 @@ prt_in,38,108,4	script	老师#phd	53,{
 
 // Geoborg Family Curse :: prt_curse
 //============================================================
-prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
+prontera,248,212,3	script	看似忙碌的 少年#prt::忙碌的男孩#prt	706,3,3,{
 	callsub S_CheckWeight; //Check Player's weight
 	if (BaseLevel > 59) {
 		if (prt_curse == 0) {
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀，糟糕……";
 			mes "我该怎么办？";
 			mes "我得把这些书送过去，但是……我……天啊，";
@@ -255,7 +255,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			close;
 		}
 		else if (prt_curse == 1) {
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀，糟糕……";
 			mes "我该怎么办？";
 			mes "我得把这些书送过去，但是……我……天啊，";
@@ -266,10 +266,10 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 				mes "那个，发生什么事了？";
 				mes "有什么问题吗？";
 				next;
-				mes "[忙碌的男孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes ".........?";
 				next;
-				mes "[忙碌的男孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (Sex == SEX_MALE) {
 					mes "啊！你就是那个笨手笨脚、害我掉书的人！";
 				}
@@ -281,7 +281,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 				emotion ET_SURPRISE;
 			}
 			else {
-				mes "[忙碌的男孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好，好……";
 				mes "别去想在天上飞的事。冷静下来，别想……";
 				mes "就……就登上那艘飞艇吧……";
@@ -289,7 +289,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			}
 			next;
 			select("这个嘛，我，呃……");
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Sex == SEX_MALE) {
 				mes "是啊……真正的男人不会在那时丢下我不管，连帮忙都不肯。";
 				mes "你真是个怪人，你知道吗？";
@@ -307,7 +307,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			mes "^3355FF*砰！*^000000";
 			next;
 			emotion ET_HUK;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！那些书……！";
 			mes "我花了那么久才把它们全部堆好！";
 			next;
@@ -317,41 +317,41 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			mes "这是我发自内心的真心话。";
 			emotion ET_THROB, playerattached();
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			emotion ET_THINK;
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "哦，谢谢你在这里帮我。";
 			mes "我真的很感激。";
 			next;
 			select("这些都是你的吗？");
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这些？哦，我的工作就是把它们送过去。";
 			mes "我需要把这些书从普隆德拉图书馆送给朱诺的客户。不过，呃……";
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这个嘛……";
 			mes "我很容易晕船，所以一路乘飞艇去朱诺让我害怕得要死。";
 			emotion ET_THINK;
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这下我有麻烦了！";
 			mes "我从来不会迟到，但这次实在没办法。";
 			mes "我什么也做不了！";
 			mes "哦，我要丢掉这份工作了！";
 			emotion ET_CRY;
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等等……你们冒险者经常到处旅行，对吧？";
 			mes "如果你要去朱诺，能帮我把这些送过去吗？";
 			mes "如果不把这些书送到，我就真的有麻烦了……";
 			next;
 			callsub S_GetBooks;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我、我明白了。";
 			mes "我知道这本来不关你的事，但是我真的走投无路了……";
 			emotion ET_CRY;
@@ -359,7 +359,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			close;
 		}
 		else if (prt_curse == 2) {
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，又见面了。";
 			mes "抱歉，我正努力集中精神。我要……";
 			mes "鼓起全部勇气……";
@@ -368,7 +368,7 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			emotion ET_THINK;
 			next;
 			callsub S_GetBooks;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^333333*抽泣……*^000000";
 			mes "我该怎么办？";
 			mes "那个人已经等我送书等了很久……";
@@ -376,19 +376,19 @@ prontera,248,212,3	script	忙碌的男孩#prt	706,3,3,{
 			close;
 		}
 		else if (prt_curse == 3) {
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，请把我交给你的那些书送给^FF0000卡洛莫夫先生^000000。";
 			mes "他应该就在朱诺图书馆附近等候。";
 			mes "再次感谢你的帮助～";
 			close;
 		}
-		mes "[忙碌的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊！你能让我独自工作吗？";
 		mes "我有重要的事情要做！";
 		mes "等我整理完这些书，还需要……我得做些准备！";
 		close;
 	}
-	mes "[忙碌的男孩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊！你能让我独自工作吗？";
 	mes "我有重要的事情要做！";
 	mes "等我整理完这些书，还需要……我得做些准备！";
@@ -401,7 +401,7 @@ OnTouch:
 			Specialeffect EF_HITDARK;
 			mes "^3355FF*砰！*^000000";
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，小心！";
 			mes "你能不能小心一点？！真是的！";
 			emotion ET_ANGER;
@@ -410,7 +410,7 @@ OnTouch:
 			mes "哎呀，真的很抱歉。";
 			mes "你没事吧？";
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是啊，还不是因为你！";
 			mes "哦……别担心，我没事。";
 			next;
@@ -418,23 +418,23 @@ OnTouch:
 			mes "男孩掸去身上的灰尘，开始小心地把书堆好。^000000";
 			next;
 			if (select("离开:帮他堆好书") == 1) {
-				mes "[忙碌的男孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "下次注意你要去的方向，好吗？";
 				mes "我的意思是，你总是这么粗心，真的可能会弄坏什么东西！";
 				set prt_curse,1;
 				close;
 			}
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "哦，谢谢你在这里帮我。";
 			mes "我真的很感激。";
 			next;
 			select("这些都是你的吗？");
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这些？哦，我的工作就是把它们送过去。";
 			mes "我需要把这些书从普隆德拉图书馆送给朱诺的客户。不过，呃……";
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "我很容易晕船，";
 			mes "坐飞艇时总是很不舒服，";
@@ -442,7 +442,7 @@ OnTouch:
 			mes "简直让我害怕得要命。";
 			emotion ET_THINK;
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这下我可麻烦了！";
 			mes "我从来不会迟到，";
 			mes "但这次实在没办法。";
@@ -450,13 +450,13 @@ OnTouch:
 			mes "啊，我要丢掉这份工作了！";
 			emotion ET_CRY;
 			next;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等等……你们冒险者经常到处旅行，对吧？";
 			mes "如果你要去朱诺，能帮我把这些书送过去吗？";
 			mes "要是这些书送不出去，我真的会惹上大麻烦……";
 			next;
 			callsub S_GetBooks;
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我、我明白了。";
 			mes "我知道这本来不关你的事，";
 			mes "我知道这不该麻烦你，";
@@ -466,7 +466,7 @@ OnTouch:
 			close;
 		}
 		else if (prt_curse == 3) {
-			mes "[忙碌的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，拜托你把我交给你的书送给^FF0000卡洛莫夫先生^000000。";
 			mes "他应该就在朱诺图书馆附近等候。";
 			mes "再次感谢你的帮助～";
@@ -477,13 +477,13 @@ OnTouch:
 
 S_GetBooks:
 	if (select("帮助他:不帮助他") == 1) {
-		mes "[忙碌的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，太感谢你了！";
 		mes "你不知道我有多害怕那些飞艇。";
 		mes "现在，能请你把这些书送给^FF0000卡洛莫夫先生^000000吗？";
 		mes "他就在朱诺图书馆附近等候。可以吗？";
 		next;
-		mes "[忙碌的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道这些书挺重的，";
 		mes "但请务必小心保管！总之，";
 		mes "谢谢你愿意帮我。";
@@ -1406,9 +1406,9 @@ mjolnir_01,312,269,5	script	狗#prt	81,{
 	close;
 }
 
-mjolnir_01,313,269,5	script	心不在焉的男孩#prt	706,{
+mjolnir_01,313,269,5	script	表情呆滞的 少年#prt::心不在焉的男孩#prt	706,{
 	if (prt_curse == 11) {
-		mes "[心不在焉的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "巨蛇吞下了大海。";
 		mes "彩虹之鹰吞下了巨蛇。";
 		mes "然后蛇鳞在鹰身上生长，";
@@ -1417,18 +1417,18 @@ mjolnir_01,313,269,5	script	心不在焉的男孩#prt	706,{
 		mes "[疲惫的女人]";
 		mes "天啊……！你能别再唱那首歌了吗？";
 		next;
-		mes "[心不在焉的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "..................";
 		next;
 		mes "^3355FF小男孩静静地盯着女人看了一会儿，然后蹲下抚摸身边的狗。^000000";
 		next;
 		if (select("你刚唱了什么？:不理他们") == 1) {
-			mes "[心不在焉的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			next;
-			mes "[心不在焉的男孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "汪汪，你听过这首歌吗？妈妈教我唱的。她说人们唱了很久~";
 			next;
 			mes "^3355FF男孩继续像对待老朋友一样和狗说话，完全无视你的存在。^000000";
@@ -1483,7 +1483,7 @@ mjolnir_01,313,269,5	script	心不在焉的男孩#prt	706,{
 			set prt_curse,12;
 			close;
 		}
-		mes "[心不在焉的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		mes ".........";
@@ -1502,7 +1502,7 @@ mjolnir_01,313,269,5	script	心不在焉的男孩#prt	706,{
 		close;
 	}
 	else {
-		mes "[心不在焉的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		mes ".........";
@@ -1512,7 +1512,7 @@ mjolnir_01,313,269,5	script	心不在焉的男孩#prt	706,{
 	}
 }
 
-mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
+mjolnir_01,316,268,3	script	表情累垮的 女性#prt::疲惫的女人#prt	879,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FF请等一下！";
 		mes "你现在携带的物品太多了。请使用卡普拉服务存放一些物品后再回来。^000000";
@@ -1525,7 +1525,7 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 		mes "然后蛇鳞在鹰身上生长，";
 		mes "鹰渐渐死去。";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "天啊……！你能别再唱那首歌了吗？";
 		next;
 		mes "[心不在焉的男孩]";
@@ -1544,7 +1544,7 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 			next;
 			mes "^3355FF男孩继续像对待老朋友一样和狗说话，完全无视你的存在。^000000";
 			next;
-			mes "[疲惫的女人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "卡努……我怎么告诉你的，不要无视别人的问题！";
 			next;
 			mes "[卡努]";
@@ -1552,11 +1552,11 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 			mes "..................";
 			mes "糟糕，汪汪。妈妈似乎不知为何生气了。";
 			next;
-			mes "[疲惫的女人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，我的孩子……你想了解那首歌吗？别担心，它只是一首古老的儿歌。";
 			next;
 			if (select("你为什么在这里？:我能再听一次那首歌吗？") == 1) {
-				mes "[疲惫的女人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes ".................";
 				next;
 				mes "^3355FF女人羞愧地抿紧嘴唇。";
@@ -1570,18 +1570,18 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 				mes "[卡努]";
 				mes "汪汪，你知道妈妈为什么总是这么悲伤吗？我真希望知道她为什么从不微笑……";
 				next;
-				mes "[疲惫的女人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "........";
 				set prt_curse,12;
 				close;
 			}
-			mes "[疲惫的女人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "..................";
 			next;
-			mes "[疲惫的女人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好。我可以为你做这件简单的事。让我复述这首歌……";
 			next;
-			mes "[疲惫的女人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "巨蛇吞下了大海。";
 			mes "彩虹之鹰吞下了巨蛇。";
 			mes "然后蛇鳞在鹰身上生长，";
@@ -1589,38 +1589,38 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 			set prt_curse,12;
 			close;
 		}
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...........";
 		close;
 	}
 	else if (prt_curse == 12) {
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没多少人来这个偏僻地区。是什么把你带到这里的？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "其实，我只是想了解那个男孩一直唱的歌的真正歌词。";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ".........";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那首歌的歌词和含义会随着时间，在不同人之间改变。我想部分原因是它一直口耳相传……";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这首歌听起来如此快乐，但自从那场事故发生后，它对我的意义就变了……";
 		mes "已经过去很久，但我不认为痛苦会痊愈。";
 		next;
 		select("事故？");
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……很抱歉。我不想谈这件事。只要回想，就会重历恐惧。每天都在努力承受自己犯下的罪。";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道这很自私，但想请你帮个忙。我不能离开这里，也很少有访客。你能替我把东西送到普隆德拉吗？";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我以前住在普隆德拉，事故后 班普神父一直支持我。仅凭这些不足以报答他的善意，但请替我把这些草药交给他。";
 		next;
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可以在^3131FF普隆德拉教堂^000000找到 ^3131FF班普神父^000000。见到他时请代我问候。我本想亲自去，但因为自己的所作所为，无法回到普隆德拉……";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -1631,7 +1631,7 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 		close;
 	}
 	else if (prt_curse > 12 && prt_curse < 16) {
-		mes "[疲惫的女人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "班普神父帮了我很多。请把那袋草药带到普隆德拉教堂交给他，并代我问候。";
 		close;
 	}
@@ -1773,9 +1773,9 @@ mjolnir_01,316,268,3	script	疲惫的女人#prt	879,{
 prt_church,115,122,0	warp	#sazekan	1,1,prt_church,168,106
 prt_church,166,106,0	warp	#prtchhall	1,1,prt_church,112,122
 
-prt_church,185,106,3	script	班普神父	60,{
+prt_church,185,106,3	script	祭司 班波::班普神父	60,{
 	if (prt_curse == 13) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎来到普隆德拉教堂。";
 		mes "请放松身心，让你的心灵在这神圣的大厅中得到安宁。";
 		next;
@@ -1786,7 +1786,7 @@ prt_church,185,106,3	script	班普神父	60,{
 			mes "我把那个装草药的袋子放到哪里去了？";
 			close;
 		}
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请问……";
 		mes "你为什么要把这袋草药交给我？";
 		next;
@@ -1794,7 +1794,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "是这样的，有位住在妙尔尼尔山的女士想让我把这个交给你。";
 		mes "呃，她有个叫卡努的儿子？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你一定见过邦妮·英布莉亚。";
 		mes "我很久没见到她了。请问她现在过得怎么样？";
 		next;
@@ -1808,7 +1808,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "很好！如果她做了那种事后还能开心放松，就连神也不会原谅她！";
 		mes "她应该在痛苦中度过余生！";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "比库斯神父，你怎么能说这种话？";
 		mes "她已经尽力阻止那件事了！";
 		mes "我们应该怜悯她所承受的痛苦。你的同情心到哪里去了？";
@@ -1818,7 +1818,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "难道不是你最先推荐让她主持驱魔仪式的吗？";
 		mes "你没忘记这件事吧？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "......";
 		mes ".........";
 		mes "............";
@@ -1827,7 +1827,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "哈！";
 		next;
 		select("关于邦妮·英布莉亚");
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这个嘛……";
 		mes "我不知道……";
 		mes "我不知道是否应该把那件事告诉你……";
@@ -1840,7 +1840,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		else
 			mes "为什么不让她来做呢？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的话听起来确实有道理，比库斯神父。";
 		mes "那么，冒险者，请给我机会告诉你一件非常重要的事。";
 		mes "但你绝不能告诉其他人……";
@@ -1849,23 +1849,23 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 14) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我接下来要告诉你的事必须保密。";
 		mes "你知道耶梦加得吗？它是由神洛基与女巨人安格尔波达所生的巨蛇。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "耶梦加得是一头邪恶的野兽。在神魔之间持续千年的战争结束后，它开始攻击人类。";
 		mes "它给世界带来了巨大的混乱与无尽的苦难……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最后，格奥博格家族的第一代特里斯坦与另外六名战士一起击败了耶梦加得，";
 		mes "但那是在它杀死他敬爱的父亲之后。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "特里斯坦后来成为卢恩·米德加尔特王国的第一任国王，";
 		mes "但他的家族承受了耶梦加得在败亡前施下的诅咒。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "直到今天……";
 		mes "^FF0000格奥博格家族的每一位长子都会英年早逝^000000。";
 		mes "那就是耶梦加得的诅咒，也是王室的秘密。";
@@ -1876,18 +1876,18 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "这是真的吗？！";
 		mes "难道没有办法对抗这个可怕的诅咒吗？！";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请小声一点。";
 		mes "是的，王室必须承受这种痛苦确实令人惋惜。";
 		mes "但多年来尝试过的所有驱魔仪式都失败了……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然情况看起来毫无希望，";
 		mes "特里斯坦三世国王仍再次尝试驱除诅咒。";
 		mes "遵照他的命令，最优秀的神父与驱魔师";
 		mes "全都被召集了起来。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们进行了一系列测试，选拔最优秀的神父与驱魔师来解除诅咒。";
 		mes "最后，^3131FF邦妮·英布莉亚^000000被选中主持驱魔仪式。";
 		next;
@@ -1895,7 +1895,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "等等，但你提到过发生了意外。";
 		mes "那是否意味着她在执行驱魔仪式时失败了？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，很不幸。";
 		mes "神父与驱魔师聚集到秘密仪式场地后，死去的不是一位王子，而是三位。";
 		next;
@@ -1916,7 +1916,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 15) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在你应该知道，那天死去的所有王子身上都有奇怪的印记。";
 		mes "看起来就像他们的身体正在长出蛇鳞。";
 		emotion ET_SURPRISE, playerattached();
@@ -1926,14 +1926,14 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "这听起来就像我正在调查的那首歌的其中一个版本。";
 		mes "我想那是关于卢恩·米德加尔特王国起源的歌。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等，那首歌？";
 		mes "嗯，我看不出它们有什么关系。";
 		mes "让我想想，歌词是怎么唱的？";
 		mes "彩虹……鹰……";
 		mes "啊！我想起来了！";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "巨蛇吞下了大海。";
 		mes "彩虹之鹰吞下了巨蛇。";
 		mes "然后巨鹰筑起了巢。";
@@ -1950,7 +1950,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "然后蛇鳞在鹰身上生长，";
 		mes "鹰渐渐死去。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊。我小时候从父亲那里学会了这首歌。";
 		mes "不过，你的版本似乎揭示了格奥博格家族的秘密诅咒。";
 		mes "请告诉我，你在哪里听到那首歌的？";
@@ -1959,11 +1959,11 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "我最初是从一位历史学家那里听到这个版本的，后来发现邦妮·英布莉亚也知道。";
 		mes "呃，有什么问题吗？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果那些歌词被传播出去，王室诅咒的秘密可能会暴露给公众。";
 		mes "你能否再去和邦妮·英布莉亚谈谈，帮助我们调查？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果可以，请试着查明诅咒与歌曲之间是否有关，";
 		mes "或者她是否记得驱魔失败后发生过什么事……";
 		set prt_curse,16;
@@ -1971,22 +1971,22 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 16) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请去妙尔尼尔山拜访邦妮·英布莉亚，调查那首歌，以及尝试驱除耶梦加得诅咒后发生了什么事。";
 		close;
 	}
 	else if (prt_curse == 17) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你和邦妮·英布莉亚谈过了吗？";
 		mes "请告诉我你是否发现了什么新情况。";
 		next;
 		mes "^3355FF你把邦妮·英布莉亚说过的一切都告诉了他，包括在秘密仪式场地发现红色宝石碎片的事。^000000";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "红色宝石？神圣的场所里不该有这种东西。";
 		mes "嗯，这件事比表面看起来更复杂。我们最好现在就开始调查真相。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "跟我来，冒险者，";
 		mes "去王室的秘密仪式场地。";
 		mes "只要使用藏在书架里的开关，";
@@ -1997,23 +1997,23 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse > 17 && prt_curse < 22) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "和我一起前往秘密仪式场地，";
 		mes "调查邦妮·英布莉亚进行的驱魔仪式";
 		mes "是否可能遭到破坏。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "书架上有一个隐藏开关，";
 		mes "可以把你传送到那里。";
 		mes "你先去，我会在仪式场地与你会合。";
 		close;
 	}
 	else if (prt_curse == 22) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这件事非常重要，但我们还不能通知王室，";
 		mes "以免引发恐慌。最好先彻底调查，收集证据。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "勇敢的冒险者，请前往梦罗克的刺客公会，";
 		mes "看看能否了解到如何确认王子们是否因中毒而死。";
 		set prt_curse,23;
@@ -2021,13 +2021,13 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 23) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请向梦罗克刺客公会的成员打听，";
 		mes "看看能否找到检测毒杀的方法。";
 		close;
 	}
 	else if (prt_curse == 31) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了~";
 		mes "你从刺客公会了解到毒药的事了吗？";
 		mes "我知道他们的成员很难找到……";
@@ -2035,7 +2035,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "^3355FF你把从刺客公会了解到的所有毒药信息，";
 		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。^000000";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我明白了。那么请尽快带 1 个黄宝石和 1 瓶绿色药水";
 		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,32;
@@ -2043,26 +2043,26 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 33 || prt_curse == 41 || prt_curse == 42 || prt_curse == 51 || prt_curse == 52) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可以使用书架上的隐藏开关进入秘密仪式场地。";
 		mes "别忘了我们需要^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000来检测毒药。";
 		close;
 	}
 	else if (prt_curse == 34) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我简直不敢相信！";
 		mes "如果使用了毒药，那么第二王子和第三王子就是被谋杀的！";
 		mes "难以置信……怎么会有人杀害孩子？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至少现在我们知道，他们的死不是邦妮·英布莉亚的错。";
 		mes "现在我必须和比库斯神父讨论，决定如何把这件事告诉王室……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再次提醒你，这里发生的一切必须保密。";
 		mes "公众不能知道耶梦加得的诅咒！否则会引发政治动荡和混乱！";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过这不代表我不能亲自感谢你的帮助。";
 		mes "我非常感激你所做的一切，冒险者。愿安全伴随你所有的旅程。";
 		set prt_curse,35;
@@ -2070,13 +2070,13 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse > 34 && prt_curse < 40 && !aru_monas) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道该怎么办。";
 		mes "有时我甚至会怀疑，奥丁已经抛弃了我们……";
 		close;
 	}
 	else if (prt_curse == 40) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了~";
 		mes "你从刺客公会了解到毒药的事了吗？";
 		mes "我知道他们的成员很难找到……";
@@ -2084,7 +2084,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "^3355FF你把从刺客公会了解到的所有毒药信息，";
 		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。^000000";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我明白了。那么请尽快带^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000";
 		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,41;
@@ -2092,24 +2092,24 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 43 || prt_curse == 53) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我简直不敢相信！如果使用了毒药，";
 		mes "那么第二王子和第三王子就是被谋杀的！";
 		mes "难以置信……怎么会有人杀害孩子？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至少现在我们知道，他们的死不是邦妮·英布莉亚的错。";
 		mes "我必须和比库斯神父讨论，决定如何告知王室……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，也请告诉^3131FF邦妮·英布莉亚^000000，";
 		mes "王子的死不是她的错。这个消息一定能减轻她的罪疚感……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再次提醒你，这里发生的一切必须保密。";
 		mes "公众不能知道耶梦加得的诅咒！否则会引发政治动荡和混乱！";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过这不代表我不能亲自感谢你的帮助。";
 		mes "我非常感激你所做的一切，冒险者。愿安全伴随你所有的旅程。";
 		if (prt_curse == 43)
@@ -2121,14 +2121,14 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse > 43 && prt_curse < 50 && !aru_monas) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你和邦妮·英布莉亚谈过了吗？";
 		mes "别太担心王子被谋杀的消息。";
 		mes "我和比库斯神父会处理的。";
 		close;
 	}
 	else if (prt_curse == 50) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了~";
 		mes "你从刺客公会了解到毒药的事了吗？";
 		mes "我知道他们的成员很难找到……";
@@ -2136,7 +2136,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "你把从刺客公会了解到的所有毒药信息，";
 		mes "包括检测谋杀中是否使用毒药的方法，告诉了班普神父。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我明白了。那么请尽快带^3131FF 1 个黄宝石^000000和^3131FF 1 瓶绿色药水^000000";
 		mes "到秘密仪式场地。我会再次在那里等你。";
 		set prt_curse,51;
@@ -2144,7 +2144,7 @@ prt_church,185,106,3	script	班普神父	60,{
 		close;
 	}
 	else if (prt_curse == 60) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，"+strcharinfo(0)+"~";
 		mes "好久不见。你和邦妮谈过了吗？";
 		mes "啊，今天我能帮你什么？";
@@ -2157,22 +2157,22 @@ prt_church,185,106,3	script	班普神父	60,{
 		mes "据说那里住着狂热分子。";
 		mes "班普神父，我认为他们可能是谋杀王子的最大嫌疑人……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我承认这有可能，但我们已经很久没有和西方土地的人接触了……";
 		mes "现在做这种推测还为时过早。";
 		next;
 		select("西方的土地？");
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们对西方土地了解不多。";
 		mes "曾经派过几位神父去那里传播信仰，";
 		mes "但他们失败了……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "据我所知，那里几乎所有人";
 		mes "都是当地宗教的坚定信徒。";
 		mes "总之，谢谢你通知我们。接下来交给我们处理。";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为了保守王室秘密，我请求你今后不要再进入秘密仪式场地。";
 		mes "再次感谢你的帮助，"+strcharinfo(0)+"。";
 		set prt_curse,61;
@@ -2183,27 +2183,27 @@ prt_church,185,106,3	script	班普神父	60,{
 		if (prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) {
 // Begin Nameless Island Access Quest Addition
 			if (aru_monas == 0) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，我们稍后再谈好吗？";
 				mes "我现在必须处理一项非常重要的任务……";
 				close;
 			} else if (aru_monas == 1) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，我一直在等你，冒险者。";
 				mes "抱歉这么突然叫你来，";
 				mes "但看来你比我们上次见面时强大了许多。";
 				next;
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "教会收到了普隆德拉王宫的请求，";
 				mes "但我们没有足够资源处理。";
 				mes "如果你愿意帮助我们，我相信你非常适合这项任务。";
 				next;
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一位高官不久前突然失踪。";
 				mes "虽然普隆德拉王宫要求我们找到他，";
 				mes "但我之后才能告诉你他是谁。";
 				next;
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们只知道他最后在克魔岛出现。";
 				mes "请去找我们的线人^6B8E23拉尔杰斯^000000，";
 				mes "他会帮助你寻找失踪的官员。";
@@ -2212,19 +2212,19 @@ prt_church,185,106,3	script	班普神父	60,{
 				close;
 			}
 			else if (aru_monas == 2 || aru_monas == 3) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请前往克魔岛，在赌场找到我们的线人^6B8E23拉尔杰斯^000000。";
 				mes "他会帮助你寻找失踪的官员。";
 				close;
 			}
 			else if (aru_monas == 4) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，你找到拉尔杰斯了？";
 				mes "对那位官员失踪的调查进展如何？";
 				mes "希望找到他时，他仍然平安。";
 				next;
 				select("告诉他拉尔杰斯说的话。");
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我明白了。最近我们察觉到阿鲁纳佩尔兹有些令人不安的活动，";
 				mes "但没想到他们这么快就会行动。嗯……给我一点时间思考。";
 				set aru_monas,5;
@@ -2232,28 +2232,28 @@ prt_church,185,106,3	script	班普神父	60,{
 			}
 			else if (aru_monas == 5) {
 				if (rand(1,5) == 4) {
-					mes "[班普神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我考虑了所有可能的情况。";
 					mes "我认为最好由你代表我们继续调查，";
 					mes "当然，前提是你愿意。";
 					next;
-					mes "[班普神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我们不想因官方介入而引发国际冲突，";
 					mes "但我也不能强迫你为我们工作。";
 					mes "是否帮助我们由你决定。";
 					next;
 					if (select("让我考虑一下。:当然，我会帮忙。") == 1) {
-						mes "[班普神父]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "希望你决定帮助我们。";
 						mes "我国的安全取决于这次调查的成功。";
 						mes "我们真的很需要你的帮助。";
 						close;
 					}
-					mes "[班普神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "谢谢。很高兴听到你愿意帮助我们。";
 					mes "你可以在依斯鲁得乘飞艇前往阿鲁纳佩尔兹，继续调查。";
 					next;
-					mes "[班普神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我相信调查^9370DB拉赫尔^000000城能让你了解更多。";
 					mes "请收下这笔钱，用来支付飞艇费用。";
 					mes "谢谢，祝你好运。";
@@ -2263,7 +2263,7 @@ prt_church,185,106,3	script	班普神父	60,{
 					close;
 				}
 				else {
-					mes "[班普神父]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……我们该如何处理？让我想想。";
 					mes "我们可以——不，那行不通。这会很困难。";
 					close;
@@ -2271,31 +2271,31 @@ prt_church,185,106,3	script	班普神父	60,{
 			}
 			else if (aru_monas == 6) {
 				// Anyone else see the irony in this?
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你在拉赫尔可能会遇到麻烦，那里文化不同于我们。";
 				mes "他们的办事方式、政府……一切都与宗教有关。";
 				close;
 			}
 			else if (aru_monas > 6 && aru_monas < 25) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "非常感谢你的辛勤工作。";
 				mes "我们的探员发现新情报后会联系你。";
 				mes "记住，不能让任何人知道我们在做什么。";
 				close;
 			}
 			else if (aru_monas == 25 || aru_monas == 26) {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢你带来如此重要的信息。";
 				mes "多亏你的帮助，我们解决了几起悬案。";
 				mes "我们预料过会发生这种事，但没想到这么快。";
 				next;
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我担心王室一直在为自身私利争吵。";
 				mes "希望事情不会恶化、陷入混乱。^666666*叹气*^000000 走着瞧吧……";
 				close;
 			}
 			else {
-				mes "[班普神父]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "最近阿鲁纳佩尔兹如此安静，让我很不安。";
 				mes "你知道暴风雨前总会有一段平静吧？";
 				close;
@@ -2305,30 +2305,30 @@ prt_church,185,106,3	script	班普神父	60,{
 	}
 }
 
-prt_church,184,110,3	script	比库斯神父	60,{
+prt_church,184,110,3	script	祭司 毕斯库司::比库斯神父	60,{
 	if (prt_curse == 54) {
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，我仍怀疑是刺客公会的某人杀害了王子。";
 		mes "以防万一，我会派一名间谍。保守这个秘密。";
 		next;
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，你什么也没从我们这里了解到或听说过，";
 		mes "也不知道王室的诅咒。";
 		mes "从现在起，这件事由我和班普神父处理。";
 		close;
 	}
 	else if (prt_curse == 35) {
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我以前从未见过班普神父这样，";
 		mes "但我能理解他的感受。";
 		mes "作为教会的领导者之一，他觉得自己要为王子的死负责。";
 		next;
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信几天后他会好起来，";
 		mes "但现在他没有状态整理你提供的重要情报，";
 		mes "所以由我来做。";
 		next;
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "就我个人而言，我觉得……";
 //
 //
@@ -2495,7 +2495,7 @@ prt_church,184,110,3	script	比库斯神父	60,{
 //
 	mes "发生的一切很悲惨，但必须复仇。也许这就是我一直怨恨英布莉亚的原因。总之……";
 		next;
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "虽然我们不能公开承认，但我谨代表普隆德拉教会感谢你的一切帮助。";
 		set prt_curse,36;
 		//completequest 18050;
@@ -2503,15 +2503,15 @@ prt_church,184,110,3	script	比库斯神父	60,{
 		close;
 	}
 	else if (prt_curse == 36) {
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "不经历黑暗，就无法理解光明。和平只有与混沌对比才有意义。";
 		next;
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "在混沌与困境时期，宗教更加重要。我必须保持冷静，尤其是班普神父为整件事感到难过时……";
 		close;
 	}
 	else {
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "请在祭司室内保持安静。感谢配合。";
 		close;
 	}
@@ -2524,31 +2524,31 @@ prt_church,177,113,3	script	#gototomb	111,{
 	end;
 }
 
-prt_church,23,89,3	script	比库斯神父#tomb	60,{
-	mes "[比库斯神父]";
+prt_church,23,89,3	script	祭司 毕斯库司#tomb::比库斯神父#tomb	60,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……？准备回楼上了吗？";
 	next;
 	if (select("是:否") == 1) {
-		mes "[比库斯神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请跟我来。";
 		next;
 		warp "prt_church",178,111;
 		end;
 	}
-	mes "[比库斯神父]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请慢慢来，尽可能彻底地调查。";
 	close;
 }
 
-prt_church,16,114,4	script	班普神父#tomb	60,{
+prt_church,16,114,4	script	祭司 班波#tomb::班普神父#tomb	60,{
 	if (prt_curse == 18) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些是驱魔时被杀的格奥博格王子遗体。请看看左边的遗体。";
 		set prt_curse,19;
 		close;
 	}
 	else if (prt_curse == 19) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请看看最左边的遗体，也就是第一王子。";
 		close;
 	}
@@ -2556,30 +2556,30 @@ prt_church,16,114,4	script	班普神父#tomb	60,{
 		mes "["+strcharinfo(0)+"]";
 		mes "那个奇怪的印记看起来像蛇鳞。那……那是耶梦加得诅咒留下的印记吗？";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错。现在检查中间的第二王子遗体。";
 		close;
 	}
 	else if (prt_curse == 21) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在……我们该检查第三王子了。";
 		close;
 	}
 	else if (prt_curse == 22) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们上楼继续谈。啊，你可以请比库斯神父带路。";
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 41 || prt_curse == 51) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你准备好^3131FF黄宝石^000000和^3131FF绿色药水^000000了吗？如果准备好了，应先在第三王子遗体上测试。";
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse == 42 || prt_curse == 52) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "印记消失了？哦，这太可怕了！这意味着有人用毒药杀害了其他王子！我几乎……无法……";
 		next;
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……我需要时间从震惊中恢复，并仔细思考。现在先回楼上吧。";
 		if (prt_curse == 33) set prt_curse,34;
 		else if (prt_curse == 42) set prt_curse,43;
@@ -2587,7 +2587,7 @@ prt_church,16,114,4	script	班普神父#tomb	60,{
 		close;
 	}
 	else if (prt_curse == 43 || prt_curse == 53) {
-		mes "[班普神父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们已经充分打扰了这些可怜灵魂的遗体。现在该回楼上了……";
 		close;
 	}
@@ -2709,73 +2709,73 @@ prt_church,24,111,5	script	#prince3	887,{
 	}
 }
 
-moc_fild16,201,295,5	script	刺客公会成员#poiso	884,{
+moc_fild16,201,295,5	script	刺客公会 相关人员#poiso::刺客公会成员#poiso	884,{
 	if (prt_curse == 23) {
-		mes "[刺客公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你来这里有什么事？";
 		next;
 		if (select("毒药:没什么") == 1) {
 			mes "["+strcharinfo(0)+"]";
 			mes "我需要和毒药专家谈谈。我正在为普隆德拉教会调查一件事，可能是谋杀案。";
 			next;
-			mes "[刺客公会成员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "......";
 			mes ".........";
 			next;
-			mes "[刺客公会成员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "仔细听。我只告诉你一次。";
 			next;
-			mes "[刺客公会成员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "梦罗克 7 点钟方向有刺客私人酒吧。去里面找名叫^3131FF玛尔佳娜^000000的人。";
 			set prt_curse,24;
 			//changequest 18040,18041;
 			close;
 		}
-		mes "[刺客公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不。看你的眼神，我确定你来这里有原因……";
 		close;
 	}
 	else {
-		mes "[刺客公会成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天很干燥多风。我喜欢这种天气，感觉很符合真正刺客——躲在阴影中的独行者——的灵魂。";
 		close;
 	}
 }
 
-que_job01,10,16,5	script	玛尔佳娜#poison	885,{
+que_job01,10,16,5	script	麻略加拿#poison::玛尔佳娜#poison	885,{
 	if (prt_curse == 24) {
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你来这里有什么事？我给你 4 分钟，说话直接点。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "我想了解更多毒药，并确认它是否被用来杀人。";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "毒药？你找对人了。如果我不知道答案，我怀疑你还能找到谁。问吧。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "刺客的毒药真的强大到一滴就能杀人吗？";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "确实存在如此强力的毒药，但这种致命毒药通常只有十字刺客使用。一般刺客使用的毒药弱得多。";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "好吧。你能制作在身体上留下特定印记的毒药吗？";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然。世上有各种你无法想象的毒药。不过能留下特定印记的毒药很难使用，能驾驭的人很少。";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "留下的印记类型取决于制作毒药所用的材料。因为有些材料只在特定地区存在……";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，留下的印记类型本身可以成为线索。受害者身上的印记是什么样？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "我们还不确定是否用了毒药，但遗体上留下了像蛇鳞的印记。";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。如果让我猜，我会说……";
 	//
 	//
@@ -2995,15 +2995,15 @@ que_job01,10,16,5	script	玛尔佳娜#poison	885,{
 		mes "可能使用了毒药。";
 		mes "但毒药一定来自卢恩·米德加尔特王国之外……";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是啊……";
 		mes "制作那些蛇鳞印记的材料，有些甚至无法在米德加尔特大陆找到。";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们没时间了。";
 		mes "听着，你可以将黄宝石与绿色药水混合，再把溶液洒在遗体上，确认是否有人中毒。";
 		next;
-		mes "[玛尔佳娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果使用了毒药，溶液就会与遗体发生反应。";
 		mes "但如果谋杀发生后过去太久，这种方法就不会有效。";
 		mes "最好尽快尝试……";
@@ -3063,7 +3063,7 @@ OnTouch:
 	}
 }
 
-prt_in,162,99,4	script	图书管理员#curse	67,{
+prt_in,162,99,4	script	图书馆 司书#curse::图书管理员#curse	67,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF请等一下！";
 		mes "你现在携带了太多物品。";
@@ -3072,51 +3072,51 @@ prt_in,162,99,4	script	图书管理员#curse	67,{
 	}
 	if (prt_curse == 3) {
 		if (countitem(7431) < 1) {
-			mes "[图书管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "使用图书馆的书籍后，请务必将它们放回正确的位置。";
 			mes "我们没有足够的人手整理这么多书……";
 			next;
 			if (select("报告书籍遗失:结束对话") == 1) {
-				mes "[图书管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，你弄丢了一些书吗？";
 				mes "请写下书名，并支付700 Zeny的罚金。之后我们会提供替代的书籍。";
 				next;
 				if (Zeny > 699) {
-					mes "[图书管理员]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好的，给你。";
 					mes "请收下这些替代的书籍，下次尽量不要再弄丢了。谢谢。";
 					set Zeny, Zeny-700;
 					getitem 7431,1; //Books
 					close;
 				}
-				mes "[图书管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "请尽快带着700 Zeny回来，支付遗失书籍的罚金。";
 				close;
 			}
-			mes "[图书管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在图书馆内请保持安静。";
 			mes "感谢你的配合。";
 			close;
 		}
 		else {
-			mes "[图书管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当图书管理员可不轻松。";
 			mes "人们总把书散得到处都是，却又希望它们整齐有序。";
 			mes "唉，书也总是莫名其妙地丢失……";
 			next;
-			mes "[图书管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当你不得不收拾他们留下的烂摊子时，才会发现人们究竟可以多么马虎。";
 			close;
 		}
 	}
 	else {
-		mes "[图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当图书管理员可不轻松。";
 		mes "人们总把书散得到处都是，却又希望它们整齐有序。";
 		mes "唉，书也总是莫名其妙地丢失……";
 		next;
-		mes "[图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当你不得不收拾他们留下的烂摊子时，才会发现人们究竟可以多么马虎。";
 		close;
 	}

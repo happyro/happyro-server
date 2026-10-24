@@ -3089,8 +3089,9 @@ static void clif_inventoryEnd( map_session_data *sd, e_inventory_type type ){
 }
 
 //Unified inventory function which sends all of the inventory (requires two packets, one for equipable items and one for stackable ones. [Skotlex]
-void clif_inventorylist( map_session_data *sd ){
+void clif_inventorylist(map_session_data* sd, bool include_equip_switch){
 	nullpo_retv( sd );
+	sd->inventory_dual_wield = pc_can_dual_wield(sd);
 
 #if PACKETVER_RE_NUM >= 20180912 || PACKETVER_ZERO_NUM >= 20180919 || PACKETVER_MAIN_NUM >= 20181002
 	e_inventory_type type = INVTYPE_INVENTORY;
@@ -3178,6 +3179,9 @@ void clif_inventorylist( map_session_data *sd ){
 			clif_favorite_item( *sd, i );
 	}
 #endif
+	// The client replaces its inventory model, including equipment-switch entries.
+	if (include_equip_switch)
+		clif_equipswitch_list(sd);
 }
 
 //Required when items break/get-repaired. Only sends equippable item list.
@@ -9866,7 +9870,6 @@ void clif_refresh(map_session_data *sd)
 
 	clif_changemap( *sd, sd->m, sd->x, sd->y );
 	clif_inventorylist(sd);
-	clif_equipswitch_list(sd);
 	if(pc_iscarton(sd)) {
 		clif_cartlist(sd);
 		clif_updatestatus(*sd,SP_CARTINFO);
@@ -11038,7 +11041,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 	clif_refresh_clothcolor( *sd, SELF );
 
 	// item
-	clif_inventorylist(sd);  // inventory list first, otherwise deleted items in pc_checkitem show up as 'unknown item'
+	clif_inventorylist(sd, false);  // Validate items before publishing the switch list below.
 	pc_checkitem(sd);
 	clif_equipswitch_list(sd);
 

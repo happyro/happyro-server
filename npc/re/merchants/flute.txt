@@ -95,31 +95,31 @@ pay_arche,91,134,3	duplicate(fflute)	Falcon Flute Trader#fft2	51
 
 // Wolf Flute :: job_ranger
 //============================================================
-tur_dun01,89,170,5	script	Expert Flute Crafter	59,{
+tur_dun01,89,170,5	script	魔笛专家::Expert Flute Crafter	59,{
 	if ((eaclass() & EAJ_THIRDMASK) == EAJ_RANGER) {
 		if (countitem(6124)) {
-			mes "[专业笛子工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你手里的狼笛是我用木头制作的。";
 			mes "狼笛丢了就回来找我吧！";
 			next;
-			mes "[专业笛子工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这支笛子只有我能制作。";
 			mes "再做一支对我来说只是小事！！";
 			close;
 		}
-		mes "[专业笛子工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "需要什么吗？";
 		mes "一支新的狼笛？";
 		next;
 		switch(select("请给我一支新的狼笛。:不用了。")) {
 		case 1:
 			if (countitem(7150) && Zeny >= 100000) {
-				mes "[专业笛子工匠]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你带齐材料了吗？";
 				mes "哇！你的材料都不错！";
 				mes "这就够了。";
 				next;
-				mes "[专业笛子工匠]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (!checkweight(6124,1)) {
 					mes "请先为物品预留足够的负重和物品栏空间。";
 					close;
@@ -131,21 +131,21 @@ tur_dun01,89,170,5	script	Expert Flute Crafter	59,{
 				getitem 6124,1; //Wolf's_Flute
 				close;
 			}
-			mes "[专业笛子工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想制作新的狼笛，就带来 ^4d4dff1 个竹片和 100,000 Zeny。^000000";
 			next;
-			mes "[专业笛子工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^4d4dff竹片可从伞妖或元宵童子身上获得。^000000";
 			close;
 		case 2:
-			mes "[专业笛子工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你不召唤狼，就不需要狼笛。";
 			mes "改变主意后可以回来找我。";
 			mes "对吧？";
 			close;
 		}
 	}
-	mes "[专业笛子工匠]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "咦？你不是游侠？";
 	mes "那这支笛子对你完全没用！";
 	close;

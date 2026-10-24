@@ -17,8 +17,8 @@
 //= 1.4 Added VIP features. [Euphy]
 //============================================================
 
-morocc,156,70,3	script	Girl#sc00	93,3,3,{
-	mes "[女孩]";
+morocc,156,70,3	script	后街少女#sc00::Girl#sc00	93,3,3,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseJob == Job_Rogue) {
 		if (job_sha == 0) {
 			if (BaseLevel < 99 || JobLevel < 50) {
@@ -29,16 +29,16 @@ morocc,156,70,3	script	Girl#sc00	93,3,3,{
 			mes "你不想听个有趣的故事吗？";
 			next;
 			select("什么故事？");
-			mes "[女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你最近去过公会吗？";
 			mes "最近发生了一些有趣的事。";
 			mes "也许有新客人……";
 			next;
-			mes "[女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听说和一种叫魅影追踪者的职业有关。";
 			mes "你应该去看看。";
 			next;
-			mes "[女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们每次来这里，似乎都在执行新任务。";
 			mes "不知道他们究竟在做什么任务？";
 			set job_sha,1;
@@ -47,7 +47,7 @@ morocc,156,70,3	script	Girl#sc00	93,3,3,{
 			mes "如果你感兴趣……就去吧！";
 			mes "你知道公会在哪里吗？";
 			next;
-			mes "[女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它在帕罗斯灯塔下方的要塞里。";
 			mes "唉……";
 			mes "你一定要去那里看看！";
@@ -57,7 +57,7 @@ morocc,156,70,3	script	Girl#sc00	93,3,3,{
 			mes "你听说有访客来了吗？";
 			mes "他们正在寻找宝藏！";
 			next;
-			mes "[女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "一定很有趣。";
 			mes "我也想试试！";
 			close;
@@ -68,7 +68,7 @@ morocc,156,70,3	script	Girl#sc00	93,3,3,{
 	close;
 OnTouch_:
 	if (BaseJob == Job_Rogue && BaseLevel > 98 && JobLevel > 49 && job_sha == 0) {
-		mes "[女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿？等等！";
 		mes "你不想听个有趣的故事吗？";
 		close;
@@ -76,7 +76,7 @@ OnTouch_:
 	end;
 }
 
-in_rogue,376,100,5	script	Guild Member#sc01	828,{
+in_rogue,376,100,5	script	男性公会会员#sc01::Guild Member#sc01	828,{
 	if (BaseJob == Job_Rogue) {
 		if (job_sha < 2) {
 			set @job_sha,0;
@@ -146,7 +146,7 @@ in_rogue,376,100,5	script	Guild Member#sc01	828,{
 	close;
 }
 
-in_rogue,379,99,1	script	Guild Member#sc02	747,{
+in_rogue,379,99,1	script	女性公会会员#sc02::Guild Member#sc02	747,{
 	if (BaseJob == Job_Rogue) {
 		if (job_sha < 2) {
 			set @job_sha,1;
@@ -176,10 +176,10 @@ in_rogue,379,99,1	script	Guild Member#sc02	747,{
 	close;
 }
 
-in_rogue,379,101,3	script	Scary Man#sc03	810,{
+in_rogue,379,101,3	script	可怕的大叔#sc03::Scary Man#sc03	810,{
 	if (job_sha == 0) {
 		if (BaseJob == Job_Rogue && BaseLevel > 98 && JobLevel > 49) {
-			mes "[吓人的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你很有才能嘛？";
 		mes "现在我有一个有趣的问题！你想解开它吗？";
 			next;
@@ -189,7 +189,7 @@ in_rogue,379,101,3	script	Scary Man#sc03	810,{
 			set job_sha,1;
 			close;
 		}
-		mes "[吓人的男子]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你有什么事？";
 	mes "我和你没什么关系。";
 	mes "我不关心你这样的人，只和非凡之人打交道。";
@@ -303,45 +303,45 @@ L_Code:
 	return;
 }
 
-s_atelier,65,123,5	script	Manager#sc04_prt	903,{
+s_atelier,65,123,5	script	店长#sc04_prt::Manager#sc04_prt	903,{
 	if (job_sha == 2) {
-		mes "[经理]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马克斯在哪里！？";
 		mes "该死，周围有这么多陌生人。";
 		mes "嘿……";
 		next;
 		switch(select("展示破解的密码！:……")) {
 		case 1:
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哇，你破解了？";
 		mes "那么，正确答案是什么？";
 			next;
 			input .@inputstr$;
 			if (.@inputstr$ == "shadows atelier in prontera" || .@inputstr$ == "SHADOWS ATELIER IN PRONTERA") {
-				mes "[经理]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "很好。";
 				mes "你答对了。";
 				mes "那么，你为什么来到这里？";
 				next;
 				select("密码说这里就是那个地方……");
-				mes "[经理]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以你就是那个人。";
 				mes "请稍等片刻。";
 				set job_sha,3;
 				close;
 			}
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "记得准确输入破解后的密码。";
 			mes "也许你应该再试一次……";
 			close;
 		case 2:
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只允许相关人员进入……";
 			mes "你可以去问商店的店员吗？";
 			close;
 		}
 	} else if (job_sha == 3) {
-		mes "[经理]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在让我自我介绍一下！";
 		mes "我是格雷厄姆，这座暗影画廊的管理者……";
 		next;
@@ -545,7 +545,7 @@ s_atelier,65,123,5	script	Manager#sc04_prt	903,{
 		mes "需要什么就告诉他们。";
 		close;
 	}
-	mes "[经理]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "只允许相关人员进入……";
 	mes "能问问店里的职员吗？";
 	close;
@@ -621,71 +621,71 @@ L_Code:
 	close;
 }
 
-s_atelier,168,65,5	script	Manager#sc08_ra	923,{
+s_atelier,168,65,5	script	店长#sc08_ra::Manager#sc08_ra	923,{
 	if (job_sha < 10) {
-		mes "[经理]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁？";
 		mes "这里不是你该来的地方。";
 		next;
 		if (job_sha < 9) {
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们在上面做什么？";
 			mes "呸……";
 			close;
 		}
 		switch(select("把密码给我！:是格雷厄姆派我来的。")) {
 		case 1:
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你需要我的密码？";
 			mes "你愿意付多少钱？";
 			next;
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "1000 万 Zeny？";
 			mes "好，我就收下了！";
 			next;
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "才怪！";
 			mes "你到底是谁？";
 			mes "你竟敢直接问我的密码？";
 			close;
 		case 2:
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "格雷厄姆？";
 			mes "为什么？";
 			next;
 			if (countitem(6266) == 0) {
 				mes "你似乎没有把它带来。";
 				next;
-				mes "[经理]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是哑巴吗？";
 				mes "我不知道格雷厄姆为什么派你来。";
 				mes "没事就走！";
 				close;
 			}
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以这把钥匙是他送来的。";
 			next;
 			select("不，这是我找到的线索。");
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊？";
 			mes "那是不是意味着某个密码可以兑换成宝藏……？";
 			next;
 			select("也许吧。");
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...........";
 			mes "嗯……";
 			next;
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			next;
 			mes "- 经理似乎在思考什么，随后递来一张纸。 -";
 			next;
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不可能。";
 			mes "这是线索。";
 			mes "试着找出来。";
 			next;
-			mes "[经理]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，我叫保罗。";
 			mes "...........";
 			next;
@@ -888,9 +888,9 @@ L_Code:
 	close;
 }
 
-s_atelier,167,129,3	script	Manager#sc06_yuno	806,{
+s_atelier,167,129,3	script	店长#sc06_yuno::Manager#sc06_yuno	806,{
 	if (job_sha < 19) {
-		mes "[经理]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？";
 		mes "如果你是来要钱的，那就错了。";
 		mes "这里不是当铺。";
@@ -1122,9 +1122,9 @@ L_Code:
 	return;
 }
 
-s_atelier,25,75,3	script	Manager#sc10_lgt	899,{
+s_atelier,25,75,3	script	店长#sc10_lgt::Manager#sc10_lgt	899,{
 	if (job_sha < 26) {
-		mes "[经理]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是？";
 		mes "抱歉，我们不交易旧艺术品。";
 		mes "如果你需要什么，就去问助手。";
@@ -1341,16 +1341,16 @@ s_atelier,73,65,3	script	Vicente#sc12_lgt	899,{
 	close;
 }
 
-s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
+s_atelier,70,66,4	script	顿克#sc13_lgh::Dumk#sc13_lgh	481,{
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
-		mes "[杜姆克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么了？";
 		mes "你享受新技能了吗？";
 		next;
-		mes "[杜姆克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想提升技能，就要寻找颜料的新用途。";
 		next;
-		mes "[杜姆克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别忘了。";
 		mes "我们是魅影追踪者。";
 		mes "呵呵……";
@@ -1362,7 +1362,7 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 		close;
 	}
 	if (ismounting()) {
-		mes "[杜姆克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这家伙是谁？为什么坐在我面前这么高？";
 		mes "虽然不知道你为什么骑着它，但这里是室内。";
 		mes "靠动物逃跑并不安全，请下来！";
@@ -1370,19 +1370,19 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 	}
 	if (BaseJob == Job_Rogue) {
 		if (job_sha < 29) {
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "维森特。禁止拉客。";
 			next;
 			mes "[维森特]";
 			mes "拉客？";
 			mes "我不这么认为。他是我们的同事。";
 			next;
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……啊？";
 			close;
 		}
 		if (BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0) {
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还很稚嫩！";
 			mes "你以为凭这点能力就能学习黑暗艺术？";
 			mes "你错了！";
@@ -1396,7 +1396,7 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 			mes "而且你还没有准备好。";
 			mes "^4d4dff请先达到要求的等级，并用完剩余技能点。^000000";
 			next;
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你话太多了。";
 			mes "哼。";
 			next;
@@ -1407,18 +1407,18 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 			close;
 		}
 		if (job_sha == 29) {
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是你？你就是找到画笔的人？";
 			next;
 			select("把画笔给他看。");
 			if (countitem(6269)) {
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "就是它。";
 				mes "你是自己找到的吗？";
 				next;
 				switch(select("是。:和朋友一起")) {
 				case 1:
-					mes "[杜姆克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……";
 					mes "你的能力很强。";
 					mes "破解那些暗号本来应该很难。";
@@ -1426,18 +1426,18 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 					next;
 					break;
 				case 2:
-					mes "[杜姆克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……";
 					mes "这就是你的另一项技能。";
 					mes "没有朋友的人一定很孤独。";
 					next;
-					mes "[杜姆克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "对我们来说，人际关系非常重要。";
 					mes "认识的人越多，得到的帮助就越多。";
 					next;
 					break;
 				}
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "该自我介绍了。";
 				mes "我是 杜姆克。";
 				next;
@@ -1445,7 +1445,7 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				mes "[维森特]";
 				mes "鸡！今晚吃鸡怎么样？";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "为什么是鸡？";
 				mes "你为什么打断我？";
 				mes "你想被解雇吗？";
@@ -1455,27 +1455,27 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				mes " ";
 				mes "（他转向你，说谈论鸡是禁忌。）";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，我们说重点。";
 				mes "你。";
 				mes "你愿意服从画笔的意志吗？";
 				next;
 				select("服从？服从什么？");
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这支画笔曾由大师使用。";
 				mes "他画出的作品拥有神秘的力量。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我不能告诉你力量的根源。";
 				mes "总有一天你会明白。";
 				mes "他通过画作这一媒介升华力量。";
 				next;
 				select("我不明白……？");
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没有月光时，我们行走在黑暗中。";
 				mes "然后发现我们的辉煌岁月已经结束。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们追随其他影子，";
 				mes "并成为真正的";
 				mes "魅影追踪者！";
@@ -1489,12 +1489,12 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				mes "他们就是魅影追踪者。";
 				mes "他们通常隐藏身形，并认为自己与众不同。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "别这么挖苦人，维森特！";
 				mes "我都告诉你了。";
 				mes "你有资格成为魅影追踪者！";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "把那把刷子给我。";
 				mes "我还需要它。";
 				mes "我好渴。";
@@ -1503,95 +1503,95 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				set job_sha,30;
 				close;
 			}
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "让我看看……";
 			mes "你带刷子了吗？";
 			next;
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你在做什么？";
 			mes "把刷子给我看看？";
 			mes "你没带？";
 			mes "你真不小心……";
 			close;
 		} else if (job_sha == 30) {
-			mes "[杜姆克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，你想继续听我讲魅影追踪者吗？";
 			next;
 			switch(select("什么是魅影追踪者？:把我变成魅影追踪者。:我稍后再来。")) {
 			case 1:
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "大多数法术只供巫师及其同类使用。";
 				mes "但骑士后来能够使用一种名为符文的魔法。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以我们尝试寻找适合自身特性的法术媒介。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以最后……";
 				mes "我们找到了颜料！";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "颜料能带来许多感受。";
 				mes "我们可以感到平静和快乐，也可能感到悲伤和恐惧。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们利用它驾驭人们不同的情感，并在他们最脆弱时加以利用。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "对敌人的效果类似魔法。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "例如，这种力量可以制造黑洞，让敌人消失。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以如果你想拥有这种力量，就必须具备艺术才能。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在时尚方面你必须成为潮流引领者！";
 				mes "还要有理解艺术的能力！";
 				mes "你应该已经具备全部条件了。";
 				next;
 				select("那么什么是名匠之笔？");
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊？";
 				mes "那是一把掌握黑暗艺术的名匠之笔。";
 				mes "现在我们正在寻找能够成为魅影追踪者的人。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是一种游戏。";
 				mes "如果有人想成为魅影追踪者，";
 				mes "我们就会启动寻找这把刷子的流程。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们设置了这些代码，确保你能跳出框架思考。";
 				mes "玩得开心吗？";
 				close;
 			case 2:
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你决定了！";
 				mes "就你而言，你可以掌握用颜料进行心理战的艺术！";
 				mes "创造出的艺术既美丽又危险。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们用颜料作为法术媒介。";
 				mes "我们利用它驾驭人们不同的情感，并在他们最脆弱时加以利用。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "例如，这种力量可以制造黑洞，让敌人消失。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以如果你想拥有这种力量，就必须具备艺术才能。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在时尚方面你必须成为潮流引领者！";
 				mes "还要有理解艺术的能力！";
 				mes "你应该已经具备全部条件了。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你认真完成了任务并找到了刷子。";
 				mes "所以你有资格成为魅影追踪者。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "恭喜。";
 				mes "欢迎来到你的新生活。";
 				jobchange roclass(eaclass()|EAJL_THIRD);
@@ -1601,12 +1601,12 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				getitem 2795,1; //Green_Apple_Ring
 				getitem 5750,1; //Shadow_Handicraft
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是时尚的制服。";
 				mes "它采用豹纹和羽毛的图案。";
 				mes "时尚界会震惊。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这只暗影皇冠是我亲自设计的。";
 				mes "要制作能体现我艺术感的东西实在太难了。";
 				mes "至于这一部分……";
@@ -1639,16 +1639,16 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				mes "恭喜你成为我们的一员。";
 				close;
 			case 3:
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么？";
 				mes "为什么不呢？";
 				mes "你不想成为魅影追踪者吗？";
 				mes "我可以教你很多绘画知识。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在成为魅影追踪者之前，你确实无法理解。";
 				next;
-				mes "[杜姆克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你不想学习如何驾驭比已知力量更强的力量吗？";
 				mes "....";
 				next;
@@ -1657,7 +1657,7 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 			}
 		}
 	}
-	mes "[杜姆克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "..........";
 	mes "哼。";
 	next;
@@ -2264,15 +2264,15 @@ job3_sha01,71,27,0	script	????#keybox04	844,{
 
 // Brush Shops
 //============================================================
-s_atelier,29,119,3	script	Max#sc05_prt	97,{
-	mes "[马克斯]";
+s_atelier,29,119,3	script	店员迈克斯#sc05_prt::Max#sc05_prt	97,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎~";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 	mes "你是盗贼公会成员！";
 	mes "我能帮你什么？";
 		next;
 		set .@i, select("我需要化妆刷。:我需要画笔。:没什么。" );
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
@@ -2285,7 +2285,7 @@ s_atelier,29,119,3	script	Max#sc05_prt	97,{
 	mes "你已经有了？";
 	mes "那就不需要其他东西了。";
 			next;
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "以后再来，使用你已有的东西吧！";
 			close;
 		}
@@ -2293,10 +2293,10 @@ s_atelier,29,119,3	script	Max#sc05_prt	97,{
 	mes "哦，你带齐了所有必需品。";
 	mes "请稍等。";
 			next;
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这是你需要的东西。";
 			next;
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "拿去吧。";
 	mes "祝你好运！";
 			if (!checkweight(.@i[1],1)) {
@@ -2316,12 +2316,12 @@ s_atelier,29,119,3	script	Max#sc05_prt	97,{
 	next;
 	switch(select("颜料！？:经理在哪里？")) {
 	case 1:
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你在找颜料？";
 	mes "你可以请他们去拿颜料吗~";
 		close;
 	case 2:
-	mes "[马克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们的经理就在那边。";
 	mes "就是那里。";
 	mes "**指向**";
@@ -2330,15 +2330,15 @@ s_atelier,29,119,3	script	Max#sc05_prt	97,{
 	}
 }
 
-s_atelier,136,70,3	script	Titika#sc09_ra	914,{
-	mes "[蒂蒂卡]";
+s_atelier,136,70,3	script	店员媞堤卡#sc09_ra::Titika#sc09_ra	914,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎。";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 	mes "你是公会成员。";
   mes "我能帮你什么？";
 		next;
 		set .@i, select("制作新的化妆刷。:制作新的画笔。:没什么。" );
-	mes "[蒂蒂卡]";
+	mes "[" + strnpcinfo(1) + "]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
@@ -2370,26 +2370,26 @@ s_atelier,136,70,3	script	Titika#sc09_ra	914,{
 	next;
 	switch(select("颜料在哪里？:经理在哪里？")) {
 	case 1:
-	mes "[蒂蒂卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是说颜料？";
 	mes "去问助手关于画具的事。";
 		close;
 	case 2:
-	mes "[蒂蒂卡]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们的经理就在工作场所里面。";
 	mes "没有特殊理由的话，他不会理你。";
 		close;
 	}
 }
 
-s_atelier,124,128,3	script	RimiGX#sc07_yuno	862,{
-	mes "[莉米]";
+s_atelier,124,128,3	script	店员理美GX#sc07_yuno::RimiGX#sc07_yuno	862,{
+	mes "[" + strnpcinfo(1) + "]";
   mes "欢迎。";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 	mes "你在找什么？";
 		next;
 		set .@i, select("制作新的化妆刷。:制作新的绘画刷。:没什么。" );
-	mes "[莉米]";
+	mes "[" + strnpcinfo(1) + "]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
@@ -2421,26 +2421,26 @@ s_atelier,124,128,3	script	RimiGX#sc07_yuno	862,{
 	next;
 		switch(select("油漆在哪里？:经理在哪里？")) {
 	case 1:
-	mes "[莉米]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "颜料？";
 	mes "去问那边工作的助手。";
 		close;
 	case 2:
-	mes "[莉米]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "经理？他就在工作场所里面。";
 	mes "但去见他时，你应该有事情要告诉他……";
 		close;
 	}
 }
 
-s_atelier,26,68,3	script	Vito#sc11_lgt	904,{
-	mes "[维托]";
+s_atelier,26,68,3	script	店员比托#sc11_lgt::Vito#sc11_lgt	904,{
+	mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎。";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
   mes "你在找什么？";
 		next;
 		set .@i, select("制作新的化妆刷。:制作新的绘画刷。:没什么。" );
-	mes "[维托]";
+	mes "[" + strnpcinfo(1) + "]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
@@ -2473,12 +2473,12 @@ s_atelier,26,68,3	script	Vito#sc11_lgt	904,{
 	next;
 		switch(select("油漆在哪里？:经理在哪里？")) {
 	case 1:
-	mes "[维托]";
+	mes "[" + strnpcinfo(1) + "]";
   mes "颜料？";
 	mes "去问那边站着的助手。";
 		close;
 	case 2:
-	mes "[维托]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "柜台前站着的男人就是经理。";
 		close;
 	}

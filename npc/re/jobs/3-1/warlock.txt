@@ -214,7 +214,7 @@ function	script	F_Warlock	{
 	end;
 }
 
-spl_in02,77,107,5	script	Assistant#Warlock1	446,{
+spl_in02,77,107,5	script	助理#Warlock1::Assistant#Warlock1	446,{
 	if (job_wl == 0) {
 		callfunc "F_Warlock";
 		end;
@@ -337,8 +337,8 @@ L_Quest:
 	return;
 }
 
-spl_in02,60,231,5	script	Yoop#Warlock	446,{
-	mes "[哟普]";
+spl_in02,60,231,5	script	儒#Warlock::Yoop#Warlock	446,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (job_wl < 4) {
 		mes "你是谁？";
 		mes "离开这里！";
@@ -348,24 +348,24 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 		next;
 		switch(select("我带来了材料。:我弄丢了魔法石。:没什么。")) {
 		case 1:
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 			if (countitem(6152) == 0 || countitem(6151) == 0) {
 				mes "......";
 				mes "……在哪里？";
 				mes "别烦我！";
 				next;
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "我们需要测试你的身体能否承受大法师的力量。";
 				mes "所以你要收集材料来证明自己。";
 				next;
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "请收集^000077发光的水晶^000000和^000077巨大的魔力之石碎片^000000。";
 				next;
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "狩猎时必须佩戴这些魔法石戒指，才能获得这些物品。";
 				mes "你需要佩戴戒指去猎杀沉醉于魔力的纳迦和沉醉于魔力的石巨人。";
 				next;
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "带着这些石头回来，否则你无法返回！";
 				mes "小心！";
 				close;
@@ -378,7 +378,7 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 				mes "看来你没有它？";
 				mes "你弄丢了？";
 					next;
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 				mes "请找到那块石头后再回来找我。";
 					close;
 				}
@@ -394,16 +394,16 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 				close;
 			}
 		case 2:
-	mes "[哟普]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "什么？！";
 			mes "我不是让你再三确认并确保佩戴了吗！";
 			next;
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 			mes "请检查是不是放错地方，或者已经装备在身上了。";
 			next;
 			switch(select("我找到了。:没有。")) {
 			case 1:
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 				mes "别逗我！";
 				mes "有没有佩戴，一眼就能看出来！";
 				close;
@@ -412,7 +412,7 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 					if (countitem(732) > 0) {
 						switch(select("给我 3克拉钻石。:算了吧。")) {
 						case 1:
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 							mes "我就不追究你的过错了。";
 							mes "请小心保管它。";
 							if (job_wl != 4 || countitem(732) < 1) {
@@ -438,18 +438,18 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 								getitem 2797,1; //Magical_Stone_
 							close;
 						case 2:
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 						mes "证明你的诚意！";
 							close;
 						}
 					}
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 					mes "你怎么能这么说？";
 					mes "^000077道歉就行了^000000！";
 					mes "如果你给我一颗 3克拉钻石，也许我能再给你一些石头……";
 					close;
 				}
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 				if (isequipped(2796) || isequipped(2797)) {
 					mes "请检查装备窗口……";
 					mes "你确定自己没有吗？";
@@ -459,7 +459,7 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 				close;
 			}
 		case 3:
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 			mes "什么……？";
 			mes "别烦我，我很忙。";
 			close;
@@ -468,30 +468,30 @@ spl_in02,60,231,5	script	Yoop#Warlock	446,{
 		mes "我正在专心冥想。";
 		mes "这样才能创造魔法。";
 		next;
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 		mes "而且……你似乎比普通魔法师更有天赋。";
 		mes "也许我成为炼金术士后，会比现在更厉害，你觉得呢？";
 		next;
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 		mes "我正在学习，让自己变得更强。";
 		next;
-  mes "[哟普]";
+  mes "[" + strnpcinfo(1) + "]";
 		mes "如果我进入‘时间与魔法之室’，就能追上你的力量！";
 		mes "哈哈哈哈……";
 		close;
 	}
 }
 
-spl_in02,84,103,3	script	Assistant#Warlock2	439,{
+spl_in02,84,103,3	script	助理#Warlock2::Assistant#Warlock2	439,{
 	if (job_wl == 0) {
 		callfunc "F_Warlock";
 		end;
 	} else if (job_wl == 1) {
-	mes "[助手]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "人类！你想要什么？";
 		close;
 	} else if (job_wl < 6) {
-	mes "[助手]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "你现在要找的不是我。";
 		close;
 	} else if (job_wl == 6) {
@@ -589,12 +589,12 @@ spl_in02,84,103,3	script	Assistant#Warlock2	439,{
 	}
 }
 
-spl_in02,78,110,5	script	Assistant#Warlock3	437,{
+spl_in02,78,110,5	script	助理#Warlock3::Assistant#Warlock3	437,{
 	if (job_wl == 0) {
 		callfunc "F_Warlock";
 		end;
 	}
-	mes "[助手]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "......";
 	switch(job_wl) {
 		case 1: mes "没什么要对我说的话，就离开吧。"; break;
@@ -604,13 +604,13 @@ spl_in02,78,110,5	script	Assistant#Warlock3	437,{
 	next;
 	switch(select("离开。:留下。")) {
 	case 1:
-		mes "[助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那请小心。";
 		close2;
 		warp "splendide",200,100;
 		end;
 	case 2:
-		mes "[助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "......";
 		close;
 	}

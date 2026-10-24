@@ -18,50 +18,50 @@
 //= 2.2 Replaced effect numerics with constants. [L0ne_W0lf]
 //============================================================
 
-yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
+yuno_in04,33,108,4	script	皮斯力克#qsk_al::Pisruik#qsk_al	883,{
 	if (BaseJob == Job_Alchemist) {
 		if (JobLevel < 40) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^333333*咳咳*^000000";
 			mes "该死，要是能多一点钱买药就好了。";
 			mes "我今天本该留在家里，但是……";
 			close;
 		}
 		if (ALCHE_SK == 0) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^333333*咳咳*^000000";
 			mes "唉，没有什么比该休息时还要工作更糟。";
 			mes "喂！呃，你在做什么？";
 			set ALCHE_SK,1;
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别、别再看我的测试结果了，马上……哦，等等。你不是这里的研究员。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呃……你没有别的事可做吗？别一直盯着我，我正在忙呢！";
 			mes "哦，算了，我只是心情不好……";
 			close;
 		}
 		else if (ALCHE_SK == 1) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "又是你？你似乎没有在这里做研究。你需要什么吗？不过恐怕我帮不了你太多。";
 			next;
 			if (select("你在研究什么？:我不需要什么，谢谢。") == 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，我不确定能不能告诉你全部细节。";
 				mes "这里的人都是租不起独立实验室的研究员，所以大家只能共用这一间。";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "虽然大家凑钱租下了这间实验室，但日子越来越难熬。有些人甚至偷走了彼此的研究成果。很可悲，对吧？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "穷困潦倒又没有固定工作的结果就是这样。现在情况太糟了，我甚至买不起新材料！我还能怎么办？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我知道了！你是冒险者，对吧？";
 				mes "如果你还对我的研究好奇，只要帮我收集一些物资，我就告诉你更多。";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "反正让你知道我在研究什么应该没关系。除非你也在做同一个项目，否则也用不上。";
 				mes "那么，你叫什么名字？";
 				next;
@@ -69,48 +69,48 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				mes "我叫"+ strcharinfo(0) +"。";
 				next;
 				set ALCHE_SK,2;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，"+ strcharinfo(0) +"，请帮我带来这些材料：";
 				mes "^6600005 个黄宝石^000000、^6600004 个空药瓶^000000、";
 				mes "^66000010 个人鱼之心^000000，以及 ^66000010 个飞蛾粉尘^000000。";
 				close;
 			}
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你是来买药剂制作手册之类的东西，那就找错人了。这里的一切都是为了完成我的个人项目。";
 			close;
 		}
 		else if (ALCHE_SK == 2) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了，你回来了！让我想想，你本该带来 4 个空药瓶……还有……我还让你找什么来着？";
 			next;
 			switch(select("5 个黄宝石:5 个蓝色宝石:5 个红色宝石")) {
 			case 1:
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "对，对！5 个黄宝石，就是我需要的。应该还有别的，但我想不起来了……";
 				next;
 				if (select("10 个人鱼之心:10 个大杰勒比结晶") == 1) {
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "当然！10 个人鱼之心！我怎么会忘记？最后一样是，嗯……";
 					next;
 					if (select("10 个蜥蜴皮:10 个飞蛾粉尘") == 1) {
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "不，不是那个。我已经有很多蜥蜴皮了。嗯……我还缺什么呢？";
 						close;
 					}
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "对，我正想说这个。你记得把东西都带来了吗？";
 					next;
 					if (select("没有。:带齐了！") == 1) {
 						if (rand(1,5) == 1) {
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "没带……？承认吧，你不想帮我做这件事，对不对？不用为了我浪费时间。";
 							close;
 						}
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还没有啊？虽然我希望你尽快带来，但也不用勉强。真的没关系。";
 						close;
 					}
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "真的吗？让我检查一下你带来的东西，看看有没有遗漏。嗯……";
 					next;
 					if (countitem(715) > 4 && countitem(1093) > 3 && countitem(950) > 9 && countitem(1057) > 9) {
@@ -119,225 +119,225 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 						delitem 950,10; //Heart_Of_Mermaid
 						delitem 1057,10; //Moth_Dust
 						set ALCHE_SK,3;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "太好了，看来都带齐了。我先收下。猜猜看，我要用这些材料制作什么？";
 						next;
 						switch(select("药物？:炸弹？")) {
 						case 1:
 							set ALCHE_SK,4;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哈哈哈，答对了！我正在研发一种新药。";
 							break;
 						case 2:
 							set ALCHE_SK,4;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "炸弹？你看我像疯子吗？不，不……我是在研发新药。";
 							mes "炸弹确实赚钱，可我能在哪里试验？在这里？绝对不行！";
 							break;
 						}
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "总之，这种药会与人体的消化酶反应，暂时改变新陈代谢，阻止身体吸收热量。";
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "它能大幅提高身体对热量的抵抗力！不过，副作用是降低对寒冷的抵抗力。";
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我知道这药听起来有点奇怪，但想想它的用途！在合适的情况下使用，会很方便。";
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "啊，既然你还在这里，能再帮我一次吗？我需要 20 朵食人花花朵。如果你能带来，就帮大忙了。";
 						next;
 						switch(select("不行，我太忙了！:好，我会帮你。:我能得到什么？")) {
 						case 1:
 							set ALCHE_SK,5;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "看来我得自己收集了。好吧，既然我们都得到了想要的东西，你找我的事也算办完了。";
 							close;
 						case 2:
 							set ALCHE_SK,6;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "谢谢，我真的很感激。等你回来期间，我可以先煮三叶草提取物。";
 							next;
 							select("三叶草提取物？那是做什么的？");
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我要用三叶草提取物和食人花花朵制作一种化合物。我的身体比较虚弱，所以尽量不走远。";
 							next;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "从小我的心脏就很虚弱，视力也不好。医生让我避免压力和重体力劳动，但研究就是我的生命。";
 							if (Sex == SEX_FEMALE) {
 								next;
-								mes "[皮斯鲁克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "不知道你能否理解我的感受，以及我为了梦想作出的牺牲。呵，总之……";
 							}
 							next;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "希望你能理解，独自收集食人花花朵对我太危险了，所以只能尽量寻求帮助。再次感谢你。";
 							close;
 						case 3:
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哈哈哈！你真是个务实的人！好吧，我虽然穷，但只要你帮忙，我就把研究成果给你。";
 							next;
 							if (select("不行，我太忙了。:好，我会帮你。") == 1) {
 								set ALCHE_SK,5;
-								mes "[皮斯鲁克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "看来我得自己收集了。好吧，既然我们都得到了想要的东西，你找我的事也算办完了。";
 								close;
 							}
 							set ALCHE_SK,6;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "谢谢，我真的很感激。等你回来期间，我可以先煮三叶草提取物。";
 							next;
 							select("三叶草提取物？那是做什么的？");
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我要用三叶草提取物和食人花花朵制作一种化合物。我的身体比较虚弱，所以尽量不走远。";
 							next;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "从小我的心脏就很虚弱，视力也不好。医生让我避免压力和重体力劳动，但研究就是我的生命。";
 							if (Sex == SEX_FEMALE) {
 								next;
-								mes "[皮斯鲁克]";
+								mes "[" + strnpcinfo(1) + "]";
 								mes "不知道你能否理解我的感受，以及我为了梦想作出的牺牲。呵，总之……";
 							}
 							next;
-							mes "[皮斯鲁克]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "希望你能理解，独自收集食人花花朵对我太危险了，所以只能尽量寻求帮助。再次感谢你。";
 							close;
 						}
 					}
 					else if (countitem(715) == 0 && countitem(1093) == 0 && countitem(950) == 0 && countitem(1057) == 0) {
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你明明知道要带什么，却空手过来提醒我忘了什么？真奇怪。好吧，下次记得带上材料。";
 						close;
 					}
 					else {
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "哦，这可不好，有些材料没带齐。炼金术的用量必须准确，否则会产生危险、难以预测的结果。";
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "只要你答应尽快带来所需材料，我可以把期限往后推。";
 						close;
 					}
 				}
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "大杰勒比结晶？对，大……不对。不是那个，我要你带的是别的东西。";
 				close;
 			case 2:
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "蓝色宝石……？不，那是制作提高水属性耐性药剂用的吧。我的记性到底怎么了？！";
 				close;
 			case 3:
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "红色宝石……？不，那是制作提高地属性耐性药剂用的吧。我的记性到底怎么了？！";
 				close;
 			}
 		}
 		else if (ALCHE_SK == 3) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你怎么就走了？我还没说完呢！算了，也许不是你的错。总之，我正在研发一种新药。";
 			set ALCHE_SK,4;
 			close;
 		}
 		else if (ALCHE_SK == 4) {
 			//NPC dialogue interrupted
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想进一步了解我正在研发的药物吗？你来这里就是为了这个，对吧？";
 			next;
 			if (select("不用，谢谢。:好，请讲。") == 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧。其实我很愿意花时间向你解释，毕竟你刚刚帮过我。";
 				close;
 			}
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我正在研发一种新药，希望它能造福人类、保护大家！";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，这种药会与人体的消化酶反应，暂时改变新陈代谢，阻止身体吸收热量。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它能大幅提高身体对热量的抵抗力！不过，副作用是降低对寒冷的抵抗力。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道这药听起来有点奇怪，但想想它的用途！在合适的情况下使用，会很方便。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，既然你还在这里，能再帮我一次吗？我需要 20 朵食人花花朵。如果你能带来，就帮大忙了。";
 			next;
 			switch(select("不行，我太忙了！:好，我会帮你。:我能得到什么？")) {
 			case 1:
 				set ALCHE_SK,5;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看来我得自己收集了。好吧，既然我们都得到了想要的东西，你找我的事也算办完了。";
 				close;
 			case 2:
 				set ALCHE_SK,6;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢，我真的很感激。等你回来期间，我可以先煮三叶草提取物。";
 				next;
 				select("三叶草提取物？那是做什么的？");
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我要用三叶草提取物和食人花花朵制作一种化合物。我的身体比较虚弱，所以尽量不走远。";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "从小我的心脏就很虚弱，视力也不好。医生让我避免压力和重体力劳动，但研究就是我的生命。";
 				if (Sex == SEX_FEMALE) {
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不知道你能否理解我的感受，以及我为了梦想作出的牺牲。呵，总之……";
 				}
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "希望你能理解，独自收集食人花花朵对我太危险了，所以只能尽量寻求帮助。再次感谢你。";
 				close;
 			case 3:
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哈哈哈！你真是个务实的人！好吧，我虽然穷，但只要你帮忙，我就把研究成果给你。";
 				next;
 				if (select("不行，我太忙了。:好，我会帮你。") == 1) {
 					set ALCHE_SK,5;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "看来我得自己收集了。好吧，既然我们都得到了想要的东西，你找我的事也算办完了。";
 					close;
 				}
 				set ALCHE_SK,6;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢，我真的很感激。等你回来期间，我可以先煮三叶草提取物。";
 				next;
 				select("三叶草提取物？那是做什么的？");
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我要用三叶草提取物和食人花花朵制作一种化合物。我的身体比较虚弱，所以尽量不走远。";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "从小我的心脏就很虚弱，视力也不好。医生让我避免压力和重体力劳动，但研究就是我的生命。";
 				if (Sex == SEX_FEMALE) {
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不知道你能否理解我的感受，以及我为了梦想作出的牺牲。呵，总之……";
 				}
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "希望你能理解，独自收集食人花花朵对我太危险了，所以只能尽量寻求帮助。再次感谢你。";
 				close;
 			}
 		}
 		else if (ALCHE_SK == 5) {
 			//refuse bringing Maneater Blossom
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我现在很忙。你没有忘了什么事吧？如果没有，就先走吧，让我继续工作。";
 			next;
 			if (select("好，抱歉打扰了。:我还能帮你吗？") == 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好，好。快走吧，让我能专心工作。";
 				close;
 			}
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？是什么让你改变了主意？我可不能拒绝任何帮助，所以答案是：可以，你能帮我。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，去帮我带来 20 朵食人花花朵。要不是身体这么虚弱，我就自己去了，但……*咳咳*……你也看到了，我不太舒服。";
 			set ALCHE_SK,6;
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Sex == SEX_FEMALE) {
 				mes "我……我真的很感激，你愿意帮助我完成研究……";
 			}
@@ -350,7 +350,7 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 			if (countitem(1032) > 19) {
 				delitem 1032,20; //Blossom_Of_Maneater
 				set ALCHE_SK,7;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "非常感谢你带来这些食人花花朵。";
 				if (Sex == SEX_FEMALE) {
 					mes "你不知道这对我有多重要～";
@@ -361,11 +361,11 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				next;
 				set ALCHE_SK,9;
 				specialeffect EF_SUI_EXPLOSION;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！我、我的脸！";
 				next;
 				//...Pretty Boy mode -_-
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿……你没事吧？刚才的爆炸可真大……";
 				next;
 				mes "["+ strcharinfo(0) +"]";
@@ -381,29 +381,29 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				mes "["+ strcharinfo(0) +"]";
 				mes "我的天！你长得可真帅！";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不戴眼镜，我看不太清楚。不过至少能看出你没流血。你没事吧？";
 				next;
 				mes "["+ strcharinfo(0) +"]";
 				mes "哦，我没事。不过你的眼镜怎么办？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "糟糕，你说得对。我没有备用眼镜。你能帮我找一副和原来一样的吗？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我知道这样太麻烦你了，但没了眼镜我几乎什么都看不见，也没法工作。";
 				mes "真的很抱歉，"+ strcharinfo(0) +"。";
 				close;
 			}
 			else {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "能请你带来 20 朵食人花花朵，让我完成正在研究的药剂吗？谢谢，我得赶紧完成这个项目……";
 				close;
 			}
 		}
 		else if (ALCHE_SK == 7) {
 			set ALCHE_SK,8;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……我算错了需要的食人花花朵数量。能再带一朵来吗？抱歉，我知道这样有些麻烦……";
 			close;
 		}
@@ -411,7 +411,7 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 			if (countitem(1032) > 0) {
 				delitem 1032,1; //Blossom_Of_Maneater
 				set ALCHE_SK,7;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "太感谢了！现在需要的食人花花朵终于凑齐了。";
 				if (Sex == SEX_FEMALE) {
 					mes "让你这么麻烦，真是抱歉。";
@@ -422,11 +422,11 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				next;
 				set ALCHE_SK,9;
 				specialeffect EF_SUI_EXPLOSION;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！我、我的脸！";
 				next;
 				//...Pretty Boy mode -_-
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿……你没事吧？刚才的爆炸可真大……";
 				next;
 				mes "["+ strcharinfo(0) +"]";
@@ -442,22 +442,22 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				mes "["+ strcharinfo(0) +"]";
 				mes "我的天！你长得可真帅！";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不戴眼镜，我看不太清楚。不过至少能看出你没流血。你没事吧？";
 				next;
 				mes "["+ strcharinfo(0) +"]";
 				mes "哦，我没事。不过你的眼镜怎么办？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "糟糕，你说得对。我没有备用眼镜。你能帮我找一副和原来一样的吗？";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我知道这样太麻烦你了，但没了眼镜我几乎什么都看不见，也没法工作。";
 				mes "真的很抱歉，"+ strcharinfo(0) +"。";
 				close;
 			}
 			else {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……我算错了需要的食人花花朵数量。能再带一朵来吗？抱歉，我知道这样有些麻烦……";
 				close;
 			}
@@ -473,20 +473,20 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 					mes "["+ strcharinfo(0) +"]";
 					mes "给你，看看我带的东西里有没有你能用的眼镜。";
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯？哦，是你啊？这副眼镜能用！太感谢了，我又能看清了！现在来检查一下实验结果。";
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好，试管没坏。根据这些数据，药物应该能正常起效！我想实验成功了，至少理论上是这样。";
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "改变人体属性来获得某些效果，可能会引起争议。但希望我的发明能用于正途。啊，对了！";
 					next;
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你想学习我的研究成果吗？运用这些知识，你应该能制作一种新药剂。";
 					next;
 					if (select("好啊！:不用，谢谢。") == 1) {
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "太好了，"+ strcharinfo(0) +"！";
 						mes "我相信你会把这项研究用于正当而高尚的目的。请阅读这篇论文和我的补充笔记……";
 						next;
@@ -494,10 +494,10 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 						next;
 						set ALCHE_SK,11;
 						getitem 7434,1; //Elemental_Create_Book
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "现在，你应该能制作以我的药物为基础的各种药剂了。不过最好留着这篇论文，以便随时查阅。";
 						next;
-						mes "[皮斯鲁克]";
+						mes "[" + strnpcinfo(1) + "]";
 						if (Sex == SEX_MALE) {
 							mes "希望以后还能再见。祝你旅途顺利，冒险者。*咳咳*……那么，我的下一个项目是什么呢？";
 						}
@@ -506,7 +506,7 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 						}
 						close;
 					}
-					mes "[皮斯鲁克]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "真、真的吗……？如果你改变主意，随时回来找我学习。";
 					if (Sex == SEX_FEMALE) {
 						mes "一点也不麻烦！我真的很喜欢和你相处……";
@@ -521,7 +521,7 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 			mes "["+ strcharinfo(0) +"]";
 			mes "听着，你不戴眼镜的时候好看多了。";
 			next;
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，你说什么？";
 			next;
 			mes "["+ strcharinfo(0) +"]";
@@ -529,12 +529,12 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 			close;
 		}
 		else if (ALCHE_SK == 10) {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，"+ strcharinfo(0) +"，";
 			mes "你想学习我这段时间的研究成果吗？";
 			next;
 			if (select("好啊！:不用了，谢谢。") == 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "太好了，"+ strcharinfo(0) +"！";
 				mes "我相信你会把这项研究用于正当而高尚的目的。请阅读这篇论文和我的补充笔记……";
 				next;
@@ -542,10 +542,10 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				next;
 				set ALCHE_SK,11;
 				getitem 7434,1; //Elemental_Create_Book
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在，你应该能制作以我的药物为基础的各种药剂了。不过最好留着这篇论文，以便随时查阅。";
 				next;
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (Sex == SEX_MALE) {
 					mes "希望以后还能再见。祝你旅途顺利，冒险者。*咳咳*……那么，我的下一个项目是什么呢？";
 				}
@@ -554,7 +554,7 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 				}
 				close;
 			}
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真、真的吗……？如果你改变主意，随时回来找我学习。";
 			if (Sex == SEX_FEMALE) {
 				mes "一点也不麻烦！我真的很喜欢和你相处……";
@@ -563,51 +563,51 @@ yuno_in04,33,108,4	script	Pisruik#qsk_al	883,{
 		}
 		else if (ALCHE_SK == 11) {
 			if (countitem(7434) == 0) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀……你把我写给你的论文弄丢了？我现在没有时间再写一份……";
 				close;
 			}
 			else if (countitem(7434) == 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我教你制作的药剂用得怎么样？希望能帮上你的冒险旅程。";
 				close;
 			}
 			else if (countitem(7434) > 1) {
-				mes "[皮斯鲁克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，我的论文已经有抄本在外面流传了？抱歉，我可没空在你的那份上签名……";
 				close;
 			}
 		}
 		else {
-			mes "[皮斯鲁克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？你有什么特别的需要吗？不过我这样的人，恐怕帮不了你太多。";
 			close;
 		}
 	}
 	else {
-		mes "[皮斯鲁克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？你有什么特别的需要吗？不过我这样的人，恐怕帮不了你太多。";
 		close;
 	}
 }
 
-yuno_in04,22,107,5	script	Irache#qsk_al	740,{
-	mes "[伊拉切]";
+yuno_in04,22,107,5	script	李乐海#qsk_al::Irache#qsk_al	740,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿嘿嘿……！";
 	mes "完成了！有了这个配方，我就能溶解世界上的任何物质！";
 	mes "哈哈哈！再也没有什么能阻止我统治世——";
 	next;
-	mes "[伊拉切]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊——！我的秘密配方！";
 	mes "它把试管烧穿了！药效太强了，可恶！";
 	close;
 }
 
-yuno_in04,27,107,4	script	Degas#qsk_al	748,{
-	mes "[德加]";
+yuno_in04,27,107,4	script	德卡斯#qsk_al::Degas#qsk_al	748,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "和这些科学家挤在一起工作真是折磨。旁边那个家伙整天怪笑，说什么要统治世界。";
 	next;
-	mes "[德加]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "另一个书呆子又一直咳嗽。他们两个吵得我根本没法专心研究！";
 	mes "要是能有一间属于自己的秘密实验室就好了……";
 	close;
@@ -619,29 +619,29 @@ yuno_in04,33,106,4	script	Pile of Books#qsk_al	111,{
 }
 
 // Start Bioethics quest
-lhz_in01,224,140,3	script	Kellasus#qsk_al	57,{
+lhz_in01,224,140,3	script	凯拉萨斯#qsk_al::Kellasus#qsk_al	57,{
 	if (BaseJob == Job_Alchemist && bioeth == 13) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "继续努力。我有种感觉，我们的未来也许就寄托在你身上……";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 12) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，那就先教你^FF0000生命伦理^000000，这是创造人工生命体的基础技能。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要掌握生命伦理，你必须懂得珍惜生命的美好，真心关爱活着的生灵。你也必须始终照顾好自己的人工生命体。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要经常留意它是否疲倦、饥饿或受伤，也要顾及它对你这位主人的感受。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当这种关怀成为你的本能时，你就掌握了生命伦理。听起来简单，但只有亲身相处，你才能理解与人工生命体之间的关系。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，你应该已经懂得如何创造和照顾自己的人工生命体了。我相信，你会负责任地探索那些可能造福人类的新发现。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "分别之前，可以告诉我你的名字吗？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -650,61 +650,61 @@ lhz_in01,224,140,3	script	Kellasus#qsk_al	57,{
 		next;
 		set bioeth,13;
 		skill "AM_BIOETHICS",1,SKILL_PERM;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……";
 		mes "" + strcharinfo(0) + ".";
 		mes "我会记住的。暂且告别吧，希望有一天你能为炼金术作出杰出的贡献。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 11) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的看法或许不同，但我承认，研究人工生命体有着巨大的潜力。无论作为科学家还是人道主义者，我都不能再视而不见。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果我教你这些技能，你可能会徘徊在道德的边界。不过，只要你是为了学到能造福大众的知识，我相信就没有问题。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "这……";
 		mes "这是不是说，你愿意教我了？";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "先别太激动。我仍不确定是否应该向所有炼金术师开放人工生命体研究，但现在，我相信你值得信任。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，你必须用我教你的技能去造福他人。毕竟一旦你学会了创造人工生命体，我就无法强迫你忘记，明白吗？";
 		next;
 		set bioeth,12;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请给我一点时间准备课程。我已经很久没有教过这些了……";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 10) {
 		set bioeth,11;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^333333*叹气*^000000";
 		mes "我很迷茫……不得不承认，你说的都对。但现在，我不知道自己该相信什么……";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 9) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你又来请求我教你人工生命体技能了吗？你可真执着，不过，也许正是这种执着让你成为了炼金术师……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "嗯，我确实是为这件事来的。不过在那之前，我听说您的儿子曾经病得很重……";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是、是的。那段往事实在难以启齿。一想到可能失去儿子，我就无法承受。他就是我的全部……";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为了让儿子活下来，我当时甚至愿意毫不后悔地出卖灵魂。为了他，牺牲自己的生命也在所不惜。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "幸好，儿子的病好了，如今也很健康。不过，你为什么要提起这些？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "您说创造人工生命体会带来道德问题，这一点没错。不过，我想请您暂且放下道德争论，从人道的角度考虑。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不太明白。你说的人道，究竟是什么意思？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -723,95 +723,95 @@ lhz_in01,224,140,3	script	Kellasus#qsk_al	57,{
 		mes "我想研究人工生命体，是因为我也许能为身处绝望的人带去一丝希望……";
 		next;
 		set bioeth,10;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我从来没有……";
 		mes "我从没这样想过……";
 		mes "抱歉，让我独自待一会儿……";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 8) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我承认你有能力学会这些人工生命体知识，但我的良心不允许我传授给你。很抱歉，请放弃吧。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 7) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还要我说多少次？很抱歉，我不能教你任何与人工生命体有关的技能。尤其是你对它们一无所知，这更让我担心……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "可是，在离开的这段时间里，我花了很多时间向炼金术专家学习人工生命体知识。我保证自己已经有资格学习基础技能了！";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "专家……？啊，你是说斯克拉贾德、凯希比恩和布朗彻，我的老同事们。好吧，但你究竟学到了多少，要由我来判断。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会问你几个问题，希望你都能答对。准备好了吗？";
 		mes "请填写导师讲解时提到的英文名称。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第一题：哪项技能的最高等级为 1，能收回人工生命体，使其进入类似冬眠的休止状态？";
 		next;
 		input .@input$;
 		if (.@input$ == "Vaporize") {
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，不错，看来你确实认真学过。那么第二题：使用生命体召唤技能创造新的人工生命体时，需要哪种物品？它的名称表示人工生命体发育的早期阶段。";
 			next;
 			input .@input$;
 			if (.@input$ == "Embryo") {
-				mes "[凯拉苏斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这题也答对了。好，第三题：哪项技能的最高等级为 5，可以让人工生命体复活？";
 				next;
 				input .@input$;
 				if (.@input$ == "Homunculus Resurrection") {
-					mes "[凯拉苏斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "看来你确实为此下了很多功夫。我很钦佩你的专注，你有成为出色炼金术师的潜力。";
 					next;
-					mes "[凯拉苏斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不过，即使你有资格学习所有人工生命体技能，出于我个人的原则，我仍然决定不教。什么都无法改变我的想法。";
 					next;
-					mes "[凯拉苏斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我承认，你的进步让我感到骄傲。但我无法让自己参与这种在我看来滥用生命恩赐的行为。";
 					next;
 					set bioeth,8;
-					mes "[凯拉苏斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "风险实在太大了！创造人工生命可能带来的种种后果，我恐怕承担不起。";
 					close;
 				}
 				else {
-					mes "[凯拉苏斯]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "真让我失望……我原以为你已经尽力学会了人工生命体的全部知识，看来你还有些欠缺。";
 					close;
 				}
 			}
 			else {
-				mes "[凯拉苏斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……看来你对人工生命体的了解还不够。即便我愿意教你，你似乎也还没做好准备……";
 				close;
 			}
 		}
 		else {
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你真的认真研究过人工生命体，第一题就应该答对。还是放弃吧，去研究其他炼金术课题。";
 			close;
 		}
 	}
 	if (BaseJob == Job_Alchemist && bioeth > 3) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很抱歉，我拒绝教你任何与人工生命体有关的技能。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你提出这种请求，本该让我感到冒犯。但我也曾像你一样，所以能理解你的心情。只是如今，我的看法已经大不相同了……";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 3) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好，怎么到这里来了？作为炼金术领域的前辈，如果你遇到了难题，我可以给你一些建议……";
 		next;
 		if (select("请教我人工生命体技能。:没什么。") == 1) {
 			mes "[" + strcharinfo(0) + "]";
 			mes "我想请您教我如何创造人工生命体。";
 			next;
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "你说什么？我是不是听错了？";
 			next;
@@ -819,279 +819,279 @@ lhz_in01,224,140,3	script	Kellasus#qsk_al	57,{
 			mes "我是说……";
 			mes "我想请您教我创造人工生命体的技能。";
 			next;
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我说了那么多……也警告过你，有些知识是炼金术师不该触碰的禁忌，你居然还想去创造人工生命体？！";
 			next;
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "也许我根本就不该提起这个话题。不过，我仍不明白你为什么突然想学这些技能。没错，我确实可以教你……";
 			next;
 			set bioeth,4;
-			mes "[凯拉苏斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但无论任何理由，我都拒绝向任何人传授人工生命体知识。你现在总该明白了吧。你竟然还敢开口，真让我难以置信！";
 			close;
 		}
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有吗？嗯，自己钻研固然很好，但有时也应该向更有经验的人请教。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 2) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了……你一定在想，我为什么一直警告你，不要利用炼金术探索那些禁忌知识。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "与其以后毫无准备地发现，不如现在就告诉你。炼金术中有一种违背自然法则的技能，可以创造神并未赋予的生命。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种极其危险的技能源自人类的傲慢。生命美好而珍贵，是我们不该擅自摆弄的恩赐。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一生中最大的耻辱，就是曾为这个领域作出贡献。那时我年轻又固执，骄傲得不肯承认自己在扮演神。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我甚至一度成为最擅长创造^FF0000人工生命体^000000的炼金术师。但我已经改变了。我不会……再也不会创造它们了。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "炼金术是令人惊叹的学问，你愿意投身其中是件好事。不过，请时刻记住：它既能造福人类，也极易被滥用。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只担心，你对知识的渴望和探索未知的好奇心，会把你引向人工生命体研究。为了你自己着想，不要考虑这个念头。";
 		next;
 		set bioeth,3;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "记住，所有生命都很珍贵。只要你的动机善良，不为名利所污染，并始终为全人类的福祉努力，就不会误入歧途。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 1) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，又是你。既然来了，我问你一个问题：你究竟如何看待炼金术？";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等，先别回答。作为这个领域更有经验的人，我认为这个问题的答案比你想象的复杂。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大多数人把炼金术师看作贪婪的科学家，以为我们只会用技能^FFFFFF.^000000把东西变成黄金。当然，学习这种转化确实是基础训练的一部分。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但学习转化只是更大目标中的一环。所有炼金术师都应努力运用自然的力量造福人类，而这需要研究各门科学。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "医学、化学、生物学、地质学、天文学、占星术、风水学、数学、物理学，甚至哲学，都是合格炼金术师必须学习的领域。";
 		next;
 		set bioeth,2;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一旦走进炼金术这片广阔而精彩的天地，就没有回头路了。尽力学习你能学到的一切，也别忘记自己对人类肩负的责任。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist) {
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你也是研究炼金术的吧？我已经很久没和这么年轻的同行交谈了……";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "作为前辈，我希望你专心钻研。通过解开科学的谜题来启迪自己，满足你的好奇心。";
 		next;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但请记住我的话……有些科学秘密是人类永远不该揭开的。不要因为傲慢而追寻禁忌的真相。";
 		next;
 		set bioeth,1;
-		mes "[凯拉苏斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "祝你学业顺利。希望你永远不要以寻找答案为借口，屈从于贪婪和执念。";
 		close;
 	}
-	mes "[凯拉苏斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，谁来决定对错？哪些知识应该被了解，又有哪些秘密本就不该让人类知晓？";
 	next;
-	mes "[凯拉苏斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "许多人认为，只有神才有权掌管生死。但炼金术确实给了胆大妄为者一种途径……";
 	close;
 }
 
-lhz_in01,225,122,5	script	Skrajjad#qsk_al	754,{
+lhz_in01,225,122,5	script	苏格拉撒德#qsk_al::Skrajjad#qsk_al	754,{
 	if (BaseJob == Job_Alchemist && bioeth > 4) {
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "关于人工生命体，我能教你的已经全都教了。希望这些知识能帮助你继续探索、理解我们的世界。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你还没去过，请拜访精通生命体召唤技能的凯希比恩。他为人和善，总是愿意尽力帮助年轻的科学家。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 4) {
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你就是那个有勇气请凯拉苏斯传授炼金术的人。我必须说，我很欣赏你的态度。";
 		if (Sex == SEX_MALE)
 			mes "小伙子，别担心……";
 		else
 			mes "小姑娘，别担心……";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "凯拉苏斯拒绝传授他的技巧，我能理解你的心情。但这不代表你永远学不会创造人工生命体。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信，只要向所有人工生命体专家学习，你就能学到想学的东西。等凯拉苏斯看见你的认真劲，也许会改变主意。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "先让我讲解自己的专长——^FF0000安息^000000技能。其实，没有凯拉苏斯的技巧，它还派不上用场，但作为起点已经足够了。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "安息的英文名是 Vaporize，是炼金术师专门用于人工生命体的技能，最高等级为 1。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这项技能能将人工生命体化为蒸气，使其进入化学性质不活跃的状态。仔细想来，这和冬眠很相似。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果要唤回安息后的人工生命体，就需要掌握^FF0000生命体召唤^000000技能。你可以向凯希比恩学习。不过请记住……";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人工生命体也是活生生的生灵，不要随意将它们安息、召回。那样的行为是不人道的。";
 		next;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "“尊重一切生命”，这是人工生命体专家的信条。现在去找^FF0000凯希比恩^000000，让他为你讲解生命体召唤技能。";
 		next;
 		set bioeth,5;
-		mes "[斯克拉贾德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "祝你学习顺利，希望你能找到一直追寻的答案。";
 		close;
 	}
-	mes "[斯克拉贾德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "炼金术真是奇妙……它融合了各门科学和许多其他领域的知识。光是样样略懂可不够……远远不够……";
 	next;
-	mes "[斯克拉贾德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "从某种意义上说，必须精通各门学问，才能精通炼金术。不过，对于始终追问世界如何运转、为何如此的人来说，这样的探索回报无穷。";
 	close;
 }
 
-lhz_in01,204,138,5	script	Keshibien#qsk_al	750,{
+lhz_in01,204,138,5	script	凯西贝安#qsk_al::Keshibien#qsk_al	750,{
 	if (BaseJob == Job_Alchemist && bioeth > 5) {
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你能好好运用我教你的知识。能为你的炼金术学习出一份力，我很高兴。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，唯一有资格为你讲解复活生命体技能的人是布朗彻。他……很有个性，但也是位出色的老师。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……他会在哪里呢？我知道他喜欢喝酒，也许你能在里希塔乐镇供应酒水的地方找到他。";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 5) {
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你一定就是斯克拉贾德提到的人。你是来向我学习生命体召唤技能的吧？";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，很高兴认识另一位同行。我叫凯希比恩，虽然精通这项技能，但总体而言，也只是个普通的炼金术师。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，学习生命体召唤，需要先了解安息技能。它的最高等级为 1，能生命体召唤。目前为止很简单，对吧？";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有已经安息的人工生命体，消耗 1 个生命的种子就能把它召回。若还没有人工生命体，则消耗 1 个艾普理欧创造。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "创建消耗的^FF0000艾普理欧^000000，英文名是 Embryo。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我要讲的技术知识就是这些。请时刻记得善待你的人工生命体。嗯，等你真正召唤出来以后。";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过在那之前，你还需要学习只有凯拉苏斯才能传授的技巧。现在先去找^FF0000布朗彻^000000学习，好吗？";
 		next;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "布朗彻专门研究复活生命体技能。你应该能在镇上的某处找到他，但我不确定具体位置……";
 		next;
 		set bioeth,6;
-		mes "[凯希比恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，很高兴认识你。希望你不久就能学会完整运用人工生命体的方法。不过，你还得先说服凯拉苏斯……";
 		close;
 	}
-	mes "[凯希比恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好啊～你是从卢恩·米德加尔特来的吧？很高兴认识你。";
 	next;
-	mes "[凯希比恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "听说那边的炼金术师都很有本领。不知道我是否有机会和他们中的某位合作……";
 	close;
 }
 
-lhz_in02,278,273,3	script	Broncher#qsk_al	709,{
+lhz_in02,278,273,3	script	布陵澈#qsk_al::Broncher#qsk_al	709,{
 	if (BaseJob == Job_Alchemist && bioeth > 6) {
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "又是你？我不是已经讲过复活生命体了吗？拜托，我没什么别的能教你了。让我在这里好好享受吧……";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果还没去，就去缠着凯拉苏斯，让他教你人工生命体的基础技巧。快走吧，你都快把我的酒给烦醒了！去去去！";
 		close;
 	}
 	if (BaseJob == Job_Alchemist && bioeth == 6) {
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^333333*嗝！*^000000";
 		mes "哎呀……这东西真棒！对，对，就是这个味儿。";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天哪！你、你就是斯克拉贾德说会来找我的炼金术师！什么——？你已经去过凯希比恩那里了？糟糕！我还以为你至少……还要一小时才到！";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "算了，不等酒醒了。我直接讲解^FF0000复活生命体^000000吧。这本来就是你最后要学的几项人工生命体技能之一。";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错，你真的可以让人工生命体起死回生。这项技能的英文名是 Homunculus Resurrection，最高等级为 5。";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要让人工生命体起死回生，只需按下标着“复活生命体”的按钮。很简单，对吧？";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，课程结束。关于使用复活生命体，你该知道的都知道了。不过，你仍然需要凯拉苏斯教你基础知识。";
 		set bioeth,7;
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有那些基础技巧，从我们这里学到的一切都派不上用场。所以……祝你好运，想办法说服凯拉苏斯吧。";
 		next;
-		mes "[布朗彻]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在走吧，让我独自享受这些酒，好吗？";
 		close;
 	}
-	mes "[布朗彻]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^333333*嗝～*^000000";
 	mes "哦对，就是这个！我称它为……我的“反清醒”配方！想不出比这更棒的发明了……";
 	close;
 }
 
-lhz_in03,106,34,3	script	Koring#qsk_al	706,{
+lhz_in03,106,34,3	script	寇凌#qsk_al::Koring#qsk_al	706,{
 	if (BaseJob == Job_Alchemist && bioeth == 8 || bioeth == 9) {
-		mes "[科林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我爸爸是最最棒的炼金术师！他超级聪明，我从没听说他犯过错！";
 		next;
-		mes "[科林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "爸爸最近总是在思考，我不知道为什么。他一担心什么事，就会变得特别严肃。";
 		next;
-		mes "[科林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他总是努力让我开心，遇到问题就帮我。就像我生了重病的那一次……";
 		next;
-		mes "[科林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "爸爸尽力制药帮我，还四处寻找能治好我的医生。那段时间我真的很害怕，但爸爸从没放弃。";
 		next;
 		if (bioeth == 8) set bioeth,9;
-		mes "[科林]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他现在可能有点暴躁，但我爸爸还是最棒的！希望他早点开心起来。";
 		close;
 	}
-	mes "[科林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "爸爸怎么会这么聪明？真希望我也能像他一样学得那么快，长大后也成为炼金术师！";
 	close;
 }
 
-lhz_in03,109,31,5	script	Beninne#qsk_al	90,{
+lhz_in03,109,31,5	script	贝妮内#qsk_al::Beninne#qsk_al	90,{
 	if (BaseJob == Job_Alchemist && bioeth == 8 || bioeth == 9) {
-		mes "[贝宁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你见过我丈夫凯拉苏斯吗？你可以说他固执，也可以说他坚定，就看你怎么看了。一旦下定决心，他就不会动摇！";
 		next;
-		mes "[贝宁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他是个好丈夫、好父亲，但一旦认定自己是对的，我觉得就算全世界出面，也很难改变他的想法。";
 		next;
-		mes "[贝宁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，如果你能证明他错了，他会竭尽所能地弥补。从我第一次认识凯拉苏斯起，他就是这样。";
 		next;
-		mes "[贝宁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有人这样保护自己，感觉真好。凯拉苏斯热爱工作，但他更爱家人。很了不起，对吧？";
 		close;
 	}
-	mes "[贝宁]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "大多数人觉得做科学家的妻子很辛苦。我一定很幸运：丈夫虽然是炼金术师，却也是个如此顾家的人。";
 	close;
 }

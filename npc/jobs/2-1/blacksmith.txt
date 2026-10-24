@@ -43,7 +43,7 @@
 //= 2.9 Updated with some extra conditions. [Euphy]
 //==============================================================
 
-ein_in01,18,28,4	script	Guildsman#BLS	731,{
+ein_in01,18,28,4	script	工会会员#BLS::Guildsman#BLS	731,{
 	if (Upper == 1) {
 		mes "[奥尔蒂雷根]";
 		mes "嘿嘿。我没时间闲聊，忙得很。许多商人都在努力成为铁匠。";
@@ -277,7 +277,7 @@ ein_in01,18,28,4	script	Guildsman#BLS	731,{
 	}
 }
 
-ein_in01,201,27,3	script	Guildsman#alberta	63,{
+ein_in01,201,27,3	script	工会相关人员#alberta::Guildsman#alberta	63,{
 	mes "你好！";
 	mes "我是 ^8E6B23盖休庞兹特^000000，职业是铁匠。";
 	mes "很高兴见到你！";
@@ -783,23 +783,23 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 	}
 }
 
-geffen,46,164,1	script	Baisulist#BLS	69,{
+geffen,46,164,1	script	巴伊斯里特#BLS::Baisulist#BLS	69,{
 	if (BSMITH_Q == 9 && countitem(1610) > 0) {
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好！";
 		mes "你是来送我的言灵魔杖的吗？";
 		next;
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这确实是我订购的东西吧？如果用过了，我可不要。";
 		next;
 		if (select("糟糕，这是我用过的物品……:当然！这是全新的！") == 1) {
-			mes "[拜苏利斯特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧……";
 			mes "我可以再等一会儿。";
 			mes "请尽快把我的货送来～";
 			close;
 		}
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你确定吗？";
 		if (countitem(1610) < 1) {
 			mes "请带上订购的货物后再来交付。";
@@ -813,13 +813,13 @@ geffen,46,164,1	script	Baisulist#BLS	69,{
 		getitem 1073,1; //Merchant_Voucher_1
 		set BSMITH_Q,14;
 		next;
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢你远道而来。见到盖休庞兹特时，帮我揍他一顿，他这订单拖得太久了……";
 		next;
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请等一下，我给你一张收据～";
 		next;
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给你。";
 		mes "太感谢你了！";
 		mes "哦，祝你好运～";
@@ -827,7 +827,7 @@ geffen,46,164,1	script	Baisulist#BLS	69,{
 		close;
 	}
 	else if (BSMITH_Q == 14) {
-		mes "[拜苏利斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢你送来的货物～";
 		close;
 	}
@@ -845,7 +845,7 @@ geffen,46,164,1	script	Baisulist#BLS	69,{
 	}
 }
 
-morocc,27,112,4	script	维克贝因#BLS::Wickebine#BLS	725,{
+morocc,27,112,4	script	修咖巴殷#BLS::Wickebine#BLS	725,{
 	if (BSMITH_Q == 10 && countitem(1219) > 0) {
 		cutin "Job_Black_hucke01",2;
 		mes "在这里！";
@@ -915,10 +915,10 @@ morocc,27,112,4	script	维克贝因#BLS::Wickebine#BLS	725,{
 	}
 	else {
 		cutin "Job_Black_hucke03",2;
-		mes "[维克贝因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
-		mes "[维克贝因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		next;
@@ -938,7 +938,7 @@ morocc,27,112,4	script	维克贝因#BLS::Wickebine#BLS	725,{
 	}
 }
 
-lighthalzen,209,80,4	script	克隆加斯特#BLS::Krongast#BLS	734,{
+lighthalzen,209,80,4	script	哥伦卡史特#BLS::Krongast#BLS	734,{
 	if (BSMITH_Q == 11 && countitem(1119) > 0) {
 		mes "哦哦哦~";
 		mes "到了吗？";
@@ -987,10 +987,10 @@ lighthalzen,209,80,4	script	克隆加斯特#BLS::Krongast#BLS	734,{
 		close;
 	}
 	else {
-		mes "[克隆加斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
-		mes "[克隆加斯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		next;
@@ -1003,7 +1003,7 @@ lighthalzen,209,80,4	script	克隆加斯特#BLS::Krongast#BLS	734,{
 	}
 }
 
-payon,214,79,4	script	Talpiz#BLS	59,{
+payon,214,79,4	script	铁痞子#BLS::Talpiz#BLS	59,{
 	if (BSMITH_Q == 12 && countitem(1713) > 0) {
 		mes "哦~";
 		mes "终于到了吗？";
@@ -1062,7 +1062,7 @@ payon,214,79,4	script	Talpiz#BLS	59,{
 	}
 }
 
-hugel,168,183,1	script	Bismarc#BLS	118,{
+hugel,168,183,1	script	逼尔马尔柯#BLS::Bismarc#BLS	118,{
 	if (BSMITH_Q == 13 && countitem(1122) > 0) {
 		mes "天啊……";
 		mes "你派来了";
@@ -1147,7 +1147,7 @@ hugel,168,183,1	script	Bismarc#BLS	118,{
 	}
 }
 
-ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
+ein_in01,24,41,5	script	铁匠工会员#moc::Blacksmith Guildsman#moc	726,{
 	if (BSMITH_Q == 16) {
 		emotion ET_SCRATCH;
 		mes "哦……你就是想成为铁匠的人吗？";
@@ -1299,7 +1299,7 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 	}
 }
 
-geffen_in,109,170,3	script	Blacksmith Guildsman#gef	726,{
+geffen_in,109,170,3	script	铁匠公会 相关人员#gef::Blacksmith Guildsman#gef	726,{
 	mes "你好，你是来参观铁匠公会的吗？";
 	next;
 	mes "感谢你远道来访。不过很遗憾，铁匠公会已经迁往^3131FF施瓦尔兹瓦德共和国的‘艾音布罗克’^000000。";

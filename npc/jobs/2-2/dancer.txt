@@ -23,65 +23,65 @@
 //= 3.7a Fixed a label execution. [Euphy]
 //============================================================
 
-comodo,180,153,4	script	Sonotora#1	90,{
-	mes "[雅典娜·索诺托拉]";
+comodo,180,153,4	script	斯诺特拉#1::Sonotora#1	90,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "听说克魔岛那所著名的舞蹈学校很快就要开学了。";
 	next;
-	mes "[雅典娜·索诺托拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊……";
 	mes "成为聚光灯下的首席舞者！";
 	next;
-	mes "[雅典娜·索诺托拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我也想报名，但要求太严格了，不知道是否该试试看……";
 	close;
 }
 
-comodo,193,151,4	script	Bor Robin#1	86,{
-	mes "[博尔·罗宾]";
+comodo,193,151,4	script	柏勒 罗本#1::Bor Robin#1	86,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊…….";
 		mes "聚光灯下的首席舞者！";
 	mes "我能亲眼看着她们成为舞者……！";
 	next;
-	mes "[博尔·罗宾]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "身为男人真是太好了！";
 	mes "这个时代万岁！克魔岛剧院万岁！";
 	next;
-	mes "[博尔·罗宾]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 	mes "你也想去吗？";
 	mes "这是观看舞者转职测试的好机会。";
 	next;
 	if (select("前往转职考场:取消") == 1) {
-		mes "[博尔·罗宾]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "耶～～";
 		mes "我们走！";
 		close2;
 		warp "job_duncer",70,49;
 		end;
 	}
-	mes "[博尔·罗宾]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃……";
 	mes "既然你不想陪我一起去，那我也没办法。";
 	close;
 }
 
-job_duncer,43,93,4	script	Aile#da	724,{
+job_duncer,43,93,4	script	耶伊乐#da::Aile#da	724,{
 	if (Upper == 1) {
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一二三四，";
 		mes "二二三四，";
 		mes "三四，三四，";
 		mes "一二三四。";
 		mes "嗯？";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，你这样盯着我看，打断了我的练习。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ".......";
 		mes "……嘿，我以前见过你吗？";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		mes "奇怪，我想不起在哪里见过你。";
 		close2;
@@ -91,7 +91,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	if (BaseJob != Job_Archer) {
 		if (BaseJob == Job_Bard) {
 			cutin "job_dancer_eir01",2;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎~！";
 			mes "如果你有新歌，请告诉我。我们的演出总是需要新音乐来搭配。";
 			close2;
@@ -100,7 +100,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		}
 		else if (BaseJob == Job_Dancer) {
 			cutin "",2;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎~！";
 			mes "最近过得怎么样？";
 			mes "很多人喜欢你的演出吗？";
@@ -109,11 +109,11 @@ job_duncer,43,93,4	script	Aile#da	724,{
 			end;
 		}
 		cutin "job_dancer_eir03",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢——嗯？";
 		mes "嘿，只有获准人员才能来这里。不是谁都能进入舞蹈学校。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想观看的话，为什么不去城里的舞台呢？";
 		close2;
 		cutin "",255;
@@ -121,29 +121,29 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	if (DANC_Q == 0 && Sex == SEX_FEMALE && BaseJob == Job_Archer) {
 		cutin "job_dancer_eir01",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎~！";
 		mes "这里就是‘克魔岛舞蹈学校’，我们教授来自不同国家的舞蹈，为世界各地的旅行者提供娱乐。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们也为有志成为舞者的人提供机会，让他们在卢恩·米德加尔兹王国成名！在聚光灯下跳舞听起来很棒吧？";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我得先说明，我们学校招生很严格。看起来没有舞者天赋的学生，我们不会接受。";
 		next;
 		cutin "job_dancer_eir02",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你觉得怎么样？";
 		mes "想报名吗？只需在申请表上填写几项内容，再来上几次课试试就行。";
 		next;
 		cutin "job_dancer_eir01",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么你想做什么呢~？";
 		next;
 		if (select("填写申请表。:暂时不了。") == 1) {
 			if (JobLevel > 39) {
 				cutin "job_dancer_eir02",2;
-				mes "[艾尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "选得好！！";
 				mes "就在那边填写申请表吧。";
 				next;
@@ -155,7 +155,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 				mes "^3355FF*沙沙翻页声*^000000";
 				next;
 				cutin "job_dancer_eir01",2;
-				mes "[艾尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你的名字是" + strcharinfo(0) + "？";
 				mes "哇！真好听的名字！等一下，我得拿给校长看，你过一会儿再回来，好吗？";
 				close2;
@@ -166,12 +166,12 @@ job_duncer,43,93,4	script	Aile#da	724,{
 			}
 			else {
 				cutin "job_dancer_eir01",2;
-				mes "[艾尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "看来你还不够资格入学。";
 				mes "你至少需要职业等级 40。";
 				next;
-				mes "[艾尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "希望你达到要求后再来申请。";
 				mes "";
 				mes "";
@@ -181,7 +181,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 			}
 		}
 		cutin "job_dancer_eir01",2;
-	mes "[艾尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哎呀~";
 	mes "再考虑一下吧。";
 	mes "改变主意的话，别忘了回来。";
@@ -191,11 +191,11 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	else if (Sex == SEX_MALE) {
 		cutin "job_dancer_eir03",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢——嗯？";
 		mes "嘿，这里只允许获准人员进入。想唱歌的话，去考虑成为诗人吧。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是所有弓箭手都能成为舞者。";
 		mes "至少不先改变性别是不行的~";
 		close2;
@@ -204,24 +204,24 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	else if (DANC_Q == 1) {
 		cutin "job_dancer_eir01",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好。";
 		mes "既然你已经报名，我来告诉你上课需要带些什么。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们有些物资短缺，不过反正你自己也会用到。把它们当作学费的一部分，不必太担心。";
 		next;
 		set .@item_nd,rand(1,10);
 		if (.@item_nd > 0 && .@item_nd < 3) {
 			set DANC_Q,2;
 			changequest 7000,7001;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先是^CD688910,000 Zeny^000000学费。然后需要^CD688920个粘稠液体^000000擦鞋。";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再带^CD68893个杰勒比结晶^000000和^CD68895瓶红色药水^000000做药膏。当然还需要一双^CD6889鞋子^000000。";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再说一次，需要：";
 			mes "^CD688910,000 Zeny^000000、";
 			mes "^CD688920个黏稠液体^000000、";
@@ -232,10 +232,10 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		else if (.@item_nd == 4) {
 			set DANC_Q,3;
 			changequest 7000,7002;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先是^CD688910,000 Zeny^000000学费。再带^CD68895个蚯蚓皮^000000擦地板，当然还要一双^CD6889战靴^000000。";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "再说一次，需要：";
 			mes "^CD688910,000 Zeny^000000、";
 			mes "^CD68895个蚯蚓皮^000000和";
@@ -244,13 +244,13 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		else {
 			set DANC_Q,4;
 			changequest 7000,7003;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先是^CD688910,000 Zeny^000000学费。再带^CD68892个贝壳^000000做服装，以及^CD68895瓶黄色药水^000000和^CD688920个杰勒比结晶^000000治疗脚伤。";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还要带^CD688910根长发^000000制作演出用假发，当然还要一双^CD6889凉鞋^000000。再说一次，需要……";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^CD688910,000 Zeny^000000、";
 			mes "^CD68892个贝壳^000000、";
 			mes "^CD68895瓶黄色药水^000000、";
@@ -259,7 +259,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 			mes "^CD6889凉鞋^000000。";
 		}
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请把所需物品带在身上供我检查；只收取 10,000 Zeny 学费，不会拿走这些物品。准备好后再来上课。";
 		close2;
 		cutin "",255;
@@ -288,7 +288,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		}
 		if( .@i == .@size && Zeny > 9999 ) {
 			cutin "job_dancer_eir02",2;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……！";
 			mes "你把东西都带来了！";
 			mes "那么好，让我收下你的学费。";
@@ -309,7 +309,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 				}
 			}
 			set Zeny, Zeny-10000;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "接下来去找负责面试的^CD6889比茹^000000。她有几件事要问你。";
 			set DANC_Q,5;
 			if(checkquest(7001) != -1) {
@@ -327,13 +327,13 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		}
 		else {
 			cutin "job_dancer_eir01",2;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "你还没把东西带齐吗？";
 			mes "我提醒你一下，下次把需要的带来。";
 			mes "";
 			next;
-			mes "[艾尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "需要带来……";
 			mes "^CD688910,000 Zeny^000000,";
 			if (DANC_Q == 2) {
@@ -360,11 +360,11 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	else if (DANC_Q == 5) {
 		cutin "job_dancer_eir01",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？";
 		mes "你找不到^CD6889比茹^000000？";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你得和她谈谈，因为她负责面试。别担心，她应该就在舞蹈学校的某处。";
 		close2;
 		cutin "",255;
@@ -372,7 +372,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	else if (DANC_Q > 5) {
 		cutin "job_dancer_eir01",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我期待着精彩的演出~";
 		mes "";
 		close2;
@@ -381,11 +381,11 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 	else {
 		cutin "job_dancer_eir03",2;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢——嗯？";
 		mes "嘿，这里只允许获准人员进入。";
 		next;
-		mes "[艾尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想观看的话请保持安静，不要打扰表演者。这里每个人都在努力练习，想成为优秀的舞者。";
 		close2;
 		cutin "",255;
@@ -393,77 +393,77 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 }
 
-job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
+job_duncer,95,93,4	script	保罗瓦朱#da::Bijou#da	101,{
 	if (SkillPoint) {
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还有技能点没用完，不能转职。";
 		mes "用完剩余技能点后再回来。";
 		close;
 	}
 	if (BaseJob != Job_Archer) {
 		if (BaseJob == Job_Bard) {
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎~";
 			mes "哦，诗人！有新歌要展示吗？我们的舞蹈总是需要音乐伴奏。";
 			close;
 		}
 		else if (BaseJob == Job_Dancer) {
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀……！";
 			mes "欢迎回来~";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "最近过得怎么样？";
 			mes "很多人一定喜欢看你跳舞。你享受聚光灯下的感觉吗？";
 			mes "";
 			close;
 		}
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀~";
 		mes "你似乎长途跋涉来看我的表演。";
 		next;
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我已经退休了。现在专心训练新舞者。去中央舞台就能看到我的学生们~";
 		close;
 	}
 	else if (DANC_Q < 5) {
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀~";
 		mes "你也想成为舞者，对吧？";
 		next;
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道你很兴奋，但第一步是填写申请表。去舞台左侧，艾尔会帮助你。";
 		close;
 	}
 	else if (DANC_Q > 4 && DANC_Q < 7) {
 		if (DANC_Q == 5) {
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀~";
 			mes "你也想成为舞者，对吧？";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天、天哪！";
 			mes "看看你肚子上的赘肉！";
 			mes "不过不算多，很快就能减掉。尤其是由我负责训练的话~";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过……";
 			mes "完美身材的标准和我年轻时相比确实变了。总之……";
 			mes "";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "让我们开始面试。";
 			mes "我只会问几个简单的问题，所以不用担心~";
 			mes "";
 			mes "";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好……";
 			mes "开始吧。";
 			next;
 		}
 		else {
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你回来了~";
 			mes "又学习了一些吗？";
 			mes "这次试着通过测试，好吗？";
@@ -471,12 +471,12 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 		}
 		switch(rand(1,3)) {
 		case 1:
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "1. 舞者的舞蹈 ^CD6889女神之吻^000000，会提高以下哪项？";
 			next;
 			if (select("智力（INT）:灵巧（DEX）:体力（VIT）:暴击攻击率") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "2. 以下哪项不能算作舞蹈？";
 			next;
 			switch(select("探戈:踢踏舞:嘻哈:臀部摇摆:雷击")) {
@@ -487,27 +487,27 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 				set .@da_score,.@da_score+10;
 				break;
 			}
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "3. 以下哪项最能描述舞者？";
 			next;
 			if (select("大喊的人。:喧闹的人。:跳舞的人。:唱歌的人。") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "4. 以下哪项不能与克魔岛联系？";
 			next;
 			if (select("海滨城市。:舞者转职。:总是像夜晚一样黑暗。:三个方向都有地牢。:大量盗贼。") == 5)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "5. 克魔岛周边的原野 02 和原野 04，地图名称中的海滩叫什么？";
 			next;
 			if (select("尔迈斯·瀑雷德:苏克拉特沙漠:克克魔海边:克魔岛 基乃依沼泽地") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "6. 谁是最美丽的舞者？";
 			next;
 			switch(select("" + strcharinfo(0) + ":比茹:艾尔:邦茹尔")) {
 			case 1:
-				mes "[比茹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				mes "那是……";
 				mes "^660000完全错误^000000。";
@@ -522,64 +522,64 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			default:
 				break;
 			}
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "7. 以下哪个职业能与舞者合作表演？";
 			next;
 			if (select("刺客:诗人:炼金术师:贤者") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "8. 以下哪项不是克魔岛的特产？";
 			next;
 			if (select("狂暴药水:贝壳:蟹背壳:闪亮的石头") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "9. 谁是克魔岛赌场经理？";
 			next;
 			if (select("尤:穆:勋:鲁尔") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "10. 谁接受舞者转职申请？";
 			next;
 			if (select("比茹:艾尔:雅典娜:索诺托拉") == 2)
 				set .@da_score,.@da_score+10;
 			break;
 		case 2:
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "1. 合奏技能^CD6889经验值倍增^000000有什么效果？";
 			next;
 			if (select("怪物立即死亡。:伤害翻倍。:增加经验。:提高攻击速度。") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "2. 跳完舞后，以下哪项行为被视为不礼貌？";
 			next;
 			if (select("感谢舞伴。:赞美舞伴的舞蹈。:邀请跳另一种舞。:批评舞伴。") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "3. 一起跳舞时，如果舞伴出了错，以下哪种回应不恰当？";
 			next;
 			if (select("相视微笑并继续跳舞。:指出错误。:若舞者没察觉就忽略。:对他微笑。") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "4. 在哪个城镇可以转职为舞者？";
 			next;
 			if (select("科科莫:桑达曼:科穆多:克魔岛") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "5. 有多少个地牢直接连接克魔岛？";
 			next;
 			if (select("1:2:3:4") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "6. 以下哪项不是可爱宠物怪物？";
 			next;
 			if (select("伊西斯:艾吉欧蜈蚣:土人:小恶魔") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "7. 谁是最优雅的舞者？";
 			next;
 			switch(select("" + strcharinfo(0) + ":比茹:伊西斯:梅西·博库")) {
 			case 1:
-				mes "[比茹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				mes "那是……";
 				mes "^660000完全错误^000000。";
@@ -594,7 +594,7 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			default:
 				break;
 			}
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "8. 克魔岛卡普拉的准确名称是什么？";
 			next;
 			if (select("卡普拉总部:卡普拉西部总部:卡普拉服务处:卡普拉员工") == 4)
@@ -604,14 +604,14 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			next;
 			if (select("博尔朱瓦:布尔乔亚:比茹:贝鲁贝鲁") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "10. ^CD6889摇篮曲^000000有什么效果？";
 			next;
 			if (select("在区域内施加黑暗效果。:在区域内施加睡眠效果。:使区域进入夜晚效果。:冻结区域。") == 2)
 				set .@da_score,.@da_score+10;
 			break;
 		case 3:
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "1. ^CD6889练习舞蹈^000000技能有什么效果？";
 			next;
 			switch(select("增加 INT:提高舞蹈技能效果:增加鞭类武器伤害。:使施法者周围一定区域陷入昏迷。")) {
@@ -622,27 +622,27 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 				set .@da_score,.@da_score+10;
 				break;
 			}
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "2. 哪种舞蹈使用特制的鞋子，让舞者通过滚动脚步、敲击地面发出声音，创造节奏？";
 			next;
 			if (select("踢踏舞:专注:探戈:二连矢") == 1)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "3. 以下哪项不是舞者的特征？";
 			next;
 			if (select("使用舞蹈技能。:进行远程攻击。:使用鞭子。:使用双手剑。") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "4. 哪个城镇有大多数舞者？";
 			next;
 			if (select("艾尔帕兰:朱诺:梦罗克:克魔岛") == 4)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "5. 以下哪位跳舞最优美？";
 			next;
 			switch(select("" + strcharinfo(0) + ":比茹:伊西斯:固顿·塔克")) {
 			case 1:
-				mes "[比茹]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				mes "那是……";
 				mes "^660000完全错误^000000。";
@@ -657,37 +657,37 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			default:
 				break;
 			}
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "6. 舞者比其他职业更擅长什么？";
 			next;
 			if (select("健康:表演:舞蹈:魔法") == 3)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "7. 谁是克魔岛赌场经理？";
 			next;
 			if (select("流:穆:露尔:勋") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "8. 以下哪件物品不能被舞者装备？";
 			next;
 			if (select("猫耳发带:双手剑:凉鞋:耳环") == 2)
 				set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "9. 你觉得这份测验令人沮丧又烦人吗？";
 			next;
 			select("是:否");
 			set .@da_score,.@da_score+10;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "10. 以下哪位不是爵士乐手？";
 			next;
 			if (select("阿特·布莱基:比莉·霍利戴:路易斯·阿姆斯特朗:巴德·鲍威尔:长老树精") == 5)
 				set .@da_score,.@da_score+10;
 		}
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "干得好~";
 		mes "看来你回答了所有问题~";
 		next;
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "让我看看……";
 		mes "你的分数是 " + .@da_score + " 分……";
 		if (.@da_score == 100) {
@@ -695,10 +695,10 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			mes "做得非常好！";
 			mes "满分！";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很少有具备这种知识的人来申请舞者职业。抱歉我以貌取人~";
 			next;
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "呼~";
 			mes "现在只剩舞蹈测试。我们准备测试时，你先休息一下吧？呵呵呵~";
 			close;
@@ -712,42 +712,42 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			set DANC_Q,6;
 			mes "你……你失败了！";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太难了吗？";
 			mes "我年轻时，人人至少都知道足以通过测试的知识。再学习一些后回来，好吗？";
 			close;
 		}
 	}
 	else if (DANC_Q == 7) {
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好……";
 		mes "准备好参加舞蹈测试了吗？";
 		mes "如果你愿意，我可以说明规则。";
 		next;
 		if (select("听取说明。:前往考试区域。") == 1) {
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "首先，每人有 ^CD6889约 1 分半钟^000000 测试时间，并且 ^CD6889一次一人^000000 跳舞。没跳过舞也不用担心~";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "进入测试区后，先把镜头恢复为默认朝向。桌面端可双击鼠标右键；手机端打开“镜头”，点击“重置镜头”。";
 			next;
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "不调整镜头的话，可能会混淆 ^CD6889上、下、左、右^000000 指令。";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在 ^CD6889等候室^000000 等待轮到你。前一人失败或轮到你时，测试开始。";
 			next;
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "人多时等候室可能容纳不下所有人。那就排好队~";
 			next;
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "测试开始后会广播音乐和移动方向。跟随指示移动双腿。";
 			next;
-	mes "[比茹]";
+	mes "[" + strnpcinfo(1) + "]";
 			mes "记住，^CD6889动作时机不正确就会被淘汰^000000。小心，测试非常严格~";
 			close;
 		}
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么~";
 		mes "祝你好运……！！";
 		changequest 7004,7005;
@@ -757,7 +757,7 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 		end;
 	}
 	else if (DANC_Q == 8) {
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀……";
 		mes "你上次失败了吗？";
 		mes "别担心，试着感受节奏~";
@@ -767,19 +767,19 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 	}
 	else if (DANC_Q == 9) {
 		if (SkillPoint) {
-			mes "[比茹]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果还有技能点没用完，你就无法转职。用完剩余技能点后再回来。";
 			close;
 		}
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀……";
 		mes "我看了你刚才的舞蹈。";
 		mes "你很棒！";
 		next;
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的表现证明你完全有资格成为舞者。那么，我来为你转职。";
 		next;
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在女神祝福下，你将重生为舞者。从今以后，没人会在没有微笑的情况下离开你身边~";
 		next;
 		if (BaseJob != Job_Archer || Upper == 1 || Sex != SEX_FEMALE || JobLevel < 40 || SkillPoint) {
@@ -791,7 +791,7 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 			mes "请先为转职礼物预留足够的负重和物品栏空间。";
 			close;
 		}
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		callfunc "Job_Change",Job_Dancer;
 		completequest 7006;
 		callfunc "F_ClearJobVar";
@@ -800,7 +800,7 @@ job_duncer,95,93,4	script	比茹#da::Bijou#da	101,{
 		mes "成为舞者的你看起来很棒~";
 		mes "恭喜！";
 		next;
-		mes "[比茹]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是一份小礼物。";
 		mes "请收下。";
 		mes "愿你的表演永远为观众带来欢乐~";
@@ -1308,7 +1308,7 @@ OnDisable:
 
 // Backup Dancers
 //============================================================ 
-job_duncer,63,110,4	script	Backdancer#1	724,{
+job_duncer,63,110,4	script	舞群#1::Backdancer#1	724,{
 	end;
 
 OnSmile:
@@ -1326,7 +1326,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,66,113,4	script	Backdancer#2	724,{
+job_duncer,66,113,4	script	舞群#2::Backdancer#2	724,{
 	end;
 
 OnSmile:
@@ -1338,7 +1338,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,72,113,4	script	Backdancer#3	724,{
+job_duncer,72,113,4	script	舞群#3::Backdancer#3	724,{
 	end;
 
 OnSmile:
@@ -1350,7 +1350,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,75,110,4	script	Backdancer#4	724,{
+job_duncer,75,110,4	script	舞群#4::Backdancer#4	724,{
 	end;
 
 OnSmile:

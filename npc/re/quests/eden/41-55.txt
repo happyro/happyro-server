@@ -16,7 +16,7 @@
 //= 1.4 Added use of F_HasEdenGroupMark function. [Ragno]
 //============================================================
 
-moc_para01,40,38,3	script	Mission [41 - 55]	857,{
+moc_para01,40,38,3	script	委托 [41 - 55]::Mission [41 - 55]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "你不是伊甸园成员，没有资格使用任务公告板。";
 		close;
@@ -31,7 +31,7 @@ moc_para01,40,38,3	script	Mission [41 - 55]	857,{
 			mes "41~55 级冒险者任务公告板。";
 			close;
 		}
-		mes "[任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "任务公告板。";
 		next;
 		if(select("查看任务:取消。") == 2) {
@@ -61,7 +61,7 @@ moc_para01,40,38,3	script	Mission [41 - 55]	857,{
 	setarray .@Exp[0],9600,7200,15750,7875,11100,8550,17100,9000,12300,9900,20250,10350,13800,11025,22500,11250;
 	for(set .@i,0; .@i<16; set .@i,.@i+1)
 		if (checkquest(12072+.@i,HUNTING) == 2) {
-			mes "[任务公告板]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你完成了任务。";
 			mes "这是你的奖励。";
 			erasequest 12088;
@@ -82,7 +82,7 @@ L_Quest:
 	mes getarg(1);
 	next;
 	if(select("接受任务:取消。") == 1) {
-		mes "[任务公告板]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已接受任务。更多详情请按 Alt+U，在任务窗口查看信息。";
 		setquest 12088;
 		setquest getarg(0);

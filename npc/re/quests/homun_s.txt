@@ -19,12 +19,12 @@
 
 // Main NPCs :: Homun_S
 //============================================================
-job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
+job3_gen01,12,44,3	script	费尔莱#job3_gen01::Viorel#job3_gen01	542,{
 	if (countitem(6415)) {
 		if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
 			disable_items;
 			if (checkquest(4159) == -1 && checkquest(4160) == -1) {
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你为什么在这里？";
 				mes "你不是该在^005DFF杰伊娜^000000的家吗？";
 				close2;
@@ -45,23 +45,23 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 			enable_items;
 		} else if (Class == Job_Novice_High || Class == Job_Merchant_High || Class == Job_Alchemist || Class == Job_Creator) {
 			emotion ET_QUESTION;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不知道发生了什么，但按我的记忆，你应该有资格研究^FF4800生命体^000000。";
 			next;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不管什么原因，你都无法继续研究^FF4800生命体^000000。";
 			mes "成为^005DFF基因研究者^000000并获得^0000FF生命伦理^000000后再回来。";
 			close;
 		} else {
 			delitem 6415, countitem(6415); //Strange_Embryo
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等等，你的胚胎似乎有点奇怪。";
 			next;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "除非你从事^FF4800生命体^000000研究……";
 			mes "它对你完全没有帮助。";
 			next;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我负责管理^0000FF神奇的艾普理欧^000000，我会替你处理。";
 			mes "别介意，我在这里没有做坏事。";
 			close;
@@ -69,46 +69,46 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 	}
 	if (((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) && (checkquest(4154) > -1)) {
 		if ((checkquest(4155) > -1) || (checkquest(4160) > -1)) {
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "天气真好。";
 			next;
 			callsub L_CheckHomunculus;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "准备去我家吗？";
 			next;
 			switch(select("去^005DFF维奥雷尔^000000的家。:不去。")) {
 			case 1:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "明智的选择。";
 				mes "现在，闭上眼睛一会儿……";
 				close2;
 				warp "que_house_s",19,42;
 				end;
 			case 2:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备好后回来。";
 				mes "你必须带着^FF4800生命体^000000。";
 				close;
 			}
 		} else {
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你为什么在这里？";
 			mes "你不是该在^005DFF杰伊娜^000000的家吗？";
 			next;
 			callsub L_CheckHomunculus;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在准备去^005DFF杰伊娜^000000那里了吗？";
 			next;
 			switch(select("去^005DFF杰伊娜^000000的房间。:不去。")) {
 			case 1:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "明智的选择。";
 				mes "现在，闭上眼睛一会儿……";
 				close2;
 				warp "que_house_s",63,41;
 				end;
 			case 2:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备好后回来。";
 				mes "你必须带着^FF4800生命体^000000。";
 				close;
@@ -116,34 +116,34 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 		}
 	}
 	if (BaseJob == Job_Merchant) {
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我以前也是商人，和你一样。";
 		mes "我正在研究^FF4800生命体^000000。";
 		next;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你对^FF4800生命体^000000感兴趣，就成为^005DFF炼金术师^000000或^005DFF创造者^000000。";
 		close;
  	} else if (BaseJob == Job_Alchemist && Class < Job_Genetic) {
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在生命体上投入了大量时间和精力。";
 		mes "如果觉得走投无路，下次带着^FF4800生命体^000000回来。";
 		next;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦。当然，你需要具备合适的潜力。成为^FF4800基因研究者^000000后大概就能证明自己。";
 		close;
 	} else if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) { // Level 99+ evolved Homunculus
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，太好了~！";
 			mes "你拥有一个^FF4800生命体^000000。";
 			mes "投入热情研究，我们可以让它们变得更好。";
 			next;
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我必须私下和你谈谈。愿意和我一起去我家吗？";
 			next;
 			switch(select("去^005DFF维奥雷尔^000000的家。:留在这里。")) {
 			case 1:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "明智的选择。";
 				mes "现在，闭上眼睛一会儿……";
 				close2;
@@ -152,12 +152,12 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 				warp "que_house_s",19,42;
 				end;
 			case 2:
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果觉得走投无路，下次带着^FF4800生命体^000000回来。";
 				close;
 			}
 		} else if (gethominfo(6) >= 99 && (gethominfo(1) >= 6048 && gethominfo(1) <= 6052)) { // Level 99+ mutated Homunculus-S
-			mes "[维奥雷尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "又见面了。";
 			mes "也许你会对这个感兴趣：";
 			mes "新创造的^FF4800生命体^000000，诞生于新的^006400生命体变异系统^000000？";
@@ -165,27 +165,27 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 			switch(select("不。再见。:拜托，我很忙。:这正是我想听的。:你为什么总站在那里？")) {
 			case 1:
 				emotion ET_SMILE;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好的。";
 				mes "很高兴见到你。";
 				mes "那再见～！";
 				close;
 			case 2:
 				emotion ET_HUK;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "!!!!";
 				mes "我……明白了。";
 				mes "我还以为你是来看我的。";
 				close;
 			case 3:
 				emotion ET_AHA;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "果然如此。";
 				mes "让我们看看我亲爱的朋友 杰伊娜 留下的笔记。";
 				next;
 				playbgm "30.mp3"; // One Step Closer
 				callfunc "F_HomMutateInfo","[便笺记录]";
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯。";
 				mes "好了，事情就是这样。";
 				mes "更多内容由你自己去发现。";
@@ -194,55 +194,55 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 				end;
 			case 4:
 				emotion ET_SWEAT;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不，我不是每天都站在这里。";
 				mes "但你为什么每天站在那里？";
 				next;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么？";
 				mes "不，在我看来，每次我来这里时你似乎都在。";
 				close;
 			}
 		} else {
 			if (gethominfo(1) >= 6009) { // Evolved Homunculus
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，你似乎和你的^FF4800生命体^000000有特殊羁绊。";
 				next;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "等^FF4800生命体^000000达到^0000FF99 级^000000后再来找我。";
 				close;
 			} else {
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你还没有进化后的^FF4800生命体^000000……";
 				mes "关于进化，你应该知道：";
 				next;
-				mes "[维奥雷尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "亲密度达到^006400亲密^000000后使用^0000FF贤者之石^000000，^FF4800生命体^000000就会进行^006400进化^000000。";
 				close;
 			}
 		}
 	}
-	mes "[维奥雷尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^FF4800生命体^000000研究需要大量时间和资金。";
 	mes "不过，我认为热情才是最重要的因素。";
 	next;
 	switch(select("结束对话。:你在说什么？:你为什么总站在那里？")) {
 	case 1:
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再见～！";
 		close;
 	case 2:
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看，^006400炼金术师^000000天生好奇。";
 		mes "尤其是像我这样的人，甚至会思考创造生命本身。";
 		next;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须研究^FF4800生命体^000000才能理解。";
 		mes "那么，恕我失陪～！";
 		close;
 	case 3:
 		emotion ET_SWEAT;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么，在自己的实验室看到炼金术师很奇怪吗？";
 		mes "哪里奇怪？";
 		close;
@@ -250,18 +250,18 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
 	end;
 L_CheckHomunculus:
 	if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) { // Not level 99+ evolved Homunculus
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "你以前拥有的^FF4800生命体^000000在哪里？";
 		mes "也许是我认错了……";
 		next;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ".......";
 		mes " ";
 		mes "（似乎在思考什么。）";
 		next;
 		emotion ET_SMILE;
-		mes "[维奥雷尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈～";
 		mes "我想我认错人了。";
 		mes "失陪。";

@@ -28,20 +28,20 @@
 //= 1.4c Another clean-up. [Capuche]
 //============================================================ 
 
-comodo,219,158,6	script	卡秋娅	4_F_02,{
+comodo,219,158,6	script	卡翠亚::卡秋娅	4_F_02,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了。请把部分物品存入卡普拉仓库后再回来。^000000";
 		close;
 	}
 	cutin "katsua01.bmp",2;
 
-	mes "[卡秋娅]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "钻石……！";
 	mes "我根本无法忘记它们！";
 	mes "自从那个人给我看过那颗钻石后，我满脑子想的都是它！";
 	next;
 	if (select("你想要我的钻石吗？", "啊，真遗憾……") == 2) {
-		mes "[卡秋娅]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是啊，我知道……";
 		mes "即使在我的收藏中，也没有任何东西能与钻石相比……";
 		close2;
@@ -51,7 +51,7 @@ comodo,219,158,6	script	卡秋娅	4_F_02,{
 	if (countitem(732) == 0) {
 		cutin "katsua01.bmp",255;
 		cutin "katsua03.bmp",2;
-		mes "[卡秋娅]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*哼*";
 		mes "你根本没有钻石！";
 		mes "别想骗我！";
@@ -59,14 +59,14 @@ comodo,219,158,6	script	卡秋娅	4_F_02,{
 		cutin "katsua03.bmp",255;
 		end;
 	}
-	mes "[卡秋娅]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你真的愿意把它给我吗？";
 	mes "太谢谢你了！我没有多少钱，但可以从我的收藏中拿些东西给你~";
 	next;
 	if (MaxWeight - Weight < 5500) {
 		cutin "katsua01.bmp",255;
 		cutin "katsua03.bmp",2;
-		mes "[卡秋娅]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		mes "你带来的东西太多了。";
 		mes "现在无法领取这个物品。";
@@ -81,7 +81,7 @@ comodo,219,158,6	script	卡秋娅	4_F_02,{
 		close;
 	}
 	delitem 732,1;
-	mes "[卡秋娅]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那么你想要什么呢？";
 	next;
 	switch (select("武器", "护甲", "披风", "头盔", "鞋子", "盾牌")) {
@@ -370,7 +370,7 @@ comodo,219,158,6	script	卡秋娅	4_F_02,{
 	getitem .@item,1;
 	cutin "katsua01.bmp",255;
 	cutin "katsua02.bmp",2;
-	mes "[卡秋娅]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊~ 那颗钻石真漂亮。";
 	mes "真希望能更好地报答你。";
 	close2;
@@ -378,15 +378,15 @@ comodo,219,158,6	script	卡秋娅	4_F_02,{
 	end;
 }
 
-comodo,204,148,7	script	德维林	4_F_01,{
-	mes "[德维林]";
+comodo,204,148,7	script	达彼琳::德维林	4_F_01,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好像不久前有个旅行者给卡秋娅看了";
 	mes "一颗巨大的钻石。从那以后，她满口都是钻石和对它们的渴望。";
 	next;
-	mes "[德维林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "她变得相当执着，这让我害怕。她似乎愿意用自己拥有的一切换一颗钻石。";
 	next;
-	mes "[德维林]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "她是那种为了得到想要的东西什么都愿意做的人。我担心她可能会拿比钻石贵重得多的东西交换……";
 	close;
 }
@@ -473,7 +473,7 @@ comodo,210,154,2	script	可疑男子#cmd	2_M_THIEFMASTER,{
 	}
 }
 
-mjolnir_02,85,362,3	script	铁匠矿工	4_F_JOB_BLACKSMITH,{
+mjolnir_02,85,362,3	script	铁匠 矿工::铁匠矿工	4_F_JOB_BLACKSMITH,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了。请把部分物品存入卡普拉仓库后再回来。^000000";
 		close;

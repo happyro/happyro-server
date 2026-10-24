@@ -17,36 +17,36 @@
 
 // Main NPC :: catalog_merchant
 //============================================================
-moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
+moc_para01,22,16,5	script	检索达人#catal01::Catalog Magician#catal01	704,{
 	if (!checkweight(1301,3)) {
 		mes "- 你的物品太多了，请先腾出空间。-";
 		close;
 	}
 	set .@ticket_cost, 200;
-	mes "[目录魔法师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "看……吉芬的魔法学院现在正在直接出售全新的^007777露天商店检索卡(银)^000000！";
 	next;
 	mes "他正看着手上写的文字。";
 	mes "他似乎太忙了，根本没注意到你，完全没有看你一眼。";
 	next;
-	mes "[目录魔法师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "全新的目录刚刚上市！";
 	mes "你可以查看能兑换哪些物品，以及商人正在出售哪些物品。";
 	mes "你可以在目录界面查看详情。";
 	next;
-	mes "[目录魔法师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^007777露天商店检索卡(银)^000000只要 200 Zeny！";
 	mes "一次最多可以买 50 个！";
 	next;
 	switch(select("购买 ^007777露天商店检索卡(银)^000000:我不需要它！:你看起来不像商人！")) {
 	case 1:
-		mes "[目录魔法师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你……想要全部 50 个？";
 		mes "还是只需要几个？";
 		next;
 		while (1) {
 			input .@input;
-			mes "[目录魔法师]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (.@input == 0) {
 				mes "交易已停止！";
 				mes "我不知道接下来该做什么……";
@@ -76,20 +76,20 @@ moc_para01,22,16,5	script	Catalog Magician#catal01	704,{
 		getitem 12580,.@input; //Vending_Search_Scroll
 		close;
 	case 2:
-		mes "[目录魔法师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……你真的需要这个物品……要我再解释一遍吗？我不知道接下来该做什么……";
 		mes "我该怎么办？";
 		mes "你真的不需要它吗？";
 		emotion ET_PROFUSELY_SWEAT, playerattached();
 		close;
 	case 3:
-		mes "[目录魔法师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的真正职业是魔法师。";
 		mes "我本来想请商人公会帮忙销售，但他们竟然想把目录作为卖扫帚时的赠品。";
 		mes "所以我只好自己卖。";
 		mes "这真是让人头疼。";
 		next;
-		mes "[目录魔法师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里有很多来来往往的冒险者。";
 		mes "我相信很快就能卖给他们所有人。";
 		mes "你不觉得吗？";

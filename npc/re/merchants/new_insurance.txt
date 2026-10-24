@@ -6,7 +6,7 @@
 //= 1.0 Initial release. [Balfear]
 //============================================================
 
-prontera,82,108,5	script	Heart Merchant#life01	4_M_NFDEADMAN2,5,5,{
+prontera,82,108,5	script	心脏商人#life01::Heart Merchant#life01	4_M_NFDEADMAN2,5,5,{
 	.@old_item = 12209;
 	.@new_item = 6413;
 	.@old_item_name$ = getitemname(.@old_item);
@@ -17,77 +17,77 @@ prontera,82,108,5	script	Heart Merchant#life01	4_M_NFDEADMAN2,5,5,{
 		mes "请整理物品后再试。";
 		close;
 	}
-	mes "[心之商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好！看得出来你是把心交给旅行、乘船横渡大陆、享受危险刺激的冒险者！";
 	next;
 	if(!countitem(.@old_item)){
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你仓库里有" + mesitemlink( .@old_item ) + "吗？";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你带来 5 个" + .@old_item_name$ + "，我会把它们兑换成 1 个" + mesitemlink( .@new_item ) + "。怎么样？你知道这是什么物品吗？";
 	} else {
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你有没有想过把你的" + mesitemlink( .@old_item ) + "换成更好的东西？比如……" + mesitemlink( .@new_item ) + "。你觉得怎么样？";
 	}
 	next;
 	switch(select("这是什么？",(countitem(.@old_item)?"请帮我兑换！":""),"我没兴趣")) {
 	case 1:
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes mesitemlink( .@old_item ) + "是一件使用后 30 分钟内可防止死亡时损失经验值一次的物品。";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过很多人都对时间限制感到遗憾，对吧？所以我研究了一下，准备了" + mesitemlink( .@new_item ) + "。";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes mesitemlink( .@new_item ) + "是一件只要持有就能防止死亡时损失经验值一次的物品，^EE0000没有持续时间限制^000000。当死亡原本会损失经验时，"+.@new_item_name$+"会被消耗。";
 		next;
 		select("为什么要兑换？");
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你对此好奇吗？我是商人。无论关乎生还是死，买卖就是我的宿命。你觉得我会错过赚钱的机会吗？我赚到钱，活着的人也能减轻死亡的痛苦。这不是很划算吗？";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "兑换比例是 5 个" + mesitemlink( .@old_item ) + "换 1 个" + mesitemlink( .@new_item ) + "。还有什么问题吗？";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯~你觉得呢？这不是公平的交易吗？你想一直担心时间吗？这是享受惊险冒险的冒险者必备之物。";
 		close;
 		
 	case 2:	
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对，对。明智的决定。换成更好的东西不是更好吗？";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我可以把你的^0000cd5 个"+.@old_item_name$+"兑换成 1 个"+.@new_item_name$+"^000000。";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，^EE0000[非卖品] " + .@old_item_name$ + "不符合兑换条件^000000，所以带来这里要求兑换也是没用的。";
 		next;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在兑换吗？";
 		next;
 		if (select("请帮我兑换！:我不想兑换。") == 2)
 			break;
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想兑换多少？^0000cd一次最多可兑换 10 个"+.@new_item_name$+"^000000。";
 		next;
 		input .@amount;
 		if (.@amount == 0) {
-			mes "[心之商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？你没兴趣吗？这是很棒的商品，非常适合你这样的人。不过如果你不想保护生命，我也不会强迫你。";
 			close;
 		}
 		if (.@amount > 10) {
-			mes "[心之商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "正如我说的，^0000cd一次最多只能兑换 10 个^000000。请重新检查数量。";
 			close;
 		}
 		if (countitem(.@old_item) < (.@amount*5)) {
-			mes "[心之商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呃，抱歉……你的" +.@old_item_name$+ "不够，对吧？兑换比例是 5 个" + mesitemlink( .@old_item ) + "换 1 个" + mesitemlink( .@new_item ) + "。请检查数量。";
 			close;
 		}
-		mes "[心之商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (!checkweight(.@new_item,.@amount)) {
 			mes "请先为兑换物品预留足够的负重和物品栏空间。";
 			close;
@@ -99,10 +99,10 @@ prontera,82,108,5	script	Heart Merchant#life01	4_M_NFDEADMAN2,5,5,{
 	case 3:
 		break;
 	}
-	mes "[心之商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这是很划算的交易！冒险者，这是在危险之地冒险的人必备的物品！";
 	next;
-	mes "[心之商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你感兴趣，记得回来兑换。好吗？";
 	close;
 	

@@ -1042,7 +1042,7 @@ void clif_name( const block_list* src, const block_list* bl, send_target target 
 void clif_use_card( const map_session_data* sd,int32 idx);
 void clif_insert_card( const map_session_data& sd, int32 idx_equip, int32 idx_card, bool failure );
 
-void clif_inventorylist( map_session_data *sd);
+void clif_inventorylist(map_session_data* sd, bool include_equip_switch = true);
 void clif_equiplist( map_session_data *sd);
 
 void clif_cart_additem( const map_session_data* sd, int32 n, int32 amount);

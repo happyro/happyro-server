@@ -30,13 +30,13 @@
 	for (.@size = getarraysize(.@name$); .@type < .@size; .@type++)
 		if( compare( .@npc$,.@name$[.@type] ) ) break;
 	.@faith_merc = mercenary_get_faith(getd(.@faith$[.@type]));
-	mes "[佣兵管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎来到" + .@display_name$[.@type] + "佣兵公会。";
 	mes "有什么可以为您效劳的？";
 	next;
 	switch(select("雇佣佣兵:佣兵说明:没什么:10 阶佣兵")) {
 		case 1:
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "您想雇佣" + .@display_name$[.@type] + "佣兵吗？想雇佣哪一阶？";
 			next;
 			for (.@i = 1; .@i <= 9; .@i++)
@@ -47,85 +47,85 @@
 			.@ZenyCost = 7 * .@Grade;
 			setarray .@FaithCost[7], 50,100,300;
 			.@FaithCost = .@FaithCost[.@Grade];
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "您想雇佣 " + .@Grade + " 阶" + .@display_name$[.@type] + "佣兵吗？";
 			mes "您的基础等级必须达到 " + .@BaseLevel + "，并支付 " + .@ZenyCost + ",000 Zeny 的费用。";
 			next;
 			if(select("是:否") == 2) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是吗？看来现在还不是雇佣佣兵的好时机。如果之后有需要，欢迎随时再来。谢谢～";
 			}
 			else if(.@FaithCost && .@faith_merc < .@FaithCost) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦……您在" + .@display_name$[.@type] + "佣兵公会的忠诚度还不足以雇佣这位佣兵。请在忠诚度达到 " + .@FaithCost + " 后再来。";
 			}
 			else if (BaseLevel < .@BaseLevel) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，您的基础等级还不足以雇佣这位佣兵。请达到基础等级 " + .@BaseLevel + " 后再来找我。";
 			}
 			else if (Zeny < .@ZenyCost * 1000) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，您的 Zeny 不足以雇佣这位佣兵。雇佣费用是 " + .@ZenyCost + ",000 Zeny。";
 			}
 			else if (!checkweight(.@item[.@type] - 10 + .@Grade, 1)) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "您无法携带这张召唤卷轴。请先清理背包空间、减轻负重后再来。";
 			}
 			else {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "太好了！我们的佣兵忠诚可靠，会尽心保护雇主。召唤后，佣兵会协助您战斗 30 分钟。请多保重。";
 				Zeny = Zeny - (.@ZenyCost * 1000);
 				getitem .@item[.@type] - 10 + .@Grade, 1;
 			}
 			close;
 		case 2:
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "佣兵会在战场上与您并肩作战。不过，雇佣他们需要满足一些条件。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "雇佣佣兵需要达到指定等级，并支付 Zeny。高阶佣兵还要求您在本公会积累一定的忠诚度。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "佣兵契约不能转让给他人。佣兵的基础等级最多只能比雇主高 5 级，所以您不能雇佣比自己强大太多的佣兵。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等您实际与佣兵签订契约，就会了解其中的细节。签约后，您会获得一张召唤卷轴，用它就能将佣兵召唤到身边。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这张卷轴不能交给别人。召唤后，佣兵只会陪伴您 30 分钟，别忘了这个时间限制，好吗？";
 			close;
 		case 3:
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不需要帮助吗？没关系，如果有任何关于佣兵的问题，随时来问我。";
 			close;
 		case 4:
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "10 阶佣兵是我们最优秀的佣兵，雇佣条件也有所不同。雇佣他们不需要 Zeny，但您必须拥有 500 忠诚度。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "与 10 阶佣兵签订契约后，您的忠诚度会减少 400。也就是说，雇佣一次 10 阶佣兵需要支付 400 忠诚度。";
 			next;
-			mes "[佣兵管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "此外，您必须达到基础等级 90，才能雇佣 10 阶佣兵。您还想签订契约吗？";
 			next;
 			if (select("是:否") == 2) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我明白……要达到雇佣 10 阶佣兵的条件，需要付出不少努力。您是否考虑先雇佣低阶佣兵？";
 			}
 			else if (.@faith_merc < 500) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，您的忠诚度不足以雇佣 10 阶佣兵。忠诚度必须达到 500，才能签订契约。";
 			}
 			else if (BaseLevel < 90) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，您必须达到基础等级 90，才能与 10 阶佣兵签订契约。";
 			}
 			else if (!checkweight(.@item[.@type], 1)) {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "您无法携带这张召唤卷轴。请先清理背包空间、减轻负重后再来。";
 			}
 			else {
-				mes "[佣兵管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "恭喜！既然您要雇佣 10 阶佣兵，看来是准备挑战非常危险的任务了。祝您与他并肩作战时一切顺利。";
 				mercenary_set_faith getd(.@faith$[.@type]),-400;
 				getitem .@item[.@type],1;
@@ -133,8 +133,8 @@
 			close;
 	}
 }
-prontera,41,337,5	duplicate(Mercenary Manager#main)	Mercenary Manager#Spear	8W_SOLDIER
-pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	4_M_JOB_HUNTER
+prontera,41,337,5	duplicate(Mercenary Manager#main)	佣兵公会相关人员#Spear::Mercenary Manager#Spear	8W_SOLDIER
+pay_arche,99,167,4	duplicate(Mercenary Manager#main)	佣兵公会相关人#Bow::Mercenary Manager#Bow	4_M_JOB_HUNTER
 
 // Mercenary Merchant NPCs
 //============================================================
@@ -186,8 +186,8 @@ pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	4_M_J
 	getitem .@item[.@m], .@input;
 	close;
 }
-prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	8_F_GIRL
-pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	4_F_CAPEGIRL
+prontera,30,337,4	duplicate(MercMerchant)	佣兵物品销售商#Spear::Mercenary Merchant#Spear	8_F_GIRL
+pay_arche,102,167,5	duplicate(MercMerchant)	佣兵物品销售商#Bow::Mercenary Merchant#Bow	4_F_CAPEGIRL
 
 // Mercenary Switch NPCs
 //============================================================
@@ -225,6 +225,6 @@ pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	4_F_CAPEGIRL
 	}
 	close;
 }
-prontera,299,379,5	duplicate(Mercenary_Switch)	Mercenary Switch#Spear	8W_SOLDIER
-pay_arche,170,185,5	duplicate(Mercenary_Switch)	Mercenary Switch#Bow	4_F_CAPEGIRL
-izlude,245,250,4	duplicate(Mercenary_Switch)	Mercenary Switch#Sword	4_F_HUWOMAN
+prontera,299,379,5	duplicate(Mercenary_Switch)	佣兵公会开关#Spear::Mercenary Switch#Spear	8W_SOLDIER
+pay_arche,170,185,5	duplicate(Mercenary_Switch)	佣兵物品开关#Bow::Mercenary Switch#Bow	4_F_CAPEGIRL
+izlude,245,250,4	duplicate(Mercenary_Switch)	佣兵物品开关#Sword::Mercenary Switch#Sword	4_F_HUWOMAN

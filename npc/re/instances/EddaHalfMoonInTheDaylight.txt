@@ -8,7 +8,7 @@
 //= 1.1 Clean-up [Capuche]
 //============================================================
 
-rachel,174,138,6	script	大祭司妮伦::High Priestess Niren#HM	4_F_MADAME,{
+rachel,174,138,6	script	倪勒恩 大神官::High Priestess Niren#HM	4_F_MADAME,{
 	cutin "ra_gwoman",2;
 
 	if (BaseLevel < 80) {
@@ -270,13 +270,13 @@ rachel,174,138,6	script	大祭司妮伦::High Priestess Niren#HM	4_F_MADAME,{
 	}
 }
 
-rachel,176,145,6	script	梦境通道::Dream#poent	PORTAL,{
+rachel,176,145,6	script	梦之通路::Dream#poent	PORTAL,{
 	switch( checkquest(14586,PLAYTIME) ) {
 	case -1:
 		break;
 	case 0:
 	case 1:
-		mes "[梦境通道]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "时空裂缝还不够稳定，无法来回通行。请等到每日凌晨 4 点冷却重置后再来。";
 		close;
 	case 2:
@@ -285,20 +285,20 @@ rachel,176,145,6	script	梦境通道::Dream#poent	PORTAL,{
 		close;
 	}
 	if (!is_party_leader()) {
-		mes "[梦境通道]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只有队长可以进入。";
 		close;
 	}
-	mes "[梦境通道]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好，我是通往梦境的通道。能为你做什么？";
 	next;
 	if (select( "让我进入教皇的梦境。", "取消" ) == 2) {
-		mes "[梦境通道]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，我明白了。改变主意后请再来。";
 		close;
 	}
 	if (!is_party_leader()) {	// shouldn't happen
-		mes "[梦境通道]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只有队长可以进入。";
 		close;
 	}
@@ -314,7 +314,7 @@ rachel,176,145,6	script	梦境通道::Dream#poent	PORTAL,{
 		mes "发生未知错误。";
 		close;
 	case IE_OK:
-		mes "[梦境通道]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会为你打开通往教皇梦境的道路。";
 		mes "希望你做个好梦。";
 		mapannounce "rachel", "队伍成员 " + strcharinfo(0) + "（" + getpartyname( getcharid(1) ) + "）正在进入" + .@md_name$ + "。", bc_map, 0xFF99;

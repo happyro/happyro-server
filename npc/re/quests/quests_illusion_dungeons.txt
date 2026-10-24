@@ -20,7 +20,7 @@
 //============================================================
 //= Illusion of Moonlight
 //============================================================
-payon,164,229,5	script	山裕长老#illusion_moonlight	1_F_ORIENT_04,{
+payon,164,229,5	script	斐扬元老 姗姗#illusion_moonlight::山裕长老#illusion_moonlight	1_F_ORIENT_04,{
 	if (BaseLevel < 100) {
 		mes "[ 山裕 ]";
 		mes "嗯，我感觉有可疑的事情要发生了。";
@@ -113,7 +113,7 @@ OnInit:
 	end;
 }
 
-payon,167,229,3	script	佳严长老#illusion_moonlight	4_M_HUOLDARMY,{
+payon,167,229,3	script	斐扬元老 子谦#illusion_moonlight::佳严长老#illusion_moonlight	4_M_HUOLDARMY,{
 	if (BaseLevel < 100) {
 		mes "[ 佳严 ]";
 		mes "希望一切顺利。";
@@ -139,42 +139,42 @@ payon,167,229,3	script	佳严长老#illusion_moonlight	4_M_HUOLDARMY,{
 	close;
 }
 
-pay_arche,48,137,4	script	年轻学者#ill_moon_arch	4_F_03,{
+pay_arche,48,137,4	script	青年学者#ill_moon_arch::年轻学者#ill_moon_arch	4_F_03,{
 	if (illusion_moonlight == 0) {
 			npctalk "他们怎么还不出来……","",bc_self;
 		end;
 	}
 	if (illusion_moonlight == 1) {
 		npctalk "他们怎么还不出来……","",bc_self;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "啊，今天一定是我的幸运日！";
 		mes "我正需要冒险者的时候，冒险者就出现了！";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "打扰一下。";
 		mes "我听说冒险者会为别人做很多事。是真的吗？";
 		next;
 		select("是的，但我现在很忙。:拒绝。" );
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "……哦，我明白了。";
 		mes "你一定很忙。";
 		mes "抱歉打扰你。";
 		mes "对了，你为什么来这里？";
 		next;
 		select("你见过一个叫沐妍的人吗？" );
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "沐妍？你说的是灵术师沐妍吗？";
 		mes "严格来说她还是学徒，不过这不重要。";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我现在正在等她。";
 		mes "她像被什么附身一样跑进了洞穴。";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "正熙？我是说，一名士兵跟着她进去了，但他们都还没出来。";
 		mes "我正在犹豫要不要跟进去。";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "希望那两个人不要出事。";
 		cloakoffnpcself( "斐扬士兵#ill_moon_arch" );
 		cloakoffnpcself( "沐妍#ill_moon_arch" );
@@ -204,16 +204,16 @@ pay_arche,48,137,4	script	年轻学者#ill_moon_arch	4_F_03,{
 		sleep2 1500;
 		cloakonnpcself( "斐扬士兵#ill_moon_arch" );
 		cloakonnpcself( "沐妍#ill_moon_arch" );
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "那是……！";
 		mes "她什么也没告诉我们就走了。";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "啊，正熙！";
 		mes "对了，冒险者，你不是在找沐妍吗？";
 		next;
 		select("我想我现在该走了。" );
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "沐妍一定去了^0000CD独立斐扬宫殿^000000。";
 		mes "我要去那里，你要和我一起吗？";
 		next;
@@ -221,40 +221,40 @@ pay_arche,48,137,4	script	年轻学者#ill_moon_arch	4_F_03,{
 		erasequest 7776;
 		setquest 7777;
 		if (select("和他一起去。:分开走。") == 2) {
-			mes "[ 年轻学者 ]";
+			mes "[ " + strnpcinfo(1) + " ]";
 			mes "沐妍一定去了^0000CD独立斐扬宫殿^000000。";
 			mes "你去和她谈谈吧。";
 			mes "我去和长老们谈谈。";
 			close;
         }
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "那么我们去^0000CD独立斐扬宫殿^000000吧。";
         close2;
         warp "payon",105,320;
         end;
 	}
 	if (illusion_moonlight == 2) {
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "沐妍一定去了^0000CD独立斐扬宫殿^000000。";
 		mes "你去和她谈谈吧。";
 		mes "我去和长老们谈谈。";
 		close;
 	}
 	if (illusion_moonlight < 6) {
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "传说九尾狐获得启蒙，成为神圣生物，月光花就是从她身上降生的。我认为这个故事值得调查。";
 		close;
 	}
-	mes "[ 年轻学者 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "我们去调查废墟村落吧！";
 	mes "你要和我一起去吗？";
 	next;
 	if (select("和他一起去。:分开走。") == 2) {
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我会叫上正熙，很快就跟上你。";
 		close;
 	}
-	mes "[ 年轻学者 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "走吧！";
 	close2;
 	warp "pay_dun03",145,43;
@@ -265,16 +265,16 @@ OnInit:
 	end;
 }
 
-pay_arche,44,133,7	duplicate(dummy_cloaked_npc)	斐扬士兵#ill_moon_arch	4_M_PAY_SOLDIER
-pay_arche,46,135,5	duplicate(dummy_cloaked_npc)	沐妍#ill_moon_arch	4_F_TAEKWON
+pay_arche,44,133,7	duplicate(dummy_cloaked_npc)	士兵 辛荣熙#ill_moon_arch::斐扬士兵#ill_moon_arch	4_M_PAY_SOLDIER
+pay_arche,46,135,5	duplicate(dummy_cloaked_npc)	雾渊#ill_moon_arch::沐妍#ill_moon_arch	4_F_TAEKWON
 
-payon_in03,33,95,3	script	沐妍#ill_moon_pin	4_F_TAEKWON,{
+payon_in03,33,95,3	script	雾渊#ill_moon_pin::沐妍#ill_moon_pin	4_F_TAEKWON,{
 	if (checkweight(25271,1) == 0 || (MaxWeight - Weight) < 1000) {
 		mes "- 你携带的物品太多，无法继续任务。-";
 		close;
 	}
 	if (illusion_moonlight < 2) {
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "如果你在找老师，她在另一间房。";
 		close;
 	}
@@ -321,57 +321,57 @@ payon_in03,33,95,3	script	沐妍#ill_moon_pin	4_F_TAEKWON,{
 		end;
 	}
 	if (illusion_moonlight == 3) {
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "好，我来告诉你故事。";
 		mes "斐扬洞穴曾经是一个村庄的一部分，后来被山体滑坡掩埋。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "你可以猜到，许多人也被埋在其中，他们的灵魂在洞穴中游荡。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "其中有九尾狐。狐狸的愤怒非同寻常。";
 		mes "所以我们一直定期举行仪式。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "但现在问题是，";
 		mes "狐狸的灵魂越来越怨恨，却没人知道原因。";
 		mes "也许仪式正是它们愤怒的原因，没有像我们希望的那样奏效。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "每次举行仪式，我都会梦到怨恨的灵魂和哀嚎的九尾狐。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "灵术师以和灵魂交流为生，做噩梦是很正常的事。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "所以第一次做噩梦时，我以为和其他人一样。";
 		mes "但现在我知道其中的区别了，这也与我的健康无关。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "无论是什么原因激怒了九尾狐的灵魂，";
 		mes "它都让我失去理智，前往废墟村落。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "而且，我看到了某种东西。";
 		mes "那是另一个世界的影像，和我们的世界不同。";
 		mes "我们必须关闭那个地方，让任何人都无法进入。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我有种不安的感觉，似乎可怕的事情即将发生。";
 		mes "或者它已经发生了……";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我看到的模糊影像与地狱无异。";
 		mes "那是在我最后一次举行仪式后看到的。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "求你了，别再让我回去做那件事。";
 		mes "我的精神还不够坚强，无法承受这样的噩梦。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "更不用说洞穴里正在发生的事情。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "如果你想去，就必须独自前往，亲眼看看。";
 		mes "我还带着试图净化的狐珠。准备好后告诉我。";
 		illusion_moonlight = 4;
@@ -380,19 +380,19 @@ payon_in03,33,95,3	script	沐妍#ill_moon_pin	4_F_TAEKWON,{
 		close;
 	}
 	if (illusion_moonlight == 4) {
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "准备好了吗？";
 		next;
 		if (select("好了。:还没。") == 2) {
-			mes "[ 沐妍 ]";
+			mes "[ " + strnpcinfo(1) + " ]";
 			mes "准备好后告诉我。";
 			close;
 		}
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "好，这颗狐珠还没有完全净化。";
 		mes "把它放在手里。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "放松……集中精神……向它的能量敞开心扉。";
 		close2;
 		setpcblock PCBLOCK_ALL,true;
@@ -482,50 +482,50 @@ payon_in03,33,95,3	script	沐妍#ill_moon_pin	4_F_TAEKWON,{
 		end;
 	}
 	if (illusion_moonlight == 5) {
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 		mes "现在你知道我经历了什么。";
 		mes "如果你想进一步调查，就必须去废墟村落。";
 		next;
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 		mes "如果你决定这么做，就会成为我们的一员，让他非常兴奋。大概是因为他是个傻瓜。";
 		close;
 	}
 	if (illusion_moonlight < 8) {
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 		mes "如果你在找老师，她在另一间房。";
 		close;
 	}
 	if (illusion_moonlight == 8) {
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "我明白了。";
 		mes "所以它们成真了。";
 		mes "你不知道为什么，对吧？";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "也许是因为现实与梦境之间的墙倒塌了。";
 		mes "否则你怎么能进出别人的梦？";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我知道它们是^0000FF月光花编织的梦。^000000";
 		mes "但不知道它们如何成真。我怀疑真的没人知道。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "据我所知，以前从未发生过这种事。想查清楚的话只能靠我们自己。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "好吧，让春海来查清楚。";
 		mes "那么，我最好去休息一下。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "现在知道那些噩梦确实源自月光花，我感觉好多了。";
 		mes "我终于能睡觉了。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "处理完噩梦后就不需要更多仪式了。";
 		mes "这意味着我自由了吗？终于自由了！";
 		mes "我都不知道该怎么感谢你。";
 		next;
-		mes "[ 沐妍 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我在那里找到了这些奇怪的石头。虽然不多，";
 		mes "但也许你能派上用场？";
 		mes "非常感谢你，冒险者。";
@@ -535,11 +535,11 @@ payon_in03,33,95,3	script	沐妍#ill_moon_pin	4_F_TAEKWON,{
 		getexp 500000,500000;
 		close;
 	}
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "祝你和春海调查现象顺利！";
 	mes "噩梦消失后，我们就不必再举行仪式了！";
 	next;
-	mes "[ 沐妍 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "你问我怎么确定？";
 	mes "我也不确定。嘿嘿。";
 	mes "它们可能不会完全消失。";
@@ -583,9 +583,9 @@ payon_in03,30,96,5	script	佳严#ill_moon_pin	4_M_HUOLDARMY,{
 	close;
 }
 
-payon_in03,33,93,1	script	年轻学者#ill_moon_pin	4_F_03,{
+payon_in03,33,93,1	script	青年学者#ill_moon_pin::年轻学者#ill_moon_pin	4_F_03,{
 	if (illusion_moonlight < 2) {
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "斐扬自古以来就是神圣生物的家园。";
 		mes "斐扬被群山与世隔绝，这里人的思维方式与外界不同。";
 		close;
@@ -599,20 +599,20 @@ payon_in03,33,93,1	script	年轻学者#ill_moon_pin	4_F_03,{
 		end;
 	}
 	if (illusion_moonlight == 5) {
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "太糟糕了。";
 		mes "真不敢相信沐妍必须独自面对。";
 		mes "那些狐狸一定比我想象中更愤怒。";
 		next;
-		mes "[ 年轻学者 ]";
+		mes "[ " + strnpcinfo(1) + " ]";
 		mes "我们需要进一步调查。我最好去废弃村庄。";
 		close;
 	}
-	mes "[ 年轻学者 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "我会留在废弃村庄调查这个现象。";
 	mes "但需要某种保护。我会带着正熙一起。";
 	next;
-	mes "[ 年轻学者 ]";
+	mes "[ " + strnpcinfo(1) + " ]";
 	mes "如果你能再次加入我们就太好了。废弃村庄见。";
 	close;
 }
@@ -622,7 +622,7 @@ payon_in03,35,96,3	duplicate(dummy_cloaked_npc)	九尾狐之灵#ill_moon_1	NINE_
 payon_in03,30,93,7	duplicate(dummy_cloaked_npc)	九尾狐之灵#ill_moon_2	NINE_TAIL
 payon_in03,35,93,1	duplicate(dummy_cloaked_npc)	九尾狐之灵#ill_moon_3	NINE_TAIL
 
-pay_dun03,140,46,0	script	闪烁的传送门#ill_moon_in	4_ENERGY_BLUE,{
+pay_dun03,140,46,0	script	动摇的空间#ill_moon_in::闪烁的传送门#ill_moon_in	4_ENERGY_BLUE,{
 	if (illusion_moonlight < 5) {
 		mes "- 空气中充满了奇怪的能量。-";
 		mes "这让我感到不安。";
@@ -685,9 +685,9 @@ OnInit:
 }
 
 pay_dun03,143,45,4	duplicate(dummy_cloaked_npc)	正熙#ill_moon_pdun	4_M_PAY_SOLDIER
-pay_dun03,138,43,7	duplicate(dummy_cloaked_npc)	年轻学者#ill_moon_pdun	4_F_03
+pay_dun03,138,43,7	duplicate(dummy_cloaked_npc)	青年学者#ill_moon_pdun::年轻学者#ill_moon_pdun	4_F_03
 
-pay_d03_i,140,46,0	script	闪烁的传送门#ill_moon_out	4_ENERGY_BLUE,{
+pay_d03_i,140,46,0	script	动摇的空间#ill_moon_out::闪烁的传送门#ill_moon_out	4_ENERGY_BLUE,{
 	mes "我可以回废弃村庄。";
 	mes "我该怎么办？";
 	next;
@@ -697,7 +697,7 @@ pay_d03_i,140,46,0	script	闪烁的传送门#ill_moon_out	4_ENERGY_BLUE,{
 	end;
 }
 
-pay_d03_i,149,45,4	script	学者春海#ill_moon_ind	4_F_03,{
+pay_d03_i,149,45,4	script	学者 戴忠海#ill_moon_ind::学者春海#ill_moon_ind	4_F_03,{
 	if (illusion_moonlight < 6)
 		end;
 	if (illusion_moonlight == 6) {
@@ -860,7 +860,7 @@ OnInit:
 	end;
 }
 
-pay_d03_i,152,45,4	script	士兵正熙#ill_moon_ind	4_M_PAY_SOLDIER,{
+pay_d03_i,152,45,4	script	士兵 辛荣熙#ill_moon_ind::士兵正熙#ill_moon_ind	4_M_PAY_SOLDIER,{
 	if (illusion_moonlight < 6)
 		end;
 	if (illusion_moonlight == 6) {
@@ -1119,19 +1119,19 @@ OnTimer60000:
 //============================================================
 //= Illusion of Vampire
 //============================================================
-gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
+gef_dun01,134,224,1	script	莫照#ilgf::莫乔#ilgf	2_F_MAGICMASTER,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "确定能带这么多东西吗？减轻包裹吧。";
 		close;
 	}
 	if (ill_vampire == 0) {
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，你是冒险者。来找我做什么？抱歉，我有点忙。你能和那边的祭司谈谈吗？";
 		close;
 	}
 	if (ill_vampire < 16) {
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "笔记本……我想看看笔记本……想进入笔记本，就和 格林 神父谈谈。如果你愿意，我可以和你一起去。";
 		close;
 	}
@@ -1140,32 +1140,32 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		break;
 	case 0:
 	case 1:
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，冒险者。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，抱歉，我现在不能聊天。我正忙着检查你带来的东西。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "黎明后再回来好吗？";
 		close;
 	case 2:
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，冒险者。你好吗？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼，我熬夜检查干燥伊格德拉希尔叶和可疑的魔法阵。如果 格林 神父不来烦我，我也不用这样。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它们太旧且保存不佳，很容易碎成粉末。我没能完成研究。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我在想……今天能再带一些给我吗？我需要^0000cd10 片干燥伊格德拉希尔叶和 10 个可疑的魔法阵^000000。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另外，请为那位唠叨的牧师狩猎每种 5 只僵尸。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会趁此打个盹。";
 		erasequest 14680;// Time to Research
 		setquest 14679;// Send the Dead Back to Earth
@@ -1173,52 +1173,52 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 	}
 	switch( checkquest(14679,HUNTING) ) {
 	case -1:
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，触摸笔记本时感觉如何？你觉得它是怎么运作的？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我有很多问题，但那个坏心眼的祭司不让我碰它。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，下次你进入笔记本时能带我一起吗？我发誓不会偷走笔记本。我只是非常好奇。";
 		next;
 		mes "[格林]";
 		mes "我听见了。放弃对它的痴迷。那对你最好。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁说我痴迷它了？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，求你了？我看起来不可怜吗？";
 		next;
 		if (select( "你最想知道什么？", "我不想夹在你们之间。" ) == 2) {
 			mes "[" + strcharinfo(0) + "]";
 			mes "抱歉，但我不想夹在你们之间。你们都有道理，我无法站在任何一边。";
 			next;
-			mes "[莫乔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哼，好吧，但如果你哪天可怜我，就回来帮我。答应我？";
 			close;
 		}
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然是关于那些行尸走肉！";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真的想知道是什么让它们行动，我的前辈对它们做过什么实验，以及它们处于什么状态。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这类实验现在被禁止了，所有旧记录也都被销毁。";
 		next;
 		mes "[格林]";
 		mes "销毁它们是有充分理由的。所以别再好奇了。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，对了！冒险者，你能帮我抓一只僵尸吗？要活的。";
 			npctalk "等等，它不可能活着。它已经死了。", "", bc_self;
 		next;
 		mes "[格林]";
 		mes "不。别想了。莫乔，你已经快越界了。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我又没问你！除非你愿意让我碰笔记本，否则别来烦我！";
 		next;
 		mes "[格林]";
@@ -1230,7 +1230,7 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		mes "[格林]";
 		mes "你忘了 乔乔 兄弟为什么让你留在这里、远离笔记本吗？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我才问这位冒险者。你总是告诉我不能做这个、不能做那个。有没有什么事是我能做而你不会说不的？";
 			npctalk "你只是想让我站在这里呼吸。是这样吗？", "", bc_self;
 		sleep2 1000;
@@ -1242,7 +1242,7 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		mes "[格林]";
 		mes "如果你真的想对那些亵渎的生物做实验，我建议你先和 乔乔 兄弟及其他人谈谈。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们什么时候回来？";
 		next;
 		mes "[格林]";
@@ -1251,14 +1251,14 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		sleep2 500;
 			npctalk "我就当这是夸奖了。", "格林#ilgf", bc_self;
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，我在笔记本里读到，主人曾用一些材料对僵尸做实验。我想是伊格德拉希尔叶和一些图画。";
 		next;
 		select("你是说干燥伊格德拉希尔叶和一些五芒星。" );
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。你至少能帮我弄到它们吗？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也许我能用它们弄清她做过的实验，以及让死者复活的力量。";
 			npctalk "当然是偷偷从那位牧师那里拿的。", "", bc_self;
 		sleep2 500;
@@ -1269,34 +1269,34 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		mes "[格林]";
 		mes "你为什么痴迷于此？你真的想让这些不洁生物在大陆上肆虐吗？你不明白高塔为什么禁止实验吗？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听着，我不会对僵尸做实验。我只是想看看她使用的材料。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁知道呢？也许我能找到一次性消灭这些僵尸的方法。";
 			npctalk "我看起来可能不像，但我其实很聪明。", "", bc_self;
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你同意我们对魔法的热情促进了国家的发展。";
 		next;
 		mes "[格林]";
 		mes "...";
 			npctalk "我就当你答应了。", "", bc_self;
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我保证不会做危险的事。我只看看材料。";
 		next;
 		mes "[格林]";
 		mes "我会盯着你。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，请便。";
 			npctalk "哦～你在旁边盯着我学习，真令人兴奋！", "", bc_self;
 		next;
 		mes "[格林]";
 		mes "而且你不会再向我要这本笔记本了，对吧？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？可是……我很想看看它。";
 			npctalk "你觉得你做得到吗？", "格林#ilgf", bc_self;
 		sleep2 500;
@@ -1307,22 +1307,22 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		npctalk "哼！", "", bc_self;
 		next;
 		select("那么你们达成协议了吗？");
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。请带一些干燥伊格德拉希尔叶和五芒星给我。每种 10 个就好。";
 		next;
 		mes "[格林]";
 		mes "你确定这些够吗？";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，我还不确定。之后再向你要更多，你介意吗？好，那请带给我^0000cd10 片干燥伊格德拉希尔叶和 10 个可疑的魔法阵^000000。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，另外你能顺便为那个臭脸祭司猎杀一些僵尸吗？每种 5 只就好，我不想给你太大负担。";
 		npctalk "你已经在给他添麻烦了。", "格林#ilgf", bc_self;
 		sleep2 500;
 			npctalk "是吗，但看看你，我一提议你脸都亮了。", "", bc_self;
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，谢谢你为我们做这些。";
 		setquest 14679;// Send the Dead Back to Earth
 		close;
@@ -1332,22 +1332,22 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 	case 2:
 		if (countitem(25266) < 10 || countitem(25267) < 10)
 			break;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，欢迎回来！我等你很久了！你带来我要求的东西了吗？快，让我看看！";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，这些东西又旧又脆，我担心它们会在手里碎掉。";
 		next;
 		mes "[格林]";
 		mes "现在满意了吗？不过它们看起来和你使用的没有区别。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你们这些祭司真是我见过最不好奇的人。我要求这些东西，是想和我拥有的比较，细微差异需要敏锐的眼光才能发现。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，明天能再带一些给我吗？我担心今天带来的这些最后会被我弄坏。就算不会，我也总能用到更多样本。";
 		next;
-		mes "[莫乔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "太谢谢你了。明天见！";
 		delitem 25266,10;	// Dried_Yggdrasil_Leaf
 		delitem 25267,10;	// SuspiciousMagicCircle
@@ -1357,13 +1357,13 @@ gef_dun01,134,224,1	script	莫乔#ilgf	2_F_MAGICMASTER,{
 		getitem 25271,1;// Illusion Stone
 		close;
 	}
-	mes "[莫乔]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，欢迎回来！我等你很久了！你带来我要求的东西了吗？快，让我看看！";
 	next;
-	mes "[莫乔]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，这还不够。请带给我^0000cd10 片干燥伊格德拉希尔叶和 10 个可疑的魔法阵^000000。";
 	next;
-	mes "[莫乔]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "另外，你能为那边那个臭脸祭司各猎杀 5 只僵尸吗？谢谢！";
 	close;
 
@@ -1374,9 +1374,9 @@ OnInit:
 	questinfo( QTYPE_QUEST, QMARK_YELLOW, (.@main_completed$ + " && checkquest(14680,PLAYTIME) == 2") );
 	end;
 }
-gef_dun01,133,221,1	duplicate(dummy_cloaked_npc)	莫乔#ilgf01	2_F_MAGICMASTER
-gef_dun01,130,222,5	duplicate(dummy_cloaked_npc)	莫乔#ilgf02	2_F_MAGICMASTER
-gef_dun01,130,224,5	duplicate(dummy_cloaked_npc)	莫乔#ilgf03	2_F_MAGICMASTER
+gef_dun01,133,221,1	duplicate(dummy_cloaked_npc)	莫照#ilgf01::莫乔#ilgf01	2_F_MAGICMASTER
+gef_dun01,130,222,5	duplicate(dummy_cloaked_npc)	莫照#ilgf02::莫乔#ilgf02	2_F_MAGICMASTER
+gef_dun01,130,224,5	duplicate(dummy_cloaked_npc)	莫照#ilgf03::莫乔#ilgf03	2_F_MAGICMASTER
 
 gef_dun01,132,223,5	script	格林#ilgf	4_M_MINISTER,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
@@ -1958,45 +1958,45 @@ gef_d01_i,183,82,0	duplicate(#illcon01)	#illcon09	HIDDEN_WARP_NPC,5,5
 gef_d01_i,197,80,0	duplicate(#illcon01)	#illcon10	HIDDEN_WARP_NPC,5,5
 gef_d01_i,172,86,0	duplicate(#illcon01)	#illcon11	HIDDEN_WARP_NPC,5,5
 
-gef_d01_i,112,228,5	script	玛丽娜#ilgf01	4_F_MONK,{
-	mes "[玛丽娜]";
+gef_d01_i,112,228,5	script	茉莉娜#ilgf01::玛丽娜#ilgf01	4_F_MONK,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "要离开吗？";
 	next;
 	if (select( "是。", "不。" ) == 2) {
-		mes "[玛丽娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了。想离开时告诉我。";
 		close;
 	}
-	mes "[玛丽娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你这么急着离开，发生什么事了吗？";
 	close2;
 	warp "gef_dun01",133,219;
 	end;
 }
 
-gef_d01_i,116,228,3	script	安托万#ilgf01	4_GEFFEN_01,{
+gef_d01_i,116,228,3	script	昂托安#ilgf01::安托万#ilgf01	4_GEFFEN_01,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你确定能带走那么多东西吗？为什么不减轻负重？";
 		close;
 	}
 	if (ill_vampire < 6) {
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "吉姆姐姐，请听我说！";
 		close;
 	}
 	if (ill_vampire == 6) {
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我担心那两个人。他们应该没事，对吧？";
 		close;
 	}
 	if (ill_vampire == 7) {
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你找到乔乔了吗？他在哪里？朱比利去治疗他的伤口了。";
 		close;
 	}
 	if (ill_vampire < 16) {
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这里有这么多想研究的东西，我都不知道从哪里开始。天哪，看看那只梦魇！";
 		close;
 	}
@@ -2005,21 +2005,21 @@ gef_d01_i,116,228,3	script	安托万#ilgf01	4_GEFFEN_01,{
 		break;
 	case 0:
 	case 1:
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，我不想让你太勉强。去休息一下吧？";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好好睡一晚，天亮后再回来。";
 		close;
 	case 2:
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你昨晚做了好梦吗？我因为整天盯着那些鬃毛，可能做了噩梦。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我不会放弃！";
 		mes "请像往常一样带给我^0000cd20根摇曳鬃毛^000000。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，如果你还能消灭^0000cd10只甜蜜梦魇^000000就更好了。我想知道这会如何影响梦境。谢谢！";
 		erasequest 14670;// Time for Dreaming
 		setquest 14669;// Sweet Dreams
@@ -2027,62 +2027,62 @@ gef_d01_i,116,228,3	script	安托万#ilgf01	4_GEFFEN_01,{
 	}
 	switch( checkquest(14669,HUNTING) ) {
 	case -1:
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，可以和你谈一会儿吗？我想听听你对一件事的看法。";
 		next;
 		if (select( "当然可以。", "我有点忙。" ) == 2) {
-			mes "[安托万]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是吗？没关系，等你有空时再来找我。";
 			close;
 		}
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你见过那些梦魇和吸血蝙蝠吧？你注意到它们和外面的种类长得不同吗？你觉得为什么？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我不知道。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里的一切都很有趣。尤其是那些甜蜜梦魇，它们充满矛盾。";
 		next;
 		emotion ET_SPARK;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你仔细看过它们的摇曳鬃毛吗？看久了就会看到画面闪现，我认为那来自其他人的梦。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "甜蜜梦魇……连名字都自相矛盾。也许它们的鬃毛是一切梦魇的源头。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "又或者，它只是映照死者的梦。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那两位女士可能不同意，但我不必一直留在这里。我留下只是因为^0000cd甜蜜梦魇^000000。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想弄到它们的鬃毛，看看是否会影响我们的梦。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且我不想丢下同事，让他们自生自灭。你明白我的意思吗？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "你想让我^0000cd替你弄来它们的鬃毛^000000吗？";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，拜托了！^0000cd20根^000000就够了！";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另外请顺便猎杀^0000cd10只甜蜜梦魇^000000。我要知道这会如何影响梦境。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我会做的。";
 		next;
 		emotion ET_THANKS;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢。作为回报，我会给你一些从这里捡到的石头。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道它们有什么用途，但它们确实美丽又神秘。也许外面有人能认出它们的价值。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，谢谢你为我做这些！";
 		setquest 14669;// Sweet Dreams
 		close;
@@ -2092,16 +2092,16 @@ gef_d01_i,116,228,3	script	安托万#ilgf01	4_GEFFEN_01,{
 	case 2:
 		if (countitem(25270) < 20)
 			break;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，我一直在等你！你拿到我要的东西了吗？";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你把它们全带来了。我希望能从中发现些什么。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些只能在这里找到。以后有机会请继续带给我。你知道的，醒来后梦就会消失。";
 		next;
-		mes "[安托万]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢。你现在该休息了。";
 		delitem 25270,20;// Wavy_Mane
 		erasequest 14669;// Sweet Dreams
@@ -2110,16 +2110,16 @@ gef_d01_i,116,228,3	script	安托万#ilgf01	4_GEFFEN_01,{
 		getitem 25271,1;// Illusion Stone
 		close;
 	}
-	mes "[安托万]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "冒险者，我一直在等你！你拿到我要的东西了吗？";
 	next;
-	mes "[安托万]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，看来你还没找到。";
 	next;
-	mes "[安托万]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请从^0000cd甜蜜梦魇^000000那里带来^0000cd20根摇曳鬃毛^000000。";
 	next;
-	mes "[安托万]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，如果你还能消灭^0000cd10只甜蜜梦魇^000000就更好了。我想知道这会如何影响梦境。谢谢！";
 	close;
 
@@ -2131,14 +2131,14 @@ OnInit:
 	end;
 }
 
-gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
+gef_d01_i,113,230,5	script	甄#ilgf01::吉姆#ilgf01	1_F_PRIEST,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你确定能带得动这么多东西吗？为什么不减轻一下背包？";
 		close;
 	}
 	if (ill_vampire == 5) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "安托万兄弟，你留在这里。我和玛丽娜姐妹去。你们有意见吗？";
 		npctalk "就算你说了，我也听不见。", "", bc_self;
 		next;
@@ -2150,7 +2150,7 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		mes "玛丽娜，你留下吧。我和吉姆姐妹去。考虑到我们的能力，我觉得这样最好。";
 		npctalk "我们一个人搜索，另一个人掩护。", "安托万#ilgf01", bc_self;
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不行。这里到处都是邪恶生物。由两名神的仆人去找更好。";
 		next;
 		mes "[安托万]";
@@ -2159,7 +2159,7 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		mes "[玛丽娜]";
 		mes "我们两人留下，一个人去，怎么样？";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不行。必须两个人一起，这样可以互相照应。";
 		next;
 		mes "[安托万]";
@@ -2197,13 +2197,13 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		mes "你能来这里真是太好了。现在我们有四个人，^0000cd两人留下，两人去寻找^000000。";
 		next;
 		select("失踪的成员长什么样？" );
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "失踪的祭司叫^0000cd朱比利^000000，魔法师叫^0000cd乔乔^000000。他们就是典型的祭司和魔法师，不会认错。";
 		next;
 		mes "[玛丽娜]";
 		mes "冒险者，我们走吧！";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在你出发前让我为你祈祷。亲爱的神，请守护你的孩子……";
 		erasequest 14656;// Finding Father Grimm's Colleagues
 		setquest 14657;// Jojo Is the Mage's Name
@@ -2222,41 +2222,41 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		cloakoffnpcself( "祭司#ilgf01" );
 		for ( .@i = 3; .@i < 10; ++.@i )
 			cloakoffnpcself( "玛丽娜#ilgf0" + .@i );
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望朱比利兄弟和乔乔兄弟平安。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你必须离开，告诉玛丽娜姐妹。她会把你送回来的地方。";
 		close;
 	}
 	if (ill_vampire == 7) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "朱比利兄弟去治疗伤口了，但乔乔兄弟还没回来。真希望他平安。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你必须离开，告诉玛丽娜姐妹。她会把你送回来的地方。";
 		close;
 	}
 	if (ill_vampire < 14) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真希望乔乔兄弟平安。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你必须离开，告诉玛丽娜姐妹。她会把你送回来的地方。";
 		close;
 	}
 	if (ill_vampire == 14) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你现在要离开吗？";
 		next;
 		select("格林神父现在一定很焦急。" );
 		mes "[" + strcharinfo(0) + "]";
 		mes "是的。既然知道你们平安，我该回格林神父那里了。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "根据我们的判断，这里发生的事似乎不会^0000cd影响^000000外界。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就好，但仍然需要有人留在这里监视它们。你明白我们的意思吧？请告诉格林兄弟。";
 		next;
 		select("我很惊讶。" );
@@ -2266,10 +2266,10 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		mes "[玛丽娜]";
 		mes "如果按规矩办，我们不该让它们活着。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她说得对，我们不该。但看着它们……我不确定它们是否该死。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是我们需要思考的问题。";
 		next;
 		emotion ET_STARE, getnpcid(0, "玛丽娜#ilgf01");
@@ -2280,7 +2280,7 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		mes "[安托万]";
 		mes "如果发生那种事，我会让你亲自处理它们。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请告诉格林兄弟，我们决定留下来监视它们。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -2293,10 +2293,10 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		end;
 	}
 	if (ill_vampire == 15) {
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请告诉格林兄弟，我们决定留下来";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你想离开，就请玛丽娜姐妹放你出去。";
 		close;
 	}
@@ -2305,17 +2305,17 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		break;
 	case 0:
 	case 1:
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，距离你上次狩猎还没过多久。你需要休息。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请明天^0000cd天亮后^000000再回来。";
 		close;
 	case 2:
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，欢迎回来。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "和往常一样，请消灭^0000cd静谧亡者^000000。它们有^0000cd小型、快速型和大型三种，请各消灭10只。^000000";
 		erasequest 14668;// Get Some Rest
 		setquest 14667;// Send the Dead Back to Earth
@@ -2323,42 +2323,42 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 	}
 	switch( checkquest(14667,HUNTING) ) {
 	case -1:
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你忙吗？";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使你很忙，也请抽一点时间给我。";
 		next;
 		if (select( "当然可以。", "但我太忙了。") == 2) {
-			mes "[吉姆]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，那我等你有空。";
 			close;
 		}
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如你所知，我们来这里是为了监视它们。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "是的。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但这妨碍了我们的原本任务，也就是清除这里的邪恶生物。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们一直试图两边兼顾，但只有我们三个人实在很难。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "死者应当归于大地。我们来这里是为了^0000cd让亡者重新长眠^000000。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "也就是说你们需要帮助。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "你想让我处理哪种怪物？";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请消灭^0000cd静谧亡者^000000。它们有^0000cd小型、快速型和大型三种，请各消灭10只。^000000";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -2367,23 +2367,23 @@ gef_d01_i,113,230,5	script	吉姆#ilgf01	1_F_PRIEST,{
 		close;
 	case 0:
 	case 1:
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你处理好我拜托的事了吗？";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还是忘了我要你做什么？";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请消灭^0000cd静谧亡者^000000。它们有^0000cd小型、快速型和大型三种，请各消灭10只。^000000";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所有死者都必须回归大地。";
 		close;
 	case 2:
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你把它们全都处理好了。谢谢。它们也会在天堂感谢你。";
 		next;
-		mes "[吉姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你去休息一下，天亮后再回来吧？";
 		erasequest 14667;// Send the Dead Back to Earth
 		setquest 14668;// Get Some Rest
@@ -2404,7 +2404,7 @@ OnInit:
 }
 
 // Jubilee Is the Priest's Name
-gef_d01_i,93,178,5	script(CLOAKED)	玛丽娜#ilgf03	4_F_MONK,5,5,{
+gef_d01_i,93,178,5	script(CLOAKED)	茉莉娜#ilgf03::玛丽娜#ilgf03	4_F_MONK,5,5,{
 	end;
 OnTouch:
 	if (ill_vampire == 6) {
@@ -2431,12 +2431,12 @@ OnTouch:
 	}
 	end;
 }
-gef_d01_i,127,153,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf04	4_F_MONK,5,5
-gef_d01_i,213,237,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf05	4_F_MONK,5,5
-gef_d01_i,150,224,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf06	4_F_MONK,5,5
-gef_d01_i,208,144,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf07	4_F_MONK,5,5
-gef_d01_i,250,130,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf08	4_F_MONK,5,5
-gef_d01_i,255,202,5	duplicate(玛丽娜#ilgf03)	玛丽娜#ilgf09	4_F_MONK,5,5
+gef_d01_i,127,153,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf04::玛丽娜#ilgf04	4_F_MONK,5,5
+gef_d01_i,213,237,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf05::玛丽娜#ilgf05	4_F_MONK,5,5
+gef_d01_i,150,224,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf06::玛丽娜#ilgf06	4_F_MONK,5,5
+gef_d01_i,208,144,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf07::玛丽娜#ilgf07	4_F_MONK,5,5
+gef_d01_i,250,130,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf08::玛丽娜#ilgf08	4_F_MONK,5,5
+gef_d01_i,255,202,5	duplicate(玛丽娜#ilgf03)	茉莉娜#ilgf09::玛丽娜#ilgf09	4_F_MONK,5,5
 
 
 
@@ -2450,17 +2450,17 @@ OnTouch:
 
 gef_d01_i,254,162,1	duplicate(dummy_cloaked_npc)	亡者#ilgf08	ILL_ZOMBIE
 gef_d01_i,252,160,1	duplicate(dummy_cloaked_npc)	亡者#ilgf09	ILL_ZOMBIE
-gef_d01_i,253,165,3	duplicate(dummy_cloaked_npc)	玛丽娜#ilgf10	4_F_MONK
+gef_d01_i,253,165,3	duplicate(dummy_cloaked_npc)	茉莉娜#ilgf10::玛丽娜#ilgf10	4_F_MONK
 
-gef_d01_i,250,164,5	script(CLOAKED)	祭司#ilgf01	4_M_MINISTER,5,5,{
+gef_d01_i,250,164,5	script(CLOAKED)	牧师#ilgf01::祭司#ilgf01	4_M_MINISTER,5,5,{
 	if (ill_vampire != 6)
 		end;
 	.@char_id = .@char_id;
-	mes "[祭司]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我该怎么办？我的腿受伤了，走不了路。能量也不够，无法传送。";
 	next;
 	emotion ET_CRY;
-	mes "[祭司]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "*倒吸一口气* 我要死了吗？真的要死了吗？我不敢相信会死在这种地方！";
 	sleep2 500;
 	cloakoffnpcself( "亡者#ilgf08" );
@@ -2468,7 +2468,7 @@ gef_d01_i,250,164,5	script(CLOAKED)	祭司#ilgf01	4_M_MINISTER,5,5,{
 	npctalk "呃……", "亡者#ilgf08", bc_self;
 	npctalk "呃啊……", "亡者#ilgf09", bc_self;
 	next;
-	mes "[祭司]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊！不要又来！救命！";
 	next;
 	select("典型的祭司……等等，是他吗？" );
@@ -2683,7 +2683,7 @@ OnTouch:
 	cloakonnpcself( "无名坟墓#ilgf01" );
 	end;
 }
-gef_d01_i,136,58,5	duplicate(dummy_cloaked_npc)	无名坟墓#ilgf01	4_SOIL
+gef_d01_i,136,58,5	duplicate(dummy_cloaked_npc)	无名墓地#ilgf01::无名坟墓#ilgf01	4_SOIL
 
 
 gef_d01_i,67,85,5	script(CLOAKED)	魔法师#ilgf09	4_M_JOB_WIZARD,5,5,{
@@ -2762,7 +2762,7 @@ OnTouch:
 	end;
 }
 gef_d01_i,50,257,5	duplicate(dummy_cloaked_npc)	魔法师#ilgf13	2_F_MAGICMASTER
-gef_d01_i,50,254,5	duplicate(dummy_cloaked_npc)	无名坟墓#ilgf02	4_SOIL
+gef_d01_i,50,254,5	duplicate(dummy_cloaked_npc)	无名墓地#ilgf02::无名坟墓#ilgf02	4_SOIL
 
 
 gef_d01_i,112,267,3	script(CLOAKED)	魔法师#ilgf14	4_M_JOB_WIZARD,5,5,{
@@ -2792,7 +2792,7 @@ OnTouch:
 	end;
 }
 gef_d01_i,110,266,5	duplicate(dummy_cloaked_npc)	魔法师#ilgf15	4_M_ARUNA_NFM1
-gef_d01_i,111,264,5	duplicate(dummy_cloaked_npc)	无名坟墓#ilgf03	4_SOIL
+gef_d01_i,111,264,5	duplicate(dummy_cloaked_npc)	无名墓地#ilgf03::无名坟墓#ilgf03	4_SOIL
 
 
 gef_d01_i,55,167,3	script(CLOAKED)	魔法师#ilgf16	4_M_ARUNA_NFM1,5,5,{
@@ -3001,12 +3001,12 @@ OnTouch:
 // End of the "魔法师 illusions"
 
 
-gef_d01_i,80,139,5	duplicate(dummy_cloaked_npc)	吉姆#ilgf02	1_F_PRIEST,5,5
+gef_d01_i,80,139,5	duplicate(dummy_cloaked_npc)	甄#ilgf02::吉姆#ilgf02	1_F_PRIEST,5,5
 gef_d01_i,86,133,1	duplicate(dummy_cloaked_npc)	玛丽娜#ilgf02	4_F_MONK,5,5
-gef_d01_i,85,139,3	duplicate(dummy_cloaked_npc)	安托万#ilgf02	4_GEFFEN_01,5,5
+gef_d01_i,85,139,3	duplicate(dummy_cloaked_npc)	昂托安#ilgf02::安托万#ilgf02	4_GEFFEN_01,5,5
 gef_d01_i,84,135,3	duplicate(dummy_cloaked_npc)	德古拉#ilgf03	4_DRACULA,5,5
-gef_d01_i,87,137,3	duplicate(dummy_cloaked_npc)	国王#ilgf02	4_NFBAT,5,5
-gef_d01_i,80,132,7	duplicate(dummy_cloaked_npc)	乔乔#ilgf01	4_M_JOB_WIZARD,5,5
+gef_d01_i,87,137,3	duplicate(dummy_cloaked_npc)	金#ilgf02::国王#ilgf02	4_NFBAT,5,5
+gef_d01_i,80,132,7	duplicate(dummy_cloaked_npc)	赵昭#ilgf01::乔乔#ilgf01	4_M_JOB_WIZARD,5,5
 
 
 gef_d01_i,81,135,5	script	魔法师#ilgf01	4_F_BOMI,5,5,{
@@ -3959,25 +3959,25 @@ OnMobDead:
 	end;
 }
 
-gef_d01_i,185,97,5	script	国王#ilgf01	4_NFBAT,{
+gef_d01_i,185,97,5	script	金#ilgf01::国王#ilgf01	4_NFBAT,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 mes "嘿，你为什么带这么多东西？先去减轻负重。";
 		close;
 	}
 	if (ill_vampire < 11) {
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 mes "什么，你有事找我？没事就走开！";
 		close;
 	}
 	if (ill_vampire == 11) {
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 mes "我闻到了^0000cd血^000000！人血！";
 		next;
 		mes "[乔乔]";
 mes "你不可能闻到我的血。我已经不流血了，早就痊愈了！";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 mes "不，是从别处传来的，而且我闻到的不止一个人类……^0000cd战斗^000000！某处发生战斗了！血！我们走！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -3987,7 +3987,7 @@ mes "战斗？……不。如果教会的人找到了波米怎么办？";
 mes "教会的人？";
 		next;
 		emotion ET_GO;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 mes "*嗅嗅*这边！气味是从这里传来的！";
 		erasequest 14662;// You're Scaring Me
 		setquest 14663;// Bloody Fight
@@ -3997,14 +3997,14 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		end;
 	}
 	if (ill_vampire == 12 || ill_vampire == 13) {
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*嗅嗅* 是这边！气味从这边传来！";
 		close2;
 		viewpoint 1,85,131,1,0x00FF00;
 		end;
 	}
 	if (ill_vampire == 14 || ill_vampire == 15) {
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么那样看着我？德古拉需要更多休息。不要打扰他。";
 		close;
 	}
@@ -4017,24 +4017,24 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		mes "[乔乔]";
 		mes "冒险者，你这么快就回来了。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是啊，你为什么这么快回来？我现在不想被打扰。晚点再来。";
 		close;
 	case 2:
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者来了！";
 		next;
 		mes "[乔乔]";
 		mes "冒险者来了！";
 		next;
 		select("你们为什么见到我这么兴奋？" );
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会像上次一样处理那些幻影红蝙蝠，对吧？它们太吵了。";
 		next;
 		mes "[乔乔]";
 		mes "你也会带些^0000cd蝙蝠短毛^000000回来，对吧？我需要的比上次多得多。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000cd10只幻影红蝙蝠^000000！";
 		next;
 		mes "[乔乔]";
@@ -4048,36 +4048,36 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		mes "[乔乔]";
 		mes "啊，冒险者。很高兴再见到你！德古拉好多了，不过他整天都在睡觉。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他已经完全康复，但还是不想离开。我不知道他为什么如此迷恋那个变成吸血鬼的人类。";
 		next;
 		mes "[乔乔]";
 		mes "哦，你说的是波米？我以为她和德古拉一样是吸血鬼。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是所有吸血鬼都一样。我们和她不同。对了，你为什么还在这里？德古拉已经不需要你了。";
 		next;
 		mes "[乔乔]";
 		mes "嗯，这附近有些东西我想研究，而且……";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想找死吗？你没注意到这些蝙蝠又饿又凶吗？这些讨厌的家伙会扑向任何移动的东西！帮我处理它们，好吗？";
 		next;
 		if (select( "它们很烦人。", "嗯，我有点忙。") == 2) {
-			mes "[国王]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是吗？那就走。快走。";
 			next;
 			mes "[乔乔]";
 			mes "国王，你不用这么刻薄。";
 			next;
-			mes "[国王]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是他先对我刻薄的！而且他说自己很忙。所以我才叫他走。快走！";
 			close;
 		}
 		mes "[乔乔]";
 		mes "只要待在德古拉和国王身边，它们就不会打扰我。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但它们喝僵尸血！呸！无论多饿我都不会喝死者的血。太可耻了！";
 		next;
 		mes "[乔乔]";
@@ -4090,27 +4090,27 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		sleep2 1000;
 		npctalk "……不。", "魔法师#ilgf02", bc_self;
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你忘了，你知道自己为什么还能站在那里呼吸吗？";
 		next;
 		mes "[乔乔]";
 		mes "……怎么会？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为是我允许的。我让你呼吸，不是因为你值得活着，而是因为我懒得杀你。";
 		next;
 		emotion ET_SWEAT, getnpcid(0, "魔法师#ilgf02");
 		mes "[乔乔]";
 		mes "……哦。谢谢你的一切。嗯，我想是时候回到队伍了。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我还在和你说话。你不会因为我是蝙蝠形态就不怕我吧？你们人类真蠢，只看得到表面。";
 		npctalk "不，不是这样的。", "魔法师#ilgf02", bc_self;
 		next;
 		mes "[乔乔]";
 		mes "我同意这些蝙蝠是可耻、无耻又恶心的动物。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你刚才叫我恶心的动物？";
 		next;
 		mes "[乔乔]";
@@ -4122,14 +4122,14 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 			npctalk "什么？", "", bc_self;
 		next;
 		select("国王，我有个问题。" );
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么问题？";
 		next;
 		select("你为什么是蝙蝠形态？" );
 		mes "[乔乔]";
 		mes "是啊。既然你这么讨厌它们，为什么不变回原来的形态？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为这个形态更有效率。不用喝很多就能吃饱，不引人注意，而且人们，比如那边那个笨蛋，会对我放松警惕。";
 		next;
 		mes "[乔乔]";
@@ -4138,26 +4138,26 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		mes "[" + strcharinfo(0) + "]";
 		mes "但为什么是蝙蝠？还有其他小动物吧。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为蝙蝠擅长隐匿，而且会飞。说起来，你知道幻影红蝙蝠的短毛可以用来制作隐身斗篷吗？";
 		next;
 		select("嗯？不，我从没听说过。" );
 		mes "[乔乔]";
 		mes "隐身斗篷？小偷之类的人一定很喜欢。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真不敢相信你这么单纯。";
 		next;
 		mes "[乔乔]";
 		mes "呃，我要怎么得到毛？去猎杀幻影红蝙蝠吗？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么，你想放弃魔法改行当小偷？";
 		next;
 		mes "[乔乔]";
 		mes "不。但征服大陆上所有地下城、成为最伟大的魔法师一直是我的梦想。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……那是个伟大的梦想，也是个不可能的梦想。不过，任何人都可以有远大的梦想。";
 		npctalk "啊，拜托！", "魔法师#ilgf02", bc_self;
 		sleep2 1000;
@@ -4166,31 +4166,31 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		mes "[乔乔]";
 		mes "即使不是为了梦想，隐身斗篷在各种情况下也很有用。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道我们之中还有未来的小偷。嗯。";
 		next;
 		mes "[乔乔]";
 		mes "我说了我不是那个意思。冒险者，你忙吗？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么，你要问他？自己做！";
 		next;
 		mes "[乔乔]";
 		mes "我还有其他事要做。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么事？吃饭、睡觉和拉屎？";
 		next;
 		mes "[乔乔]";
 		mes "哦，拜托！你知道我一直忙着研究！";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是说，研究我和德古拉。";
 		next;
 		mes "[乔乔]";
 		mes "……你是怎么做到的……？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一开始就知道了。你的表情太明显，什么都藏不住。我只是觉得你紧张地偷看我们很有趣，所以没说。";
 		next;
 		mes "[乔乔]";
@@ -4199,25 +4199,25 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		sleep2 1000;
 		npctalk "为什么不？！", "魔法师#ilgf02", bc_self;
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你要替他弄蝙蝠毛吗？很好，那就由你处理那些幻影红蝙蝠。它们扇翅膀让我晚上睡不着。";
 		next;
 		mes "[乔乔]";
 		mes "你为什么不能自己做？只要动动手指就行。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你愿意，我可以对你弹一下手指。";
 		next;
 		mes "[乔乔]";
 		mes "冒险者，请把蝙蝠毛带给我。国王，我是说，国王先生，我需要多少蝙蝠毛？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这取决于你想要什么斗篷。不过用毛制作东西很难。";
 		next;
 		mes "[乔乔]";
 		mes "嗯，好吧，那先请带来^0000cd20根蝙蝠短毛^000000。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另外，猎杀附近的^0000cd幻影红蝙蝠^000000。至少要^0000cd10只^000000。";
 		next;
 		mes "[乔乔]";
@@ -4231,25 +4231,25 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 	case 2:
 		if (countitem(25263) < 20)
 			break;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你回来得很快。希望你没忘记什么。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "魔法师！冒险者把毛带来了。";
 		next;
 		mes "[乔乔]";
 		mes "那我现在该做什么？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你自己想办法。我又不是斗篷制作者，对吧？但我知道你需要的不止这些。";
 		next;
 		mes "[乔乔]";
 		mes "嗯……冒险者？";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他刚狩猎回来。至少让他今天剩下的时间休息一下。";
 		next;
-		mes "[国王]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，明天再回来帮我猎杀更多幻影红蝙蝠，好吗？没有它们真安静。";
 		next;
 		mes "[乔乔]";
@@ -4261,13 +4261,13 @@ mes "*嗅嗅*这边！气味是从这里传来的！";
 		getitem 25271,1;// Illusion Stone
 		close;
 	}
-	mes "[国王]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你回来得很快。希望你没忘记什么。";
 	next;
-	mes "[国王]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "看看你带了什么。你忘了我的要求吗？我说过要^0000cd猎杀10只幻影红蝙蝠并带回20根蝙蝠短毛^000000。";
 	next;
-	mes "[国王]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "去完成吧。";
 	close;
 
@@ -5446,7 +5446,7 @@ OnVridDead:
 	end;
 }
 
-ice_d03_i,137,38,3	script	干土堆#frozen1	4_SOIL,{
+ice_d03_i,137,38,3	script	干燥土堆#frozen1::干土堆#frozen1	4_SOIL,{
 	if (illusion_frozen == 1) {
 		if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 2000) {
 			mes "我携带了太多种物品。应该先减轻负重。";
@@ -5476,35 +5476,35 @@ OnTimer30000:
 	enablenpc();
 	end;
 }
-ice_d03_i,111,45,3	duplicate(干土堆#frozen1)	干土堆#frozen2	4_SOIL
-ice_d03_i,65,70,3	duplicate(干土堆#frozen1)	干土堆#frozen3	4_SOIL
-ice_d03_i,86,87,3	duplicate(干土堆#frozen1)	干土堆#frozen4	4_SOIL
-ice_d03_i,70,113,3	duplicate(干土堆#frozen1)	干土堆#frozen5	4_SOIL
-ice_d03_i,46,206,3	duplicate(干土堆#frozen1)	干土堆#frozen6	4_SOIL
-ice_d03_i,64,231,3	duplicate(干土堆#frozen1)	干土堆#frozen7	4_SOIL
-ice_d03_i,84,208,3	duplicate(干土堆#frozen1)	干土堆#frozen8	4_SOIL
-ice_d03_i,100,246,3	duplicate(干土堆#frozen1)	干土堆#frozen9	4_SOIL
-ice_d03_i,196,246,3	duplicate(干土堆#frozen1)	干土堆#frozen10	4_SOIL
-ice_d03_i,238,231,3	duplicate(干土堆#frozen1)	干土堆#frozen11	4_SOIL
-ice_d03_i,252,206,3	duplicate(干土堆#frozen1)	干土堆#frozen12	4_SOIL
-ice_d03_i,238,64,3	duplicate(干土堆#frozen1)	干土堆#frozen13	4_SOIL
-ice_d03_i,186,44,3	duplicate(干土堆#frozen1)	干土堆#frozen14	4_SOIL
-ice_d03_i,160,48,3	duplicate(干土堆#frozen1)	干土堆#frozen15	4_SOIL
-ice_d03_i,126,73,3	duplicate(干土堆#frozen1)	干土堆#frozen16	4_SOIL
-ice_d03_i,70,184,3	duplicate(干土堆#frozen1)	干土堆#frozen17	4_SOIL
-ice_d03_i,214,208,3	duplicate(干土堆#frozen1)	干土堆#frozen18	4_SOIL
-ice_d03_i,228,184,3	duplicate(干土堆#frozen1)	干土堆#frozen19	4_SOIL
-ice_d03_i,230,111,3	duplicate(干土堆#frozen1)	干土堆#frozen20	4_SOIL
-ice_d03_i,219,90,3	duplicate(干土堆#frozen1)	干土堆#frozen21	4_SOIL
-ice_d03_i,171,72,3	duplicate(干土堆#frozen1)	干土堆#frozen22	4_SOIL
-ice_d03_i,112,111,3	duplicate(干土堆#frozen1)	干土堆#frozen23	4_SOIL
-ice_d03_i,112,188,3	duplicate(干土堆#frozen1)	干土堆#frozen24	4_SOIL
-ice_d03_i,186,188,3	duplicate(干土堆#frozen1)	干土堆#frozen25	4_SOIL
-ice_d03_i,189,112,3	duplicate(干土堆#frozen1)	干土堆#frozen26	4_SOIL
-ice_d03_i,150,104,3	duplicate(干土堆#frozen1)	干土堆#frozen27	4_SOIL
-ice_d03_i,110,150,3	duplicate(干土堆#frozen1)	干土堆#frozen28	4_SOIL
-ice_d03_i,150,187,3	duplicate(干土堆#frozen1)	干土堆#frozen29	4_SOIL
-ice_d03_i,187,149,3	duplicate(干土堆#frozen1)	干土堆#frozen30	4_SOIL
+ice_d03_i,111,45,3	duplicate(干土堆#frozen1)	干燥土堆#frozen2::干土堆#frozen2	4_SOIL
+ice_d03_i,65,70,3	duplicate(干土堆#frozen1)	干燥土堆#frozen3::干土堆#frozen3	4_SOIL
+ice_d03_i,86,87,3	duplicate(干土堆#frozen1)	干燥土堆#frozen4::干土堆#frozen4	4_SOIL
+ice_d03_i,70,113,3	duplicate(干土堆#frozen1)	干燥土堆#frozen5::干土堆#frozen5	4_SOIL
+ice_d03_i,46,206,3	duplicate(干土堆#frozen1)	干燥土堆#frozen6::干土堆#frozen6	4_SOIL
+ice_d03_i,64,231,3	duplicate(干土堆#frozen1)	干燥土堆#frozen7::干土堆#frozen7	4_SOIL
+ice_d03_i,84,208,3	duplicate(干土堆#frozen1)	干燥土堆#frozen8::干土堆#frozen8	4_SOIL
+ice_d03_i,100,246,3	duplicate(干土堆#frozen1)	干燥土堆#frozen9::干土堆#frozen9	4_SOIL
+ice_d03_i,196,246,3	duplicate(干土堆#frozen1)	干燥土堆#frozen10::干土堆#frozen10	4_SOIL
+ice_d03_i,238,231,3	duplicate(干土堆#frozen1)	干燥土堆#frozen11::干土堆#frozen11	4_SOIL
+ice_d03_i,252,206,3	duplicate(干土堆#frozen1)	干燥土堆#frozen12::干土堆#frozen12	4_SOIL
+ice_d03_i,238,64,3	duplicate(干土堆#frozen1)	干燥土堆#frozen13::干土堆#frozen13	4_SOIL
+ice_d03_i,186,44,3	duplicate(干土堆#frozen1)	干燥土堆#frozen14::干土堆#frozen14	4_SOIL
+ice_d03_i,160,48,3	duplicate(干土堆#frozen1)	干燥土堆#frozen15::干土堆#frozen15	4_SOIL
+ice_d03_i,126,73,3	duplicate(干土堆#frozen1)	干燥土堆#frozen16::干土堆#frozen16	4_SOIL
+ice_d03_i,70,184,3	duplicate(干土堆#frozen1)	干燥土堆#frozen17::干土堆#frozen17	4_SOIL
+ice_d03_i,214,208,3	duplicate(干土堆#frozen1)	干燥土堆#frozen18::干土堆#frozen18	4_SOIL
+ice_d03_i,228,184,3	duplicate(干土堆#frozen1)	干燥土堆#frozen19::干土堆#frozen19	4_SOIL
+ice_d03_i,230,111,3	duplicate(干土堆#frozen1)	干燥土堆#frozen20::干土堆#frozen20	4_SOIL
+ice_d03_i,219,90,3	duplicate(干土堆#frozen1)	干燥土堆#frozen21::干土堆#frozen21	4_SOIL
+ice_d03_i,171,72,3	duplicate(干土堆#frozen1)	干燥土堆#frozen22::干土堆#frozen22	4_SOIL
+ice_d03_i,112,111,3	duplicate(干土堆#frozen1)	干燥土堆#frozen23::干土堆#frozen23	4_SOIL
+ice_d03_i,112,188,3	duplicate(干土堆#frozen1)	干燥土堆#frozen24::干土堆#frozen24	4_SOIL
+ice_d03_i,186,188,3	duplicate(干土堆#frozen1)	干燥土堆#frozen25::干土堆#frozen25	4_SOIL
+ice_d03_i,189,112,3	duplicate(干土堆#frozen1)	干燥土堆#frozen26::干土堆#frozen26	4_SOIL
+ice_d03_i,150,104,3	duplicate(干土堆#frozen1)	干燥土堆#frozen27::干土堆#frozen27	4_SOIL
+ice_d03_i,110,150,3	duplicate(干土堆#frozen1)	干燥土堆#frozen28::干土堆#frozen28	4_SOIL
+ice_d03_i,150,187,3	duplicate(干土堆#frozen1)	干燥土堆#frozen29::干土堆#frozen29	4_SOIL
+ice_d03_i,187,149,3	duplicate(干土堆#frozen1)	干燥土堆#frozen30::干土堆#frozen30	4_SOIL
 
 
 //============================================================
@@ -5512,18 +5512,18 @@ ice_d03_i,187,149,3	duplicate(干土堆#frozen1)	干土堆#frozen30	4_SOIL
 //============================================================
 
 // Entrance - starter
-alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
+alberta,211,28,5	script	骑士 埃瓦尔#illtur::骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 	.@account_id = getcharid(3);
 	.@player_name$ = strcharinfo(0);
 
 	disable_items;
 	if (ill_turtle == 0) {
 		npctalk "艾尔瓦：我需要你的帮助。请快点！", "", bc_self;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你是冒险者吗？？我想拜托你一件事……";
 		next;
 		if (BaseLevel < 150) {
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……哦，你还需要更多经验。抱歉打扰了。";
 			mes "这是一项高风险工作。";
 			next;
@@ -5532,17 +5532,17 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		}
 		if (select( "发生什么事了？", "我很忙。" ) == 2) {
 			npctalk "艾尔瓦：莱芬，我的朋友……请你平安无事。", "", bc_self;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉打扰你。";
 			mes "愿神保佑你。";
 			close;
 		}
 		npctalk "艾尔瓦：冒险者？啊，是你，" + .@player_name$ + "。", "", bc_self;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉突然拜托你。";
 		mes "我是艾尔瓦，来自艾尔贝塔卫队第一骑士团。";
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "奉骑士团之命，我正在寻找在乌龟岛失踪的艾尔贝塔第二骑士团。";
 		mes "然而遭遇猛烈风暴后，我抵达了一个乌龟岛，却感觉它不像普通的乌龟岛。";
 		emotion ET_QUESTION, .@account_id;
@@ -5550,53 +5550,53 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		sleep2 1500;
 		npctalk "艾尔瓦：很难解释，那里明显是乌龟岛，但我却起了一身鸡皮疙瘩。", "", bc_self;
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我当时身处险境，但有人救了我。";
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "醒来时，我感受到了来自艾尔贝塔港口的海风……手里还有两块这样的龟壳。";
 		npctalk "艾尔瓦：我不知道是怎么回事，但我知道自己好不容易才捡回一条命。", "", bc_self;
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我手里只有其中一块。";
 		mes "另一块可能在我朋友那里。不，我是说，他一定还留着。";
 		next;
 		if (select( "你的朋友遇到麻烦了吗？", "难以置信。" ) == 2) {
 			emotion ET_PROFUSELY_SWAT;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我理解。连我自己都很困惑，但请听我说完。我觉得我的朋友有危险。";
 		}
 		else {
 			emotion ET_PROFUSELY_SWAT;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是的，是关于我朋友的事。抱歉说了这么久，再听我说一点。";
 		}
 		next;
 		npctalk "莱芬：我是莱芬，朱诺的考古学教授。", "", bc_self;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我把这些碎片给朋友^0000CD莱芬^000000看。";
 		mes "他对此非常感兴趣。^0000CD他说这是用只生活在乌龟岛上的海龟龟壳制成的。";
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我把碎片交给他之后……";
 		mes "正在查看碎片的朋友莱芬突然消失了。";
 		npctalk "艾尔瓦：我亲眼看到的。他刚才就在这里。", "", bc_self;
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "事情发生在^FF0000半天前^000000。";
 		mes "这段时间里，我联系了朱诺大学，也去了乌龟岛，但一无所获……我希望能找到线索，弄清莱芬究竟消失去了哪里。";
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + .@player_name$ + "，请帮帮我们。你能帮我找到朋友吗？";
 		mes "这块碎片可能是线索。请你看看。";
 		next;
 		select("请告诉我你朋友的长相。");
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^0000CD他戴着眼镜^000000，留着蓝色短发。^0000CD他的脸看起来像学者^000000，应该很容易认出。";
 		next;
 		if (select( "把碎片给我看看。", "抱歉，我很忙。" ) == 2) {
 			npctalk "艾尔瓦：莱芬，我的朋友……请你平安无事。", "", bc_self;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉打扰你。";
 			mes "愿神保佑你。";
 			close;
@@ -5604,10 +5604,10 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		if (checkweight(25315,1) == 0) {
 			mes " - ^424242停止交出碎片。^000000 - ";
 			next;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，" + .@player_name$ + "。你携带的物品太多了。看来现在很难找到我的朋友。";
 			next;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你能清理一下背包吗？我会在这里等你。";
 			close;
 		}
@@ -5626,7 +5626,7 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		end;
 	}
 	if (ill_turtle < 11) {
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + .@player_name$ + "！哦，你没事！我……很担心。莱芬消失后，" + .@player_name$ + "你也消失了，我真的很担心。";
 		sleep2 500;
 		if (ill_turtle > 5) {
@@ -5640,19 +5640,19 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 			npctalk "艾尔瓦：真的吗？太好了！莱芬……！", "", bc_self;
 		}
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要再次回去寻找莱芬吗？";
 		npctalk "艾尔瓦：我有办法去那里吗？", "", bc_self;
 		sleep2 1000;
 		unittalk .@account_id, "" + .@player_name$ + "：我觉得你很难去那里。", bc_self;
 		next;
 		if (select( "让我再次去那里。", "我之后再去。" ) == 2) {
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请救救莱芬。";
 			mes "如果我能去那里，我会亲自救他。";
 			close;
 		}
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你。真的非常感谢。";
 		mes "请救救莱芬。";
 		next;
@@ -5665,24 +5665,24 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		end;
 	}
 	if (ill_turtle == 11) {
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，" + .@player_name$ + "。我已经听莱芬讲完了所有事情。";
 		mes "他再次去了那里，让我很担心。他说查明那个地方的秘密后就会回来。";
 		next;
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不仅是莱芬，还有一个叫娜琳的孩子……你也帮助过她。你真是位了不起的冒险者。";
 		mes "你还要再去那里吗？";
 		next;
 		if (select( "是的。我要去那里。", "现在还不去。" ) == 2) {
 			emotion ET_SURPRISE;
-			mes "[骑士艾尔瓦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，既然你要再去那里，请也确认莱芬平安无事。";
 			ill_turtle = 12;
 			setquest 16114;	// Talk with Aylvar
 			completequest 16114;	// Talk with Aylvar
 			close;
 		}
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请再回来，" + .@player_name$ + "。";
 		mes "路上请确认莱芬一切安好。";
 		ill_turtle = 12;
@@ -5693,16 +5693,16 @@ alberta,211,28,5	script	骑士艾尔瓦#illtur	4_M_YOUNGKNIGHT,{
 		end;
 	}
 	npctalk "艾尔瓦：对他来说研究比自己更重要，所以我想待在他身边。", "", bc_self;
-	mes "[骑士艾尔瓦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "很高兴再次见到你。我已经把情报报告给骑士团，现在的工作是支持莱芬的研究。";
 	mes "你还要再去那里吗？";
 	next;
 	if (select( "是的。我要去那里。", "现在还不去。" ) == 2) {
-		mes "[骑士艾尔瓦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听完他的故事后，我也想去那里……但我无法像他说的那样前往。真遗憾。";
 		close;
 	}
-	mes "[骑士艾尔瓦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请再回来，" + .@player_name$ + "。";
 	mes "如果找到莱芬，请确认他有好好吃饭。";
 	close2;
@@ -7349,7 +7349,7 @@ com_d02_i,254,243,0	warp2	IL_Luanda#Luanda	1,1,beach_dun2,249,243
 
 
 // Reward npc
-com_d02_i,241,255,4	script	防卫负责人露安达#Lu	4_M_THAIONGBAK,{
+com_d02_i,241,255,4	script	防御总管 卢安达#Lu::防卫负责人露安达#Lu	4_M_THAIONGBAK,{
 	if (BaseLevel < 160)	// shouldn't happen
 		end;
 	if (checkweight(1201,3) == 0) {
@@ -7830,7 +7830,7 @@ OnHour21:
 }
 
 // MONDAY
-com_d02_i,153,33,1	script	闪光#Lu01	1_SHADOW_NPC,7,7,{
+com_d02_i,153,33,1	script	晃动#Lu01::闪光#Lu01	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -7862,10 +7862,10 @@ OnTouch:
 	end;
 }
 
-com_d02_i,152,40,6	script(CLOAKED)	青年老二#LuE01	4_M_THAIONGBAK,{
+com_d02_i,152,40,6	script(CLOAKED)	第二个青年#LuE01::青年老二#LuE01	4_M_THAIONGBAK,{
 	if (ill_luanda == 3) {
 		npctalk "哥哥？准备好了吗？你要马上离开吗？时间不多了。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哥哥？准备好了吗？你要马上离开吗？时间不多了。";
 		next;
 		npctalk "是的，正如二哥所说，我们最好快点出发。我感觉不太好。", "青年老大#LuE01", bc_self;
@@ -7889,11 +7889,11 @@ com_d02_i,152,40,6	script(CLOAKED)	青年老二#LuE01	4_M_THAIONGBAK,{
 		mes "如果老幺的记忆没错，就是这样。这个年纪还在这里当陌生人很奇怪。";
 		next;
 		npctalk "哥哥，我觉得你没有危险。现在不是时候。哥哥，我们先走吧。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哥哥，我觉得你没有危险。现在不是时候。哥哥，我们先走吧。";
 		next;
 		npctalk "我很快就追上来。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我很快就追上来。";
 		next;
 		npctalk "看二哥的表情，那个陌生人似乎有话要说？老幺，我们先走。", "青年老大#LuE01", bc_self;
@@ -7908,31 +7908,31 @@ com_d02_i,152,40,6	script(CLOAKED)	青年老二#LuE01	4_M_THAIONGBAK,{
 		sleep2 500;
 		cloakonnpcself( "青年老三#LuE01" );
 		npctalk "好的，哥哥。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好的，哥哥。";
 		next;
 		npctalk "嘿，陌生人，看我一会儿。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，陌生人，看我一会儿。";
 		ill_luanda = 4;
 		close;
 	}
 	if (ill_luanda == 4) {
 		npctalk "你？难道感觉不到善意吗？你到底在做什么？", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你？难道感觉不到善意吗？你到底在做什么？";
 		next;
 		select( "你在说什么？" );
 		npctalk "我能看见。嗯……但你看不见。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我能看见。嗯……但你看不见。";
 		next;
 		npctalk "我告诉你，是因为我从你身上感受到善意。马上离开这里。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我告诉你，是因为我从你身上感受到善意。马上离开这里。";
 		next;
 		npctalk "很多怪物很快会来到这个镇子。别白白送命，离开这里。", "", bc_self;
-		mes "[青年老二]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很多怪物很快会来到这个镇子。别白白送命，离开这里。";
 		next;
 		cloakonnpcself();
@@ -7946,12 +7946,12 @@ com_d02_i,152,40,6	script(CLOAKED)	青年老二#LuE01	4_M_THAIONGBAK,{
 	end;
 }
 
-com_d02_i,154,41,4	duplicate(dummy_cloaked_npc)	青年老大#LuE01	4_M_THAIONGBAK
-com_d02_i,156,39,4	duplicate(dummy_cloaked_npc)	青年老三#LuE01	4_M_THAIONGBAK
+com_d02_i,154,41,4	duplicate(dummy_cloaked_npc)	第一个青年#LuE01::青年老大#LuE01	4_M_THAIONGBAK
+com_d02_i,156,39,4	duplicate(dummy_cloaked_npc)	第三个青年#LuE01::青年老三#LuE01	4_M_THAIONGBAK
 
 
 // TUESDAY
-com_d02_i,118,100,1	script	闪光#Lu02	1_SHADOW_NPC,7,7,{
+com_d02_i,118,100,1	script	晃动#Lu02::闪光#Lu02	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -7976,14 +7976,14 @@ OnTouch:
 	end;
 }
 
-com_d02_i,121,95,4	script(CLOAKED)	卡鲁#LuE02	4_M_THAIONGBAK,{
+com_d02_i,121,95,4	script(CLOAKED)	加露#LuE02::卡鲁#LuE02	4_M_THAIONGBAK,{
 	if (ill_luanda == 6) {
 		npctalk "卡鲁……今天狩猎怎么样？", "阿苏德姆#LuE02", bc_self;
 		mes "[阿苏德姆]";
 		mes "卡鲁……今天狩猎怎么样？";
 		next;
 		npctalk "哈哈哈，阿苏德姆……没有蜂蜜。你不相信我的本事吗？这次我也像往常一样抓了很多。", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈，阿苏德姆……没有蜂蜜。你不相信我的本事吗？这次我也像往常一样抓了很多。";
 		next;
 		npctalk "哼~吹牛鬼，毛大师已经把一切都告诉我了。", "阿苏德姆#LuE02", bc_self;
@@ -7995,7 +7995,7 @@ com_d02_i,121,95,4	script(CLOAKED)	卡鲁#LuE02	4_M_THAIONGBAK,{
 		mes "我听说这次只有露安达大师和毛大师在到处奔跑？你躺在树顶上只会大喊……";
 		next;
 		npctalk "哇……这些家伙是认真的……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇……这些家伙是认真的……";
 		next;
 		npctalk "亲爱的？谁在那里？", "阿苏德姆#LuE02", bc_self;
@@ -8003,11 +8003,11 @@ com_d02_i,121,95,4	script(CLOAKED)	卡鲁#LuE02	4_M_THAIONGBAK,{
 		mes "亲爱的？是谁？";
 		next;
 		npctalk "谁会一路来到这么诡异的地方？嗯？！真的……这次约会很棒。", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁会一路来到这么诡异的地方？嗯？！真的……这次约会很棒。";
 		next;
 		npctalk "亲爱的，我们走吧，我想今天的约会结束了。我们去办点事~离开这里……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "亲爱的，我们走吧，我想今天的约会结束了。我们去办点事~离开这里……";
 		next;
 		cloakonnpcself();
@@ -8020,11 +8020,11 @@ com_d02_i,121,95,4	script(CLOAKED)	卡鲁#LuE02	4_M_THAIONGBAK,{
 	end;
 }
 
-com_d02_i,120,95,6	duplicate(dummy_cloaked_npc)	阿苏德姆#LuE02	4_F_01
+com_d02_i,120,95,6	duplicate(dummy_cloaked_npc)	安秀达#LuE02::阿苏德姆#LuE02	4_F_01
 
 
 // WEDNESDAY
-com_d02_i,193,267,1	script	闪光#Lu03	1_SHADOW_NPC,7,7,{
+com_d02_i,193,267,1	script	晃动#Lu03::闪光#Lu03	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -8077,7 +8077,7 @@ com_d02_i,191,271,8	script(CLOAKED)	青年#LuE03	4_M_THAIONGBAK,{
 
 
 // THURSDAY
-com_d02_i,228,91,1	script	闪光#Lu04	1_SHADOW_NPC,7,7,{
+com_d02_i,228,91,1	script	晃动#Lu04::闪光#Lu04	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -8149,7 +8149,7 @@ com_d02_i,228,95,4	script(CLOAKED)	青年#LuE04	4_M_THAIONGBAK,{
 }
 
 // FRIDAY
-com_d02_i,208,130,1	script	闪光#Lu05	1_SHADOW_NPC,7,7,{
+com_d02_i,208,130,1	script	晃动#Lu05::闪光#Lu05	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -8253,7 +8253,7 @@ com_d02_i,154,26,6	duplicate(dummy_cloaked_npc)	村民#LuE063	4_M_02
 
 
 // SATURDAY
-com_d02_i,42,215,1	script	闪光#Lu06	1_SHADOW_NPC,7,7,{
+com_d02_i,42,215,1	script	晃动#Lu06::闪光#Lu06	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -8274,10 +8274,10 @@ OnTouch:
 	end;
 }
 
-com_d02_i,43,219,4	script(CLOAKED)	青年老三#LuE07	4_M_THAIONGBAK,{
+com_d02_i,43,219,4	script(CLOAKED)	第三个青年#LuE07::青年老三#LuE07	4_M_THAIONGBAK,{
 	if (ill_luanda == 16) {
 		npctalk "兄弟们，这次狩猎看起来很顺利。", "", bc_self;
-		mes "[青年老三]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "兄弟们，这次狩猎看起来很顺利。";
 		next;
 		npctalk "虽然有点不祥，但我觉得这次会很有收获，弟弟。", "青年老大#LuE07", bc_self;
@@ -8285,7 +8285,7 @@ com_d02_i,43,219,4	script(CLOAKED)	青年老三#LuE07	4_M_THAIONGBAK,{
 		mes "虽然有点不祥，但我觉得这次会很有收获，弟弟。";
 		next;
 		npctalk "嗯？哥哥，那边……我以前见过他。", "", bc_self;
-		mes "[青年老三]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？哥哥，那边……我以前见过他。";
 		next;
 		npctalk "是啊，我想也是？那张脸我也记得。", "青年老大#LuE07", bc_self;
@@ -8297,7 +8297,7 @@ com_d02_i,43,219,4	script(CLOAKED)	青年老三#LuE07	4_M_THAIONGBAK,{
 		mes "听说那个严肃的二哥警告过你，但你真是个无所畏惧的外来者。";
 		next;
 		npctalk "哥哥……我还是老样子……", "", bc_self;
-		mes "[青年老三]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哥哥……我还是老样子……";
 		next;
 		npctalk "哥哥！出大事了。妈……血腥味从村子那边传来。", "青年老二#LuE07", bc_self;
@@ -8319,15 +8319,15 @@ com_d02_i,43,219,4	script(CLOAKED)	青年老三#LuE07	4_M_THAIONGBAK,{
 	end;
 }
 
-com_d02_i,39,219,6	duplicate(dummy_cloaked_npc)	青年老大#LuE07	4_M_THAIONGBAK
-com_d02_i,41,220,4	duplicate(dummy_cloaked_npc)	青年老二#LuE07	4_M_THAIONGBAK
+com_d02_i,39,219,6	duplicate(dummy_cloaked_npc)	第一个青年#LuE07::青年老大#LuE07	4_M_THAIONGBAK
+com_d02_i,41,220,4	duplicate(dummy_cloaked_npc)	第二个青年#LuE07::青年老二#LuE07	4_M_THAIONGBAK
 
 
 // (re)TUESDAY
-com_d02_i,116,94,6	script(CLOAKED)	卡鲁#LuE08	4_M_THAIONGBAK,{
+com_d02_i,116,94,6	script(CLOAKED)	加露#LuE08::卡鲁#LuE08	4_M_THAIONGBAK,{
 	if (ill_luanda == 18) {
 		npctalk "啊！阿苏德，为什么？为什么？我……怎么会找到你……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊！阿苏德，为什么？为什么？我……怎么会找到你……";
 		next;
 		npctalk "卡……卡鲁……", "阿苏德姆#LuE08", bc_self;
@@ -8335,7 +8335,7 @@ com_d02_i,116,94,6	script(CLOAKED)	卡鲁#LuE08	4_M_THAIONGBAK,{
 		mes "卡……卡鲁……";
 		next;
 		npctalk "嘿，嘿，嘿，阿苏德……亲爱的……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，嘿，嘿，阿苏德……亲爱的……";
 		next;
 		npctalk "卡鲁，别太难过……你就是这样找到我的……", "阿苏德姆#LuE08", bc_self;
@@ -8347,11 +8347,11 @@ com_d02_i,116,94,6	script(CLOAKED)	卡鲁#LuE08	4_M_THAIONGBAK,{
 		mes "我……我很……高兴……";
 		next;
 		npctalk "这……不是关于死亡……是他们……对你的诅咒……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这……不是关于死亡……是他们……对你的诅咒……";
 		next;
 		npctalk "全部……你已经不再……", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "全部……你已经不再……";
 		next;
 		npctalk "啊……卡鲁……我的丈夫……萨……", "阿苏德姆#LuE08", bc_self;
@@ -8371,7 +8371,7 @@ com_d02_i,116,94,6	script(CLOAKED)	卡鲁#LuE08	4_M_THAIONGBAK,{
 		specialeffect EF_TELEPORTATION, AREA, "美杜莎#LuE08";
 		cloakonnpcself( "美杜莎#LuE08" );
 		npctalk "阿苏德！！！！！！！！！", "", bc_self;
-		mes "[卡鲁]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿苏德！！！！！！！！！";
 		next;
 		cloakonnpcself();
@@ -8388,7 +8388,7 @@ com_d02_i,117,94,4	duplicate(dummy_cloaked_npc)	美杜莎#LuE08	MEDUSA
 
 
 // SUNDAY
-com_d02_i,263,72,1	script	闪光#Lu07	1_SHADOW_NPC,7,7,{
+com_d02_i,263,72,1	script	晃动#Lu07::闪光#Lu07	1_SHADOW_NPC,7,7,{
 	specialeffect EF_M07;
 	end;
 OnTouch:
@@ -8408,7 +8408,7 @@ OnTouch:
 	end;
 }
 
-com_d02_i,268,75,4	script(CLOAKED)	人影#LuE091	4_GHOST_STAND,{
+com_d02_i,268,75,4	script(CLOAKED)	背影#LuE091::人影#LuE091	4_GHOST_STAND,{
 	if (ill_luanda == 20) {
 		npctalk "我们必须赶走所有人类，占领这片土地。", "", bc_self;
 		mes "[???]";
@@ -8444,11 +8444,11 @@ com_d02_i,268,75,4	script(CLOAKED)	人影#LuE091	4_GHOST_STAND,{
 	end;
 }
 
-com_d02_i,266,76,6	duplicate(dummy_cloaked_npc)	人影#LuE092	4_GHOST_STAND
+com_d02_i,266,76,6	duplicate(dummy_cloaked_npc)	背影#LuE092::人影#LuE092	4_GHOST_STAND
 
 
 // Daily quests
-com_d02_i,238,266,4	script	委托公告板#Lu	4_BOARD3,{
+com_d02_i,238,266,4	script	委托板#Lu::委托公告板#Lu	4_BOARD3,{
 	if (checkweight(1201,3) == 0) {
 		mes "- 你携带的物品太多，无法继续。-";
 		close;
@@ -8964,96 +8964,96 @@ OnTouch:
 }
 izlude,132,54,0	duplicate(希鲁德#SRD1)	杰里蒙#jerry1	HIDDEN_WARP_NPC,4,4
 
-izlude,126,53,4	script	希鲁德#SRD2	1_M_04,{
-	mes "[希鲁德]";
+izlude,126,53,4	script	席鲁德#SRD2::希鲁德#SRD2	1_M_04,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "非常感谢你，冒险者。";
 	next;
-	mes "[希鲁德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我以为再也回不来了……";
 	close;
 }
 
-izlude,129,49,4	script	苏普#Soup	1_M_02,{
+izlude,129,49,4	script	斯普#Soup::苏普#Soup	1_M_02,{
 	if (ill_underwater < 5) {
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我叫苏普，是失踪的希鲁德的朋友。";
 		next;
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们四个——希鲁德、拉凯特、盖因和我——经常一起钓鱼。";
 		next;
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那天风很大……我一直很内疚没能阻止希鲁德去钓鱼。";
 		next;
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听说找到了希鲁德的钓竿，我立刻跑了出来。";
 		next;
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你一定知道些什么线索吧？";
 		close;
 	}
 	if (ill_underwater < 7) {
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经尽力了。";
 		next;
-		mes "[苏普]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望希鲁德能平安回来。";
 		close;
 	}
-	mes "[苏普]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "希鲁德 回到我们身边了。";
 	next;
-	mes "[苏普]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "多亏了你，冒险者。非常感谢。";
 	close;
 }
 
-izlude,135,51,4	script	拉凯特#Raket	1_F_MERCHANT_01,{
+izlude,135,51,4	script	拉克#Raket::拉凯特#Raket	1_F_MERCHANT_01,{
 	if (ill_underwater < 5) {
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 失踪整整 3 个月了。";
 		next;
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到了 希鲁德 的鱼竿。";
 		next;
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也有同感。";
 		next;
 		select( "你觉得呢？" );
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么现在才发现？这是不是某人的留言？";
 		next;
 		select( "看起来说不通。" );
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈……只是我的妄想。今天尤其想念那个孩子。";
 		close;
 	}
 	if (ill_underwater < 7) {
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿……使出全部力量真难……";
 		next;
-		mes "[拉凯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但为了 希鲁德……";
 		close;
 	}
-	mes "[拉凯特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "非常感谢！！";
 	next;
-	mes "[拉凯特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "现在你可以再次和 希鲁德 钓鱼了。";
 	next;
-	mes "[拉凯特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我很高兴……";
 	close;
 }
 
-izlude,132,49,5	script	盖因#Gein	4W_M_01,{
+izlude,132,49,5	script	葛因#Gein::盖因#Gein	4W_M_01,{
 	if (checkweight(1201,3) == 0) {
 		mes "你物品太多。";
 		mes "请清理物品后再试。";
 		close;
 	}
 	if (BaseLevel < 140) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈……为什么现在才发现？？";
 		mes "不可能，这是……";
 		next;
@@ -9061,85 +9061,85 @@ izlude,132,49,5	script	盖因#Gein	4W_M_01,{
 		close;
 	}
 	if (ill_underwater == 0) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈……为什么现在才发现？";
 		mes "不可能，这是……";
 		next;
 		select( "你有什么烦恼吗？" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好……";
 		next;
 		mes "-他手里拿着鱼竿，显得非常坐立不安。看起来不像是在外面钓鱼。-";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这根鱼竿属于我的朋友 <FONT COLOR = 4D4DFF><font style='font-size:16px'><B>希鲁德</B></font></FONT>，他三个月前失踪了。我发现了线索！！！";
 		next;
 		select( "失踪？" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的……希鲁德 是钓鱼狂热者，有机会就会来这里钓鱼。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "受 希鲁德 影响，我们也爱上了钓鱼，四个人经常一起度过快乐时光。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 对钓鱼的热情让他甚至在风雨中也邀请我们钓鱼。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 失踪那天正是同样风雨交加的日子。我穿上雨衣去钓鱼。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他邀请我们一起出海，但大家都拒绝了。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 独自去钓鱼，从那以后我们就没再见过他……";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我当时应该阻止你离开……";
 		next;
 		mes "-盖因 擦去眼泪后重新开始说话。-";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 失踪的消息立刻传遍依斯鲁得。我们投入大量时间和人力进行大规模搜索，却没有找到任何线索。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "之后我们聚在一起到处寻找 希鲁德，但毫无结果，正准备放弃。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但是就在刚才！！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "三个月之后！！！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德 的鱼竿浮出了海面。搜索时根本没找到他的物品！";
 		next;
 		select( "现在冷静下来……你确定这是 希鲁德 的鱼竿吗？" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，我确定！这是我一直见过的鱼竿。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这根鱼竿是 希鲁德 亲手制作的，世上只有这一根。你看，握柄上有他的姓名首字母 S.R.D！！";
 		next;
 		select( "哦，那为什么现在……" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我现在又惊讶又震惊，不知道该怎么办。";
 		next;
 		mes "-但仔细看这根鱼竿，我感觉有些不对。这根木鱼竿在水里浸泡了 3 个月，却仍然完好如初，还泛着一点亮光……-";
 		next;
 		select( "这根鱼竿是不是有点奇怪？" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "奇怪，这是什么？";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……？？";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在水里浸泡了 3 个月……却完全没有腐蚀。它一点事也没有？？";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……它似乎还发出微光……鱼竿好像被涂层包裹了？";
 		next;
 		mes "-那个看起来是 盖因 朋友、一直听故事的人开口了。-";
@@ -9147,7 +9147,7 @@ izlude,132,49,5	script	盖因#Gein	4W_M_01,{
 		mes "[拉凯特]";
 		mes "在哪里？我想看看！！怎么了？";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这根鱼竿……在水里浸泡了 3 个月，却仍以原状被发现，或者说，处于损坏状态。";
 		next;
 		mes "[拉凯特]";
@@ -9161,46 +9161,46 @@ izlude,132,49,5	script	盖因#Gein	4W_M_01,{
 		mes "[拉凯特]";
 		mes "我也不确定？";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然！！我不知道，但你愿意吗？";
 		next;
 		mes "[拉凯特]";
 		mes "嗯……但我认识一个可能了解这根鱼竿的人。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁？";
 		next;
 		select( "谁？" );
 		mes "[拉凯特]";
 		mes "他叫 <FONT COLOR = 4D4DFF><font style='font-size:16px'><B>杰里蒙</B></font></FONT>，是一名海洋科学家。我见过我父亲几次。我知道你在普隆德拉东图书馆。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，啊……那么……嘿，冒险者！！很抱歉第一次见面就这样，但能拜托你一件事吗？我们在依斯鲁得出不去……";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请去见 杰里蒙，把这根鱼竿给他看……即使线索很微小……我希望他能知道些什么……";
 		next;
 		if (select( "好，我们走。", "抱歉，我现在有点忙……" ) == 2) {
-			mes "[盖因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不……你确定吗？";
 			next;
-			mes "[盖因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听完这个令人心碎的故事和神秘线索后，你就这样转身离开吗……";
 			close;
 		}
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉……谢谢！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^4d4dff杰里蒙^000000 应该还在普隆德拉的<NAVI>[东图书馆]<INFO>prontera,192,264,</INFO></NAVI>。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我把这根鱼竿交给你，这是 希鲁德 留下的纪念物。谢谢……";
 		next;
 		mes "[拉凯特]";
 		mes "什么？？？这是纪念物！！你甚至不知道 希鲁德 是生是死！！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……是我说错了，这是 希鲁德 留下的鱼竿。请好好保管。";
 		next;
 		mes "[拉凯特]";
@@ -9215,47 +9215,47 @@ izlude,132,49,5	script	盖因#Gein	4W_M_01,{
 		end;
 	}
 	if (ill_underwater == 1) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可以按照 拉凯特 的说法，前往普隆德拉的<NAVI>[东图书馆]<INFO>prontera,192,264,</INFO></NAVI>。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保重！！希望哪怕能找到最微小的线索……";
 		close;
 	}
 	if (ill_underwater == 2) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你来了！！！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你有 希鲁德 的消息吗？";
 		next;
 		mes "-你转述了从 杰里蒙 那里听到的消息。-";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……我明白了，我以前从没听说过海沟。";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真不敢相信依斯鲁得附近有这么大、这么深的海沟……";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，对了，你回来还需要其他东西吗？";
 		next;
 		select( "除了鱼竿，还有找到其他东西吗？" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，对了！！";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是在发现鱼竿的附近，用捞网捞上来的一块东西。";
 		next;
 		mes "-这就是 杰里蒙 所说的东西。";
 		mes "^4d4dff它一定是深渊的精华^000000。-";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它闪闪发光，感觉和 希鲁德 的鱼竿相同，所以我先把它保管起来。";
 		mes "这块矿石能帮上忙吗？";
 		next;
 		select( "谢谢，这会帮大忙。" );
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要回去找 杰里蒙 吗？请小心。";
 		close2;
 		getitem 25899,1;	// E_Abyss1
@@ -9264,22 +9264,22 @@ izlude,132,49,5	script	盖因#Gein	4W_M_01,{
 		end;
 	}
 	if (ill_underwater == 3) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望 希鲁德 能像鱼竿一样完好无损地出现在我们面前……";
 		next;
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果有新消息，请告诉我！";
 		close;
 	}
 	if (ill_underwater < 7) {
-		mes "[盖因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呵……呵……你好，冒险者，呵……呵……我太累了，动不了了……";
 		close;
 	}
-	mes "[盖因]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "谢谢你，冒险者。";
 	next;
-	mes "[盖因]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "能再次见到 希鲁德，简直像做梦一样。";
 	close;
 
@@ -9289,14 +9289,14 @@ OnInit:
 	end;
 }
 
-izlude,132,54,4	script(CLOAKED)	杰里蒙#jerry2	1_M_01,{
+izlude,132,54,4	script(CLOAKED)	杰立蒙#jerry2::杰里蒙#jerry2	1_M_01,{
 	if (ill_underwater < 4)
 		end;
 	if (ill_underwater == 4) {
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你来了！！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "趁冒险者们到来，我们已经准备就绪。";
 		next;
 		mes "-盖因 喘着气向两位朋友打招呼。-";
@@ -9310,25 +9310,25 @@ izlude,132,54,4	script(CLOAKED)	杰里蒙#jerry2	1_M_01,{
 		mes "[拉凯特 & 苏普]";
 		mes "嘻……嘻……嘻……啊……你好。";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		specialeffect EF_MAP_MAGICZONE3;
 		mes "好了，我们开始吧？";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "漩涡马上就要形成了。";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我发出信号时，抓住我的手！！";
 		next;
 		select( "不，等等。你现在就要出发吗？" );
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，是的，来吧，别想太多！相信我～～！！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，现在抓住我的手！";
 		next;
 		specialeffect EF_CASTSPIN2, AREA;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇！它转啊转啊～～！！";
 		close2;
 		ill_underwater = 5;
@@ -9337,26 +9337,26 @@ izlude,132,54,4	script(CLOAKED)	杰里蒙#jerry2	1_M_01,{
 		warp "iz_d04_i",130,227;
 		end;
 	}
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好！！";
 	next;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "多亏了你，冒险者，我每天都过得既开心又刺激。";
 	next;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想再去深海吗？我会跟着你！！";
 	next;
 	if (select( "拜托了", "下次再去" ) == 2) {
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧……那我等你。";
 		close;
 	}
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	specialeffect EF_MAP_MAGICZONE3;
 	mes "好。";
 	next;
 	specialeffect EF_CASTSPIN2;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "来吧！我们走～～！！耶！！";
 	close2;
 	specialeffect EF_CASTSPIN2, AREA;
@@ -9369,7 +9369,7 @@ OnInit:
 }
 
 
-iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
+iz_d04_i,127,228,4	script	杰立蒙#jerry3::杰里蒙#jerry3	1_M_01,{
 	if (checkweight(1201,3) == 0) {
 		mes "你物品太多。";
 		mes "请清理物品后再试。";
@@ -9380,68 +9380,68 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 	if (ill_underwater == 5) {
 		switch( checkquest(3411,HUNTING) ) {
 		case -1:
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇……这片紫色的海……太棒了！！！";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不用鳃也能呼吸，没有海水压力，还有以前从没见过的海洋生物……太神奇了！！！";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "值得调查的东西不止一两件，我会忙起来了。";
 			mes "哇……太刺激了！！！这是我当海洋学家 14 年来最激动的时刻！";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "噜啦啦啦～～～";
 			next;
 			select( "哦，嘿，我是来找 希鲁德 的……" );
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，啊……那个，对吧？那应该优先处理。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为了把 希鲁德 带回岸上，我们还需要 ^4d4dff" + getitemname(25899) + "^000000。问题是如何取得它……";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我一直在观察这里的深海生物，看到其中一些会散发深渊精华的光芒。";
 			mes "它们有时似乎还会威胁我们。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这样的话，你能处理一些深海生物吗？也许能从它们那里得到 ^4d4dff" + getitemname(25899) + "^000000。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各击败 10 只 ^4d4dff" + getmonsterinfo("ILL_SROPHO", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_DEVIACE", MOB_NAME) + "^000000 和 ^4d4dff" + getmonsterinfo("ILL_MARSE", MOB_NAME) + "^000000。";
 			next;
 			if (select( "好", "下次再做" ) == 2) {
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好的好的～我会在这里等你！";
 				close;
 			}
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好的好的～我会在这里等你！";
 			close2;
 			setquest 3411;
 			end;
 		case 0:
 		case 1:
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各击败 10 只 ^4d4dff" + getmonsterinfo("ILL_SROPHO", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_DEVIACE", MOB_NAME) + "^000000 和 ^4d4dff" + getmonsterinfo("ILL_MARSE", MOB_NAME) + "^000000。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会在这里等你。";
 			close;
 		case 2:
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "辛苦了，你还带来了 ^4d4dff" + getitemname(25899) + "^000000！！果然，我的预测是正确的。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来只需要大约 10 个 ^4d4dff" + getitemname(25899) + "^000000，就能把 希鲁德 带回岸上。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你收集好后，我会为你制造漩涡。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，这是我研究时发现的石头。它看起来像是冒险者能用的东西，请收下。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那就小心！";
 			close2;
 			getitem 25271,2;	// IllusionStone
@@ -9455,40 +9455,40 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 	}
 	if (ill_underwater == 6) {
 		if (countitem(25899) < 10) {
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请带来 ^4d4dff10 个" + getitemname(25899) + "^000000。";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我也想自己收集，但你看，我实在太弱了。";
 			close;
 		}
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "辛苦了！！你带来了 10 个 ^4d4dff" + getitemname(25899) + "^000000。";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在要上岸吗？";
 		next;
 		if (select( "上岸", "现在不上去" ) == 2) {
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "准备上岸时再来找我！";
 			close;
 		}
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在等待冒险者时又找到了这个。请收下！！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，我们把这个凝聚起来……";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦……！！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在，冒险者和 希鲁德！！你们能帮我吗？？咦！！！！";
 		next;
 		mes "-杰里蒙 面前出现了巨大的漩涡！-";
 		specialeffect EF_MAP_MAGICZONE3;
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那我先过去！！！小心跟上我！";
 		specialeffect EF_CASTSPIN2;
 		close2;
@@ -9505,43 +9505,43 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 
 	// daily
 	if ((checkquest(3414,PLAYTIME) == 0 || checkquest(3414,PLAYTIME) == 1) && (checkquest(3416,PLAYTIME) == 0 || checkquest(3416,PLAYTIME) == 1)) {
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "今天调查所需的东西已经全部齐了，谢谢你！！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "看来你已经办完事了。要移动到依斯鲁得吗？";
 		next;
 	if (select( "移动", "不移动" ) == 2) {
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "如果需要帮助，随时告诉我！";
 			close;
 		}
 		specialeffect EF_MAP_MAGICZONE3;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "好吧，嗯！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我要过去了~~啊！！";
 		specialeffect EF_CASTSPIN2;
 		close2;
 		warp "izlude",128,54;
 		end;
 	}
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好，研究进行得很顺利。";
 	next;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果进展顺利，说不定能让连接这里和依斯鲁得的漩涡永久存在！";
 	next;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那么，你能再帮我一点忙吗？";
 	next;
-	mes "[杰里蒙]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我还需要更多^4d4dff" + getitemname(25899) + "^000000，另外请你处理那些妨碍研究的^4d4dff深海生物^000000。";
 	next;
 	switch( select( "好的", "下次再做", "我想回依斯鲁得" ) ) {
 	case 1:
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢！！你能帮我做件事吗？";
 		next;
 
@@ -9608,28 +9608,28 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 			}
 			switch( isbegin_quest(3413) ) {
 			case 0:
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 		mes "这里的所有深海生物都会掉落^4d4dff" + getitemname(25899) + "^000000。";
 		mes "我现在需要 10 个。";
 				next;
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 		mes "那就保重~~！！";
 				close2;
 				setquest 3413;
 				end;
 			case 1:
 				if (countitem(25899) < 10) {
-					mes "[杰里蒙]";
+					mes "[" + strnpcinfo(1) + "]";
 		mes "我需要 10 个^4d4dff" + getitemname(25899) + "^000000。";
 					next;
-					mes "[杰里蒙]";
+					mes "[" + strnpcinfo(1) + "]";
 		mes "收集齐所有精华后再回来找我！";
 					close;
 				}
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "你已经收集齐所有" + getitemname(25899) + "了！！";
 				next;
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "谢谢，我会把它们好好用于研究。";
 				close2;
 				delitem 25899,10;	// E_Abyss1
@@ -9655,24 +9655,24 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 			}
 			switch( checkquest(3415,HUNTING) ) {
 			case -1:
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "请各击杀 10 只在这里出没的^4d4dff" + getmonsterinfo("ILL_SROPHO", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_DEVIACE", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_MARSE", MOB_NAME) + "^000000。";
 				next;
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那就保重~~！！";
 				close2;
 				setquest 3415;
 				end;
 			case 0:
 			case 1:
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "请各击杀 10 只^4d4dff" + getmonsterinfo("ILL_SROPHO", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_DEVIACE", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_MARSE", MOB_NAME) + "^000000。";
 				close;
 			case 2:
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "你已经处理完所有深海生物了，谢谢你的辛苦努力。";
 				next;
-				mes "[杰里蒙]";
+				mes "[" + strnpcinfo(1) + "]";
 	mes "需要帮助时我会再找你。谢谢！！";
 				close2;
 				getitem 25271,1;	// IllusionStone
@@ -9683,24 +9683,24 @@ iz_d04_i,127,228,4	script	杰里蒙#jerry3	1_M_01,{
 			}
 			end;
 		case 3:
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes "我唯一能拜托的人只有你了……";
 			next;
-			mes "[杰里蒙]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes "如果你改变主意，随时告诉我！！";
 			close;
 		}
 		end;
 	case 2:
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我会在这里待一阵子，如果你改变主意就告诉我！！";
 		close;
 	case 3:
 		specialeffect EF_MAP_MAGICZONE3;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "好吧，嗯！";
 		next;
-		mes "[杰里蒙]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我要过去了~~啊！！";
 		specialeffect EF_CASTSPIN2;
 		close2;
@@ -9751,34 +9751,34 @@ iz_d04_i,134,223,4	script	简#Jane01	1_F_01,{
 	close;
 }
 
-iz_d04_i,142,216,4	script	桑琳#Sun01	4_F_03,{
+iz_d04_i,142,216,4	script	善林#Sun01::桑琳#Sun01	4_F_03,{
 	if (ill_underwater < 6) {
 		mes "[???]";
 		mes "你说你在找一个叫希鲁德的人？";
 		next;
-		mes "[桑琳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我叫桑琳。";
 		next;
-		mes "[桑琳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希鲁德……啊，我好像知道你说的是谁。";
 		next;
-		mes "[桑琳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一直往左走，你就能找到他。";
 		next;
-		mes "[桑琳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，祝你今天愉快！！";
 		close;
 	}
-	mes "[桑琳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这里的人都是移民和定居者。";
 	next;
-	mes "[桑琳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如你所见，深处仍留有文明的痕迹，但这里的每个人都曾是外来者。";
 	next;
-	mes "[桑琳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你很快就会习惯的。";
 	next;
-	mes "[桑琳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "海怪偶尔会发动攻击，不过也就这样了……";
 	close;
 }
@@ -9791,51 +9791,51 @@ OnTouch:
 	end;
 }
 
-iz_d04_i,125,226,5	script(CLOAKED)	希鲁德#SRD4	1_M_04,{
+iz_d04_i,125,226,5	script(CLOAKED)	席鲁德#SRD4::希鲁德#SRD4	1_M_04,{
 	if (ill_underwater != 5 && ill_underwater != 6)
 		end;
 	switch( isbegin_quest(3410) ) {
 	case 0:
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，冒险者。";
 		next;
 		mes "- 希鲁德像是在等我一样向我打了招呼。-";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来我发出的消息已经传到依斯鲁得了，太好了……";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大约 3 个月前……那天下着雨，还刮着风，我去钓鱼。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "钓到第一条鱼后，我想用鱼竿把它拉出来，却不小心绊倒掉进了水里。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我拼命想游出去，却感觉有什么东西用力把我往里面拉。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那东西看起来像漩涡……我以为自己要死了……醒来后，就发现自己到了这里。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道为什么自己不需要呼吸，也不知道为什么不吃东西却不会饿。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "观察这里的环境时，我发现偶尔会形成小型漩涡。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我猜那就是把我卷进来的同一种漩涡。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "漩涡持续的时间很短。我花了两个月才把刻有我名字的鱼竿放进漩涡。";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等待有人发现它……";
 		next;
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是以那根鱼竿为线索找到我的吗？";
 		next;
 		select( "没错。" );
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，那我就放心了……如果你回到岸上时能带我一起走，我会非常感激。";
 		next;
 		mes "- 我想应该和杰里蒙谈谈如何把希鲁德送回岸上的事。- ";
@@ -9843,7 +9843,7 @@ iz_d04_i,125,226,5	script(CLOAKED)	希鲁德#SRD4	1_M_04,{
 		setquest 3410;
 		end;
 	case 1:
-		mes "[希鲁德]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "冒险者，回到岸上时请带我一起走。";
 		close;
 	case 2:
@@ -9864,32 +9864,32 @@ iz_d04_i,146,226,4	script	尼克#Nick01	2_M_SAGE_B,{
 
 
 // Floor 2
-iz_d04_i,129,232,5	script	守门人#guard1	4_M_KY_SOLD,{
+iz_d04_i,129,232,5	script	门卫#guard1::守门人#guard1	4_M_KY_SOLD,{
 	if (BaseLevel < 180) {
-		mes "[守门人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的力量不足以通过前往下层的通道。";
 		//close;	// close is used on official
 		next;
-		mes "[守门人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至少达到 180 级后再回来吧。";
 		close;
 	}
-	mes "[守门人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "下楼后会遇到非常凶猛的鱼类。你确定要去吗？";
 	next;
 	if (select( "确定", "下次再来" ) == 2) {
-		mes "[守门人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好通过通道后再来和我谈谈吧。";
 		close;
 	}
-	mes "[守门人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那就小心点。";
 	close2;
 	warp "iz_d05_i",141,186;
 	end;
 }
 
-iz_d05_i,141,188,5	script	守卫#guard2	4_M_KY_SOLD,{
+iz_d05_i,141,188,5	script	门卫#guard2::守卫#guard2	4_M_KY_SOLD,{
 	mes "[守门人]";
 	mes "你好，要再上楼吗？";
 	next;
@@ -9905,7 +9905,7 @@ iz_d05_i,141,188,5	script	守卫#guard2	4_M_KY_SOLD,{
 	end;
 }
 
-iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
+iz_d05_i,138,186,5	script	凯纳#Kena::凯娜#Kena	4_M_02,{
 	if (checkweight(1201,3) == 0) {
 		mes "你携带的物品太多了。";
 		mes "整理物品后再试吧。";
@@ -9916,34 +9916,34 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 	if (ill_underwater < 5)
 		end;
 	if ((checkquest(3418,PLAYTIME) == 0 || checkquest(3418,PLAYTIME) == 1) && (checkquest(3420,PLAYTIME) == 0 || checkquest(3420,PLAYTIME) == 1)) {
-		mes "[凯娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "辛苦了。今天好好休息，明天再来吧。";
 		close;
 	}
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好，冒险者。";
 	next;
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我听说下层有许多危险的深海生物，但真正来到这里后，才发现它们比想象中更加危险。";
 	next;
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "不久前，一只下层生物来到上层时还引起了很大的骚动。";
 	next;
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "深海生物的数量正在增加。冒险者，可以请你帮忙吗？";
 	next;
 	if (select( "是", "否" ) == 2) {
-		mes "[凯娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕……";
 		next;
-		mes "[凯娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "放任不管会很危险……";
 		close;
 	}
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "谢谢，如果你能帮我击退深海生物或鱼人，我会非常感激。";
 	next;
-	mes "[凯娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想做什么？";
 	next;
 	.@menu$[0] = callsub( S_Quest, "击杀深海生物", 3418,3417 );
@@ -9956,7 +9956,7 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 			break;
 		case 0:
 		case 1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天应该够了，请明天再来吧。";
 			close;
 		case 2:
@@ -9965,30 +9965,30 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 		}
 		switch( checkquest(3417,HUNTING) ) {
 		case -1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各击杀 10 只^4d4dff" + getmonsterinfo("ILL_SWORD_FISH", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_PHEN", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_KING_DRAMOH", MOB_NAME) + "^000000。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这些怪物非常凶猛，一定要小心。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢。";
 			close2;
 			setquest 3417;
 			end;
 		case 0:
 		case 1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^4d4dff" + getmonsterinfo("ILL_SWORD_FISH", MOB_NAME) + "^000000、^4d4dff" + getmonsterinfo("ILL_PHEN", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_KING_DRAMOH", MOB_NAME) + "^000000。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各击杀 10 只。";
 			close;
 		case 2:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们都已经被消灭了，辛苦你了。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有时间的话请明天再来。我会等你的。";
 			close2;
 			getitem 25271,1;	// IllusionStone
@@ -10004,7 +10004,7 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 			break;
 		case 0:
 		case 1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想今天已经够了，请明天再来。";
 			close;
 		case 2:
@@ -10013,24 +10013,24 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 		}
 		switch( checkquest(3419,HUNTING) ) {
 		case -1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各消灭15只^4d4dff" + getmonsterinfo("ILL_SEDORA", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_STROUF", MOB_NAME) + "^000000。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们很烦人，请小心。";
 			close2;
 			setquest 3419;
 			end;
 		case 0:
 		case 1:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请各消灭15只^4d4dff" + getmonsterinfo("ILL_SEDORA", MOB_NAME) + "^000000和^4d4dff" + getmonsterinfo("ILL_STROUF", MOB_NAME) + "^000000。";
 			close;
 		case 2:
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们都被消灭了，谢谢你的努力。";
 			next;
-			mes "[凯娜]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "时间合适时请明天再来。我会等着你。";
 			close2;
 			getitem 25271,1;	// IllusionStone
@@ -10041,10 +10041,10 @@ iz_d05_i,138,186,5	script	凯娜#Kena	4_M_02,{
 		}
 		end;
 	case 3:
-		mes "[凯娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕……";
 		next;
-		mes "[凯娜]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "放着不管会很危险……";
 		close;
 	}
@@ -10092,13 +10092,13 @@ OnInit:
 //= Illusion of Twins
 //============================================================
 // anthell02,172,189,5	script	约兰达#1F	ASSASSIN,{
-anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
+anthell02,172,189,5	script	尤兰达#1F::约兰达#1F	HIDDEN_NPC,{
 	if (checkweight(1201,3) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。-";
 		close;
 	}
 	if (BaseLevel < 160) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们不能这样下去……";
 		next;
 		mes "[米尔科]";
@@ -10109,7 +10109,7 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 	}
 	if (ill_anthell == 0) {
 		emotion ET_PROFUSELY_SWEAT;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你真的要进去吗？";
 		next;
 		emotion ET_PROFUSELY_SWEAT, getnpcid(0,"米尔科#1F");
@@ -10117,7 +10117,7 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		mes "没错。很多人都说见过它。";
 		mes "他说自己是左臂受伤的游侠，所以他不可能是唯一见过的朋友。";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我该怎么办？如果我也受那种伤，更别说搜索了……";
 		next;
 		mes "[米尔科]";
@@ -10132,14 +10132,14 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		emotion ET_PROFUSELY_SWEAT;
 		ill_anthell = 1;
 		setquest 8719;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，如果我告诉你呢！这不是我的研究，是你的！";
 		next;
 		select( "说话然后睡觉……" );
 		mes "[" + strcharinfo(0) + "]";
 		mes "你对陌生人说这个？";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错！冒险者，";
 		mes "抱歉，请等一下。";
 		npctalk "约兰达：你自己到底会做什么？", "", bc_self;
@@ -10153,7 +10153,7 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		mes "那里甚至还不是废墟，放手去做怎么样？";
 		next;
 		emotion ET_PROFUSELY_SWEAT;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别总是犯错，然后把后续工作留给我。";
 		next;
 		emotion ET_PROFUSELY_SWEAT, getnpcid(0,"米尔科#1F");
@@ -10188,40 +10188,40 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		close;
 	}
 	if (ill_anthell == 2) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么了……";
 		close;
 	}
 	if (ill_anthell == 3) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要是我能再强一点……";
 		close;
 	}
 	if (ill_anthell == 4) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你见过布里阿申吗？";
 		mes "你还活着？太好了……为什么没把我带出去？";
 		mes "啊……";
 		mes "...";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再和米尔科谈谈吧。";
 		mes "我想你和我想到一块去了。";
 		close;
 	}
 	if (ill_anthell == 5 || ill_anthell == 6) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果我们也能去就好了……";
 		mes "照顾好布里阿申。";
 		close;
 	}
 	if (ill_anthell == 7) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真令人惊讶！";
 		mes "它从哪里来的？！";
 		next;
 		select( "它弹回来了" );
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -10233,7 +10233,7 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		mes "三个人都在谈话中途消失了。";
 		mes "而且，你最后见到的人是……维塔塔？";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也许……也许……";
 		mes "三个都可能是卡赫里斯，而不是只有那个长得像他的人吗？";
 		next;
@@ -10241,33 +10241,33 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		mes "什么？";
 		mes "如果" + strcharinfo(0) + "当时独自在那里，也可能是幻觉，对吧？";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听说布里阿申就是这么做的。和卡赫里斯在一起时，蚂蚁没有攻击我。";
 		next;
 		mes "[米尔科]";
 		mes "但最后，玛雅……";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果是那样呢？";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这只是个假设。";
 		mes "卡赫里斯……和维塔塔在一起，所以其他蚂蚁自然不会碰它。";
 		mes "蚂蚁不是群体吗？";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但玛雅是地牢的统治者。";
 		next;
 		mes "[米尔科]";
 		mes "嗯……";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你能伤害自己……";
 		next;
 		mes "[米尔科]";
 		mes "也许我就能碰到它。";
 		next;
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "维塔塔的行为威胁到了她的地位……";
 		next;
 		mes "[米尔科]";
@@ -10293,16 +10293,16 @@ anthell02,172,189,5	script	约兰达#1F	HIDDEN_NPC,{
 		end;
 	}
 	if (ill_anthell == 8) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "求你了，" + strcharinfo(0) + "……";
 		close;
 	}
 	if (ill_anthell == 9) {
-		mes "[约兰达]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		close;
 	}
-	mes "[约兰达]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我会继续研究一段时间。";
 	mes "钱不多，之后再给你。";
 	close;
@@ -11825,9 +11825,9 @@ ein_d02_i,161,189,3	script	出口#IBTin	4_ENERGY_BLUE,{
 	end;
 }
 
-einbroch,149,242,5	script	咳嗽的年轻人#ITB	4_M_NFMAN,3,3,{
+einbroch,149,242,5	script	咳嗽的青年#ITB::咳嗽的年轻人#ITB	4_M_NFMAN,3,3,{
 	if (BaseLevel < 150) {
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "时间已经过去了……";
 		mes "你为什么还没回来……";
 		mes "咳咳！！";
@@ -11836,12 +11836,12 @@ einbroch,149,242,5	script	咳嗽的年轻人#ITB	4_M_NFMAN,3,3,{
 		close;
 	}
 	if (ill_teddy == 0) {
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "时间已经过去了……";
 		mes "你为什么还没回来……";
 		mes "咳咳！！";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳……咳……咳……";
 		mes "哈哈哈……发生什么事了吗？";
 		mes "如果我不亲自去确认……";
@@ -11851,34 +11851,34 @@ einbroch,149,242,5	script	咳嗽的年轻人#ITB	4_M_NFMAN,3,3,{
 		mes "-扑通-";
 		next;
 		if (select( "帮助他", "无视" ) == 2) {
-			mes "[咳嗽的年轻人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……咳……";
 			mes "咳咳……咳";
 			close;
 		}
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……咳……";
 		mes "谢谢你。";
 		mes "咳咳……咳";
 		next;
 		select( "你最好休息一下" );
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳……";
 		mes "确实如此，但是……咳……我那个去矿井工作的朋友还没回来……咳。";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "几天前，工作一结束……他就离开了……他说会回来的……";
 		mes "可是他还没回来……咳……到现在都没有。";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳……咳咳……咳";
 		mes "我和守卫谈过了，可是……咳……咳……他们没把这件事当回事……";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^ff0000史蒂文^000000不是那种人……咳咳";
 		mes "他至今还没联系我，一定是出什么事了。";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他好像要去^ff0000艾音贝赫矿井一楼^000000。";
 		mes "你四处找找，说不定能发现线索……哪怕只是很小的线索？";
 		ill_teddy = 1;
@@ -11886,25 +11886,25 @@ einbroch,149,242,5	script	咳嗽的年轻人#ITB	4_M_NFMAN,3,3,{
 		close;
 	}
 	if (ill_teddy == 1) {
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "几天前，工作一结束……他就离开了……他说会回来的……";
 		mes "可是他还没回来……咳……到现在都没有。";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳……咳咳……咳";
 		mes "我和守卫谈过了，可是……咳……咳……他们没把这件事当回事……";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^ff0000史蒂文^000000不是那种人……咳咳";
 		mes "他至今还没联系我，一定是出什么事了。";
 		next;
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他好像要去^ff0000艾音贝赫矿井一楼^000000。";
 		mes "你四处找找，说不定能发现线索……哪怕只是很小的线索？";
 		close;
 	}
 	if (ill_teddy < 5) {
-		mes "[咳嗽的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊！咳咳！";
 		mes "你回来了！";
 		mes "史蒂文他……咳";
@@ -12092,7 +12092,7 @@ OnInit:
 	end;
 }
 
-ein_dun01,189,87,3	script	通往某处的入口#IBTin	4_ENERGY_BLUE,{
+ein_dun01,189,87,3	script	某处的入口#IBTin::通往某处的入口#IBTin	4_ENERGY_BLUE,{
 	if (ill_teddy < 3) {
 		mes "- 现在还不能进去 -";
 		close;
@@ -12102,7 +12102,7 @@ ein_dun01,189,87,3	script	通往某处的入口#IBTin	4_ENERGY_BLUE,{
 }
 
 
-ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
+ein_d02_i,170,193,5	script	史蒂芬#IBT::史蒂文#IBT	4W_M_02,3,3,{
 	if (checkweight(1201,3) == 0) {
 		mes "- 请稍等！！";
 		mes "- 你携带的物品太多。-";
@@ -12114,7 +12114,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 	if (ill_teddy < 3)
 		end;
 	if (ill_teddy == 3) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不能放我走吗？！";
 		mes "放开我！";
 		mes "太糟糕了！！！！";
@@ -12137,46 +12137,46 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		end;
 	}
 	if (ill_teddy == 4) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么……";
 		mes "那是……";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂！";
 		mes "那边的人！";
 		mes "你也看到了吗？";
 		mes "那只玩偶熊刚才……";
 		next;
 		select( "告诉他那个咳嗽的年轻人的事。" );
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？艾因布洛赫那个咳嗽的年轻人让你来找我？";
 		mes "是阿西德……";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我告诉他会马上回去，但那个传闻到底是怎么回事？有很多人在排队，还有怪物。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿西德怎么样了？";
 		mes "他的咳嗽很严重，没法好好睡觉。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我得回去送他去医院，但是……";
 		mes "如果我没看错，那是……";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……事情变复杂了……";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂。";
 		mes "帮我个忙。";
 		mes "他今天必须去医院，但钱不够。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想我得在这里做点工作。";
 		mes "你回去告诉他我没事。";
 		mes "把这些钱也给他。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拜托了。";
 		mes "等我回去……我现在没什么东西，但会给你回报。";
 		npctalk "史蒂文：拜托。", "", bc_self;
@@ -12186,24 +12186,24 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		close;
 	}
 	if (ill_teddy == 5) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂。";
 		mes "帮我个忙。";
 		mes "他今天必须去医院，但钱不够。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想我得在这里做点工作。";
 		mes "你回去告诉他我没事。";
 		mes "把这些钱也给他。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拜托了。";
 		mes "等我回去……我现在没什么东西，但会给你回报。";
 		npctalk "史蒂文：拜托。", "", bc_self;
 		close;
 	}
 	if (ill_teddy == 6) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你在这里？";
 		mes "他去医院了吗？";
 		next;
@@ -12212,14 +12212,14 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		mes "为什么让大家这么担心……";
 		cloakoffnpcself( "阿西德#IBT_inN01" );
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不……你为什么在这里？";
 		mes "去医院！";
 		next;
 		mes "[阿西德]";
 		mes "我这里是医院还是商店？！";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		mes "好……好！";
 		mes "现在先安静！";
@@ -12233,7 +12233,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		end;
 	}
 	if (ill_teddy == 7) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		mes "好！";
 		mes "现在先安静！";
@@ -12243,13 +12243,13 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 	}
 	if (ill_teddy == 8) {
 		if (checkquest(11563,HUNTING) != 2 || checkquest(11564,HUNTING) != 2) {
-			mes "[史蒂文]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "太多了。";
 		mes "这太危险了。";
 		mes "先清理一下，再谈吧。";
 			close;
 		}
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇……";
 		mes "是你把它们放出来的吗？";
 		next;
@@ -12258,7 +12258,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		mes "入侵……它们自称纳萨里安，对吧？";
 		cloakoffnpcself( "阿西德#IBT_inN01" );
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "到底发生了什么……";
 		mes "我快疯了……";
 		next;
@@ -12272,7 +12272,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		mes "[阿西德]";
 		mes "听说那个笨蛋很兴奋。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真是个笨蛋！";
 		mes "多亏了你，我还要付医院账单，还要听你的咳嗽……";
 		mes "哦……说起来，你已经不咳嗽了，对吧？";
@@ -12282,7 +12282,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		mes "呃……是这样吗？";
 		mes "说起来，我感觉呼吸轻松多了！";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不管去医院多少次都没有好转……";
 		mes "也许只是空气太差！";
 		npctalk "史蒂文：空气比矿洞里还糟……", "", bc_self;
@@ -12292,15 +12292,15 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		mes "我们制作的玩偶活过来了，还会动！";
 		mes "它们甚至还试图绑架你！";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绑架……说起来，我回来的路上帮过一个被可怕玩偶熊追赶的男人。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……被带到这里的不只有我，对吧？";
 		mes "看来我得留在这里观察情况。";
 		mes "阿西德！你暂时可以回村子了。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也谢谢你帮助我。";
 		mes "我没什么可给你的，但可以把之前找到的稀有矿石给你。";
 		mes "也许某处用得上！";
@@ -12320,7 +12320,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 		break;
 	case 0:
 	case 1:
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "休息一下吧。";
 		mes "过度勉强只会损害健康。";
 		close;
@@ -12330,36 +12330,36 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 	}
 	switch( checkquest(11565,HUNTING) ) {
 	case -1:
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……";
 		mes "这些家伙怎么总是冒出来？";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使你熟悉战斗，不擅长战斗的操偶师也很难从这里脱身。";
 		next;
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我也在处理，但一个人不够。";
 		mes "如果你现在不忙，就帮我击败" + getmonsterinfo("ILL_PITMAN", MOB_NAME) + "、" + getmonsterinfo("ILL_MINERAL", MOB_NAME) + "和" + getmonsterinfo("ILL_OBSIDIAN", MOB_NAME) + "。";
 		mes "如果能抓到10只，我应该就能轻松一点。";
 		next;
 		if (select( "接受", "放弃" ) == 2) {
-			mes "[史蒂文]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧……";
 			close;
 		}
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么请帮我击败";
 		mes getmonsterinfo("ILL_PITMAN", MOB_NAME) + "、" + getmonsterinfo("ILL_MINERAL", MOB_NAME) + "和" + getmonsterinfo("ILL_OBSIDIAN", MOB_NAME) + "，各10只！";
 		setquest 11565;
 		close;
 	case 0:
 	case 1:
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还好吗？";
 		mes getmonsterinfo("ILL_PITMAN", MOB_NAME) + "、" + getmonsterinfo("ILL_MINERAL", MOB_NAME) + "和" + getmonsterinfo("ILL_OBSIDIAN", MOB_NAME) + "处理得怎么样？";
 		close;
 	case 2:
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇……";
 		mes "做得好！";
 		mes "现在感觉安全一点了吗？";
@@ -12373,7 +12373,7 @@ ein_d02_i,170,193,5	script	史蒂文#IBT	4W_M_02,3,3,{
 
 OnTouch:
 	if (ill_teddy == 3) {
-		mes "[史蒂文]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不能放我走吗？！";
 		mes "放开我！";
 		mes "太糟糕了！！！！";
@@ -12411,10 +12411,10 @@ OnInit:
 	end;
 }
 
-ein_d02_i,135,229,1	duplicate(dummy_cloaked_npc)	阿西德#IBT_inN	4_M_NFMAN
+ein_d02_i,135,229,1	duplicate(dummy_cloaked_npc)	山哥#IBT_inN::阿西德#IBT_inN	4_M_NFMAN
 ein_d02_i,169,193,5	duplicate(dummy_cloaked_npc)	白色泰迪熊#IBT	4_TEDDY_BEAR_W
 ein_d02_i,171,193,3	duplicate(dummy_cloaked_npc)	泰迪熊#IBT	4_NASARIAN
-ein_d02_i,172,192,1	duplicate(dummy_cloaked_npc)	阿西德#IBT_inN01	4_M_NFMAN
+ein_d02_i,172,192,1	duplicate(dummy_cloaked_npc)	山哥#IBT_inN01::阿西德#IBT_inN01	4_M_NFMAN
 
 ein_d02_i,132,233,0	script	#ITBSuspicious place	HIDDEN_WARP_NPC,3,3,{
 	end;
@@ -12618,7 +12618,7 @@ ein_d02_i,138,238,7	duplicate(dummy_cloaked_npc)	??????#IBT_inB19	4_NASARIAN
 ein_d02_i,141,241,7	duplicate(dummy_cloaked_npc)	??????#IBT_inB20	4_TEDDY_BEAR_B
 ein_d02_i,145,241,1	duplicate(dummy_cloaked_npc)	??????#IBT_inB21	4_NASARIAN
 ein_d02_i,140,243,5	duplicate(dummy_cloaked_npc)	??????#IBT_inB22	4_NASARIAN
-ein_d02_i,133,233,7	duplicate(dummy_cloaked_npc)	史蒂文#IBT_inN	4W_M_02
+ein_d02_i,133,233,7	duplicate(dummy_cloaked_npc)	史蒂芬#IBT_inN::史蒂文#IBT_inN	4W_M_02
 
 ein_d02_i,168,206,5	script	忧郁的泰迪熊#ITB	4_TEDDY_BEAR_B_L,{
 	if (checkweight(1201,3) == 0) {
@@ -12720,7 +12720,7 @@ OnInit:
 }
 
 
-ein_d02_i,191,192,3	script	瓷偶工匠#ITB	4_F_HUWOMAN,{
+ein_d02_i,191,192,3	script	陶瓷娃娃工匠#ITB::瓷偶工匠#ITB	4_F_HUWOMAN,{
 	if (checkweight(1201,3) == 0) {
 		mes "- 等一下！！";
 		mes "- 你携带的物品太多。-";
@@ -12730,7 +12730,7 @@ ein_d02_i,191,192,3	script	瓷偶工匠#ITB	4_F_HUWOMAN,{
 		close;
 	}
 	if (ill_teddy < 9) {
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呀啊啊啊啊！！！！！";
 		mes "吓到你了！";
 		close;
@@ -12740,7 +12740,7 @@ ein_d02_i,191,192,3	script	瓷偶工匠#ITB	4_F_HUWOMAN,{
 		break;
 	case 0:
 	case 1:
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，欢迎回来。";
 		mes "多亏了你，我才能继续在矿井深处研究。";
 		mes "黎明时再回来吧。";
@@ -12751,22 +12751,22 @@ ein_d02_i,191,192,3	script	瓷偶工匠#ITB	4_F_HUWOMAN,{
 	}
 	switch( checkquest(11570,HUNTING) ) {
 	case -1:
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呀啊啊啊啊！！！！！";
 		mes "吓到你了！";
 		next;
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你在附近见过巨大的^ff0000" + getmonsterinfo("ILL_TEDDY_BEAR_S", MOB_NAME) + "^000000吗？";
 		mes "我好不容易到了入口，但每次想离开它就出现，已经藏在这里好几天了。";
 		next;
 		if (select( "帮助", "放弃" ) == 2) {
-			mes "[瓷偶工匠]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呜呜！";
 			mes "完了！！！";
 			mes "我要永远困在这里了！";
 			close;
 		}
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还活着！！！";
 		mes "你看到了吗？";
 		mes "是一只巨大的^ff0000" + getmonsterinfo("ILL_TEDDY_BEAR_S", MOB_NAME) + "^000000。";
@@ -12775,7 +12775,7 @@ ein_d02_i,191,192,3	script	瓷偶工匠#ITB	4_F_HUWOMAN,{
 		close;
 	case 0:
 	case 1:
-		mes "[瓷偶工匠]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好吗？";
 		mes "你杀死^ff0000" + getmonsterinfo("ILL_TEDDY_BEAR_S", MOB_NAME) + "^000000了吗？";
 		close;

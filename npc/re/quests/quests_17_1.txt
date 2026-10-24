@@ -626,34 +626,34 @@ OnInit:
 	end;
 }
 
-ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
+ein_fild03,278,269,4	script	反叛者队员#171_einf::叛乱军队员#171_einf	CLEAR_NPC,{
 	if (isbegin_quest(7865) == 1) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿……？";
 		mes "真不敢相信这个区域伪装成废弃矿井。";
 		mes "真是笨拙的伎俩～嘿～无聊～";
 		next;
 		select("请说吧。 ");
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘘！";
 		mes "小声点！！";
 		mes "被抓住就完了！！";
 		emotion ET_HUK;
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……我还以为你也是叛乱军成员。";
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看到被铁丝网封住的^FF0000矿井入口^000000了吗？";
 		mes "我想那就是他们总部的入口。";
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我刚才试着进去，但被铁丝网挡住了。从外面能看到可疑动静。";
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果强行进去，会被狗追赶。你应该^FF0000侦察附近^000000，等待更多支援。";
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我从没见过有人进去……";
 		mes "我也不知道会发生什么，你不如到处看看？";
 		navigateto("ein_fild03",347,219);
@@ -662,18 +662,18 @@ ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
 		close;
 	}
 	if (isbegin_quest(7865) == 2 && isbegin_quest(11599) == 0) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我从没见过有人进去……";
 		mes "我也不知道会发生什么，你不如到处看看？";
 		close;
 	}
 	if (isbegin_quest(11599) == 1) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯嗯。";
 		mes "附近没有人的迹象……";
 		next;
 		select("我要进去。 ");
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不是开玩笑，里面很危险。";
 		mes "你只是进去看看，对吧？";
 		mes "^FF0000准备进去时^000000再告诉我。";
@@ -683,7 +683,7 @@ ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
 		close;
 	}
 	if (isbegin_quest(11600) == 1) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "都准备好了吗？";
 		next;
 		.@md_name$ = "封锁的欧斯";
@@ -692,13 +692,13 @@ ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
 		switch (select("打开大门。:进入。:离开。")) {
 		case 1:
 			if (!.@party_id) {
-				mes "[叛乱军队员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一个人进去很危险。";
 				mes "和^FF0000队伍^000000一起进去不是更好吗？";
 				close;
 			}
 			if (!is_party_leader()) {
-				mes "[叛乱军队员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真奇怪～";
 				mes "等一下。";
 				mes "也许^FF0000队长^000000还没有打开大门？";
@@ -706,14 +706,14 @@ ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
 			}
 			if (instance_create(.@md_name$) == -3)
 				dispbottom "已有进行中的副本，无法预约“" + .@md_name$ + "”。";
-			mes "[叛乱军队员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请稍等。";
 			close;
 		case 2:
 			if (instance_enter(.@md_name$) == IE_OK)
 				mapannounce "ein_fild03", "队伍“" + .@party_name$ + "”的成员“" + strcharinfo(0) + "”正在进入“" + .@md_name$ + "”。", bc_map, "0x00FF99";
 			else {
-				mes "[叛乱军队员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真奇怪～";
 				mes "等一下。";
 				mes "我想大门还没打开，对吧？";
@@ -723,23 +723,23 @@ ein_fild03,278,269,4	script	叛乱军队员#171_einf	CLEAR_NPC,{
 		close;
 	}
 	if (isbegin_quest(11601) == 1) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！";
 		mes "你忘了去克莱纳·奈米艾利的路吗？";
 		next;
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你怎么了？";
 		navigateto("rebel_in",68,41);
 		close;
 	}
 	if (isbegin_quest(11602) == 1) {
-		mes "[叛乱军队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！";
 		mes "迪恩的房间？";
 		mes "在克莱纳·奈米艾利的二楼。";
 		close;
 	}
-	mes "[叛乱军队员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呃……";
 	mes "以前真好……";
 	mes "那时真好……";
@@ -792,13 +792,13 @@ ein_fild03,268,207,0	duplicate(#171_EINF03_EV_0)	#171_EINF03_EV_1	HIDDEN_WARP_NP
 ein_fild03,218,266,0	duplicate(#171_EINF03_EV_0)	#171_EINF03_EV_2	HIDDEN_WARP_NPC,3,3
 
 //= Lighthalzen
-lighthalzen,56,270,3	script	共和国卫兵#171_light	4_M_EIN_SOLDIER,{
+lighthalzen,56,270,3	script	共和国警备兵#171_light::共和国卫兵#171_light	4_M_EIN_SOLDIER,{
 	if (isbegin_quest(7861) == 0) {
 		npctalk "禁止继续前进，请后退。","",bc_self;
 		end;
 	}
 	if (isbegin_quest(7861) == 1) {
-		mes "[共和国卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "泰丝联系过我。";
 		mes "别担心，我属于秘密之翼。";
 		mes "阿斯和恩斯特去调查这片区域了。";
@@ -807,7 +807,7 @@ lighthalzen,56,270,3	script	共和国卫兵#171_light	4_M_EIN_SOLDIER,{
 		cloakoffnpc "阿斯#171_light",getcharid(0);
 		cloakoffnpc "埃米莉#171_light",getcharid(0);
 		npctalk "恩斯特：现在可以进去了。","恩斯特指挥官#171_light",bc_self;
-		mes "[共和国卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，他们在那里。";
 		next;
 		cutin "ep162_est01",2;
@@ -852,7 +852,7 @@ lighthalzen,56,270,3	script	共和国卫兵#171_light	4_M_EIN_SOLDIER,{
 		close3;
 	}
 	if (isbegin_quest(7862) == 1) {
-		mes "[共和国卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "入口由站在前门附近的奥斯卡守卫。";
 		mes "我和叛乱军留在外面。阿斯会进去。";
 		mes "祝你好运！";
@@ -879,7 +879,7 @@ OnInit:
 lighthalzen,54,267,5	duplicate(dummy_cloaked_npc)	恩斯特指挥官#171_light	4_F_ESTLOVELOY
 lighthalzen,55,265,1	duplicate(dummy_cloaked_npc)	埃米莉#171_light	4_F_ANYA
 
-lighthalzen,55,278,3	script	雷根贝勒卫兵奥斯卡#171_light	4_M_LGTGUARD,{
+lighthalzen,55,278,3	script	雷根贝勒保镖奥斯卡#171_light::雷根贝勒卫兵奥斯卡#171_light	4_M_LGTGUARD,{
 	if (isbegin_quest(7862) == 0) {
 		npctalk "雷根贝勒守卫：此处禁止进入。","",bc_self;
 		end;
@@ -2226,7 +2226,7 @@ OnInit:
 	end;
 }
 
-rgsr_in,161,85,3	script	实验室职员#171_rgsrin	4_LGTSCIENCE,{
+rgsr_in,161,85,3	script	研究所相关人士#171_rgsrin::实验室职员#171_rgsrin	4_LGTSCIENCE,{
 	if (isbegin_quest(17009) == 1) {
 		mes "[职员]";
 		mes "这里禁止外人进入，请离开。";
@@ -2526,16 +2526,16 @@ lighthalzen,335,261,1	script	阿斯#171_lhz2	4_EP17_AS,{
 	close3;
 }
 
-lighthalzen,331,262,5	duplicate(dummy_cloaked_npc)	帕特#171_lhz	4_M_REPAIR
-lighthalzen,332,260,1	duplicate(dummy_cloaked_npc)	招募员#171_lhz	4_F_HUWOMAN
-lighthalzen,331,263,7	duplicate(dummy_cloaked_npc)	帕特的父亲#171_lhz	4_M_MIDDLE1
-lighthalzen,333,264,7	duplicate(dummy_cloaked_npc)	帕特的母亲#171_lhz	4_F_EINWOMAN
+lighthalzen,331,262,5	duplicate(dummy_cloaked_npc)	派克#171_lhz::帕特#171_lhz	4_M_REPAIR
+lighthalzen,332,260,1	duplicate(dummy_cloaked_npc)	面试官#171_lhz::招募员#171_lhz	4_F_HUWOMAN
+lighthalzen,331,263,7	duplicate(dummy_cloaked_npc)	派克的爸爸#171_lhz::帕特的父亲#171_lhz	4_M_MIDDLE1
+lighthalzen,333,264,7	duplicate(dummy_cloaked_npc)	派克的妈妈#171_lhz::帕特的母亲#171_lhz	4_F_EINWOMAN
 lighthalzen,104,163,5	duplicate(dummy_cloaked_npc)	卡雅·托斯#171_lhz3	4_EP17_KAYA
 lighthalzen,103,165,5	duplicate(dummy_cloaked_npc)	阿斯#171_lhz3	4_EP17_AS
 lighthalzen,106,162,1	duplicate(dummy_cloaked_npc)	帕特#171_lhz2	4_M_REPAIR
 lighthalzen,106,162,5	duplicate(dummy_cloaked_npc)	抗议者#171_lhz	4_F_ZONDAGIRL
 lhz_in01,105,134,7	duplicate(dummy_cloaked_npc)	懒惰#171_lhzin	4_M_LAZY
-lhz_in01,108,135,1	duplicate(dummy_cloaked_npc)	帕特#171_lhzin	4_M_REPAIR
+lhz_in01,108,135,1	duplicate(dummy_cloaked_npc)	派克#171_lhzin::帕特#171_lhzin	4_M_REPAIR
 lhz_in01,109,134,1	duplicate(dummy_cloaked_npc)	卡雅·托斯#171_lhzin	4_EP17_KAYA
 lhz_in01,109,136,3	duplicate(dummy_cloaked_npc)	阿斯#171_lhzin	4_EP17_AS
 lhz_in01,161,255,7	duplicate(dummy_cloaked_npc)	懒惰#171_lhzin2	4_M_LAZY
@@ -2556,8 +2556,8 @@ rgsr_in,157,88,5	duplicate(dummy_cloaked_npc)	阿斯#171_rgsrin	4_EP17_AS
 rgsr_in,16,49,3	duplicate(dummy_cloaked_npc)	懒惰#171_rgsrin2	4_M_LAZY
 rgsr_in,17,48,3	duplicate(dummy_cloaked_npc)	卡雅·托斯#171_rgsrin2	4_EP17_KAYA
 rgsr_in,18,47,3	duplicate(dummy_cloaked_npc)	阿斯#171_rgsrin2	4_EP17_AS
-rgsr_in,15,46,1	duplicate(dummy_cloaked_npc)	帕特#171_rgsrin	4_M_REPAIR
-rgsr_in,13,49,5	duplicate(dummy_cloaked_npc)	实验室职员#171_rgsrin2	4_M_SCIENCE
+rgsr_in,15,46,1	duplicate(dummy_cloaked_npc)	派克#171_rgsrin::帕特#171_rgsrin	4_M_REPAIR
+rgsr_in,13,49,5	duplicate(dummy_cloaked_npc)	研究员#171_rgsrin2::实验室职员#171_rgsrin2	4_M_SCIENCE
 
 //= PUBCAT MAP
 pub_cat,93,105,3	script	菲洛蓬泰丝#171_cat	4_M_PHILOFONTES,{
@@ -2845,7 +2845,7 @@ OnInit:
 }
 
 lighthalzen,43,271,5	script	雷根贝勒卫兵#171_light_1	4_M_LGTGUARD,{ end; }
-lighthalzen,46,271,5	script	雷根贝勒卫兵#171_light_2	4_M_LGTGUARD,{ end; }
+lighthalzen,46,271,5	script	雷根贝勒保镖#171_light_2::雷根贝勒卫兵#171_light_2	4_M_LGTGUARD,{ end; }
 
 //= Pub Back Area
 pub_cat,150,105,0	script	#EP171_EVT_CAT00	HIDDEN_WARP_NPC,1,1,{
@@ -4193,7 +4193,7 @@ OnInit:
 	end;
 }
 
-sp_rudus,27,300,0	script	小洞#171_rudus	4_ENERGY_BLUE,{
+sp_rudus,27,300,0	script	狗洞#171_rudus::小洞#171_rudus	4_ENERGY_BLUE,{
 	if (isbegin_quest(7853) == 1 && isbegin_quest(7856) == 0) {
 		mes "这里有个小洞，勉强能让孩子通过。";
 		mes "看起来是动物挖出这个洞并做成了小洞穴。";
@@ -5456,8 +5456,8 @@ sp_cor,162,72,5	duplicate(dummy_cloaked_npc)	工人#171_rvs_8	4_M_03
 sp_cor,167,85,1	duplicate(dummy_cloaked_npc)	工人#171_rvs_9	4_M_DIEMAN
 sp_cor,164,82,5	duplicate(dummy_cloaked_npc)	工人#171_rvs_10	4_M_DSTMANDEAD
 sp_cor,165,86,5	duplicate(dummy_cloaked_npc)	埃尔尤米娜#171_rvs	4_EP17_ELYUMINA
-sp_cor,163,87,5	duplicate(dummy_cloaked_npc)	傻瓜1#171_rvs_1	3454
-sp_cor,166,88,5	duplicate(dummy_cloaked_npc)	傻瓜2#171_rvs_2	3454
+sp_cor,163,87,5	duplicate(dummy_cloaked_npc)	傻瓜2号#171_rvs_1::傻瓜1#171_rvs_1	3454
+sp_cor,166,88,5	duplicate(dummy_cloaked_npc)	傻瓜1号#171_rvs_2::傻瓜2#171_rvs_2	3454
 sp_cor,159,68,7	duplicate(dummy_cloaked_npc)	泰丝#171_rvs_2	4_M_PHILOFONTES
 sp_cor,160,70,7	duplicate(dummy_cloaked_npc)	卡雅#171_rvs_2	4_EP17_KAYA
 sp_cor,163,75,7	duplicate(dummy_cloaked_npc)	阿斯#171_rvs_2	4_EP17_AS
@@ -6140,7 +6140,7 @@ sp_cor,121,138,7	script	戈尼#171_cor	4_M_GONY,{
 }
 
 sp_cor,127,141,3	duplicate(dummy_cloaked_npc)	阿斯#171_cor2	4_EP17_AS
-sp_cor,134,144,7	duplicate(dummy_cloaked_npc)	搜索队#171_cor	4_M_REBELLION
+sp_cor,134,144,7	duplicate(dummy_cloaked_npc)	搜查队#171_cor::搜索队#171_cor	4_M_REBELLION
 
 //============================================================
 // Innocent Menace
@@ -7319,7 +7319,7 @@ OnTouch:
 	end;
 }
 
-sp_rudus,227,351,0	script	可疑的线索#171_rudus	4_ENERGY_BLACK,{
+sp_rudus,227,351,0	script	可疑的痕迹#171_rudus::可疑的线索#171_rudus	4_ENERGY_BLACK,{
 	if (isbegin_quest(17024) == 1) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "在这么大的地方，你怎么找得到东西？连个可以询问的人都没有。";
@@ -7359,129 +7359,129 @@ OnInit:
 	end;
 }
 
-sp_rudus,15,280,5	script	被遗弃的人#171_rudus	4_F_MUT1,{
+sp_rudus,15,280,5	script	被抛下的人#171_rudus::被遗弃的人#171_rudus	4_F_MUT1,{
 	if (isbegin_quest(17025) == 1) {
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "1:2的比例可能更好……不，还是别做实验了。我觉得你说得对。";
 		next;
 		select("哦，哇，你好？没关系，我不介意！");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么惊讶？我还没死呢。";
 		unittalk getcharid(3),strcharinfo(0) + "：对不起。",bc_self;
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没关系。如果看到我自己，我也会惊讶。我尽量不照镜子。";
 		npctalk "这里没有镜子。","",bc_self;
 		next;
 		select("你为什么看起来像研究员……？");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "研究员为什么不能在这里？";
 		mes "你想知道为什么一个主持实验的人会被扔进垃圾箱，然后被遗弃。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的唯一目标就是成功，我什么事都做过。";
 		mes "你不觉得这对我来说是个恰当的结局吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "研究和实验并不总是安全的。我以为自己会没事，但最后还是没能躲过。";
 		npctalk "我以为自己会没事。","",bc_self;
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把我遗弃在这里的人没想到我还活着。";
 		mes "实验室被摧毁后，有毒物质在各处喷涌出来。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呵呵。所以我就要在这里等着这样死去。我原本想用研究让世界惊讶，结果却住在了这里。";
 		next;
 		select("这里还有其他人吗？");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你在找什么？死人？活人？还是半死不活的人？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你觉得在这里能找到多少被遗弃的人？";
 		npctalk "你什么时候觉得这里被当作废料处理设施了？","",bc_self;
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果他们有^0000FF某种身体状况且出身贫困，^000000有时甚至无家可归，就更容易拿他们做实验。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别那样看我。你越穷，你的家人就越容易被利用；如果不利用这些人，我们才是傻瓜。至少我当时是这么想的。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你觉得这些年来所有失踪的人都去了哪里？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "施瓦茨瓦尔德的许多失踪人员最后都会来到这里。你要逐一调查他们吗？如果你有足够时间，这也不是坏事。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还是说你只在找某一个人？";
 		next;
 		select("我在找帕特里克·考夫曼。");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他什么时候进来的？";
 		next;
 		select("我不知道。");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……我^0000FF没有你要找的信息。^000000我是最后一个来到这里的人。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没什么事可做，所以看遍了这里，但没见过任何人……你明白我的意思吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你应该试着在垃圾堆里找一条^0000FF实验体识别手环^000000。你知道那是什么吗？";
 		mes "腕带就是一种手镯，上面写着实验对象的名字。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果他来过，地板上应该会有一条手镯。也可能已经不在那里了……";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果找不到他，也许你可以买一条手镯，然后替他举行正式葬礼。";
 		next;
 		select("……");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……我为什么不离开？我在这里已经做完了所有想做的事。";
 		next;
 		select("我们一起出去。");
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "离开这里？别这样，我快死了。这是残酷的事实。我很了解自己的身体，这正是我研究的东西。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我的脚是这样，但另一条腿很快也会发生变化。";
 		mes "然后是我的双臂……最后……你还能把我称作人类吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使接受治疗，我也不可能活下来。我很清楚这一点。对我来说，独自安静地生活在这里不是更好吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看，这就是我现在的家人。我为什么要背负这么沉重的负担？放弃希望可比活在别处容易一百倍，不是吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我说这些话听起来很奇怪吗？我觉得自己有点失控了。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，有时我甚至幻想把人们从痛苦中解脱出来。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这可能不是他们的家人希望的，但对他们来说外面很危险。你明白我的意思吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且……我不认为这是巧合。";
 		npctalk "我不相信更高的力量，但也许我开始相信了。","",bc_self;
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你过一段时间回来，而我已经完全变成怪物，请杀了我。";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我宁愿生命早早结束，也不愿哪怕只当一秒钟的怪物。明白了吗？";
 		next;
-		mes "[被遗弃的人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，真没想到我告诉了你这么多。我该休息了。";
 		getexp 300000,300000;
 		completequest 17025;
 		setquest 17026;
 		close;
 	}
-	mes "[被遗弃的人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你应该试着在垃圾堆里找一条^0000FF实验体识别手环^000000。你知道那是什么吗？";
 	mes "腕带就是一种手镯，上面写着实验对象的名字。";
 	close;
@@ -7492,7 +7492,7 @@ OnInit:
 	end;
 }
 
-sp_rudus,55,137,3	script	可疑的线索#171_rudus_0	4_ENERGY_BLACK,{
+sp_rudus,55,137,3	script	可疑的痕迹#171_rudus_0::可疑的线索#171_rudus_0	4_ENERGY_BLACK,{
 	.@id = atoi(replacestr(strnpcinfo(2),"171_rudus_",""));
 	.@qid = 17027 + .@id;
 	if (isbegin_quest(.@qid) == 0 && isbegin_quest(17026) == 1) {
@@ -7544,10 +7544,10 @@ OnInit:
 	end;
 }
 
-sp_rudus,236,46,3	duplicate(可疑的线索#171_rudus_0)	可疑的线索#171_rudus_1	4_ENERGY_BLACK
-sp_rudus,332,235,3	duplicate(可疑的线索#171_rudus_0)	可疑的线索#171_rudus_2	4_ENERGY_BLACK
-sp_rudus,364,134,3	duplicate(可疑的线索#171_rudus_0)	可疑的线索#171_rudus_3	4_ENERGY_BLACK
-sp_rudus,221,165,3	duplicate(可疑的线索#171_rudus_0)	可疑的线索#171_rudus_4	4_ENERGY_BLACK
+sp_rudus,236,46,3	duplicate(可疑的线索#171_rudus_0)	可疑的痕迹#171_rudus_1::可疑的线索#171_rudus_1	4_ENERGY_BLACK
+sp_rudus,332,235,3	duplicate(可疑的线索#171_rudus_0)	可疑的痕迹#171_rudus_2::可疑的线索#171_rudus_2	4_ENERGY_BLACK
+sp_rudus,364,134,3	duplicate(可疑的线索#171_rudus_0)	可疑的痕迹#171_rudus_3::可疑的线索#171_rudus_3	4_ENERGY_BLACK
+sp_rudus,221,165,3	duplicate(可疑的线索#171_rudus_0)	可疑的痕迹#171_rudus_4::可疑的线索#171_rudus_4	4_ENERGY_BLACK
 
 //= Cor Daily
 sp_cor,162,56,0	script	#171_ocp_ev	HIDDEN_WARP_NPC,4,4,{
@@ -7965,28 +7965,28 @@ OnInit:
 	end;
 }
 
-sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
+sp_cor,246,97,3	script	农场工人#rm171_1::农夫#rm171_1	1_M_03,{
 	if (isbegin_quest(16360) < 2) {
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我很忙。我想你们城里人不想待在这里，因为这里有肥料味。去那边和研究员们以前待的地方的人汇合吧。";
 		close;
 	}
 	if (isbegin_quest(16364) == 0) {
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们在这里种蔬菜。这座自给自足的农场是我们的骄傲。";
 		next;
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但自从这起事件后，许多员工申请调动，导致人手不足。你能帮我们照料作物吗？";
 		next;
 		if (select( "帮忙。", "不帮忙。" ) == 2) {
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你们这些大人物来到这里，毁了我们的安宁。";
 			next;
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "唉，算了。我们拥有的也许根本不是真正的安宁。";
 			close3;
 		}
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢！我们农场种植葡萄、四季豆和南瓜，它们各有不同需求。";
 		next;
 		setarray .@r[0], rand(3), rand(3), rand(3);
@@ -7994,7 +7994,7 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 		setquest 16367+.@r[0];
 		setquest 16370+.@r[1];
 		setquest 16373+.@r[2];
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "葡萄：" + .@string$[.@r[0]] + "。";
 		mes "四季豆：" + .@string$[.@r[1]] + "。";
 		mes "南瓜：" + .@string$[.@r[2]] + "。";
@@ -8009,13 +8009,13 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 				mes "- 背包已满。请检查负重和携带数量后再回来找我。-";
 				close3;
 			}
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你把它们都照料好了。作为冒险家，你很擅长照顾农田。";
 			next;
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们没什么可给你的，不过可以把在这里找到的材料给你。我看到佣兵们也在收集。你不需要吗？";
 			next;
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们的作物每天都需要照料。请再回来帮忙。";
 			for ( .@quest_id = 16367; .@quest_id <= 16375; .@quest_id++ )
 				if (isbegin_quest(.@quest_id) == 2)
@@ -8050,15 +8050,15 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 					break;
 			}
 		}
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你还没完成。";
 		next;
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "葡萄：" + .@string$[.@r[0]] + "。";
 		mes "四季豆：" + .@string$[.@r[1]] + "。";
 		mes "南瓜：" + .@string$[.@r[2]] + "。";
 		next;
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请确保这些都完成。";
 		close;
 	}
@@ -8067,10 +8067,10 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 		break;
 	case 0:
 	case 1:
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的作物现在很好。太频繁地摆弄它们反而不好。它们看起来坚强，其实很敏感。";
 		next;
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "完成上次照料后，过 4 小时再来。谢谢。";
 		close;
 	case 2:
@@ -8078,21 +8078,21 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 		break;
 	}
 	if (isbegin_quest(16364) == 2 && isbegin_quest(16366) == 0) {
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "已经过了足够长的时间，作物又需要照料了。能再帮我们吗？";
 		next;
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你来了以后，我要做的事更多了，但一个人的能力有限。";
 		next;
 		if (select( "帮忙。", "不帮忙。" ) == 2) {
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，我明白了。多亏你们，我要做的事更多、能帮忙的人更少，不过我没问题。";
 			next;
-			mes "[农夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "算了，你自己可能也很忙。不过我懂什么呢？我只是个农夫。";
 			close3;
 		}
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢。我们有葡萄、四季豆和南瓜，我应该告诉过你它们各自有不同需求。";
 		next;
 		setarray .@r[0], rand(3), rand(3), rand(3);
@@ -8100,7 +8100,7 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 		setquest 16367+.@r[0];
 		setquest 16370+.@r[1];
 		setquest 16373+.@r[2];
-		mes "[农夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "葡萄：" + .@string$[.@r[0]] + "。";
 		mes "四季豆：" + .@string$[.@r[1]] + "。";
 		mes "南瓜：" + .@string$[.@r[2]] + "。";
@@ -8108,7 +8108,7 @@ sp_cor,246,97,3	script	农夫#rm171_1	1_M_03,{
 		setquest 16366;
 		close3;
 	}
-	mes "[农夫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉，我很忙。这里有肥料味，你们城里人应该不想待在这里。去那边和研究人员以前待的地方的其他人会合吧。";
 	close;
 
@@ -8119,50 +8119,50 @@ OnInit:
 	end;
 }
 
-sp_cor,160,135,5	script	四季豆#rm171_2	4_ENERGY_YELLOW,{
+sp_cor,160,135,5	script	豌豆#rm171_2::四季豆#rm171_2	4_ENERGY_YELLOW,{
 	if (isbegin_quest(16364) != 1 && isbegin_quest(16366) != 1) {
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "健康的豆秧上挂着小小的四季豆。";
 		close;
 	}
 	if (isbegin_quest(16370) != 1 && isbegin_quest(16371) != 1 && isbegin_quest(16372) != 1) {
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "恢复活力的豆秧上挂着小小的四季豆。";
 		close;
 	}
-	mes "[四季豆]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这些四季豆看起来有些无精打采。";
 	next;
 	switch (select( "捕捉蚜虫。", "撒肥料。", "拔杂草。" )) {
 	case 1:
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在豆秧上发现了蚜虫。";
 		.@quest_id = 16370;
 		break;
 	case 2:
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在四季豆周围撒了肥料。";
 		.@quest_id = 16371;
 		break;
 	case 3:
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我拔除了四季豆周围的杂草。";
 		.@quest_id = 16372;
 		break;
 	}
 	next;
 	if (isbegin_quest(.@quest_id) != 1) {
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么它们看起来还是枯萎的？";
 		close;
 	}
 	specialeffect EF_HEAL4;
-	mes "[四季豆]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，看得出来四季豆现在很有活力！";
 	completequest .@quest_id;
 	if ((isbegin_quest(16367) == 2 || isbegin_quest(16368) == 2 || isbegin_quest(16369) == 2) && (isbegin_quest(16373) == 2 || isbegin_quest(16374) == 2 || isbegin_quest(16375) == 2)) {
 		next;
-		mes "[四季豆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经照料完所有作物。该回农夫那里了。";
 	}
 	close;
@@ -8473,7 +8473,7 @@ OnTouch:
 	end;
 }
 
-sp_cor,218,134,3	script	狗#171_rvs_45	4_DOG01,{
+sp_cor,218,134,3	script	可可#171_rvs_45::狗#171_rvs_45	4_DOG01,{
 	emotion ET_BIGTHROB;
 	npctalk "喵~！","",bc_self;
 	end;
@@ -8658,12 +8658,12 @@ sp_cor,69,192,1	script	工人#171_rvs_45	4_M_ROGUE,{
 	end;
 }
 
-pub_cat,73,75,3	script	酒保#171_pub_1	1_F_PUBGIRL,{
+pub_cat,73,75,3	script	调酒师#171_pub_1::酒保#171_pub_1	1_F_PUBGIRL,{
 	npctalk "您要点单吗？","",bc_self;
 	end;
 }
 
-pub_cat,64,82,5	script	酒保#171_pub_2	4_M_CASMAN1,{
+pub_cat,64,82,5	script	调酒师#171_pub_2::酒保#171_pub_2	4_M_CASMAN1,{
 	npctalk "您今天感觉怎么样？我可以根据您的心情推荐饮品。","",bc_self;
 	end;
 }
@@ -8811,12 +8811,12 @@ pub_cat,51,29,1	script	疲惫的客人#171_pub	4_M_REPAIR,{
 	end;
 }
 
-pub_cat,52,32,5	script	酒保#171_pub_5	1_ETC_01,{
+pub_cat,52,32,5	script	调酒师#171_pub_5::酒保#171_pub_5	1_ETC_01,{
 	npctalk "这里是给忙碌的客人小酌的地方。请好好享受。","",bc_self;
 	end;
 }
 
-pub_cat,55,33,3	script	销售经理#171_pub	4_CAT_SAILOR4,{
+pub_cat,55,33,3	script	营业部长#171_pub::销售经理#171_pub	4_CAT_SAILOR4,{
 	emotion ET_MONEY;
 	end;
 }
@@ -8826,7 +8826,7 @@ pub_cat,61,46,5	script	店员#171_pub	4_M_HUMAN_01,{
 	end;
 }
 
-pub_cat,74,73,3	script	副总裁#171_pub	4_CAT,{
+pub_cat,74,73,3	script	副社长#171_pub::副总裁#171_pub	4_CAT,{
 	emotion ET_SCRATCH;
 	end;
 }
@@ -8836,33 +8836,33 @@ pub_cat,67,73,3	script	子弹总裁#171_pub	4_CAT_REST,{
 	end;
 }
 
-pub_cat,84,66,3	script	怀尔德#171_pub	1_M_SIGNROGUE,2,2,{
+pub_cat,84,66,3	script	狂暴喵#171_pub::怀尔德#171_pub	1_M_SIGNROGUE,2,2,{
 	if (isbegin_quest(7864) == 0) {
-		mes "[怀尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？你第一次来这里吗？";
 		mes "饮料从那边送来。";
 		next;
-		mes "[怀尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里仅限成年人进入。";
 		close;
 	}
 	if (isbegin_quest(7864) == 1) {
 	OnTalk:
-		mes "[怀尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿！这里发生什么事了？";
 		npctalk "嘿！这里发生什么事了？","",bc_self;
 		next;
-		mes "[怀尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？你就是他们在等的人吗？看到我身后的房间了吗？进去吧。";
 		close;
 	}
 	if (isbegin_quest(17001) != 2) {
 	OnTalk2:
-		mes "[怀尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要进去吗？里面很吵，所以我晚点再进去。";
 		close;
 	}
-	mes "[怀尔德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "等等，现在后面没人，你在等谁吗？";
 	close;
 
@@ -8881,16 +8881,16 @@ OnInit:
 }
 
 //= < Warp NPC >
-pub_cat,104,106,3	script	退役叛乱军成员#backroom_ent	4_M_SEAMAN,{
+pub_cat,104,106,3	script	隐居的反叛者#backroom_ent::退役叛乱军成员#backroom_ent	4_M_SEAMAN,{
 	if (isbegin_quest(7859) < 2) {
 		npctalk "退役叛乱军成员：去别的地方。这地方不适合你。","",bc_self;
 		end;
 	}
-	mes "[退役叛乱军成员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你要去后面的房间吗？";
 	next;
 	if (select("是的。:还没。") == 2) {
-		mes "[退役叛乱军成员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "慢慢来。";
 		close;
 	}

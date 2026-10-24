@@ -83,7 +83,7 @@ OnTouch:
 	end;
 }
 
-airplane_01,95,61,3	script	特工#pc1	899,{
+airplane_01,95,61,3	script	情报员#pc1::特工#pc1	899,{
 	end;
 
 OnInit:
@@ -91,7 +91,7 @@ OnInit:
 	end;
 }
 
-cmd_in02,174,89,7	script	普通男子#pc1	97,{
+cmd_in02,174,89,7	script	平凡的男子#pc1::普通男子#pc1	97,{
 	if (aru_monas < 2) {
 		mes "[拉杰斯]";
 		mes "该死，我又输了！";
@@ -142,7 +142,7 @@ cmd_in02,174,89,7	script	普通男子#pc1	97,{
 	}
 }
 
-cmd_in02,111,52,3	script	普通男子#pc2	97,{
+cmd_in02,111,52,3	script	平凡的男性#pc2::普通男子#pc2	97,{
 	if (aru_monas < 3) {
 		mes "[拉杰斯]";
 		mes "^666666*叹气……*^000000";
@@ -200,9 +200,9 @@ cmd_in02,111,52,3	script	普通男子#pc2	97,{
 	}
 }
 
-ra_in01,308,59,1	script	服务员#pc	930,{
+ra_in01,308,59,1	script	服务生#pc::服务员#pc	930,{
 	if (aru_monas < 7) {
-	mes "[服务员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎来到拉赫的";
 	mes "餐厅，";
 		mes "这是拉赫最精致、";
@@ -212,19 +212,19 @@ ra_in01,308,59,1	script	服务员#pc	930,{
 		}
 		if (aru_monas == 6) {
 			next;
-			mes "[服务员]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "你想点什么？还是说……";
 				mes "如果我没猜错，";
 				mes "你是来办";
 				mes "别的事的？";
 			next;
 			if (select("我想点餐。:是的，我来这里另有原因。") == 1) {
-				mes "[服务员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "当然，没问题。";
 				mes "你是一个人来的吗？";
 				next;
 				select("是的。");
-				mes "[服务员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请往这边走。";
 				close2;
 				set aru_monas,7;
@@ -235,14 +235,14 @@ ra_in01,308,59,1	script	服务员#pc	930,{
 					case 4: warp "ra_in01",303,39; end;
 				}
 			}
-				mes "[服务员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，好吧。";
 				mes "不管怎样，希望你在";
 				mes "拉赫餐厅用餐愉快。";
 			close;
 		}
 	}
-	mes "[服务员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这家餐厅的食物是拉赫最好的——";
 	mes "不，事实上，";
 	mes "是整个阿鲁纳佩尔兹";
@@ -251,7 +251,7 @@ ra_in01,308,59,1	script	服务员#pc	930,{
 	close;
 }
 
-ra_in01,301,50,3	script	寻常男子	927,{
+ra_in01,301,50,3	script	看似正常的男子::寻常男子	927,{
 	mes "[长相普通的男子]";
 	mes "嗯——嗯！";
 	mes "我喜欢这家餐厅的食物！";
@@ -262,7 +262,7 @@ ra_in01,301,50,3	script	寻常男子	927,{
 	close;
 }
 
-ra_in01,301,52,3	script	平凡男子	927,{
+ra_in01,301,52,3	script	相貌平凡的男子::平凡男子	927,{
 	mes "[相貌普通的男子]";
 	mes "这里的食物不差，";
 	mes "但我最喜欢的餐厅在毁葛。";
@@ -271,7 +271,7 @@ ra_in01,301,52,3	script	平凡男子	927,{
 	close;
 }
 
-ra_in01,297,50,7	script	形迹可疑的男子	926,{
+ra_in01,297,50,7	script	看似可疑的男子::形迹可疑的男子	926,{
 	mes "[看起来可疑的男子]";
 	mes "每道菜都有独特的味道，";
 	mes "你必须学会品尝。";
@@ -413,7 +413,7 @@ OnTouch:
 	end;
 }
 
-ve_in,78,314,5	script	地方官#Aru	945,{
+ve_in,78,314,5	script	保安官#Aru::地方官#Aru	945,{
 	if (aru_monas < 8) {
 		mes "[阿尔·哈马德]";
 		mes "啊！为什么这种事会发生在我身上，";
@@ -576,21 +576,21 @@ ve_in,81,296,3	script	士兵#Aru	946,{
 	}
 }
 
-ve_in,239,115,0	script	醉汉#Aru	943,{
+ve_in,239,115,0	script	酒鬼#Aru::醉汉#Aru	943,{
 	if (aru_monas < 14) {
-		mes "[醉汉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "伙计，我感觉棒极了！哈哈！";
 		mes "喂，再给我一杯！";
 		close;
 	}
 	if (aru_monas == 14) {
 		if (rachel_camel == 25) {
-			mes "[醉汉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以——*嗝* 我说的是……";
 			mes "呃，好晕……那个^32CD32偷偷乘船出海的人^000000，";
 			mes "你知道他为什么这么早回来吗？*嗝* 你绝对想不到！";
 			next;
-			mes "[醉汉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈！他——*嗝*";
 			mes "他以为自己看到了^DBDB70鬼^000000！";
 			mes "哇哈哈哈！呃……喂……";
@@ -602,22 +602,22 @@ ve_in,239,115,0	script	醉汉#Aru	943,{
 			close;
 		}
 		else {
-			mes "[醉汉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……";
 			mes "嗯……呼……";
 			close;
 		}
 	}
 	else {
-		mes "[醉汉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么？！为什么不让我驾船出海？我得捕鱼谋生！";
 		mes "难道他们想让我饿死吗？！啊？！";
 		close;
 	}
 }
 
-ve_in,238,120,4	script	醉汉#Aru1	940,{
-	mes "[醉汉]";
+ve_in,238,120,4	script	酒鬼#Aru1::醉汉#Aru1	940,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呵呵呵呵~";
 	mes "哦~ 呵呵呵呵~";
 	next;
@@ -711,7 +711,7 @@ ve_fild07,125,128,0	script	小船#Aru	111,{
 	}
 }
 
-ve_fild07,128,130,1	script	秘密探员#Aru	97,{
+ve_fild07,128,130,1	script	秘密情报员#Aru::秘密探员#Aru	97,{
 	if (aru_monas == 16) {
 		mes "[拉杰斯]";
 		mes "准备登船了吗？我会帮你驶向修道院，";
@@ -863,8 +863,8 @@ OnTouch:
 	}
 }
 
-nameless_in,13,58,6	script	拉杰斯#Monastery	97,{
-	mes "[拉杰斯]";
+nameless_in,13,58,6	script	拉乐希司#Monastery::拉杰斯#Monastery	97,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "小心。那家伙看起来很危险。";
 	close;
 
@@ -873,7 +873,7 @@ OnInit:
 	end;
 }
 
-nameless_in,13,53,1	script	怪物#Monas	1864,3,1,{
+nameless_in,13,53,1	script	怪兽#Monas::怪物#Monas	1864,3,1,{
 	end;
 
 OnInit:
@@ -948,7 +948,7 @@ OnTouch:
 	end;
 }
 
-nameless_n,166,254,0	script	拉杰斯#Monastery2	97,{
+nameless_n,166,254,0	script	拉乐希司#Monastery2::拉杰斯#Monastery2	97,{
 	end;
 
 OnInit:
@@ -956,74 +956,74 @@ OnInit:
 	end;
 }
 
-nameless_i,259,218,3	script	拉杰斯#Aru	97,{
+nameless_i,259,218,3	script	拉乐希司#Aru::拉杰斯#Aru	97,{
 	if (aru_monas < 18) {
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不喜欢这里。那些奇怪生物到处游荡，你最好小心。";
 		close;
 	}
 	else if (aru_monas < 24) {
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好，你回来了。我知道岛上还有你想调查的东西，但你想暂时离开这里吗？";
 		next;
 		if(select("是:否")==1) {
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，我们走。";
 			close2;
 			warp "ve_fild07",130,130;
 			end;
 		}
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，但要小心。";
 		mes "你知道，那些生物差点就抓到你了。";
 		close;
 	}
 	else {
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还想调查这座岛吗？";
 		next;
 		if (select("不:是") == 1) {
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，我们走。";
 			close2;
 			warp "ve_fild07",130,130;
 			end;
 		}
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，但要小心。那些生物差点就抓到你了。";
 		close;
 	}
 }
 
-nameless_n,259,218,3	script	拉杰斯#Boat1	97,{
+nameless_n,259,218,3	script	拉乐希司#Boat1::拉杰斯#Boat1	97,{
 	if (aru_monas == 24) {
 		if (countitem(7726) < 1) {
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "很好，你回来了。我知道岛上还有你想调查的东西，但你想暂时离开这里吗？";
 			next;
 			switch(select("是:否")) {
 			case 1:
-				mes "[拉杰斯]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好，我们走。";
 				close2;
 				warp "ve_fild07",130,130;
 				end;
 			case 2:
-				mes "[拉杰斯]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "好，但要小心。你知道，那些生物差点就抓到你了。";
 				close;
 			}
 		} else {
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不敢相信……那个人是特里斯坦三世？！";
 			mes "这大概解释了很多事情。";
 			mes "我会和凭证一起报告。";
 			mes "原来阿鲁纳佩尔兹也参与了毒草事件……";
 			next;
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "整件事让我震惊。我相信卢恩-米德加尔特王室会因此大为震动。没想到我们竟卷入如此巨大的事件……";
 			next;
-			mes "[拉杰斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，我们最好走了……这太重大了！";
 			delitem 7726,1; //Token_Of_King
 			set aru_monas,25;
@@ -1032,18 +1032,18 @@ nameless_n,259,218,3	script	拉杰斯#Boat1	97,{
 			close;
 		}
 	}
-	mes "[拉杰斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你还想调查这座岛吗？";
 	next;
 	switch(select("不:是")) {
 	case 1:
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，我们走。";
 		close2;
 		warp "ve_fild07",130,130;
 		end;
 	case 2:
-		mes "[拉杰斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，但要小心。那些生物差点就抓到你了。";
 		close;
 	}
@@ -1080,7 +1080,7 @@ abbey02,224,70,0	script	书籍#Mona1	111,{
 	}
 }
 
-abbey03,232,233,4	script	男子#King	956,{
+abbey03,232,233,4	script	倒卧的男子#King::男子#King	956,{
 	if (aru_monas < 22) {
 		mes "^3355FF你发现一名男子躺在地上，";
 		mes "穿着破旧却华贵的衣服。";
@@ -1130,7 +1130,7 @@ OnTimer300000:
 	end;
 }
 
-abbey03,232,232,4	script	死去的男子#King	956,{
+abbey03,232,232,4	script	怪兽的尸体#King::死去的男子#King	956,{
 	if (checkweight(7766,1) == 0) {
 		mes "^3355FF请稍等！";
 		mes "你现在携带的物品太多了。请使用卡普拉服务存放一些物品后再回来。^000000";
@@ -1226,7 +1226,7 @@ sec_in02,15,15,4	script	任务调试员::boss_aru_monas	809,{
 
 // Rachel Addition :: aruna_nir
 //============================================================
-ra_temple,165,57,5	script	尼伦#ss	915,{
+ra_temple,165,57,5	script	尼乐研大神官#ss::尼伦#ss	915,{
 	if (checkweight(907,200) == 0) {
 		mes "^3355FF请稍等！";
 		mes "你现在携带了太多物品。";
@@ -1244,13 +1244,13 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 	switch(select("询问维恩斯走私者:询问泽德")) {
 	case 1:
 		if (aru_monas == 12) {
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "维恩斯走私者……";
 			mes "你能解释";
 			mes "你所说的";
 			mes "维恩斯走私者是什么吗？";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，他们。是的，我知道";
 			mes "一点。";
 			mes "恐怕我不能透露";
@@ -1258,7 +1258,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "因为这是";
 			mes "机密案件……";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "恐怕不能轻易向你提供他们的信息";
 			mes "因为他们对我们很重要。";
 			next;
@@ -1266,7 +1266,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "其实我想知道";
 			mes "他们绑架了谁。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，我想我可以告诉你";
 			mes "更多关于";
 			mes "俘虏的信息。";
@@ -1274,7 +1274,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "帮个忙。";
 			next;
 			select("接受:不要拒绝");
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当我们意识到";
 			mes "走私者抓到的俘虏身份时，";
 			mes "";
@@ -1283,7 +1283,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "内部问题太多，难以处理……";
 			mes "";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过我们觉得可以把他";
 			mes "用于计划，";
 			mes "所以将他关在秘密地点，";
@@ -1291,7 +1291,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "";
 			mes "后来……我们失去所有联系。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们派了调查员，但";
 			mes "仍不知道";
 			mes "发生了什么。他们只发现";
@@ -1299,7 +1299,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "“他们都是恶魔。”那名";
 			mes "俘虏可能已经死了。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他可能是高级官员，";
 			mes "但我们被其他事务";
 			mes "牵制，事实上";
@@ -1307,7 +1307,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "还没想好";
 			mes "该如何处理他……";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想请你";
 			mes "前往那个地方，";
 			mes "弄清那里发生了什么，";
@@ -1315,24 +1315,24 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			mes "高级官员是否还活着。";
 			mes "我对此表示怀疑，但是……";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们神殿雇用的调查员";
 			mes "通常比不上你这样的";
 			mes "外国冒险者，所以我相信你能做到。";
 			mes "不过，那里相当危险。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你能做到，我会告诉你";
 			mes "那个地方的位置：我们通常称它为修道院。";
 			mes "它过去确实是修道院，但现在用来关押俘虏。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，我不能再告诉你";
 			mes "关于那个旧地方的其他信息。";
 			mes "它位于维恩斯西南方的海对面。";
 			mes "你应该能在维恩斯南海滩找到船。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过……算了。";
 			mes "我想再多帮助你，";
 			mes "但那会危及我的立场。抱歉。";
@@ -1340,26 +1340,26 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			set aru_monas,13;
 			//changequest 17008,17009;
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会给维恩斯的地方官发送消息。";
 			mes "你和他谈谈，他会提供";
 			mes "旅途中有用的信息。祝你好运。";
 			close2;
 			}
 			else if (aru_monas < 18) {
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去修道院不是问题，";
 			mes "真正的挑战可能是";
 			mes "活着回到这里。";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在了解他们将面对什么之前，";
 			mes "我们不能派遣部队。";
 			mes "所以需要你调查那片区域。";
 		close2;
 		}
 			else if (aru_monas < 25) {
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还在调查修道院吗？";
 			mes "也许如果你找到";
 			mes "那里居民留下的记录……";
@@ -1367,23 +1367,23 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 			}
 			else if (aru_monas == 25) {
 			if (countitem(7755) < 1) {
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还在调查修道院吗？";
 			mes "也许如果你找到";
 			mes "那里居民留下的记录……";
 		close2;
 		}
 			else {
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你在修道院找到这本日记？太好了。";
 			mes "让我读读看，看看能了解什么……";
 			next;
-			mes "[尼伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，听起来很糟。";
 		mes "这很悲惨，尤其是我们在那里关押了许多重要人物。";
 		mes "我会立即请求派遣部队。必须采取行动。";
 			next;
-				mes "[尼伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们现在必须面对太多问题，";
 				mes "但修道院问题必须优先处理。";
 				mes "如果那里出现另一种威胁，我们会无法应对。";
@@ -1395,7 +1395,7 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 				}
 				}
 				else {
-				mes "[尼伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想阿鲁纳佩尔茨和卢恩-米德加尔特";
 				mes "会忙于各自的内部问题，无法投入战争。";
 				mes "大祭司 泽德 得知此事会很高兴。";
@@ -1819,8 +1819,8 @@ ra_temple,165,57,5	script	尼伦#ss	915,{
 	end;
 }
 
-ra_temple,168,54,3	script	西皮#ss	917,{
-	mes "[西皮]";
+ra_temple,168,54,3	script	信徒 希皮#ss::西皮#ss	917,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我终于有时间休息一下了。";
 	mes "太多信徒围着妮伦大主教，";
 	mes "给我带来了大量工作！";
@@ -1832,24 +1832,24 @@ ra_temple,168,54,3	script	西皮#ss	917,{
 	}
 	else if (aru_em == 11) {
 		next;
-		mes "[西皮]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请问，你是我们";
 		mes "教皇的朋友吗？";
 		mes "我刚才好像看到";
 		mes "你和她谈话……";
 		next;
-		mes "[西皮]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不明白大祭司尼伦为什么想发动战争。";
 		mes "我觉得她内心其实并不想这样。";
 		mes "了解她之后，你会发现她温柔又善良。";
 		next;
-		mes "[西皮]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她很喜欢孩子……";
 		mes "她就像阿鲁纳佩尔兹所有孩子的母亲。";
 		mes "她甚至在教皇还是婴儿时把她带到拉赫，";
 		mes "像自己的孩子一样抚养她。";
 		next;
-		mes "[西皮]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你不知道她";
 		mes "是我们的教皇，";
 		mes "很容易把她误认为";
@@ -1863,25 +1863,25 @@ ra_temple,168,54,3	script	西皮#ss	917,{
 
 // Peace to the Arunafeltz :: aruna_em
 //============================================================
-moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
+moc_ruins,77,167,4	script	异国商人#aru1::外国商人#aru1	880,5,5,{
 	if (aru_vol == 27) {
 		if (aru_em == 0) {
 			emotion ET_THINK;
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我没想到沙漠会这么热！";
 			mes "他们居然在这里建城？！";
 			mes "怎么能说这里适合居住！";
 			mes "更糟的是，人群让这里更热了！";
 			next;
 			emotion ET_THINK;
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我听说在梦罗克能赚大钱，";
 			mes "所以才把生意搬到这里。";
 			mes "但看来天气会先把我热死！";
 			next;
 			select("你是怎么听说梦罗克的？");
 			emotion ET_THINK;
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我……我刚才不是告诉你了吗？";
 			mes "我听说梦罗克到处都是";
 			mes "愿意高价购物的客人。";
@@ -1889,7 +1889,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 			mes "是燃烧的地狱！";
 			next;
 			emotion ET_SWEAT;
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我已经不在乎赚钱了！";
 			mes "我只想去凉快的地方，喝一杯冰爽的饮料！";
 			mes "我可能明天就离开这座城。";
@@ -1897,7 +1897,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 			next;
 			emotion ET_CRY;
 			emotion ET_SWEAT, playerattached();
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，对了。他们不是在这里卖某种甜美的饮料吗？";
 			mes "就在梦罗克中央的池塘附近。";
 			mes "离开前，我想尝尝那种饮料……";
@@ -1906,12 +1906,12 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 			close;
 		}
 		else if ((aru_em > 0) && (aru_em < 7)) {
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "对了，梦罗克中央的池塘附近";
 			mes "不是有个流动饮料商吗？";
 			mes "真想喝到他卖的美味饮料……";
 			next;
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，热得我受不了了……";
 			mes "我连汗都快流干了……";
 			mes "我觉得自己快要晕倒了！";
@@ -1919,13 +1919,13 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 			close;
 		}
 		else if (aru_em == 7) {
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*喘、喘*";
 			mes "*汗*";
 			next;
 			switch(select("递上果酒:静静地看着他")) {
 			case 1:
-				mes "[外国商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，谢谢！闻起来像天堂……";
 				mes "这就是我一直听说的那种著名饮料吗？";
 				next;
@@ -1936,14 +1936,14 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 				mes "^3355FF*咕咚咕咚咕咚咕咚*^000000";
 				next;
 				emotion ET_THROB;
-				mes "[外国商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！太舒服了！";
 				mes "清爽又奇妙，就";
 				mes "像……就像……";
 				mes "克魔岛的舞者！啊啊啊！";
 				mes "太谢谢你了，朋友！";
 				next;
-				mes "[外国商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我一定要想办法报答你。";
 				mes "啊，找到了。";
 				mes "拿着。";
@@ -1988,7 +1988,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 				mes "但我不会再给你买";
 				mes "饮料了，明白吗？";
 				next;
-				mes "[外国商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿，明白了。";
 				mes "现在你为什么";
 				mes "不去和他谈谈？";
@@ -1997,7 +1997,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 				changequest 2130,2131;
 				close;
 			case 2:
-				mes "[外国商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么——你";
 				mes "就喜欢看着我";
 				mes "慢慢出汗热死吗？";
@@ -2005,7 +2005,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 			}
 		}
 		else {
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，我已经来这里了。";
 			mes "那我还是去梦罗克观光吧。";
 			mes "*喘、喘* ";
@@ -2014,7 +2014,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 		}
 	}
 	else {
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没想到沙漠会这么热！";
 		mes "他们居然在这里建城？！";
 		mes "这里怎么能住人！";
@@ -2025,7 +2025,7 @@ moc_ruins,77,167,4	script	外国商人#aru1	880,5,5,{
 OnTouch:
 	if (aru_vol == 27) {
 		if (aru_em == 0) {
-			mes "[外国商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*喘、喘*";
 			mes "天啊，我觉得自己要被热死了！";
 			close;
@@ -2075,7 +2075,7 @@ OnTouch:
 	end;
 }
 
-moc_ruins,101,133,7	script	外国商人#aru2	929,{
+moc_ruins,101,133,7	script	异国商人#aru2::外国商人#aru2	929,{
 	if ((aru_em > 1) && (aru_em < 7)) {
 		mes "["+ strcharinfo(0) +"]";
 		mes "请问，我听说这附近";
@@ -2084,7 +2084,7 @@ moc_ruins,101,133,7	script	外国商人#aru2	929,{
 		mes "……";
 		mes "……";
 		next;
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你说的是我的水果酒？";
 		mes "恐怕它没有传闻中那么好。";
 		mes "那只是我在家酿的一点酒，";
@@ -2093,28 +2093,28 @@ moc_ruins,101,133,7	script	外国商人#aru2	929,{
 		mes "["+ strcharinfo(0) +"]";
 		mes "我遇到一位商人，他很想尝尝那种酒。你能卖给我一些吗？";
 		next;
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，抱歉，今天已经卖光了。";
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "哦，不……";
 		emotion ET_OTL, playerattached();
 		next;
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...............................";
 		mes "...............................";
 		mes "...............................";
 		emotion ET_PROFUSELY_SWEAT;
 		next;
 		emotion ET_HUK, playerattached();
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会留一小瓶酒给自己，所以把那瓶给你吧。";
 		mes "我随时可以再酿，也很荣幸你的朋友对我的酒感兴趣。";
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "真的吗？谢谢你！他一定会非常感谢你的慷慨。";
 		next;
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，别客气。好了，我该回家了。下次你想要更多时，我会多留一瓶。保重，回头见！";
 		emotion ET_FLAG;
 		next;
@@ -2125,7 +2125,7 @@ moc_ruins,101,133,7	script	外国商人#aru2	929,{
 		close;
 	}
 	else {
-		mes "[外国商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，果酒已经卖光了。希望没有给你带来太多不便。";
 		close;
 	}
@@ -2185,13 +2185,13 @@ ra_temin,103,151,7	script	女信徒#em	917,{
 	}
 }
 
-ra_fild03,139,355,5	script	伊什梅尔#em	914,{
+ra_fild03,139,355,5	script	伊斯马尔#em::伊什梅尔#em	914,{
 	if (checkweight(907,200) == 0) {
 		mes "^3355FF等一下！你现在携带的物品太多了。请使用卡普拉服务存放一些物品后再回来。^000000";
 		close;
 	}
 	if (aru_em < 17) {
-		mes "[伊什梅尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我、我不认识你，对吧？";
 		mes "抱歉，你能……离我远一点吗？";
 		mes "我……我不喜欢离别人太近。拜托了！";
@@ -2199,7 +2199,7 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 		close;
 	}
 	else if (aru_em == 17) {
-		mes "[伊什梅尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我、我不认识你，对吧？抱歉，你能……离我远一点吗？等等，你不是有事要找我吧？";
 		emotion ET_PROFUSELY_SWEAT;
 		next;
@@ -2209,25 +2209,25 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 				mes "["+ strcharinfo(0) +"]";
 				mes "你认识大祭司尼伦，对吧？这是她给你的。";
 				next;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，真的吗？好吧，只要……把文件扔过来就行。我、我不想让你靠近。";
 				emotion ET_PROFUSELY_SWEAT;
 				next;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我很乐意帮助大祭司。虽然我们是本地人，她从不歧视我们。嗯……她想要什么？";
 				next;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "让我看看……她要我伪造一份文件？小菜一碟，我可是伪造文字的专家！给我一点时间——";
 				next;
 				emotion ET_HUK;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "糟糕！我完全忘了！有人昨天偷了我的笔！现在该怎么办……？";
 				next;
 				emotion ET_CRY;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我的笔由一种叫^FF0000红缟玛瑙^000000的稀有宝石制成。*呜* 阿鲁纳佩尔兹好像没人卖红缟玛瑙，只能去邻国找……";
 				next;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我真的想帮助大祭司尼伦……她一直善待我们，我不能让她失望……";
 				set aru_em,18;
 				delitem 7343,1; //File02
@@ -2239,7 +2239,7 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 				close;
 			}
 		case 2:
-			mes "[伊什梅尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我……我没看到你后退。站在那里，别碰我！";
 			close;
 		}
@@ -2249,23 +2249,23 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 			mes "["+ strcharinfo(0) +"]";
 		mes "如果有这块宝石，你能伪造一份大祭司尼伦的文件吗？";
 			next;
-			mes "[伊什梅尔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你找到红缟玛瑙了？看起来很完美！";
 			next;
-			mes "[伊什梅尔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "呃，但是……请你别再靠近。我只是……呃……不是想无礼……只是……我不擅长和人……";
 			emotion ET_PROFUSELY_SWEAT;
 			next;
-			mes "[伊什梅尔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "只要把红缟玛瑙扔过来，我马上就能伪造文件。";
 			next;
 		switch(select("不给她:给她")) {
 			case 1:
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "咦？我以为你需要我的帮助？不给我宝石我什么也做不了。";
 				close;
 			case 2:
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "耶，太谢谢你了！现在我可以开始工作了~";
 				next;
 				mes "^3355FF*沙沙*沙沙*^000000";
@@ -2283,7 +2283,7 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 				specialeffect EF_STEAL;
 				emotion ET_AHA;
 				next;
-				mes "[伊什梅尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "给你！这是我能做出的最高质量副本，因为是大祭司尼伦要求的。请代我向她问好？嘿嘿~";
 				next;
 				mes "^3355FF你得到了一份由伊什梅尔伪造的书面休假许可文件。^000000";
@@ -2296,13 +2296,13 @@ ra_fild03,139,355,5	script	伊什梅尔#em	914,{
 		}
 		else {
 			emotion ET_CRY;
-			mes "[伊什梅尔]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "要是我有那支红缟玛瑙制成的宝贝笔就好了！呜哇~！";
 			close;
 		}
 	}
 	else {
-		mes "[伊什梅尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大祭司尼伦是个很好的人。有机会我一定要帮她。呃，你能退后一点吗？我不喜欢靠近别人！";
 		close;
 	}
@@ -2799,9 +2799,9 @@ comodo,224,187,3	script	穆夫	86,{
 	close;
 }
 
-alberta,127,143,3	script	贝尔德	85,{
+alberta,127,143,3	script	贝亚德::贝尔德	85,{
 	if (diamond_edq == 0) {
-		mes "[贝尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "我应该雇些兼职";
 			mes "宣传人员……一些性感的";
 			mes "女士应该能吸引顾客——哦！";
@@ -2810,7 +2810,7 @@ alberta,127,143,3	script	贝尔德	85,{
 			switch(select("我来宣传你的贷款！:呃……")) {
 		case 1:
 			if (Sex == SEX_MALE) {
-				mes "[贝尔德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你？但你是个男人！";
 				mes "贝尔德贷款不能让汗臭、邋遢的男人";
 				mes "成为形象代言！我们需要";
@@ -2819,14 +2819,14 @@ alberta,127,143,3	script	贝尔德	85,{
 				close;
 			}
 			else {
-				mes "[贝尔德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你？别误会，";
 				mes "但你的曲线都在";
 				mes "不对的地方，亲爱的。回见！";
 				close;
 			}
 		case 2:
-			mes "[贝尔德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你不是对贷款";
 			mes "感兴趣吗？来找我，";
 			mes "总比依赖某个";
@@ -2835,20 +2835,20 @@ alberta,127,143,3	script	贝尔德	85,{
 		}
 	}
 	if (diamond_edq < 13) {
-		mes "[贝尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎！需要快速拿钱吗？";
 		mes "贝尔德贷款以低利率";
 		mes "提供你需要的钱！";
 		next;
 		switch(select("询问 穆夫")) {
 		case 1:
-			mes "[贝尔德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "穆夫？哦！那是";
 			mes "一个名字吗？";
 			mes "我还以为你说的是——不。";
 			mes "不，完全没印象。";
 			next;
-			mes "[贝尔德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？抵押品？";
 			mes "如果我真的借了钱给他，";
 			mes "为什么要拒绝收回？";
@@ -2858,7 +2858,7 @@ alberta,127,143,3	script	贝尔德	85,{
 		}
 	}
 	if (diamond_edq > 12) {
-		mes "[贝尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他真的找到借据了？";
 		mes "该死——我是说，真令人惊讶！";
 		mes "那对他来说，呃，真是太好了。";
@@ -2867,21 +2867,21 @@ alberta,127,143,3	script	贝尔德	85,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "......";
 		next;
-		mes "[贝尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么这样瞪着我？";
 		mes "我没什么好隐藏的！";
 		mes "你没看到我才是受害者吗？我才是！";
 		mes "只是……趁我还没更生气，赶紧滚。";
 		close;
 	}
-	mes "[贝尔德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎！需要钱吗——哦。嘿，又是你这个好心人。";
 	mes "做件好事，回你来的地方去。讨厌鬼。";
 	close;
 
 OnTouch_:
 	if (diamond_edq < 3) {
-		mes "[贝尔德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现金流有问题？";
 		mes "我就是你的解决方案！";
 		mes "全天候提供超低利率的";
@@ -2953,7 +2953,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 
 -	script	::Dorian_izlude	-1,{
 	if (checkweight(907,200) == 0) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，真像个工薪阶层的人，";
 		mes "像只囤货的老鼠一样囤着所有物品。";
 		mes "请把东西存进卡普拉仓库，";
@@ -2961,7 +2961,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		close;
 	}
 	if (diamond_edq < 6) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你一定惊叹于我";
 		mes "优雅而艺术的手艺。";
 		mes "在我手中，几乎一切";
@@ -2969,7 +2969,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		close;
 	}
 	if (diamond_edq == 6) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是发明家 多里安，";
 		mes "欢迎来到我的工作室。";
 		mes "我创造的一切都充满艺术气息～";
@@ -2977,7 +2977,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		next;
 		switch(select("我想用你的魔法烘干机。:我想成为你的学生。:不用了，谢谢。")) {
 		case 1:
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "魔法烘干机？不，不，不。";
 			mes "那是我的优雅神秘加热器。";
 			mes "别那样侮辱我的作品。";
@@ -2985,30 +2985,30 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			next;
 			switch(select("这份借据:我的头发:我只是好奇。")) {
 			case 1:
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？我的杰作太精致，";
 				mes "不能用于这种小事，不过……";
 				mes "你引起了我的兴趣。";
 				mes "把你想修复的‘借据’给我看看。";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我明白了。";
 				mes "这个印记已经无法辨认。";
 				mes "只有我的作品能恢复";
 				mes "自然夺走的生命！是的……";
 				mes "你来这里是正确的。";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "让我解释一下优雅神秘加热器";
 				mes "的工作原理。华丽的红宝石引擎";
 				mes "由我的天才设计，能产生强大的磁场。";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "红宝石引擎的磁场依据";
 				mes "^FF00003 离心波长理论^000000运行。现在，";
 				mes "嵌入珍珠的传感器会检测校准量……";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...............................";
 				mes "...............................";
 				mes "...............................";
@@ -3016,7 +3016,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				mes "...............................";
 				mes "...............................";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...............................";
 				mes "...............................";
 				mes "...............................";
@@ -3025,13 +3025,13 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				next;
 				switch(select("呼……:拜托！")) {
 				case 1:
-					mes "[多里安]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你……你睡着了？";
 					mes "我还在认真解释机器的运作原理呢！";
 					mes "不，不，我不听你的借口。什么？";
 					mes "你一直在听？";
 					next;
-					mes "[多里安]";
+					mes "[" + strnpcinfo(1) + "]";
 			mes "嗯。那么，让我";
 					mes "问你：优雅神秘加热器";
 					mes "运作的主要理论是什么？";
@@ -3039,26 +3039,26 @@ cmd_fild01,55,160,0	script	土堆	844,{
 					next;
 					input .@input$;
 					if (.@input$ == "3 离心波长理论") {
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "没错。抱歉，是我误判了你。";
 						mes "磁场确实能恢复受损无生命物体的形状与完整性。";
 						mes "不过，有一个问题。";
 						next;
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "红宝石引擎坏了，";
 						mes "而我一直忙于卢恩-米德加尔特王国";
 						mes "安排的其他项目。";
 						mes "我需要你的帮助";
 						mes "修理引擎。好吗？";
 						next;
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果你帮我修好";
 						mes "优雅神秘加热器，";
 						mes "我就允许你随意使用它。首先，";
 						mes "请收集全部";
 						mes "修理材料。";
 						next;
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "请准备";
 						mes "^FF000020 个生锈的螺丝^000000、";
 						mes "^FF000010 个铁矿石^000000、";
@@ -3066,7 +3066,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 						mes "^FF00002 颗红宝石^000000和";
 						mes "^FF00005 颗红色魔力矿石^000000。";
 						next;
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "带来全部修理材料后，";
 						mes "我会解释如何修理";
 						mes "优雅神秘加热器。";
@@ -3075,7 +3075,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 						close;
 					}
 					else {
-						mes "[多里安]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "哦？听起来你对我的解释不太满意。";
 						mes "嗯……在你理解这台机器的工作原理之前，";
 						mes "我当然不能让你使用它。";
@@ -3083,7 +3083,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 						close;
 					}
 				case 2:
-					mes "[多里安]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你听我说话时觉得很无聊吗？";
 					mes "啊！这伤害！真是……";
 					mes "唉！我的感情受到了多大的伤害！";
@@ -3094,7 +3094,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				}
 				break;
 			case 2:
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "你怎么能把我的";
 			mes "优雅神秘加热器";
 			mes "当成普通吹风机？";
@@ -3105,17 +3105,17 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				//PushPC 4 3
 				close;
 			case 3:
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "让我解释一下优雅神秘加热器";
 			mes "的工作原理。华丽的红宝石引擎";
 			mes "由我的天才设计，能产生强大的磁场。";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "红宝石引擎的磁场依据";
 			mes "^FF00003 离心波长理论^000000运行。";
 			mes "嵌入珍珠的传感器会检测校准量……";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...............................";
 				mes "...............................";
 				mes "...............................";
@@ -3123,7 +3123,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				mes "...............................";
 				mes "...............................";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...............................";
 				mes "...............................";
 				mes "...............................";
@@ -3133,14 +3133,14 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				mes "[" + strcharinfo(0) + "]";
 				mes "......";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我知道，我知道。";
 				mes "惊人吧？";
 				close;
 			}
 		case 2:
 			if (Sex == SEX_MALE) {
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，抱歉。";
 				mes "问我的人太多了，";
 				mes "所以我现在只接受漂亮的女学生。";
@@ -3148,7 +3148,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				close;
 			}
 			else {
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "小姐，能见到你是我的";
 				mes "荣幸：";
 				mes "就连月亮都遮住脸，";
@@ -3156,7 +3156,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				mes "竖起荆棘，";
 				mes "嫉妒你的美丽。";
 				next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！不过，既然我们可以";
 				mes "以恋人的身份悠闲相处，";
 				mes "为什么还要假装你是我的学生？";
@@ -3166,7 +3166,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				close;
 			}
 		case 3:
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我没有足够的时间";
 			mes "闲聊，";
 			mes "所以请让我专心";
@@ -3176,7 +3176,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		}
 	}
 	if (diamond_edq == 7) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，你之前的行为";
 		mes "让我感到恶心……";
 		mes "不过你那可怜的眼神……";
@@ -3184,7 +3184,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		mes "你终究只是凡人。";
 		mes "我就原谅你吧。";
 		next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么好吧。这次请仔细";
 		mes "听我说，别再侮辱";
 		mes "我的自尊。";
@@ -3194,7 +3194,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		close;
 	}
 	if (diamond_edq == 9) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你带齐了修理";
 		mes "优雅神秘烘干机的";
 		mes "材料吗？";
@@ -3202,7 +3202,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		mes "你带来的东西……";
 		next;
 		if ((countitem(7317) > 19) && (countitem(1002) > 9) && (countitem(999) > 4) && (countitem(723) > 1) && (countitem(716) > 4)) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，做得好。";
 		mes "材料";
 			mes "都准备好了，现在我可以教你";
@@ -3215,7 +3215,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			delitem 716,5; //Red_Gemstone
 			changequest 3104,3105;
 			set diamond_edq,10;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我预计你会失败";
 		mes "几次，不过";
 		mes "优雅神秘烘干机";
@@ -3223,7 +3223,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "即使你故意尝试，";
 			mes "也很难在它上面留下划痕。";
 			next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，把新的原始红宝石";
 		mes "放入红宝石";
 		mes "引擎，";
@@ -3231,13 +3231,13 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "^0000FF咔哒^000000声。再继续拧";
 			mes "就会把它弄坏。";
 			next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "接下来你要操作";
 		mes "四个开关，";
 			mes "它们分别以红、蓝、黄、";
 			mes "绿四种颜色标记。";
 			next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "引擎处于 1 档时按";
 		mes "^0000FF红色^000000开关。";
 		mes "2 档按";
@@ -3245,7 +3245,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "3 档按^0000FF黄色^000000，";
 			mes "4 档按^0000FF绿色^000000。";
 			next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "引擎的声音是判断";
 				mes "当前档位的";
 				mes "唯一依据。";
@@ -3253,7 +3253,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 				mes "抱歉，";
 				mes "我就是这样设计的……";
 			next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，还有最后一个提示！";
 				mes "如果输入了正确的";
 				mes "引擎档位，";
@@ -3261,7 +3261,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "即使你多次按下";
 			mes "同一个开关也没关系。";
 			next;
-				mes "[多里安]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你成功启动了它，";
 				mes "请告诉我，";
 				mes "这样我就能确认";
@@ -3270,14 +3270,14 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			close;
 		}
 		else {
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦？你还缺少一些材料。";
 			mes "没关系，";
 			mes "我们不着急。";
 			mes "如果你忘了，我来提醒你";
 			mes "需要带些什么……";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请准备";
 			mes "^FF000020 个生锈的螺丝^000000、";
 			mes "^FF000010 个铁矿石^000000、";
@@ -3288,14 +3288,14 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		}
 	}
 	if (diamond_edq == 10) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你已经忘了";
 		mes "修理优雅神秘烘干机的说明吗？";
 		mes "我不能怪你，毕竟说明确实有点复杂。";
 		next;
 		switch(select("说明:取消")) {
 		case 1:
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，把新的";
 			mes "原始红宝石";
 			mes "放入红宝石引擎，";
@@ -3303,13 +3303,13 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "^0000FF咔哒^000000声。继续拧";
 			mes "就会把它弄坏。";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "接下来你要操作";
 			mes "四个开关，";
 			mes "它们分别以红、蓝、黄、";
 			mes "绿四种颜色标记。";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "引擎处于 1 档时按";
 			mes "^0000FF红色^000000开关。";
 			mes "2 档按";
@@ -3317,7 +3317,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "3 档按^0000FF黄色^000000，";
 			mes "4 档按^0000FF绿色^000000。";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "引擎的声音是";
 			mes "判断当前档位的依据。";
 			mes "你得自己";
@@ -3325,7 +3325,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "抱歉，";
 			mes "我就是这样设计的……";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，还有最后一个提示！";
 			mes "如果输入了正确的";
 			mes "引擎档位，";
@@ -3333,7 +3333,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "即使你多次按下同一个开关";
 			mes "也没关系。";
 			next;
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你成功启动了它，";
 			mes "请告诉我，";
 			mes "这样我就能确认";
@@ -3341,7 +3341,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 			mes "现在祝你好运～";
 			close;
 		case 2:
-			mes "[多里安]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？";
 			mes "我再解释一遍";
 			mes "也没关系。别害羞，";
@@ -3350,7 +3350,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		}
 	}
 	if (diamond_edq == 11) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你没能修好";
 		mes "优雅神秘烘干机？";
 		mes "这很正常：";
@@ -3361,7 +3361,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		close;
 	}
 	if (diamond_edq == 12) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我低估你了。";
 		mes "你真的修好了";
 		mes "优雅神秘";
@@ -3369,7 +3369,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		mes "这证明了我惊人的教学能力。";
 		mes "恭喜你！";
 		next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在你只需要插入损坏的";
 		mes "文件";
 		mes "并按下开关。";
@@ -3377,7 +3377,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		changequest 3107,3108;
 		set diamond_edq,13;
 		next;
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，恐怕我对你的用处";
 		mes "已经全部发挥完了。";
 		mes "啊，";
@@ -3387,7 +3387,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 		close;
 	}
 	if (diamond_edq > 12) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你好！";
 		mes "最近过得怎么样？";
 		mes "需要我的艺术发明吗？";
@@ -3397,7 +3397,7 @@ cmd_fild01,55,160,0	script	土堆	844,{
 
 OnTouch:
 	if (diamond_edq < 9) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你、你在做什么？";
 		mes "别用你那双没教养的手";
 		mes "玷污我伟大的";
@@ -3405,7 +3405,7 @@ OnTouch:
 		close;
 	}
 	if (diamond_edq == 9) {
-		mes "[多里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看不出来吗？";
 		mes "没有材料，";
 		mes "机器就无法运转。";
@@ -4230,201 +4230,201 @@ if ((diamond_edq == 14) && (BaseLevel > 65)) {
 	end;
 }
 
-alberta,102,80,3	script	乔尼塔	86,{
+alberta,102,80,3	script	乔尼达::乔尼塔	86,{
 	if ((diamond_edq == 15) || (diamond_edq == 16)) {
-		mes "[乔尼塔]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "哦，见到新面孔总是很开心~你是想买还是卖宝石？我们只提供最好的。哈哈哈！";
 		next;
 		switch(select("最受欢迎的宝石是什么？:你知道不吉祥的宝石吗？")) {
 		case 1:
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，看看这颗光彩夺目的红宝石。是不是令人屏息？特价就能买到，只要";
 			mes "1,000,000 zeny!";
 			next;
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等等，你去哪——？该死，我不该加价这么多。新手错误，新手错误！我可是专业人士！";
 			close;
 		case 2:
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不吉祥的宝石？嘿嘿！像你这样的新手不会懂它的真正价值。我非常想要它，但那个 易卜拉欣 比我幸运多了……";
 			next;
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "想到输给他我就很沮丧。所有大珠宝商都在争夺四大诅咒宝石……但目前只出现了一颗。";
 			close;
 		}
 	}
 	else if (diamond_edq == 26) {
 		if (jewel_nd == 0) {
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你看起来很眼熟。你不是我的常客吧？不，不可能。你的穿着不够富裕。别介意。";
 			close;
 		}
 		else if (jewel_nd == 1) {
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是来卖加勒结晶，";
 			mes "还是来把一生积蓄花在我的珠宝上？";
 			next;
 		switch(select("给我看看珠宝……:我有一颗稀有翡翠要卖……")) {
 			case 1:
-				mes "[乔尼塔]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "给你看看货也没什么，但……我怀疑你买不起。珠宝可不便宜。";
 				next;
 				if (Sex == SEX_MALE) {
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，我明白了。你想买一件送给某个女人。真典型。你就不能想个更有创意的方式赢得女人的爱吗？";
 					close;
 				}
 				else {
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，亲爱的，我严格禁止只看不买。";
 					close;
 				}
 			case 2:
 				if (countitem(7725) > 0) {
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "稀有翡翠，嗯？最好别是什么 加勒结晶 或 扎贡！你们有时会犯这种错。好，让我看看……";
 					next;
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "......";
 					mes "嗯……";
 					next;
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "...........................嗯。";
 					mes "这颗翡翠好得惊人，但我不能接手。呃，你可以走了吗？";
 					next;
 					mes "[" + strcharinfo(0) + "]";
 					mes "嗯？为什么？";
 					next;
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "滚、滚出我的店！去……去斐扬找 金恩邦！对，别再回来！";
 					set jewel_nd,2;
 					close;
 				}
 				else {
-					mes "[乔尼塔]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "我说什么来着？我不想再在店里见到你！";
 					close;
 				}
 			}
 		}
 		else if (jewel_nd == 2) {
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听着，我直说吧。珠宝商之间消息传得很快。知道你有那颗宝石后，没人会接近你。明白了吗？请……离远点……";
 			close;
 		}
 		else {
-			mes "[乔尼塔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不想和你或你那颗奇怪翡翠有任何关系。你还不走吗？滚开！";
 			close;
 		}
 	}
 	else {
-		mes "[乔尼塔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是来买还是卖珠宝？我总是高价买、低价卖。珠宝方面的需求都来找我吧~";
 		close;
 	}
 }
 
-payon,69,65,5	script	金恩邦	89,{
+payon,69,65,5	script	金银房::金恩邦	89,{
 	if (diamond_edq == 15) {
-		mes "[金恩邦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼呼……嗯？为什么叫醒我？我正做着好梦。去别的珠宝店吧，我不想开门。";
 		next;
 		switch(select("怎么了？:不吉祥的宝石？")) {
 		case 1:
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我只是很失望。我差点就拿到不吉祥的宝石了。就差一点！我的生意伙伴 贝尔德 从某个可怜虫手里抢走了它。";
 			next;
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不知怎么，贝尔德最后把宝石还了回去。";
 			mes "我本来要从原主人手里买下宝石，";
 			mes "但这个狂妄的珠宝商抢先得手。可恶！";
 			next;
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是惨重的失败。我无法入睡，也不想工作。唉，谢谢你让我倾诉，感觉好多了。";
 			next;
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "给，把这个当作小礼物。不是所有珠宝商都像你想的那么贪婪。嘿。";
 			getitem 722,1; //Scarlet_Jewel
 			set diamond_edq,16;
 			close;
 		case 2:
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！那颗钻石正是我痛苦的根源！我差点就得到它……但有人抢在我前面拿走了。啊！";
 			close;
 		}
 	}
 	else if (diamond_edq == 26) {
 		if (jewel_nd == 0) {
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我近期不想开店，但你以后随时可以再来。";
 			close;
 		}
 		else if (jewel_nd == 1) {
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你好。看来我又重新营业了~";
 			next;
 			switch(select("我有宝石要卖。:你还好吗？")) {
 			case 1:
-				mes "[金恩邦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？好，给我一点时间鉴定你的宝石。";
 				next;
 				if (countitem(7725) > 0) {
-					mes "[金恩邦]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "...........";
 					mes "...........";
 					next;
-					mes "[金恩邦]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，我不能买这颗翡翠。它……风险太大。我听到的传闻实在太可怕。";
 					set jewel_nd,2;
 					close;
 				}
 				else {
-					mes "[金恩邦]";
+					mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？你说的宝石在哪里？忘记带了吗？";
 					close;
 				}
 				break;
 			case 2:
-				mes "[金恩邦]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "我甚至不想谈生意。我其实一直在考虑永久关店。";
 				close;
 			}
 		}
 		else if (jewel_nd == 2) {
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "附近没有珠宝商愿意买那颗诅咒翡翠。真的很抱歉。不过你可以去找 易卜拉欣，他拿到过不吉祥的宝石。";
 			close;
 		}
 		else {
-			mes "[金恩邦]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "唉……宝石生意的压力终于压垮我了。算了，我也算风光过……";
 			close;
 		}
 	}
 	else {
-		mes "[金恩邦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我近期不想开店，但你以后随时可以再来。";
 		close;
 	}
 }
 
-geffen,128,153,3	script	勒比洛	883,{
+geffen,128,153,3	script	雷布罗::勒比洛	883,{
 	if ((diamond_edq == 15) || (diamond_edq == 16)) {
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我听说过你。你就是一直在询问不吉祥的宝石的人。";
 		next;
 		emotion ET_HUK, playerattached();
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别太惊讶，珠宝行业消息传得很快。如果你想了解更多，得先为我做件事。成交吗？";
 		next;
 		switch(select("成交。:不用了，谢谢。")) {
 		case 1:
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我最近一直腰痛，药物都不起作用。于是去看斐扬的一位名医，但";
 			mes "然后我把一切搞砸了。";
 			next;
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "她很爱唠叨，我对她说了";
 			mes "一些……难听的话。";
 			mes "现在她拒绝";
@@ -4432,7 +4432,7 @@ geffen,128,153,3	script	勒比洛	883,{
 			mes "你去，就能从她那里";
 			mes "拿到药。";
 			next;
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "她知道我的症状，";
 			mes "所以如果让她开心，";
 			mes "她会给你药……";
@@ -4442,7 +4442,7 @@ geffen,128,153,3	script	勒比洛	883,{
 			set diamond_edq,17;
 			close;
 		case 2:
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是吗？那对我来说";
 			mes "没问题。我没有";
 			mes "什么可失去的。";
@@ -4450,7 +4450,7 @@ geffen,128,153,3	script	勒比洛	883,{
 		}
 	}
 	if (diamond_edq == 17) {
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请在斐扬寻找女医生";
 		mes "名叫 ^0000FF沃拉^000000。";
 		mes "尽力从她那里拿到我的";
@@ -4459,7 +4459,7 @@ geffen,128,153,3	script	勒比洛	883,{
 		close;
 	}
 	if (diamond_edq == 21) {
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦？那是……我的";
 		mes "药吗？谢天谢地！";
 		mes "嗯？哦，原来我误会她了";
@@ -4467,7 +4467,7 @@ geffen,128,153,3	script	勒比洛	883,{
 		mes "其实她只是";
 		mes "关心我的健康。";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我下次见她时一定要";
 		mes "好好道歉";
 		mes "";
@@ -4477,7 +4477,7 @@ geffen,128,153,3	script	勒比洛	883,{
 		mes "...............................";
 		mes "...............................";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对了，我要告诉你";
 		mes "不吉祥的宝石的事情。";
 		mes "仔细听。";
@@ -4485,14 +4485,14 @@ geffen,128,153,3	script	勒比洛	883,{
 		mes "想把那颗宝石卖给我。";
 		mes "很可疑，对吧？";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没兴趣买，";
 		mes "所以给了他们";
 		mes "远低于期望的价格。";
 		mes "";
 		mes "现在想想……";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在想想，那对男女";
 		mes "像是臭名昭著的";
 		mes "Z 团成员。嘿！";
@@ -4500,13 +4500,13 @@ geffen,128,153,3	script	勒比洛	883,{
 		mes "但……你知道，";
 		mes "腰痛之类的问题。";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听说流氓公会正在秘密调查 Z 团，";
 		mes "所以那对夫妇一定有很多敌人。";
 		mes "所以……没错。Z 团拥有";
 		mes "不吉祥的宝石。";
 		next;
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想了解更多 Z 团的事，";
 		mes "就去找流氓公会的调查员。";
 		mes "这信息很有用，对吧？";
@@ -4516,7 +4516,7 @@ geffen,128,153,3	script	勒比洛	883,{
 		close;
 	}
 	if (diamond_edq == 22) {
-		mes "[勒比洛]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想了解更多 Z 团的事，就去找流氓公会的调查员。";
 		mes "这信息很有用，对吧？";
 		mes "保重，我的朋友。";
@@ -4524,7 +4524,7 @@ geffen,128,153,3	script	勒比洛	883,{
 	}
 	if (diamond_edq == 26) {
 		if (jewel_nd == 0) {
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？抱歉，但是";
 			mes "我正忙于处理";
 			mes "我的其他客户。";
@@ -4533,17 +4533,17 @@ geffen,128,153,3	script	勒比洛	883,{
 			close;
 		}
 		else if (jewel_nd == 1) {
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，嘿。你今天有什么事要找我吗？";
 			next;
 			switch(select("我有一颗宝石要卖。:不，没什么。")) {
 			case 1:
-				mes "[勒比洛]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，是吗？那我倒很好奇。";
 				mes "你介意让我看看吗？";
 				next;
 				if (countitem(7725) > 0) {
-					mes "[勒比洛]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那么，我们有——";
 					mes "哦，抱歉，我不能买这个。";
 					mes "虽然不想打击你，但我听说那东西带着可怕的诅咒。";
@@ -4552,14 +4552,14 @@ geffen,128,153,3	script	勒比洛	883,{
 					close;
 				}
 				else {
-					mes "[勒比洛]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯。你刚才说到的宝石……";
 					mes "你记得";
 					mes "要把它带在身上吗？";
 					close;
 				}
 			case 2:
-				mes "[勒比洛]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，是吗？那对我来说";
 				mes "也没关系。正如我常说的，";
 				mes "这对我没有损失。";
@@ -4567,27 +4567,27 @@ geffen,128,153,3	script	勒比洛	883,{
 			}
 		}
 		else if (jewel_nd == 2) {
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，抱歉，我不能买这个。";
 			mes "虽然不想打击你，但我听说那东西带着可怕的诅咒。";
 			mes "你自己想办法处理吧！";
 			close;
 		}
 		else {
-			mes "[勒比洛]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，现在是你拿着那颗宝石。";
 		mes "希望诅咒只是传闻……";
 		mes "不过，我可不会靠冒险活到这么老……";
 			close;
 		}
 	}
-	mes "[勒比洛]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "你好，你对买卖";
 		mes "贵重宝石感兴趣吗？";
 	close;
 }
 
-payon_in03,167,149,3	script	沃拉	75,2,2,{
+payon_in03,167,149,3	script	月儿::沃拉	75,2,2,{
 	if (checkweight(907,1) == 0) {
 		mes "^3355FF请稍等！";
 		mes "你现在携带的东西太多。";
@@ -4598,13 +4598,13 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "你好？我是来见沃拉医生的。";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……啊……呃……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "打扰一下，你知道在哪里能找到她吗？";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我，呃……";
 		mes "哦，不！哇！";
 		mes "看看你做了什么？！";
@@ -4615,7 +4615,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "我只是想";
 		mes "和沃拉医生谈谈。";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我就是沃拉医生！";
 		mes "看！你让我弄掉了";
 		mes "正在熬制的草药！";
@@ -4625,7 +4625,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "嗯？哦，我……";
 		mes "真的很抱歉。";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那……那没关系。";
 		mes "真的，是我的错。";
 		mes "哇～！我的锅！";
@@ -4635,7 +4635,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "到底发生了什么。";
 		mes "那个锅很贵吗？";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我又在犯傻了！";
 		mes "没时间为碎锅哭泣！";
 		mes "我要检查手上有没有伤口！";
@@ -4646,7 +4646,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "你的手怎么样？";
 		mes "没有受伤吧？";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，别管那个了！";
 		mes "还好，谢天谢地。";
 		mes "现在重要的是你要帮我修好草药锅。";
@@ -4657,12 +4657,12 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		mes "等等，我来这里是想问";
 		mes "你能不能给我一些药。";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "太好了！这正是你应该帮我修锅的理由！";
 		mes "没有这个锅我就无法制药，对吧？";
 		mes "让我看看……我需要胶水，胶水……";
 		next;
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快去拿来";
 		mes "^0000FF20 份细沙^000000,";
 		mes "^0000FF5 个空瓶^000000,";
@@ -4677,13 +4677,13 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		close;
 	}
 	if (diamond_edq == 19) {
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好，你回来了。";
 		mes "你带齐了修复我的锅";
 		mes "所需的一切吗？";
 		next;
 		if ((countitem(7043) > 19) && (countitem(7054) > 9) && (countitem(7194) > 9) && (countitem(713) > 4)) {
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了，给我吧。";
 			mes "我应该把这个磨碎，再混合那个……";
 			mes "等等，是这样吗？这些是做什么来着？";
@@ -4694,29 +4694,29 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 			delitem 7194,10; //Soft_Leaf
 			delitem 713,5; //Empty_Bottle
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "就……坐在角落里，";
 			mes "什么也别说，等我说完成了，好吗？！";
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...............................";
 			mes "...............................";
 			mes "...............................";
 			next;
-			mes "[沃拉]";
-			mes "...............................";
-			mes "...............................";
-			mes "...............................";
-			mes "...............................";
-			next;
-			mes "[沃拉]";
-			mes "...............................";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...............................";
 			mes "...............................";
 			mes "...............................";
 			mes "...............................";
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
+			mes "...............................";
+			mes "...............................";
+			mes "...............................";
+			mes "...............................";
+			mes "...............................";
+			next;
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了，终于修好了。";
 			mes "等等，你刚才说需要药？";
 			mes "我一时完全忘了。你具体说了什么？";
@@ -4726,7 +4726,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 				switch(select("你愿意和我约会吗？:勒比洛 的背痛药？")) {
 			case 1:
 				if (Sex == SEX_MALE) {
-					mes "[沃拉]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^666666*脸红*^000000 现在就约会对我们来说太早了。";
 					mes "抱歉，这……";
 					mes "我心里已经有人选了。";
@@ -4735,7 +4735,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 					close;
 				}
 				else {
-					mes "[沃拉]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哇，我不敢相信自己会拒绝你——";
 					mes "其实有点惊讶，不过确实如此。";
 					mes "我有喜欢的人。";
@@ -4743,12 +4743,12 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 					close;
 				}
 			case 2:
-				mes "[沃拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "勒比洛……哦，是吉芬的那个男人？终于……";
 				mes "他还知道派人来取药。";
 				mes "我已经准备好了。现在放在哪里来着？";
 				next;
-				mes "[沃拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想先再次检查他的药，";
 				mes "请告诉他我很快会把药送过去。大概过一会儿吧？";
 				next;
@@ -4756,7 +4756,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 				mes "呃，你没有生气吧？";
 				mes "我觉得你似乎不太喜欢他……";
 				next;
-				mes "[沃拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你在说什么？我是医生：我们的职责就是尽力治愈每个人！";
 				mes "当然，有些病人的治疗会更漫长、更痛苦……";
 				next;
@@ -4764,7 +4764,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 				mes "（^666666她讨厌他！";
 				mes "但我想 勒比洛 的生命在她手里应该不会有问题。^000000)";
 				next;
-				mes "[沃拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧，告诉 勒比洛 我会照顾他，";
 				mes "他的生命在我手里不会有问题。";
 				mes "我得回去工作了：请照顾好自己！";
@@ -4774,7 +4774,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 			}
 		}
 		else {
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "快去拿来";
 			mes "^0000FF20 份细沙^000000,";
 			mes "^0000FF5 个空瓶^000000,";
@@ -4788,7 +4788,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 		}
 	}
 	if (diamond_edq == 20) {
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "抱歉，我完全";
 	mes "没听清你刚才说的话。";
 	mes "是需要我的药吗？";
@@ -4802,7 +4802,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 				close;
 			}
 			else {
-				mes "[沃拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇，我不敢相信自己会拒绝你——";
 				mes "其实有点惊讶，不过确实如此。";
 				mes "我有喜欢的人。";
@@ -4810,12 +4810,12 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 				close;
 			}
 		case 2:
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "勒比洛……哦，是吉芬的那个男人？终于……";
 			mes "他还知道派人来取药。";
 			mes "我已经准备好了。现在放在哪里来着？";
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想先再次检查他的药，";
 			mes "请告诉他我很快会把药送过去。大概过一会儿吧？";
 			next;
@@ -4823,7 +4823,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 			mes "呃，你没有生气吧？";
 			mes "我觉得你似乎不太喜欢他……";
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你在说什么？我是医生：我们的职责就是尽力治愈每个人！";
 			mes "当然，有些病人的治疗会更漫长、更痛苦……";
 			next;
@@ -4831,7 +4831,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 			mes "（^666666她讨厌他！";
 			mes "但我想勒比洛的生命在她手里应该不会有问题。^000000）";
 			next;
-			mes "[沃拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，告诉 勒比洛 我会照顾他，";
 			mes "他的生命在我手里不会有问题。";
 			mes "我得回去工作了：请照顾好自己！";
@@ -4840,14 +4840,14 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 			close;
 		}
 	}
-	mes "[沃拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "食物会对你的身体产生";
 	mes "巨大的影响：";
 	mes "把它当作药物一样看待，";
 	mes "注意自己吃了什么。哦，";
 	mes "还要做好调查！";
 	next;
-	mes "[沃拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你知道吗，生活方式";
 	mes "和习惯决定了";
 	mes "你未来的健康。";
@@ -4856,7 +4856,7 @@ payon_in03,167,149,3	script	沃拉	75,2,2,{
 
 OnTouch:
 	if (diamond_edq == 17) {
-		mes "[沃拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，怎么会";
 		mes "这样？";
 		mes "我该怎么办？";
@@ -4866,7 +4866,7 @@ OnTouch:
 	end;
 }
 
-in_rogue,366,46,3	script	流氓调查员	828,{
+in_rogue,366,46,3	script	流氓情报员::流氓调查员	828,{
 	if ((diamond_edq == 22) && (BaseJob == Job_Rogue)) {
 		mes "[调查员]";
 		mes "哦，还记得我吗？";
@@ -5065,10 +5065,10 @@ in_rogue,366,46,3	script	流氓调查员	828,{
 	close;
 }
 
-cmd_in02,94,208,5	script	调查员	828,{
+cmd_in02,94,208,5	script	流氓调查员::调查员	828,{
 	if ((diamond_edq == 22) || (diamond_edq == 23)) {
 		if (BaseJob == Job_Rogue) {
-			mes "[调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，朋友。";
 			mes "你是公会成员？";
 			mes "不错。";
@@ -5078,7 +5078,7 @@ cmd_in02,94,208,5	script	调查员	828,{
 			close;
 		}
 		else {
-			mes "[调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想做什么？";
 			mes "哦，你的公会一定是";
 			mes "派你来帮忙的。";
@@ -5086,7 +5086,7 @@ cmd_in02,94,208,5	script	调查员	828,{
 			mes "什么也没找到。";
 			mes "Z 帮早就逃之夭夭了。";
 			next;
-			mes "[调查员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可以随便看看，";
 			mes "但要问我的意见，";
 			mes "这只是浪费时间。";
@@ -5094,7 +5094,7 @@ cmd_in02,94,208,5	script	调查员	828,{
 		}
 	}
 	else {
-		mes "[调查员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，我得一直待在这里，";
 		mes "直到收到";
 		mes "公会的新命令。";
@@ -5306,9 +5306,9 @@ OnDisable:
 	end;
 }
 
-prontera,148,326,3	script	首席官#edq	734,{
+prontera,148,326,3	script	保安队长#edq::首席官#edq	734,{
 	if (checkweight(907,200) == 0) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你现在携带的物品";
 		mes "太多了。";
 		mes "请把物品存入";
@@ -5317,7 +5317,7 @@ prontera,148,326,3	script	首席官#edq	734,{
 		close;
 	}
 	if ((zdan_edq == 0) && (BaseLevel > 70)) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，这是";
 		mes "保护";
 		mes "并服务祖国的机会！";
@@ -5326,260 +5326,260 @@ prontera,148,326,3	script	首席官#edq	734,{
 		close;
 	}
 	if ((zdan_edq == 1) && (BaseLevel > 70)) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "注意，";
 		mes "注意。";
 		mes "卢恩-米德加尔特王国";
 		mes "国家安全办公室正在寻找";
 		mes "任何与 Z 帮有关的情报。";
 		next;
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "共有三名成员：路易斯·冯·西洛肯斯（路易斯）、玛莎·赫蒂赞（玛莎），以及卡特菲（卡特菲）。必须抓住卡特菲！";
 		changequest 3119,3120;
 		set zdan_edq,2;
 		close;
 	}
 	if ((zdan_edq == 1) && (BaseLevel < 70)) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你对追捕通缉令上的罪犯感兴趣吗？抱歉，你还没准备好承担那种任务……但我鼓励你继续训练！谢谢。";
 		close;
 	}
 	if (zdan_edq == 2) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，卢恩-米德加尔特人。你来这里做什么？";
 		next;
 		switch(select("国家通缉令:Z 帮:Z 帮犯了什么罪？")) {
 		case 1:
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你对追捕 Z 帮感兴趣吗？请仔细阅读我旁边的通缉令。我们急需帮助抓住他们。";
 			next;
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果想了解 Z 帮更多情况，我建议你和一位叫瓦尔德斯的骑士谈谈。他很熟悉他们的行径。";
 			next;
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "可惜他可能因没能抓住他们而感到羞愧。不过我相信他会帮助你伸张正义。";
 			close;
 		case 2:
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想了解 Z 帮成员更多情况？我不太了解他们，但可以告诉你我听说的一点消息。";
 			next;
 			switch(select("路易斯:玛莎:卡特菲:禁忌之谜之书？")) {
 			case 1:
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "路易斯·冯·西洛肯斯是贵族西洛肯斯家族的三子。该家族多年前已衰败。据记录，他三次未能通过魔法学院考试。";
 				next;
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "据说他因个人失败组建了 Z 帮，还从王立图书馆偷走了禁忌之谜之书。";
 				next;
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们必须在他滥用书的力量前抓住他并取回书。需要民众帮助找到他，让路易斯接受正义审判！";
 				close;
 			case 2:
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "玛莎·赫蒂赞是艾尔贝塔赫蒂赞家族的二女儿。没人知道她二十岁时为何离家出走。";
 				next;
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "玛莎负责 Z 帮的财务。这样有才华的商人竟堕落为盗贼，真令人遗憾。";
 				close;
 			case 3:
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们起初以为卡特菲只是路易斯和玛莎的宠物猫……但它其实是犯罪大师。接近时务必小心！";
 				next;
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我只知道这些。卡特菲的真实本性仍笼罩在谜团中。";
 				close;
 			case 4:
-				mes "[首席官]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在他们所有罪行中，偷走禁忌之谜之书对王国的威胁最大。若滥用此书，将造成严重灾难。";
 				close;
 			}
 		case 3:
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "该死的 Z 帮似乎是卢恩-米德加尔特所有犯罪的中心。他们散布鬼魂谣言，在吉芬引发骚乱……";
 			next;
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们毒害斐扬水井的饮用水，掠夺无数货物，从非法贸易中获利……罪行数不胜数……";
 			next;
-			mes "[首席官]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在他们所有罪行中，偷走禁忌之谜之书对王国的威胁最大。若滥用此书，将造成严重灾难。";
 			close;
 		}
 	}
 	if (zdan_edq == 18) {
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你就是前几天来过的那位好心冒险者。有什么我能帮忙的吗？";
 		next;
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "什么？！你真的找到了 Z 帮藏身处，抓住了他们，还取回了禁书？";
 		next;
 		delitem 7724,1; //Forbidden_Secret_Art
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "太棒了！我代表国王给你应得的奖励。感谢你为王国所做的一切！";
 		next;
-		mes "[首席官]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "你的勇气和热忱将永远记录在卢恩-米德加尔特史册中。恭喜！";
 		completequest 3134;
 		set zdan_edq,19;
 		getexp (checkre(3))?100000:1000000,0;
 		close;
 	}
-	mes "[首席官]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "所有危害王国和平与安全的人，都将承受正义之剑的怒火！";
 	close;
 }
 
-prt_in,168,18,1	script	瓦尔德斯	65,2,2,{
+prt_in,168,18,1	script	发兑司::瓦尔德斯	65,2,2,{
 	if (checkweight(907,100) == 0) {
 		mes "^3355FF等一下！你携带的物品太多。请使用卡普拉服务存放一些物品后再回来。^000000";
 		close;
 	}
 	if (zdan_edq == 2) {
-		mes "[瓦尔德斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^666666*嗝*^000000 什么？你来……呃，也为人生失败而同情我吗？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "你是瓦尔德斯吗？我是来请求你帮助的……";
 		next;
-		mes "[瓦尔德斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^666666*打嗝*^000000 为什么~？我、我已经没用啦！";
 		next;
 		switch(select("询问 Z 帮:首席官很担心你。:再见！")) {
 		case 1:
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那个 Z 帮……毁了我的人生！我的事业、养老金……全被那些该死的罪犯毁了！";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你？去抓他们？祝你好运！";
 			mes "只要……别落得和我一样。";
 			mes "哦，你想要情报？^666666*嗝*^000000";
 			mes "嘿嘿，你先帮我个忙，我再帮你，你懂的。";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿，我的酒喝完了！给我^0000FF梦罗克果汁酒^000000！5 瓶！然后……也许……我会告诉你真正想知道的事。嘿嘿~ ^666666*嗝！*^000000";
 			changequest 3120,3121;
 			set zdan_edq,3;
 			close;
 		case 2:
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真、真的吗？好吧……我不在乎！让我安静喝酒！";
 			close;
 		case 3:
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什、什么？你以为你在招惹谁，^666666*嗝！*^000000竟然只是来道别？！我以前可是骑士，知道吗？我能狠狠踢你——^666666*呃！*^000000";
 			close;
 		}
 	}
 	if (zdan_edq == 3) {
-		mes "[瓦尔德斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿——你——~带酒来了吗？";
 		next;
 		if (countitem(12049) > 4) {
 			delitem 12049,5; //Int_Dish04
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^666666*嗅*^000000 哇，闻起来真香。一定是这个。哦，对，骑士的荣誉。先说话，再喝酒……";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，也许……就尝一口~^666666*咕咚咕咚*^000000";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "你刚才……那可是三瓶！";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，美味！好了，伙计，我感觉好多了，现在能说话了~";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "(^666666什——么~？^000000)";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你已经知道 Z 帮及其成员的基本信息。我不明白他们为何突然如此肆无忌惮地犯罪。";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们的成功前所未有，甚至多次躲过流氓公会。我六个月前调查过他们，却因失败被解雇。";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道 Z 帮雇佣了许多线人，流氓公会仍在自行调查他们。";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我建议你去流氓公会见一位叫玛丽贝尔的探员。密码是‘^0000FF黎明尚未来临^000000’。";
 			next;
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我只能告诉你这些。替我向玛丽贝尔问好，抓住那些 Z 帮混蛋。^666666*叹气*^000000 我想休息一会儿。祝你好运！";
 			changequest 3121,3122;
 			set zdan_edq,4;
 			close;
 		}
 		else {
-			mes "[瓦尔德斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你这个臭脸！我的酒呢？！^0000FF5 瓶梦罗克果汁酒^000000呢？！没有酒我不会说话！";
 			close;
 		}
 	}
 	if (zdan_edq == 4) {
-		mes "[瓦尔德斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我建议你去流氓公会见玛丽贝尔，并告诉她密码‘^0000FF黎明尚未来临^000000’。";
 		close;
 	}
-	mes "[瓦尔德斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^666666*叹气*^000000 我最大的愿望是骑士团长允许我归队。但他可能还没原谅我的失败。^666666*呜咽*^000000 我的生命仿佛结束了……";
 	close;
 
 OnTouch:
 	if (zdan_edq == 2) {
-		mes "[瓦尔德斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^666666*叹气*^000000 该死的小偷。为什么我还要在乎他们？！他们已经不是我的问题了……^666666*打嗝*^000000";
 		close;
 	}
 	end;
 }
 
-in_rogue,359,116,3	script	玛丽贝尔	747,{
+in_rogue,359,116,3	script	梅莉贝尔::玛丽贝尔	747,{
 	if (zdan_edq == 4) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你想要什么？";
 		next;
 		switch(select("密码")) {
 		case 1:
-			mes "[玛丽贝尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听不见。靠近一点，在我耳边说。";
 			next;
 			input .@input$;
 			if (.@input$ == "黎明尚未来临") {
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "瓦尔德斯派你来的？！真没想到他终于愿意和别人说话！好吧，既然你是他的朋友，我会尽力帮忙。你需要什么？";
 				next;
 				switch(select("询问 Z 帮:瓦尔德斯向你问好。")) {
 				case 1:
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "又是 Z 帮？我想他还在为没能抓住他们生气。告诉你我知道的并不难，但我真的能信任你吗？";
 					next;
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "让我考验你。去斐扬找一个叫安文虎的老人。他是传奇赌徒，人称白色流星。如果他信任你，我就信任你。";
 					next;
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嘿，只有你在赌博中赢过他，他才会信任你。不管你回不回来，我都会继续为流氓公会和瓦尔德斯调查 Z 帮。";
 					changequest 3122,3123;
 					set zdan_edq,5;
 					break;
 				case 2:
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "奇怪。他平时不会这样问候。该不会生病了吧？下次见到他还在喝酒，我一定揍他！";
 					next;
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "天啊。他不知道我是为了他才自愿做这工作的吗？算了，知道他还想着我也不错。什么？流氓也可以有朋友！";
 					close;
 				}
 			}
 			else {
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "听不清你具体在说什么。";
 				next;
 				if (Sex == SEX_MALE) {
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "如果这是奇怪的搭讪，你最好说点更像样的话！";
 					close;
 				}
 				else {
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "什么，你在向我示爱？我不在乎性别，不过，嘿嘿，你确定吗？哈哈哈哈哈哈！";
 					close;
 				}
@@ -5587,19 +5587,19 @@ in_rogue,359,116,3	script	玛丽贝尔	747,{
 		}
 	}
 	if ((zdan_edq > 4) && (zdan_edq < 7)) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我考验你。去斐扬找一个叫安文虎的老人。他是传奇赌徒，人称白色流星。如果他信任你，我就信任你。";
 		close;
 	}
 	if (zdan_edq == 7) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么，你回来了？哎呀！你手臂上的签名……你真的赢了他？怎么做到的——？";
 		next;
 		set zdan_edq,8;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等，让我确认一下。没错，就是这个。这是他作为白色流星时使用的签名。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 	//
 	//
 	//
@@ -5838,56 +5838,56 @@ in_rogue,359,116,3	script	玛丽贝尔	747,{
 	//
 		mes "你是怎么打败他的？上次他把我的钱全赢走了！你能打败那家伙，一定是个天才。嘿，我低估你了。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等，在此之前，我得告诉大家有人打败了白色流星。他们绝对不会相信！";
 		close;
 	}
 	if (zdan_edq == 8) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我答应过告诉你 Z 帮 的情报，所以会信守承诺。你想问什么？";
 		next;
 		while(1) {
 			switch(select("Z 帮 的目标:Z 帮 最近的动向:Z 帮 的据点:谢谢情报！")) {
 			case 1:
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "其实我不知道他们计划做什么，但显然不是什么好事。我个人觉得，他们只是想尽可能骚扰别人。";
 				next;
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想，凭那本禁忌之谜之书可以征服世界，但我不认为他们有那么……精明。";
 				next;
 				set .@a,.@a+1;
 				break;
 			case 2:
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "最近一连串盗窃案都是 Z 帮 干的。他们只偷钻石、红宝石、翡翠之类的珠宝。不知道为什么……";
 				next;
 				set .@b,.@b+1;
 				break;
 			case 3:
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们不知道他们藏在哪里。要是知道，Z 帮 早就被抓了！他们甚至从我们盗贼手里逃脱。疯狂吧？";
 				next;
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "流氓公会有最好的情报网络，所以……Z 帮 可能在所有城镇都有线人。只有这样他们才能逃过我们。";
 				next;
-				mes "[玛丽贝尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿，我们可以利用这一点……抓住一个线人，他就会说出 Z 帮 的藏身处。值得一试，对吧？";
 				next;
 				set .@c,.@c+1;
 				break;
 			case 4:
 				if ((.@a > 0) && (.@b > 0) && (.@c > 0)) {
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，还有一件事……听说他们正试图在梦罗克秘密招募更多成员。那些家伙真大胆……！";
 					next;
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你最好去梦罗克调查一下。祝你找到那些 Z 帮 家伙。保重！";
 					changequest 3125,3126;
 					set zdan_edq,9;
 					close;
 				}
 				else {
-					mes "[玛丽贝尔]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嘿，我愿意告诉你我知道的一切。你经历了这么多麻烦，肯定有一大堆问题！";
 					next;
 				}
@@ -5896,131 +5896,131 @@ in_rogue,359,116,3	script	玛丽贝尔	747,{
 		}
 	}
 	if ((zdan_edq > 8) && (zdan_edq < 11)) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，还有一件事……";
 		mes "听说他们正试图在梦罗克秘密招募更多成员。";
 		mes "那些家伙真大胆……！";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我没听到其他消息，但你有新线索时能告诉我吗？流氓公会非常想抓住这些 Z 帮 家伙！";
 		close;
 	}
 	if (zdan_edq == 11) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，我一直在找你！派往克魔岛的一名盗贼从 Z 帮 线人身上找到这封信。可能是线索！";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "奇怪的是，线人拼命保护一张白纸……但我们知道事情没那么简单，对吧？";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们一定用了某种秘密隐形墨水。我把纸交给专业解码员破解，他现在应该完成了。总之……";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想你也许想去找他，看看是否完成了。他叫 安九浩，在斐扬，是王国最优秀的解码员之一。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "安九浩？为什么我觉得应该认识这个名字？好熟悉……";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想是因为 安九浩 是 安文虎 的弟弟，你曾经打败过那位传奇赌徒。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃，现在重要的不是这个。你能去找 安九浩，看看他发现了什么吗？";
 		changequest 3128,3129;
 		set zdan_edq,12;
 		close;
 	}
 	if ((zdan_edq > 11) && (zdan_edq < 14)) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，为什么不去斐扬找 安九浩，问问他是否已经完成了 Z 帮 秘密信件的解码？";
 		close;
 	}
 	if (zdan_edq == 14) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，安九浩 解读了全部内容？让我看看……是关于禁忌之谜之书的……啊，有了！Z 帮 据点的位置！嘿嘿！我们抓到他们了！";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一名盗贼跟踪了携带这封信的线人，但追捕中他突然消失了……我猜是魔法。所以我们不知道据点的确切位置。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即便如此，我们确定它在通往梦罗克南部地下区域的秘密道路附近。不过，我们不能让你和流氓公会一起行动。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我知道这是公务之类的。这样吧，我们分头追捕，谁先找到他们，谁就先揍他们！";
 		changequest 3131,3132;
 		set zdan_edq,15;
 		close;
 	}
 	if ((zdan_edq > 14) && (zdan_edq < 18)) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们确定 Z 帮 据点在通往梦罗克南部地下区域的秘密道路附近。你知道在哪里吗？";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样吧，我们分头追捕，谁先找到他们，谁就先揍他们！";
 		close;
 	}
 	if (zdan_edq > 18) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "干得好！你抓住了 Z 帮！王国一定给了你丰厚奖励吧？";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "瓦尔德斯 很想亲自抓住他们，但听到这个消息一定很高兴。也许之后我和他可以喝一杯庆祝。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，和你合作真是刺激，太刺激了。以后为了正义，我们也许还能再次组队，对吧？";
 		close;
 	}
 	if (BaseJob == Job_Thief) {
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "Z 帮 一直让流氓公会头疼。没人能从我们手里逃走！没人！但是……他们不知怎么做到了。";
 		next;
-		mes "[玛丽贝尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里没什么值得你感兴趣的，不过想看的话随意。";
 		close;
 	}
 }
 
-payon,244,62,3	script	安文虎	897,{
+payon,244,62,3	script	安文浩::安文虎	897,{
 	if (zdan_edq == 5) {
-		mes "[安文虎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈，像你这样的年轻人来找我做什么？你不是为了我想的那件事来的……对吧？";
 		next;
 		switch(select("你就是白色流星吗？:我是来挑战你的。")) {
 		case 1:
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我已经很久没听到这个名字了……我现在退休了，似乎没人再想挑战我。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那是段美好时光。当时只有 郭达浩 能真正挑战我。不知道他现在在做什么？";
 			close;
 		case 2:
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，我猜对了……！你是来挑战我的！真是久违……好，我接受。不过规则由我定。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我年纪大了，玩不了过去喜欢的复杂游戏。就玩个简单的游戏吧，我叫它摇币。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是分回合进行的猜谜游戏，三局两胜。一人负责摇币，另一人负责猜测。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "摇币者抓取随机数量的硬币，在合拢的手中摇晃，然后停下并藏好硬币，开始回合。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "另一个人，即猜测者，";
 			mes "要猜硬币总数是^0000FF奇数^000000还是^0000FF偶数^000000。";
 			mes "之后摇币者会揭开硬币……";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "猜测者猜对就赢得本轮；猜错则由摇币者获胜。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们轮流交换角色。轮到你猜时，记得喊出^0000FF奇数^000000或^0000FF偶数^000000。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "最后，我是庄家，会收取游戏参与费。不多，只要 500 Zeny。我们只是娱乐，不会让你破产。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "给我一点时间准备游戏吧？你回来时，我们就可以开始~";
 			changequest 3123,3124;
 			set zdan_edq,6;
@@ -6028,14 +6028,14 @@ payon,244,62,3	script	安文虎	897,{
 		}
 	}
 	if (zdan_edq == 6) {
-		mes "[安文虎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备玩摇币游戏了吗？";
 		next;
 		switch(select("好，开始吧！:这个游戏怎么玩来着？")) {
 		case 1:
 			if (Zeny >= 500) {
 				set Zeny, Zeny-500;
-				mes "[安文虎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好，开始吧！让你先来~";
 				next;
 				mes "*摇晃摇晃*";
@@ -6046,7 +6046,7 @@ payon,244,62,3	script	安文虎	897,{
 					input .@input$;
 					if (((.@input$ == "奇数") && (.@number == 1)) || ((.@input$ == "偶数") && (.@number == 2))) {
 						set .@number_right,.@number_right+1;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "^0000ff"+.@input$+"^000000?";
 						mes "好，你赢了。";
 						next;
@@ -6058,7 +6058,7 @@ payon,244,62,3	script	安文虎	897,{
 					}
 					else if (((.@input$ == "奇数") && (.@number == 2)) || ((.@input$ == "偶数") && (.@number == 1))) {
 						set .@number_false,.@number_false+1;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你^0000FF猜错了^000000。我赢了。";
 						next;
 						if ((number_right < 2) && (number_false <2)) {
@@ -6068,26 +6068,26 @@ payon,244,62,3	script	安文虎	897,{
 						}
 					}
 					if (.@number_right == 2) {
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "啊，你赢了这一回合。不过游戏才刚开始。下一回合归我~";
 						set .@win,.@win+1;
 						next;
 						break;
 					}
 					else if (.@number_false == 2) {
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "看来我赢了这一回合。看来我的赌技还在~";
 						set .@lose,.@lose+1;
 						next;
 						break;
 					}
 					if ((.@input$ != "偶数") && (.@input$ !="奇数")) {
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 					mes "你只能猜^0000FF奇数^000000或^0000FF偶数^000000。请重新输入。";
 						next;
 					}
 				}
-				mes "[安文虎]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "现在是第二回合。这次由我猜，你来摇币。";
 				next;
 				while(1) {
@@ -6098,32 +6098,32 @@ payon,244,62,3	script	安文虎	897,{
 					if (select("奇数:偶数") == 1) {
 						if (.@amuro == 1) {
 							set .@number_false_2,.@number_false_2+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "让我看看……是^0000FF奇数^000000，对吧？";
 							next;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "看来我赢了！哈哈哈哈哈哈！";
 							next;
 						}
 						else if (.@amuro == 2) {
 							set .@number_right_2,.@number_right_2+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "让我看看……是偶数，对吧？";
 							next;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我输了？所以是^0000FF奇数^000000……";
 							next;
 						}
 						if (.@number_right_2 == 2) {
 							set .@win,.@win+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "干得好。我没想到你真的能打败我……哈哈哈哈哈哈~";
 							next;
 							break;
 						}
 						else if (.@number_false_2 == 2) {
 							set .@lose,.@lose+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哈哈哈！抱歉，但我赢了。看来我宝刀未老！";
 							next;
 							break;
@@ -6132,29 +6132,29 @@ payon,244,62,3	script	安文虎	897,{
 					else {
 						if (.@amuro == 1) {
 							set .@number_right_2,.@number_right_2+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "让我看看……";
 							mes "是奇数，对吧？";
 							next;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "我输了，是吗？";
 							mes "所以是 ^0000ff偶数^000000……";
 							next;
 						}
 						else if (.@amuro == 2) {
 							set .@number_false_2,.@number_false_2+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "让我看看……";
 							mes "是 ^0000FF偶数^000000，对吧？";
 							next;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "看来我赢了！";
 							mes "哈哈哈哈哈哈！";
 							next;
 						}
 						if (.@number_right_2 == 2) {
 							set .@win,.@win+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "干得好。我没想到你";
 							mes "真的能";
 							mes "打败我……";
@@ -6164,7 +6164,7 @@ payon,244,62,3	script	安文虎	897,{
 						}
 						else if (.@number_false_2 == 2) {
 							set .@lose,.@lose+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哈哈哈！抱歉，";
 							mes "我赢了。我还没老啊！";
 							next;
@@ -6173,7 +6173,7 @@ payon,244,62,3	script	安文虎	897,{
 					}
 				}
 				if (.@win == 2) {
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你真的很厉害！";
 					mes "是时候把";
 					mes "白色流星的称号";
@@ -6185,7 +6185,7 @@ payon,244,62,3	script	安文虎	897,{
 					mes "写下来吗？";
 					mes "这对我意义重大！";
 					next;
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "啊，你想要推荐信或";
 					mes "";
 					mes "我的认可印章，对吧？";
@@ -6199,7 +6199,7 @@ payon,244,62,3	script	安文虎	897,{
 					mes "涂鸦是什么意思？";
 					mes "";
 					next;
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那是白色流星的标记。";
 					mes "认识我的人都会认出它，";
 					mes "并确认其真实性。";
@@ -6211,7 +6211,7 @@ payon,244,62,3	script	安文虎	897,{
 					mes "也许以后可以";
 					mes "再玩～";
 					next;
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哈哈哈哈！";
 					mes "这么久以来，能和";
 					mes "值得的对手";
@@ -6222,13 +6222,13 @@ payon,244,62,3	script	安文虎	897,{
 					close;
 				}
 				else if (.@lose == 2) {
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "抱歉，我赢了。";
 					mes "这场比赛很精彩，";
 					mes "我能感觉到胜负很接近。";
 					mes "我已经很久没这么开心地赌博了～";
 					next;
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，想再玩一次吗？";
 					mes "看得出来你很想打败我，";
 					mes "随时欢迎再来。";
@@ -6236,12 +6236,12 @@ payon,244,62,3	script	安文虎	897,{
 					close;
 				}
 				else {
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，好刺激～";
 					mes "我们各赢了一轮：";
 					mes "下一轮决定胜负！";
 					next;
-					mes "[安文虎]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "轮到我摇硬币了。";
 					mes "看看这次你运气如何……";
 					next;
@@ -6254,7 +6254,7 @@ payon,244,62,3	script	安文虎	897,{
 						input .@input$;
 						if (((.@input$ == "奇数") && (.@number == 1)) || ((.@input$ == "偶数") && (.@number == 2))) {
 							set .@number_right_3,.@number_right_3+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "^0000FF"+.@input$+"^000000?";
 							mes "好，你赢了。";
 							next;
@@ -6267,7 +6267,7 @@ payon,244,62,3	script	安文虎	897,{
 						}
 						else if (((.@input$ == "奇数") && (.@number == 2)) || ((.@input$ == "偶数") && (.@number == 1))) {
 							set .@number_false_3,.@number_false_3+1;
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你猜的是^0000FF"+.@input$+"^000000。";
 							mes "看来我赢了。";
 							next;
@@ -6279,14 +6279,14 @@ payon,244,62,3	script	安文虎	897,{
 							}
 						}
 						if (.@number_right_3 == 2) {
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哦……你赢了……";
 							set .@win,.@win+1;
 							next;
 							break;
 						}
 						else if (.@number_false_3 == 2) {
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "哈哈哈！抱歉，";
 							mes "我赢了。我还没老啊！";
 							set .@lose,.@lose+1;
@@ -6294,14 +6294,14 @@ payon,244,62,3	script	安文虎	897,{
 							break;
 						}
 						if ((.@input$ != "偶数") && (.@input$ !="奇数")) {
-							mes "[安文虎]";
+							mes "[" + strnpcinfo(1) + "]";
 							mes "你只能输入^0000FF奇数^000000或^0000FF偶数^000000。";
 							mes "请重新输入。";
 							next;
 						}
 					}
 					if (.@win >= 2) {
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你真的很厉害！";
 						mes "是时候把";
 						mes "白色流星的称号";
@@ -6313,7 +6313,7 @@ payon,244,62,3	script	安文虎	897,{
 						mes "写下来吗？";
 						mes "这对我意义重大！";
 						next;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "啊，你想要推荐信或";
 						mes "";
 						mes "我的认可印章，对吧？";
@@ -6327,7 +6327,7 @@ payon,244,62,3	script	安文虎	897,{
 						mes "涂鸦是什么意思？";
 						mes "";
 						next;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "那是白色流星的标记。";
 						mes "认识我的人都会认出它，";
 						mes "并确认其真实性。";
@@ -6339,7 +6339,7 @@ payon,244,62,3	script	安文虎	897,{
 						mes "也许以后可以";
 						mes "再玩～";
 						next;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 								mes "哈哈哈哈！";
 						mes "这么久以来，能和";
 						mes "值得的对手";
@@ -6350,12 +6350,12 @@ payon,244,62,3	script	安文虎	897,{
 						close;
 					}
 					else if (.@lose == 2) {
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 								mes "抱歉，我赢了。";
 								mes "这场比赛很精彩，胜负也很接近。";
 								mes "我已经很久没这么开心地赌博了～";
 						next;
-						mes "[安文虎]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "哦，想再玩一次吗？";
 						mes "看得出来你很想打败我，随时欢迎再来。";
 						mes "我会一直在这里，哈哈哈～";
@@ -6364,95 +6364,95 @@ payon,244,62,3	script	安文虎	897,{
 				}
 			}
 			else {
-				mes "[安文虎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？你连玩一局的 500 Zeny 都没有？";
 				mes "好吧，等你想玩硬币游戏时再过来吧。";
 				close;
 			}
 			break;
 		case 2:
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "基本规则是这样：";
 			mes "这是分轮进行的猜谜游戏，三局两胜。";
 			mes "一人负责摇硬币，另一人负责猜测。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "摇硬币者抓取随机数量的硬币，";
 			mes "在合拢的手中摇晃后停止，藏住硬币。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "另一个人，也就是猜测者，";
 			mes "要猜硬币总数是^0000FF奇数^000000还是";
 			mes "^0000FF偶数^000000。之后摇硬币者会揭示硬币……";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果猜测者猜对了，就赢得这一轮。";
 			mes "但如果猜错，摇硬币者获胜。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们轮流交换角色。";
 			mes "轮到你猜时，记得喊出";
 			mes "^0000FF奇数^000000或^0000FF偶数^000000。";
 			next;
-			mes "[安文虎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "最后我是庄家，会收取游戏参与费。";
 			mes "不多，只有 500 Zeny。";
 			mes "我们只是娱乐，不会让你破产。";
 			close;
 		}
 	}
-	mes "[安文虎]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我还记得那场传奇比赛，";
 	mes "对手是 郭达浩。那人是值得尊敬的对手，";
 	mes "能以普通人三倍的速度";
 	mes "看穿别人的手牌！";
 	next;
-	mes "[安文虎]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "天啊，我真怀念和他比赛的日子。";
 	mes "不知道他最近过得怎么样……";
 	close;
 }
 
-payon,192,176,3	script	安九浩	903,{
+payon,192,176,3	script	安久浩::安九浩	903,{
 	if (zdan_edq == 12) {
-		mes "[安九浩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好，冒险者。";
 		mes "呃，你有什么事吗？";
 		emotion ET_QUESTION, playerattached();
 		next;
 		switch(select("流氓公会的解码委托")) {
 		case 1:
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，玛丽贝尔 派你来的？";
 			mes "我明白了。我一直在努力";
 			mes "解密这封信。";
 			mes "你想看看吗？";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这看起来是一张白纸，";
 			mes "但只要添加适量的热和光，";
 			mes "就能读取内容。这是";
 			mes "非常强大的加密！";
 			emotion ET_HUK, playerattached();
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "目前我只解密了信件的一部分。";
 			mes "遗憾的是，我用完了测量所需光热量的材料。";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我这里忙得不可开交，";
 			mes "但如果你为 玛丽贝尔 工作，";
 			mes "应该不介意帮我一个忙。";
 			mes "能帮我收集材料吗？";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我需要";
 			mes "^0000FF20 个火种^000000、";
 			mes "^0000FF1 根火柴^000000、";
 			mes "^0000FF2 瓶酒精^000000和";
 			mes "^0000FF10 个燃烧的心脏^000000。";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拿到所需物品后，我应该就能";
 			mes "解密这封秘密 Z 团信件的剩余内容。";
 			changequest 3129,3130;
@@ -6461,12 +6461,12 @@ payon,192,176,3	script	安九浩	903,{
 		}
 	}
 	if (zdan_edq == 13) {
-		mes "[安九浩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么你带来测量所需光热量的材料了吗？";
 		mes "我需要用它们揭示这封秘密 Z 团信件的剩余内容。";
 		next;
 		if ((countitem(7098) > 19) && (countitem(970) > 1) && (countitem(7035) > 0) && (countitem(7097) > 9)) {
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，太好了。非常感谢。";
 			mes "现在我该完成自己的工作，";
 			mes "解密信件剩余部分。嗯……";
@@ -6477,28 +6477,28 @@ payon,192,176,3	script	安九浩	903,{
 			delitem 7035,1; //Matchstick
 			delitem 7097,10; //Burning_Heart
 			emotion ET_AHA;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，什么？这种语言……";
 			mes "太古老了！艾吉 已经";
 			mes "几百年没有使用……";
 			mes "在它被偷走之前，我曾在";
 			mes "《禁忌之谜之书》中见过 艾吉。";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有个传说，说某个古代文明";
 			mes "奠定了现代社会的基础。";
 			mes "艾吉 语言曾被视为亚文化现象。";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "艾吉 曾在儿童和叛逆青少年中流行，";
 			mes "但在进入主流前一直被视为粗俗。";
 			mes "然后，不知怎么……";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "艾吉 流行后，摧毁了那个古代民族的语言系统和文明。";
 			mes "这就是如今严格审查 艾吉 的原因。";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "事实上，艾吉 的存在本应是巨大秘密。";
 			mes "这种语言造成了历史上最严重的灾难之一。";
 			next;
@@ -6506,11 +6506,11 @@ payon,192,176,3	script	安九浩	903,{
 			mes "...............................";
 			mes "那么信上写了什么？";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……让我看看……";
 			mes "我对艾吉的了解非常有限，所以……";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "^0000ffWeii arr prowd Z G gna^000000";
 			mes "^0000ffAynoen hwo sspotp uys^000000";
 			mes "^0000ffwlil eb kckide on htier ssa!^000000";
@@ -6518,16 +6518,16 @@ payon,192,176,3	script	安九浩	903,{
 			mes "[" + strcharinfo(0) + "]";
 			mes "什么……？";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "这就是 艾吉 的特点：混乱，";
 			mes "几乎无法阅读！";
 			mes "不过这封信是极其珍贵的研究材料。";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "如果你把信息原样带给 玛丽贝尔，就足够了。";
 			mes "仔细听我说，也许把它记下来。";
 			next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 			mes "^0000ffWeii arr prowd Z G gna^000000";
 			mes "^0000ffAynoen hwo sspotp uys^000000";
 			mes "^0000ffwlil eb kckide on htier ssa!^000000";
@@ -6536,19 +6536,19 @@ payon,192,176,3	script	安九浩	903,{
 			close;
 		}
 		else {
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请快点！";
 			mes "我确定玛丽贝尔正等着了解 Z 帮的下落，";
 			mes "这封信也许有线索。哦，记住……";
 			next;
-		mes "[安九浩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我需要";
 		mes "^0000FF20 个火种^000000、";
 		mes "^0000FF1 根火柴^000000、";
 		mes "^0000FF2 瓶酒精^000000以及";
 		mes "^0000FF10 个燃烧的心脏^000000。";
 			next;
-			mes "[安九浩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拿到这些东西后，";
 			mes "我应该就能解读";
 			mes "这封 Z 帮密信的";
@@ -6557,20 +6557,20 @@ payon,192,176,3	script	安九浩	903,{
 		}
 	}
 	if (zdan_edq == 14) {
-		mes "[安九浩] ";
+		mes "[" + strnpcinfo(1) + "] ";
 		mes "请把 Z 帮信件的";
 		mes "内容";
 		mes "告诉玛丽贝尔，";
 		mes "这样我就能留下原件";
 		mes "用于研究。";
 		next;
-			mes "[安九浩] ";
+			mes "[" + strnpcinfo(1) + "] ";
 		mes "^0000ffWeii arr prowd Z G gna^000000";
 		mes "^0000ffAynoen hwo sspotp uys^000000";
 		mes "^0000ffwlil eb kckide on htier ssa!^000000";
 		close;
 	}
-	mes "[安九浩] ";
+	mes "[" + strnpcinfo(1) + "] ";
 	mes "加密是一门把真相藏在";
 	mes "层层秘密之中的艺术。";
 	mes "我的专长就是打破加密，";
@@ -7557,9 +7557,9 @@ OnInit:
 
 // Unlucky Emerald
 //============================================================
-morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
+morocc,143,63,3	script	邋遢的男子#nd::衣衫褴褛的男人#nd	929,{
 	if (treasure_nd == 0) {
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你、你好？能帮帮我吗？只要帮我这个忙，就等于救了可怜人的命。拜托……";
 		next;
 		switch(select("我能怎么帮你？:忽略他")) {
@@ -7567,42 +7567,42 @@ morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
 			mes "[" + strcharinfo(0) + "]";
 			mes "好吧，我能怎么帮你？";
 			next;
-			mes "[衣衫褴褛的男人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，太感谢了！被忽视这么久后，能和人说话真好！我看起来像乞丐，但其实是来自普隆德拉的寻宝者。";
 			next;
 			switch(select("嗯……所以？")) {
 			case 1:
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "刚开始时，我确信能在梦罗克找到宝藏……做了所有调查和准备。但雇了几队寻宝者和研究员之后……";
 				next;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我花光了全部财产，却仍没更接近宝藏。我……我甚至没有回家的钱了！";
 				emotion ET_CRY;
 				next;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你能给我一点钱，让我终于回到普隆德拉吗？";
 				next;
 				switch(select("你为什么不走回去？:我可以给你钱。")) {
 				case 1:
-					mes "[衣衫褴褛的男人]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "什么？你以为我能走到普隆德拉却没走吗？！我为什么还要乞讨？算了，我不需要你这种同情。";
 					next;
-					mes "[衣衫褴褛的男人]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我本来有个重要情报要告诉你，但你不愿分享，我也不说了！";
 					set treasure_nd,1;
 					close;
 				case 2:
-					mes "[衣衫褴褛的男人]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，谢谢！你能给多少我都感激！上帝保佑你，保佑你！";
 					next;
 					if (Zeny < 1200) {
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "嗯……哦，天啊……";
 						mes "你的处境和我一样糟。";
 						mes "我很感激，但不能收你的钱。";
 						mes "";
 						next;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "真遗憾。";
 						mes "如果你给我 1,200 Zeny，";
 						mes "我本来会告诉你一个大情报……";
@@ -7612,7 +7612,7 @@ morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
 					}
 					else {
 						set Zeny, Zeny-1200;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "让我看看……我只需要 1,200 Zeny。";
 						mes "这足够让我回家了。";
 						mes "但我不能收了你的钱却让你空手离开，对吧？";
@@ -7620,7 +7620,7 @@ morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
 						mes "";
 						mes "";
 						next;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "还记得我一直寻找的隐藏宝藏吗？";
 						mes "听说它的位置终于被确认了。";
 						mes "你不如自己去找找看？";
@@ -7628,21 +7628,21 @@ morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
 						mes "";
 						mes "";
 						next;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我更希望它落入你这样的人手中，而不是竞争对手手里。";
 						mes "城北的那位猎人似乎确认了宝藏的位置。";
 						mes "";
 						mes "";
 						mes "";
 						next;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "听说那家伙还没回家，";
 						mes "也还没找到宝藏。";
 						mes "他大概遇到了很大的麻烦。";
 						mes "";
 						mes "";
 						next;
-						mes "[衣衫褴褛的男人]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "我怀疑他会轻易告诉你宝藏位置，";
 						mes "但谁知道呢？";
 						mes "也许他会失言，意外给你某种线索。";
@@ -7652,63 +7652,63 @@ morocc,143,63,3	script	衣衫褴褛的男人#nd	929,{
 				}
 			}
 		case 2:
-			mes "[衣衫褴褛的男人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请！请等等！你是冒险者，对吧？只要给我一点钱，我就告诉你有价值的情报……嘿！回来！不……我只是……";
 			close;
 		}
 	}
 	else if (treasure_nd == 1) {
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我记得你。你现在一定很想要那批宝藏吧？给我 1,200 Zeny 让我回家，我就告诉你知道的一切。";
 		next;
 		switch(select("给钱:不给钱")) {
 		case 1:
-			mes "[衣衫褴褛的男人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，明智的选择！非常感谢。终于能";
 				mes "回到普隆德拉的家。";
 			next;
 			if (Zeny < 1200) {
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么——？！这点钱不够我回家！筹够钱后再回来。我会等着。";
 				close;			}
 			else {
 				set Zeny, Zeny-1200;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "记得我寻找的隐藏宝藏吗？据说它的位置终于确认了。你为什么不自己去找找？";
 				next;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我更希望它落入你这样的人手里，而不是竞争对手。城北的那位寻宝者似乎确认了宝藏位置。";
 				next;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "听说那家伙还没回家，也还没找到宝藏。他可能遇到了大麻烦。";
 				next;
-				mes "[衣衫褴褛的男人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我怀疑他会轻易告诉你宝藏位置，但谁知道呢？也许他会失言，意外给你某种线索。";
 				set treasure_nd,2;
 				close;
 			}
 		case 2:
-			mes "[衣衫褴褛的男人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，随你。";
 			mes "我承认有点失望。你们冒险者不是应该成为人民的英雄吗？";
 			close;
 		}
 	}
 	else if (treasure_nd == 2) {
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你回来了？啊，你一定很难找到我说的那个人。他就在城镇北部，不该那么难找。";
 		close;
 	}
 	else if (treasure_nd > 10) {
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你找到宝藏了？！它……它真的存在……抱歉，这一直是我的梦想……我想哭……天啊……我不知道这种感觉是什么……";
 		next;
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的意思是……我太高兴了，但是……我花光了全部财产……毁掉一生，只为看到那批宝藏……";
 		close;
 	}
 	else {
-		mes "[衣衫褴褛的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "寻宝进展如何？希望你比我幸运。不过，我有很强的预感你会找到它。";
 		close;
 	}
@@ -7988,15 +7988,15 @@ morocc,102,298,3	script	男子#zgang	98,{
 	}
 }
 
-comodo,339,224,3	script	藏匿的男子#nd	881,{
+comodo,339,224,3	script	躲藏的男子#nd::藏匿的男子#nd	881,{
 	if (treasure_nd < 7) {
-		mes "[藏匿的男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，别靠这么近！";
 		close;
 	}
 	else if ((treasure_nd == 7) || (treasure_nd == 8)) {
 		if (zdan_edq > 12) {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，别靠这么近！";
 			next;
 		select("你为什么躲在这里？");
@@ -8004,10 +8004,10 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 		mes "你为什么躲在这里？";
 		mes "Z 团不是雇你来挖宝藏的吗？";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？Z 团？宝藏？";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？等等，告诉我真相。";
 		mes "你真的见过 Z 团吗？";
 			next;
@@ -8016,12 +8016,12 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 		mes "我来找你，是想了解更多";
 		mes "关于这个地下宝藏的事。";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了。你一定见过他们雇来取宝藏的另一个人。";
 		mes "嗯，他有开启宝藏的半段咒语，";
 		mes "我有另一半。";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "这个给你，这是剩下的魔法咒语。";
 		mes "不过我提醒你，咒语和宝藏本身都有些奇怪。";
 			next;
@@ -8039,17 +8039,17 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 				set treasure_nd,9;
 				next;
 			}
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我不明白他们为什么费劲把咒语分成两部分。";
 			mes "一定有原因，而且相当重要。";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我猜也许需要两个人移动宝藏？";
 			mes "不管怎样，祝你找到宝藏。再见！";
 			close;
 		}
 		else {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，别靠这么近！";
 			next;
 			select("询问宝藏" );
@@ -8057,7 +8057,7 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 			mes "我来询问宝藏的相关信息。";
 			next;
 			emotion ET_HUK;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你……你是来找我的吗？！";
 			mes "唉，我被逼到绝境了！";
 			mes "我不会不战而降！";
@@ -8067,12 +8067,12 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 			mes "我在梦罗克遇到一个宝藏猎人，他说";
 			mes "我可以在这里找到你。";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "宝藏猎人……？";
 			mes "哦，那么你已经";
 			mes "知道宝藏的事……";
 			next;
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果我没猜错，你";
 			mes "需要开启宝藏的另一半咒语。";
 			mes "这个给你。我反正用不上。";
@@ -8091,7 +8091,7 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 				set treasure_nd,9;
 				next;
 			}
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在你能离开这里吗？";
 			mes "你还看不出来吗？我正在躲一些人。";
 			mes "我已经把知道的一切都告诉你了，";
@@ -8100,45 +8100,45 @@ comodo,339,224,3	script	藏匿的男子#nd	881,{
 		}
 	}
 	else if (treasure_nd == 9) {
-		mes "[藏匿的男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不打算挖出宝藏吗？";
 		mes "你已经拥有需要的两半咒语：";
 		mes "我已经给了你“^FF0000宝藏]^000000”这一半，对吧？";
 		next;
 		if (zdan_edq > 12) {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，既然 Z 团被抓了，";
 			mes "我回家应该安全了。";
 			close;
 		}
 		else {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你能帮我一个忙，";
 			mes "在有人发现我的藏身处之前离开吗？";
 			close;
 		}
 	}
 	else if (treasure_nd == 10) {
-		mes "[藏匿的男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不打算挖出宝藏吗？";
 		mes "你已经拥有需要的两半咒语：";
 		mes "我已经给了你“^FF0000开门]^000000”这一半，对吧？";
 		next;
 		if (zdan_edq > 12) {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，既然 Z 团被抓了，";
 			mes "我回家应该安全了。";
 			close;
 		}
 		else {
-			mes "[藏匿的男子]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你能帮我一个忙，";
 			mes "在有人发现我的藏身处之前离开吗？";
 			close;
 		}
 	}
 	else {
-		mes "[藏匿的男子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿！看来我可以安全出来回家了！";
 		mes "不过为了安全起见，";
 		mes "也许我该再躲一会儿。";
@@ -8369,9 +8369,9 @@ comodo,139,184,3	script	学者#zgang	742,{
 	}
 }
 
-alberta_in,70,109,5	script	萨满	788,{
+alberta_in,70,109,5	script	巫师::萨满	788,{
 	if (jewel_nd == 0) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "灵界是我法术的来源。";
 		mes "千万不要低估";
 		mes "灵魂的力量！";
@@ -8379,7 +8379,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		close;
 	}
 	else if ((jewel_nd > 0) && (jewel_nd < 12)) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦？嘿嘿！";
 		mes "你身上";
 		mes "带着";
@@ -8387,7 +8387,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		close;
 	}
 	else if (jewel_nd == 12) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你！是的……";
 		mes "我能感觉到";
 		mes "它们……";
@@ -8395,7 +8395,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "你还没有向它们献祭吧？";
 		mes "必须安抚它们，否则它们会折磨你！";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快，";
 		mes "现在就给我 500,000 Zeny！";
 		mes "这样我才能安抚";
@@ -8404,7 +8404,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "掀起灾祸！";
 		next;
 		select("其实，我有一颗诅咒宝石。");
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "宝石……？";
 		mes "哦……";
 		mes "哦，诅咒宝石！";
@@ -8413,7 +8413,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		next;
 		if (countitem(7725) > 0) {
 			emotion ET_THINK;
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以这件小饰品就是";
 			mes "不幸的绿宝石？";
 			mes "是的，它确实被诅咒了。";
@@ -8421,7 +8421,7 @@ alberta_in,70,109,5	script	萨满	788,{
 			mes "解除诅咒，";
 			mes "它会吞噬你的灵魂。";
 			next;
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我需要举行仪式";
 			mes "解除诅咒。";
 			mes "这项服务收费";
@@ -8432,7 +8432,7 @@ alberta_in,70,109,5	script	萨满	788,{
 			close;
 		}
 		else {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "你忘了带宝石吗？";
 		mes "快";
@@ -8443,7 +8443,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		}
 	}
 	else if (jewel_nd == 13) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带钱来了吗？";
 		mes "我们必须";
 		mes "安抚附着在灵魂上的灵体，";
@@ -8452,7 +8452,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "仪式。";
 		next;
 		if (Zeny > 199999) {
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很好，很好。";
 			mes "你把钱带来了。";
 			mes "我现在可以开始";
@@ -8462,14 +8462,14 @@ alberta_in,70,109,5	script	萨满	788,{
 			set Zeny, Zeny-200000;
 			set jewel_nd,14;
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "仪式准备完成后，";
 		mes "请尽快回来。";
 		mes "不要耽搁。";
 			close;
 		}
 		else {
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你……你没有 200,000 Zeny？";
 			mes "抱歉，即使你的灵魂危在旦夕，";
 			mes "我也不能免费举行仪式。";
@@ -8477,14 +8477,14 @@ alberta_in,70,109,5	script	萨满	788,{
 		}
 	}
 	else if (jewel_nd == 14) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你知道";
 		mes "你给我的钱吗？";
 		mes "显然还不够。";
 		mes "一个灵魂正要进入我体内，";
 		mes "但是……";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它得知我只收";
 		mes "200,000 Zeny";
 		mes "就想解除诅咒，";
@@ -8495,7 +8495,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		close;
 	}
 	else if (jewel_nd == 15) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好，你回来了！";
 		mes "你带来我要求的";
 		mes "100,000 Zeny 了吗？";
@@ -8503,7 +8503,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "这价格很便宜。";
 		next;
 		if (Zeny > 99999) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，";
 		mes "太好了！";
 			mes "希望这次";
@@ -8511,7 +8511,7 @@ alberta_in,70,109,5	script	萨满	788,{
 			set Zeny, Zeny-100000;
 			set jewel_nd,16;
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，这颗宝石里的";
 		mes "怨灵";
 			mes "一定会被你的";
@@ -8519,7 +8519,7 @@ alberta_in,70,109,5	script	萨满	788,{
 			close;
 		}
 		else {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你没带？";
 		mes "你知道灵魂被吞噬是什么感觉吗？";
 		mes "我告诉你，那比失去区区 100,000 Zeny 痛苦多了！";
@@ -8527,20 +8527,20 @@ alberta_in,70,109,5	script	萨满	788,{
 		}
 	}
 	else if (jewel_nd == 16) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "终于，灵魂与我";
 		mes "合而为一。";
 		mes "仪式现在可以开始了。";
 		mes "哦————……";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃咳……啊啊……！";
 		emotion ET_HUK;
 		next;
 		mes "[" + strcharinfo(0) +"]";
 		mes ".....?";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这、";
 		mes "这颗绿宝石！";
 		mes "这么多生命！";
@@ -8548,7 +8548,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "是时候认真压制这颗宝石的";
 		mes "力量了！";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "记住我要你带来的";
 		mes "物品，";
 		mes "尽快带着它们回来！";
@@ -8556,7 +8556,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "我们两人的";
 		mes "性命都处于危险之中！";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带给我这些材料：";
 		mes "^FF00001 瓶圣水^000000、";
 		mes "^FF00001 个火灵矿石^000000、";
@@ -8564,7 +8564,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "^FF00001 个水灵矿石^000000和";
 		mes "^FF00001 个风灵矿石^000000。";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快！";
 		mes "虽然灵魂永恒，";
 		mes "但它们也不喜欢等待！";
@@ -8574,14 +8574,14 @@ alberta_in,70,109,5	script	萨满	788,{
 		close;
 	}
 	else if (jewel_nd == 17) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你把物品带来了吗？！";
 		mes "快！";
 		mes "放到我手里！";
 		mes "我们不能再浪费时间了！";
 		next;
 		if (countitem(990) > 0) && (countitem(991) > 0) && (countitem(992) > 0) && (countitem(748) > 0) && (countitem(523) > 0) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢天谢地。";
 		mes "现在……";
 		mes "让我开始……";
@@ -8594,26 +8594,26 @@ alberta_in,70,109,5	script	萨满	788,{
 			delitem 748,1; //Witherless_Rose
 			delitem 523,1; //Holy_Water
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它后面有一把剑。";
 		mes "他……他刚战斗过吗？";
 		mes "我能闻到他的杀意。";
 		mes "我不知道是他诅咒了宝石，还是他也是受害者……";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "该死！";
 		mes "我看不清！";
 		mes "我们必须弄清我看到的是否就是诅咒的根源……";
 			mes "我们能做什么——";
 			mes "对了！";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道他能帮上多少忙，";
 		mes "但朱诺有一位考古学家可能更了解这颗宝石。";
 		mes "希望他能给出答案。";
 			set jewel_nd,18;
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "目前宝石的";
 		mes "诅咒超出了我的能力。";
 		mes "不过，如果你能找出诅咒的来源，";
@@ -8621,12 +8621,12 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "这就是关键。";
 			close;		}
 		else {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你……忘了吗？！";
 		mes "你的身体和灵魂都处于危险之中，";
 		mes "你竟然忘了？！";
 			next;
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "带给我";
 			mes "^FF00001 瓶圣水^000000、";
 			mes "^FF00001 个火灵矿石^000000、";
@@ -8637,7 +8637,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		}
 	}
 	else if (jewel_nd == 18) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那个古董鉴定师……";
 		mes "他不会知道更多宝石的";
 		mes "事情，";
@@ -8647,7 +8647,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		close;
 	}
 	else if (jewel_nd == 19) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你回来了。";
 		mes "你有没有";
 		mes "了解到";
@@ -8659,7 +8659,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "他说这颗宝石上没有";
 		mes "诅咒。";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？他竟敢";
 		mes "反驳我";
 		mes "刚才告诉你的话？！";
@@ -8667,7 +8667,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "那颗绿宝石里明明有";
 		mes "战士的怨灵！";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "话说回来，和不相信";
 		mes "灵界的人争论没有意义。";
 		mes "不过我没有";
@@ -8676,7 +8676,7 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "危在旦夕！";
 		set jewel_nd,20;
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "事实上，我会读取这颗绿宝石里的";
 		mes "信息";
 		mes "来证明给你看。";
@@ -8687,7 +8687,7 @@ alberta_in,70,109,5	script	萨满	788,{
 	}
 	else if (jewel_nd == 20) {
 		if (countitem(7725) > 0) {
-				mes "[萨满]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，";
 			mes "我明白了。";
 		mes "以萨满的尊严发誓，";
@@ -8695,12 +8695,12 @@ alberta_in,70,109,5	script	萨满	788,{
 		mes "不能让别人以为";
 		mes "我是江湖骗子……";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嗯嗯嗯……嗯……";
 			mes "嗯嗯嗯……我……";
 			mes "我明白了。";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，真没想到。";
 		mes "宝石确实没有诅咒。";
 		mes "不过，并不是只有";
@@ -8708,7 +8708,7 @@ alberta_in,70,109,5	script	萨满	788,{
 			mes "因这颗宝石而死。";
 			mes "还有很多人……";
 			next;
-				mes "[萨满]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "前往吉芬镇，向西走，";
 				mes "寻找桥另一侧的高地。";
 				mes "从吉芬西门";
@@ -8716,11 +8716,11 @@ alberta_in,70,109,5	script	萨满	788,{
 			mes "找到高处。";
 			mes "你知道该怎么走。";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "相信我。你会在那里找到某样东西，";
 		mes "它会对你持有的绿宝石之力产生反应。";
 			next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哼！那个傲慢的考古学家！他根本不知道自己在说什么！";
 				mes "真令人恼火。";
 				mes "我不会忘记这件事。";
@@ -8728,26 +8728,26 @@ alberta_in,70,109,5	script	萨满	788,{
 			close;
 		}
 		else {
-			mes "[萨满]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没带翡翠吗？希望你没把它弄丢。";
 			close;
 		}
 	}
 	else if (jewel_nd == 21) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去吉芬镇向西走，寻找桥另一边的高地。也就是从吉芬西门出去，找一处高地。";
 		next;
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "相信我。你会在那里找到能回应翡翠力量的东西。别忘了带上翡翠！";
 		close;
 	}
 	else if ((jewel_nd == 22) || (jewel_nd == 23)) {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我怎么说的？那颗宝石会带来厄运。不过我不明白里面的战士灵魂为什么不肯和我说话。怎么回事？";
 		close;
 	}
 	else {
-		mes "[萨满]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经很久没做这些仪式了。感觉精神力彻底耗尽。";
 		close;
 	}
@@ -8850,7 +8850,7 @@ yuno_in04,38,48,3	script	考古学家	55,{
 	}
 }
 
-prontera,140,304,5	script	老兵	901,{
+prontera,140,304,5	script	老士兵::老兵	901,{
 	if (checkweight(907,200) == 0) {
 		mes "[退伍士兵]";
 		mes "你为什么带这么多东西？难道没有卡普拉仓库存放杂物吗？";
@@ -9251,24 +9251,24 @@ prontera,140,304,5	script	老兵	901,{
 	}
 }
 
-gef_fild08,182,185,0	script	流浪者	739,{
+gef_fild08,182,185,0	script	彷徨者::流浪者	739,{
 	if (jewel_nd < 21) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我只是漂泊世间的流浪者。请让我安静。";
 		close;
 	}
 	else if (jewel_nd == 21) {
 		if (countitem(7725) > 0) {
-			mes "[流浪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那……看起来就像我曾拥有的翡翠。嗯……你是来找我的吗？";
 			next;
-			mes "[流浪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "马上丢掉那东西。那是会带来灾难的邪恶宝石。我记得……我是从魔物那里得到那颗宝石的……";
 			next;
-			mes "[流浪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我只是个普通人，梦想成为世界最伟大的战士。遇到一大群凶恶狗头人时，翡翠就在我身上。";
 			next;
-			mes "[流浪者]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "无论杀死多少，它们都没完没了……然后……我们……我们……我……想起发生的事太痛苦了……";
 			set jewel_nd,22;
 			hideonnpc "流浪者";
@@ -9276,33 +9276,33 @@ gef_fild08,182,185,0	script	流浪者	739,{
 			close;
 		}
 		else {
-			mes "[流浪者]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么召唤我？我只是寻求安宁的阵亡战士灵魂。可以的话请别打扰我。";
 			close;
 		}
 	}
 	else if (jewel_nd == 22) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "又是你？你为什么还拿着宝石？！我不是刚说过我和同伴发生了什么吗！我们都死在那天，那天狗头人压倒了我们！";
 		next;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "让我回到沉睡中吧。";
 		set jewel_nd,23;
 		close;
 	}
 	else if (jewel_nd == 25) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你为什么再次把我叫来？你想从我这里得到什么？不能让我一个人待着吗？";
 		next;
 	select("你真的被狗头人杀死了吗？");
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "啊！你到底想说什么？！现在离开！";
 		hideonnpc "流浪者";
 		stopnpctimer;
 		close;
 	}
 	else if (jewel_nd == 26) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你还是来烦我。";
 		mes "遗憾的是，翡翠的力量迫使我回到这个世界……";
 		mes "这次又有什么事？";
@@ -9310,7 +9310,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		mes "";
 		next;
 		select("你不是被狗头人杀死的，对吧？");
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我要告诉你多少次？";
 		mes "你是在说我谎报同伴的死吗？算了。";
 		mes "死人不该说话。";
@@ -9318,7 +9318,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		mes "";
 		mes "";
 		next;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保重，年轻的冒险者，";
 		mes "别再揭开过去的伤口。";
 		mes "";
@@ -9327,7 +9327,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		next;
 		while(1) {
 			if (select("你杀了自己的同伴！:你记得最后的时刻吗？") == 1) {
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我吗……？哈，哈哈！";
 				mes "冒险者，你说得像廉价小说里的情节。";
 				mes "哈哈哈哈！";
@@ -9335,7 +9335,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				next;
 			}
 			else {
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有点模糊……";
 				mes "我……我们试图杀死尽可能多的狗头人……";
 				mes "所有人都……死了。";
@@ -9343,14 +9343,14 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				mes "";
 				mes "";
 				next;
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我孤身一人。";
 				mes "我们杀死了所有狗头人，但我……";
 				mes "然后……接下来……";
 				mes "我浑身都是血。";
 				mes "然后，有什么东西出现了？";
 				next;
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不，不可能是那样。";
 				mes "一个像我这样的士兵？";
 				set jewel_nd,28;
@@ -9358,25 +9358,25 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				break;
 			}
 		}
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我被杀了……不，等等。";
 		mes "我在与狗头人的战斗中活了下来。";
 		mes "然后某个懦夫从背后杀了我，";
 		mes "偷走了我的翡翠。一定是这样！";
 		next;
 		select("你的同伴是怎么死的？");
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "狗头人杀了他们！我太弱了，保护不了同伴。太弱了……恢复意识时，他们全都……";
 		next;
 		emotion ET_THINK;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不确定发生了什么。鲜血流进我的眼睛……我记得挥砍、刺击，还有……不断挥砍。";
 		next;
 		select("你把一切都砍了……");
 		mes "["+ strcharinfo(0) +"]";
 		mes "你把一切都砍了……甚至包括你应该保护的同伴。";
 		next;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……我做了……？";
 		mes "我……不！闭嘴！";
 		mes "别说了！我不能……";
@@ -9387,7 +9387,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		close;
 	}
 	else if (jewel_nd == 27) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么了？";
 		mes "这次你又有什么话要对我说？";
 		mes "";
@@ -9395,7 +9395,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		next;
 		while(1) {
 			if (select("你杀了自己的同伴！:你还记得最后一刻吗？") == 1) {
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我吗……？哈，哈哈！";
 				mes "冒险者，你说得像廉价小说里的情节。哈哈哈哈！";
 				mes "";
@@ -9403,7 +9403,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				next;
 			}
 			else {
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有点模糊……";
 				mes "我……我们试图杀死尽可能多的狗头人……";
 				mes "所有人都死了。";
@@ -9411,14 +9411,14 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				mes "";
 				mes "";
 				next;
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我孤身一人。";
 				mes "我们杀死了所有狗头人，但我……";
 				mes "然后……接下来……";
 				mes "我浑身都是血。";
 				mes "然后，有什么东西出现了？";
 				next;
-				mes "[流浪者]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不，不可能是那样。";
 				mes "一个像我这样的士兵？";
 				set jewel_nd,28;
@@ -9426,13 +9426,13 @@ gef_fild08,182,185,0	script	流浪者	739,{
 				break;
 			}
 		}
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我被杀了……不，等等。";
 		mes "我在与狗头人的战斗中活了下来。";
 		mes "然后某个懦夫从背后杀了我，偷走了我的翡翠。一定是这样！";
 		next;
 		select("你的同伴是怎么死的？");
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "狗头人杀了他们！";
 		mes "我太弱了，保护不了同伴。太弱了……";
 		mes "恢复意识时，他们全都……";
@@ -9440,7 +9440,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		mes "";
 		next;
 		emotion ET_THINK;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不确定发生了什么。";
 		mes "当时有……";
 		mes "鲜血流进我的眼睛……我记得挥砍、刺击，还有……不断挥砍。";
@@ -9449,7 +9449,7 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		mes "["+ strcharinfo(0) +"]";
 		mes "你把一切都砍了……甚至包括你应该保护的同伴。";
 		next;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……我做了……？我……不！闭嘴！住口！我不可能……现在滚出去！你想骗我！";
 		set jewel_nd,29;
 		hideonnpc "流浪者";
@@ -9457,22 +9457,22 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		close;
 	}
 	else if (jewel_nd == 28) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么是你……";
 		next;
 		select("你的同伴是怎么死的？");
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "狗头人杀了他们！我太弱了，保护不了同伴。太弱了……恢复意识时，他们全都……";
 		next;
 		emotion ET_THINK;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不确定发生了什么。鲜血流进我的眼睛……我记得挥砍、刺击，还有……不断挥砍。";
 		next;
 		select("你把一切都砍了……");
 		mes "["+ strcharinfo(0) +"]";
 		mes "你把一切都砍了……甚至包括你应该保护的同伴。";
 		next;
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……我做了……？我……不！闭嘴！住口！我不可能……现在滚出去！你想骗我！";
 		set jewel_nd,29;
 		hideonnpc "流浪者";
@@ -9480,17 +9480,17 @@ gef_fild08,182,185,0	script	流浪者	739,{
 		close;
 	}
 	else if (jewel_nd == 29) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别烦我！";
 		close;
 	}
 	else if (jewel_nd > 29) {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "闭嘴！别再骚扰我！我不能……我不……！";
 		close;
 	}
 	else {
-		mes "[流浪者]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes ".........";
 		close;
 	}
@@ -9536,47 +9536,47 @@ OnTouch:
 
 // Rogue Guild Investigation
 //============================================================
-prontera,163,204,3	script	梦罗克旅人	99,{
+prontera,163,204,3	script	来自梦罗克的人::梦罗克旅人	99,{
 	if (rumour_nd == 0) {
-		mes "[梦罗克旅人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，靠近喷泉真舒服清爽。这里比梦罗克凉快多了。";
 		next;
 		switch(select("今天真是好天气，对吧？:最近梦罗克怎么样？")) {
 		case 1:
-			mes "[梦罗克旅人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，是的，今天真棒！普隆德拉阳光明媚又凉爽，难怪这么多人住在这里！";
 			close;
 		case 2:
-			mes "[梦罗克旅人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是冒险者，没听说卢恩-米德加尔特王国到处流传的疯狂传闻吗？我以为你们四处旅行，消息灵通。";
 			next;
 		}
 		select("什么疯狂传闻？");
-		mes "[梦罗克旅人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……盗贼探员！他们到处都是！去和派驻其他城镇的盗贼探员谈谈，你就知道我说什么了！";
 		set rumour_nd,1;
 		close;
 	}
 	else if (rumour_nd == 1) {
-		mes "[梦罗克旅人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不该去找盗贼探员谈谈吗？我的意思是，也许你能出份力帮助他们。";
 		close;
 	}
 	else if (rumour_nd > 1) {
 		if (zdan_edq > 12) {
-			mes "[梦罗克旅人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "原来那些疯狂传闻都是关于 Z 帮。得知他们都进了监狱真好。";
 			close;
 		}
 		else {
-			mes "[梦罗克旅人]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，呃……我只是在假期放松。";
 			close;
 		}
 	}
 }
 
-in_rogue,355,28,5	script	流氓探员	118,{
+in_rogue,355,28,5	script	负责情报的流氓公会会员::流氓探员	118,{
 	if (checkweight(907,200) == 0) {
 		mes "[公会成员]";
 		mes "你携带的东西太多了。减轻负担，把多余物品放进卡普拉仓库，就是用来做这个的~";
@@ -9760,7 +9760,7 @@ in_rogue,355,28,5	script	流氓探员	118,{
 	}
 }
 
-aldebaran,114,56,5	script	流氓探员#nd0	828,{
+aldebaran,114,56,5	script	流氓公会情报员#nd0::流氓探员#nd0	828,{
 	if (rumour_nd < 3) {
 		mes "[特工]";
 		mes "听着，我正在执行";
@@ -9878,16 +9878,16 @@ aldebaran,114,56,5	script	流氓探员#nd0	828,{
 	}
 }
 
-geffen,91,36,5	script	流氓公会探员#nd1	828,{
+geffen,91,36,5	script	流氓公会情报员#nd1::流氓公会探员#nd1	828,{
 	if (rumour_nd < 4) {
 		if (zdan_edq > 12) {
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你就是一直在帮忙";
 			mes "对付Z团伙的人？不错！";
 			close;
 		}
 		else {
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你和我无关，那……";
 			mes "我也没什么好和你说的。";
 			mes "再见！";
@@ -9896,24 +9896,24 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 	}
 	else if (rumour_nd == 4) {
 		if (zdan_edq > 12) {
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是艾尔帕兰特工";
 			mes "送来的吗？谢谢！";
 			mes "找到我一定不容易吧？";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "Z团伙一直在散播";
 			mes "幽灵从吉芬塔涌出的谣言。";
 			mes "为了确认真相，我想让你去";
 			mes "调查一下。你愿意吗？";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想让你捕捉一些怪物，";
 			mes "并带回证据，证明幽灵";
 			mes "一直待在塔内，";
 			mes "没有从里面出来。对了，带来……";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF000001块布^000000、";
 			mes "^FF000001根金色头发^000000、";
 			mes "^FF000001根小恶魔角^000000、";
@@ -9921,7 +9921,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			mes "^FF000001个南瓜头^000000。";
 			mes "这些应该就够了。";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们只需要一些确凿证据，";
 			mes "让人们冷静下来，";
 			mes "别再恐慌。";
@@ -9931,7 +9931,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			close;
 		}
 		else {
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这份报告是艾尔帕兰的";
 			mes "流氓探员送来的吗？";
 			mes "嘿，上面写着这是给流氓公会的。";
@@ -9940,7 +9940,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 		}
 	}
 	else if (rumour_nd == 5) {
-		mes "[流氓公会探员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你已经在吉芬塔";
 		mes "找到那些怪物了吗？";
 		mes "希望你把东西带来了……";
@@ -10018,13 +10018,13 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			mes "哼，真是一群顽劣的家伙。";
 			mes "好吧，我们这样做。";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想让你捕捉一些怪物，";
 			mes "并带回证据，证明幽灵";
 			mes "一直待在塔内，";
 			mes "没有从里面出来。对了，带来……";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF000001块布^000000、";
 			mes "^FF000001根金色头发^000000、";
 			mes "^FF000001根小恶魔角^000000、";
@@ -10032,7 +10032,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			mes "^FF000001个南瓜头^000000。";
 			mes "这些应该就够了。";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们只需要一些确凿证据，";
 			mes "让人们冷静下来，";
 			mes "别再恐慌。";
@@ -10042,7 +10042,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			close;
 		}
 		else {
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "Z 团伙一直在散播";
 			mes "幽灵从吉芬塔涌出的谣言。";
 			mes "为了确认真相，我想让你调查一下这件事。";
@@ -10054,7 +10054,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 			mes "会留在塔内，";
 			mes "不会跑出来。对了，带来……";
 			next;
-			mes "[流氓公会探员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^FF00001 个布料^000000、";
 			mes "^FF00003 根金色头发^000000、";
 			mes "^FF00002 个小恶魔角^000000、";
@@ -10119,7 +10119,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 					close;
 				}
 			case 2:
-				mes "[流氓公会探员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^FF00001 个布料^000000、";
 				mes "^FF00003 根金色头发^000000、";
 				mes "^FF00002 个小恶魔角^000000、";
@@ -10203,7 +10203,7 @@ geffen,91,36,5	script	流氓公会探员#nd1	828,{
 	}
 }
 
-payon,209,44,5	script	流氓公会探员#nd2	828,{
+payon,209,44,5	script	流氓公会情报员#nd2::流氓公会探员#nd2	828,{
 	if (rumour_nd < 3) {
 		mes "[特工]";
 		mes "什么？你想要什么？";
@@ -10653,7 +10653,7 @@ payon,209,44,5	script	流氓公会探员#nd2	828,{
 	}
 }
 
-comodo,233,199,5	script	流氓公会探员#nd3	810,{
+comodo,233,199,5	script	流氓公会情报员#nd3::流氓公会探员#nd3	810,{
 	if (checkweight(907,200) == 0) {
 		mes "[特工]";
 		mes "你带的东西太多了。先把一些存进卡普拉仓库再和我说话，好吗？";
@@ -10838,7 +10838,7 @@ comodo,233,199,5	script	流氓公会探员#nd3	810,{
 	}
 }
 
-morocc,116,39,3	script	流氓公会探员#nd4	779,{
+morocc,116,39,3	script	流氓公会情报员#nd4::流氓公会探员#nd4	779,{
 	if (rumour_nd == 1) {
 		mes "[特工]";
 		mes "案件？你在说什么……？去问别人。我听不懂你说的。别烦我，让我放松~";

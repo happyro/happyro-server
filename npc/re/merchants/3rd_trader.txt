@@ -50,7 +50,7 @@ prontera,168,228,3	duplicate(runesale)	Rune Merchant#prt	4W_M_01
 
 // Rare Herb Merchants (Guillotine Cross) :: rare_herb_3rd_trader
 //============================================================
-job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
+job3_guil01,91,93,3	script	稀有毒草收集员::Rare Herb Collector	1_M_03,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
 		mes "- 等一下！！-";
 		mes "- 你现在携带的物品太多了。-";
@@ -58,15 +58,15 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 		close;
 	}
 	if ((eaclass() & EAJ_THIRDMASK) == EAJ_GUILLOTINE_CROSS) {
-		mes "[稀有毒草收藏家]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我周游世界收集稀有毒草。最近开始交易一种叫迷幻药的草药。如果你感兴趣，可以购买。";
 		next;
 		.@i = select("如何购买？:用家畜血交换:用苦味草交换:用青嫩毒草交换:用冰雕玫瑰交换:用止痛药交换:用希纳莱交换")-2;
 		if (.@i == -1) {
-			mes "[稀有毒草收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "每购买 1 个迷幻药，需要支付 10,000 Zeny，并提供以下任意一种物品 1 个：家畜血、苦味草、青嫩毒草、冰雕玫瑰、止痛药或希纳莱。";
 			next;
-			mes "[稀有毒草收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为什么要钱？只是对我这样的收藏家表示一点敬意。哈哈哈……";
 			close;
 		} else {
@@ -74,29 +74,29 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 			.@item = .@exchange[.@i];
 			.@price = 10000;
 
-			mes "[稀有毒草收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想要多少？";
 			mes "每次最多只能购买‘2000’个。";
 			mes "想取消请输入‘0’。";
 			next;
 			input .@amount;
 			if (.@amount == 0) {
-				mes "[稀有毒草收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你取消了交易。";
 				close;
 			}
 			if (.@amount > 2000) {
-				mes "[稀有毒草收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "数量不能超过 2,000！";
 				close;
 			}
 			.@total = .@amount * .@price;
 			if (countitem(.@item) < .@amount || Zeny < .@total) {
-				mes "[稀有毒草收藏家]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "等你准备好交换所需的全部物品后再回来。";
 				close;
 			}
-			mes "[稀有毒草收藏家]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (!checkweight(709,.@amount)) {
 				mes "请先为物品预留足够的负重和物品栏空间。";
 				close;
@@ -108,7 +108,7 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 			close;
 		}
 	}
-	mes "[稀有毒草收藏家]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我周游世界收集稀有毒草。但我不想把草药卖给你这样的人……哈哈哈……";
 	close;
 }
@@ -123,22 +123,22 @@ job3_guil01,91,93,3	script	Rare Herb Collector	1_M_03,{
 	end;
 }
 
-gef_tower,105,172,5	duplicate(pss)	Point Merchant#Sorcerer	8_F_GIRL
-prt_in,131,66,0	duplicate(pss)	Point Merchant#Prontera	8_F_GIRL
-alberta,105,52,7	duplicate(pss)	Point Merchant#Alberta	8_F_GIRL
-aldebaran,133,114,5	duplicate(pss)	Point Merchant#Aldebaran	8_F_GIRL
-comodo,193,159,5	duplicate(pss)	Point Merchant#Comodo	8_F_GIRL
-geffen,129,49,5	duplicate(pss)	Point Merchant#Geffen	8_F_GIRL
-izlude,138,163,5	duplicate(pss)	Point Merchant#Izlude	8_F_GIRL	// Old coordinates: izlude (135,121)
+gef_tower,105,172,5	duplicate(pss)	属性石头商人#Sorcerer::Point Merchant#Sorcerer	8_F_GIRL
+prt_in,131,66,0	duplicate(pss)	属性石头商人#Prontera::Point Merchant#Prontera	8_F_GIRL
+alberta,105,52,7	duplicate(pss)	属性石头商人#Alberta::Point Merchant#Alberta	8_F_GIRL
+aldebaran,133,114,5	duplicate(pss)	属性石头商人#Aldebaran::Point Merchant#Aldebaran	8_F_GIRL
+comodo,193,159,5	duplicate(pss)	属性石头商人#Comodo::Point Merchant#Comodo	8_F_GIRL
+geffen,129,49,5	duplicate(pss)	属性石头商人#Geffen::Point Merchant#Geffen	8_F_GIRL
+izlude,138,163,5	duplicate(pss)	属性石头商人#Izlude::Point Merchant#Izlude	8_F_GIRL	// Old coordinates: izlude (135,121)
 izlude_a,138,163,5	duplicate(pss)	Point Merchant#Izlude_a	8_F_GIRL
 izlude_b,138,163,5	duplicate(pss)	Point Merchant#Izlude_b	8_F_GIRL
 izlude_c,138,163,5	duplicate(pss)	Point Merchant#Izlude_c	8_F_GIRL
 izlude_d,138,163,5	duplicate(pss)	Point Merchant#Izlude_d	8_F_GIRL
-malangdo,214,163,5	duplicate(pss)	Point Merchant#Malangdo	8_F_GIRL
-mora,115,118,3	duplicate(pss)	Point Merchant#Mora	8_F_GIRL
-ra_in01,256,273,3	duplicate(pss)	Point Merchant#Rachel	8_F_GIRL
-veins,202,128,5	duplicate(pss)	Point Merchant#Veins	8_F_GIRL
+malangdo,214,163,5	duplicate(pss)	属性石头商人#Malangdo::Point Merchant#Malangdo	8_F_GIRL
+mora,115,118,3	duplicate(pss)	属性石头商人#Mora::Point Merchant#Mora	8_F_GIRL
+ra_in01,256,273,3	duplicate(pss)	属性石头商人#Rachel::Point Merchant#Rachel	8_F_GIRL
+veins,202,128,5	duplicate(pss)	属性石头商人#Veins::Point Merchant#Veins	8_F_GIRL
 dicastes01,207,200,5	duplicate(pss)	Point Merchant#Dicastes	8_F_GIRL
-manuk,261,206,3	duplicate(pss)	Point Merchant#Manuk	8_F_GIRL
-splendide,207,160,5	duplicate(pss)	Point Merchant#Splendide	8_F_GIRL
-mid_camp,224,237,3	duplicate(pss)	Point Merchant#Midgard	8_F_GIRL
+manuk,261,206,3	duplicate(pss)	属性石头商人#Manuk::Point Merchant#Manuk	8_F_GIRL
+splendide,207,160,5	duplicate(pss)	属性石头商人#Splendide::Point Merchant#Splendide	8_F_GIRL
+mid_camp,224,237,3	duplicate(pss)	属性石头商人#Midgard::Point Merchant#Midgard	8_F_GIRL

@@ -15,17 +15,17 @@
 //= 1.7 Fixed JobLevel requirements. [Euphy]
 //============================================================
 
-moc_ruins,118,99,5	script	Roberto	88,{
+moc_ruins,118,99,5	script	爵 纳利::Roberto	88,{
 	if (BaseClass == Job_Archer) {
 		if (getskilllv("AC_MAKINGARROW") == 1) {
-			mes "[罗伯托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你来自我的家乡！";
 			mes "见到你真好！";
 			mes "你还好吗？";
 			mes "啊！那支箭！";
 			mes "是你做的，对吧！";
 			next;
-			mes "[罗伯托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈……！";
 			mes "你觉得好多了吗？";
 			mes "哈哈……总之我很高兴。";
@@ -34,13 +34,13 @@ moc_ruins,118,99,5	script	Roberto	88,{
 			close;
 		}
 		else if (JobLevel >= 30 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
-			mes "[罗伯托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "诶！";
 			mes " ";
 			mes "你是……";
 			next;
 			if ((countitem(907) > 19) && (countitem(921) > 6) && (countitem(906) > 40) && (countitem(1019) > 12) && (countitem(501) > 0)) {
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你带来了！";
 				mes "非常感谢。";
 				mes "那么如我所承诺，我会教你技能。";
@@ -51,18 +51,18 @@ moc_ruins,118,99,5	script	Roberto	88,{
 				delitem 1019,13; //Wooden_Block
 				delitem 501,1; //Red_Potion
 				skill "AC_MAKINGARROW",1,SKILL_PERM;
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在不用担心箭了。";
 				mes "哦，你有没有见过斐扬的杰森？";
 				mes "小心，他是个凶猛的家伙。";
 				next;
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你只要小心斐扬的杰森。";
 				mes "记住。";
 				mes "那么拜拜~ 谢谢你的礼物~";
 				close;
 			}
-			mes "[罗伯托]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在梦罗克竟然遇到了弓箭手！？";
 			mes "见到你真好！在这种地方遇到同为弓箭手的人！*抽泣*！";
 			mes "我独自来到梦罗克……";
@@ -71,52 +71,52 @@ moc_ruins,118,99,5	script	Roberto	88,{
 			next;
 			switch (select("一定很辛苦。坚持住。:继续受苦吧。")) {
 			case 1:
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是的。谢谢……";
 				mes "在这种地方你一定过得很辛苦。";
 				mes "找箭很难吧？";
 				mes "所以我自己制作。";
 				next;
 				select("诶，真的吗？！");
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没错！我收集各种物品，用它们制作箭。";
 				mes "这项技能帮助我在艰难的世界里独自生存。";
 				mes "如果你愿意，我可以教你。";
 				next;
 				select("那太好了。");
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但是……我不能免费做。";
 				mes "这个世界没有免费的东西~";
 				mes "嗯……这样如何？";
 				mes "带来我要求的物品。";
 				mes "然后我就教你技能。";
 				next;
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "离开家乡后我一直很孤独。";
 				mes "我想用家乡的东西缓解思乡之情。";
 				mes "从斐扬树林的树上带来 20 个树脂，";
 				mes "以及商店出售的 1 瓶红色药水。";
 				next;
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还要从斐扬树林附近的柳树带来 13 个树干、";
 				mes "41 个尖锐鳞片、";
 				mes "7 个蘑菇孢子。";
 				mes "把这些全部带来，我就教你技能。";
 				mes "";
 				next;
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "准备好后再来找我。";
 				mes "那么……我会等你。";
 				mes "等你带来家乡的消息。";
 				close;
 			case 2:
-				mes "[罗伯托]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……嘿，"+((Sex == SEX_MALE)?"先生":"小姐")+"。";
 				mes "……晚上小心。";
 				close;
 			}
 		}
-		mes "[罗伯托]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你有什么要说的吗？";
 		mes "我没什么可说的。";
 		mes "等级差距让我们无法交谈。";
@@ -130,10 +130,10 @@ moc_ruins,118,99,5	script	Roberto	88,{
 	close;
 }
 
-payon,103,63,3	script	Jason	88,3,3,{
+payon,103,63,3	script	葛豪::Jason	88,3,3,{
 	if (BaseClass == Job_Archer) {
 		if (getskilllv("AC_CHARGEARROW") == 1) {
-			mes "[杰森]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "诶，我们又见面了。";
 			mes "诶诶诶，好奇怪。";
 			mes "每次和人重逢，我就会不停地‘诶’。";
@@ -142,7 +142,7 @@ payon,103,63,3	script	Jason	88,3,3,{
 			close;
 		}
 		else if (JobLevel >= 35 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
-			mes "[杰森]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "可恶……我的伤口还没愈合。";
 			mes "呸……我太粗心了……";
 			mes "才会变成这样……呃……";
@@ -156,35 +156,35 @@ payon,103,63,3	script	Jason	88,3,3,{
 			next;
 			switch (select("那是什么？:教我。")) {
 			case 1:
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……你在开玩笑吧？";
 				mes "天啊，你那个等级竟然还不知道冲锋箭？";
 				mes "你真奇怪。";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "（杰森陷入了幻想。）";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好吧。我来教你什么是冲锋箭。";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "冲锋箭是一项让你在攻击时立即将对手击退的技能。";
 				mes "只有准确瞄准目标时才能使用。";
 				mes "但它不像魔法，不会驱散魔法。";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这对近战能力较弱的弓箭手非常有用。";
 				mes "如果你想学习，再来找我。";
 				mes "需要准备一些材料。";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "学习这项技能需要以下材料。";
 				mes "10 根触手、10 个鸟嘴、";
 				mes "3 根狭盗猴尾巴……这些都很有弹性。";
 				mes "还有 2 颗绿宝石。最后但同样重要的是……";
 				mes "36 瓶我最喜欢的香蕉汁！";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……咳咳！";
 				mes "把这些全部带来，我就教你冲锋箭。";
 				mes "那么，再见。";
@@ -192,7 +192,7 @@ payon,103,63,3	script	Jason	88,3,3,{
 				close;
 			case 2:
 				if ((countitem(721) > 1) && (countitem(942) > 2) && (countitem(962) > 9) && (countitem(925) > 9) && (countitem(532) > 35)) {
-					mes "[杰森]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好！完美！";
 					mes "我会教你全国闻名的技能——冲锋箭！";
 					next;
@@ -202,7 +202,7 @@ payon,103,63,3	script	Jason	88,3,3,{
 					delitem 925,10; //Bill_Of_Birds
 					delitem 532,36; //Banana_Juice
 					skill "AC_CHARGEARROW",1,SKILL_PERM;
-					mes "[杰森]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦，比我预想的效果更好！";
 					mes "不需要改造弓了！";
 					mes "你原来的弓就能使用这项技能~";
@@ -210,19 +210,19 @@ payon,103,63,3	script	Jason	88,3,3,{
 					mes "嘿~嘿嘿~！";
 					close;
 				}
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……真遗憾。";
 				mes "你缺少一些东西。";
 				mes "再说一次，你需要 2 颗绿宝石、";
 				mes "3 根狭盗猴尾巴、10 根触手、";
 				mes "10 个鸟嘴，还有 36 瓶香蕉汁！";
 				next;
-				mes "[杰森]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "确认全部准备好后再来！";
 				close;
 			}
 		}
-		mes "[杰森]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……你是弓箭手。";
 		mes "再努力一点，你就会成为声名远扬的弓箭手！";
 		mes "加油吧！";

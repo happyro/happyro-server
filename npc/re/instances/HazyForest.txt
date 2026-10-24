@@ -17,16 +17,16 @@
 
 // Instance Creation :: md_mistwoods_enter
 //============================================================
-bif_fild01,158,340,5	script	拉菲涅士兵::Laphine Soldier#mist	447,{
+bif_fild01,158,340,5	script	守护精灵士兵::Laphine Soldier#mist	447,{
 
 	set .@party_id,getcharid(1);
 	set .@md_name$,"雾林迷宫";
 
-	mes "[拉菲涅士兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你要进入森林吗？";
 	next;
 	if (!.@party_id) {
-		mes "[拉菲涅士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀，你是不是太鲁莽了？";
 		mes "至少先组建一支队伍吧？";
 		close;
@@ -34,57 +34,57 @@ bif_fild01,158,340,5	script	拉菲涅士兵::Laphine Soldier#mist	447,{
 	set .@playtime, checkquest(7211,PLAYTIME);
 	if (is_party_leader() == true) {
 		if (.@playtime == 0 || .@playtime == 1) {
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……你确定没有做得太过头吗？";
 			mes "我觉得你最好休息一下。";
 			mes "做得太多只会让你筋疲力尽。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我也不认为当局会批准你进入。";
 			mes "……就连萨法族人也会被拦在森林外。";
 			next;
 			select("你说我们的语言说得很好，对吧？");
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……是吗？";
 			mes "其实我说的不是你们的语言。";
 			mes "我说的是拉菲涅语。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但这正是彩虹桥的奥秘之一。";
 			mes "即使语言不同，我们也能互相理解。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "能够和所有人交谈……";
 			mes "或许这就是彩虹桥的力量。";
 			close;
 		} else if (.@playtime == 2) {
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "很好，很好。";
 			mes "现在森林不会拒绝你了。";
 			mes "你接下来打算做什么？";
 			erasequest 7211;
 		} else {
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你们人类冒险者真了不起。";
 			mes "总是前往其他人不敢踏足的森林。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼。不过为了安全起见，我必须向当局报告每个进入森林的人。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "登记之后，你就能获得许可。";
 			mes "你要冒险进入迷雾森林吗？";
 		}
 		next;
 		switch(select("进入迷雾森林。:放弃。")) {
 		case 1:
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "队伍名称："+getpartyname(.@party_id)+"……";
 			mes "队伍队长："+strcharinfo(0)+"……";
 			if (instance_create(.@md_name$) < 0) {
 				mes "嗯……";
 				next;
-				mes "[拉菲涅士兵]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (.@playtime == -1)
 					mes "森林里很危险。";
 				else
@@ -94,36 +94,36 @@ bif_fild01,158,340,5	script	拉菲涅士兵::Laphine Soldier#mist	447,{
 			}
 			mes "知道了。我已经把它们记在报告上。";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你很快就会获得许可。";
 			mes "现在去树洞隧道，那是进入迷雾森林的唯一道路。";
 			mes "明白了吗？";
 			next;
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们无法违抗森林，但也许你们人类可以。";
 			mes "祝你好运！";
 			close;
 		case 2:
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，你做出了正确的决定。";
 			if (.@playtime == -1)
 				mes "这对你来说是件好事。";
 			close;
 		}
 	} else {
-		mes "[拉菲涅士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的队长在哪里？";
 		mes "里面很危险。";
 		next;
 		if (.@playtime == 2) {
-			mes "[拉菲涅士兵]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你以前来过森林。";
 			mes "好吧，至少森林不会拒绝你。";
 			mes "不过……";
 			erasequest 7211;
 			next;
 		}
-		mes "[拉菲涅士兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "设身处地想想，我是入口守卫，请让我见见你们队伍的代表。";
 		mes "我必须和他或她商量一些事情。";
 		close;
@@ -748,9 +748,9 @@ OnEnable:
 }
 
 // --------------- Part of md_mistwoods_enter ----------------
-mora,46,152,5	script	花香女子::Flower Smelling Lady	510,{
+mora,46,152,5	script	花香女孩::Flower Smelling Lady	510,{
 	if (ep14_1_mistwoods < 3) {
-		mes "[花香女子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我需要休息。";
 		mes "我太累了，没法和你说话。";
 		mes "对不起。";
@@ -803,7 +803,7 @@ mora,46,152,5	script	花香女子::Flower Smelling Lady	510,{
 	}
 }
 
-mora,48,152,3	script	目光锐利的男子::Sharp Eyed Man	512,{
+mora,48,152,3	script	眼神犀利的青年::Sharp Eyed Man	512,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
 		mes "- 你的物品太多，无法进行此任务。-";
 		close;

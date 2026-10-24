@@ -105,30 +105,30 @@ que_job01,68,84,1	script	Black Marketeer#Buying	881,{
 
 // Purchasing Team (Learn Skill - Merchant Classes)
 //============================================================ 
-alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
+alberta_in,58,52,4	script	采购部许书生#Buying::Purchasing Team#Buying	59,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2400) {
 		mes "- 你携带的物品太多，无法交谈或进行任务。-";
 		close;
 	}
-	mes "[休先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
 		if (getskilllv("ALL_BUYING_STORE") == 1) {
 			mes "我是收购团队的休。";
 			mes "今天我能帮你什么？";
 			next;
 			if(select("购买批量收购商店许可证:退出") == 2) {
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "需要批量收购商店许可证时随时来找我。";
 				mes "欢迎再来~";
 				close;
 			}
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "每张批量收购商店许可证 200 Zeny，一次最多购买 50 张。";
 			mes "你需要多少张许可证？";
 			next;
 			while(1) {
 				input .@input;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				if (.@input == 0) {
 					mes "你取消了交易。";
 					mes "祝你今天愉快。";
@@ -156,67 +156,67 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 			mes "我是艾尔贝塔商人公会收购团队的休。";
 			mes "你是……";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你知道吗？我们公会发行了一种许可证，允许个人向他人购买商品。";
 			next;
 			select("我买东西从没遇到过问题……");
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你说得对，但想想看：";
 			mes "批量购买是不是很麻烦？";
 			mes "你得找到并联系每个拥有所需物品的人。很不方便，对吧？";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "批量购买对商人很重要，我根据十年采购经验向公会提出了创新方案。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "‘让个人开设批量收购商店！’";
 			mes "这就是方案标题。读下去你就明白了……";
 			mes "这项方案会改善购物体验。";
 			mes "商人们也能从中获益。";
 			mes "这正是我努力的原因。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "……（休先生没完没了地讲着各种细节。）";
 			next;
 			select("好吧，你到底想说什么？");
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，对了。总之，你可以通过收购商店批量购买特定物品。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要开设批量收购商店，需要商人公会发行的许可证。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "每次开店都需要它。";
 			mes "我们预计这种新许可证会显著增加利润。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这就是我的方案重点！会长听说我们能赚大钱后非常高兴！";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "请直接说重点！";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别这么急，好吗？";
 			mes "重点是，只要学会露天商店，我们就允许你开设批量收购商店。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然，我们会收取一次性 10,000 Zeny 登记费。";
 			mes "每次开店都需要 ^4A4AFF批量收购商店许可证^000000。";
 			next;
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要现在登记吗？";
 			mes "登记后，我会教你如何开设批量收购商店。";
 			next;
 			if(select("学习如何开设批量收购商店:取消") == 2) {
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "哎呀，真令人失望！";
 				mes "批量收购能在很多方面帮助你的生意，";
 				mes "但决定权在你。";
 				mes "我随时愿意为你提供咨询！";
 				close;
 			}
-			mes "[休先生]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Zeny < 10000) {
 				mes "登记费是 10,000 Zeny。";
 				mes "请先准备好费用。";
@@ -226,7 +226,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				mes "请交登记费，并在这里签名……";
 				next;
 				input .@name$;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes .@name$+"……";
 				mes "你的字迹不错。";
 				if (!checkweight(6377,5)) {
@@ -238,16 +238,16 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				getitem 6377,5; //Buy_Stall_Permit
 				skill "ALL_BUYING_STORE",1,SKILL_PERM_GRANT;
 				next;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "目前只有普通物品^8C2121（装备、特定药水和手工物品除外）^000000可以批量购买，但用得好仍然很有帮助。";
 				next;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "另外，背包里必须至少有一件想购买的物品，因为你要通过商店展示给别人。";
 				next;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你现在可以在技能窗口中找到批量收购商店技能。";
 				next;
-				mes "[休先生]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是给你试用的 5 张批量收购商店许可证。";
 				mes "祝你购物愉快！";
 				close;
@@ -257,7 +257,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 	mes "我是艾尔贝塔商人公会收购团队的休。";
 	mes "我很想聊天，但现在太忙了。";
 	next;
-	mes "[休先生]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的时间都用来服务商人行业的客户。";
 	close;
 }

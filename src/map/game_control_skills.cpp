@@ -8,6 +8,7 @@
 #include "status.hpp"
 
 int32_t game_control_learn_job_skills(map_session_data* sd) {
+	InventoryEquipUpdate equip_update(*sd);
 	const auto tree = skill_tree_db.find(sd->status.class_);
 	if (!tree)
 		return 0;
@@ -30,6 +31,7 @@ int32_t game_control_learn_job_skills(map_session_data* sd) {
 	}
 	status_calc_pc(sd, SCO_FORCE);
 	clif_skillinfoblock(*sd);
+	equip_update.finish();
 	chrif_save(sd, CSAVE_NORMAL);
 	return learned;
 }

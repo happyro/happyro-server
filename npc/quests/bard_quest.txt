@@ -29,24 +29,24 @@
 //= 1.5 Updated RE/Pre-RE EXP. [Euphy]
 //============================================================ 
 
-geffen,132,38,3	script	埃伦德#2	51,{
+geffen,132,38,3	script	吟游诗人#2::埃伦德#2	51,{
 	if (bard_q > 5) set gef_bard_q,bard_q;
 	set @name$,strcharinfo(0);
 	if (gef_bard_q > 29) {
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀，你好~";
 		mes "天气是不是";
 		mes "格外宜人？";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊~ 只有两样东西能让这幅美景更美：故事和歌曲。那么，你想听哪个？";
 		callsub S_StorySong,1;
 
 	} else if (gef_bard_q == 14 || gef_bard_q == 15) {
 		if (gef_bard_q == 14) {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？";
 			mes "那是黑色封印……？嗯。基诺·凯蒂毫无痕迹地取走了他给我的封印，所以我猜他很喜欢你。否则……";
 			next;
@@ -54,14 +54,14 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			mes " ^000000";
 			next;
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呃，他已经知道一切了？从这片血迹看，他的健康仍有问题。他应该别再折磨自己……";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢你，我非常感激你为我所做的一切。不过，该用什么方式向你这样的冒险者表达谢意呢？";
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，进行得如何？";
 			mes "等等，你已经找到了？";
 			mes "没错，就是这个！太好了！";
@@ -69,12 +69,12 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			mes "啊，对，对。";
 			mes "没错。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想表达谢意。不过对冒险者";
 			mes "你来说，什么才合适呢？";
 		}
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦~！我正好有合适的东西。请放松下来，听我的歌。";
 		next;
 		cutin "bard_eland03",2;
@@ -149,44 +149,44 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		}
 		next;
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在感觉如何？希望我的歌让你精神焕发。也许不足以报答你，但这是我表达感谢的最好方式。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "此外，我现在把你当作可以无忧畅谈的朋友。而且我觉得你的笑容很美。我说错了吗~？哈哈哈~";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你永远诚实、尊重他人，继续无视对财富和权力的贪婪。";
 		close3;
 
 	} else if (gef_bard_q > 11 && gef_bard_q < 14) {
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你还没找到。慢慢来，我可以一直等。等待似乎就是我职业的一部分，所以不会无聊。";
 		close3;
 
 	} else if (gef_bard_q == 11) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "斯凯兹提先生在朱诺米内塔右侧的书街有一家小书店。给他看封印，他会帮助你。";
 		close3;
 
 	} else if (gef_bard_q == 10) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，你见过凯蒂先生吗？";
 		mes "啊，在梦罗克？他有慢性病，不过显然不";
 		mes "在意。";
 		mes "他说了什么？";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？在朱诺？";
 		mes "那一定就是他。";
 		mes "想去斯凯兹提先生的书店并不容易。来，我用";
 		mes "^483D8B友谊封印^000000.";
 		next;
 		cutin "bard_eland03",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把左手给我。";
 		mes "现在让我施法……";
 		mes "*低声吟唱……*";
@@ -194,7 +194,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		specialeffect2 EF_CONE;
 		mes "^3355FF你的左手腕上出现了一个银光闪耀的新月形印记。只有专注寻找时才能注意到它，但在月光下或许会清晰显现。^000000";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了。现在你可以去找斯凯兹提先生。记住，你必须";
 		mes "给他看友谊封印。";
 		mes "现在，祝你好运~";
@@ -235,10 +235,10 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			mes "你是谁？";
 			next;
 			cutin "bard_eland02",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？啊，是的。我只是随风漂泊的诗人。请叫我^483D8B埃伦德^000000，一个想取悦你的吟游诗人。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你愿意，我会告诉你旅行见闻。请允许我……";
 			mes "我会演奏一首让你忘记烦恼的歌。";
 			set gef_bard_q,21;
@@ -246,7 +246,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇啊，呜~";
 			mes "你不能那样无视我！你的欢乐感和浪漫感去哪了？";
 			close3;
@@ -254,7 +254,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 27) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我怎么能忘记这首歌？";
 		mes "我作为吟游诗人毫无价值~！";
 		mes "请……只是……";
@@ -264,34 +264,34 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		if(select("没问题~:有什么我能帮你的吗？")==1) {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇啊~！你真坏！";
 			mes "你应该说‘埃伦德，怎么了？也许我能帮忙？’";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的意思是，我们应该";
 			mes "更了解彼此";
 			mes "才对。但是……";
 			mes "也许是我错了！";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*抽泣……*";
 			mes "是谁忽视这个可怜的吟游诗人，让他哭泣？*抽泣*我相信就是你！";
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "帮我？";
 			mes "嗯……";
 			mes "就是这样！";
 			mes "冈瑟！";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请帮我一个忙。";
 			mes "如果你遇到^483D8B冈瑟·双重和声^000000，请告诉他我的困境。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "告诉他^483D8B薄荷·埃伦德^000000忘记了歌曲^483D8B第一刻，我坠入爱河^000000中的一句歌词，那句叫^483D8B第八刻的爱^000000。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拜托你，遇到他时询问第八刻的爱，并立即把歌词告诉我~";
 			set gef_bard_q,22;
 		}
@@ -299,11 +299,11 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 26) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……！";
 		mes "到底是谁改了这首歌的歌词？真难理解。真想问问改词的人。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真让人沮丧！";
 		mes "现在我失去了";
 		mes "歌唱和演奏的热情……";
@@ -317,33 +317,33 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		if (.@inputstr$ == "基诺·凯蒂") {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！当然！";
 			mes "我想你说得对！";
 			mes "我怎么没想到呢？";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在一切都说得通了。他曾是无敌单身军团成员。因为这首歌原本写的是幸福情侣，他的改词可能有点刻薄……";
 			next;
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "抱歉又要拜托你，不过旅行途中能否帮我找到这首歌的原歌词？我可以等……";
 			next;
 
 			if(select("不用了，谢谢。:我能做到，别哭了。")==1) {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，看来是我要求太多了。抱歉。别担心，我会想其他办法。";
 				set gef_bard_q,25;
 
 			} else {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是认真的吗？";
 				mes "哦，太谢谢你了！";
 				mes "你一定是天使！";
 				mes "真正理解诗人心灵的天使！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会想办法报答你！";
 				mes "谢谢你的辛苦";
 				mes "提前致谢~";
@@ -352,18 +352,18 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里加入‘为你双重和声’之类的歌词。而且他太傻了。";
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟·双重和声") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里加入‘为你双重和声’之类的歌词。而且他太傻了。";
 			close3;
 
 		} else if (.@inputstr$ == "埃伦德") {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你一定是在开玩笑！";
 			mes "如果是我改的，为什么我会";
 			mes "不知道这首歌";
@@ -371,12 +371,12 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			close3;
 
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "" + .@inputstr$ +"...?";
 			mes "我不认识那个人。也许你误会了";
 			mes "什么？*叹气……*";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那句歌词是什么……？";
 			mes "我怎么会忘记";
 			mes "第八刻的爱？";
@@ -386,7 +386,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 25) {
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……！";
 		mes "眼泪停不下来！";
 		mes "为、为什么人们总是这样对待吟游诗人？";
@@ -413,12 +413,12 @@ geffen,132,38,3	script	埃伦德#2	51,{
 				mes "[" + @name$ + "]";
 				mes "嘿，嘿，埃伦德。别唱这首歌了，太尴尬了，好吗？我去帮你找原曲。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "*喘气*！真的吗！你确定？谢谢！太谢谢你了！";
 				mes "你真的在乎";
 				mes "吟游诗人的悲伤！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我保证尽力报答你！我会在这里等你回来！";
 				set gef_bard_q,24;
 			} else {
@@ -431,7 +431,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没有什么想问我的吗？没有的话，要听听我的歌吗……？";
 			next;
 			mes "^483D8B好——悲惨……";
@@ -443,31 +443,31 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 24) {
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我不确定凯蒂先生在哪里。也许你可以去朱诺怪物博物馆找找？我想他是怪物研究组织成员。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有探索经验，就会知道怪物研究组织。最近许多学者因研究怪物而受伤。";
 		next;
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "由于怪物研究危险，研究者需要冒险者收集信息。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对我这样的流浪者来说，这是赚钱的好方法。我们提供所需信息，他们给予经济支持。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，你应该去朱诺怪物博物馆打听凯蒂先生。那里离这里很远，在朱诺中央广场以西。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再次，";
 		mes "非常感谢你";
 		mes "的帮助。";
 		close3;
 
 	} else if (gef_bard_q == 22) {
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*叹气……*";
 		mes "我在哪里能找到";
 		mes "第八刻的爱……？";
@@ -475,42 +475,42 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		mes "啊，也许还没有。";
 		next;
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "*叹气*自从忘记那句歌词，我就失去了歌唱的心情。我……做不到。心灵毫无波澜，也没有灵感。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请向^483D8B冈瑟^000000询问^483D8B第一刻，我坠入爱河^000000中的^483D8B第八刻的爱^000000。先谢谢你。";
 		close3;
 
 	} else if (gef_bard_q == 23) {
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么……";
 		mes "你见过";
 		mes "冈瑟吗？";
 		next;
 		mes "^3355FF你转过身，让他看到你的背。^000000";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……？！";
 		mes "那不是？！";
 		mes "那是写在你背上的歌词吗？等等，别动！第八刻的爱是……";
 		mes "我明白了！";
 // 切片行数保留
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第一刻，我坠入爱河。";
 		mes "第二刻，你给我微笑。";
 		mes "第三刻，我爱慕你的触碰。";
 		mes "第四刻，温柔一吻。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第五刻，我们改变心意。";
 		mes "花瓣随风飘散。";
 		mes "第六刻，我坠入爱河~";
 		mes "第七刻，你坠入爱河~";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第八刻，我们转身离去……";
 		mes "第九刻，爱重生。";
 		mes "第十刻，我的爱消失。";
@@ -520,51 +520,51 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		else
 			mes "第十二刻，我看到她的新男友？";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		next;
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这……";
 		mes "这不可能。";
 		mes "这首歌应该歌颂爱情，而不是浪漫悲剧！";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "歌词一定被改过。冈瑟说过什么吗？！嗯，但谁会改歌词……？";
 		next;
 		cutin "bard_eland01",2;
 		input .@inputstr$;
 
 		if (.@inputstr$ == "基诺·凯蒂") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！当然！";
 			mes "我想你说得对！";
 			mes "我怎么没想到呢？";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在一切都说得通了。毕竟他曾是无敌单身军的一员。他的改词可能有点刻薄，因为这首歌原本讲的是幸福情侣……";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "抱歉又要请你帮忙，但你旅行时能找到这首歌的原歌词吗？我可以等……";
 			next;
 
 			if(select("不用了，谢谢。:我能做到，所以别哭了。")==1) {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我想是我要求太多了。抱歉。别担心，我会想别的办法。";
 				set gef_bard_q,25;
 			} else {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？";
 				mes "哦，太谢谢你了！";
 				mes "你一定是天使！";
 				mes "真正理解诗人内心的天使！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会想办法报答你！";
 				mes "先谢谢你的";
 				mes "辛苦~";
@@ -573,20 +573,20 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			set gef_bard_q,26;
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟·双重和声") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			set gef_bard_q,26;
 			close3;
 
 		} else if (.@inputstr$ == "埃伦德") {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你一定在开玩笑！";
 			mes "如果是我改的，";
 			mes "我怎么会不知道";
@@ -595,12 +595,12 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			close3;
 
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "" + .@inputstr$ +"...?";
 			mes "我不认识那个人。也许你误会了";
 			mes "什么？*叹气……*";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那句歌词是什么……？";
 			mes "我怎么会忘记";
 			mes "第八刻的爱？";
@@ -610,7 +610,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 21) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来，";
 		mes "" + @name$ + "~";
 		mes "你想让我";
@@ -621,37 +621,37 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 7) {
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我怎么会忘记那首歌？";
 		mes "我真是没用的吟游诗人~！请……拜托……让我一个人待着。";
 		next;
 
 		if(select("没问题。:我能帮你吗？")==1){
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇啊啊~！你真坏！";
 			mes "你应该说：‘埃伦德，怎么了？也许我能帮忙？’";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的意思是，我们应该更了解彼此。不过，也许是我错了！";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "*抽泣……*";
 			mes "是谁忽视了可怜的吟游诗人，让他哭泣？*吸鼻子* 我觉得就是你！";
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "帮我？";
 			mes "嗯嗯嗯嗯……";
 			mes "就是这样！";
 			mes "冈瑟！";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请你帮个忙。如果碰巧遇到^3355FF冈瑟·双重和声^000000，请告诉他我的困境。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "告诉他，^483D8B薄荷·埃伦德^000000忘记了歌曲^483D8B第一刻，我坠入爱河^000000中的一句歌词。那句叫^483D8B第八刻的爱^000000。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "求你了，如果遇到他，请问问第八刻的爱，并立即把歌词告诉我~";
 			set gef_bard_q,2;
 		}
@@ -659,10 +659,10 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 6) {
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁改了这首歌的歌词？我不明白为什么会发生这种事。真希望能问问改词的人……";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "*叹气* 我沮丧得连歌都唱不出来。我就是……做不到。心灵毫无波动，也没有灵感。";
 		next;
 		mes "[" + @name$ + "]";
@@ -675,54 +675,54 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		if (.@inputstr$ == "基诺·凯蒂") {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！当然！";
 			mes "我想你说得对！";
 			mes "我怎么没想到呢？";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在一切都说得通了。毕竟他曾是无敌单身军的一员。他的改词可能有点刻薄，因为这首歌原本讲的是幸福情侣……";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "抱歉又要请你帮忙，但你旅行时能找到这首歌的原歌词吗？我可以等……";
 			next;
 			if(select("不用了，谢谢。:我能做到，所以别哭了。")==1) {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我想是我要求太多了。抱歉。别担心，我会想别的办法。";
 				set gef_bard_q,5;
 			} else {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？哦，太谢谢你了！你一定是天使！真正理解诗人内心的天使！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会想办法报答你！先谢谢你的辛苦~";
 				set gef_bard_q,4;
 			}
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟·双重和声") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			close3;
 
 		} else if (.@inputstr$ == "埃伦德") {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你一定在开玩笑！如果是我改的，我怎么会不知道这首歌讲什么？";
 			close3;
 
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "" + .@inputstr$ +"...?";
 			mes "我不认识那个人。也许你误会了什么？*叹气……*";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那句歌词是什么……？";
 			mes "我怎么会忘记";
 			mes "第八刻的爱？";
@@ -732,7 +732,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 5) {
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……！";
 		mes "眼泪停不下来！";
 		mes "为、为什么人们总这样对待吟游诗人？";
@@ -753,10 +753,10 @@ geffen,132,38,3	script	埃伦德#2	51,{
 				mes "嘿，嘿，埃伦德。别唱这首歌了，很尴尬，好吗？好了，我去找原歌给你。";
 				next;
 				cutin "bard_eland01",2;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "*喘气*！真的吗？你确定？谢谢！太谢谢你了！你真的在乎吟游诗人的悲伤！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我保证尽力报答你！我会在这里等你回来！";
 				set gef_bard_q,4;
 			} else {
@@ -768,7 +768,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没有什么想问我的吗？如果没有，要听我的歌吗……？";
 			next;
 			mes "^483D8B好——悲惨……";
@@ -780,23 +780,23 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 4) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我不确定凯蒂先生在哪里。也许你能在朱诺的怪物博物馆找到线索？我想他是怪物研究组织成员。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你有探索经验，就该知道怪物研究组织。最近许多学者因研究怪物受伤。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "由于怪物研究很危险，研究人员需要冒险者收集信息。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对我这样的流浪者来说，这是赚钱的好办法。我们提供他们需要的信息，他们给我们资金，让我们按自己的方式生活。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，你该去朱诺的怪物博物馆打听凯蒂先生。那里离这里很远，但到达朱诺后，博物馆就在中央广场西边。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再次感谢你";
 		mes "的帮助。";
 		mes "真的非常感谢。";
@@ -804,20 +804,20 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 2) {
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "*叹气……* 我在哪里才能找到第八刻的爱……？你见过冈瑟吗？";
 		mes "啊，也许还没有。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "*叹气* 自从忘记那句歌词后，我就失去了歌唱的心情。我就是……做不到。心灵毫无波动，也没有灵感。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请向^483D8B冈瑟^000000询问^483D8B《第一刻，我坠入爱河》^000000中的^483D8B第八刻的爱^000000。先谢谢你。";
 		close3;
 
 	} else if (gef_bard_q == 3) {
 		cutin "bard_eland02",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么……";
 		mes "你见过";
 		mes "冈瑟吗？";
@@ -826,25 +826,25 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		mes "把背部展示给他。^000000";
 		next;
 		cutin "bard_eland03",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦……？！";
 		mes "那不是……？！";
 		mes "背上写着那首歌的歌词？等等，别动！第八刻的爱是……";
 		mes "我明白了！";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第一刻，我坠入爱河。";
 		mes "第二刻，你给我微笑。";
 		mes "第三刻，我爱慕你的触碰。";
 		mes "第四刻，温柔一吻。";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第五刻，我们改变心意。";
 		mes "花瓣随风飘散。";
 		mes "第六刻，我坠入爱河~";
 		mes "第七刻，你坠入爱河~";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第八刻，我们转身离去……";
 		mes "第九刻，爱重生。";
 		mes "第十刻，我的爱消失。";
@@ -854,78 +854,78 @@ geffen,132,38,3	script	埃伦德#2	51,{
 		else
 			mes "第十二刻，我看到他的新女友？";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "......";
 		next;
 		cutin "bard_eland04",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这……";
 		mes "这不可能。";
 		mes "这首歌应该歌颂爱情，而不是浪漫悲剧！";
 		next;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "歌词一定被改过。冈瑟说过什么吗？！嗯，但谁会改歌词……？";
 		next;
 		input .@inputstr$;
 		if (.@inputstr$ == "基诺·凯蒂") {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！当然！";
 			mes "我想你说得对！";
 			mes "我怎么没想到呢？";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在一切都说得通了。毕竟他曾是无敌单身军的一员。他的改词可能有点刻薄，因为这首歌原本讲的是幸福情侣……";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "抱歉又要请你帮忙，但你旅行时能找到这首歌的原歌词吗？我可以等……";
 			next;
 
 			if(select("不用了，谢谢。:我能做到，所以别哭了。")==1) {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，我想是我要求太多了。抱歉。别担心，我会想别的办法。";
 				set gef_bard_q,5;
 			} else {
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？哦，太谢谢你了！你一定是天使！真正理解诗人内心的天使！";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会想办法报答你！先谢谢你的辛苦~";
 				set gef_bard_q,4;
 			}
 			close3;
 
 		} else if (.@inputstr$ == "冈瑟") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			set gef_bard_q,6;
 			close3;
 		}
 
 		else if (.@inputstr$ == "冈瑟·双重和声") {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "冈瑟？我不认为他会这样做。他总在歌里写‘为你双重和声’之类的句子。而且他太傻了。";
 			set gef_bard_q,6;
 			close3;
 
 		} else if (.@inputstr$ == "埃伦德") {
 			cutin "bard_eland04",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你一定在开玩笑！如果是我改的，我怎么会不知道这首歌讲什么？";
 			set gef_bard_q,6;
 			close3;
 
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "" + .@inputstr$ +"...?";
 			mes "我不认识那个人。也许你误会了什么？*叹气……*";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那句歌词是什么……？";
 			mes "我怎么会忘记";
 			mes "第八刻的爱？";
@@ -935,7 +935,7 @@ geffen,132,38,3	script	埃伦德#2	51,{
 
 	} else if (gef_bard_q == 1) {
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来，";
 		mes "" + @name$ + "~";
 		mes "你想让我";
@@ -977,17 +977,17 @@ geffen,132,38,3	script	埃伦德#2	51,{
 			mes "你是谁？";
 			next;
 			cutin "bard_eland02",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？啊，是的。我只是随风漂泊的诗人。请叫我^483D8B埃伦德^000000，一个希望让你愉快的吟游诗人。";
 			next;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你愿意，我会告诉你我的旅途。请允许我，";
 			mes "演奏一首能让你忘记烦恼的歌。";
 			set gef_bard_q,1;
 			callsub S_StorySong,5;
 
 		} else {
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇啊，呜~";
 			mes "你不能这样无视我！你的欢乐感和浪漫感去哪了？";
 		}
@@ -1001,120 +1001,120 @@ S_StorySong:
 	next;
 	switch(select("给我讲个故事。:能演奏一首歌吗？:呃，改天吧。")) {
 	case 1:
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你喜欢故事吗？想听什么故事？ 我会把知道的都告诉你……当然只为你。*咧嘴笑*";
 		next;
 
 		if(select("新闻和传闻～:取消。")==1) {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			set .@random,rand(1,3);
 			if (.@random == 1) {
 				mes "嗯。那我们聊聊这座城市吉芬？ 你去过这里的酒吧或旅馆吗？";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果我不说，酒吧和旅馆工作的姐妹们……^FF6699充满感官魅力^000000。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "姐姐美丽优雅，带着高贵气质。 妹妹活泼有活力，而且…… ^FF6699娇艳动人^000000.";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过我跑题了。";
 				mes "不过有时，";
 				mes "只是偶尔，";
 				mes "她们没平时那么迷人。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "看来她们已故父亲的灵魂——愿神保佑他孕育了如此美丽的女儿——会不时附身。";
 				next;
 				cutin "bard_eland02",2;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我猜当有人对那些女孩";
 				mes "稍微调情时，她们父亲的灵魂就会接管身体。我应该知道。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "父爱大概永恒，即使到了来世。当然，我也不确定。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				cutin "bard_eland01",2;
 				mes "让我想想……";
 				mes "留意那个常在后面徘徊的可疑商人";
 				mes "他就在吉芬酒吧后面。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "从服装看他一定来自更温暖的梦罗克。所以他戴着兜帽，尽管没有抽绳，好应对这里较凉的天气。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我警告你，别被他说服买下他的兜帽 他卖得贵得离谱。 他绝对不可信。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "最后提一下隐藏在吉芬塔下的失落城市葛帔尼亚。 听说进入葛帔尼亚需要某种条件，但我不确定。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "葛帔尼亚与我之前提到的两位美丽女士有关。听说她们的父亲威廉曾带队进入吉芬塔消灭魔物，却再也没回来。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他那样离开家人很悲惨。但更悲惨的是，他的灵魂会吓跑任何对女孩感兴趣的人。";
 
 			} else if (.@random == 2) {
 				mes "好，我给你讲讲沙漠城市梦罗克的故事。真正的冒险者应该探索过这座城市及周围沙漠。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "斯芬克斯和金字塔是冒险家最喜欢探索的地方。你去过吗？我还没去过，也许哪天会去。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我在梦罗克时发现一名向牧师和女牧师出售剑锤的商人。除此之外，牧师禁止使用任何带刃武器。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我还见到一个精力充沛的小男孩，不停求父亲为他驯服一只妖道。听父亲说，他在梦罗克的一位朋友迷失在艾尔贝塔。";
 				next;
 				cutin "bard_eland02",2;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，我帮父亲办了件事，他给我一个神秘盒子作为回报。打开后我发现一根奇怪羽毛，但不知道它有什么用……";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不知道那人的朋友潘杰·梅耶";
 				mes "是否找到了回家的路……";
 
 			} else if (.@random == 3) {
 				mes "我们聊聊艾尔贝塔吧？有一艘沉船被活动公司改造成冒险者探险的地方。他们似乎赚了很多钱。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "沉船第一次漂到艾尔贝塔附近时，立即被一名艾尔贝塔守卫骑士发现。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那名骑士进入船内，在一间房深处发现一个婴儿。婴儿旁边有一个八音盒。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这个婴儿是沉船唯一的幸存者。他在艾尔贝塔长大，童年时却受人鄙视。现在他过得很好，不过我跑题了。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "至于沉船，我不确定它是不是海盗船。据说穿海盗服的骷髅魔物在残骸中游荡。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "艾尔贝塔的另一谜团是神秘的海底洞窟。据说一名航海者找到可靠路线，正在为冒险者提供通行。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不过海底洞窟似乎并不安全。两队艾尔贝塔守卫骑士已经前往，却还没回来。确实令人担忧。";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但这没阻止我前往那里。我偶然发现一名曾去过那里的冒险者日记，他现在似乎已是著名学者。";
 				next;
 				cutin "bard_eland02",2;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "日记记载了终极剑士和海底洞窟探险的细节。我相信任何去那里寻宝的人都会经历精彩冒险。";
 			}
 
 		} else {
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，真令人失望。不过答应我之后再来，我们可以分享故事和欢乐。";
 		}
 		close3;
 
 	case 2:
 		.@num = getarg(0);
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		if (.@num < 3)
 		mes "你认可我的才华，所以值得听我的歌！想听什么？我什么都能演奏。";
 		else
@@ -1124,7 +1124,7 @@ S_StorySong:
 		switch(select("嗯，什么歌都行。:来首欢快的歌～！:算了……")) {
 
 		case 1:
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (Zeny > 499) {
 				set Zeny, Zeny-500;
 				cutin "bard_eland03",2;
@@ -1149,7 +1149,7 @@ S_StorySong:
 
 		case 2:
 			cutin "bard_eland03",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢快的歌曲……？";
 			mes "嗯……让我看看。";
 			mes "欢快的歌曲，";
@@ -1199,17 +1199,17 @@ S_StorySong:
 				//Expanded version for 2nd variant
 				if (.@num == 2){
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "...";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "...";
 					mes "......";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你知道这首歌讲的是瓦尔哈拉的传说吧？据说不止一个地方曾被用作神圣的荣誉殿堂。";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "但只有神知道这是否真实。古城真的是第五座瓦尔哈拉吗？我们人类";
 					mes "也许永远无法";
 					mes "确定。";
@@ -1243,13 +1243,13 @@ S_StorySong:
 				mes "撼动堡垒。";
 				mes "今日一去不复返！^000000";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，这首歌叫《战场鼓声》，由伊欧洛先生创作。我很喜欢这首歌。";
 
 			} else {
 				// For 3 and 4 cases we set more chance earlier on .@random
 				if (.@num == 3 || .@num == 4){
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					if (Sex == SEX_MALE)
 						mes "英勇的战士，";
 					else
@@ -1268,12 +1268,12 @@ S_StorySong:
 					mes "七，你坠入爱河~";
 					mes "八~^000000";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "八~";
 					mes "八……";
 					mes "接下来是什么……？";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "天啊……！";
 					mes "下一段是什么？！";
 					mes "第八刻的爱是什么？！";
@@ -1281,37 +1281,37 @@ S_StorySong:
 					mes "真是太丢脸了！";
 					mes "";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我……";
 					mes "我无法忍受这份羞耻！";
 					mes "也无法忍受接下来会发生什么的悬念……！";
 					mes "";
 					next;
-					mes "[埃伦德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你是冒险者吧？一定经常旅行？虽然有点不好意思，";
 					mes "但我想请你帮个忙……！";
 					next;
 
 					if(select("当然，没问题。:我不想帮你。")==1) {
 						cutin "bard_eland01",2;
-						mes "[埃伦德]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "非常感谢！";
 						mes "让我想想，谁会知道？";
 						mes "有了！冈瑟！";
 						next;
-						mes "[埃伦德]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "如果你碰巧遇到^483D8B冈瑟·双重和声^000000，请告诉他我的困境。";
 						next;
-						mes "[埃伦德]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "告诉他^483D8B薄荷·埃伦德^000000忘记了歌曲《^483D8B第一刻，我坠入爱河^000000》中的一句歌词，那句叫^483D8B第八刻的爱^000000。";
 						next;
-						mes "[埃伦德]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "拜托了，遇到他就问问第八刻的爱，并立即把歌词告诉我~";
 						if(gef_bard_q==1) set gef_bard_q,2;
 						if(gef_bard_q==21) set gef_bard_q,22;
 
 					} else {
-						mes "[埃伦德]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "*叹气……*";
 						mes "就算性命攸关我也想不起第八段。而现在确实攸关性命~！*哇啊啊~*";
 						if(gef_bard_q==1) set gef_bard_q,7;
@@ -1340,14 +1340,14 @@ S_StorySong:
 			mes "听起来很奇怪。";
 			mes "";
 				next;
-				mes "[埃伦德]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "你、你怎么能这么说，"+ @name$ +"？你以前当过诗人吗？创作新颖原创的旋律很难！";
 			}
 			close3;
 
 		case 3:
 			cutin "bard_eland01",2;
-			mes "[埃伦德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "当然。";
 			mes "只有有心情时";
 			mes "才能最好地享受欢乐。";
@@ -1359,22 +1359,22 @@ S_StorySong:
 
 	case 3:
 		cutin "bard_eland01",2;
-		mes "[埃伦德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯~？";
 		mes "好吧。不过听听好故事或欢快歌曲对你很有益。那就回头见。";
 		close3;
 	}
 }
 
-morocc,134,111,3	script	基诺·凯蒂#3	741,{
+morocc,134,111,3	script	吟游诗人#3::基诺·凯蒂#3	741,{
 	set @name$,strcharinfo(0);
 	if (gef_bard_q == 31) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最后一切都会";
 		mes "好起来，对吧？";
 		mes "我会没事，乔蒂也会没事，她会……哦。";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我刚才只是在";
 		mes "自言自语。";
 		mes "你想从我这里得到什么吗？";
@@ -1385,10 +1385,10 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 		case 1:
 			set .@random,rand(1,3);
 			if (.@random == 1) {
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "许多传说以歌曲流传。神明故事与勇士事迹都被写成歌谣。";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "许多人喜欢听这些歌，因为他们向往浪漫的过去。正因如此，才有我这样的歌手。";
 				next;
 				mes "^3355FF基诺·凯蒂调好吉他琴弦，开始低声歌唱。^000000";
@@ -1428,20 +1428,20 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				mes "成为阿尔贝里希诅咒的";
 				mes "受害者~^000000";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……";
 				mes "^333333*咳咳*^000000";
 				mes "这首古老的歌曲";
 				mes "讲述的是尼伯龙根";
 				mes "之戒。";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "^333333*咳咳*^000000";
 				mes "哈……我现在一天唱不了一首以上。你喜欢吗？^333333*咳咳*^000000";
 				close;
 
 			} else if (.@random == 2) {
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊……";
 				mes "我想唱首歌。每首歌都有自己的故事。^333333*咳咳*^000000";
 				next;
@@ -1464,34 +1464,34 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				mes "好棒，好棒~！";
 				mes "基诺叔叔是世界上最棒的诗人~！乔蒂喜欢基诺叔叔的歌！";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢你，乔蒂。";
 				mes "随时为我的";
 				mes "小公主效劳。";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这首歌讲述了几乎无敌、唯有后背一处弱点的齐格弗里德。唱这首歌让我想起女性对世界的影响。";
 				close;
 
 			} else {
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你想听";
 				mes "一个故事吗？";
 				mes "嗯，让我想想……";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "从梦罗克向西南冒险，就会到达沙漠要塞。你知道吗？要塞建在沙丘上，沙丘是天然防御。";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "从沙漠要塞向南能看到帕罗斯灯塔。灯塔以东是克克魔海边，海滩以北是帕普奇卡森林。";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我没让你觉得无聊吧？我只是想说说汶巴拉村，它就在刚才提到的地方上方。你去过吗？";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "汶巴拉本身很有趣。不过我更感兴趣的是那棵巨树。听说它通往尼芙菲姆……";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想知道……";
 			mes "那棵树会是世界树吗？我能在亡者之域尼芙菲姆见到她吗？";
 			close;
@@ -1501,7 +1501,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			}
 		
 		case 2:
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……我患有慢性病，不能大声说话。嗯……甚至还会咳出一点血。不过除此之外，我非常健康。";
 			next;
 			mes "^3355FF基诺·凯蒂脸上瞬间闪过一丝苦涩。随后他调整琴弦，开始弹奏，低声哼唱。^000000";
@@ -1509,19 +1509,19 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			close;
 		
 		case 3:
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "希望世上的每个人都像你一样善良诚实。那样的话，就不会有自私的争斗了。哈哈哈哈哈～";
 			close;
 		}
 
 	} else if (gef_bard_q == 30) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最后一切都会";
 		mes "没事的，对吧？";
 		mes "我会没事，乔蒂也会没事，她会……哦。";
 		next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我只是";
 		mes "自言自语。";
 		mes "你有什么";
@@ -1532,7 +1532,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 		case 1:
 			set .@random,rand(1,3);
 			if (.@random == 1) {
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊……";
 				mes "我确实想唱首歌。每首歌都有自己的故事。^333333*咳咳*^000000";
 				next;
@@ -1559,17 +1559,17 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				mes "太棒了，太棒了～！";
 				mes "基诺叔叔是世界上最棒的吟游诗人～！乔蒂喜欢基诺叔叔的歌！";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢你，乔蒂。";
 				mes "随时都可以为我的";
 				mes "小公主唱歌。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "这首歌讲的是齐格弗里德，他刀枪不入，唯独后背有一处弱点。唱起这首歌，我就想起女性对世界的影响。";
 				close;
 
 			} else if (.@random == 2) {
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "啊……";
 				mes "我确实想唱首歌。每首歌都有自己的故事。^333333*咳咳*^000000";
 				next;
@@ -1613,40 +1613,40 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				mes "[乔蒂]";
 				mes "啊，基诺叔叔，这不是妈妈总唱的歌吗？请再唱几首！拜托～！";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "你说得对……";
 				mes "她过去总唱这首歌……^333333*咳*^000000 总有人在等待爱人归来……";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "如果你留下了某个人，而那个人正在等你，请一定回到他身边。不回去的话，你会后悔的。";
 				close;
 
 			} else {
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想";
 			mes "听个故事吗？";
 			mes "嗯，让我想想……";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从梦罗克向西南前进，就会到达桑达尔曼要塞。你知道吗？这座要塞建在沙丘上，沙丘就是天然防御。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从桑达尔曼向南可以看到帕罗斯灯塔。灯塔以东是克克魔海边，海滩以北是帕普奇卡森林。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我没让你觉得无聊吧？我只是想告诉你关于乌马拉村的事，它就在刚才说的地方上方。你去过吗？";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "乌马拉本身很有趣。但我真正感兴趣的是乌马拉的巨树。听说它通往尼芙菲姆……";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "我想知道……";
 			mes "那棵树会是世界树尤克特拉希尔吗？我能在死者国度尼芙菲姆见到她吗？";
 				close;
 			}
 		
 		case 2:
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……我患有慢性病，不能大声说话。嗯……甚至还会咳出一点血。不过除此之外，我非常健康。";
 			next;
 			mes "^3355FF基诺·凯蒂脸上瞬间闪过一丝苦涩。随后他调整琴弦，开始弹奏，低声哼唱。^000000";
@@ -1654,43 +1654,43 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			close;
 		
 		case 3:
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "希望世上的每个人都像你一样善良诚实。那样的话，就不会有自私的争斗了。哈哈哈哈哈～";
 			close;
 		}
 
 	} else if (gef_bard_q > 12 && gef_bard_q < 16) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "埃伦德一定在等你。让别人等待会令人痛苦，虽然埃伦德和我这样的人不介意，但能快点还是更礼貌。";
 		close;
 
 	} else if (gef_bard_q == 12) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我猜你已经见过斯凯兹提先生了。";
 		mes "顺便问问，你为什么一脸那样的表情？没找到想找的东西吗？哈哈，能让我看看你的左手吗？";
 		next;
 
 		if(select("给你。:嗯……不了！")==1) {
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你离开的时候，";
 			mes "我想起了那首歌的原歌词。看来它们确实很重要。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "来，我把写有歌词的信交给你，带给埃伦德。我也该给你我的印章，这样埃伦德就知道是我。你不介意吧？";
 			next;
 
 			switch(select("是的，我介意！:不，我不介意。")) {
 
 			case 1:
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，对了。";
 				mes "你已经有埃伦德的印章了。好吧，既然你不需要，我也没办法。";
 				set gef_bard_q,13;
 				close;
 			
 			case 2:
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在，让我想想……";
 				mes "应该怎么唱来着？";
 				mes "……噜啦啦……";
@@ -1719,10 +1719,10 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				specialeffect2 EF_POISONREACT2;
 					mes "^3355FF歌曲结束后，基诺对你微笑。你的手腕感到一阵剧痛。在银色新月原本所在的位置，你看到一个小小的黑十字架。^000000";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "怎么样，喜欢吗？我确定埃伦德一定会喜欢。哈哈哈哈哈～^333333*咳咳*^000000";
 				next;
-				mes "[基诺·凯蒂]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想道歉。";
 				mes "不是故意让你等，只是刚想起歌曲的旧歌词。现在快去找埃伦德，我确定他在等你。";
 				next;
@@ -1733,7 +1733,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			}
 		
 		} else {
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……？";
 			mes "没什么好怕的。";
 			mes "我是说，我又不会咬人。";
@@ -1741,34 +1741,34 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 		}
 
 	} else if (gef_bard_q == 10) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不是已经离开了吗？";
 		mes "我确定你能在朱诺的书店找到歌词。";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想埃伦德更了解书店，他应该能告诉你在朱诺哪里找。为什么不去问问埃伦德？";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果不介意，请再来听听这个可怜吟游诗人的歌。我会为你准备一首歌。";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别担心我的健康。我骨子里是吟游诗人，忍不住要为听众歌唱。";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还要谢谢你帮助埃伦德。他可能有点爱抱怨，但人很好。";
 		close;
 
 	} else if (gef_bard_q == 11) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "银色印章……？";
 		mes "欢迎加入流浪者俱乐部。我得说，银色新月很适合你。";
 		next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有了那枚印章，斯凯兹提先生就会允许你阅读他收藏的北欧歌曲书籍。";
 		close;
 
 	} else if (gef_bard_q > 19 && gef_bard_q < 28) {
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "朋友，";
 		mes "你找我";
 		mes "有什么事？";
@@ -1776,7 +1776,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 		if (gef_bard_q == 24) {
 			mes "^3355FF你给哭泣的小女孩糖果，并向基诺·凯蒂讲述了歌词的问题。^000000";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……";
 			mes "埃伦德不喜欢我为《第一刻，我坠入爱河》写的歌词，这让我很受伤。不过我想他骨子里是个浪漫的人。";
 			next;
@@ -1786,10 +1786,10 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			mes "原歌词";
 			mes "吗？";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "原歌词糟透了。我脑子里没有空间记住这种浪漫废话。^333333*哭泣*……^000000";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "浪漫是愚蠢梦想家的玩意！";
 			mes "我拒绝歌唱，甚至拒绝记住这种空洞的歌词！";
 			next;
@@ -1800,7 +1800,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			mes "我都要";
 			mes "哭了……";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……";
 			mes "对不起，小公主。";
 			mes "不会再这样了。";
@@ -1808,21 +1808,21 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			mes "以后会努力";
 			mes "做个好人。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "*叹气……*";
 			mes "好，听着。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要找歌曲原词，你需要一本旧版《埃达》歌词书。所有新书都不再收录原版。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想知道……";
 			mes "埃伦德怎么会知道原歌词？不管怎样，很抱歉发生这些事。我想我有点厌倦了。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你知道吗，也许你该去朱诺。书街上有一家小书店，应该能在那里找到这首歌。";
 			next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "^333333^333333*咳咳*^000000^000000";
 			mes "为、为什么我要受苦？我作为吟游诗人在世上的最后日子就要到了吗？我感觉自己好可悲……";
 			set gef_bard_q,10;
@@ -1832,43 +1832,43 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			switch(select("给我讲个故事。:唱首歌。:没什么。")) {
 
 			case 1:
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "故事？嗯……";
 				mes "我的喉咙很痛，";
 				mes "但如果你愿意听，";
 				mes "我会尽力";
 				mes "讲个故事。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "你知道奥丁之子巴德尔是怎么死的吗？有个故事与他执着的母亲";
 				mes "和邪神洛基有关。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "一天夜里，巴德尔梦见自己被投入地狱深渊。听说此事后，巴德尔的母亲弗丽嘉陷入恐慌。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "为了防止儿子遭遇悲剧，她让世上的每件物品都发誓不会伤害巴德尔。";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "^333333*咳咳*^000000他们聚在一起庆祝——^333333*喘息*^000000^333333^333333*咳*^000000^000000……";
 				next;
 				mes "[乔蒂]";
 				mes "基诺叔叔……？";
 				mes "你还好吗……？";
 				next;
-			mes "[基诺·凯蒂]";
+			mes "[" + strnpcinfo(1) + "]";
 				mes "……哈……";
 				mes "……哈……";
 				mes "抱歉，我想我不能再说太久了。";
 				close;
 			
 			case 2:
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉，我现在不想唱歌。希望你能理解。我想把人生最后一首歌唱给乔蒂……";
 				close;
 			
 			case 3:
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你没事";
 		mes "找我吗？";
 		mes "真遗憾。";
@@ -1946,7 +1946,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 			mes "[神秘吟游诗人]";
 				mes "大家叫我基诺·凯蒂。我是一名流浪诗人，想重新找回愿望与梦想。";
 				next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 				mes "下次见面时，我会告诉你我的所闻所感。也就是说，我愿意和你共度时光。";
 				set gef_bard_q,22;
 				close;
@@ -1958,7 +1958,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				mes "[神秘吟游诗人]";
 				mes "大家叫我基诺·凯蒂。我是一名流浪诗人，想重新找回愿望与梦想。";
 				next;
-		mes "[基诺·凯蒂]";
+		mes "[" + strnpcinfo(1) + "]";
 				mes "下次见面时，我会告诉你我的所闻所感。也就是说，我愿意和你共度时光。";
 				set gef_bard_q,23;
 				close;
@@ -1972,7 +1972,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 				next;
 
 				if(select("我在找基诺·凯蒂……:没什么，真的。")==1) {
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你怎么";
 					mes "知道我的名字？";
 					mes "啊，真荣幸，";
@@ -1981,7 +1981,7 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 					next;
 					mes "^3355FF你给哭泣的女孩一些糖果，并讲述关于《第一刻，我坠入爱河》歌词的故事。^000000";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯……";
 					mes "埃伦德不喜欢我为《第一刻，我坠入爱河》写的歌词，这让我很受伤。不过我想他骨子里是个浪漫的人。";
 					next;
@@ -1991,10 +1991,10 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 					mes "原歌词";
 					mes "吗？";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "原歌词糟透了。我脑子里没有空间记住这种浪漫废话。^333333*哭泣*……^000000";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "浪漫是愚蠢梦想家的玩意！我拒绝歌唱，甚至拒绝记住这种空洞的歌词！";
 					next;
 					mes "[乔蒂]";
@@ -2004,25 +2004,25 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 					mes "这让我想";
 					mes "哭……";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哦……";
 					mes "对不起，公主。我不会再这样了。基诺叔叔以后会努力做个好人。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "*唉……*";
 					mes "好了，听我说。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你需要一本收录艾达歌词的旧书，才能找到歌曲的原词。新书已经不再收录原版了。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我想知道……";
 					mes "埃伦德怎么会知道原歌词？无论如何，真抱歉给你添了这么多麻烦。我想我只是有些厌倦了。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你可以去朱诺看看。书街上有一家小书店，你也许能在那里找到这首歌。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "^333333^333333*咳咳*^000000^000000";
 					mes "为、为什么我要受苦？我作为吟游诗人在世上的最后日子就要到头了吗？我感觉自己真可悲……";
 					set gef_bard_q,10;
@@ -2038,13 +2038,13 @@ morocc,134,111,3	script	基诺·凯蒂#3	741,{
 
 			} else {
 				if (Sex == SEX_MALE) {
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你真是个好青年。我会记住你的名字，也希望你能记住我的名字。";
 					next;
 					mes "[神秘吟游诗人]";
 					mes "我叫基诺·凯蒂，是一名四处流浪、希望重新找回愿望与梦想的诗人。";
 					next;
-					mes "[基诺·凯蒂]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "下次见面时，我会告诉你我听到和经历的一切。也就是说，我愿意与你共度时光。";
 					set gef_bard_q,20;
 					close;
@@ -2129,7 +2129,7 @@ morocc,132,111,3	script	小女孩#Jorti	703,{
 	}
 }
 
-yuno_in01,172,100,3	script	老人#bq1	712,{
+yuno_in01,172,100,3	script	书房伯伯#bq1::老人#bq1	712,{
 	if (gef_bard_q > 11 && gef_bard_q < 20) {
 		mes "[斯凯兹提·邦丁]";
 		mes "你找到想找的东西了吗？虽然我们这里只有落满灰尘的旧书，但希望你常来。也请代我向你的吟游诗人朋友问好。";
@@ -2464,14 +2464,14 @@ yuno_in01,173,92,0	script	伊登的苹果	111,{
 	}
 }
 
-payon,181,172,3	script	冈瑟·双重和声#4	51,{
+payon,181,172,3	script	吟游诗人#4::冈瑟·双重和声#4	51,{
 	set @name$,strcharinfo(0);
 	if (gef_bard_q == 2 || gef_bard_q == 22) {
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈~！";
 		mes "听我说，听我说！";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的朋友告诉我这首歌是关于住在斐扬的一位商人，大家都喜欢它，尤其是因为由我来演唱，你知道……";
 		next;
 		mes "[" + @name$ + "]";
@@ -2479,69 +2479,69 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 		mes "你是……";
 		mes "冈瑟·双重和声吗？";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……那位商人穷得甚至没有——嗯？哦，对，是我。怎么了？";
 		next;
 		mes "^3355FF你向他解释自己来此是为了寻找遗失的歌词。^000000";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊——我明白了。";
 		mes "那么，那首歌的名字";
 		mes "是什么来着？";
 		next;
 		input .@inputstr$;
 		if (.@inputstr$ == "第一刻，我坠入爱河") {
-			mes "[冈瑟·双重和声]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊~ 那首歌……？";
 			mes "顺便问一下，是谁让你";
 			mes "来打听这首歌的？";
 			next;
 			input .@inputstr$;
 			if (.@inputstr$ == "薄荷·埃伦德") {
-				mes "[冈瑟·双重和声]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "没错，那是我的朋友！薄荷·埃伦德！我们曾经非常亲近，所以我会为朋友薄荷·埃伦德写下歌曲的每个字，请转过身去！";
 				next;
 				mes "^3355FF冈瑟在你的背上奋笔疾书。^000000";
 				next;
-				mes "[冈瑟·双重和声]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好了！现在你可以回去找薄荷·埃伦德，给他看背上的字，他就能看到我写的内容并想起歌词了！";
 				if (gef_bard_q == 2) set gef_bard_q,3;
 				if (gef_bard_q == 22) set gef_bard_q,23;
 				close;
 
 			} else {
-				mes "[冈瑟·双重和声]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "不不不，我不认识那个名字的人，你最好再确认一下委托人的名字，好吗？";
 				close;
 			}
 
 		} else {
-			mes "[冈瑟·双重和声]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不不不不，我不知道有那首歌，甚至可能根本不存在。你应该再确认歌曲名称后告诉我，好吗？";
 			close;
 		}
 
 	} else if (gef_bard_q == 6 || gef_bard_q == 26) {
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你又回来了！";
 		mes "咦，我写在你背上的歌？等等，让我想想——啊，对了，我想起来了！";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我写在你背上的歌词是凯蒂先生写的，他是我的偶像、我的英雄！那首歌出自 ^228B22基诺·凯蒂^000000！";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我希望有一天也能成为像他一样伟大的吟游诗人！";
 		close;
 
 	} else {
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈~！";
 		mes "听我说，听我说！";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的朋友告诉我这首歌是关于住在斐扬的一位商人，大家都喜欢它，尤其是因为由我来演唱，你知道……";
 		next;
-		mes "[冈瑟·双重和声]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，对了……！";
 		mes "你想听";
 		mes "我的歌还是故事？";
@@ -2550,7 +2550,7 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 		next;
 
 		if(select("表现出兴趣。:忽略他。")==1) {
-			mes "[冈瑟·双重和声]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "耶~！我就知道！";
 			mes "那么你想听";
 			mes "歌曲还是故事？";
@@ -2559,7 +2559,7 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 			case 1:
 				switch(rand(1,3)) {
 				case 1:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "冈瑟歌唱！";
 					mes "冈瑟舞蹈！";
 					mes "这首歌的标题是~";
@@ -2604,12 +2604,12 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 					mes "他从未卖掉它，从未卖掉";
 					mes "那张珍贵的卡片~^000000";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "这是关于富有的金先生，以及他从贫穷到富有、再从富有到贫穷、再到富有的古老故事。是真的还是虚构的？别问我！我也不知道！";
 					close;
 
 				case 2:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "*清清嗓子*";
 					mes "冈瑟歌唱";
 					mes "世界树尤克特拉希尔~";
@@ -2657,13 +2657,13 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 					mes "将最后一次吹响";
 					mes "宣告诸神黄昏。^000000";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "这是一个非常古老的故事……";
 					mes "它是真实还是虚构？别问我，我也不知道~！";
 					close;
 
 				case 3:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我要唱一首卢克的歌，你知道卢克吧，他是那个时代最伟大的吟游诗人之一。不过我稍微改了歌词。";
 					next;
 					mes "^228B22我在抽屉里找到了它。";
@@ -2687,10 +2687,10 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 					mes "我从未把这封信交给她。";
 					mes "但我们都太骄傲。";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你心里有谁吗？有吗？如果你写了情书，一定要寄出去表达自己。";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "如果你写了永远不会寄出的情书，就把它们扔掉。把你该死的自尊也扔掉。";
 					close;
 				}
@@ -2698,53 +2698,53 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 			case 2:
 				switch(rand(1,3)) {
 				case 1:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯，你尝过";
 					mes "可莫多奶酪吗？";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "只有在可莫多才能尝到它，但需要强健的胃才能消化。哦！而且这种奶酪还藏着秘密！";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "吃下它后，^228B22也许^000000能免疫来自异世界的毁灭之剑的力量！";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "还没尝过的话，为什么不去试试？我以前尝过一次。味道还不错，但后来我晕倒了。哈哈哈~！";
 					close;
 
 				case 2:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "前几天我经过普隆德拉，来到以前的剑士训练场。";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我看到一个孩子非常努力地训练，他没注意到我在看，所以我想他一定非常认真！";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "他看起来想成为职业剑士，却又把装备送给其他初心者。";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "看他一遍又一遍做同样的事让我感到无聊，不过如果我介绍他，魔物研究组织应该会喜欢他。";
 					close;
 
 				case 3:
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "你去过姜饼城吗，";
 					mes "那个全年下雪的地方？";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "那里有一个叫";
 					mes "雪雪的雪人，见到他你就会发现许多事，比如他会说话！真奇怪又神秘~！";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "他有一个能不断变出礼物的神秘袋子，还有一段与寒冷小镇和邪恶女巫有关的神秘过去。";
 					next;
-					mes "[冈瑟·双重和声]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "不过没关系，他被一位炼金术士救活了。想了解更多的话，就去姜饼城看看，好吗？";
 					close;
 				}
 			
 			case 3:
-				mes "[冈瑟·双重和声]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你现在就要离开，连听我一点点都不愿意吗？好吧，我没事，但答应我还会回来听我的一首歌，好吗？";
 				close;
 			
@@ -2754,7 +2754,7 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 			mes "[" + @name$ + "]";
 			mes "...";
 			next;
-			mes "[冈瑟·双重和声]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，你在无视我吗？好吧，我不介意！除非你遇到了无法说话的问题，那我真的非常抱歉。";
 			close;
 		}
@@ -2763,45 +2763,45 @@ payon,181,172,3	script	冈瑟·双重和声#4	51,{
 
 }
 
-yuno_in04,20,123,7	script	马林·普提尔#bq	95,{
+yuno_in04,20,123,7	script	注册人员#bq::马林·普提尔#bq	95,{
 //set @check = GetGlobalVar "040708_god2"
-	mes "[马林·普提尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	if (god_brising == 3) {
 		mes "欢迎来到";
 		mes "魔物研究";
 		mes "组织。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们根据冒险者提供的信息研究魔物，以便有效应对野外的魔物。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们接受任何与魔物有关的信息，";
 		mes "如果你有消息或资料，请随时提交给我。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可以随时使用";
 		mes "房间里的报告表格。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦……？";
 		mes "你刚才说";
 		mes "正在寻找";
 		mes "某个人？嗯……";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果他是本组织的";
 		mes "注册成员，";
 		mes "我可以帮助你。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "名字是什么？";
 		mes "赫米特·查尔斯……？";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我找到他了。";
 		mes "呃，不过他申请加入时没有提交全部所需信息……";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，他是盗贼。";
 		mes "那就解释得通了。你要看看";
 		mes "我们拥有的全部信息吗？";
@@ -2816,10 +2816,10 @@ yuno_in04,20,123,7	script	马林·普提尔#bq	95,{
 		mes "性别：盗贼";
 		mes "地址：普隆德拉你妈街";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很遗憾，我们没有更多信息。但希望这些能对你有所帮助。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，去盗贼公会看看也许是个好主意。";
 		mes "也许他们能帮助你。";
 		close;
@@ -2829,54 +2829,54 @@ yuno_in04,20,123,7	script	马林·普提尔#bq	95,{
 	mes "魔物研究";
 	mes "组织。";
 	next;
-	mes "[马林·普提尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们根据冒险者提供的信息研究魔物，以便有效应对野外的魔物。";
 	next;
-	mes "[马林·普提尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们接受任何与魔物有关的信息，如果你有消息或资料，请随时提交给我。";
 	next;
-	mes "[马林·普提尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你可以随时使用房间里的报告表格。";
 	if (gef_bard_q == 4 || gef_bard_q == 24) {
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "本组织的冒险者？啊，你说你在找一位吟游诗人？";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，我们有几位吟游诗人成员会定期发送魔物相关信息。";
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我还听说吟游诗人帮助学者在野外设置公告牌，为新冒险者指示地点。可以告诉我你要找的人的全名吗？";
 		next;
 		input .@inputstr$;
 		if (.@inputstr$ == "薄荷·埃伦德") {
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "薄荷·埃伦德……";
 			mes "哦，我记得他。他前段时间说要往南方去，现在住在吉芬。";
 			next;
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他是个善良友好的人。埃伦德总是尽力提供我们所需的信息。有机会的话，请代我向他问好。";
 			close;
 
 		} else if (.@inputstr$ == "基诺·凯蒂") {
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "基诺·凯蒂，基诺·凯蒂……哦，找到了。他寄来一封信，说‘在找到真正的自己之前，我会留在沙漠。’";
 			next;
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他看起来不太健康，但我想他还在旅行。去梦罗克找找他吧，有机会请代我问好。";
 			close;
 
 		} else if (.@inputstr$ == "冈瑟·双重和声") {
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你是冈瑟的朋友？哈哈，他很有趣，只是有点容易激动。让我看看，冈瑟，冈瑟……";
 			next;
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这里写着他想去斐扬和艾尔贝塔看看。所以他应该在其中一个地方。抱歉我无法说得更具体。";
 			close;
 
 		} else {
-			mes "[马林·普提尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes " " + .@inputstr$ + "……？";
 			mes "嗯……";
 			mes "抱歉，我们没有那个人的记录。";
@@ -2885,7 +2885,7 @@ yuno_in04,20,123,7	script	马林·普提尔#bq	95,{
 
 	} else {
 		next;
-		mes "[马林·普提尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们正在研究这个世界的魔物，希望帮助每一位踏上旅途的冒险者。";
 		close;
 	}

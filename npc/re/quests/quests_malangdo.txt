@@ -27,46 +27,46 @@
 
 // Utility NPCs :: cat_merchant
 //============================================================
-mal_in02,134,31,5	script	投资猫助手	505,{
+mal_in02,134,31,5	script	投资咨询猫::投资猫助手	505,{
 	if (MaxWeight - Weight < 100 || checkweight(1201,1) == 0) {
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带着沉重的货物。你是商贩吗？这里没有商贩。";
 		close;
 	}
 	if (ep13_yong1 < 10) {
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！";
 		mes "你是来咨询投资的吗？";
 		mes "你来对地方了。";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我来这里是为了投资猫爪商会。";
 		mes "呃——我的意思是，我是来帮助你这样的诚实之人的。";
 		mes "嘿嘿嘿~";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一直在这里和你们人类交谈，已经记不清所有事情了。";
 		mes "但我想先确认……等等。";
 		next;
 		mes "闻闻……闻闻……";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊？！";
 		mes "你对猫爪商会了解不多，对吧？";
 		mes "嗯，你闻起来确实不像猫。";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好！！";
 		mes "你来这里投资猫爪商会，做了正确的决定~";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "首先，想开户需要10个绵绵岛风味罐头。";
 		next;
 		while(1) {
 			switch(select("开户:询问福利:取消")) {
 			case 1:
 				if (countitem(12636) < 10) {
-					mes "[投资猫助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "嗯！";
 					mes "我很想免费为你开户，";
 					mes "但你知道，这是为了";
@@ -75,54 +75,54 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 				}
 				delitem 12636,10; //Malang_Sp_Can
 				set ep13_yong1,10;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好！";
 				mes "在这里写下名字~然后";
 				mes "在那里按下掌印，";
 				mes "啊！~你叫什么？";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes strcharinfo(0)+"，原来是你呀～";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "姓名："+strcharinfo(0);
 				mes "账户数量：10";
 				mes "好了！登记完成！";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你现在拥有账户了。";
 				mes "下次可以用一定数量的罐头追加投资。";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我希望获得大量投资，";
 				mes "这样你也能享受更多服务。";
 				mes "我也希望我们猫爪商会能赚很多钱。";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "下次投资见~";
 				close;
 			case 2:
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你想知道投资的福利吗？";
 				mes "其实，我们是一小群猫，思维方式和人类不同。";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "福利取决于你在我们服务中的投资金额。";
 				mes "包括更多传送点、额外仓库位置以及商品和服务的价格折扣。";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我保证，商会贸易发展后你也会受益。";
 				next;
 				break;
 			case 3:
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊~你就要走了吗？";
 				mes "T_T~请开户。";
 				close;
 			}
 		}
 	} else if (ep13_yong1 < 20000) {
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我见过太多人，记不住所有人……";
 		mes "但我想先确认一下……等等。";
 		mes "打扰了！";
@@ -131,39 +131,39 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 		next;
 		if (ep13_yong1 < 10000) {
 			set .@cans,10;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是熟悉的味道！！";
 			mes "如果是这样……！！";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是来投资的！！";
 			mes "好！～～很高兴见到你～";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从你的气味来看~你少于10000个账户。";
 			mes "在此之前，投资10个罐头就能获得一个账户。";
 		} else {
 			set .@cans,20;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好强烈的气味！！";
 			mes "那一定是！！";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "VIP投资者！！！！！！";
 			mes "你是来投资的吗？欢迎！";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拥有超过10000个账户的VIP投资者";
 			mes "可以用20个罐头再获得一个账户。";
 			mes "一笔好投资！";
 		}
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你要做什么？";
 		next;
 		switch(select("投资:查看账户数量:取消")) {
 		case 1:
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦~谢谢你的投资~";
 			mes "一次最多可获得10个账户。";
 			mes "很棒吧？";
@@ -171,28 +171,28 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 			next;
 			input .@input;
 			if (.@input == 0) {
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "下次再投资吧~";
 				close;
 			} else if (.@input > 10) {
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一次最多可获得10个账户~";
 				close;
 			}
 			set .@required, .@input*.@cans;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总计" + .@input + "个账户，对吧？";
 			mes "你需要的罐头数量是"+.@required+"个。";
 			mes "要继续吗？";
 			next;
 			if(select("是:否") == 2) {
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦？错了吗？真奇怪。";
 				mes "请再检查一次~";
 				close;
 			}
 			if (countitem(12636) < .@required) {
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊啊啊！";
 				mes "你的罐头不够。";
 				mes "你知道的，我是一只很忙的猫。";
@@ -201,11 +201,11 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 			if (ep13_yong1 < 10000) {
 				delitem 12636,.@required; //Malang_Sp_Can
 				set ep13_yong1, ep13_yong1+.@input;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes .@input+"个账户已完成投资。";
 				mes "谢谢你的帮助~";
 				next;
-				mes "[投资猫助手]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "等我们获得更多罐头投资，";
 				mes "我们的商团会进一步壮大。";
 				mes "你也能享受服务~";
@@ -215,13 +215,13 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 				if (.@input + ep13_yong1 > 20000) {
 					delitem 12636,.@required; //Malang_Sp_Can
 					set ep13_yong1,20000;
-					mes "[投资猫助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "最多可以拥有20000个账户";
 					mes "根据商团政策……";
 					mes strcharinfo(0)+"的账户数量增加到了 20,000 个。";
 					mes "非常感谢你的投资~";
 					next;
-					mes "[投资猫助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "现在，"+strcharinfo(0)+"，你不能再追加投资了。";
 					mes "但你仍然可以把罐头捐给商团。";
 					mes "非常感谢~";
@@ -229,11 +229,11 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 				} else {
 					delitem 12636,.@required; //Malang_Sp_Can
 					set ep13_yong1, ep13_yong1+.@input;
-					mes "[投资猫助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes .@input+"个账户已完成投资。";
 					mes "谢谢你的帮助~";
 					next;
-					mes "[投资猫助手]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "有了你对罐头的大量投资，";
 					mes "我们能更早实现目标。";
 					mes "再次感谢。";
@@ -241,63 +241,63 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 				}
 			}
 		case 2:
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你想查看账户数量？嗯，让我看看~";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "姓名："+strcharinfo(0);
 			mes "账户数量："+ep13_yong1;
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			if (ep13_yong1 < 10000)
 				mes "明白了吗？";
 			else
 				mes "你进行了许多投资。谢谢你。";
 			close;
 		case 3:
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "下次再投资吧~";
 			close;
 		}
 	} else if (ep13_yong1 >= 20000) {
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes strcharinfo(0) + "，欢迎～";
 		mes strcharinfo(0) + "～你一到，我就感觉到了。";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想捐赠吗？";
 		next;
 		if(select("捐赠:否") == 2) {
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~那就在这里玩得开心~";
 			close;
 		}
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，谢谢你，"+strcharinfo(0)+"~!";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes strcharinfo(0)+"～多亏你的帮助，";
 		mes "这些罐头会分发给";
 		mes "米德加尔特地区的猫咪~";
 		next;
-		mes "[投资猫助手]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "罐头捐赠数量最少20个，最多10000个。";
 		next;
 		input .@input;
 		if (.@input < 20 || .@input > 10000) {
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "罐头捐赠数量最少20个，最多10000个。";
 			close;
 		} else if (countitem(12636) < .@input) { // Malang_Sp_Can
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？你的罐头不够。";
 			close;
 		} else {
 			delitem 12636,.@input; //Malang_Sp_Can
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！谢谢你～";
 			next;
-			mes "[投资猫助手]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "亲爱的"+strcharinfo(0)+" ~";
 			mes "我只能提供速度激发";
 			mes "和天赐祝福。";
@@ -309,12 +309,12 @@ mal_in02,134,31,5	script	投资猫助手	505,{
 	}
 }
 
-malangdo,184,139,4	script	仓库管理员#mal	560,{
-	mes "[仓库管理员]";
+malangdo,184,139,4	script	守仓员#mal::仓库管理员#mal	560,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嘿，看来你想清空背包里的东西。";
 	mes "想免费打开仓库吗？";
 	next;
-	mes "[仓库管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈哈~开玩笑的，当然不是免费的。";
 	mes "你把我当成什么了？";
 	next;
@@ -328,7 +328,7 @@ malangdo,184,139,4	script	仓库管理员#mal	560,{
 		set .@i, select("用罐头支付——2单位:用Zeny支付——3000z");
 	}
 	if(!callfunc("F_CanOpenStorage")){
-		mes "[仓库管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，等等！！";
 		mes "使用仓库服务需要^FF0000基本技能6级^000000！！";
 		close;
@@ -336,7 +336,7 @@ malangdo,184,139,4	script	仓库管理员#mal	560,{
 	switch(.@i) {
 	case 1:
 		if (countitem(12636) < .@cans) {
-			mes "[仓库管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的罐头不够。..";
 			close;
 		}
@@ -344,14 +344,14 @@ malangdo,184,139,4	script	仓库管理员#mal	560,{
 		break;
 	case 2:
 		if (Zeny < .@zeny) {
-			mes "[仓库管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的Zeny不够……";
 			close;
 		}
 		set Zeny, Zeny-.@zeny;
 		break;
 	}
-	mes "[仓库管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "谢谢你。";
 	close2;
 	openstorage;
@@ -360,44 +360,44 @@ malangdo,184,139,4	script	仓库管理员#mal	560,{
 
 // Malangdo Island :: ma_tomas
 //============================================================
-mal_in02,28,56,5	script	塞缪尔#mal	495,{
-	mes "[塞缪尔]";
+mal_in02,28,56,5	script	夏穆耶#mal::塞缪尔#mal	495,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，你是说上将……嗯，你是说我们的村长？";
 	mes "最好别打扰他，他总是很忙。";
 	if (ma_tomas == 0)
 		close;
 	next;
-	mes "[塞缪尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "^0000FF不过，想和他说话，总得打扰他一下……^000000";
 	mes "他只是一直很忙。";
 	next;
 	switch(select("上将……？:村长？")) {
 	case 1:
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，在定居这里之前，他曾是这艘船的上将~";
 		mes "如太阳般闪耀的金色眼睛！！！";
 		mes "在粗犷海风中飘动的银色胡须！！！";
 		next;
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈~真帅！！！！";
 		mes "我被那种魅力吸引，乘上了蝴蝶号！";
 		mes "这就是所谓男人的浪漫。呼呼~";
 		emotion ET_SHY;
 		next;
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……自从定居绵绵岛后，他忙于村长工作，指甲似乎变差了一点。但他的眼睛还是一样。";
 		close;
 	case 2:
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，既然这里是绵绵岛，他会不会是绵绵岛村长……？！";
 		mes "不，虽然这么说有点好笑……";
 		mes "绵绵岛村……嗯……这个……也不对……";
 		mes "嗯，这件事没那么重要。";
 		next;
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然上将和村长肯定有很多区别，但无论如何都离不开托马斯上将。";
 		next;
-		mes "[塞缪尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不只是我，大家都会这么想。";
 		mes "因此他很辛苦。";
 		close;
@@ -631,7 +631,7 @@ mal_in02,22,62,3	script	托马斯#mal	556,{
 	end;
 }
 
-mal_in02,182,61,3	script	会议主持人#mal	421,{
+mal_in02,182,61,3	script	集会主席#mal::会议主持人#mal	421,{
 	if (ma_tomas == 0) {
 		mes "[会议主席]";
 		mes "请安静，例会马上就要开始了~";
@@ -697,19 +697,19 @@ mal_in02,182,61,3	script	会议主持人#mal	421,{
 	close;
 }
 
-mal_in02,178,66,5	script	斯科特福德#mal	422,{
+mal_in02,178,66,5	script	史高弗德#mal::斯科特福德#mal	422,{
 	if (ma_tomas == 0) {
-		mes "[斯科特福德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "参加会议是重要的事。";
 		mes "所有负责的猫都应该参加，这是理所当然的。";
 		close;
 	} else if (ma_tomas == 1) {
-		mes "[斯科特福德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "会议马上开始。";
 		mes "所以，嘘～～";
 		close;
 	} else if (ma_tomas == 2) {
-		mes "[斯科特福德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，尊敬的主席。";
 		mes "关于与 星星糖 的沟通，我们有 比斯科特，对吧？";
 		next;
@@ -726,32 +726,32 @@ mal_in02,178,66,5	script	斯科特福德#mal	422,{
 		emotion ET_WRAP, getnpcid(0, "库恩#mal");
 		close;
 	}
-	mes "[斯科特福德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "让我们安静听听其他人的发言。";
 	next;
-	mes "[斯科特福德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "...虽然这么说，但我总觉得也该说点什么。";
 	mes "所以我总是第一个举手！";
 	close;
 }
 
-mal_in02,177,58,7	script	库恩#mal	546,{
+mal_in02,177,58,7	script	昆恩#mal::库恩#mal	546,{
 	if (ma_tomas == 0) {
-		mes "[库恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我很忙，但总会参加这场会议。";
 		mes "希望会议时间不要影响我的工作。";
 		close;
 	} else if (ma_tomas == 1) {
-		mes "[库恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我很期待今天的议题。";
 		close;
 	} else if (ma_tomas == 2) {
-		mes "[库恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "斯科特福德 总是积极参加会议。";
 		mes "据说他会成为这场会议的下一任主席。";
 		close;
 	} else if (ma_tomas == 3) {
-		mes "[库恩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，德沃尔博士的研究进展如何？";
 		next;
 		mes "[会议主席]";
@@ -767,55 +767,55 @@ mal_in02,177,58,7	script	库恩#mal	546,{
 		emotion ET_WRAP, getnpcid(0, "语言学家德沃尔#mal");
 		close;
 	}
-	mes "[库恩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "希望德沃尔博士的研究早日有成果。";
 	mes "我也对这种语言很感兴趣！";
 	close;
 }
 
-mal_in02,174,64,5	script	语言学家德沃尔#mal	549,{
+mal_in02,174,64,5	script	语言学家 德伯拉#mal::语言学家德沃尔#mal	549,{
 	if (ma_tomas < 4) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们大多数猫咪都很有语言天赋。";
 		mes "这对商人的繁荣影响很大。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为……懂得更多外语，就能在更多地区做生意。";
 		close;
 	} else if (ma_tomas == 4) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大家好。";
 		mes "我是语言学家德沃尔，负责研究海星语言。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "先说结论。自从我们在绵绵岛定居后开始^0000FF海星语言研究^000000以来，目前还没有显著成果。";
 		emotion ET_PROFUSELY_SWEAT;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，我们勉强可以和^6666cc比斯科特^000000交谈，但这离解决问题的预期结果还很远。";
 		next;
 		mes "[库恩]";
 		mes "那么，上次找到的书研究得怎么样了？";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们原以为这本书是用海星语言写的。但问过 比斯科特 后才知道，它其实是学习海星语言的教材……";
 		next;
 		mes "[库恩]";
 		mes "那对研究海星语言不是很有帮助吗？";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也这么想，但按书上尝试对话后，发现他们完全听不懂。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看这本书第一页的文字，有一句似乎是简短的对话。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "比如，问题是“Как си？”，回答是“Аз съм добре, благодаря. А Вие？”";
  		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我试着这样和比斯科特交谈，却没有得到回应。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "除此之外，另一方也在研究这本书本身的存在。";
 		next;
 		mes "[会议主席]";
@@ -826,105 +826,105 @@ mal_in02,174,64,5	script	语言学家德沃尔#mal	549,{
 		emotion ET_WRAP, getnpcid(0, "地质学家玛丽#mal");
 		close;
 	} else if (ma_tomas < 18) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……";
 		mes "海星语言是我研究生涯中最困难的课题。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我必须尽快解开海星语言之谜。";
 		mes "看到大家变成这样，我感到很羞愧。";
 		emotion ET_PROFUSELY_SWEAT;
 		close;
 	} else if (ma_tomas == 18) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错……";
 		mes "语言世界真美丽又神秘。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谜团包括为什么同一种生物使用完全不同的语言，或相距遥远的种族却使用相似语言。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我加入这个小组，是因为我认为四处旅行比坐在桌前读书更有助于研究。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但这个海星实在太神秘了。";
 		mes "我完全无法理解。";
 		mes "我甚至怀疑它是否真的是‘语言’。";
 		emotion ET_PROFUSELY_SWEAT;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我尝试了各种方法，仍然毫无头绪。";
 		mes "比斯科特 已经习惯我们的语言，进行简短交流是可能的，但还不能称为对话。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样研究让我很沮丧，但必须解决这个问题才能处理其他事项。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看不出问题在哪里！";
 		mes "我可是曾被称为语言大师的人！";
 		mes "没想到会遇到这种无法理解的东西！";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇啊啊啊啊！！！！";
 		mes "我看不出问题在哪里！";
 		emotion ET_HUK;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们为什么在这里，又想做什么！";
 		mes "只要能知道答案就好了！";
 		set ma_tomas,19;
 		changequest 11225,11226;
 		close;
 	} else if (ma_tomas == 19) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇啊啊啊啊！！！！";
 		mes "我看不出问题在哪里！";
 		emotion ET_HUK;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们为什么在这里，又想做什么！";
 		mes "只要能知道答案就好了！";
 		close;
 	} else if (ma_tomas == 20) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！你说什么？！";
 		mes "说得真流利！";
 		mes "怎么会！";
 		emotion ET_HUK;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "除非亲眼看到，否则我无法相信。";
 		mes "如果他只对我那样说，不就很奇怪吗？";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们一起去听听！！";
 		set ma_tomas,21;
 		changequest 11227,11228;
 		close;
 	} else if (ma_tomas < 34) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "到目前为止的研究完全是在猜错方向！";
 		mes "不过在你失望之前，我更愿意为得到答案而高兴。";
 		emotion ET_BEST;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一旦得到答案，理解海星语言就只是时间问题。";
 		close;
 	} else if (ma_tomas == 34) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真的吗？！";
 		mes "比斯科特这么说了吗？！";
 		emotion ET_HUK;
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，啊！多亏了你，"+strcharinfo(0)+"！";
 		mes "我非常感激。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我现在必须去见比斯科特道谢。";
 		mes "虽然我们无法互相理解，但我一定能表达我的感谢。";
 		next;
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我还想把这个好消息告诉我们的主席 托马斯。";
 		mes "请!!";
 		emotion ET_HELP;
@@ -933,13 +933,13 @@ mal_in02,174,64,5	script	语言学家德沃尔#mal	549,{
 		getitem 6422,30; //Egrade_Coin
 		close;
 	} else if (ma_tomas == 35) {
-		mes "[语言学家德沃尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，我也真的很想把这个好消息告诉我们的首领 托马斯。";
 		mes "请!!";
 		emotion ET_HELP;
 		close;
 	}
-	mes "[语言学家德沃尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，啊！！";
 	mes "海星语言研究进展顺利。";
 	mes "如果没有你的帮助，"+strcharinfo(0)+"，事情可能真的会变成灾难。";
@@ -947,27 +947,27 @@ mal_in02,174,64,5	script	语言学家德沃尔#mal	549,{
 	close;
 }
 
-mal_in02,179,57,1	script	地质学家玛丽#mal	559,{
+mal_in02,179,57,1	script	地质学家 马力#mal::地质学家玛丽#mal	559,{
 	if (ma_tomas < 5) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绵绵岛之所以得名，是因为这里的地面很柔软，喵～";
 		mes "摸起来会变硬，喵～";
 		emotion ET_SEXY;
 		close;
 	} else if (ma_tomas == 5) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "玛丽，喵～";
 		mes "如你们所知，地面有裂缝的地方很多，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "目前还不是很严重或危险的问题，喵～";
 		mes "我们无法预测 星星糖 什么时候移动，所以现在最好先修好这些，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，和往常一样，我们缺少劳动力，喵~";
 		mes "我认为还需要更多人参加，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道大家都有自己的工作，应该都很忙。但这和我们的生活有关，所以我想参加修理。";
 		emotion ET_HELP;
 		next;
@@ -984,99 +984,99 @@ mal_in02,179,57,1	script	地质学家玛丽#mal	559,{
 		emotion ET_WRAP, getnpcid(0, "布里#mal");
 		close;
 	} else if (ma_tomas < 13) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天是你代替父亲参加会议，布里。";
 		mes "他虽然不太友善，但很孝顺，喵~";
 		emotion ET_SMILE;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "布里 先生起初不是我们小组的成员，但得知他的父亲 里坎 参与新贸易路线开发后，也加入了我们，喵~";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过上次 里坎 受伤时，布里 似乎受到了很大打击，喵~";
 		mes "我应该更加努力学习，避免这种事再次发生，喵~";
 		close;
 	} else if (ma_tomas == 13) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绵绵岛真是特别的岛屿，喵～";
 		mes "字面意义上来说，这里的地面很柔软。";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我跟着集团去过很多地方，却从没见过像绵绵岛这样柔软的地面。";
 	mes "如果不小心按压地面……";
 	mes "它有一种魔力，会让你不停地重复按压。";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种柔软又黏糊的感觉……";
 		mes "哈哈～会让人上瘾……";
 		emotion ET_SHY;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀！！";
 		mes "我差点就沉进这片柔软里了，喵～！！！";
 		emotion ET_HUK;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然它有让人失去理智的风险，但它帮助蝴蝶号没有解体，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "顺便说，这里没有特殊属性，只是由普通土壤构成的，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且！！";
 		mes "这么柔软的地面怎么会^0000FF裂开^000000呢，喵～！";
 		emotion ET_HUK;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果^0000FF裂缝继续扩大，地下支撑可能会坍塌^000000，喵……";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然有很多人来修复裂缝，但感觉还是不够，喵～";
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我们接受志愿服务申请，喵～";
 		mes "虽然是志愿服务，但并不是免费的。想来时请随时来找我，喵～";
 		next;
 		switch(select("帮助修理。:结束谈话。")) {
 		case 1:
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳咳！！！";
 			mes "在这个艰难的世界里，竟有如此美丽的年轻人！！！";
 			mes "每当遇到像你这样的人，我就觉得活着真好，喵～";
 			emotion ET_CRY;
 			next;
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请听^6666cc我的助手鲍勃^000000详细说明，喵～";
 			mes "离开这里，去^6666cc右边的房间^000000看看，喵～";
 			set ma_tomas,14;
 			setquest 11221;
 			close;
 		case 2:
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "呜呼呼。";
 		mes "我～会～等～你～的～～";
 			emotion ET_BIGTHROB;
 			close;
 		}
 	} else if (ma_tomas == 14) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "咳咳！！！";
 	mes "在这个艰难的世界里，竟有如此美丽的年轻人！！！";
 	mes "每当遇到像你这样的人，我就觉得活着真好，喵～";
 		emotion ET_CRY;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "请听^6666cc我的助手鲍勃^000000详细说明，喵～";
 	mes "离开这里，去^6666cc右边的房间^000000看看，喵～";
 		close;
 	} else if (ma_tomas == 15 || ma_tomas == 16) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "裂缝修理得顺利吗，喵？";
 	mes "别太勉强自己，喵～";
 	mes "如果身体变差就不好了，喵～";
 		close;
 	} else if (ma_tomas == 17) {
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "啊！鲍勃把你的出色工作夸得天花乱坠，喵～";
 	mes "下次有机会也请再帮助我们，喵～";
 		emotion ET_BEST;
@@ -1086,12 +1086,12 @@ mal_in02,179,57,1	script	地质学家玛丽#mal	559,{
 	mes "呜呜！！！";
 		emotion ET_CRY, getnpcid(0, "语言学家德沃尔#mal");
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "哦哦！德沃尔博士，你在说什么呀，喵～！！！！";
 	mes "我完全不这么认为，喵～！！！";
 		emotion ET_HUK;
 		next;
-		mes "[地质学家玛丽]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "大家都知道你，德沃尔博士，一直在努力研究，喵～！！！";
 	mes "你已经尽力了，所以自信一点，喵～！";
 		set ma_tomas,18;
@@ -1102,12 +1102,12 @@ mal_in02,179,57,1	script	地质学家玛丽#mal	559,{
 		close;
 	} else if (ma_tomas > 99) {
 		if (checkquest(11240) > -1 || checkquest(11241) > -1) {
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请听^6666cc我的助手鲍勃^000000详细说明，喵～。";
 			mes "离开这里，去^6666cc右边的房间^000000看看，喵～";
 			close;
 		} else if (checkquest(11242) > -1) {
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！鲍勃把你的出色工作夸得天花乱坠，喵～";
 			mes "下次有机会也请再帮助我们，喵～";
 			changequest 11242,11243;
@@ -1115,42 +1115,42 @@ mal_in02,179,57,1	script	地质学家玛丽#mal	559,{
 			close;
 		} else {
 			if (checkquest(11243,PLAYTIME) == 0 || checkquest(11243,PLAYTIME) == 1) {
-				mes "[地质学家玛丽]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "别太勉强自己，喵～";
 				mes "如果身体变差就不好了，喵～";
 				close;
 			}
 			if (checkquest(11243,PLAYTIME) == 2)
 				erasequest 11243;
-			mes "[地质学家玛丽]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天还有很多修理工作要做！";
 			mes "这似乎不是容易解决的事，喵～";
 			next;
 			switch(select("我来帮忙。:我不做了。")) {
 			case 1:
-				mes "[地质学家玛丽]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请听^6666cc我的助手鲍勃^000000详细说明，喵～";
 				mes "离开这里，去^6666cc右边的房间^000000看看，喵～";
 				setquest 11240;
 				close;
 			case 2:
-				mes "[地质学家玛丽]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那么请休息吧，喵～";
 				mes "下次有机会再见，喵～";
 				close;
 			}
 		}
 	}
-	mes "[地质学家玛丽]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这种柔软又黏糊的感觉……";
 	mes "哈哈～会让人上瘾……";
 	emotion ET_SEXY;
 	close;
 }
 
-mal_in02,140,94,0	script	鲍勃#mal	553,{
+mal_in02,140,94,0	script	包勃#mal::鲍勃#mal	553,{
 	if (ma_tomas < 14) {
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你汪汪！汪！汪！我喵！喵！喵！";
 		mes "我喜欢美味鱼肉榨成的果汁，喵～";
 		emotion ET_DELIGHT;
@@ -1162,38 +1162,38 @@ mal_in02,140,94,0	script	鲍勃#mal	553,{
 	L_Quest1:
 		set .@i, @mal_bob_q;
 		set @mal_bob_q,0;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你汪汪！汪！汪！我喵！喵！喵！";
 		mes "我喜欢美味鱼肉榨成的果汁，喵～";
 		emotion ET_DELIGHT;
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊啊啊！！！！！！！！！";
 		mes "你是来做志愿服务的吗？！";
 		emotion ET_HUK;
 		next;
 		if (checkweight(1201,1) == 0) {
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……做志愿服务时要让身心都轻松！";
 			mes "你身上的东西似乎太多了，先减轻负重吧～";
 			close;
 		}
 		if (MaxWeight - Weight < 1000) {
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……做志愿服务时要让身心都轻松！";
 			mes "你身上似乎有很多重物，先减轻负重吧～";
 			close;
 		}
 		switch(select("是。:不。")) {
 		case 1:
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳咳……";
 			mes "感动！！！";
 			mes "我太感动了！！！";
 			mes "感动的心在我胸中起舞！！！";
 			emotion ET_HUK;
 			next;
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我曾经轻视他人，对人类抱有偏见！！！";
 			mes "我感觉自己要流出鳞片眼泪了！！！！";
 			mes "感动！！！";
@@ -1201,22 +1201,22 @@ mal_in02,140,94,0	script	鲍勃#mal	553,{
 			emotion ET_HUK;
 			next;
 			select("够了！告诉我怎么修复裂缝。" );
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "啊！";
 			next;
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……";
 			mes "我太激动了，竟然对第一次见面的人无礼。";
 			next;
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "修复裂缝其实很简单。";
 			mes "只要这个^0000FF修缮工具^000000，谁都能轻松完成！";
 			next;
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "用这种灰白色黏土混合物填补缺口，再用订书机修复裂缝。";
 			mes "其他工具的用法你已经知道了，我就不解释了。";
 			next;
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，对了……";
 			mes "^0000ff你可能会不小心掉进裂缝的空隙里，请小心。^000000";
 			if (.@i == 1) {
@@ -1227,7 +1227,7 @@ mal_in02,140,94,0	script	鲍勃#mal	553,{
 			getitem 6434,1; //Fix_Kit
 			close;
 		case 2:
-			mes "[鲍勃]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "啊，对了……";
 		mes "我明白了……";
 		mes "真失望……";
@@ -1253,38 +1253,38 @@ mal_in02,140,94,0	script	鲍勃#mal	553,{
 		mes " - 再试一次。 - ";
 			close;
 		}
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "修复裂缝其实很简单。";
 		mes "只要这个^0000FF修缮工具^000000，谁都能轻松完成！";
 		if (countitem(6434) == 0)
 			getitem 6434,1; //Fix_Kit
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "用这种灰白色黏土混合物填补缺口，再用订书机修复裂缝。";
 		mes "其他工具的用法你已经知道了，我就不解释了。";
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，对了……";
 		mes "^0000ff你可能会不小心掉进裂缝的空隙里，请小心。^000000";
 		close;
 	} else if (ma_tomas == 16) {
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳咳~~~~~~~~~~~~~~~~~~~~~~";
 		mes "太完美了！";
 		emotion ET_BEST;
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "黏合剂填得恰到好处！！";
 		mes "完美的订书机手艺！！";
 		mes "令人无话可说的精彩收尾！！";
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感动！";
 		mes "神秘！";
 		mes "震撼！";
 		emotion ET_HUK;
 		next;
-		mes "[鲍勃]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你确实做得非常好！！！";
 		mes "我会告诉玛丽博士！";
 		if (countitem(6434) > 0)
@@ -1299,7 +1299,7 @@ mal_in02,140,94,0	script	鲍勃#mal	553,{
 		} else if (checkquest(11241) > -1)
 			goto L_Quest2;
 	}
-	mes "[鲍勃]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你汪汪！汪！汪！我喵！喵！喵！";
 	mes "我喜欢美味鱼肉榨成的果汁，喵～";
 	emotion ET_DELIGHT;
@@ -1432,16 +1432,16 @@ OnTimer30000:
 -	duplicate(Crackt0#mal)	Crackt9#mal	-1
 -	duplicate(Crackt0#mal)	Crackt10#mal	-1
 
-mal_in02,181,55,3	script	布里#mal	545,{
+mal_in02,181,55,3	script	弗瑞#mal::布里#mal	545,{
 	if (ma_tomas < 6) {
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，我现在不想和你说话。请让我一个人静静。";
 		close;
 	} else if (ma_tomas == 6) {
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，会长。";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然星星糖支撑着绵绵岛的地面，";
 		mes "但我们完全不明白她这样做的目的或原因。";
 		mes "难道我们只能期待什么也找不到吗？";
@@ -1449,7 +1449,7 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		mes "[会议主席]";
 		mes "正如德沃尔博士所说，他还在研究，所以最好等待结果……";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果星星糖离开，而你只是一直等待，你会怎么办？";
 		mes "绵绵岛可能会沉没。我不能就这样在这里干等。";
 		next;
@@ -1463,7 +1463,7 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		mes "[地质学家玛丽]";
 		mes "由于这个巨大地下空间的特性，如果中心坍塌，我们无法预料接下来会发生什么。因此研究人员认为应尽可能谨慎处理，喵～";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
 		mes "[会议主席]";
@@ -1472,7 +1472,7 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		mes "[会议主席]";
 		mes "至于那件事，我们会和首领托马斯商量并制定计划。";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "是的……";
 		next;
 		mes "[会议主席]";
@@ -1483,46 +1483,46 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		setquest 11215;
 		close;
 	} else if (ma_tomas == 7) {
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！";
 		mes "如果你只是唠叨，我不会听。";
 		next;
 		switch(select("关于里坎。:我不说了。")) {
 		case 1:
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "至于我父亲？";
 			mes "他是这座岛上负责世界树果实的人。";
 			next;
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在双腿从地震中恢复前，他只能做按下烘干机按钮之类的小事。";
 			mes "世界树果实的数量大幅减少了。";
 			next;
 //
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我一直代替他采收，不过……";
 			next;
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，我才刚开始，所以不太了解。如果想问尤格拉德西尔果实，就去^6666cc绵绵岛西部^000000的我家。";
 			next;
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我父亲今天也会待在那里，说自己很无聊……";
 			set ma_tomas,8;
 			changequest 11215,11216;
 			close;
 		case 2:
-			mes "[布里]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……";
 			close;
 		}
 	} else if (ma_tomas < 12) {
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我才刚开始，所以不太了解。如果想问尤格拉德西尔果实，就去^6666cc绵绵岛西部^000000的我家。";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我父亲今天也会待在那里，说自己很无聊……";
 		close;
 	} else if (ma_tomas == 12) {
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "玛丽博士，请让我帮忙修复裂缝！";
 		mes "以前你经常叫我帮忙，为什么现在说不能把工作交给我？";
 		next;
@@ -1530,20 +1530,20 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		mes "不行，喵～";
 		mes "布里，你得帮助你的父亲，喵～";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但如果这座岛沉没，所有忙碌都没有意义！";
 		next;
 		mes "[地质学家玛丽]";
 		mes "这和鸡生蛋、蛋生鸡的情况一样，喵～";
 		mes "如果尤格拉德西尔果实卖不出去，我们就无法购买修复裂缝的工具，喵～";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
 		mes "[地质学家玛丽]";
 		mes "所以回家帮助你的父亲吧，喵～";
 		next;
-		mes "[布里]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，那等他的腿恢复后我再回来。";
 		next;
 		mes "[地质学家玛丽]";
@@ -1557,35 +1557,35 @@ mal_in02,181,55,3	script	布里#mal	545,{
 		completequest 11220;
 		close;
 	}
-	mes "[布里]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呼……我紧张得有点变得挑剔了。";
 	mes "现在我只考虑采收的事。";
 	close;
 }
 
-mal_in01,114,169,5	script	里坎#mal	547,{
+mal_in01,114,169,5	script	李坎#mal::里坎#mal	547,{
 	if (ma_tomas < 9) {
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呜哇哈哈……";
 		mes "呜哇啊啊啊……";
 		mes "我受够了……像这样待在家里！！";
 		emotion ET_SLEEPY;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的腿什么时候才能恢复，什么时候？！";
 		mes "应该很快就会好起来，这样我就能像以前一样工作……";
 		mes "但我几乎动不了。";
 		if (ma_tomas < 8)
 			close;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只能整天按按钮～";
 		mes "一点也不有趣～";
 		mes "我越来越不想做任何事了～嘟比嘟巴～";
 		emotion ET_SLEEPY;
 		next;
 		select("打扰一下。这是里坎的家吗？" );
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "你是谁！";
 		mes "我是里坎！";
@@ -1594,131 +1594,131 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 		emotion ET_HUK;
 		next;
 		select("询问尤格拉德西尔果实。" );
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "尤格拉德西尔果实？";
 		mes "你……你知道些什么！";
 		mes "嗯，哈哈哈！";
 		mes "只有少数猫知道尤格拉德西尔果实！";
 		emotion ET_SPARK;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在和你这样的​​人类交易之前，尤格拉德西尔果实并不被认为是什么特别的水果。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "以前在我的故乡到处都是。它味道不好，还会导致消化不良，喵～";
 		mes "猫自然应该吃鱼。";
 		emotion ET_SEXY;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但人类吃了这个，就能完全恢复活力。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一开始，我从没想过它能卖出去！";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳咳～";
 		mes "那时候真是太棒了……";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很久以前……";
 		mes "我们一群猫离开城镇，踏上新的贸易路线。";
 		emotion ET_SHY;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "实际上，我们控制着城镇周边区域，寻找未探索的地方就像一项挑战。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但发现未知事物就是男人的浪漫，不是吗？";
 		emotion ET_COOL;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，开头还算不错。";
 		mes "在海上漂了一个月或两个月后……";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "海里鱼很多，但我觉得很无聊。我最想吃有调味的食物，比如萝卜炖鸡。";
 		emotion ET_HUNGRY;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然漂流了很久，我们却没能在任何岛屿靠岸，反而遇到了暴风雨。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是我第一次见到如此猛烈的龙卷风。";
 		mes "当时我吓得失去理智，以为自己会死。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道其他船怎么样，但这艘蝴蝶号幸运地在这座岛上着陆。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咳咳！";
 		mes "你能相信吗？";
 		mes "^0000FF那艘巨大的船像飞艇一样呼呼飞来，最后掉在这座岛中央！^000000";
 		emotion ET_HUK;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之我活了下来，但船上的大部分货物都被冲走，只剩下尤格拉德西尔果实。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？既然不吃，为什么要装船？";
 		mes "这……这是秘密……";
 		emotion ET_SWEAT;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不重要。我们派出侦察队后，发现那里有与我们不同的种族居住。";
 		mes "那就是你们人类的土地。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不管过程如何，我们找到了原本想要的贸易区域……只是还不知道怎么回故乡。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们猫族开始大力销售。";
 		mes "但我们手里只有尤格拉德西尔果实，对吧？";
 		mes "本来没抱多大期待，没想到卖得非常好。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "传闻中，它在人类中卖出了很高的价格，对人类有显著效果。";
 		mes "于是我们终于定居下来，销售尤格拉德西尔果实，利润不断增长。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我们卖的是干燥品，^0000FF和人类原本知道的有些不同，效果较弱，也很难生吃^000000。";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为加工时它会消失，所以这种方式对我们来说最好。";
 		emotion ET_GOODBOY;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对了，我在这个重要季节受了伤，如果不能按时交付订购数量，就会损害我的信誉！";
 		mes "贸易就是信誉！！！";
 		emotion ET_HUK;
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因此，你愿意帮我吗？";
 		mes "虽然我儿子在帮忙，但我们能准备的数量还不够。";
 		next;
 		switch(select("我来帮他。:我不帮。")) {
 		case 1:
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "咳咳！";
 			mes "我第一次见你就对你印象很好！";
 			next;
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "采收尤格拉德西尔果实很简单。";
 			mes "只要挖地面就能得到，喵～";
 			emotion ET_HUK, playerattached();
 			next;
 			select("？！" );
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？";
 			mes "它本来不就是从地里长出来的吗？";
 			emotion ET_HUK, playerattached();
 			next;
 			select("它不是长在树上吗？" );
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "米德加尔特的尤格拉德西尔果实或许是这样。";
 			mes "但^6666cc我们这里的尤格拉德西尔果实是从地里挖出来的^000000。";
 			emotion ET_HUK, playerattached();
 			next;
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在绵绵岛很容易得到。带30个新鲜天地树果实给我。";
 			mes "啊！一定要对我儿子保密～";
 			mes "那么拜托^ff99cc！！！^000000拜托^ff99cc！！！^000000拜托～～～";
@@ -1727,39 +1727,39 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 			changequest 11216,11217;
 			close;
 		case 2:
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦？如果帮不了忙也没关系。";
 			mes "我受伤的腿好痛……（呻吟）";
 			close;
 		}
 	} else if (ma_tomas == 9) {
 		if (countitem(6435) < 30) {
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在绵绵岛很容易得到。带30个新鲜天地树果实给我。";
 			mes "啊！一定要对我儿子保密～";
 			mes "那么拜托^ff99cc！！！^000000拜托^ff99cc！！！^000000拜托～～～";
 			emotion ET_CHUP;
 			close;
 		}
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，哦！！";
 		mes "这新鲜的气味！！！";
 		mes "哈啊～真新鲜，干得好！";
 		mes "你很擅长采收尤格拉德西尔果实吗？";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么能把它放进我面前的机器里吗？";
 		set ma_tomas,10;
 		changequest 11217,11218;
 		close;
 	} else if (ma_tomas == 10) {
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，哦！！";
 		mes "这新鲜的气味！！！";
 		mes "哈啊～真新鲜，干得好！";
 		mes "你很擅长采收尤格拉德西尔果实吗？";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么能把它放进我面前的机器里吗？";
 		close;
 	} else if (ma_tomas == 11) {
@@ -1779,19 +1779,19 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 			mes " - 然后再试一次。- ";
 			close;
 		}
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼呼～多亏你的帮助，我安心多了。";
 		mes "我还担心突然要这么多会不会太过分，结果刚刚好！";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对了，我儿子说去开会了，但还没有消息。";
 		mes "希望他没有又去烦玛丽博士……";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "自从我的腿受伤后，他似乎更常去找玛丽博士。";
 		mes "这样下去研究时间会变长……";
 		next;
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果见到我儿子，请告诉他快点回来～";
 		mes "这是给你的报酬，辛苦了，拿去买点好吃的吧。";
 		set ma_tomas,12;
@@ -1800,7 +1800,7 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 		setquest 11239;
 		close;
 	} else if (ma_tomas == 12) {
-		mes "[里坎]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "自从我的腿受伤后，他似乎更常去找玛丽博士。";
 		mes "这样下去研究时间会变长……";
 		mes "如果见到我儿子，请告诉他快点回来～";
@@ -1808,11 +1808,11 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 	} else if (ma_tomas > 99) {
 		if (checkquest(11238) != -1) {
 			if (countitem(6435) < 30) {
-				mes "[里坎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你需要正好30个才能兑换一组！";
 				close;
 			}
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "非常可靠！";
 			mes "你不想和尤格拉德西尔果实做生意吗？";
 			delitem 6435,30; //Fresh_Fruit
@@ -1821,21 +1821,21 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 			getitem 6422,5; //Egrade_Coin
 			close;
 		} else if (checkquest(11239,PLAYTIME) == 0 || checkquest(11239,PLAYTIME) == 1) {
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "要休息一会儿吗？";
 			mes "距离你上次工作还不到一天呢～";
 			close;
 		} else {
 			if (checkquest(11239,PLAYTIME) == 2)
 				erasequest 11239;
-			mes "[里坎]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿～";
 			mes "你又来帮我了吗？";
 			mes "你真可靠！";
 			next;
 			switch(select("我来帮忙。:我不帮。")) {
 			case 1:
-				mes "[里坎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "和之前是同样的任务。";
 				mes "30个新鲜天地树果实。你可以在绵绵岛轻松找到它们！！";
 				mes "啊！一定要对我儿子保密～";
@@ -1844,25 +1844,25 @@ mal_in01,114,169,5	script	里坎#mal	547,{
 				setquest 11238;
 				close;
 			case 2:
-				mes "[里坎]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是吗？既然来了，就在这里玩玩吧～";
 				close;
 			}
 		}
 	}
-	mes "[里坎]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "呜哇哈哈……";
 	mes "呜哇啊啊啊……";
 	mes "我受够了……像这样待在家里！！";
 	next;
-	mes "[里坎]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我只能整天按按钮～";
 	mes "一点也不有趣～";
 	mes "我越来越不想做任何事了～嘟比嘟巴～";
 	close;
 }
 
-mal_in01,116,168,0	script	烘干机#mal	563,{
+mal_in01,116,168,0	script	干燥器#mal::烘干机#mal	563,{
 	if (ma_tomas == 10) {
 		if (countitem(6435) < 30) {
 			mes "[里坎]";
@@ -1928,16 +1928,16 @@ OnDisable:
 	disablenpc();
 	end;
 }
-malangdo,221,139,0	duplicate(可疑的沙堆#0)	可疑的沙堆#1	557
-malangdo,208,174,0	duplicate(可疑的沙堆#0)	可疑的沙堆#2	557
-malangdo,191,223,0	duplicate(可疑的沙堆#0)	可疑的沙堆#3	557
-malangdo,150,195,0	duplicate(可疑的沙堆#0)	可疑的沙堆#4	557
-malangdo,116,196,0	duplicate(可疑的沙堆#0)	可疑的沙堆#5	557
-malangdo,178,145,0	duplicate(可疑的沙堆#0)	可疑的沙堆#6	557
-malangdo,142,120,0	duplicate(可疑的沙堆#0)	可疑的沙堆#7	557
-malangdo,136,122,0	duplicate(可疑的沙堆#0)	可疑的沙堆#8	557
-malangdo,152,143,0	duplicate(可疑的沙堆#0)	可疑的沙堆#9	557
-malangdo,242,175,0	duplicate(可疑的沙堆#0)	可疑的沙堆#10	557
+malangdo,221,139,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#1::可疑的沙堆#1	557
+malangdo,208,174,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#2::可疑的沙堆#2	557
+malangdo,191,223,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#3::可疑的沙堆#3	557
+malangdo,150,195,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#4::可疑的沙堆#4	557
+malangdo,116,196,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#5::可疑的沙堆#5	557
+malangdo,178,145,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#6::可疑的沙堆#6	557
+malangdo,142,120,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#7::可疑的沙堆#7	557
+malangdo,136,122,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#8::可疑的沙堆#8	557
+malangdo,152,143,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#9::可疑的沙堆#9	557
+malangdo,242,175,0	duplicate(可疑的沙堆#0)	奇怪的沙堆#10::可疑的沙堆#10	557
 
 -	script	Water Sand0#mal	-1,{
 OnInit:
@@ -1970,7 +1970,7 @@ OnTimer30000:
 -	duplicate(Water Sand0#mal)	Water Sand9#mal	-1
 -	duplicate(Water Sand0#mal)	Water Sand10#mal	-1
 
-mal_dun01,136,120,6	script	语言学家德沃尔#mald	549,{
+mal_dun01,136,120,6	script	语言学家 德伯拉#mald::语言学家德沃尔#mald	549,{
 	end;
 OnInit:
 	disablenpc "语言学家德沃尔#mald";
@@ -1988,19 +1988,19 @@ OnTimer100000:
 	end;
 }
 
-mal_dun01,136,122,3	script	比斯科特#mal	551,{
+mal_dun01,136,122,3	script	海星小子#mal::比斯科特#mal	551,{
 	if (ma_tomas < 20) {
 		mes "- 这里有奇怪的东西。-";
 		mes "- 不知为什么感觉-";
 		mes "- 你不该和它对视。-";
 		close;
 	} else if (ma_tomas == 20) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "星星糖就这样牺牲了自己，但那些家伙只顾着为自己设置柱子。";
 	mes "呼哇！！！";
 		emotion ET_ANGER;
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们和她说话，但我和她说话时却无视我。";
 		mes "我一点也不喜欢他们！！！";
 		emotion ET_ANGER;
@@ -2010,12 +2010,12 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 	mes "- 我想最好尽快把这件事告诉 德沃尔 博士。-";
 		close;
 	} else if (ma_tomas == 21) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？";
 		mes "这是什么？";
 		mes "你有什么要告诉我吗？";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，那个家伙经常无视我的话。";
 		mes "他说话吞吞吐吐，让我很不舒服。";
 		next;
@@ -2082,7 +2082,7 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 		mes "哈哈哈~你是能和比斯科特交谈的那种人。请试着和他聊聊。";
 		mes "不管你和他说什么，都会对我的研究有帮助。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿……别小看我！";
 		emotion ET_ANGER;
 		donpcevent "语言学家德沃尔#mald::OnDisable";
@@ -2091,42 +2091,42 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 		setquest 11229;
 		close;
 	} else if (ma_tomas == 22 || ma_tomas == 23 || ma_tomas == 24) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "……你在看什么……";
 		next;
 		while(1) {
 			switch(select("询问星星糖。:询问比斯科特。:询问绵绵岛。")) {
 			case 1:
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "星星糖？";
 				mes "啧啧！";
 				mes "不行，真是些卑微的家伙。";
 				emotion ET_ANGER;
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你应该认出星星糖之前那种神秘的感觉！";
 				mes "她才是真正华丽的那一个。";
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "她有多华丽呢……嗯……";
 				mes "就是华丽。";
 				mes "她太华丽了……但我不知道该怎么解释……";
 				emotion ET_PROFUSELY_SWEAT;
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "咳嗯……";
 				mes "所以用声音说话的种族很烦人。";
 				emotion ET_ANGER;
 				next;
 				select("用声音说话？");
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "像我们这样高度进化的种族用思维交流，而不是声音。";
 				mes "你在脑中思考，想法就会立刻传给别人，大概就是这样？";
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "在其他地方，这曾被称为超声波或心灵感应。";
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "所以我们不需要更多解释或华丽辞藻……";
 				mes "呜，真让人烦！";
 				if (ma_tomas == 22)
@@ -2135,17 +2135,17 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 					close;
 				next;
 			case 2:
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我？";
 				mes "我是星星糖的助手，她是海星族中才华横溢的新星！";
 				emotion ET_SPARK;
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，啊……";
 				mes "我刚当她助手时，曾被称为天才、帅气助手等等……";
 				mes "我感觉一条闪耀的光之道路出现在眼前……";
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但要是老人们看到这件事，他们会把我晒干……";
 				mes "那是如火焰般的人生……呜呜呜呜";
 				emotion ET_CRY;
@@ -2155,11 +2155,11 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 					close;
 				next;
 			case 3:
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这座岛是华丽的星星糖休息的地方。";
 				mes "表面柔软且内部水分充足，是海星族的最佳栖息地。";
 				next;
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在，那些猫已经随意占据了这里。";
 				mes "问题在于星星糖太善良了……";
 				if (ma_tomas == 24) {
@@ -2172,13 +2172,13 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 			}
 		}
 	} else if (ma_tomas == 25) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你还没回去吗？";
 		mes "有时间的话，弄些果冻给星星糖吃。";
 		next;
 		switch(select("好的。:为什么是我？")) {
 		case 1:
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你可以在附近找到果冻。";
 			mes "这并不难，你应该在星星糖用餐前回来！";
 			mes "大约30个果冻就够一餐。";
@@ -2186,15 +2186,15 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 			changequest 11230,11231;
 			close;
 		case 2:
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为什么是我？";
 			mes "我得忙着照顾她和听不见我声音的猫同伴，所以只能请你帮忙。";
 			next;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真没礼貌……";
 			emotion ET_ANGER;
 			next;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你不是我的下属，我不能强迫你。但如果星星糖不能按时用餐，你要记住这座岛会彻底崩溃。";
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -2210,12 +2210,12 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 		set .@i, @mal_bob_q;
 		set @mal_bob_q,0;
 		if (countitem(12624) < 30) {
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "完全不够~";
 			mes "我至少需要30个可口果冻。";
 			close;
 		}
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你拿得很好。";
 		mes "准备她的餐食不会有问题。";
 		delitem 12624,30; //Delicious_Jelly
@@ -2228,71 +2228,71 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 			getitem 6422,5; //Egrade_Coin
 		}
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "果冻看起来很奇怪，但味道很好……";
 		mes "星星糖似乎也很喜欢。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "星星糖，吃饭了~";
 		mes "呃，你为什么不吃？";
 		mes "你没胃口吗？";
 		close;
 	} else if (ma_tomas == 27) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……你没胃口也是自然的……";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "珍贵的星星糖怎么会这样支撑着地下室的地面？明明在岛的地下洞穴里，却这么干燥！";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且那个滑溜溜的东西一直困扰星星糖。";
 		mes "你无法避免压力。";
 		next;
 		select("滑溜溜的东西？");
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？那是什么东西？";
 		mes "就是那个滑溜溜的东西。";
 		mes "它长得很丑，一直让星星糖烦恼。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "它尤其会在今天这样的暴风雨天来到岛上。我在这里躲了一会儿。那些猫来过后，她就变成这样了。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "都是因为星星糖，她的皮肤……";
 		mes "......";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇啊啊啊！";
 		mes "这是什么！！！";
 		mes "她的皮肤！！！！!";
 		mes "她原本像宝石一样闪亮的皮肤上长了脓肿！！！！!";
 		emotion ET_HUK;
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她来到这里后，干燥的皮肤出了问题！";
 		mes "对我们海星族来说，缺水会导致可怕的后果，甚至死亡！";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，啊！她太善良了，竟牺牲自己来拯救这种东西。呜呜。";
 		emotion ET_CRY;
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，啊……";
 		mes "我不能离开去照顾她，有没有人来帮忙~";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有没有人来帮帮帮帮帮~";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你……";
 		mes "我这样请求，你还要无视我站在那里吗？";
 		next;
 		select("我来帮忙。:没办法，我来帮忙。:我承认这是我的命运，所以我会帮忙。:为了星星糖，我什么都愿意做。");
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "态度不错！";
 		mes "呼呼~";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么请找一把刷子给她清洁，再找一个水桶把水运来。";
 		mes "也许它们堆在仓库里。";
 		set ma_tomas,28;
@@ -2300,7 +2300,7 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 		close;
 	} else if (ma_tomas == 28) {
 		if (countitem(6433) && countitem(6432)) {
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！";
 			mes "你成功带来了工具。";
 			mes "现在可以沿逆时针方向清洗干燥的皮肤了！";
@@ -2309,30 +2309,30 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 			changequest 11233,11234;
 			close;
 		} else if (countitem(6433) && countitem(6431)) {
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦！";
 			mes "你成功带来了工具。";
 			mes "现在可以从外面取海水了。";
 			next;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我记得绵绵岛东边有个一流地点。";
 			mes "不能用这个洞穴里收集的水清洗她！";
 			next;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "水很重，搬运时小心别洒了。";
 			close;
 		} else {
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……没有合适的工具会很困难……";
 			mes "不过对我这样的小个子来说没关系。";
 			next;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "星星糖这么巨大的皮肤上，长满了藤壶、牡蛎和贻贝！！！";
 			emotion ET_HUK;
 			close;
 		}
 	} else if (ma_tomas < 33) {
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！";
 		mes "你成功带来了工具。";
 		mes "现在可以沿逆时针方向清洗干燥的皮肤了！";
@@ -2355,28 +2355,28 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 		mes "";
 			close;
 		}
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "做得好！";
 		mes "现在我看到她美丽的脸恢复了。";
 		emotion ET_COOL;
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果不每天清洁，皮肤会变坏。";
 		mes "有句话说……清洁皮肤比化妆重要得多。";
 		emotion ET_BEST;
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你做得很好。";
 		mes "即使我这样突然请求，你还是帮助了我……";
 		mes "老实说，我以为你会直接离开。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这算是一种奖励。替我向德沃博士……或德沃尔，不管那只猫叫什么，转达我的话。";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没必要等研究结束。我们可以通过你交流，最好谈谈当前情况……";
 		next;
-		mes "[比斯科特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不是为了你……也不是为了你们所有人。这是为了让星星糖尽快休息，你知道的！";
 		emotion ET_HNG;
 		set ma_tomas,34;
@@ -2390,38 +2390,38 @@ mal_dun01,136,122,3	script	比斯科特#mal	551,{
 			set @mal_bob_q,2;
 			goto L_Quest;
 		} else if (checkquest(11245,PLAYTIME) == 0 || checkquest(11245,PLAYTIME) == 1) {
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "需要你时我会叫你，不用担心！";
 			close;
 		} else {
 			if (checkquest(11245,PLAYTIME) == 2)
 				erasequest 11245;
-			mes "[比斯科特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "星星糖该用餐了。";
 			mes "弄些果冻。";
 			next;
 			switch(select("我来帮忙。:我不帮了。")) {
 			case 1:
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你可以在附近找到果冻。";
 				mes "这并不难，你应该在星星糖用餐前回来！";
 				mes "一餐大约30个果冻就够了。";
 				setquest 11244;
 				close;
 			case 2:
-				mes "[比斯科特]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么，你是说要让我们的星星糖挨饿？！";
 				close;
 			}
 		}
 	}
-	mes "[比斯科特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "星星糖真的很棒。";
 	mes "即使站立如此困难，她也从不失去笑容……";
 	close;
 }
 
-mal_in02,102,94,3	script	清洁员#mal	544,2,2,{
+mal_in02,102,94,3	script	清洁用品负责人#mal::清洁员#mal	544,2,2,{
 OnTouch:
 	if (checkweight(1201,1) == 0) {
 		mes " - 注意！！ -";
@@ -2681,17 +2681,17 @@ mal_dun01,131,150,0	duplicate(#skin_mal)	扎手的皮肤#30	111
 mal_dun01,116,144,0	duplicate(#skin_mal)	皲裂的皮肤#31	111
 mal_dun01,120,129,0	duplicate(#skin_mal)	坚硬的皮肤#32	111
 
-malangdo,190,167,7	script	波塔利#mal	546,{
+malangdo,190,167,7	script	波特力#mal::波塔利#mal	546,{
 	if (ma_tomas < 100) {
-		mes "[波塔利]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我没什么事要交给不成熟的家伙！";
 		close;
 	}
-	mes "[波塔利]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……";
 	mes "虽然你是人类，却有猫的气味……";
 	next;
-	mes "[波塔利]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但是……你想回我的故乡吗？";
 	mes "我可以用新发现的技能送你去米德加兹大陆！";
 	mes "这不是免费的。我需要罐头食品！";
@@ -2699,7 +2699,7 @@ malangdo,190,167,7	script	波塔利#mal	546,{
 	switch(select("出发。:不去。:价格？")) {
 	case 1:
 		if (countitem(12636) < 4) {
-			mes "[波塔利]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有罐头你要去哪里……？";
 			close;
 		}
@@ -2727,11 +2727,11 @@ malangdo,190,167,7	script	波塔利#mal	546,{
 			}
 		}
 	case 2:
-		mes "[波塔利]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好……";
 		close;
 	case 3:
-		mes "[波塔利]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "卢恩-米德加兹需要 4 个！";
 		mes "施瓦茨瓦尔德需要 6 个，阿鲁纳佩尔茨需要 5 个。";
 		mes "施瓦茨瓦尔德是禁忌魔法之国，阿鲁纳佩尔茨似乎受到了诅咒！";
@@ -2740,11 +2740,11 @@ malangdo,190,167,7	script	波塔利#mal	546,{
 	end;
 L_Warp:
 	if (countitem(12636) < getarg(1)) {
-		mes "[波塔利]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有罐头你要去哪里……？";
 		close;
 	}
-	mes "[波塔利]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那么就去"+getarg(0)+"～";
 	delitem 12636,getarg(1); //Malang_Sp_Can
 	close2;
@@ -2886,13 +2886,13 @@ malangdo,137,200,6	script	皮皮耶尔	549,{
 
 // Help the Bad Cats in Danger :: mal_bad_guys
 //============================================================
-malangdo,175,206,3	script	戈邦吉#ml	561,{
+malangdo,175,206,3	script	猫小空#ml::戈邦吉#ml	561,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 携带物品过多，无法继续下一步。-";
 		close;
 	}
 	if (checkquest(1152,PLAYTIME) == 0) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，调查还不够。";
 		mes "我们需要回到基础。";
 		mes "明天再来吧。";
@@ -2908,7 +2908,7 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		set malang_bad_guys,0;
 	}
 	if (BaseLevel < 60) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是来帮忙";
 		mes "还是来寻求帮助的？";
 		mes "你看起来好弱，哈哈……";
@@ -2916,18 +2916,18 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		close;
 	}
 	if (malang_bad_guys == 0) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你愿意听我的悲伤吗？";
 		next;
 		switch(select("当然愿意。:不，我不愿意。")) {
 		case 1:
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是个悲伤的故事。";
 			mes "和往常一样，我打开袋子，";
 			mes "想给奇怪的猫看。";
 			mes "结果发生了意外。";
 			next;
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "里面有很多罐头。";
 			mes "我因为形状不同以为是新的，";
 			mes "结果却是报废罐头！";
@@ -2935,7 +2935,7 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 			mes "所以什么也做不了……";
 			mes "肚子好痛。";
 			next;
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "顺便说，你的……";
 			mes "衣服很漂亮。";
 			mes "我不能让你走，";
@@ -2944,11 +2944,11 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 			next;
 			switch(select("你活该受苦！:需要帮助吗？")) {
 			case 1:
-				mes "[戈邦吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你说得对！";
 				close;
 			case 2:
-				mes "[戈邦吉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你知道什么是关怀。";
 				mes "请找到那个坏供应商，";
 				mes "替我们向敌人复仇！";
@@ -2959,12 +2959,12 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 					mes "为了绵绵岛的和平，";
 					mes "你就永远躺在床上吧。";
 					next;
-					mes "[戈邦吉]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "我会的！";
 					mes "等我痊愈后，我会先让你获得安宁！";
 					close;
 				case 2:
-					mes "[戈邦吉]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "好，你能做到吗？";
 					mes "敌人一定在我们拿到货物的码头附近。";
 					mes "我们应该让他们帮助照顾猫的健康！";
@@ -2974,7 +2974,7 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 				}
 			}
 		case 2:
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你为什么在这里！";
 			mes "我平时会用你的眼泪刻下些什么……";
 			mes "不如把你的袋子留在这里吧！";
@@ -2983,14 +2983,14 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 			close;
 		}
 	} else if (malang_bad_guys == 1) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "敌人一定在我们拿到货物的码头附近。";
 		mes "我们应该让他们帮助照顾猫的健康！";
 		mes "请去那里调查。";
 		mes "不要忘记任务。";
 		close;
 	} else if (malang_bad_guys > 1 && malang_bad_guys < 7) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我因为缺少禁忌的坏活动而";
 		mes "感到非常疲惫。";
 		mes "";
@@ -2998,14 +2998,14 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		close;
 	} else if (malang_bad_guys == 7) {
 		if (countitem(6426) > 29) {
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "是浣熊让我们肚子痛的吗？";
 		mes "可恶的浣熊！";
 		mes "一想到这件事，我的肚子又痛了！";
 		mes "好吧，我就展示一次实力，";
 		mes "我可以下床。";
 			next;
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我需要时间集中精力应付肚子痛。";
 		mes "你现在可以走了！";
 			erasequest 1151;
@@ -3015,13 +3015,13 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 			delitem 6426,30; //Bad_Can
 			close;
 		}
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你怎么知道报废罐头的来源？";
 	mes "你现在有时间慢慢处理这件事吗？";
 		emotion ET_CRY;
 		close;
 	} else if (malang_bad_guys == 8) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "巡逻队长想尽快回到";
 		mes "坏家伙们的世界。";
 		mes "我想让你先去安抚他。";
@@ -3029,18 +3029,18 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		next;
 		switch(select("真麻烦，我不干了。:好的，我会去！")) {
 		case 1:
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈哈，你觉得这话很糟糕。";
 			mes "我希望你成为我们的一员。";
 			next;
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，但你现在该走了，";
 			mes "这样我才能集中精力应付肚子痛。";
 			setquest 1152;
 			set malang_bad_guys,9;
 			close;
 		case 2:
-			mes "[戈邦吉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，那我就有时间";
 			mes "集中精力应付肚子痛了。";
 			setquest 1153;
@@ -3048,7 +3048,7 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 			close;
 		}
 	} else if (malang_bad_guys == 9) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，调查还不够。";
 		mes "我们得回到最基本的问题。";
 		mes "明天再来吧。";
@@ -3056,17 +3056,17 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		mes "肚子痛。";
 		close;
 	} else if (malang_bad_guys > 9 && malang_bad_guys < 12) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去和巡逻队长一起找乐子吧！";
 		close;
 	} else if (malang_bad_guys == 12) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你代替我们做了坏事。";
 		mes "听起来不错吧？";
 		mes "这就是老师眼中的好学生吗？";
 		emotion ET_SWEAT;
 		next;
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你值得获得奖励！";
 		mes "我还需要多休息一会儿，";
 		mes "所以明天再调查吧！";
@@ -3076,7 +3076,7 @@ malangdo,175,206,3	script	戈邦吉#ml	561,{
 		getitem 6422,5; //Egrade_Coin
 		close;
 	} else if (malang_bad_guys == 13) {
-		mes "[戈邦吉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "明天再来吧。";
 		mes "我可能还会像往常一样";
 		mes "肚子痛。";
@@ -3090,39 +3090,39 @@ OnDisable:
 	close;
 }
 
-malangdo,181,205,3	script	戈布利#ml1	547,{
-	mes "[戈布利]";
+malangdo,181,205,3	script	猫小巽#ml1::戈布利#ml1	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "偏偏在这种时候出现！";
 	mes "等我们恢复健康时再来吧。";
 	close;
 }
 
-malangdo,180,202,3	script	戈炳吉#ml1	547,{
-	mes "[戈炳吉]";
+malangdo,180,202,3	script	猫皮皮#ml1::戈炳吉#ml1	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我病得连另一只猫的眼睛都不敢看，更别说好好犯罪了。";
 	close;
 }
 
-malangdo,186,201,3	script	戈西吉#ml1	547,{
-	mes "[戈西吉]";
+malangdo,186,201,3	script	猫球球#ml1::戈西吉#ml1	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真希望我有些提神的铋药片……";
 	mes "队长却只想着抓住坏家伙并报仇！";
 	mes "...";
 	next;
-	mes "[戈西吉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们怎么能跟随这么一根筋的人！";
 	close;
 }
 
-malangdo,177,202,3	script	戈纳尼#ml2	547,{
-	mes "[戈纳尼]";
+malangdo,177,202,3	script	猫元元#ml2::戈纳尼#ml2	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们是绵绵岛唯一的暴力帮派，对此我们非常自豪。";
 	mes "只是躺在床上让我很不自在。";
 	close;
 }
 
-malangdo,183,202,3	script	戈多利#ml3	547,{
-	mes "[戈多利]";
+malangdo,183,202,3	script	猫酷比#ml3::戈多利#ml3	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我最近在码头附近";
 	mes "看到了一些陌生的猫。";
 	mes "他们是游客吗？";
@@ -3140,7 +3140,7 @@ malangdo,203,116,5	script	可疑的商人#ml	543,{
 	close;
 }
 
-malangdo,205,116,3	script	十分可疑的商人#ml1	543,{
+malangdo,205,116,3	script	非常可疑的商人#ml1::十分可疑的商人#ml1	543,{
 	mes "听了一会儿故事后，";
 	mes "一听到有人发出声音，他就假装漠不关心。";
 	next;
@@ -3149,7 +3149,7 @@ malangdo,205,116,3	script	十分可疑的商人#ml1	543,{
 	close;
 }
 
-malangdo,197,120,5	script	傻乎乎的猫#ml	546,{
+malangdo,197,120,5	script	傻猫#ml::傻乎乎的猫#ml	546,{
 	mes "[傻猫]";
 	mes "你待在这里的话，";
 	mes "就能听到他们说的一切。";
@@ -3237,29 +3237,29 @@ OnTouch:
 	end;
 }
 
-malangdo,171,163,3	script	极其可疑的商人	543,{
+malangdo,171,163,3	script	超级可疑的商人::极其可疑的商人	543,{
 	if (malang_bad_guys < 4) {
-		mes "[极其可疑的商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们不卖那些东西了，去找别的商人吧！";
 		close;
 	} else if (malang_bad_guys == 4) {
-		mes "[极其可疑的商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "报废罐头？";
 		mes "这里有很多工作，";
 		mes "就不能抽点时间聊聊吗？";
 		next;
 		switch(select("看起来很可疑？:我知道这里的一切！")) {
 		case 1:
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我和你是一条船上的人！";
 			close;
 		case 2:
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "...";
 			mes "你搜过蝴蝶号的休息室吗？";
 			mes "...";
 			next;
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看起来不是正确的地方~";
 			mes "去做别的事吧~！";
 			next;
@@ -3270,7 +3270,7 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 			close;
 		}
 	} else if (malang_bad_guys == 5) {
-		mes "[极其可疑的商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "想在蝴蝶号附近搜查戈赞吉，";
 		mes "就像骑着技能";
 		mes "拿平底锅一样，是件蠢事。";
@@ -3278,33 +3278,33 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 		close;
 	} else if (malang_bad_guys == 6) {
 		if (countitem(6427) == 0) {
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你搜过蝴蝶号的休息室吗？";
 			mes "但手里还是空空如也。";
 			mes "我都说了什么也没有。";
 			mes "...";
 			next;
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……一定有什么东西……";
 			close;
 		}
-		mes "[极其可疑的商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！那是^0000FF一袋报废罐头^000000，对吧？";
 		mes "你从哪里弄到的？真厉害！";
 		next;
 		switch(select("别装作不知道！:得让我们的老大看看！")) {
 		case 1:
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看起来真棒。";
 			mes "没有更多了吗？";
 			emotion ET_DELIGHT;
 			close;
 		case 2:
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "放轻松！";
 			mes "让我们只和自己人一起欢笑享乐吧。";
 			next;
-			mes "[极其可疑的商人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "老实说，我是浣熊欢呼队的一员。";
 			mes "一群无家可归的浣熊";
 			mes "组成了黑市团伙。";
@@ -3313,26 +3313,26 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 			next;
 			switch(select("你是老大吗？:让我弄清楚报废罐头的用途。:能按你的计划进行吗？")) {
 			case 1:
-				mes "[极其可疑的商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是个令人感激的误会，";
 				mes "我只是个小成员。";
 				mes "我不知道老大是谁。";
 				close;
 			case 2:
-				mes "[极其可疑的商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那个……";
 				mes "是用来当食物的……";
 				mes "请别再问了！";
 				close;
 			case 3:
-				mes "[极其可疑的商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你瞧不起浣熊欢呼队吗？";
 				mes "看好了！岛上的星星糖们，";
 				mes "我会让它们肚子痛，";
 				mes "吃下大量报废罐头。";
 				mes "你不期待吗？";
 				next;
-				mes "[极其可疑的商人]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我不能亲手让它们吃下去，";
 				mes "但对于闪耀珊瑚区域里、作为星星糖食物的生物，";
 				mes "我还是会用报废罐头喂它们。";
@@ -3350,7 +3350,7 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 			}
 		}
 	} else if (malang_bad_guys == 7) {
-		mes "[极其可疑的商人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请忘了我告诉你的事。";
 		mes "拜托了……";
 	mes "你在闪耀珊瑚区域拿到";
@@ -3359,7 +3359,7 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 		mes "也不要报告这件事！";
 		close;
 	}
-	mes "[极其可疑的商人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "所以你把一切都报告了？";
 	mes "...";
 	mes "现在该开始新的生活了，";
@@ -3367,8 +3367,8 @@ malangdo,171,163,3	script	极其可疑的商人	543,{
 	close;
 }
 
-mal_in02,184,72,3	script	戈赞吉#ml	547,{
-	mes "[戈赞吉]";
+mal_in02,184,72,3	script	猫奇奇#ml::戈赞吉#ml	547,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的肚子太痛了……";
 	mes "我得自己忍住！";
 	mes "……做坏事……";
@@ -3410,41 +3410,41 @@ OnTouch:
 	end;
 }
 
-malangdo,125,147,3	script	巡逻队长#ml	545,{
+malangdo,125,147,3	script	巡守队长#ml::巡逻队长#ml	545,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 携带的物品太多，无法进行下一步。-";
 		close;
 	}
 	if (malang_bad_guys < 10) {
-		mes "[巡逻队长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近这里出现了报废罐头，";
 		mes "请小心它们的流通，";
 		mes "务必提高警惕。";
 		close;
 	} else if (malang_bad_guys == 10) {
-		mes "[巡逻队长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以你要代替躺在床上的";
 		mes "毛团帮派做坏事吗？";
 		mes "一定会很刺激！";
 		mes "真让人兴奋……";
 		next;
-		mes "[巡逻队长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "戈邦吉和他的朋友们";
 		mes "最喜欢在闪耀珊瑚区域";
 		mes "折磨^0000FF红海星^000000。";
 		next;
-		mes "[巡逻队长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "折磨 20 只^0000FF红海星^000000一段时间后，";
 		mes "向我报告。";
 		mes "我会以巡逻队长的身份训斥你！";
 		next;
 		switch(select("巡逻队长为什么喜欢这样？:振作起来！！")) {
 		case 1:
-			mes "[巡逻队长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这就是我喜欢做的事！";
 			close;
 		case 2:
-			mes "[巡逻队长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我期待你做出各种坏事。";
 			erasequest 1153;
 			setquest 1154;
@@ -3453,7 +3453,7 @@ malangdo,125,147,3	script	巡逻队长#ml	545,{
 		}
 	} else if (malang_bad_guys == 11) {
 		if (checkquest(1154,HUNTING) == 2) {
-			mes "[巡逻队长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，你把^0000FF红海星^000000折磨得真惨！";
 			mes "你的表现令我印象深刻。";
 			next;
@@ -3462,14 +3462,14 @@ malangdo,125,147,3	script	巡逻队长#ml	545,{
 			emotion ET_CRY;
 			emotion ET_CRY, getnpcid(0, "治安队员#ml");
 			next;
-			mes "[巡逻队长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "藏起你的眼泪，留着以后再哭！";
 			mes "找到坏事线索时，";
 			mes "你应该在犯罪现场哭！";
 			emotion ET_CRY;
 			emotion ET_CRY, getnpcid(0, "治安队员#ml");
 			next;
-			mes "[巡逻队长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "调查结束后我会训斥你！";
 			mes "现在去找戈邦吉。";
 			erasequest 1154;
@@ -3477,34 +3477,34 @@ malangdo,125,147,3	script	巡逻队长#ml	545,{
 			set malang_bad_guys,12;
 			close;
 		}
-		mes "[巡逻队长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在星光珊瑚地区内，";
 		mes "折磨 20 只^0000FF红海星^000000一段时间后，";
 		mes "向我报告。";
 		mes "我会以巡逻队长的身份训斥你！";
 		close;
 	}
-	mes "[巡逻队长]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "调查结束后我会训斥你！";
 	mes "现在去找";
 	mes "戈邦吉吧。";
 	close;
 }
 
-malangdo,129,146,3	script	治安队员#ml	545,{
+malangdo,129,146,3	script	巡查队员#ml::治安队员#ml	545,{
 	if (malang_bad_guys > 11) {
-		mes "[治安队员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有工作做就是开心的事！";
 		mes "请你做出各种坏事！";
 		close;
 	}
-	mes "[治安队员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "一群吃了报废罐头的猫";
 	mes "肚子疼。";
 	mes "它们躺在北边，";
 	mes "但仍然气得打滚。";
 	next;
-	mes "[治安队员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈……村子变得";
 	mes "和平又安静，但感觉";
 	mes "有点空荡。这不是";
@@ -3562,7 +3562,7 @@ malangdo,3,1,3	script	任务指引#ml	543,{
 
 // Clean the Ship :: mal_day_qook
 //============================================================
-mal_in02,76,63,7	script	清扬	544,{
+mal_in02,76,63,7	script	猫可莉::清扬	544,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。-";
 		close;
@@ -3570,7 +3570,7 @@ mal_in02,76,63,7	script	清扬	544,{
 	if (BaseLevel < 60) {
 		mes "水手猫正在悲伤地哭泣。";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵呜喵呜喵呜";
 		mes "怎么了……喵……有些事……发生了……呜呜~";
 		mes "你不需要知道。喵呜呜……";
@@ -3586,7 +3586,7 @@ mal_in02,76,63,7	script	清扬	544,{
 		mes "水手猫正在悲伤地哭泣。";
 		emotion ET_CRY;
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵喵喵呜~";
 		mes "发生了什么……呜……呜……";
 		mes "你不需要知道。呜……呜……";
@@ -3599,35 +3599,35 @@ mal_in02,76,63,7	script	清扬	544,{
 			mes "我只是陪在他身边，安慰他受伤的心。";
 			next;
 			emotion ET_CRY;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太不公平了……呜呜……";
 			mes "厨师……他总是训斥我。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我一直都很勤快地打扫。";
 			mes "我不知道它们从哪里来……呜呜……";
 			mes "它们钻进了食材……";
 			next;
 			select("它们？" );
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是的，它们又快又小又硬，还闪着黑光。";
 			mes "喵……还有白色的，会蠕动……";
 			mes "我的厨师非常爱干净。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没关系。干净、害虫和";
 			mes "其他什么的……不公平的是，";
 			mes "我真的也消灭了害虫，喵。";
 			mes "而且我一直勤快打扫。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "顺便说，它们一再出现。";
 			mes "我不知道它们从哪里来。";
 			next;
 			switch(select("别再问了。:询问害虫来源。")) {
 			case 1:
 				emotion ET_CRY;
-				mes "[清扬]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……你的脸怎么了？";
 				mes "你害怕派我去办事吗？";
 				mes "你把我当成什么了……喵，喵……？";
@@ -3637,12 +3637,12 @@ mal_in02,76,63,7	script	清扬	544,{
 				mes "让他一个人静静吧。";
 				close;
 			case 2:
-				mes "[清扬]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "有人能去那里调查吗？";
 				mes "请搜查蝴蝶号的每个角落，好吗？";
 				mes "我没法这样活下去！喵，喵！";
 				next;
-				mes "[清扬]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "肯定有我不知道的东西。喵。";
 			mes "喵……我来打扫这里。请替我找出原因。";
 				set mal_qook,1;
@@ -3656,45 +3656,45 @@ mal_in02,76,63,7	script	清扬	544,{
 	} else if (mal_qook == 1) {
 		if (checkquest(7261) != -1 && checkquest(7262) != -1 && checkquest(7263) != -1) {
 			emotion ET_HUK;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，那是什么？喵。";
 			mes "这是猫饼干……可能放了很久……";
 			mes "不可能……！";
 			next;
 			select("是的，就是这个。" );
 			emotion ET_SCRATCH;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为水手们把猫饼干藏起来后遗弃，里面生了虫……";
 			mes "我只是因为磨牙饼干被训斥了吗？";
 			mes "喵！";
 			next;
 			select("磨牙饼干？" );
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没错，喵。";
 			mes "这是为了方便航行时保存而烤得很硬的面包，喵。";
 			mes "它太硬了，直接咬的话，犬齿可能会断，喵。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它只用盐和面粉烤制，以便长期保存，所以没有什么味道。";
 			mes "更重要的是……看看这个。";
 			next;
 			mes "清扬用锤子和凿子敲开猫饼干，";
 			mes "然后砸在地上。接着……";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……你能看到有什么东西从这里出来吗？";
 			mes "这是象鼻虫……";
 			mes "简直是昆虫的城堡。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "也许真的没人想吃这个。";
 			mes "这些虫子是在我们定居岛上、改换菜单之前留下的。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "定居岛上后，因为有新鲜食材，我们就不再制作猫饼干。";
 			mes "........";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请把这个给厨师看，告诉他清扬已经打扫得非常干净。";
 			mes "嗯……我还是怕厨师……";
 			mes "……拜托了！喵！";
@@ -3705,104 +3705,104 @@ mal_in02,76,63,7	script	清扬	544,{
 			erasequest 7260;
 			setquest 7264;
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，那块猫饼干还没坏，试着吃吃看吧。";
 			mes "你想知道那是什么吗？虽然卖相不好，却曾是很棒的食物……";
 			close;
 		}
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请搜索蝴蝶号，找出它的来源。";
 		mes "我只能相信你了。";
 		close;
 	} else if (mal_qook == 2) {
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你把猫饼干给厨师看，证明虫子来自那里，";
 		mes "我的误会就能解开。";
 		next;
 		select("你为什么不自己去？" );
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……我还得打扫……";
 		mes "我还是害怕厨师，所以拜托你了。";
 		close;
 	} else if (mal_qook == 3) {
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "厨师生气了。";
 		mes "快求他饶命！";
 		close;
 	} else if (mal_qook == 4) {
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是说厨师更在意猫饼干？";
 		mes "从现在起我不用哭了？";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "厨师需要什么，就带给他吧~";
 		mes "这样对大家都好，对吧？";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等厨师满意高兴时再来吧。";
 		mes "在那之前我可能紧张得无法打扫。喵……";
 		close;
 	} else if (mal_qook == 5) {
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你完成厨师要的工作了吗？";
 		mes "对了，你为什么突然制作猫饼干？";
 		next;
 		select("给你的新菜单。" );
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵呜呜呜——！！";
 		mes "喵呜呜呜！！";
 		mes "喵呜呜……喵呜呜！";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不！！！！！！！！！！！";
 		mes "没有猫饼干就是天堂。我不想再回地狱！！！！";
 		mes "喵呜呜……喵呜呜……喵呜呜~";
 		next;
 		switch(select("挠下巴。:碰鼻尖。:拍拍屁股。")) {
 		case 1:
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵……咕噜咕噜……";
 			mes "喵呜……";
 			mes "呼啊呼啊……咕噜咕噜……";
 			next;
 			break;
 		case 2:
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯呀——！";
 			mes "呜喵喵喵喵！";
 			mes "你到底在做什么！";
 			next;
 			break;
 		case 3:
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呜喵喵";
 			mes "喵呜……呜喵——！";
 			mes "你在做什么！";
 			next;
 			break;
 		}
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请停下……";
 		mes "现在冷静。";
 		mes "我明白厨师的话和宏伟计划了。";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂，帮助过我的人类，是你，你！";
 		mes "能帮我个忙吗？";
 		mes "如果菜单改变、供应猫饼干，它们肯定会出现……";
 		next;
 		select("什么？" );
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "猫中的猫！";
 		mes "那些偷偷藏起猫饼干的猫。";
 		mes "它们因为害怕厨师，不敢说不想吃，只能把饼干丢掉。";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，它们会开始藏猫饼干……";
 		mes "然后饼干就会被虫子侵染！";
 		mes "厨师又会训斥我！";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以从明天开始，每天都让我看看供应的猫饼干。";
 		mes "你做得很好。这是谢礼。";
 		set mal_qook,6;
@@ -3813,19 +3813,19 @@ mal_in02,76,63,7	script	清扬	544,{
 	}
 	switch(rand(3)) {
 	case 0:
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呜呜呜……";
 		mes "呜呜呜……";
 		mes "太可怕了……我拿到了猫饼干，却不知道是什么时候做的。";
 		mes "真的很硬。我差点把牙齿弄掉。";
 		break;
 	case 1:
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "厨师可能会忘记因为虫子训斥我的事。";
 		mes "他被猫饼干吓到了。这比清洁工作更严重吗？";
 		break;
 	case 2:
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是清洁猫清扬~";
 		mes "喵~";
 		mes "在别人家的门上抓痕，喵~";
@@ -3834,28 +3834,28 @@ mal_in02,76,63,7	script	清扬	544,{
 		break;
 	}
 	next;
-	mes "[清扬]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "对了，发生什么事了？";
 	next;
 	switch(select("约定时间到了~:我来看看结果~:扭扭屁股~")) {
 	case 1:
 		if (checkquest(7267,PLAYTIME) == 0) {
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？还没。";
 			mes "今天的猫饼干还没发放，再等一会儿就知道了。";
 			mes "可能要等厨师分发猫饼干后。";
 			close;
 		}
 		if (checkquest(7268) != -1) {
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天为你提供的服务。";
 			mes "现在有10个藏着猫饼干的地点。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有人以为好心的天使会把我收集后扔掉的饼干全带走。";
 			mes "但他仍然把饼干藏在那些地方。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这很简单，因为不用到处搜索，但是……";
 			mes "请搜索经常藏东西的10个地点。";
 			close;
@@ -3863,20 +3863,20 @@ mal_in02,76,63,7	script	清扬	544,{
 		if (checkquest(7267,PLAYTIME) == 2)
 			completequest 7267;
 		erasequest 7267;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天有人藏猫饼干吗？";
 		mes "也许就是那里？";
 		next;
 		switch(select("今天试着搜索。:今天还是算了。")) {
 		case 1:
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天为你提供的服务。";
 			mes "搜索蝴蝶号内部、房屋和猫塔。连一根草都别漏掉。";
 			mes "到处搜查。";
 			setquest 7268;
 			close;
 		case 2:
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你觉得呢？";
 			mes "如果是这样，那就太好了。";
 			mes "不管怎样，因为我们及时发现并清除，饼干没有被虫子侵染。";
@@ -3885,7 +3885,7 @@ mal_in02,76,63,7	script	清扬	544,{
 		}
 	case 2:
 		if (checkquest(7268) == -1) {
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？今天没人委托收集猫饼干。";
 			mes "对了，结果报告呢？";
 			mes "你生病了吗？";
@@ -3893,16 +3893,16 @@ mal_in02,76,63,7	script	清扬	544,{
 		}
 		if (checkquest(7261) != -1 && checkquest(7262) != -1 && checkquest(7263) != -1 && checkquest(7269) != -1 && checkquest(7270) != -1 &&
 		    checkquest(7271) != -1 && checkquest(7272) != -1 && checkquest(7273) != -1 && checkquest(7274) != -1 && checkquest(7275) != -1) {
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，出现猫饼干的地点！";
 			mes "你全都收集了吗？";
 			mes "我想这样就够了。";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "把找到的猫饼干全带来吧。";
 			mes "味道不差，口感也很有韧性……";
 			next;
-			mes "[清扬]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好，今天的工作够了。明天请再来！";
 			mes "明天会有新的猫饼干！";
 			mes "喵哈哈呜~";
@@ -3922,24 +3922,24 @@ mal_in02,76,63,7	script	清扬	544,{
 			getitem 12636,10; //Malang_Sp_Can
 			close;
 		}
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你全都找到了吗？";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有人以为好心的天使会把我收集后扔掉的饼干全带走。";
 		mes "但他仍然把饼干藏在那些地方。";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这很简单，因为不用到处搜索，但是";
 		mes "请搜索经常藏东西的10个地点。";
 		close;
 	case 3:
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵呜——！";
 		mes "你在做什么？喵！";
 		mes "咕噜咕噜……";
 		next;
-		mes "[清扬]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯嗯。";
 		mes "嘿，别那样。";
 		mes "……这不算犯罪吗？喵。";
@@ -4156,13 +4156,13 @@ malangdo,141,178,0	script	#Darkweed6	844,{
 	close;
 }
 
-malangdo,133,134,0	script	奇怪的沙堆#7	557,{
+malangdo,133,134,0	script	可疑的沙堆#7::奇怪的沙堆#7	557,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。 -";
 		close;
 	}
 	if (checkquest(7268) != -1) {
-		set .@quest, (strnpcinfo(0) == "奇怪的沙堆#7")?7270:7275;
+		set .@quest, (strnpcinfo(3) == "奇怪的沙堆#7")?7270:7275;
 		if (checkquest(.@quest) == -1) {
 			mes "沙堆隆起得像坟墓，里面应该有东西。";
 			mes "据说猫有便后用沙子掩埋的习惯……";
@@ -4198,7 +4198,7 @@ malangdo,133,134,0	script	奇怪的沙堆#7	557,{
 	mes "- 仅此而已…… -";
 	close;
 }
-malangdo,197,237,0	duplicate(奇怪的沙堆#7)	奇怪的沙堆#12	557
+malangdo,197,237,0	duplicate(奇怪的沙堆#7)	可疑的沙堆#12::奇怪的沙堆#12	557
 
 malangdo,232,131,0	script	#UnderStairs8	844,{
 	if (checkweight(1201,1) == 0) {
@@ -4330,13 +4330,13 @@ mal_in01,24,72,0	script	#FootholdTower11	844,{
 
 // Help Chef Nyas :: mal_day_qook
 //============================================================
-mal_in02,187,58,3	script	尼亚斯厨师	548,{
+mal_in02,187,58,3	script	主厨 猫乐司::尼亚斯厨师	548,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。 -";
 		close;
 	}
 	if (BaseLevel < 60) {
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "怎么回事，小子？";
 		mes "我不想和你说话。离我远点！";
 		next;
@@ -4345,26 +4345,26 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 		close;
 	}
 	if (mal_qook < 2) {
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是整个舰队独一无二的厨师。";
 		mes "你想从我这里得到什么？";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我没有空闲，平时也乐意端上一盘汤，但现在！";
 		mes "因为一个笨蛋的疏忽，食材被虫子侵扰了！";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，等我的怒火像平静海面一样消退后再回来！";
 		mes "顺便说，那个笨蛋去哪儿了！";
 		close;
 	} else if (mal_qook == 2) {
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是整个舰队独一无二的厨师。";
 		mes "你想从我这里得到什么？";
 		next;
 			switch(select("出示猫饼干。:谈谈清扬的故事。")) {
 		case 1:
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？这是猫饼干吗？";
 			mes "特别是，我能从这块饼干中感受到时间的流动。";
 			mes "对了，你怎么会有这个？";
@@ -4374,7 +4374,7 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 			next;
 			break;
 		case 2:
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为什么是那个笨蛋？";
 			mes "你想在平静海面制造雷暴吗？！";
 			next;
@@ -4383,29 +4383,29 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 			next;
 			break;
 		}
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以这一切是因为猫饼干？";
 		mes "对，这是在说那件事吗？";
 		next;
 		select("你理解得很快。");
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……他真是个混蛋！";
 		mes "另外，什么？船长房间里又找到一块？！";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "托马斯……";
 		mes "他本应领导水手，却搞错了吗？";
 		mes "呜嘟嘟。";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这块猫饼干！它总是在漫长航行中帮助我们摆脱饥饿，令人感激的食物！";
 		mes "无论味道如何，它总能在生死关头救我们一命！";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使一个月、两个月，甚至1000天都无法生火！";
 		mes "这是在大海上生存的祝福食物！";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "制作猫饼干让多少猫厨师吃尽苦头！";
 		mes "因为定居岛上，军纪已经松懈了！你们已经忘了危险的处境吗？！";
 		next;
@@ -4418,28 +4418,28 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 		close;
 	} else if (mal_qook == 3) {
 		if (!rand(3)) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你来了？我做了个糟糕的决定。";
 			mes "你外出时，我做了一个重要决定。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "定居岛上后，充足食物让大家的想法变得堕落。";
 			mes "所以我会改变菜单，每天一餐提供猫饼干！";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "制作猫饼干需要那种材料。";
 			mes "这座岛上没有小麦，所以需要你的帮助。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "只要能磨粉和揉面，什么都可以。";
 			mes "请带来^4d4dff10个谷物^000000和^4d4dff1份咸酱^000000。";
 			mes "用海水代替盐……";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "在陆地上容易得到吗？";
 			mes "剩下的材料我会自己弄。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我要纠正他们对罐头食物的疯狂口味。";
 			mes "他像一片平静却藏着可怕雷暴的海一样走来";
 			mes "我要让他感受海神的怒火！喵呜~~！！";
@@ -4456,11 +4456,11 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 		close;
 	} else if (mal_qook == 4) {
 		if (countitem(577) >= 10 && countitem(7454) > 0) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "终于到了。哇，这片土地真不一样。";
 			mes "这些足够处理了。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果可以，我希望每天都得到这些食物。";
 			mes "如果你不介意，明天再来吧。";
 			delitem 577,10; //Grain
@@ -4470,38 +4470,38 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 			setquest 7276;
 			close;
 		}
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "制作猫饼干需要那种材料。";
 		mes "这座岛上没有小麦，所以需要你的帮助。";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只要能磨粉和揉面，什么都可以。";
 		mes "请带来^4d4dff10个谷物^000000和^4d4dff1份咸酱^000000。";
 		mes "用海水代替盐…….";
 		close;
 	}
-	mes "[尼亚斯厨师]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你来了。";
 	mes "现在不是用餐时间……你为什么来这里？";
 	next;
 	switch(select("今天的工作是什么？:送餐:只是觉得无聊……")) {
 	case 1:
 		if (checkquest(7276,PLAYTIME) == 0) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在，猫饼干正在这个烤箱里烘烤。";
 			mes "这些都是要交付的食物。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "安静的波浪带着些许咸香气味。";
 			mes "海洋的食物即将到来，让水手的心怦怦直跳。";
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今天制作猫饼干的材料够了。";
 			mes "下次再来点单吧。";
 			close;
 		}
 		if (mal_food > 0) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯？你真迟钝。";
 			mes "你已经拿走我的订单清单了吗？";
 			mes "处理好它们。";
@@ -4509,42 +4509,42 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 		}
 		if (checkquest(7276,PLAYTIME) == 2)
 			completequest 7276;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给你。";
 		mes "我现在需要猫饼干的材料。幸好你及时来了。";
 		if (checkquest(7276) != -1)
 			erasequest 7276;
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你能从陆地带些猫饼干的材料来吗？";
 		mes "如果你愿意，我还有一件事想拜托……";
 		next;
 		switch(select("我今天很忙。:好的，你需要什么？")) {
 		case 1:
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真是遗憾。";
 			mes "不过没关系。 猫饼干本来就是储备食物。";
 			mes "总之，今天的船饼会在第二个月亮满月时供应。";
 			next;
 			switch(select("所以是磨牙饼？:虫子城堡……:不能扔掉？")) {
 			case 1:
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你想从我这里听到什么？！";
 				mes "喵呜！！";
 				mes "猫饼干的坚硬就像海上的高贵耐力！";
 				mes "别小看它！！";
 				close;
 			case 2:
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "只有不懂保存的笨蛋才会这么说。";
 				mes "充分晾干后密封，放在阴凉干燥处。啧啧。";
 				next;
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "总之，这些都是蛋白质，对吧？";
 				mes "既然这么在意，为什么不晚上吃呢！";
 				close;
 			case 3:
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "绝不能浪费食物！";
 				mes "被猫饼干砸到会留下淤青或流血，但是";
 				mes "绝不是因为这个原因！！！";
@@ -4553,11 +4553,11 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 			}
 		case 2:
 			if (mal_food == 0) {
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "猫饼干的材料和平时一样，是10个谷物和1个咸酱。";
 				mes "我想研究人类的食物，所以请带来其中一种。";
 				next;
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我好奇的食物是……";
 				set .@i, rand(1,66);
 
@@ -4569,30 +4569,30 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 				setquest 7280+.@i;
 				mes "一道菜就够了，请一起带来。";
 				next;
-				mes "[尼亚斯厨师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你必须带来用新鲜材料制作的菜肴。";
 				mes "^ff0000我会拒绝速食。^000000";
 				close;
 			}
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，朋友，你的记性真差。";
 			mes "你已经拿走我的订单清单了吗？";
 			close;
 		}
 	case 2:
 		if (mal_food == 0) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你记得我让你带什么吗？";
 			mes "我不知道。";
 			close;
 		} else if (mal_food > 66) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我说要带什么来？";
 			mes "我不记得了？";
 			mes "你是不是搞错了才来到这里？";
 			close;
 		}
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是猫饼干的材料和人类的食物吗？";
 		mes "让我检查一下你带来的东西……";
 		next;
@@ -4603,7 +4603,7 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 		set .@food, .@StartID[(.@i-1)/5]+((.@i-1)%5);
 
 		if (countitem(577) >= 10 && countitem(7454) > 0 && countitem(.@food) > 0) {
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了。";
 			mes "就是这种食物！";
 			mes "这会是很好的参考。做得好。";
@@ -4621,22 +4621,22 @@ mal_in02,187,58,3	script	尼亚斯厨师	548,{
 
 			getexp 50000,80000;
 			next;
-			mes "[尼亚斯厨师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好了，你明天能来吗？";
 			mes "想到你要来，我就兴奋不已。";
 			mes "喵呼，喵呼。";
 			close;
 		}
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吃……";
 		mes "是我高估你的能力了吗？";
 		mes "再确认一下缺少什么，然后正确地带来。";
 		next;
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你和没有分辨力的小猫没什么不同。";
 		close;
 	case 3:
-		mes "[尼亚斯厨师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你真大胆，简直像一头虎鲸。";
 		mes "没事的话就别碰蔬菜，赶紧走开。";
 		close;
@@ -5159,7 +5159,7 @@ malangdo,211,203,4	script	[喵喵冒险团]查罗#nya_11	560,{
 	}
 }
 
-malangdo,214,204,3	script	[喵喵冒险团]罗西#nya_09	559,{
+malangdo,214,204,3	script	[喵喵探险队] 罗熙#nya_09::[喵喵冒险团]罗西#nya_09	559,{
 	if (nyadven < 2) {
 		mes "一只白毛小猫正在努力摆弄那台奇怪的机器。";
 		mes "这台机器可能坏了。";
@@ -5204,7 +5204,7 @@ malangdo,214,204,3	script	[喵喵冒险团]罗西#nya_09	559,{
 	}
 }
 
-malangdo,215,201,3	script	[喵喵冒险团]罗库#nya_10	553,{
+malangdo,215,201,3	script	[喵喵探险队] 罗库#nya_10::[喵喵冒险团]罗库#nya_10	553,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 4000) {
 		mes "- 你的物品太多，无法继续这个任务。 -";
 		close;
@@ -5661,7 +5661,7 @@ malangdo,175,163,0	script	喵铃#nya_12	844,{
 	}
 }
 
-malangdo,176,165,3	script	水手布比#nya_16	544,{
+malangdo,176,165,3	script	水手 普毕#nya_16::水手布比#nya_16	544,{
 	mes "[布比]";
 	mes "嘿，人类冒险者，你来这里做什么？";
 	mes "是啊~这里风景真美。";
@@ -5677,14 +5677,14 @@ malangdo,176,165,3	script	水手布比#nya_16	544,{
 	close;
 }
 
-malangdo,172,178,7	script	猫侦探#nya_14	560,{
+malangdo,172,178,7	script	名侦探猫咪#nya_14::猫侦探#nya_14	560,{
 	cutin "mal_homnya_n",2;
 	if (nyadven < 6) {
-		mes "[猫侦探]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？怎么了？";
 		mes "嘿，这里有个可疑的家伙。";
 		next;
-		mes "[猫侦探]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从液体的气味我可以确定他喝醉了。";
 		mes "我真是悲伤得说不出话。";
 		next;
@@ -5692,19 +5692,19 @@ malangdo,172,178,7	script	猫侦探#nya_14	560,{
 		mes "哦，听说你有这么高明的分析能力，我真遗憾！";
 		mes "他没有喝醉……";
 		next;
-		mes "[猫侦探]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "醉汉总是有液体的气味。";
 		mes "但他没有，所以他没醉，朋友。";
 		next;
 		select("那你的身份是什么？" );
 		cutin "mal_homnya_s",2;
-		mes "[猫侦探]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你什么都是，唯独不是醉汉！！！";
 		next;
 		mes "猫咪们的声音听起来在发抖。";
 		close2;
 	} else if (nyadven == 6) {
-		mes "[猫侦探]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我说什么了？";
 		mes "我不是告诉过你很快会有人来吗？";
 		next;
@@ -6081,7 +6081,7 @@ malangdo,172,178,7	script	猫侦探#nya_14	560,{
 	end;
 }
 
-malangdo,173,177,7	script	侦探的朋友#mal	559,{
+malangdo,173,177,7	script	名侦探的朋友#mal::侦探的朋友#mal	559,{
 	cutin "mal_homnya_n",2;
 	mes "[喵森]";
 	mes "我是侦探喵妮雅的朋友喵森。";
@@ -6476,36 +6476,36 @@ mal_in02,139,30,0	script	通风窗#nya06	844,{
 	}
 }
 
-mal_in02,166,74,4	script	爱整洁的船员#nyaong01	555,{
-	mes "[爱整洁的船员]";
+mal_in02,166,74,4	script	有洁癖的船员#nyaong01::爱整洁的船员#nyaong01	555,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请自己收拾东西。";
 	mes "尤其是你们这些来到岛上后变脏的家伙！";
 	mes "请把垃圾扔进垃圾桶。";
 	next;
-	mes "[爱整洁的船员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "而且你把所有作物都拔了。";
 	mes "哼。请让它保持自然状态。";
 	next;
-	mes "[爱整洁的船员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你在看什么？";
 	mes "你也要把这里弄乱吗？";
 	mes "喵？！";
 	close;
 }
 
-mal_in02,132,95,5	script	凶巴巴的船员#nyaong02	561,{
-	mes "[凶巴巴的船员]";
+mal_in02,132,95,5	script	凶巴巴船员#nyaong02::凶巴巴的船员#nyaong02	561,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我最近努力友善，孩子们却总是对我放肆。";
 	mes "你也会这样吗？";
 	next;
-	mes "[凶巴巴的船员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他们随意进出，甚至闯入别人的房间……";
 	mes "肯定会造成伤害。";
 	close;
 }
 
-mal_in02,109,62,4	script	挑剔的船员#nyaong03	545,{
-	mes "[挑剔的船员]";
+mal_in02,109,62,4	script	目中无人的船员#nyaong03::挑剔的船员#nyaong03	545,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "不要在大厅里奔跑！";
 	mes "有人到处抓挠，害得我的毛都掉了！";
 	mes "到处都是抓痕！";
@@ -6514,7 +6514,7 @@ mal_in02,109,62,4	script	挑剔的船员#nyaong03	545,{
 
 // Cat Gamers :: mal_gamer
 //============================================================
-mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
+mal_in01,31,210,2	script	队长猫咪::猫咪玩家协会会长	549,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的背包太重，无法继续。减轻负重后再回来。";
 		close;
@@ -6537,44 +6537,44 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 	if (malang_gamer == 0) {
 		mes "一只看起来温顺的猫正在自言自语。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊！连续输了10场……";
 		emotion ET_OHNO;
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们是‘猫咪玩家协会’。";
 		mes "但我们一直输，完全不知道为什么！";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们必须找出连败的原因。";
 		set malang_gamer,1;
 		next;
 		mes "你对猫的故事产生了兴趣。继续听下去吧。";
 		close;
 	} else if (malang_gamer == 1) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "原因，对！";
 		mes "这可能是其中之一。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^DD2234丢掉了太多分！^000000";
 		mes "没错，无论得多少分，";
 		mes "只要丢掉太多分，我们还是会输。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另一个原因，嗯！";
 		mes "这可能和前一个原因有关。";
 		mes "完全没有^DD2234激烈的下注^000000。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "其他队会押注他们认为能赢的比赛，不自信时就少下注。";
 		mes "看来我们以前不知道。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，这会是原因吗？";
 		mes "不知为何，^DD2234比赛前夕有玩家消失^000000，我想这可能影响了我们的比赛精神。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……所以我们连败的原因是，";
 		mes "丢掉太多分；";
 		mes "激进下注；";
@@ -6584,24 +6584,24 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "看来那只看起来温和的猫思考完了。打断这场对话吧。";
 		close;
 	} else if (malang_gamer == 2) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然我知道原因了，";
 		mes "应该有解决办法。";
 		emotion ET_SCRATCH;
 		next;
 		select("嗯……猫先生……" );
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是谁？人类？你是人类？";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ... ...";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！是的！没错！";
 		mes "我记得听说";
 		mes "最近开始有人类经过这里。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "见到你真好！！";
 		mes "对了，你叫什么名字？";
 		emotion ET_SURPRISE;
@@ -6609,21 +6609,21 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "["+strcharinfo(0)+"]";
 		mes "我叫"+strcharinfo(0)+"，猫先生。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，^0000FF"+strcharinfo(0)+"^000000。";
 		mes "我能帮你什么？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "其实我听说你连续输掉 10 场比赛，所以想帮你……";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，你没必要这样直接指出来……";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "弱点说出来后，就不再是弱点了。";
 		emotion ET_BEST, playerattached();
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈，我喜欢这句话。";
 		mes "我应该记住，";
 		mes "再告诉我的孩子们。嘿~";
@@ -6632,12 +6632,12 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			setarray .@sex$[0],"女士","女孩";
 		else
 			setarray .@sex$[0],"先生","男孩";
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我喜欢你，"+strcharinfo(0)+.@sex$[0]+"。你愿意帮我们摆脱连输 10 场的低谷吗？呵呵~";
 		next;
 		switch(select("抱歉，我是笨蛋"+.@sex$[1]+"。:当然，我是酷炫的"+.@sex$[1]+"。")) {
 		case 1:
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来我看错你了~";
 			mes "怎么会有人称自己为笨蛋。";
 			mes "现在我看出你有多笨了。";
@@ -6645,25 +6645,25 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			emotion ET_SCRATCH;
 			close;
 		case 2:
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇。我很尊敬你，"+strcharinfo(0)+"。";
 			mes "请帮我一个忙。";
 			mes "请去见勤劳的猫管理员，问问我们队伍最近的状态。";
 			set malang_gamer,3;
 			setquest 5058;
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "猫管理员应该就在附近~";
 			close;
 		}
 	} else if (malang_gamer == 3) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请去见勤劳的猫管理员，";
 		mes "问问我们队伍最近的状态。";
 		mes "猫管理员应该就在附近~";
 		close;
 	} else if (malang_gamer == 4) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，好。那么猫管理员怎么说最近的氛围？~";
 		emotion ET_QUESTION;
 		next;
@@ -6672,14 +6672,14 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "["+strcharinfo(0)+"]";
 		mes "猫管理员说……";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别犹豫……把一切告诉我~";
 		emotion ET_QUESTION;
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "嗯……玩家猫咪们害怕你……";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么……你说什么？";
 		emotion ET_HUK;
 		next;
@@ -6693,41 +6693,41 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			mes "猫咪玩家协会会长似乎受到了打击。让他花点时间冷静。";
 			close;
 		}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不可能！";
 		mes "没有比我更温柔的猫了！";
 		emotion ET_CRY;
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真的那么可怕吗？";
 		mes "那些逃离训练的玩家也害怕我吗？";
 		emotion ET_PROFUSELY_SWEAT;
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不可能吧？呵呵呵呵~";
 		next;
 		mes "- 他紧张地笑了。-";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是真的吗？";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes strcharinfo(0)+"，你能帮我吗？";
 		mes "有 4 个玩家说太累而逃离训练。";
 		mes "你能查查他们是不是因为我才逃走的吗？呵呵呵~";
 		emotion ET_QUESTION;
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们叫 艾柳、斯图、番茄酱 和 艾夫。";
 		mes "他们应该就在附近。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请找到他们全部~";
 		mes "但别问得太直接！好吗？";
 		mes "温和地问他们~";
 		mes "好吗？要！温和！";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢你的帮助，"+strcharinfo(0)+"。嘿~";
 		set malang_gamer,6;
 		erasequest 5060;
@@ -6735,10 +6735,10 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		close;
 	} else if (malang_gamer == 6) {
 		if (checkquest(5062) == 2 && checkquest(5063) == 2 && checkquest(5064) == 2 && checkquest(5065) == 2) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~看来这座城镇里有些人类在欺骗猫咪。";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欺骗无辜猫咪有什么好处？~";
 			emotion ET_KIK;
 			next;
@@ -6746,12 +6746,12 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			mes "是的，我觉得你说得对。";
 			emotion ET_SCRATCH, playerattached();
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你见过 艾柳、斯图、番茄酱 和 艾夫。";
 			mes "再次见到你真好。嘿~";
 			mes "非常感谢你的努力~嘿~";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么他们说了什么？";
 			mes "他们真的觉得我可怕吗？";
 			next;
@@ -6760,7 +6760,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			mes "["+strcharinfo(0)+"]";
 			mes "他们觉得你在训练中逼得太紧，所以害怕你。";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么？真的吗？";
 			next;
 			mes "猫咪玩家协会会长似乎再次受到了打击。最好给他更多时间冷静。";
@@ -6769,17 +6769,17 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			setquest 5060;
 			close;
 		}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们叫 艾柳、斯图、番茄酱 和 艾夫。";
 		mes "他们应该就在附近。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请找到他们全部~";
 		mes "但别问得太直接！好吗？";
 		mes "温和地问他们~";
 		mes "好吗？要！温和！";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢你的帮助，"+strcharinfo(0)+"。嘿~";
 		close;
 	} else if (malang_gamer == 7) {
@@ -6787,61 +6787,61 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			mes "猫咪玩家协会会长似乎再次受到了打击。最好给他更多时间冷静。";
 			close;
 		}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，我明白了。";
 		mes "我果然是一只可怕的猫。";
 		mes "这不可能！！嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我必须改变可怕猫咪的形象。嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这就是我现在的任务，";
 		mes "这样我们的队伍才能提升";
 		mes "比赛表现。嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请去见我们的猫管理员，";
 		mes "了解我该如何改变";
 		mes "我这副可怕猫咪的形象。嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~我会非常感谢你的帮助，"+strcharinfo(0)+"~。";
 		set malang_gamer,8;
 		erasequest 5060;
 		setquest 5066;
 		close;
 	} else if (malang_gamer == 8) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请问问猫管理员，我该如何改变这副可怕的形象。";
 		mes "嘿～";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿～请帮帮我，";
 		mes strcharinfo(0)+"! 嘿～";
 		close;
 	} else if (malang_gamer == 9) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你回来了！！嘿～";
 		mes "那么，猫管理员说了什么？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "猫管理员让我准备一个箱子。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "箱子？嘿~当然，为什么不？";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "你要问这是做什么的吗？";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，"+strcharinfo(0)+"和猫管理员交谈时，我稍微偷听了一下。嘿~";
 		emotion ET_SMILE;
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "............";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我需要询问玩家，看看他们真正的感受。";
 		mes "嘿~明天再来怎么样？";
 		mes "嘿~等我看完他们真诚的请愿信，再决定该怎么办。嘿~";
@@ -6851,39 +6851,39 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		close;
 	} else if (malang_gamer == 10) {
 		if (checkquest(5068,PLAYTIME) == 0 || checkquest(5068,PLAYTIME) == 1) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "还在收到请愿信。嘿~";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不知道他们真正想说什么~嘿~";
 			close;
 		}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~请愿信收集完毕~";
 		mes "嘿~看看他们写了什么？";
 		next;
 		mes "阅读中……~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~让我看看……‘笨猫领……导……’";
 		emotion ET_FRET;
 		next;
 		mes "- 把纸揉成一团 -";
 		mes "猫咪玩家协会会长把纸揉皱后扔掉了。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~拿错纸了。";
 		mes "再读一封……嘿~";
 		next;
 		mes "~阅读中~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~来了。";
 		mes "‘我不喜欢反复和同一批队员玩。";
 		mes "请挑选新的队员，";
 		mes "或者给我找个练习伙伴。’";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~我明白了。";
 		mes "我可以积极看待。";
 		mes "嘿~继续看下一封。";
@@ -6891,22 +6891,22 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		next;
 		mes "~阅读中~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~";
 		mes "‘我们需要更多点心~给我们更多点心~’";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~这封听起来也很有建设性。";
 		mes "嘿~请愿信还不错吧……嘿~";
 		emotion ET_OK;
 		next;
 		mes "阅读中……~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~";
 		mes "‘前辈们在欺负我。帮帮我……’";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~我们的队伍绝对";
 		mes "像一个家庭~有人";
 		mes "在这里玩闹呢。嘿~";
@@ -6914,12 +6914,12 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		next;
 		mes "阅读中……~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~只有 4 封信！";
 		mes "还包括一封恶作剧信……";
 		mes "嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来大家的队伍生活都很满意~嘿~";
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -6927,14 +6927,14 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		next;
 		mes "箱子后面堆着大量信件，但猫咪玩家协会会长不想承认问题。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~";
 		mes "嘿，"+strcharinfo(0)+"。你说什么？嘿~";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "没什么！请继续。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~因为这些玩家的愿望，";
 		mes "我想请你帮个忙，"+strcharinfo(0)+"……";
 		mes "嘿~";
@@ -6942,44 +6942,44 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "["+strcharinfo(0)+"]";
 		mes "什么事？";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你愿意成为我们玩家的练习伙伴吗？";
 		mes "嘿~我强烈觉得你，"+strcharinfo(0)+"，值得信任。嘿~";
 		next;
 		switch(select("不用了，朋友！:好，我来做！")) {
 		case 1:
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~你要拒绝我吗？嘿~";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我好伤心。伤心~嘿~";
 			mes "没想到你这样的人会拒绝，"+strcharinfo(0)+"。";
 			mes "不过，还是给你一些硬币~";
 			mes "嘿~";
 			emotion ET_CRY;
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们猫玩家协会永远欢迎你，"+strcharinfo(0)+"，成为客座成员。";
 			mes "嘿~";
 			set malang_gamer,11;
 			erasequest 5068;
 			getitem 6422,100; //Egrade_Coin
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~改变主意后请回来。";
 			close;
 		case 2:
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~明智的选择。";
 			mes "我就知道你会帮助我们猫玩家……嘿~";
 			emotion ET_BEST;
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~谢谢你的帮助。";
 			mes "嘿~这是一些硬币，作为小礼物……嘿~";
 			mes "去买点好东西吧。嘿~";
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "既然你要成为队伍的练习伙伴，请一小时后回来。";
 			mes "到时我会给你我们的‘^0000FF猫玩家协会证书^000000’。";
 			mes "嘿~";
@@ -6988,12 +6988,12 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			setquest 5069;
 			getitem 6422,100; //Egrade_Coin
 			next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿~好，"+strcharinfo(0)+"。一小时后见。嘿~";
 			close;
 		}
 	} else if (malang_gamer == 11) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿~";
 		mes "你不是"+strcharinfo(0)+"吗？";
 		mes "你改变主意了吗？";
@@ -7001,20 +7001,20 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		next;
 		switch(select("不，我只是路过。:我接受你的提议。")) {
 		case 1:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~我明白了。";
 			mes "不过，让我再告诉你一次，"+strcharinfo(0)+"。";
 			mes "我们随时欢迎你成为‘猫咪玩家荣誉会员’。";
 			mes "嘿嘿~";
 			close;
 		case 2:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~终于！！";
 			mes strcharinfo(0)+"要成为我们的荣誉会员了！！";
 			mes "我马上制作一张^0000FF猫咪玩家证书^000000。嘿嘿~";
 			emotion ET_DELIGHT;
 			next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "一小时后回来，我会把^0000FF猫咪玩家证书^000000交给你。";
 			mes "嘿嘿~";
 			set malang_gamer,12;
@@ -7023,119 +7023,119 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		}
 	} else if (malang_gamer == 12) {
 		if (checkquest(5069,PLAYTIME) == 0 || checkquest(5069,PLAYTIME) == 1) {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~你想快点拿到^0000FF猫咪玩家证书^000000。嘿嘿~这种证书可不是那么容易制作的。";
 			next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "所以有点麻烦……嘿嘿~请稍后再来。嘿嘿~";
 			emotion ET_DELIGHT;
 			close;
 		}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~我收到工坊的消息，证书已经制作完成了。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这可不是普通的证书。嘿嘿~";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "什么意思？";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~这就是……";
 		next;
 		mes "猫咪玩家协会会长的眼中闪耀着骄傲。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~这是‘猫咪玩家’技术团队努力的纯粹结晶！！";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~装备这个物品，你的所有游戏记录都会被保存。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~拿着它，让我们看看你的本事。";
 		erasequest 5069;
 		set malang_gamer,20;
 		getitem 2872,1; //G_Honor_Certificate
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~也许是我太担心了……不过请戴上这张^0000FF猫咪玩家证书^000000，然后去玩游戏吧。嘿嘿~";
 		close;
 	} else if (malang_gamer == 20) {
 		// fall through
 	} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是不可能的。请联系管理员。";
 		close;
 	}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "嘿嘿~你好，"+strcharinfo(0)+"。和玩家们练习得怎么样？";
 	emotion ET_QUESTION;
 	next;
 	switch(select("玩家们情况如何？:只是来打个招呼~:这是目前的情况……")) {
 	case 1:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~哇，"+strcharinfo(0)+"！你这么关心玩家，真让我感动。";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~我活了 13 年，从没见过像你这样的人，"+strcharinfo(0)+"。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~"+strcharinfo(0)+"，你对哪个玩家的情况感兴趣？";
 		next;
 		switch(select("猜拳玩家:猜猜猜 玩家:空娘空 玩家:旗帜游戏玩家")) {
 		case 1:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~猜拳玩家偶尔会缺席练习，但他们仍在进步。嘿嘿~";
 			break;
 		case 2:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "猜猜猜 玩家其实在抱怨练习，因为你和他们配合得太好，很难记住谁是赢家。嘿嘿~";
 			break;
 		case 3:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~空娘空 玩家非常享受练习。嘿嘿~";
 			break;
 		case 4:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~旗帜游戏玩家总是很紧张，因为你让他们练习很多。嘿嘿~不过他们确实进步了。";
 			break;
 		}
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~请继续努力，"+strcharinfo(0)+"。嘿嘿~";
 		close;
 	case 2:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~你好呀~"+strcharinfo(0)+"。你真有礼貌~嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~最近有很多猫和人类都没有基本礼貌。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的‘猫咪玩家’里也有这样的人。每次我们赢得比赛，他们都很傲慢……嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~应该多一些像你这样的人，"+strcharinfo(0)+"。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~请多和我们的玩家练习~嘿嘿~这样他们就能向你学习礼貌，"+strcharinfo(0)+"。嘿嘿~";
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "继续努力~嘿嘿~";
 		close;
 	case 3:
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~你的脸怎么了，"+strcharinfo(0)+"？练习时输了吧？嘿嘿~";
 		emotion ET_KIK;
 		next;
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿~我看到玩家们把纸条放进了‘请愿箱’。嘿嘿~那应该是你的工作吧。让我看看……";
 		next;
 		break;
 	}
 
 	// Detect quest (ID range 5074~5090)
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 	if (checkquest(5074,HUNTING) > -1) {
 		mes "嘿嘿~我也不是没好好喂它们……嘿嘿~希望这对你来说不算太难，"+strcharinfo(0)+"。";
 		next;
@@ -7144,7 +7144,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5074,
 				"嘿～你按要求捕获了30只剑鱼，还带来了10个鱼尾。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 				mes "嘿嘿~纸条上说要带来 30 只剑鱼和 10 个鱼尾。嘿嘿~也许你捕捉的剑鱼不够，或忘了鱼尾？嘿嘿~";
 			close;
 		}
@@ -7156,7 +7156,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5075,
 				"嘿～看来他们想吃些健康食物。嘿～直接告诉我就好了……让他们见识一下我的手艺。嘿～";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~但是 50 只乌贼和 30 瓶牛奶在哪里？嘿嘿~请确认你没有漏掉它们……";
 			close;
 		}
@@ -7167,7 +7167,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5076,
 				"嘿～你按纸条的要求教训了30只狗头人弓箭手。嘿～干得漂亮。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~纸条上说要骚扰 30 只狗头人弓箭手。嘿嘿~请确认你已经骚扰了 30 只。";
 			close;
 		}
@@ -7179,7 +7179,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5077,
 				"嘿～哦，你抓到了活蹦乱跳、胖乎乎的蓝鼠。嘿～太好了。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿？你答应的 10 只蓝鼠在哪里？嘿嘿~你不会把它们吃了吧？";
 			close;
 		}
@@ -7190,7 +7190,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5078,
 				"嘿～哇，你真的捕获了50只大嘴鸟。嘿～看来今晚真能开派对了。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~那些大嘴鸟在哪里？还没准备好吗？嘿嘿~";
 			close;
 		}
@@ -7202,7 +7202,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5079,
 				"嘿～我怎么没想到呢？我一定会给队员们分一些。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~那 20 个毛线在哪里？纸条上写的是 20 个，对吧……？请确认是不是弄丢了。";
 			close;
 		}
@@ -7214,7 +7214,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5080,
 				"嘿～我记得给他们吃了不错的零食……难道没有？最近我有点忙，他们应该耐心些……嘿～可怜的管理员……";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~那 30 个鼠尾在哪里？请确认后稍后再来。";
 			close;
 		}
@@ -7226,7 +7226,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5081,
 				"嘿～正式比赛前禁止吃柠檬……嗯？他们不会在比赛时吃吧？嘿～";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~那就给他们拿 5 个柠檬吧，好吗？嘿嘿~我还是不知道他们想用来做什么……";
 			close;
 		}
@@ -7242,7 +7242,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 			callsub L_CompleteQuest,5082,
 				"嘿～哦，你带来了冰淇淋。嘿～队员们会喜欢的。";
 		} else {
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~冰块或冰淇淋在哪里？你应该在它们融化前拿来……";
 			close;
 		}
@@ -7250,7 +7250,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "嘿嘿~我找到了队伍的纸条。嘿嘿~";
 		next;
 		if (checkquest(5083) > -1) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~上面写着‘我们一起去见艾柳。’嘿嘿~你已经见过艾柳了吗？我想没有……嘿嘿~";
 			close;
 		} else {
@@ -7261,7 +7261,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "嘿嘿~我找到了队伍的纸条。嘿嘿~";
 		next;
 		if (checkquest(5085) > -1) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~上面写着‘我们一起去见斯图。’嘿嘿~你已经见过斯图了吗？我想没有……嘿嘿~";
 			close;
 		} else {
@@ -7272,7 +7272,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "嘿嘿~我找到了队伍的纸条。嘿嘿~";
 		next;
 		if (checkquest(5087) > -1) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~上面写着‘我们一起去见番茄酱。’嘿嘿~你已经见过番茄酱了吗？我想没有……嘿嘿~";
 			close;
 		} else {
@@ -7283,7 +7283,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 		mes "嘿嘿~我找到了队伍的纸条。嘿嘿~";
 		next;
 		if (checkquest(5089) > -1) {
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿嘿~上面写着‘我们一起去见艾夫。’嘿嘿~你已经见过艾夫了吗？我想没有……嘿嘿~";
 			close;
 		} else {
@@ -7291,7 +7291,7 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 				"嘿～哦，你见到艾夫了。嘿～竟然让你这么辛苦，回头我要好好训训他们……嘿～";
 		}
 	}
-		mes "[猫咪玩家协会会长]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "嘿？！没有给你的委托纸条，"+strcharinfo(0)+"。嘿嘿~你想报告什么？嘿嘿~";
 	close;
 
@@ -7299,16 +7299,16 @@ mal_in01,31,210,2	script	猫咪玩家协会会长	549,{
 L_CompleteQuest:
 	erasequest getarg(0);
 	getitem 12636,3; //Malang_Sp_Can
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes getarg(1);
 	next;
-			mes "[猫咪玩家协会会长]";
+			mes "[" + strnpcinfo(1) + "]";
 	mes "嘿嘿~谢谢你过来，"+strcharinfo(0)+"。嘿嘿~继续努力。嘿嘿~";
 	emotion ET_THANKS;
 	close;
 }
 
-malangdo,127,111,4	script	奇怪的猫#gamer	547,{
+malangdo,127,111,4	script	怪猫#gamer::奇怪的猫#gamer	547,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的物品栏重量太高，无法继续。减轻负重后再来。";
 		close;
@@ -7318,7 +7318,7 @@ malangdo,127,111,4	script	奇怪的猫#gamer	547,{
 		close;
 	}
 	if (malang_gamer < 3) {
-		mes "[奇怪的猫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵~喵~嗷嗷~喵喵~呜呜~";
 		next;
 		mes "这里有一只奇怪的猫。";
@@ -7600,7 +7600,7 @@ malangdo,127,111,4	script	奇怪的猫#gamer	547,{
 	}
 }
 
-malangdo,161,197,4	script	艾柳#gamer	876,{
+malangdo,161,197,4	script	伊留#gamer::艾柳#gamer	876,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的物品栏太重，无法继续。减轻负重后再回来。";
 		close;
@@ -7613,18 +7613,18 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 		if (checkquest(5062) == -1) {
 			mes "你找到了猫咪艾柳，并开始交谈。";
 			next;
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……你是谁？";
 			next;
 			switch(select("猫咪玩家协会会长派我来的。:我是《人类》杂志的记者。:你是谁？")) {
 			case 1:
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊。走开……";
 				mes "我不知道你说的是谁。";
 				emotion ET_FRET;
 				break;
 			case 2:
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯？《人类》杂志？";
 				mes "有这种东西吗？";
 				emotion ET_QUESTION;
@@ -7637,7 +7637,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "我们可是全世界都很有名的杂志！";
 				mes "你不相信我吗？";
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……好吧。但我能为你做什么？";
 				emotion ET_QUESTION;
 				next;
@@ -7646,7 +7646,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "这是我的特别专题。";
 				mes "还有一支队伍叫……嗯……狗……嗯……华尔……记不清了……";
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "‘狗与华尔兹’？";
 				emotion ET_QUESTION;
 				next;
@@ -7657,7 +7657,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "["+strcharinfo(0)+"]";
 				mes "他说你是很厉害的玩家，可以帮助我完成文章。";
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我不太记得‘狗与华尔兹’的人。";
 				emotion ET_THINK;
 				next;
@@ -7670,7 +7670,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "好，第一个问题：你每天练习多久？";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "通常大约8小时，但我必须告诉你，我已经不在队伍里了……";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -7678,7 +7678,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "你现在不在队伍里？为什么……？";
 				emotion ET_HUK, playerattached();
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这个嘛……";
 				mes "会长太可怕了……";
 				mes "我病得很重，不得不请一天假……";
@@ -7687,7 +7687,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "["+strcharinfo(0)+"]";
 				mes "然后呢……？";
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "然后会长对我大发雷霆！";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -7701,7 +7701,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				mes "["+strcharinfo(0)+"]";
 				mes "因为这篇文章只采访现役玩家。";
 				next;
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦……";
 				mes "抱歉浪费了你的时间。";
 				emotion ET_SORRY;
@@ -7717,13 +7717,13 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 				completequest 5062;
 				break;
 			case 3:
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是的，我是艾柳！你想要什么，喵～";
 				break;
 			}
 			close2;
 		} else if (checkquest(5062) == 2) {
-				mes "[艾柳]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "你不是杂志记者吗？";
 			mes "你怎么又来了……？";
 			next;
@@ -7734,16 +7734,16 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 			mes "对不起。";
 			emotion ET_SORRY, playerattached();
 			next;
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊……我明白了。保重。";
 			close2;
 		} else {
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "无法完成。请联系管理员。";
 			close2;
 		}
 	} else if (checkquest(5083) == 0 || checkquest(5083) == 1) {
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁？";
 		next;
 		mes "你想说什么？";
@@ -7755,7 +7755,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 			set .@str$, "你已经传达了消息，快走吧。";
 		} else
 			set .@str$, "你没能正确传达消息，还是先离开吧。";
-		mes "[艾柳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是什么？你说‘"+.@inputstr$+"’是什么意思……？";
 		mes "啊……你不是记者吗？";
 		emotion ET_FRET;
@@ -7767,7 +7767,7 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 		mes .@str$;
 		close2;
 	} else if (checkquest(5084) == 0 || checkquest(5084) == 1) {
-		mes "[艾柳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我觉得你就是记者……";
 		mes "嘿～站住～";
 		next;
@@ -7775,14 +7775,14 @@ malangdo,161,197,4	script	艾柳#gamer	876,{
 		close2;
 	} else {
 		if (malang_gamer < 6) {
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "该死的‘猫咪玩家’！";
 			mes "我再也不回去了……你是谁？";
 			next;
 			mes "这只猫可能会打你。我们快走。";
 			close2;
 		} else {
-			mes "[艾柳]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你不是记者吗？";
 			emotion ET_QUESTION;
 			next;
@@ -7816,7 +7816,7 @@ OnDisable:
 	end;
 }
 
-malangdo,230,197,4	script	斯图#gamer	555,{
+malangdo,230,197,4	script	史都#gamer::斯图#gamer	555,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的物品栏太重，无法继续。减轻负重后再回来。";
 		close;
@@ -7829,22 +7829,22 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 		if (checkquest(5063) == -1) {
 			mes "你找到了猫咪斯图，并开始交谈。";
 			next;
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵……？你是谁，喵？";
 			emotion ET_QUESTION;
 			next;
 			switch(select("‘猫咪玩家’会长派我来的。:喵～呜～:我是‘嘭嘭罐头’公司的人。")) {
 			case 1:
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "斯图没兴趣，喵。";
 				mes "不要再来了，喵～";
 				break;
 			case 2:
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "斯图没时间陪疯子。";
 				break;
 			case 3:
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "‘嘭嘭罐头’公司，喵？";
 				emotion ET_QUESTION;
 				next;
@@ -7853,7 +7853,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "你完全不吃罐头吗？";
 				mes "那我找错猫了。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是的喵～斯图非常喜欢罐头食品，喵～";
 				emotion ET_THROB;
 				next;
@@ -7867,7 +7867,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "让我问几个问题。";
 				mes "很简单。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好喵～问吧喵～";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -7877,7 +7877,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "我上周遇到狗狗顾客，他们完全不回答我……";
 				mes "而且非常粗鲁～你知道的。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "狗狗天生就是这样～";
 				mes "你们人类了解动物嘛～";
 				emotion ET_OK;
@@ -7887,7 +7887,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "好，我再问几个问题。";
 				mes "你的职业是什么？";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "职业，喵？斯图曾经是职业玩家，喵～";
 				mes "但斯图现在已经退出了，喵～";
 				next;
@@ -7896,19 +7896,19 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "你的技术看起来很好。";
 				mes "又快又有气魄，这么早退出真可惜。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "喵～喵～喵～是的，斯图曾经很厉害，喵。";
 				mes "如果不是猫咪玩家协会会长吓到我，斯图现在还会继续比赛，喵～";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "真是个糟糕的会长。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "其实也没那么糟，喵～";
 				mes "有时候……斯图会很累，喵。";
 				mes "所以练习时，斯图会放松一些，喵。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "后来猫咪玩家协会会长开始变得愤怒又可怕，喵。";
 				mes "所以我退出了，喵。";
 				next;
@@ -7918,7 +7918,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "谢谢你对‘嘭嘭罐头’公司调查的意见。";
 				emotion ET_THANKS, playerattached();
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "喵？你刚才问了什么吗，喵？";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -7927,7 +7927,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "一共有10个问题！";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗，喵？好奇怪，喵。";
 				mes "抱歉喵？我不记得了，喵。";
 				mes "感觉不像采访，喵。";
@@ -7939,7 +7939,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 				mes "我该走了。";
 				mes "祝你今天愉快。";
 				next;
-				mes "[斯图]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗喵？狗狗总是那样，喵。";
 				mes "猫咪才是赢家，喵～";
 				mes "好喵～再见喵～";
@@ -7952,7 +7952,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 			}
 			close2;
 		} else if (checkquest(5063) == 2) {
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你不是‘嘭嘭罐头’公司的人吗？";
 			mes "又要调查吗，喵？";
 			emotion ET_QUESTION;
@@ -7962,16 +7962,16 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 			mes "真的很抱歉……";
 			emotion ET_SORRY, playerattached();
 			next;
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没关系喵～再见喵～";
 			close2;
 		} else {
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "无法完成。请联系管理员。";
 			close2;
 		}
 	} else if (checkquest(5085) == 0 || checkquest(5085) == 1) {
-		mes "[斯图]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁，喵？";
 		emotion ET_QUESTION;
 		next;
@@ -7984,7 +7984,7 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 			set .@str$, "你已经传达了消息，快走吧。";
 		} else
 			set .@str$, "你没能正确传达消息，还是先离开吧。";
-		mes "[斯图]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是什么？你说‘"+.@inputstr$+"’是什么意思？喵……";
 		mes "而且……你不是‘嘭嘭罐头’公司的人吗，喵？";
 		emotion ET_QUESTION;
@@ -7996,20 +7996,20 @@ malangdo,230,197,4	script	斯图#gamer	555,{
 		mes .@str$;
 		close2;
 	} else if (checkquest(5086) == 0 || checkquest(5086) == 1) {
-		mes "[斯图]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我觉得你是‘嘭嘭罐头’公司的人，喵……你是谁，喵～";
 		next;
 		mes "斯图似乎认出你了。我们走吧。";
 		close2;
 	} else {
 		if (malang_gamer < 6) {
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵喵~再见，‘猫咪玩家’喵~你是谁喵？";
 			next;
 			mes "这只猫可能会打你。我们走吧。";
 			close2;
 		} else {
-			mes "[斯图]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "‘嘭嘭罐头’公司！！";
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -8045,7 +8045,7 @@ OnDisable:
 	end;
 }
 
-malangdo,244,144,4	script	番茄酱#gamer	546,{
+malangdo,244,144,4	script	凯查#gamer::番茄酱#gamer	546,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的背包太重，无法继续。减轻负重后再回来。";
 		close;
@@ -8058,21 +8058,21 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 		if (checkquest(5064) == -1) {
 			mes "你找到了番茄酱，并开始交谈。";
 			next;
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵……？你是谁？";
 			emotion ET_QUESTION;
 			next;
 			switch(select("嗷~汪汪~:猫咪玩家协会会长派我来的。:我来自‘给小猫的罐头’。")) {
 			case 1:
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "什么狗？嘶~";
 				break;
 			case 2:
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "人类，趁我真正生气前离我远点~";
 				break;
 			case 3:
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，是吗？‘给小猫的罐头’？";
 				emotion ET_QUESTION;
 				next;
@@ -8081,7 +8081,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 				mes "你相信帮助他人吗？";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯，我想是吧……";
 				emotion ET_SEXY;
 				next;
@@ -8089,14 +8089,14 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 				mes "‘给小猫的罐头’是一个接纳所有猫咪的宗教。";
 				mes "向罐头之主低头！";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				mes "......";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				mes "......";
 				mes ".........";
@@ -8107,15 +8107,15 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 				mes "他无所不知。";
 				mes "不要试图欺骗他，低头！";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "喵？！你怎么知道我的名字？哇……";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "对不起。真的对不起。";
 				mes "罐头之主，请原谅我。";
 				emotion ET_CRY;
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那只会长太可怕了~!";
 				mes "我离开猫咪玩家时说了很多坏话。..";
 				mes "请原谅我。";
@@ -8128,7 +8128,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 				mes "罐头之主宽恕番茄酱的罪过。";
 				mes "我们的主也希望你别再说脏话，诚实生活！";
 				next;
-				mes "[番茄酱]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谢谢你，罐头之主。";
 				mes "从今以后我会做一只善良的猫。";
 				next;
@@ -8140,7 +8140,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 			}
 			close2;
 		} else if (checkquest(5064) == 2) {
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是……";
 			emotion ET_HUK;
 			next;
@@ -8148,12 +8148,12 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 			mes "他大概已经做了什么坏事。";
 			close2;
 		} else {
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不可能。请联系管理员。";
 			close2;
 		}
 	} else if (checkquest(5087) == 0 || checkquest(5087) == 1) {
-		mes "[番茄酱]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁？";
 		emotion ET_QUESTION;
 		next;
@@ -8163,7 +8163,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 		if (.@inputstr$ == "回来") {
 			erasequest 5087;
 			setquest 5088;
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是什么？你说‘回来’是什么意思……？";
 			mes "是……‘给小猫的罐头’？";
 			emotion ET_HUK;
@@ -8173,7 +8173,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 			mes "你传达了消息。";
 			close2;
 		} else {
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是什么？你说‘"+.@inputstr$+"’是什么意思……？";
 			mes "是……‘给小猫的罐头’？";
 			emotion ET_HUK;
@@ -8186,7 +8186,7 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 			close2;
 		}
 	} else if (checkquest(5088) == 0 || checkquest(5088) == 1) {
-		mes "[番茄酱]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是……‘给小猫的罐头’？";
 		emotion ET_HUK;
 		next;
@@ -8194,14 +8194,14 @@ malangdo,244,144,4	script	番茄酱#gamer	546,{
 		close2;
 	} else {
 		if (malang_gamer < 6) {
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "肮脏的‘猫咪玩家’！";
 			mes "我再也不会回来了，绝对不会……你是谁？";
 			next;
 			mes "这只猫可能会打你。我们走吧。";
 			close2;
 		} else {
-			mes "[番茄酱]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是……‘给小猫的罐头’？";
 			next;
 			mes "番茄酱跑掉了。";
@@ -8234,7 +8234,7 @@ OnDisable:
 	end;
 }
 
-malangdo,181,119,7	script	艾夫#gamer	560,{
+malangdo,181,119,7	script	伊弗#gamer::艾夫#gamer	560,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的背包太重，无法继续。减轻负重后再回来。";
 		close;
@@ -8247,13 +8247,13 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 		if (checkquest(5065) == -1) {
 			mes "你找到了艾夫，并开始交谈。";
 			next;
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是谁喵？";
 			emotion ET_QUESTION;
 			next;
 			switch(select("我有一些很棒的投资消息……:一……只猫？:‘猫咪玩家’会长派我来的……")) {
 			case 1:
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "投资信息？喵~？";
 				mes "那是什么？喵~？";
 				emotion ET_QUESTION;
@@ -8268,13 +8268,13 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "你听说土地是很好的投资，对吧？";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦哦~我也这么想。喵~";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "你知道我们的首都普隆德拉，对吧？";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "普隆德拉喵？是的，我知道。喵~";
 				emotion ET_SMILE;
 				next;
@@ -8282,7 +8282,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "有些地点，";
 				mes "普隆德拉王国正在秘密出售……";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "还有……还有……？喵～";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -8291,7 +8291,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "你真的能保守秘密吗……？";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嗯……大家都知道我很会保守秘密喵。";
 				mes "喵~完全不用担心。喵~";
 				next;
@@ -8299,7 +8299,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "好，我相信你，艾夫……";
 				mes "请保守秘密。";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "明白了。喵~";
 				emotion ET_OK;
 				next;
@@ -8310,7 +8310,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "["+strcharinfo(0)+"]";
 				mes "在这里投资1个罐头，回报会非常巨大。";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "巨……大……喵……？";
 				next;
 				mes "["+strcharinfo(0)+"]";
@@ -8318,7 +8318,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "只投资1个罐头，就能得到100个罐头！";
 				mes "利润是100倍！100倍！！";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哇！！100个罐头~喵~";
 				emotion ET_HUK;
 				next;
@@ -8327,7 +8327,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "你会成为部分所有者，所以尽量投资你能负担的最大数量。";
 				emotion ET_QUESTION, playerattached();
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想投资。";
 				mes "但是，我身上没有罐头。喵~";
 				emotion ET_CRY;
@@ -8343,7 +8343,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "一次大约能贷1000个罐头。";
 				mes "而且利率不高！";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "喵！！1……1000……";
 				mes "喵~我是职业玩家。";
 				mes "喵~但我辞职了~喵~";
@@ -8358,14 +8358,14 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				mes "真不敢相信。";
 				mes "结果会是100000个罐头，100000个！！";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "十……十万个罐头……喵～";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes "那么告诉我……你为什么辞掉这么好的工作？";
 				mes "为什么？";
 				next;
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我害怕那里的会长……";
 				mes "喵~有一次我不得不请病假。";
 				mes "喵~我这辈子都没见过那么可怕的猫……";
@@ -8385,13 +8385,13 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 				completequest 5065;
 				break;
 			case 2:
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是的。我是一只猫。";
 				mes "喵~你觉得我是狗吗？";
 				mes "喵~你是个奇怪的人类。喵~";
 				break;
 			case 3:
-				mes "[艾夫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "毕竟这像是我第一次见你。";
 				mes "今天我就原谅你。喵。";
 				mes "喵~别再对我提起那个名字……";
@@ -8399,7 +8399,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 			}
 			close2;
 		} else if (checkquest(5065) == 2) {
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你是——！！";
 			mes "喵~ 我想投资。 喵~";
 			next;
@@ -8407,7 +8407,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 			mes "没有罐头你做不到！！";
 			mes "你没把这笔交易告诉任何人，对吧？";
 			next;
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有。喵~";
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -8416,12 +8416,12 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 			mes "再见~";
 			close2;
 		} else {
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不可能。请联系管理员。";
 			close2;
 		}
 	} else if (checkquest(5089) == 0 || checkquest(5089) == 1) {
-		mes "[艾夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是谁，喵？";
 		next;
 		mes "你想说什么？";
@@ -8433,7 +8433,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 			set .@str$, "你已经传达了消息，快走吧。";
 		} else
 			set .@str$, "你没能正确传达消息，还是先离开吧。";
-		mes "[艾夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是什么？你说‘"+.@inputstr$+"’是什么意思？喵……";
 		mes "喵……？喵！是你！投资者喵？";
 		next;
@@ -8444,7 +8444,7 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 		mes .@str$;
 		close2;
 	} else if (checkquest(5090) == 0 || checkquest(5090) == 1) {
-		mes "[艾夫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是——！！";
 		mes "喵~ 我想投资。 喵~";
 		next;
@@ -8452,14 +8452,14 @@ malangdo,181,119,7	script	艾夫#gamer	560,{
 		close2;
 	} else {
 		if (malang_gamer < 6) {
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵喵~‘猫咪玩家’终于可以和我说再见了，喵。";
 			mes "喵... 你是谁喵？";
 			next;
 			mes "这只猫可能会打你。我们走吧。";
 			close2;
 		} else {
-			mes "[艾夫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喵~ 我想投资。 喵~";
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -8495,7 +8495,7 @@ OnDisable:
 	end;
 }
 
-mal_in01,91,216,4	script	塞尔#gamer	544,{
+mal_in01,91,216,4	script	赛勒#gamer::塞尔#gamer	544,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的背包太重，无法继续。减轻负重后再回来。";
 		close;
@@ -8506,98 +8506,98 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 	}
 	for(set .@i,5074; .@i<=5090; set .@i,.@i+1) {
 		if (checkquest(.@i) > -1) {
-			mes "[塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，^0000FF"+strcharinfo(0)+"^000000。你还没有完成我们拜托的事。答应的事就要做到。";
 			next;
-			mes "[塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊！！完成后请让那边的猫咪玩家协会会长确认。";
 			close;
 		}
 	}
 	if (malang_gamer < 20) {
 		if (countitem(2872)) {
-			mes "[塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你看起来是第一次来！你从哪里得到证书的？我猜是有人弄丢的。";
 			close;
 		}
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "猜拳是很严肃的游戏。我们的练习伙伴什么时候来？";
 		close;
 	}
 	if (!isequipped(2872)) {
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，^0000FF"+strcharinfo(0)+"^000000？想玩猜拳吗？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ...";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的猫咪玩家证书呢？看起来没什么，但没有它就不能玩这个游戏！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请去拿证书。";
 		close;
 	}
 	if (checkquest(5070,PLAYTIME) == 0 || checkquest(5070,PLAYTIME) == 1) {
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "已经是明天了吗？我觉得还没有！你不会看时间吗？";
 		close;
 	} else if (checkquest(5070,PLAYTIME) == 2)
 		erasequest 5070;
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，^0000FF"+strcharinfo(0)+"^000000？想玩猜拳吗？";
 	next;
 	switch(select("开始游戏。:打个招呼。:询问游戏规则。")) {
 	case 1:
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好主意。";
 		next;
 		break;
 	case 2:
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！好吧，你好？不过为什么是现在？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……你很无聊吗？要不要和我玩一局？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，你！别忽视猜拳游戏！！";
 		mes "我见过很多人在这个游戏里被打得落花流水！！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果不想落得和他们一样，就记住我的话！～";
 		close;
 	case 3:
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你连这个游戏怎么玩都不知道吗？";
 		mes "让我好好教你。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "剪刀胜过布，";
 		emotion ET_SCISSOR;
 		emotion ET_WRAP, playerattached();
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "布胜过石头，";
 		emotion ET_WRAP;
 		emotion ET_ROCK, playerattached();
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "石头胜过剪刀。";
 		emotion ET_ROCK;
 		emotion ET_SCISSOR, playerattached();
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "明白了吗？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须和我进行5场比赛。";
 		mes "平局就重赛！！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你赢我3次，我会送你礼物。明白？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，那就走开。";
 		close;
 	}
@@ -8605,7 +8605,7 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 	setarray .@emote[0], ET_ROCK, ET_WRAP, ET_SCISSOR;
 	setarray .@count$[0],"第一","第二","第三","第四","最后";
 	while(1) {
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes .@count$[.@match]+"场比赛~~";
 		if (.@tie) {
 			mes "结果平局，再来一局。";
@@ -8613,7 +8613,7 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 		}
 		mes "尽力而为！";
 		next;
-		mes "[塞尔 & "+strcharinfo(0)+"]";
+		mes "[" + strnpcinfo(1) + " & "+strcharinfo(0)+"]";
 		mes "石头！剪刀！布！";
 		next;
 
@@ -8623,7 +8623,7 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 		emotion .@emote[.@npc];
 		mes "["+strcharinfo(0)+"] "+.@rps$[.@pc];
 		mes "--------------------------------";
-		mes "[塞尔] "+.@rps$[.@npc];
+		mes "[" + strnpcinfo(1) + "] "+.@rps$[.@npc];
 		if (.@pc == .@npc) {
 			set .@tie,1;
 			set .@result$, "嗯，我们平局。再来一局。";
@@ -8637,40 +8637,40 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 			set .@result$, "所以我赢了！！";
 		}
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你出了"+.@rps$[.@pc]+"，我出了"+.@rps$[.@npc]+"～";
 		mes .@result$;
 		next;
 		if (.@match == 5) break;
 	}
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "5 场比赛全部结束！！";
 	next;
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……让我看看……";
 	mes "我赢了"+.@loss+"次，而你，"+strcharinfo(0)+",赢了"+.@win+"次，对吧？";
 	next;
 	if (.@win > .@loss) {
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes strcharinfo(0)+" 赢得了比赛。";
 		next;
 		mes "塞尔 突然变得有礼貌了。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "比赛很精彩。我很欣赏你对游戏的热情。所以我想把珍贵的罐头作为礼物送给你。";
 		next;
 		switch(select("我不需要！:谢谢。")) {
 		case 1:
-			mes "[塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拿着吧！！听我的～";
 			break;
 		case 2:
-			mes "[塞尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你很有礼貌。不过遗憾的是，这就是我能给你的全部。";
 			break;
 		}
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再见～明天再来练习吧～";
 		if (.@win == 5) {
 			mes "哦！你赢了全部 5 场比赛。这些额外罐头给你。";
@@ -8680,166 +8680,166 @@ mal_in01,91,216,4	script	塞尔#gamer	544,{
 		setquest 5070;
 		close;
 	}
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes strcharinfo(0)+"输了。哈……哈……";
 	next;
 	mes "塞尔 变得非常傲慢。";
 	next;
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想和我玩吗？塞尔？凭你的技术？喵？";
 	next;
-	mes "[塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "什么？礼物？你输了还好意思要礼物？多练习！！努力！！没错，我该让你这样做！！";
 	next;
 	setquest 5070;
 	switch(rand(1,13)) {
 	case 1:
 		setquest 5074;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。你知道一种叫 剑鱼 的鱼吗？知道吗？看起来很好吃吧？";
 		next;
 		mes "- 咕噜 -";
 		mes "塞尔 擦掉嘴角的口水。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去捕捉 30 条 剑鱼。再给我 10 条鱼尾。交给我们的猫咪玩家协会会长，他会用它们做出美味料理。";
 		close;
 	case 2:
 		setquest 5075;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近我感到无力，身上的负担也太重了。我应该照顾好自己的健康。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在该吃些健康食品了。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "带50个乌贼和30瓶牛奶给我们的猫咪玩家协会会长。他非常了解健康食品。";
 		close;
 	case 3:
 		setquest 5076;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……我们确实有个对手，你知道的。他们是‘狗与华尔兹’，他们一来就什么都不顺。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想让你欺负他们，但那应该违法……所以至少去骚扰长得像他们的怪物吧。什么目标好呢？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，狗头人中的弓箭手！！我最讨厌它们。去骚扰 30 只狗头人弓箭手，然后向猫咪玩家协会会长报告。";
 		close;
 	case 4:
 		setquest 5077;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "赢得比赛最重要的是什么？是速度。我们该怎么做才能更快？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一直在想……对我们猫来说，最好的办法当然是捕捉老鼠。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你知道蓝鼠吧？就是那种蓝色的胖家伙……请捕捉10只，然后向我们的猫咪玩家协会会长报告。";
 		close;
 	case 5:
 		setquest 5078;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……我想吃鸟类料理。哪一种最好吃？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "小鸡？啊！它太小了。秃鹰怎么样？我不确定……大嘴鸟？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好！请捕捉 50 只大嘴鸟，交给猫咪玩家协会会长。今晚我们要举办鸟肉料理派对。";
 		close;
 	case 6:
 		setquest 5079;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在比赛前太紧张了。紧张时我发挥不好，需要在比赛开始前找点东西冷静下来。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！对了！毛线！我小时候常玩毛线。加入‘猫咪玩家协会’后就再也没法放松了。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请给我20个毛线。为什么是20个？还有很多猫也有同样的问题。我们的会长会帮你处理。";
 		close;
 	case 7:
 		setquest 5080;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近我们的会长似乎想削减开支。还是管理者在占便宜？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "玩家们平时的零食减少了。你去弄 30 条鼠尾，交给猫咪玩家协会会长。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样我们就能知道管理者是不是贪心。";
 		close;
 	case 8:
 		setquest 5081;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最近状态低迷。我无法以百分之百的状态参加比赛。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种时候我们需要柠檬。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请给我5个柠檬。别忘了，我需要5个柠檬……我们的猫咪玩家协会会长应该知道怎么处理它们。";
 		close;
 	case 9:
 		setquest 5082;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绵绵岛是猫咪生活的好地方。不过我们玩游戏时会变得非常热。";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们玩得尽兴时会热得发疯，很难忍受。你知道我们猫咪有多容易歇斯底里，对吧？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请给我们10个冰块或10个冰淇淋。我们的猫咪玩家协会会长应该知道怎么处理它们。";
 		close;
 	case 10:
 		setquest 5083;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息一下。放松一会儿吧。去村子周围散散步怎么样？一定要去哦~！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只是在村子周围散步也没意思。嗯……对了！！你为什么不去见一只叫 艾柳 的猫？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’。这是口令。别忘了告诉我们的会长我一直和你在一起！！";
 		close;
 	case 11:
 		setquest 5085;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息一下。放松一会儿吧。去村子周围散散步怎么样？一定要去哦~！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只是在村子周围散步也没意思。嗯……对了！！你为什么不去见一只叫 斯图 的猫？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’。这是口令。别忘了告诉我们的会长我一直和你在一起！！";
 		close;
 	case 12:
 		setquest 5087;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息一下。放松一会儿吧。去村子周围散散步怎么样？一定要去哦~！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只是在村子周围散步也没意思。嗯……对了！！你为什么不去见一只叫 番茄酱 的猫？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’。这是口令。别忘了告诉我们的会长我一直和你在一起！！";
 		close;
 	case 13:
 		setquest 5089;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息一下。放松一会儿吧。去村子周围散散步怎么样？一定要去哦~！";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只是在村子周围散步也没意思。嗯……对了！！你为什么不去见一只叫 艾夫 的猫？";
 		next;
-		mes "[塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’。这是口令。别忘了告诉我们的会长我一直和你在一起！！";
 		close;
 	}
 }
 
-mal_in01,86,222,4	script	帕阿#gamer	544,{
+mal_in01,86,222,4	script	鲍尔#gamer::帕阿#gamer	544,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的物品栏太重，无法继续。减轻负重后再回来。";
 		close;
@@ -8850,86 +8850,86 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 	}
 	for(set .@i,5074; .@i<=5090; set .@i,.@i+1) {
 		if (checkquest(.@i) > -1) {
-			mes "[帕阿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还没有完成我们拜托你的事，喵。一诺千金，你知道的，喵。";
 			next;
-			mes "[帕阿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "完成后，请去让那边的猫咪玩家协会会长检查一下，喵。";
 			close;
 		}
 	}
 	if (malang_gamer < 20) {
 		if (countitem(2872)) {
-			mes "[帕阿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你看起来像是第一次来，喵！你从哪里拿到证书的，喵？我猜是有人弄丢了，喵。";
 			close;
 		}
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们的练习伙伴什么时候来喵？我好无聊喵。";
 		close;
 	}
 	if (!isequipped(2872)) {
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，^0000FF"+strcharinfo(0)+"^000000，喵？想玩猜拳游戏吗，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ...";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的猫咪玩家证书呢，喵？看起来没什么，但没有它就不能玩这个游戏，喵！";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去拿证书，喵。";
 		close;
 	}
 	if (checkquest(5070,PLAYTIME) == 0 || checkquest(5070,PLAYTIME) == 1) {
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们每天只能玩一次，喵。明天再来，喵。";
 		close;
 	} else if (checkquest(5070,PLAYTIME) == 2)
 		erasequest 5070;
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，^0000FF"+strcharinfo(0)+"^000000，喵？想玩猜拳游戏吗，喵？";
 	next;
 	switch(select("开始游戏。:打个招呼。:询问游戏规则。")) {
 	case 1:
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好主意，喵。";
 		next;
 		break;
 	case 2:
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好喵～见到你真好喵～";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "其他游戏只有一名猫咪玩家。但猜拳有两名。你想知道为什么吗，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "帕很善良，喵。所以我来告诉你故事，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "塞尔是我的双胞胎哥哥。我先出生，但他总说自己是哥哥，喵。不过我不会和塞尔争，喵。我是个好弟弟，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我和塞尔是有名的职业游戏猫兄弟，喵。大家都认识我们，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你可以尽情崇拜我，喵。我允许你这么做，喵。";
 		close;
 	case 3:
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想知道怎么玩这个游戏吗，喵？我会教你的，因为我是善良的猫，喵~";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看起来没那么笨，喵。所以克制关系的部分就跳过吧，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你必须和我玩5场喵。如果平局，就再玩一场，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你赢3次，我就送你礼物喵～猫咪玩家协会会长是这么说的，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "就是这些，喵~但这不是简单的游戏，喵。请尊重游戏，喵~";
 		close;
 	}
@@ -8937,7 +8937,7 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 	setarray .@emote[0], ET_ROCK, ET_WRAP, ET_SCISSOR;
 	setarray .@count$[0],"第一","第二","第三","第四","最后";
 	while(1) {
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes .@count$[.@match]+"场比赛~~喵。";
 		if (.@tie) {
 			mes "结果是平局，所以再玩一场，喵。";
@@ -8945,7 +8945,7 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 		}
 		mes "尽你所能，喵！";
 		next;
-		mes "[帕阿 & "+strcharinfo(0)+"]";
+		mes "[" + strnpcinfo(1) + " & "+strcharinfo(0)+"]";
 		mes "石头！纸！剪刀！";
 		next;
 
@@ -8955,7 +8955,7 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 		emotion .@emote[.@npc];
 		mes "["+strcharinfo(0)+"] "+.@rps$[.@pc];
 		mes "--------------------------------";
-		mes "[帕阿] "+.@rps$[.@npc];
+		mes "[" + strnpcinfo(1) + "] "+.@rps$[.@npc];
 		if (.@pc == .@npc) {
 			set .@tie,1;
 			set .@result$, "嗯，平局了。再来一局，喵。";
@@ -8969,40 +8969,40 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 			set .@result$, "所以我赢了，喵！！";
 		}
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你出了"+.@rps$[.@pc]+"，我出了"+.@rps$[.@npc]+"~";
 		mes .@result$;
 		next;
 		if (.@match == 5) break;
 	}
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "喵！！5场比赛全部结束喵！！";
 	next;
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "让我看看，喵……";
 	mes "我赢了"+.@loss+"次，喵，而你，"+strcharinfo(0)+"，赢了"+.@win+"次，对吧，喵？";
 	next;
 	if (.@win > .@loss) {
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你赢了，喵。";
 		next;
 		mes "帕突然变得有礼貌了。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是一场精彩的比赛，喵。我很欣赏你对游戏的热情，喵。所以我想把珍贵的罐头送给你，作为礼物，喵。";
 		next;
 		switch(select("我不需要！:谢谢。")) {
 		case 1:
-			mes "[帕阿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拿着吧，喵！！按我说的做，喵~";
 			break;
 		case 2:
-			mes "[帕阿]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你很有礼貌，喵。不过很遗憾，我只能给你这些，喵。";
 			break;
 		}
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "再见，喵~明天再来练习，喵~";
 		if (.@win == 5) {
 			mes "哦！你赢了全部 5 场比赛，喵。给你一些额外罐头，喵！";
@@ -9012,160 +9012,160 @@ mal_in01,86,222,4	script	帕阿#gamer	544,{
 		setquest 5070;
 		close;
 	}
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你输了。喵……喵……";
 	next;
 	mes "帕变得非常傲慢。";
 	next;
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想和我玩吗？帕？凭你那点技术？喵？";
 	next;
-	mes "[帕阿]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "什么？要礼物，喵？你怎么能提出这种要求，喵？你输了，喵！继续练习！！工作！！没错，我就该让你做这个，喵！！";
 	next;
 	setquest 5070;
 	switch(rand(1,13)) {
 	case 1:
 		setquest 5074;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。你知道一种叫剑鱼的鱼吗，喵？知道吗？它看起来很好吃，对吧，喵？";
 		next;
 		mes "- 咕噜 -";
 		mes "帕擦了擦嘴边的口水。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去捕捉 30 只剑鱼，喵。再给我拿 10 个鱼尾，喵。把它们交给我们的猫咪玩家协会会长，他会用它们做出美味的料理，喵。";
 		close;
 	case 2:
 		setquest 5075;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近我感到无力，身上的负担也太重了，喵。我应该照顾好自己的健康，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在是吃健康食物的时间，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给我们的猫咪玩家协会会长带 50 只乌贼和 30 瓶牛奶，喵。他非常了解健康食物，喵。";
 		close;
 	case 3:
 		setquest 5076;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们确实有竞争对手，喵。他们是‘狗狗华尔兹’，他们一出现就什么都不顺利，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我本来想让你欺负他们，但那应该是违法的，喵……所以我会让你骚扰长得相似的怪物，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，是狗头人中的弓箭手，喵！！我最讨厌那些家伙。去骚扰 30 只狗头人弓箭手，然后向我们的猫咪玩家协会会长报告，喵。";
 		close;
 	case 4:
 		setquest 5077;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "赢得比赛最重要的是什么，喵？是敏捷。我们该怎么变快，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想过了，喵……对我们猫来说，最好的方法显然是捉老鼠，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你知道蓝鼠吧，喵？就是那种蓝色胖乎乎的生物，喵……请去捕捉 10 只，然后向我们的猫咪玩家协会会长报告，喵。";
 		close;
 	case 5:
 		setquest 5078;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咕噜……我想吃鸟肉料理，喵。哪种最美味，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "小鸡？啊！太小了，喵。秃鹰怎么样？我不确定……大嘴鸟，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，喵！请捕捉 50 只大嘴鸟，交给我们的猫咪玩家协会会长，喵。今晚我们要举办鸟肉料理派对，喵。";
 		close;
 	case 6:
 		setquest 5079;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在比赛前太紧张了，喵。紧张时我发挥不好，喵。比赛开始前需要一些东西让我冷静，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！对了，喵！毛线，喵！我小时候经常玩毛线，喵。加入‘猫咪玩家’后就没法这样放松了，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请给我拿 20 个毛线，喵。为什么是 20 个？还有很多猫也有同样的问题，喵。我们的会长会替你处理，喵。";
 		close;
 	case 7:
 		setquest 5080;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近我们的会长似乎一直在削减开支，喵。还是管理者在占便宜，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "玩家们的日常零食减少了，喵。你应该去拿 30 个鼠尾，交给我们的猫咪玩家协会会长，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样我们就能知道管理者是不是贪心了，喵。";
 		close;
 	case 8:
 		setquest 5081;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我最近状态低迷，喵。没法把 100% 的精力投入比赛，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种时候我们需要柠檬，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给我拿 5 个柠檬，喵。别忘了，我需要 5 个柠檬，喵……我们的猫咪玩家协会会长应该知道怎么用它们，喵。";
 		close;
 	case 9:
 		setquest 5082;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绵绵岛是适合猫生活的地方，喵。但我们比赛时会变得很热，喵。";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们玩得多时会热得发疯，很难忍受，喵。你知道我们猫发起狂来有多可怕吧，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给我拿 10 个冰块或 10 个冰淇淋。我们的猫咪玩家协会会长应该知道怎么用它们，喵。";
 		close;
 	case 10:
 		setquest 5083;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息，喵。尽管放松一会儿，喵。去村子里散散步怎么样，喵？我坚持，喵~！";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只在村子里散步没意思，喵。嗯……对了，喵！！去见一只叫艾柳的猫怎么样，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’，喵。这是密码，喵。别忘了告诉我们的会长我一直和你在一起，喵！！";
 		close;
 	case 11:
 		setquest 5085;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息，喵。尽管放松一会儿，喵。去村子里散散步怎么样，喵？我坚持，喵~！";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只在村子里散步没意思，喵。嗯……对了，喵！！去见一只叫斯图的猫怎么样，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’，喵。这是密码，喵。别忘了告诉我们的会长我一直和你在一起，喵！！";
 		close;
 	case 12:
 		setquest 5087;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息，喵。尽管放松一会儿，喵。去村子里散散步怎么样，喵？我坚持，喵~！";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只在村子里散步没意思，喵。嗯……对了，喵！！去见一只叫番茄酱的猫怎么样，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’，喵。这是密码，喵。别忘了告诉我们的会长我一直和你在一起，喵！！";
 		close;
 	case 13:
 		setquest 5089;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看你也需要休息，喵。尽管放松一会儿，喵。去村子里散散步怎么样，喵？我坚持，喵~！";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过只在村子里散步没意思，喵。嗯……对了，喵！！去见一只叫艾夫的猫怎么样，喵？";
 		next;
-		mes "[帕阿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！见到那只猫时，记得说‘回来’，喵。这是密码，喵。别忘了告诉我们的会长我一直和你在一起，喵！！";
 		close;
 	}
@@ -9493,7 +9493,7 @@ mal_in01,91,222,4	script	库卡#gamer	422,{
 	}
 }
 
-mal_in01,134,221,4	script	空空#gamer	422,{
+mal_in01,134,221,4	script	猜猜#gamer::空空#gamer	422,{
 	if (MaxWeight - Weight < 1000) {
 		mes "你的物品栏重量太高，无法继续。减轻负重后再来。";
 		close;
@@ -9504,86 +9504,86 @@ mal_in01,134,221,4	script	空空#gamer	422,{
 	}
 	for(set .@i,5074; .@i<=5090; set .@i,.@i+1) {
 		if (checkquest(.@i) > -1) {
-			mes "[空空]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你没有遵守约定。我和你没什么好谈的。";
 			close;
 		}
 	}
 	if (malang_gamer < 20) {
 		if (countitem(2872)) {
-			mes "[空空]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "你不符合资格。嗯……我不知道你怎么得到这个的，但我们不能和你练习。回去吧。";
 			close;
 		}
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别烦我。我在等练习伙伴。";
 		close;
 	}
 	if (!isequipped(2872)) {
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是练习伙伴？你迟到了。马上开始吧。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ...";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的证书呢？没有证书就不能和我们练习。去拿来。";
 		close;
 	}
 	if (checkquest(5072,PLAYTIME) == 0 || checkquest(5072,PLAYTIME) == 1) {
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你没有手表？还是不会看时间？现在还没到时候。";
 		close;
 	} else if (checkquest(5072,PLAYTIME) == 2)
 		erasequest 5072;
-	mes "[空空]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是练习伙伴？你迟到了。马上开始吧。";
 	next;
 	switch(select("开始游戏。:询问当前第一名。:询问游戏规则。")) {
 	case 1:
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "游戏开始前，我们会通过掷骰子决定顺序。";
 		next;
 		break;
 	case 2:
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你为什么想知道第一名？空娘空是一种残酷又激烈的对战游戏。库卡应该知道！";
 		close;
 	case 3:
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想学习游戏规则？";
 		mes "你提问的方式很有礼貌。";
 		mes "仔细听。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "空娘空在攻击和防守时有不同的规则。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "攻击时，你必须把手转向和对手相同的一侧，才能完成攻击。";
 		next;
 		cutin "cat_g_01",4;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "像这样把手转向同一侧，你的攻击就成功了。";
 		next;
 		cutin "",255;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "防守时，你必须把手转向和对手相反的一侧，才能保护自己。";
 		next;
 		cutin "cat_g_06",4;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错！像这样把手转向和我相反的一侧，你就成功防守了。";
 		next;
 		cutin "",255;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你足够聪明，就该知道下面的手是攻击者的手。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最后！！最重要的规则。";
 		mes "攻击成功后，可以继续攻击对手。";
 		mes "失败后，就轮到你防守。";
 		mes "别忘了！";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你随时都可以询问空娘空的规则！";
 		mes "我们的猫管理员也熟悉所有空娘空规则。";
 		mes "就是这些！";
@@ -9599,19 +9599,19 @@ mal_in01,134,221,4	script	空空#gamer	422,{
 		emotion ET_DICE1+.@npc_dic;
 
 		if (.@pc_dic > .@npc_dic) {
-			mes "[空空]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的骰子点数更高，可以先攻击。";
 			set .@attack_turn,1;
 			next;
 			break;
 		} else if (.@pc_dic < .@npc_dic) {
-			mes "[空空]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我的骰子点数更高，我先攻击。";
 			set .@attack_turn,2;
 			next;
 			break;
 		} else {
-			mes "[空空]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们点数相同。再掷一次骰子吧。";
 			next;
 		}
@@ -9736,30 +9736,30 @@ mal_in01,134,221,4	script	空空#gamer	422,{
 		}
 	}
 	if (.@npc_hp == 0) {
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我输了。这确实是场好比赛。";
 	mes "赢下来当然更好，但我太忙了，没空回顾过去。";
 		next;
 		cutin "cat_g_lose",4;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "呜……";
 		emotion ET_CRY;
 		next;
 		cutin "",255;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……我想没必要这样。";
 	mes "这个给你，人类！";
 		setquest 5072;
 		getitem 12636,5; //Malang_Sp_Can
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "明天再来。我下次会赢你。";
 		close2;
 		cutin "",255;
 		end;
 	}
 	cutin "cat_g_win",4;
-	mes "[空空]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我赢了。这场比赛很无聊。";
 	mes "你需要多练习。也许做些额外工作会有帮助。";
 	next;
@@ -9767,142 +9767,142 @@ mal_in01,134,221,4	script	空空#gamer	422,{
 	switch(rand(1,13)) {
 	case 1:
 		setquest 5074;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去捕捉美味的鱼剑鱼。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去捕捉30条剑鱼，再弄10条鱼尾。交给我们的猫咪玩家协会会长，他会用它们做出美味料理。";
 		break;
 	case 2:
 		setquest 5075;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我可能锻炼过度了……感觉无力，身体负担也太重。该注意健康了。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经10岁了，是时候吃些健康食物。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给猫咪玩家协会会长带50个乌贼和30瓶牛奶。他很了解健康食品。";
 		break;
 	case 3:
 		setquest 5076;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们有个对手。‘狗狗华尔兹’队……他们一来就会出问题。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想请你欺负他们，但那是违法的……";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去骚扰30名狗头人弓箭手，别去找‘狗狗华尔兹’，然后向猫咪玩家协会会长报告。";
 		break;
 	case 4:
 		setquest 5077;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "速度是赢得比赛最重要的因素。为了提高速度……";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最好去抓老鼠。现在是捕捉蓝鼠的时候。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抓10只蓝鼠，然后向猫咪玩家协会会长报告。";
 		break;
 	case 5:
 		setquest 5078;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想吃鸟类料理。你以前尝过吗？";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大嘴鸟听起来很好吃。我不喜欢独自吃饭，所以……";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "捕捉50只大嘴鸟，向猫咪玩家协会会长报告。我们可以用大嘴鸟料理举办晚宴。";
 		break;
 	case 6:
 		setquest 5079;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保持冷静是赢得重要比赛的关键。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有哪只猫小时候没玩过毛线。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "弄20个毛线，向猫咪玩家协会会长报告。这能提高我们队伍的能力。";
 		break;
 	case 7:
 		setquest 5080;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我强烈怀疑猫管理员在偷吃我们的零食。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们只需要证据……弄30条鼠尾，向猫咪玩家协会会长报告。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样就能查明猫管理员是否做了坏事。";
 		break;
 	case 8:
 		setquest 5081;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "练习还不错，但我最近似乎陷入低谷。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种时候需要一些柠檬。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给猫咪玩家协会会长带5个柠檬。他知道该怎么做。";
 		break;
 	case 9:
 		setquest 5082;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "绵绵岛是适合猫咪居住的地方。但这里很容易变热。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这种炎热的日子，需要一些冰块或冰淇淋。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "弄10个冰块或10个冰淇淋。我们的猫咪玩家协会会长应该知道怎么用。";
 		break;
 	case 10:
 		setquest 5083;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是猫咪玩家协会会长的要求。我得让你去跑一趟。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到绵绵岛的猫艾柳，大声清楚地说‘回来’。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "之后向猫咪玩家协会会长报告。出发吧！！";
 		break;
 	case 11:
 		setquest 5085;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是猫咪玩家协会会长的要求。我得让你去跑一趟。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到绵绵岛的猫斯图，大声清楚地说‘回来’。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "之后向猫咪玩家协会会长报告。出发吧！！";
 		break;
 	case 12:
 		setquest 5087;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是猫咪玩家协会会长的要求。我得让你去跑一趟。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到绵绵岛的猫番茄酱，大声清楚地说‘回来’。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "之后向猫咪玩家协会会长报告。出发吧！！";
 		break;
 	case 13:
 		setquest 5089;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是猫咪玩家协会会长的要求。我得让你去跑一趟。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "找到绵绵岛的猫艾夫，大声清楚地说‘回来’。";
 		next;
-		mes "[空空]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "之后向猫咪玩家协会会长报告。出发吧！！";
 		break;
 	}
@@ -9911,7 +9911,7 @@ mal_in01,134,221,4	script	空空#gamer	422,{
 	end;
 }
 
-mal_in01,133,214,6	script	领队#gamer	546,{
+mal_in01,133,214,6	script	经纪人#gamer::领队#gamer	546,{
 	if (MaxWeight - Weight < 1000) {
 		mes "背包太重，无法继续。减轻负重后再来。";
 		close;
@@ -9922,85 +9922,85 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 	}
 	for(set .@i,5074; .@i<=5090; set .@i,.@i+1) {
 		if (checkquest(.@i) > -1) {
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "完成分配的工作后才能挑战旗帜游戏。";
 			close;
 		}
 	}
 	if (malang_gamer < 20) {
 		if (countitem(2872)) {
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "不是有证书就人人都能挑战。";
 			close;
 		}
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好，在挑战者到来前先练习吧！！";
 		close;
 	}
 	if (!isequipped(2872)) {
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想挑战吗？";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ...";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没有装备我们的证书物品，就不能挑战旗帜游戏。请稍后再来。";
 		close;
 	}
 	if (checkquest(5073,PLAYTIME) == 0 || checkquest(5073,PLAYTIME) == 1) {
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "旗帜游戏每天只能进行一次。";
 		close;
 	} else if (checkquest(5073,PLAYTIME) == 2)
 		erasequest 5073;
-	mes "[领队]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想挑战吗？";
 	next;
 	switch(select("挑战。:你是谁？:询问规则。")) {
 	case 1:
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "开始挑战旗帜游戏。请等待猫咪们准备。";
 		next;
 		break;
 	case 2:
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "哦！我从‘猫咪玩家’退休了，现在正在考国家游戏裁判资格。最近考证很流行。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "裁判必须使用标准语言……所以我很难像其他猫那样停止喵喵叫~";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我当然知道玩家的游戏规则，但担任裁判比想象中难得多。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "有时我会犯错，人们就像世界末日一样发疯。这工作真难。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "但我想完成课程，成为世界上最好的裁判。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你可以相信我！！";
 		close;
 	case 3:
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "请允许我说明挥旗游戏的规则。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你会和另外5只猫一起玩。";
 	mes "等待其他人都没有挥旗时再挥旗。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "开始时有5点旗帜点数，每次挥旗会减少1点。";
 	mes "点数降到0时，游戏结束。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "旗帜游戏还有特殊规则。为了增加刺激，如果连续10局不挥旗，就会减少1点。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "使用更少旗帜点数获胜，就能得到更丰厚的礼物。";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果还需要游戏规则方面的帮助，随时回来。猫管理员也能提供一些规则说明。";
 		close;
 	}
@@ -10095,7 +10095,7 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 			case 2: set .@tip$, "选择‘等待’可以查看结果并进入下一局。"; break;
 		}
 		while(1) {
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "猫咪们都准备好了。";
 			mes "你要做什么？";
 			mes " ";
@@ -10146,17 +10146,17 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 				}
 			}
 		}
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第 ^C1653E"+.@round+"^000000 局结果……";
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "~ 旗帜游戏挑战者 "+strcharinfo(0)+" ~";
 		mes "^FF0000"+.@you_flag$+"^000000，这是第 ^C1653E"+.@round+"^000000 局。";
 		mes "剩余 "+.@flag_point+" 点旗帜点数。";
 		emotion .@emotion[0], playerattached();
 		next;
 		for(set .@i,1; .@i<=5; set .@i,.@i+1) {
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "~ "+.@cat_name$[.@i]+.@cat_desc$[.@i]+" ~";
 			mes "^FF0000"+.@cat_flag$[.@i]+"^000000，这是第 ^C1653E"+.@round+"^000000 局。";
 			mes .@flag_point_cat[.@i]+" 点旗帜点数剩余，参赛者："+.@cat_name$[.@i]+"。";
@@ -10170,17 +10170,17 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 				break;
 			} else if (.@flag_point == 0) {
 				// You lose.
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你已用完所有旗帜点数。";
 				next;
 				break;
 			} else {
 				set .@you_flag,0;
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "挥旗失败。";
 				mes .@flag_point+" 点旗帜点数剩余。";
 				next;
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "进入下一局游戏吧。";
 				next;
 				mes "... ... ... ...";
@@ -10188,36 +10188,36 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 			}
 		} else {
 			if (.@cat_flags_waved == 5 && .@rounds_nowave < 10) {
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "恭喜"+strcharinfo(0)+"。你成功没有挥旗。";
 				next;
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "但是！这是挥旗游戏，所以这不算数。";
 				next;
 			} else {
 				if (.@rounds_nowave == 10) {
 					set .@rounds_nowave,0;
 					set .@flag_point, .@flag_point-1;
-					mes "[领队]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "根据官方旗帜游戏规则，你连续 10 局没有挥旗，将扣除 1 点旗帜点数。";
 					next;
 					if (.@flag_point == 0) {
 						// You lose.
-						mes "[领队]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes "你已用完所有旗帜点数。";
 						next;
 						break;
 					} else {
-						mes "[领队]";
+						mes "[" + strnpcinfo(1) + "]";
 						mes .@flag_point+" 点旗帜点数剩余。";
 						next;
 					}
 				} else {
-					mes "[领队]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "第"+.@round+"局正常结束。再过"+(10-.@rounds_nowave)+"局后将扣分。";
 					next;
 				}
-				mes "[领队]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "进入下一局游戏吧。";
 				next;
 				mes "... ... ... ...";
@@ -10226,10 +10226,10 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 		}
 		set .@cat_flags_waved,0;
 	}
-	mes "[领队]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "挥旗游戏结束了。";
 	next;
-	mes "[领队]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "最终结果！！";
 	mes "经过"+.@round+"局，"+strcharinfo(0)+"还剩"+.@flag_point+"点旗帜点数。";
 	mes "... ... ...";
@@ -10238,10 +10238,10 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 		setquest 5073;
 		if (.@flag_point_cat[1]+.@flag_point_cat[2]+.@flag_point_cat[3]+.@flag_point_cat[4]+.@flag_point_cat[5] < 5) {
 			getitem 12636,3; //Malang_Sp_Can
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "恭喜。你赢得了挥旗游戏。";
 			next;
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不过，因为你在游戏中没有积极参与，只奖励 3 个罐头食品。";
 		} else {
 			switch(.@flag_point) {
@@ -10252,15 +10252,15 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 				case 4: set .@cans,20; break;
 			}
 			getitem 12636, .@cans; //Malang_Sp_Can
-			mes "[领队]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "恭喜。你赢得了挥旗游戏，奖励"+.@cans+"个罐头食品。";
 		}
 		next;
-		mes "[领队]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希望你明天能赢到更多罐头食品。";
 		close;
 	}
-	mes "[领队]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "挥旗失败……";
 	mes "... ... ... ...";
 	next;
@@ -10284,23 +10284,23 @@ mal_in01,133,214,6	script	领队#gamer	546,{
 	close;
 }
 
-mal_in01,136,216,2	script	塞奇#gamer	553,{
+mal_in01,136,216,2	script	聪明#gamer::塞奇#gamer	553,{
 	if (malang_gamer == 20) {
-		mes "[塞奇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊~我饿了。有老鼠在附近转悠吗？";
 		next;
-		mes "[塞奇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊~我觉得一次能吃 100 只螃蟹。";
 		next;
-		mes "[塞奇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，四处看看吧？谁知道呢？也许能找到美味的罐头~";
 		emotion ET_STARE_ABOUT;
 		next;
-		mes "[塞奇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "到时候给我一个。嘿嘿~";
 		close;
 	} else {
-		mes "[塞奇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我饿了~还有剩下的罐头吗？";
 		emotion ET_STARE_ABOUT;
 		close;
@@ -10308,39 +10308,39 @@ mal_in01,136,216,2	script	塞奇#gamer	553,{
 	end;
 }
 
-mal_in01,136,215,2	script	罗#gamer	559,{
+mal_in01,136,215,2	script	爱现#gamer::罗#gamer	559,{
 	if (malang_gamer == 20) {
-		mes "[罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哼！人类，你是来见伟大的罗的吗？什么？不是？";
 		next;
-		mes "[罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那你想做什么？滚开。啊……！！";
 		next;
-		mes "[罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想玩旗帜游戏？我知道了。让我看看你的本事。";
 		next;
-		mes "[罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过你知道，你永远赢不了伟大的罗。";
 		emotion ET_KIK;
 		close;
 	} else {
-		mes "[罗]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "挥旗是严肃的游戏。只有像我这样的特别猫咪才能参加。喵~";
 		close;
 	}
 	end;
 }
 
-mal_in01,136,214,2	script	德邦#gamer	876,{
+mal_in01,136,214,2	script	澎澎#gamer::德邦#gamer	876,{
 	if (malang_gamer == 20) {
-		mes "[德邦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "挑毛是我最喜欢的爱好，喵。";
 		next;
-		mes "[德邦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "挑毛的时候喵~";
 		mes "时间过得真快喵~";
 		next;
-		mes "[德邦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "过来，喵。我来帮你挑毛，喵。";
 		emotion ET_THROB;
 		close;
@@ -10351,57 +10351,57 @@ mal_in01,136,214,2	script	德邦#gamer	876,{
 	end;
 }
 
-mal_in01,136,213,2	script	利布斯#gamer	421,{
+mal_in01,136,213,2	script	皮皮#gamer::利布斯#gamer	421,{
 	if (malang_gamer == 20) {
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊！！我为什么要在这里玩这种愚蠢的挥旗游戏？";
 		emotion ET_FRET;
 		next;
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂，你觉得呢？我知道你听见我说话了！";
 		next;
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "... ... ...";
 		next;
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信你一定不明白为什么会这样。我原谅你。";
 		emotion ET_OK;
 		next;
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人类怎么可能理解猫咪澎湃的内心。";
 		emotion ET_HNG;
 		close;
 	} else {
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人类？你在这里做什么？";
 		next;
-		mes "[利布斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！我明白了。我们的会长正在找练习伙伴，你要不要申请？";
 		close;
 	}
 	end;
 }
 
-mal_in01,136,212,2	script	勇勇#gamer	554,{
+mal_in01,136,212,2	script	暖暖#gamer::勇勇#gamer	554,{
 	if (malang_gamer == 20) {
-		mes "[勇勇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵~我好烦喵~";
 		emotion ET_FRET;
 		next;
-		mes "[勇勇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "烦死了喵~";
 		emotion ET_FRET;
 		next;
-		mes "[勇勇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你真烦喵~";
 		emotion ET_FRET;
 		next;
-		mes "[勇勇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是狗吗？喵~！";
 		emotion ET_FRET;
 		specialeffect EF_SONICBLOW2;
 		next;
-		mes "[勇勇]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别惹耷拉猫。";
 		mes "否则你会后悔。";
 		close;
@@ -10450,61 +10450,61 @@ mal_in01,142,220,6	script	告示牌#Cat G B2	858,{
 	close;
 }
 
-mal_in01,155,222,2	script	尤尼特#gamer	890,{
+mal_in01,155,222,2	script	优里#gamer::尤尼特#gamer	890,{
 	set .@playtime, checkquest(5069,PLAYTIME);
 	if (.@playtime == 0 || .@playtime == 1) {
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇呜~真忙的一天~";
 		mes "哦，你就是获得荣誉证书的人？";
 		next;
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "每天都有更多订单。啊！！再给我一些人手！！";
 		close;
 	} else if (.@playtime == 2) {
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵~嗡~证书完成！！";
 		next;
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我已经把你的证书交给猫咪玩家协会会长了！去确认吧~";
 		next;
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请……无论走到哪里都带着它。";
 		close;
 	} else if (malang_gamer < 19) {
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是猫。喵~嗡~";
 		mes "我看起来像羊，是因为太忙没时间剃毛。";
 		mes "这不是我的错……";
 		close;
 	} else {
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喵~嗡~别打扰我休息。";
 		mes "我平时很忙……";
 		mes "别碰我。";
 		next;
-		mes "[尤尼特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我现在有点胖，但你也该看看自己。哈哈……";
 		close;
 	}
 	end;
 }
 
-mal_in01,30,222,4	script	应征的猫#gamer	560,{
-	mes "[应征的猫]";
+mal_in01,30,222,4	script	面试猫#gamer::应征的猫#gamer	560,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想加入‘猫咪玩家’。";
 	mes "但猫咪玩家协会会长现在好像很忙。我该离开吗？";
 	next;
-	mes "[应征的猫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "什么？你也想加入这个团体？";
 	close;
 }
 
-mal_in01,19,213,1	script	等待的猫#gamer	555,{
-	mes "[等待的猫]";
+mal_in01,19,213,1	script	入选猫#gamer::等待的猫#gamer	555,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "为什么有人把花瓶放进玻璃里？";
 	mes "猫咪玩家协会会长做的吗？";
 	next;
-	mes "[等待的猫]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真奇怪的品味。";
 	mes "也许我该重新考虑加入‘猫咪玩家’，嗯？";
 	close;
@@ -10512,14 +10512,14 @@ mal_in01,19,213,1	script	等待的猫#gamer	555,{
 
 // Archangel Wing Enchants :: 2011_enc_angel02
 //============================================================
-malangdo,234,153,6	script	公告板#mal	837,{
+malangdo,234,153,6	script	强化能力人士公会#mal::公告板#mal	837,{
 	mes "^0000FF公告板上有一张潦草写下的留言。^000000";
 	next;
 	mes "里面的堕落天使会解锁永恒之翼的隐藏附魔。";
 	close;
 }
 
-mal_in01,15,16,3	script	堕落天使#mal	403,{
+mal_in01,15,16,3	script	堕落天使匠人#mal::堕落天使#mal	403,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "你携带的物品太多，请减少后再回来！";
@@ -10536,59 +10536,59 @@ mal_in01,15,16,3	script	堕落天使#mal	403,{
 			set .@menu$, "^999999你的金币不足！^000000";
 	} else
 		set .@menu$, "^999999你还没有装备永恒之翼！^000000";
-	mes "[堕落天使]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你看起来真可怜！";
 	next;
-	mes "[堕落天使]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你有永恒之翼，我可以把能力附魔到无用的第 4 槽。要我这么做吗？";
 	next;
 	switch(select("那是什么？:"+.@menu$+":初始化附魔")) {
 	case 1:
 		switch(select("别说了:你要做什么？")) {
 		case 1:
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你说什么？";
 			close;
 		case 2:
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "支付 1,000,000 Zeny 后，我可以把能力附魔到你的永恒之翼。但不重置就无法再次附魔。";
 			next;
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "附魔很危险，^ff0000翅膀可能会损坏^000000！不过我的祝福会保留^0000ff卡片和精炼等级^0000ff！";
 			close;
 		}
 	case 2:
 		if (Zeny < 1000000) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "付不起钱就无法进行！";
 			close;
 		}
-		mes "[堕落天使]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有两条重要提醒。第一，附魔需要^0000ff1,000,000 Zeny^000000。";
 		next;
-		mes "[堕落天使]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第二，^ff0000虽然概率不高，永恒之翼仍可能损坏^000000！这很不幸！";
  		mes "如果你能接受这些条件，我就为你附魔。";
 		next;
 		if(select("让我考虑一下……:我接受，开始附魔！") == 1) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好！慢慢考虑吧！";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
 		progressbar "ffff00",2;
 		if (getequipisequiped(EQI_GARMENT) == 0) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "永恒之翼被取下了！";
 			close;
 		}
 		if (getequipid(EQI_GARMENT) != 2573) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不要取下装备！";
 			close;
 		}
 		if (getequipcardid(EQI_GARMENT,3)) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这件永恒之翼已经附魔！请先初始化，或带另一件永恒之翼来！";
 			close;
 		}
@@ -10634,31 +10634,31 @@ mal_in01,15,16,3	script	堕落天使#mal	403,{
 		set Zeny, Zeny - 1000000;
 		delequip EQI_GARMENT;
 		if (.@enchant == 0) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "怜悯幸存者，";
 			mes "向死者献花。";
 			next;
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为正义提供帮助，";
 			mes "消灭邪恶。";
 			next;
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但重要的是……永恒之翼损坏了！";
 			close;
 		}
 		getitem2 2573,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant; //Archangel_Wing
 		if (.@i < 4)
 		announce strcharinfo(0)+"为永恒之翼附加了惊人的能力！",bc_all,0xFF0000,FW_NORMAL,10;
-		mes "[堕落天使]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拿去吧！";
 		mes "我相信你会成为新世界的支配者！";
 		close;
 	case 3:
-		mes "[堕落天使]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "初始化需要^0000ff 3 个猕猴桃果实实^000000。除附魔能力外，翅膀不会受损。";
 		next;
 		if(select("让我考虑一下……:好，我要初始化。") == 1) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好！慢慢考虑吧！";
 			close;
 		}
@@ -10666,22 +10666,22 @@ mal_in01,15,16,3	script	堕落天使#mal	403,{
 		progressbar "ffff00",2;
 		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
 		if (getequipisequiped(EQI_GARMENT) == 0) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "永恒之翼被取下了！";
 			close;
 		}
 		if (getequipid(EQI_GARMENT) != 2573) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦……你卸下了永恒之翼！";
 			close;
 		}
 		if (countitem(6417) < 3) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "付不起钱就无法进行！";
 			close;
 		}
 		if (getiteminfo(.@equip_card[3], ITEMINFO_SUBTYPE) != CARD_ENCHANT) {
-			mes "[堕落天使]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这件装备尚未附魔，请重新检查！";
 			close;
 		}
@@ -10689,7 +10689,7 @@ mal_in01,15,16,3	script	堕落天使#mal	403,{
 		delitem 6417,3; //Silvervine
 		delequip EQI_GARMENT;
 		getitem2 2573,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],0; //Archangel_Wing
-		mes "[堕落天使]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拿去吧！";
 		close;
 	}

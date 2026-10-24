@@ -124,7 +124,7 @@ OnInit:
 }
 
 // Instance Sanctuary Purification entrance
-rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
+rachel,167,244,5	script(CLOAKED)	神官#sms01::祭司#sms01	4_F_TRAINEE,{
 	if (checkweight(1000405,4) == 0) {
 		mes "- 等一下！！-";
 		mes "- 你目前携带了-";
@@ -137,12 +137,12 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 		end;
 	// repeatable instance Sanctuary Purification
 	if (BaseLevel < 170) {
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "进入此副本至少需要基础等级170。";
 		close;
 	}
 	if (isbegin_quest(17524) == 1 || isbegin_quest(17526) == 1) {
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎，冒险者。你辛苦了。";
 		if (isbegin_quest(17524) == 1) {
 			erasequest 17524;
@@ -154,7 +154,7 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 		}
 		getitem 1000405,.@count;	// Ep18_Amethyst_Fragment
 		next;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在请休息一下！再见！";
 		close;
 	}
@@ -167,23 +167,23 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 		break;
 	case 0:
 	case 1:
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下一次行动计划还没完成。因为每天只能进行一次，我们必须谨慎。冒险者，请休息到那时。";
 		close;
 	case 2:
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好！休息得好吗？如果今天能帮我，我会很感激。请注意行动每天只能进行一次。";
 		erasequest 17527;
 		if (isbegin_quest(17522) == 0 && isbegin_quest(17523) == 0)
 			callsub( S_Take, 2, "既然要做，就两项都做。", "突袭叛变的神殿守卫。", "突袭心猎者。", "", "会很艰难。" );
 		break;
 	}
-	mes "[祭司]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "准备好了吗？我会发送加入信号。";
 	next;
 	switch( select( "好，我发送信号。", "我继续。", "我还有任务没完成！", "还需要更多准备。" ) ) {
 	case 1:
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我收到了集合地点。你可以从紧急出口立即加入。准备好后进入。";
 		if (instance_create(.@md_name$) < 0) {
 			mes "队伍：" + getpartyname(getcharid(1)) + "";
@@ -205,7 +205,7 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 			mes "^ff0000只有队伍成员才能进入纪念副本。^000000";
 			close;
 		case IE_OK:
-			mes "[祭司]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "信号到了，我们行动吧。马上进入集合地点。";
 			mapannounce "rachel", "队伍" + getpartyname( getcharid(1) ) + "的成员" + strcharinfo(0) + "正在进入" + .@md_name$ + "。",bc_map,"0x00ff99",FW_NORMAL,12;
 			setquest 17527;
@@ -216,7 +216,7 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 	case 3:
 		callsub( S_Take, 1, "", "突袭叛变的神殿守卫。", "突袭心猎者。", "既然要做，就两项都做。", "会很艰难。" );
 	case 4:
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "明白了。我会等。";
 		close;
 	}
@@ -224,14 +224,14 @@ rachel,167,244,5	script(CLOAKED)	祭司#sms01	4_F_TRAINEE,{
 
 S_Take:
 	if (getarg(0) == 0) {
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "渗透神殿的主力已经逃走，但投靠心猎者的神殿守卫，以及觊觎核心的心猎者残党仍带来麻烦。";
 		next;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们正在独立进行突袭，但很希望得到你的帮助，冒险者。请注意突袭每天只能进行一次。";
 	}
 	else if (getarg(0) == 1) {
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是吗？你错过了什么任务？";
 	}
 	next;
@@ -242,43 +242,43 @@ S_Take:
 			setquest 17522;
 		if (isbegin_quest(17523) == 0 && isbegin_quest(17526) == 0)
 			setquest 17523;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "明白了。";
 		next;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好后请告诉我。";
 		close;
 	case 2:
 		if (isbegin_quest(17522) == 0 && isbegin_quest(17524) == 0) {
 			setquest 17522;
-			mes "[祭司]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "突袭叛变的神殿守卫。是吗？明白了。";
 			next;
-			mes "[祭司]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "准备好后请告诉我。";
 			close;
 		}
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你已经在执行任务。好吧，请先处理好它。";
 		next;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好后请告诉我。";
 		close;
 	case 3:
 		if (isbegin_quest(17523) == 0 && isbegin_quest(17526) == 0) {
 			setquest 17523;
-			mes "[祭司]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "感谢你的合作。准备好后告诉我。";
 			close;
 		}
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来你已经在执行任务。好吧，请先处理好它。";
 		next;
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好后请告诉我。";
 		close;
 	case 5:
-		mes "[祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "既然如此，我们也无能为力。下次见！";
 		close2;
 		cloakonnpcself( "祭司#sms01" );

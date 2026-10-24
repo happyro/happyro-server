@@ -18,7 +18,7 @@
 //= 1.5 Added VIP features. [Euphy]
 //============================================================
 
-xmas,162,209,5	script	Aspiring Wanderer, Soy	714,{
+xmas,162,209,5	script	漫游舞者志愿生小伊::Aspiring Wanderer, Soy	714,{
 	if (job_wan == 0) {
 		mes "[索伊]";
 		mes "咪咪，我该怎么办？";
@@ -84,7 +84,7 @@ xmas,162,209,5	script	Aspiring Wanderer, Soy	714,{
 			close;
 		}
 	} else if (job_wan == 1) {
-		if (strnpcinfo(0) == "Aspiring Wanderer, Soy") {
+		if (strnpcinfo(3) == "Aspiring Wanderer, Soy") {
 			mes "[索伊]";
 			mes "演出将在姜饼城前方的圣诞树旁举行。";
 			mes "我等不及了！啊～我都快失去理智了，咪咪。";
@@ -102,7 +102,7 @@ xmas,162,209,5	script	Aspiring Wanderer, Soy	714,{
 		mes "<诺利欧> 最棒了！！";
 		close;
 	} else {
-		if (strnpcinfo(0) == "Aspiring Wanderer, Soy") {
+		if (strnpcinfo(3) == "Aspiring Wanderer, Soy") {
 			mes "[索伊]";
 			mes "咪咪，我也想成为著名的漫游舞者。";
 		} else {
@@ -112,10 +112,10 @@ xmas,162,209,5	script	Aspiring Wanderer, Soy	714,{
 		close;
 	}
 }
-xmas,163,209,3	duplicate(Aspiring Wanderer, Soy)	Aspiring Wanderer, Mimi	714
+xmas,163,209,3	duplicate(Aspiring Wanderer, Soy)	漫游舞者志愿生咪咪::Aspiring Wanderer, Mimi	714
 
-xmas,132,143,5	script	Performance Manager#wnd	713,{
-	mes "[演出管理员]";
+xmas,132,143,5	script	公演工作人员#wnd::Performance Manager#wnd	713,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (job_wan == 0) {
 		mes "哦，我该怎么办？";
 		close;
@@ -124,7 +124,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 		mes "他们为什么要这样做？";
 		next;
 		emotion ET_SHY, getnpcid(0, "Aspiring Wanderer, Soy");
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，那边的人！";
 		mes "请听我说说这件事。";
 		mes "其实我不该告诉任何人。";
@@ -134,14 +134,14 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			set .@loop,0;
 			switch(select("抱歉，我不在乎。:怎么回事？:你为什么要告诉我这些？")) {
 			case 1:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这话有点过分了，你不觉得吗？";
 				close;
 			case 2:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "演出马上就要开始了！";
 				next;
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "那些人一点责任感都没有……";
 				mes "大家都在期待他们，而我也为他们做了大量宣传。";
 				next;
@@ -149,7 +149,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 				break;
 			case 3:
 				emotion ET_ANGER;
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我都说了我快被逼疯了！";
 				mes "你根本不理解我！";
 				next;
@@ -161,13 +161,13 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			set .@loop,0;
 			switch(select("出什么问题了吗？:你指的是谁？:这和我无关。")) {
 			case 1:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "他们怎么能这样做？";
 				mes "人们会扔雪球！";
 				mes "说不定还会扔来一个大雪人，不行！";
 				next;
 				emotion ET_KEK;
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "人们可能会抓住我的衣领！！";
 				mes "摇啊摇，晃啊晃！！";
 				mes "太糟糕了。";
@@ -175,7 +175,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 				set .@loop,1;
 				break;
 			case 2:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "谁？！";
 				mes "就是 <诺利欧>！";
 				mes "这也算问题？";
@@ -183,7 +183,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 				next;
 				break;
 			case 3:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真是无情的话！";
 				close;
 			}
@@ -193,27 +193,27 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			set .@loop,0;
 			switch(select("你害怕人群吗？:演出者惹麻烦了吗？:别理他。")) {
 			case 1:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "如果你是我，面对所有人的目光难道不会害怕吗？";
 				mes "我负责这场演出！很多人都期待观看，还有许多赞助商支持我们！我压力太大了。";
 				next;
 				break;
 			case 2:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "是的！";
 				mes "<诺利欧> 取消了演出！";
 				next;
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "而且他们完全没有给我任何理由！";
 				next;
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "更别提我为宣传和搭建舞台花的钱了……";
 				mes "我该怎么应付那些愤怒的人？";
 				next;
 				set .@loop,1;
 				break;
 			case 3:
-				mes "[演出管理员]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "嘿，你要去哪儿！";
 				close;
 			}
@@ -223,12 +223,12 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 		mes "我看得出你担心这场演出会泡汤。";
 		mes "你想办好演出来满足粉丝的期待。";
 		next;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真的不知道该如何处理。";
 		mes "他们为什么突然取消演出？";
 		mes "你知道吗？";
 		next;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<诺利欧> 为什么对我采取这种态度？";
 		mes "是我犯了什么错吗？和他们签约后，我做了他们要求的一切！";
 		next;
@@ -239,14 +239,14 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 		mes "……";
 		next;
 		emotion ET_ANGER;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你到底在说什么？";
 		mes "你是因为我情绪不稳定才戏弄我吗？";
 		next;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，我太担心了，心脏都在悸动，开始头晕了！";
 		next;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿！你能出去找大师 吉他乐曲 吗？";
 		next;
 		switch(select("啊，好吧。:我为什么要做？:我不去！")) {
@@ -254,7 +254,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			break;
 		case 2:
 			emotion ET_FRET;
-			mes "[演出管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你问我为什么！？";
 			mes "啊，不……";
 			mes "因为你看起来也是艺术家。";
@@ -262,7 +262,7 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			next;
 			break;
 		case 3:
-			mes "[演出管理员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你真是铁石心肠……";
 			close;
 		}
@@ -272,11 +272,11 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 			setquest 2218;
 			next;
 		}
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果可以，我真想抓住他们的衣领！";
 		mes "我真想问他们“为什么要毁掉演出？”但现在光是应付愤怒的赞助商就够难了……哦，不！";
 		next;
-		mes "[演出管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道 吉他乐曲 在哪里，但很明显他喜欢去克魔岛赌场！";
 		mes "呼，快点！！我真的头晕了！吉他乐曲！！！";
 		if (job_wan == 1) {
@@ -300,19 +300,19 @@ xmas,132,143,5	script	Performance Manager#wnd	713,{
 	close;
 }
 
-comodo,140,86,5	script	Cheerless Maestro	479,{
+comodo,140,86,5	script	无奈的宫廷乐师::Cheerless Maestro	479,{
 	if (job_wan < 2) {
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会跳舞～";
 		mes "你能完成工作～";
 		mes "你是舞蹈女王～";
 		mes "我是铃鼓之王～";
 		next;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……";
 		close;
 	} else if (job_wan == 2) {
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会跳舞～";
 		mes "你能完成工作～";
 		mes "你是舞蹈女王～";
@@ -325,24 +325,24 @@ comodo,140,86,5	script	Cheerless Maestro	479,{
 			close;
 		}
 		emotion ET_HUK;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么？！";
 		mes "你竟敢无视我的不朽杰作《铃鼓之王》？你还是第一个打我脸的人。";
 		next;
 		select("我没有打你。");
 		emotion ET_SURPRISE;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！小姐，看你的样子一定是舞者吧？";
 		next;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你有一起旅行的吟游诗人或诗人吗？";
 		mes "如果没有，和我组建一个巡回剧团怎么样？";
 		next;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "团队的名字是《吉他乐曲 的痛苦》。";
 		mes "这个名字表达了创作艺术作品时所承受的煎熬痛苦。";
 		next;
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这个名字很前卫，所以我认为团队一定会很受欢迎。";
 		next;
 		select("你是 吉他乐曲？");
@@ -563,127 +563,127 @@ comodo,140,86,5	script	Cheerless Maestro	479,{
 		mes "好，我会去姜饼城举办演出的圣诞树。";
 		close;
 	}
-		mes "[忧郁的音乐大师]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我的搭档在哪里……";
 	close;
 }
 
-hu_in01,305,251,5	script	Vacant Looking Lady#wnd	879,{
+hu_in01,305,251,5	script	发呆的女人#wnd::Vacant Looking Lady#wnd	879,{
 	if (job_wan < 4) {
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "（空白……）";
 		close;
 	} else if (job_wan == 4) {
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呜……呜……";
 		next;
 		select("你为什么哭？");
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我放弃了梦想……";
 		mes "*呜 *呜。";
 		next;
 		select("什么意思？");
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我和长期合作的搭档道别了。";
 		next;
 		select("你为什么道别？");
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为……呜……呜！";
 		next;
 		select("你可以把一切告诉我。");
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "漫游舞者和宫廷乐师一起时，能力会变强。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以旅行时，他们经常一起表演二重奏。";
 		mes "他们开心地跳舞、演奏音乐。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "几天前，我和搭档吉他乐曲像往常一样，为许多人伴着他的音乐表演了优美的舞蹈。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "得到热烈掌声后，我为自己是漫游舞者感到自豪。";
 		mes "吉他乐曲 也称赞了我。";
 		mes "那天我非常开心。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但是……";
 		next;
 		select("后来发生了什么？");
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "第二天早上，我醒来洗了脸，在房间里找吃的……";
 		next;
 		emotion ET_HUK;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "后来吉他乐曲不知为何突然打开我的房门，说：^3131FF嘿！你到底在这里做什么？^000000，然后把我赶出了房间！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们在一起很久了，他怎么能这样对我？";
 		mes "起初我以为他只是在开玩笑！可当他把我赶出房间时……";
 		next;
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他为什么没认出我的脸？";
 		mes "你觉得他是不想看到我没化妆的脸吗？";
 		mes "呜呜呜！";
 		next;
 		select("所以你解散了队伍？");
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你也要无视我作为女性受伤的自尊吗？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "不！他真的是个体贴的人！";
 		mes "但我不认为你会只因为这件事就解散珍贵的队伍。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说得对。";
 		mes "不只是因为那件事。";
 		mes "我解散队伍的真正原因是……";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那天之后我回到故乡毁葛，一直待在室内。";
 		mes "那时 希德 用甜蛋糕安慰我。";
 		next;
 		emotion ET_SHY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "希德 的蛋糕棒极了！";
 		mes "这是施瓦茨瓦尔德最有名的蛋糕，里面有松软的海绵蛋糕、新鲜水果和香甜的巧克力奶油！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "尝到那块甜蛋糕时，就像所有幸福天使都来安慰我。";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我每天早晚都吃。";
 		next;
 		select("哦，你不会吧……");
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "幸福天使带走了我的悲伤，却给了我一大堆肚腩赘肉！";
 		mes "呜呜呜呜！！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我穿不上舞衣了！";
 		mes "我再也不是能像美丽蝴蝶一样跳舞的舞者了！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "更糟的是，我连弯腰都变得困难了！";
 		mes "呜呜呜！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "演出日就要到了，可幸福天使却给我带来了巨大的障碍。";
 		mes "我又一次陷入绝望了！";
 		mes "我不能让吉他乐曲和我的粉丝看到我这副样子！";
 		next;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<诺利欧>完了！ 呜呜呜！";
 		set job_wan,5;
 		close;
 	} else if (job_wan == 5) {
 		emotion ET_CRY;
-		mes "[神情空洞的女士]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不久前我还像美丽的鸽子，如今却只是一只肥鸡。";
 		mes "呜呜……！";
 		mes "我想漫游舞者舞者金的生活已经结束了。";
@@ -751,29 +751,29 @@ hu_in01,305,251,5	script	Vacant Looking Lady#wnd	879,{
 		mes "我收拾好行李后就会去那里！";
 		close;
 	}
-	mes "[神情空洞的女士]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的搭档在哪里……...";
 	close;
 }
 
-hu_fild05,342,130,5	script	Dancer Kim#fild	879,{
+hu_fild05,342,130,5	script	金舞娘#fild::Dancer Kim#fild	879,{
 	if (job_wan == 6) {
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一起锻炼很好，但如果我们比赛，我觉得效果会更好！";
 		next;
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从现在开始，我们比赛看谁先击败黄色诺博斯！";
 		next;
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你需要在 10 分钟内击败 50 只黄色诺博斯，并回来找我！";
 		mes "准备好了吗？";
 		next;
 		if(select("不。:是。") == 1) {
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "趁我还没失去兴趣，快点！";
 			close;
 		}
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很好！那么，预备，开始~~";
 		mes "出发！";
 		if (job_wan != 6 || checkquest(2220) == -1) {
@@ -786,39 +786,39 @@ hu_fild05,342,130,5	script	Dancer Kim#fild	879,{
 	} else if (job_wan == 7) {
 		if (checkquest(2221,PLAYTIME) == 0 || checkquest(2221,PLAYTIME) == 1) {
 			if (checkquest(2221,HUNTING) == 2) {
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呼！";
 				mes "看来是我输了！";
 				next;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这种感觉让我想起过去穿越许多大陆边境的日子。";
 				next;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！看这个！";
 				mes "我变苗条了，你看得出来吗？";
 				next;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我感觉身体充满了力量。";
 				mes "我突然想见见我的好搭档吉他乐曲。";
 				mes "我想再次开始跳舞。";
 				next;
 				select("去姜饼城跳舞怎么样？");
 				emotion ET_SURPRISE;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊！圣诞村！好！好！";
 				mes "我在姜饼城跳舞的梦想终于要实现了。";
 				next;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想整天跳舞，让大家获得幸福！";
 				mes "所以我要去姜饼城。";
 				next;
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，请帮我一个忙。";
 				mes "你能把吉他乐曲带到姜饼城吗？";
 				mes "告诉他，他的搭档正在等他。";
 				next;
 				select("没问题！");
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你是个好人。能遇见你我真的很开心。";
 				mes "感谢神把这样固执的人带到我身边！";
 				if (job_wan != 7 || checkquest(2221,HUNTING) != 2) {
@@ -829,13 +829,13 @@ hu_fild05,342,130,5	script	Dancer Kim#fild	879,{
 				changequest 2221,2222;
 				close;
 			} else {
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "对你来说看起来很容易吗？";
 				mes "但我肯定自己获胜的机会更大。";
 				close;
 			}
 		} else if (checkquest(2221,PLAYTIME) == 2) {
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你回来了。";
 			mes "我太累了。我不是半途而废，只是这对我来说是很好的锻炼。我只能把诺利欧交给另一位漫游舞者，一切都结束了……";
 			next;
@@ -844,18 +844,18 @@ hu_fild05,342,130,5	script	Dancer Kim#fild	879,{
 			changequest 2221,2220;
 			close;
 		} else {
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "狩猎记录不见了，我们重新开始锻炼吧。";
 			if (checkquest(2220) == -1) setquest 2220;
 			set job_wan,6;
 			close;
 		}
 	} else if (job_wan == 8) {
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请告诉吉他乐曲，我会在圣诞树下等他。";
 		close;
 	}
-	mes "[舞者金]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我觉得狩猎诺博斯是最好的锻炼。";
 	close;
 }
@@ -903,7 +903,7 @@ OnTouch:
 	end;
 }
 
-xmas,147,135,5	script	Dancer Kim#xmas	485,{
+xmas,147,135,5	script	金舞娘#xmas::Dancer Kim#xmas	485,{
 	if (job_wan == 9) {
 		if (BaseJob != Job_Dancer || BaseLevel < 99 || JobLevel < 50) {
 				mes "- 任务条件不满足，无法继续任务。-";
@@ -918,7 +918,7 @@ xmas,147,135,5	script	Dancer Kim#xmas	485,{
 			close;
 		}
 		if (ismounting()) {
-				mes "[舞者金]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请先从骑乘的生物上下来。";
 				mes "然后再和我谈。";
 			close;
@@ -968,34 +968,34 @@ xmas,147,135,5	script	Dancer Kim#xmas	485,{
 			mes "哇~~~~~！";
 		next;
 		emotion ET_BEST;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "能在美丽的雪村跳舞真是太奇妙了，我很高兴来到这里，姜饼城。";
 		next;
 			mes "[观众]";
 			mes "耶~~~~~";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "其实，这场精彩的表演差点因为我的疏忽而取消。";
 		next;
 			mes "[吉他乐曲]";
 			mes "我无意中让她伤心了。";
 			mes "请允许我借此机会向她道歉。";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没关系。";
 			mes "我也为自己的行为道歉。";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "其实，有一位朋友在我家乡陷入低谷时鼓励我，帮助我度过了那些艰难时光。";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "今后你们也许会比喜欢我的舞蹈更喜欢我朋友的舞蹈。";
 			mes "她非常有天赋。";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在为大家介绍！";
 		next;
-			mes "[舞者金]";
+			mes "[" + strnpcinfo(1) + "]";
 		if (job_wan != 9 || BaseJob != Job_Dancer || BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0 || ismounting()) {
 			mes "请确认转职进度、等级和技能点，并解除坐骑后再来。";
 			close;
@@ -1012,16 +1012,16 @@ xmas,147,135,5	script	Dancer Kim#xmas	485,{
 		getitem 5758,1; //Dying_Swan
 		completequest 2222;
 		next;
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈哈哈，吓了一跳吗？";
 		mes "别一脸困惑嘛。";
 		mes "你带我来到这里，这是你应得的。";
 		next;
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你就像一只美丽的天鹅！";
 		mes "女神看到你的美貌一定会嫉妒。";
 		next;
-		mes "[舞者金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + strcharinfo(0) + "！希望今后能看到你精彩的表现。";
 		mes "另外，希望你能见到珍贵的导师。";
 		mes "以后一起表演，好吗？哈哈。";
@@ -1053,10 +1053,10 @@ OnInit:
 	cloakonnpc();
 	end;
 }
-xmas,149,135,3	duplicate(#wander_xmas)	Guitar Song#xmas	479
-xmas,142,130,7	duplicate(#wander_xmas)	Spectator#xmas1	711
-xmas,145,127,7	duplicate(#wander_xmas)	Spectator#xmas2	712
-xmas,148,127,7	duplicate(#wander_xmas)	Soy#xmas	714
+xmas,149,135,3	duplicate(#wander_xmas)	宋乐师#xmas::Guitar Song#xmas	479
+xmas,142,130,7	duplicate(#wander_xmas)	公演观众#xmas1::Spectator#xmas1	711
+xmas,145,127,7	duplicate(#wander_xmas)	公演观众#xmas2::Spectator#xmas2	712
+xmas,148,127,7	duplicate(#wander_xmas)	小伊#xmas::Soy#xmas	714
 xmas,149,127,1	duplicate(#wander_xmas)	Mimi#xmas	714
-xmas,151,127,1	duplicate(#wander_xmas)	Spectator#xmas3	716
-xmas,154,129,1	duplicate(#wander_xmas)	Spectator#xmas4	797
+xmas,151,127,1	duplicate(#wander_xmas)	公演观众#xmas3::Spectator#xmas3	716
+xmas,154,129,1	duplicate(#wander_xmas)	公演观众#xmas4::Spectator#xmas4	797

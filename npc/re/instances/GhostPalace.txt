@@ -8,18 +8,18 @@
 //= 1.1 Fixed NPC names. [zackdreaver]
 //============================================================
 
-dali02,43,129,5	script	讨厌的皇家卫兵::Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
+dali02,43,129,5	script	黄土皇家禁卫军::Unpleasant Royal Guard#	4_M_SAKRAYROYAL,{
 	if (BaseLevel < 120) {
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我需要帮手，但你的实力还不够，菜鸟~！";
 		next;
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "训练到至少 120 级后再回来！";
 		close;
 	}
 	.@party_id = getcharid(1);
 	if (is_party_leader() == false || .@party_id < 1) {
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只能为队长打开秘密通道。请让队长来和我谈话。";
 		close;
 	}
@@ -28,41 +28,41 @@ dali02,43,129,5	script	讨厌的皇家卫兵::Unpleasant Royal Guard#	4_M_SAKRAY
 		break;
 	case 0:
 	case 1:
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你找到公主了吗？！她安全吗？";
 		close;
 	case 2:
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "秘密通道周围的怪物消失了。现在正是救公主的机会！";
 		erasequest 1261;// Cursed Swordman
 		close;
 	}
-	mes "[讨厌的皇家卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我需要帮助，哪怕是你这样的家伙。";
 	next;
-	mes "[讨厌的皇家卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我守卫宫殿时，公主在战斗中途失踪了。";
 	next;
-	mes "[讨厌的皇家卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你先跑，我会追上来。我们必须救她。";
 	next;
 	if (select( "我会帮忙。", "现在不是时候。" ) == 2) {
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在所有皇家卫兵都在与怪物战斗，甚至为此丧命。";
 		next;
-		mes "[讨厌的皇家卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "无论心中多么恐惧，我们都必须救出公主！";
 		close;
 	}
 	instance_create("幽灵皇宫");
-	mes "[讨厌的皇家卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "谢谢……";
 	mes "我会打开通往^0000ff幽灵皇宫^000000的秘密通道。";
 	mes "请做好准备！";
 	close;
 }
 
-dali02,40,134,5	script	次元装置::Interdimensional Device#dk	PORTAL,{
+dali02,40,134,5	script	次元移动机::Interdimensional Device#dk	PORTAL,{
 	if (BaseLevel < 120) {
 		mes "[讨厌的皇家卫兵]";
 		mes "虽然我需要帮手，但你的实力还不够，菜鸟~！";

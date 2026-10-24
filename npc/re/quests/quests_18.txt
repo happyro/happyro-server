@@ -40,7 +40,7 @@ ba_in01,24,262,7	script(CLOAKED)	新手#ep181_rk01	4_M_ROOKIE,{
 
 
 // Main Quest: Step 2.
-rachel,182,176,3	script	蒙面女孩	4_F_MASK,5,5,{
+rachel,182,176,3	script	戴着面具的人::蒙面女孩	4_F_MASK,5,5,{
 	.@char_id = getcharid(0);
 	if (ep18_main == 1) {
 		if (getequipid(EQI_HEAD_TOP) != 400127) {	// Ep18_Mini_Elly
@@ -244,33 +244,33 @@ OnInit:
 	end;
 }
 
-rachel,179,175,7	duplicate(dummy_cloaked_npc)	人群#ep18c01	4_F_MASK
-rachel,177,178,5	duplicate(dummy_cloaked_npc)	人群#ep18c02	4_M_RACHMAN1
-rachel,179,171,7	duplicate(dummy_cloaked_npc)	人群#ep18c03	4_M_RACHMAN2
-rachel,181,170,0	duplicate(dummy_cloaked_npc)	人群#ep18c04	4_M_MIDDLE
-rachel,186,173,1	duplicate(dummy_cloaked_npc)	人群#ep18c05	4_F_MASK
-rachel,184,171,1	duplicate(dummy_cloaked_npc)	人群#ep18c06	4_F_MASK
+rachel,179,175,7	duplicate(dummy_cloaked_npc)	观众#ep18c01::人群#ep18c01	4_F_MASK
+rachel,177,178,5	duplicate(dummy_cloaked_npc)	观众#ep18c02::人群#ep18c02	4_M_RACHMAN1
+rachel,179,171,7	duplicate(dummy_cloaked_npc)	观众#ep18c03::人群#ep18c03	4_M_RACHMAN2
+rachel,181,170,0	duplicate(dummy_cloaked_npc)	观众#ep18c04::人群#ep18c04	4_M_MIDDLE
+rachel,186,173,1	duplicate(dummy_cloaked_npc)	观众#ep18c05::人群#ep18c05	4_F_MASK
+rachel,184,171,1	duplicate(dummy_cloaked_npc)	观众#ep18c06::人群#ep18c06	4_F_MASK
 
-rachel,187,170,3	script(CLOAKED)	女孩#ep18c07	4_F_DST_CHILD,{
-	mes "[女孩]";
+rachel,187,170,3	script(CLOAKED)	少女#ep18c07::女孩#ep18c07	4_F_DST_CHILD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "天啊！大家都在逃跑！";
 	close;
 }
 
-rachel,187,173,3	script(CLOAKED)	守卫加拉#ep18c08	4_M_RASWORD,{
-	mes "[守卫加拉]";
+rachel,187,173,3	script(CLOAKED)	治安队员 加拉#ep18c08::守卫加拉#ep18c08	4_M_RASWORD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们一会儿再谈这个。";
 	close;
 }
 
-rachel,187,174,3	script(CLOAKED)	守卫伊兹#ep18c09	4_M_RASWORD,{
-	mes "[守卫伊兹]";
+rachel,187,174,3	script(CLOAKED)	治安队员 伊兹#ep18c09::守卫伊兹#ep18c09	4_M_RASWORD,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "唉……";
 	close;
 }
 
 // Main Quest: Step 3.
-rachel,183,170,3	script(CLOAKED)	紧张的祭司#e18a	4_M_TRAINEE,{
+rachel,183,170,3	script(CLOAKED)	焦躁的神官#e18a::紧张的祭司#e18a	4_M_TRAINEE,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。-";
 		close;
@@ -278,55 +278,55 @@ rachel,183,170,3	script(CLOAKED)	紧张的祭司#e18a	4_M_TRAINEE,{
 	.@char_id = getcharid(0);
 	if (ep18_main == 2) {
 		cloakoffnpcself( "人群#ep18c06" );
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...?";
 		mes "哦，你听见我说话了吗，抱歉。";
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你看，最近发生了很多这类骚动。";
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么……冒险家是第一次来拉赫吗？";
 		npctalk "我怎么会知道？你真可笑。", "人群#ep18c02", bc_self;
 		npctalk "什么？这家伙还有什么说不出来的？", "人群#ep18c04", bc_self;
 		next;
 		select( "不" );
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我不确定你对阿鲁纳佩尔兹了解多少，不过……";
 		mes "你知道不同出身的居民之间有什么争端吗……";
 		next;
 		select( "我听说过" );
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，说来惭愧……这种情况还在持续。";
 		mes "最近我见过一些人在发表这种煽动性演说……";
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人们总是那样打断我。";
 		mes "但你也看到了，虽然我想阻止他们，却做不到……";
 		npctalk "你为什么和他争吵？", "人群#ep18c01", bc_self;
 		npctalk "他们说争斗是无知者的行为。", "人群#ep18c03", bc_self;
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……因为担心被视为站在作为统治阶级的移民一边。";
 		mes "但这不代表你可以假装没看见……";
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我再次紧张地看着一个从未见过的人演讲，不知不觉间……";
 		npctalk "什么？", "人群#ep18c02", bc_self;
 		npctalk "听起来很合适，对吧？", "人群#ep18c03", bc_self;
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		npctalk "这家伙？", "人群#ep18c02", bc_self;
 		npctalk "啊，拳头飞起来了，拳头飞起来了。尽管来打我吧。", "人群#ep18c03", bc_self;
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕……";
 		mes "冒险家，你有没有……";
 		next;
 		select( "你想让我阻止他们吗？" );
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……愿芙蕾雅庇佑我们。";
 		changequest 8682,8683;
 		ep18_main = 3;
@@ -376,7 +376,7 @@ rachel,183,170,3	script(CLOAKED)	紧张的祭司#e18a	4_M_TRAINEE,{
 		mes "我听说发生了争斗，所以过来看看……";
 		mes "冒险家？";
 		next;
-		mes "[紧张的祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，不，不，不！冒险家是在帮我……";
 		mes "啊，我是朱诺克牧师。这次我回到了塞斯鲁姆尼尔。";
 		next;
@@ -448,7 +448,7 @@ ra_temple,20,134,0	duplicate(#ep18w01)	#ep18w02_B	HIDDEN_WARP_NPC,3,3
 ra_temple,30,142,0	duplicate(#ep18w01)	#ep18w02_C	HIDDEN_WARP_NPC,3,3
 
 // Main Quest: Step 4.
-ra_temple,72,54,5	script(CLOAKED)	紧张的祭司#e18b	4_M_TRAINEE,{
+ra_temple,72,54,5	script(CLOAKED)	焦躁的神官#e18b::紧张的祭司#e18b	4_M_TRAINEE,{
 	if (ep18_main == 4) {
 		if (getequipid(EQI_HEAD_TOP) != 400127) {	// Ep18_Mini_Elly
 			mes "[迷你艾莉]";
@@ -567,8 +567,8 @@ OnInit:
 	end;
 }
 
-ra_temple,75,54,3	duplicate(dummy_cloaked_npc)	守卫加拉#ep18c10	4_M_RASWORD
-ra_temple,78,56,3	duplicate(dummy_cloaked_npc)	新兵守卫#ep18c11	4_M_RASWORD
+ra_temple,75,54,3	duplicate(dummy_cloaked_npc)	治安队员 加拉#ep18c10::守卫加拉#ep18c10	4_M_RASWORD
+ra_temple,78,56,3	duplicate(dummy_cloaked_npc)	新手治安队员#ep18c11::新兵守卫#ep18c11	4_M_RASWORD
 
 // Main Quest: Step 5.
 // ra_temple,20,134,0	script	#ep18w02_1	HIDDEN_WARP_NPC,3,3,{
@@ -589,7 +589,7 @@ OnTouch:
 // ra_temple,30,142,0	duplicate()	#ep18w02_1	HIDDEN_WARP_NPC,3,3,{
 ra_temple,30,142,0	duplicate(#ep18w02_1_A)	#ep18w02_1_B	HIDDEN_WARP_NPC,3,3
 
-ra_temple,30,142,1	script(CLOAKED)	紧张的祭司#e18c	4_M_TRAINEE,{
+ra_temple,30,142,1	script(CLOAKED)	焦躁的神官#e18c::紧张的祭司#e18c	4_M_TRAINEE,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 等一下！！ -";
 		mes "- 你目前携带了 -";
@@ -717,14 +717,14 @@ OnInit:
 	end;
 }
 
-ra_temple,25,147,5	duplicate(dummy_cloaked_npc)	守卫加拉#ep18c12	4_M_RASWORD
+ra_temple,25,147,5	duplicate(dummy_cloaked_npc)	治安队员 加拉#ep18c12::守卫加拉#ep18c12	4_M_RASWORD
 
-ra_temple,29,143,1	script(CLOAKED)	守卫伊兹#ep18c13	4_M_RASWORD,{
+ra_temple,29,143,1	script(CLOAKED)	治安队员 伊兹#ep18c13::守卫伊兹#ep18c13	4_M_RASWORD,{
 	npctalk "守卫 伊兹：祭司，请不要上前！", "", bc_self;
 	end;
 }
 
-ra_temple,26,145,7	script(CLOAKED)	守卫卡尔索特#c14	4_M_RASWORD,{
+ra_temple,26,145,7	script(CLOAKED)	治安队员 卡尔·索特#c14::守卫卡尔索特#c14	4_M_RASWORD,{
 	npctalk "守卫 卡尔索特：放下武器！", "", bc_self;
 	end;
 }
@@ -732,7 +732,7 @@ ra_temple,26,145,7	script(CLOAKED)	守卫卡尔索特#c14	4_M_RASWORD,{
 ra_temple,31,147,4	duplicate(dummy_cloaked_npc)	心猎者#ep18c15	G_EP17_2_HEART_HUNTER
 ra_temple,29,146,4	duplicate(dummy_cloaked_npc)	心猎者#ep18c16	G_EP17_2_HEART_HUNTER
 
-ra_temple,35,141,1	duplicate(dummy_cloaked_npc)	统领柴夫#c17	4_M_RASWORD
+ra_temple,35,141,1	duplicate(dummy_cloaked_npc)	治安队员 柴夫#c17::统领柴夫#c17	4_M_RASWORD
 ra_temple,36,140,4	duplicate(dummy_cloaked_npc)	心猎者#ep18c18	G_EP17_2_HEART_HUNTER
 ra_temple,37,140,4	duplicate(dummy_cloaked_npc)	心猎者#ep18c19	G_EP17_2_HEART_HUNTER
 
@@ -796,9 +796,9 @@ ra_temple,168,169,3	script	艾利达努斯#fp	4_M_MIDDLE1,{
 }
 
 // Main Quest: Step 6.
-ra_temin,173,40,3	script	守卫丹特#ep18	4_M_RASWORD,{
+ra_temin,173,40,3	script	治安队员 邓特#ep18::守卫丹特#ep18	4_M_RASWORD,{
 	if (ep18_main == 7) {
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:16px'><B>等一下！！</B></font>";
 		mes "<font style='font-size:14px'>喂！</FONT>";
 		mes "你没看到队伍吗？";
@@ -812,22 +812,22 @@ ra_temin,173,40,3	script	守卫丹特#ep18	4_M_RASWORD,{
 		next;
 		select( "听说事情很紧急。" );
 		cutin "",255;
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:16px'><B>什么？</B></font>";
 		mes "<font style='font-size:14px'>我也很着急，你知道吗？</FONT>";
 		npctalk "什么？", "守卫丹特#ep18", bc_self;
 		next;
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:14px'><B>唉～</B></font>";
 		mes "你知道我今天光是被派来制止打架就有多少次了吗？！";
 		mes "人们不停地到处打架，也快把我们逼疯了！";
 		npctalk "唉～要是大家能暂时别再打架就好了……", "守卫丹特#ep18", bc_self;
 		next;
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们试图制止打架时，他们甚至装都不装作在听！";
 		mes "他们为了争论自己是^e5555e移民^000000还是^e5555e本地人^000000而争斗了很久，但最近已经完全不是闹着玩的了！";
 		next;
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们一开口，他们就开始大喊本地人遭受^e5555e歧视^000000……";
 		mes "光是想想就让我头疼。";
 		npctalk "光是想想就让我头疼。", "守卫丹特#ep18", bc_self;
@@ -840,11 +840,11 @@ ra_temin,173,40,3	script	守卫丹特#ep18	4_M_RASWORD,{
 		close;
 	}
 	if (ep18_main == 8) {
-		mes "[守卫丹特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近过得怎么样，尼尔？";
 		close;
 	}
-	mes "[守卫丹特]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "唉～";
 		mes "要是大家能暂时别再打架就好了……";
 	close;
@@ -855,27 +855,27 @@ OnInit:
 }
 
 // Main Quest: Step 7. and 10.
-ra_temin,174,38,3	script	守卫尼尔#ep18	4_DST_SOLDIER,{
+ra_temin,174,38,3	script	治安队员 尼尔#ep18::守卫尼尔#ep18	4_DST_SOLDIER,{
 	if (ep18_main == 8) {
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:14px'><B>喂，住手！</B></font>";
 		mes "不过，你还是比我强。";
 		mes "你和我一样清楚这一点。我是本地人。";
 		npctalk "喂，住手！", "守卫尼尔#ep18", bc_self;
 		next;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我还没开始说话，他们就让我叫另一个本地保安来。";
 		npctalk "歧视可不是闹着玩的！", "守卫尼尔#ep18", bc_self;
 		next;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "每当涉及我的本地人身份时，我就听腻了诸如‘你知道我是谁吗？’这样的话。";
 		mes "他们到底把保安当成什么了！";
 		next;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "说实话，最近事情真的很奇怪。";
 		mes "就连以前从没惹过麻烦的人也卷入了争斗，把小冲突变成大问题。";
 		next;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错！";
 		mes "最近到处都乱糟糟的。";
 		mes "现在想想，我昨天也来过神殿。";
@@ -886,7 +886,7 @@ ra_temin,174,38,3	script	守卫尼尔#ep18	4_DST_SOLDIER,{
 		close;
 	}
 	if (ep18_main == 9) {
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错！";
 		mes "最近到处都乱糟糟的。";
 		mes "说起来，我昨天也在神殿。";
@@ -895,7 +895,7 @@ ra_temin,174,38,3	script	守卫尼尔#ep18	4_DST_SOLDIER,{
 		close;
 	}
 	if (ep18_main == 10) {
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊～";
 		mes "尼伦 好像很忙……";
 		close;
@@ -907,11 +907,11 @@ ra_temin,174,38,3	script	守卫尼尔#ep18	4_DST_SOLDIER,{
 		cutin "ra_gwoman.bmp",2;
 		next;
 		cutin "",255;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马拉姆?";
 		mes "我刚才去神殿时，好像看到他在^e5555e广场^000000附近……";
 		next;
-		mes "[守卫尼尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不确定他是否还在广场，但也许可以问那里的人，看看 马拉姆 去了哪里？";
 		next;
 		mes "[高阶祭司尼伦]";
@@ -934,7 +934,7 @@ ra_temin,174,38,3	script	守卫尼尔#ep18	4_DST_SOLDIER,{
 		cutin "",255;
 		end;
 	}
-	mes "[守卫尼尔]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "唉……";
 		mes "大祭司 尼伦 到底去哪儿了……";
 	close;
@@ -946,9 +946,9 @@ OnInit:
 }
 
 // Main Quest: Step 8.
-ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
+ra_temin,172,36,7	script	菲依雅神父#ep18::芙蕾雅祭司#ep18	4_F_MASK1,{
 	if (ep18_main == 9) {
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们总是为信徒的虔诚信仰和内心平静祈祷。";
 		next;
 		mes "[守卫尼尔]";
@@ -965,7 +965,7 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		mes "给我们一些信息~";
 		npctalk "给我们一些信息~", "守卫丹特#ep18", bc_self;
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "神殿是为 芙蕾雅 祭司祈祷的地方。";
 		mes "保持内心平静……";
 		next;
@@ -973,22 +973,22 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		mes "我昨天看到了。";
 		mes "<font style='font-size:14px'>就在这里，在互相争斗的人群中，这位面具掉了一半的祭司……</FONT>";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:16px'><B>糟糕！！！</B></font>";
 		mes "<font style='font-size:14px'><B>等一下！</B></font>";
 		mes "<font style='font-size:14px'><B>站住！！！</B></font>";
 		npctalk "糟糕！！！等一下！", "芙蕾雅祭司#ep18", bc_self;
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "<font style='font-size:10px'>唉……</FONT>";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "其实……";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近确实有更多人在神殿惹事。";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "大多是发泄个人不满，而不是提出正式投诉，在神殿入口制造骚乱或大喊大叫。";
 		next;
 		mes "[高阶祭司尼伦]";
@@ -999,15 +999,15 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		cutin "ra_gwoman.bmp",2;
 		next;
 		cutin "",255;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "尼伦大祭司！！！！";
 		npctalk "尼伦大祭司！！！！", "芙蕾雅祭司#ep18", bc_self;
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，这个嘛……";
 		mes "最近经常有人因为个人怨气来到神殿大喊大叫，我们一直在努力安抚并劝他们离开，";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但最近，来神殿的人之间发生肢体冲突的事件越来越多……";
 		next;
 		mes "[高阶祭司尼伦]";
@@ -1017,10 +1017,10 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		cutin "ra_gwoman.bmp",2;
 		next;
 		cutin "",255;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有些人即使我们努力调和意见，仍指责我们是异端并制造骚乱；另一些人则质问我们还要容忍这些异端多久。我们很难解决这种局面。";
 		next;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过既然他们这样抱怨，看来他们无法直接向尼伦发泄，只能把怒火发泄在神殿上。";
 		mes "因为他们知道尼伦非常重视和谐。";
 		next;
@@ -1038,7 +1038,7 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		mes "我听说过一些分歧，但是……我以为只要共同生活、彼此了解和理解，问题就会自然解决，也许是我错了。";
 		next;
 		cutin "",255;
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使强硬派已经退让，支持他们的人也不可能一下子改变想法。";
 		next;
 		mes "[高阶祭司尼伦]";
@@ -1085,7 +1085,7 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		end;
 	}
 	if (ep18_main == 10) {
-		mes "[芙蕾雅祭司]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "尼伦大祭司似乎在找你。你没见到他吗？";
 		next;
 		mes "[高阶祭司尼伦]";
@@ -1098,7 +1098,7 @@ ra_temin,172,36,7	script	芙蕾雅祭司#ep18	4_F_MASK1,{
 		navigateto("ra_temin",213,87);
 		end;
 	}
-	mes "[芙蕾雅祭司]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们一直祈祷信徒拥有真诚的信仰与平静的心。";
 	close;
 
@@ -1107,7 +1107,7 @@ OnInit:
 	end;
 }
 
-ra_temin,170,38,5	duplicate(dummy_cloaked_npc)	尼伦#ep18_in1	4_F_MADAME
+ra_temin,170,38,5	duplicate(dummy_cloaked_npc)	尼乐研#ep18_in1::尼伦#ep18_in1	4_F_MADAME
 ra_temin,171,42,5	duplicate(dummy_npc)	拉赫居民#ep18_in1	4_F_SHABBY
 ra_temin,173,43,3	duplicate(dummy_npc)	拉赫居民#ep18_in2	4_M_RACHMAN2
 ra_temin,175,36,0	duplicate(dummy_npc)	拉赫居民#ep18_in3	4_F_DESERT
@@ -1117,7 +1117,7 @@ ra_temin,177,33,5	duplicate(dummy_npc)	拉赫居民#ep18_in6	4_M_CHILD1
 ra_temin,173,32,0	duplicate(dummy_npc)	拉赫居民#ep18_in7	4_F_MASK
 
 // Main Quest: Step 9.
-ra_temin,213,87,3	script	尼伦#ep18_in2	4_F_MADAME,{
+ra_temin,213,87,3	script	尼乐研#ep18_in2::尼伦#ep18_in2	4_F_MADAME,{
 	if (ep18_main == 10) {
 		mes "[高阶祭司尼伦]";
 		mes "看来这里不会有人听见。";
@@ -3281,13 +3281,13 @@ OnInit:
 }
 
 // Main Quest: Step 35.
-wolfvill,180,179,3	script	村里的男孩#category	4_M_DST_CHILD,{
+wolfvill,180,179,3	script	村落少年#category::村里的男孩#category	4_M_DST_CHILD,{
 	if (ep18_main == 37) {
-		mes "[村里的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "大会就要开始了。";
 	mes "这不是经常举行的小型集会，而是由各地值得信赖的人参加的大会！";
 		next;
-		mes "[村里的男孩]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你应该去<NAVI>[那边]<INFO>wolfvill,144,151,0,101,0</INFO></NAVI>。那里也有冒险者的位置。";
 	mes "当然，既然你是冒险者，就是我们可以信赖的人。";
 		erasequest 18082;
@@ -3374,7 +3374,7 @@ OnTouch:
 	end;
 }
 
-wolfvill,147,148,3	script(CLOAKED)	激进的青年#Radical2	4_DST_SOLDIER,{
+wolfvill,147,148,3	script(CLOAKED)	激进的年轻人#Radical2::激进的青年#Radical2	4_DST_SOLDIER,{
 	npctalk "战斗吧！我们必须战斗！", "激进的青年#Radical2", bc_self;
 	end;
 }
@@ -3812,7 +3812,7 @@ OnInit:
 }
 
 // Main Quest: Step 39.
-wolfvill,150,147,1	script(CLOAKED)	激动的老人#Weap	4_M_MIDDLE,{
+wolfvill,150,147,1	script(CLOAKED)	热血壮年#Weap::激动的老人#Weap	4_M_MIDDLE,{
 	if (ep18_main < 38)
 		end;
 	if (ep18_main == 39) {
@@ -3860,7 +3860,7 @@ OnInit:
 }
 
 // Main Quest: Step 40.
-wolfvill,152,145,1	script(CLOAKED)	胆怯的青年#Neutral1	4_M_RACHMAN1,{
+wolfvill,152,145,1	script(CLOAKED)	小气的青年#Neutral1::胆怯的青年#Neutral1	4_M_RACHMAN1,{
 	if (ep18_main < 39)
 		end;
 	if (ep18_main == 39) {
@@ -4175,7 +4175,7 @@ wolfvill,138,145,7	script(CLOAKED)	胆怯的老人#Elder3	4_EP18_GW_MIDDLE02,{
 	end;
 }
 
-wolfvill,141,146,7	script(CLOAKED)	胆怯的老人#Elder4	4_M_DST_GRAND,{
+wolfvill,141,146,7	script(CLOAKED)	小气的老人#Elder4::胆怯的老人#Elder4	4_M_DST_GRAND,{
 	npctalk "要是你们也能听听我们的意见就好了……", "胆怯的老人#Elder4", bc_self;
 	end;
 }
@@ -4193,16 +4193,16 @@ wolfvill,151,150,1	script(CLOAKED)	中立的青年#Neutral3	4_EP18_GW_MAN01,{
 // Main Quest: Step 44.
 rachel,72,42,3	duplicate(dummy_cloaked_npc)	马拉姆#1_2	4_EP18_MARAM
 
-rachel,75,44,3	script	大胡子杰克#armsman_rachel	4_M_MIDDLE1,{
+rachel,75,44,3	script	大胡子 杰克#armsman_rachel::大胡子杰克#armsman_rachel	4_M_MIDDLE1,{
 	if (ep18_main == 43) {
 		cloakoffnpcself( "马拉姆#1_2" );
 		mes "[迷你艾莉]";
 		mes "你到了。‘大胡子杰克’经营的是五金店。";
 		next;
-		mes "[大胡子杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎。有什么我能帮你的吗？";
 		next;
-		mes "[大胡子杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "说到菜刀和锅具，拉赫没有比我们店更好的地方。";
 		mes "请慢慢看。";
 		next;
@@ -4217,25 +4217,25 @@ rachel,75,44,3	script	大胡子杰克#armsman_rachel	4_M_MIDDLE1,{
 			mes "[迷你艾莉]";
 			mes "嗯，我觉得不是这个。";
 			next;
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你为什么要在我们店里找这么脏的东西？";
 			close2;
 			cloakonnpcself( "马拉姆#1_2" );
 			end;
 		case 2:
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀，终于来了。";
 			mes "你是来看看臭蒲公英盛开的地方吗？";
 			next;
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去维恩斯，你会在那里找到我。";
 			mes "在维恩斯村的一个角落，有一位不为人知的武器商人。";
 			next;
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果有人问是谁推荐你的，就说是杰克推荐的。";
 			mes "他们大概只做短期生意，方便迅速赚一笔就走，所以你去晚了，他们就不会和你交易。";
 			next;
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "总之，连接到<NAVI>[武器商店]<INFO>veins,293,282,0,101,0</INFO></NAVI>后，就不归我管了。";
 			mes "那么，祝你好运。";
 			erasequest 16575;
@@ -4248,7 +4248,7 @@ rachel,75,44,3	script	大胡子杰克#armsman_rachel	4_M_MIDDLE1,{
 			mes "[迷你艾莉]";
 			mes "嗯，我觉得不是。";
 			next;
-			mes "[大胡子杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不，我们店是五金店，不是洗衣店。";
 			close2;
 			cloakonnpcself( "马拉姆#1_2" );
@@ -4258,17 +4258,17 @@ rachel,75,44,3	script	大胡子杰克#armsman_rachel	4_M_MIDDLE1,{
 		}
 	}
 	if (ep18_main == 44) {
-		mes "[大胡子杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，连接到<NAVI>[武器商人]<INFO>veins,293,282,0,101,0</INFO></NAVI>后，就不归我管了。";
 		mes "那么，祝你好运。";
 		cloakonnpcself( "马拉姆#1_2" );
 		close;
 	}
-	mes "[大胡子杰克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎。这是‘大胡子杰克’五金店。";
 	mes "我们出售制作精良的菜刀和锅具。";
 	next;
-	mes "[大胡子杰克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我的名字？当然是大胡子杰克。";
 	mes "这家店完全属于我！";
 	close;
@@ -4281,14 +4281,14 @@ OnInit:
 // Main Quest: Step 45.
 veins,289,281,7	duplicate(dummy_cloaked_npc)	马拉姆#1_3	4_EP18_MARAM
 
-veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
+veins,293,282,3	script	丹德隆#weapons_bains::蒲公英#weapons_bains	4_M_DESERT,{
 	if (ep18_main == 44) {
 		mes "[马拉姆]";
 		mes "你好~";
 		mes "你们营业吗？";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们打烊了。";
 		next;
 		cutin "ep18_maram_02.png",2;
@@ -4296,7 +4296,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "别这样。我是杰克介绍来的，他说这里有臭蒲公英。";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁啊，蒲公英，谁啊！";
 		mes "哪个混蛋想出了这么奇怪的暗号！";
 		next;
@@ -4306,7 +4306,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "和安全有关的暗号，居然这么简单。";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，怎么回事！";
 		mes "如果你是来买武器的，就别犹豫，拿你需要的吧。";
 		next;
@@ -4317,7 +4317,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "与其说是买一两件武器，不如说是批量采购，对吧？";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "批量采购？你打算买多少？";
 		next;
 		cutin "ep18_maram_01.png",2;
@@ -4326,7 +4326,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "这个数量在本店可以接受吗？";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咕噜，这、这么多？你是想发动战争吗？";
 		mes "呃、嗯，给我一点时间的话，应该可以。";
 		next;
@@ -4336,7 +4336,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "希望我们能尽快找到它。";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "告诉我你的时间安排。我会尽快配合。";
 		next;
 		cutin "ep18_maram_01.png",2;
@@ -4345,7 +4345,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "中间费用由我们承担，不会给你添麻烦。";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿！做生意时谁会透露背景啊！";
 		mes "够了，回去，回去！";
 		next;
@@ -4360,7 +4360,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "不管是我们的紧急情况，还是免除中间费，对双方都有好处，不是吗？";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……好吧。但绝对不能泄露。";
 		next;
 		cutin "ep18_maram_01.png",2;
@@ -4368,7 +4368,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "真是明知故问。";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是托尔火山。深处有一座秘密基地，武器就是从那里来的。";
 		mes "告诉你是因为那里的库存一旦耗尽，交易也会中断。";
 		next;
@@ -4377,7 +4377,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 		mes "听你说话的样子，似乎很快就要断绝关系了，对吧？";
 		next;
 		cutin "",255;
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "小子，别再到处晃了。剩下的自己调查。";
 		mes "既然拿到了想要的东西，就付佣金离开吧。";
 		next;
@@ -4400,7 +4400,7 @@ veins,293,282,3	script	蒲公英#weapons_bains	4_M_DESERT,{
 	}
 	if (ep18_main == 45) {
 		cloakoffnpcself( "马拉姆#1_3" );
-		mes "[蒲公英]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "小子，别再到处晃了。剩下的自己调查。";
 		mes "既然拿到了想要的东西，就付佣金离开吧。";
 		next;
@@ -4925,8 +4925,8 @@ OnInit:
 wolfvill,129,256,3	duplicate(dummy_cloaked_npc)	坤#sms01	EP18_ARMED_VILLAGER02
 wolfvill,126,255,5	duplicate(dummy_cloaked_npc)	尤皮#sms01	EP18_ARMED_VILLAGER03
 
-wolfvill,129,251,1	duplicate(dummy_cloaked_npc)	市民#sms01	4_M_RACHMAN1
-wolfvill,129,248,7	duplicate(dummy_cloaked_npc)	市民#sms02	4_M_MIDDLE1
+wolfvill,129,251,1	duplicate(dummy_cloaked_npc)	居民#sms01::市民#sms01	4_M_RACHMAN1
+wolfvill,129,248,7	duplicate(dummy_cloaked_npc)	居民#sms02::市民#sms02	4_M_MIDDLE1
 wolfvill,132,250,1	duplicate(dummy_cloaked_npc)	市民#sms03	4_EP18_GW_MAN01
 
 wolfvill,126,252,7	duplicate(dummy_cloaked_npc)	苏阿德#sms02	4_EP18_SUAD
@@ -4940,14 +4940,14 @@ wolfvill,127,250,7	duplicate(dummy_cloaked_npc)	马拉姆#sms02	4_EP18_MARAM
 rachel,118,197,1	duplicate(dummy_cloaked_npc)	米丽娅姆#sms04	4_EP18_MIRIAM
 rachel,119,199,3	duplicate(dummy_cloaked_npc)	苏阿德#sms04	4_EP18_SUAD
 
-rachel,115,198,5	script(CLOAKED)	泽德#sms01	4_M_RACHOLD1,{
+rachel,115,198,5	script(CLOAKED)	杰德#sms01::泽德#sms01	4_M_RACHOLD1,{
 	cutin "ra_gman2.bmp",0;
-	mes "[泽德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我想从现在起会非常忙。";
 	close3;
 }
 
-rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
+rachel,116,200,5	script	尼乐妍#sms01::尼伦#sms01	4_F_MADAME,{
 	if (checkweight(1000405,60) == 0) {
 	mes "- 等一下！！-";
 	mes "- 你目前携带了-";
@@ -4971,7 +4971,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 		setpcblock PCBLOCK_NPC, false;
 
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "损失……太严重了。";
 		next;
 		cutin "ep18_suad_03.png",2;
@@ -4983,7 +4983,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 		mes "别担心舆论。让我们来处理善后。";
 		next;
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "事实证明，最近发生的事情都是阴谋的一部分。";
 		next;
 		cutin "ra_gman2.bmp",0;
@@ -4995,7 +4995,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 		mes "自责留到以后再说，现在先专注于解决双方的处境。";
 		next;
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我们确定高阶祭司阿迈勒参与其中吗？";
 		next;
 		cutin "ep18_miriam_01.png",1;
@@ -5012,7 +5012,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 		next;
 		select( "因为我亲眼见过。" );
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "令人不安的是，高阶祭司阿迈勒不可能不知道伊米尔心脏碎片的价值。仅仅通过渗透组织制造冲突，不足以让他轻易背叛组织……";
 		next;
 		cutin "ep18_suad_01.png",2;
@@ -5036,7 +5036,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 		mes "我们需要追踪调查。";
 		next;
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "追查偷走心脏碎片的人就交给米丽娅姆吧。希望冒险者能陪她一起去。";
 		next;
 		select( "明白了。" );
@@ -5065,7 +5065,7 @@ rachel,116,200,5	script	尼伦#sms01	4_F_MADAME,{
 	}
 	if (ep18_main == 53) {
 		cutin "ra_gwoman.bmp",0;
-		mes "[尼伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们约好在<NAVI>[欧兹迷宫]<INFO>oz_dun01,223,116,0,101,0</INFO></NAVI>与米丽娅姆会合。";
 		close3;
 	}
@@ -5789,7 +5789,7 @@ ra_temin,254,114,7	script(CLOAKED)	苏阿德#c12last	4_EP18_SUAD,{
 	end;
 }
 
-ra_temin,258,114,3	script(CLOAKED)	尼伦#c12last	4_F_RACHOLD,{
+ra_temin,258,114,3	script(CLOAKED)	尼乐研#c12last::尼伦#c12last	4_F_RACHOLD,{
 	npctalk "我没想到阿迈勒会是那样……", "尼伦#c12last", bc_self;
 	end;
 }
@@ -6230,7 +6230,7 @@ OnInit:
 // Quest: Training Grey Wolves. Step 1 + 4 (final).
 wolfvill,120,117,1	duplicate(dummy_npc)	艾莎#wms01	4_F_SHABBY
 
-wolfvill,121,113,1	script	大嘴鸟#wms01	4_PECOPECO,{
+wolfvill,121,113,1	script	大公鸡#wms01::大嘴鸟#wms01	4_PECOPECO,{
 	npctalk "咕嘎……咕嘎……", "大嘴鸟#wms01", bc_self;
 	end;
 }
@@ -6256,7 +6256,7 @@ wolfvill,121,119,3	script	山羊#wms01	EP18_GREY_GOAT,{
 	end;
 }
 	
-wolfvill,124,116,3	script	绵羊#wms01	4_LAM,{
+wolfvill,124,116,3	script	羊羊们#wms01::绵羊#wms01	4_LAM,{
 	npctalk "吧唧……", "", bc_self;
 	end;
 }
@@ -7002,7 +7002,7 @@ gw_fild01,137,104,7	duplicate(dummy_npc)	波克希尔#wms03	CLEAR_NPC
 
 //-------------------------------------------------------------------
 // Quest: Ahab's Request. Step 1 + 8 (final).
-wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
+wolfvill,85,111,3	script	朱蓝#ep18::兹兰#ep18	4_M_RACHMAN1,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 等等！！ -";
 		mes "- 你目前携带了太多物品。 -";
@@ -7011,27 +7011,27 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 		close;
 	}
 	if (ep18_main < 36) {
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你为什么偷听别人的谈话？";
 		close;
 	}
 	switch( isbegin_quest(16560) ) {
 	case 0:
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "唉，村民会议上又全是胡说八道，那个老头真是的。";
 		next;
 		mes "[雷德塞尔]";
 	mes "那个老头？啊，就是那个不能提名字的人？";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我是说，我不能提。";
 	mes "听说他在拉赫是个大人物，据说在灰狼森林有些影响力。";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "那个老头，不管是阿哈普还是阿哈布！";
 	mes "他在拉赫时可不是那样～一定是哪里搞错了～";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "既然如此，为什么不待在拉赫，非要来这里？";
 	mes "我真搞不懂！";
 		next;
@@ -7039,7 +7039,7 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 	mes "她还没意识到自己在拉赫吗？";
 	mes "就算睡在漏风的帐篷里，她还没从梦里醒来吗？";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "想做梦就自己做。";
 	mes "为什么要拿你的烦恼打扰别人？";
 		next;
@@ -7052,7 +7052,7 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 	mes "所以你是谁？偷听别人的闲话，真可耻。";
 		next;
 		select( "我只是路过的旅人。" );
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "骗子。灰狼森林里哪会有路过的旅人？";
 	mes "你一定和我们有某种关系。";
 		next;
@@ -7063,16 +7063,16 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 		mes "[凯尔]";
 	mes "冷静，雷德塞尔。即使兹兰不是路过的旅人，这里也可能有我们不认识但并不突兀的人。";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "那会是谁？";
 		setquest 16560;
 		close;
 	case 1:
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "既然阿哈布开始听取大家的意见……他似乎也没那么坏。";
 	mes "对，这就是大人的沟通方式。";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "幸好他们不会只是捂住彼此的耳朵大喊，闹出更大的麻烦。";
 	mes "多亏了你，真是谢谢。";
 		close;
@@ -7080,11 +7080,11 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 		break;
 	}
 	if (isbegin_quest(16566) == 1) {
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你回来了？阿哈布说了什么？";
 	mes "什么？他说现在开始听取别人的意见？";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我猜他以前根本没听过。";
 		next;
 		mes "[凯尔]";
@@ -7118,20 +7118,20 @@ wolfvill,85,111,3	script	兹兰#ep18	4_M_RACHMAN1,{
 		close;
 	}
 	if (isbegin_quest(16566) == 2) {
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "既然阿哈布开始听取大家的意见……他似乎也没那么坏。";
 	mes "对，这就是大人的沟通方式。";
 		next;
-		mes "[兹兰]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "幸好他们不会只是捂住彼此的耳朵大喊，闹出更大的麻烦。";
 	mes "多亏了你，真是谢谢。";
 		close;
 	}
-	mes "[兹兰]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果你不打算遵守森林的规则，我希望你离开。";
 	mes "你也没有什么不同。规则就是要遵守的。";
 	next;
-	mes "[兹兰]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "礼仪也是一样。没有礼仪和规则的社会？太野蛮了。";
 	mes "我不想生活在蛮荒状态！";
 	close;
@@ -7144,17 +7144,17 @@ OnInit:
 }
 
 // Quest: Ahab's Request. Step 2.
-wolfvill,83,109,5	script	凯尔#ep18	4W_M_03,{
+wolfvill,83,109,5	script	卡亚尔#ep18::凯尔#ep18	4W_M_03,{
 	switch( isbegin_quest(16560) ) {
 	case 0:
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，真麻烦。有件棘手的事。";
 		next;
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是关系方面的问题，所以我不想和陌生人谈……";
 		close;
 	case 1:
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果是重要客人，和他说说也有道理吧？";
 		mes "毕竟我们甚至不了解这里领袖们的事务。";
 		next;
@@ -7182,7 +7182,7 @@ wolfvill,83,109,5	script	凯尔#ep18	4W_M_03,{
 		mes "听说他以前对移民们颐指气使，靠他们养活。";
 		mes "凭过去就想对本地人发号施令，真是荒谬。";
 		next;
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果可以，我只想把他赶走。";
 		mes "也许我们汇集意见，强硬地表达立场就行。";
 		next;
@@ -7197,7 +7197,7 @@ wolfvill,83,109,5	script	凯尔#ep18	4W_M_03,{
 		mes "但我们必须永远忍受那场闹剧吗？";
 		mes "我也无处可去，所以我就能想怎么做就怎么做吗？";
 		next;
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你那样做，我们都会变成闹剧。我受不了了……";
 		next;
 		mes "[雷德塞尔]";
@@ -7210,22 +7210,22 @@ wolfvill,83,109,5	script	凯尔#ep18	4W_M_03,{
 		break;
 	}
 	if (isbegin_quest(16566) == 2) {
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人很少改变……我是在见证这种罕见的改变吗？";
 		next;
-		mes "[凯尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也许还需要一些时间，但到目前为止，阿哈普先生似乎可以成为好邻居。";
 		close;
 	}
-	mes "[凯尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "在我们村，只有重要人物不参加村务管理会议。";
 	mes "当然，决定本身由重要人物作出，但即便如此……";
 	next;
-	mes "[凯尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "所以没人会仅仅因为参加会议就干涉会议。";
 	mes "除了阿哈普先生。";
 	next;
-	mes "[凯尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我一点也不喜欢那种态度……";
 	mes "拖得越久，影响就越糟。";
 	close;
@@ -7236,36 +7236,36 @@ OnInit:
 }
 
 // Quest: Ahab's Request. Step 3.
-wolfvill,87,109,3	script	雷德塞尔#ep18	4_M_DESERT,{
+wolfvill,87,109,3	script	雷德萧#ep18::雷德塞尔#ep18	4_M_DESERT,{
 	if (isbegin_quest(16566) == 2) {
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿哈布先生，你似乎变得更容易相处了。";
 		mes "虽然仍有很多需要注意的地方，但你比以前好多了。";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "见证一个人的改变是神圣的时刻。";
 		mes "我也该更努力地表现得像个人。";
 		close;
 	}
 	if (isbegin_quest(16562) == 1) {
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "把那个老阿哈布变成一个真正的人。";
 		mes "人不就该像人一样生活、像人一样行动吗……？";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是不是批评得太过分了？……好吧，我承认是有点过分。";
 		mes "但一起合作之后，你就会亲自明白。";
 		close;
 	}
 	if (isbegin_quest(16561) == 1) {
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你都听到了吗？";
 		mes "只有你能帮助我们解决这份苦恼。";
 		next;
 		mes "[兹兰]";
 		mes "既然确实没有别的办法，如果不奏效，我会征集意见，提议把他逐出村子。";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，先把那件事放一放吧……";
 		mes "但到最后，那大概会是最后的办法。";
 		next;
@@ -7273,7 +7273,7 @@ wolfvill,87,109,3	script	雷德塞尔#ep18	4_M_DESERT,{
 		mes "不只是我们感到困扰，所以提出后应该会被接受。";
 		mes "参加村民会议的每个人都很为难。";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但是！那件事以后再说。";
 		mes "在结局到来前，先帮我一把，兄弟。";
 		next;
@@ -7281,14 +7281,14 @@ wolfvill,87,109,3	script	雷德塞尔#ep18	4_M_DESERT,{
 		mes "我们无法和那个老头沟通。";
 		mes "你为什么不去和他谈谈？";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，听起来不错。去和他谈谈，弄清他为什么会这样，看看能不能让他改变。";
 		mes "这是我一生的请求。";
 		next;
 		mes "[兹兰]";
 		mes "把它当作一生的请求去做吧。我留着它，等我找到恋人时再用。";
 		next;
-		mes "[雷德塞尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好啊，没问题。我不会和任何人约会。";
 		mes "所以这是我一生的愿望。把那个老顽固变成一个真正的人。";
 		next;
@@ -7299,16 +7299,16 @@ wolfvill,87,109,3	script	雷德塞尔#ep18	4_M_DESERT,{
 		setquest 16562;
 		close;
 	}
-	mes "[雷德塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "连一句话都听不懂的人！愚蠢的人！让你不得不重复的人！在工作中表现情绪的人！";
 	next;
-	mes "[雷德塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "隐藏错误却无法挽回的人！无法为自己行为负责的人！";
 	next;
-	mes "[雷德塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真令人恶心！";
 	next;
-	mes "[雷德塞尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "为什么这么多人这样讨厌你？";
 	mes "不，我只讨厌一个人……就一个人！";
 	close;
@@ -7319,92 +7319,92 @@ OnInit:
 }
 
 // Quest: Ahab's Request. Step 4 + 6 + 7.
-wolfvill,127,155,3	script	阿哈布#ep18	4_M_MIDDLE1,{
+wolfvill,127,155,3	script	亚贺#ep18::阿哈布#ep18	4_M_MIDDLE1,{
 	if (ep18_main < 36) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，新面孔。你是这里的居民吗？";
 		mes "呵呵，有权势的人记不住所有人也很正常。你会理解的。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是谁？当然就是阿哈布。";
 		mes "我可是一直参加决定村里一切事务的议会，那就是我。";
 		close;
 	}
 	if (isbegin_quest(16566) == 1) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我、我也在努力。";
 		mes "所以请不要赶我走。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果被赶出这里，我就无处可去了。";
 		mes "所以我一直在用自己的方式努力。但如果所有人都讨厌我……";
 		close;
 	}
 	if (isbegin_quest(16565) == 1) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啧啧，好吧，来谈谈礼仪，阿哈布。";
 		mes "如果你继续胡说八道，我不会原谅你！";
 		next;
 		select( "阿哈布，你知道大家都讨厌你吗？" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……我知道！那又怎样！";
 		mes "是我的错吗？他们嘲笑长老年纪大！";
 		next;
 		select( "问题不在这里。", "这就是你的问题，阿哈布。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说我有问题是什么意思！";
 		mes "我没有任何问题！";
 		next;
 		select( "你正在考虑把我赶走。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么，你说什么？不可能！";
 		mes "除了这里，我无处可去。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在拉赫……一切都很顺利……";
 		mes "在当地人中，没有人比我成功，这曾是我的骄傲。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但因为和移民首领产生误会……";
 		mes "我失去了全部财富，也无处可去，所以来到了这里。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，我怎样才能避免被赶出这里？";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道，我在这里没有权力。";
 		mes "嗯？我现在既没有权力也没有钱。我该怎么办？";
 		next;
 		select( "你不需要权力和金钱。", "尊重他人。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，我正在努力。";
 		mes "我给年轻人建议，也参加村民会议表达意见。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的努力错了吗？";
 		next;
 		select( "不要认为自己高人一等。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我是成年人！成年人希望被当作成年人对待，有错吗？";
 		next;
 		select( "那么，也许你应该离开……" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，嗯……我该怎么办！";
 		next;
 		select( "不要一上来就大喊。", "对情况指手画脚只是唠叨。", "听听别人怎么说。", "试着了解这个地方。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……我明白了。既然我听了你的建议。";
 		mes "我甚至没有提高声音，对吧？";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会试着听取你的建议。";
 		mes "所以……请不要把我赶出这里。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只是想和年轻人好好相处……";
 		mes "这就那么令人难受吗？真有点苦涩……";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，谢谢你没有立即赶我走，而是来和我谈谈。";
 		mes "告诉<NAVI>[其他人]<INFO>wolfvill,85,111,0,101,0</INFO></NAVI>，我现在会努力做得更好……";
 		erasequest 16565;
@@ -7412,28 +7412,28 @@ wolfvill,127,155,3	script	阿哈布#ep18	4_M_MIDDLE1,{
 		close;
 	}
 	if (isbegin_quest(16564) == 1) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你买了黄瓜酱吗？让我看看。";
 		mes "你买对了。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，我们该在哪里吃？";
 		mes "我有一阵子没在那个寒酸的地方好好吃饭了，现在很饿。";
 		next;
 		select( "不过在那之前，我们先谈谈……" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你这个无礼的年轻人！";
 		mes "长老要吃饭时，必须礼貌地等到最后！";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在拉赫，如果有你这样的人，他们早就会骂我们什么都没学会了！";
 		next;
 		select( "阿哈布，这是礼仪问题。" );
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿哈布？阿哈布？不，你只是跑了一趟腿，就开始吹嘘了吗！";
 		mes "跑两趟腿后，你就会和他们成为好朋友，还一起吃饭了！";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，那就听听你珍贵的意见！";
 		mes "……边吃边说！";
 		erasequest 16564;
@@ -7441,54 +7441,54 @@ wolfvill,127,155,3	script	阿哈布#ep18	4_M_MIDDLE1,{
 		close;
 	}
 	if (isbegin_quest(16563) == 1) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你怎么还不走？听不懂我的话吗？";
 		mes "唉，这里的年轻人就是学不会礼仪。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快去<NAVI>[穆诺玛特]<INFO>rachel,135,64,0,101,0</INFO></NAVI>买黄瓜酱！";
 		mes "什么，难道还要我给你钱？快去！";
 		close;
 	}
 	if (isbegin_quest(16562) == 1) {
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，新面孔。你是这里的居民吗？";
 		mes "呵呵，有权势的人记不住所有人也很正常。你会理解的。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对了，既然你在这里，能帮我个忙吗？";
 		mes "不难，是连傻瓜都能做的简单任务。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只是像我这样的人，时间的价值不一样。";
 		mes "当然，我可是很贵的。哈哈！";
 		next;
 		if (select( "我来帮你跑腿。", "我不是来干这种事的。" ) == 2)
 			end;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你真高尚。";
 		mes "没错，年轻人就该有点高尚品格。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看，我吃饭时必须配一种美味酱料。";
 		mes "没有它，就像什么都没吃一样……";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以，去拉赫买些酱料。";
 		mes "在穆诺玛特询问黄瓜酱，他们就明白了。";
 		next;
-		mes "[阿哈布]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "快点，不然会变质。只要从<NAVI>[穆诺玛特]<INFO>rachel,135,64,0,101,0</INFO></NAVI>买一瓶。";
 		mes "新鲜是美味的关键。";
 		erasequest 16562;
 		setquest 16563;
 		close;
 	}
-	mes "[阿哈布]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "在会议上，我试着保持谦逊。";
 	mes "然后年轻人的眼神变得柔和了……";
 	next;
-	mes "[阿哈布]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我觉得说这不是改变而是态度可能有点奇怪，但世界正在改变。没有人是一成不变的。";
 	close;
 
@@ -7500,34 +7500,34 @@ OnInit:
 }
 
 // Quest: Ahab's Request. Step 5.
-rachel,135,64,3	script	店主#ep18	4_M_RACHMAN2,{
+rachel,135,64,3	script	商店主人#ep18::店主#ep18	4_M_RACHMAN2,{
 	if (isbegin_quest(16563) == 1) {
-		mes "[店主]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎光临，这里是穆诺玛特杂货店。";
 		mes "您在找什么食材？";
 		next;
 		if (select( "奥比雷格酱", "奥比格酱", "黄瓜酱", "奥伊格酱" ) != 3) {
-			mes "[店主]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？我们没有那种酱。";
 		mes "我以前甚至没听说过这个名字的酱。";
 			close;
 		}
-		mes "[店主]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，黄瓜酱！让我看看……在这里。";
 		mes "这种酱含有黄瓜和酸奶，非常清爽。涂在面包上味道很棒。";
 		next;
-		mes "[店主]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "您要多少？一瓶？给您。";
 		mes "请存放在阴凉处，开封后尽快食用。";
 		erasequest 16563;
 		setquest 16564;
 		close;
 	}
-	mes "[店主]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎光临，这里是穆诺玛特杂货店。";
 	mes "没错，这是拉赫最好的杂货店。";
 	next;
-	mes "[店主]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "大多数餐厅都使用我们的食材。";
 	mes "带回家加热、烹饪，瞧！马上就能做出美味的一餐！";
 	close;
@@ -7541,7 +7541,7 @@ OnInit:
 
 //-------------------------------------------------------------------
 // Quest: Collecting Folklore. Step 1 + 5 (final).
-wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
+wolfvill,61,170,5	script	民俗学家 谷德罗#ep18::民俗学者古德拉#ep18	4_F_SHABBY,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 请稍等！！-";
 		mes "- 你目前携带了-";
@@ -7551,7 +7551,7 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 		close;
 	}
 	if (ep18_main < 36) {
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你应该是附近的新村民。你是谁？";
 		close;
 	}
@@ -7559,48 +7559,48 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 	case 0:
 		if ((isbegin_quest(16551)+isbegin_quest(16552)+isbegin_quest(16553)) == 0) {
 			select( "学者，你在做什么？" );
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，哦哦。";
 			mes "……我看起来像学者吗？";
 			next;
 			select( "你不是学者？" );
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不！我以前是学者，很久以前。";
 			mes "很高兴外来者一眼就认出我是学者。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，嗯。你问我在做什么。";
 			mes "我在整理收集到的故事。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是在收集流传下来的神话和民间故事。";
 			mes "也是为了保存原住民珍贵的文化遗产。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "为了不让这些故事失传并传给后代，我们会把它们出版成书。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来你很感兴趣。";
 			mes "……你对这项工作感兴趣吗？";
 			next;
 			if (select( "感兴趣。", "没兴趣。" ) == 2)
 				end;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那么，你感兴趣就代表愿意帮忙吗？";
 			mes "我们总是欢迎多一双手。如果你能帮忙，我会很高兴。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你会写字吗？太好了。";
 			mes "请收集村民们的故事。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我答应听村里一个孩子、一个年轻人和一位祖母的故事。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听说故事很长，可能一天讲不完。需要你的耐心。";
 			mes "给你，这是用来收集故事的笔记本。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "孩子叫迪纳尔。年轻人是名叫阿米拉的女子。";
 			mes "之后你可以去找莎妮娜奶奶，记下她的故事。";
 			setquest 16551;
@@ -7612,34 +7612,34 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 		if (countitem(1000408) < 1) {
 			getitem 1000408,1;	// Ep18_Recording_Note
 		}
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们约好了听村里一个孩子、一个年轻人和一位祖母的故事。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "故事很长，一天听不完，需要你的耐心。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "孩子叫迪纳尔。年轻女子叫阿米拉。";
 		mes "接下来去莎妮娜奶奶那里，听她的故事并记下来。";
 		close;
 	case 1:
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你记录好迪纳尔、阿米拉和莎妮娜奶奶的故事了吗？";
 		mes "我很期待听听是什么故事。请把笔记本给我看看。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是阿米拉告诉你的故事吗？";
 		mes "真是丰富又精彩！我年轻时也记得听过这些神明的故事。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但故事中动物神明的名字与我年轻时听过的相似，却又有些不同。";
 		mes "嗯，我需要研究一下。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些精彩的故事激发了我的研究兴趣！";
 		mes "以后请继续帮我记录阿米拉的故事。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你明天能回来记录故事的下一部分，我会很感激。";
 		mes "谢谢。这是今天工作的报酬。";
 		delitem 1000408,1;	// Ep18_Recording_Note
@@ -7665,11 +7665,11 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 		break;
 	case 0:
 	case 1:
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然我很想今天听完所有故事……";
 		mes "冒险者和村民都会累的。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天剩下的时间好好休息，天亮后再回来。";
 		mes "这期间我会整理并分析你收集的故事。";
 		close;
@@ -7680,29 +7680,29 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 	switch( isbegin_quest(16558) ) {
 	case 0:
 		if ((isbegin_quest(16555)+isbegin_quest(16556)+isbegin_quest(16557)) == 0) {
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "感谢你上次来访。";
 		mes "今天我们也想记录我们的谈话。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "请去找迪纳尔、阿米拉和莎妮娜奶奶，听他们的故事并记下来。";
 		mes "这是给你的空白笔记本。";
 			next;
 			if (select( "我去。", "现在有点困难。" ) == 2) {
-				mes "[民俗学者古德拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "啊，现在有困难吗？没关系，我们之后再做。";
 				mes "记住，这项工作需要耐心和坚持。";
 				next;
-				mes "[民俗学者古德拉]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们已经是同路的同事了，不是吗？";
 				mes "如果累了就休息一下，只要继续稳步前进就好。";
 				close;
 			}
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢你总是愿意帮忙。";
 			mes "我会制作一本好故事书来回报这份好意。";
 			next;
-			mes "[民俗学者古德拉]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，当然，今天的工作也会付给你报酬。";
 			mes "这也很重要，对吧？我明白。";
 			setquest 16555;
@@ -7719,23 +7719,23 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 		if (countitem(1000408) < 1) {
 			getitem 1000408,1;	// Ep18_Recording_Note
 		}
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来了迪纳尔、阿米拉和莎妮娜奶奶的故事吗？";
 		mes "我很期待听听是什么故事。请把笔记本给我看看。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "阿米拉的故事中也有许多我熟悉的神话。";
 		mes "这是这里所有原住民都听过、伴随成长的故事。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，这和我知道的神话有些不同……";
 		mes "但研究这些差异和共同点正是我的工作，不是吗？";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些故事点燃了我的研究热情！";
 		mes "希望你继续抄录阿米拉的故事。";
 		next;
-		mes "[民俗学者古德拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你明天能回来抄录故事的下一部分，我会很感激。";
 		mes "谢谢。这是今天工作的报酬。";
 		delitem 1000408,1;	// Ep18_Recording_Note
@@ -7759,7 +7759,7 @@ wolfvill,61,170,5	script	民俗学者古德拉#ep18	4_F_SHABBY,{
 	case 2:	// shouldn't happen
 		break;
 	}
-	mes "[民俗学者古德拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "请去找迪纳尔、阿米拉和莎妮娜奶奶，听他们的故事并记下来。";
 	close;
 
@@ -7774,23 +7774,23 @@ OnInit:
 }
 
 // Quest: Collecting Folklore. Step 2.
-wolfvill,106,224,3	script	迪纳尔#ep18	4_F_DST_CHILD,{
+wolfvill,106,224,3	script	狄娜乐#ep18::迪纳尔#ep18	4_F_DST_CHILD,{
 	if (isbegin_quest(16551) == 1) {
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是来听我的故事的，对吧？";
 		mes "哦，对了。我答应过古德拉奶奶！";
 		next;
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，嗯。我只讲一次，所以仔细记下来。";
 		mes "这是我亲身经历的事。";
 		next;
 		select( "不只是传闻？" );
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "传闻是什么？总之请注意听！";
 		mes "很久以前，那时我还年轻。";
 		next;
 		select( "你现在还年轻……" );
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你总是打断我！";
 		mes "在灰狼森林的灰狼中，有一只似乎是首领……";
 		completequest 16551;
@@ -7801,15 +7801,15 @@ wolfvill,106,224,3	script	迪纳尔#ep18	4_F_DST_CHILD,{
 		close;
 	}
 	if (isbegin_quest(16555) == 1) {
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你今天又来听我的故事了！";
 		mes "古德拉阿姨说以后会把它写成书。";
 		next;
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……上次讲到哪里了？";
 		mes "是不是停在龙和精灵最终决战的场景中间？";
 		next;
-		mes "[迪纳尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "龙最后一次召唤巨大金属高塔时，精灵召唤巨大的火焰精灵与之对抗……";
 		completequest 16555;
 		if (isbegin_quest(16557) == 2 && isbegin_quest(16556) == 2) {
@@ -7818,11 +7818,11 @@ wolfvill,106,224,3	script	迪纳尔#ep18	4_F_DST_CHILD,{
 		}
 		close;
 	}
-	mes "[迪纳尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我很喜欢阅读有趣的故事。";
 	mes "阅读并想象接下来的故事更棒！";
 	next;
-	mes "[迪纳尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "角色会在我的脑海中活起来。";
 	mes "我只要像看戏一样看着他们就好。";
 	close;
@@ -7834,16 +7834,16 @@ OnInit:
 }
 
 // Quest: Collecting Folklore. Step 3.
-wolfvill,180,204,3	script	阿米拉#ep18	4_F_DESERT,{
+wolfvill,180,204,3	script	亚米拉#ep18::阿米拉#ep18	4_F_DESERT,{
 	if (isbegin_quest(16552) == 1) {
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是古德拉姐姐请来的人吗？";
 		mes "她提出了奇怪的请求，想听我知道的一个古老……故事。";
 		next;
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我答应讲述来到灰狼森林前从祖父那里听到的故事。";
 		next;
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "准备好听了吗？好，我慢慢讲。";
 		mes "世界上的神明比我们知道的多得多……";
 		completequest 16552;
@@ -7854,15 +7854,15 @@ wolfvill,180,204,3	script	阿米拉#ep18	4_F_DESERT,{
 		close;
 	}
 	if (isbegin_quest(16556) == 1) {
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你今天又来帮古德拉姐姐办事了。";
 		mes "她想用这些故事做什么？";
 		next;
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我来讲下一个故事。";
 		mes "这也是祖父告诉我们的故事，有些神明仍然……";
 		next;
-		mes "[阿米拉]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……那么，嗯，名字是什么来着？我记不太清了，不过重要的是……";
 		completequest 16556;
 		if (isbegin_quest(16555) == 2 && isbegin_quest(16557) == 2) {
@@ -7871,11 +7871,11 @@ wolfvill,180,204,3	script	阿米拉#ep18	4_F_DESERT,{
 		}
 		close;
 	}
-	mes "[阿米拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "祖父就是这么说的。不能忘记我们的神明很重要。";
 	mes "所以他才把这些故事都告诉我。";
 	next;
-	mes "[阿米拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我听过很多故事，但现在有些已经忘记了……";
 	mes "如果古德拉姐姐把它们写成书，我就不会再忘记了。";
 	close;
@@ -8133,61 +8133,61 @@ OnInit:
 }
 
 // Quest: Purifying Water. Step 2.
-rachel,103,141,5	script	推销员#ep18	4_M_DESERT,{
+rachel,103,141,5	script	圣物销售员#ep18::推销员#ep18	4_M_DESERT,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 你携带的物品太多，无法继续任务。 -";
 		close;
 	}
 	if (isbegin_quest(8692) == 1 && countitem(1000410) > 0) {
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "愿你平安~";
 		close;
 	}
 	if (isbegin_quest(8691) == 1 || isbegin_quest(8692) == 1 && countitem(1000410) < 1) {
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天有圣水净化圣物~！";
 		mes "趁卖光前早点来~！";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "咦？";
 		mes "外乡人，我能帮你什么？";
 		next;
 		select( "我需要它去山顶" );
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀，你听说传闻了~";
 		mes "我简单说明一下~";
 		mes "这是经过祝圣的净水圣物，可以一次净化大量受污染的水。";
 		mes "就是这个~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是寺庙制作的~";
 		mes "现在水道维护得很好，需求没那么大~";
 		mes "所以只制作少量~";
 		mes "材料很难找~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我几天后就需要它，所以不能大量购买~";
 		mes "不过~一次使用能净化的水量也是有限的~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果去目的地途中没水了，又有合适的补水站，就能使用这个道具~";
 		mes "比带着水方便多了~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过必须先把水煮沸一次~";
 		mes "有人说会有味道~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "价格是 550 Zeny~";
 		next;
 		if (select( "购买", "不买" ) == 2) {
-			mes "[推销员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "按需购买~";
 			mes "愿芙蕾雅女神祝福你~";
 			close;
 		}
 		if (Zeny < 550) {
-			mes "[推销员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的 Zeny 不够。";
 			close;
 		}
@@ -8197,17 +8197,17 @@ rachel,103,141,5	script	推销员#ep18	4_M_DESERT,{
 			setquest 8692;
 		}
 		getitem 1000410,1;	// Ep18_Water_Filter
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是你的道具~";
 		mes "愿芙蕾雅女神祝福你。";
 		close;
 	}
 	if (isbegin_quest(8695) == 1 || isbegin_quest(8696) == 1 && countitem(1000410) < 1) {
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是提取今日鱼之精华的圣物~";
 		mes "趁卖光前快点~";
 		next;
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你上次去山顶了，对吧？";
 		mes "回来得比预想快。看来生意不错~";
 		next;
@@ -8219,13 +8219,13 @@ rachel,103,141,5	script	推销员#ep18	4_M_DESERT,{
 		case 3:
 			end;
 		}
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是 550 Zeny~";
 		next;
 		if (select( "购买", "不买" ) == 2)
 			end;
 		if (Zeny < 550) {
-			mes "[推销员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的 Zeny 不够。";
 			close;
 		}
@@ -8235,12 +8235,12 @@ rachel,103,141,5	script	推销员#ep18	4_M_DESERT,{
 			setquest 8696;
 		}
 		getitem 1000410,1;	// Ep18_Water_Filter
-		mes "[推销员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "东西在这里~";
 		mes "愿芙蕾雅女神祝福你~";
 		close;
 	}
-	mes "[推销员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "今天的净水圣物刚刚出炉~";
 	mes "每人限购一个。现在快来~";
 	close;
@@ -8840,20 +8840,20 @@ OnInit:
 
 wolfvill,79,213,3	duplicate(dummy_cloaked_npc)	卡米尔#ep18_3	4_EP18_KAMIL
 
-wolfvill,77,207,8	script(CLOAKED)	旁观者#ep18_33	4_M_RACHMAN1,{
-	mes "[旁观者]";
+wolfvill,77,207,8	script(CLOAKED)	入会人#ep18_33::旁观者#ep18_33	4_M_RACHMAN1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯，个人故事以后再说……";
 	close;
 }
 
-wolfvill,74,208,8	script(CLOAKED)	旁观者#ep18_32	4_M_MIDDLE1,{
-	mes "[旁观者]";
+wolfvill,74,208,8	script(CLOAKED)	入会人#ep18_32::旁观者#ep18_32	4_M_MIDDLE1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "没时间闲聊。";
 	close;
 }
 
-wolfvill,72,209,8	script(CLOAKED)	旁观者#ep18_31	4_M_MIDDLE,{
-	mes "[旁观者]";
+wolfvill,72,209,8	script(CLOAKED)	入会人#ep18_31::旁观者#ep18_31	4_M_MIDDLE,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "高层会议禁止闲聊……";
 	close;
 }
@@ -8905,7 +8905,7 @@ gw_fild01,230,52,0	duplicate(#wp12536)	#wp12539	HIDDEN_WARP_NPC,5,5
 
 //-------------------------------------------------------------------
 // Quest: Clinic Construction. Step 1 + 3 + 4 + 5 (final).
-wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
+wolfvill,171,253,5	script	埃泽基尔#hms01::以西结#hms01	4_M_RACHMAN2,5,5,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 等一下！！-";
 		mes "- 你目前携带的物品-";
@@ -8915,7 +8915,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		close;
 	}
 	if (ep18_main < 36) {
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我来这里不可能是错误的选择吧……？";
 		close;
 	}
@@ -8923,22 +8923,22 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 	case 0:
 		if (isbegin_quest(17506) == 1) {
 			if (countitem(999) < 3) {
-				mes "[以西结]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这里大多数东西都能找到，但没有钢铁。我想请你帮个小忙，只要 3 个……";
 				close;
 			}
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "钢铁！！钢铁什么时候来！……哦，已经来了。你也来了，冒险者。很重吧？交给我。我不能让你再拿一秒，你可是珍贵的人。谢谢，你做得很好。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "诊所建成后，我们会把你的名字刻在基石上，让你的名字伴随未来的新生儿流传下去。";
 			next;
 			emotion ET_SWEAT, playerattached();
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "即使时间流逝、建筑消失，冒险者的意志也会永远留存。";
 			next;
 			select( "不，没必要……" );
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有了这些钢铁，我现在就能建造一座经得起各种天气和环境考验的诊所。";
 			next;
 			cloakoffnpcself( "老人#hms01" );
@@ -8956,23 +8956,23 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 			mes "你说冷静是什么意思？我们现在正在进行冷静、理性的对话！";
 			npctalk "我们没有精力做这种事！", "老人#hms02", bc_self;
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你为什么要这样做？你是在排斥新来的人吗？";
 			next;
 			mes "[老人]";
 			mes "天啊，我们不是那种人。";
 			npctalk "什么？你是什么意思？", "老人#hms03", bc_self;
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那你为什么如此反对？";
 			next;
 			mes "[老人]";
 			mes "你想要的舒适生活是陷阱。陌生的东西、舒适的东西，都会毁了我们。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "舒适的住房、兴盛的学校、干净的诊所。我们为什么不能拥有？我们躲避的是歧视，不是便利。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "反正我住在这里，有更好的设施又有什么坏处？";
 			next;
 			mes "[老人]";
@@ -8990,7 +8990,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 			mes "[老人]";
 			mes "你现在拥有的已经够多了，还需要什么？";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我这么做不是因为不知感恩。他们说不把这些带来，是因为对他们来说太陌生了。科技和设施一直在发展，只是你不明白！";
 			next;
 			cloakoffnpcself( "马拉姆#hms01" );
@@ -9003,7 +9003,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 			mes "[马拉姆]";
 		mes "以西结！！！出事了！";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "马拉姆？怎么了？发生什么事了？";
 			next;
 			mes "[乔尔]";
@@ -9041,7 +9041,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "先生，请尽量让事情顺利些。";
 			npctalk "啊，尺寸不重要。", "伤者#hms01", bc_self;
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我不是要砍掉你的腿，我可以治好它。";
 			next;
 			mes "[老人]";
@@ -9050,7 +9050,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 			mes "[老人]";
 		mes "那样的腿要怎么治……！把它砍掉再敷药，防止感染！别抱着它浪费时间……！";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我说我能治，就是因为我能治。大家让开。";
 			next;
 			mes "[马拉姆]";
@@ -9061,7 +9061,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "不，时间要来不及了……！";
 			next;
 			specialeffect EF_HEALSP, AREA, "伤者#hms01";
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "啊……要是有合适的设备……我本来能更快治好……没办法。";
 			next;
 			specialeffect EF_REPAIRWEAPON, AREA, "伤者#hms01";
@@ -9076,42 +9076,42 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 			close;
 		}
 		if (isbegin_quest(17505) == 1) {
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，进展如何？我可以开始建设了吗？";
 			next;
 		select( "关于那件事……" );
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我正在想办法让它不妨碍其他事情，但看来这样也不行。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "但我不能放弃。我很高兴你愿意回来谈这件事，不过在那之前，我得召集一群志同道合的人，准备说服他们。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "我考虑过照他们说的做，但我做不到。我不知道还能怎么办，可这件事是我必须完成的。";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "说到这里，冒险者，我想拜托你一件事。";
 			next;
 		select( "是什么？" );
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "这里大多数东西都能找到，但找不到钢铁。钢铁很难运进来，而且还需要许多设施才能制造。所以，你能带 3 个给我吗？只要 3 个……";
 			next;
 		select( "我会带给你。" );
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你的慷慨。我很高兴你能理解我的目标并愿意帮忙……我去为建设做准备。";
 			erasequest 17505;
 			setquest 17506;
 			close;
 		}
 		if (isbegin_quest(17504) == 1) {
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "请说服 <NAVI>[先生]<INFO>wolfvill,176,111,0,101,0</INFO></NAVI>，让他相信我们需要这座设施。";
 			close;
 		}
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "以西结，你不是来这里享受荣华富贵的。你是来工作的！";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，以自己的身份生活在这里才是真正的生活。我在这里永远是个外人，不是吗？";
 		next;
 		cloakoffnpcself( "马拉姆#hms01" );
@@ -9119,61 +9119,61 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "[马拉姆]";
 		mes "嘘——等一下，听听他在说什么，他好像有话要说。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，我在这里和在那里一样都是外人。这不是一样吗？我不是应该更自在吗？";
 		mes "也许我该放弃，回家算了。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，但那正是我最初的目标。寻找我的根……";
 		next;
 		mes "[马拉姆]";
 		mes "以西结！你最近怎么样？为什么在那里自言自语？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马拉姆？马拉姆？？太好了。你听我说。你很忙？你很忙，但听我说。我还能告诉谁呢？我甚至还不认识这里的任何人。所以听我说。";
 			npctalk "好了好了，我在听，冷静点。", "马拉姆#hms01", bc_self;
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我说过要在这里建一座诊所。刚来这里时没有像样的诊所，所以我要建一座。";
 		next;
 		mes "[马拉姆]";
 		mes "没错。所以这次我准备了很多东西来填充它。";
 			npctalk "真的吗？之后再看吧。先听故事。", "以西结#hms01", bc_self;
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我这么做了，但刚开始挖掘，这里的长老就阻止了我。他们说我们应该像过去一样与自然和谐相处，却把我当成破坏环境的人。我是那种人吗？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "建一座更卫生、更现代的诊所，能在紧急情况下更快应对，这真的会严重破坏自然和环境吗？";
 		next;
 		mes "[马拉姆]";
 		mes "不，你不是那种人。别人或许是，但你绝对不是。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是吗？而你让我陷入了这种境地……我现在什么也没做，因为我在想：我真的是坏人吗？";
 		next;
 		mes "[马拉姆]";
 		mes "如果是这样，你应该去和苏阿德谈谈。这不公平。我们都在努力共同生活。诊所并不违背自然。拜托。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……我和苏阿德谈过……但他说自己无能为力，也不能做想做的事。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我告诉他我们需要诊所，但不能强行推进，因为在这里生活多年的老人反对，所以我们必须说服他们。";
 		next;
 		mes "[马拉姆]";
 		mes "听起来他也是这么想的。毕竟我们不能忽视长老们的意见，而苏阿德也不是会为此竭尽全力的人。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以……我……要回拉赫了……你觉得呢？";
 		next;
 		mes "[马拉姆]";
 		mes "什么，你都走到这里了还要回去？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，我不是为了回去才出发的……人就是这样，为了更好的生活来到这里。如果这里和那里一样，他们为什么不留在更轻松的地方呢……";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我的意思是……我正在想办法弄清楚。我什么时候说过要直接放弃回去？你能不能别随意曲解我的话？";
 		next;
 		mes "[马拉姆]";
@@ -9185,10 +9185,10 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "[马拉姆]";
 		mes "他心地善良，还帮我们购买和运输物资。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他是个好人。确实是个好人，但是……";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……那真的是能得到大人们宠爱的人吗？他们真是……真是……固执。";
 			npctalk "你还真擅长说自己固执。", "马拉姆#hms01", bc_self;
 		next;
@@ -9196,18 +9196,18 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "你得好好利用这一点。就算我说服不了你，除了继续听唠叨还能怎么办？难道要让冒险者听这些吗？";
 			npctalk "哦，这还挺不错。", "以西结#hms01", bc_self;
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……能拜托你一件事吗？";
 		mes "冒险者，帮帮我吧。我们真的需要一座现代诊所，即使它没有拉赫的那座大。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我现在所在的地方，如果受伤或生病，就只能依靠过去的民间疗法。";
 			npctalk "哦，我知道那是什么！他们会在伤口上涂不明药膏！", "马拉姆#hms01", bc_self;
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我从拉赫带来了一些药品和医疗用品，但数量很少，而且这里也没有合适的地方使用。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我没办法说服那些反对者，所以想请你代我说服<NAVI>[那位老人]<INFO>wolfvill,176,111,0,101,0</INFO></NAVI>。";
 		next;
 		mes "[马拉姆]";
@@ -9219,7 +9219,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 	case 1:
 		specialeffect EF_PHARMACY_OK, AREA, "伤者#hms01";
 		specialeffect EF_HEALSP, AREA, "伤者#hms01";
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样如何？暂时别勉强自己，吃点好东西，保持好心情，好好休息，很快就能轻松走路或跑步了。";
 		next;
 		mes "[乔尔]";
@@ -9234,26 +9234,26 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "[老人]";
 		mes "那么，你是怎么治好这条腿的？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为这是我学到的。如果诊所设备齐全，我们就能更彻底地治疗他，加快他的恢复。";
 		next;
 		mes "[老人]";
 		mes "嗯……现在大家都这么做吗？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，只要正确治疗，就不会让你失去这条腿。";
 		next;
 		mes "[老人]";
 		mes "有了诊所，就能更快、更妥当地做到这一点，对吧？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是吗……？不是这样吗……？";
 		next;
 		mes "[老人]";
 		mes "嗯……现在就是这样，对吧，冒险者？";
 		next;
 		select( "现在就是这样。" );
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "正如我说的，这不是外国人的技术，而是先进时代的技术和设施。";
 		next;
 		mes "[老人]";
@@ -9267,7 +9267,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "[老人]";
 		mes "嗯……建那座诊所要花多长时间？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……这个嘛，要看人力和资金。";
 		next;
 		mes "[老人]";
@@ -9278,7 +9278,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "不过它应该适应这里的生活方式，也要融入这里的环境。";
 			npctalk "因为这里的老人很难适应太新的东西。", "老人#hms02", bc_self;
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了……我理解。";
 		next;
 		mes "[马拉姆]";
@@ -9299,13 +9299,13 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "[老人]";
 		mes "年轻人，如果还有什么重要或必要的东西，告诉我，我们会考虑。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会的。我会像你说的那样，把诊所建在尽可能靠近这里的地方。";
 		next;
 		mes "[老人]";
 		mes "嗯。你知道我们不会永远住在这里，对吧？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，我就是这么想的。";
 		next;
 		mes "[老人]";
@@ -9318,13 +9318,13 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		mes "让我们看看！！！";
 		mes "哇——真是松了口气，对吧？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，就在那里……对吧？但来得太突然了，真有点令人困惑，不是吗？";
 		next;
 		mes "[马拉姆]";
 		mes "现在他们亲眼看到了，所以改变了想法。这很好。好了，我们把开始的事情完成吧？";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。但首先，我觉得我们需要调整设计，让它适合这里。";
 		next;
 		mes "[马拉姆]";
@@ -9342,10 +9342,10 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		cloakonnpcself( "马拉姆#hms01" );
 		cloakonnpcself( "村民#hms01" );
 		cloakonnpcself( "伤者#hms01" );
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，非常感谢你的帮助。这是我在这里安顿下来时得到的东西，我也用不上……冒险者，就把它送给你，聊表谢意。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，下次再见。以后可能还要拜托你，所以要常来看看！";
 		completequest 17507;
 		mes "^4d4dff这会让你得到有利的评价。^000000";
@@ -9368,7 +9368,7 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 		break;
 	case 0:
 	case 1:
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，真难办。冒险者，这里发生了什么？你带来的东西正在施工中……你留在这里很危险，天亮后再回来吧。";
 		close;
 	case 2:
@@ -9377,39 +9377,39 @@ wolfvill,171,253,5	script	以西结#hms01	4_M_RACHMAN2,5,5,{
 	}
 	switch( isbegin_quest(17508) ) {
 	case 0:
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，冒险者。";
 		next;
 		select( "建设进展如何？" );
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "还不错。但我们仍然缺少一些东西，比如钢铁和坚不可摧结晶。";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里会用到很多水晶，而且水晶非常坚硬，用在各处都很合适。";
 		next;
 		if (select( "我去帮你拿。", "我很想给你拿一个，但是……" ) == 2) {
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你很忙吗？看起来确实如此。就算忙，也要记得吃饭。";
 			close;
 		}
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，太感谢你了！";
 		next;
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我需要 1 个钢铁和 10 个坚不可摧结晶，坚不可摧结晶可以从灰狼那里获得。";
 		mes "我等你！";
 		setquest 17508;
 		close;
 	case 1:
 		if (countitem(999) < 1 || countitem(1000406) < 10) {
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢你的努力，冒险者。呃……但数量好像少了一点，你是不是忘了……？";
 			next;
-			mes "[以西结]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我需要 1 个钢铁和 10 个坚不可摧结晶，坚不可摧结晶可以从灰狼那里获得。";
 			close;
 		}
-		mes "[以西结]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你辛苦了。我一直心怀感激。今天我先休息，天亮后再见！";
 		delitem 999,1;	// Steel
 		delitem 1000406,10;	// Ep18_Very_Ddan_Crystal
@@ -9461,7 +9461,7 @@ wolfvill,175,249,1	duplicate(dummy_cloaked_npc)	老人#hms01	4_EP18_GW_OLD01
 wolfvill,173,247,1	duplicate(dummy_cloaked_npc)	老人#hms02	4_EP18_GW_OLD02
 wolfvill,170,248,7	duplicate(dummy_cloaked_npc)	老人#hms03	4_EP18_GW_MIDDLE01
 wolfvill,170,251,5	duplicate(dummy_cloaked_npc)	村民#hms01	4_M_RACHMAN1
-wolfvill,172,250,1	duplicate(dummy_cloaked_npc)	伤者#hms01	4_M_DIEMAN
+wolfvill,172,250,1	duplicate(dummy_cloaked_npc)	伤员#hms01::伤者#hms01	4_M_DIEMAN
 
 // Quest: Clinic Construction. Step 2.
 wolfvill,174,111,5	script	老人#hms05	4_EP18_GW_OLD02,{
@@ -9597,7 +9597,7 @@ wolfvill,197,170,5	script	拉拉玛#ep18	4_M_DESERT,{
 	close;
 }
 
-wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
+wolfvill,202,166,3	script	艾璐音#ep18::艾露因#ep18	4_F_SHABBY,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 请稍等！！-";
 		mes "- 你目前携带了-";
@@ -9607,7 +9607,7 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 		close;
 	}
 	if (ep18_main < 36) {
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "外来者禁止在这片森林猎捕非怪物动物。";
 		mes "不要捕捉兔子。";
@@ -9615,40 +9615,40 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 	}
 	switch( isbegin_quest(8688) ) {
 	case 0:
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……你说有一名冒险者来了。";
 		mes "你是在四处游荡，找事情做吗？";
 		next;
 		if (select( "是", "不是" ) == 2) {
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果没事做，就别坐在这里看那边的火。";
 			close;
 		}
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我负责照看那边的牲畜和野生动物，以及艾露因家族的人。";
 		mes "我还负责维护刀具和其他刃具。";
 		npctalk "照顾好艾露因的祖母～！", "拉拉玛#ep18", bc_self;
 		next;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……啧啧。";
 		npctalk "嘿嘿。", "拉拉玛#ep18", bc_self;
 		next;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果要把一件事交给外来者，那就是检查我今天早上设置的陷阱。";
 		mes "你能做到吗？";
 		next;
 		select( "应该不难" );
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "回答得很爽快。";
 		mes "...";
 		next;
 		setquest 8688;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在<NAVI>[灰狼森林]<INFO>gw_fild01,25,101,0,101,0</INFO></NAVI>附近看看，你会发现很多陷阱。";
 		mes "有时间的话，去取回五个。";
 		mes "如果不动剩下的诱饵，之后还会有东西上钩，所以等着看就好。";
 		next;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "辛苦你了。";
 		close;
 	case 1:
@@ -9656,7 +9656,7 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 		.@trap02 = countitem(1000413);
 		.@trap03 = countitem(1000414);
 		if ((.@trap01 + .@trap02 + .@trap03) < 5) {
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想请你收集大约5件在<NAVI>[灰狼森林]<INFO>gw_fild01,25,101,0,101,0</INFO></NAVI>陷阱中捕获的东西。";
 			close;
 		}
@@ -9680,13 +9680,13 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 			mes "你有资格参加^4d4dff会议。^000000";
 		}
 		next;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……好。干得不错。";
 		mes "如果你明天有空在这里逗留，我还能再请你帮忙吗？";
 		next;
 		if (select( "当然", "我明天可能很忙" ) == 2)
 			end;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好。我负责设陷阱和照料，所以一直都在工作。如果你再偷看，我会发现，然后让你干活，免得你来烦我。";
 		mes "对外来者也一样。";
 		close;
@@ -9700,7 +9700,7 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 		break;
 	case 0:
 	case 1:
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "今天回去休息吧。";
 		close;
 	case 2:
@@ -9709,31 +9709,31 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 	}
 	switch( isbegin_quest(8690) ) {
 	case 0:
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你来了吗？我看你又在附近转悠，看来你有空。";
 		next;
 		switch( select( "去调查陷阱", "聊天", "离开" ) ) {
 		case 1:
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你愿意帮忙，我还有很多其他事情要做，所以很感谢你。";
 			mes "在附近转一圈，收集我设置的陷阱捕获的5件东西。";
 			next;
 			if (select( "接受", "拒绝" ) == 2) {
-				mes "[艾露因]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "别坐立不安，安静坐着。你太躁动了。";
 				close;
 			}
 			setquest 8690;
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果不动剩下的诱饵，还会有其他东西上钩，所以等着看吧。";
 			mes "辛苦你了。";
 			close;
 		case 2:
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别坐立不安，安静坐着。你太躁动了。";
 			close;
 		case 3:
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你从什么时候开始设置陷阱的？";
 			mes "嗯？从你不再当冒险者开始？";
 			close;
@@ -9744,7 +9744,7 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 		.@trap02 = countitem(1000413);
 		.@trap03 = countitem(1000414);
 		if ((.@trap01 + .@trap02 + .@trap03) < 5) {
-			mes "[艾露因]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你能从<NAVI>[灰狼森林]<INFO>gw_fild01,25,101,0,101,0</INFO></NAVI>收集大约5件陷阱捕获的东西，就太好了。";
 			close;
 		}
@@ -9768,13 +9768,13 @@ wolfvill,202,166,3	script	艾露因#ep18	4_F_SHABBY,{
 		}
 		getitem 1000405,3+.@bonus;	// Ep18_Amethyst_Fragment
 		getexp 18252408,2000000;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……好。干得不错。";
 		mes "如果你明天也有空来这里，我还能再请你帮忙吗？";
 		next;
 		if (select( "好", "我明天可能很忙" ) == 2)
 			end;
-		mes "[艾露因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就好。";
 		mes "他不会拒绝帮助。谢谢。";
 		close;
@@ -9867,7 +9867,7 @@ gw_fild01,308,318,0	duplicate(陷阱#01)	陷阱#20	CLEAR_NPC
 
 //-------------------------------------------------------------------
 // Quest: " + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "s. Step 1 + 2 + 3 (final).
-wolfvill,147,97,5	script	阿希尔#ep18	4_M_DST_CHILD,3,3,{
+wolfvill,147,97,5	script	爱希尔#ep18::阿希尔#ep18	4_M_DST_CHILD,3,3,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 请稍等！！-";
 		mes "- 你目前携带了-";
@@ -9877,73 +9877,73 @@ wolfvill,147,97,5	script	阿希尔#ep18	4_M_DST_CHILD,3,3,{
 		close;
 	}
 	if (ep18_main < 36) {
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，外来者……";
 		close;
 	}
 	if (isbegin_quest(16548) != 2) {
 		switch( checkquest(16548,HUNTING) ) {
 		case -1:
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈啊……嗯？是我没见过的人。你是灰狼村的新成员吗？";
 		mes "呃……";
 			next;
 			select( "你昨晚睡得不好吗？" );
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是的，我一眼都没合上。";
 			mes "哈啊……在灰狼森林里躺下睡觉，会听到各种各样的声音。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "萤火虫的声音、成年人的交谈声、野兽的声音……";
 			mes "最扰人、会打断睡眠的，是各种怪物的叫声。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哈啊……其中，" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "的叫声最可怕。";
 			mes "人们甚至担心它们带来火星，把整个村子烧毁。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它们嘴里含着火星叫喊、压低声音的样子真的很恐怖……";
 			mes "呃，光是想想我的身体就发抖。";
 			next;
 			select( "我是冒险者，要我帮你猎捕它们吗？" );
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇！你是冒险者？";
 			mes "那我一定要请你帮忙！";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你能帮我们只猎捕30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "吗？";
 			mes "如果猎捕一批，也许" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "今晚就会安静些。";
 			next;
 			if (select( "交给我吧！", "糟糕，我现在有点麻烦。" ) == 2) {
-				mes "[阿希尔]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我想像你这样的冒险者也一定很忙，对吧？";
 				mes "我知道你现在很忙，但你有没有试过在各种声音中闭上眼睛好好睡一觉？我最近就是这样。";
 				close;
 			}
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哇，谢谢你，冒险者！";
 			mes "一共30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "。拜托你了。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "猎捕完后请回来告诉我。我会准备一份小奖励！";
 			setquest 16548;
 			close;
 		case 0:
 		case 1:
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢你，冒险者！";
 			mes "一共有30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "。拜托你了。";
 			close;
 		case 2:
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "谢谢！风火老鹰的鸣叫声确实减少了！";
 			mes "今晚我可以舒服地睡觉了。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "好吧，恐怕不会持续太久。";
 			mes "明天声音又会变大，但希望你天亮后再来，捕捉30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "。";
 			next;
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是让今晚的我能睡个好觉的谢礼。";
 			mes "冒险者，请收下这份微薄的心意。";
 			completequest 16548;
@@ -9967,11 +9967,11 @@ wolfvill,147,97,5	script	阿希尔#ep18	4_M_DST_CHILD,3,3,{
 		break;
 	case 0:
 	case 1:
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "仍然潜伏着。";
 		mes "如果现在刺激它们，今晚可能会因为邪气而更加吵闹。";
 		next;
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你会在天亮后回来捕捉30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "吗？";
 		mes "拜托你了，冒险者。";
 		close;
@@ -9981,43 +9981,43 @@ wolfvill,147,97,5	script	阿希尔#ep18	4_M_DST_CHILD,3,3,{
 	}
 	switch( checkquest(16549,HUNTING) ) {
 	case -1:
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，今天我又困得不行。";
 		mes "冒险者，你能帮我捕捉30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "吗？";
 		next;
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你成群猎捕，" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "今晚大概就会安静了。";
 		next;
 		if (select( "当然，我会全部捕捉。", "我没兴趣捕捉它们。" ) == 2) {
-			mes "[阿希尔]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你也很忙吧，冒险者？";
 			mes "你一定累了，去休息吧。不过有这么多鸣叫声，可能很难睡着。";
 			close;
 		}
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇，谢谢你，冒险者！";
 		mes "一共30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "，真的非常感谢。";
 		next;
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "全部狩猎完成后回来告诉我。我会准备一份小奖励！";
 		setquest 16549;
 		close;
 	case 0:
 	case 1:
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你，冒险家！";
 		mes "这里有30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "。请处理它们。";
 		close;
 	case 2:
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你！风火老鹰的鸣叫声明显减弱了！";
 		mes "今晚我可以舒服地睡觉了。";
 		next;
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧，可能不会持续太久。";
 		mes "明天声音还会变大，但希望你黎明后再来，抓30只" + getmonsterinfo("EP18_FIREWIND_KITE", MOB_NAME) + "。";
 		next;
-		mes "[阿希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是对你让我今晚睡个好觉的感谢。";
 		mes "请收下这颗小小的心，冒险家。";
 		erasequest 16549;
@@ -10056,59 +10056,59 @@ OnInit:
 
 //-------------------------------------------------------------------
 // Quest: Childhood Friends. Step 1.
-wolfvill,182,82,5	script	阿尔伯特#ep18	4_M_RACHMAN1,{
+wolfvill,182,82,5	script	阿尔贝#ep18::阿尔伯特#ep18	4_M_RACHMAN1,{
 	if (ep18_main < 36) {
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		close;
 	}
 	switch( isbegin_quest(8718) ) {
 	case 0:
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你决定回拉赫，能帮我一个忙吗？";
 		next;
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "直说吧……我有个朋友曾在拉赫的旅馆当店员。";
 		mes "如果他还没来这里，大概还在那儿工作。";
 		next;
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我和我的朋友……霍里姆从小就住在我隔壁。";
 		mes "我以前住在拉赫，但再也无法忍受，所以……";
 		next;
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们家和我家决定离开拉赫。";
 		mes "但霍里姆说他要留在拉赫。";
 		mes "我们等不下去了，所以把他留下，搬到了这里。";
 		next;
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拉赫是座大城市，但他现在孤身一人。";
 		mes "...";
 		mes "如果你不介意，我想请你顺路看看他过得怎么样。";
 		next;
 		if (select( "可以", "我暂时不会去任何地方。" ) == 2) {
-			mes "[阿尔伯特]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "既然如此，那就算了。";
 			close;
 		}
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢。";
 		mes "只是……顺路看看就好。不用向我报告。";
 		setquest 8718;
 		close;
 	case 1:
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不用向我报告。";
 		mes "你只要确认霍里姆过得很好。";
 		close;
 	case 2:
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他见到那个孩子了吗？";
 		mes "是的。";
 		mes "……是的。";
 		mes "我说完了离开时没能说出口的一切。";
 		mes "现在已经没有遗憾了。";
 		next;
-		mes "[阿尔伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感觉灰色的森林正在发光。";
 		mes "我做不到。";
 		mes "冒险家们，这都多亏了你。";
@@ -10132,46 +10132,46 @@ OnTouch:
 	end;
 }	
 
-ra_in01,388,59,5	script(CLOAKED)	店员#ep1800	4_M_RACHMAN2,{
+ra_in01,388,59,5	script(CLOAKED)	服务生#ep1800::店员#ep1800	4_M_RACHMAN2,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8718) == 1) {
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...!";
 		mes "冒险家，你身上有火山灰的味道。";
 		mes "托尔火山……不，不是。";
 		next;
 		mes "工作人员环顾片刻，低声说了句抱歉。";
 		next;
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你去过灰狼森林吗……";
 		next;
 		if (select( "我知道。", "我不知道。" ) == 2) {
-			mes "[店员]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "假装不知道没有用。";
 			next;
 		}
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……你能带我去那里吗？";
 		mes "我真的……真的想去那里。";
 		next;
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我知道那条路很危险，而我不是冒险家……";
 		mes "但我真的没有办法去那里。";
 		next;
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的朋友和家人都要离开，所以我决定坚持下去，但是……";
 		mes "某天晚上，他们以为我会阻碍他们，像一群破坏者一样全都离开了。";
 		mes "然后，当然，我们再也没收到他们的消息……";
 		next;
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请带我去那里。";
 		mes "我已经没有任何人了。";
 		next;
 		select( "发生什么事了吗？" );
 		mes "他甚至还没介绍完自己。";
 		next;
-		mes "[店员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是啊，我也不知道自己在说什么。";
 		mes "我叫霍里姆。";
 		mes "冒险家……";
@@ -10219,11 +10219,11 @@ OnInit:
 	end;
 }
 
-ra_in01,388,63,5	script	店员#ep1801	4_M_03,{
-	mes "[店员]";
+ra_in01,388,63,5	script	服务生#ep1801::店员#ep1801	4_M_03,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈~不知道人们说这么刻薄的话会怎样。";
 	next;
-	mes "[店员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊呜呜！欢迎！愿芙蕾雅眷顾你！";
 	close;
 }
@@ -10245,23 +10245,23 @@ OnTouch:
 	end;
 }
 
-ra_fild11,350,236,3	script(CLOAKED)	霍里姆#ep1810	4_M_RACHMAN2,{
+ra_fild11,350,236,3	script(CLOAKED)	胡林#ep1810::霍里姆#ep1810	4_M_RACHMAN2,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8698) == 1) {
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……啊，冒险者。";
 		mes "事实上，我从未离城市这么远。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么我的家乡在哪里？";
 		mes "是拉赫吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果无论在哪里都无法安心……";
 		mes "我到底该不该离开拉赫……？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……我说得太多了。";
 		mes "从这里往哪边走？";
 		mes "我跟着你走。";
@@ -10296,27 +10296,27 @@ OnTouch:
 	end;
 }
 
-ra_fild10,375,293,5	script(CLOAKED)	霍里姆#ep1811	4_M_RACHMAN2,5,5,{
+ra_fild10,375,293,5	script(CLOAKED)	胡林#ep1811::霍里姆#ep1811	4_M_RACHMAN2,5,5,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8699) == 1) {
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险家，等一下。";
 		mes "我们现在在哪里？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我回头看到了拉赫……城墙已经很远了。";
 		mes "还要走多远？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		mes "我们还没走一半？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "路会很难走吗？";
 		mes "家人会相处融洽吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的朋友们会相处融洽吗？";
 		mes "我去可以吗？";
 		navigateto("oz_dun01",285,170);
@@ -10346,38 +10346,38 @@ OnTouch:
 	end;
 }
 
-oz_dun01,285,170,5	script	霍里姆#ep1812	4_M_RACHMAN2,{
+oz_dun01,285,170,5	script	胡林#ep1812::霍里姆#ep1812	4_M_RACHMAN2,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8700) == 1) {
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我从没见过这样的东西。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "作为冒险家，你经常看到这种事。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那里是什么样的？";
 		mes "听说那里不是很适合居住。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过……";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我喜欢这条路。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "这么长？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那里有很多怪物，你不能一个人去……";
 		mes "你旅行了这么久，冒险不会有点累吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没关系，我擅长这个。";
 		mes "毕竟，这就是我的谋生方式。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们走吧。";
 		navigateto("gw_fild01",272,342);
 		erasequest 8700;
@@ -10406,41 +10406,41 @@ OnTouch:
 }
 gw_fild01,275,338,0	duplicate(#Horim04)	#ep18w04_	HIDDEN_WARP_NPC,4,4
 
-gw_fild01,272,342,5	script(CLOAKED)	霍里姆#ep1813	4_M_RACHMAN2,{
+gw_fild01,272,342,5	script(CLOAKED)	胡林#ep1813::霍里姆#ep1813	4_M_RACHMAN2,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8701) == 1) {
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "火山灰的气味变了。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "记得我们第一次见冒险家时我告诉你的吗？";
 		mes "托尔火山和火山灰的气味不同。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那是……我从没去过那里，但有人来到我的工作场所时身上有那种味道。";
 		mes "他们一定有某种武器……那些人一定来自托尔火山。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你怎么知道他们藏着武器？";
 		mes "反正他们根本看不起我们。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有时他们会在餐桌上谈论机密，好像我们根本看不见他们。";
 		mes "即使你努力不听，也会听到一两句。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然，如果是非常重要的事情，我不会在那种地方说。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，有些人的火山灰气味略有不同。";
 		mes "像我这样的人……";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也会有那种味道吗？";
 		mes "...";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...我们走吧。";
 		navigateto("gw_fild01",36,99);
 		erasequest 8701;
@@ -10469,38 +10469,38 @@ OnTouch:
 	end;
 }
 
-gw_fild01,36,99,5	script(CLOAKED)	霍里姆#ep1814	4_M_RACHMAN2,{
+gw_fild01,36,99,5	script(CLOAKED)	胡林#ep1814::霍里姆#ep1814	4_M_RACHMAN2,{
 	if (ep18_main < 36)
 		end;
 	if (isbegin_quest(8702) == 1) {
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们在这里休息一会儿……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "哪里？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里还有木头……";
 		next;
 		mes "[守门人]";
 		mes "你好？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好……";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "住在那里很困难吗？";
 		next;
 		select( "不用想得太复杂。" );
 		mes "[" + strcharinfo(0) + "]";
 		mes "我觉得你不用想太多。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说得对。";
 		mes "我已经……";
 		mes "离开拉赫";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
 		select( "离开的原因" );
@@ -10510,37 +10510,37 @@ gw_fild01,36,99,5	script(CLOAKED)	霍里姆#ep1814	4_M_RACHMAN2,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "那为什么还要坚持？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者……";
 		mes "好。那么，冒险者，你有必须回去的地方吗？";
 		mes "首先，过去来我工作地点的许多客人都不是冒险者。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我需要一个可以回去的地方。";
 		mes "一个向大家道晚安、关灯并入睡的地方。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不是因为我孤独……";
 		mes "...";
 		next;
 	mes "霍里姆 想说些什么，却咽了口唾沫。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也有这样的人。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……走吧。";
 		next;
 		mes "[守门人]";
 		mes "这是要进城的人吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "?";
 		next;
 		mes "[守门人]";
 	mes "我听说过这个故事。如果是带你来的人，就可以信任。进来吧。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "什么事？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -10568,7 +10568,7 @@ OnTouch_:
 	end;
 }
 
-wolfvill,266,26,5	script(CLOAKED)	霍里姆#ep1815	4_M_RACHMAN2,{
+wolfvill,266,26,5	script(CLOAKED)	胡林#ep1815::霍里姆#ep1815	4_M_RACHMAN2,{
 	if (checkweight(1000405,20) == 0) {
 		mes "- 等一下！！ -";
 		mes "-你目前携带的物品-";
@@ -10583,16 +10583,16 @@ wolfvill,266,26,5	script(CLOAKED)	霍里姆#ep1815	4_M_RACHMAN2,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "就在这里。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "...";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "你失望吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我要寻找家人。";
 		mes "他们一定就在某处，对吧？";
 		next;
@@ -10600,23 +10600,23 @@ wolfvill,266,26,5	script(CLOAKED)	霍里姆#ep1815	4_M_RACHMAN2,{
 		mes "我相信你会很高兴，因为我没有抛弃你。";
 		mes "正如你所说，你很擅长努力工作，我会欢迎你的加入。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哎呀……";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢！";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我现在可以走了吗？";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "当然。";
 		mes "今晚……我已经很久没有向大家道晚安了。";
 		next;
-		mes "[霍里姆]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "愿你的旅途得到祝福，冒险者……";
 		completequest 8703;
 		getitem 1000405,20;	// Ep18_Amethyst_Fragment
@@ -10645,13 +10645,13 @@ OnInit:
 
 //-------------------------------------------------------------------
 // Quest: Helping the Children. Step 1.
-rachel,38,44,3	script	萨马里安#ep18	4_M_CHILD1,{
+rachel,38,44,3	script	萨马利安#ep18::萨马里安#ep18	4_M_CHILD1,{
 	if (BaseLevel < 170) {
 			mes "-此任务仅限 170 级及以上玩家-";
 		close;
 	}
 	if (isbegin_quest(16581) == 0) {
-		mes "[萨马里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "伙计，我渴了。能帮我弄点水吗？你家离这里最近。";
 		next;
 		mes "[卡尔]";
@@ -10666,7 +10666,7 @@ rachel,38,44,3	script	萨马里安#ep18	4_M_CHILD1,{
 		mes "喂，这家连吃的都没有吗？";
 		mes "你只是小气，对吧？";
 		next;
-		mes "[萨马里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真令人失望，奈曼。";
 		mes "我还以为你是个善良的人。";
 		next;
@@ -10674,13 +10674,13 @@ rachel,38,44,3	script	萨马里安#ep18	4_M_CHILD1,{
 		mes "哦，不！";
 		mes "我们有水，我去拿一些。";
 		next;
-		mes "[萨马里安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好吧。水会被浪费掉的。我们的份呢？";
 		mes "连水都要用钱买，可你却说自己没钱。";
 		setquest 16581;
 		close;
 	}
-	mes "[萨马里安]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，玩了这么久，我又饿又渴。";
 	mes "真想坐在凉快的地方，喝些加了干果的冰茶。";
 	close;
@@ -10737,13 +10737,13 @@ OnInit:
 }
 
 // Quest: Helping the Children. Step 3.
-rachel,40,45,3	script	卢克希#ep18	4_M_DST_CHILD,{
+rachel,40,45,3	script	勒克希#ep18::卢克希#ep18	4_M_DST_CHILD,{
 	if (isbegin_quest(16582) == 1) {
-		mes "[卢克希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没错，你应该感谢我们！";
 		next;
 		select( "我再也受不了了。", "别再烦我们了。" );
-		mes "[卢克希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？我们玩的时候你来打断我们，你是谁？";
 		mes "你看起来不像这里的人……为什么要多管闲事？";
 		next;
@@ -10775,7 +10775,7 @@ rachel,40,45,3	script	卢克希#ep18	4_M_DST_CHILD,{
 		setquest 16583;
 		close;
 	}
-	mes "[卢克希]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我们家有冰饮和点心！";
 	mes "但那里太远了……奈曼 的家不是离这里最近吗？";
 	close;
@@ -10786,22 +10786,22 @@ OnInit:
 }
 
 // Quest: Helping the Children. Step 4 (final).
-rachel,36,45,5	script	奈曼#ep18	4_F_DST_CHILD,{
+rachel,36,45,5	script	奈嫚#ep18::奈曼#ep18	4_F_DST_CHILD,{
 	if (isbegin_quest(16583) == 1) {
 		if (checkweight(1000405,10) == 0) {
 			mes "[提示]";
 			mes "-你的背包已满。请检查携带物品的重量和数量，然后再来找我。-";
 			close;
 		}
-		mes "[奈曼]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "......";
 		next;
 		select( "你为什么和这些孩子一起玩？" );
-		mes "[奈曼]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "什么，什么？";
 		next;
 		select( "你为什么任由他们这样对待你？" );
-		mes "[奈曼]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……他们是我的朋友。";
 		mes "如果没有他们，我就没有可以一起玩的人了。";
 		next;
@@ -10813,7 +10813,7 @@ rachel,36,45,5	script	奈曼#ep18	4_F_DST_CHILD,{
 		mes "我早就知道外国人爱多管闲事，不过……";
 		mes "别插手你不了解的事情。";
 		next;
-		mes "[奈曼]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我……我要回家拿些水。";
 		mes "还有……对不起，我不该无缘无故生气。";
 		next;
@@ -10840,7 +10840,7 @@ rachel,36,45,5	script	奈曼#ep18	4_F_DST_CHILD,{
 		getitem 1000405,10;	// Ep18_Amethyst_Fragment
 		close;
 	}
-	mes "[奈曼]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好热……我想回家。";
 	mes "但其他人还想继续玩……";
 	close;
@@ -10854,7 +10854,7 @@ OnInit:
 
 //-------------------------------------------------------------------
 // Quest: Price of Labor. Step 1 + 3 (final).
-rachel,181,51,3	script	阿莫迪平#ep18	4_M_MIDDLE,{
+rachel,181,51,3	script	亚莫迪品#ep18::阿莫迪平#ep18	4_M_MIDDLE,{
 	if (checkweight(1000405,10) == 0) {
 		mes "[提示]";
 		mes "-你的背包已满。请检查携带物品的重量和数量，然后再来找我。-";
@@ -10865,67 +10865,67 @@ rachel,181,51,3	script	阿莫迪平#ep18	4_M_MIDDLE,{
 		close;
 	}
 	if (isbegin_quest(16584) == 0) {
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们今天还是没有发工资。已经三个月了……";
 		mes "我真想马上辞掉这家店的工作，但那样就拿不到拖欠的工资了。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且，如果辞职的传闻传开，作为本地人，我也无法在其他店里工作。";
 		mes "唉，我该怎么办……";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你刚才在听我的故事吗？";
 		mes "看你的打扮，你一定是冒险者。真幸运，能过着冒险者那样自由的生活……";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，恕我冒昧，但我想请你帮个忙。";
 		mes "虽然老板假装在听我说话，但如果是你这样的知名冒险者提出的建议，我想他会重视。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你能去我老板的店里催他发工资吗？";
 		mes "照这样下去，我连明天的饭都买不起了。";
 		next;
 		if (select( "我来帮你。", "我为什么要帮你？" ) == 2) {
-			mes "[阿莫迪平]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你不一定非要这么做。";
 			mes "我只是想问问你能不能帮点忙。";
 			close;
 		}
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你，谢谢！";
 		mes "我老板的店就在<NAVI>[这里]<INFO>rachel,136,95,0,101,0</INFO></NAVI>。";
 		setquest 16584;
 		close;
 	}
 	if (isbegin_quest(16585) == 1) {
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你来了。有好消息吗？";
 		next;
 		select( "告诉他事情经过。" );
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们明天会发拖欠的工资！哦，太谢谢你了，我真的很感激。";
 		mes "现在我可以给孩子们买食物和衣服了。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明天可能会挨骂，但说实话，终于拿到工资让我更开心。";
 		mes "挨骂没什么，只是一两天而已。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不生气吗？当然生气。";
 		mes "但我又能怎么办？生为本地人是我的错。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我甚至哪里也逃不掉。";
 		mes "我听说有个村子住着逃到维恩斯的本地人，但不知道那地方是否真的存在。";
 		next;
-		mes "[阿莫迪平]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但就算存在，我也没有勇气住在那里。唉，我说得太多了。";
 		mes "抱歉耽误你这么久。非常感谢！";
 		erasequest 16585;
 		getitem 1000405,10;	// Ep18_Amethyst_Fragment
 		close;
 	}
-	mes "[阿莫迪平]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "每天担心饭菜，担心孩子……没有一天不忧虑。";
 		mes "我为什么要生为本地人，承受这些不必要的苦难。";
 	close;
@@ -10937,58 +10937,58 @@ OnInit:
 }
 
 // Quest: Price of Labor. Step 2.
-rachel,136,95,3	script	达希尔#ep18	4_M_RACHMAN2,{
+rachel,136,95,3	script	达西#ep18::达希尔#ep18	4_M_RACHMAN2,{
 	if (isbegin_quest(16584) == 1) {
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎，我是 达希尔。";
 		mes "很高兴见到你。看你的装扮，你一定是冒险者！";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真的很喜欢冒险者！";
 		mes "我曾经也梦想成为冒险者，但后来膝盖中了一箭，现在只能困在城里。";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你不介意，能一边给我讲冒险故事，一边看看商品吗？";
 		next;
 		select( "我是来谈另一件事的。" );
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "另一件事？";
 		mes "嗯，是关于 阿莫迪平 的工资吗？是 阿莫迪平 让你来谈的吗？";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，阿莫迪平 可能知道，但店里的情况并不好。";
 		mes "我答应下个月一次性付清，不过要借助我最喜欢的冒险者。";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这样躲在别人背后公平吗？";
 		mes "你看起来很擅长工作，所以我雇了你，但也许我该重新考虑是否雇用本地人。";
 		next;
 		select( "你这是什么意思？" );
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，别担心，冒险者。这是本地人长期以来的问题。";
 		mes "他们软弱，喜欢躲在别人身后。";
 		next;
 		select( "不过，扣留工资是不对的。", "这不是歧视吗？" );
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谁不知道呢？就算知道，没有钱又能怎么办？";
 		mes "嗯，阿莫迪平 的工资最后发，但这也没办法。";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不是歧视本地人。";
 		mes "只是他最后来上班，所以发放顺序就是这样。";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "唉，我为什么要只和冒险者谈这些？";
 		mes "告诉 阿莫迪平 明天来拿工资，别再胡闹了。";
 		next;
-		mes "[达希尔]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这次的事我不会处罚你，但请告诉<NAVI>[阿莫迪平]<INFO>rachel,181,51,0,101,0</INFO></NAVI>好好来工作。";
 		mes "我不是歧视本地人的人，只是他们缺乏责任感，所以我训斥几句就算了。";
 		completequest 16584;
 		setquest 16585;
 		close;
 	}
-	mes "[达希尔]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我现在经营这家店，但我真的很喜欢冒险者！";
 	mes "我曾经也梦想成为冒险者，但后来膝盖中了一箭，只能困在城里。";
 	close;
@@ -11158,27 +11158,27 @@ OnInit:
 	end;
 }
 
-rachel,69,234,3	script	贾拉德#atm1	4_M_CHILD1,2,2,{
+rachel,69,234,3	script	扎拉德#atm1::贾拉德#atm1	4_M_CHILD1,2,2,{
 	if (isbegin_quest(3493) == 1) {
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不久前，村里发生了一场骚动。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一位演讲者以尊重理想人类的尊严为主题发表演讲，但似乎反而激怒了部分听众。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我也觉得那场演讲并没有得到预期的积极反响。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那只是一套脱离现实的理想主义说辞。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "双方发生了激烈的争吵，眼看就要动手，但旁观者及时阻止了冲突。";
 		next;
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只要不影响到我个人，我倒是不太在意。";
 		next;
 		completequest 3493;
@@ -11186,7 +11186,7 @@ rachel,69,234,3	script	贾拉德#atm1	4_M_CHILD1,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;	// setquest here to prevent bug
-		mes "[贾拉德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "祝你今天愉快！";
 		next;
 		mes "- 你已经和贾拉德交谈完毕。-";
@@ -11199,10 +11199,10 @@ rachel,69,234,3	script	贾拉德#atm1	4_M_CHILD1,2,2,{
 		}
 		close;
 	}
-	mes "[贾拉德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "安静地……";
 	next;
-	mes "[贾拉德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我只想平静地生活……";
 	close;
 
@@ -11214,30 +11214,30 @@ OnInit:
 	end;
 }
 
-rachel,100,72,3	script	罗希#atm2	4_F_SHABBY,2,2,{
+rachel,100,72,3	script	洛溪#atm2::罗希#atm2	4_F_SHABBY,2,2,{
 	if (isbegin_quest(3494) == 1) {
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我叫罗希。";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "直到最近，我一直因为找不到合适的工作而过着贫困的生活……";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "多亏了迪娜，我最近找到了建筑管理的工作，终于能养活自己了。";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "可是从某个时候开始，工作时间增加了，报酬却没有相应增加。";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么会这样？迪娜在移民中也算富有，不像是拿不出钱来支付报酬。";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我直接向迪娜提出过这种不公平，但没有任何结果。";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使工资很低，还是有很多人愿意接受这份工作，你知道的……";
 		next;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "马拉姆和其他资深成员正在讨论解决这个问题的办法，所以我决定暂时再等等。";
 		next;
 		completequest 3494;
@@ -11245,7 +11245,7 @@ rachel,100,72,3	script	罗希#atm2	4_F_SHABBY,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[罗希]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "谢谢你，也祝你度过平静的一天！";
 		next;
 		mes "- 你已经结束了与罗希的交谈。-";
@@ -11257,7 +11257,7 @@ rachel,100,72,3	script	罗希#atm2	4_F_SHABBY,2,2,{
 		}
 		close;
 	}
-	mes "[罗希]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "今天的工作这么多，我不知道能不能按时全部做完……";
 	close;
 
@@ -11269,27 +11269,27 @@ OnInit:
 	end;
 }
 
-rachel,258,207,3	script	乔金#atm3	4_F_RACHOLD,2,2,{
+rachel,258,207,3	script	祝贞#atm3::乔金#atm3	4_F_RACHOLD,2,2,{
 	if (isbegin_quest(3495) == 1) {
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，我叫乔金。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我算是原住民，从祖先那一代起就一直生活在这里。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近因为和移民之间的摩擦，出现了不少争论。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们当中有些人很富有，尤其是迪娜，拥有很强的经济实力。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "即使在原住民中，我也拥有不少财产，却仍然无法和那个人相比。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们开始影响原住民的商业区，政策也在向他们倾斜，让我的生意越来越难做。";
 		next;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "前些时候，迪娜提出要买下我拥有的几栋建筑。我不知道该怎么办。";
 		next;
 		completequest 3495;
@@ -11297,7 +11297,7 @@ rachel,258,207,3	script	乔金#atm3	4_F_RACHOLD,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[乔金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，祝你今天愉快。";
 		next;
 		mes "- 你已经结束了与乔金的交谈。-";
@@ -11308,7 +11308,7 @@ rachel,258,207,3	script	乔金#atm3	4_F_RACHOLD,2,2,{
 		}
 		close;
 	}
-	mes "[乔金]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……我该怎么办呢？";
 	close;
 
@@ -11320,24 +11320,24 @@ OnInit:
 	end;
 }
 
-rachel,159,173,3	script	斯奎因#atm4	4_M_LGTPOOR,2,2,{
+rachel,159,173,3	script	斯库阿音#atm4::斯奎因#atm4	4_M_LGTPOOR,2,2,{
 	if (isbegin_quest(3496) == 1) {
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好~~";
 		next;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢你帮我找到了工作。";
 		next;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你再也不用依靠别人了！";
 		next;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拿到工资后，我想先换一身衣服。";
 		next;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一路上有很多人帮助过我……";
 		next;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在我也要成为能够帮助别人的人。";
 		next;
 		completequest 3496;
@@ -11345,7 +11345,7 @@ rachel,159,173,3	script	斯奎因#atm4	4_M_LGTPOOR,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[斯奎因]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那就小心进去吧。";
 		next;
 		mes "- 你已经结束了与斯奎因的交谈。-";
@@ -11367,27 +11367,27 @@ OnInit:
 	end;
 }
 
-rachel,190,30,5	script	塞纳多#atm5	4_F_MONK,2,2,{
+rachel,190,30,5	script	塞纳都#atm5::塞纳多#atm5	4_F_MONK,2,2,{
 	if (isbegin_quest(3497) == 1) {
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我叫塞纳多，已经练习武术 20 多年了。";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我曾游历各个村庄，检验自己积累的武术实力。打败许多道场后，我不久前在拉赫定居了下来。";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过最近，我感觉这个村子的气氛有些不对劲。";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "人们似乎分成了两派并彼此对立，也就是原住民和移民之间的冲突……";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "严格来说，我属于原住民一方。不过我不想卷入这场对立。";
 		next;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我对他们的权力斗争没有兴趣。";
 		next;
 		completequest 3497;
@@ -11395,7 +11395,7 @@ rachel,190,30,5	script	塞纳多#atm5	4_F_MONK,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[塞纳多]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么下次再见吧。";
 		next;
 		mes "- 我已经结束了与塞纳多的交谈。-";
@@ -11407,10 +11407,10 @@ rachel,190,30,5	script	塞纳多#atm5	4_F_MONK,2,2,{
 		}
 		close;
 	}
-	mes "[塞纳多]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "无论是原住民还是移民……";
 	next;
-	mes "[塞纳多]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我不明白他们为什么会如此对立、争吵不休。";
 	close;
 
@@ -11422,27 +11422,27 @@ OnInit:
 	end;
 }
 
-rachel,210,52,5	script	杰珀#atm6	1_ETC_01,2,2,{
+rachel,210,52,5	script	杰弗#atm6::杰珀#atm6	1_ETC_01,2,2,{
 	if (isbegin_quest(3498) == 1) {
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，大家都叫我商人杰珀……";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我相信自己的经商能力无人能及，这就是我能走到今天这个位置的原因。";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "国家的繁荣离不开像我这样尽职尽责的人，你说对吧？";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "而且，我建立了规模可观的商人协会，为许多居住在拉赫的原住民提供了就业机会……";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我明白了，看来移民和原住民之间现在矛盾重重，尤其是对我的不满越来越强烈。";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来他们对现在的工作条件并不满意，还觉得如果没有我，他们根本不会得到那些工作机会。";
 		next;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那些原住民不但不知感恩，还总觉得自己受了委屈，真让我不寒而栗。";
 		next;
 		completequest 3498;
@@ -11450,7 +11450,7 @@ rachel,210,52,5	script	杰珀#atm6	1_ETC_01,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[杰珀]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那么，下次再见……";
 		next;
 		mes "- 你已经结束了与杰珀的交谈。-";
@@ -11462,10 +11462,10 @@ rachel,210,52,5	script	杰珀#atm6	1_ETC_01,2,2,{
 		}
 		close;
 	}
-	mes "[杰珀]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我靠自己的方法积累了财富。";
 	next;
-	mes "[杰珀]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "他们误解我了。";
 	close;
 
@@ -11477,27 +11477,27 @@ OnInit:
 	end;
 }
 
-rachel,40,73,7	script	希罗安#atm7	1_F_02,2,2,{
+rachel,40,73,7	script	西洛安#atm7::希罗安#atm7	1_F_02,2,2,{
 	if (isbegin_quest(3499) == 1) {
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我是杰珀的弟子希罗安。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一直追随杰珀。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他出色的经商能力确实值得学习。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过，他有时做事太过强硬。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因此，他和雇用的原住民之间的冲突也越来越多。";
 		next;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "他太固执了，根本不听我的话……真让人担心。";
 		next;
 		completequest 3499;
@@ -11505,7 +11505,7 @@ rachel,40,73,7	script	希罗安#atm7	1_F_02,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[希罗安]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "那么，祝你度过平静的一天。";
 		next;
 	mes "- 我已经和希罗安谈完了。-";
@@ -11517,7 +11517,7 @@ rachel,40,73,7	script	希罗安#atm7	1_F_02,2,2,{
 		}
 		close;
 	}
-	mes "[希罗安]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "希望杰珀别再争吵了。";
 	close;
 
@@ -11529,30 +11529,30 @@ OnInit:
 	end;
 }
 
-rachel,88,151,3	script	伊希拉#atm8	1_F_03,2,2,{
+rachel,88,151,3	script	伊西拉#atm8::伊希拉#atm8	1_F_03,2,2,{
 	if (isbegin_quest(3500) == 1) {
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你好，初次见面。我是伊希拉。有什么可以帮你的吗？";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我是芙蕾雅的虔诚信徒。";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "最近信徒之间的气氛很紧张吗？";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我之前没有察觉，但从现在的情况来看，原住民和移民之间的矛盾似乎最近升级了。";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这片原本贫瘠的土地在女神恩泽下变成了肥沃的田野，为生存和生活带来了道路……";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我们难道不应该心怀感激吗？";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "尽管如此，刚才发生的骚乱……唉……";
 		next;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "我不确定究竟是什么造成了这种不满。";
 		next;
 		completequest 3500;
@@ -11560,7 +11560,7 @@ rachel,88,151,3	script	伊希拉#atm8	1_F_03,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[伊希拉]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "那么，祝你度过平静的一天。";
 		next;
 	mes "- 和伊希拉的谈话结束了。-";
@@ -11572,10 +11572,10 @@ rachel,88,151,3	script	伊希拉#atm8	1_F_03,2,2,{
 		}
 		close;
 	}
-	mes "[伊希拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "多亏了移民，原住民得到的好处一定很大……";
 	next;
-	mes "[伊希拉]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我不太明白他们为什么会那样做。";
 	close;
 
@@ -11587,27 +11587,27 @@ OnInit:
 	end;
 }
 
-rachel,240,182,5	script	迪娜#atm9	1_F_04,2,2,{
+rachel,240,182,5	script	吉娜#atm9::迪娜#atm9	1_F_04,2,2,{
 	if (isbegin_quest(3501) == 1) {
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "你好，是什么风把你吹来了？";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "啊~ 看来最近有各种对我不利的传闻在流传，对吧？";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "希望你不要只相信听到的片面内容。";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "为了积累如今的财富，我一直以战略和务实的方式行事。";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "考虑到我们有建立在相互理解上的契约关系，最近听到各种负面传闻实在令人遗憾。";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "如果你说的是收购建筑，我打算维持现状。";
 		next;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这是正当获利的过程。反对这一点是不合理的。";
 		next;
 		completequest 3501;
@@ -11615,7 +11615,7 @@ rachel,240,182,5	script	迪娜#atm9	1_F_04,2,2,{
 			.@total += isbegin_quest(.@i);
 		if (.@total == 12)
 			setquest 3505;
-		mes "[迪娜]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "祝你今天愉快！";
 		next;
 	mes "- 我已经和迪娜谈完了。-";
@@ -11627,7 +11627,7 @@ rachel,240,182,5	script	迪娜#atm9	1_F_04,2,2,{
 		}
 		close;
 	}
-	mes "[迪娜]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "唉，我也不知道为什么只有我在处理这件事。";
 	close;
 
@@ -11703,9 +11703,9 @@ OnInit:
 	end;
 }
 
-rachel,170,80,6	duplicate(dummy_cloaked_npc)	贪婪的男人#E18_1	4_M_RASWORD
-rachel,172,80,4	duplicate(dummy_cloaked_npc)	受欺负的孩子#E18_2	4_M_DST_CHILD
-rachel,175,80,4	duplicate(dummy_cloaked_npc)	受欺负的孩子#E18_3	4_M_DST_CHILD
+rachel,170,80,6	duplicate(dummy_cloaked_npc)	贪婪的男子#E18_1::贪婪的男人#E18_1	4_M_RASWORD
+rachel,172,80,4	duplicate(dummy_cloaked_npc)	被虐待的孩子#E18_2::受欺负的孩子#E18_2	4_M_DST_CHILD
+rachel,175,80,4	duplicate(dummy_cloaked_npc)	被虐待的孩子#E18_3::受欺负的孩子#E18_3	4_M_DST_CHILD
 	
 rachel,176,80,0	script	#Hoesopflowerstart	HIDDEN_WARP_NPC,10,10,{
 	end;
@@ -11804,7 +11804,7 @@ OnTouch:
 	}
 }
 
-rachel,180,80,4	script(CLOAKED)	受欺负的孩子#E18_4	4_M_DST_CHILD,{
+rachel,180,80,4	script(CLOAKED)	被虐待的孩子#E18_4::受欺负的孩子#E18_4	4_M_DST_CHILD,{
 	if (checkweight(1000405,10) == 0) {
 		mes "- 你的物品太多，无法继续。-";
 		close;
@@ -12704,14 +12704,14 @@ gw_fild01,396,269,3	script	旧路标#ep18	2_BOARD2,{
 	close;
 }
 
-wolfvill,90,261,6	script	谢伊尔#E18_D7	4_F_RUSWOMAN1,{
-	mes "[谢伊尔]";
+wolfvill,90,261,6	script	谢日#E18_D7::谢伊尔#E18_D7	4_F_RUSWOMAN1,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我郁闷地来到这个荒废的地方，没想到这里还有人。";
 	close;
 }
 
-wolfvill,269,68,4	script	塞伊尔#E18_D8	4_F_RUSWOMAN2,{
-	mes "[塞伊尔]";
+wolfvill,269,68,4	script	世日#E18_D8::塞伊尔#E18_D8	4_F_RUSWOMAN2,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦呵！欢迎来到灰狼村。";
 	close;
 }
@@ -12848,9 +12848,9 @@ OnInit:
 // rachel,114,66,2	duplicate(dummy_npc)	Flower Lady#E18_9	4_F_GODEMOM
 // rachel,55,106,6	duplicate(dummy_npc)	Telling#E18_D6	4_F_07	// an old npc already exists at this location
 
-rachel,135,208,6	duplicate(dummy_npc)	菲西克斯#E18_D1	4_F_MASK
+rachel,135,208,6	duplicate(dummy_npc)	物理#E18_D1::菲西克斯#E18_D1	4_F_MASK
 rachel,163,196,4	duplicate(dummy_npc)	莫莉#E18_D2	4_F_MASK1
-rachel,31,89,6	duplicate(dummy_npc)	缇琳#E18_D5	4_F_02
+rachel,31,89,6	duplicate(dummy_npc)	蒂勒#E18_D5::缇琳#E18_D5	4_F_02
 
 
 //-------------------------------------------------------------------

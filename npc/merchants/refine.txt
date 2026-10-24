@@ -21,7 +21,7 @@
 
 // Christopher: Geffen Blacksmith
 //============================================================
-geffen_in,110,172,0	script	Christopher#1	63,{
+geffen_in,110,172,0	script	克里斯多福#1::Christopher#1	63,{
 	mes "[克里斯托弗·吉伦罗]";
 	mes "欢迎来到克里斯托弗的工坊。锻造所需的一切都能在这里获得。";
 	mes "你想办理什么业务？";
@@ -317,28 +317,28 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 
 // Paul Spanner: Einbroch Blacksmith Supplier
 //============================================================
-ein_in01,38,29,0	script	Paul Spanner	63,{
+ein_in01,38,29,0	script	福 斯培诺::Paul Spanner	63,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 等一下！！-";
 		mes "- 你现在携带的物品太多了。-";
 		mes "- 请先减轻负重，再试一次。-";
 		close;
 	}
-	mes "[保罗·斯帕纳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎，朋友。";
 	mes "我的店里有锻造所需的一切。";
 	mes "告诉我你需要什么。";
 	next;
 	switch(select("购买铁砧:购买锻造物品:购买金属:加工矿石:退出")) {
 	case 1:
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "铁砧是铁匠最必需的物品。";
 		mes "你会多次使用铁砧，所以最好买一台好的。";
 		next;
 		switch(select("铁砧-30,000 Zeny:神之金属铁砧-120,000 Zeny:黄金铁砧-300,000 Zeny:我需要更好的铁砧:取消")) {
 		case 1:
 			if (Zeny < 30000) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这么点钱连玩具铁砧都买不起！";
 				close;
 			}
@@ -348,13 +348,13 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			}
 			getitem 986,1; //Anvil
 			Zeny = Zeny-30000;
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是最便宜、功能最基本的铁砧。";
 			mes "感谢光临我的店。有需要就告诉我。";
 			close;
 		case 2:
 			if (Zeny < 120000) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这么点钱连玩具铁砧都买不起！";
 				close;
 			}
@@ -364,13 +364,13 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			}
 			getitem 987,1; //Oridecon_Anvil
 			Zeny = Zeny-120000;
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，你很懂铁砧。铁匠至少需要这么好的铁砧。";
 			mes "感谢光临我的店。有需要就告诉我。";
 			close;
 		case 3:
 			if (Zeny < 300000) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这么点钱连玩具铁砧都买不起！";
 				close;
 			}
@@ -380,22 +380,22 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			}
 			getitem 988,1; //Golden_Anvil
 			Zeny = Zeny-300000;
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从你选择黄金铁砧就能看出你想成为优秀铁匠的志向！";
 			mes "这台铁砧一定能帮助你打造最好的武器。";
 			close;
 		case 4:
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "抱歉，我不出售比黄金铁砧更好的铁砧。";
 			mes "除非你找到传说中的‘林格尔’铁砧，否则别处不会有更好的。";
 			close;
 		case 5:
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有需要就告诉我。";
 			close;
 		}
 	case 2:
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "加工矿石和锻造武器需要各种材料。";
 		mes "我这里都有，看看吧。";
 		next;
@@ -404,7 +404,7 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			.@item = 612;
 			.@item_cost = 150;
 			.@item_weight = 200;
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "加工矿石一定需要这台熔炉！";
 			next;
 			break;
@@ -424,22 +424,22 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			.@item_weight = 400;
 			break;
 		case 5:
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有需要就告诉我。";
 			close;
 		}
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "需要多少？想取消交易就输入‘0’。";
 		next;
 		while(1) {
 			input .@input;
 			if (.@input == 0) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你取消了交易。有需要就告诉我。";
 				close;
 			}
 			else if ((.@input < 0) || (.@input > 500)) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一次最多购买 500 个。";
 				next;
 			}
@@ -449,22 +449,22 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 		}
 		.@sell = .@input * .@item_cost;
 		if (Zeny < .@sell) {
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的钱不够。抱歉，我不能亏本出售。";
 			close;
 		}
 		if (checkweight(.@item,.@input) == 0) {
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你脸色很差。先减轻负重再来吧。";
 			close;
 		}
 		Zeny = Zeny-.@sell;
 		getitem .@item,.@input;
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢光临我的店。有需要就告诉我。";
 		close;
 	case 3:
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我有高品质金属。";
 		mes "你想买哪种金属？";
 		next;
@@ -478,22 +478,22 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 			.@item_price = 1000;
 			break;
 		case 3:
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有需要就告诉我。";
 			close;
 		}
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "需要多少？想取消交易就输入‘0’。";
 		next;
 		while(1) {
 			input .@input;
 			if (.@input == 0) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "交易已取消。有需要就告诉我。";
 				close;
 			}
 			else if ((.@input < 0) || (.@input > 500)) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "一次最多购买 500 个。";
 				next;
 			}
@@ -503,29 +503,29 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 		}
 		.@sell = .@input * .@item_price;
 		if (Zeny < .@sell) {
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你的钱不够。抱歉，我不能亏本出售。";
 			close;
 		}
 		if (checkweight(.@item,.@input) == 0) {
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，你脸色很差。先减轻负重再来吧。";
 			close;
 		}
 		getitem .@item,.@input;
 		Zeny = Zeny-.@sell;
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "感谢光临我的店。有需要就告诉我。";
 		close;
 	case 4:
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我可以帮你加工神之金属和铝。";
 		mes "5个矿石可以加工成1个神之金属或铝。";
 		mes "你想加工哪一种？";
 		switch(select("神之金属:铝:退出")) {
 		case 1:
 			if (countitem(756) < 5) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "需要5个矿石才能加工成1个纯神之金属。";
 				close;
 			}
@@ -536,13 +536,13 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 				}
 				delitem 756,5; //Oridecon_Stone
 				getitem 984,1; //Oridecon
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "给你。感谢使用我的服务。";
 				close;
 			}
 		case 2:
 			if (countitem(757) < 5) {
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你需要 5 个矿石才能加工成 1 个纯化铝。";
 				close;
 			}
@@ -553,17 +553,17 @@ ein_in01,38,29,0	script	Paul Spanner	63,{
 				}
 				delitem 757,5; //Elunium_Stone
 				getitem 985,1; //Elunium
-				mes "[保罗·斯帕纳]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "给你。感谢使用我的服务。";
 				close;
 			}
 		case 3:
-			mes "[保罗·斯帕纳]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "有需要尽管告诉我。";
 			close;
 		}
 	case 5:
-		mes "[保罗·斯帕纳]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有需要尽管告诉我。";
 		close;
 	}
@@ -585,9 +585,9 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 	}
 }
 
-morocc_in,73,38,6	script	Aragham	4W_M_03,{
+morocc_in,73,38,6	script	阿拉缸::Aragham	4W_M_03,{
 	if( getbattleflag( "feature.refineui" ) ){
-		mes "[阿拉甘]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "沙～漠～铁匠～";
 		mes "阿拉甘，沙～什么都能精炼，沙～";
 		mes "让我看看你想精炼什么～";
@@ -613,7 +613,7 @@ payon,144,173,5	script	Antonio	4_M_ORIENT01,{
 	}
 }
 
-alberta_in,28,58,0	script	Fredrik	4_M_03,{
+alberta_in,28,58,0	script	弗雷德利::Fredrik	4_M_03,{
 	if( getbattleflag( "feature.refineui" ) ){
 		mes "[弗雷德里克·赫尔曼索恩]";
 		mes "我是能精炼武器和装备的铁匠。";
@@ -627,9 +627,9 @@ alberta_in,28,58,0	script	Fredrik	4_M_03,{
 	}
 }
 
-yuno_in01,171,21,4	script	Lambert	4_M_ORIENT01,{
+yuno_in01,171,21,4	script	迪斯特伏::Lambert	4_M_ORIENT01,{
 	if( getbattleflag( "feature.refineui" ) ){
-		mes "[兰伯特]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢……迎……这是……朱诺……最好的……铁匠铺。";
 		close2;
 		refineui();
@@ -654,9 +654,9 @@ ein_in01,24,87,5	script	Manthasman	4_M_DWARF,{
 	}
 }
 
-lhz_in02,282,20,7	script	Fulerr	4_M_LGTMAN,{
+lhz_in02,282,20,7	script	保洛::Fulerr	4_M_LGTMAN,{
 	if( getbattleflag( "feature.refineui" ) ){
-		mes "[富勒]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿……想精炼吗？";
 		mes "嘿嘿……交给我吧……";
 		mes "嘿嘿……";

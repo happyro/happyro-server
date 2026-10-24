@@ -21,59 +21,59 @@
 //      Note: The treasure room is not accessible in fast mode.
 //============================================================
 
-glast_01,204,273,5	script	胡金	4_M_SAGE_C,{
+glast_01,204,273,5	script	福金::胡金	4_M_SAGE_C,{
 	if (BaseLevel < 130) {
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "变强后再回来吧。";
 		mes "比如，达到130级。";
 		close;
 	}
 	if (isbegin_quest(12316) == 0) {
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很久以前，这座城堡不是现在这个样子。";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，抱歉。我不该在陌生人面前自言自语。";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我叫胡金，正在研究时间与空间之间的维度裂隙。";
 		next;
 		select("这里有那样的东西吗？");
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你有没有想过古拉斯特海姆的历史？";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "卢恩-米德加尔兹王国历史上有一位名叫舒米切的国王，被称为暴君。";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只要找对地方，时间会揭示真正的答案。";
 		next;
 		if (select("我对历史不感兴趣。","真有意思。你发现了什么吗？") == 1) {
-			mes "[胡金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？嗯，感兴趣的时候再回来吧。";
 			close;
 		}
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "其实，穿越维度和时间是可能的，但我太害怕去那里。";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你也许可以做到！";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想进行时间旅行吗？";
 		next;
 		if (select("不了，谢谢。","当然想！") == 1) {
-			mes "[胡金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？不过天啊，这是多么难得的机会。";
 			close;
 		}
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我就知道你会理解我的话。请告诉我你想做什么。";
 		setquest 12316;// Meeting Hugin
 		completequest 12316;
 	}
 	else {
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？你在别的地方见过我吗？我不这么认为。这次又怎么了？";
 		if (isbegin_quest(12322) == 1)
 			erasequest 12322;
@@ -86,14 +86,14 @@ glast_01,204,273,5	script	胡金	4_M_SAGE_C,{
 		.@md_name$ = "旧克雷斯特汉姆";
 
 		if (!instance_check_party(.@party_id)) {
-			mes "[胡金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "组建队伍后，再来和我谈谈吧。";
 			close;
 		}
 		if (is_party_leader() == true)
 			.@menu$ = "开启时空裂隙";
 		else {
-			mes "[胡金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们以前见过吗？不可能。这是我第一次见你。你想做什么？";
 		}
 		if (isbegin_quest(12318) == 0)
@@ -112,21 +112,21 @@ glast_01,204,273,5	script	胡金	4_M_SAGE_C,{
 				mes "^0000ff" + .@md_name$ + "^000000 - 时空裂隙创建失败。";
 				close;
 			}
-			mes "[胡金]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "时间裂隙打开后，再来告诉我。";
 			close;
 		case 2:
 			switch( instance_enter(.@md_name$) ) {
 			case IE_OTHER:
-				mes "[胡金]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "发生了未知错误。";
 				close;
 			case IE_NOINSTANCE:
-				mes "[胡金]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "时间裂隙还没有打开。";
 				close;
 			case IE_NOMEMBER:
-				mes "[胡金]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "你的身体状况不适合进入时间裂隙。不组队就无法进入。";
 				close;
 			case IE_OK:
@@ -140,11 +140,11 @@ glast_01,204,273,5	script	胡金	4_M_SAGE_C,{
 		}
 	case 0:
 	case 1:
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，天啊……";
 		mes "你还有时间旅行的后遗症。以这种状态无法再次旅行。";
 		next;
-		mes "[胡金]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "保持健康很重要，请休息一下，稍后再回来。";
 		close;
 	case 2:

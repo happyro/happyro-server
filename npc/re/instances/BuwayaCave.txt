@@ -16,9 +16,9 @@
 
 // Instance Creation :: buwaya_dun
 //============================================================
-ma_fild02,312,317,5	script	守卫::Guard#buwaya_cave	570,{
+ma_fild02,312,317,5	script	警备兵::Guard#buwaya_cave	570,{
 	if (BaseLevel < 130) {
-		mes "[守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "低于 ^ff0000 130 级^000000 的人不能进入这里。";
 		mes "这里很危险，请回去吧。";
 		close;
@@ -28,27 +28,27 @@ ma_fild02,312,317,5	script	守卫::Guard#buwaya_cave	570,{
 	set .@md_name$,"布瓦亚洞窟";
 
 	if (!.@party_id) {
-		mes "[守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "布瓦亚很危险。";
 		mes "请和其他人组成队伍后再回来吧。";
 		close;
 	}
 	if (is_party_leader() == true) {
-		mes "[守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里很危险，请回去吧。";
 		mes "如果你没什么事要办，请回去。";
 		next;
 		while(1) {
 				switch(select("为什么这么危险？:我来这里猎杀布瓦亚。:结束对话。")) {
 			case 1:
-				mes "[守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "最近发生了村民失踪的事件。";
 				mes "调查踪迹后，我们发现罪魁祸首是巨大的怪物布瓦亚。";
 				next;
-				mes "[守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我们派出了士兵和佣兵去猎杀布瓦亚，但始终没有成功。";
 				next;
-				mes "[守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "直到今天，布瓦亚仍在绑架村民。";
 				mes "请召集一些人消灭布瓦亚。";
 				next;
@@ -58,7 +58,7 @@ ma_fild02,312,317,5	script	守卫::Guard#buwaya_cave	570,{
 				if (.@playtime == -1) {
 					// fall through
 				} else if (.@playtime == 0 || .@playtime == 1) {
-					mes "[守卫]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "布瓦亚还在躲藏。";
 					mes "即使现在进去，布瓦亚也不会出来。";
 					mes "请稍后再回来。";
@@ -68,25 +68,25 @@ ma_fild02,312,317,5	script	守卫::Guard#buwaya_cave	570,{
 					// fall through
 				}
 				if (instance_create(.@md_name$) < 0) {
-					mes "[守卫]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "队伍名称是……"+getpartyname(.@party_id)+"。";
 					mes "队长是……"+strcharinfo(0);
 					mes "^0000ff"+.@md_name$+"^000000 目前无法开启。";
 					mes "请稍后再试。";
 					close;
 				}
-				mes "[守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会打开通往 ^0000ff"+.@md_name$+"^000000 的通道。";
 				mes "祝你好运。";
 				close;
 			case 3:
-				mes "[守卫]";
+				mes "[" + strnpcinfo(1) + "]";
 			mes "这里很危险，你不能进入。";
 				close;
 			}
 		}
 	} else {
-		mes "[守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我和队长谈谈。";
 		mes "请让队长过来。";
 		close;

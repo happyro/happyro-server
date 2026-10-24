@@ -62,29 +62,29 @@ alberta,196,202,3	script	奥普塔玛拉船员#alberta	100,{
 	}
 }
 
-malaya,276,55,4	script	奥普塔玛拉船员#malaya	100,{
+malaya,276,55,4	script	欧巴塔拉马号船员#malaya::奥普塔玛拉船员#malaya	100,{
 	if (malaya_hi < 10) {
-		mes "[奥普塔玛拉船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想村子仍然很忙。参观完了吗？总有船开往艾尔贝塔。";
 		next;
 	} else if (malaya_hi < 20) {
-		mes "[奥普塔玛拉船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想是某位无名冒险者帮村民解决了烦恼。耶！要回艾尔贝塔吗？";
 		next;
 	} else {
-		mes "[奥普塔玛拉船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "要和我一起回艾尔贝塔吗？";
 		next;
 	}
 	switch(select("返回。:不返回。")) {
 	case 1:
-		mes "[奥普塔玛拉船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "太好了！我们现在就出发去艾尔贝塔！！";
 		close2;
 		warp "alberta",192,217;
 		end;
 	case 2:
-		mes "[奥普塔玛拉船员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没关系。想回艾尔贝塔时再来这里。";
 		close;
 	}
@@ -165,12 +165,12 @@ OnBingx2:
 	set .@rand, rand(.@size);
 	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
 		donpcevent "未确认的生物#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
-	donpcevent strnpcinfo(0)+"::OnDisable";
+	donpcevent strnpcinfo(3)+"::OnDisable";
 	end;
 OnTouch_:
 	if (getcharid(1)) {
 		if ($ma_name04$ == strcharinfo(0) || $ma_name05$ == strcharinfo(0) || $ma_name06$ == strcharinfo(0)) {
-			donpcevent strnpcinfo(0)+"::OnBingx2";
+			donpcevent strnpcinfo(3)+"::OnBingx2";
 			mes "未确认的生物瞥见你，脸红后消失了。";
 			close;
 		}
@@ -181,17 +181,17 @@ OnTouch_:
 				case 9: set $ma_name06$,strcharinfo(0); break;
 			}
 		}
-		donpcevent strnpcinfo(0)+"::OnBingx2";
+		donpcevent strnpcinfo(3)+"::OnBingx2";
 		mes "未确认的生物瞥见你后消失了。";
 		close;
 	}
-	donpcevent strnpcinfo(0)+"::OnBingx2";
+	donpcevent strnpcinfo(3)+"::OnBingx2";
 	mes "未确认的生物看了你一眼就跑开了。";
 	close;
 }
-ma_fild01,74,367,6	duplicate(Unidentified Creature#i)	未确认的生物#01	572,2,2
-ma_fild02,282,41,4	duplicate(Unidentified Creature#i)	未确认的生物#05	572,2,2
-ma_scene01,195,92,4	duplicate(Unidentified Creature#i)	未确认的生物#09	572,2,2
+ma_fild01,74,367,6	duplicate(Unidentified Creature#i)	诡异生物#01::未确认的生物#01	572,2,2
+ma_fild02,282,41,4	duplicate(Unidentified Creature#i)	诡异生物#05::未确认的生物#05	572,2,2
+ma_scene01,195,92,4	duplicate(Unidentified Creature#i)	诡异生物#09::未确认的生物#09	572,2,2
 
 -	script	Unidentified Creature#j	-1,{
 	end;
@@ -216,7 +216,7 @@ OnBingx2:
 	set .@rand, rand(.@size);
 	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
 		donpcevent "未确认的生物#"+.@npc$[.@i]+"::"+((.@i == .@rand)?"OnEnable":"OnDisable");
-	donpcevent strnpcinfo(0)+"::OnDisable";
+	donpcevent strnpcinfo(3)+"::OnDisable";
 	end;
 OnTouch_:
 	set .@i, atoi(strnpcinfo(2));
@@ -232,7 +232,7 @@ OnTouch_:
 	}
 	if (.@pass) {
 		if ($ma_name04$ == strcharinfo(0) || $ma_name05$ == strcharinfo(0) || $ma_name06$ == strcharinfo(0)) {
-			donpcevent strnpcinfo(0)+"::OnBingx2";
+			donpcevent strnpcinfo(3)+"::OnBingx2";
 			mes "未确认的生物瞥见你，脸红后消失了。";
 			close;
 		}
@@ -254,22 +254,22 @@ OnTouch_:
 				break;
 			}
 		}
-		donpcevent strnpcinfo(0)+"::OnBingx2";
+		donpcevent strnpcinfo(3)+"::OnBingx2";
 		mes "未确认的生物瞥见你后消失了。";
 		close;
 	}
-	donpcevent strnpcinfo(0)+"::OnBingx2";
+	donpcevent strnpcinfo(3)+"::OnBingx2";
 	mes "未确认的生物看了你一眼就跑开了。";
 	close;
 }
-ma_fild01,109,116,4	duplicate(Unidentified Creature#j)	未确认的生物#02	572,2,2
-ma_fild01,280,150,6	duplicate(Unidentified Creature#j)	未确认的生物#03	572,2,2
-ma_fild01,309,221,6	duplicate(Unidentified Creature#j)	未确认的生物#04	572,2,2
-ma_fild02,246,324,4	duplicate(Unidentified Creature#j)	未确认的生物#06	572,2,2
-ma_fild02,71,296,6	duplicate(Unidentified Creature#j)	未确认的生物#07	572,2,2
-ma_fild02,32,263,4	duplicate(Unidentified Creature#j)	未确认的生物#08	572,2,2
-ma_scene01,158,139,4	duplicate(Unidentified Creature#j)	未确认的生物#10	572,2,2
-ma_scene01,167,112,6	duplicate(Unidentified Creature#j)	未确认的生物#11	572,2,2
+ma_fild01,109,116,4	duplicate(Unidentified Creature#j)	诡异生物#02::未确认的生物#02	572,2,2
+ma_fild01,280,150,6	duplicate(Unidentified Creature#j)	诡异生物#03::未确认的生物#03	572,2,2
+ma_fild01,309,221,6	duplicate(Unidentified Creature#j)	诡异生物#04::未确认的生物#04	572,2,2
+ma_fild02,246,324,4	duplicate(Unidentified Creature#j)	诡异生物#06::未确认的生物#06	572,2,2
+ma_fild02,71,296,6	duplicate(Unidentified Creature#j)	诡异生物#07::未确认的生物#07	572,2,2
+ma_fild02,32,263,4	duplicate(Unidentified Creature#j)	诡异生物#08::未确认的生物#08	572,2,2
+ma_scene01,158,139,4	duplicate(Unidentified Creature#j)	诡异生物#10::未确认的生物#10	572,2,2
+ma_scene01,167,112,6	duplicate(Unidentified Creature#j)	诡异生物#11::未确认的生物#11	572,2,2
 
 malaya,227,311,4	script	奶奶#ma01	575,{
 	if (malaya_hi < 10) {
@@ -323,241 +323,241 @@ malaya,227,311,4	script	奶奶#ma01	575,{
 	close;
 }
 
-malaya,189,263,4	script	打鼓的年轻人#ma02	578,{
+malaya,189,263,4	script	带着鼓的青年#ma02::打鼓的年轻人#ma02	578,{
 	if (malaya_hi < 10) {
 		emotion ET_HUK;
-		mes "[打鼓的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呃……就像上次一样……";
 		next;
 		emotion ET_HUK;
-		mes "[打鼓的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "月亮被吞掉的时候。啊！";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[打鼓的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想村子是被一位无名冒险者拯救的。";
 		next;
 		emotion ET_OHNO;
-		mes "[打鼓的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "呼……我还以为巴科纳瓦又出现了。";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[打鼓的年轻人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes getd("$ma_name0"+rand(1,6)+"$")+" 据说阻止了巴科纳瓦吞下月亮。很厉害吧？我松了口气。";
 		close;
 	}
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "在马来港，巴科纳瓦也被称为“吞月怪物”。";
 	next;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但我知道巴科纳瓦也会“吞人”。";
 	next;
 	select("呼！那不是很危险吗？");
 	emotion ET_KIK;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈哈哈。有办法阻止巴科纳瓦吞人。";
 	next;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "是的，即使是已经吞下六个月亮的最可怕魔物，也有弱点。";
 	next;
 	select("哇，是什么？");
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "它对噪音很敏感，所以在它要吞下月亮时！！";
 	next;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那就是你的机会！！什么声音都可以！！无论是大锅、铜钹、鼓、锅还是煎锅，只管不停制造噪音。";
 	next;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这样巴科纳瓦就会受到惊吓，吐出月亮逃走！";
 	next;
-	mes "[打鼓的年轻人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "随身带一面鼓吧。你会发现它很方便。";
 	close;
 }
 
-malaya,270,59,4	script	港口卫兵#ma03	570,{
+malaya,270,59,4	script	港口警卫队员#ma03::港口卫兵#ma03	570,{
 	if (malaya_hi < 10) {
 		emotion ET_PROFUSELY_SWEAT;
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "村子最近一团混乱。我这样离开岗位真的没问题吗？";
 		close;
 	} else if (malaya_hi < 20) {
 		emotion ET_STARE_ABOUT;
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "村子现在稍微稳定了些，但你晚上走动时还是要小心。";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes getd("$ma_name0"+rand(1,6)+"$")+" 据说被布瓦亚抓住后还能活着逃脱。这个人一定很强。";
 		close;
 	}
 	emotion ET_HUK;
-	mes "[港口卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "什么！！港口一切正常！！";
 	next;
-	mes "[港口卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯？你不是船长？吓我一跳。可恶！啊，对了！我收到了一份给旅客的官方文件。";
 	next;
 	select("什么文件？");
-	mes "[港口卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "上面说旅客晚上在村里行走时要小心魔物。";
 	next;
-	mes "[港口卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "布瓦亚不常来村子，但有时会在夜里把人抓进它们携带的箱子里。";
 	next;
-	mes "[港口卫兵]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯？！这里还说，有一种叫沃克沃克的魔物经常在夜里来村子，应该避开它。";
 	next;
 	switch(select("我明白了。:有什么办法防止它们来吗？")) {
 	case 1:
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "晚上要小心！";
 		close;
 	case 2:
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "据说如果被抓进布瓦亚携带的箱子，可以攻击箱内布瓦亚的弱点。";
 		next;
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "从远处听到沃克沃克翅膀扇动时，你应该跑进最近的建筑。";
 		next;
 		emotion ET_SCRATCH;
-		mes "[港口卫兵]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但如果扇动声很小，或者什么也听不到，那就做好迎战准备，祈求好运吧。";
 		close;
 	}
 }
 
-malaya,88,252,4	script	小女孩#ma04	576,{
+malaya,88,252,4	script	少女#ma04::小女孩#ma04	576,{
 	if (malaya_hi < 10) {
-		mes "[小女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我很害怕，但必须去森林拜访精灵。";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[小女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿。爸爸说，等村子平静下来后我就能去森林拜访精灵。";
 		close;
 	}
 	if (rand(1,3) == 2) {
 		set .@name$, getd("$ma_name0"+rand(1,6)+"$");
-		mes "[小女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "刚才"+.@name$+"来给我讲了一个有趣的故事。";
 		next;
-		mes "[小女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "‘我在院子里种了一对梨树。’";
 		mes "嘿嘿。很有趣吧？"+.@name$+"看起来是个有趣的人。";
 		close;
 	}
-	mes "[小女孩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "爸爸说，只要和森林里的精灵成为朋友，我就不会得皮肤病。";
 	next;
 	select("这是什么精灵？");
-	mes "[小女孩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "恩坎托！恩坎托精灵住在森林里的大树或岩石中。有男精灵和女精灵……";
 	next;
-	mes "[小女孩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但男精灵更漂亮。这是为什么呢？";
 	close;
 }
 
-malaya,219,92,6	script	小孩子#ma05	577,{
+malaya,219,92,6	script	小孩#ma05::小孩子#ma05	577,{
 	if (malaya_hi < 10) {
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "妈妈说外面很危险，不让我出去玩。为什么？";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "妈妈说我可以玩，但只能在马来港玩。";
 		next;
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿嘿。不过我从没想过离开马来港。";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听说有人在神奇村拿走了杰杰灵的帽子。";
 		next;
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么有人要偷魔物的帽子？"+getd("$ma_name0"+rand(1,6)+"$")+"一定是走投无路了。";
 		next;
-		mes "[小孩子]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "等等！这本来应该是秘密。嘘！请假装没听见。";
 		close;
 	}
-	mes "[小孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我觉得有人正在偷走村子里的所有帽子。";
 	next;
-	mes "[小孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "妈妈昨天洗的帽子不见了。邻居的帽子几天前也不见了。";
 	next;
-	mes "[小孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "嗯……你觉得是杰杰灵拿走的吗？";
 	next;
-	mes "[小孩子]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我去神奇村拜访朋友，他说看到杰杰灵戴着那顶失踪的帽子……";
 	close;
 }
 
-malaya,363,283,4	script	当地人#ma06	582,{
+malaya,363,283,4	script	居民#ma06::当地人#ma06	582,{
 	if (malaya_hi < 10) {
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……该小心女巫的诅咒了吗？";
 		next;
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "外乡人，小心梦魇鬼的针。";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "外乡人，欢迎来到马来港……";
 		next;
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最近村子很混乱。如果看到红眼睛的人，尽量别盯着他们的眼睛。";
 		close;
 	}
 	set .@name$, getd("$ma_name0"+rand(1,6)+"$");
 	switch(rand(1,6)) {
 	case 1:
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "晚上在村里走动要小心。"+.@name$+"被沃克沃克袭击了。";
 		close;
 	case 2:
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听说"+.@name$+"成功驯服了提克巴朗。这个人一定很勇敢。不知道我能不能看看被驯服的提克巴朗？";
 		close;
 	case 3:
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你见过邦吉松吉苏吗？听说"+.@name$+"正在猎杀邦吉松吉苏。";
 		close;
 	case 4:
-		mes "[当地人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果打算离开村子，要小心提乌克努克。据说"+.@name$+"被提乌克努克欺骗，不得不去了医院。";
 		close;
 	case 5:
 	case 6:
 		break;
 	}
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "最近村子很混乱。看来梦魇鬼又回来了。";
 	next;
 	select("梦魇鬼？");
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "一种也被称为女巫的怪物。它看起来像人，也会穿衣服。";
 	next;
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "梦魇鬼会把看到的人做成玩偶，再用针诅咒他们。";
 	next;
 	select("有办法认出这种怪物吗？");
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "有一个办法。所有梦魇鬼都有红色眼睛。";
 	next;
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "可以通过眼睛认出它们，但有一件事必须记住。";
 	next;
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "如果盯着梦魇鬼的眼睛太久，就会被它迷住。";
 	next;
-	mes "[当地人]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "千万不要长时间盯着它们的眼睛。";
 	close;
 }
@@ -602,7 +602,7 @@ malaya,41,127,6	script	老人#ma07	574,{
 	close;
 }
 
-malaya,63,185,4	script	女性村民#ma08	583,{
+malaya,63,185,4	script	女子#ma08::女性村民#ma08	583,{
 	if (malaya_hi < 10) {
 		mes "[女性]";
 		mes "我没什么可以和你分享的。";
@@ -658,7 +658,7 @@ malaya,63,185,4	script	女性村民#ma08	583,{
 			mes "[女性]";
 			mes "我喜欢有趣的故事。对了！"+.@name$+"，爱情很上镜。你不这么认为吗？";
 			next;
-			mes "[女性村民]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "它需要黑暗才能显影。";
 			next;
 		}
@@ -670,17 +670,17 @@ malaya,63,185,4	script	女性村民#ma08	583,{
 	mes "如果听到村外森林里有婴儿哭声，千万不要靠近。";
 	next;
 	select("为什么？");
-	mes "[女性村民]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "村外有一种叫提乌克努克的怪物，会变成婴儿到处游荡哭泣。";
 	next;
-	mes "[女性村民]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "但善良的旅行者抱起婴儿时，它会变回原形并发动攻击。";
 	next;
 	select("听起来是个狡猾的怪物。" );
-	mes "[女性村民]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "是的，这种怪物利用旅行者的善良，实在恶劣，不过……";
 	next;
-	mes "[女性村民]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "据说这个怪物来自一个未能出生的婴儿灵魂。真可怜。";
 	close;
 }
@@ -774,7 +774,7 @@ function	script	F_Malaya_Jeepney	{
 	close;
 }
 
-malaya,237,240,4	script	吉普尼司机#01	582,{
+malaya,237,240,4	script	吉普尼车司机#01::吉普尼司机#01	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif01",
@@ -794,7 +794,7 @@ malaya,237,240,4	script	吉普尼司机#01	582,{
 	);
 }
 
-malaya,67,44,4	script	吉普尼司机#02	582,{
+malaya,67,44,4	script	吉普尼车司机#02::吉普尼司机#02	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif02",
@@ -812,7 +812,7 @@ malaya,67,44,4	script	吉普尼司机#02	582,{
 	);
 }
 
-malaya,282,129,4	script	吉普尼司机#03	582,{
+malaya,282,129,4	script	吉普尼车司机#03::吉普尼司机#03	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif03",
@@ -830,7 +830,7 @@ malaya,282,129,4	script	吉普尼司机#03	582,{
 	);
 }
 
-malaya,134,250,6	script	吉普尼司机#04	582,{
+malaya,134,250,6	script	吉普尼车司机#04::吉普尼司机#04	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif04",
@@ -848,7 +848,7 @@ malaya,134,250,6	script	吉普尼司机#04	582,{
 	);
 }
 
-malaya,341,153,4	script	吉普尼司机#05	582,{
+malaya,341,153,4	script	吉普尼车司机#05::吉普尼司机#05	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif05",
@@ -866,7 +866,7 @@ malaya,341,153,4	script	吉普尼司机#05	582,{
 	);
 }
 
-malaya,293,290,6	script	吉普尼司机#06	582,{
+malaya,293,290,6	script	吉普尼车司机#06::吉普尼司机#06	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif06",
@@ -884,7 +884,7 @@ malaya,293,290,6	script	吉普尼司机#06	582,{
 	);
 }
 
-malaya,242,221,4	script	吉普尼司机#07	582,{
+malaya,242,221,4	script	吉普尼车司机#07::吉普尼司机#07	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif07",
@@ -899,7 +899,7 @@ malaya,242,221,4	script	吉普尼司机#07	582,{
 	);
 }
 
-malaya,62,245,6	script	吉普尼司机#08	582,{
+malaya,62,245,6	script	吉普尼车司机#08::吉普尼司机#08	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif08",
@@ -915,7 +915,7 @@ malaya,62,245,6	script	吉普尼司机#08	582,{
 	);
 }
 
-malaya,257,58,6	script	吉普尼司机#09	582,{
+malaya,257,58,6	script	吉普尼车司机#09::吉普尼司机#09	582,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif09",

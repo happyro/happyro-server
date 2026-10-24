@@ -55,7 +55,7 @@
 
 // Cat Paw Addition :: cat_enhance
 //============================================================ 
-spl_fild02,25,211,4	script	猫爪代理员#spl	421,{
+spl_fild02,25,211,4	script	猫咪手组员#spl::猫爪代理员#spl	421,{
 	function Catwarp;
 	if (ep13_yong1 < 3) {
 		mes "欢迎来到猫爪商队。";
@@ -367,7 +367,7 @@ function Catwarp {
 	}
 }
 }
-man_fild02,132,47,4	duplicate(猫爪代理员#spl)	猫爪代理员#man	421
+man_fild02,132,47,4	duplicate(猫爪代理员#spl)	猫咪手组员#man::猫爪代理员#man	421
 
 -	script	Mysterious Rock#30::manukrock2	-1,{
 	if ((countitem(6048) < 3) && (checkquest(12062,PLAYTIME) == -1)) {
@@ -485,7 +485,7 @@ spl_fild01,170,74,0	duplicate(FishingHole_spl3)	鱼群#14	844
 
 // Two Tribes :: ep13_2_msg
 //============================================================
-spl_in01,32,306,3	script	斯普兰迪德守卫#ep13md01	447,2,2,{
+spl_in01,32,306,3	script	史波浪壮丽守卫#ep13md01::斯普兰迪德守卫#ep13md01	447,2,2,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！";
 		mes "你携带的物品太多。";
@@ -496,11 +496,11 @@ spl_in01,32,306,3	script	斯普兰迪德守卫#ep13md01	447,2,2,{
 	}
 	if ((isequipped(2782) == 1) && (ep13_2_rhea > 99)) {
 		if (ep13_mdrama == 0) {
-			mes "[斯普兰迪德守卫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "外来者？";
 			mes "外来者越来越频繁地来。";
 			next;
-			mes "[斯普兰迪德守卫]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "看来上级允许你进入，所以我也不阻拦。";
 			next;
 			mes "[阿克]";
@@ -864,7 +864,7 @@ spl_in01,32,306,3	script	斯普兰迪德守卫#ep13md01	447,2,2,{
 			close;
 		}
 		else {
-			mes "[斯普兰迪德守卫]";
+			mes "[" + strnpcinfo(1) + "]";
 			next;
 			mes "- 我们似乎无法互相理解。-";
 			close;
@@ -875,7 +875,7 @@ spl_in01,32,306,3	script	斯普兰迪德守卫#ep13md01	447,2,2,{
 OnTouch:
 	if (isequipped(2782) == 1) {
 		if (ep13_mdrama < 1) {
-			mes "[斯普兰迪德守卫]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "站住。";
 		mes "除非获得许可，否则禁止进入此区域。";
 		mes "尤其是像你这样的外来者。";
@@ -883,7 +883,7 @@ OnTouch:
 		}
 	}
 	else {
-		mes "[斯普兰迪德守卫]";
+		mes "[" + strnpcinfo(1) + "]";
 		next;
 		mes "- 看来我们无法互相理解。这可能会很麻烦……-";
 		close;
@@ -1212,7 +1212,7 @@ nyd_dun01,58,223,0	script	石化的萨帕#ep13md03	844,{
 	}
 }
 
-nyd_dun01,55,223,5	script	斯诺伦#ep13md17	454,{
+nyd_dun01,55,223,5	script	史努连#ep13md17::斯诺伦#ep13md17	454,{
 	disablenpc "斯诺伦#ep13md17";
 	end;
 
@@ -1413,7 +1413,7 @@ manuk,281,177,3	script	村民#ep13_12	449,{
 	}
 }
 
-man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
+man_in01,175,59,5	script	史努连#ep13_13::斯诺伦#ep13_13	454,{
 	if (checkweight(1201,2) == 0) {
 	mes "等一下！！";
 	mes "你携带的物品太多。";
@@ -1427,7 +1427,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			mes "他焦虑地来回踱步……";
 			mes "他是这座监狱的守卫吗？";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……啊……为什么不行？！";
 			mes "真是个笨蛋……";
 			mes "嗯？";
@@ -1436,25 +1436,25 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			next;
 			switch(select("关于被关押的妖精。:这里是什么地方？")) {
 			case 1:
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你这样的外来者怎么知道？";
 			mes "而且……什么？你怎么能听懂我说话？";
 				next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "喂……？";
 			mes "你能听懂我说的话吗？";
 				next;
 	mes "- 我向 斯诺伦 展示戒指。-";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊哈！我现在明白了……";
 		mes "真厉害。能翻译不同语言的戒指……你竟然能一路来到这里。";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我听说有外来者在帮助我们。";
 		mes "你一定是其中之一！";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但你从哪里听说那个妖精的？";
 		mes "说实话，我想和那个妖精谈谈。";
 		mes "但我不懂他们的语言。";
@@ -1463,49 +1463,49 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 				case 1:
 					break;
 				case 2:
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "翻译？当然需要！";
 				mes "但我不能随便这么做……";
 				mes "我想和那个妖精，也就是拉菲内谈谈，是因为……";
 					next;
 					break;
 				}
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我……想知道她是否和我的朋友有关……";
 				next;
 				select("你的朋友？");
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。奥根 失踪了。";
 		mes "他说对你们居住的区域很好奇，就去查看了。真是愚蠢。";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但他再也没回来。";
 		mes "过了一段时间，那个妖精来了。";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不知道她哪来的胆子飞进我们的领地。";
 		mes "那个妖精一直喊着“钸镭矿石！”“钸镭矿石！”";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "村里的警卫说那个妖精受 钸镭矿石 力量影响，疯掉了。";
 		mes "拉菲内都是这个样子！";
 				next;
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们只想用这种作为生命源泉的矿石制作饰品。";
 	mes "他们会收集一切拥有魔力的东西。";
 				next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "你应该冷静一点……告诉我那个被捕的拉菲内。";
 				next;
-	mes "[斯诺伦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "对不起。";
 	mes "总之，奥根 失踪后不久妖精就出现了……太可疑了……";
 	mes "而且那个妖精还身受重伤。";
 				next;
-	mes "[斯诺伦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我认为……";
 				next;
-	mes "[斯诺伦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那个妖精在 奥根 偷看你们营地时袭击了他。";
 	mes "她被 奥根 的 钸镭矿石 吸引，一路来到这里寻找更多 钸镭矿石！";
 				next;
@@ -1515,7 +1515,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 	mes "但那种叫 钸镭矿石 的矿石真的拥有压倒性的魔力吗？";
 	mes "我没觉得有那么强……";
 					next;
-	mes "[斯诺伦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "真的吗？但我们萨帕离不开 钸镭矿石。";
 	mes "和拉菲内的战争……就是为了保护 钸镭矿石 不被他们夺走……";
 					next;
@@ -1525,7 +1525,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 					next;
 					break;
 				case 2:
-	mes "[斯诺伦]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "是……是这样吗？";
 	mes "那你怎么看待这种情况？";
 					next;
@@ -1539,22 +1539,22 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 				mes "总之，你要向那个妖精询问 奥根，对吧？";
 				mes "如果是这样，我可以为你们翻译……";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "真的吗？！";
 				mes "那就在这里等一下！";
 				mes "我去问 路易克！";
 				set ep13_mdrama,12;
 				close;
 			case 2:
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呃，啊~！";
 				mes "这里是监狱。";
 				mes "要维持团体生活的和平，就必须遵守规则。";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "违反规则的人会被关在这里过夜。";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦，我不是其中之一。";
 				mes "我只是来这里办事。";
 				mes "斯诺伦 是个好萨帕。";
@@ -1562,7 +1562,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			}
 		}
 		else if (ep13_mdrama == 12) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……等一下……";
 			mes "路易克，是我，斯诺伦。";
 			next;
@@ -1570,7 +1570,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			mes "啊，我说过不行，斯诺伦！";
 			mes "我最多只能把你关进牢房一晚！";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "糟糕！路易克，不是那样！";
 			mes "我带来了能翻译那个妖精话语的人！";
 			mes "所以，我不能进去吗？";
@@ -1582,13 +1582,13 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			mes "她的身体和我们完全不同。该怎么办？";
 			mes "嘿，斯诺伦！带点东西来，草药之类的！";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "草药？她的情况这么严重吗？";
 			mes "不能用 钸镭矿石 治好她吗？";
 			mes "哦对，她不是萨帕，对吧？";
 			next;
 			select("什么都瞒不过你……");
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你有什么想法吗？";
 			next;
 			mes "[" + strcharinfo(0) + "]";
@@ -1596,7 +1596,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			mes "比如治疗她需要什么……";
 			mes "我来处理。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗？";
 			mes "那快点带东西回来……";
 			mes "我们会等着。";
@@ -1608,25 +1608,25 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			close;
 		}
 		else if ((ep13_mdrama > 12) && (ep13_mdrama < 17)) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "快去寻找治好这名拉菲内的方法……";
 			mes "这样 路易克 也许会让我们进去。";
 			close;
 		}
 		else if (ep13_mdrama == 17) {
 			if (countitem(607) > 5) {
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你找到治疗方法了吗？";
 				mes "这……是种长相奇怪的水果。";
 				mes "我偶尔见过这种水果，但没想到它能治病……？";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你带来的东西我全都收下！";
 				set .@temp_ig,countitem(607);
 				delitem 607,.@temp_ig; //Yggdrasilberry
 				set ep13_mdrama,18;
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在，我们进去吧！";
 				close;
 			}
@@ -1635,7 +1635,7 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 				mes "嗯……这些还不够……";
 				mes "我至少需要 6～7 个……";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "出什么问题了吗？";
 				next;
 				mes "[" + strcharinfo(0) + "]";
@@ -1644,57 +1644,57 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			}
 		}
 		else if (ep13_mdrama == 18) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我已经把你的事全告诉 路易克 了……";
 			mes "我们进去吧。";
 			close;
 		}
 		else if (((ep13_mdrama > 18) && (ep13_mdrama < 21)) || (ep13_mdrama == 22)) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我一直在等你……";
 			mes "我们快走吧。";
 			close;
 		}
 		else if (ep13_mdrama == 21) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我现在真的很困惑……该不该相信你的故事。";
 			mes "如果那个洞穴真的存在，奥根 也真的受伤了……";
 			close;
 		}
 		else if (ep13_mdrama == 23) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "大概位置是……";
 			mes "一棵树的巨大根部。明白了。";
 			mes "你先走。我会在精炼厂停一下，随后赶上你。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那是拉菲内的领地，我会安静前往，不让他们注意到我。";
 			mes "你先走，我会紧跟在后面。";
 			close;
 		}
 		else if (ep13_mdrama == 24) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你回来了……路易克 要我告诉你……";
 			mes "那个拉菲内 泰拉 现在自由了。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我们厌倦了战斗，甚至从未想开始……";
 			mes "而且我们看到了她真正的意图。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "去确认 泰拉 是否安全回到家……";
 			mes "奥根……他回归了大自然。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我真的不认为 奥根 做的是正确的事……";
 			mes "但那就是……奥根……";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "原谅我，我有点沮丧……";
 			mes "我想就在这里休息。";
 			mes "我真的很感谢你所做的一切。";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "随时回来……";
 			mes "好吗？";
 			set ep13_mdrama,25;
@@ -1703,21 +1703,21 @@ man_in01,175,59,5	script	斯诺伦#ep13_13	454,{
 			close;
 		}
 		else if (ep13_mdrama > 24) {
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你觉得这条围巾怎么样？";
 		mes "这是 奥根 的……";
 		mes "戴在我身上好看吗？";
 			close;
 		}
 		else {
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "未经许可，外来者不该待在这里。";
 		mes "请离开这里。";
 			close;
 		}
 	}
 	else {
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "Ids ad?";
 		mes "Ns ai dha si asd!";
 		mes "Ms dfaa sd a.";
@@ -1745,7 +1745,7 @@ OnTouch:
 man_in01,10,125,0	warp	to_out1#ep13mdwarp02	1,1,man_in01,179,58
 man_in01,65,125,0	warp	to_out2#ep13mdwarp03	1,1,man_in01,179,58
 
-man_in01,22,126,3	script	被关押的拉菲内#ep13md	441,{
+man_in01,22,126,3	script	被捕的守护精灵#ep13md::被关押的拉菲内#ep13md	441,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！";
 		mes "你携带的物品太多。";
@@ -1919,7 +1919,7 @@ man_in01,22,126,3	script	被关押的拉菲内#ep13md	441,{
 	}
 }
 
-man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
+man_in01,17,128,5	script	史努连#ep13md_15::斯诺伦#ep13md_15	454,{
 	if (checkweight(1201,2) == 0) {
 		mes "请稍等！！";
 		mes "你携带的物品太多了。";
@@ -1930,15 +1930,15 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 	}
 	if (isequipped(2782) == 1) {
 		if (ep13_mdrama == 18) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "给你，路易克。他说这是治疗拉菲内的药。";
 			mes "我们就这样让她吃下去吗？";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呃……你的名字是……？";
 			next;
 			select("" + strcharinfo(0) + "");
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，没错。";
 			mes "" + strcharinfo(0) + "，你试着和那位拉菲内谈谈……";
 			mes "听听她的故事吧。";
@@ -1947,7 +1947,7 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 			close;
 		}
 		else if (ep13_mdrama == 19) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请帮我翻译。";
 			mes "你和她说话时我们会在旁边看着。";
 			mes "对吧，路易克？";
@@ -1958,16 +1958,16 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 			close;
 		}
 		else if (ep13_mdrama == 20) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听听她的故事吧。";
 			mes "我们先从……她为什么想要钸镭矿石开始？";
 			next;
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这一部分必须详细准确地告诉路易克。";
 			close;
 		}
 		else if (ep13_mdrama == 21) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果洞穴里的萨帕真的是奥根，我该怎么办……？";
 			mes "奥根……如果他出了什么事，我该怎么办……？";
 			close;
@@ -1979,12 +1979,12 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 				mes "这样根本帮不上忙……";
 				mes "还有，这条围巾……";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "这是奥根的！奥根的围巾！";
 				mes "路易克！奥根！这就是奥根！";
 				mes "未提炼的钸镭矿石！";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我要去找奥根！";
 				mes "那个洞穴在哪里？！在哪里！";
 				next;
@@ -2017,26 +2017,26 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 				mes "你应该带来能证明这件事的东西。";
 				mes "……我们和他们战斗了这么久，很难相信你。";
 				next;
-				mes "[斯诺伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……是的……无论如何，证明你说的是真的。";
 				close;
 			}
 		}
 		else if (ep13_mdrama == 23) {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "快点带路！";
 			mes "我们现在该往哪走？";
 			close;
 		}
 		else {
-			mes "[斯诺伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你怎么进来的？！";
 			mes "出去！";
 			close;
 		}
 	}
 	else {
-		mes "[斯诺伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "We rs...";
 		mes "F as d dd ";
 		mes "Tb ds dfw we!";
@@ -2045,7 +2045,7 @@ man_in01,17,128,5	script	斯诺伦#ep13md_15	454,{
 	}
 }
 
-man_in01,19,126,3	script	路易克#ep13md16	450,{
+man_in01,19,126,3	script	陆一克#ep13md16::路易克#ep13md16	450,{
 	if (checkweight(1201,2) == 0) {
 		mes "请稍等！！";
 		mes "你携带的物品太多了。";
@@ -2056,22 +2056,22 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 	}
 	if (isequipped(2782) == 1) {
 		if (ep13_mdrama < 20) {
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……我很期待能从她那里问出有用的消息。";
 			mes "你的翻译可靠，对吧？";
 			close;
 		}
 		else if (ep13_mdrama == 20) {
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "首先，那位拉菲内为什么会来到这里？";
 			mes "她为什么需要魔力之石？";
 			next;
 			select("为了把它交给洞穴里的萨帕……");
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "洞穴里的萨帕？什么洞穴？";
 			mes "算了……斯诺伦，你一定知道那个洞穴的事，对吧？";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "等等……";
 			mes "拉菲内为什么要把钸镭矿石交给我们的盟友？";
 			next;
@@ -2079,7 +2079,7 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 			mes "他们在洞穴里战斗，你的朋友受伤并开始石化。";
 			mes "所以她来到这里，想取得钸镭矿石来救他的性命……";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们战斗了？";
 			mes "斯诺伦！你脸上那是什么表情？";
 			mes "有什么话就说出来。";
@@ -2088,28 +2088,28 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 			mes "说实话，路易克。我……告诉过你……奥根 失踪了。";
 			mes "奥根 失踪的时间，正好和那位拉菲内到来的时间重合……";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "然后呢？";
 			next;
 			mes "[斯诺伦]";
 			mes "拉菲内所说的萨帕，或许就是 奥根。";
 			mes "我们还有其他会去奇怪洞穴的同伴吗？";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "没有，因为这里没有那样的洞穴。";
 			mes "首先，我们应该查清楚他们所说的洞穴。";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你们这些外来者和拉菲内有联系，对吧？";
 			mes "如果这是他们的邪恶阴谋呢？";
 			next;
 			select("不是那样！");
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "那你要怎么证明？";
 			mes "我们和他们战斗很久了。";
 			mes "我们没有理由相信你或他们说的话。";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "更何况你还在谈论一个根本不存在的洞穴。";
 			next;
 			mes "[" + strcharinfo(0) + "]";
@@ -2128,20 +2128,20 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 			close;
 		}
 		else if (ep13_mdrama == 21) {
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……什么都可以。想办法让我相信你这个外来者和那位拉菲内。";
 			mes "我们萨帕人不是傻瓜。";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我保证，我们会像之前一样对待那位拉菲内，不会伤害她。";
 			next;
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以，你只管想办法让我们相信你。";
 			close;
 		}
 		else if (ep13_mdrama == 22) {
 			if ((countitem(6085) > 0) && (countitem(6084) > 0)) {
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "……这块钸镭矿石没有被正确提炼……";
 				mes "这样根本帮不上忙……";
 				mes "还有，这条围巾……";
@@ -2156,21 +2156,21 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 				mes "那个洞穴在哪里？！在哪里！";
 				next;
 				select("冷静下来！");
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "好。听我的，冷静点，斯诺伦。";
 				mes "如果真是奥根……我们赶快行动，也许还能救他。";
 				next;
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "斯诺伦，去精炼厂拿最好的魔力之石……";
 				mes "救救他。";
 				next;
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "" + strcharinfo(0) + "……呃……？";
 				mes "请照顾好斯诺伦……还有奥根。";
 				mes "这位拉菲内，我是说泰拉……";
 				mes "她真的想救奥根……";
 				next;
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "我会和上级谈谈，设法解决这件事……";
 				mes "请救救奥根。";
 				delitem 6085,1; //Shaggy_Muffler
@@ -2180,7 +2180,7 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 				close;
 			}
 			else {
-				mes "[路易克]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你应该带来能证明这件事的东西。";
 				mes "……我们和他们战斗了这么久，很难相信你。";
 				next;
@@ -2190,19 +2190,19 @@ man_in01,19,126,3	script	路易克#ep13md16	450,{
 			}
 		}
 		else if (ep13_mdrama == 23) {
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请……救救奥根。";
 			close;
 		}
 		else {
-			mes "[路易克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你怎么进来的？";
 			mes "你不该来这里。";
 			close;
 		}
 	}
 	else {
-		mes "[路易克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "Na w ewe w";
 		mes "Aewrf sd fsd iyu. ";
 		mes "Ou uur?";
@@ -2219,7 +2219,7 @@ OnTouch:
 	close;
 }
 
-spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
+spl_in02,236,92,5	script	阿科#ep13md_l02::阿克#ep13md_l02	447,{
 	if (checkweight(1201,2) == 0) {
 		mes "请稍等！！";
 		mes "你携带的物品太多了。";
@@ -2233,12 +2233,12 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 			mes "[泰拉]";
 			mes "……^000000";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "我明白了。原来是这样。";
 			mes "但是……那个萨帕……这么短时间里，他对你来说变成了什么？";
 			next;
 			select("阿克？");
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "啊，终于来了。等你的时候我一直在和泰拉说话。";
 			mes "泰拉，这就是救了你的人……";
 			mes "你应该感谢"+((Sex == SEX_MALE)?"他。":"她。");
@@ -2247,14 +2247,14 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 			mes "谢谢你……";
 			mes "对不起，阿克……对不起……";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "事情就是这样。";
 			mes "泰拉在你们的营地附近徘徊，当时遇到了一个也在营地附近徘徊的萨帕。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "他们都小心不让你们人类发现，却彼此撞见并开始战斗。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "后来他们掉进沼泽里的洞，最终落入那个洞穴。";
 			next;
 			mes "[泰拉]";
@@ -2280,17 +2280,17 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 			mes "是我错了吗……？";
 			mes "是我的想法错了吗？";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "报答他人是件好事。";
 			mes "对骄傲的拉菲内来说尤其如此。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "但是泰拉……";
 			mes "你犯了两个大错。";
 			mes "第一，你未经许可就离开了……";
 			mes "第二……";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "你没有寻求帮助。";
 			mes "如果发生那种事……我当然会帮忙……";
 			next;
@@ -2298,17 +2298,17 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 			mes "对不起阿克……对不起……";
 			mes "我再也不会做傻事了。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "好好休息。";
 			mes "我会向上级替你说好话……";
 			mes "还有" + strcharinfo(0) + "……";
 			mes "谢谢你。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "来，这些给你，表达我的谢意。";
 			mes "虽然不多，但你可以用它们在辉煌领域购买物品。";
 			next;
-			mes "[阿克]";
+			mes "[阿科]";
 			mes "抱歉，我现在只能给你这些。";
 			set ep13_mdrama,27;
 			getitem 6081,25; //Splendide_Coin
@@ -2320,8 +2320,8 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 			close;
 		}
 		else if (ep13_mdrama == 27) {
-			if (strnpcinfo(1) == "阿克") {
-				mes "[阿克]";
+			explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "阿克") {
+				mes "[阿科]";
 				mes "泰拉，好好休息……";
 				mes "安心休息……";
 				mes "还有……";
@@ -2332,19 +2332,19 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 				mes "对不起……还有，你……";
 			}
 			next;
-			mes "["+((strnpcinfo(1) == "阿克")?"阿克":"泰拉")+"]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "原本……我们拉菲内非常不愿让外人进入我们的地区。";
 			mes strcharinfo(0) + "，你是特殊例外。";
 			next;
-			mes "["+((strnpcinfo(1) == "阿克")?"阿克":"泰拉")+"]";
-			if (strnpcinfo(1) == "阿克") mes "泰拉也希望如此。";
+			mes "[" + strnpcinfo(1) + "]";
+			explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "阿克") mes "泰拉也希望如此。";
 			mes "这里可能有些拥挤，但随时欢迎你来拜访。";
 			set ep13_mdrama,28;
 			close;
 		}
 		else if (ep13_mdrama > 27) {
-			if (strnpcinfo(1) == "阿克") {
-				mes "[阿克]";
+			explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "阿克") {
+				mes "[阿科]";
 				mes "你适应辉煌领域了吗？";
 				mes "泰拉还没有完全恢复，请记住这一点。";
 			}
@@ -2357,8 +2357,8 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 		}
 		else {
 			// custom translation
-			if (strnpcinfo(1) == "阿克") {
-				mes "[阿克]";
+			explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "阿克") {
+				mes "[阿科]";
 				mes "右侧的后方……";
 			}
 			else {
@@ -2370,8 +2370,8 @@ spl_in02,236,92,5	script	阿克#ep13md_l02	447,{
 		}
 	}
 	else {
-		if (strnpcinfo(1) == "阿克") {
-			mes "[阿克]";
+		explode .@npc_identity_parts$, strnpcinfo(3), "#"; if (.@npc_identity_parts$[0] == "阿克") {
+			mes "[阿科]";
 			mes "HirWosWeh. Yee DiebVilFar U manTalVil.";
 			mes "LarsNeiser...??";
 			mes "VeldTiTal Ko SharDurYur Di ?";
@@ -2556,7 +2556,7 @@ spl_fild01,329,29,0	script	???#ep13mdf03	844,{
 
 // Monster Suppression :: ep13_2_dayquest
 //============================================================
-manuk,252,116,3	script	马努克加尔顿#ep13_2day	450,{
+manuk,252,116,3	script	魔怒克高尔顿#ep13_2day::马努克加尔顿#ep13_2day	450,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！";
 		mes "你携带的物品太多。";
@@ -2656,7 +2656,7 @@ manuk,252,116,3	script	马努克加尔顿#ep13_2day	450,{
 		}
 	}
 	else {
-		mes "[马努克加尔顿]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "Arpe? Yu osp sad?";
 		mes "EW pisdn psa?";
 		mes "We psis?";
@@ -2669,7 +2669,7 @@ manuk,252,116,3	script	马努克加尔顿#ep13_2day	450,{
 // - Laphine Craftsman
 // - Draco Egg Collection (NPC includes 'Wanted' quest)
 //============================================================
-man_in01,378,276,3	script	马努克工程师#ep13_2	453,{
+man_in01,378,276,3	script	魔怒克工学家#ep13_2::马努克工程师#ep13_2	453,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！";
 		mes "你携带的物品太多。";
@@ -2755,7 +2755,7 @@ man_in01,378,276,3	script	马努克工程师#ep13_2	453,{
 		}
 	}
 	else {
-		mes "[马努克工程师]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "Aweo wpe?";
 		mes "Sdd psiem!";
 		mes "Awq ouwn ksudh bud ds.";
@@ -2763,7 +2763,7 @@ man_in01,378,276,3	script	马努克工程师#ep13_2	453,{
 	}
 }
 
-spl_in01,97,313,3	script	拉菲内工匠#ep13	446,{
+spl_in01,97,313,3	script	守护精灵匠人#ep13::拉菲内工匠#ep13	446,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！";
 		mes "你携带的物品太多。";
@@ -2855,7 +2855,7 @@ spl_in01,97,313,3	script	拉菲内工匠#ep13	446,{
 	close;
 }
 
-mid_camp,146,306,3	script	宠物饲养员#ep13_eden01	982,{
+mid_camp,146,306,3	script	宠物饲育员#ep13_eden01::宠物饲养员#ep13_eden01	982,{
 	if (checkweight(1201,2) == 0) {
 		mes "等一下！！你的物品太多了。无法领取这个物品。请减轻负重后再试。";
 		close;
@@ -2975,7 +2975,7 @@ mid_camp,146,306,3	script	宠物饲养员#ep13_eden01	982,{
 	close;
 }
 
-mid_camp,192,239,4	script	通缉告示#ep13_2ect01	857,{
+mid_camp,192,239,4	script	悬赏通缉公告#ep13_2ect01::通缉告示#ep13_2ect01	857,{
 	if (ep13_mdrama > 5) {
 		mes "通缉：蒲公英。委托人：莉恩。奖励：宝箱。";
 		mes "注意：我们以为蒲公英帮已被消灭，但并没有。";
@@ -3032,12 +3032,12 @@ OnDisable:
 	end;
 }
 
-nyd_dun01,258,134,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg01	463
-nyd_dun01,100,210,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg02	463
-nyd_dun01,74,68,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg03	463
-nyd_dun01,98,142,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg04	463
-nyd_dun01,244,157,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg05	463
-nyd_dun01,59,185,0	duplicate(Dragon Egg#ep13_degg_0)	龙蛋#ep13_degg06	463
+nyd_dun01,258,134,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg01::龙蛋#ep13_degg01	463
+nyd_dun01,100,210,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg02::龙蛋#ep13_degg02	463
+nyd_dun01,74,68,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg03::龙蛋#ep13_degg03	463
+nyd_dun01,98,142,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg04::龙蛋#ep13_degg04	463
+nyd_dun01,244,157,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg05::龙蛋#ep13_degg05	463
+nyd_dun01,59,185,0	duplicate(Dragon Egg#ep13_degg_0)	暴躁龙蛋#ep13_degg06::龙蛋#ep13_degg06	463
 
 nyd_dun02,68,256,0	script	龙蛋#ep13_degg_1	463,{
 	if (checkweight(1201,2) == 0) {
@@ -3067,8 +3067,8 @@ OnDisable:
 	end;
 }
 nyd_dun02,68,256,0	duplicate(龙蛋#ep13_degg_1)	龙蛋#ep13_degg11	463
-nyd_dun02,202,166,0	duplicate(龙蛋#ep13_degg_1)	龙蛋#ep13_degg12	463
-nyd_dun02,200,165,0	duplicate(龙蛋#ep13_degg_1)	龙蛋#ep13_degg13	463
+nyd_dun02,202,166,0	duplicate(龙蛋#ep13_degg_1)	暴躁龙蛋#ep13_degg12::龙蛋#ep13_degg12	463
+nyd_dun02,200,165,0	duplicate(龙蛋#ep13_degg_1)	暴躁龙蛋#ep13_degg13::龙蛋#ep13_degg13	463
 
 nyd_dun02,201,166,0	script	龙蛋#ep13_degg_2	463,{
 	if (checkweight(1201,2) == 0) {
@@ -3098,8 +3098,8 @@ OnDisable:
 	end;
 }
 nyd_dun02,201,166,0	duplicate(龙蛋#ep13_degg_2)	龙蛋#ep13_degg16	463
-nyd_dun02,203,167,0	duplicate(龙蛋#ep13_degg_2)	龙蛋#ep13_degg17	463
-nyd_dun02,201,164,0	duplicate(龙蛋#ep13_degg_2)	龙蛋#ep13_degg18	463
+nyd_dun02,203,167,0	duplicate(龙蛋#ep13_degg_2)	暴躁龙蛋#ep13_degg17::龙蛋#ep13_degg17	463
+nyd_dun02,201,164,0	duplicate(龙蛋#ep13_degg_2)	暴躁龙蛋#ep13_degg18::龙蛋#ep13_degg18	463
 
 nyd_dun02,201,157,5	script	护蛋飞龙#13_1	2013,3,3,{
 
@@ -3245,7 +3245,7 @@ OnTimer300000:
 
 // Otherworld language :: ep13_2_rhea
 //============================================================ 
-mid_camp,197,237,3	script	机械师多兰斯#1	869,{
+mid_camp,197,237,3	script	秀发兹发德机械工学家#1::机械师多兰斯#1	869,{
 	if( !checkweight(2782,1)) { // Custom weight check.
 		mes "你似乎带了太多东西。";
 		mes "不如把一部分物品存进仓库后再回来？";
@@ -3427,7 +3427,7 @@ mid_camp,197,237,3	script	机械师多兰斯#1	869,{
 	}
 }
 
-mid_campin,168,82,3	script	迪克申纳里#1	935,{
+mid_campin,168,82,3	script	阿卢纳贝兹语言学家#1::迪克申纳里#1	935,{
 	if (ep13_2_rhea < 1) {
 		mes "语言将人类与动物区分开来。每一种有智慧的生命都有自己的语言。";
 		next;
@@ -3757,7 +3757,7 @@ mid_campin,168,82,3	script	迪克申纳里#1	935,{
 	}
 }
 
-mid_camp,147,256,3	script	魔法师维斯珀#1	735,{
+mid_camp,147,256,3	script	卢恩 米德加兹魔法学家#1::魔法师维斯珀#1	735,{
 	if (ep13_2_rhea < 4) {
 		mes "要存储如此庞大的信息，现有技术是不可能做到的。";
 		next;
@@ -3903,7 +3903,7 @@ mid_camp,147,256,3	script	魔法师维斯珀#1	735,{
 			mes "- 他闭上眼睛吟唱咒语。-";
 			mes "- 手中握着那块矿石。-";
 			next;
-			mes "[魔法师维斯珀]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "Lumos Nox Densaugeo Dissendium Diffindo Engorgio Mobiliarbus Expecto patronum!!!!";
 			next;
 			specialeffect EF_FLASHER; // 99 : "Rune-Midgarts Magician#ep132_rhea03" EF_FLASHER
@@ -5168,7 +5168,7 @@ spl_in01,30,324,3	script	高阶拉菲内#grenouille	446,{
 	}
 }
 
-spl_in02,139,65,3	script	中阶拉菲内#la	438,{
+spl_in02,139,65,3	script	一般守护精灵#la::中阶拉菲内#la	438,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (checkweight(1201,1) == 0) {
 			mes "你似乎带了太多东西。";
@@ -5229,7 +5229,7 @@ spl_in02,139,65,3	script	中阶拉菲内#la	438,{
 		
 	}
 	else {
-		mes "[中阶拉菲内]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "NeiKoFulo An DielOdesMush Or KoDanaOsa Ir FarBurnes Ir ";
 		mes "NeOsaVa Mu BurVeTi Ra OsaDeh";
 		close;
@@ -5268,7 +5268,7 @@ splendide,164,82,3	duplicate(Purifier)	净化装置#4	844
 splendide,171,116,3	duplicate(Purifier)	净化装置#5	844
 splendide,134,280,3	duplicate(Purifier)	净化装置#6	844
 
-splendide,205,139,5	script	疲惫的士兵#1	447,{
+splendide,205,139,5	script	疲惫的战士#1::疲惫的士兵#1	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5323,7 +5323,7 @@ OnTimer60000:
 	end;
 }
 
-splendide,181,135,5	script	疲惫的士兵#2	447,{
+splendide,181,135,5	script	疲惫的战士#2::疲惫的士兵#2	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5376,7 +5376,7 @@ OnTimer60000:
 	end;
 }
 
-splendide,139,178,5	script	疲惫的士兵#3	447,{
+splendide,139,178,5	script	疲惫的战士#3::疲惫的士兵#3	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5431,11 +5431,11 @@ OnTimer60000:
 	end;
 }
 
-splendide,164,188,5	script	疲惫的士兵#4	447,{
+splendide,164,188,5	script	疲惫的战士#4::疲惫的士兵#4	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
-				mes "[疲惫的士兵]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呼……";
 				next;
 				switch(select("使用香水。:不使用香水。")) {
@@ -5487,7 +5487,7 @@ OnTimer60000:
 	end;
 }
 
-splendide,177,257,5	script	疲惫的士兵#5	447,{
+splendide,177,257,5	script	疲惫的战士#5::疲惫的士兵#5	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5542,7 +5542,7 @@ OnTimer60000:
 	end;
 }
 
-splendide,124,212,5	script	疲惫的士兵#6	447,{
+splendide,124,212,5	script	疲惫的战士#6::疲惫的士兵#6	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5597,7 +5597,7 @@ OnTimer60000:
 	end;
 }
 
-splendide,196,153,5	script	疲惫的士兵#7	447,{
+splendide,196,153,5	script	疲惫的战士#7::疲惫的士兵#7	447,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre1 == 5) {
 			if (countitem(6082) > 0) {
@@ -5654,7 +5654,7 @@ OnTimer60000:
 
 // Secret note of Bazett :: ep13_2_dailybs
 //============================================================ 
-mid_camp,283,198,5	script	巴杰特·茶布莱克#ep13bs	883,{
+mid_camp,283,198,5	script	巴捷特 堤卜勒#ep13bs::巴杰特·茶布莱克#ep13bs	883,{
 	if (checkweight(1201,1) == 0) {
 		mes "- 等一下！！-";
 		mes "- 你携带了太多不同的物品。-";

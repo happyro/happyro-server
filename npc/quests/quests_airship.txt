@@ -39,7 +39,7 @@
 //----------------------------------------------------------------------------
 // Kain Himere
 //----------------------------------------------------------------------------
-airplane,47,61,7	script	船员	4_M_ZONDAOYAJI,{
+airplane,47,61,7	script	机组员::船员	4_M_ZONDAOYAJI,{
 	mes "[凯恩·海默尔]";
 	if (kain_ticket == 4) {
 		mes "啊……在这里！";
@@ -628,26 +628,26 @@ OnTouch_:
 //----------------------------------------------------------------------------
 // Theo Cherno
 //----------------------------------------------------------------------------
-ein_in01,123,94,1	script	西奥·切尔诺	4_M_REPAIR,{
+ein_in01,123,94,1	script	德奥 其鲁诺::西奥·切尔诺	4_M_REPAIR,{
 	if (kain_ticket == 7) {
 		callfunc "F_Cherno";
 		kain_ticket = 8;
 	} else if (kain_ticket > 7 && kain_ticket < 10) {
-		mes "[西奥·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你真善良，冒险者。";
 		mes "世上应该多一些像你这样的人。";
 	} else if (kain_ticket > 9 && kain_ticket < 13) {
-		mes "[西奥·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你确定能找到塔莎的父亲吗？";
 		mes "哦，你一定是上天的恩赐！";
 		mes " ";
 	} else if (kain_ticket > 12) {
 		emotion ET_SMILE;
-		mes "[西奥·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我真为妻子感到高兴。我……";
 		mes "我不知道该如何感谢你……";
 	} else {
-		mes "[西奥·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……";
 		mes "我们之后再聊好吗？";
 		mes "我现在正忙着修理这个东西。";
@@ -658,18 +658,18 @@ ein_in01,123,94,1	script	西奥·切尔诺	4_M_REPAIR,{
 //----------------------------------------------------------------------------
 // Tarsha Cherno
 //----------------------------------------------------------------------------
-ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
+ein_in01,125,99,3	script	泰蕾莎 其鲁诺::塔莎·切尔诺	4_F_EINWOMAN,{
 	if (kain_ticket == 7) {
 		callfunc "F_Cherno";
 		kain_ticket = 8;
 	} else if (kain_ticket == 8) {
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "虽然这些装置大多不值得炫耀，";
 		mes "但我们为发明这些机器付出了大量努力。";
 		mes "所以当然会为它们自豪~";
 		mes " ";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "也许这些小项目并不怎么了不起，";
 		mes "但我喜欢把它们看作通往未来成就的垫脚石。";
 	} else if (kain_ticket == 9) {
@@ -677,12 +677,12 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 		mes "打扰一下，女士，你肩膀上有一道伤疤。";
 		mes "那是事故留下的吗？";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，那是多年前留下的旧伤。";
 		mes "我想，对于抚养我的人来说，";
 		mes "我当时一定是个麻烦制造者……";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你看，我很小的时候";
 		mes "就失去了父母。";
 		mes "后来我才知道";
@@ -690,14 +690,14 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 		mes "我得知亲生母亲";
 		mes "很久以前就去世了……";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "至于父亲，没人知道";
 		mes "他是死是活。";
 		mes "我努力让养父母开心，";
 		mes "但最后却太过叛逆，";
 		mes "给他们带来了很多烦恼。";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "最后我离开家，学习机械学。";
 		mes "我在学校遇见了丈夫，";
 		mes "那是我一生中最美好的事情~";
@@ -715,12 +715,12 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 		emotion ET_ANGER, getnpcid(0, "西奥·切尔诺");
 		next;
 		emotion ET_SMILE;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦~呵呵呵呵~";
 		mes "我那时太小，记不太清楚，";
 		mes "但我确定亲生父亲很喜欢那首歌。";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我只依稀记得，他过去会在打扫旧房子时唱歌。";
 		mes "我不记得他的长相，但他以前一定是矿工。";
 		next;
@@ -735,7 +735,7 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 		mes "塔莎……";
 		mes "你的父亲也许还活着！";
 		next;
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……什么？";
 		next;
 		mes "["+ strcharinfo(0) +"]";
@@ -748,7 +748,7 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 		mes "塔莎，我认识一个可能是你父亲的人！";
 		mes "等着我，希望我很快就能带回好消息！";
 	} else if (kain_ticket == 12) {
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，欢迎回来~";
 		mes "你带回好消息了吗？";
 		emotion ET_SMILE;
@@ -787,36 +787,36 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 			mes "希望有一天你能原谅他……";
 			mes " ";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你……";
 			mes "你说真的吗？";
 			mes "我的父亲还活着！";
 			mes "感谢上天！";
 			mes "太谢谢你了，冒险者！";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……";
 			mes "这么说，我的真名应该是";
 			mes "^3131FF塔莎·海默尔·切尔诺^000000。";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，你是上天的恩赐！";
 			mes "我永远不会忘记你为我做的一切！";
 			mes "我一定要想办法报答你！";
 			mes "但我只懂机械工程……";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，我知道了~";
 			mes "如果你有^3131FF损坏的装备^000000，";
 			mes "我可以用这台专家修理机修好。";
 			mes "这是我们最好的发明之一！";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我必须尽快去见亲生父亲！";
 			mes "我已经想念他很多年了！";
 			mes "再次感谢你为我的家人所做的一切~";
 			next;
-			mes "[塔莎·切尔诺]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，在你离开前，能再去见见艾尔吗？";
 			mes "她似乎有事想和你谈谈。";
 			changequest 2083,2084;
@@ -846,13 +846,13 @@ ein_in01,125,99,3	script	塔莎·切尔诺	4_F_EINWOMAN,{
 			close;
 		}
 	} else if (kain_ticket > 12) {
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "多亏你为我们做的一切，";
 		mes "我一直感觉很好。";
 		mes "再次感谢你，";
 		mes "善良的冒险者。";
 	} else {
-		mes "[塔莎·切尔诺]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "抱歉，";
 		mes "我们现在很忙。";
 		mes "请原谅我们~";
@@ -1682,7 +1682,7 @@ OnCaptainMobDead:
 	end;
 }
 
-airplane_01,246,54,3	script	飞艇船长#02	4_M_REINDEER,{
+airplane_01,246,54,3	script	飞空艇 船长#02::飞艇船长#02	4_M_REINDEER,{
 	cutin "fly_felrock",2;
 	mes "[塔洛克]";
 	mes "我是塔洛克，这艘飞艇的船长。";
@@ -1712,7 +1712,7 @@ airplane_01,227,67,0	script	boom10#airplane	HIDDEN_WARP_NPC,{ end; }
 //----------------------------------------------------------------------------
 // Captain Tarlock :: lght_air
 //----------------------------------------------------------------------------
-airplane_01,238,154,3	script	飞艇船长#01	4_M_REINDEER,{
+airplane_01,238,154,3	script	飞空艇 船长#01::飞艇船长#01	4_M_REINDEER,{
 	cutin "fly_felrock",2;
 	mes "[塔洛克]";
 	mes "我是塔洛克，这艘飞艇的船长。";
@@ -1923,7 +1923,7 @@ airplane_01,238,154,3	script	飞艇船长#01	4_M_REINDEER,{
 //----------------------------------------------------------------------------
 // Captain Ferlock :: lght_ymir
 //----------------------------------------------------------------------------
-airplane,236,163,5	script	飞艇船长#03	4_M_REINDEER,{
+airplane,236,163,5	script	飞空艇 船长#03::飞艇船长#03	4_M_REINDEER,{
 	cutin "fly_trock.bmp",2;
 	mes "[费洛克]";
 	if (hg_ma1 == 3 || hg_ma1 == 4) {
@@ -2149,14 +2149,14 @@ airplane,236,163,5	script	飞艇船长#03	4_M_REINDEER,{
 
 // Heart Fragment Quest :: lght_ymir
 //============================================================
-airplane,236,63,4	script	哈伦	4_M_KID1,{
-	mes "[哈伦]";
+airplane,236,63,4	script	海伦::哈伦	4_M_KID1,{
+	mes "[" + strnpcinfo(1) + "]";
 	if (hg_ma1 == 3 || BaseLevel < 60) {
 		mes "需要我做什么就喊我一声。呜嘿嘿……喊我～";
 		if (hg_ma1 == 3) {
 			next;
 			select("嘿，你认识一个叫蒂埃里的人吗？");
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "蒂埃里？呃……我不这么认为。去问问卡西吧？她可能知道。";
 		}
 	} else if (!lhz_heart) {
@@ -2165,7 +2165,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		switch(select("我不是乘客。:嘿，孩子，你在做什么？")) {
 		case 1:
 			emotion ET_QUESTION;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 //
 //
 //
@@ -2382,20 +2382,20 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			mes "而且我应该已经熟悉这里工作的每个人了……";
 			next;
 			emotion ET_SURPRISE;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿……！";
 			mes "如果你在值班，";
 			mes "不应该穿制服吗？";
 			mes "看来你果然不在这里工作！";
 			mes "嘿，我自己想明白了~";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，我得先扫完甲板。";
 			mes "然后休息时，我可以和卡西玩小游戏赢苹果。";
 			mes "我就是这样，伙计。";
 			break;
 		case 2:
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……这不是很明显吗？";
 			mes "我在扫甲板。我是最年轻的船员，所以总被安排最无聊的工作。";
 			mes "不过做完后就能和卡西玩骰子了。哦耶~";
@@ -2403,12 +2403,12 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		}
 		next;
 		select("卡西？");
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "卡西……就是那个骰子游戏的庄家？";
 		mes "你应该试试：掷骰子就有机会赢苹果。";
 		mes "嘿，你可能会走大运！";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿，有个人从卡西那里赢了很多苹果，最后成了苹果商人。";
 		mes "你敢相信吗？是的……卡西不太喜欢他……";
 		close2;
@@ -2422,23 +2422,23 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		mes "还要花不少时间。";
 		next;
 		emotion ET_SURPRISE;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看来我很快完不成。";
 		mes "嘿，既然我不能离开这里，你能不能帮我一个忙？";
 		next;
 		switch(select("抱歉，我很忙……:什么事？")) {
 		case 1:
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，好吧。我能理解。";
 			mes "不过，如果你懂我的意思，我本来可以让你觉得这趟很值得~";
 			close;
 		case 2:
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "别担心，工作不多。";
 			mes "我本该把朱诺机场的信交给其他船员，但没时间。";
 			mes "现在，我这里有一封给卡西的信……";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你能替我把这封信交给她吗？";
 			mes "寄信的人叫毛翁先生，好像是她的导师之类的。";
 			next;
@@ -2447,7 +2447,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			setquest 8036;
 			lhz_heart = 2;
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嘿，非常感谢，朋友~";
 			mes "你可以在飞艇上找到主持骰子游戏的卡西。";
 			close;
@@ -2458,7 +2458,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		mes "简直像个没用的小舱童。";
 		mes "不过……我确实是！";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，嘿，你把那封信交给卡西了吗？";
 		mes "我觉得它很重要，所以别花太久时间，好吗？";
 		mes " ";
@@ -2472,32 +2472,32 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		mes "她不太高兴我让乘客帮忙，";
 		mes "但她也明白我的工作忙得不可开交。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不觉得人们应该在危机时刻互相帮助吗？";
 		next;
 		switch(select("不，每个人都该为自己着想！:是的，我同意。")) {
 		case 1:
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什、什么……？";
 			mes "我真没想到你居然会这么想……";
 			lhz_heart = 5;
 			changequest 8038,8039;
 			close;
 		case 2:
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "啊，真的吗？";
 			mes "我就知道你和我想法一样。";
 			mes "你和我，我们很合得来嘛~";
 			next;
 			if (checkweight(501,1) != 1) {
-				mes "[哈伦]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "哦……嘿，我本来想给你点东西，";
 				mes "但你现在带的东西太多了……";
 				close;
 			}
 			lhz_heart = 5;
 			getitem 501,1;// Red_Potion
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道这不算什么，但我想把它给你。";
 			mes "而且，紧急时刻总会派上用场。";
 			mes "那么，回头见~";
@@ -2508,35 +2508,35 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		mes "我知道，我知道，我本该扫地，但还没扫完。";
 		mes "不过有时，你知道的，总得休息一下，对吧？";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，这样忙碌的日子让我想起在朱诺老家和邻居盖弗一起工作。";
 		mes "他是天才发明家，对我来说像英雄或榜样一样。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "盖弗非常聪明，几乎什么都能制造。";
 		mes "有一天，我也想达到他的水平，创造帮助人们并让他们开心的东西。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这就是我的人生志向——也就是我想为世界贡献的东西。";
 		mes "当然，我怀疑自己能否比得上伟大的贤者巴尔蒙德。";
 		next;
 		select("贤者巴尔蒙德？");
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的，巴尔蒙德……他是历史上最伟大的贤者之一。";
 		mes "没人太了解他，但 300 年前，他完成了许多划时代的成就。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "据说他凭一己之力革新了科学。";
 		mes "如今许多便利生活的机器";
 		mes "都是他的发明。";
 		mes "遗憾的是，他从历史中消失，没人知道他去了哪里。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "伟大的贤者巴尔蒙德……";
 		mes "这是施瓦尔茨共和国广为人知的传说。";
 		mes "总之，为了我的项目，我想更多了解这些飞艇。";
 		next;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这些飞艇又大又重，";
 		mes "我很难相信它们能飞。";
 		mes "这究竟是怎么做到的？";
@@ -2551,7 +2551,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		next;
 		if (lght_air == 7) {
 			select("嗯，是的，算是吧。");
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "真的吗……？";
 			mes "你是认真的吗？";
 			mes "秘密是什么？";
@@ -2560,7 +2560,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			mes "^3355FF你把从塔洛克船长那里了解到的事告诉哈伦，";
 			mes "但小心地没有提及伊米尔之心碎片。^000000";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以……螺旋桨是由蒸汽驱动的？";
 			mes "这说不通。";
 			mes "不可能这么简单，而且蒸汽也有局限。";
@@ -2571,12 +2571,12 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			mes "它是伊米尔之心碎片的仿制品。";
 			mes "哈伦是个善良的孩子，应该不会将这些知识用于邪恶目的。^000000";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太、太棒了！原来有某种特殊魔力来源帮助飞艇飞行！";
 			mes "我就知道！它叫什么来着？";
 			mes "啊，是符文石，对吧？";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "伊米尔之心碎片的仿制品。";
 			mes "这个我以前在哪里听过？";
 			mes "嗯，让我想想……";
@@ -2584,12 +2584,12 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			lhz_heart = 7;
 		} else {
 			select("其实……");
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你还没了解到飞艇的任何信息，对吧？";
 			mes "也许费洛克船长或其他飞艇船长知道些什么。";
 			mes "希望有人能告诉你……";
 			next;
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道飞艇飞行的秘密属于机密，";
 			mes "但如果有人能揭开它，";
 			mes "一定是你们这些冒险者。";
@@ -2600,7 +2600,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 		mes "但我以前在哪里听过这个名字……？";
 		next;
 		emotion ET_SURPRISE;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，对了！";
 		mes "卡西告诉过我一个酒鬼，";
 		mes "他玩苹果骰子游戏时总会提到伊米尔之心！";
@@ -2612,12 +2612,12 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			mes "值得调查……^000000）";
 			next;
 		}
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，这不算什么，";
 		mes "但感谢你费心为我调查机密信息，让我送你一点东西……";
 		next;
 		if (checkweight(501,1) != 1) {
-			mes "[哈伦]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀，糟糕……";
 			mes "你的背包没有足够空间收下我的小礼物。";
 			mes "请腾出更多空间，好吗？";
@@ -2631,7 +2631,7 @@ airplane,236,63,4	script	哈伦	4_M_KID1,{
 			changequest 8040,8041;
 		}
 		getitem 501,1;
-		mes "[哈伦]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给你~";
 		mes "我知道和你们冒险者通常得到的奖励相比很少，";
 		mes "但心意才是最重要的，对吧？";
@@ -2903,7 +2903,7 @@ OnTouch_:
 	}
 }
 
-ein_in01,263,35,3	script	费洛克#lab	4_M_REINDEER,{
+ein_in01,263,35,3	script	杜 陆#lab::费洛克#lab	4_M_REINDEER,{
 	end;
 
 OnEnter:

@@ -48,32 +48,32 @@ job3_rune01,88,62,5	script	Dragon Breeder	105,{
 
 // Dragon/Gryphon Master :: dragon
 //============================================================
-prontera,130,213,5	script	Riding Creature Master	105,{
-	mes "[骑乘生物大师]";
+prontera,130,213,5	script	巨兽管理兵::Riding Creature Master	105,{
+	mes "[" + strnpcinfo(1) + "]";
 	if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) {
 		mes "欢迎。要租一条龙吗？";
 		next;
 		switch(select("是:否")) {
 		case 1:
 			if (!getskilllv("RK_DRAGONTRAINING")) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请先学习“龙驾驭”技能。";
 				close;
 			}
 			else if (checkdragon()) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你已经有一条龙了。";
 				close;
 			}
 			else if (ismounting()) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请先解除商城坐骑。";
 				close;
 			}
 			setdragon;
 			close;
 		case 2:
-			mes "[骑乘生物大师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我明白了。祝你今天愉快。";
 			close;
 		}
@@ -84,24 +84,24 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 		switch(select("是:否")) {
 		case 1:
 			if (!getskilllv("KN_RIDING")) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请先学习“骑乘大嘴鸟”技能。";
 				close;
 			}
 			else if (checkriding()) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "你已经有一只狮鹫了。";
 				close;
 			}
 			else if (ismounting()) {
-				mes "[骑乘生物大师]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请先解除商城坐骑。";
 				close;
 			}
 			setriding;
 			close;
 		case 2:
-			mes "[骑乘生物大师]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我明白了。祝你今天愉快。";
 			close;
 		}
@@ -109,15 +109,15 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 	mes "我为符文骑士系和皇家卫士系职业提供骑乘生物。";
 	close;
 }
-geffen,100,55,3	duplicate(Riding Creature Master)	Riding Creature Master#2	105
-payon,166,102,5	duplicate(Riding Creature Master)	Riding Creature Master#3	105
-aldebaran,133,109,5	duplicate(Riding Creature Master)	Riding Creature Master#4	105
-yuno,171,187,3	duplicate(Riding Creature Master)	Riding Creature Master#5	105
-rachel,106,130,5	duplicate(Riding Creature Master)	Riding Creature Master#6	105
+geffen,100,55,3	duplicate(Riding Creature Master)	巨兽管理兵#2::Riding Creature Master#2	105
+payon,166,102,5	duplicate(Riding Creature Master)	巨兽管理兵#3::Riding Creature Master#3	105
+aldebaran,133,109,5	duplicate(Riding Creature Master)	巨兽管理兵#4::Riding Creature Master#4	105
+yuno,171,187,3	duplicate(Riding Creature Master)	巨兽管理兵#5::Riding Creature Master#5	105
+rachel,106,130,5	duplicate(Riding Creature Master)	巨兽管理兵#6::Riding Creature Master#6	105
 
 // Peco removing NPC :: dragon
 //============================================================
-prontera,125,208,5	script	Peco Peco Remover	105,{
+prontera,125,208,5	script	七彩大嘴鸟回收兵::Peco Peco Remover	105,{
 	mes "[士兵]";
 	mes "如果你因某种原因无法从大嘴鸟上下来，欢迎使用我的服务。";
 	if (checkriding()) {

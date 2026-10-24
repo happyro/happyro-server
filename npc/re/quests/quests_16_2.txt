@@ -32,8 +32,8 @@ OnTouch:
 }
 
 prt_cas_q,18,37,5	duplicate(dummy_cloaked_npc)	斯基亚·涅里乌斯#ep162_02	4_EP16_SPICA
-prt_cas_q,23,33,2	duplicate(dummy_cloaked_npc)	克鲁克斯#ep162_03	4_EP16_CRUX
-prt_cas_q,23,32,3	duplicate(dummy_cloaked_npc)	克罗内克·G·海涅#ep162	4_EP16_GRANZ
+prt_cas_q,23,33,2	duplicate(dummy_cloaked_npc)	克鲁斯#ep162_03::克鲁克斯#ep162_03	4_EP16_CRUX
+prt_cas_q,23,32,3	duplicate(dummy_cloaked_npc)	克罗内克 G. 海尔内#ep162::克罗内克·G·海涅#ep162	4_EP16_GRANZ
 
 prt_cas_q,21,39,3	script	尼希尔·M·海涅#ep162_01	4_EP16_NIHIL,{
 	if (ep16_royal < 17)	// pre-req : access to room of consciousness (first time)
@@ -340,7 +340,7 @@ prt_cas_q,21,39,3	script	尼希尔·M·海涅#ep162_01	4_EP16_NIHIL,{
 	}
 }
 
-prt_cas_q,23,36,3	script	斯皮卡·涅里乌斯#ep162_01	4_EP16_SPICA,{
+prt_cas_q,23,36,3	script	斯皮卡 内里乌斯#ep162_01::斯皮卡·涅里乌斯#ep162_01	4_EP16_SPICA,{
 	if (ep16_royal < 17)
 		end;
 	if (terra_gloria_main == 1) {
@@ -678,12 +678,12 @@ OnInit:
 
 
 // Lighthalzen airport
-lhz_airport,187,40,6	duplicate(dummy_cloaked_npc)	斯基亚#ep162_03	4_EP16_SKIA
+lhz_airport,187,40,6	duplicate(dummy_cloaked_npc)	斯琪亚#ep162_03::斯基亚#ep162_03	4_EP16_SKIA
 
-lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
+lhz_airport,189,39,3	script	克鲁斯#ep162_01::克鲁克斯#ep162_01	4_EP16_CRUX,{
 	if (terra_gloria_main < 3) {
 		cutin "ep16_crux_findel03.bmp",1;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你好。";
 		mes "很高兴在这里见到你。";
 		mes "我？我只是在执行小姐交给我的任务。";
@@ -696,14 +696,14 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 	}
 	if (terra_gloria_main == 3) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊，你到了？";
 		mes "你一个人来的吗？";
 		mes "我听说斯基亚也会来……";
 		next;
 		cloakoffnpcself( "斯基亚#ep162_03" );
 		npctalk "我在这里！", "斯基亚#ep162_03", bc_self;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！你到了。";
 		mes "海涅家的王子命令我来，所以我到了里希塔乐镇。你觉得那个人会出现吗？";
 		cutin "ep16_crux_findel03.bmp",2;
@@ -713,7 +713,7 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 		mes "我想会的。";
 		mes "那个曾经当过侍从的人……你不是在报告里写过，他正试图联系某人吗？";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。";
 		mes "我以为他在寻找侍从背后的人。";
 		mes "他还要求更多报酬。";
@@ -724,7 +724,7 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 		mes "根据尼希尔的说法，侍从背后的人很可能在里希塔乐镇。";
 		mes "可能在这里，也可能在艾音布罗克。但尼希尔说，那些人应该会讨厌烟雾弥漫的城市。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，真的吗？";
 		mes "那么他背后的人可能身居高位或拥有权力，也可能很富有。";
 		cutin "ep16_crux_findel01.bmp",2;
@@ -734,16 +734,16 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 		mes "嗯。总之，我们要做的就是在里希塔乐镇找到那个人。";
 		mes "那我们知道他的相貌和穿着吗？";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一个外表整洁、浅棕色头发垂至肩膀的男人。";
 		mes "他的名字叫布鲁诺……这是个很普通的名字，可能是假名。";
 		cutin "ep16_crux_findel01.bmp",2;
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会调查里希塔乐镇南部，这位女士会调查百货商店和旅馆附近。";
 		mes "冒险者，请搜索^4d4dff北部和东北部地区^000000。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一旦发现什么，^4d4dff请在中央百货商店前集合，我们互相交换情报^000000。";
 		mes "现在赶快行动吧。";
 		next;
@@ -762,17 +762,17 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 		end;
 	}
 	if (terra_gloria_main == 4) {
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会调查包括机场在内的里希塔乐镇南部。";
 		mes "冒险者，请负责北部和东北部地区。";
 		cutin "ep16_crux_findel01.bmp",1;
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一旦发现什么，^4d4dff请在中央百货商店前集合，我们互相交换情报^000000。";
 		close3;
 	}
 	if (terra_gloria_main == 5) {
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真的吗？他去了贫民窟？";
 		mes "这下麻烦了。";
 		mes "无论如何，我会和这位女士跟上你。";
@@ -782,35 +782,35 @@ lhz_airport,189,39,3	script	克鲁克斯#ep162_01	4_EP16_CRUX,{
 	}
 	if (terra_gloria_main == 6) {
 		cutin "ep16_crux_findel01.bmp",1;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你是说……布鲁诺？";
 		mes "乘坐飞艇会很困难，所以我们分头行动。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不用担心我，我们会在宫殿再见。";
 		mes "请代我向斯皮卡女士问好。";
 		close3;
 	}
 	if (terra_gloria_main == 7) {
 		cutin "ep16_crux_findel03.bmp",1;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你不是要去朱诺吗？";
 		close3;
 	}
 	if (terra_gloria_main == 8) {
 		cutin "ep16_crux_findel01.bmp",1;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我在里希塔乐镇旅馆有约。";
 		mes "走吧。";
 		close3;
 	}
 	cutin "ep16_crux_findel01.bmp",1;
-	mes "[克鲁克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "我不想这样把你留在这里太久……";
 		mes "……但我别无选择。";
 	next;
 	cutin "ep16_crux_findel02.bmp",1;
-	mes "[克鲁克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "这就是你想要的。";
 	close3;
 
@@ -820,14 +820,14 @@ OnInit:
 }
 
 // Lighthalzen
-lighthalzen,202,167,5	script	斯基亚#ep162_n	4_EP16_SKIA,{
+lighthalzen,202,167,5	script	斯琪亚#ep162_n::斯基亚#ep162_n	4_EP16_SKIA,{
 	if (terra_gloria_main < 4) {
 		npctalk "嗯~他到底在哪里……", "", bc_self;
 		end;
 	}
 	if (terra_gloria_main == 4) {
 		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "到目前为止，我还没有看到可疑的人！";
 		mes "但我很快就会找到他。";
 		mes "不知道为什么，但我对此深信不疑。";
@@ -839,26 +839,26 @@ lighthalzen,202,167,5	script	斯基亚#ep162_n	4_EP16_SKIA,{
 		mes "他一定去了贫民窟！";
 		mes "我们必须想办法到那里。";
 		next;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会告诉克鲁克斯。请你先追那个家伙。";
 		close3;
 	}
 	if (terra_gloria_main == 6) {
 		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们现在回宫殿吧。";
 		mes "克鲁克斯抓住了那个叫布鲁诺的家伙。";
 		close3;
 	}
 	cutin "ep16_skia_nerius01.bmp",0;
-	mes "[斯基亚]";
+	mes "[" + strnpcinfo(1) + "]";
 		mes "我一直想以游客身份参观这里，从没想过会以这种方式来到这里。";
 		mes "真是座奇妙的城市。";
 	close3;
 }
 
 // Event Top Side
-lighthalzen,177,294,5	duplicate(dummy_cloaked_npc)	男人#ep162_01	1_M_01
+lighthalzen,177,294,5	duplicate(dummy_cloaked_npc)	男子#ep162_01::男人#ep162_01	1_M_01
 lighthalzen,179,293,1	duplicate(dummy_cloaked_npc)	科学家#ep162_01	4_LGTSCIENCE
 
 lighthalzen,186,293,0	script	#ep162_evt01	HIDDEN_WARP_NPC,2,2,{
@@ -914,17 +914,17 @@ OnTouch:
 
 // Event Right Side
 lighthalzen,307,265,5	duplicate(dummy_cloaked_npc)	可疑的佣兵#ep	3454
-lighthalzen,305,264,6	duplicate(dummy_cloaked_npc)	克鲁克斯#ep162_02	4_EP16_CRUX
+lighthalzen,305,264,6	duplicate(dummy_cloaked_npc)	克鲁斯#ep162_02::克鲁克斯#ep162_02	4_EP16_CRUX
 
-lighthalzen,306,267,5	script	斯基亚#ep162_04	4_EP16_SKIA,{
+lighthalzen,306,267,5	script	斯琪亚#ep162_04::斯基亚#ep162_04	4_EP16_SKIA,{
 	if (terra_gloria_main == 6) {
 		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们回宫殿吧。";
 		mes "克鲁克斯会处理布鲁诺。";
 		mes "然后我们准备调查，对吧？";
 		next;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我必须把这件事告诉尼希尔。";
 		mes "我们回去吧。";
 		close3;
@@ -936,7 +936,7 @@ OnInit:
 	end;
 }
 
-lighthalzen,309,263,3	script	男人#ep162_02	1_M_01,{
+lighthalzen,309,263,3	script	男子#ep162_02::男人#ep162_02	1_M_01,{
 	if (terra_gloria_main != 5)
 	npctalk "嘿，你在看什么？走开！", "", bc_self;
 	else {
@@ -1030,56 +1030,56 @@ OnInit:
 }
 
 // Yuno Airport
-y_airport,168,41,3	script	克鲁克斯#ep162_04	4_EP16_CRUX,{
+y_airport,168,41,3	script	克鲁斯#ep162_04::克鲁克斯#ep162_04	4_EP16_CRUX,{
 	if (terra_gloria_main < 7) {
 		npctalk "……啊……我想念他。", "", bc_self;
 		end;
 	}
 	if (terra_gloria_main == 7) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我一直在等你。";
 		mes "因为行程有变，我们可能会错过彼此。";
 		next;
 		select("你在护送斯皮卡，对吧？");
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我正想谈这件事。";
 		mes "你知道我和斯基亚女士之前请求在朱诺会面吗？";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "朱诺和总统府都有太多眼线，所以她们想在其他地方与我们见面。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我想斯皮卡女士如果在朱诺待太久会引起注意，所以她立刻去了约定地点。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "她伪装成游客……现在就在^4d4dff里希塔乐镇的旅馆^000000里。";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我本想给她送信，告知行程变更。但我以为会在这里遇到她……所以一直等到现在。";
 		next;
 		cutin "ep16_crux_findel02.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "…… ……";
 		mes "我们秘密行动时，这种事经常发生。";
 		mes "我知道这很可笑，但很抱歉让你白跑一趟。";
 		next;
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不过施瓦茨瓦尔德政府对此持积极态度。";
 		mes "但我不知道那些女士向他们打出了什么牌……";
 		next;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，我得处理自己的任务。";
 		mes "那么我们去^4d4dff里希塔乐镇^000000吧。";
 		next;
 		if (select( "拜托你了。", "等一下。" ) == 2) {
-			mes "[克鲁克斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "准备好后告诉我。";
 			mes "然后我们就出发。";
 			close3;
 		}
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这边……";
 		erasequest 7735;// Secret Action 2
 		setquest 7736;// Small differences between sightseeing and secret bussiness
@@ -1090,16 +1090,16 @@ y_airport,168,41,3	script	克鲁克斯#ep162_04	4_EP16_CRUX,{
 	}
 	if (terra_gloria_main == 8) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们去里希塔乐镇吧。";
 		next;
 		if (select( "拜托你了。", "等一下。" ) == 2) {
-			mes "[克鲁克斯]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "准备好后告诉我。";
 			mes "然后我们就出发。";
 			close3;
 		}
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这边……";
 		close2;
 		warp "lhz_airport",185,37;
@@ -1107,14 +1107,14 @@ y_airport,168,41,3	script	克鲁克斯#ep162_04	4_EP16_CRUX,{
 	}
 	if (terra_gloria_main < 18) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "约定地点是^4d4dff艾音布罗克火车站^000000。";
 		mes "一名叫^4d4dff懒惰^000000的特工在那里等我们。";
 		mes "我们得快点。";
 		close3;
 	}
 	cutin "ep16_crux_findel01.bmp",2;
-	mes "[克鲁克斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我从没想过自己会出国旅行……希望一切顺利。";
 	close3;
 
@@ -1135,7 +1135,7 @@ OnTouch:
 	end;
 }
 
-lhz_in02,239,145,3	script	斯皮卡·涅里乌斯#ep162_02	4_EP16_SPICA,{
+lhz_in02,239,145,3	script	斯皮卡 内里乌斯#ep162_02::斯皮卡·涅里乌斯#ep162_02	4_EP16_SPICA,{
 	if (terra_gloria_main == 8) {
 		cutin "ep16_spica_nerius01.bmp",1;
 		mes "[斯皮卡]";
@@ -1156,16 +1156,16 @@ lhz_in02,239,145,3	script	斯皮卡·涅里乌斯#ep162_02	4_EP16_SPICA,{
 	}
 }
 
-lhz_in02,237,146,6	script	克鲁克斯#ep162_05	4_EP16_CRUX,{
+lhz_in02,237,146,6	script	克鲁斯#ep162_05::克鲁克斯#ep162_05	4_EP16_CRUX,{
 	if (terra_gloria_main == 8) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请和这位女士一起与施瓦茨瓦尔德政府的代表谈谈。";
 		close3;
 	}
 	if (terra_gloria_main == 9) {
 		cutin "ep16_crux_findel01.bmp",2;
-		mes "[克鲁克斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "约定地点是^4d4dff艾音布罗克火车站^000000。";
 		mes "一名叫懒惰的特工在那里等你。";
 		mes "我们得快点。";
@@ -1705,7 +1705,7 @@ OnInit:
 	end;
 }
 
-einbroch,270,267,5	script	很小的洞#16nego0	4_CRACK,5,5,{
+einbroch,270,267,5	script	极小的洞穴#16nego0::很小的洞#16nego0	4_CRACK,5,5,{
 	if (terra_gloria_main != 10 && terra_gloria_main != 11) {
 		cloakonnpcself( "很小的洞#16nego0" );
 		cloakonnpcself( "懒惰#16nego06" );
@@ -2219,13 +2219,13 @@ rebel_in,27,45,3	script	艾莉#16nego01	4_F_01,{
 	end;
 }
 
-rebel_in,24,45,3	script	内米#16nego01	4_M_MIDDLE,{
+rebel_in,24,45,3	script	奈米#16nego01::内米#16nego01	4_M_MIDDLE,{
 	if (terra_gloria_main < 15) {
-		mes "[内米]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真正的客人！！这个时期居然有客人……";
 		close;
 	}
-	mes "[内米]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "进来时安静点。";
 	close2;
 	warp "rebel_in",40,43;
@@ -3321,14 +3321,14 @@ OnInit:
 	end;
 }
 
-ein_in01,271,284,3	script	斯基亚#ep162_05	4_EP16_SKIA,{
+ein_in01,271,284,3	script	斯琪亚#ep162_05::斯基亚#ep162_05	4_EP16_SKIA,{
 	if (terra_gloria_main == 18) {
 		npctalk "请先听尼希尔说明。", "", bc_self;
 		end;
 	}
 	if (terra_gloria_main == 19) {
 		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[斯基亚]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会在暗处行动。";
 		mes "哦～这么久没用剑了，我好兴奋！";
 		close3;
@@ -5516,7 +5516,7 @@ OnInit:
 	end;
 }
 
-rebel_in,119,68,7	script	叛乱军卫队长#4	4_M_REBELLION,{
+rebel_in,119,68,7	script	反叛者警备队长#4::叛乱军卫队长#4	4_M_REBELLION,{
 	if (terra_gloria_lady_part == 6 || terra_gloria_lady_part == 7) {
 		mes "[叛乱军卫队长拉尔西斯]";
 		mes "我也读过。你刚才说的内容上面都有。";
@@ -5647,7 +5647,7 @@ OnInit:
 	end;
 }
 
-rebel_in,118,70,3	script	年轻的叛乱军队员#162gmbs1	4_F_GUNSLINGER,{
+rebel_in,118,70,3	script	年轻的反叛者#162gmbs1::年轻的叛乱军队员#162gmbs1	4_F_GUNSLINGER,{
 	mes "[年轻叛乱军成员]";
 	mes "我加入叛乱军是因为他们射击时很帅。但现在我忙着处理文件，根本没时间摸枪。";
 	next;
@@ -5656,7 +5656,7 @@ rebel_in,118,70,3	script	年轻的叛乱军队员#162gmbs1	4_F_GUNSLINGER,{
 	close;
 }
 
-rebel_in,114,75,5	script	年轻的叛乱军队员#162gmbs2	4_F_REBELLION,{
+rebel_in,114,75,5	script	年轻的反叛者#162gmbs2::年轻的叛乱军队员#162gmbs2	4_F_REBELLION,{
 	mes "[年轻叛乱军成员]";
 	mes "运气好时，我能从前辈那里得到一些零食。";
 	next;
@@ -5666,10 +5666,10 @@ rebel_in,114,75,5	script	年轻的叛乱军队员#162gmbs2	4_F_REBELLION,{
 	close;
 }
 // Main story
-rebel_in,91,60,3	duplicate(dummy_cloaked_npc)	长者#16nego01	4_M_EINOLD
-rebel_in,84,60,7	duplicate(dummy_cloaked_npc)	长者#16nego02	4_M_HUGRANFA
-rebel_in,87,58,8	duplicate(dummy_cloaked_npc)	长者#16nego03	4_M_HUOLDARMY
-rebel_in,88,58,1	duplicate(dummy_cloaked_npc)	长者#16nego04	4_M_SEAMAN
+rebel_in,91,60,3	duplicate(dummy_cloaked_npc)	元老#16nego01::长者#16nego01	4_M_EINOLD
+rebel_in,84,60,7	duplicate(dummy_cloaked_npc)	元老#16nego02::长者#16nego02	4_M_HUGRANFA
+rebel_in,87,58,8	duplicate(dummy_cloaked_npc)	元老#16nego03::长者#16nego03	4_M_HUOLDARMY
+rebel_in,88,58,1	duplicate(dummy_cloaked_npc)	元老#16nego04::长者#16nego04	4_M_SEAMAN
 
 rebel_in,86,61,5	script	懒惰#16nego05	4_M_LAZY,{
 	if (checkweight(501,1) == 0) {
@@ -6856,7 +6856,7 @@ OnInit:
 	end;
 }
 // Old Lady Room - Outside
-rebel_in,121,43,5	duplicate(dummy_cloaked_npc)	叛乱军卫队长#1	4_M_REBELLION
+rebel_in,121,43,5	duplicate(dummy_cloaked_npc)	反叛者警备队长#1::叛乱军卫队长#1	4_M_REBELLION
 
 function	script	F_TerraGloria_Lady	{
 	if (terra_gloria_main < 16 || terra_gloria_lady_part == 0) {
@@ -7616,7 +7616,7 @@ OnTouch:
 	end;
 }
 
-rebel_in,162,87,5	script	叛乱军卫队长#2	4_M_REBELLION,{
+rebel_in,162,87,5	script	反叛者警备队长#2::叛乱军卫队长#2	4_M_REBELLION,{
 	if (checkweight(501,1) == 0 || (MaxWeight - Weight) < 1000) {
 		mes "- 你携带的物品太多。";
 		mes "请整理背包后再试。-";
@@ -7944,7 +7944,7 @@ rebel_in,210,89,5	script	特战部队指挥官	4_F_ESTLOVELOY,{
 	end;
 }
 
-rebel_in,207,84,7	duplicate(dummy_cloaked_npc)	叛乱军卫队长#3	4_M_REBELLION
+rebel_in,207,84,7	duplicate(dummy_cloaked_npc)	反叛者警备队长#3::叛乱军卫队长#3	4_M_REBELLION
 
 rebel_in,213,81,3	script	叛乱军队员#162gmbs2	4_F_REBELLION2,{
 	mes "[叛乱军成员]";
@@ -9082,7 +9082,7 @@ OnTouch:
 einbroch,260,40,0	duplicate(dummy_cloaked_npc)	传送阻断装置#4	2_MONEMUS
 
 
-rebel_in,91,67,3	script	埃里克松·阿德勒#16.2rm	4_MAL_CAPTAIN,{
+rebel_in,91,67,3	script	埃里森 阿德勒#16.2rm::埃里克松·阿德勒#16.2rm	4_MAL_CAPTAIN,{
 	if (terra_gloria_main < 17) {
 		mes "[独立部队指挥官埃里克松]";
 		mes "你……？";
@@ -9328,24 +9328,24 @@ OnInit:
 	end;
 }
 
-einbroch,167,160,3	script	卖花女孩#16.2rm	1_M_SIZ,{
+einbroch,167,160,3	script	卖花的孩子#16.2rm::卖花女孩#16.2rm	1_M_SIZ,{
 	if (isbegin_quest(16045) == 1) {
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。要买花吗？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "请给我一束花。";
 		next;
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好的，我明白了！";
 		mes "哦，我该怎么办……";
 		next;
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我有花，但用来做花束的纸用完了。";
 		mes "我平时买纸的商店关门了……";
 		mes "我不能独自走太远。";
 		next;
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "拜托了。";
 		mes "如果你带来^0000CD3张光滑的纸^000000，我就免费为你做一束花。";
 		completequest 16045;// Veteran's small memorial service
@@ -9353,18 +9353,18 @@ einbroch,167,160,3	script	卖花女孩#16.2rm	1_M_SIZ,{
 		close;
 	}
 	if (isbegin_quest(16046) == 1 || isbegin_quest(16051) == 1) {
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来^0000CD3张光滑的纸^000000了吗？";
 		mes "带来的话，我就免费为你做一束花。";
 		if (countitem(7111) < 3)
 			close;
 		next;
 		if (select( "交出光滑的纸。", "不交出纸张。" ) == 2) {
-			mes "[卖花女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，对不起……你不需要花束了吗？";
 			close;
 		}
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "给，这束花真漂亮。";
 		delitem 7111,3;// Smooth_Paper
 		getitem 25152,1;// Cherish_Bouquet
@@ -9380,51 +9380,51 @@ einbroch,167,160,3	script	卖花女孩#16.2rm	1_M_SIZ,{
 	}
 	if (isbegin_quest(16047) == 1 || isbegin_quest(16052) == 1) {
 		if (countitem(25152) < 1) {
-			mes "[卖花女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你好，欢迎回来。你需要什么花？";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 		mes "能用康乃馨帮我做一束花吗？";
 			next;
-			mes "[卖花女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "糟糕……你知道，我还是没有足够的纸来包花。";
 		mes "如果你带来^0000CD三张光滑的纸^000000，我就帮你做。";
 			next;
 			if (select( "交出光滑的纸。", "不交出纸张。" ) == 2) {
-				mes "[卖花女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "糟糕！对不起。一束花……你不需要了吗？";
 				close;
 			}
 			if (countitem(7111) < 3) {
-				mes "[卖花女孩]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "抱歉。没有足够的光滑的纸，我没法做一束花……";
 				close;
 			}
-			mes "[卖花女孩]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "给，这束花真漂亮。";
 			delitem 7111,3;// Smooth_Paper
 			getitem 25152,1;// Cherish_Bouquet
 			close;
 		}
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "花朵很快就会凋谢，但盛开时很美。";
 		close;
 	}
 	if (isbegin_quest(16050) == 1) {
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好，你又来了。需要什么花？";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "能帮我做一束康乃馨吗？";
 		next;
-		mes "[卖花女孩]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦天哪……抱歉，我还是没有足够的纸来做花束……";
 		mes "如果你带来3张^0000CD光滑的纸^000000，我就帮你做。";
 		completequest 16050;// Tribute hour
 		setquest 16051;// DIY obtaining bouquet materials
 		close;
 	}
-	mes "[卖花女孩]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "花朵，买些花吧。";
 	mes "呼……空气太浑浊，花朵凋谢得很快……";
 	close;
@@ -9436,7 +9436,7 @@ OnInit:
 	end;
 }
 
-einbroch,162,153,3	script	大树#16.2rm	4_BULLETIN_BOARD2,{
+einbroch,162,153,3	script	巨大树木#16.2rm::大树#16.2rm	4_BULLETIN_BOARD2,{
 	if (isbegin_quest(16047) == 1) {
 		if (countitem(25152) < 1) {
 			mes "你翻找了背包。";
@@ -9591,7 +9591,7 @@ einbroch,162,153,3	script	大树#16.2rm	4_BULLETIN_BOARD2,{
 		delitem 25152,1;// Cherish_Bouquet
 		close;
 	}
-	mes "[大树]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "树前有一块小告示牌。";
 	mes "- 这里长眠着一位善良的女孩 -";
 	close;
@@ -9604,21 +9604,21 @@ OnInit:
 
 
 // Daily Quest - Mason Bender Business
-rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
+rebel_in,19,48,5	script	梅森 班德#16.2rm::梅森·本德#16.2rm	4_M_KHMAN,{
 	if (terra_gloria_main < 17) {
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎。这里是克莱纳·奈米艾利武器店。";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们有各种武器，包括枪械、火药、大炮、迫击炮和燃烧瓶。欢迎常来。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "……哦，你只有枪械！";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "枪械可是最……什么？内米？今天我们关门？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊……对。今天关门。请以后再来。";
 		close;
 	}
@@ -9627,33 +9627,33 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 	if (lebedev_quest_16_2 == 2 || lebedev_quest_16_2 == 3) {
 		if (isbegin_quest(16014) == 1) {
 			emotion ET_FRET;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你问我们队里的双胞胎？你是冒险者，为什么问这种事？";
 			mes "我对你和那个吵闹的游客都没兴趣。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……呼，既然是沃尔科娃指挥官的请求……我只能回答你。但我只能说那些孩子的坏话。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们什么都做不好。而且根本不听我们的话。";
 			mes "他们是最糟糕的孩子。我不知道为什么要让他们留在这里。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你看到这里的绷带了吗？这是被那个男孩射出的流弹打伤的。";
 			mes "他们连自动靶都打不中，简直是笨蛋。他们糟糕得像是故意打不中一样。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以我只好搬到这里，克莱纳·奈米艾利。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，这份工作很适合我的才能……";
 			mes "至于我不喜欢那些孩子，那是另一回事。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "被派上实战后，他们惹了麻烦就逃跑了。";
 			mes "我不明白为什么人们叫他们天才。像我这样的人才配叫天才。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "人们只是觉得小孩子会开枪很了不起。";
 			completequest 16014;// Testimony: Sniper's story
 			lebedev_quest_16_2++;
@@ -9663,33 +9663,33 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 	}
 	// twin daily quest
 	if (isbegin_quest(16028) == 1) {
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "饼干？嗯，让我看看。你从哪里得到的？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……那些孩子做的？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不，不。我已经不再对他们抱有偏见。";
 		mes "请给我。让我用天才般的味觉评判！";
 		next;
 		if (countitem(25161) < 1) {
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你为什么不把饼干给我？";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请给我。我不会太苛刻。";
 			mes "你没有吗？";
 			close;
 		}
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……嗯……真好吃……";
 		mes "嗯，不错。";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有点干，似乎没完全烤熟。太甜，形状也不一致。但是……";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看得出他们制作时付出了多少努力。很好吃。";
 		completequest 16028;// Service: Cookies delivery
 		delitem 25161,1;// Handmade_cookie2
@@ -9700,66 +9700,66 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 	case -1:
 		switch( isbegin_quest(16054) ) {
 		case 0:
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎。这里是克莱纳·奈米艾利武器店。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呼……哦，抱歉。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你……对。你就是在那里闹出骚动的人，对吧？";
 			mes "很好。我想请你帮个忙。你愿意吗？";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我会给你机会负责我天才工作的一个环节。";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "……天才的工作？";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，这只是比喻。哈哈……";
 			mes "你能帮忙吗？";
 			next;
 			if (select( "帮助他。", "我对他没好感。无视他。" ) == 2) {
-				mes "[梅森·本德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "...";
 				next;
 				emotion ET_DELIGHT;
-				mes "[梅森·本德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "呼……你被我天才般的口才震撼到无法回应了。当然，我理解……";
 				next;
-				mes "[梅森·本德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "请冷静下来再和我谈。呵呵……";
 				next;
 				mes "[" + strcharinfo(0) + "]";
 				mes "……根本不是那回事！";
 				close;
 			}
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "太好了。你被我天才般的口才说服了。";
 			mes "那么，这是我的请求。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这是我用天才写作能力准备的武器店传单。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "任何读到它的人都会来这家店购买 81mm 迫击炮。";
 			npctalk "梅森·本德：天才的商业头脑，天才的营销技巧～呵呵～", "", bc_self;
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "（谁会买这种东西啊？！）";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "但我有个小问题。";
 			mes "虽然我把传单带到村里的长椅或广场，却没有村民愿意拿。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "所以！你亲自带去！友善地把传单交给每个人。务必面带微笑地递到别人手里。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "内米对这批积压的货很生气。如果你这么做，肯定能卖得很好。呵呵……";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在！我把传单给你。再见！";
 			setquest 16054;	// Differentiated advertising strategy
 			setquest 16055;	// Advertising: Dou you want a clean city?
@@ -9770,48 +9770,48 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 		case 1:
 			if (isbegin_quest(16055) != 2 || isbegin_quest(16056) != 2 || isbegin_quest(16057) != 2) {
 				if (countitem(25163) < 1) {
-					mes "[梅森·本德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "现在就靠你了。";
 					mes "同时我会准备接待顾客。";
 					next;
-					mes "[梅森·本德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "哎呀……你把传单弄丢了吗？";
 					next;
-					mes "[梅森·本德]";
+					mes "[" + strnpcinfo(1) + "]";
 					mes "请不要糟蹋传单。这次我再把缺的传单补给你。";
 					.@count = (isbegin_quest(16055) != 2) + (isbegin_quest(16056) != 2) + (isbegin_quest(16057) != 2);
 					getitem 25163,.@count;	// Arms_Shop_AD
 					close;
 				}
-				mes "[梅森·本德]";
+				mes "[" + strnpcinfo(1) + "]";
 				mes "现在！给你！";
 				mes "你会把我天才的文字传播到整个村子！";
 				close;
 			}
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "欢迎回来！他们反应如何？";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "嗯……就那样……";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦？真的吗？！";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……哦，我明白了。我的粉红色脑细胞已经完成推理！";
 			mes "他们还没读我的传单！";
 			next;
 			emotion ET_SURPRISE;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "他们被我天才的开场吸引，忘了读传单的其他部分！";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "呵呵……我也没办法。我们耐心等吧。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "明天会有很多人来，所以我要向艾莉请教如何接待大量顾客。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果不介意，明天请回来帮我接待顾客好吗？呵呵……";
 			completequest 16054;	// Differentiated advertising strategy
 			erasequest 16055;	// Advertising: Dou you want a clean city?
@@ -9827,7 +9827,7 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 		break;
 	case 0:
 	case 1:
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎！很高兴见到你！你是来买迫击炮的……哦？";
 		mes "……原来是你啊，冒险者。欢迎。";
 		next;
@@ -9835,10 +9835,10 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 		mes "等等。你失望了！你就是失望了！";
 		mes "看来你的生意遇到麻烦了。";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不！买家正在战略性地评估情况。换句话说，他们正在预热。";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "很快他们就会意识到购买迫击炮能带来巨大利润，然后涌向克莱纳·奈米艾利！";
 		mes "如果你不买东西，请离开！以后再来！";
 		next;
@@ -9846,7 +9846,7 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 		mes "你卖掉了多少个！";
 		next;
 		emotion ET_SWEAT;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "^FF0000请你出去！！！^000000";
 		next;
 		mes "[内米]";
@@ -9871,48 +9871,48 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 		break;
 	}
 	if (isbegin_quest(16059) == 0) {
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎！克莱纳·奈米艾利……哦？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……哦，怎么回事？" + strcharinfo(0) + "，原来是你啊。我还以为是顾客……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "你卖掉大炮了吗？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那是迫击炮，不是大炮。我以为今天能卖出去……";
 		next;
 		emotion ET_SWEAT;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真奇怪。按我的计算，这些迫击炮今天应该卖出……四天后我们就能达到收支平衡。之后就会开始盈利。";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我不知道为什么。嗯……";
 		mes "我分析这个现象时，" + strcharinfo(0) + "，能请你再给村民发一次传单吗？";
 		next;
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去村里找三个真正需要迫击炮的人，把这些传单给他们。";
 		next;
 		if (select( "我来做。", "抱歉。我不做。" ) == 2) {
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "来吧……你为什么不帮我？";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "这里没人需要迫击炮。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "如果你只能把东西卖给需要的人，那你就是新手。";
 			mes "我会把东西卖给某些人，他们会因为买了它而需要它！";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我要把电暖器卖给梦罗克的人，把冰箱卖到马努克！";
 			next;
 			mes "[艾莉]";
 			mes "……真希望他能把这份热情用在别的地方。";
 			close;
 		}
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我的脑细胞早就知道你会接受。";
 		mes "三张传单。拜托你了。";
 		next;
@@ -9927,35 +9927,35 @@ rebel_in,19,48,5	script	梅森·本德#16.2rm	4_M_KHMAN,{
 	}
 	if (isbegin_quest(16055) != 2 || isbegin_quest(16056) != 2 || isbegin_quest(16057) != 2) {
 		if (countitem(25163) < 1) {
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "现在就靠你了。";
 			mes "同时我会准备接待顾客。";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哎呀……你把传单弄丢了吗？";
 			next;
-			mes "[梅森·本德]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "请不要糟蹋传单。这次我再把缺的传单补给你。";
 			.@count = (isbegin_quest(16055) != 2) + (isbegin_quest(16056) != 2) + (isbegin_quest(16057) != 2);
 			getitem 25163,.@count;	// Arms_Shop_AD
 			close;
 		}
-		mes "[梅森·本德]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "现在就靠你了。";
 		mes "同时我会准备接待顾客。";
 		close;
 	}
-	mes "[梅森·本德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "欢迎回来！他们反应如何？";
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "嗯……就那样……";
 	next;
-	mes "[梅森·本德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦？真的吗？！";
 	mes "如果我是你，我会用天才般的直觉读出他们眼中对迫击炮的渴望和期待。";
 	next;
-	mes "[梅森·本德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "那我就再准备接待顾客！";
 	mes "我明天会很忙。想来找我们的话，请提前预约。";
 	erasequest 16055;	// Advertising: Dou you want a clean city?
@@ -9981,34 +9981,34 @@ OnInit:
 	end;
 }
 
-einbech,71,168,1	script	疲惫的男人#16.2r	4_M_SEAMAN,{
+einbech,71,168,1	script	疲惫的大叔#16.2r::疲惫的男人#16.2r	4_M_SEAMAN,{
 	switch( isbegin_quest(16055) ) {
 	case 0:
-		mes "[疲惫的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "辛苦工作一整天后，我喜欢看着铁路抽烟。这就是我人生的乐趣。";
 		next;
-		mes "[疲惫的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我称之为乐趣……我的人生到底怎么了？";
 		close;
 	case 1:
 		if (countitem(25163) < 1) {
-			mes "[疲惫的男人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哦，我不买。而且你两手空空。";
 			mes "辛苦工作后我很累。别烦我，离开吧。";
 			close;
 		}
 		mes "你把传单递给了他。";
 		next;
-		mes "[疲惫的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是什么？传单？我没兴趣……你们到底卖什么？";
 		next;
-		mes "[疲惫的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "迫击炮？我们要打仗吗？我为什么要买？";
 		delitem 25163,1;	// Arms_Shop_AD
 		completequest 16055;	// Advertising: Dou you want a clean city?
 		close;
 	case 2:
-		mes "[疲惫的男人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，不。我不买。";
 		mes "辛苦工作后我很累。别烦我，离开吧。";
 		close;
@@ -10020,34 +10020,34 @@ OnInit:
 	end;
 }
 
-einbech,79,100,3	script	疲惫的老人#1	4_M_BARYO_OLD,{
+einbech,79,100,3	script	累坏的老先生#1::疲惫的老人#1	4_M_BARYO_OLD,{
 	switch( isbegin_quest(16056) ) {
 	case 0:
-		mes "[疲惫的老人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "看看这浑浊的水，什么都映照不出来。";
 		next;
-		mes "[疲惫的老人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这里一条鱼都没有。剩下的老人离开后，这个村子会变成什么样？";
 		close;
 	case 1:
 		if (countitem(25163) < 1) {
-			mes "[疲惫的老人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "不。我不需要大炮。";
 			mes "无论你怎么劝我，我都不需要。";
 			close;
 		}
 		mes "你把传单递给了他。";
 		next;
-		mes "[疲惫的老人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是什么……你要我买什么？大炮？我要它做什么？";
 		next;
-		mes "[疲惫的老人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你给我传单我会收下……但矿井里只需要少量火药。";
 		delitem 25163,1;	// Arms_Shop_AD
 		completequest 16056;	// Advertising: Then blow it all away!
 		close;
 	case 2:
-		mes "[疲惫的老人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "不。我不需要大炮。";
 		mes "不管你怎么劝我，我都不需要。";
 		close;
@@ -10059,33 +10059,33 @@ OnInit:
 	end;
 }
 
-einbech,170,143,3	script	困倦的老妇人	4_F_BARYO_OLD,{
+einbech,170,143,3	script	爱睏的老奶奶::困倦的老妇人	4_F_BARYO_OLD,{
 	switch( isbegin_quest(16057) ) {
 	case 0:
-		mes "[困倦的老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我这个年纪……唯一的乐趣就是坐在温暖的地方晒太阳。";
 		next;
-		mes "[困倦的老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我看不清也听不清。不过仔细听，别担心。";
 		close;
 	case 1:
 		if (countitem(25163) < 1) {
-			mes "[困倦的老妇人]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "什么？午餐？我已经吃过了。顺便说一句，你根本没带食物。";
 			close;
 		}
 		mes "你把传单递给她。";
 		next;
-		mes "[困倦的老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "这是什么？我看不清。是烤栗子吗？在我看来像一张纸。";
 		next;
-		mes "[困倦的老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "风干鱼片？你在卖吗？哦，我没有牙齿，吃不了。";
 		delitem 25163,1;	// Arms_Shop_AD
 		completequest 16057;	// Advertising: Suitable revenge for old age!
 		close;
 	case 2:
-		mes "[困倦的老妇人]";
+		mes "[" + strnpcinfo(1) + "]";
 			mes "什么？午餐？我已经吃过了。嘿嘿……";
 		close;
 	}
@@ -10610,7 +10610,7 @@ OnInit:
 // Milo River - Cat Event
 rebel_in,105,28,5	duplicate(dummy_cloaked_npc)	莫拉娜·鲁德尔#16.2rm	4_F_REBELLION2
 rebel_in,104,24,7	duplicate(dummy_cloaked_npc)	漂亮的枪#16.2rm	4_M_REBELLION3
-rebel_in,106,25,3	duplicate(dummy_cloaked_npc)	查莉蒂#16.2rm	4_CAT
+rebel_in,106,25,3	duplicate(dummy_cloaked_npc)	慈慈#16.2rm::查莉蒂#16.2rm	4_CAT
 
 // Milo - Cat
 einbech,34,209,3	script	空长椅#16.2rm2	HIDDEN_NPC,{
@@ -10664,8 +10664,8 @@ OnTimer30000:
 }
 einbech,144,98,3	duplicate(空长椅#16.2rm2)	空长椅#16.2rm3	HIDDEN_NPC
 
-einbech,34,203,7	duplicate(dummy_cloaked_npc)	查莉蒂#16.2rmb2	4_CAT
-einbech,141,98,5	duplicate(dummy_cloaked_npc)	查莉蒂#16.2rmb3	4_CAT
+einbech,34,203,7	duplicate(dummy_cloaked_npc)	慈慈#16.2rmb2::查莉蒂#16.2rmb2	4_CAT
+einbech,141,98,5	duplicate(dummy_cloaked_npc)	慈慈#16.2rmb3::查莉蒂#16.2rmb3	4_CAT
 
 rebel_in,90,51,5	script	瑞秋·史密斯#16.2rm	4_F_GUNSLINGER2,{
 	if (terra_gloria_main < 17) {
@@ -10935,41 +10935,41 @@ OnInit:
 	end;
 }
 
-ein_in01,38,21,3	script	铁匠杰克#16.2rm	4_M_MIDDLE1,{
+ein_in01,38,21,3	script	铁匠 阿杰#16.2rm::铁匠杰克#16.2rm	4_M_MIDDLE1,{
 	if (rachel_quest_16_2 == 1) {
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你似乎在找人。有什么事？";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "关于武器维修的建议？可是，你不是铁匠吧？";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你是受我们公会成员所托来这里的。让我看看。";
 		next;
 		if (countitem(25151) < 1) {
-			mes "[铁匠杰克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "拜托。我要先看武器才能给建议。";
 			mes "我是铁匠，不是通灵师。";
 			close;
 		}
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯。这确实是我们公会成员的手艺。她改进了我们教给她的方法。";
 		mes "她的技术很好。嗯，但是……";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这是……嗯，我明白了……";
 		next;
 		mes "杰克正在仔细检查瑞秋的左轮手枪。";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不是她技术的问题，而是材料的问题。";
 		mes "金属中混入了太多杂质，她处理起来一定很困难。但她还是勉强完成了。";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "回去告诉她，必须使用纯度更高的金属。";
 		mes "这不是操作者的问题。如果它在她维修时爆炸，我也不会惊讶。";
 		next;
-		mes "[铁匠杰克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "回去告诉她。也许它在这期间已经爆炸了……";
 		delitem 25151,1;// Rachels_Revolver
 		erasequest 16035;// Delivery: Explosive revolver materials
@@ -10977,10 +10977,10 @@ ein_in01,38,21,3	script	铁匠杰克#16.2rm	4_M_MIDDLE1,{
 		rachel_quest_16_2 = 2;
 		close;
 	}
-	mes "[铁匠杰克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "经验丰富的铁匠用锤子敲击武器时，只要感受手臂上的震动，就能判断武器的状态。";
 	next;
-	mes "[铁匠杰克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "除此之外，真正的大师还必须用眼睛和耳朵检查。";
 	close;
 
@@ -11002,20 +11002,20 @@ rebel_in,72,32,7	script	达娜厄#16nego01	4_F_REBELLION2,{
 	close;
 }
 
-rebel_in,72,29,5	script	格林德#16nego01	4_M_REBELLION,{
-	mes "[格林德]";
+rebel_in,72,29,5	script	大牙#16nego01::格林德#16nego01	4_M_REBELLION,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，真辛苦。不是吗？";
 	next;
 	mes "[芳]";
 	mes "没那么辛苦。我告诉过你我去赫尔墨斯弗列图时的故事吗？";
 	next;
-	mes "[格林德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你说过。超过一千次了。";
 	next;
 	mes "[芳]";
 	mes "我告诉过你，拿着枪时不要喝茶。要是茶洒在枪上怎么办？";
 	next;
-	mes "[格林德]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好吧，我先把茶喝完。";
 	close;
 }
@@ -11050,53 +11050,53 @@ rebel_in,72,27,5	script	芳#16nego01	4_F_REBELLION3,{
 	close;
 }
 
-rebel_in,75,26,3	script	本#16nego01	4_M_REBELLION,{
-	mes "[本]";
+rebel_in,75,26,3	script	班#16nego01::本#16nego01	4_M_REBELLION,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，我好饿。今天巡逻时什么也没发生。";
 	next;
-	mes "[本]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "晚饭吃什么？";
 	close;
 }
 
-rebel_in,75,23,3	script	马克曼#16nego01	4_M_TELEPORTER,{
-	mes "[马克曼]";
+rebel_in,75,23,3	script	马克蒙#16nego01::马克曼#16nego01	4_M_TELEPORTER,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我喜欢在夜班时看书。第3卷在哪里？";
 	next;
-	mes "[马克曼]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "新手！第3卷在哪里？新手！新手！！";
 	close;
 }
 
-rebel_in,82,33,3	script	托特#16nego01	4_F_03,{
-	mes "[托特]";
+rebel_in,82,33,3	script	多多#16nego01::托特#16nego01	4_F_03,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "夜钓是最棒的钓鱼。水声、微光，以及夜晚独处的感觉。";
 	next;
-	mes "[托特]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "所以我经常来这里。这里的水太脏了，根本没有鱼。我只是享受这种感觉。";
 	close;
 }
 
-rebel_in,90,24,5	script	梅梅#16nego01	4_F_02,{
-	mes "[梅梅]";
+rebel_in,90,24,5	script	玫玫#16nego01::梅梅#16nego01	4_F_02,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，我得完成这个……呼呼呼";
 	close;
 }
 
-rebel_in,97,24,5	script	科罗纳#16nego01	4_M_SCIENCE,{
-	mes "[科罗纳]";
+rebel_in,97,24,5	script	柯罗拿#16nego01::科罗纳#16nego01	4_M_SCIENCE,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这光真美。太完美了！";
 	next;
-	mes "[科罗纳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "看这个。这光是不是很美？它映照在灯上。";
 	next;
-	mes "[科罗纳]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哈……太完美了。我再擦亮一点，让光芒更加耀眼。";
 	close;
 }
 
 // Enchants
-rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
+rebel_in,90,40,5	script	豪哥#pa0829::霍加#pa0829	4_M_MASKMAN,{
 	disable_items;
 	if (checkweight(501,1) == 0) {
 		mes "你带的东西似乎太多了。拿掉一些后再试吧。";
@@ -11107,69 +11107,69 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 		close;
 	}
 	if (isbegin_quest(12376) != 2) {
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "客人？我今天本来不打算做生意。我太累了。";
 		next;
 		select("我好像在哪里听过类似的话。 ");
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "只是你的想象。世上没有像我这样的人。";
 		next;
 		mes "^0000ff但他看起来还是很眼熟。^000000";
 		next;
 		if (select( "浪费时间。", "告诉我你卖什么。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "哼，走开。";
 			close;
 		}
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "秀发兹荣耀徽章是国家发行、禁止个人交易的物品。我从人们那里收取这些物品，为他们附魔装备。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "背叛同领域的竞争者后，我得到了附魔的秘密方法。从那以后，我就这样在暗处工作……哦，算了。这不是愉快的故事。";
 		next;
 		select("（他确实很眼熟……）");
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，如果你有一大堆代币，不要直接扔掉，来找我。我们可以做笔好交易。";
 		next;
 		select("什么交易？");
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我可以特殊附魔议程长袍、咨询长袍，以及A型和B型佣兵戒指。作为交换，我收取秀发兹荣耀徽章。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "好了，我不必继续这样唠叨。想附魔装备时把代币带来，我们再详细谈交易。";
 		setquest 12376;// First transaction
 		completequest 12376;// First transaction
 		close;
 	}
-	mes "[霍加]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你是来交易的吗？告诉我你需要什么。";
 	next;
 	switch( select( "告诉我交易条件", "为长袍附魔", "为戒指附魔", "重置长袍附魔", "重置戒指附魔" ) ) {
 	case 1:
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "听好了。我不会说第二遍。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为议程长袍或商事外袍的一个插槽附魔，需要20个秀发兹荣耀徽章。最多可附魔两个插槽。重置附魔需要10个秀发兹荣耀徽章。明白了吗？";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "接下来是A型和B型佣兵戒指。附魔一个插槽需要5个代币，最多可附魔两个插槽。重置附魔需要10个代币。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重置附魔不能随时进行。只有装备获得两个效果、无法继续附魔后，我才会进行重置附魔。还有……接下来……";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有个小问题。A型和B型佣兵戒指在重置附魔时可能会损坏，概率约为20%。因为它们是小型物品，消除附魔效果时会产生严重副作用。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "期待和你建立良好的交易关系，朋友。";
 		close;
 	case 2:
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "商事外袍和议程长袍每个插槽需要20个秀发兹荣耀徽章。确定要附魔吗？";
 		next;
 		if (select( "不。", "开始吧。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我很忙，以后别再无谓地和我说话。";
 			close;
 		}
@@ -11183,24 +11183,24 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 
 		switch( .@equip_id ) {
 		case -1:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你把装备脱下来了。";
 			close;
 		case 15163:
 		case 15164:
 			break;
 		default:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "成熟点。想附魔装备，先把它正确装备上。";
 			close;
 		}
 		if (.@card[2] > 0 && .@card[3] > 0) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这件装备无法继续附魔。还有其他装备吗？";
 			close;
 		}
 		if (countitem(25155) < 20) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听好了，朋友。没有" + getitemname(25155) + "就不能和我交易。";
 			close;
 		}
@@ -11236,15 +11236,15 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 		delequip EQI_ARMOR;
 		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，做得很好。检查你的物品吧。";
 		close;
 	case 3:
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "附魔左侧装备的A型和B型佣兵戒指插槽需要5个秀发兹荣耀徽章。确定要附魔吗？";
 		next;
 		if (select( "不。", "开始吧。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我很忙，以后别再无谓地和我说话。";
 			close;
 		}
@@ -11257,24 +11257,24 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 
 		switch( .@equip_id ) {
 		case -1:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "忘了告诉你，我只附魔装备在左侧的饰品。先把它装备在左侧，再让我附魔。";
 			close;
 		case 28425:
 		case 28426:
 			break;
 		default:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "成熟点。想附魔佣兵戒指，先把它正确装备上。";
 			close;
 		}
 		if (.@card[2] > 0 && .@card[3] > 0) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "这件装备无法继续附魔。还有其他装备吗？";
 			close;
 		}
 		if (countitem(25155) < 5) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听好了，朋友。没有" + getitemname(25155) + "就不能和我交易。";
 			close;
 		}
@@ -11304,15 +11304,15 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 		delequip EQI_ACC_L;
 		getitem2 .@equip_id,1,1,0,0,.@card[0],.@card[1],.@card[2],.@card[3];
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，做得很好。检查你的物品吧。";
 		close;
 	case 4:
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重置附魔商事外袍或议程长袍需要10个秀发兹荣耀徽章。装备本身不会损坏，已经插入的卡片和精炼等级也会保留。";
 		next;
 		if (select( "不。", "开始吧。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我很忙，以后别再无谓地和我说话。";
 			close;
 		}
@@ -11326,24 +11326,24 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 
 		switch( .@equip_id ) {
 		case -1:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你把装备脱下来了。";
 			close;
 		case 15163:
 		case 15164:
 			break;
 		default:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "糟糕，这件物品还没有完全附魔，现在无法重置附魔。";
 			close;
 		}
 		if (.@card[2] == 0 || .@card[3] == 0) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "糟糕，这件物品还没有完全附魔，现在无法重置附魔。";
 			close;
 		}
 		if (countitem(25155) < 10) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听好了，朋友。没有" + getitemname(25155) + "就不能和我交易。";
 			close;
 		}
@@ -11351,26 +11351,26 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 		delequip EQI_ARMOR;
 		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],0,0,0;
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，做得很好。检查你的物品吧。";
 		close;
 	case 5:
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "重置附魔左侧装备的A型和B型佣兵戒指需要10个秀发兹荣耀徽章。";
 		next;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如我之前所说，戒指重置附魔相当困难。^ff0000成功率为80%。^000000失败的话物品就会消失。确定要做吗？";
 		next;
 		if (select( "不。", "开始吧。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我很忙，以后别再无谓地和我说话。";
 			close;
 		}
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "提前告诉你。每次重置附魔戒指都有20%的损坏概率。确定要继续吗？";
 		next;
 		if (select( "停止。", "继续。" ) == 1) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "是的。好主意。";
 			close;
 		}
@@ -11383,24 +11383,24 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 
 		switch( .@equip_id ) {
 		case -1:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "忘了告诉你，我只重置附魔装备在左侧的饰品。先把它装备在左侧，再让我重置附魔。";
 			close;
 		case 28425:
 		case 28426:
 			break;
 		default:
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "糟糕，这件物品还没有完全附魔，现在无法重置附魔。";
 			close;
 		}
 		if (.@card[2] == 0 || .@card[3] == 0) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "糟糕，这件物品还没有完全附魔，现在无法重置附魔。";
 			close;
 		}
 		if (countitem(25155) < 10) {
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "听好了，朋友。没有" + getitemname(25155) + "就不能和我交易。";
 			close;
 		}
@@ -11408,13 +11408,13 @@ rebel_in,90,40,5	script	霍加#pa0829	4_M_MASKMAN,{
 		delequip EQI_ACC_L;
 		if (rand(100) < 20) {
 			specialeffect2 EF_LORD;
-			mes "[霍加]";
+			mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你今天真倒霉。你的装备严重损坏了。";
 			close;
 		}
 		getitem2 .@equip_id,1,1,0,0,.@card[0],0,0,0;
 		specialeffect2 EF_REPAIRWEAPON;
-		mes "[霍加]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯，做得很好。检查你的物品吧。";
 		close;
 	}
@@ -11430,8 +11430,8 @@ rebel_in,100,40,4	script	蝴蝶商人#rebel_in	4_M_ORIENT02,{
 	end;
 }
 
-rebel_in,99,51,3	script	帝国装备管理员#ext162	4_M_REPAIR,{
-	mes "[帝国装备管理员]";
+rebel_in,99,51,3	script	帝国兑换员#ext162::帝国装备管理员#ext162	4_M_REPAIR,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好。";
 	mes "我们有可以用" + mesitemlink( 25155, false ) + "兑换的^4d4dff帝国^000000装备。";
 	mes "我会根据你的职业指导你兑换物品。";
@@ -11520,38 +11520,38 @@ rebel_in,99,51,3	script	帝国装备管理员#ext162	4_M_REPAIR,{
 	end;
 }
 
-rebel_in,74,67,5	script	斯特拉斯#rebel_in	4_M_TATIO,{
+rebel_in,74,67,5	script	施特拉世#rebel_in::斯特拉斯#rebel_in	4_M_TATIO,{
 	disable_items;
 	if (checkweight(501,1) == 0) {
-		mes "[斯特拉斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的物品栏太满了。";
 		mes "请减轻负重后再来。";
 		close;
 	}
 	if ((MaxWeight - Weight) < 1000) {
-		mes "[斯特拉斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的物品栏太满了。";
 		mes "请减轻负重后再来。";
 		close;
 	}
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好。有什么可以帮你？";
 	next;
 	if (countitem(25155) < 1) {
-		mes "[斯特拉斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯……你没有秀发兹荣耀徽章。";
 		mes "处理完其他事情后再来吧。";
 		close;
 	}
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哦，你带来了秀发兹荣耀徽章。";
 	mes "我一直感谢你的帮助。";
 	mes "我们必须回报你的帮助。";
 	next;
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "对带来一定数量代币的合作者，我们会赠送礼物。请选择需要的物品。";
 	next;
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你想选择哪一件？";
 	next;
 
@@ -11564,32 +11564,32 @@ rebel_in,74,67,5	script	斯特拉斯#rebel_in	4_M_TATIO,{
 		28426, 1500;	// Mercenary_Ring_B
 
 	.@s = (select( "议程长袍", "商事外袍", "(时装)血战之痕", "秀发兹共和国帽子", "佣兵之戒A型", "佣兵之戒B型" ) - 1) * 2;
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes mesitemlink( .@item[.@s], false ) + "？我明白了。";
 	mes "你需要 " + .@item[.@s+1] + " 个秀发兹荣耀徽章。";
 	mes "确定要这个吗？";
 	next;
 	if (select( "是", "不" ) == 2) {
-		mes "[斯特拉斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "决定后再回来。";
 		close;
 	}
 	if (countitem(25155) < .@item[.@s+1]) {// Swz_Honor_Token
-		mes "[斯特拉斯]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的代币不够……";
 		mes "请再收集一些。";
 		close;
 	}
 	// custom text
-	mes "[斯特拉斯]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "这是你的 " + mesitemlink( .@item[.@s], false ) + ".";
 	delitem 25155, .@item[.@s+1];
 	getitem .@item[.@s],1;
 	close;
 }
 
-rebel_in,89,46,3	script	罗滕#16nego01	4_M_SITDOWN,{
-	mes "[罗滕]";
+rebel_in,89,46,3	script	坏牙#16nego01::罗滕#16nego01	4_M_SITDOWN,{
+	mes "[" + strnpcinfo(1) + "]";
 	mes "啊，我讨厌打扫。他们为什么不发明自动清洁的机器？";
 	close;
 }
@@ -11598,15 +11598,15 @@ rebel_in,104,37,5	duplicate(dummy_cloaked_npc)	达里尔#16nego01	4_M_REBELLION2
 rebel_in,103,37,7	duplicate(dummy_cloaked_npc)	学员#16nego01	4_F_GUNSLINGER3
 rebel_in,104,39,5	duplicate(dummy_cloaked_npc)	学员#16nego02	4_M_GUNSLINGER3
 
-rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
+rebel_in,108,36,3	script	军械士#16nego02::师父#16nego02	4_F_HUWOMAN,{
 	if (checkweight(25155,3) == 0 || (MaxWeight - Weight) < 1000) {
 		emotion ET_OHNO;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的背包里物品太多。减轻负重后再回来吧，看起来太重了。";
 		close;
 	}
 	if (terra_gloria_main < 17) {
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "仅限授权人员。请勿靠近。";
 		close;
 	}
@@ -11615,20 +11615,20 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 		break;
 	case 0:
 	case 1:
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，今天请好好休息。一定要照顾自己。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "明天见。";
 		close;
 	case 2:
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来，冒险者。身心休息得好吗？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "昨晚有很多武器没归还。我真得教训这些家伙……";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "总之，我要靠你了。^0000cd到艾音贝赫南边寻找可疑土堆^000000并调查。然后请^0000cd带回三份砸毁手枪的残骸^000000。";
 		erasequest 14612;// Time for repair
 		setquest 14611;// Gun recycling
@@ -11640,48 +11640,48 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 	case 0:
 		break;
 	case 1:
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈……有这么多人没有归还武器。";
 		next;
 		emotion ET_OHNO;
 		mes "[" + strcharinfo(0) + "]";
 		mes "嗯……";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来，冒险者。你比我们预想的早回来。没有被怨念攻击吗？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来了我说的东西？让我看看……";
 		next;
 		if (countitem(25153) < 3) {
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……不够。我让你带来^0000cd三份砸毁手枪的残骸^000000。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "到^0000cd艾音贝赫南边^000000，调查各处的^0000cd可疑土堆^000000，就能找到它们。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为有怨念，我知道这不容易。但我们要依靠你。";
 			close;
 		}
 		if (checkquest(14611,HUNTING) != 2) {
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你带来了足够的砸毁手枪的残骸。但我们无法使用它们。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你必须至少搜索五个土堆并击败约五个怨念。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道你辛苦为我们带来它们。抱歉还要再拜托你。";
 			close;
 		}
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "天啊……太惊人了。你在这么短时间内找回了所有武器。他们竟然到处藏了这么多武器。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "冒险者，你今天一定累了。休息一下，^0000cd4小时^000000后再回来。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢你。";
 		erasequest 14611;// Gun recycling
 		delitem 25153,3;// Broken_Gun_Wreck
@@ -11699,88 +11699,88 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "你好？我能看看周围吗？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦，你就是著名的冒险者。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我因什么出名？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们说我们很久后又迎来了一位外来者，而这位外来者说服我们与政府合作。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "我没有做那么多。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "但我听到的就是这样。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "顺便问，这是什么地方？这里有这么多枪，我想这是军械库。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "差不多。我们在这里为叛乱军借出武器。";
 		next;
 		emotion ET_QUESTION, playerattached();
 		mes "[" + strcharinfo(0) + "]";
 		mes "他们有自己的武器。你们还借给他们更多？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你说得对。但根据任务和情况，有时我们需要额外武器";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对于新人，我们不知道哪种枪适合他们。所以他们必须尝试许多不同的枪。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "所以他们可以在这里借。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "是的。他们必须在账簿上登记借用期限、姓名和用途，归还时只需签名。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "真麻烦。我以为你们会不经手续直接借出。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "起初，他们借还枪械不需要填写任何东西。但几乎没人归还。我们的资源有限，不能一直生产和购买武器。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "所以我们建立了这样的制度。这都是这里的人造成的。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "这是账簿……";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "别仔细看。别忘了，你是外来者。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "请记住，我们最近一直是施瓦茨瓦尔德最神秘、最封闭的组织。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "真厉害。这些红线是什么？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哈.......................................";
 		emotion ET_OTL;
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "那些没有归还武器的人。";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "这么多人……即使你们管理得很严格？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "因为这些不是他们的私人枪械，所以他们不在意。他们不明白必须小心使用。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "武器损坏后必须带回这里修理。但他们直接扔掉，即使我们处罚也不带回来，反而声称弄丢了。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦！太好了！冒险者，有时间能帮我们吗？";
 		next;
 		if (select( "我总是喜欢工作。", "对不起。我不能。" ) == 2) {
 			mes "[" + strcharinfo(0) + "]";
 			mes "突然？也许现在不行……";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯，这不紧急。有时间再找吧。";
 			next;
 			mes "[" + strcharinfo(0) + "]";
@@ -11790,101 +11790,101 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "突然？我总是喜欢工作。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "态度不错。看看那些有红线的人，找回他们扔掉的武器。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "他们执行任务时，大多会在武器损坏后找回。到达艾音贝赫时，他们想到我会责骂，就把武器扔掉。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有时间时我会找回它们。有时也派新人去拿。但如你所见，我们最近很忙。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "一旦你触碰残骸……";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "会发生什么？";
 		next;
 		emotion ET_KEK;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哦……枪械怨念会出现并攻击你。你必须亲眼看看。眼见为实。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "去艾音贝赫下方原野的^0000cd几个地点^000000，在可疑土堆中找回^0000cd砸毁手枪的残骸^000000。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我从最新的开始看看……请带回^0000cd三份^000000。带太多的话很难修理。";
 		setquest 14610;// Gun recycling
 		close;
 	case 1:
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "欢迎回来。带来我要求的东西了吗？";
 		next;
 		if (countitem(25153) < 3) {
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "嗯……不够。我让你带来三份砸毁手枪的残骸。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "从艾音贝赫下去，在几个地点调查可疑土堆，就能找到它们。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "因为有怨念，我知道这不容易。但我们要依靠你。";
 			close;
 		}
 		if (checkquest(14610,HUNTING) != 2) {
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "你带来了足够的砸毁手枪的残骸。但我们无法使用它们。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我想你必须至少搜索五个土堆并击败约五个怨念。";
 			next;
-			mes "[师父]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我知道你辛苦为我们带来它们。抱歉还要再拜托你。";
 			close;
 		}
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你带来的数量足够了。非常感谢。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "顺便说，他现在应该在这里。";
 		next;
 		cloakoffnpcself( "达里尔#16nego01" );
 		mes "[达里尔]";
 		mes "我在这里。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你的武器呢？";
 		next;
 		mes "[达里尔]";
 		mes "我没有。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "为什么？";
 		next;
 		mes "[达里尔]";
 		mes "我弄丢了。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "见鬼，干得好。";
 		next;
 		mes "[达里尔]";
 		mes "嗯，也不算干得好。";
 		next;
 		emotion ET_OK;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你做得很好。所以你又会弄丢武器，对吧？";
 		next;
 		mes "[达里尔]";
 		mes "不.";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我告诉过你什么？你可以迷路，但绝不能弄丢武器！";
 		next;
 		mes "[达里尔]";
 		mes "对不起。";
 		emotion ET_SORRY, getnpcid(0, "达里尔#16nego01");
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不像道歉的态度。你弄丢了借来的东西。现在把你的交出来。";
 		next;
 		mes "[达里尔]";
@@ -11897,45 +11897,45 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 		mes "[达里尔]";
 		mes "不，你不能走！虽然我不知道你是谁，但请救救我！";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "对！我们必须补偿你。先看看是谁扔掉了这个。";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "让我看看……谁扔掉了这个……？序列号是……";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "……达里尔？";
 		next;
 		mes "[达里尔]";
 		mes "是吧？";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你上次借的武器……你说弄丢了，对吧？";
 		next;
 		emotion ET_SCRATCH, getnpcid(0, "达里尔#16nego01");
 		mes "[达里尔]";
 		mes "天啊。它为什么在那里……";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你求我给你武器！！就因为它不是你的，你就这样弄坏后扔掉？为什么不把自己的武器这样处理？";
 		next;
 		mes "[达里尔]";
 		mes "我的女神！！我必须珍惜它！！！";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这不是第一次，而且我手里有确凿证据。你现在无话可说！";
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我们会暂时保管你的女神。你去训练室好好反省！";
 		next;
 		cloakoffnpcself( "学员#16nego01" );
 		cloakoffnpcself( "学员#16nego02" );
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "学员们！！！";
 		npctalk "是!!", "学员#16nego01", bc_self;
 		npctalk "是!!", "学员#16nego02", bc_self;
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "过来把他拖出去！";
 		next;
 		mes "[达里尔]";
@@ -11950,11 +11950,11 @@ rebel_in,108,36,3	script	师父#16nego02	4_F_HUWOMAN,{
 		cloakonnpcself( "学员#16nego01" );
 		cloakonnpcself( "学员#16nego02" );
 		cloakonnpcself( "达里尔#16nego01" );
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你现在一定很累。休息一下。有兴趣继续帮忙的话，4小时后再回来。";
 		emotion ET_SWEAT, playerattached();
 		next;
-		mes "[师父]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "非常感谢你。";
 		erasequest 14610;// Gun recycling
 		setquest 14612;// Time for repair
@@ -11974,7 +11974,7 @@ OnInit:
 	end;
 }
 
-ein_fild09,70,175,5	script	可疑土堆#1	4_SOIL,{
+ein_fild09,70,175,5	script	可疑的土堆#1::可疑土堆#1	4_SOIL,{
 	if (isbegin_quest(14610) == 0 && isbegin_quest(14611) == 0)
 		end;
 	if (countitem(25153) >= 3 && (checkquest(14610,HUNTING) == 2 || checkquest(14611,HUNTING) == 2)) {
@@ -12007,19 +12007,19 @@ OnTimer300000:
 	enablenpc();
 	end;
 }
-ein_fild09,136,157,5	duplicate(可疑土堆#1)	可疑土堆#2	4_SOIL
-ein_fild09,87,192,5	duplicate(可疑土堆#1)	可疑土堆#3	4_SOIL
-ein_fild09,95,234,5	duplicate(可疑土堆#1)	可疑土堆#4	4_SOIL
-ein_fild09,179,248,5	duplicate(可疑土堆#1)	可疑土堆#5	4_SOIL
-ein_fild09,127,276,5	duplicate(可疑土堆#1)	可疑土堆#6	4_SOIL
-ein_fild09,89,289,5	duplicate(可疑土堆#1)	可疑土堆#7	4_SOIL
-ein_fild09,103,352,5	duplicate(可疑土堆#1)	可疑土堆#8	4_SOIL
-ein_fild09,164,290,5	duplicate(可疑土堆#1)	可疑土堆#9	4_SOIL
-ein_fild09,256,320,5	duplicate(可疑土堆#1)	可疑土堆#10	4_SOIL
-ein_fild09,256,282,5	duplicate(可疑土堆#1)	可疑土堆#11	4_SOIL
-ein_fild09,335,239,5	duplicate(可疑土堆#1)	可疑土堆#12	4_SOIL
-ein_fild09,332,216,5	duplicate(可疑土堆#1)	可疑土堆#13	4_SOIL
-ein_fild09,135,305,5	duplicate(可疑土堆#1)	可疑土堆#14	4_SOIL
+ein_fild09,136,157,5	duplicate(可疑土堆#1)	可疑的土堆#2::可疑土堆#2	4_SOIL
+ein_fild09,87,192,5	duplicate(可疑土堆#1)	可疑的土堆#3::可疑土堆#3	4_SOIL
+ein_fild09,95,234,5	duplicate(可疑土堆#1)	可疑的土堆#4::可疑土堆#4	4_SOIL
+ein_fild09,179,248,5	duplicate(可疑土堆#1)	可疑的土堆#5::可疑土堆#5	4_SOIL
+ein_fild09,127,276,5	duplicate(可疑土堆#1)	可疑的土堆#6::可疑土堆#6	4_SOIL
+ein_fild09,89,289,5	duplicate(可疑土堆#1)	可疑的土堆#7::可疑土堆#7	4_SOIL
+ein_fild09,103,352,5	duplicate(可疑土堆#1)	可疑的土堆#8::可疑土堆#8	4_SOIL
+ein_fild09,164,290,5	duplicate(可疑土堆#1)	可疑的土堆#9::可疑土堆#9	4_SOIL
+ein_fild09,256,320,5	duplicate(可疑土堆#1)	可疑的土堆#10::可疑土堆#10	4_SOIL
+ein_fild09,256,282,5	duplicate(可疑土堆#1)	可疑的土堆#11::可疑土堆#11	4_SOIL
+ein_fild09,335,239,5	duplicate(可疑土堆#1)	可疑的土堆#12::可疑土堆#12	4_SOIL
+ein_fild09,332,216,5	duplicate(可疑土堆#1)	可疑的土堆#13::可疑土堆#13	4_SOIL
+ein_fild09,135,305,5	duplicate(可疑土堆#1)	可疑的土堆#14::可疑土堆#14	4_SOIL
 
 rebel_in,90,60,3	duplicate(dummy_cloaked_npc)	玛真塔#16nego01	4_M_GUNSLINGER2
 rebel_in,90,62,3	duplicate(dummy_cloaked_npc)	戈尼#16nego04	4_M_GONY
@@ -13579,7 +13579,7 @@ slabw01,247,111,3	duplicate(躲藏的研究员#hide01)	躲藏的研究员#hide03
 slabw01,255,63,3	duplicate(可疑的柜子#hide01)	可疑的缝隙#hide04	4_ENERGY_WHITE
 slabw01,255,63,3	duplicate(躲藏的研究员#hide01)	躲藏的研究员#hide04	4_M_ALCHE_A
 
-slabw01,179,58,3	duplicate(可疑的柜子#hide01)	可疑的桌子#hide05	4_ENERGY_WHITE
+slabw01,179,58,3	duplicate(可疑的柜子#hide01)	可疑的书桌#hide05::可疑的桌子#hide05	4_ENERGY_WHITE
 slabw01,180,57,3	duplicate(躲藏的研究员#hide01)	躲藏的研究员#hide05	4_M_ALCHE_A
 
 slabw01,143,100,3	duplicate(可疑的柜子#hide01)	可疑的试管#hide06	4_ENERGY_WHITE
@@ -13593,7 +13593,7 @@ slabw01,231,125,3	duplicate(可疑的柜子#hide01)	可疑的垃圾桶#hide08	4_
 slabw01,231,124,3	duplicate(躲藏的研究员#hide01)	躲藏的研究员#hide08	4_M_ALCHE_A
 
 
-slabw01,103,66,3	script	本#16nego02	4_M_REBELLION,5,5,{
+slabw01,103,66,3	script	班#16nego02::本#16nego02	4_M_REBELLION,5,5,{
 	end;
 OnTouch:
 	npctalk "经过那里时小心。有高压电流。";
@@ -13605,7 +13605,7 @@ slabw01,79,97,3	script	梅梅#16nego02	4_F_REBELLION3,{
 	end;
 }
 
-slabw01,143,138,7	script	格林德#16nego02	4_M_REBELLION,{
+slabw01,143,138,7	script	大牙#16nego02::格林德#16nego02	4_M_REBELLION,{
 	 npctalk "看看这个标记。发生了什么？";
 	sleep2 2000;
 	 npctalk "别想了。", "芳#16nego02";
@@ -14357,31 +14357,31 @@ OnInit:
 rebel_in,70,75,1	duplicate(dummy_cloaked_npc)	伊利亚·列别捷夫#16.2rms	4_M_ILYA
 rebel_in,69,75,1	duplicate(dummy_cloaked_npc)	雅娜·列别捷娃#16.2rms	4_F_ANYA
 
-prt_in,165,89,1	script	儿童区图书管理员	1_F_LIBRARYGIRL,{
+prt_in,165,89,1	script	女青年图书管理员::儿童区图书管理员	1_F_LIBRARYGIRL,{
 	setarray .@quest_id[0], 16021,16022,16023;
 	.@size = getarraysize(.@quest_id);
 	for ( .@i = 0; .@i < .@size && isbegin_quest(.@quest_id[.@i]) == 0; .@i++ )
 		continue;
 
 	if (.@i == .@size) {
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你好。欢迎来到普隆德拉图书馆。";
 		mes "儿童读物只提供指定借阅服务。";
 		close;
 	}
 	if (isbegin_quest(16024) == 1 && countitem(25160) < 1) {
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你把出借书籍弄丢了吗？";
 		mes "好的……我们接受你的遗失报告。";
 		next;
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "下次请小心。";
 		mes "如果多次遗失或损坏书籍，我们可能会禁止你借阅。";
 		erasequest 16024;// Service: Loaned book delivery
 		setquest 16020;// Daily babysitting
 		close;
 	}
-	mes "[儿童区图书管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "你好。欢迎来到普隆德拉图书馆。";
 	mes "儿童读物只提供指定借阅服务。你想找哪本书？";
 	next;
@@ -14410,22 +14410,22 @@ prt_in,165,89,1	script	儿童区图书管理员	1_F_LIBRARYGIRL,{
 
 	.@s = select( .@menu$[0], .@menu$[1], .@menu$[2], "什么也不选。" ) - 1;
 	if (.@s == 3) {
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "普隆德拉图书馆永远欢迎阅读书籍的孩子。";
 		close;
 	}
 	if (.@s != .@right_answer) {
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "" + .@menu$[.@s] + "？那本书吗？请稍等。";
 		next;
-		mes "[儿童区图书管理员]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "你想要的书现在已被借出。请换一本。";
 		close;
 	}
-	mes "[儿童区图书管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "" + .@menu$[.@right_answer] + "？请稍等。";
 	next;
-	mes "[儿童区图书管理员]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好的，给你。请遵守借阅期限。";
 	erasequest .@quest_id[.@i];
 	setquest 16024;// Service: Loaned book delivery
@@ -14434,7 +14434,7 @@ prt_in,165,89,1	script	儿童区图书管理员	1_F_LIBRARYGIRL,{
 }
 
 // Items Quests given by Small Leather Bag (ID: 23087) - not repeatable
-prt_in,177,26,6	script	温莎骑士#ep162	4_M_JOB_KNIGHT1,{
+prt_in,177,26,6	script	骑士 文强#ep162::温莎骑士#ep162	4_M_JOB_KNIGHT1,{
 	switch( isbegin_quest(7746) ) {
 	case 0:
 		if (countitem(25180) < 1)
@@ -14519,7 +14519,7 @@ prt_in,177,26,6	script	温莎骑士#ep162	4_M_JOB_KNIGHT1,{
 	end;
 }
 
-prt_monk,93,254,3	script	玛格丽特修女#ep162	1_F_PRIEST,{
+prt_monk,93,254,3	script	修女玛嘉雷特#ep162::玛格丽特修女#ep162	1_F_PRIEST,{
 	switch( isbegin_quest(7748) ) {
 	case 0:
 		if (countitem(25181) < 1) {
@@ -14581,7 +14581,7 @@ prt_monk,93,254,3	script	玛格丽特修女#ep162	1_F_PRIEST,{
 	}
 }
 
-yuno_in01,163,31,3	script	铁匠克利弗#ep16	4_TOWER_17,{
+yuno_in01,163,31,3	script	铁匠 克利佛#ep16::铁匠克利弗#ep16	4_TOWER_17,{
 	switch( isbegin_quest(7749) ) {
 	case 0:
 		if (countitem(25183) < 1) {
@@ -14652,35 +14652,35 @@ yuno_in01,163,31,3	script	铁匠克利弗#ep16	4_TOWER_17,{
 	}
 }
 
-que_job01,89,91,1	script	盖尔·马罗维茨#ep162	1_M_JOBTESTER,{
+que_job01,89,91,1	script	佳伊 马洛菲兹#ep162::盖尔·马罗维茨#ep162	1_M_JOBTESTER,{
 	switch( isbegin_quest(7750) ) {
 	case 0:
 		if (countitem(25182) < 1) {
-			mes "[盖尔·马罗维茨]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "……如果你想成为刺客，就去沙漠东边。";
 			close;
 		}
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "真是少见。";
 		mes "是什么把你带到这里来的？";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这把短剑是……";
 		mes "没错。艾勒梅斯……";
 		mes "终于回来了。";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我派他出任务已经是很久以前的事了……他回来得太晚。";
 		npctalk "......", "", bc_self;
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "这次任务算失败还是成功？";
 		mes "……他是那种最讨厌任务失败的人。";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我喜欢认真完成任务的人。不过这次……我倒希望他放弃任务，去度个假。";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我会照顾好他……嗯。";
 		mes "谢谢你。";
 		delitem 25182,1;// Assassin_PT_Dagger
@@ -14690,14 +14690,14 @@ que_job01,89,91,1	script	盖尔·马罗维茨#ep162	1_M_JOBTESTER,{
 		close;
 	case 1:
 	case 2:
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "在这一行，任务结束后同伴没能回来是很常见的事。";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "有些幸运的人会像这样回来。";
 		mes "而他确实很幸运。";
 		next;
-		mes "[盖尔·马罗维茨]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "没必要难过。";
 		mes "只是有些遗憾。";
 		mes "仅此而已。";
@@ -14705,7 +14705,7 @@ que_job01,89,91,1	script	盖尔·马罗维茨#ep162	1_M_JOBTESTER,{
 	}
 }
 
-payon_in03,194,39,3	script	猎人谢琳#ep162	4_F_JOB_HUNTER,{
+payon_in03,194,39,3	script	猎人 雪霖#ep162::猎人谢琳#ep162	4_F_JOB_HUNTER,{
 	switch( isbegin_quest(7751) ) {
 	case 0:
 		if (countitem(25184) < 1) {

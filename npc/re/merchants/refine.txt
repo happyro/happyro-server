@@ -384,9 +384,9 @@ morocc_in,60,38,5	duplicate(Austri#ref)	Austri#moc	826
 
 // Malangdo Refiner
 //============================================================
-malangdo,224,172,6	script	Clink#mal_normal	544,{
+malangdo,224,172,6	script	猫当当#mal_normal::Clink#mal_normal	544,{
 	disable_items;
-	mes "[克林克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "我帅气的爸爸霍林克说，我有世界上最棒的强化锤！！";
 	mes "喵喵~";
 	mes "你以为我是谁？";
@@ -397,7 +397,7 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 		.@menu$ = .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) +"-[空]" ) +":";
 	.@part = .@indices[ select(.@menu$) ];
 	if (!getequipisequiped(.@part)) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		switch(.@part) {
 		case EQI_HEAD_TOP:
 			mes "爸爸说过，愚蠢是没药可救的……";
@@ -429,13 +429,13 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "这件物品不能强化！！";
 		close;
 	}
 	.@refinerycnt = getequiprefinerycnt(.@part); //save refinery count
 	if (.@refinerycnt >= 10) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 	mes "完美强化。是我帮你做到的吗？";
 		close;
 	}
@@ -445,7 +445,7 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	.@price = getequiprefinecost(.@part, REFINE_COST_NORMAL, REFINE_ZENY_COST);
 	.@material = getequiprefinecost(.@part, REFINE_COST_NORMAL, REFINE_MATERIAL_ID);
 	.@itemtype = getiteminfo( .@refineitemid, ITEMINFO_TYPE );
-	mes "[克林克]";
+	mes "[" + strnpcinfo(1) + "]";
 	if( .@itemtype == IT_ARMOR ){
 		switch( getequiparmorlv( .@part ) ){
 			case 1: // Armor
@@ -486,32 +486,32 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	mes "你需要^ff9999"+getitemname(.@material)+"^000000和^ff9999"+.@price+"^000000 Zeny。你有吗？";
 	next;
 	if(select("有！！:算了！！") == 2) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "我就知道！！";
 		mes "我就知道你不值得让我用魔法精炼锤。";
 		close;
 	}
 	if (getequippercentrefinery(.@part) < 100) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哇！！";
 		mes "这件"+.@type$+"已经精炼得相当高了，对吧？";
 		mes "你知道它可能会损坏，对吧？";
 		next;
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "如果你弄坏了"+.@type$+", 就再也不能使用。";
 		mes "卡片和附魔效果……";
 		mes "^ff0000整个东西都会消失^000000。";
 		mes "你还要继续吗~？";
 		next;
 		if(select("当然！！:算了！！") == 2) {
-			mes "[克林克]";
+			mes "[" + strnpcinfo(1) + "]";
 			mes "我就知道！！";
 			mes "连这一步都迈不过去。别想精炼了……";
 			close;
 		}
 	}
 	if (countitem(.@material) == 0 || Zeny < .@price) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "喂！！我不是告诉过你，你需要^ff9999"+getitemname(.@material)+"^000000和^ff9999"+.@price+"^000000 Zeny？？！！";
 		close;
 	}
@@ -521,7 +521,7 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@refineitemid) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) ||
 		callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt)) {
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		emotion ET_FRET;
 		mes "等一下……";
 		mes "你以为我傻吗？！";
@@ -531,7 +531,7 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 
 	if (getequippercentrefinery(.@part) <= rand(100)) {
 		failedrefitem .@part;
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "哭泣之锤！！哭吧！！！";
 		next;
 		switch(rand(1,5)) {
@@ -541,24 +541,24 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 			case 4: emotion ET_SCRATCH; break;
 			case 5: emotion ET_BIGTHROB; break;
 		}
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嗯？！失败了？！";
 		next;
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "啊~全都~坏了……？真遗憾~";
 		next;
-		mes "[克林克]";
+		mes "[" + strnpcinfo(1) + "]";
 		mes "嘿……！！再给我一个。";
 		mes "这不可能。";
 		mes "我的锤子怎么会精炼失败？";
 		close;
 	}
 	successrefitem .@part;
-	mes "[克林克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "哭泣之锤！！哭吧！！！";
 	next;
 	emotion ET_CHUP;
-	mes "[克林克]";
+	mes "[" + strnpcinfo(1) + "]";
 	mes "好！！完美！！";
 	mes "有了这把特殊的锤子，就没有我不能精炼的东西。";
 	mes "你可以赞美我！！";
@@ -667,7 +667,7 @@ ein_in01,18,82,5	duplicate(Dietrich#ns_prt)	Matestein#2	4_M_02
 lhz_in02,281,24,5	duplicate(Dietrich#ns_prt)	Fruel#2	4_M_02
 
 // Shadowdecon/Zelunium exchange npcs
-prt_in,64,57,3	script	Pauline	4_M_02,{
+prt_in,64,57,3	script	柏林::Pauline	4_M_02,{
 	mes "[" + strnpcinfo(1) + "]";
 	mes "你有" + mesitemlink( 25728 ) + "或" + mesitemlink( 25730 ) + "吗？";
 	mes "我们会将它们交换成用于冶炼的精炼产品。";
@@ -675,9 +675,9 @@ prt_in,64,57,3	script	Pauline	4_M_02,{
 	callshop "barter_refine_3";
 	end;
 }
-payon,142,179,3	duplicate(Pauline)	Jihu	4_M_ORIENT01
+payon,142,179,3	duplicate(Pauline)	齐胡::Jihu	4_M_ORIENT01
 morocc_in,64,37,3	duplicate(Pauline)	Marik	4W_M_03
-alberta_in,24,63,5	duplicate(Pauline)	Satana	4_M_02
+alberta_in,24,63,5	duplicate(Pauline)	萨塔拿::Satana	4_M_02
 yuno_in01,164,31,6	duplicate(Pauline)	Dimir	4_M_ORIENT01
-lhz_in02,275,23,5	duplicate(Pauline)	Nemil	4_M_02
+lhz_in02,275,23,5	duplicate(Pauline)	内米::Nemil	4_M_02
 ein_in01,30,88,5	duplicate(Pauline)	Galan	4_M_02
