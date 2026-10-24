@@ -325,7 +325,7 @@ OnCalculate:
 	}
 	end;
 OnInvest_start:
-	announce "现在开始投资，以连接攻城区域女武神领域、青林湖泊、露依娜和布里托尼亚的‘深渊之门’。",bc_all,0xFF0000; //FW_NORMAL 10
+	announce "现在开始投资，以连接攻城区域瓦尔基里雷恩、青林湖泊、露依娜和怖立特离亚的‘深渊之门’。",bc_all,0xFF0000; //FW_NORMAL 10
 	set $fund_prt01,0;
 	set $fund_prt02,0;
 	set $fund_prt03,0;
@@ -591,11 +591,11 @@ prt_gld,164,98,3	script	重新投票管理员#Invest2	421,{
 		if (.@candidates$[.@i] == "alde")
 			set .@menu$[.@i],"露依娜";
 		else if (.@candidates$[.@i] == "gef")
-			set .@menu$[.@i],"布里托尼亚";
+			set .@menu$[.@i],"怖立特离亚";
 		else if (.@candidates$[.@i] == "pay")
 			set .@menu$[.@i],"青林湖泊";
 		else if (.@candidates$[.@i] == "prt")
-			set .@menu$[.@i],"女武神领域";
+			set .@menu$[.@i],"瓦尔基里雷恩";
 	}
 	set .@vote, select(implode(.@menu$,":"))-1;
 
@@ -643,7 +643,7 @@ OnTimer11000:
 	announce "猫爪商人公会：但是有些区域的投资金额相同。因此我们将通过投票决定。",bc_all,0xFF0000; //FW_NORMAL 10
 	end;
 OnTimer14000:
-	announce "猫爪商人公会：追加投票将开放 30 分钟。你可以在女武神领域投票。",bc_all,0xFF0000; //FW_NORMAL 10
+	announce "猫爪商人公会：追加投票将开放 30 分钟。你可以在瓦尔基里雷恩投票。",bc_all,0xFF0000; //FW_NORMAL 10
 	end;
 OnTimer20000:
 	explode(.@candidates$, callsub(OnGetCandidates, $2011_agit_invest),"|");
@@ -651,11 +651,11 @@ OnTimer20000:
 		if (.@candidates$[.@i] == "alde")
 			set .@choices$[.@i],"露依娜";
 		else if (.@candidates$[.@i] == "gef")
-			set .@choices$[.@i],"布里托尼亚";
+			set .@choices$[.@i],"怖立特离亚";
 		else if (.@candidates$[.@i] == "pay")
 			set .@choices$[.@i],"青林湖泊";
 		else if (.@candidates$[.@i] == "prt")
-			set .@choices$[.@i],"女武神领域";
+			set .@choices$[.@i],"瓦尔基里雷恩";
 	}
 	announce "猫爪商人公会：追加投票的候选地区是……"+implode(.@choices$," 对 ")+"。",bc_all,0xFF0000; //FW_NORMAL 10
 	set $fund_prt_extra,0;
@@ -706,8 +706,8 @@ OnAgitInvest:
 	} else if (compare(strnpcinfo(4),"gef")) {
 		set .@npc$,"gef";
 		set .@name$,"梅拉克";
-		set .@realm$,"布里托尼亚";
-		set .@intro$,"布里托尼亚分部经理";
+		set .@realm$,"怖立特离亚";
+		set .@intro$,"怖立特离亚分部经理";
 	} else if (compare(strnpcinfo(4),"pay")) {
 		set .@npc$,"pay";
 		set .@name$,"菲克达";
@@ -716,8 +716,8 @@ OnAgitInvest:
 	} else if (compare(strnpcinfo(4),"prt")) {
 		set .@npc$,"prt";
 		set .@name$,"杜贝";
-		set .@realm$,"女武神领域";
-		set .@intro$,"普隆德拉女武神领域分部经理";
+		set .@realm$,"瓦尔基里雷恩";
+		set .@intro$,"普隆德拉瓦尔基里雷恩分部经理";
 	}
 	set .@n$,"["+.@name$+"]";
 
@@ -949,7 +949,7 @@ OnAgitInvest:
 		set .@npc$,"gef";
 		set .@name$,"米扎尔";
 		set .@gate$,"亡者之丘";
-		set .@realm$,"布里托尼亚";
+		set .@realm$,"怖立特离亚";
 	} else if (compare(strnpcinfo(4),"pay")) {
 		set .@npc$,"pay";
 		set .@name$,"阿尔凯德";
@@ -959,7 +959,7 @@ OnAgitInvest:
 		set .@npc$,"prt";
 		set .@name$,"阿里奥斯";
 		set .@gate$,"勇士之路";
-		set .@realm$,"女武神领域";
+		set .@realm$,"瓦尔基里雷恩";
 	}
 	set .@n$,"["+.@name$+"]";
 
@@ -1027,13 +1027,13 @@ OnAgitInvest:
 			set .@realm$,"露依娜";
 		} else if (compare(strnpcinfo(4),"gef")) {
 			set .@npc$,"gef";
-			set .@realm$,"布里托尼亚";
+			set .@realm$,"怖立特离亚";
 		} else if (compare(strnpcinfo(4),"pay")) {
 			set .@npc$,"pay";
 			set .@realm$,"青林湖泊";
 		} else if (compare(strnpcinfo(4),"prt")) {
 			set .@npc$,"prt";
-			set .@realm$,"女武神领域";
+			set .@realm$,"瓦尔基里雷恩";
 		}
 		set .@notice, $agit_result_notice;
 		if (.@notice < 1 || .@notice > 12) {
@@ -1057,7 +1057,7 @@ OnAgitInvest:
 		close;
 	} else if (.@invest_status == 3) {
 		setarray .@invest_result[0], $prt_invest_result,$pay_invest_result,$gef_invest_result,$alde_invest_result;
-		setarray .@invest_region$[0],  "女武神领域",  "青林湖泊",       "布里托尼亚",            "露依娜";
+		setarray .@invest_region$[0],  "瓦尔基里雷恩",  "青林湖泊",       "怖立特离亚",            "露依娜";
 		mes "！- 所有攻城战区域的投资结果 -！";
 		for(set .@i,0; .@i<4; set .@i,.@i+1) {
 			if (.@invest_result[.@i] == 1)
@@ -1089,13 +1089,13 @@ OnAgitInvest:
 		set .@realm$,"露依娜";
 	} else if (compare(strnpcinfo(2),"gef")) {
 		set .@npc$,"gef";
-		set .@realm$,"布里托尼亚";
+		set .@realm$,"怖立特离亚";
 	} else if (compare(strnpcinfo(2),"pay")) {
 		set .@npc$,"pay";
 		set .@realm$,"青林湖泊";
 	} else if (compare(strnpcinfo(2),"prt")) {
 		set .@npc$,"prt";
-		set .@realm$,"女武神领域";
+		set .@realm$,"瓦尔基里雷恩";
 	}
 
 	set .@GID, getcastledata(strnpcinfo(4),CD_GUILD_ID);
@@ -1121,7 +1121,7 @@ OnAgitInvest:
 			mes "[大门管理员]";
 			mes "你的感谢券太多，无法再领取。";
 			mes "无法再给你券了。使用感谢券后再回来。";
-			mes "感谢券可以在马兰岛兑换各种物品。";
+			mes "感谢券可以在绵绵岛兑换各种物品。";
 			close;
 		}
 		if (callfunc("F_Invest_Status") != 1) {
@@ -1281,7 +1281,7 @@ malangdo,218,126,4	script	猫爪商人公告	857,{
 		setarray .@event1$[0],
 			"女王翅膀碎片","苍蝇王的王冠","听说龙鳞很坚硬 01","母亲梦魇的意义",
 			"精炼矿石","赫赫赫兽人，兽人！！","阴阳研究","金字塔王的秘密","滴答滴答时间流逝",
-			"在马兰岛植树","古代语言研究","尖牙制成的武器","玩具首领人偶 01",
+			"在绵绵岛植树","古代语言研究","尖牙制成的武器","玩具首领人偶 01",
 			"老虎终究也是猫","破碎的长枪和盾牌？","玩具首领人偶 02","夏日最佳！冰冷鳞片",
 			"塔纳托斯的铠甲碎片","听说龙鳞很坚硬 02","诡异眼睛的身份","要是我能看见就好了！";
 		set .@menu$, "退出:"+implode(.@event1$[0],":");
@@ -1382,7 +1382,7 @@ malangdo,218,123,1	script	纳米斯#invest	545,4,4,{
 		setarray .@event1$[0],
 			"女王翅膀碎片","苍蝇王的王冠","听说龙鳞很坚硬 01","母亲梦魇的意义",
 			"精炼矿石","赫赫赫兽人，兽人！！","阴阳研究","金字塔王的秘密","滴答滴答时间流逝",
-			"在马兰岛植树","古代语言研究","尖牙制成的武器","玩具首领人偶 01",
+			"在绵绵岛植树","古代语言研究","尖牙制成的武器","玩具首领人偶 01",
 			"老虎终究也是猫","破碎的长枪和盾牌？","玩具首领人偶 02","夏日最佳！冰冷鳞片",
 			"塔纳托斯的铠甲碎片","听说龙鳞很坚硬 02","诡异眼睛的身份","要是我能看见就好了！";
 		set .@i, select(implode(.@event1$[0],":"))-1;
@@ -1396,14 +1396,14 @@ malangdo,218,123,1	script	纳米斯#invest	545,4,4,{
 			case 7: callsub L_Check,"3 面八卦",7169,3,"收集这种东西，也许他们正在策划危险的事情。",.@event1$[.@i];
 			case 8: callsub L_Check,"3 个破损法老徽章和 3 个图坦卡蒙面具",7113,3,"听说金字塔在梦罗克，但我从没去过。有些人类称那里为莫洛科。",.@event1$[.@i],7114,3;
 			case 9: callsub L_Check,"2 块怀表",7513,2,"那些懒惰的商人，为什么需要自己都不用的怀表？",.@event1$[.@i];
-			case 10: callsub L_Check,"3 根嫩树枝",7018,3,"马兰岛的气候和我们猫过去居住的地方很像。但因为是岛屿，树木有时会枯萎。",.@event1$[.@i];
+			case 10: callsub L_Check,"3 根嫩树枝",7018,3,"绵绵岛的气候和我们猫过去居住的地方很像。但因为是岛屿，树木有时会枯萎。",.@event1$[.@i];
 			case 11: callsub L_Check,"5 块罗萨塔石碎片",7211,5,"我想他们收集这些是因为人类拥有它们，但研究古代语言有什么用？",.@event1$[.@i];
 			case 12: callsub L_Check,"5 根哈提獠牙",7036,5,"弱小的人类需要锋利的武器，但猫已经有漂亮又锋利的爪子了，为什么还要收集这些！！",.@event1$[.@i];
 			case 13: callsub L_Check,"3 个巴风特玩偶",750,3,"巴风特玩偶很适合拿来玩。",.@event1$[.@i];
 			case 14: callsub L_Check,"1 张虎掌皮和 5 张虎皮",1030,1,"你知道老虎也是猫吗？所以猫比老虎更厉害。",.@event1$[.@i],1029,5;
 			case 15: callsub L_Check,"3 块盾牌碎片和 3 把闪耀枪刃",7108,3,"我不知道他们想拿这些做什么。",.@event1$[.@i],7109,3;
 			case 16: callsub L_Check,"3 个奥西里斯玩偶",751,3,"真遗憾～我从没玩过奥西里斯玩偶。",.@event1$[.@i];
-			case 17: callsub L_Check,"1 片冰鳞",7562,1,"马兰岛是个极好的居住地，但船太热了。",.@event1$[.@i];
+			case 17: callsub L_Check,"1 片冰鳞",7562,1,"绵绵岛是个极好的居住地，但船太热了。",.@event1$[.@i];
 			case 18: callsub L_Check,"1 件骷髅铠甲碎片",7450,1,"呃……他们为什么要收集这么可怕的东西？",.@event1$[.@i];
 			case 19: callsub L_Check,"1 片暗红鳞片",6091,1,"龙鳞？嗯……我想它们确实很坚硬。但他们要拿来做什么？",.@event1$[.@i];
 			case 20: callsub L_Check,"2 个赤红黑暗意志",7566,2,"有趣！我戳它的眼睛时，它会尖叫什么的吗？",.@event1$[.@i];

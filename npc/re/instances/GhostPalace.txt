@@ -54,10 +54,10 @@ dali02,43,129,5	script	讨厌的皇家卫兵::Unpleasant Royal Guard#	4_M_SAKRAY
 		mes "无论心中多么恐惧，我们都必须救出公主！";
 		close;
 	}
-	instance_create("幽灵宫殿");
+	instance_create("幽灵皇宫");
 	mes "[讨厌的皇家卫兵]";
 	mes "谢谢……";
-	mes "我会打开通往^0000ff幽灵宫殿^000000的秘密通道。";
+	mes "我会打开通往^0000ff幽灵皇宫^000000的秘密通道。";
 	mes "请做好准备！";
 	close;
 }
@@ -93,7 +93,7 @@ dali02,40,134,5	script	次元装置::Interdimensional Device#dk	PORTAL,{
 		mes "每天凌晨 4 点重置入场冷却后，我们再尝试进入。";
 		close;
 	case 2:
-		mes "^0000ff幽灵宫殿的入场冷却已结束。请再次与讨厌的皇家卫兵交谈。^000000";
+		mes "^0000ff幽灵皇宫的入场冷却已结束。请再次与讨厌的皇家卫兵交谈。^000000";
 		erasequest 1261;// Cursed Swordman
 		close;
 	}
@@ -104,7 +104,7 @@ dali02,40,134,5	script	次元装置::Interdimensional Device#dk	PORTAL,{
 		close;
 	}
 
-	.@md_name$ = "幽灵宫殿";
+	.@md_name$ = "幽灵皇宫";
 	switch( instance_enter(.@md_name$) ) {
 	case IE_OTHER:
 		mes "发生未知错误。";
@@ -116,7 +116,7 @@ dali02,40,134,5	script	次元装置::Interdimensional Device#dk	PORTAL,{
 		mes "只有登记成员才能进入" + .@md_name$ + "副本。";
 		close;
 	case IE_OK:
-		mapannounce "dali", "队伍成员" + strcharinfo(0) + "（" + getpartyname(.@party_id) + "）正在进入幽灵宫殿。", bc_map, 0x00ff99;
+		mapannounce "dali", "队伍成员" + strcharinfo(0) + "（" + getpartyname(.@party_id) + "）正在进入幽灵皇宫。", bc_map, 0x00ff99;
 		// warp "1@spa",42,196;
 		setquest 1261;// Cursed Swordman
 		end;
@@ -251,7 +251,7 @@ OnSpawn2:
 	end;
 OnMyMobDead3:
 	if (mobcount('map_spa$, instance_npcname("#gp_control_1") + "::OnMyMobDead3") < 1) {
-		mapannounce 'map_spa$, "幽灵宫殿二楼的通道已打开。", bc_map,0xFFFF00;
+		mapannounce 'map_spa$, "幽灵皇宫二楼的通道已打开。", bc_map,0xFFFF00;
 		enablenpc instance_npcname("The second floor of Palace");
 		enablenpc instance_npcname("Lurid Royal Guard#dk1");
 		enablenpc instance_npcname("Princess Tiara#dk");
@@ -866,7 +866,7 @@ OnTimer28500:
 	disablenpc instance_npcname("#tb");
 	disablenpc instance_npcname("#sv");
 	disablenpc instance_npcname("#tv");
-	mapannounce 'map_spa$, "该离开幽灵宫殿了。", bc_map,0xFFFF00;
+	mapannounce 'map_spa$, "该离开幽灵皇宫了。", bc_map,0xFFFF00;
 	enablenpc instance_npcname("Way out of Palace");
 	enablenpc instance_npcname("King#dk11");
 	end;
@@ -891,7 +891,7 @@ OnTimer28500:
 	mes "[国王]";
 	mes "你愿意把 ^006400" + .@item_name_req$ + "^000000 给我吗？";
 	mes "罪恶感正在吞噬我的灵魂。";
-	mes "我的灵魂被困在幽灵宫殿内。";
+	mes "我的灵魂被困在幽灵皇宫内。";
 	next;
 	mes "[国王]";
 	mes "我正在从碎片中收集萨克莱遗弃的记忆。";
@@ -964,8 +964,8 @@ OnTimer28500:
 1@spa,210,28,0	script	宫殿出口::Way out of Palace	WARPNPC,2,2,{
 	end;
 OnTouch_:
-	mes "该离开幽灵宫殿了。";
-	mes "一切都已完成，幽灵宫殿将会消失……";
+	mes "该离开幽灵皇宫了。";
+	mes "一切都已完成，幽灵皇宫将会消失……";
 	close2;
 	if (isbegin_quest(1263) == 2)
 		getitem 6672,1;// Gray Shard
