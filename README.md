@@ -27,3 +27,5 @@ make server-verify
 ## 配置位置
 
 HappyRO 覆盖在 `conf/import/`。物理部署的 systemd 模板在 `deploy/systemd/`，与根仓库 `make server-start` 使用的 transient units 不是同一套。
+
+上述本机 make 启停入口面向 Linux systemd；macOS 使用已配置的 launchd 服务，见根仓库[服务管理](../../docs/operations/services.md)。构建与重启是两个步骤，核对服务实际使用的产物路径后再验收。

@@ -22,3 +22,11 @@ node tests/interserver-reconnect.test.mjs ../../work/diagnostics/interserver-rec
 - 在真实 map-server 上验证传送、召唤或发放。
 
 上游 `doc/` 中的脚本命令和数据库格式说明仍然有效，但安装步骤以根仓库开发文档为准。
+
+## 构建产物与实际运行程序
+
+上述 `make server-start`／`server-verify` 使用 Linux systemd；macOS 按根仓库[服务说明](../../../docs/operations/services.md)检查 launchd 的 `Program` 和工作目录。CMake 产物通常写在本仓库根目录，而已配置的 macOS 服务可能运行 `work/runtime/native/bin/` 的安装副本。
+
+C++ 或公共头文件变化后先完成构建；停止对应进程，备份并安装新程序，核对 SHA-256，再启动并检查本次日志中的监听、数据库连接及 login → char → map 互联。公共代码变化检查全部四个游戏程序。仅重启旧安装副本不会更新代码。
+
+魔物数据库、佣兵名、刷怪或任务脚本文本变化通常无需重新编译 C++，但须重载对应数据或重启地图服。涉及客户端名称表、任务 LUB、NPC／魔物目录时同时更新这些消费者；单独重启地图服不能刷新浏览器静态资源或后台目录。
