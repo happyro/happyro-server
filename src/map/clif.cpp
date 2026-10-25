@@ -1764,6 +1764,7 @@ int32 clif_spawn( const block_list* bl, bool walking ){
 			if ( md->special_state.ai == AI_ABR || md->special_state.ai == AI_BIONIC )
 				clif_summon_init(*md);
 			clif_name_area(md);
+			clif_efst_status_change_sub(bl, bl, AREA);
 		}
 		break;
 	case BL_NPC:
@@ -5172,6 +5173,7 @@ void clif_getareachar_unit( map_session_data* sd,block_list *bl ){
 			}
 #endif
 		clif_name_area(md);
+		clif_efst_status_change_sub(sd, bl, SELF);
 		}
 		break;
 	case BL_PET:
@@ -6657,6 +6659,19 @@ void clif_efst_status_change_sub( const block_list* tbl, const block_list* bl, e
 	nullpo_retv(bl);
 
 	switch( bl->type ){
+		case BL_MOB: {
+			// Replay only the target prerequisites consumed by player skills. Explicit
+			// inactive packets distinguish an absent mark from unsynchronized state.
+			const status_change* sc = status_get_sc(bl);
+			for (sc_type mark : { SC_SERVANT_SIGN, SC_FIRST_BRAND, SC_SECOND_BRAND }) {
+				const status_change_entry* entry = sc ? sc->getSCE(mark) : nullptr;
+				const TimerData* timer = entry ? get_timer(entry->timer) : nullptr;
+				const t_tick remaining = timer ? DIFF_TICK(timer->tick, gettick()) : INFINITE_TICK;
+				clif_status_change_sub(tbl, bl->id, status_db.getIcon(mark), entry ? 1 : 0,
+					remaining, entry ? entry->val1 : 0, 0, 0, target);
+			}
+			return;
+		}
 		case BL_PC: {
 			const map_session_data* sd = static_cast<const map_session_data*>(bl);
 
@@ -10977,6 +10992,13 @@ void clif_parse_WantToConnection(int32 fd, map_session_data* sd)
 }
 
 
+void clif_happyro_combat_limits(const map_session_data* sd) {
+	PACKET_ZC_HAPPYRO_COMBAT_LIMITS packet{};
+	packet.packetType = HEADER_ZC_HAPPYRO_COMBAT_LIMITS;
+	packet.searchRadius = static_cast<uint16>(cap_value(battle_config.area_size, 0, UINT16_MAX));
+	clif_send(&packet, sizeof(packet), sd, sd ? SELF : ALL_CLIENT);
+}
+
 void clif_happyro_map_load_context(const map_session_data& sd) {
  const auto& load = sd.happyro_map_load;
  PACKET_ZC_HAPPYRO_MAP_LOAD_CONTEXT packet{};
@@ -11009,6 +11031,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 	bool guild_notice = false;
 
 	if(sd->prev != nullptr) {
+		clif_happyro_combat_limits(sd);
 		// A screen refresh reloads the scene without removing the server actor.
 		if (sd->happyro_map_load.pending) pc_happyro_map_load_confirm(*sd);
 		return;
@@ -11026,6 +11049,8 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 		clif_changemap( *sd, sd->m, sd->x, sd->y );
 		return;
 	}
+
+	clif_happyro_combat_limits(sd);
 
 	sd->state.warping = 0;
 

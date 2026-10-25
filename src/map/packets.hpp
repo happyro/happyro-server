@@ -1599,7 +1599,14 @@ struct PACKET_ZC_HAPPYRO_NAVIGATION_CONTROL {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_NAVIGATION_CONTROL, 0xd02);
 
-// Complete NPC display name, independent of the legacy 24-byte name field.
+// Authoritative visibility radius used by the map server, not a UI default.
+struct PACKET_ZC_HAPPYRO_COMBAT_LIMITS {
+	int16 packetType;
+	uint16 searchRadius;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_COMBAT_LIMITS, 0x0d10);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_COMBAT_LIMITS) == 4, "Combat limits wire layout");
+
 // Friend details are restricted to the requesting character's own friend list.
 struct PACKET_ZC_HAPPYRO_FRIEND_DETAIL {
  int16 packetType;
@@ -1611,6 +1618,7 @@ struct PACKET_ZC_HAPPYRO_FRIEND_DETAIL {
 DEFINE_PACKET_HEADER(ZC_HAPPYRO_FRIEND_DETAIL, 0x0d0b);
 static_assert(sizeof(PACKET_ZC_HAPPYRO_FRIEND_DETAIL) == 28, "Friend detail wire layout");
 
+// Complete NPC display name, independent of the legacy 24-byte name field.
 struct PACKET_ZC_HAPPYRO_NPC_NAME {
 	int16 packetType;
 	int16 packetLength;

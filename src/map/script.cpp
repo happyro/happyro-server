@@ -17012,9 +17012,12 @@ BUILDIN_FUNC(setbattleflag)
 	flag = script_getstr(st,2);
 	value = script_getstr(st,3);  // HACK: Retrieve number as string (auto-converted) for battle_set_value
 
+	const int32 previous_area_size = battle_config.area_size;
 	if (battle_set_value(flag, value) == 0)
 		ShowWarning("buildin_setbattleflag: unknown battle_config flag '%s'\n",flag);
 	else {
+		if (previous_area_size != battle_config.area_size)
+			clif_happyro_combat_limits(nullptr);
 		ShowInfo("buildin_setbattleflag: battle_config flag '%s' is now set to '%s'.\n",flag,value);
 
 		if (script_hasdata(st, 4) && script_getnum(st, 4)) { // Only attempt to reload monster data if told to

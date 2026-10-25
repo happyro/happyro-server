@@ -960,6 +960,8 @@ void clif_callpartner( const map_session_data& sd );
 void clif_playBGM( const map_session_data& sd, const char* name );
 void clif_soundeffect( const block_list& bl, const char* name, int32 type, enum send_target target );
 void clif_parse_ActionRequest_sub( map_session_data& sd, uint8 action_type, int32 target_id, t_tick tick );
+// nullptr broadcasts updated limits to all connected players.
+void clif_happyro_combat_limits(const map_session_data* sd);
 void clif_happyro_map_load_context(const map_session_data& sd);
 void clif_happyro_map_load_result(const map_session_data& sd, uint32 generation, uint8 status, uint8 destination);
 void clif_parse_happyro_map_load_recover(int32 fd, map_session_data* sd);

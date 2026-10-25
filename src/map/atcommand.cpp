@@ -4444,6 +4444,9 @@ ACMD_FUNC(reloadbattleconf){
 	memcpy(&prev_config, &battle_config, sizeof(prev_config));
 
 	battle_config_read(BATTLE_CONF_FILENAME);
+	if (prev_config.area_size != battle_config.area_size)
+		clif_happyro_combat_limits(nullptr);
+
 
 	if( prev_config.item_rate_mvp          != battle_config.item_rate_mvp
 	||  prev_config.item_rate_common       != battle_config.item_rate_common
@@ -7793,11 +7796,15 @@ ACMD_FUNC(setbattleflag)
         	return -1;
     	}
 
+	const int32 previous_area_size = battle_config.area_size;
 	if (battle_set_value(flag, value) == 0)
 	{
 		clif_displaymessage(fd, msg_txt(sd,1232)); // Unknown battle_config flag.
 		return -1;
 	}
+
+	if (previous_area_size != battle_config.area_size)
+		clif_happyro_combat_limits(nullptr);
 
 	clif_displaymessage(fd, msg_txt(sd,1233)); // Set battle_config as requested.
 
