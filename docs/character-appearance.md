@@ -17,4 +17,4 @@
 
 ## 验证
 
-生成校验和矩阵工具见根仓库[工具说明](../../../tools/character-appearance/README.md)。检查未知 ID、跨分支、越阶段、性别、忙碌状态拒绝与保存值清理；游戏中检查本人／旁观者、正常重登及选角同步。历史矩阵和真实设备待办见[验收结论](../../../docs/development/character-appearance/progress.md)，源码检查不能代替当前发布包验收。
+生成校验和矩阵工具见根仓库[工具说明](../../../tools/resources/appearance/README.md)。检查未知 ID、跨分支、越阶段、性别、忙碌状态拒绝与保存值清理；游戏中检查本人／旁观者、正常重登及选角同步。历史矩阵和真实设备待办见[验收结论](../../../docs/development/character-appearance/progress.md)，源码检查不能代替当前发布包验收。

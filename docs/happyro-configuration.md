@@ -20,4 +20,4 @@ NPC、db 和消息中的玩家可见中文直接改本仓库。生成 NPC 目录
 
 中文名称修改以 ID／AegisName 和已审来源为准。`mob_db.yml` 的 Name、存在的 JapaneseName、魔物型佣兵与脚本刷怪标签分别核对，保留内部 ID、事件身份、剧情专名及战斗数值。固定封包可能只容纳 UTF-8 短标签，客户端通过当前 ID 和默认短名恢复完整中文；不能直接扩大封包或全局替换字符串。
 
-根仓库[魔物审查记录](../../../docs/localization/monster-name-scans/application/README.md)保存来源及例外；`python3 -m tools.resources.monsters.verify_application verify --no-color` 从根仓库复核。任务说明还需要核对 `db/re/quest_db.yml` 的实际目标，避免不同魔物的旧译名碰撞。
+根仓库[魔物审查记录](../../../docs/localization/monster-name-scans/application/README.md)保存来源及例外；`python3 -m tools.localization.monsters.verify_application verify --no-color` 从根仓库复核。任务说明还需要核对 `db/re/quest_db.yml` 的实际目标，避免不同魔物的旧译名碰撞。

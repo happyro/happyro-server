@@ -12405,14 +12405,18 @@ void clif_parse_DropItem(int32 fd, map_session_data *sd){
 /// There are various variants of this packet, some of them have padding between fields.
 void clif_parse_UseItem(int32 fd, map_session_data *sd)
 {
-	int32 n;
+	const int32 n = RFIFOW(fd,packet_db[RFIFOW(fd,0)].pos[0])-2;
+	if (n < 0 || n >= MAX_INVENTORY)
+		return;
 
 	if (pc_isdead(sd)) {
+		clif_useitemack(sd,n,0,false);
 		clif_clearunit_area( *sd, CLR_DEAD );
 		return;
 	}
 
 	if ( (!sd->npc_id && pc_istrading(sd)) || sd->chatID || (sd->state.block_action & PCBLOCK_USEITEM) ) {
+		clif_useitemack(sd,n,0,false);
 		clif_msg( *sd, MSI_BUSY );
 		return;
 	}
@@ -12424,10 +12428,6 @@ void clif_parse_UseItem(int32 fd, map_session_data *sd)
 		sd->idletime_hom = last_tick;
 	if (battle_config.mer_idle_no_share && sd->md && battle_config.idletime_mer_option&IDLE_USEITEM)
 		sd->idletime_mer = last_tick;
-	n = RFIFOW(fd,packet_db[RFIFOW(fd,0)].pos[0])-2;
-
-	if(n <0 || n >= MAX_INVENTORY)
-		return;
 	if (!pc_useitem(sd,n))
 		clif_useitemack(sd,n,0,false); //Send an empty ack packet or the client gets stuck.
 }
