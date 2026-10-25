@@ -30,9 +30,11 @@ GameControlNavigationResult game_control_teleport(map_session_data* sd, const nl
 		: happyro_map_teleport(sd, map.c_str(), x, y);
 	if (outcome.code != 0) {
 		static const char* npc_errors[] = {"", "navigation_disabled", "navigation_cross_map_disabled", "navigation_cooldown",
-			"navigation_invalid_map", "navigation_npc_unavailable", "navigation_map_forbidden", "navigation_no_cell", "navigation_failed"};
+			"navigation_invalid_map", "navigation_npc_unavailable", "navigation_map_forbidden", "navigation_no_cell", "navigation_failed", "navigation_map_not_ready"};
+		static_assert(sizeof(npc_errors) / sizeof(npc_errors[0]) == HAPPYRO_NPC_TELEPORT_MAP_NOT_READY + 1);
 		static const char* map_errors[] = {"", "navigation_disabled", "navigation_cross_map_disabled", "navigation_cooldown",
-			"navigation_invalid_map", "navigation_map_forbidden", "navigation_invalid_coordinate", "navigation_failed"};
+			"navigation_invalid_map", "navigation_map_forbidden", "navigation_invalid_coordinate", "navigation_failed", "navigation_dialogue_active", "navigation_no_safe_cell", "navigation_map_not_ready"};
+		static_assert(sizeof(map_errors) / sizeof(map_errors[0]) == HAPPYRO_MAP_TELEPORT_MAP_NOT_READY + 1);
 		return {409, {{"error", {{"code", npc ? npc_errors[outcome.code] : map_errors[outcome.code]}, {"cooldown_remaining", outcome.cooldown}}}}};
 	}
 	return {200, {{"data", {{"result", {{"char_id", sd->status.char_id}, {"map", outcome.map},

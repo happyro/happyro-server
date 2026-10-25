@@ -18,6 +18,8 @@ if(!options.length || options[0]==='--help') {
  const stubs=read('tests/city-arrival-stubs.hpp').replace('struct map_session_data {};',`struct map_session_data {
  long long navigation_preview_tick=0,navigation_teleport_tick=0;
  int mapindex=1,m=0,x=20,y=20;
+ void* prev=this;struct {bool active=true,pc_loaded=true,warping=false;} state;
+ int npc_id=0;int* st=nullptr;struct {int npc_id=0;} progressbar;
  struct {int class_=0;} status;
  };`);
  const code=stubs+read('src/map/happyro_default_arrivals.hpp')+`
@@ -57,6 +59,50 @@ if(!options.length || options[0]==='--help') {
  clock_tick+=500;auto latest=happyro_map_arrival_preview(&sd,"prt_fild08");assert(latest.code==0);
  clock_tick+=20000;occupied[latest.y][latest.x]=true;auto warped=happyro_map_teleport(&sd,"prt_fild08",0,0);assert(warped.code==0 && (warped.x!=latest.x || warped.y!=latest.y));assert(moves==1 && logs==1 && sd.navigation_teleport_tick==clock_tick);
  assert(happyro_safe_arrival_cell(0,sd.x,sd.y));
+ // Closing next/close2 would resume script logic, so an active dialogue must
+ // reject the coordinate teleport without moving, logging or starting cooldown.
+ clock_tick+=20000;const auto previous_tick=sd.navigation_teleport_tick;
+ const auto previous_x=sd.x,previous_y=sd.y;int script_state=1;
+ for(int state=0;state<3;++state){
+  sd.npc_id=state==0?123:0;sd.st=state==1?&script_state:nullptr;sd.progressbar.npc_id=state==2?123:0;
+  auto denied=happyro_map_teleport(&sd,"prt_fild08",168,373);
+  assert(denied.code==HAPPYRO_MAP_TELEPORT_DIALOGUE_ACTIVE);
+  assert(moves==1 && logs==1 && sd.x==previous_x && sd.y==previous_y && sd.navigation_teleport_tick==previous_tick);
+  assert(script_state==1);
+ }
+ // Read-only previews remain allowed; finishing the dialogue permits a new
+ // explicit request, using the existing safe-arrival search.
+ clock_tick+=500;assert(happyro_map_arrival_preview(&sd,"prt_fild08").code==HAPPYRO_MAP_TELEPORT_SUCCESS);
+ sd.npc_id=0;sd.st=nullptr;sd.progressbar.npc_id=0;
+ assert(happyro_map_teleport(&sd,"prt_fild08",168,373).code==HAPPYRO_MAP_TELEPORT_SUCCESS);
+ assert(moves==2 && logs==2);
+ // A valid coordinate whose entire search radius overlaps an OnTouch region
+ // is distinct from an out-of-bounds coordinate, with no mutation on refusal.
+ clock_tick+=20000;const auto safe_tick=sd.navigation_teleport_tick;
+ const auto safe_x=sd.x,safe_y=sd.y;
+ clear_cells();
+ for(int y=70;y<=90;++y)for(int x=166;x<=186;++x)touch[y][x]=true;
+ auto no_cell=happyro_map_teleport(&sd,"rachel",176,80);
+ assert(no_cell.code==HAPPYRO_MAP_TELEPORT_NO_SAFE_CELL);
+ assert(moves==2 && logs==2 && sd.x==safe_x && sd.y==safe_y && sd.navigation_teleport_tick==safe_tick);
+ assert(happyro_map_teleport(&sd,"rachel",400,80).code==HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE);
+ clear_cells();
+ for(int y=68;y<=92;++y)for(int x=164;x<=188;++x)occupied[y][x]=true;
+ assert(happyro_map_teleport(&sd,"rachel",176,80).code==HAPPYRO_MAP_TELEPORT_NO_SAFE_CELL);
+ assert(moves==2 && logs==2 && sd.navigation_teleport_tick==safe_tick);
+ clear_cells();
+ assert(happyro_map_teleport(&sd,"rachel",176,80).code==HAPPYRO_MAP_TELEPORT_SUCCESS);
+ assert(moves==3 && logs==3 && sd.x==176 && sd.y==80);
+ clock_tick+=20000;const auto loaded_tick=sd.navigation_teleport_tick;
+ for(int phase=0;phase<4;++phase){
+  sd.prev=phase==0?nullptr:&sd;sd.state.active=phase!=1;sd.state.pc_loaded=phase!=2;sd.state.warping=phase==3;
+  assert(happyro_map_teleport(&sd,"rachel",120,120).code==HAPPYRO_MAP_TELEPORT_MAP_NOT_READY);
+  assert(moves==3 && logs==3 && sd.x==176 && sd.y==80 && sd.navigation_teleport_tick==loaded_tick);
+ }
+ clock_tick+=500;assert(happyro_map_arrival_preview(&sd,"prt_fild08").code==HAPPYRO_MAP_TELEPORT_SUCCESS);
+ sd.prev=&sd;sd.state={true,true,false};
+ assert(happyro_map_teleport(&sd,"rachel",120,120).code==HAPPYRO_MAP_TELEPORT_SUCCESS);
+ assert(moves==4 && logs==4 && sd.x==120 && sd.y==120);
  std::cout<<"preview permissions, rate limit, no side effects and teleport revalidation passed\\n";
  }
  `;

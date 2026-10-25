@@ -44,3 +44,6 @@ void clif_parse_WantToConnection(int, TBL_PC*) {}
 void clif_parse_LoadEndAck(int, TBL_PC*) {}
 int load_recovery_calls = 0;
 void clif_parse_happyro_map_load_recover(int, TBL_PC*) { ++load_recovery_calls; }
+int navigation_rejection_calls = 0;
+void clif_parse_happyro_map_teleport(int, TBL_PC*) { ++navigation_rejection_calls; }
+void clif_parse_happyro_npc_teleport(int, TBL_PC*) { ++navigation_rejection_calls; }

@@ -171,6 +171,11 @@ HappyroNavigationResult happyro_npc_teleport(map_session_data* sd, const char* r
 	if (!happyro_navigation_teleport_allowed(sd)) {
 		return {HAPPYRO_NPC_TELEPORT_DISABLED};
 	}
+	// pc_setpos queues rewarp instead of sending a change-map packet while the
+	// player is unspawned. A new navigation action must not report that as arrival.
+	if (sd->prev == nullptr || !sd->state.active || !sd->state.pc_loaded || sd->state.warping) {
+		return {HAPPYRO_NPC_TELEPORT_MAP_NOT_READY};
+	}
 
 	char map_name[MAP_NAME_LENGTH_EXT];
 	safestrncpy(map_name, requested_map, sizeof(map_name));
@@ -238,6 +243,15 @@ static HappyroNavigationResult happyro_map_destination(map_session_data* sd, con
 	if (!happyro_navigation_teleport_allowed(sd)) {
 		return {HAPPYRO_MAP_TELEPORT_DISABLED};
 	}
+	// A close packet is not a cancellation: STOP can be next/close2 and resumes
+	// the script. Never close or resume a dialogue as a side effect of teleport.
+	// npc_shopid is deliberately excluded: it can outlive a closed shop window.
+	if (!preview && (sd->npc_id != 0 || sd->st != nullptr || sd->progressbar.npc_id != 0)) {
+		return {HAPPYRO_MAP_TELEPORT_DIALOGUE_ACTIVE};
+	}
+	if (!preview && (sd->prev == nullptr || !sd->state.active || !sd->state.pc_loaded || sd->state.warping)) {
+		return {HAPPYRO_MAP_TELEPORT_MAP_NOT_READY};
+	}
 
 	char map_name[MAP_NAME_LENGTH_EXT];
 	safestrncpy(map_name, requested_map, sizeof(map_name));
@@ -278,12 +292,12 @@ static HappyroNavigationResult happyro_map_destination(map_session_data* sd, con
 	int16 y = random_arrival ? 0 : requested_y;
 	if (random_arrival) {
 		if (!happyro_random_arrival(map_id, x, y))
-			return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
+			return {HAPPYRO_MAP_TELEPORT_NO_SAFE_CELL};
 	} else if (x == 0 && y == 0) {
 		if (!happyro_default_arrival(sd, map_id, map_name, x, y, preview))
-			return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
+			return {HAPPYRO_MAP_TELEPORT_NO_SAFE_CELL};
 	} else if (!happyro_find_safe_arrival(map_id, x, y)) {
-		return {HAPPYRO_MAP_TELEPORT_INVALID_COORDINATE};
+		return {HAPPYRO_MAP_TELEPORT_NO_SAFE_CELL};
 	}
 	if (preview) return {HAPPYRO_MAP_TELEPORT_SUCCESS, map_name, static_cast<uint16>(x), static_cast<uint16>(y)};
 	if (pc_setpos(sd, mapindex, x, y, CLR_TELEPORT) != SETPOS_OK) {

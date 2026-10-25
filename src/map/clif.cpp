@@ -26122,8 +26122,11 @@ static int32 clif_parse(int32 fd)
 		if( !sd && packet_db[cmd].func != clif_parse_WantToConnection )
 			; //Only valid packet when there is no session
 		else
-		if( sd && sd->prev == nullptr && packet_db[cmd].func != clif_parse_LoadEndAck && packet_db[cmd].func != clif_parse_happyro_map_load_recover )
-			; //Only valid packet when player is not on a map
+		if( sd && sd->prev == nullptr && packet_db[cmd].func != clif_parse_LoadEndAck
+			&& packet_db[cmd].func != clif_parse_happyro_map_load_recover
+			&& packet_db[cmd].func != clif_parse_happyro_map_teleport
+			&& packet_db[cmd].func != clif_parse_happyro_npc_teleport )
+			; // Navigation handlers explicitly reject loading sessions instead of silently dropping requests.
 		else
 			packet_db[cmd].func(fd, sd);
 	}

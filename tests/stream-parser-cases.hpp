@@ -59,6 +59,16 @@ int main() {
   packet_db[0x124] = {6, clif_parse_happyro_map_load_recover};
   feed(loading, {0x24, 1, 2, 3, 4, 5}, 0, 6);
   assert(load_recovery_calls == 1 && loading.bytes.empty());
+  // Navigation must reach its loading-state rejection guard; ordinary gameplay
+  // remains blocked above, and requests without a session remain ignored.
+  packet_db[0x125] = {6, clif_parse_happyro_map_teleport};
+  packet_db[0x126] = {6, clif_parse_happyro_npc_teleport};
+  feed(loading, {0x25, 1, 2, 3, 4, 5}, 0, 6);
+  feed(loading, {0x26, 1, 2, 3, 4, 5}, 0, 6);
+  assert(navigation_rejection_calls == 2 && loading.bytes.empty());
+  TestSession unauthenticated; session[0] = &unauthenticated;
+  feed(unauthenticated, {0x25, 1, 2, 3, 4, 5}, 0, 6);
+  assert(navigation_rejection_calls == 2);
   for (size_t length : {size_t(0), size_t(3), size_t(32769), size_t(65535)}) {
     TestSession invalid; session[0] = &invalid; invalid.bytes = {0xfa, 0x0c, uint8_t(length), uint8_t(length >> 8)};
     clif_parse(0); assert(invalid.flag.eof);
