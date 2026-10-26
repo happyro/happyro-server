@@ -248,6 +248,8 @@ int32 login_mmo_auth_new(const char* userid, const char* pass, const char sex, c
 
 	memset(&acc, '\0', sizeof(acc));
 	acc.account_id = -1; // assigned by account db
+	if (!accounts->registration_group(accounts, &acc.group_id))
+		return REGISTRATION_STORAGE_FAILED;
 	safestrncpy(acc.userid, userid, sizeof(acc.userid));
 	safestrncpy(acc.pass, pass, sizeof(acc.pass));
 	acc.sex = sex;

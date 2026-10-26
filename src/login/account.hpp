@@ -56,6 +56,9 @@ struct AccountDBIterator {
 
 
 struct AccountDB {
+	/// Read the shared registration policy; failures must prevent registration.
+	bool (*registration_group)(AccountDB* self, uint32* group_id);
+
 	bool (*consume_session_ticket)(AccountDB* self, uint32 account_id, const char* ticket);
 
 	/// Initializes this database, making it ready for use.

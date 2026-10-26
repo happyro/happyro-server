@@ -86,12 +86,34 @@ static bool account_db_sql_consume_session_ticket(AccountDB* self, uint32 accoun
 	return Sql_NumRowsAffected(db->accounts) == 1;
 }
 
+static bool account_db_sql_registration_group(AccountDB* self, uint32* group_id) {
+	auto* db = reinterpret_cast<AccountDB_SQL*>(self);
+	if (SQL_SUCCESS != Sql_Query(db->accounts,
+		"SELECT default_group_id FROM happyro_registration_settings WHERE id=1")) {
+		Sql_ShowDebug(db->accounts);
+		return false;
+	}
+	char* value = nullptr;
+	bool valid = false;
+	if (SQL_SUCCESS == Sql_NextRow(db->accounts)) {
+		Sql_GetData(db->accounts, 0, &value, nullptr);
+		// Source: conf/groups.yml (Player=0, Admin=99).
+		if (value != nullptr && (strcmp(value, "0") == 0 || strcmp(value, "99") == 0)) {
+			*group_id = strcmp(value, "99") == 0 ? 99 : 0;
+			valid = true;
+		}
+	}
+	Sql_FreeResult(db->accounts);
+	return valid;
+}
+
 /// public constructor
 AccountDB* account_db_sql(void) {
 	AccountDB_SQL* db = (AccountDB_SQL*)aCalloc(1, sizeof(AccountDB_SQL));
 	new(db) AccountDB_SQL();
 
 	// set up the vtable
+	db->vtable.registration_group = &account_db_sql_registration_group;
 	db->vtable.consume_session_ticket = &account_db_sql_consume_session_ticket;
 	db->vtable.init         = &account_db_sql_init;
 	db->vtable.destroy      = &account_db_sql_destroy;
@@ -425,6 +447,7 @@ static AccountDBIterator* account_db_sql_iterator(AccountDB* self) {
 	AccountDBIterator_SQL* iter = (AccountDBIterator_SQL*)aCalloc(1, sizeof(AccountDBIterator_SQL));
 
 	// set up the vtable
+	db->vtable.registration_group = &account_db_sql_registration_group;
 	iter->vtable.destroy = &account_db_sql_iter_destroy;
 	iter->vtable.next    = &account_db_sql_iter_next;
 

@@ -17,7 +17,7 @@ if(!options.length || options[0]==='--help') {
 #include <cctype>
 #include <iostream>
 #include "registration.hpp"
-using int32=int; using t_tick=long long;
+using uint32=unsigned int; using int32=int; using t_tick=long long;
 t_tick now=1000; t_tick gettick(){return now;}
 #define DIFF_TICK(a,b) ((a)-(b))
 #define ShowNotice(...) ((void)0)
@@ -25,11 +25,11 @@ t_tick now=1000; t_tick gettick(){return now;}
 #define NAME_LENGTH 24
 #define TOUPPER(c) std::toupper(c)
 struct Config {int allowed_regs=1,acc_name_min_length=6,password_min_length=6,start_limited_time=-1,time_allowed=60;bool new_account_flag=true;} login_config;
-struct mmo_account {int account_id,char_slots; char sex; char userid[24],pass[33],email[40],lastlogin[24],last_ip[24],birthdate[24],pincode[24]; time_t expiration_time,pincode_change;};
+struct mmo_account {int account_id,char_slots; uint32 group_id; char sex; char userid[24],pass[33],email[40],lastlogin[24],last_ip[24],birthdate[24],pincode[24]; time_t expiration_time,pincode_change;};
 void safestrncpy(char* dst,const char* src,size_t n){std::strncpy(dst,src,n);dst[n-1]=0;}
-bool exists=false,can_create=true;int creation_count=0;
-struct AccountDB { bool (*load_str)(AccountDB*,mmo_account*,const char*); bool (*create)(AccountDB*,mmo_account*);};
-AccountDB db{[](AccountDB*,mmo_account*,const char*){return exists;},[](AccountDB*,mmo_account*){++creation_count;return can_create;}};auto* accounts=&db;
+bool exists=false,can_create=true,can_read_policy=true; uint32 registration_group=0,created_group=0;int creation_count=0;
+struct AccountDB { bool (*load_str)(AccountDB*,mmo_account*,const char*); bool (*create)(AccountDB*,mmo_account*); bool (*registration_group)(AccountDB*,uint32*);};
+AccountDB db{[](AccountDB*,mmo_account*,const char*){return exists;},[](AccountDB*,mmo_account* acc){++creation_count;created_group=acc->group_id;return can_create;},[](AccountDB*,uint32* group){*group=registration_group;return can_read_policy;}};auto* accounts=&db;
 struct login_session_data {char userid[24],passwd[33];int passwdenc;};
 `+extract('int32 login_mmo_auth_new(', '\n/**')+
 `int registration_request(login_session_data* sd){bool isServer=false;size_t len=strnlen(sd->userid,NAME_LENGTH);const char* ip="127.0.0.1";\n`+

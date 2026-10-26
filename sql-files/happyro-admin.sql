@@ -17,3 +17,12 @@ CREATE TABLE IF NOT EXISTS happyro_admin_account_deletions (
  completed_at DATETIME(6) NULL,
  INDEX deletion_queue (status,updated_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Shared by login-server registration and administrator settings.
+CREATE TABLE IF NOT EXISTS happyro_registration_settings (
+ id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
+ default_group_id TINYINT UNSIGNED NOT NULL DEFAULT 0,
+ CONSTRAINT registration_singleton CHECK (id=1),
+ CONSTRAINT registration_group CHECK (default_group_id IN (0,99))
+) ENGINE=InnoDB;
+INSERT IGNORE INTO happyro_registration_settings (id,default_group_id) VALUES (1,0);
