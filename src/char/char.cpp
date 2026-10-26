@@ -3257,9 +3257,9 @@ bool CharacterServer::initialize( int32 argc, char *argv[] ){
 	char_set_defaults();
 	char_config_read(CHAR_CONF_NAME, true);
 #ifdef RENEWAL
-	const auto new_player_start = happyro_new_player_start(std::getenv("HAPPYRO_NEW_PLAYER_START"));
+	const auto new_player_start = happyro_new_player_start(std::getenv("HAPPYRO_CHARACTER_START_MODE"));
 	if (!new_player_start) {
-		ShowError("HAPPYRO_NEW_PLAYER_START must be ship or classic.\n");
+		ShowError("HAPPYRO_CHARACTER_START_MODE must be ship or classic.\n");
 		return false;
 	}
 	charserv_config.start_point_count = 1;

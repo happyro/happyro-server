@@ -9171,19 +9171,40 @@ static const struct {
 	int32* value;
 	long minimum;
 	long maximum;
+	bool boolean;
 } battle_environment_settings[] = {
-	{ "HAPPYRO_AREA_SIZE", "area_size", &battle_config.area_size, 5, 50 },
-	{ "HAPPYRO_MAX_WALK_PATH", "max_walk_path", &battle_config.max_walk_path, 1, MAX_WALKPATH },
-	{ "HAPPYRO_NAVIGATION_TELEPORT_POLICY", "navigation_teleport_policy", &battle_config.navigation_teleport_policy, 0, 2 },
-	{ "HAPPYRO_NAVIGATION_TELEPORT_CROSS_MAP", "navigation_teleport_cross_map", &battle_config.navigation_teleport_cross_map, 0, 1 },
-	{ "HAPPYRO_NAVIGATION_TELEPORT_COOLDOWN", "navigation_teleport_cooldown", &battle_config.navigation_teleport_cooldown, 0, 3600 },
-	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_POLICY", "game_tools_monster_spawn_policy", &battle_config.game_tools_monster_spawn_policy, 0, 2 },
-	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_COOLDOWN", "game_tools_monster_spawn_cooldown", &battle_config.game_tools_monster_spawn_cooldown, 0, 3600 },
-	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_DURATION", "game_tools_monster_spawn_duration", &battle_config.game_tools_monster_spawn_duration, 1, 3600 },
-	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_ALLOW_BOSS", "game_tools_monster_spawn_allow_boss", &battle_config.game_tools_monster_spawn_allow_boss, 0, 1 },
-	{ "HAPPYRO_GAME_TOOLS_CHARACTER_MAINTENANCE_POLICY", "game_tools_character_maintenance_policy", &battle_config.game_tools_character_maintenance_policy, 1, 2 },
-	{ "HAPPYRO_GAME_TOOLS_GAME_SETTINGS_POLICY", "game_tools_game_settings_policy", &battle_config.game_tools_game_settings_policy, 1, 2 },
-	{ "HAPPYRO_GAME_TOOLS_ITEM_GRANT_POLICY", "game_tools_item_grant_policy", &battle_config.game_tools_item_grant_policy, 1, 2 },
+	{ "HAPPYRO_GAME_ENTITY_SYNC_RANGE_CELLS", "area_size", &battle_config.area_size, 5, 50, false },
+	{ "HAPPYRO_GAME_MAX_WALK_PATH_CELLS", "max_walk_path", &battle_config.max_walk_path, 1, MAX_WALKPATH, false },
+	{ "HAPPYRO_GAME_NAVIGATION_TELEPORT_POLICY", "navigation_teleport_policy", &battle_config.navigation_teleport_policy, 0, 2, false },
+	{ "HAPPYRO_GAME_NAVIGATION_TELEPORT_CROSS_MAP_ENABLED", "navigation_teleport_cross_map", &battle_config.navigation_teleport_cross_map, 0, 1, true },
+	{ "HAPPYRO_GAME_NAVIGATION_TELEPORT_COOLDOWN_SECONDS", "navigation_teleport_cooldown", &battle_config.navigation_teleport_cooldown, 0, 3600, false },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_POLICY", "game_tools_monster_spawn_policy", &battle_config.game_tools_monster_spawn_policy, 0, 2, false },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_COOLDOWN_SECONDS", "game_tools_monster_spawn_cooldown", &battle_config.game_tools_monster_spawn_cooldown, 0, 3600, false },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_DURATION_SECONDS", "game_tools_monster_spawn_duration", &battle_config.game_tools_monster_spawn_duration, 1, 3600, false },
+	{ "HAPPYRO_GAME_TOOLS_MONSTER_SPAWN_ALLOW_BOSS_ENABLED", "game_tools_monster_spawn_allow_boss", &battle_config.game_tools_monster_spawn_allow_boss, 0, 1, true },
+	{ "HAPPYRO_GAME_TOOLS_CHARACTER_MAINTENANCE_POLICY", "game_tools_character_maintenance_policy", &battle_config.game_tools_character_maintenance_policy, 1, 2, false },
+	{ "HAPPYRO_GAME_TOOLS_GAME_SETTINGS_POLICY", "game_tools_game_settings_policy", &battle_config.game_tools_game_settings_policy, 1, 2, false },
+	{ "HAPPYRO_GAME_TOOLS_ITEM_GRANT_POLICY", "game_tools_item_grant_policy", &battle_config.game_tools_item_grant_policy, 1, 2, false },
+	{ "HAPPYRO_GAME_BASE_EXP_RATE_PERCENT", "base_exp_rate", &battle_config.base_exp_rate, 0, 2147483647, false },
+	{ "HAPPYRO_GAME_JOB_EXP_RATE_PERCENT", "job_exp_rate", &battle_config.job_exp_rate, 0, 2147483647, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_COMMON_PERCENT", "item_rate_common", &battle_config.item_rate_common, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_COMMON_BOSS_PERCENT", "item_rate_common_boss", &battle_config.item_rate_common_boss, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_COMMON_MVP_PERCENT", "item_rate_common_mvp", &battle_config.item_rate_common_mvp, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_HEAL_PERCENT", "item_rate_heal", &battle_config.item_rate_heal, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_HEAL_BOSS_PERCENT", "item_rate_heal_boss", &battle_config.item_rate_heal_boss, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_HEAL_MVP_PERCENT", "item_rate_heal_mvp", &battle_config.item_rate_heal_mvp, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_USE_PERCENT", "item_rate_use", &battle_config.item_rate_use, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_USE_BOSS_PERCENT", "item_rate_use_boss", &battle_config.item_rate_use_boss, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_USE_MVP_PERCENT", "item_rate_use_mvp", &battle_config.item_rate_use_mvp, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_EQUIP_PERCENT", "item_rate_equip", &battle_config.item_rate_equip, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_EQUIP_BOSS_PERCENT", "item_rate_equip_boss", &battle_config.item_rate_equip_boss, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_EQUIP_MVP_PERCENT", "item_rate_equip_mvp", &battle_config.item_rate_equip_mvp, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_CARD_PERCENT", "item_rate_card", &battle_config.item_rate_card, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_CARD_BOSS_PERCENT", "item_rate_card_boss", &battle_config.item_rate_card_boss, 0, 1000000, false },
+	{ "HAPPYRO_GAME_ITEM_RATE_CARD_MVP_PERCENT", "item_rate_card_mvp", &battle_config.item_rate_card_mvp, 0, 1000000, false },
+	{ "HAPPYRO_GAME_REFINE_CHANCE_RATE_PERCENT", "refine_chance_rate", &battle_config.refine_chance_rate, 0, 1000000, false },
+	{ "HAPPYRO_GAME_REFINE_ALWAYS_SUCCESS_ENABLED", "refine_always_success", &battle_config.refine_always_success, 0, 1, true },
+	{ "HAPPYRO_GAME_NAVIGATION_MAP_CHANNELS_ENABLED", "navigation_map_channels_enabled", &battle_config.navigation_map_channels_enabled, 0, 1, true },
 };
 
 const char* battle_environment_override(const char* key)
@@ -9202,6 +9223,14 @@ static void battle_apply_environment()
 		const char* raw = std::getenv(setting.name);
 		if (raw == nullptr || *raw == '\0')
 			continue;
+		if (setting.boolean) {
+			if (std::strcmp(raw, "true") != 0 && std::strcmp(raw, "false") != 0) {
+				ShowError("%s must be true or false.\n", setting.name);
+				std::exit(EXIT_FAILURE);
+			}
+			*setting.value = std::strcmp(raw, "true") == 0 ? 1 : 0;
+			continue;
+		}
 		errno = 0;
 		char* end = nullptr;
 		const long value = std::strtol(raw, &end, 10);

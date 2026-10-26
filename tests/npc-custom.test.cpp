@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     assert(arguments.size() == 1);
     fs::current_path(arguments[0]);
     auto custom = fs::current_path() / "custom";
-    setenv("HAPPYRO_CUSTOM_NPC_PATH", custom.c_str(), 1);
+    setenv("HAPPYRO_SERVER_CUSTOM_NPC_DIR", custom.c_str(), 1);
     write("npc/custom/test.txt", "builtin");
     assert(source("npc/custom/test.txt") == "npc/custom/test.txt");
     write(custom / "overrides/custom/test.txt", "user");
@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     failed = false; try { additions(); } catch (...) { failed = true; } assert(failed);
     fs::create_symlink(fs::absolute("npc/custom/test.txt"), custom / "overrides/custom/test.txt");
     failed = false; try { source("npc/custom/test.txt"); } catch (...) { failed = true; } assert(failed);
-    unsetenv("HAPPYRO_CUSTOM_NPC_PATH");
+    unsetenv("HAPPYRO_SERVER_CUSTOM_NPC_DIR");
     assert(additions().empty());
     assert(source("npc/custom/test.txt") == "npc/custom/test.txt");
     std::cout << "NPC override/addition resolution passed\n";

@@ -15,7 +15,7 @@ namespace happyro_custom {
 namespace fs = std::filesystem;
 
 inline fs::path root() {
-	const char* value = std::getenv("HAPPYRO_CUSTOM_NPC_PATH");
+	const char* value = std::getenv("HAPPYRO_SERVER_CUSTOM_NPC_DIR");
 	return value && *value ? fs::absolute(value).lexically_normal() : fs::path();
 }
 
