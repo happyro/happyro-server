@@ -1410,6 +1410,8 @@ TIMER_FUNC(pc_close_npc_timer);
 
 void pc_setequipindex( map_session_data *sd );
 uint8 pc_isequip( const map_session_data* sd, int32 n );
+bool pc_equipment_candidate(const map_session_data* sd, int32 n, uint32 position);
+bool pc_equipment_action_blocked(map_session_data* sd);
 int32 pc_equippoint( const map_session_data* sd, int32 n );
 int32 pc_equippoint_sub( const map_session_data* sd, const item_data* id );
 bool pc_can_dual_wield(const map_session_data* sd);

@@ -1912,12 +1912,13 @@ static bool pc_isItemClass ( const map_session_data* sd, const item_data* item )
  * @param n Item index in inventory
  * @return ITEM_EQUIP_ACK_OK(0) if can be equipped, or ITEM_EQUIP_ACK_FAIL(1)/ITEM_EQUIP_ACK_FAILLEVEL(2) if can't
  *------------------------------------------------*/
-uint8 pc_isequip( const map_session_data* sd, int32 n )
+static uint8 pc_check_equip( const map_session_data* sd, int32 n, int32* message )
 {
 	const item_data* item;
 
 	nullpo_retr(ITEM_EQUIP_ACK_FAIL, sd);
 
+	if (n < 0 || n >= MAX_INVENTORY) return ITEM_EQUIP_ACK_FAIL;
 	item = sd->inventory_data[n];
 
 	if(pc_has_permission(sd, PC_PERM_USE_ALL_EQUIPMENT))
@@ -1963,7 +1964,7 @@ uint8 pc_isequip( const map_session_data* sd, int32 n )
 		switch (item->subtype) {
 			case AMMO_ARROW:
 				if (battle_config.ammo_check_weapon && sd->status.weapon != W_BOW && sd->status.weapon != W_MUSICAL && sd->status.weapon != W_WHIP) {
-					clif_msg( *sd, MSI_FAIL_NEED_EQUIPPED_BOW );
+					if (message) *message = MSI_FAIL_NEED_EQUIPPED_BOW;
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
@@ -1978,26 +1979,26 @@ uint8 pc_isequip( const map_session_data* sd, int32 n )
 					&& sd->status.weapon != W_GRENADE
 #endif
 					) {
-					clif_msg( *sd, MSI_WRONG_BULLET );
+					if (message) *message = MSI_WRONG_BULLET;
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
 #ifndef RENEWAL
 			case AMMO_GRENADE:
 				if (battle_config.ammo_check_weapon && sd->status.weapon != W_GRENADE) {
-					clif_msg( *sd, MSI_WRONG_BULLET );
+					if (message) *message = MSI_WRONG_BULLET;
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
 #endif
 			case AMMO_CANNONBALL:
 				if (!pc_ismadogear(sd) && (sd->status.class_ == JOB_MECHANIC_T || sd->status.class_ == JOB_MECHANIC)) {
-					clif_msg( *sd, MSI_USESKILL_FAIL_MADOGEAR ); // Item can only be used when Mado Gear is mounted.
+					if (message) *message = MSI_USESKILL_FAIL_MADOGEAR; // Item can only be used when Mado Gear is mounted.
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				if (sd->state.active && !pc_iscarton(sd) && //Check if sc data is already loaded
 					(sd->status.class_ == JOB_GENETIC_T || sd->status.class_ == JOB_GENETIC)) {
-					clif_msg( *sd, MSI_USESKILL_FAIL_CART ); // Only available when cart is mounted.
+					if (message) *message = MSI_USESKILL_FAIL_CART; // Only available when cart is mounted.
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
@@ -2031,6 +2032,39 @@ uint8 pc_isequip( const map_session_data* sd, int32 n )
 		return ITEM_EQUIP_ACK_FAIL;
 
 	return ITEM_EQUIP_ACK_OK;
+}
+
+// Keep live wear feedback at the call site; candidate queries must be silent.
+uint8 pc_isequip( const map_session_data* sd, int32 n ) {
+ int32 message = 0;
+ const uint8 result = pc_check_equip(sd, n, &message);
+ if (message) clif_msg(*sd, static_cast<e_clif_messages>(message));
+ return result;
+}
+
+bool pc_equipment_candidate(const map_session_data* sd, int32 n, uint32 position) {
+ if (!sd || n < 0 || n >= MAX_INVENTORY || !position || (position & (position - 1))) return false;
+ const auto& item = sd->inventory.u.items_inventory[n];
+ const auto* data = sd->inventory_data[n];
+ if (!data || !item.nameid || item.amount <= 0 || item.equip || !item.identify || item.attribute == 1
+     || !itemdb_isequip2(data) || !(pc_equippoint(sd, n) & position)) return false;
+ if (pc_check_equip(sd, n, nullptr) != ITEM_EQUIP_ACK_OK) return false;
+ if (!sd->sc.empty() && (sd->sc.cant.equip || (sd->sc.getSCE(SC_PYROCLASTIC) && data->type == IT_WEAPON))) return false;
+ // Cards can restrict an otherwise two-sided accessory to one hand.
+ if (data->equip == EQP_ACC) {
+  for (int32 i = 0; i < data->slots; ++i) {
+   const auto card = item_db.find(item.card[i]);
+   if (card && (card->equip == EQP_ACC_L || card->equip == EQP_ACC_R)) return (card->equip & position) != 0;
+  }
+ }
+ return true;
+}
+
+bool pc_equipment_action_blocked(map_session_data* sd) {
+ return !sd || pc_isdead(sd) || (sd->npc_id && !sd->npc_item_flag)
+  || (sd->state.block_action & PCBLOCK_EQUIP) || (!sd->sc.empty() && sd->sc.cant.equip)
+  || (!(sd->state.storage_flag || sd->sc.opt1) && pc_cant_act2(sd))
+  || DIFF_TICK(sd->canequip_tick, gettick()) > 0;
 }
 
 /**

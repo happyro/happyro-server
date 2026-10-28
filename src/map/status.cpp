@@ -499,6 +499,16 @@ int32 status_get_refine_chance(int32 base_chance){
 	return static_cast<int32>(cap_value(chance, 0, 100));
 }
 
+int32 status_get_grade_chance(int32 base_chance){
+	// Zero in the database denotes an ineligible refine level.
+	if( base_chance <= 0 )
+		return 0;
+	if( battle_config.grade_always_success )
+		return 100;
+	const int64 chance = static_cast<int64>(base_chance) * battle_config.grade_chance_rate / 10000;
+	return static_cast<int32>(cap_value(chance, 0, 100));
+}
+
 const std::string SizeFixDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/size_fix.yml";
 }

@@ -140,6 +140,7 @@ extern RefineDatabase refine_db;
 
 // Return the effective whole-percent chance for a valid refinement offer.
 int32 status_get_refine_chance(int32 base_chance);
+int32 status_get_grade_chance(int32 base_chance);
 
 /// Weapon attack modification for size
 struct s_sizefix_db {

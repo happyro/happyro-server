@@ -59,7 +59,7 @@ enum e_searchstore_failure : uint16;
 
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
-	MAX_PACKET_DB  = 0xD0C,
+	MAX_PACKET_DB  = 0xD11,
 #if !defined(MAX_PACKET_POS)
 	MAX_PACKET_POS = 20,
 #endif
@@ -1224,6 +1224,7 @@ void clif_configuration( const map_session_data* sd, enum e_config_type type, bo
 void clif_navigation_teleport_config( const map_session_data* sd );
 void clif_navigation_teleport_config_all();
 void clif_parse_happyro_npc_teleport( int32 fd, map_session_data* sd );
+void clif_parse_happyro_equipment_availability(int32 fd, map_session_data* sd);
 void clif_parse_happyro_npc_availability( int32 fd, map_session_data* sd );
 void clif_parse_happyro_arrival_preview(int32 fd, map_session_data* sd);
 void clif_parse_happyro_map_teleport( int32 fd, map_session_data* sd );

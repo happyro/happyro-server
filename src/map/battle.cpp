@@ -8334,7 +8334,9 @@ static const struct _battle_data {
 	{ "player_skillup_limit",               &battle_config.skillup_limit,                   1,      0,      1,              },
 	{ "weapon_produce_rate",                &battle_config.wp_rate,                         100,    0,      INT_MAX,        },
 	{ "refine_chance_rate",                &battle_config.refine_chance_rate,             100,    0,      1000000,        },
+	{ "grade_chance_rate",                &battle_config.grade_chance_rate,             100,    0,      1000000,        },
 	{ "refine_always_success",             &battle_config.refine_always_success,          0,      0,      1,              },
+	{ "grade_always_success",             &battle_config.grade_always_success,          0,      0,      1,              },
 	{ "potion_produce_rate",                &battle_config.pp_rate,                         100,    0,      INT_MAX,        },
 	{ "monster_active_enable",              &battle_config.monster_active_enable,           1,      0,      1,              },
 	{ "monster_damage_delay_rate",          &battle_config.monster_damage_delay_rate,       100,    0,      INT_MAX,        },
@@ -9203,7 +9205,9 @@ static const struct {
 	{ "HAPPYRO_GAME_ITEM_RATE_CARD_BOSS_PERCENT", "item_rate_card_boss", &battle_config.item_rate_card_boss, 0, 1000000, false },
 	{ "HAPPYRO_GAME_ITEM_RATE_CARD_MVP_PERCENT", "item_rate_card_mvp", &battle_config.item_rate_card_mvp, 0, 1000000, false },
 	{ "HAPPYRO_GAME_REFINE_CHANCE_RATE_PERCENT", "refine_chance_rate", &battle_config.refine_chance_rate, 0, 1000000, false },
+	{ "HAPPYRO_GAME_GRADE_CHANCE_RATE_PERCENT", "grade_chance_rate", &battle_config.grade_chance_rate, 0, 1000000, false },
 	{ "HAPPYRO_GAME_REFINE_ALWAYS_SUCCESS_ENABLED", "refine_always_success", &battle_config.refine_always_success, 0, 1, true },
+	{ "HAPPYRO_GAME_GRADE_ALWAYS_SUCCESS_ENABLED", "grade_always_success", &battle_config.grade_always_success, 0, 1, true },
 	{ "HAPPYRO_GAME_NAVIGATION_MAP_CHANNELS_ENABLED", "navigation_map_channels_enabled", &battle_config.navigation_map_channels_enabled, 0, 1, true },
 };
 

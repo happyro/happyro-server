@@ -1515,6 +1515,33 @@ struct PACKET_CZ_HAPPYRO_NPC_TELEPORT {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_HAPPYRO_NPC_TELEPORT, 0xcfc);
 
+// Batched read-only equipment eligibility, over the authenticated game session.
+struct PACKET_CZ_HAPPYRO_EQUIPMENT_ENTRY {
+ uint16 index;
+ uint32 itemId;
+} __attribute__((packed));
+struct PACKET_CZ_HAPPYRO_EQUIPMENT_AVAILABILITY {
+ int16 packetType;
+ uint16 packetLength;
+ uint32 requestId;
+ uint32 position;
+ uint16 count;
+ PACKET_CZ_HAPPYRO_EQUIPMENT_ENTRY items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_HAPPYRO_EQUIPMENT_AVAILABILITY, 0xd11);
+static_assert(sizeof(PACKET_CZ_HAPPYRO_EQUIPMENT_AVAILABILITY) == 14, "Equipment request header layout");
+static_assert(sizeof(PACKET_CZ_HAPPYRO_EQUIPMENT_ENTRY) == 6, "Equipment request entry layout");
+struct PACKET_ZC_HAPPYRO_EQUIPMENT_AVAILABILITY {
+ int16 packetType;
+ uint16 packetLength;
+ uint32 requestId;
+ uint16 count;
+ uint8 blocked;
+ uint8 available[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_HAPPYRO_EQUIPMENT_AVAILABILITY, 0xd12);
+static_assert(sizeof(PACKET_ZC_HAPPYRO_EQUIPMENT_AVAILABILITY) == 11, "Equipment result header layout");
+
 struct PACKET_CZ_HAPPYRO_NPC_AVAILABILITY_ENTRY {
 	char map[MAP_NAME_LENGTH_EXT];
 	uint16 npcX;

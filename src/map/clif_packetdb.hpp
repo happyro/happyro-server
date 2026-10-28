@@ -2047,6 +2047,7 @@
 #endif
 
 	parseable_packet( HEADER_CZ_HAPPYRO_MONSTER_SPAWN, sizeof( PACKET_CZ_HAPPYRO_MONSTER_SPAWN ), clif_parse_happyro_monster_spawn, 0 );
+	parseable_packet(HEADER_CZ_HAPPYRO_EQUIPMENT_AVAILABILITY, -1, clif_parse_happyro_equipment_availability, 0);
 	parseable_packet( HEADER_CZ_HAPPYRO_NPC_AVAILABILITY, -1, clif_parse_happyro_npc_availability, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_NPC_TELEPORT, sizeof( PACKET_CZ_HAPPYRO_NPC_TELEPORT ), clif_parse_happyro_npc_teleport, 0 );
 	parseable_packet( HEADER_CZ_HAPPYRO_ARRIVAL_PREVIEW, sizeof(PACKET_CZ_HAPPYRO_ARRIVAL_PREVIEW), clif_parse_happyro_arrival_preview, 0 );
