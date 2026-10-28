@@ -23,6 +23,13 @@ void ra_mysql_error_handler(uint32 ecode);
 int32 mysql_reconnect_type;
 uint32 mysql_reconnect_count;
 
+// Keep database failures bounded. A restarted or unreachable database must
+// release the web request lock after a short interval so the HTTP service can
+// return an error and recover on the next query instead of hanging forever.
+static constexpr unsigned int SQL_CONNECT_TIMEOUT_SECONDS = 5;
+static constexpr unsigned int SQL_READ_TIMEOUT_SECONDS = 5;
+static constexpr unsigned int SQL_WRITE_TIMEOUT_SECONDS = 5;
+
 /// Sql handle
 struct Sql
 {
@@ -53,6 +60,9 @@ Sql* Sql_Malloc(void)
 	self->keepalive = INVALID_TIMER;
 	my_bool reconnect = 1;
 	mysql_options(&self->handle, MYSQL_OPT_RECONNECT, &reconnect);
+	mysql_options(&self->handle, MYSQL_OPT_CONNECT_TIMEOUT, &SQL_CONNECT_TIMEOUT_SECONDS);
+	mysql_options(&self->handle, MYSQL_OPT_READ_TIMEOUT, &SQL_READ_TIMEOUT_SECONDS);
+	mysql_options(&self->handle, MYSQL_OPT_WRITE_TIMEOUT, &SQL_WRITE_TIMEOUT_SECONDS);
 	return self;
 }
 
@@ -197,7 +207,8 @@ int32 Sql_Ping(Sql* self)
 static TIMER_FUNC(Sql_P_KeepaliveTimer){
 	Sql* self = (Sql*)data;
 	ShowInfo("Pinging SQL server to keep connection alive...\n");
-	Sql_Ping(self);
+	if( Sql_Ping(self) != SQL_SUCCESS )
+		ShowWarning("SQL keepalive failed; the next query will force an automatic reconnect: %s\n", mysql_error(&self->handle));
 	return 0;
 }
 
