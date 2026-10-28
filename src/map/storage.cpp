@@ -969,6 +969,11 @@ void storage_guild_storageaddfromcart(map_session_data* sd, int32 index, int32 a
 	if( amount < 1 || amount > sd->cart.u.items_cart[index].amount )
 		return;
 
+	if( stor->lock ) {
+		storage_guild_storageclose(sd);
+		return;
+	}
+
 	if(storage_guild_additem(sd,stor,&sd->cart.u.items_cart[index],amount))
 		pc_cart_delitem(sd,index,amount,0,LOG_TYPE_GSTORAGE);
 	else {
@@ -1003,6 +1008,11 @@ void storage_guild_storagegettocart(map_session_data* sd, int32 index, int32 amo
 
 	if(amount < 1 || amount > stor->u.items_guild[index].amount)
 		return;
+
+	if( stor->lock ) {
+		storage_guild_storageclose(sd);
+		return;
+	}
 
 	if((flag = pc_cart_additem(sd,&stor->u.items_guild[index],amount,LOG_TYPE_GSTORAGE)) == 0)
 		storage_guild_delitem(sd,stor,index,amount);

@@ -25,6 +25,7 @@ using namespace rathena;
 #define GS_MEMBER_UNMODIFIED 0x00
 #define GS_MEMBER_MODIFIED 0x01
 #define GS_MEMBER_NEW 0x02
+// Preserve NEW when marking member updates; it owns the pending character guild_id write.
 
 #define GS_POSITION_UNMODIFIED 0x00
 #define GS_POSITION_MODIFIED 0x01
@@ -97,6 +98,11 @@ int32 inter_guild_removemember_tosql(uint32 char_id)
 		{ Sql_ShowDebug(sql_handle); return -1; }
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `guild_id` = '0' WHERE `char_id` = '%d'", schema_config.char_db, char_id) )
 		{ Sql_ShowDebug(sql_handle); return -1; }
+	// Keep the save comparison cache consistent with the SQL membership change.
+	// Otherwise leaving and rejoining the same guild can skip the next character write.
+	auto cached = util::umap_find(char_get_chardb(), char_id);
+	if (cached != nullptr)
+		cached->guild_id = 0;
 	return 0;
 }
 
@@ -678,7 +684,7 @@ int32 inter_guild_CharOnline(uint32 char_id, int32 guild_id)
 	if( i < g->guild.max_member )
 	{
 		g->guild.member[i].online = 1;
-		g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+		g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 	}
 
 	return 1;
@@ -726,7 +732,7 @@ int32 inter_guild_CharOffline(uint32 char_id, int32 guild_id)
 	if( i < g->guild.max_member )
 	{
 		g->guild.member[i].online = 0;
-		g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+		g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 	}
 
 	online_count = 0;
@@ -1213,7 +1219,7 @@ int32 mapif_parse_CreateGuild(int32 fd,uint32 account_id,char *name,struct guild
 	memcpy(g->guild.name,name,NAME_LENGTH);
 	memcpy(g->guild.master,master->name,NAME_LENGTH);
 	memcpy(&g->guild.member[0],master,sizeof(struct guild_member));
-	g->guild.member[0].modified = GS_MEMBER_MODIFIED;
+	g->guild.member[0].modified |= GS_MEMBER_MODIFIED;
 
 	// Set default positions
 	g->guild.position[0].mode = GUILD_PERM_DEFAULT;
@@ -1225,7 +1231,9 @@ int32 mapif_parse_CreateGuild(int32 fd,uint32 account_id,char *name,struct guild
 		g->guild.position[i].modified = GS_POSITION_MODIFIED;
 	}
 
-	// Initialize guild property
+	// Initialize progression before persisting or publishing the new guild.
+	g->guild.guild_lv = 1;
+	g->guild.next_exp = guild_exp_db.get_nextexp(g->guild.guild_lv);
 	g->guild.max_member=16;
 	g->guild.average_lv=master->lv;
 	g->guild.connect_member=1;
@@ -1235,7 +1243,7 @@ int32 mapif_parse_CreateGuild(int32 fd,uint32 account_id,char *name,struct guild
 	g->guild.guild_id= -1; //Request to create guild.
 
 	// Create the guild
-	if (!inter_guild_tosql(g->guild,GS_BASIC|GS_POSITION|GS_SKILL|GS_MEMBER)) {
+	if (!inter_guild_tosql(g->guild,GS_BASIC|GS_LEVEL|GS_POSITION|GS_SKILL|GS_MEMBER)) {
 		//Failed to Create guild....
 		ShowError("Failed to create Guild %s (Guild Master: %s)\n", g->guild.name, g->guild.master);
 		mapif_guild_created(fd,account_id,nullptr);
@@ -1381,7 +1389,7 @@ int32 mapif_parse_GuildChangeMemberInfoShort(int32 fd,int32 guild_id,uint32 acco
 		g->guild.member[i].online = online;
 		g->guild.member[i].lv = lv;
 		g->guild.member[i].class_ = class_;
-		g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+		g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 		mapif_guild_memberinfoshort(g->guild,i);
 	}
 
@@ -1544,7 +1552,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_POSITION:
 		  {
 			g->guild.member[i].position=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER;
 			break;
@@ -1553,7 +1561,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		{	// EXP
 			t_exp old_exp=g->guild.member[i].exp;
 			g->guild.member[i].exp=*((t_exp *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			if (g->guild.member[i].exp > old_exp)
 			{
 				t_exp exp = g->guild.member[i].exp - old_exp;
@@ -1576,7 +1584,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_HAIR:
 		{
 			g->guild.member[i].hair=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER; //Save new data.
 			break;
@@ -1584,7 +1592,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_HAIR_COLOR:
 		{
 			g->guild.member[i].hair_color=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER; //Save new data.
 			break;
@@ -1592,7 +1600,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_GENDER:
 		{
 			g->guild.member[i].gender=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER; //Save new data.
 			break;
@@ -1600,7 +1608,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_CLASS:
 		{
 			g->guild.member[i].class_=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER; //Save new data.
 			break;
@@ -1608,7 +1616,7 @@ int32 mapif_parse_GuildMemberInfoChange(int32 fd,int32 guild_id,uint32 account_i
 		case GMI_LEVEL:
 		{
 			g->guild.member[i].lv=*((int16 *)data);
-			g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+			g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 			mapif_guild_memberinfochanged(guild_id,account_id,char_id,type,data,len);
 			g->save_flag |= GS_MEMBER; //Save new data.
 			break;
@@ -1649,7 +1657,7 @@ int32 inter_guild_charname_changed(int32 guild_id,uint32 account_id, uint32 char
 		flag |= GS_BASIC;
 	}
 	safestrncpy(g->guild.member[i].name, name, NAME_LENGTH);
-	g->guild.member[i].modified = GS_MEMBER_MODIFIED;
+	g->guild.member[i].modified |= GS_MEMBER_MODIFIED;
 	flag |= GS_MEMBER;
 
 	if( !inter_guild_tosql(g->guild, flag) )
@@ -1884,9 +1892,9 @@ int32 mapif_parse_GuildMasterChange(int32 fd, int32 guild_id, const char* name, 
 
 	// Switch positions
 	g->guild.member[pos].position = g->guild.member[0].position;
-	g->guild.member[pos].modified = GS_MEMBER_MODIFIED;
+	g->guild.member[pos].modified |= GS_MEMBER_MODIFIED;
 	g->guild.member[0].position = 0; //Position 0: guild Master.
-	g->guild.member[0].modified = GS_MEMBER_MODIFIED;
+	g->guild.member[0].modified |= GS_MEMBER_MODIFIED;
 
 	// Store changing time
 	g->guild.last_leader_change = time(nullptr);

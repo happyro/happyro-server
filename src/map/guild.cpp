@@ -735,7 +735,7 @@ int32 guild_created(uint32 account_id,int32 guild_id) {
 	if(battle_config.guild_emperium_check){
 		int32 index = pc_search_inventory(sd,ITEMID_EMPERIUM);
 
-		if( index > 0 )
+		if( index >= 0 )
 			pc_delitem(sd,index,1,0,0,LOG_TYPE_CONSUME);	//emperium consumption
 	}
 	return 0;
@@ -793,6 +793,8 @@ int32 guild_check_member(const struct mmo_guild &g) {
 		i = guild_getindex(g,sd->status.account_id,sd->status.char_id);
 		if (i < 0) {
 			sd->guild = nullptr;
+			sd->guild_alliance = 0;
+			sd->guild_alliance_account = 0;
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
 			ShowWarning("guild: check_member %d[%s] is not member\n",sd->status.account_id,sd->status.name);
@@ -810,8 +812,11 @@ int32 guild_recv_noinfo(int32 guild_id) {
 
 	iter = mapit_getallusers();
 	for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) ) {
-		if( sd->status.guild_id == guild_id )
+		if( sd->status.guild_id == guild_id ) {
+			sd->guild_alliance = 0;
+			sd->guild_alliance_account = 0;
 			sd->status.guild_id = 0; // erase guild
+		}
 	}
 	mapit_free(iter);
 
@@ -1086,9 +1091,11 @@ void guild_member_joined(map_session_data *sd) {
 #endif
 	}
 	i = guild_getindex(g->guild, sd->status.account_id, sd->status.char_id);
-	if (i == -1)
+	if (i == -1) {
+		sd->guild_alliance = 0;
+		sd->guild_alliance_account = 0;
 		sd->status.guild_id = 0;
-	else {
+	} else {
 		g->guild.member[i].sd = sd;
 		sd->guild = g;
 		clif_name_area(sd);
@@ -1175,6 +1182,12 @@ bool guild_leave( map_session_data& sd, int32 guild_id, uint32 account_id, uint3
 	}
 
 	if( sd.status.account_id != account_id || sd.status.char_id != char_id || sd.status.guild_id != guild_id || map_flag_gvg2( sd.m ) ){
+		return false;
+	}
+
+	// A guild must retain its leader until leadership is transferred or it is disbanded.
+	if( sd.state.gmaster_flag ){
+		clif_displaymessage( sd.fd, msg_txt( &sd, 1541 ) ); // Transfer leadership or disband before leaving.
 		return false;
 	}
 
@@ -1285,6 +1298,8 @@ int32 guild_member_withdraw(int32 guild_id, uint32 account_id, uint32 char_id, i
 			storage_guild_storageclose(sd);
 		guild_send_dot_remove(sd);
 		channel_pcquit(sd,3); //leave guild and ally chan
+		sd->guild_alliance = 0;
+		sd->guild_alliance_account = 0;
 		sd->status.guild_id = 0;
 		sd->guild = nullptr;
 		sd->guild_emblem_id = 0;
@@ -1422,6 +1437,8 @@ int32 guild_recv_memberinfoshort(int32 guild_id,uint32 account_id,uint32 char_id
         //Treat char_id who doesn't match guild_id (not found as member)
 		map_session_data *sd = map_id2sd(account_id);
 		if(sd && sd->status.char_id == char_id) {
+			sd->guild_alliance = 0;
+			sd->guild_alliance_account = 0;
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
 		}
@@ -1488,6 +1505,9 @@ int32 guild_recv_message( int32 guild_id, uint32 account_id, const char *mes, si
  * Member changing position in guild
  *---------------------------------------------------*/
 int32 guild_change_memberposition(int32 guild_id,uint32 account_id,uint32 char_id,int16 idx) {
+	// Position zero is reserved for the separate guild leadership transfer path.
+	if (idx <= 0 || idx >= MAX_GUILDPOSITION)
+		return 0;
 	return intif_guild_change_memberinfo(guild_id,account_id,char_id,GMI_POSITION,&idx,sizeof(idx));
 }
 
@@ -1500,8 +1520,12 @@ int32 guild_memberposition_changed(struct mmo_guild &g,int32 idx,int32 pos) {
 	clif_guild_memberpositionchanged(g,idx);
 
 	// Update char position in client [LuzZza]
-	if(g.member[idx].sd != nullptr)
+	if(g.member[idx].sd != nullptr) {
 		clif_guild_position_selected(*g.member[idx].sd);
+		clif_guild_belonginfo(*g.member[idx].sd);
+		if (g.member[idx].sd->state.storage_flag == 2 && !(g.position[pos].mode & GUILD_PERM_STORAGE))
+			storage_guild_storageclose(g.member[idx].sd);
+	}
 	return 0;
 }
 
@@ -1531,8 +1555,12 @@ int32 guild_position_changed(int32 guild_id,int32 idx,struct guild_position *p) 
 
 	// Update char name in client [LuzZza]
 	for(i=0;i<g->guild.max_member;i++)
-		if(g->guild.member[i].position == idx && g->guild.member[i].sd != nullptr)
+		if(g->guild.member[i].position == idx && g->guild.member[i].sd != nullptr) {
 			clif_guild_position_selected(*g->guild.member[i].sd);
+			clif_guild_belonginfo(*g->guild.member[i].sd);
+			if (g->guild.member[i].sd->state.storage_flag == 2 && !(p->mode & GUILD_PERM_STORAGE))
+				storage_guild_storageclose(g->guild.member[i].sd);
+		}
 	return 0;
 }
 
@@ -1916,14 +1944,42 @@ int32 guild_reply_reqalliance(map_session_data *sd,uint32 account_id,int32 flag)
 	map_session_data *tsd;
 
 	nullpo_ret(sd);
+	// Only the exact outstanding invitation may be answered.
+	if( sd->guild_alliance <= 0 || sd->guild_alliance_account != account_id || (flag != 0 && flag != 1) )
+		return 0;
+
+	// Consume the pending request before any terminal outcome, including disconnects.
+	const int32 invited_guild_id = sd->guild_alliance;
+	sd->guild_alliance = 0;
+	sd->guild_alliance_account = 0;
 	tsd= map_id2sd( account_id );
 	if (!tsd) { //Character left? Cancel alliance.
 		clif_guild_allianceack(*sd,3);
 		return 0;
 	}
 
-	if (sd->guild_alliance != tsd->status.guild_id) // proposed guild_id alliance doesn't match tsd guildid
+	if( invited_guild_id != tsd->status.guild_id || sd->status.guild_id <= 0 ||
+		sd->status.guild_id == tsd->status.guild_id ){
+		clif_guild_allianceack(*sd, 3);
 		return 0;
+	}
+
+	if( flag == 1 && is_agit_start() ){
+		clif_displaymessage(sd->fd, msg_txt(sd, 676));
+		clif_guild_allianceack(*sd, 3);
+		clif_guild_allianceack(*tsd, 3);
+		return 0;
+	}
+
+	// Authority may have changed while the invitation dialog was open.
+	if( flag == 1 && (!tsd->state.gmaster_flag ||
+		(battle_config.guild_alliance_onlygm && !sd->state.gmaster_flag)) ){
+		sd->guild_alliance = 0;
+		sd->guild_alliance_account = 0;
+		clif_guild_allianceack(*sd, 3);
+		clif_guild_allianceack(*tsd, 3);
+		return 0;
+	}
 
 	if (flag == 1) { // consent
 		int32 i;
@@ -2158,6 +2214,8 @@ int32 guild_broken(int32 guild_id,int32 flag) {
 		if(sd != nullptr){
 			if(sd->state.storage_flag == 2)
 				storage_guild_storage_quit(sd,1);
+			sd->guild_alliance = 0;
+			sd->guild_alliance_account = 0;
 			sd->status.guild_id=0;
 			sd->guild = nullptr;
 			sd->state.gmaster_flag = 0;
@@ -2273,6 +2331,9 @@ int32 guild_gm_changed(int32 guild_id, uint32 account_id, uint32 char_id, time_t
 			clif_guild_basicinfo( *g->guild.member[i].sd );
 			clif_guild_memberlist( *g->guild.member[i].sd );
 			clif_guild_belonginfo( *g->guild.member[i].sd ); // Update clientside guildmaster flag
+			if (g->guild.member[i].sd->state.storage_flag == 2 &&
+				!(g->guild.position[g->guild.member[i].position].mode & GUILD_PERM_STORAGE))
+				storage_guild_storageclose(g->guild.member[i].sd);
 		}
 	}
 

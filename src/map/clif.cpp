@@ -9231,7 +9231,7 @@ void clif_guild_leave( const map_session_data& sd, const char* name, uint32 char
 /// Notifies clients of a guild of an expelled member.
 /// 015c <char name>.24B <reason>.40B <account name>.24B (ZC_ACK_BAN_GUILD)
 /// 0839 <char name>.24B <reason>.40B (ZC_ACK_BAN_GUILD_SSO)
-/// 0a82 <CID>.L <reason>.40B (ZC_ACK_BAN_GUILD_DELNAME)
+/// 0a82 <reason>.40B <CID>.L (ZC_ACK_BAN_GUILD_DELNAME)
 void clif_guild_expulsion( const map_session_data& sd, const char* name, uint32 char_id, const char* mes ){
 	PACKET_ZC_ACK_BAN_GUILD p = {};
 
