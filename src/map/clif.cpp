@@ -13683,8 +13683,11 @@ void clif_parse_NpcSelectMenu(int32 fd,map_session_data *sd){
 	if( (select > sd->npc_menu && select != 0xff) || select == 0 ) {
 			TBL_NPC* nd = map_id2nd(npc_id);
 			ShowWarning("Invalid menu selection on npc %d:'%s' - got %d, valid range is [%d..%d] (player AID:%d, CID:%d, name:'%s')!\n", npc_id, (nd)?nd->name:"invalid npc id", select, 1, sd->npc_menu, sd->id, sd->status.char_id, sd->status.name);
-			clif_GM_kick(nullptr,sd);
-		return;
+			// A stale or malformed menu response must end the dialog safely. Do not
+			// disconnect the player; legitimate conditional menus can become stale
+			// during reconnects and the client should be allowed to retry.
+			pc_close_npc(sd, 2);
+			return;
 	}
 
 	sd->npc_menu = select;

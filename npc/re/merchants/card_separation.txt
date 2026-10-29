@@ -57,7 +57,13 @@
 			set .@menu$, .@menu$+"^999999"+.@equip_name$[.@i]+"（空）^000000:";
 	}
 
-	set .@i, select("停止操作:"+((.@Jeremy)?"这怎么可能？":"")+":"+.@menu$);
+	// Keep the menu contiguous for both NPCs. An empty conditional entry is
+	// still counted by the server but is hidden by web clients, which shifts
+	// the selected equipment index and can submit an invalid menu value.
+	set .@options$, "";
+	if (.@Jeremy)
+		set .@options$, "这怎么可能？:";
+	set .@i, select("停止操作:"+.@options$+.@menu$);
 	switch(.@i) {
 	case 1:
 		mes .@n$;
@@ -93,7 +99,8 @@
 		mes "我不能保证成功率。不过，这已经很便宜了，对吧？";
 		close;
 	default:
-		set .@equip_num, .@equip_slot[.@i-3];
+		// Jeremy has an extra story option; Richard does not.
+		set .@equip_num, .@equip_slot[.@i-(.@Jeremy ? 3 : 2)];
 		if (!getequipisequiped(.@equip_num)) {
 			mes .@n$;
 			if (.@Jeremy)
@@ -119,11 +126,14 @@
 		"|4363|4324|4361|4330|4342|"; //B_Magaleta_Card, Garm_Card, B_Harword_Card, Dark_Snake_Lord_Card, Rsx_0806_Card
 
 	if (.@Jeremy) {
+		set .@card_count, 0;
 		for ( .@i = 0; .@i < MAX_SLOTS; .@i++ ) {
 			if (getiteminfo(.@equip_card[.@i], ITEMINFO_SUBTYPE) == CARD_ENCHANT)
 				.@equip_card[.@i] = 0;// Armor Enchant System
+			if (.@equip_card[.@i])
+				.@card_count++;
 		}
-		if (!getarraysize(.@equip_card)) {
+		if (.@card_count == 0) {
 			mes .@n$;
 			mes "这件装备上没有卡片。要再检查一次吗？";
 			close;
